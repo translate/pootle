@@ -12,7 +12,8 @@ from django.conf.urls import include, patterns, url
 from .views.admin import urls as admin_urls
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^admin',
         include(admin_urls)),
     url(r'^xhr/admin/',

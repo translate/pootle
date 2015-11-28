@@ -312,9 +312,8 @@ class CachedTreeItem(TreeItem):
         result = self.get_cached_value(name)
         if result is None:
 
-            msg = u"cache miss %s for %s(%s)" % (name,
-                                              self.get_cachekey(),
-                                              self.__class__)
+            msg = u"cache miss %s for %s(%s)" % (name, self.get_cachekey(),
+                                                 self.__class__)
             logger.info(msg)
             raise NoCachedStats(msg)
 

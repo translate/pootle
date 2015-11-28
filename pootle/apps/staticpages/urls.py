@@ -13,7 +13,8 @@ from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
                     PageUpdateView)
 
 
-page_patterns = patterns('',
+page_patterns = patterns(
+    '',
     url(r'^legal/agreement/$',
         'staticpages.views.legal_agreement',
         name='pootle-staticpages-legal-agreement'),
@@ -22,7 +23,8 @@ page_patterns = patterns('',
         name='pootle-staticpages-display'),
 )
 
-admin_patterns = patterns('',
+admin_patterns = patterns(
+    '',
     url(r'^$',
         AdminTemplateView.as_view(),
         name='pootle-staticpages'),
@@ -39,14 +41,16 @@ admin_patterns = patterns('',
 )
 
 
-xhr_patterns = patterns('',
+xhr_patterns = patterns(
+    '',
     url(r'^preview/?$',
         'staticpages.views.preview_content',
         name='pootle-xhr-preview'),
 )
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^pages/',
         include(page_patterns)),
     url(r'^xhr/',

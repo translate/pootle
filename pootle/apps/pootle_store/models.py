@@ -311,27 +311,29 @@ class Unit(models.Model, base.TranslationUnit):
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True,
-            editable=False)
+                                   editable=False)
 
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
-            editable=False)
+                                   editable=False)
     source_wordcount = models.SmallIntegerField(default=0, editable=False)
     source_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
+                                             editable=False)
 
     target_f = MultiStringField(null=True, blank=True)
     target_wordcount = models.SmallIntegerField(default=0, editable=False)
     target_length = models.SmallIntegerField(db_index=True, default=0,
-            editable=False)
+                                             editable=False)
 
     developer_comment = models.TextField(null=True, blank=True)
     translator_comment = models.TextField(null=True, blank=True)
     locations = models.TextField(null=True, editable=False)
     context = models.TextField(null=True, editable=False)
 
-    state = models.IntegerField(null=False, default=UNTRANSLATED, db_index=True)
-    revision = models.IntegerField(null=False, default=0, db_index=True, blank=True)
+    state = models.IntegerField(null=False, default=UNTRANSLATED,
+                                db_index=True)
+    revision = models.IntegerField(null=False, default=0, db_index=True,
+                                   blank=True)
 
     # Metadata
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
@@ -341,17 +343,17 @@ class Unit(models.Model, base.TranslationUnit):
 
     # unit translator
     submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True, related_name='submitted')
+                                     db_index=True, related_name='submitted')
     submitted_on = models.DateTimeField(db_index=True, null=True)
 
     commented_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True, related_name='commented')
+                                     db_index=True, related_name='commented')
     commented_on = models.DateTimeField(db_index=True, null=True)
 
     # reviewer: who has accepted suggestion or removed FUZZY
     # None if translation has been submitted by approved translator
     reviewed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True, related_name='reviewed')
+                                    db_index=True, related_name='reviewed')
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 
     objects = UnitManager()
@@ -433,10 +435,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
-            lang=self.store.translation_project.language.code,
-            unit=self.id,
-            translation='',
-            path=self.store.pootle_path)
+                   lang=self.store.translation_project.language.code,
+                   unit=self.id, translation='', path=self.store.pootle_path)
 
         self.flag_store_before_going_away()
 
@@ -1007,9 +1007,9 @@ class Unit(models.Model, base.TranslationUnit):
 
     def hasplural(self):
         return (self.source is not None and
-                (len(self.source.strings) > 1
-                or hasattr(self.source, "plural") and
-                self.source.plural))
+                (len(self.source.strings) > 1 or
+                 hasattr(self.source, "plural") and
+                 self.source.plural))
 
     def isobsolete(self):
         return self.state == OBSOLETE
@@ -1344,23 +1344,25 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     Name = "Model Store"
     is_dir = False
 
-    file = TranslationStoreField(max_length=255, storage=fs,
-            db_index=True, null=False, editable=False)
+    file = TranslationStoreField(max_length=255, storage=fs, db_index=True,
+                                 null=False, editable=False)
 
     parent = models.ForeignKey('pootle_app.Directory',
-            related_name='child_stores', db_index=True, editable=False)
+                               related_name='child_stores', db_index=True,
+                               editable=False)
 
     translation_project_fk = 'pootle_translationproject.TranslationProject'
     translation_project = models.ForeignKey(translation_project_fk,
-            related_name='stores', db_index=True, editable=False)
+                                            related_name='stores',
+                                            db_index=True, editable=False)
 
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, verbose_name=_("Path"))
+                                   db_index=True, verbose_name=_("Path"))
     name = models.CharField(max_length=128, null=False, editable=False)
 
     file_mtime = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
-            db_index=True)
+                                db_index=True)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
     last_sync_revision = models.IntegerField(db_index=True, null=True)
@@ -1892,7 +1894,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if (only_newer and self.file.exists() and
             self.last_sync_revision >= last_revision):
             logging.info(u"[sync] No updates for %s after [revision: %d]" %
-                (self.pootle_path, self.last_sync_revision))
+                         (self.pootle_path, self.last_sync_revision))
             return
 
         if not self.file.exists():

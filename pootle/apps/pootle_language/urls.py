@@ -10,7 +10,8 @@
 from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns('pootle_language.views',
+urlpatterns = patterns(
+    'pootle_language.views',
     url(r'^(?P<language_code>[^/]*)/$',
         'browse',
         name='pootle-language-browse'),

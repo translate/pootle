@@ -12,7 +12,9 @@ from django.conf.urls import include, patterns, url
 from django.views.generic import TemplateView
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
+
     # JavaScript i18n
     url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
         {'packages': ('pootle', ), }, ),
@@ -28,12 +30,14 @@ urlpatterns = patterns('',
 
 # XXX should be autodiscovered
 if "import_export" in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         # Pootle offline translation support URLs.
         url(r'', include('import_export.urls')),
     )
 
-urlpatterns += patterns('',
+urlpatterns += patterns(
+    '',
     # External apps
     url(r'^contact/', include('contact.urls')),
     url(r'', include('pootle_profile.urls')),

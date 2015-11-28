@@ -10,7 +10,9 @@
 from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns('pootle_translationproject.views',
+urlpatterns = patterns(
+    'pootle_translationproject.views',
+
     # Admin views
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
         r'/admin/permissions/',

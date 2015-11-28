@@ -190,15 +190,15 @@ class Submission(models.Model):
         'pootle_translationproject.TranslationProject', db_index=True
     )
     submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-            db_index=True)
+                                  db_index=True)
     suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
-            null=True, db_index=True)
+                                   null=True, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
-            db_index=True)
-    quality_check = models.ForeignKey('pootle_store.QualityCheck', blank=True, null=True,
-            db_index=True)
+                             db_index=True)
+    quality_check = models.ForeignKey('pootle_store.QualityCheck', blank=True,
+                                      null=True, db_index=True)
     store = models.ForeignKey('pootle_store.Store', blank=True, null=True,
-            db_index=True)
+                              db_index=True)
 
     #: The field in the unit that changed
     field = models.IntegerField(null=True, blank=True, db_index=True)

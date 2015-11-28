@@ -160,9 +160,9 @@ class PermissionSet(models.Model):
     directory = models.ForeignKey('pootle_app.Directory', db_index=True,
                                   related_name='permission_sets')
     positive_permissions = models.ManyToManyField(Permission, db_index=True,
-            related_name='permission_sets_positive')
+                                                  related_name='permission_sets_positive')
     negative_permissions = models.ManyToManyField(Permission, db_index=True,
-            related_name='permission_sets_negative')
+                                                  related_name='permission_sets_negative')
 
     def __unicode__(self):
         return "%s : %s" % (self.user.username,

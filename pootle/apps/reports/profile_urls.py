@@ -13,7 +13,8 @@ from .views import (UserStatsView, UserDetailedStatsView,
                     UserActivityView, AddUserPaidTaskView)
 
 
-urlpatterns = patterns('reports.views',
+urlpatterns = patterns(
+    'reports.views',
     url('^user/(?P<username>[^/]+)/stats/detailed/?$',
         UserDetailedStatsView.as_view(),
         name='pootle-user-detailed-stats'),

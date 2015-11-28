@@ -142,20 +142,22 @@ class ProjectURLMixin(object):
 class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     code_help_text = _('A short code for the project. This should only contain '
-            'ASCII characters, numbers, and the underscore (_) character.')
+                       'ASCII characters, numbers, and the underscore (_) '
+                       'character.')
     code = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, verbose_name=_('Code'), help_text=code_help_text)
+                            db_index=True, verbose_name=_('Code'),
+                            help_text=code_help_text)
 
     fullname = models.CharField(max_length=255, null=False,
-            verbose_name=_("Full Name"))
+                                verbose_name=_("Full Name"))
 
     checker_choices = [('standard', 'standard')]
     checkers = list(checks.projectcheckers.keys())
     checkers.sort()
     checker_choices.extend([(checker, checker) for checker in checkers])
     checkstyle = models.CharField(max_length=50, default='standard',
-            null=False, choices=checker_choices,
-            verbose_name=_('Quality Checks'))
+                                  null=False, choices=checker_choices,
+                                  verbose_name=_('Quality Checks'))
 
     localfiletype = models.CharField(max_length=50, default="po",
                                      verbose_name=_('File Type'))
@@ -167,23 +169,26 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         ('nongnu', _('Non-GNU: Each language in its own directory')),
     )
     treestyle = models.CharField(max_length=20, default='auto',
-            choices=treestyle_choices, verbose_name=_('Project Tree Style'))
+                                 choices=treestyle_choices,
+                                 verbose_name=_('Project Tree Style'))
 
-    source_language = models.ForeignKey('pootle_language.Language',
-            db_index=True, verbose_name=_('Source Language'))
+    source_language = models.ForeignKey(
+        'pootle_language.Language', db_index=True,
+        verbose_name=_('Source Language'))
 
-    ignoredfiles = models.CharField(max_length=255, blank=True, null=False,
-            default="", verbose_name=_('Ignore Files'))
+    ignoredfiles = models.CharField(
+        max_length=255, blank=True, null=False, default="",
+        verbose_name=_('Ignore Files'))
 
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-            editable=False)
-    report_email = models.EmailField(max_length=254, blank=True,
-        verbose_name=_("Errors Report Email"),
+                                     editable=False)
+    report_email = models.EmailField(
+        max_length=254, blank=True, verbose_name=_("Errors Report Email"),
         help_text=_('An email address where issues with the source text '
                     'can be reported.'))
 
-    screenshot_search_prefix = models.URLField(blank=True, null=True,
-            verbose_name=_('Screenshot Search Prefix'))
+    screenshot_search_prefix = models.URLField(
+        blank=True, null=True, verbose_name=_('Screenshot Search Prefix'))
 
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)

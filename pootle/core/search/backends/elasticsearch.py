@@ -111,7 +111,7 @@ class ElasticSearchBackend(SearchBackend):
                         'email_md5': hit['_source']['email_md5'],
                         'iso_submitted_on': hit['_source'].get('iso_submitted_on', None),
                         'display_submitted_on': hit['_source'].get('display_submitted_on',
-                                                                None),
+                                                                   None),
                         'score': hit['_score'] * self.weight,
                     })
                 else:

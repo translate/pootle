@@ -12,7 +12,8 @@ from django.conf.urls import include, patterns, url
 from .views import UserAPIView, UserDetailView, UserSettingsView
 
 
-user_patterns = patterns('pootle_profile.views',
+user_patterns = patterns(
+    'pootle_profile.views',
     url(r'^(?P<username>[^/]+)/$',
         UserDetailView.as_view(),
         name='pootle-user-profile'),
@@ -25,14 +26,16 @@ user_patterns = patterns('pootle_profile.views',
 )
 
 
-api_patterns = patterns('',
+api_patterns = patterns(
+    '',
     url(r'^users/(?P<id>[0-9]+)/?$',
         UserAPIView.as_view(),
         name='pootle-xhr-user'),
 )
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^user/', include(user_patterns)),
     url(r'^xhr/', include(api_patterns)),
 )

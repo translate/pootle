@@ -10,7 +10,8 @@
 from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns('reports.views',
+urlpatterns = patterns(
+    'reports.views',
     url(r'^$',
         'reports',
         name='pootle-reports'),

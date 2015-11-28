@@ -160,12 +160,12 @@ class TranslationProject(models.Model, CachedTreeItem):
     real_path = models.FilePathField(editable=False)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
-            db_index=True, editable=False)
+                                   db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
 
     _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
-            settings.PARSE_POOL_CULL_FREQUENCY)
+                                         settings.PARSE_POOL_CULL_FREQUENCY)
 
     objects = TranslationProjectManager()
 
@@ -276,9 +276,9 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         project_dir = self.project.get_real_path()
         from pootle_app.project_tree import get_translation_project_dir
-        self.abs_real_path = get_translation_project_dir(self.language,
-             project_dir, self.file_style,
-             make_dirs=not self.directory.obsolete)
+        self.abs_real_path = get_translation_project_dir(
+            self.language, project_dir, self.file_style, make_dirs=not
+            self.directory.obsolete)
 
         super(TranslationProject, self).save(*args, **kwargs)
 

@@ -963,7 +963,7 @@ def run_given_filters(checker, unit, check_names=None):
                                  (functionname, unit.source, unit.target, e))
             else:
                 filterresult = checker.errorhandler(functionname, unit.source,
-                                                 unit.target, e)
+                                                    unit.target, e)
 
         if not filterresult:
             # We test some preconditions that aren't actually a cause for

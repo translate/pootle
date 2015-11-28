@@ -15,7 +15,8 @@ from . import (LanguageAdminView, LanguageAPIView, ProjectAdminView,
                ProjectAPIView, UserAdminView, UserAPIView)
 
 
-urlpatterns = patterns('pootle_app.views.admin',
+urlpatterns = patterns(
+    'pootle_app.views.admin',
     url(r'^/?$',
         'dashboard.view',
         name='pootle-admin'),
@@ -56,7 +57,8 @@ urlpatterns = patterns('pootle_app.views.admin',
 )
 
 
-api_patterns = patterns('',
+api_patterns = patterns(
+    '',
     url(r'^users/?$',
         UserAPIView.as_view(),
         name='pootle-xhr-admin-users'),

@@ -12,7 +12,8 @@ from django.conf.urls import patterns, url
 from .views import ContactFormView, ContactFormTemplateView, ReportFormView
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$',
         ContactFormTemplateView.as_view(),
         name='pootle-contact'),

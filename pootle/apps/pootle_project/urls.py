@@ -10,7 +10,9 @@
 from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns('pootle_project.views',
+urlpatterns = patterns(
+    'pootle_project.views',
+
     # All projects
     url(r'^$',
         'projects_browse',
