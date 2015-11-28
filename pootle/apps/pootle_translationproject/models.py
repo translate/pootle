@@ -153,7 +153,6 @@ class TranslationProjectManager(models.Manager):
                                        language__code=language_code)
 
 
-
 class TranslationProject(models.Model, CachedTreeItem):
 
     language = models.ForeignKey(Language, db_index=True)
@@ -389,7 +388,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         """
         return not does_not_exist(self.abs_real_path)
 
-
     def scan_files(self):
         """Scans the file system and returns a list of translation files.
         """
@@ -466,9 +464,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.non_db_state.termmatcher
 
-
     ###########################################################################
-
 
 @receiver(post_save, sender=Project)
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):

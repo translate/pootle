@@ -260,7 +260,6 @@ class UnitManager(models.Manager):
         return self.live() \
                    .filter(store__translation_project__project__disabled=False)
 
-
     def get_for_path(self, pootle_path, user):
         """Returns units that fall below the `pootle_path` umbrella.
 
@@ -1062,7 +1061,6 @@ class Unit(models.Model, base.TranslationUnit):
             changed = self.merge(match_unit, authoritative=True)
             if changed:
                 return match_unit
-
 
     def merge(self, merge_unit, overwrite=False, comments=True,
               authoritative=False):

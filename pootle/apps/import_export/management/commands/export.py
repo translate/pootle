@@ -32,7 +32,6 @@ class Command(PootleCommand):
     help = "Export a Project, Translation Project, or path. " \
            "Multiple files will be zipped."
 
-
     def _create_zip(self, stores, prefix):
         with open("%s.zip" % (prefix), "wb") as f:
             with ZipFile(f, "w") as zf:

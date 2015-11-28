@@ -731,7 +731,6 @@ class ENChecker(checks.TranslationChecker):
                 # restore HTML entities (will return chunks later)
                 chunk = regex.sub(r"&\1;", chunk)
 
-
             fingerprint = u"%d\001%d\001%d" % (
                 ampersand_count, underscore_count, circumflex_count
             )

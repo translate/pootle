@@ -306,7 +306,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                 _('Value of `mt_similarity` should be in in the [0..1] range')
             )
 
-
     return UnitForm
 
 
@@ -370,6 +369,5 @@ def unit_comment_form_factory(language):
                 sub.save()
 
             super(UnitCommentForm, self).save(**kwargs)
-
 
     return UnitCommentForm

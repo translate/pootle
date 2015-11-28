@@ -68,7 +68,6 @@ def admin_permissions(request, current_directory, template, ctx):
                                             'default')).order_by('username'),
     ))
 
-
     class PermissionSetForm(forms.ModelForm):
 
         class Meta(object):
@@ -116,7 +115,6 @@ def admin_permissions(request, current_directory, template, ctx):
             # are not applicable
             if language is not None:
                 del self.fields['negative_permissions']
-
 
     link = lambda instance: unicode(instance.user)
     directory_permissions = current_directory.permission_sets \

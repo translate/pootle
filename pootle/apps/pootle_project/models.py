@@ -248,7 +248,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             else:
                 user_projects = set()
 
-
             # Check specific permissions at the project level
 
             accessible_projects = cls.objects.filter(

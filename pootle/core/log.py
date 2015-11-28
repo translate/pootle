@@ -61,7 +61,6 @@ def cmd_log(*args, **kwargs):
     fn = settings.LOGGING.get('handlers').get('log_action').get('filename')
     dft = settings.LOGGING.get('formatters').get('action').get('datefmt')
 
-
     with open(fn, 'a') as logfile:
         cmd = ' '.join(args)
 
