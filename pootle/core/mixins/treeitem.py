@@ -48,8 +48,12 @@ def statslog(function):
         start = datetime.now()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        logger.info("%s(%s)\t%s\t%s" % (function.__name__, ', '.join(args), end - start,
-                                        instance.get_cachekey()))
+        logger.info(
+            "%s(%s)\t%s\t%s"
+            % (function.__name__,
+               ', '.join(args),
+               end - start,
+               instance.get_cachekey()))
         return result
     return _statslog
 
@@ -195,7 +199,9 @@ class TreeItem(object):
         for item in self.children:
             item_res = item.get_cached(CachedMethods.CHECKS)
             result['checks'] = dictsum(result['checks'], item_res['checks'])
-            result['unit_critical_error_count'] += item_res['unit_critical_error_count']
+            result['unit_critical_error_count'] = (
+                result['unit_critical_error_count']
+                + item_res['unit_critical_error_count'])
 
         return result
 
@@ -260,9 +266,12 @@ class TreeItem(object):
         if include_children:
             result['children'] = {}
             for item in self.children:
-                code = (self._get_code(item) if hasattr(self, '_get_code')
-                                             else item.code)
-                result['children'][code] = item.get_stats(include_children=False)
+                code = (
+                    self._get_code(item)
+                    if hasattr(self, '_get_code')
+                    else item.code)
+                result['children'][code] = (
+                    item.get_stats(include_children=False))
 
         return result
 
@@ -299,8 +308,9 @@ class CachedTreeItem(TreeItem):
 
     def get_last_job_key(self):
         key = self.get_cachekey()
-        return POOTLE_STATS_LAST_JOB_PREFIX + \
-               key.replace("/", ".").strip(".")
+        return (
+            POOTLE_STATS_LAST_JOB_PREFIX
+            + key.replace("/", ".").strip("."))
 
     @statslog
     def update_cached(self, name):
@@ -312,9 +322,11 @@ class CachedTreeItem(TreeItem):
         result = self.get_cached_value(name)
         if result is None:
 
-            msg = u"cache miss %s for %s(%s)" % (name,
-                                              self.get_cachekey(),
-                                              self.__class__)
+            msg = (
+                u"cache miss %s for %s(%s)"
+                % (name,
+                   self.get_cachekey(),
+                   self.__class__))
             logger.info(msg)
             raise NoCachedStats(msg)
 
@@ -368,9 +380,12 @@ class CachedTreeItem(TreeItem):
         if include_children:
             result['children'] = {}
             for item in self.children:
-                code = (self._get_code(item) if hasattr(self, '_get_code')
-                                             else item.code)
-                result['children'][code] = item.get_stats(include_children=False)
+                code = (
+                    self._get_code(item)
+                    if hasattr(self, '_get_code')
+                    else item.code)
+                result['children'][code] = (
+                    item.get_stats(include_children=False))
 
         return result
 
@@ -434,7 +449,7 @@ class CachedTreeItem(TreeItem):
         self.mark_all_dirty()
         self.clear_dirty_cache(children=children, parents=parents)
 
-    ################ Update stats in Redis Queue Worker process ###############
+    # ############### Update stats in Redis Queue Worker process #############
 
     def all_pootle_paths(self):
         """Get cache_key for all parents (to the Language and Project)
@@ -493,7 +508,10 @@ class CachedTreeItem(TreeItem):
         else:
             logger.debug('UNREGISTER %s (-%s)' %
                          (self.get_cachekey(), decrement))
-        r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), 0 - decrement)
+        r_con.zincrby(
+            POOTLE_DIRTY_TREEITEMS,
+            self.get_cachekey(),
+            0 - decrement)
 
     def get_dirty_score(self):
         r_con = get_connection()
@@ -521,8 +539,8 @@ class CachedTreeItem(TreeItem):
         updating dirty cached stats of parent
         """
         if self.can_be_updated():
-            # children should be recalculated to avoid using of obsolete directories
-            # or stores which could be saved in `children` property
+            # children should be recalculated to avoid using of obsolete
+            # directories or stores which could be saved in `children` property
             self.initialized = False
             self.initialize_children()
             keys_for_parent = set(keys)
@@ -534,7 +552,8 @@ class CachedTreeItem(TreeItem):
 
             if keys_for_parent:
                 for p in self.get_parents():
-                    create_update_cache_job_wrapper(p, keys_for_parent, decrement)
+                    create_update_cache_job_wrapper(
+                        p, keys_for_parent, decrement)
                 self.unregister_dirty(decrement)
             else:
                 self.unregister_all_dirty(decrement)
@@ -573,7 +592,8 @@ class JobWrapper():
         self.job = Job(id=id, connection=self.connection)
 
     @classmethod
-    def create(cls, func, instance, keys, decrement, connection, origin, timeout):
+    def create(cls, func, instance, keys, decrement,
+               connection, origin, timeout):
         """
         Creates object and initializes Job ID
         """
@@ -642,8 +662,10 @@ class JobWrapper():
         Creates Job object with given job ID
         """
         args = (self.instance,)
-        return Job.create(self.func, args=args, id=self.id, connection=self.connection,
-                          depends_on=depends_on, status=status)
+        return Job.create(
+            self.func, args=args,
+            id=self.id, connection=self.connection,
+            depends_on=depends_on, status=status)
 
     def save_enqueued(self, pipe):
         """
@@ -679,8 +701,10 @@ def update_cache_job(instance):
     # Django should take care of setting this up, but it doesn't yet
     # (fixed in Django 1.10):
     # https://code.djangoproject.com/ticket/16734
-    script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
-                        else force_unicode(settings.FORCE_SCRIPT_NAME))
+    script_name = (
+        u'/'
+        if settings.FORCE_SCRIPT_NAME is None
+        else force_unicode(settings.FORCE_SCRIPT_NAME))
     set_script_prefix(script_name)
     job = get_current_job()
     job_wrapper = JobWrapper(job.id, job.connection)
@@ -727,7 +751,8 @@ def create_update_cache_job(queue, instance, keys, decrement=1):
                 if last_job_id is not None:
                     pipe.watch(Job.key_for(last_job_id),
                                JobWrapper.params_key_for(last_job_id))
-                    depends_on_wrapper = JobWrapper(last_job_id, queue.connection)
+                    depends_on_wrapper = JobWrapper(
+                        last_job_id, queue.connection)
 
                 pipe.multi()
 
