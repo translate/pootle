@@ -291,7 +291,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                 # disk, so initialize the TP files using the templates TP ones.
                 from pootle_app.project_tree import init_store_from_template
 
-                for template_store in template_tp.stores.live().iterator():
+                template_stores = template_tp.stores.live().exclude(file="")
+
+                for template_store in template_stores.iterator():
                     init_store_from_template(self, template_store)
 
             self.scan_files()
