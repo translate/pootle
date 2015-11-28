@@ -98,11 +98,9 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
             # Translators: 'URL' and 'content' refer to form fields.
             raise ValidationError(_('URL or content must be provided.'))
 
-        pages = [p.objects.filter(
-                     Q(virtual_path=self.virtual_path),
-                     ~Q(pk=self.pk),
-                 ).exists()
-                 for p in AbstractPage.__subclasses__()]
+        pages = [p.objects.filter(Q(virtual_path=self.virtual_path),
+                                  ~Q(pk=self.pk),).exists() for p in
+                 AbstractPage.__subclasses__()]
         if True in pages:
             raise ValidationError(_(u'Virtual path already in use.'))
 

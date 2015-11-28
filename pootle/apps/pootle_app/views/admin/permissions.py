@@ -77,36 +77,36 @@ def admin_permissions(request, current_directory, template, ctx):
                       'negative_permissions')
 
         directory = forms.ModelChoiceField(
-                queryset=Directory.objects.filter(pk=current_directory.pk),
-                initial=current_directory.pk,
-                widget=forms.HiddenInput,
+            queryset=Directory.objects.filter(pk=current_directory.pk),
+            initial=current_directory.pk,
+            widget=forms.HiddenInput,
         )
         user = GroupedModelChoiceField(
-                label=_('Username'),
-                querysets=querysets,
-                queryset=User.objects.all(),
-                required=True,
-                widget=forms.Select(attrs={
-                    'class': 'js-select2 select2-username',
-                }),
+            label=_('Username'),
+            querysets=querysets,
+            queryset=User.objects.all(),
+            required=True,
+            widget=forms.Select(attrs={
+                'class': 'js-select2 select2-username',
+            }),
         )
         positive_permissions = PermissionFormField(
-                label=_('Add Permissions'),
-                queryset=positive_permissions_qs,
-                required=False,
-                widget=forms.SelectMultiple(attrs={
-                    'class': 'js-select2 select2-multiple',
-                    'data-placeholder': _('Select one or more permissions'),
-                }),
+            label=_('Add Permissions'),
+            queryset=positive_permissions_qs,
+            required=False,
+            widget=forms.SelectMultiple(attrs={
+                'class': 'js-select2 select2-multiple',
+                'data-placeholder': _('Select one or more permissions'),
+            }),
         )
         negative_permissions = PermissionFormField(
-                label=_('Revoke Permissions'),
-                queryset=negative_permissions_qs,
-                required=False,
-                widget=forms.SelectMultiple(attrs={
-                    'class': 'js-select2 select2-multiple',
-                    'data-placeholder': _('Select one or more permissions'),
-                }),
+            label=_('Revoke Permissions'),
+            queryset=negative_permissions_qs,
+            required=False,
+            widget=forms.SelectMultiple(attrs={
+                'class': 'js-select2 select2-multiple',
+                'data-placeholder': _('Select one or more permissions'),
+            }),
         )
 
         def __init__(self, *args, **kwargs):

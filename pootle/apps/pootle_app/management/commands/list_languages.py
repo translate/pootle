@@ -17,19 +17,19 @@ from django.core.management.base import NoArgsCommand
 
 class Command(NoArgsCommand):
     option_list = NoArgsCommand.option_list + (
-            make_option(
-                '--project',
-                action='append',
-                dest='projects',
-                help='Limit to PROJECTS'),
-            make_option(
-                "--modified-since",
-                action="store",
-                dest="modified_since",
-                type=int,
-                default=0,
-                help="Only process translations newer than specified "
-                     "revision"),
+        make_option(
+            '--project',
+            action='append',
+            dest='projects',
+            help='Limit to PROJECTS'),
+        make_option(
+            "--modified-since",
+            action="store",
+            dest="modified_since",
+            type=int,
+            default=0,
+            help="Only process translations newer than specified "
+                 "revision"),
     )
     help = "List language codes."
 

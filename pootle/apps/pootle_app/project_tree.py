@@ -225,10 +225,10 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
         file_set,
         existing_stores,
         lambda name: create_or_resurrect_store(
-             file=os.path.join(relative_dir, name),
-             parent=db_dir,
-             name=name,
-             translation_project=translation_project,
+            file=os.path.join(relative_dir, name),
+            parent=db_dir,
+            name=name,
+            translation_project=translation_project,
         ),
         db_dir,
     )
@@ -290,16 +290,16 @@ def translation_project_dir_exists(language, project):
             # Language is template look for template files
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
-                    if project.file_belongs_to_project(filename, match_templates=True) and \
-                           match_template_filename(project, filename):
+                    if (project.file_belongs_to_project(filename, match_templates=True) and
+                            match_template_filename(project, filename)):
                         return True
         else:
             # find files with the language name in the project dir
             for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
                 for filename in filenames:
                     # FIXME: don't reuse already used file
-                    if project.file_belongs_to_project(filename, match_templates=False) and \
-                           direct_language_match_filename(language.code, filename):
+                    if (project.file_belongs_to_project(filename, match_templates=False) and
+                            direct_language_match_filename(language.code, filename)):
                         return True
     else:
         # find directory with the language name in the project dir
@@ -348,8 +348,8 @@ def get_translated_name_gnu(translation_project, store):
     # try loading file first
     try:
         target_store = translation_project.stores.live().get(
-                parent__pootle_path=pootle_path,
-                name__iexact=suffix,
+            parent__pootle_path=pootle_path,
+            name__iexact=suffix,
         )
         return (target_store.pootle_path,
                 target_store.file and target_store.file.path)
@@ -379,15 +379,15 @@ def get_translated_name_gnu(translation_project, store):
 
         try:
             target_store = translation_project.stores.live().filter(
-                    parent__pootle_path=pootle_path,
-                    name__in=[
-                        tprefix + '-' + suffix,
-                        tprefix + '_' + suffix,
-                        tprefix + '.' + suffix,
-                        tprefix + '-' + suffix.lower(),
-                        tprefix + '_' + suffix.lower(),
-                        tprefix + '.' + suffix.lower(),
-                    ],
+                parent__pootle_path=pootle_path,
+                name__in=[
+                    tprefix + '-' + suffix,
+                    tprefix + '_' + suffix,
+                    tprefix + '.' + suffix,
+                    tprefix + '-' + suffix.lower(),
+                    tprefix + '_' + suffix.lower(),
+                    tprefix + '.' + suffix.lower(),
+                ],
             )[0]
 
             return (target_store.pootle_path,

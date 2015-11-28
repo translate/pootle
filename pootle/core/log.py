@@ -74,8 +74,8 @@ def cmd_log(*args, **kwargs):
         from datetime import datetime
         now = datetime.now()
         d = {
-             'message': message,
-             'asctime': now.strftime(dft)
+            'message': message,
+            'asctime': now.strftime(dft)
         }
         logfile.write("[%(asctime)s]\t%(message)s\n" % d)
 

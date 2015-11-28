@@ -893,17 +893,17 @@ def submit(request, unit):
         if form.updated_fields:
             for field, old_value, new_value in form.updated_fields:
                 sub = Submission(
-                        creation_time=current_time,
-                        translation_project=translation_project,
-                        submitter=request.profile,
-                        unit=unit,
-                        store=unit.store,
-                        field=field,
-                        type=SubmissionTypes.NORMAL,
-                        old_value=old_value,
-                        new_value=new_value,
-                        similarity=form.cleaned_data['similarity'],
-                        mt_similarity=form.cleaned_data['mt_similarity'],
+                    creation_time=current_time,
+                    translation_project=translation_project,
+                    submitter=request.profile,
+                    unit=unit,
+                    store=unit.store,
+                    field=field,
+                    type=SubmissionTypes.NORMAL,
+                    old_value=old_value,
+                    new_value=new_value,
+                    similarity=form.cleaned_data['similarity'],
+                    mt_similarity=form.cleaned_data['mt_similarity'],
                 )
                 sub.save()
 
@@ -1027,9 +1027,9 @@ def accept_suggestion(request, unit, suggid):
                           for target in unit.target.strings]
     json['newdiffs'] = {}
     for sugg in unit.get_suggestions():
-        json['newdiffs'][sugg.id] = \
-                [highlight_diffs(unit.target.strings[i], target)
-                 for i, target in enumerate(sugg.target.strings)]
+        json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i],
+                                                     target) for i, target in
+                                     enumerate(sugg.target.strings)]
 
     json['checks'] = _get_critical_checks_snippet(request, unit)
 

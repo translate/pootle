@@ -25,7 +25,7 @@ logger = logging.getLogger('pootle.markup')
 
 
 _rendered_cache_key = lambda obj, pk, field: '_%s_%s_%s_rendered' % \
-        (obj, pk, field)
+                                             (obj, pk, field)
 
 
 class Markup(object):

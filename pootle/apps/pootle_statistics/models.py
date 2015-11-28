@@ -149,11 +149,10 @@ class SubmissionManager(BaseSubmissionManager):
         :return: Queryset of `Submissions`s that change a `Unit`'s target.
         """
         return (
-            self.get_queryset().exclude(new_value__isnull=True)
-                               .filter(
-                                    field__in=SubmissionFields.TRANSLATION_FIELDS,
-                                    type__in=SubmissionTypes.EDITING_TYPES,
-                               )
+            self.get_queryset().exclude(new_value__isnull=True).filter(
+                field__in=SubmissionFields.TRANSLATION_FIELDS,
+                type__in=SubmissionTypes.EDITING_TYPES,
+            )
         )
 
     def get_unit_state_changes(self):
@@ -188,7 +187,7 @@ class Submission(models.Model):
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
-            'pootle_translationproject.TranslationProject', db_index=True
+        'pootle_translationproject.TranslationProject', db_index=True
     )
     submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
             db_index=True)

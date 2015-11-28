@@ -20,7 +20,7 @@ fi
 
 if [ "$select" == "travis" ]; then
 	# See http://pep8.readthedocs.org/en/latest/intro.html#error-codes
-	select="E10,E11,E121,E122,E124,E125,E131,E222,E228,E231,E251,E261,E262,E27,E401,E502,E70,E711,E712,E713,E721,W191,W291,W292,W293,W391,W60"
+	select="E10,E11,E121,E122,E124,E125,E126,E131,E222,E228,E231,E251,E261,E262,E27,E401,E502,E70,E711,E712,E713,E721,W191,W291,W292,W293,W391,W60"
 fi
 
 # Add patterns for parts to be excluded:

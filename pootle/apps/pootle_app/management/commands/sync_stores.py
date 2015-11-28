@@ -43,9 +43,9 @@ class Command(PootleCommand):
 
     def handle_all_stores(self, translation_project, **options):
         translation_project.sync(
-                conservative=not options['overwrite'],
-                skip_missing=options['skip_missing'],
-                only_newer=not options['force']
+            conservative=not options['overwrite'],
+            skip_missing=options['skip_missing'],
+            only_newer=not options['force']
         )
 
     def handle_store(self, store, **options):

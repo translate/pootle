@@ -52,8 +52,7 @@ def get_permissions_by_username(username, directory):
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
-                user__username=username) \
-                        .order_by('-directory__pootle_path')[0]
+                user__username=username).order_by('-directory__pootle_path')[0]
         except IndexError:
             permissionset = None
 

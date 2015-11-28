@@ -1331,11 +1331,8 @@ class StoreManager(models.Manager):
 
     def get_queryset(self):
         """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return super(StoreManager, self).get_queryset() \
-                                        .select_related(
-                                            'parent',
-                                            'translation_project',
-                                        )
+        return super(StoreManager, self).get_queryset().select_related(
+            'parent', 'translation_project',)
 
     def live(self):
         """Filters non-obsolete stores."""
@@ -1557,8 +1554,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return False
 
     def get_file_mtime(self):
-        disk_mtime = datetime.datetime \
-                     .fromtimestamp(self.file.getpomtime()[0])
+        disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
         # set microsecond to 0 for comparing with a time value without microseconds
         disk_mtime = make_aware(disk_mtime.replace(microsecond=0))
 
@@ -2284,15 +2280,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             from pootle.core.utils.version import get_major_minor_version
             x_generator = "Pootle %s" % get_major_minor_version()
             headerupdates = {
-                    'PO_Revision_Date': po_revision_date,
-                    'X_Generator': x_generator,
-                    'X_POOTLE_MTIME': ('%s.%06d' %
-                                       (int(dateformat.format(mtime, 'U')),
-                                        mtime.microsecond)),
-                    }
+                'PO_Revision_Date': po_revision_date,
+                'X_Generator': x_generator,
+                'X_POOTLE_MTIME': ('%s.%06d' %
+                                   (int(dateformat.format(mtime, 'U')),
+                                    mtime.microsecond)),
+                }
             if user and user.is_authenticated():
-                headerupdates['Last_Translator'] = '%s <%s>' % \
-                        (user.display_name, user.email)
+                headerupdates['Last_Translator'] = '%s <%s>' % (user.display_name,
+                                                                user.email)
             else:
                 # FIXME: maybe insert settings.POOTLE_TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'

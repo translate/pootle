@@ -971,9 +971,9 @@ def run_given_filters(checker, unit, check_names=None):
             # failure
             if functionname in checker.defaultfilters:
                 failures[functionname] = {
-                        'message': filtermessage,
-                        'category': checker.categories[functionname],
-                        }
+                    'message': filtermessage,
+                    'category': checker.categories[functionname],
+                }
 
     checker.results_cache = {}
 

@@ -84,15 +84,15 @@ class Language(models.Model, TreeItem):
     specialchars_help_text = _('Enter any special characters that users '
             'might find difficult to type')
     specialchars = models.CharField(max_length=255, blank=True,
-            verbose_name=_("Special Characters"),
-            help_text=specialchars_help_text)
+                                    verbose_name=_("Special Characters"),
+                                    help_text=specialchars_help_text)
 
     plurals_help_text = _('For more information, visit '
             '<a href="http://docs.translatehouse.org/projects/'
             'localization-guide/en/latest/l10n/pluralforms.html">'
             'our page</a> on plural forms.')
     nplural_choices = (
-            (0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)
+        (0, _('Unknown')), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)
     )
     nplurals = models.SmallIntegerField(default=0, choices=nplural_choices,
             verbose_name=_("Number of Plurals"), help_text=plurals_help_text)

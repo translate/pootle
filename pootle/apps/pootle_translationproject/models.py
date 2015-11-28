@@ -57,7 +57,7 @@ def create_translation_project(language, project):
     if project_tree.translation_project_dir_exists(language, project):
         try:
             translation_project, created = TranslationProject.objects.all() \
-                    .get_or_create(language=language, project=project)
+                .get_or_create(language=language, project=project)
             return translation_project
         except OSError:
             return None
@@ -410,22 +410,20 @@ class TranslationProject(models.Model, CachedTreeItem):
         if self.file_style == 'gnu':
             if self.pootle_path.startswith('/templates/'):
                 file_filter = lambda filename: match_template_filename(
-                                    self.project, filename,
-                              )
+                    self.project, filename,)
             else:
                 file_filter = lambda filename: direct_language_match_filename(
-                                    self.language.code, filename,
-                              )
+                    self.language.code, filename,)
         else:
             file_filter = lambda filename: True
 
         all_files, new_files, is_empty = add_files(
-                self,
-                ignored_files,
-                ext,
-                self.real_path,
-                self.directory,
-                file_filter,
+            self,
+            ignored_files,
+            ext,
+            self.real_path,
+            self.directory,
+            file_filter,
         )
 
         return all_files, new_files
@@ -441,14 +439,14 @@ class TranslationProject(models.Model, CachedTreeItem):
             # Get global terminology first
             try:
                 termproject = TranslationProject.objects \
-                        .get_terminology_project(self.language_id)
+                    .get_terminology_project(self.language_id)
                 mtime = termproject.get_cached_value(CachedMethods.MTIME)
                 terminology_stores = termproject.stores.live()
             except TranslationProject.DoesNotExist:
                 pass
 
             local_terminology = self.stores.live().filter(
-                    name__startswith='pootle-terminology')
+                name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 if mtime is None:
                     mtime = store.get_cached_value(CachedMethods.MTIME)
@@ -463,8 +461,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         if mtime != self.non_db_state.termmatchermtime:
             from pootle_misc.match import Matcher
             self.non_db_state.termmatcher = Matcher(
-                    terminology_stores.iterator(),
-            )
+                terminology_stores.iterator())
             self.non_db_state.termmatchermtime = mtime
 
         return self.non_db_state.termmatcher

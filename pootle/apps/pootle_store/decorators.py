@@ -40,9 +40,9 @@ def get_unit_context(permission_code=None):
         @wraps(f)
         def decorated_f(request, uid, *args, **kwargs):
             unit = get_object_or_404(
-                    Unit.objects.select_related("store__translation_project",
-                                                "store__parent"),
-                    id=uid,
+                Unit.objects.select_related("store__translation_project",
+                                            "store__parent"),
+                id=uid,
             )
 
             tp = unit.store.translation_project
