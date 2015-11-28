@@ -98,8 +98,8 @@ class MultiStringField(models.Field):
         if (lookup_type in ('exact', 'iexact') or
             not isinstance(value, basestring)):
             value = self.get_prep_value(value)
-        return super(MultiStringField, self) \
-                .get_prep_lookup(lookup_type, value)
+        return super(MultiStringField, self).get_prep_lookup(lookup_type,
+                                                             value)
 
 
 ################# File ###############################

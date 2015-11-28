@@ -203,7 +203,7 @@ def configure_app(project, config_path, django_settings_module, runner_name):
         print(u"Configuration file does not exist at %r or "
               u"%r environment variable has not been set.\n"
               u"Use '%s init' to initialize the configuration file." %
-                (config_path, settings_envvar, runner_name))
+              (config_path, settings_envvar, runner_name))
         sys.exit(2)
 
     os.environ.setdefault(settings_envvar, config_path)

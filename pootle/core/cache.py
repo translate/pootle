@@ -29,8 +29,9 @@ def make_method_key(model, method, key):
     if isinstance(model, basestring):
         name = model
     else:
-        name = (model.__name__ if hasattr(model, '__name__')
-                               else model.__class__.__name__)
+        name = (model.__name__
+                if hasattr(model, '__name__')
+                else model.__class__.__name__)
 
     key = make_key(**key) if isinstance(key, dict) else key
     return u':'.join([prefix, name, method, key])

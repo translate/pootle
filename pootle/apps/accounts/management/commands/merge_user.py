@@ -30,8 +30,7 @@ class Command(UserCommand):
     def handle(self, *args, **kwargs):
         super(Command, self).handle(*args, **kwargs)
         src_user = self.get_user(username=args[0])
-        utils.UserMerger(src_user,
-                                  self.get_user(username=args[1])).merge()
+        utils.UserMerger(src_user, self.get_user(username=args[1])).merge()
 
         if kwargs.get("delete"):
             self.stdout.write("Deleting user: %s...\n" % src_user.username)

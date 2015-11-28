@@ -343,8 +343,7 @@ def get_translated_name_gnu(translation_project, store):
     if not pootle_path.endswith('/'):
         pootle_path = pootle_path + '/'
 
-    suffix = translation_project.language.code + os.extsep + \
-             translation_project.project.localfiletype
+    suffix = translation_project.language.code + os.extsep + translation_project.project.localfiletype
     # try loading file first
     try:
         target_store = translation_project.stores.live().get(
@@ -426,8 +425,7 @@ def get_translated_name(translation_project, store):
 
     # Replace extension
     path_parts[-1] = name + '.' + translation_project.project.localfiletype
-    pootle_path_parts[-1] = name + '.' + \
-                            translation_project.project.localfiletype
+    pootle_path_parts[-1] = name + '.' + translation_project.project.localfiletype
 
     return ('/'.join(pootle_path_parts),
             absolute_real_path(os.sep.join(path_parts)))

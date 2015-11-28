@@ -62,8 +62,8 @@ class LiveLanguageManager(models.Manager):
             languages = OrderedDict(
                 sorted([(lang[0], tr_lang(lang[1]))
                         for lang in self.values_list('code', 'fullname')],
-                        cmp=locale.strcoll,
-                        key=lambda x: x[1])
+                       cmp=locale.strcoll,
+                       key=lambda x: x[1])
             )
             cache.set(key, languages, settings.POOTLE_CACHE_TIMEOUT)
 

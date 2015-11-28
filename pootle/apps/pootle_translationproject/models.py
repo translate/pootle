@@ -226,8 +226,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                 self._non_db_state = self._non_db_state_cache[self.id]
             except KeyError:
                 self._non_db_state = TranslationProjectNonDBState(self)
-                self._non_db_state_cache[self.id] = \
-                        TranslationProjectNonDBState(self)
+                self._non_db_state_cache[self.id] = TranslationProjectNonDBState(self)
 
         return self._non_db_state
 

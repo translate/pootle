@@ -1999,7 +1999,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 (get_change_str(changes), self.pootle_path, last_revision))
         else:
             logging.info(u"[sync] nothing changed in %s [revision: %d]" %
-                          (self.pootle_path, last_revision))
+                         (self.pootle_path, last_revision))
 
         self.last_sync_revision = last_revision
         self.save()
@@ -2273,8 +2273,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     except ObjectDoesNotExist:
                         pass
 
-            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + \
-                               poheader.tzstring()
+            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
             from pootle.core.utils.version import get_major_minor_version
             x_generator = "Pootle %s" % get_major_minor_version()
             headerupdates = {

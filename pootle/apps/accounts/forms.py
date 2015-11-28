@@ -41,5 +41,5 @@ class SocialVerificationForm(LoginForm):
         # Oops, something must be really broken if this stage is reached
         raise forms.ValidationError(
             _('Your user seems to have disappeared. Please report this '
-               'to the site owners.')
+              'to the site owners.')
         )

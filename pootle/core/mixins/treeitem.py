@@ -260,8 +260,9 @@ class TreeItem(object):
         if include_children:
             result['children'] = {}
             for item in self.children:
-                code = (self._get_code(item) if hasattr(self, '_get_code')
-                                             else item.code)
+                code = (self._get_code(item)
+                        if hasattr(self, '_get_code')
+                        else item.code)
                 result['children'][code] = item.get_stats(include_children=False)
 
         return result
@@ -299,8 +300,7 @@ class CachedTreeItem(TreeItem):
 
     def get_last_job_key(self):
         key = self.get_cachekey()
-        return POOTLE_STATS_LAST_JOB_PREFIX + \
-               key.replace("/", ".").strip(".")
+        return POOTLE_STATS_LAST_JOB_PREFIX + key.replace("/", ".").strip(".")
 
     @statslog
     def update_cached(self, name):
@@ -368,8 +368,9 @@ class CachedTreeItem(TreeItem):
         if include_children:
             result['children'] = {}
             for item in self.children:
-                code = (self._get_code(item) if hasattr(self, '_get_code')
-                                             else item.code)
+                code = (self._get_code(item)
+                        if hasattr(self, '_get_code')
+                        else item.code)
                 result['children'][code] = item.get_stats(include_children=False)
 
         return result
@@ -679,8 +680,9 @@ def update_cache_job(instance):
     # Django should take care of setting this up, but it doesn't yet
     # (fixed in Django 1.10):
     # https://code.djangoproject.com/ticket/16734
-    script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
-                        else force_unicode(settings.FORCE_SCRIPT_NAME))
+    script_name = (u'/'
+                   if settings.FORCE_SCRIPT_NAME is None
+                   else force_unicode(settings.FORCE_SCRIPT_NAME))
     set_script_prefix(script_name)
     job = get_current_job()
     job_wrapper = JobWrapper(job.id, job.connection)

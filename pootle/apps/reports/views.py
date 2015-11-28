@@ -174,11 +174,8 @@ def get_detailed_report_context(user, month):
                     creation_time__lte=end) \
             .order_by('creation_time')
 
-        tasks = PaidTask.objects \
-                .filter(user=user,
-                        datetime__gte=start,
-                        datetime__lte=end) \
-                .order_by('datetime')
+        tasks = PaidTask.objects.filter(user=user, datetime__gte=start,
+                                        datetime__lte=end).order_by('datetime')
 
         items = []
 

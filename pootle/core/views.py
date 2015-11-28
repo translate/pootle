@@ -34,8 +34,8 @@ class SuperuserRequiredMixin(object):
             msg = _('You do not have rights to administer Pootle.')
             raise PermissionDenied(msg)
 
-        return super(SuperuserRequiredMixin, self) \
-                .dispatch(request, *args, **kwargs)
+        return super(SuperuserRequiredMixin, self).dispatch(request, *args,
+                                                            **kwargs)
 
 
 class LoginRequiredMixin(object):

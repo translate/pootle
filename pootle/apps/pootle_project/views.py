@@ -32,8 +32,9 @@ from pootle_translationproject.models import TranslationProject
 @get_resource
 def browse(request, project, dir_path, filename):
     """Languages browser for a given project."""
-    item_func = (make_xlanguage_item if dir_path or filename
-                                     else make_language_item)
+    item_func = (make_xlanguage_item
+                 if dir_path or filename
+                 else make_language_item)
     items = [item_func(item) for item in
              request.resource_obj.get_children_for_user(request.profile)]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
@@ -125,8 +126,9 @@ def project_admin(request, current_project):
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
         return u'<a href="%s">%s</a>' % (perms_url, tp.language)
 
-    extra = (1 if current_project.get_template_translationproject() is not None
-               else 0)
+    extra = (1
+             if current_project.get_template_translationproject() is not None
+             else 0)
 
     return util.edit(request, 'projects/admin/languages.html',
                      TranslationProject, ctx, generate_link,

@@ -121,8 +121,10 @@ def language_admin(request, language):
 @get_path_obj
 @permission_required('administrate')
 def language_characters_admin(request, language):
-    form = LanguageSpecialCharsForm(request.POST if request.method == 'POST'
-                                                 else None, instance=language)
+    form = LanguageSpecialCharsForm(request.POST
+                                    if request.method == 'POST'
+                                    else None,
+                                    instance=language)
     if form.is_valid():
         form.save()
         return redirect('pootle-language-browse', language.code)

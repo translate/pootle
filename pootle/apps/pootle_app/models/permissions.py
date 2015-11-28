@@ -63,9 +63,9 @@ def get_permissions_by_username(username, directory):
                 # level permission
                 try:
                     project_path = '/projects/%s/' % path_parts[1]
-                    permissionset = PermissionSet.objects \
-                            .get(directory__pootle_path=project_path,
-                                 user__username=username)
+                    permissionset = PermissionSet.objects.get(
+                        directory__pootle_path=project_path,
+                        user__username=username)
                 except PermissionSet.DoesNotExist:
                     pass
 

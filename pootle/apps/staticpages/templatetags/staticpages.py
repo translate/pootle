@@ -42,8 +42,8 @@ def get_legalpages(parser, token):
 
     bits = token.split_contents()
     syntax_message = ("%(tag_name)s expects a syntax of %(tag_name)s "
-                       "as context_name" %
-                       dict(tag_name=bits[0]))
+                      "as context_name" %
+                      dict(tag_name=bits[0]))
 
     if len(bits) == 3:
 

@@ -270,8 +270,9 @@ def get_resource(func):
                 if hasattr(request, 'redirect_url'):
                     url = request.redirect_url
                 elif user_choice in ('language', 'resource',):
-                    project = (path_obj if isinstance(path_obj, Project)
-                                        else path_obj.project)
+                    project = (path_obj
+                               if isinstance(path_obj, Project)
+                               else path_obj.project)
                     url = reverse('pootle-project-browse',
                                   args=[project.code, dir_path, filename])
 

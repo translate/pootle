@@ -109,8 +109,9 @@ class User(AbstractBaseUser):
     @property
     def display_name(self):
         """Human-readable display name."""
-        return (self.get_full_name() if self.get_full_name()
-                                     else self.get_short_name())
+        return (self.get_full_name()
+                if self.get_full_name()
+                else self.get_short_name())
 
     @property
     def formatted_name(self):
@@ -145,8 +146,7 @@ class User(AbstractBaseUser):
     @cached_property
     def is_meta(self):
         """Returns `True` if this is a special fake user."""
-        return self.username in UserManager.META_USERS + \
-                                settings.POOTLE_META_USERS
+        return self.username in UserManager.META_USERS + settings.POOTLE_META_USERS
 
     @cached_property
     def email_hash(self):
@@ -228,8 +228,9 @@ class User(AbstractBaseUser):
         return self.username
 
     def save(self, *args, **kwargs):
-        old_email = (None if self.pk is None
-                          else User.objects.get(pk=self.pk).email)
+        old_email = (None
+                     if self.pk is None
+                     else User.objects.get(pk=self.pk).email)
 
         super(User, self).save(*args, **kwargs)
 
