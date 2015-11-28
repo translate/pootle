@@ -103,7 +103,8 @@ class UserDetailedStatsView(NoDefaultUserMixin, DetailView):
     def dispatch(self, request, *args, **kwargs):
         self.month = request.GET.get('month', None)
         self.user = request.user
-        return super(UserDetailedStatsView, self).dispatch(request, *args, **kwargs)
+        return super(UserDetailedStatsView, self).dispatch(request, *args,
+                                                           **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(UserDetailedStatsView, self).get_context_data(**kwargs)
@@ -130,7 +131,8 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
         return JsonResponse({'result': self.object.id})
 
 
-class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin, PaidTaskFormView):
+class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin,
+                          PaidTaskFormView):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
@@ -270,7 +272,8 @@ def get_detailed_report_context(user, month):
             totals['all'] += totals['translated'][rate]['subtotal']
 
         for rate, words in totals['reviewed'].items():
-            totals['reviewed'][rate]['subtotal'] = rate * totals['reviewed'][rate]['words']
+            totals['reviewed'][rate]['subtotal'] = (
+                rate * totals['reviewed'][rate]['words'])
             totals['all'] += totals['reviewed'][rate]['subtotal']
 
         totals['all'] = round(totals['all'], 2) + 0
@@ -437,7 +440,8 @@ def get_activity_data(request, user, month):
         'start': start.strftime('%Y-%m-%d'),
         'end': end.strftime('%Y-%m-%d'),
         'utc_offset': start.strftime("%z"),
-        'admin_permalink': request.build_absolute_uri(reverse('pootle-reports')),
+        'admin_permalink': request.build_absolute_uri(
+            reverse('pootle-reports')),
     }
 
     if user != '':
@@ -519,7 +523,8 @@ def get_daily_activity(user, scores, start, end):
         translated, reviewed = score.get_paid_wordcounts()
         suggested = score.get_suggested_wordcount()
 
-        if any(map(lambda x: x is not None, [translated, reviewed, suggested])):
+        if any(map(lambda x: x is not None, [translated, reviewed,
+                                             suggested])):
             translated = 0 if translated is None else translated
             reviewed = 0 if reviewed is None else reviewed
             suggested = 0 if suggested is None else suggested
@@ -569,8 +574,9 @@ def get_rates(user, start, end):
     :param start: datetime
     :param end: datetime
     :return: a tuple ``(rate, review_rate, hourly_rate)`` where ``rate`` is the
-        translation rate, and ``review_rate`` is the review rate, and ``hourly_rate``
-        is the rate for hourly work that can be added as PaidTask.
+        translation rate, and ``review_rate`` is the review rate, and
+        ``hourly_rate`` is the rate for hourly work that can be added as
+        PaidTask.
     """
 
     scores = get_scores(user, start, end)
@@ -595,7 +601,8 @@ def get_rates(user, start, end):
             raise Exception("Multiple user [%s] rate values." % user.username)
         if task_rate['task_type'] == PaidTaskTypes.HOURLY_WORK:
             if hourly_rate > 0 and task_rate['rate'] != hourly_rate:
-                raise Exception("Multiple user [%s] rate values." % user.username)
+                raise Exception("Multiple user [%s] rate values." %
+                                user.username)
             hourly_rate = task_rate['rate']
 
     rate = rate if rate > 0 else user.rate

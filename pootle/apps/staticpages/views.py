@@ -106,7 +106,8 @@ class AdminTemplateView(SuperuserRequiredMixin, AdminCtxMixin, TemplateView):
         return ctx
 
 
-class PageCreateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin, CreateView):
+class PageCreateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin,
+                     CreateView):
     fields = ('title', 'virtual_path', 'active', 'url', 'body')
 
     success_url = reverse_lazy('pootle-staticpages')
@@ -141,7 +142,8 @@ class PageCreateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin, Crea
         return form
 
 
-class PageUpdateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin, UpdateView):
+class PageUpdateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin,
+                     UpdateView):
     fields = ('title', 'virtual_path', 'active', 'url', 'body')
 
     success_url = reverse_lazy('pootle-staticpages')

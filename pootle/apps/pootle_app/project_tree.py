@@ -26,8 +26,8 @@ from pootle_store.util import absolute_real_path, relative_real_path
 LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$',
                          re.IGNORECASE)
 #: Case insensitive match for language codes as postfix
-LANGCODE_POSTFIX_RE = re.compile('^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$',
-                                 re.IGNORECASE)
+LANGCODE_POSTFIX_RE = re.compile(
+    '^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$', re.IGNORECASE)
 
 
 def direct_language_match_filename(language_code, path_name):
@@ -69,7 +69,8 @@ def get_matching_language_dirs(project_dir, language):
             if language.code == lang_dir]
 
 
-def get_non_existant_language_dir(project_dir, language, file_style, make_dirs):
+def get_non_existant_language_dir(project_dir, language, file_style,
+                                  make_dirs):
     if file_style == "gnu":
         return project_dir
     elif make_dirs:
@@ -288,23 +289,29 @@ def translation_project_dir_exists(language, project):
 
         if language.code == 'templates':
             # Language is template look for template files
-            for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
+            for dirpath, dirnames, filenames in os.walk(
+                    project.get_real_path()):
                 for filename in filenames:
-                    if (project.file_belongs_to_project(filename, match_templates=True) and
-                            match_template_filename(project, filename)):
+                    if (project.file_belongs_to_project(filename,
+                                                        match_templates=True)
+                            and match_template_filename(project, filename)):
                         return True
         else:
             # find files with the language name in the project dir
-            for dirpath, dirnames, filenames in os.walk(project.get_real_path()):
+            for dirpath, dirnames, filenames in os.walk(
+                    project.get_real_path()):
                 for filename in filenames:
                     # FIXME: don't reuse already used file
-                    if (project.file_belongs_to_project(filename, match_templates=False) and
-                            direct_language_match_filename(language.code, filename)):
+                    if (project.file_belongs_to_project(filename,
+                                                        match_templates=False)
+                            and direct_language_match_filename(language.code,
+                                                               filename)):
                         return True
     else:
         # find directory with the language name in the project dir
         try:
-            dirpath, dirnames, filename = os.walk(project.get_real_path()).next()
+            dirpath, dirnames, filename = os.walk(
+                project.get_real_path()).next()
             if language.code in dirnames:
                 return True
         except StopIteration:
@@ -317,11 +324,11 @@ def init_store_from_template(translation_project, template_store):
     """Initialize a new file for `translation_project` using `template_store`.
     """
     if translation_project.file_style == 'gnu':
-        target_pootle_path, target_path = get_translated_name_gnu(translation_project,
-                                                                  template_store)
+        target_pootle_path, target_path = get_translated_name_gnu(
+            translation_project, template_store)
     else:
-        target_pootle_path, target_path = get_translated_name(translation_project,
-                                                              template_store)
+        target_pootle_path, target_path = get_translated_name(
+            translation_project, template_store)
 
     # Create the missing directories for the new TP.
     target_dir = os.path.dirname(target_path)
@@ -343,7 +350,8 @@ def get_translated_name_gnu(translation_project, store):
     if not pootle_path.endswith('/'):
         pootle_path = pootle_path + '/'
 
-    suffix = translation_project.language.code + os.extsep + translation_project.project.localfiletype
+    suffix = "%s%s%s" % (translation_project.language.code, os.extsep,
+                         translation_project.project.localfiletype)
     # try loading file first
     try:
         target_store = translation_project.stores.live().get(
@@ -356,14 +364,18 @@ def get_translated_name_gnu(translation_project, store):
         target_store = None
 
     # is this GNU-style with prefix?
-    use_prefix = (store.parent.child_stores.live().exclude(file="").count() > 1 or
-                  translation_project.stores.live().exclude(name__iexact=suffix,
-                                                            file='').count())
+    use_prefix = (store.parent.child_stores.live().exclude(file="").count() > 1
+                  or translation_project.stores.live().exclude(
+                      name__iexact=suffix, file='').count())
     if not use_prefix:
         # let's make sure
-        for tp in translation_project.project.translationproject_set.exclude(language__code='templates').iterator():
-            temp_suffix = tp.language.code + os.extsep + translation_project.project.localfiletype
-            if tp.stores.live().exclude(name__iexact=temp_suffix).exclude(file="").count():
+        for tp in translation_project.project.translationproject_set.exclude(
+                language__code='templates').iterator():
+            temp_suffix = \
+                "%s%s%s" % (tp.language.code, os.extsep,
+                            translation_project.project.localfiletype)
+            if tp.stores.live().exclude(
+                    name__iexact=temp_suffix).exclude(file="").count():
                 use_prefix = True
                 break
 
@@ -373,7 +385,8 @@ def get_translated_name_gnu(translation_project, store):
             # FIXME: we should detect separator
             prefix = tprefix + '-'
         else:
-            prefix = os.path.splitext(store.name)[0][:-len(store.translation_project.language.code)]
+            prefix = os.path.splitext(store.name)[0][:-len(
+                store.translation_project.language.code)]
             tprefix = prefix[:-1]
 
         try:
@@ -424,8 +437,10 @@ def get_translated_name(translation_project, store):
     pootle_path_parts[1] = translation_project.language.code
 
     # Replace extension
-    path_parts[-1] = name + '.' + translation_project.project.localfiletype
-    pootle_path_parts[-1] = name + '.' + translation_project.project.localfiletype
+    path_parts[-1] = "%s.%s" % (name,
+                                translation_project.project.localfiletype)
+    pootle_path_parts[-1] = \
+        "%s.%s" % (name, translation_project.project.localfiletype)
 
     return ('/'.join(pootle_path_parts),
             absolute_real_path(os.sep.join(path_parts)))

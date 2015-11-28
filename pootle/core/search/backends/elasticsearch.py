@@ -94,7 +94,8 @@ class ElasticSearchBackend(SearchBackend):
 
         for hit in es_res['hits']['hits']:
             if self._is_valuable_hit(unit, hit):
-                translation_pair = hit['_source']['source'] + hit['_source']['target']
+                translation_pair = hit['_source']['source'] + \
+                    hit['_source']['target']
                 if translation_pair not in counter:
                     counter[translation_pair] = 1
                     res.append({
@@ -106,9 +107,10 @@ class ElasticSearchBackend(SearchBackend):
                         'username': hit['_source']['username'],
                         'fullname': hit['_source']['fullname'],
                         'email_md5': hit['_source']['email_md5'],
-                        'iso_submitted_on': hit['_source'].get('iso_submitted_on', None),
-                        'display_submitted_on': hit['_source'].get('display_submitted_on',
-                                                                   None),
+                        'iso_submitted_on':
+                            hit['_source'].get('iso_submitted_on', None),
+                        'display_submitted_on':
+                            hit['_source'].get('display_submitted_on', None),
                         'score': hit['_score'] * self.weight,
                     })
                 else:

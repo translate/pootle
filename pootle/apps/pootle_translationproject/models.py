@@ -147,7 +147,8 @@ class TranslationProjectManager(models.Manager):
             to be retrieved.
         :param project_code: The code of a project for the TP to retrieve.
         :param language_code: The code of the language fro the TP to retrieve.
-        :return: The `TranslationProject` matching the params, raises otherwise.
+        :return: The `TranslationProject` matching the params, raises
+            otherwise.
         """
         return self.for_user(user).get(project__code=project_code,
                                        language__code=language_code)
@@ -226,7 +227,8 @@ class TranslationProject(models.Model, CachedTreeItem):
                 self._non_db_state = self._non_db_state_cache[self.id]
             except KeyError:
                 self._non_db_state = TranslationProjectNonDBState(self)
-                self._non_db_state_cache[self.id] = TranslationProjectNonDBState(self)
+                self._non_db_state_cache[self.id] = \
+                    TranslationProjectNonDBState(self)
 
         return self._non_db_state
 
@@ -299,8 +301,8 @@ class TranslationProject(models.Model, CachedTreeItem):
             for store in self.stores.live().iterator():
                 changed = store.update_from_disk()
 
-                # If there were changes stats will be refreshed anyway - otherwise...
-                # Trigger stats refresh for TP added from UI.
+                # If there were changes stats will be refreshed anyway -
+                # otherwise...  Trigger stats refresh for TP added from UI.
                 # FIXME: This won't be necessary once #3547 is fixed.
                 if not changed:
                     store.save(update_cache=True)
@@ -398,7 +400,8 @@ class TranslationProject(models.Model, CachedTreeItem):
         if self.is_template_project:
             ext = os.extsep + self.project.get_template_filetype()
 
-        from pootle_app.project_tree import (add_files, match_template_filename,
+        from pootle_app.project_tree import (add_files,
+                                             match_template_filename,
                                              direct_language_match_filename)
 
         all_files = []
@@ -448,7 +451,8 @@ class TranslationProject(models.Model, CachedTreeItem):
                 if mtime is None:
                     mtime = store.get_cached_value(CachedMethods.MTIME)
                 else:
-                    mtime = max(mtime, store.get_cached_value(CachedMethods.MTIME))
+                    mtime = max(mtime,
+                                store.get_cached_value(CachedMethods.MTIME))
 
             terminology_stores = terminology_stores | local_terminology
 

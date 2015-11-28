@@ -141,9 +141,9 @@ class ProjectURLMixin(object):
 
 class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
-    code_help_text = _('A short code for the project. This should only contain '
-                       'ASCII characters, numbers, and the underscore (_) '
-                       'character.')
+    code_help_text = _('A short code for the project. This should only '
+                       'contain ASCII characters, numbers, and the underscore '
+                       '(_) character.')
     code = models.CharField(max_length=255, null=False, unique=True,
                             db_index=True, verbose_name=_('Code'),
                             help_text=code_help_text)
@@ -267,8 +267,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
             allow_projects = set(accessible_projects)
             forbid_projects = set(forbidden_projects) - allow_projects
-            user_projects = \
-                (user_projects.union(allow_projects)).difference(forbid_projects)
+            user_projects = (user_projects.union(
+                allow_projects)).difference(forbid_projects)
 
         user_projects = list(user_projects)
         cache.set(key, user_projects, settings.POOTLE_CACHE_TIMEOUT)
@@ -464,12 +464,14 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                     return "gnu"
             else:
                 # There are subdirectories
-                if filter(lambda dirname: dirname == 'templates' or langcode_re.match(dirname), dirnames):
+                if filter(lambda dirname: dirname == 'templates' or
+                          langcode_re.match(dirname), dirnames):
                     # Found language dirs assume nongnu
                     return "nongnu"
                 else:
                     # No language subdirs found, look for any translation file
-                    for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
+                    for dirpath, dirnames, filenames in \
+                            os.walk(self.get_real_path()):
                         if filter(self.file_belongs_to_project, filenames):
                             return "gnu"
         except:

@@ -78,13 +78,15 @@ class Command(PootleCommand):
         self._create_zip(stores, prefix)
 
     def handle_project(self, project, **options):
-        stores = Store.objects.live().filter(translation_project__project=project)
+        stores = Store.objects.live().filter(
+            translation_project__project=project)
         if not stores:
             raise CommandError("No matches for project %r" % (project))
         self._create_zip(stores, prefix=project.code)
 
     def handle_language(self, language, **options):
-        stores = Store.objects.live().filter(translation_project__language=language)
+        stores = Store.objects.live().filter(
+            translation_project__language=language)
         self._create_zip(stores, prefix=language.code)
 
     def handle_path(self, path, **options):

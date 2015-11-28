@@ -39,7 +39,8 @@ def get_pootle_permissions(codenames=None):
     else:
         permissions = Permission.objects.filter(content_type=content_type)
 
-    return dict((permission.codename, permission) for permission in permissions)
+    return dict((permission.codename, permission)
+                for permission in permissions)
 
 
 def get_permissions_by_username(username, directory):
@@ -59,15 +60,15 @@ def get_permissions_by_username(username, directory):
         if (len(path_parts) > 1 and path_parts[0] != 'projects' and
             (permissionset is None or
             len(filter(None, permissionset.directory.pootle_path.split('/'))) < 2)):
-                # Active permission at language level or higher, check project
-                # level permission
-                try:
-                    project_path = '/projects/%s/' % path_parts[1]
-                    permissionset = PermissionSet.objects.get(
-                        directory__pootle_path=project_path,
-                        user__username=username)
-                except PermissionSet.DoesNotExist:
-                    pass
+            # Active permission at language level or higher, check project
+            # level permission
+            try:
+                project_path = '/projects/%s/' % path_parts[1]
+                permissionset = PermissionSet.objects.get(
+                    directory__pootle_path=project_path,
+                    user__username=username)
+            except PermissionSet.DoesNotExist:
+                pass
 
         if permissionset:
             permissions_cache[pootle_path] = permissionset.to_dict()
@@ -159,10 +160,10 @@ class PermissionSet(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
     directory = models.ForeignKey('pootle_app.Directory', db_index=True,
                                   related_name='permission_sets')
-    positive_permissions = models.ManyToManyField(Permission, db_index=True,
-                                                  related_name='permission_sets_positive')
-    negative_permissions = models.ManyToManyField(Permission, db_index=True,
-                                                  related_name='permission_sets_negative')
+    positive_permissions = models.ManyToManyField(
+        Permission, db_index=True, related_name='permission_sets_positive')
+    negative_permissions = models.ManyToManyField(
+        Permission, db_index=True, related_name='permission_sets_negative')
 
     def __unicode__(self):
         return "%s : %s" % (self.user.username,

@@ -46,7 +46,8 @@ def get_supported_formats():
 
     try:
         from translate.storage.catkeys import CatkeysFile
-        formats.append(('catkeys', _('Haiku catkeys'), CatkeysFile, 'bilingual'))
+        formats.append(('catkeys', _('Haiku catkeys'), CatkeysFile,
+                        'bilingual'))
     except ImportError:
         pass
 

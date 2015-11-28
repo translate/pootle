@@ -32,7 +32,8 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import check_permission, check_user_permission
+from pootle_app.models.permissions import (check_permission,
+                                           check_user_permission)
 from pootle_misc.checks import get_category_id, check_names
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, to_int, get_date_interval
@@ -505,11 +506,11 @@ def get_units(request):
                 break
 
         if sort_by_field is None or sort_on == 'units':
-            # Since `extra()` has been used before, it's necessary to explicitly
-            # request the `store__pootle_path` field. This is a subtetly in
-            # Django's ORM.
-            uid_list = [u['id'] for u in step_queryset.values('id',
-                                                              'store__pootle_path')]
+            # Since `extra()` has been used before, it's necessary to
+            # explicitly request the `store__pootle_path` field. This is a
+            # subtetly in Django's ORM.
+            uid_list = [u['id'] for u
+                        in step_queryset.values('id', 'store__pootle_path')]
         else:
             # Not using `values_list()` here because it doesn't know about all
             # existing relations when `extra()` has been used before in the
@@ -520,9 +521,9 @@ def get_units(request):
             # `values('sort_by_field', 'id')` with `id` otherwise
             # Django looks for `sort_by_field` field in the initial table.
             # https://code.djangoproject.com/ticket/19434
-            uid_list = [u['id'] for u in step_queryset.values('id',
-                                                              'sort_by_field',
-                                                              'store__pootle_path')]
+            uid_list = [u['id'] for u
+                        in step_queryset.values('id', 'sort_by_field',
+                                                'store__pootle_path')]
 
         if len(uids) == 1:
             try:
@@ -626,7 +627,8 @@ def timeline(request, unit):
             elif item.suggestion:
                 entry.update({
                     'suggestion_text': item.suggestion.target,
-                    'suggestion_description': mark_safe(item.get_suggestion_description()),
+                    'suggestion_description':
+                        mark_safe(item.get_suggestion_description()),
                 })
             elif item.quality_check:
                 check_name = item.quality_check.name
@@ -725,7 +727,8 @@ def save_comment(request, unit):
         ctx = {
             'unit': unit,
             'language': language,
-            'cantranslate': check_user_permission(user, 'translate', directory),
+            'cantranslate': check_user_permission(user, 'translate',
+                                                  directory),
             'cansuggest': check_user_permission(user, 'suggest', directory),
         }
         t = loader.get_template('editor/units/xhr_comment.html')

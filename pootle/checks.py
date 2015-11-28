@@ -116,7 +116,8 @@ def check_redis(app_configs=None, **kwargs):
         conn_settings = queue.connection.connection_pool.connection_kwargs
         errors.append(checks.Critical(
             _("Could not connect to Redis (%s)", e),
-            hint=_("Make sure Redis is running on %(host)s:%(port)s") % conn_settings,
+            hint=_("Make sure Redis is running on "
+                   "%(host)s:%(port)s") % conn_settings,
             id="pootle.C001",
         ))
     else:
@@ -153,7 +154,8 @@ def check_settings(app_configs=None, **kwargs):
     if "RedisCache" not in settings.CACHES.get("default", {}).get("BACKEND"):
         errors.append(checks.Critical(
             _("Cache backend is not set to Redis."),
-            hint=_("Set default cache backend to django_redis.cache.RedisCache\n"
+            hint=_("Set default cache backend to "
+                   "django_redis.cache.RedisCache\n"
                    "Current settings: %r") % (settings.CACHES.get("default")),
             id="pootle.C005",
         ))
@@ -177,14 +179,16 @@ def check_settings(app_configs=None, **kwargs):
         # We don't bother warning about sqlite in DEBUG mode.
         errors.append(checks.Warning(
             _("The sqlite database backend is unsupported"),
-            hint=_("Set your default database engine to postgresql_psycopg2 or mysql"),
+            hint=_("Set your default database engine to postgresql_psycopg2 "
+                   "or mysql"),
             id="pootle.W006",
         ))
 
     if settings.SESSION_ENGINE.split(".")[-1] not in ("cache", "cached_db"):
         errors.append(checks.Warning(
             _("Not using cached_db as session engine"),
-            hint=_("Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
+            hint=_("Set SESSION_ENGINE to "
+                   "django.contrib.sessions.backend.cached_db\n"
                    "Current settings: %r") % (settings.SESSION_ENGINE),
             id="pootle.W007",
         ))
@@ -283,7 +287,8 @@ def check_settings(app_configs=None, **kwargs):
                     id="pootle.C009",
                 ))
             else:
-                tm_indexes.append(settings.POOTLE_TM_SERVER[server]['INDEX_NAME'])
+                tm_indexes.append(
+                    settings.POOTLE_TM_SERVER[server]['INDEX_NAME'])
 
             if 'ENGINE' not in settings.POOTLE_TM_SERVER[server]:
                 errors.append(checks.Critical(
@@ -318,8 +323,8 @@ def check_settings(app_configs=None, **kwargs):
                 ))
 
             if ('WEIGHT' in settings.POOTLE_TM_SERVER[server] and
-                not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT'] <= 1.0)):
-
+                not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT']
+                     <= 1.0)):
                 errors.append(checks.Warning(
                     _("POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or "
                       "greater than 1.0", server),

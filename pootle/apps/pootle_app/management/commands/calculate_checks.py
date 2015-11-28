@@ -78,7 +78,8 @@ def calculate_checks(check_names=None, translation_project=None):
                            'category', 'false_positive')
     all_units_checks = {}
     for check in checks:
-        all_units_checks.setdefault(check['unit_id'], {})[check['name']] = check
+        all_units_checks.setdefault(
+            check['unit_id'], {})[check['name']] = check
 
     unit_filter = {
         'state__gt': OBSOLETE

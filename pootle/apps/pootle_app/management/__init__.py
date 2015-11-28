@@ -24,7 +24,8 @@ def fix_permission_content_type_pre(sender, instance, **kwargs):
         logging.debug("Fixing permissions content types")
         global permission_queryset
         permission_queryset = [permission for permission in
-                               Permission.objects.filter(content_type=instance)]
+                               Permission.objects.filter(
+                                   content_type=instance)]
 
 
 @receiver(post_delete, sender=ContentType)

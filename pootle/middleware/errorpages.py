@@ -116,8 +116,9 @@ class ErrorPagesMiddleware(object):
                     'login_link': reverse('account_login'),
                 }
                 login_msg = _(
-                    'You need to <a class="js-login" href="%(login_link)s">login</a> '
-                    'to access this page.', msg_args
+                    'You need to <a class="js-login" '
+                    'href="%(login_link)s">login</a> to access this page.',
+                    msg_args
                 )
                 ctx["login_message"] = login_msg
 

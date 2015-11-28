@@ -126,21 +126,25 @@ def highlight_diffs(old, new):
     for op, text in diff:
         if op == 0:  # equality
             if removed:
-                textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
+                textdiff += '<span class="diff-delete">%s</span>' % \
+                    fancy_escape(removed)
                 removed = u""
             textdiff += fancy_escape(text)
         elif op == 1:  # insertion
             if removed:
                 # this is part of a substitution, not a plain insertion. We
                 # will format this differently.
-                textdiff += '<span class="diff-replace">%s</span>' % fancy_escape(text)
+                textdiff += '<span class="diff-replace">%s</span>' % \
+                    fancy_escape(text)
                 removed = u""
             else:
-                textdiff += '<span class="diff-insert">%s</span>' % fancy_escape(text)
+                textdiff += '<span class="diff-insert">%s</span>' % \
+                    fancy_escape(text)
         elif op == -1:  # deletion
             removed = text
     if removed:
-        textdiff += '<span class="diff-delete">%s</span>' % fancy_escape(removed)
+        textdiff += '<span class="diff-delete">%s</span>' % \
+            fancy_escape(removed)
     return mark_safe(textdiff)
 
 
@@ -151,10 +155,12 @@ def pluralize_source(unit):
 
     count = len(unit.source.strings)
     if count == 1:
-        return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'), _('Plural')))]
+        return [(0, unit.source.strings[0], "%s+%s" % (_('Singular'),
+                                                       _('Plural')))]
 
     if count == 2:
-        return [(0, unit.source.strings[0], _('Singular')), (1, unit.source.strings[1], _('Plural'))]
+        return [(0, unit.source.strings[0], _('Singular')),
+                (1, unit.source.strings[1], _('Plural'))]
 
     forms = []
     for i, source in enumerate(unit.source.strings):
@@ -191,7 +197,9 @@ def pluralize_target(unit, nplurals=None):
 def pluralize_diff_sugg(sugg):
     unit = sugg.unit
     if not unit.hasplural():
-        return [(0, sugg.target, call_highlight(unit.target, sugg.target), None)]
+        return [
+            (0, sugg.target, call_highlight(unit.target, sugg.target), None)
+        ]
 
     forms = []
     for i, target in enumerate(sugg.target.strings):
@@ -201,7 +209,8 @@ def pluralize_diff_sugg(sugg):
             sugg_text = ''
 
         forms.append((
-            i, target, call_highlight(sugg_text, target), _('Plural Form %d', i)
+            i, target, call_highlight(sugg_text, target),
+            _('Plural Form %d', i)
         ))
 
     return forms
@@ -222,7 +231,8 @@ def do_include_raw(parser, token):
         )
 
     template_name = bits[1]
-    if template_name[0] in ('"', "'") and template_name[-1] == template_name[0]:
+    if (template_name[0] in ('"', "'") and
+            template_name[-1] == template_name[0]):
         template_name = template_name[1:-1]
 
     source, path = get_template_source(template_name)

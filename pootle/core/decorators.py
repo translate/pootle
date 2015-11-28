@@ -160,14 +160,16 @@ def set_resource(request, path_obj, dir_path, filename):
     if directory is None and not is_404:
         if dir_path:
             try:
-                directory = Directory.objects.live().get(pootle_path=clean_pootle_path)
+                directory = Directory.objects.live().get(
+                    pootle_path=clean_pootle_path)
             except Directory.DoesNotExist:
                 is_404 = True
         else:
             directory = obj_directory
 
     if is_404:  # Try parent directory
-        language_code, project_code, dp, fn = split_pootle_path(clean_pootle_path)
+        language_code, project_code, dp, fn = \
+            split_pootle_path(clean_pootle_path)
         if not filename:
             dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
 

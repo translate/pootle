@@ -211,7 +211,8 @@ def get_git_branch():
     >>> get_git_branch()
     'feature/proper_version'
     """
-    branch = _shell_command(['/usr/bin/git', 'symbolic-ref', '-q', 'HEAD']).strip()
+    branch = _shell_command(['/usr/bin/git', 'symbolic-ref', '-q',
+                             'HEAD']).strip()
     if not branch:
         return None
     return "/".join(branch.split("/")[2:])

@@ -84,7 +84,8 @@ class Command(PootleCommand):
     def handle_translation_project(self, tp, **options):
         if options['stats']:
             res = {}
-            self._dump_stats(tp.directory, res, stop_level=options['stop_level'])
+            self._dump_stats(tp.directory, res,
+                             stop_level=options['stop_level'])
             return
 
         if options['data']:

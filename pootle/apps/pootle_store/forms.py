@@ -250,12 +250,14 @@ def unit_form_factory(language, snplurals=None, request=None):
             if (self.request is not None and
                 not check_permission('administrate', self.request) and
                 is_fuzzy):
-                raise forms.ValidationError(_('Needs work flag must be cleared'))
+                raise forms.ValidationError(_('Needs work flag must be '
+                                              'cleared'))
 
             if new_target:
                 if old_state == UNTRANSLATED:
                     self.instance._save_action = TRANSLATION_ADDED
-                    self.instance.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
+                    self.instance.store.mark_dirty(
+                        CachedMethods.WORDCOUNT_STATS)
                 else:
                     self.instance._save_action = TRANSLATION_CHANGED
 
@@ -267,11 +269,12 @@ def unit_form_factory(language, snplurals=None, request=None):
                 new_state = UNTRANSLATED
                 if old_state > FUZZY:
                     self.instance._save_action = TRANSLATION_DELETED
-                    self.instance.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
+                    self.instance.store.mark_dirty(
+                        CachedMethods.WORDCOUNT_STATS)
 
             if is_fuzzy != (old_state == FUZZY):
-                # when Unit toggles its FUZZY state the number of translated words
-                # also changes
+                # when Unit toggles its FUZZY state the number of translated
+                # words also changes
                 self.instance.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
                                                CachedMethods.LAST_ACTION)
 

@@ -79,7 +79,8 @@ def to_python(value):
 
 
 class MultiStringField(models.Field):
-    description = "a field imitating translate.misc.multistring used for plurals"
+    description = \
+        "a field imitating translate.misc.multistring used for plurals"
     __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
@@ -254,7 +255,8 @@ class TranslationStoreField(FileField):
         super(TranslationStoreField, self).__init__(**kwargs)
 
     def deconstruct(self):
-        name, path, args, kwargs = super(TranslationStoreField, self).deconstruct()
+        name, path, args, kwargs = super(TranslationStoreField,
+                                         self).deconstruct()
         if self.ignore is not None:
             kwargs['ignore'] = self.ignore
         return name, path, args, kwargs

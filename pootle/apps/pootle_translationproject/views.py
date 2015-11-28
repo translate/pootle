@@ -102,7 +102,8 @@ def browse(request, translation_project, dir_path, filename=None):
                 stats['vfolders'] = {}
 
                 for vfolder_treeitem in directory.vf_treeitems.iterator():
-                    if request.user.is_superuser or vfolder_treeitem.is_visible:
+                    if (request.user.is_superuser or
+                            vfolder_treeitem.is_visible):
                         stats['vfolders'][vfolder_treeitem.code] = \
                             vfolder_treeitem.get_stats(include_children=False)
 

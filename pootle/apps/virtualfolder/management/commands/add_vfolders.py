@@ -59,7 +59,8 @@ class Command(BaseCommand):
 
             # Put all the files for each virtual folder as a list and save it
             # as its filter rules.
-            vfolder_item['filter_rules'] = ','.join(vfolder_item['filters']['files'])
+            vfolder_item['filter_rules'] = ','.join(
+                vfolder_item['filters']['files'])
 
             if 'filters' in vfolder_item:
                 del vfolder_item['filters']
@@ -133,6 +134,8 @@ class Command(BaseCommand):
                         self.stdout.write('DONE')
                         updated_count += 1
 
-        self.stdout.write("\nErrored: %d\nAdded: %d\nUpdated: %d\nUnchanged: %d" %
+        self.stdout.write("\nErrored: %d\nAdded: %d\n"
+                          "Updated: %d\nUnchanged: %d" %
                           (errored_count, added_count, updated_count,
-                           len(vfolders)-errored_count-added_count-updated_count))
+                           len(vfolders) - errored_count - added_count -
+                           updated_count))

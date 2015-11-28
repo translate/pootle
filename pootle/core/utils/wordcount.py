@@ -13,7 +13,8 @@ re._MAXCACHE = 1000
 
 remove = re.compile(u"[\.]+", re.U)  # dots
 delimiters = re.compile(u"[\W]+", re.U)  # anything except a-z, A-Z and _
-delimiters_begin = re.compile(u"^[\W]+", re.U)  # anything except a-z, A-Z and _
+delimiters_begin = re.compile(u"^[\W]+",
+                              re.U)  # anything except a-z, A-Z and _
 delimiters_end = re.compile(u"[\W]+$", re.U)  # anything except a-z, A-Z and _
 
 english_date = re.compile(
@@ -27,7 +28,8 @@ xmltag_regex = re.compile(u'(<\/?[\w]+.*?>)', re.U)
 java_format_regex = re.compile(u'(\\\{\d+\\\}|\{\d+\})', re.U)
 template_format_regex = re.compile(u'(\$\{[\w\.\:]+\})', re.U)
 android_format_regex = re.compile(u'(%\d\$\w)', re.U)
-sprintf_regex = re.compile(u'(%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns])', re.U)
+sprintf_regex = re.compile(u'(%[\d]*(?:.\d+)*(?:h|l|I|I32|I64)*[cdiouxefgns])',
+                           re.U)
 objective_c_regex = re.compile(u'(%@)', re.U)
 dollar_sign_regex = re.compile(u'(\$[\w\d]+?\$)', re.U)
 persent_sign_regex = re.compile(u'(\%[\w\d]+?\%)', re.U)
@@ -41,7 +43,8 @@ product_names_regex = re.compile(
 )
 shortcuts_regex = re.compile(u'(Ctrl\+\w$|Shift\+\w$|Alt\+\w$)', re.U)
 shortcuts_modifier_regex = re.compile(u'(Ctrl\+$|Shift\+$|Alt\+$)', re.U)
-hanging_symbols_regex = re.compile(u'(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U)
+hanging_symbols_regex = \
+    re.compile(u'(^[^\w\&]\s|\s[^\w\&]\s|\s[^\w\&]$|^[^\w\&]$)', re.U)
 
 
 def find_placeholders(aref, regex, cls=''):

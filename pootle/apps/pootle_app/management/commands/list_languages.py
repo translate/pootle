@@ -42,10 +42,12 @@ class Command(NoArgsCommand):
 
         from pootle_translationproject.models import TranslationProject
         tps = TranslationProject.objects.distinct()
-        tps = tps.exclude(language__code='templates').order_by('language__code')
+        tps = tps.exclude(
+            language__code='templates').order_by('language__code')
 
         if options['modified_since'] > 0:
-            tps = tps.filter(submission__unit__revision__gt=options['modified_since'])
+            tps = tps.filter(
+                submission__unit__revision__gt=options['modified_since'])
 
         if projects:
             tps = tps.filter(project__code__in=projects)

@@ -32,7 +32,8 @@ def parse_requirements(file_name):
     requirements = []
     for line in open(file_name, 'r').read().split('\n'):
         # Ignore comments, blank lines and included requirements files
-        if re.match(r'(\s*#)|(\s*$)|((-r|--allow-external|--allow-unverified) .*$)', line):
+        if re.match(r'(\s*#)|(\s*$)|'
+                    '((-r|--allow-external|--allow-unverified) .*$)', line):
             continue
 
         if re.match(r'\s*-e\s+', line):
@@ -152,9 +153,10 @@ class BuildChecksTemplatesCommand(Command):
     def run(self):
         import django
         import codecs
-        from pootle.apps.pootle_misc.checks import check_names, excluded_filters
-        from translate.filters.checks import (TeeChecker,
-                                              StandardChecker, StandardUnitChecker)
+        from pootle.apps.pootle_misc.checks import (check_names,
+                                                    excluded_filters)
+        from translate.filters.checks import (TeeChecker, StandardChecker,
+                                              StandardUnitChecker)
         try:
             from docutils.core import publish_parts
         except ImportError:
@@ -176,7 +178,8 @@ class BuildChecksTemplatesCommand(Command):
 
             # Clean the leading whitespace on each docstring line so it gets
             # properly rendered.
-            docstring = "\n".join(line.strip() for line in filterfunc.__doc__.split("\n"))
+            docstring = "\n".join(line.strip()
+                                  for line in filterfunc.__doc__.split("\n"))
 
             # Render the reStructuredText in the docstring into HTML.
             description += publish_parts(docstring, writer_name="html")["body"]
@@ -219,7 +222,8 @@ setup(
     author_email="dev@translate.org.za",
     license="GNU General Public License 3 or later (GPLv3+)",
     url="http://pootle.translatehouse.org",
-    download_url="https://github.com/translate/pootle/releases/tag/" + __version__,
+    download_url="https://github.com/translate/pootle/releases/tag/" +
+        __version__,
 
     install_requires=parse_requirements('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
@@ -232,7 +236,8 @@ setup(
         "Intended Audience :: Developers",
         "Intended Audience :: End Users/Desktop",
         "Intended Audience :: Information Technology",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "License :: OSI Approved :: "
+            "GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: Unix",

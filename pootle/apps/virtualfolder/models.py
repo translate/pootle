@@ -80,7 +80,8 @@ class VirtualFolder(models.Model):
         For example a location /af/{PROJ}/browser/ for a virtual folder default
         is returned as browser/default/
         """
-        return '/'.join(self.location.strip('/').split('/')[2:] + [self.name, ''])
+        return '/'.join(
+            self.location.strip('/').split('/')[2:] + [self.name, ''])
 
     @property
     def all_locations(self):
@@ -329,9 +330,9 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
     @property
     def is_visible(self):
         return (self.vfolder.is_public and
-                (self.has_critical_errors or
-                 self.has_suggestions or
-                 (self.vfolder.priority >= 1 and not self.is_fully_translated)))
+                (self.has_critical_errors or self.has_suggestions or
+                 (self.vfolder.priority >= 1 and
+                  not self.is_fully_translated)))
 
     @property
     def has_critical_errors(self):
@@ -375,7 +376,8 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
         # Trigger the creation of the whole parent tree up to the vfolder
         # adjusted location.
-        if self.directory.pootle_path.count('/') > self.vfolder.location.count('/'):
+        if (self.directory.pootle_path.count('/') >
+                self.vfolder.location.count('/')):
             parent, created = VirtualFolderTreeItem.objects.get_or_create(
                 directory=self.directory.parent,
                 vfolder=self.vfolder,
@@ -404,7 +406,8 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         if Directory.objects.filter(pootle_path=self.pootle_path).exists():
             msg = (u"Problem adding virtual folder '%s' with location '%s': "
                    u"VirtualFolderTreeItem clashes with Directory %s" %
-                   (self.vfolder.name, self.vfolder.location, self.pootle_path))
+                   (self.vfolder.name, self.vfolder.location,
+                    self.pootle_path))
             raise ValidationError(msg)
 
     def get_translate_url(self, **kwargs):
@@ -478,10 +481,9 @@ def relate_unit(sender, instance, created=False, **kwargs):
 
                     # Create missing VirtualFolderTreeItem tree structure after
                     # adding this new unit.
-                    vfolder_treeitem, created = VirtualFolderTreeItem.objects.get_or_create(
-                        directory=instance.store.parent,
-                        vfolder=vf,
-                    )
+                    vfolder_treeitem, created = \
+                        VirtualFolderTreeItem.objects.get_or_create(
+                            directory=instance.store.parent, vfolder=vf)
 
                     if not created:
                         # The VirtualFolderTreeItem already existed, so

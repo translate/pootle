@@ -282,7 +282,8 @@ class UserPurger(object):
             review.delete()
 
         for unit in self.user.reviewed.iterator():
-            reviews = unit.get_suggestion_reviews().exclude(submitter=self.user)
+            reviews = unit.get_suggestion_reviews().exclude(
+                submitter=self.user)
             if reviews.exists():
                 previous_review = reviews.latest('pk')
                 unit.reviewed_by = previous_review.submitter

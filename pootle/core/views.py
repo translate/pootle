@@ -62,7 +62,8 @@ class TestUserFieldMixin(LoginRequiredMixin):
         user = self.request.user
         url_field_value = kwargs[self.test_user_field]
         field_value = getattr(user, self.test_user_field, '')
-        can_access = user.is_superuser or unicode(field_value) == url_field_value
+        can_access = user.is_superuser or \
+            unicode(field_value) == url_field_value
 
         if not can_access:
             raise PermissionDenied(_('You cannot access this page.'))

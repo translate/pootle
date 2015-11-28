@@ -64,7 +64,8 @@ def manage(request, translation_project):
                 store.nice_name = store.pootle_path[path_length:]
 
             ctx['stores'] = stores
-            return render(request, "translation_projects/terminology/stores.html", ctx)
+            return render(request,
+                          "translation_projects/terminology/stores.html", ctx)
 
     try:
         terminology_filename = get_terminology_filename(translation_project)
@@ -73,4 +74,5 @@ def manage(request, translation_project):
         )
         return manage_store(request, ctx, ctx['language'], term_store)
     except Store.DoesNotExist:
-        return render(request, "translation_projects/terminology/manage.html", ctx)
+        return render(request, "translation_projects/terminology/manage.html",
+                      ctx)

@@ -191,7 +191,8 @@ class Command(BaseCommand):
                     action='store_true',
                     dest='dry_run',
                     default=False,
-                    help='Report the number of translations to index and quit'),
+                    help='Report the number of translations to index and '
+                         'quit'),
         # Local TM specific options.
         make_option('--include-disabled-projects',
                     action='store_true',
@@ -285,8 +286,9 @@ class Command(BaseCommand):
             raise CommandError('You cannot add translations from database to '
                                'an external TM.')
         else:
-            self.parser = DBParser(stdout=self.stdout, index=self.INDEX_NAME,
-                                   disabled_projects=options.pop('disabled_projects'))
+            self.parser = DBParser(
+                stdout=self.stdout, index=self.INDEX_NAME,
+                disabled_projects=options.pop('disabled_projects'))
 
     def _set_latest_indexed_revision(self, **options):
         self.last_indexed_revision = -1

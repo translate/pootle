@@ -102,7 +102,8 @@ check_names = {
     'date_format': _(u"Date format"),
     'uppercase_placeholders': _(u"Uppercase placeholders"),
     'percent_sign_placeholders': _(u"Percent sign placeholders"),
-    'percent_sign_closure_placeholders': _(u"Percent sign closure placeholders"),
+    'percent_sign_closure_placeholders':
+        _(u"Percent sign closure placeholders"),
     'dollar_sign_placeholders': _(u"$ placeholders"),
     'dollar_sign_closure_placeholders': _(u"$ closure placeholders"),
     'javaencoded_unicode': _(u"Java-encoded unicode"),
@@ -115,7 +116,8 @@ check_names = {
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
 }
 
-excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy', 'isreview', 'untranslated']
+excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy',
+                    'isreview', 'untranslated']
 
 # pre-compile all regexps
 
@@ -155,9 +157,11 @@ fmt3 = u"\{{3}\S+?\}{3}"
 fmt2 = u"\{{2}\S+?\}{2}"
 fmt1 = u"\{{1}\S+?\}{1}"
 
-mustache_placeholders_regex = re.compile(u"(%s|%s|%s|%s)" % (fmt4, fmt3, fmt2, fmt1), re.U)
+mustache_placeholders_regex = re.compile(
+    u"(%s|%s|%s|%s)" % (fmt4, fmt3, fmt2, fmt1), re.U)
 
-mustache_placeholder_pairs_open_tag_regex = re.compile(u"\{{2}[#\^][^\}]+\}{2}", re.U)
+mustache_placeholder_pairs_open_tag_regex = re.compile(
+    u"\{{2}[#\^][^\}]+\}{2}", re.U)
 fmt = u"\{{2}[#\^\/][^\}]+\}{2}"
 mustache_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
 
@@ -165,15 +169,16 @@ fmt = u"\{{2}[\/]?[^\}]+\}{2}"
 mustache_like_placeholder_pairs_regex = re.compile(u"(%s)" % fmt, re.U)
 
 # date_format
-df_blocks = u"|".join(map(lambda x: '%s+' % x, 'GyYMwWDdFEuaHkKhmsSzZX')) + u"|\'[\w]+\'"
+df_blocks = u"|".join(
+    map(lambda x: '%s+' % x, 'GyYMwWDdFEuaHkKhmsSzZX')) + u"|\'[\w]+\'"
 df_glued_blocks = u"X+|Z+|\'[\w]*\'"
 df_delimiter = u"[^\w']+|\'[\w]*\'"
-df_regex_str = u"^(%(blocks)s)(%(glued_blocks)s)?((%(delimiter)s)+(%(blocks)s))*$" % {
-    'blocks': df_blocks,
-    'glued_blocks': df_glued_blocks,
-    'delimiter': df_delimiter,
-}
-date_format_regex = re.compile(df_regex_str, re.U)
+date_format_regex = re.compile(
+    u"^(%(blocks)s)(%(glued_blocks)s)?((%(delimiter)s)+(%(blocks)s))*$" % {
+        'blocks': df_blocks,
+        'glued_blocks': df_glued_blocks,
+        'delimiter': df_delimiter,
+    }, re.U)
 date_format_exception_regex = re.compile(u"^(M|S|W|F)$", re.I | re.U)
 
 fmt = u"^\s+|\s+$"
@@ -291,7 +296,8 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def dollar_sign_closure_placeholders(self, str1, str2):
-        return _generic_check(str1, str2, dollar_sign_closure_placeholders_regex,
+        return _generic_check(str1, str2,
+                              dollar_sign_closure_placeholders_regex,
                               u"dollar_sign_closure_placeholders")
 
     @critical
@@ -301,7 +307,8 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def percent_sign_closure_placeholders(self, str1, str2):
-        return _generic_check(str1, str2, percent_sign_closure_placeholders_regex,
+        return _generic_check(str1, str2,
+                              percent_sign_closure_placeholders_regex,
                               u"percent_sign_closure_placeholders")
 
     @critical
@@ -926,7 +933,10 @@ def run_given_filters(checker, unit, check_names=None):
     :rtype: Dictionary
     :return: Content of the dictionary is as follows::
 
-       {'testname': { 'message': message_or_exception, 'category': failure_category } }
+       {'testname': {
+           'message': message_or_exception,
+           'category': failure_category
+        }}
 
     Do some optimisation by caching some data of the unit for the
     benefit of :meth:`~TranslationChecker.run_test`.
@@ -998,7 +1008,8 @@ def get_qualitychecks():
                     # FIXME there must be a better way to get a list of
                     # available checks.  Some error because we're not actually
                     # using them on real units.
-                    logging.error("Problem with check filter '%s': %s", filt, e)
+                    logging.error("Problem with check filter '%s': %s",
+                                  filt, e)
                     continue
 
         available_checks.update(checker.categories)

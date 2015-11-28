@@ -37,8 +37,9 @@ class Command(NoArgsCommand):
 
         if options['revision'] > 0:
             from pootle_translationproject.models import TranslationProject
-            tps = TranslationProject.objects.filter(submission__id__gt=options['revision']) \
-                                            .distinct().values("project__code")
+            tps = TranslationProject.objects.filter(
+                submission__id__gt=options['revision']) \
+                .distinct().values("project__code")
 
             for tp in tps:
                 self.stdout.write(tp["project__code"])

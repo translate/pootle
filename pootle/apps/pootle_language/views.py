@@ -47,7 +47,8 @@ def browse(request, language):
             'headings': get_table_headings(table_fields),
             'items': items,
         },
-        'stats': jsonify(request.resource_obj.get_stats_for_user(request.user)),
+        'stats': jsonify(
+            request.resource_obj.get_stats_for_user(request.user)),
         'browser_extends': 'languages/base.html',
     })
 

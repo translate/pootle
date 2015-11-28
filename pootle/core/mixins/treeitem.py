@@ -195,7 +195,8 @@ class TreeItem(object):
         for item in self.children:
             item_res = item.get_cached(CachedMethods.CHECKS)
             result['checks'] = dictsum(result['checks'], item_res['checks'])
-            result['unit_critical_error_count'] += item_res['unit_critical_error_count']
+            result['unit_critical_error_count'] += \
+                item_res['unit_critical_error_count']
 
         return result
 
@@ -263,7 +264,8 @@ class TreeItem(object):
                 code = (self._get_code(item)
                         if hasattr(self, '_get_code')
                         else item.code)
-                result['children'][code] = item.get_stats(include_children=False)
+                result['children'][code] = \
+                    item.get_stats(include_children=False)
 
         return result
 
@@ -370,7 +372,8 @@ class CachedTreeItem(TreeItem):
                 code = (self._get_code(item)
                         if hasattr(self, '_get_code')
                         else item.code)
-                result['children'][code] = item.get_stats(include_children=False)
+                result['children'][code] = \
+                    item.get_stats(include_children=False)
 
         return result
 
@@ -491,7 +494,8 @@ class CachedTreeItem(TreeItem):
                          self.get_cachekey(), decrement, job.id)
         else:
             logger.debug('UNREGISTER %s (-%s)', self.get_cachekey(), decrement)
-        r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), 0 - decrement)
+        r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(),
+                      0 - decrement)
 
     def get_dirty_score(self):
         r_con = get_connection()
@@ -519,8 +523,8 @@ class CachedTreeItem(TreeItem):
         updating dirty cached stats of parent
         """
         if self.can_be_updated():
-            # children should be recalculated to avoid using of obsolete directories
-            # or stores which could be saved in `children` property
+            # children should be recalculated to avoid using of obsolete
+            # directories or stores which could be saved in `children` property
             self.initialized = False
             self.initialize_children()
             keys_for_parent = set(keys)
@@ -532,7 +536,8 @@ class CachedTreeItem(TreeItem):
 
             if keys_for_parent:
                 for p in self.get_parents():
-                    create_update_cache_job_wrapper(p, keys_for_parent, decrement)
+                    create_update_cache_job_wrapper(p, keys_for_parent,
+                                                    decrement)
                 self.unregister_dirty(decrement)
             else:
                 self.unregister_all_dirty(decrement)
@@ -571,7 +576,8 @@ class JobWrapper(object):
         self.job = Job(id=id, connection=self.connection)
 
     @classmethod
-    def create(cls, func, instance, keys, decrement, connection, origin, timeout):
+    def create(cls, func, instance, keys, decrement, connection, origin,
+               timeout):
         """
         Creates object and initializes Job ID
         """
@@ -640,8 +646,9 @@ class JobWrapper(object):
         Creates Job object with given job ID
         """
         args = (self.instance,)
-        return Job.create(self.func, args=args, id=self.id, connection=self.connection,
-                          depends_on=depends_on, status=status)
+        return Job.create(self.func, args=args, id=self.id,
+                          connection=self.connection, depends_on=depends_on,
+                          status=status)
 
     def save_enqueued(self, pipe):
         """
@@ -726,7 +733,8 @@ def create_update_cache_job(queue, instance, keys, decrement=1):
                 if last_job_id is not None:
                     pipe.watch(Job.key_for(last_job_id),
                                JobWrapper.params_key_for(last_job_id))
-                    depends_on_wrapper = JobWrapper(last_job_id, queue.connection)
+                    depends_on_wrapper = JobWrapper(last_job_id,
+                                                    queue.connection)
 
                 pipe.multi()
 

@@ -49,8 +49,8 @@ def agreement_form_factory(pages, user):
 
         def add_page_field(self, page):
             """Adds `page` as a required field to this form."""
-            url = page.url and page.url or reverse('pootle-staticpages-display',
-                                                   args=[page.virtual_path])
+            url = page.url and page.url or \
+                reverse('pootle-staticpages-display', args=[page.virtual_path])
             label_params = {
                 'url': url,
                 'classes': 'js-agreement-popup',

@@ -57,7 +57,8 @@ def export(request):
                 try:
                     data = store.serialize()
                 except Exception as e:
-                    logging.error("Could not serialize %r: %s", store.pootle_path, e)
+                    logging.error("Could not serialize %r: %s",
+                                  store.pootle_path, e)
                     continue
                 zf.writestr(prefix + store.pootle_path, data)
 

@@ -48,7 +48,8 @@ class UserRatesForm(forms.Form):
 class PaidTaskForm(forms.ModelForm):
     class Meta(object):
         model = PaidTask
-        fields = ('task_type', 'amount', 'rate', 'datetime', 'description', 'user')
+        fields = ('task_type', 'amount', 'rate', 'datetime', 'description',
+                  'user')
         widgets = {
             'user': forms.HiddenInput(),
             'rate': forms.HiddenInput(attrs={

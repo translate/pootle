@@ -166,8 +166,8 @@ def set_sync_mode(noinput=False):
         redis_warning = ("\nYou currently have RQ workers running.\n\n"
                          "Running in synchronous mode may conflict with jobs "
                          "that are dispatched to your workers.\n\n"
-                         "It is safer to stop any workers before using synchronous "
-                         "commands.\n\n")
+                         "It is safer to stop any workers before using "
+                         "synchronous commands.\n\n")
         if noinput:
             print("Warning: %s" % redis_warning)
         else:

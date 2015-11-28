@@ -161,7 +161,8 @@ class Directory(models.Model, CachedTreeItem):
         result = []
         if not self.is_projects_root():
             # FIXME: can we replace this with a quicker path query?
-            result.extend([item for item in self.child_stores.live().iterator()])
+            result.extend([item for item in
+                           self.child_stores.live().iterator()])
             result.extend([item for item in self.child_dirs.live().iterator()])
         else:
             project_list = [item.project for item in self.child_dirs.iterator()

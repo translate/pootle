@@ -172,8 +172,9 @@ class SubmissionManager(BaseSubmissionManager):
         # reject_suggestion does not set field so we must exclude STATE reviews
         # and it seems there are submissions that use STATE and are in
         # REVIEW_TYPES
-        return (self.get_queryset().exclude(field=SubmissionFields.STATE)
-                                   .filter(type__in=SubmissionTypes.REVIEW_TYPES))
+        return (self.get_queryset().exclude(
+            field=SubmissionFields.STATE).filter(
+                type__in=SubmissionTypes.REVIEW_TYPES))
 
 
 class Submission(models.Model):
@@ -261,12 +262,14 @@ class Submission(models.Model):
                 check_name = self.quality_check.name
                 result.update({
                     'check_name': check_name,
-                    'check_display_name': check_names.get(check_name, check_name),
+                    'check_display_name': check_names.get(check_name,
+                                                          check_name),
                     'checks_url': reverse('pootle-checks-descriptions'),
                 })
 
         if (self.suggestion and
-            self.type in (SubmissionTypes.SUGG_ACCEPT, SubmissionTypes.SUGG_REJECT)):
+            self.type in (SubmissionTypes.SUGG_ACCEPT,
+                          SubmissionTypes.SUGG_REJECT)):
             displayuser = self.suggestion.reviewer
         else:
             # Sadly we may not have submitter information in all the
@@ -316,7 +319,8 @@ class Submission(models.Model):
                                 translation_action_type = \
                                     TranslationActionTypes.EDITED
                     else:
-                        translation_action_type = TranslationActionTypes.REMOVED
+                        translation_action_type = \
+                            TranslationActionTypes.REMOVED
                 elif self.field == SubmissionFields.STATE:
                     # Note that a submission where field is STATE
                     # should be created before a submission where
@@ -349,8 +353,10 @@ class Submission(models.Model):
                              sugg_user.display_name)
         return {
             SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
-            SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s', author),
-            SubmissionTypes.SUGG_REJECT: _(u'Rejected suggestion from %s', author),
+            SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s',
+                                           author),
+            SubmissionTypes.SUGG_REJECT: _(u'Rejected suggestion from %s',
+                                           author),
         }.get(self.type, None)
 
     def save(self, *args, **kwargs):
@@ -370,10 +376,14 @@ class TranslationActionCodes(object):
     EDIT_PENALTY = 6  # 'XE' translation penalty [when translation deleted]
     REVIEW_PENALTY = 7  # 'XR' translation penalty [when review canceled]
     SUGG_ADDED = 8  # 'S' suggestion added
-    SUGG_ACCEPTED = 9  # 'SA' suggestion accepted (counted towards the suggestion author)
-    SUGG_REJECTED = 10  # 'SR' suggestion rejected (counted towards the suggestion author)
-    SUGG_REVIEWED_ACCEPTED = 11  # 'RA' suggestion accepted (counted towards the reviewer)
-    SUGG_REVIEWED_REJECTED = 12  # 'RR' suggestion rejected (counted towards the reviewer)
+    # 'SA' suggestion accepted (counted towards the suggestion author)
+    SUGG_ACCEPTED = 9
+    # 'SR' suggestion rejected (counted towards the suggestion author)
+    SUGG_REJECTED = 10
+    # 'RA' suggestion accepted (counted towards the reviewer)
+    SUGG_REVIEWED_ACCEPTED = 11
+    # 'RR' suggestion rejected (counted towards the reviewer)
+    SUGG_REVIEWED_REJECTED = 12
 
     NAMES_MAP = {
         NEW: 'TA',
@@ -467,7 +477,8 @@ class ScoreLog(models.Model):
             if (int(submission.old_value) == FUZZY and
                 int(submission.new_value) == TRANSLATED and
                 not submission.unit._target_updated):
-                submitter_score['action_code'] = TranslationActionCodes.REVIEWED
+                submitter_score['action_code'] = \
+                    TranslationActionCodes.REVIEWED
 
             elif (int(submission.old_value) == TRANSLATED and
                   int(submission.new_value) == FUZZY):
@@ -490,7 +501,8 @@ class ScoreLog(models.Model):
         elif submission.type == SubmissionTypes.SUGG_REJECT:
             submitter_score['action_code'] = \
                 TranslationActionCodes.SUGG_REVIEWED_REJECTED
-            suggester_score['action_code'] = TranslationActionCodes.SUGG_REJECTED
+            suggester_score['action_code'] = \
+                TranslationActionCodes.SUGG_REJECTED
 
         for score in [submitter_score, previous_translator_score,
                       previous_reviewer_score, suggester_score]:
@@ -604,15 +616,18 @@ class ScoreLog(models.Model):
             return rawTranslationCost * (1 - SUGG_COEF)
 
         return {
-            TranslationActionCodes.NEW: lambda: rawTranslationCost + reviewCost,
-            TranslationActionCodes.EDITED: lambda: rawTranslationCost + reviewCost,
+            TranslationActionCodes.NEW:
+                lambda: rawTranslationCost + reviewCost,
+            TranslationActionCodes.EDITED:
+                lambda: rawTranslationCost + reviewCost,
             TranslationActionCodes.EDITED_OWN: lambda: rawTranslationCost,
             TranslationActionCodes.REVIEWED: lambda: reviewCost,
             TranslationActionCodes.EDIT_PENALTY: get_edit_penalty,
             TranslationActionCodes.MARKED_FUZZY: lambda: 0,
             TranslationActionCodes.DELETED: lambda: 0,
             TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
-            TranslationActionCodes.SUGG_ADDED: lambda: rawTranslationCost * SUGG_COEF,
+            TranslationActionCodes.SUGG_ADDED:
+                lambda: rawTranslationCost * SUGG_COEF,
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
             TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
@@ -620,7 +635,9 @@ class ScoreLog(models.Model):
         }.get(self.action_code, 0)()
 
     def get_similarity(self):
-        return self.similarity if self.similarity >= SIMILARITY_THRESHOLD else 0
+        return self.similarity \
+            if self.similarity >= SIMILARITY_THRESHOLD \
+            else 0
 
     def is_similarity_taken_from_mt(self):
         return self.submission.similarity < self.submission.mt_similarity
@@ -684,5 +701,6 @@ class ScoreLog(models.Model):
             TranslationActionCodes.EDITED: get_edited,
             TranslationActionCodes.REVIEWED: lambda: (None, reviewed_words),
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
-            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: get_sugg_reviewed_accepted,
+            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED:
+                get_sugg_reviewed_accepted,
         }.get(self.action_code, lambda: (None, None))()

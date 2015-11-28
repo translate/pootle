@@ -44,7 +44,8 @@ def server_stats():
     result = cache.get("server_stats")
     if result is None:
         result = {}
-        result['user_count'] = max(User.objects.filter(is_active=True).count()-2, 0)
+        result['user_count'] = max(User.objects.filter(
+            is_active=True).count()-2, 0)
         # 'default' and 'nobody' might be counted
         # FIXME: the special users should not be retuned with is_active
         result['submission_count'] = Submission.objects.count()
@@ -62,11 +63,15 @@ def server_stats_more(request):
 
         result = {}
         unit_query = Unit.objects.filter(state__gte=TRANSLATED).exclude(
-            store__translation_project__project__code__in=('pootle', 'tutorial', 'terminology')).exclude(
+            store__translation_project__project__code__in=(
+                'pootle', 'tutorial', 'terminology')
+        ).exclude(
             store__translation_project__language__code='templates').order_by()
         result['store_count'] = unit_query.values('store').distinct().count()
-        result['project_count'] = unit_query.values('store__translation_project__project').distinct().count()
-        result['language_count'] = unit_query.values('store__translation_project__language').distinct().count()
+        result['project_count'] = unit_query.values(
+            'store__translation_project__project').distinct().count()
+        result['language_count'] = unit_query.values(
+            'store__translation_project__language').distinct().count()
         sums = sum_column(unit_query, ('source_wordcount',), count=True)
         result['string_count'] = sums['count']
         result['word_count'] = sums['source_wordcount'] or 0

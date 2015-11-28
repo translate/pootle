@@ -490,7 +490,9 @@ class Unit(models.Model, base.TranslationUnit):
         revision = kwargs.pop('revision', None)
         if revision is not None and not self._auto_translated:
             self.revision = revision
-        elif self._target_updated or self._state_updated or self._comment_updated:
+        elif (self._target_updated or
+              self._state_updated or
+              self._comment_updated):
             self.revision = Revision.incr()
 
         if not created and hasattr(self, '_save_action'):
@@ -570,7 +572,8 @@ class Unit(models.Model, base.TranslationUnit):
         ])
 
     def get_screenshot_url(self):
-        prefix = self.store.translation_project.project.screenshot_search_prefix
+        prefix = self.store.translation_project.\
+            project.screenshot_search_prefix
         if prefix:
             return prefix + urlquote(self.source_f)
 
@@ -675,7 +678,8 @@ class Unit(models.Model, base.TranslationUnit):
         unit_notes = unit.getnotes(origin="translator")
         if unit_notes != (self_notes or ''):
             if self_notes != '':
-                unit.addnote(self_notes, origin="translator", position="replace")
+                unit.addnote(self_notes, origin="translator",
+                             position="replace")
             else:
                 unit.removenotes()
             changed = True
@@ -838,7 +842,8 @@ class Unit(models.Model, base.TranslationUnit):
         for name in qc_failures.iterkeys():
             if name in existing:
                 # keep false-positive checks if check is active
-                if existing[name]['false_positive'] and not keep_false_positives:
+                if (existing[name]['false_positive'] and
+                        not keep_false_positives):
                     unmute_list.append(name)
                 del existing[name]
                 continue
@@ -870,7 +875,8 @@ class Unit(models.Model, base.TranslationUnit):
         return self.get_qualitychecks().filter(category=Category.CRITICAL)
 
     def get_active_critical_qualitychecks(self):
-        return self.get_active_qualitychecks().filter(category=Category.CRITICAL)
+        return self.get_active_qualitychecks().filter(
+            category=Category.CRITICAL)
 
     def get_warning_qualitychecks(self):
         return self.get_qualitychecks().exclude(category=Category.CRITICAL)
@@ -1029,8 +1035,8 @@ class Unit(models.Model, base.TranslationUnit):
             return
 
         if filter(None, self.target_f.strings):
-            # when Unit toggles its OBSOLETE state the number of translated words
-            # or fuzzy words also changes
+            # when Unit toggles its OBSOLETE state the number of translated
+            # words or fuzzy words also changes
             if is_fuzzy:
                 self.state = FUZZY
             else:
@@ -1555,7 +1561,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def get_file_mtime(self):
         disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
-        # set microsecond to 0 for comparing with a time value without microseconds
+        # set microsecond to 0 for comparing with a time value without
+        # microseconds
         disk_mtime = make_aware(disk_mtime.replace(microsecond=0))
 
         return disk_mtime
@@ -1666,8 +1673,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     suggested += 1
         return updated, suggested
 
-    def record_submissions(self, unit, old_target, old_state, current_time, user,
-                           submission_type=None):
+    def record_submissions(self, unit, old_target, old_state, current_time,
+                           user, submission_type=None):
         """Records all applicable submissions for `unit`.
 
         EXTREME HAZARD: this relies on implicit `._<field>_updated` members
@@ -2153,9 +2160,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def _get_checks(self):
         try:
-            queryset = QualityCheck.objects.filter(unit__store=self,
-                                                   unit__state__gt=UNTRANSLATED,
-                                                   false_positive=False)
+            queryset = QualityCheck.objects.filter(
+                unit__store=self, unit__state__gt=UNTRANSLATED,
+                false_positive=False)
 
             queryset = queryset.values('unit', 'name', 'category') \
                                .order_by('unit', '-category')
@@ -2190,7 +2197,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         except IndexError:
             max_unit = None
 
-        # creation_time field has been added recently, so it can have NULL value
+        # creation_time field has been added recently, so it can have NULL
+        # value
         if max_unit is not None:
             max_time = max_unit.creation_time
             if max_time:
@@ -2213,9 +2221,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def _get_suggestion_count(self):
         """Check if any unit in the store has suggestions"""
-        return Suggestion.objects.filter(unit__store=self,
-                                         unit__state__gt=OBSOLETE,
-                                         state=SuggestionStates.PENDING).count()
+        return Suggestion.objects.filter(
+            unit__store=self, unit__state__gt=OBSOLETE,
+            state=SuggestionStates.PENDING
+        ).count()
 
     def refresh_stats(self, include_children=True, cached_methods=None):
         """This TreeItem method is used on directories, translation projects,
@@ -2275,7 +2284,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     except ObjectDoesNotExist:
                         pass
 
-            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + poheader.tzstring()
+            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + \
+                poheader.tzstring()
             from pootle.core.utils.version import get_major_minor_version
             x_generator = "Pootle %s" % get_major_minor_version()
             headerupdates = {
@@ -2286,8 +2296,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                     mtime.microsecond)),
             }
             if user and user.is_authenticated():
-                headerupdates['Last_Translator'] = '%s <%s>' % (user.display_name,
-                                                                user.email)
+                headerupdates['Last_Translator'] = '%s <%s>' % \
+                    (user.display_name, user.email)
             else:
                 # FIXME: maybe insert settings.POOTLE_TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'

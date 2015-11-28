@@ -60,7 +60,8 @@ class CaptchaMiddleware(object):
                 target_urls = 0
 
             try:
-                comment_urls = len(URL_RE.findall(request.POST['translator_comment']))
+                comment_urls = len(URL_RE.findall(
+                    request.POST['translator_comment']))
             except KeyError:
                 comment_urls = 0
 

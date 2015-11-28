@@ -47,9 +47,9 @@ class PaidTask(models.Model):
         (PaidTaskTypes.CORRECTION, _('Correction')),
     ]
 
-    task_type = models.PositiveSmallIntegerField(_('Type'), choices=type_choices,
-                                                 null=False, db_index=True,
-                                                 default=PaidTaskTypes.TRANSLATION)
+    task_type = models.PositiveSmallIntegerField(
+        _('Type'), choices=type_choices, null=False, db_index=True,
+        default=PaidTaskTypes.TRANSLATION)
     amount = models.FloatField(_('Amount'), default=0, null=False)
     rate = models.FloatField(null=False, default=0)
     datetime = models.DateTimeField(_('Date'), null=False, db_index=True)
@@ -61,9 +61,11 @@ class PaidTask(models.Model):
         return dict(cls.type_choices).get(task_type, '')
 
     def __unicode__(self):
-        return u'Task: [id=%s, user=%s, month=%s, type=%s, amount=%s, comment=%s]' % \
+        return u'Task: [id=%s, user=%s, month=%s, ' + \
+            'type=%s, amount=%s, comment=%s]' % \
             (self.id, self.user.username, self.datetime.strftime('%Y-%m'),
-             PaidTask.get_task_type_title(self.task_type), self.amount, self.description)
+             PaidTask.get_task_type_title(self.task_type), self.amount,
+             self.description)
 
     def clean(self):
         now = timezone.now()

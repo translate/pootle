@@ -34,8 +34,8 @@ def extract_vfolder_from_path(pootle_path):
     """
     lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
-    if ((filename and Store.objects.filter(pootle_path=pootle_path).exists()) or
-        Directory.objects.filter(pootle_path=pootle_path).exists()):
+    if ((filename and Store.objects.filter(pootle_path=pootle_path).exists())
+        or Directory.objects.filter(pootle_path=pootle_path).exists()):
         # If there is no vfolder then return the provided path.
         return None, pootle_path
 
