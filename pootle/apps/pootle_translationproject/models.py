@@ -465,6 +465,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     ###########################################################################
 
+
 @receiver(post_save, sender=Project)
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw or instance.disabled:

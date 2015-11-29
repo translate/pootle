@@ -28,6 +28,8 @@ register = template.Library()
 
 
 IMAGE_URL_RE = re.compile("(https?://[^\s]+\.(png|jpe?g|gif))", re.IGNORECASE)
+
+
 @register.filter
 def image_urls(text):
     """Return a list of image URLs extracted from `text`."""
@@ -35,6 +37,8 @@ def image_urls(text):
 
 
 ESCAPE_RE = re.compile('<[^<]*?>|\\\\|\r\n|[\r\n\t&<>]')
+
+
 def fancy_escape(text):
     """Replace special chars with entities, and highlight XML tags and
     whitespaces.
@@ -63,6 +67,8 @@ def fancy_escape(text):
 
 
 WHITESPACE_RE = re.compile('^ +| +$|[\r\n\t] +| {2,}')
+
+
 def fancy_spaces(text):
     """Highlight spaces to make them easily visible."""
     def replace(match):
@@ -74,6 +80,8 @@ def fancy_spaces(text):
 
 
 PUNCTUATION_RE = general.PunctuationPlaceable().regex
+
+
 def fancy_punctuation_chars(text):
     """Wrap punctuation chars found in the ``text`` around tags."""
     def replace(match):
@@ -106,6 +114,8 @@ def call_highlight(old, new):
 
 
 differencer = diff_match_patch()
+
+
 def highlight_diffs(old, new):
     """Highlight the differences between old and new."""
 
