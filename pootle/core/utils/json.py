@@ -28,7 +28,7 @@ class PootleJSONEncoder(DjangoJSONEncoder):
     """
 
     def default(self, obj):
-        if isinstance(obj, Promise) or isinstance(obj, Markup):
+        if isinstance(obj, (Promise, Markup)):
             return force_unicode(obj)
 
         return super(PootleJSONEncoder, self).default(obj)
