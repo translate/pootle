@@ -85,7 +85,7 @@ check_names = {
     'variables': _(u"Placeholders"),
     'validxml': _(u"Valid XML"),
     'xmltags': _(u"XML tags"),
-    # Evernote checks
+    # Evernote checks (excludes duplicates)
     'broken_entities': _(u"Broken HTML Entities"),
     'java_format': _(u"Java format"),
     'template_format': _(u"Template format"),
@@ -108,11 +108,9 @@ check_names = {
     'javaencoded_unicode': _(u"Java-encoded unicode"),
     'objective_c_format': _(u"Objective-C format"),
     'android_format': _(u"Android format"),
-    'accelerators': _(u"Accelerators"),
     'tags_differ': _(u"Tags differ"),
     'unbalanced_curly_braces': _(u"Curly braces"),
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
-    'doublequoting': _(u"Double quotes"),
     'double_quotes_in_tags': _(u"Double quotes in tags"),
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
 }
