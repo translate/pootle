@@ -29,7 +29,7 @@ CAPTCHA_EXEMPT_URLPATTERNS = (
 )
 
 
-class CaptchaMiddleware:
+class CaptchaMiddleware(object):
     """Middleware to display a captcha question to verify POST submissions
     are made by humans.
     """

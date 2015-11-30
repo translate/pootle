@@ -553,7 +553,7 @@ class CachedTreeItem(TreeItem):
             create_update_cache_job_wrapper(p, all_cache_methods)
 
 
-class JobWrapper():
+class JobWrapper(object):
     """
     Wraps RQ Job to handle it within external `watch`,
     encapsulates work with external to RQ job params which is needed
