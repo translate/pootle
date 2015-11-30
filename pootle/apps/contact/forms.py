@@ -51,7 +51,7 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
     def from_email(self):
         return u'%s <%s>' % (
             self.cleaned_data['name'],
-            self.cleaned_data['email']
+            settings.DEFAULT_FROM_EMAIL,
         )
 
     def recipient_list(self):
@@ -59,10 +59,12 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 
     def save(self, fail_silently=False):
         """Build and send the email message."""
-
+        reply_to = u'%s <%s>' % (
+            self.cleaned_data['name'],
+            self.cleaned_data['email'],
+        )
         kwargs = self.get_message_dict()
-        kwargs["headers"] = {"Reply-To": kwargs["from_email"]}
-        kwargs["from_email"] = settings.DEFAULT_FROM_EMAIL
+        kwargs["headers"] = {"Reply-To": reply_to}
         send_mail(fail_silently=fail_silently, **kwargs)
 
 
