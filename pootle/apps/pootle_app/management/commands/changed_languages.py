@@ -59,11 +59,11 @@ class Command(NoArgsCommand):
 
         q = Unit.objects.filter(
             revision__gt=after_revision
-            ).values(
-                'store__translation_project__language__code',
-            ).order_by(
-                'store__translation_project__language__code',
-            ).distinct()
+        ).values(
+            'store__translation_project__language__code',
+        ).order_by(
+            'store__translation_project__language__code',
+        ).distinct()
 
         languages = q.values_list('store__translation_project__language__code',
                                   flat=True)

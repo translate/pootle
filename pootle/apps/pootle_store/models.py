@@ -2284,7 +2284,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 'X_POOTLE_MTIME': ('%s.%06d' %
                                    (int(dateformat.format(mtime, 'U')),
                                     mtime.microsecond)),
-                }
+            }
             if user and user.is_authenticated():
                 headerupdates['Last_Translator'] = '%s <%s>' % (user.display_name,
                                                                 user.email)

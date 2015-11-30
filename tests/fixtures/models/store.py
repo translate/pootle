@@ -50,56 +50,56 @@ UPDATE_STORE_TESTS = OrderedDict()
 UPDATE_STORE_TESTS['min_empty'] = {"update_store": (0, [])}
 UPDATE_STORE_TESTS['min_new_units'] = {
     "update_store": (0, DEFAULT_STORE_UNITS_3)
-    }
+}
 
 UPDATE_STORE_TESTS['old_empty'] = {"update_store": ("MID", [])}
 UPDATE_STORE_TESTS['old_subset_1'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_1)
-    }
+}
 UPDATE_STORE_TESTS['old_subset_2'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_2)
-    }
+}
 UPDATE_STORE_TESTS['old_same_updated'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2)
-    }
+}
 
 UPDATE_STORE_TESTS['old_unobsolete'] = {
     "setup": [DEFAULT_STORE_UNITS_1,
               DEFAULT_STORE_UNITS_2,
               []],
     "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2)
-    }
+}
 
 UPDATE_STORE_TESTS['old_merge'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_3)
-    }
+}
 
 UPDATE_STORE_TESTS['old_same_updated_fs_wins'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2),
     "fs_wins": True
-    }
+}
 
 UPDATE_STORE_TESTS['max_empty'] = {"update_store": ("MAX", [])}
 UPDATE_STORE_TESTS['max_subset'] = {
     "update_store": ("MAX", DEFAULT_STORE_UNITS_1)
-    }
+}
 UPDATE_STORE_TESTS['max_same'] = {
     "update_store": ("MAX", DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2)
-    }
+}
 UPDATE_STORE_TESTS['max_new_units'] = {
     "update_store": ("MAX",
                      (DEFAULT_STORE_UNITS_1
                       + DEFAULT_STORE_UNITS_2
                       + DEFAULT_STORE_UNITS_3))
-    }
+}
 UPDATE_STORE_TESTS['max_change_order'] = {
     "update_store": ("MAX", DEFAULT_STORE_UNITS_2 + DEFAULT_STORE_UNITS_1)
-    }
+}
 UPDATE_STORE_TESTS['max_unobsolete'] = {
     "setup": [DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2,
               DEFAULT_STORE_UNITS_1],
     "update_store": ("MAX", DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2)
-    }
+}
 
 
 UPDATE_STORE_TESTS['max_obsolete'] = {
@@ -108,7 +108,7 @@ UPDATE_STORE_TESTS['max_obsolete'] = {
                + DEFAULT_STORE_UNITS_2
                + DEFAULT_STORE_UNITS_3)],
     "update_store": ("MAX", DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_3)
-    }
+}
 
 
 def pytest_generate_tests(metafunc):

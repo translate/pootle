@@ -64,7 +64,7 @@ class Command(PootleCommand):
             default=-1,
             type=int,
         ),
-        )
+    )
     option_list = PootleCommand.option_list + shared_option_list
 
     def handle_all(self, **options):

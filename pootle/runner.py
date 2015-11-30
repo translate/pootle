@@ -78,7 +78,7 @@ def init_settings(settings_filepath, template_filename,
         'sqlite': 'sqlite3',
         'mysql': 'mysql',
         'postgresql': 'postgresql_psycopg2',
-        }[db]
+    }[db]
 
     context = {
         "default_key": ("'%s'"
