@@ -46,13 +46,10 @@ def initdb(create_projects=True):
 def _create_object(model_klass, **criteria):
     instance, created = model_klass.objects.get_or_create(**criteria)
     if created:
-        logger.debug(
-            "Created %s: '%s'"
-            % (instance.__class__.__name__, instance))
+        logger.debug("Created %s: '%s'", instance.__class__.__name__, instance)
     else:
-        logger.debug(
-            "%s already exists - skipping: '%s'"
-            % (instance.__class__.__name__, instance))
+        logger.debug("%s already exists - skipping: '%s'",
+                     instance.__class__.__name__, instance)
     return instance, created
 
 

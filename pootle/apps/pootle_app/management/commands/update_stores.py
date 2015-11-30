@@ -56,8 +56,8 @@ class Command(PootleCommand):
         disk_mtime = store.get_file_mtime()
         if not options["force"] and disk_mtime == store.file_mtime:
             # The file on disk wasn't changed since the last sync
-            logging.debug(u"File didn't change since last sync, skipping "
-                          u"%s" % store.pootle_path)
+            logging.debug(u"File didn't change since last sync, "
+                          "skipping %s", store.pootle_path)
             return
 
         store.update_from_disk(overwrite=options["overwrite"])

@@ -53,5 +53,5 @@ def import_file(file, user=None):
                      submission_type=SubmissionTypes.UPLOAD)
     except Exception as e:
         # This should not happen!
-        logger.error("Error importing file: %s" % str(e))
+        logger.error("Error importing file: %s", str(e))
         raise FileImportError(_("There was an error uploading your file"))

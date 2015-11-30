@@ -115,7 +115,7 @@ def calculate_checks(check_names=None, translation_project=None):
             Unit.simple_objects.filter(id=unit.id).update(mtime=timezone.now())
 
         if unit_count % 10000 == 0:
-            logging.info("%d units processed" % unit_count)
+            logging.info("%d units processed", unit_count)
 
     if store is not None:
         store.update_dirty_cache()

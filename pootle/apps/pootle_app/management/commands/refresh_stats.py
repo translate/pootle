@@ -30,5 +30,5 @@ class Command(PootleCommand):
             translation_project=translation_project
         )
         for store in stores.iterator():
-            logger.info('Add job to update stats for %s' % store.pootle_path)
+            logger.info('Add job to update stats for %s', store.pootle_path)
             store.update_all_cache()

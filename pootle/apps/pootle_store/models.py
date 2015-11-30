@@ -1837,9 +1837,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 )
             self.last_sync_revision = update_revision
             if update_unsynced:
-                logging.info(u"[update] unsynced %d units in %s [revision: %d]"
-                             % (update_unsynced, self.pootle_path,
-                                update_revision))
+                logging.info(u"[update] unsynced %d units in %s "
+                             "[revision: %d]", update_unsynced,
+                             self.pootle_path, update_revision)
         self.save(update_cache=False)
         return changed
 
@@ -1893,8 +1893,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         # TODO only_newer -> not force
         if (only_newer and self.file.exists() and
             self.last_sync_revision >= last_revision):
-            logging.info(u"[sync] No updates for %s after [revision: %d]" %
-                         (self.pootle_path, self.last_sync_revision))
+            logging.info(u"[sync] No updates for %s after [revision: %d]",
+                         self.pootle_path, self.last_sync_revision)
             return
 
         if not self.file.exists():
@@ -2000,8 +2000,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             log(u"[sync] File saved; %s units in %s [revision: %d]" %
                 (get_change_str(changes), self.pootle_path, last_revision))
         else:
-            logging.info(u"[sync] nothing changed in %s [revision: %d]" %
-                         (self.pootle_path, last_revision))
+            logging.info(u"[sync] nothing changed in %s [revision: %d]",
+                         self.pootle_path, last_revision)
 
         self.last_sync_revision = last_revision
         self.save()

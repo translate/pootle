@@ -173,11 +173,11 @@ class UserPurger(object):
         self.revert_units_state_changed()
 
         # Delete remaining submissions.
-        logger.debug("Deleting remaining submissions for: %s" % self.user)
+        logger.debug("Deleting remaining submissions for: %s", self.user)
         self.user.submission_set.all().delete()
 
         # Delete remaining suggestions.
-        logger.debug("Deleting remaining suggestions for: %s" % self.user)
+        logger.debug("Deleting remaining suggestions for: %s", self.user)
         self.user.suggestions.all().delete()
 
     @write_stdout(" * Removing units created by: %(user)s... ")
@@ -194,7 +194,7 @@ class UserPurger(object):
 
             if not other_subs.exists():
                 unit.delete()
-                logger.debug("Unit deleted: %s" % repr(unit))
+                logger.debug("Unit deleted: %s", repr(unit))
 
     @write_stdout(" * Reverting unit comments by: %(user)s... ")
     def revert_units_commented(self):
@@ -215,12 +215,12 @@ class UserPurger(object):
                 unit.translator_comment = last_comment.new_value
                 unit.commented_by = last_comment.submitter
                 unit.commented_on = last_comment.creation_time
-                logger.debug("Unit comment reverted: %s" % repr(unit))
+                logger.debug("Unit comment reverted: %s", repr(unit))
             else:
                 unit.translator_comment = ""
                 unit.commented_by = None
                 unit.commented_on = None
-                logger.debug("Unit comment removed: %s" % repr(unit))
+                logger.debug("Unit comment removed: %s", repr(unit))
 
             # Increment revision
             unit._comment_updated = True
@@ -242,14 +242,14 @@ class UserPurger(object):
                 unit.target_f = last_edit.new_value
                 unit.submitted_by = last_edit.submitter
                 unit.submitted_on = last_edit.creation_time
-                logger.debug("Unit edit reverted: %s" % repr(unit))
+                logger.debug("Unit edit reverted: %s", repr(unit))
             else:
                 # if there is no previous submissions set the target to "" and
                 # set the unit.submitted_by to None
                 unit.target_f = ""
                 unit.submitted_by = None
                 unit.submitted_on = unit.creation_time
-                logger.debug("Unit edit removed: %s" % repr(unit))
+                logger.debug("Unit edit removed: %s", repr(unit))
 
             # Increment revision
             unit._target_updated = True
@@ -267,7 +267,7 @@ class UserPurger(object):
                 # If the suggestion was also created by this user then remove
                 # both review and suggestion.
                 suggestion.delete()
-                logger.debug("Suggestion removed: %s" % (suggestion))
+                logger.debug("Suggestion removed: %s", (suggestion))
             elif suggestion.reviewer == self.user:
                 # If the suggestion is showing as reviewed by the user, then
                 # set the suggestion back to pending and update
@@ -276,7 +276,7 @@ class UserPurger(object):
                 suggestion.reviewer = None
                 suggestion.review_time = None
                 suggestion.save()
-                logger.debug("Suggestion reverted: %s" % (suggestion))
+                logger.debug("Suggestion reverted: %s", (suggestion))
 
             # Remove the review.
             review.delete()
@@ -287,16 +287,14 @@ class UserPurger(object):
                 previous_review = reviews.latest('pk')
                 unit.reviewed_by = previous_review.submitter
                 unit.reviewed_on = previous_review.creation_time
-                logger.debug("Unit reviewed_by reverted: %s"
-                             % (repr(unit)))
+                logger.debug("Unit reviewed_by reverted: %s", repr(unit))
             else:
                 unit.reviewed_by = None
                 unit.reviewed_on = None
 
                 # Increment revision
                 unit._target_updated = True
-                logger.debug("Unit reviewed_by removed: %s"
-                             % (repr(unit)))
+                logger.debug("Unit reviewed_by removed: %s", repr(unit))
             unit.save()
 
     @write_stdout(" * Reverting unit state changes by: %(user)s... ")
@@ -334,8 +332,7 @@ class UserPurger(object):
                 # Increment revision
                 unit._state_updated = True
                 unit.save()
-                logger.debug("Unit state reverted: %s"
-                             % (repr(unit)))
+                logger.debug("Unit state reverted: %s", repr(unit))
 
 
 def verify_user(user):

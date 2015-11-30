@@ -48,8 +48,8 @@ def statslog(function):
         start = datetime.now()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        logger.info("%s(%s)\t%s\t%s" % (function.__name__, ', '.join(args), end - start,
-                                        instance.get_cachekey()))
+        logger.info("%s(%s)\t%s\t%s", function.__name__, ', '.join(args),
+                    end - start, instance.get_cachekey())
         return result
     return _statslog
 
@@ -474,11 +474,10 @@ class CachedTreeItem(TreeItem):
         job = get_current_job()
         for p in self.all_pootle_paths():
             if job:
-                logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
-                             (p, decrement, job.id))
+                logger.debug('UNREGISTER %s (-%s) where job_id=%s',
+                             p, decrement, job.id)
             else:
-                logger.debug('UNREGISTER %s (-%s)' %
-                             (p, decrement))
+                logger.debug('UNREGISTER %s (-%s)', p, decrement)
             r_con.zincrby(POOTLE_DIRTY_TREEITEMS, p, 0 - decrement)
 
     def unregister_dirty(self, decrement=1):
@@ -488,11 +487,10 @@ class CachedTreeItem(TreeItem):
         r_con = get_connection()
         job = get_current_job()
         if job:
-            logger.debug('UNREGISTER %s (-%s) where job_id=%s' %
-                         (self.get_cachekey(), decrement, job.id))
+            logger.debug('UNREGISTER %s (-%s) where job_id=%s',
+                         self.get_cachekey(), decrement, job.id)
         else:
-            logger.debug('UNREGISTER %s (-%s)' %
-                         (self.get_cachekey(), decrement))
+            logger.debug('UNREGISTER %s (-%s)', self.get_cachekey(), decrement)
         r_con.zincrby(POOTLE_DIRTY_TREEITEMS, self.get_cachekey(), 0 - decrement)
 
     def get_dirty_score(self):
@@ -540,7 +538,7 @@ class CachedTreeItem(TreeItem):
                 self.unregister_all_dirty(decrement)
 
         else:
-            logger.warning('Cache for %s object cannot be updated.' % self)
+            logger.warning('Cache for %s object cannot be updated.', self)
             self.unregister_all_dirty(decrement)
 
     def update_parent_cache(self):
@@ -750,10 +748,9 @@ def create_update_cache_job(queue, instance, keys, decrement=1):
                         depends_on_wrapper.merge_job_params(keys, decrement,
                                                             pipeline=pipe)
                     pipe.execute()
-                    msg = 'SKIP %s (decrement=%s, job_status=%s, job_id=%s)'
-                    msg = msg % (last_job_key, new_job_params[1],
+                    logger.debug('SKIP %s (decrement=%s, job_status=%s, '
+                                 'job_id=%s)', last_job_key, new_job_params[1],
                                  depends_on_status, last_job_id)
-                    logger.debug(msg)
                     # skip this job
                     return None
 
@@ -763,16 +760,16 @@ def create_update_cache_job(queue, instance, keys, decrement=1):
                     # add job as a dependent
                     job = job_wrapper.save_deferred(last_job_id, pipe)
                     pipe.execute()
-                    logger.debug('ADD AS DEPENDENT for %s (job_id=%s) OF %s' %
-                                 (last_job_key, job.id, last_job_id))
+                    logger.debug('ADD AS DEPENDENT for %s (job_id=%s) OF %s',
+                                 last_job_key, job.id, last_job_id)
                     return job
 
                 job_wrapper.save_enqueued(pipe)
                 pipe.execute()
                 break
             except WatchError:
-                logger.debug('RETRY after WatchError for %s' % last_job_key)
+                logger.debug('RETRY after WatchError for %s', last_job_key)
                 continue
-    logger.debug('ENQUEUE %s (job_id=%s)' % (last_job_key, job_wrapper.id))
+    logger.debug('ENQUEUE %s (job_id=%s)', last_job_key, job_wrapper.id)
 
     queue.push_job_id(job_wrapper.id)

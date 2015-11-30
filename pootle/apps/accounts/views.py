@@ -33,7 +33,7 @@ class PootleLoginView(LoginView):
         except ImmediateHttpResponse as e:
             return e.response
         except Exception as e:
-            logger.exception("%s %s" % (e.__class__.__name__, e))
+            logger.exception("%s %s", e.__class__.__name__, e)
             raise RuntimeError(_("An error occurred logging you in. Please "
                                  "contact your system administrator"))
 

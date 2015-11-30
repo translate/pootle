@@ -58,10 +58,8 @@ class ElasticSearchBackend(SearchBackend):
             return None
 
     def _log_error(self, e):
-        logger.error("Elasticsearch error for server(%s:%s): %s"
-                     % (self._settings.get("HOST"),
-                        self._settings.get("PORT"),
-                        e))
+        logger.error("Elasticsearch error for server(%s:%s): %s",
+                     self._settings.get("HOST"), self._settings.get("PORT"), e)
 
     def search(self, unit):
         counter = {}
@@ -89,10 +87,9 @@ class ElasticSearchBackend(SearchBackend):
         elif es_res == "":
             # There seems to be an issue with urllib where an empty string is
             # returned
-            logger.error("Elasticsearch search (%s:%s) returned an empty string: %s"
-                         % (self._settings["HOST"],
-                            self._settings["PORT"],
-                            unit))
+            logger.error("Elasticsearch search (%s:%s) returned an empty "
+                         "string: %s", self._settings["HOST"],
+                         self._settings["PORT"], unit)
             return []
 
         for hit in es_res['hits']['hits']:
