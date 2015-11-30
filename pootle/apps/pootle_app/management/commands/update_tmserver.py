@@ -267,7 +267,7 @@ class Command(BaseCommand):
         )
 
         # If files to import have been provided.
-        if len(args):
+        if args:
             if self.is_local_tm:
                 raise CommandError('You cannot add translations from files to '
                                    'a local TM.')
