@@ -71,9 +71,9 @@ class CachedMethods(object):
     # Check refresh_stats command when add a new CachedMethod
 
     @classmethod
-    def get_all(self):
-        return [getattr(self, x) for x in
-                filter(lambda x: x[:2] != '__' and x != 'get_all', dir(self))]
+    def get_all(cls):
+        return [getattr(cls, x) for x in
+                filter(lambda x: x[:2] != '__' and x != 'get_all', dir(cls))]
 
 
 class TreeItem(object):
@@ -99,32 +99,32 @@ class TreeItem(object):
         raise NotImplementedError('`get_cachekey()` not implemented')
 
     @classmethod
-    def _get_wordcount_stats(self):
+    def _get_wordcount_stats(cls):
         """This method will be overridden in descendants"""
         return {'total': 0, 'translated': 0, 'fuzzy': 0}
 
     @classmethod
-    def _get_suggestion_count(self):
+    def _get_suggestion_count(cls):
         """This method will be overridden in descendants"""
         return 0
 
     @classmethod
-    def _get_checks(self):
+    def _get_checks(cls):
         """This method will be overridden in descendants"""
         return {'unit_critical_error_count': 0, 'checks': {}}
 
     @classmethod
-    def _get_last_action(self):
+    def _get_last_action(cls):
         """This method will be overridden in descendants"""
         return {'mtime': 0}
 
     @classmethod
-    def _get_mtime(self):
+    def _get_mtime(cls):
         """This method will be overridden in descendants"""
         return datetime_min
 
     @classmethod
-    def _get_last_updated(self):
+    def _get_last_updated(cls):
         """This method will be overridden in descendants"""
         return {'creation_time': 0}
 
