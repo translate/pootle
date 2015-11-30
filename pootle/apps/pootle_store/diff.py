@@ -238,7 +238,7 @@ class StoreDiff(object):
             if delta > 0:
                 offset += delta
         update_dbids = self.get_updated_dbids()
-        update_dbids.update(set([x['dbid'] for x in uid_index_map.values()]))
+        update_dbids.update({x['dbid'] for x in uid_index_map.values()})
         return (update_dbids, uid_index_map)
 
     def get_updated_dbids(self):
