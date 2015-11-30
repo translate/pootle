@@ -30,7 +30,7 @@ Changes not reported on previous releases
 There are some changes that haven't being reported on their corresponding
 release notes at the time:
 
-- In release 2.7.0 support was dropped for allowing to allow users to specify
+- In release 2.7.0 was dropped the support to allow users to specify
   their preferred UI language on Pootle. Pootle now uses the preferred
   languages as reported by the user's browser and falls back to English if the
   specified languages can't be used. See `Setting language preferences in a
