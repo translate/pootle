@@ -159,7 +159,8 @@ class Command(PootleCommand):
                 for child in item.children:
                     self._dump_item(child, level + 1, stop_level=stop_level)
 
-    def dumped(self, item):
+    @staticmethod
+    def dumped(item):
         def get_param(param):
             p = getattr(item, param)
             res = p() if callable(p) else p

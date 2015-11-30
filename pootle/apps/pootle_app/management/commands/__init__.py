@@ -176,7 +176,8 @@ class BaseRunCommand(BaseCommand):
     def handle(self, *args, **options):
         return self.serve_forever(*args, **options)
 
-    def get_app(self):
+    @staticmethod
+    def get_app():
         from django.contrib.staticfiles.handlers import StaticFilesHandler
         from django.core.handlers.wsgi import WSGIHandler
 

@@ -54,7 +54,8 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
             self.cleaned_data['email']
         )
 
-    def recipient_list(self):
+    @staticmethod
+    def recipient_list():
         return [settings.POOTLE_CONTACT_EMAIL]
 
     def save(self, fail_silently=False):

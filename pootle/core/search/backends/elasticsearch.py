@@ -47,7 +47,8 @@ class ElasticSearchBackend(SearchBackend):
         except ElasticsearchException as e:
             self._log_error(e)
 
-    def _is_valuable_hit(self, unit, hit):
+    @staticmethod
+    def _is_valuable_hit(unit, hit):
         return str(unit.id) != hit['_id']
 
     def _es_call(self, cmd, *args, **kwargs):

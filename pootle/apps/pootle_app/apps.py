@@ -23,7 +23,8 @@ class PootleConfig(AppConfig):
     name = "pootle_app"
     verbose_name = "Pootle"
 
-    def ready(self):
+    @staticmethod
+    def ready():
         # FIXME In Django 1.8 this needs to change to
         # register(settings.check_deprecated_settings, "settings")
         checks.register("settings")(deprecation.check_deprecated_settings)

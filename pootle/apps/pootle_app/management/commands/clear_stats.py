@@ -18,5 +18,6 @@ from pootle_app.management.commands import PootleCommand
 class Command(PootleCommand):
     help = "Flush stats cache."
 
-    def handle_all_stores(self, translation_project, **options):
+    @staticmethod
+    def handle_all_stores(translation_project, **options):
         translation_project.clear_all_cache()

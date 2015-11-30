@@ -28,7 +28,8 @@ PERMISSIONS = {
 
 class PermissionFormField(forms.ModelMultipleChoiceField):
 
-    def label_from_instance(self, instance):
+    @staticmethod
+    def label_from_instance(instance):
         return _(instance.name)
 
 
