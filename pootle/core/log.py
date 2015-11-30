@@ -62,23 +62,22 @@ def cmd_log(*args, **kwargs):
     dft = settings.LOGGING.get('formatters').get('action').get('datefmt')
 
 
-    logfile = open(fn, 'a')
-    cmd = ' '.join(args)
+    with open(fn, 'a') as logfile:
+        cmd = ' '.join(args)
 
-    message = "%(user)s\t%(action)s\t%(cmd)s" % {
-        'user': 'system',
-        'action': CMD_EXECUTED,
-        'cmd': cmd
-    }
+        message = "%(user)s\t%(action)s\t%(cmd)s" % {
+            'user': 'system',
+            'action': CMD_EXECUTED,
+            'cmd': cmd
+        }
 
-    from datetime import datetime
-    now = datetime.now()
-    d = {
-         'message': message,
-         'asctime': now.strftime(dft)
-    }
-    logfile.write("[%(asctime)s]\t%(message)s\n" % d)
-    logfile.close()
+        from datetime import datetime
+        now = datetime.now()
+        d = {
+             'message': message,
+             'asctime': now.strftime(dft)
+        }
+        logfile.write("[%(asctime)s]\t%(message)s\n" % d)
 
 
 def store_log(*args, **kwargs):
