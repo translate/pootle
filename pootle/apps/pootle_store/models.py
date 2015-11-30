@@ -358,7 +358,7 @@ class Unit(models.Model, base.TranslationUnit):
     objects = UnitManager()
     simple_objects = models.Manager()
 
-    class Meta:
+    class Meta(object):
         ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
@@ -1382,7 +1382,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     objects = StoreManager()
     simple_objects = models.Manager()
 
-    class Meta:
+    class Meta(object):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 

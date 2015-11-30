@@ -53,7 +53,7 @@ class Directory(models.Model, CachedTreeItem):
 
     objects = DirectoryManager()
 
-    class Meta:
+    class Meta(object):
         ordering = ['name']
         app_label = "pootle_app"
 

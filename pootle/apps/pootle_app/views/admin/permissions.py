@@ -72,7 +72,7 @@ def admin_permissions(request, current_directory, template, ctx):
 
     class PermissionSetForm(forms.ModelForm):
 
-        class Meta:
+        class Meta(object):
             model = PermissionSet
             fields = ('user', 'directory', 'positive_permissions',
                       'negative_permissions')

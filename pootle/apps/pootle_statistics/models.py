@@ -178,7 +178,7 @@ class SubmissionManager(BaseSubmissionManager):
 
 
 class Submission(models.Model):
-    class Meta:
+    class Meta(object):
         ordering = ["creation_time", "pk"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
@@ -408,7 +408,7 @@ class ScoreLog(models.Model):
     action_code = models.IntegerField(null=False)
     submission = models.ForeignKey(Submission, null=False)
 
-    class Meta:
+    class Meta(object):
         unique_together = ('submission', 'action_code')
 
     @classmethod

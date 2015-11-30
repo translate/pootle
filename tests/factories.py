@@ -15,7 +15,7 @@ from django.utils import timezone
 class SubmissionFactory(factory.django.DjangoModelFactory):
     creation_time = timezone.now()
 
-    class Meta:
+    class Meta(object):
         model = 'pootle_statistics.Submission'
 
 
@@ -23,7 +23,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: 'foo%s' % n)
     email = factory.LazyAttribute(lambda o: '%s@example.org' % o.username)
 
-    class Meta:
+    class Meta(object):
         model = 'accounts.User'
 
 
@@ -31,7 +31,7 @@ class LegalPageFactory(factory.django.DjangoModelFactory):
     title = factory.Sequence(lambda n: 'title%s' % n)
     virtual_path = factory.Sequence(lambda n: '/foo/bar%s' % n)
 
-    class Meta:
+    class Meta(object):
         model = 'staticpages.LegalPage'
 
 
@@ -39,5 +39,5 @@ class AgreementFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     document = factory.SubFactory(LegalPageFactory)
 
-    class Meta:
+    class Meta(object):
         model = 'staticpages.Agreement'

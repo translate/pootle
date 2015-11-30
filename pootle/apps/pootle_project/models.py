@@ -192,7 +192,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     objects = ProjectManager()
 
-    class Meta:
+    class Meta(object):
         ordering = ['code']
         db_table = 'pootle_app_project'
 

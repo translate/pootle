@@ -46,7 +46,7 @@ class UserRatesForm(forms.Form):
 
 
 class PaidTaskForm(forms.ModelForm):
-    class Meta:
+    class Meta(object):
         model = PaidTask
         fields = ('task_type', 'amount', 'rate', 'datetime', 'description', 'user')
         widgets = {

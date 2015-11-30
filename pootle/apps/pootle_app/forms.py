@@ -26,7 +26,7 @@ LANGCODE_RE = re.compile("^[a-z]{2,}([_-]([a-z]{2,}|[0-9]{3}))*(@[a-z0-9]+)?$",
 
 class LanguageForm(forms.ModelForm):
 
-    class Meta:
+    class Meta(object):
         model = Language
         fields = ('id', 'code', 'fullname', 'specialchars', 'nplurals',
                   'pluralequation',)
@@ -46,7 +46,7 @@ class ProjectForm(forms.ModelForm):
     source_language = forms.ModelChoiceField(label=_('Source Language'),
                                              queryset=Language.objects.none())
 
-    class Meta:
+    class Meta(object):
         model = Project
         fields = ('id', 'code', 'fullname', 'checkstyle', 'localfiletype',
                   'treestyle', 'source_language', 'report_email',
@@ -104,7 +104,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(label=_('Password'), required=False,
                                widget=forms.PasswordInput)
 
-    class Meta:
+    class Meta(object):
         model = get_user_model()
         fields = ('id', 'username', 'is_active', 'full_name', 'email',
                   'is_superuser', 'twitter', 'linkedin', 'website', 'bio')

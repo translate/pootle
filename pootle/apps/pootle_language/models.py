@@ -105,7 +105,7 @@ class Language(models.Model, TreeItem):
     objects = LanguageManager()
     live = LiveLanguageManager()
 
-    class Meta:
+    class Meta(object):
         ordering = ['code']
         db_table = 'pootle_app_language'
 

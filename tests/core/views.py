@@ -37,7 +37,7 @@ class UserSettingsForm(forms.ModelForm):
 
     password = forms.CharField(required=False)
 
-    class Meta:
+    class Meta(object):
         model = User
         fields = ('username', 'password', 'full_name')
         widgets = {

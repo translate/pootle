@@ -66,7 +66,7 @@ class VirtualFolder(models.Model):
         related_name='vfolders',
     )
 
-    class Meta:
+    class Meta(object):
         unique_together = ('name', 'location')
 
     @property
@@ -321,7 +321,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
     objects = VirtualFolderTreeItemManager()
 
-    class Meta:
+    class Meta(object):
         unique_together = ('directory', 'vfolder')
 
     ############################ Properties ###################################

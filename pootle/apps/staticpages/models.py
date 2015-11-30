@@ -60,7 +60,7 @@ class AbstractPage(DirtyFieldsMixin, models.Model):
 
     objects = PageManager()
 
-    class Meta:
+    class Meta(object):
         abstract = True
 
     def __unicode__(self):
@@ -152,7 +152,7 @@ class Agreement(models.Model):
         editable=False,
     )
 
-    class Meta:
+    class Meta(object):
         unique_together = ('user', 'document',)
 
     def __unicode__(self):

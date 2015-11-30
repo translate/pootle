@@ -25,7 +25,7 @@ def term_unit_form_factory(terminology_store):
         index = forms.IntegerField(required=False, widget=forms.HiddenInput)
         source_f = MultiStringFormField(required=False, textarea=False)
 
-        class Meta:
+        class Meta(object):
             model = Unit  # FIXME: terminology should use its own model!
             fields = ('index', 'source_f', 'store',)
 

@@ -35,7 +35,7 @@ def tp_form_factory(current_project):
             }),
         )
 
-        class Meta:
+        class Meta(object):
             prefix = "existing_language"
             model = TranslationProject
             fields = ('language', 'project')

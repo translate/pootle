@@ -153,7 +153,7 @@ class PermissionSet(models.Model):
 
     objects = PermissionSetManager()
 
-    class Meta:
+    class Meta(object):
         unique_together = ('user', 'directory')
         app_label = "pootle_app"
 

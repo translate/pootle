@@ -15,7 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class EditUserForm(forms.ModelForm):
-    class Meta:
+    class Meta(object):
         model = get_user_model()
         fields = ('full_name', 'twitter', 'linkedin', 'website', 'bio')
 

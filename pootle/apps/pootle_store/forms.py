@@ -202,7 +202,7 @@ def unit_form_factory(language, snplurals=None, request=None):
         fuzzy_attrs['disabled'] = 'disabled'
 
     class UnitForm(forms.ModelForm):
-        class Meta:
+        class Meta(object):
             model = Unit
             fields = ('id', 'index', 'target_f', 'state',)
 
@@ -322,7 +322,7 @@ def unit_comment_form_factory(language):
 
     class UnitCommentForm(forms.ModelForm):
 
-        class Meta:
+        class Meta(object):
             fields = ('translator_comment',)
             model = Unit
 
