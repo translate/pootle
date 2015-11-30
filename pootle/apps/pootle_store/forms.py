@@ -275,7 +275,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                 self.instance.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
                                                CachedMethods.LAST_ACTION)
 
-            if old_state != new_state and old_state != OBSOLETE:
+            if old_state not in [new_state, OBSOLETE]:
                 self.instance._state_updated = True
                 self.updated_fields.append((SubmissionFields.STATE,
                                             old_state, new_state))
