@@ -46,7 +46,6 @@ override all permissions.
 Available permissions
 ---------------------
 
-
 Access Permissions
 ^^^^^^^^^^^^^^^^^^
 
@@ -90,12 +89,17 @@ administrate
 Permissions interface
 ---------------------
 
-Users with administrative rights for languages or translation projects can
-access the permissions interface by clicking on the *Permissions* tab on the
-language or translation project index pages.
+Users with administrative rights for projects, languages or translation
+projects can access the permissions interface by selecting "Permissions" in the
+navigation dropdown on the project, language or translation project browsing
+pages.
+
+.. image:: ../_static/permissions_access.png
+
 
 Pootle administrators will find the default permissions interface on the
-administration page, at the "Permissions" tab.
+administration page, at the "Permissions" tab, where they can set server-wide
+permissions.
 
 The current rights are listed as they are assigned. The user "nobody" refers to
 any user that is not logged in (an anonymous, unidentified user). The user
@@ -110,9 +114,11 @@ Changing permissions
 ^^^^^^^^^^^^^^^^^^^^
 
 In the list of permissions, you can simply select which rights must be assigned
-to that user or class of users. You might need to hold down the ``Ctrl`` key of
-you keyboard to select multiple rights. Changes will be updated when you submit
-the form.
+to each user by picking new permissions or unassigning them. Changes will be
+updated when you submit the form.
+
+
+.. image:: ../_static/permissions_edit.png
 
 
 .. _permissions#adding_a_user:
@@ -124,19 +130,15 @@ To set permissions for a specific user, select the user in the dropdown list
 and set the specific rights for that user. This is only necessary if the user
 does not yet have their own set of rights defined.
 
-Users who selected the language or project in their profile settings will be
-listed as the project or language team. After that follows a list of all
-registered users.
-
 
 .. _permissions#removing_a_user:
 
 Removing a user
 ^^^^^^^^^^^^^^^
 
-To reset a user's rights to the default rights, select the tick box next to
-their name and permissions list. When you submit, their rights will be reset to
-the default rights.
+To reset some user's rights to the default rights, select the "Delete" tick box
+next to their name and permissions list. When you submit, their rights will be
+reset to the default rights.
 
 .. warning::
 
