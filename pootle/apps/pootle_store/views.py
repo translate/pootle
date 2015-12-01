@@ -298,11 +298,14 @@ def get_step_query(request, units_queryset):
                         #     )
                         # ).order_by("-sort_by_field")
                         match_queryset = match_queryset.extra(select={'sort_by_field': """
-                            SELECT COALESCE(MAX(virtualfolder_virtualfolder.priority), 1)
+                            SELECT
+                              COALESCE(MAX(virtualfolder_virtualfolder.priority), 1)
                             FROM virtualfolder_virtualfolder
                             INNER JOIN virtualfolder_virtualfolder_units
-                            ON virtualfolder_virtualfolder.id = virtualfolder_virtualfolder_units.virtualfolder_id
-                            WHERE virtualfolder_virtualfolder_units.unit_id = pootle_store_unit.id
+                            ON virtualfolder_virtualfolder.id =
+                              virtualfolder_virtualfolder_units.virtualfolder_id
+                            WHERE virtualfolder_virtualfolder_units.unit_id =
+                              pootle_store_unit.id
                         """}).extra(order_by=['-sort_by_field'])
                     else:
                         match_queryset = match_queryset.order_by(sort_by)
