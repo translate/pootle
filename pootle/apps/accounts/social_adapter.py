@@ -24,7 +24,8 @@ from .views import SocialVerificationView
 
 class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
 
-    def is_open_for_signup(self, request, sociallogin):
+    @staticmethod
+    def is_open_for_signup(request, sociallogin):
         """Controls whether signups are enabled on the site when using
         social authentication methods.
         """
@@ -39,7 +40,8 @@ class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
         # `POOTLE_SIGNUP_ENABLED`.
         return True
 
-    def pre_social_login(self, request, sociallogin):
+    @staticmethod
+    def pre_social_login(request, sociallogin):
         """Hook to be run after receiving the OK from the social provider
         but before completing the social login process. At this time no
         new user accounts have been created and the user is still in the
@@ -69,8 +71,9 @@ class PootleSocialAccountAdapter(DefaultSocialAccountAdapter):
                 response=SocialVerificationView.as_view()(request)
             )
 
-    def authentication_error(self, request, provider_id, error=None,
-                             exception=None, extra_context=None):
+    @staticmethod
+    def authentication_error(request, provider_id, error=None, exception=None,
+                             extra_context=None):
         provider = providers.registry.by_id(provider_id)
         retry_url = provider.get_login_url(request,
                                            **dict(request.GET.iteritems()))

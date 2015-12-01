@@ -28,7 +28,8 @@ class PootleAccountAdapter(DefaultAccountAdapter):
       - form_errors is renamed to errors
     """
 
-    def ajax_response(self, request, response, redirect_to=None, form=None):
+    @staticmethod
+    def ajax_response(request, response, redirect_to=None, form=None):
         data = {}
         if redirect_to:
             status = 200
@@ -43,7 +44,8 @@ class PootleAccountAdapter(DefaultAccountAdapter):
 
         return JsonResponse(data, status=status)
 
-    def is_open_for_signup(self, request):
+    @staticmethod
+    def is_open_for_signup(request):
         """Controls whether signups are enabled on the site.
 
         This can be changed by setting `POOTLE_SIGNUP_ENABLED = False` in

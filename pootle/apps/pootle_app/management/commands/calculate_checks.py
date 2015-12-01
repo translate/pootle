@@ -40,7 +40,8 @@ class Command(PootleCommand):
     cached_methods = [CachedMethods.CHECKS]
     process_disabled_projects = True
 
-    def handle_all_stores(self, translation_project, **options):
+    @staticmethod
+    def handle_all_stores(translation_project, **options):
         calculate_checks(check_names=options['check_names'],
                          translation_project=translation_project)
 

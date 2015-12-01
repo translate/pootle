@@ -27,7 +27,8 @@ class UserCommand(BaseCommand):
         self.subcommand = subcommand
         return super(UserCommand, self).create_parser(prog_name, subcommand)
 
-    def get_user(self, username):
+    @staticmethod
+    def get_user(username):
         try:
             return User.objects.get(username=username)
         except User.DoesNotExist:
