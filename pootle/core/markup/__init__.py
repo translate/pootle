@@ -15,6 +15,6 @@ from .widgets import MarkupTextarea
 
 
 __all__ = (
-    Markup, MarkupField,
-    get_markup_filter_name, get_markup_filter_display_name,
-    get_markup_filter, apply_markup_filter, MarkupTextarea)
+    'Markup', 'MarkupField', 'get_markup_filter_name',
+    'get_markup_filter_display_name', 'get_markup_filter',
+    'apply_markup_filter', 'MarkupTextarea')

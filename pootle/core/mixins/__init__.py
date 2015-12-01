@@ -11,5 +11,4 @@ from .dirtyfields import DirtyFieldsMixin
 from .treeitem import TreeItem, CachedTreeItem, CachedMethods
 
 
-__all__ = (
-    DirtyFieldsMixin, TreeItem, CachedTreeItem, CachedMethods)
+__all__ = ('DirtyFieldsMixin', 'TreeItem', 'CachedTreeItem', 'CachedMethods')

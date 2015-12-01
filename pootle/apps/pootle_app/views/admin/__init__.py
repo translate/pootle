@@ -13,5 +13,5 @@ from .users import UserAdminView, UserAPIView
 
 
 __all__ = (
-    LanguageAdminView, LanguageAPIView, ProjectAdminView, ProjectAPIView,
-    UserAdminView, UserAPIView)
+    'LanguageAdminView', 'LanguageAPIView', 'ProjectAdminView',
+    'ProjectAPIView', 'UserAdminView', 'UserAPIView')
