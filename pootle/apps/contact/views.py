@@ -69,35 +69,39 @@ class ReportFormView(ContactFormView):
         initial = super(ReportFormView, self).get_initial()
 
         report = self.request.GET.get('report', False)
-        if report:
+        if not report:
+            return initial
+
+        try:
+            from pootle_store.models import Unit
+            uid = int(report)
             try:
-                from pootle_store.models import Unit
-                uid = int(report)
-                try:
-                    unit = Unit.objects.select_related(
-                        'store__translation_project__project',
-                    ).get(id=uid)
-                    if unit.is_accessible_by(self.request.user):
-                        unit_absolute_url = self.request.build_absolute_uri(
-                            unit.get_translate_url())
-                        initial.update({
-                            'subject': render_to_string(
-                                'contact_form/report_form_subject.txt',
-                                {
-                                    'unit': unit,
-                                    'language': unit.store.translation_project.language.code,
-                                }),
-                            'body': render_to_string(
-                                'contact_form/report_form_body.txt',
-                                {
-                                    'unit': unit,
-                                    'unit_absolute_url': unit_absolute_url,
-                                }),
-                            'report_email': unit.store.translation_project.project.report_email,
-                        })
-                except Unit.DoesNotExist:
-                    pass
-            except ValueError:
+                unit = Unit.objects.select_related(
+                    'store__translation_project__project',
+                ).get(id=uid)
+                if unit.is_accessible_by(self.request.user):
+                    unit_absolute_url = self.request.build_absolute_uri(
+                        unit.get_translate_url())
+                    initial.update({
+                        'subject': render_to_string(
+                            'contact_form/report_form_subject.txt',
+                            {
+                                'unit': unit,
+                                'language':
+                                    unit.store.translation_project.language.code,
+                            }),
+                        'body': render_to_string(
+                            'contact_form/report_form_body.txt',
+                            {
+                                'unit': unit,
+                                'unit_absolute_url': unit_absolute_url,
+                            }),
+                        'report_email':
+                            unit.store.translation_project.project.report_email,
+                    })
+            except Unit.DoesNotExist:
                 pass
+        except ValueError:
+            pass
 
         return initial
