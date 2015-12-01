@@ -82,7 +82,7 @@ class DBParser(object):
         iso_submitted_on = unit.get('submitted_on', None)
 
         display_submitted_on = None
-        if iso_submitted_on:
+        if iso_submitted_on is not None:
             display_submitted_on = dateformat.format(
                 dateparse.parse_datetime(str(iso_submitted_on))
             )
