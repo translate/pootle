@@ -17,7 +17,7 @@ from django.db.models.fields.files import FieldFile, FileField
 
 from translate.misc.multistring import multistring
 
-################# String #############################
+# # # # # # # # # String # # # # # # # # # # # # # # #
 
 SEPARATOR = "__%$%__%$%__%$%__"
 PLURAL_PLACEHOLDER = "__%POOTLE%_$NUMEROUS$__"
@@ -102,7 +102,7 @@ class MultiStringField(models.Field):
                                                              value)
 
 
-################# File ###############################
+# # # # # # # # # File # # # # # # # # # # # # # # # #
 
 
 class StoreTuple(object):

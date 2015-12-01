@@ -57,7 +57,7 @@ class Directory(models.Model, CachedTreeItem):
         ordering = ['name']
         app_label = "pootle_app"
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def stores(self):
@@ -91,7 +91,7 @@ class Directory(models.Model, CachedTreeItem):
     def code(self):
         return self.name.replace('.', '-')
 
-    ############################ Cached properties ############################
+    # # # # # # # # # # # # # #  Cached properties # # # # # # # # # # # # # #
 
     @cached_property
     def path(self):
@@ -113,7 +113,7 @@ class Directory(models.Model, CachedTreeItem):
                     aux_dir = aux_dir.parent
 
                 return aux_dir.translationproject
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return self.pootle_path
@@ -153,7 +153,7 @@ class Directory(models.Model, CachedTreeItem):
             get_editor_filter(**kwargs),
         ])
 
-    ### TreeItem
+    # # # TreeItem
     def can_be_updated(self):
         return not self.obsolete
 
@@ -188,7 +188,7 @@ class Directory(models.Model, CachedTreeItem):
     def get_cachekey(self):
         return self.pootle_path
 
-    ### /TreeItem
+    # # # /TreeItem
 
     def get_relative(self, path):
         """Given a path of the form a/b/c, where the path is relative

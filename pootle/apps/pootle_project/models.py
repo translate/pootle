@@ -275,7 +275,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         return user_projects
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def name(self):
@@ -354,7 +354,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         return resources
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return self.fullname
@@ -396,7 +396,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                 _('"%s" cannot be used as a project code', self.code)
             )
 
-    ### TreeItem
+    # # # TreeItem
 
     def get_children(self):
         return self.translationproject_set.live()
@@ -404,7 +404,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def get_cachekey(self):
         return self.directory.pootle_path
 
-    ### /TreeItem
+    # # # /TreeItem
 
     def get_stats_for_user(self, user):
         self.set_children(self.get_children_for_user(user))
@@ -517,12 +517,12 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
 class ProjectResource(VirtualResource, ProjectURLMixin):
 
-    ### TreeItem
+    # # # TreeItem
 
     def _get_code(self, resource):
         return resource.translation_project.language.code
 
-    ### /TreeItem
+    # # # /TreeItem
 
     def get_children_for_user(self, user):
         return self.children
@@ -537,12 +537,12 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
         self.directory = Directory.objects.projects
         super(ProjectSet, self).__init__(resources, self.directory.pootle_path)
 
-    ### TreeItem
+    # # # TreeItem
 
     def _get_code(self, project):
         return project.code
 
-    ### /TreeItem
+    # # # /TreeItem
 
 
 if 'virtualfolder' in settings.INSTALLED_APPS:

@@ -434,7 +434,7 @@ class CachedTreeItem(TreeItem):
         self.mark_all_dirty()
         self.clear_dirty_cache(children=children, parents=parents)
 
-    ################ Update stats in Redis Queue Worker process ###############
+    # # # # # # #  Update stats in Redis Queue Worker process # # # # # # # #
 
     def all_pootle_paths(self):
         """Get cache_key for all parents (to the Language and Project)

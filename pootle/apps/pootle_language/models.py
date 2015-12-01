@@ -112,7 +112,7 @@ class Language(models.Model, TreeItem):
         ordering = ['code']
         db_table = 'pootle_app_language'
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def pootle_path(self):
@@ -128,7 +128,7 @@ class Language(models.Model, TreeItem):
         """Return the language direction."""
         return language_dir(self.code)
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)
@@ -166,7 +166,7 @@ class Language(models.Model, TreeItem):
         if self.fullname:
             self.fullname = self.fullname.strip()
 
-    ### TreeItem
+    # # # TreeItem
 
     def get_children(self):
         return self.translationproject_set.live()
@@ -174,7 +174,7 @@ class Language(models.Model, TreeItem):
     def get_cachekey(self):
         return self.directory.pootle_path
 
-    ### /TreeItem
+    # # # /TreeItem
 
     def get_stats_for_user(self, user):
         self.set_children(self.get_children_for_user(user))

@@ -82,7 +82,7 @@ POOTLE_WINS = 1
 FILE_WINS = 2
 
 
-############### Quality Check #############
+# # # # # # # # Quality Check # # # # # # #
 
 class QualityCheckManager(models.Manager):
 
@@ -119,7 +119,7 @@ class QualityCheck(models.Model):
             .exclude(name__in=check_names.keys())
         unknown_checks.delete()
 
-################# Suggestion ################
+# # # # # # # # # Suggestion # # # # # # # #
 
 
 class SuggestionManager(models.Manager):
@@ -170,7 +170,7 @@ class Suggestion(models.Model, base.TranslationUnit):
 
     objects = SuggestionManager()
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def _target(self):
@@ -194,7 +194,7 @@ class Suggestion(models.Model, base.TranslationUnit):
         self.translator_comment_f = value
         self._set_hash()
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return unicode(self.target)
@@ -208,7 +208,7 @@ class Suggestion(models.Model, base.TranslationUnit):
         self.target_hash = md5(string.encode("utf-8")).hexdigest()
 
 
-############### Unit ####################
+# # # # # # # # Unit # # # # # # # # # #
 
 wordcount_f = import_func(settings.POOTLE_WORDCOUNT_FUNC)
 
@@ -364,7 +364,7 @@ class Unit(models.Model, base.TranslationUnit):
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def _source(self):
@@ -384,14 +384,14 @@ class Unit(models.Model, base.TranslationUnit):
         self.target_f = value
         self._target_updated = True
 
-    ######################### Class & static methods ##########################
+    # # # # # # # # # # # # # Class & static methods # # # # # # # # # # # # #
 
     @classmethod
     def max_revision(cls):
         """Returns the max revision number across all units."""
         return max_column(cls.objects.all(), 'revision', 0)
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         # FIXME: consider using unit id instead?
@@ -878,7 +878,7 @@ class Unit(models.Model, base.TranslationUnit):
     def get_active_qualitychecks(self):
         return self.qualitycheck_set.filter(false_positive=False)
 
-##################### Related Submissions ########################
+# # # # # # # # # # # Related Submissions # # # # # # # # # # # #
 
     def get_edits(self):
         return self.submission_set.get_unit_edits()
@@ -892,7 +892,7 @@ class Unit(models.Model, base.TranslationUnit):
     def get_suggestion_reviews(self):
         return self.submission_set.get_unit_suggestion_reviews()
 
-##################### TranslationUnit ############################
+# # # # # # # # # # # TranslationUnit # # # # # # # # # # # # # #
 
     def update_tmserver(self):
         obj = {
@@ -927,7 +927,7 @@ class Unit(models.Model, base.TranslationUnit):
     def get_tm_suggestions(self):
         return get_tm_broker().search(self)
 
-##################### TranslationUnit ############################
+# # # # # # # # # # # TranslationUnit # # # # # # # # # # # # # #
 
     def getnotes(self, origin=None):
         if origin is None:
@@ -1107,7 +1107,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         return changed
 
-##################### Suggestions #################################
+# # # # # # # # # # # Suggestions # # # # # # # # # # # # # # # # #
     def get_suggestions(self):
         return self.suggestion_set.pending().select_related('user').all()
 
@@ -1317,7 +1317,7 @@ class Unit(models.Model, base.TranslationUnit):
         }
 
 
-###################### Store ###########################
+# # # # # # # # # # #  Store # # # # # # # # # # # # # #
 
 
 # Needed to alter storage location in tests
@@ -1375,7 +1375,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         ordering = ['pootle_path']
         unique_together = ('parent', 'name')
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def code(self):
@@ -1420,7 +1420,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         """
         pass
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     @cached_property
     def path(self):
@@ -2028,7 +2028,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             output.addunit(unit.convert(output.UnitClass))
         return output
 
-######################## TranslationStore #########################
+# # # # # # # # # # # #  TranslationStore # # # # # # # # # # # # #
 
     suggestions_in_format = True
 
@@ -2109,7 +2109,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def get_max_unit_revision(self):
         return max_column(self.unit_set.all(), 'revision', 0)
 
-    ### TreeItem
+    # # # TreeItem
     def can_be_updated(self):
         return not self.obsolete
 
@@ -2234,10 +2234,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return pootle_paths
 
-    ### /TreeItem
+    # # # /TreeItem
 
 
-################################ Translation #############################
+# # # # # # # # # # # # # # # #  Translation # # # # # # # # # # # # # # #
 
     def getitem(self, item):
         """Returns a single unit based on the item number."""

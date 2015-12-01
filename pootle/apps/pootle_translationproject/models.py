@@ -177,7 +177,7 @@ class TranslationProject(models.Model, CachedTreeItem):
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def name(self):
@@ -249,7 +249,7 @@ class TranslationProject(models.Model, CachedTreeItem):
     def is_template_project(self):
         return self == self.project.get_template_translationproject()
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return self.pootle_path
@@ -354,7 +354,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                        conservative=conservative,
                        skip_missing=skip_missing, only_newer=only_newer)
 
-    ### TreeItem
+    # # # TreeItem
     def get_children(self):
         return self.directory.children
 
@@ -379,7 +379,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             for vfolder_treeitem in tp_vfolder_treeitems.iterator():
                 vfolder_treeitem.clear_all_cache(children=False, parents=False)
 
-    ### /TreeItem
+    # # # /TreeItem
 
     def directory_exists(self):
         """Checks if the actual directory for the translation project

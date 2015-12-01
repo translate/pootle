@@ -324,7 +324,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
     class Meta(object):
         unique_together = ('directory', 'vfolder')
 
-    ############################ Properties ###################################
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def is_visible(self):
@@ -360,7 +360,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
     def code(self):
         return self.pk
 
-    ############################ Methods ######################################
+    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return self.pootle_path
@@ -414,7 +414,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
             get_editor_filter(**kwargs),
         ])
 
-    ### TreeItem
+    # # # TreeItem
 
     def can_be_updated(self):
         return not self.directory.obsolete
@@ -450,7 +450,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         return [p for p in get_all_pootle_paths(self.get_cachekey())
                 if p.count('/') > self.vfolder.location.count('/')]
 
-    ### /TreeItem
+    # # # /TreeItem
 
 
 @receiver(post_save, sender=Unit)

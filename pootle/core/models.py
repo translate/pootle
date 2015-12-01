@@ -97,7 +97,7 @@ class VirtualResource(TreeItem):
     def __unicode__(self):
         return self.pootle_path
 
-    ### TreeItem
+    # # # TreeItem
 
     def get_children(self):
         return self.resources
@@ -105,4 +105,4 @@ class VirtualResource(TreeItem):
     def get_cachekey(self):
         return self.pootle_path
 
-    ### /TreeItem
+    # # # /TreeItem
