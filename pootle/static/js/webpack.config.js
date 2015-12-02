@@ -147,6 +147,9 @@ var config = {
     ]
   },
   resolve: resolve,
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules'),
+  },
   plugins: plugins,
 };
 
