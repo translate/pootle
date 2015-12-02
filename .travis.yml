@@ -32,6 +32,7 @@ script:
   - if [[ $META ]]; then make docs; fi
   - if [[ $META ]]; then make mo-all; fi
   - if [[ $META ]]; then make pep8; fi
+  - if [[ $META ]]; then ./setup.py sdist; fi
   # - if [[ $META ]]; then pep257; fi
   - if [[ ! $META ]]; then make assets; fi
   - if [[ ! $META ]]; then DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates; fi
