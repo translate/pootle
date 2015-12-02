@@ -38,8 +38,6 @@ class TerminologyComparer(terminology.TerminologyComparer):
     def similarity(self, text, term, stoppercentage=40):
         text_list = delimiters.split(text)
         term_list = delimiters.split(term)
-        #text_list = text.split()
-        #term_list = term.split()
         match_info = {}
         matched_count = 0
         match_gap = 0
