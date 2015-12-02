@@ -142,3 +142,32 @@ that all else is good and that the stats are fine or to be generated again.
 .. code-block:: bash
 
    $ redis-cli -n 2 del pootle:refresh:stats
+
+
+Delete dirty counts
++++++++++++++++++++
+
+Sometimes statistics are correctly calculated, but the banner telling that
+stats are being refreshed doesn't dissappear. This usually happens because some
+job failed to complete and thus it didn't decrease the dirty counts.
+
+Make sure that there are no pending jobs or jobs being run since those could
+have increased the dirty counts. Re-run failed jobs if any.
+
+In order to delete all the dirty counts you must **stop the workers**.
+
+Remove the ``lastjob`` info for all dirty items:
+
+.. code-block:: bash
+
+   $ redis-cli -n 2 ZRANGEBYSCORE "pootle:dirty:treeitems" 1 10000 | perl -nE 'chomp; s/\/$//; s/^\///; s/\//./g; `redis-cli -n 2 DEL pootle:stats:lastjob:$_`'
+
+
+Now remove the dirty items:
+
+.. code-block:: bash
+
+   $ redis-cli -n 2 ZRANGEBYSCORE "pootle:dirty:treeitems" 1 10000 | perl -nE 'chomp; `redis-cli -n 2 ZREM pootle:dirty:treeitems $_`'
+
+
+Do not forget to **restart the workers**.
