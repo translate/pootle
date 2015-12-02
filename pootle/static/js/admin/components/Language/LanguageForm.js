@@ -53,6 +53,7 @@ const LanguageForm = React.createClass({
           <FormElement
             autoFocus={true}
             attribute="code"
+            disabled={model.hasOwnProperty('id')}
             label={gettext('Code')}
             handleChange={this.handleChange}
             formData={formData}
