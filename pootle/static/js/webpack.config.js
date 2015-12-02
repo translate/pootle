@@ -69,7 +69,8 @@ var resolve = {
 // and merge the entry definitions from the manifest files
 var root = process.env.WEBPACK_ROOT;
 if (root !== undefined) {
-  resolve.root = [path.join(__dirname, 'node_modules')].concat(root.split(':'));
+  var customPaths = root.split(':');
+  resolve.root = [path.join(__dirname, 'node_modules')].concat(customPaths);
 
   var i, customPath, manifestEntries;
 
@@ -77,8 +78,8 @@ if (root !== undefined) {
     return _.isArray(a) ? a.concat(b) : undefined;
   };
 
-  for (i=0; i<resolve.root.length; i++) {
-    customPath = resolve.root[i];
+  for (i=0; i<customPaths.length; i++) {
+    customPath = customPaths[i];
 
     try {
       manifestEntries = require(path.join(customPath, 'manifest.json'));
