@@ -64,13 +64,11 @@ class ProjectForm(forms.ModelForm):
             ).count
 
             if has_stores:
-                #self.fields['localfiletype'].widget.attrs['disabled'] = True
                 self.fields['localfiletype'].required = False
 
             if (self.instance.treestyle != 'auto' and
                 self.instance.translationproject_set.count() and
                 self.instance.treestyle == self.instance._detect_treestyle()):
-                #self.fields['treestyle'].widget.attrs['disabled'] = True
                 self.fields['treestyle'].required = False
 
         def clean_localfiletype(self):
