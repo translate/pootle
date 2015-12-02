@@ -109,10 +109,6 @@ def wordcount(string):
     find_placeholders(chunks, shortcuts_regex)
     # Shortcut modifiers
     find_placeholders(chunks, shortcuts_modifier_regex)
-    # Surrounding quotes (including ones around placeholders)
-    #find_placeholders($chunks, re.compile(u'(^["\']+|["\']+$)', re.U))
-    # End punctuation after (or between) placeholders
-    #find_placeholders($chunks, re.compile(u'(^\.$)', re.U))
 
     # Find patterns that are not counted as words in Trados
     # Hanging symbols (excluding a-z, _ and &)
