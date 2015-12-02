@@ -69,7 +69,7 @@ var resolve = {
 // and merge the entry definitions from the manifest files
 var root = process.env.WEBPACK_ROOT;
 if (root !== undefined) {
-  resolve.root = root.split(':');
+  resolve.root = [path.join(__dirname, 'node_modules')].concat(root.split(':'));
 
   var i, customPath, manifestEntries;
 
