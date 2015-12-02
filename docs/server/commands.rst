@@ -295,8 +295,14 @@ contributors
 Lists the contributors to a language, project or overall and the amount
 of contributions they have.
 
-Accepts the :option:`--from-revision` parameter to only take into account
-contributions newer than the revision given by :djadmin:`revision`.
+Available options:
+
+:option:`--from-revision`
+
+  Tells to only take into account contributions newer than the specified
+  revision.
+
+  Default: ``0``.
 
 
 .. django-admin:: revision
