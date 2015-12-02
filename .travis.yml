@@ -14,6 +14,9 @@ cache:
     - pootle/assets/js/node_modules
     - $HOME/.cache/pip
     - docs/_build
+before_install:
+  # Error as early as possible if we can't compile
+  - python -m compileall -q -f .
 install:
   - pip install --upgrade pip # FIXME remove once Travis support pip7 by default
   - CFLAGS="-O0" pip install -r requirements/travis.txt
@@ -25,7 +28,6 @@ before_script:
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e "SET GLOBAL wait_timeout = 36000;"; fi
 script:
-  - python -m compileall -q -f .
   - make docs
   # FIXME revert breakdown of 'make build' after core merge
   #- make build SHELL=/bin/bash TAIL='|tail -40; exit $$PIPESTATUS'
