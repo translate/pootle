@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models import F
 from django.template.defaultfilters import truncatechars
@@ -52,7 +53,9 @@ from .diff import StoreDiff
 from .fields import (TranslationStoreField, MultiStringField,
                      PLURAL_PLACEHOLDER, SEPARATOR)
 from .filetypes import factory_classes
-from .util import OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str
+from .util import (
+    OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str,
+    vfolders_installed)
 
 
 TM_BROKER = None
@@ -356,6 +359,11 @@ class Unit(models.Model, base.TranslationUnit):
                                     db_index=True, related_name='reviewed')
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 
+    # this is calculated from virtualfolders if installed and linked
+    priority = models.FloatField(
+        db_index=True, default=1,
+        validators=[MinValueValidator(0)])
+
     objects = UnitManager()
     simple_objects = models.Manager()
 
@@ -651,6 +659,24 @@ class Unit(models.Model, base.TranslationUnit):
         unit = self.store.file.store.findid(self.getid())
 
         return unit
+
+    def calculate_priority(self):
+        if not vfolders_installed():
+            return 1.0
+
+        priority = (
+            self.vfolders.order_by("-priority")
+                         .values_list("priority", flat=True)
+                         .first())
+        if priority is None:
+            return 1.0
+        return priority
+
+    def set_priority(self):
+        priority = self.calculate_priority()
+
+        if priority != self.priority:
+            Unit.objects.filter(pk=self.pk).update(priority=priority)
 
     def sync(self, unit):
         """Sync in file unit with translations from the DB."""
