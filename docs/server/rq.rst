@@ -77,6 +77,45 @@ To push failed jobs back into the queue we simply run the
 :djadmin:`retry_failed_jobs` management command.
 
 
+Delete all failed jobs
+++++++++++++++++++++++
+
+Sometimes failed jobs no longer apply since they refer to removed items, so no
+matter how many times you run them they will keep failing. Note that sometimes
+those unrecoverable failed jobs are in company of other failed jobs that can be
+re-run by using the :djadmin:`retry_failed_jobs` management command:
+
+.. code-block:: bash
+
+   $ pootle retry_failed_jobs
+
+
+In order to delete all the failed jobs you must first **stop the workers**.
+
+Once the workers are stopped make sure that there are no failed jobs that you
+don't want to remove. In case there is any restart the workers to re-run them
+with :djadmin:`retry_failed_jobs`. Stop the workers again once those jobs are
+completed. Check again that all the failed jobs are the ones you want to
+remove.
+
+In order to perform a bulk delete of all failed jobs run the following
+commands:
+
+.. code-block:: bash
+
+   $ redis-cli -n 2 LRANGE "rq:queue:failed" 0 -1 | perl -nE 'chomp; `redis-cli DEL rq:job:$_`;'
+
+
+Now remove the list of failed jobs:
+
+.. code-block:: bash
+
+   $ redis-cli -n 2 DEL "rq:queue:failed"
+
+
+Do not forget to **restart the workers**.
+
+
 Dirty statistics
 ----------------
 
