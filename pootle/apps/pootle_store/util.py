@@ -138,3 +138,7 @@ def parse_pootle_revision(store):
 
 def get_state_name(code, default="untranslated"):
     return STATES_NAMES.get(code, default)
+
+
+def vfolders_installed():
+    return "virtualfolder" in settings.INSTALLED_APPS
