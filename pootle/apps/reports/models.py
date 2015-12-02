@@ -61,11 +61,11 @@ class PaidTask(models.Model):
         return dict(cls.type_choices).get(task_type, '')
 
     def __unicode__(self):
-        return u'Task: [id=%s, user=%s, month=%s, ' + \
-            'type=%s, amount=%s, comment=%s]' % \
-            (self.id, self.user.username, self.datetime.strftime('%Y-%m'),
-             PaidTask.get_task_type_title(self.task_type), self.amount,
-             self.description)
+        return (u'Task: [id=%s, user=%s, month=%s, '
+                'type=%s, amount=%s, comment=%s]' %
+                (self.id, self.user.username, self.datetime.strftime('%Y-%m'),
+                 PaidTask.get_task_type_title(self.task_type), self.amount,
+                 self.description))
 
     def clean(self):
         now = timezone.now()
