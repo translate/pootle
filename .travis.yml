@@ -30,7 +30,7 @@ before_script:
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e "SET GLOBAL wait_timeout = 36000;"; fi
 script:
   - if [[ $META ]]; then make docs; fi
-  - if [[ $META ]]; then make mo; fi
+  - if [[ $META ]]; then make mo-all; fi
   - if [[ $META ]]; then make pep8; fi
   # - if [[ $META ]]; then pep257; fi
   - if [[ ! $META ]]; then make assets; fi
