@@ -107,6 +107,44 @@ def vfolder_unit_priority_handler(sender, instance, **kwargs):
         unit.set_priority()
 
 
+@receiver(pre_save, sender=Unit)
+def vfolder_unit_resurrected(sender, instance, created=False, **kwargs):
+    """Update Unit VirtualFolder membership when Unit is *un*obsoleted
+    """
+    if instance.state == OBSOLETE:
+        return
+    try:
+        Unit.objects.get(pk=instance.pk, state=OBSOLETE)
+    except Unit.DoesNotExist:
+        return
+    add_unit_to_vfolders(instance)
+    instance.set_priority()
+
+
+@receiver(pre_save, sender=Unit)
+def vfolder_unit_obsoleted(sender, instance, created=False, **kwargs):
+    """Update Unit VirtualFolder membership when Unit is obsoleted
+    """
+    if instance.state != OBSOLETE:
+        return
+    try:
+        Unit.objects.get(pk=instance.pk, state__gt=OBSOLETE)
+    except Unit.DoesNotExist:
+        return
+
+    # grab the pk of any vfolder_treeitems
+    vfolder_treeitems = instance.store.parent_vf_treeitems.values_list("pk")
+
+    # clear Unit vfolder membership and update priority
+    instance.vfolders.clear()
+    instance.set_priority()
+
+    # update the vfolder treeitems
+    vf_qs = VirtualFolderTreeItem.objects.filter(pk__in=vfolder_treeitems)
+    for vfolder_treeitem in vf_qs.iterator():
+        vfolder_treeitem.update_all_cache()
+
+
 @receiver(post_save, sender=Unit)
 def vfolder_unit_postsave_handler(sender, instance, created=False, **kwargs):
     """Match VirtualFolders to Unit and update Unit.priority
