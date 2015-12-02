@@ -32,6 +32,15 @@ class Command(PootleCommand):
             dest="revision",
             help="Only count contributions newer than this revision",
         ),
+        make_option(
+            "--sort-by",
+            type="choice",
+            default="name",
+            choices=["name", "contributions"],
+            dest="sort_by",
+            help="Sort by specified item. Accepts name and contributions. "
+                 "Default: %default",
+        ),
     )
 
     help = "Print a list of contributors."
@@ -58,17 +67,25 @@ class Command(PootleCommand):
         for v in units.values("submitted_by"):
             contribs.update((v["submitted_by"], ))
 
-        self.list_contributions(contribs)
+        self.list_contributions(contribs, options["sort_by"])
 
-    def list_contributions(self, contribs):
+    def list_contributions(self, contribs, sort_by):
+        if sort_by == "name":
+            contributions = contribs.items()
+        else:
+            contributions = contribs.most_common()
+
         out = []
-        for id, count in contribs.items():
+        for id, count in contributions:
             user = User.objects.get(id=id)
             name = user.display_name
             if user.email:
                 name += " <%s>" % (user.email)
             out.append("%s (%i contributions)" % (name, count))
 
-        # Sort users alphabetically
-        for line in sorted(out):
+        if sort_by == "name":
+            # Sort users alphabetically
+            out = sorted(out)
+
+        for line in out:
             self.stdout.write(line)

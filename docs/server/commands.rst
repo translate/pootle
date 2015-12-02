@@ -304,6 +304,15 @@ Available options:
 
   Default: ``0``.
 
+:option:`--sort-by`
+  .. versionadded:: 2.7.3
+
+  Specifies the sorting to be used. Valid options are ``contributions`` (sort
+  by decreasing number of contributions) and ``name`` (sort by user name,
+  alphabetically).
+
+  Default: ``name``.
+
 
 .. django-admin:: revision
 
