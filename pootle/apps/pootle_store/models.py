@@ -360,7 +360,6 @@ class Unit(models.Model, base.TranslationUnit):
     simple_objects = models.Manager()
 
     class Meta(object):
-        ordering = ['store', 'index']
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
 
