@@ -161,7 +161,7 @@ class BuildChecksTemplatesCommand(Command):
         except ImportError:
             from distutils.errors import DistutilsModuleError
             raise DistutilsModuleError("Please install the docutils library.")
-        from pootle import syspath_override
+        from pootle import syspath_override  # noqa
         django.setup()
 
         def get_check_description(name, filterfunc):

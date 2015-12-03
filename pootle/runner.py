@@ -14,7 +14,7 @@ from argparse import ArgumentParser, SUPPRESS
 from django.conf import settings
 from django.core import management
 
-import syspath_override
+import syspath_override  # noqa
 
 from .core.utils.redis_rq import rq_workers_are_running
 

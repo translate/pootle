@@ -12,7 +12,7 @@ import sys
 
 from django.core.management import execute_from_command_line
 
-from pootle import syspath_override
+from pootle import syspath_override  # noqa
 
 
 if __name__ == "__main__":
