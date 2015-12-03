@@ -7,9 +7,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from hashlib import md5
+
 import factory
 
 from django.utils import timezone
+
+import pootle_store
 
 
 class SubmissionFactory(factory.django.DjangoModelFactory):
@@ -41,3 +45,107 @@ class AgreementFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'staticpages.Agreement'
+
+
+class DirectoryFactory(factory.django.DjangoModelFactory):
+
+    @factory.lazy_attribute
+    def pootle_path(self):
+        if self.parent is None:
+            return "/"
+        return (
+            "%s/%s"
+            % (self.parent.pootle_path.rstrip("/"),
+               self.name))
+
+    class Meta(object):
+        model = 'pootle_app.Directory'
+        django_get_or_create = ("pootle_path", )
+
+
+class LanguageFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'pootle_language.Language'
+        django_get_or_create = ("code", )
+
+    code = factory.Sequence(lambda n: 'language%s' % n)
+    fullname = factory.Sequence(lambda n: 'Language %s' % n)
+
+
+class ProjectFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'pootle_project.Project'
+        django_get_or_create = ("code", )
+
+    code = factory.Sequence(lambda n: 'project%s' % n)
+    fullname = factory.Sequence(lambda n: 'Project %s' % n)
+    pootle_path = factory.LazyAttribute(lambda p: "/projects/%s" % p.code)
+
+
+class StoreFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'pootle_store.Store'
+        django_get_or_create = ("pootle_path", )
+
+    @factory.lazy_attribute
+    def pootle_path(self):
+        return (
+            "%s/%s"
+            % (self.translation_project.pootle_path.rstrip("/"),
+               self.name))
+
+    name = factory.Sequence(lambda n: 'store%s.po' % n)
+    parent = factory.LazyAttribute(
+        lambda s: s.translation_project.directory)
+
+
+class TranslationProjectFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'pootle_translationproject.TranslationProject'
+
+
+class UnitFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'pootle_store.Unit'
+
+    state = pootle_store.util.UNTRANSLATED
+
+    @factory.lazy_attribute
+    def index(self):
+        # returns an incrementing index relative to the store
+        return self.store.unit_set.count()
+
+    @factory.lazy_attribute
+    def unitid(self):
+        return (
+            "%s_unit%s"
+            % (pootle_store.util.get_state_name(self),
+               self.index))
+
+    @factory.lazy_attribute
+    def unitid_hash(self):
+        return md5(self.unitid.encode("utf-8")).hexdigest()
+
+    @factory.lazy_attribute
+    def source_f(self):
+        return (
+            "%s Source %s %s"
+            % (pootle_store.util.get_state_name(self).capitalize(),
+               self.store.pootle_path,
+               self.index))
+
+    @factory.lazy_attribute
+    def target_f(self):
+        state_name = pootle_store.util.get_state_name(self)
+        if state_name in ["translated", "fuzzy", "obsolete"]:
+            return (
+                "%s Target %s %s"
+                % (state_name.capitalize(),
+                   self.store.pootle_path,
+                   self.index))
+        return ""
