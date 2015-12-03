@@ -43,7 +43,7 @@ class Command(PootleCommand):
         """
         :return: flag if child stores should be updated
         """
-        if translation_project.directory_exists():
+        if translation_project.directory_exists_on_disk():
             logging.info(u"Scanning for new files in %s", translation_project)
             translation_project.scan_files()
             return True

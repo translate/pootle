@@ -383,9 +383,9 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     # # # /TreeItem
 
-    def directory_exists(self):
+    def directory_exists_on_disk(self):
         """Checks if the actual directory for the translation project
-        exists on-disk.
+        exists on disk.
         """
         return not does_not_exist(self.abs_real_path)
 
