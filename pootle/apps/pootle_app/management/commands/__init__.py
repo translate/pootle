@@ -136,7 +136,7 @@ class PootleCommand(NoArgsCommand):
             project_query = project_query.filter(code__in=self.projects)
 
         for project in project_query.iterator():
-            tp_query = project.translationproject_set \
+            tp_query = project.translationproject_set.live() \
                               .order_by('language__code')
 
             if self.languages:
