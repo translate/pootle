@@ -1,8 +1,0 @@
--r build.txt
--r tests.txt
-
-coveralls
-MySQL-python
-psycopg2
-pep257
-pep8

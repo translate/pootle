@@ -1,16 +1,17 @@
 # https://travis-ci.org/#!/translate/pootle
 sudo: false
 language: python
-python:
-  - 2.7
 env:
-  matrix:
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=sqlite META=
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=postgres META=
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=mysql_innodb META=
-    - DJANGO_VERSION=1.7.10 DATABASE_BACKEND=sqlite META=yes
+  - TOXENV=py27-django17-sqlite
+  - TOXENV=py27-django17-mysql
+  - TOXENV=py27-django17-postgres
+  # Meta
+  - TOXENV=docs
+  - TOXENV=mo
+  - TOXENV=pep8
+  - TOXENV=pep257
+  - TOXENV=sdist
 cache:
-  apt: true
   directories:
     - pootle/assets/js/node_modules
     - $HOME/.cache/pip
@@ -20,32 +21,9 @@ before_install:
   - python -m compileall -q -f .
 install:
   - pip install --upgrade pip # FIXME remove once Travis support pip7 by default
-  - CFLAGS="-O0" pip install -r requirements/travis.txt
-  - pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1).$(( $(echo $DJANGO_VERSION | cut -d"." -f2) + 1 )) )
-  - pip install .
-  - pip freeze  # Print all installed versions for reference.
-before_script:
-  - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
-  - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
-  - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e "SET GLOBAL wait_timeout = 36000;"; fi
+  - pip install tox
 script:
-  - if [[ $META ]]; then make docs; fi
-  - if [[ $META ]]; then make mo-all; fi
-  - if [[ $META ]]; then make pep8; fi
-  - if [[ $META ]]; then ./setup.py sdist; fi
-  # - if [[ $META ]]; then pep257; fi
-  - if [[ ! $META ]]; then make assets; fi
-  - if [[ ! $META ]]; then DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates; fi
-  - if [[ ! $META ]]; then ./manage.py migrate --noinput --traceback; fi
-  - if [[ ! $META ]]; then ./manage.py migrate | (egrep "Your models have changes" && exit 1 || exit 0); fi
-  - if [[ ! $META ]]; then ./manage.py initdb --traceback --no-projects; fi
-  - if [[ ! $META ]]; then ./manage.py runserver --traceback; fi &
-  - if [[ ! $META ]]; then TESTPID=$!; fi
-  - if [[ ! $META ]]; then sleep 10; fi
-  - if [[ ! $META ]]; then kill -2 $TESTPID; fi
-  # FIXME reenable migration testing
-  #- tests/version-migration/migrate.sh
-  - if [[ ! $META ]]; then py.test --cov=. -vv; fi
+  - tox -e $TOXENV
 notifications:
   email:
     on_failure: always
@@ -62,4 +40,6 @@ notifications:
 services:
   - redis-server
 after_success:
-  - if [[ ! $META ]]; then coveralls; fi
+  - if [[ $TOXENV == py27-django17* ]]; then
+        coveralls;
+    fi
