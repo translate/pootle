@@ -37,6 +37,7 @@ class Command(PootleCommand):
                  "appear unchanged)."),
     )
     help = "Update database stores from files."
+    process_disabled_projects = True
 
     def handle_translation_project(self, translation_project, **options):
         """
@@ -47,7 +48,13 @@ class Command(PootleCommand):
             translation_project.scan_files()
             return True
 
-        translation_project.directory.makeobsolete()
+        # Skip if project directory was ceased to exist on disk.
+        if translation_project.project.directory_exists_on_disk():
+            translation_project.directory.makeobsolete()
+        else:
+            logging.warning(u"Missing project directory for %s. Skipping %s.",
+                            translation_project.project, translation_project)
+
         return False
 
     def handle_store(self, store, **options):

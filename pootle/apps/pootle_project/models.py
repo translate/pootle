@@ -361,9 +361,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     def save(self, *args, **kwargs):
         # Create file system directory if needed
-        project_path = self.get_real_path()
-        if not os.path.exists(project_path) and not self.disabled:
-            os.makedirs(project_path)
+        if not self.directory_exists_on_disk() and not self.disabled:
+            os.makedirs(self.get_real_path())
 
         from pootle_app.models.directory import Directory
         self.directory = Directory.objects.projects \
@@ -395,6 +394,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             raise ValidationError(
                 _('"%s" cannot be used as a project code', self.code)
             )
+
+    def directory_exists_on_disk(self):
+        """Checks if the actual directory for the project exists on disk."""
+        return os.path.exists(self.get_real_path())
 
     # # # TreeItem
 

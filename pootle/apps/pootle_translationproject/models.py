@@ -66,7 +66,7 @@ def create_translation_project(language, project):
 
 
 def scan_translation_projects(languages=None, projects=None):
-    project_query = Project.objects.enabled()
+    project_query = Project.objects.all()
 
     if projects is not None:
         project_query = project_query.filter(code__in=projects)
