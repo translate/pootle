@@ -103,16 +103,16 @@ class Directory(models.Model, CachedTreeItem):
         """Returns the translation project belonging to this directory."""
         if self.is_language() or self.is_project():
             return None
-        else:
-            if self.is_translationproject():
-                return self.translationproject
-            else:
-                aux_dir = self
-                while (not aux_dir.is_translationproject() and
-                       aux_dir.parent is not None):
-                    aux_dir = aux_dir.parent
 
-                return aux_dir.translationproject
+        if self.is_translationproject():
+            return self.translationproject
+
+        aux_dir = self
+        while not aux_dir.is_translationproject() and aux_dir.parent is not None:
+            aux_dir = aux_dir.parent
+
+        return aux_dir.translationproject
+
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
