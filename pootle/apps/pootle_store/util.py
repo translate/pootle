@@ -32,6 +32,12 @@ STATES_MAP = {
     TRANSLATED: _("Translated"),
 }
 
+STATES_NAMES = {
+    OBSOLETE: "obsolete",
+    UNTRANSLATED: "untranslated",
+    FUZZY: "fuzzy",
+    TRANSLATED: "translated"}
+
 
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
@@ -128,3 +134,7 @@ def parse_pootle_revision(store):
         if pootle_revision is not None:
             return int(pootle_revision)
     return None
+
+
+def get_state_name(code, default="untranslated"):
+    return STATES_NAMES.get(code, default)
