@@ -132,7 +132,8 @@ def _setup_store_test(store, member, member2, test):
 
     store_revision, units_update = test["update_store"]
     revision_min = store.get_max_unit_revision()
-    units_before = [unit for unit in store.unit_set.all()]
+    units_before = [
+        unit for unit in store.unit_set.all().order_by("index")]
 
     fs_wins = test.get("fs_wins", True)
     if fs_wins:
