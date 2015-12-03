@@ -37,6 +37,7 @@ from fixtures.import_export_fixtures import (
     FILE_IMPORT_FAIL_TESTS,
     file_import_failure, ts_directory, en_tutorial_ts)
 from fixtures.revision import revision
+from fixtures.site import site_matrix
 from fixtures.views import admin_client
 
 
@@ -70,4 +71,4 @@ __all__ = (
     'english_tutorial', 'french_tutorial', 'italian_tutorial',
     'russian_tutorial', 'spanish_tutorial', 'templates_tutorial',
     'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
-    'revision', 'admin_client')
+    'revision', 'admin_client', 'site_matrix')
