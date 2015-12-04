@@ -337,7 +337,7 @@ const stats = {
         $th.removeClass('sorttable_sorted sorttable_sorted_reverse');
         setTimeout(function () {
           $th.click();
-          if (columnSort.order === "desc") {
+          if (columnSort.order === 'desc') {
             $th.click();
           }
         }, 1);

@@ -261,7 +261,7 @@ PTL.reports = {
   },
 
   drawChart: function () {
-    $.plot($("#daily-chart"),
+    $.plot($('#daily-chart'),
       PTL.reports.dailyData.data,
       {
         series: {
@@ -270,15 +270,15 @@ PTL.reports = {
           bars: {
             show: true,
             barWidth: 1000*60*60*24,
-            align: "center"
+            align: 'center'
           },
         },
         xaxis: {
             min: parseInt(PTL.reports.dailyData.min_ts, 10) - 1000*60*60*12,
             max: parseInt(PTL.reports.dailyData.max_ts, 10) - 1000*60*60*12,
-            minTickSize: [1, "day"],
-            mode: "time",
-            timeformat: "%b %d, %a",
+            minTickSize: [1, 'day'],
+            mode: 'time',
+            timeformat: '%b %d, %a',
         },
         yaxis: {
             max: PTL.reports.dailyData.max_day_score
@@ -386,7 +386,7 @@ PTL.reports = {
         PTL.reports.setData(data);
         $('#reports-results').empty();
         $('#reports-results').html(PTL.reports.tmpl.results(PTL.reports.data)).show();
-        $("#js-breadcrumb-user").text(data.meta.user.formatted_name).show();
+        $('#js-breadcrumb-user').text(data.meta.user.formatted_name).show();
         var showChart = data.daily !== undefined && data.daily.nonempty;
         $('#reports-activity').toggle(showChart);
         if (showChart) {

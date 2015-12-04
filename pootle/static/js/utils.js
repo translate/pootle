@@ -80,7 +80,7 @@ var strCmp = function (a, b) {
 
 /* Cleans '\n' escape sequences and adds '\t' sequences */
 var cleanEscape = function (s) {
-  return s.replace(/\\t/g, "\t").replace(/\\n/g, "");
+  return s.replace(/\\t/g, '\t').replace(/\\n/g, '');
 };
 
 
@@ -192,7 +192,7 @@ var makeSelectableInput = function (selector, options, onChange) {
 
 var executeFunctionByName = function (functionName, context /*, args */) {
   var args = Array.prototype.slice.call(arguments).splice(2),
-      namespaces = functionName.split("."),
+      namespaces = functionName.split('.'),
       func = namespaces.pop();
 
   for (var i=0; i<namespaces.length; i++) {

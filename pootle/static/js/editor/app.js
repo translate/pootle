@@ -422,7 +422,7 @@ PTL.editor = {
             '</option>'
           );
         }
-        $(".js-user-filter").remove();
+        $('.js-user-filter').remove();
         this.$filterStatus.append(newOpts.join(''));
       }
 
@@ -532,7 +532,7 @@ PTL.editor = {
 
   /* Things to do when no results are returned */
   noResults: function () {
-    this.displayMsg({body: gettext("No results.")});
+    this.displayMsg({body: gettext('No results.')});
     this.reDraw();
   },
 
@@ -575,7 +575,7 @@ PTL.editor = {
     } else {
       hlRegex = new RegExp(makeRegexForMultipleWords(searchText), 'i');
     }
-    $(sel.join(", ")).highlightRegex(hlRegex);
+    $(sel.join(', ')).highlightRegex(hlRegex);
   },
 
 
@@ -587,7 +587,7 @@ PTL.editor = {
         $target = $(this.focused),
         start;
 
-    if (action === "overwrite") {
+    if (action === 'overwrite') {
       $target.val(text).trigger('input');
       start = text.length;
     } else {
@@ -647,13 +647,13 @@ PTL.editor = {
 
   /* Sets the current unit's styling as fuzzy */
   doFuzzyStyle: function () {
-    $("tr.edit-row").addClass("fuzzy-unit");
+    $('tr.edit-row').addClass('fuzzy-unit');
   },
 
 
   /* Unsets the current unit's styling as fuzzy */
   undoFuzzyStyle: function () {
-    $("tr.edit-row").removeClass("fuzzy-unit");
+    $('tr.edit-row').removeClass('fuzzy-unit');
   },
 
 
@@ -982,29 +982,29 @@ PTL.editor = {
 
   /* Handles XHR errors */
   error: function (xhr, s) {
-    var msg = "";
+    var msg = '';
 
-    if (s === "abort") {
+    if (s === 'abort') {
         return;
     }
 
     if (xhr.status === 0) {
-      msg = gettext("Error while connecting to the server");
+      msg = gettext('Error while connecting to the server');
     } else if (xhr.status === 402) {
       captcha.onError(xhr, 'PTL.editor.error');
     } else if (xhr.status === 404) {
-      msg = gettext("Not found");
+      msg = gettext('Not found');
     } else if (xhr.status === 500) {
-      msg = gettext("Server error");
+      msg = gettext('Server error');
     } else if (s === 'timeout') {
-      msg = gettext("The server seems down. Try again later.");
+      msg = gettext('The server seems down. Try again later.');
     } else {
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
       if (xhr.hasOwnProperty('responseText')) {
         msg = $.parseJSON(xhr.responseText).msg;
       } else {
-        msg = gettext("Unknown error");
+        msg = gettext('Unknown error');
       }
     }
 
@@ -1038,7 +1038,7 @@ PTL.editor = {
     var reqData = {};
 
     if (this.filter === 'checks' && this.checks.length) {
-      reqData.checks = this.checks.join(",");
+      reqData.checks = this.checks.join(',');
     }
     if (this.filter === 'checks' && this.category.length) {
       reqData.category = this.category;
@@ -1523,7 +1523,7 @@ PTL.editor = {
           type = m[1],
           uid = parseInt(m[2], 10);
       if (type === 'row') {
-        newHash = utils.updateHashPart("unit", uid);
+        newHash = utils.updateHashPart('unit', uid);
       } else {
         newHash = `unit=${encodeURIComponent(uid)}`;
       }
@@ -1666,7 +1666,7 @@ PTL.editor = {
         filterBy = $selected.val(),
         isUserFilter = $selected.data('user');
 
-    if (filterBy === "checks") {
+    if (filterBy === 'checks') {
       this.getCheckOptions();
     } else { // Normal filtering options (untranslated, fuzzy...)
       this.$filterChecksWrapper.hide();
@@ -1678,7 +1678,7 @@ PTL.editor = {
           newHash.user = this.user;
         } else {
           this.user = null;
-          $(".js-user-filter").remove();
+          $('.js-user-filter').remove();
 
           this.sortBy !== 'default' && (newHash.sort = this.sortBy);
         }
@@ -1724,7 +1724,7 @@ PTL.editor = {
     const after = this.renderCtxRows(data.ctx.after, 'after');
 
     // Append context rows to their respective places
-    var editCtxRows = $("tr.edit-ctx");
+    var editCtxRows = $('tr.edit-ctx');
     editCtxRows.first().after(before);
     editCtxRows.last().before(after);
   },
@@ -1810,9 +1810,9 @@ PTL.editor = {
 
     if (searchText) {
       let queryString = this.buildSearchQuery();
-      newHash = "search=" + queryString;
+      newHash = 'search=' + queryString;
     } else {
-      newHash = utils.updateHashPart("filter", "all", ["search", "sfields","soptions"]);
+      newHash = utils.updateHashPart('filter', 'all', ['search', 'sfields','soptions']);
     }
     $.history.load(newHash);
   },
@@ -1835,14 +1835,14 @@ PTL.editor = {
 
   processAddComment: function (data) {
     $('.js-editor-comment').removeClass('selected');
-    $("#editor-comment").fadeOut(200);
+    $('#editor-comment').fadeOut(200);
 
-    if ($("#translator-comment").length) {
-      $(data.comment).hide().prependTo("#translator-comment").delay(200)
+    if ($('#translator-comment').length) {
+      $(data.comment).hide().prependTo('#translator-comment').delay(200)
         .animate({height: 'show'}, 1000, 'easeOutQuad');
     } else {
-      $(`<div id="translator-comment">${data.comment}</div>`)
-        .prependTo("#extras-container").delay(200)
+      $(`<div id='translator-comment'>${data.comment}</div>`)
+        .prependTo('#extras-container').delay(200)
         .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
     }
 
@@ -1888,18 +1888,18 @@ PTL.editor = {
     const uid = data.uid;
 
     if (data.timeline && uid === this.units.getCurrent().id) {
-      if ($("#translator-comment").length) {
-        $(data.timeline).hide().insertAfter("#translator-comment")
+      if ($('#translator-comment').length) {
+        $(data.timeline).hide().insertAfter('#translator-comment')
                         .slideDown(1000, 'easeOutQuad');
       } else {
-        $(data.timeline).hide().prependTo("#extras-container")
+        $(data.timeline).hide().prependTo('#extras-container')
                         .slideDown(1000, 'easeOutQuad');
       }
 
       helpers.updateRelativeDates();
 
       $('.timeline-field-body').filter(':not([dir])').bidi();
-      $("#js-show-timeline").addClass('selected');
+      $('#js-show-timeline').addClass('selected');
     }
   },
 
@@ -1911,7 +1911,7 @@ PTL.editor = {
     if ($timelineToggle.hasClass('selected')) {
       this.showTimeline();
     } else {
-      $("#timeline-results").slideUp(1000, 'easeOutQuad');
+      $('#timeline-results').slideUp(1000, 'easeOutQuad');
     }
   },
 
@@ -1959,7 +1959,7 @@ PTL.editor = {
         tgt = store.get('target_lang'),
         sourceText = unit.get('source')[0],
         filtered = this.filterTMResults(data, sourceText),
-        name = gettext("Similar translations");
+        name = gettext('Similar translations');
 
     if (filtered.length) {
       return this.tmpl.tm({
@@ -1981,14 +1981,14 @@ PTL.editor = {
         tgt = store.get('target_lang'),
         sText = unit.get('source')[0],
         pStyle = store.get('project_style'),
-        tmUrl = this.settings.tmUrl + src + "/" + tgt +
-          "/unit/?source=" + encodeURIComponent(sText) + "&jsoncallback=?";
+        tmUrl = this.settings.tmUrl + src + '/' + tgt +
+          '/unit/?source=' + encodeURIComponent(sText) + '&jsoncallback=?';
 
     if (!sText.length) {
       return;
     }
 
-    if (pStyle.length && pStyle != "standard") {
+    if (pStyle.length && pStyle != 'standard') {
       tmUrl += '&style=' + pStyle;
     }
 
@@ -2007,13 +2007,13 @@ PTL.editor = {
         if (data.length) {
           var sourceText = unit.get('source')[0],
               filtered = PTL.editor.filterTMResults(data, sourceText),
-              name = gettext("Similar translations"),
+              name = gettext('Similar translations'),
               tm = PTL.editor.tmpl.tm({store: store.toJSON(),
                                        unit: unit.toJSON(),
                                        suggs: filtered,
                                        name: name});
 
-          $(tm).hide().appendTo("#extras-container")
+          $(tm).hide().appendTo('#extras-container')
                       .slideDown(1000, 'easeOutQuad');
         }
       },

@@ -142,10 +142,10 @@ const UserForm = React.createClass({
                  value={gettext('Save')} />
         {model.id &&
           <ul className="action-links">
-            <li><a href={model.getProfileUrl()}>{gettext("Public Profile")}</a></li>
+            <li><a href={model.getProfileUrl()}>{gettext('Public Profile')}</a></li>
             <li><a href={model.getSettingsUrl()}>{gettext('Settings')}</a></li>
-            <li><a href={model.getStatsUrl()}>{gettext("Statistics")}</a></li>
-            <li><a href={model.getReportsUrl()}>{gettext("Reports")}</a></li>
+            <li><a href={model.getStatsUrl()}>{gettext('Statistics')}</a></li>
+            <li><a href={model.getReportsUrl()}>{gettext('Reports')}</a></li>
           </ul>}
         </div>
       {(this.props.onDelete && !model.isMeta()) &&

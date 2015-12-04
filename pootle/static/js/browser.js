@@ -101,7 +101,7 @@ var fixResourcePathBreadcrumbGeometry = function () {
     var resourceDropdownLeft = $resourceDropdown.position().left;
 
     var maxWidth = maxHeaderWidth - resourceDropdownLeft;
-    $resourceDropdown.css("max-width", maxWidth);
+    $resourceDropdown.css('max-width', maxWidth);
   }
 };
 
@@ -159,20 +159,20 @@ var browser = {
       minimumResultsForSearch: -1
     });
     makeNavDropdown(sel.language, {
-      placeholder: gettext("All Languages")
+      placeholder: gettext('All Languages')
     });
     makeNavDropdown(sel.project, {
-      placeholder: gettext("All Projects"),
+      placeholder: gettext('All Projects'),
       formatResult: formatProject,
     });
     makeNavDropdown(sel.resource, {
-      placeholder: gettext("Entire Project"),
+      placeholder: gettext('Entire Project'),
       formatResult: formatResource,
       sortResults: removeCtxEntries
     });
 
     /* Adjust breadcrumb layout on window resize */
-    $(window).on("resize", function (e) {
+    $(window).on('resize', function (e) {
       fixResourcePathBreadcrumbGeometry();
     });
   },

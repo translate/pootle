@@ -30,11 +30,11 @@ let search = {
     };
 
     /* Reusable selectors */
-    this.$form = $("#search-form");
-    this.$container = $(".js-search-container");
-    this.$fields = $(".js-search-fields");
-    this.$options = $(".js-search-options");
-    this.$input = $("#id_search");
+    this.$form = $('#search-form');
+    this.$container = $('.js-search-container');
+    this.$fields = $('.js-search-fields');
+    this.$options = $('.js-search-options');
+    this.$input = $('#id_search');
 
     this.settings = assign({
       onSearch: this.onSearch,
@@ -111,10 +111,10 @@ let search = {
 
     // If any options have been chosen, append them to the resulting URL
     if (searchFields.length) {
-      query += "&sfields=" + searchFields.join(',');
+      query += '&sfields=' + searchFields.join(',');
     }
     if (searchOptions.length) {
-      query += "&soptions=" + searchOptions.join(',');
+      query += '&soptions=' + searchOptions.join(',');
     }
 
     if (searchFields.length || searchOptions.length) {
@@ -165,7 +165,7 @@ let search = {
       return false;
     }
 
-    let hash = "#search=" + this.buildSearchQuery();
+    let hash = '#search=' + this.buildSearchQuery();
     window.location = this.$form[0].action + hash;
 
     return false;

@@ -104,8 +104,8 @@ PTL.common = {
     });
     setInterval($.fn.tipsy.revalidate, 1000);
 
-    $(".js-select2").select2({
-      width: "resolve"
+    $('.js-select2').select2({
+      width: 'resolve'
     });
 
     // Set CSRF token for XHR requests (jQuery-specific)
@@ -121,12 +121,12 @@ PTL.common = {
 
     /* Collapsing functionality */
     // XXX: crappy code, only used in `term_edit.html`
-    $(document).on("click", ".collapse", function (e) {
+    $(document).on('click', '.collapse', function (e) {
       e.preventDefault();
-      $(this).siblings(".collapsethis").slideToggle("fast");
+      $(this).siblings('.collapsethis').slideToggle('fast');
 
-      if ($("textarea", $(this).next("div.collapsethis")).length) {
-        $("textarea", $(this).next("div.collapsethis")).focus();
+      if ($('textarea', $(this).next('div.collapsethis')).length) {
+        $('textarea', $(this).next('div.collapsethis')).focus();
       }
     });
 
@@ -152,27 +152,27 @@ PTL.common = {
     });
 
     /* Generic toggle */
-    $(document).on("click", ".js-toggle", function (e) {
+    $(document).on('click', '.js-toggle', function (e) {
       e.preventDefault();
-      var target = $(this).attr("href") || $(this).data("target");
+      var target = $(this).attr('href') || $(this).data('target');
       $(target).toggle();
     });
 
     /* Sorts language names within select elements */
-    var ids = ["id_languages", "id_alt_src_langs", "-language",
-               "-source_language"];
+    var ids = ['id_languages', 'id_alt_src_langs', '-language',
+               '-source_language'];
 
     $.each(ids, function (i, id) {
-      var $selects = $("select[id$='" + id + "']");
+      var $selects = $('select[id$="' + id + '"]');
 
       $.each($selects, function (i, select) {
         var $select = $(select);
-        var options = $("option", $select);
+        var options = $('option', $select);
         var selected;
 
         if (options.length) {
-          if (!$select.is("[multiple]")) {
-            selected = $(":selected", $select);
+          if (!$select.is('[multiple]')) {
+            selected = $(':selected', $select);
           }
 
           var opsArray = $.makeArray(options);
@@ -183,7 +183,7 @@ PTL.common = {
           options.remove();
           $select.append($(opsArray));
 
-          if (!$select.is("[multiple]")) {
+          if (!$select.is('[multiple]')) {
             $select.get(0).selectedIndex = $(opsArray).index(selected);
           }
         }
