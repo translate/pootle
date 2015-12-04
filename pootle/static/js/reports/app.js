@@ -174,9 +174,9 @@ PTL.reports = {
   },
 
   roundAmount: function (e) {
-    var $this = $(this),
-        amount = $this.val(),
-        taskType = parseInt($('#id_task_type').val(), 10);
+    var $this = $(this);
+    var amount = $this.val();
+    var taskType = parseInt($('#id_task_type').val(), 10);
 
     if (taskType === paidTaskTypes.translation ||
         taskType === paidTaskTypes.review ||
@@ -192,9 +192,9 @@ PTL.reports = {
 
   addPaidTaskValidate: function (e) {
     setTimeout(function () {
-      var amount = $('#id_amount').val(),
-          description = $('#id_description').val(),
-          taskType = parseInt($('#id_task_type').val(), 10);
+      var amount = $('#id_amount').val();
+      var description = $('#id_description').val();
+      var taskType = parseInt($('#id_task_type').val(), 10);
 
       if (description === '' || amount <= 0 &&
           taskType !== paidTaskTypes.correction) {
@@ -300,19 +300,21 @@ PTL.reports = {
   },
 
   setData: function (data) {
-    var translatedTotal = 0,
-        reviewedTotal = 0,
-        suggestedTotal = 0,
-        scoreDeltaTotal = 0,
-        translatedFloorTotal = 0,
-        remainders, delta, i;
+    var translatedTotal = 0;
+    var reviewedTotal = 0;
+    var suggestedTotal = 0;
+    var scoreDeltaTotal = 0;
+    var translatedFloorTotal = 0;
+    var remainders;
+    var delta;
+    var i;
 
     PTL.reports.data = data;
     data.paid_task_summary = [];
 
     for (var index in data.paid_tasks) {
-      var task = data.paid_tasks[index],
-          item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
+      var task = data.paid_tasks[index];
+      var item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
 
       task.datetime = moment(task.datetime, 'YYYY-MM-DD hh:mm:ss').format('MMMM D, HH:mm');
       if (item !== null) {
@@ -329,8 +331,8 @@ PTL.reports = {
     }
 
     for (var index in data.grouped) {
-      var row = data.grouped[index],
-          floor = parseInt(row.translated, 10);
+      var row = data.grouped[index];
+      var floor = parseInt(row.translated, 10);
 
       row.remainder = row.translated - floor;
       translatedTotal += row.translated;
@@ -471,9 +473,9 @@ PTL.reports = {
   },
 
   dateRangeString: function (d1, d2, showYear) {
-    var res = '',
-        m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss'),
-        m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
+    var res = '';
+    var m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss');
+    var m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
 
     showYear = showYear || true;
 
@@ -512,8 +514,8 @@ PTL.reports = {
 
   updateMonthSelector: function () {
     $('.js-month').each(function () {
-      var $el = $(this),
-          link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
+      var $el = $(this);
+      var link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
 
       if ($el.hasClass('js-previous')) {
         link += 'month=' + PTL.reports.month.clone().subtract({M:1}).format('YYYY-MM');

@@ -11,8 +11,8 @@ var $ = require('jquery');
 require('jquery-select2');
 
 
-var escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm,
-    whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
+var escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
+var whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
 
 
 /* Gets current URL's hash */
@@ -33,7 +33,8 @@ var decodeURIParameter = function(s) {
 
 
 var getParsedHash = function (h) {
-  var params = {}, e;
+  var params = {};
+  var e;
   var r = /([^&;=]+)=?([^&;]*)/g;
   if (h === undefined) {
     h = this.getHash();
@@ -49,7 +50,11 @@ var getParsedHash = function (h) {
 /* Updates current URL's hash */
 var updateHashPart = function (part, newVal, removeArray) {
   var r = /([^&;=]+)=?([^&;]*)/g;
-  var params = [], h = getHash(), e, ok, p;
+  var params = [];
+  var h = getHash();
+  var e;
+  var ok;
+  var p;
   while (e = r.exec(h)) {
     p = decodeURIParameter(e[1]);
     if (p === part) {
@@ -86,10 +91,10 @@ var cleanEscape = function (s) {
 var fancyEscape = function (text) {
 
   function replace(match) {
-      var replaced,
-          escapeHl= '<span class="highlight-escape">%s</span>',
-          htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>',
-          submap = {
+      var replaced;
+      var escapeHl= '<span class="highlight-escape">%s</span>';
+      var htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
+      var submap = {
             '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
             '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
             '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
@@ -136,14 +141,15 @@ var fancyHl = function (text) {
 
 /* Returns a string representing a relative datetime */
 var relativeDate = function (date) {
-  var fmt, count,
-      delta = Date.now() - date,
-      seconds = Math.round(Math.abs(delta) / 1000),
-      minutes = Math.round(seconds / 60),
-      hours = Math.round(minutes / 60),
-      days = Math.round(hours / 24),
-      weeks = Math.round(days / 7),
-      years = Math.round(days / 365);
+  var fmt;
+  var count;
+  var delta = Date.now() - date;
+  var seconds = Math.round(Math.abs(delta) / 1000);
+  var minutes = Math.round(seconds / 60);
+  var hours = Math.round(minutes / 60);
+  var days = Math.round(hours / 24);
+  var weeks = Math.round(days / 7);
+  var years = Math.round(days / 365);
 
   if (years > 0) {
     fmt = ngettext('A year ago', '%s years ago', years);
@@ -189,9 +195,9 @@ var makeSelectableInput = function (selector, options, onChange) {
 
 
 var executeFunctionByName = function (functionName, context /*, args */) {
-  var args = Array.prototype.slice.call(arguments).splice(2),
-      namespaces = functionName.split('.'),
-      func = namespaces.pop();
+  var args = Array.prototype.slice.call(arguments).splice(2);
+  var namespaces = functionName.split('.');
+  var func = namespaces.pop();
 
   for (var i=0; i<namespaces.length; i++) {
     context = context[namespaces[i]];

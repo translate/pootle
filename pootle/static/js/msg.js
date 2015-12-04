@@ -70,8 +70,8 @@ var MessageListView = Backbone.View.extend({
 });
 
 
-var messages = new MessageList(),
-    messagesView;
+var messages = new MessageList();
+var messagesView;
 
 
 var msg = {

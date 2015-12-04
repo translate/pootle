@@ -40,15 +40,15 @@ var makeNavDropdown = function (selector, opts) {
       dropdownAutoWidth: true,
       dropdownCssClass: 'breadcrumb-dropdown',
       width: 'off',
-    },
-    opts = $.extend({}, defaults, opts);
+    };
+  var opts = $.extend({}, defaults, opts);
 
   return utils.makeSelectableInput(selector, opts,
     function (e) {
-      var $select = $(this),
-          $opt = $select.find('option:selected'),
-          href = $opt.data('href'),
-          openInNewTab;
+      var $select = $(this);
+      var $opt = $select.find('option:selected');
+      var href = $opt.data('href');
+      var openInNewTab;
 
       if (href) {
         openInNewTab = $opt.data('new-tab');
@@ -64,10 +64,10 @@ var makeNavDropdown = function (selector, opts) {
         return false;
       }
 
-      var langCode = $(sel.language).val(),
-          projectCode = $(sel.project).val(),
-          $resource = $(sel.resource),
-          resource = $resource.length ? $resource.val()
+      var langCode = $(sel.language).val();
+      var projectCode = $(sel.project).val();
+      var $resource = $(sel.resource);
+      var resource = $resource.length ? $resource.val()
                                                  .replace('ctx-', '')
                                       : '';
       browser.navigateTo(langCode, projectCode, resource);
@@ -80,8 +80,8 @@ var fixDropdowns = function (e) {
   // We can't use `e.persisted` here. See bug 2949 for reference
   var selectors = [sel.navigation, sel.language, sel.project, sel.resource];
   for (var i=0; i<selectors.length; i++) {
-    var $el = $(selectors[i]),
-        initial = $el.data('initial-code');
+    var $el = $(selectors[i]);
+    var initial = $el.data('initial-code');
     $el.select2('val', initial);
   }
   fixResourcePathBreadcrumbGeometry();
@@ -119,8 +119,8 @@ var formatResource = function (path, container, query) {
     var escaped_term = query.term.replace(
           /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
           '\\$&'
-        ),
-        regex = new RegExp(escaped_term, 'gi');
+        );
+    var regex = new RegExp(escaped_term, 'gi');
     t = t.replace(regex, '<span class="select2-match">$&</span>');
   }
 
@@ -180,23 +180,23 @@ var browser = {
   /* Navigates to `languageCode`, `projectCode`, `resource` while
    * retaining the current context when applicable */
   navigateTo: function (languageCode, projectCode, resource) {
-    var curProject = $(sel.project).data('initial-code'),
-        curLanguage = $(sel.language).data('initial-code'),
-        $resource = $(sel.resource),
-        curResource = $resource.length ? $resource.data('initial-code')
-                                                  .replace('ctx-', '') : '',
-        langChanged = languageCode !== curLanguage,
-        projChanged = projectCode !== curProject,
-        resChanged = resource !== curResource,
-        hasChanged = langChanged || projChanged || resChanged;
+    var curProject = $(sel.project).data('initial-code');
+    var curLanguage = $(sel.language).data('initial-code');
+    var $resource = $(sel.resource);
+    var curResource = $resource.length ? $resource.data('initial-code')
+                                                  .replace('ctx-', '') : '';
+    var langChanged = languageCode !== curLanguage;
+    var projChanged = projectCode !== curProject;
+    var resChanged = resource !== curResource;
+    var hasChanged = langChanged || projChanged || resChanged;
 
     if (!hasChanged) {
       return;
     }
 
-    var actionKey = $(sel.navigation).val(),
-        action = actionMap[actionKey],
-        inAdmin = (actionKey.indexOf('admin-') !== -1 &&
+    var actionKey = $(sel.navigation).val();
+    var action = actionMap[actionKey];
+    var inAdmin = (actionKey.indexOf('admin-') !== -1 &&
                    ((curLanguage === '' && curProject !== '') ||
                     (curLanguage !== '' && curProject === '')));
 
@@ -207,11 +207,11 @@ var browser = {
       resource = '';
     }
 
-    var parts = ['', languageCode, projectCode, action, resource],
-        urlParts = parts.filter(function (p, i) {
+    var parts = ['', languageCode, projectCode, action, resource];
+    var urlParts = parts.filter(function (p, i) {
           return i === 0 || p !== '';
-        }),
-        newUrl;
+        });
+    var newUrl;
 
     if (!resource) {
       urlParts.push('');

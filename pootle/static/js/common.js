@@ -133,10 +133,10 @@ PTL.common = {
     /* Page sidebar */
     // TODO: create a named function
     $(document).on('click', '.js-sidebar-toggle', function () {
-      var $sidebar = $('.js-sidebar'),
-          openClass = 'sidebar-open',
-          cookieName = 'pootle-browser-sidebar',
-          cookieData = JSON.parse(cookie(cookieName)) || {};
+      var $sidebar = $('.js-sidebar');
+      var openClass = 'sidebar-open';
+      var cookieName = 'pootle-browser-sidebar';
+      var cookieData = JSON.parse(cookie(cookieName)) || {};
 
       $sidebar.toggleClass(openClass);
 

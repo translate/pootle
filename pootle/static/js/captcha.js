@@ -29,11 +29,11 @@ var display = function (html) {
 
 var onSubmit = function (e) {
   e.preventDefault();
-  var $form = $(this),
-      reqData = $form.serializeObject(),
-      successFn = reqData.sfn,
-      errorFn = reqData.efn,
-      url = $form.attr('action');
+  var $form = $(this);
+  var reqData = $form.serializeObject();
+  var successFn = reqData.sfn;
+  var errorFn = reqData.efn;
+  var url = $form.attr('action');
 
   $.ajax({
     url: url,

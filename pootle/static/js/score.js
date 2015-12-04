@@ -35,8 +35,8 @@ var ScoreView = Backbone.View.extend({
   },
 
   updateWidth: function (e) {
-    var elWidth = this.$el.find('.odometer-inside').width(),
-        newWidth = elWidth === 0 ? 'auto' : elWidth;
+    var elWidth = this.$el.find('.odometer-inside').width();
+    var newWidth = elWidth === 0 ? 'auto' : elWidth;
     if (this.oldWidth !== newWidth) {
       this.$el.css('width', newWidth);
       this.oldWidth = newWidth;
@@ -57,7 +57,8 @@ var ScoreView = Backbone.View.extend({
 });
 
 
-var scoreModel, scoreView;
+var scoreModel;
+var scoreView;
 
 
 var init = function (initialScoreValue) {

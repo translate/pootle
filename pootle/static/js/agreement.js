@@ -66,8 +66,8 @@ var agreement = {
   onSubmit: function (e) {
     e.preventDefault();
 
-    var $agreementBox = $('.js-agreement-box'),
-        $agreementForm = $('.js-agreement-form');
+    var $agreementBox = $('.js-agreement-box');
+    var $agreementForm = $('.js-agreement-form');
     $agreementBox.spin();
     $agreementBox.css({opacity: 0.5});
 

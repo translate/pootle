@@ -40,11 +40,11 @@ var AdminAPIMixin = {
   },
 
   fetchNextPage: function (opts) {
-    var newPage = this.page + 1,
-        pageData = newPage === 1 ? {} : {p: newPage},
-        keywordsData = this.keywords === '' ? {} : {q: this.keywords},
-        reqData = _.extend({}, pageData, keywordsData),
-        fetchOpts = {remove: false, silent: true, data: reqData};
+    var newPage = this.page + 1;
+    var pageData = newPage === 1 ? {} : {p: newPage};
+    var keywordsData = this.keywords === '' ? {} : {q: this.keywords};
+    var reqData = _.extend({}, pageData, keywordsData);
+    var fetchOpts = {remove: false, silent: true, data: reqData};
 
     _.defaults(fetchOpts, opts);
 

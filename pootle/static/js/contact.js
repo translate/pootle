@@ -46,11 +46,11 @@ var contact = {
   onClick: function (e) {
     e.preventDefault();
 
-    var $el = $(e.target),
-        sP = $el.data(sel.data.subjectPrefix),
-        subjectPrefix = sP ? ['[', sP, '] '].join('') : sP,
-        subject = $el.data(sel.data.subject),
-        body = $el.data(sel.data.body);
+    var $el = $(e.target);
+    var sP = $el.data(sel.data.subjectPrefix);
+    var subjectPrefix = sP ? ['[', sP, '] '].join('') : sP;
+    var subject = $el.data(sel.data.subject);
+    var body = $el.data(sel.data.body);
 
     this.open({
       subjectPrefix: subjectPrefix,
@@ -89,10 +89,10 @@ var contact = {
   onSubmit: function (e) {
     e.preventDefault();
 
-    var $form = $(sel.form),
-        url = $form.attr('action'),
-        data = $form.serializeObject(),
-        captchaCallbacks = {
+    var $form = $(sel.form);
+    var url = $form.attr('action');
+    var data = $form.serializeObject();
+    var captchaCallbacks = {
           sfn: 'PTL.contact.onSubmit',
           efn: 'PTL.contact.onError',
         };
@@ -135,8 +135,8 @@ var contact = {
   /* Injects a form validation error next to the input it failed to
    * validate */
   validationError: function (fieldName, msgs) {
-    var $field = $('#id_' + fieldName),
-        errorList = ['<ul class="errorlist">'];
+    var $field = $('#id_' + fieldName);
+    var errorList = ['<ul class="errorlist">'];
     for (var i=0; i<msgs.length; i++) {
       errorList.push(['<li>', msgs[i], '</li>'].join(''));
     }

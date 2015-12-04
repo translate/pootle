@@ -30,13 +30,13 @@ var helpers = {
   },
 
   fixSidebarHeight: function () {
-    var $body = $('#body'),
-        bodyHeight = $body.height(),
-        bodyPadding = parseInt($body.css('padding-bottom'), 10),
-        contentAreaHeight = $('#wrapper').height() - $body.offset().top -
-                            bodyPadding,
-        sidebarHeight,
-        newHeight;
+    var $body = $('#body');
+    var bodyHeight = $body.height();
+    var bodyPadding = parseInt($body.css('padding-bottom'), 10);
+    var contentAreaHeight = $('#wrapper').height() - $body.offset().top -
+                            bodyPadding;
+    var sidebarHeight;
+    var newHeight;
 
     // Set sidebar width before measuring height of content
     $('#sidebar').css('width', '30%');
