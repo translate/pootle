@@ -474,7 +474,9 @@ def get_units(request):
 
         vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
 
-    units_qs = Unit.objects.get_for_path(pootle_path, request.profile)
+    units_qs = (
+        Unit.objects.get_for_path(pootle_path, request.profile)
+                    .order_by("store", "index"))
 
     if vfolder is not None:
         units_qs = units_qs.filter(vfolders=vfolder)
