@@ -1,5 +1,3 @@
-'use strict';
-
 
 // XXX: let's try to get rid of this at some stage
 // See http://khan.github.io/react-components/#backbone-mixin

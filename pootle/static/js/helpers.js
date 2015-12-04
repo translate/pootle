@@ -6,8 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 var $ = require('jquery');
 
 var utils = require('./utils.js');

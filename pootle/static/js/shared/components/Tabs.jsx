@@ -1,5 +1,3 @@
-'use strict';
-
 import cx from 'classnames';
 
 var React = require('react');

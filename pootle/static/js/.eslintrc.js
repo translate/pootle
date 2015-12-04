@@ -21,5 +21,6 @@ module.exports = {
     'comma-dangle': [2, 'always-multiline'],
     'comma-spacing': [2, {'before': false, 'after': true}],
     'quotes': [2, 'single', 'avoid-escape'],
+    'strict': [2, 'never'],
   },
 };

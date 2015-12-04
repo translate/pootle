@@ -6,8 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 import cx from 'classnames';
 
 var React = require('react');

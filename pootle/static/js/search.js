@@ -6,8 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 import $ from 'jquery';
 import assign from 'object-assign';
 import 'shortcut';

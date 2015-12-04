@@ -6,8 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-'use strict';
-
 import Backbone from 'backbone';
 import React from 'react';
 
