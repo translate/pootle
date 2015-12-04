@@ -234,14 +234,6 @@ def stringcount(string):
 
 class UnitManager(models.Manager):
 
-    def get_queryset(self):
-        """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return (
-            super(UnitManager, self).get_queryset().select_related(
-                'store', 'submitted_by', 'commented_by', 'reviewed_by',
-            )
-        )
-
     def live(self):
         """Filters non-obsolete units."""
         return self.filter(state__gt=OBSOLETE)
@@ -1442,8 +1434,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if hasattr(self, '_units'):
             return self._units
 
-        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index') \
-                            .select_related('store__translation_project')
+        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index')
 
     @units.setter
     def units(self, value):
