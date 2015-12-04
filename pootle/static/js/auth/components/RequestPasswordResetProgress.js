@@ -20,7 +20,7 @@ const RequestPasswordResetProgress = React.createClass({
   },
 
   render() {
-    let sendingMsg = interpolate(gettext('Sending email to %s...'),
+    const sendingMsg = interpolate(gettext('Sending email to %s...'),
                                    [this.props.email]);
     return <AuthProgress msg={sendingMsg} />;
   },

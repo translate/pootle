@@ -58,7 +58,7 @@ const SignInForm = React.createClass({
 
   handleFormSubmit(e) {
     e.preventDefault();
-    let nextURL = window.location.pathname + window.location.hash;
+    const nextURL = window.location.pathname + window.location.hash;
     this.props.dispatch(signIn(this.state.formData, nextURL));
   },
 
@@ -66,7 +66,7 @@ const SignInForm = React.createClass({
   /* Others */
 
   hasData() {
-    let { formData } = this.state;
+    const { formData } = this.state;
     return formData.login !== '' && formData.password !== '';
   },
 
@@ -74,10 +74,10 @@ const SignInForm = React.createClass({
   /* Layout */
 
   render() {
-    let { errors } = this.state;
-    let { formData } = this.state;
+    const { errors } = this.state;
+    const { formData } = this.state;
 
-    let signUp = this.props.canRegister ?
+    const signUp = this.props.canRegister ?
       <a href="#" onClick={this.handleSignUp}>
         {gettext('Sign up as a new user')}
       </a> :

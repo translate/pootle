@@ -54,7 +54,7 @@ const UserProfileEdit = React.createClass({
 
   handleClose(opts) {
     opts = opts || {};
-    let forceClose = opts.forceClose || false;
+    const forceClose = opts.forceClose || false;
 
     if (this.state.isDirty && !forceClose) {
       this.setState({confirmClose: true});
@@ -88,7 +88,7 @@ const UserProfileEdit = React.createClass({
   /* Handlers */
 
   handleURL(newState) {
-    let newURL = newState.editing ? '/edit/' : '/';
+    const newURL = newState.editing ? '/edit/' : '/';
     this.props.router.navigate(newURL);
   },
 

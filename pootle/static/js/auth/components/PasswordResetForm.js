@@ -57,7 +57,7 @@ const PasswordResetForm = React.createClass({
   handleFormSubmit(e) {
     e.preventDefault();
 
-    let url = window.location.pathname;
+    const url = window.location.pathname;
     this.props.dispatch(passwordReset(this.state.formData, url));
   },
 
@@ -65,7 +65,7 @@ const PasswordResetForm = React.createClass({
   /* Others */
 
   hasData() {
-    let { formData } = this.state;
+    const { formData } = this.state;
     return (formData.password1 !== '' && formData.password2 !== '' &&
             formData.password1 === formData.password2);
   },
@@ -97,8 +97,8 @@ const PasswordResetForm = React.createClass({
       return <AuthProgress msg={gettext('Password changed, signing in...')} />;
     }
 
-    let { errors } = this.state;
-    let { formData } = this.state;
+    const { errors } = this.state;
+    const { formData } = this.state;
 
     return (
       <AuthContent>

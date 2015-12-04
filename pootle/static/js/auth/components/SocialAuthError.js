@@ -33,7 +33,7 @@ const SocialAuthError = React.createClass({
       errorMsg = gettext('An error occurred while attempting to sign in via your social account.');
     }
 
-    let errorFace = {
+    const errorFace = {
       fontSize: '400%',
       marginBottom: '0.5em',
     };

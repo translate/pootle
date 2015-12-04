@@ -20,7 +20,7 @@ const AuthProgress = React.createClass({
   },
 
   render() {
-    let msgStyle = {
+    const msgStyle = {
       textAlign: 'center',
     };
     return (

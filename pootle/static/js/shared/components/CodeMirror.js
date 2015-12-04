@@ -55,7 +55,7 @@ const CodeMirror = React.createClass({
   },
 
   render() {
-    let extraProps = {};
+    const extraProps = {};
 
     if (this.props.name) {
       extraProps.name = this.props.name;

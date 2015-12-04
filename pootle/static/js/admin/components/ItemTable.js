@@ -21,7 +21,7 @@ const ItemTable = React.createClass({
   },
 
   render() {
-    let createRow = function (item, index) {
+    const createRow = function (item, index) {
       return (
         <ItemTableRow
           fields={this.props.fields}
@@ -57,17 +57,17 @@ const ItemTableRow = React.createClass({
   },
 
   render() {
-    let { item } = this.props;
-    let { selectedItem } = this.props;
-    let { index } = this.props;
-    let values = item.toJSON();
+    const { item } = this.props;
+    const { selectedItem } = this.props;
+    const { index } = this.props;
+    const values = item.toJSON();
 
     values.index = index + 1;
-    let createColumn = function (field, i) {
+    const createColumn = function (field, i) {
       return <td key={i}>{values[field]}</td>;
     };
 
-    let classNames = cx({
+    const classNames = cx({
       'is-selected': selectedItem && item.id === selectedItem.id,
       // FIXME: this is too coupled to certain item types
       'is-disabled': item.get('disabled'),

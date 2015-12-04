@@ -39,12 +39,12 @@ const RequestPasswordResetSent = React.createClass({
       return <RequestPasswordResetProgress email={this.props.resetEmail} />;
     }
 
-    let emailLinkMsg = interpolate(
+    const emailLinkMsg = interpolate(
       gettext('We have sent an email containing the special link to <span>%s</span>'),
       [this.props.resetEmail]
     );
-    let instructionsMsg = gettext('Please follow that link to continue the password reset procedure.');
-    let resendMsg = gettext("Didn't receive an email? Check if it was accidentally filtered out as spam, or try requesting another copy of the email.");
+    const instructionsMsg = gettext('Please follow that link to continue the password reset procedure.');
+    const resendMsg = gettext("Didn't receive an email? Check if it was accidentally filtered out as spam, or try requesting another copy of the email.");
 
     return (
       <AuthContent>

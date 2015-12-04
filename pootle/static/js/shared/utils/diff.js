@@ -16,7 +16,7 @@ const dmp = new DMP();
 
 export default function diff(a, b) {
   const diff = dmp.diff_main(a, b);
-  let html = [];
+  const html = [];
 
   dmp.diff_cleanupSemantic(diff);
 

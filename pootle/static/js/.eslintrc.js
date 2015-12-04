@@ -24,6 +24,7 @@ module.exports = {
     'no-multi-spaces': 2,
     'no-unused-vars': [2, {'vars': 'local', 'args': 'after-used'}],
     'one-var': [2, 'never'],
+    'prefer-const': 2,
     'quotes': [2, 'single', 'avoid-escape'],
     'semi': [2, 'always'],
     'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }],

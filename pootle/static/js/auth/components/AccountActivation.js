@@ -37,8 +37,8 @@ const AccountActivation = React.createClass({
       );
     }
 
-    let activationWarningMsg = gettext('Your account needs activation.');
-    let instructionsMsg = gettext('Please follow that link to continue the account creation.');
+    const activationWarningMsg = gettext('Your account needs activation.');
+    const instructionsMsg = gettext('Please follow that link to continue the account creation.');
 
     return (
       <AuthContent>

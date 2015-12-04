@@ -60,7 +60,7 @@ const Auth = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.redirectTo !== null) {
-      let currentLocation = window.location.pathname + window.location.hash;
+      const currentLocation = window.location.pathname + window.location.hash;
       if (currentLocation !== nextProps.redirectTo) {
         window.location = nextProps.redirectTo;
       } else {
@@ -76,7 +76,7 @@ const Auth = React.createClass({
     // FIXME: use react-router
     switch (screenName) {
       case 'signIn':
-        let hasSocialAuth = props.socialAuthProviders.length !== 0;
+        const hasSocialAuth = props.socialAuthProviders.length !== 0;
         return {
           title: hasSocialAuth ? gettext('Sign In With...') : gettext('Sign In'),
           content: SignInPanel,
@@ -149,8 +149,8 @@ const Auth = React.createClass({
   },
 
   render() {
-    let currentScreen = this.getScreen(this.props.screen, this.props);
-    let ContentComponent = currentScreen.content;
+    const currentScreen = this.getScreen(this.props.screen, this.props);
+    const ContentComponent = currentScreen.content;
 
     return (
       <AuthWindow

@@ -60,7 +60,7 @@ const SignUpForm = React.createClass({
   /* Others */
 
   hasData() {
-    let { formData } = this.state;
+    const { formData } = this.state;
     return (formData.username !== '' && formData.email !== '' &&
             formData.password1 !== '' && formData.password2 !== '');
   },
@@ -69,8 +69,8 @@ const SignUpForm = React.createClass({
   /* Layout */
 
   render() {
-    let { errors } = this.state;
-    let { formData } = this.state;
+    const { errors } = this.state;
+    const { formData } = this.state;
 
     return (
       <form

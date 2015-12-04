@@ -52,7 +52,7 @@ const SignInPanel = React.createClass({
       );
     }
 
-    let initialTabIndex = parseInt(cookie(SIGNIN_TAB_COOKIE_NAME), 10) || 0;
+    const initialTabIndex = parseInt(cookie(SIGNIN_TAB_COOKIE_NAME), 10) || 0;
 
     return (
       <Tabs onChange={this.handleChange} initialTab={initialTabIndex}>

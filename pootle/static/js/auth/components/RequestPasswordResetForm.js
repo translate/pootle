@@ -78,8 +78,8 @@ const RequestPasswordResetForm = React.createClass({
       return <RequestPasswordResetProgress email={this.state.formData.email} />;
     }
 
-    let { errors } = this.state;
-    let { formData } = this.state;
+    const { errors } = this.state;
+    const { formData } = this.state;
 
     return (
       <AuthContent>

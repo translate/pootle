@@ -16,7 +16,7 @@ import cookie from 'utils/cookie';
 const SEARCH_COOKIE_NAME = 'pootle-search';
 
 
-let search = {
+const search = {
 
   init(options) {
     var that = this;
@@ -104,7 +104,7 @@ let search = {
 
   /* Builds search query hash string */
   buildSearchQuery() {
-    let {searchText, searchFields, searchOptions } = this.state;
+    const { searchText, searchFields, searchOptions } = this.state;
     let query = encodeURIComponent(searchText);
 
     // If any options have been chosen, append them to the resulting URL
@@ -117,7 +117,7 @@ let search = {
 
     if (searchFields.length || searchOptions.length) {
       // Remember field selection in a cookie
-      let cookieData = {};
+      const cookieData = {};
       if (searchFields.length) {
         cookieData.sfields = searchFields;
       }
@@ -134,9 +134,9 @@ let search = {
   handleSearch(e) {
     e.preventDefault();
 
-    let searchText = this.$input.val();
+    const searchText = this.$input.val();
+    const searchOptions = [];
     let searchFields = [];
-    let searchOptions = [];
 
     this.$fields.find('input:checked').each(function () {
       searchFields.push($(this).val());
@@ -163,7 +163,7 @@ let search = {
       return false;
     }
 
-    let hash = '#search=' + this.buildSearchQuery();
+    const hash = '#search=' + this.buildSearchQuery();
     window.location = this.$form[0].action + hash;
 
     return false;
@@ -171,7 +171,7 @@ let search = {
 
   updateUI() {
     this.$input.val(this.state.searchText).focus();
-    let { searchFields, searchOptions } = this.state;
+    const { searchFields, searchOptions } = this.state;
 
     this.$fields.find('input').each(function () {
       $(this).prop('checked', searchFields.indexOf(this.value) !== -1);

@@ -41,9 +41,9 @@ const LanguageForm = React.createClass({
   /* Layout */
 
   render() {
-    let model = this.getResource();
-    let { errors } = this.state;
-    let { formData } = this.state;
+    const model = this.getResource();
+    const { errors } = this.state;
+    const { formData } = this.state;
 
     return (
       <form method="post"

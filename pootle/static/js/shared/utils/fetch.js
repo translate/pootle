@@ -9,7 +9,7 @@
 import $ from 'jquery';
 
 
-let requests = {};
+const requests = {};
 
 
 function fetch({ url, body, method = 'GET', dataType = 'json', queue = null,

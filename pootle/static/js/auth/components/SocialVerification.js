@@ -71,10 +71,10 @@ const SocialVerification = React.createClass({
       return <AuthProgress msg={gettext('Signed in. Redirecting...')} />;
     }
 
-    let { errors } = this.state;
-    let { formData } = this.state;
+    const { errors } = this.state;
+    const { formData } = this.state;
 
-    let verificationMsg = interpolate(
+    const verificationMsg = interpolate(
       gettext('We found a user with <span>%s</span> email in our system. Please provide the password to finish the sign in procedure. This is a one-off procedure, which will establish a link between your Pootle and %s accounts.'),
       [this.props.email, this.props.providerName]
     );

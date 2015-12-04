@@ -111,8 +111,8 @@ const AdminController = React.createClass({
   /* Handlers */
 
   handleURL(newState) {
-    let { router } = this.props;
-    let query = newState.searchQuery;
+    const { router } = this.props;
+    const query = newState.searchQuery;
     let newURL;
 
     if (newState.selectedItem) {

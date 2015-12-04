@@ -55,8 +55,8 @@ const Search = React.createClass({
   /* Layout */
 
   render() {
-    let { isLoading } = this.state;
-    let { items } = this.props;
+    const { isLoading } = this.state;
+    const { items } = this.props;
     let loadMoreBtn;
 
     if (items.count > 0 && items.length < items.count) {
@@ -65,7 +65,7 @@ const Search = React.createClass({
                     </button>;
     }
 
-    let resultsClassNames = cx({
+    const resultsClassNames = cx({
       'search-results': true,
       'loading': isLoading,
     });
@@ -141,7 +141,7 @@ const SearchBox = React.createClass({
   /* Handlers */
 
   handleKeyUp(e) {
-    let key = e.nativeEvent.keyCode;
+    const key = e.nativeEvent.keyCode;
     if (key === 27) {
       React.findDOMNode(this.refs.input).blur();
     }

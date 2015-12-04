@@ -52,7 +52,7 @@ const sortSelectOpts = assign({
 }, filterSelectOpts);
 
 
-let mtProviders = [];
+const mtProviders = [];
 
 
 function _refreshChecksSnippet(newChecks) {
@@ -431,7 +431,7 @@ PTL.editor = {
         // filters, would override them
         this.filter = 'search';
 
-        let newState = {
+        const newState = {
           searchText: params.search,
         };
 
@@ -620,7 +620,7 @@ PTL.editor = {
       this.goFuzzy();
       // Place cursor at start of target text
       this.cpRE.exec($(active).val());
-      let i = this.cpRE.lastIndex;
+      const i = this.cpRE.lastIndex;
       $(active).caret(i, i);
       this.cpRE.lastIndex = 0;
     }
@@ -1050,7 +1050,7 @@ PTL.editor = {
 
 
     if (this.filter === 'search') {
-      let {searchText, searchFields, searchOptions} = search.state;
+      const { searchText, searchFields, searchOptions } = search.state;
       reqData.search = searchText;
       reqData.sfields = searchFields;
       reqData.soptions = searchOptions;
@@ -1107,7 +1107,7 @@ PTL.editor = {
     const unitGroups = this.getUnitGroups();
     const currentUnit = this.units.getCurrent();
 
-    let rows = [];
+    const rows = [];
 
     unitGroups.forEach((unitGroup) => {
       // Don't display a delimiter row if all units have the same origin
@@ -1120,7 +1120,7 @@ PTL.editor = {
       }
 
       for (let i = 0; i < unitGroup.units.length; i++) {
-        let unit = unitGroup.units[i];
+        const unit = unitGroup.units[i];
 
         if (unit.id === currentUnit.id) {
           rows.push(this.renderEditorRow(unit));
@@ -1251,7 +1251,7 @@ PTL.editor = {
 
   /* Fetches more units in case they are needed */
   fetchUnits: function ({ initial = false, uId = 0 } = {}) {
-    let reqData = {
+    const reqData = {
       path: this.settings.pootlePath,
     };
 
@@ -1318,7 +1318,7 @@ PTL.editor = {
 
     for (let i = 0; i < unitGroups.length; i++) {
       const unitGroup = unitGroups[i];
-      for (let pootlePath in unitGroup) {
+      for (const pootlePath in unitGroup) {
         const group = unitGroup[pootlePath];
         const store = assign({ pootlePath: pootlePath }, group.meta);
         const units = group.units.map((unit) => assign(unit, { store }));
@@ -1347,7 +1347,7 @@ PTL.editor = {
 
     this.fetchUnits();
 
-    let body = {};
+    const body = {};
     this.settings.vFolder && (body.vfolder = this.settings.vFolder);
 
     UnitAPI.fetchUnit(newUnit.id, body)
@@ -1375,7 +1375,7 @@ PTL.editor = {
       efn: 'PTL.editor.error',
     };
 
-    let body = $('#translate').serializeObject();
+    const body = $('#translate').serializeObject();
 
     this.updateUnitDefaultProperties();
 
@@ -1420,7 +1420,7 @@ PTL.editor = {
     unit.setTranslation(translations);
     unit.set('isfuzzy', this.isFuzzy());
 
-    let hasCriticalChecks = !!data.checks;
+    const hasCriticalChecks = !!data.checks;
     $('.translate-container').toggleClass('error', hasCriticalChecks);
 
     if (data.user_score) {
@@ -1441,7 +1441,7 @@ PTL.editor = {
       efn: 'PTL.editor.error',
     };
 
-    let body = $('#translate').serializeObject();
+    const body = $('#translate').serializeObject();
 
     this.updateUnitDefaultProperties();
 
@@ -1643,7 +1643,7 @@ PTL.editor = {
     const sortBy = this.$filterSortBy.val();
     const user = this.user || null;
 
-    let newHash = { filter: filterBy };
+    const newHash = { filter: filterBy };
 
     if (this.category.length) {
       newHash.category = this.category;
@@ -1813,7 +1813,7 @@ PTL.editor = {
     var newHash;
 
     if (searchText) {
-      let queryString = this.buildSearchQuery();
+      const queryString = this.buildSearchQuery();
       newHash = 'search=' + queryString;
     } else {
       newHash = utils.updateHashPart('filter', 'all', ['search', 'sfields', 'soptions']);

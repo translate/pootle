@@ -21,7 +21,7 @@ const SocialSignInForm = React.createClass({
   /* Handlers */
 
   handleClick(url) {
-    let nextURL = window.location.pathname + window.location.hash;
+    const nextURL = window.location.pathname + window.location.hash;
     window.location = `${url}?next=${encodeURIComponent(nextURL)}`;
   },
 
@@ -41,7 +41,7 @@ const SocialSignInForm = React.createClass({
   },
 
   render() {
-    let signInWarningMsg = gettext('Signing in with an external service for the first time will automatically create an account for you.');
+    const signInWarningMsg = gettext('Signing in with an external service for the first time will automatically create an account for you.');
 
     return (
       <div className="actions sign-in-social">

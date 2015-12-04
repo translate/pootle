@@ -12,7 +12,7 @@ require('jquery-magnific-popup');
 require('jquery-serializeObject');
 require('jquery-utils');
 
-let { updateInputState } = require('./helpers');
+const { updateInputState } = require('./helpers');
 
 
 var agreement = {
