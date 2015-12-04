@@ -29,7 +29,7 @@ var User = Backbone.Model.extend({
     'twitter': '',
     'linkedin': '',
     'website': '',
-    'bio': ''
+    'bio': '',
   },
 
   initialize: function (args, opts) {
@@ -62,7 +62,8 @@ var User = Backbone.Model.extend({
 
   isMeta: function () {
     return metaUsers.indexOf(this.get('username')) !== -1;
-  }
+  },
+
 });
 
 
@@ -78,5 +79,5 @@ var UserSet = Backbone.Collection.extend(
 
 module.exports = {
   User: User,
-  UserSet: UserSet
+  UserSet: UserSet,
 };

@@ -22,7 +22,7 @@ const AdminController = React.createClass({
       items: new this.props.adminModule.collection(),
       selectedItem: null,
       searchQuery: '',
-      view: 'edit'
+      view: 'edit',
     };
   },
 
@@ -95,7 +95,7 @@ const AdminController = React.createClass({
     this.handleSelectItem(item);
     msg.show({
       text: gettext('Saved successfully.'),
-      level: 'success'
+      level: 'success',
     });
   },
 
@@ -103,7 +103,7 @@ const AdminController = React.createClass({
     this.setState({selectedItem: null});
     msg.show({
       text: gettext('Deleted successfully.'),
-      level: 'danger'
+      level: 'danger',
     });
   },
 
@@ -157,7 +157,7 @@ const AdminController = React.createClass({
         <this.props.adminModule.Controller {...props} />
       </div>
     );
-  }
+  },
 
 });
 

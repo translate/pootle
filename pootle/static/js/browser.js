@@ -20,7 +20,7 @@ var sel = {
   navigation: '#js-select-navigation',
   language: '#js-select-language',
   project: '#js-select-project',
-  resource: '#js-select-resource'
+  resource: '#js-select-resource',
 };
 
 
@@ -39,7 +39,7 @@ var makeNavDropdown = function (selector, opts) {
       allowClear: true,
       dropdownAutoWidth: true,
       dropdownCssClass: 'breadcrumb-dropdown',
-      width: 'off'
+      width: 'off',
     },
     opts = $.extend({}, defaults, opts);
 
@@ -128,7 +128,7 @@ var formatResource = function (path, container, query) {
     '<span class="', $el.data('icon'), '">',
       '<i class="icon-', $el.data('icon'), '"></i>',
       '<span class="text">', t, '</span>',
-    '</span>'
+    '</span>',
   ].join('');
 };
 
@@ -156,10 +156,10 @@ var browser = {
     $(window).on('pageshow', fixDropdowns);
 
     makeNavDropdown(sel.navigation, {
-      minimumResultsForSearch: -1
+      minimumResultsForSearch: -1,
     });
     makeNavDropdown(sel.language, {
-      placeholder: gettext('All Languages')
+      placeholder: gettext('All Languages'),
     });
     makeNavDropdown(sel.project, {
       placeholder: gettext('All Projects'),
@@ -168,7 +168,7 @@ var browser = {
     makeNavDropdown(sel.resource, {
       placeholder: gettext('Entire Project'),
       formatResult: formatResource,
-      sortResults: removeCtxEntries
+      sortResults: removeCtxEntries,
     });
 
     /* Adjust breadcrumb layout on window resize */
@@ -237,7 +237,7 @@ var browser = {
     }
 
     window.location.href = newUrl;
-  }
+  },
 
 };
 

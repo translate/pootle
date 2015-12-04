@@ -45,10 +45,10 @@ const CTX_STEP = 1;
 
 const filterSelectOpts = {
   dropdownAutoWidth: true,
-  width: 'off'
+  width: 'off',
 };
 const sortSelectOpts = assign({
-  minimumResultsForSearch: -1
+  minimumResultsForSearch: -1,
 }, filterSelectOpts);
 
 
@@ -75,7 +75,7 @@ PTL.editor = {
 
     /* Default settings */
     this.settings = {
-      mt: []
+      mt: [],
     };
 
     options && assign(this.settings, options);
@@ -97,7 +97,7 @@ PTL.editor = {
 
     /* Initialize variables */
     this.units = new UnitSet([], {
-      chunkSize: this.settings.chunkSize
+      chunkSize: this.settings.chunkSize,
     });
     this.editorRow = null;
 
@@ -134,7 +134,7 @@ PTL.editor = {
 
     /* Initialize search */
     search.init({
-      onSearch: this.onSearch
+      onSearch: this.onSearch,
     });
 
     /* Select2 */
@@ -148,8 +148,8 @@ PTL.editor = {
       $(this).magnificPopup({
         type: 'image',
         gallery: {
-          enabled: true
-        }
+          enabled: true,
+        },
       }).magnificPopup('open');
     });
 
@@ -195,7 +195,7 @@ PTL.editor = {
     $(document).on('click', '.js-copyoriginal', (e) => {
       const uId = e.currentTarget.dataset.uid;
       const sources = [
-        ...document.querySelectorAll(`#js-unit-${uId} .js-translation-text`)
+        ...document.querySelectorAll(`#js-unit-${uId} .js-translation-text`),
       ].map((el) => el.textContent);
       this.copyOriginal(sources);
     });
@@ -560,13 +560,13 @@ PTL.editor = {
       notes: 'div.developer-comments',
       locations: 'div.translate-locations',
       source: 'td.translate-original, .original .js-translation-text',
-      target: 'td.translate-translation'
+      target: 'td.translate-translation',
     };
 
     // Build highlighting selector based on chosen search fields
     const sel = searchFields.map((fieldName) => [
       `tr.edit-row ${selMap[fieldName]}`,
-      `tr.view-row ${selMap[fieldName]}`
+      `tr.view-row ${selMap[fieldName]}`,
     ]).reduce((a, b) => a.concat(b), []);
 
     let hlRegex;
@@ -819,7 +819,7 @@ PTL.editor = {
     var currentUnit = this.units.getCurrent();
     return {
       similarity: currentUnit.get('similarityHuman'),
-      mt_similarity: currentUnit.get('similarityMT')
+      mt_similarity: currentUnit.get('similarityMT'),
     };
   },
 
@@ -842,7 +842,7 @@ PTL.editor = {
 
     return {
       max: maxSimilarity,
-      boxId: boxId
+      boxId: boxId,
     };
   },
 
@@ -881,7 +881,7 @@ PTL.editor = {
 
     currentUnit.set({
       similarityHuman: simHuman.max,
-      similarityMT: simMT.max
+      similarityMT: simMT.max,
     });
 
     similarity = (simHuman.max > simMT.max) ? simHuman : simMT;
@@ -1180,7 +1180,7 @@ PTL.editor = {
       } else {
         out.push({
           path: pootlePath,
-          units: [unit]
+          units: [unit],
         });
       }
 
@@ -1434,7 +1434,7 @@ PTL.editor = {
   handleSuggest: function () {
     const captchaCallbacks = {
       sfn: 'PTL.editor.processSuggestion',
-      efn: 'PTL.editor.error'
+      efn: 'PTL.editor.error',
     };
 
     let body = $('#translate').serializeObject();
@@ -1587,7 +1587,7 @@ PTL.editor = {
       var sortBy = this.$filterSortBy.val(),
           newHash = {
             filter: 'checks',
-            checks: filterChecks
+            checks: filterChecks,
           };
 
       sortBy !== 'default' && (newHash.sort = sortBy);
@@ -2017,7 +2017,7 @@ PTL.editor = {
                       .slideDown(1000, 'easeOutQuad');
         }
       },
-      error: PTL.editor.error
+      error: PTL.editor.error,
     });
   },
 

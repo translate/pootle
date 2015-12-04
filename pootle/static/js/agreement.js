@@ -32,7 +32,7 @@ var agreement = {
     $.magnificPopup.open({
       items: {
         src: this.url,
-        type: 'ajax'
+        type: 'ajax',
       },
       callbacks: {
         parseAjax: function (mfpResponse) {
@@ -40,9 +40,9 @@ var agreement = {
         },
         ajaxContentAdded: function () {
           updateInputState('.js-legalfield', '.js-agreement-continue');
-        }
+        },
       },
-      modal: true
+      modal: true,
     });
   },
 
@@ -56,12 +56,12 @@ var agreement = {
     $.magnificPopup.open({
       items: {
         src: url,
-        type: 'ajax'
+        type: 'ajax',
       },
       callbacks: {
-        afterClose: that.display.bind(that)
+        afterClose: that.display.bind(that),
       },
-      mainClass: 'popup-ajax'
+      mainClass: 'popup-ajax',
     });
   },
 
@@ -88,9 +88,9 @@ var agreement = {
           var form = $.parseJSON(xhr.responseText).form;
           $agreementBox.parent().html(form);
         }
-      }
+      },
     });
-  }
+  },
 
 };
 

@@ -30,7 +30,7 @@ PTL.user = {
       const props = {
         router: new UserProfileRouter(),
         appRoot: opts.appRoot,
-        user: user
+        user: user,
       };
       React.render(<UserProfileEdit {...props} />, editButton);
 
@@ -67,5 +67,6 @@ PTL.user = {
       username: data.username,
     };
     React.render(<UserEvent {...props} />, lastActivity);
-  }
+  },
+
 };

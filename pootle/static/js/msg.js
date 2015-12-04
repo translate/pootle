@@ -16,13 +16,13 @@ var Message = Backbone.Model.extend({
   defaults: {
     text: '',
     level: 'info',
-    language: 'en'
-  }
+    language: 'en',
+  },
 });
 
 
 var MessageList = Backbone.Collection.extend({
-  model: Message
+  model: Message,
 });
 
 
@@ -67,7 +67,7 @@ var MessageListView = Backbone.View.extend({
     currentView.$el.fadeOut(3500, function () {
       currentView.remove();
     });
-  }
+  },
 
 });
 
@@ -89,7 +89,7 @@ var msg = {
     window.setTimeout(function () {
       messages.remove(msg);
     }, 2000);
-  }
+  },
 
 };
 

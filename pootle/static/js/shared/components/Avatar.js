@@ -62,7 +62,7 @@ const Avatar = React.createClass({
     }
 
     return icon;
-  }
+  },
 
 });
 

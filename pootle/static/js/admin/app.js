@@ -41,6 +41,6 @@ PTL.admin = {
       />,
       document.querySelector('.js-admin-app')
     );
-  }
+  },
 
 };

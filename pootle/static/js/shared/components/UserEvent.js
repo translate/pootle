@@ -123,7 +123,7 @@ const UserEvent = React.createClass({
         />
       </div>
     );
-  }
+  },
 
 });
 

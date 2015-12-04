@@ -14,17 +14,17 @@ var Backbone = require('backbone');
 
 var sel = {
   data: {
-    toggle: '[data-action="toggle"]'
+    toggle: '[data-action="toggle"]',
   },
   target: '.dropdown-menu',
   targetItems : 'li:not(.menu-divider) a',
-  open: 'show-dropdown'
+  open: 'show-dropdown',
 };
 
 var keys = {
   ESC: 27,
   UP: 38,
-  DOWN: 40
+  DOWN: 40,
 };
 
 
@@ -32,7 +32,7 @@ var DropdownView = Backbone.View.extend({
 
   events: function () {
     var events = {
-      'keydown': 'onKey'
+      'keydown': 'onKey',
     };
     events['click ' + sel.data.toggle] = 'toggle';
 
@@ -108,7 +108,7 @@ var DropdownView = Backbone.View.extend({
     } else {
       this.$toggle.blur();
     }
-  }
+  },
 
 });
 
@@ -118,7 +118,7 @@ var dropdown = {
   init: function (el) {
     el = el instanceof $ ? el : $(el);
     return new DropdownView({el: el});
-  }
+  },
 
 };
 

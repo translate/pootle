@@ -25,7 +25,7 @@ var Score = Backbone.Model.extend({
     if (value % 1 !== 0) {
       return 'Not an integer';
     }
-  }
+  },
 });
 
 
@@ -54,7 +54,8 @@ var ScoreView = Backbone.View.extend({
   render: function () {
     this.$el.text(this.model.get('value'));
     return this;
-  }
+  },
+
 });
 
 

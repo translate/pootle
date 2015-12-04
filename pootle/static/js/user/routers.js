@@ -15,8 +15,8 @@ var UserProfileRouter = Backbone.Router.extend({
 
   routes: {
     '': 'main',
-    'edit(/)': 'edit'
-  }
+    'edit(/)': 'edit',
+  },
 
 });
 

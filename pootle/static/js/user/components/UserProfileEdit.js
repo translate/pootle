@@ -24,7 +24,7 @@ const UserProfileEdit = React.createClass({
     return {
       editing: false,
       confirmClose: false,
-      isDirty: false
+      isDirty: false,
     };
   },
 
@@ -64,7 +64,7 @@ const UserProfileEdit = React.createClass({
       this.setState({
         editing: false,
         confirmClose: false,
-        isDirty: false
+        isDirty: false,
       });
     }
   },
@@ -129,7 +129,7 @@ const UserProfileEdit = React.createClass({
         </Dialog>}
       </div>
     );
-  }
+  },
 
 });
 

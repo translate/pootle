@@ -37,7 +37,7 @@ function slideTable(event) {
     },
     error: function () {
       $(document).on('click', '.slide', slideTable);
-    }
+    },
   });
 }
 

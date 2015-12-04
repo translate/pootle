@@ -98,7 +98,7 @@ var fancyEscape = function (text) {
             '\t': escapeHl.replace(/%s/, '\\t'),
             '&': '&amp;',
             '<': '&lt;',
-            '>': '&gt;'
+            '>': '&gt;',
           };
 
       replaced = submap[match];

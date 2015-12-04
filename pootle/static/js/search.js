@@ -182,7 +182,7 @@ let search = {
     this.$options.find('input').each(function () {
       $(this).prop('checked', searchOptions.indexOf(this.value) !== -1);
     });
-  }
+  },
 
 };
 

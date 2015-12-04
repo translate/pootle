@@ -124,7 +124,7 @@ const RequestPasswordResetForm = React.createClass({
         </form>
       </AuthContent>
     );
-  }
+  },
 
 });
 

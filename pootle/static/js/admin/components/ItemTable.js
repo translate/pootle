@@ -41,7 +41,7 @@ const ItemTable = React.createClass({
         </tbody>
       </table>
     );
-  }
+  },
 
 });
 

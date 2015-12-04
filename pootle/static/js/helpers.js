@@ -65,7 +65,7 @@ var helpers = {
         updateInputState($checkbox, $input);
       });
     }
-  }
+  },
 
 };
 

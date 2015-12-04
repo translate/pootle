@@ -47,7 +47,7 @@ Spinner.defaults = {
   className: 'spinner',
   top: 'auto',
   left: 'auto',
-  position: 'relative'
+  position: 'relative',
 };
 
 
@@ -100,12 +100,12 @@ PTL.common = {
       fade: true,
       delayIn: 750,
       opacity: 1,
-      live: '[title], [original-title]'
+      live: '[title], [original-title]',
     });
     setInterval($.fn.tipsy.revalidate, 1000);
 
     $('.js-select2').select2({
-      width: 'resolve'
+      width: 'resolve',
     });
 
     // Set CSRF token for XHR requests (jQuery-specific)
@@ -116,7 +116,7 @@ PTL.common = {
         if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
           xhr.setRequestHeader('X-CSRFToken', cookie('csrftoken'));
         }
-      }
+      },
     });
 
     /* Collapsing functionality */
@@ -148,7 +148,7 @@ PTL.common = {
     $(document).magnificPopup({
       type: 'ajax',
       delegate: '.js-popup-ajax',
-      mainClass: 'popup-ajax'
+      mainClass: 'popup-ajax',
     });
 
     /* Generic toggle */
@@ -189,6 +189,6 @@ PTL.common = {
         }
       });
     });
-  }
+  },
 
 };

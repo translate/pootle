@@ -19,14 +19,14 @@ var sel = {
     target: '[data-action="contact"]',
     subjectPrefix: 'subject-prefix',
     subject: 'subject',
-    body: 'body'
+    body: 'body',
   },
   trigger: '.js-contact',
   wrapper: '#js-contact',
   form: '#js-contact form',
   formSent: '#js-sent',
   subject: '#js-contact #id_subject',
-  body: '#js-contact #id_body'
+  body: '#js-contact #id_body',
 };
 
 
@@ -72,7 +72,7 @@ var contact = {
     $.magnificPopup.open({
       items: {
         src: contactUrl,
-        type: 'ajax'
+        type: 'ajax',
       },
       callbacks: {
         ajaxContentAdded: function () {
@@ -82,9 +82,9 @@ var contact = {
 
           newSubject.length && $(sel.subject).val(newSubject.join(''));
           opts.body && $(sel.body).val(opts.body);
-        }
+        },
       },
-      mainClass: 'popup-ajax'
+      mainClass: 'popup-ajax',
     });
   },
 
@@ -96,7 +96,7 @@ var contact = {
         data = $form.serializeObject(),
         captchaCallbacks = {
           sfn: 'PTL.contact.onSubmit',
-          efn: 'PTL.contact.onError'
+          efn: 'PTL.contact.onError',
         };
     $.extend(data, captchaCallbacks);
 
@@ -145,7 +145,7 @@ var contact = {
     errorList.push(['</ul>']);
 
     $field.after(errorList.join(''));
-  }
+  },
 
 };
 

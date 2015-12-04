@@ -118,7 +118,7 @@ PTL.reports = {
       error: function (xhr, s) {
         $('body').spin(false);
         alert('Error status: ' + xhr.status);
-      }
+      },
     });
     return false;
   },
@@ -141,7 +141,7 @@ PTL.reports = {
       },
       error: function (xhr, s) {
         alert('Error status: ' + xhr.status);
-      }
+      },
     });
     return false;
   },
@@ -156,7 +156,7 @@ PTL.reports = {
       },
       error: function (xhr, s) {
         alert('Error status: ' + xhr.status);
-      }
+      },
     });
     return false;
   },
@@ -270,7 +270,7 @@ PTL.reports = {
           bars: {
             show: true,
             barWidth: 1000*60*60*24,
-            align: 'center'
+            align: 'center',
           },
         },
         xaxis: {
@@ -281,7 +281,7 @@ PTL.reports = {
             timeformat: '%b %d, %a',
         },
         yaxis: {
-            max: PTL.reports.dailyData.max_day_score
+            max: PTL.reports.dailyData.max_day_score,
         },
         colors: ['#66bb66', '#99ccff', '#ffcc33'],
       }
@@ -370,7 +370,7 @@ PTL.reports = {
   buildResults: function () {
     var reqData = {
       month: PTL.reports.month.format('YYYY-MM'),
-      username: PTL.reports.userName
+      username: PTL.reports.userName,
     };
 
     $('body').spin();
@@ -468,7 +468,7 @@ PTL.reports = {
       error: function (xhr, s) {
         alert('Error status: ' + $.parseJSON(xhr.responseText));
         $('body').spin(false);
-      }
+      },
     });
   },
 
@@ -488,21 +488,21 @@ PTL.reports = {
             m1.format('MMMM D'),
             ' &mdash; ',
             m2.date(),
-            showYear ? m2.format(', YYYY') : ''
+            showYear ? m2.format(', YYYY') : '',
           ].join('');
         }
       } else {
         return [
           m1.format('MMMM D'),
           ' &mdash; ',
-          m2.format(showYear ? 'MMMM D, YYYY' : 'MMMM D')
+          m2.format(showYear ? 'MMMM D, YYYY' : 'MMMM D'),
         ].join('');
       }
     } else {
       return [
         m1.format('MMMM D, YYYY'),
         ' &mdash; ',
-        m2.format('MMMM D, YYYY')
+        m2.format('MMMM D, YYYY'),
       ].join('');
     }
   },

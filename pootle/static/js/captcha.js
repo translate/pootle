@@ -22,9 +22,9 @@ var display = function (html) {
   $.magnificPopup.open({
     items: {
       src: html,
-      type: 'inline'
+      type: 'inline',
     },
-    focus: '#id_captcha_answer'
+    focus: '#id_captcha_answer',
   });
 };
 
@@ -47,7 +47,7 @@ var onSubmit = function (e) {
     },
     error: function (xhr) {
       onError(xhr, errorFn);
-    }
+    },
   });
 };
 
