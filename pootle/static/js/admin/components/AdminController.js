@@ -35,7 +35,7 @@ const AdminController = React.createClass({
       this.handleSearch(searchQuery);
     });
 
-    router.on('route:edit', (id, qs) => {
+    router.on('route:edit', (id) => {
       var Model = this.props.adminModule.model;
       var item = new Model({id: id});
       this.handleSelectItem(item);

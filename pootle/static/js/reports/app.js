@@ -53,7 +53,7 @@ PTL.reports = {
     });
 
     if (PTL.reports.adminReport) {
-      $(document).on('change', '#reports-user', function (e) {
+      $(document).on('change', '#reports-user', function () {
         PTL.reports.userName = $('#reports-user').val();
         PTL.reports.update();
       });
@@ -113,7 +113,7 @@ PTL.reports = {
         $('#id_effective_from').val('');
         $('body').spin(false);
       },
-      error: function (xhr, s) {
+      error: function (xhr) {
         $('body').spin(false);
         alert('Error status: ' + xhr.status);
       },
@@ -137,7 +137,7 @@ PTL.reports = {
           PTL.reports.buildResults();
         }
       },
-      error: function (xhr, s) {
+      error: function (xhr) {
         alert('Error status: ' + xhr.status);
       },
     });
@@ -149,23 +149,23 @@ PTL.reports = {
       url: PTL.reports.removePaidTaskUrl + $(this).data('id'),
       type: 'DELETE',
       dataType: 'json',
-      success: function (data) {
+      success: function () {
         PTL.reports.buildResults();
       },
-      error: function (xhr, s) {
+      error: function (xhr) {
         alert('Error status: ' + xhr.status);
       },
     });
     return false;
   },
 
-  refreshCurrency: function (e) {
+  refreshCurrency: function () {
     var currency = $(this).val();
     $('#user-rates-form .currency').text(currency);
     $('#paid-task-form .currency').text(currency);
   },
 
-  onPaidTaskTypeChange: function (e) {
+  onPaidTaskTypeChange: function () {
     var taskType = parseInt($(this).val(), 10);
 
     PTL.reports.refreshAmountMeasureUnits(taskType);
@@ -173,7 +173,7 @@ PTL.reports = {
     $('#paid-task-form .currency').text(PTL.reports.user.currency);
   },
 
-  roundAmount: function (e) {
+  roundAmount: function () {
     var $this = $(this);
     var amount = $this.val();
     var taskType = parseInt($('#id_task_type').val(), 10);
@@ -190,7 +190,7 @@ PTL.reports = {
     }
   },
 
-  addPaidTaskValidate: function (e) {
+  addPaidTaskValidate: function () {
     setTimeout(function () {
       var amount = $('#id_amount').val();
       var description = $('#id_description').val();
@@ -465,7 +465,7 @@ PTL.reports = {
         }
         $('body').spin(false);
       },
-      error: function (xhr, s) {
+      error: function (xhr) {
         alert('Error status: ' + $.parseJSON(xhr.responseText));
         $('body').spin(false);
       },
@@ -473,7 +473,6 @@ PTL.reports = {
   },
 
   dateRangeString: function (d1, d2, showYear) {
-    var res = '';
     var m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss');
     var m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
 

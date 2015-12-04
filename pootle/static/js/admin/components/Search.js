@@ -43,7 +43,7 @@ const Search = React.createClass({
     this.props.onSearch(query).then(this.onResultsFetched);
   },
 
-  onResultsFetched(data) {
+  onResultsFetched() {
     this.setState({isLoading: false});
   },
 

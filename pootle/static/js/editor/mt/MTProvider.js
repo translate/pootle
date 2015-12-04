@@ -85,7 +85,7 @@ class MTProvider {
     );
   }
 
-  handleSuccess(response) {
+  handleSuccess() {
     throw new Error('Not Implemented');
   }
 

@@ -11,7 +11,7 @@ var _ = require('underscore');
 
 var AdminAPIMixin = {
 
-  initialize: function (opts) {
+  initialize: function () {
     this.count = 0;
     this.page = 0;
     this.keywords = '';
@@ -20,7 +20,7 @@ var AdminAPIMixin = {
     this.on('remove', this.decrCount);
   },
 
-  parse: function (response, options) {
+  parse: function (response) {
     this.count = response.count;
 
     return response.models;

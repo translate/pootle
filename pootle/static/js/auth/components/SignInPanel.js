@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import assign from 'object-assign';
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 

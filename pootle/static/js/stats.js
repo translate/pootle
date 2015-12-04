@@ -20,7 +20,6 @@ import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
 import cookie from 'utils/cookie';
 
-import helpers from './helpers';
 import msg from './msg';
 
 
@@ -411,11 +410,11 @@ const stats = {
     const data = this.state.checksData;
 
     if (data !== null && Object.keys(data).length) {
-      this.$extraDetails.find('.js-checks').each(function (e) {
+      this.$extraDetails.find('.js-checks').each(function () {
         const $cat = $(this);
         let empty = true;
 
-        $cat.find('.js-check').each(function (e) {
+        $cat.find('.js-check').each(function () {
           const $check = $(this);
           const code = $(this).data('code');
           if (code in data) {

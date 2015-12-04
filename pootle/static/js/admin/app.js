@@ -8,7 +8,6 @@
 
 import 'imports?Backbone=>require("backbone")!backbone-move';
 
-import Backbone from 'backbone';
 import React from 'react';
 
 import AdminController from './components/AdminController';

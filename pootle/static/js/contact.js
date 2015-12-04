@@ -113,7 +113,7 @@ var contact = {
     });
   },
 
-  onSuccess: function (xhr) {
+  onSuccess: function () {
     // Display thank you message
     $(sel.wrapper).hide();
     $(sel.formSent).show();

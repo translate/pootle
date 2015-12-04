@@ -99,7 +99,7 @@ export function signUp(formData, nextURL) {
 }
 
 
-function signUpRequest(email, nextURL) {
+function signUpRequest(email) {
   return {
     type: SIGNUP_REQUEST,
     email,
@@ -178,7 +178,7 @@ export function passwordReset(formData, url) {
     // the necessary bits to construct it
     return AuthAPI.passwordReset(formData, url)
                   .then(
-                    (data) => dispatch(passwordResetSuccess()),
+                    () => dispatch(passwordResetSuccess()),
                     (data) => dispatch(passwordResetFailure(data.responseJSON))
                   );
   };

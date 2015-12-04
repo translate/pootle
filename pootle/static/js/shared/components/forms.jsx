@@ -144,7 +144,7 @@ var FormSelectInput = React.createClass({
 
   /* Handlers */
 
-  handleChange: function (value, values) {
+  handleChange: function (value) {
     this.props.handleChange(this.props.name, value);
   },
 

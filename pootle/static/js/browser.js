@@ -44,7 +44,7 @@ var makeNavDropdown = function (selector, opts) {
   var opts = $.extend({}, defaults, opts);
 
   return utils.makeSelectableInput(selector, opts,
-    function (e) {
+    function () {
       var $select = $(this);
       var $opt = $select.find('option:selected');
       var href = $opt.data('href');
@@ -76,7 +76,7 @@ var makeNavDropdown = function (selector, opts) {
 };
 
 
-var fixDropdowns = function (e) {
+var fixDropdowns = function () {
   // We can't use `e.persisted` here. See bug 2949 for reference
   var selectors = [sel.navigation, sel.language, sel.project, sel.resource];
   for (var i = 0; i < selectors.length; i++) {
@@ -91,7 +91,6 @@ var fixDropdowns = function (e) {
 
 /* Recalculate breadcrumb geometry on window resize */
 var fixResourcePathBreadcrumbGeometry = function () {
-  var $projectDropdown = $('#s2id_js-select-project');
   var $resourceDropdown = $('#s2id_js-select-resource');
   // on some pages there's no resource dropdown
   if ($resourceDropdown.length) {
@@ -133,7 +132,7 @@ var formatResource = function (path, container, query) {
 };
 
 
-function formatProject(path, container, query) {
+function formatProject(path) {
   const state = path.element[0].dataset.state;
 
   return `<span class="text project-${state}">${path.text}</span>`;
@@ -172,7 +171,7 @@ var browser = {
     });
 
     /* Adjust breadcrumb layout on window resize */
-    $(window).on('resize', function (e) {
+    $(window).on('resize', function () {
       fixResourcePathBreadcrumbGeometry();
     });
   },

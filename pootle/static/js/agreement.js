@@ -75,7 +75,7 @@ var agreement = {
       url: $agreementForm.attr('action'),
       type: 'POST',
       data: $agreementForm.serializeObject(),
-      success: function (data) {
+      success: function () {
         $.magnificPopup.close();
       },
       complete: function (xhr) {

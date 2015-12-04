@@ -955,7 +955,7 @@ PTL.editor = {
    * Indicators, messages, error handling
    */
 
-  showActivity: function (force) {
+  showActivity: function () {
     this.hideMsg();
     this.$editorActivity.spin().fadeIn(300);
   },
@@ -1606,11 +1606,11 @@ PTL.editor = {
       var $checks = this.$filterChecks;
       var selectedValue = this.checks[0] || 'none';
 
-      $checks.find('optgroup').each(function (e) {
+      $checks.find('optgroup').each(function () {
         var empty = true;
         var $gr = $(this);
 
-        $gr.find('option').each(function (e) {
+        $gr.find('option').each(function () {
           var $opt = $(this);
           var value = $opt.val();
 
@@ -1959,8 +1959,6 @@ PTL.editor = {
   getTMUnitsContent: function (data) {
     var unit = this.units.getCurrent();
     var store = unit.get('store');
-    var src = store.get('source_lang');
-    var tgt = store.get('target_lang');
     var sourceText = unit.get('source')[0];
     var filtered = this.filterTMResults(data, sourceText);
     var name = gettext('Similar translations');

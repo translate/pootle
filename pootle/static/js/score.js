@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
 var Backbone = require('backbone');
 
 require('odometer');
@@ -34,7 +33,7 @@ var ScoreView = Backbone.View.extend({
     'odometer-digit-added': 'updateWidth',
   },
 
-  updateWidth: function (e) {
+  updateWidth: function () {
     var elWidth = this.$el.find('.odometer-inside').width();
     var newWidth = elWidth === 0 ? 'auto' : elWidth;
     if (this.oldWidth !== newWidth) {
@@ -58,12 +57,11 @@ var ScoreView = Backbone.View.extend({
 
 
 var scoreModel;
-var scoreView;
 
 
 var init = function (initialScoreValue) {
   scoreModel = new Score({value: initialScoreValue}, {validate: true});
-  scoreView = new ScoreView({model: scoreModel});
+  new ScoreView({model: scoreModel});
 };
 
 var set = function (newScore) {

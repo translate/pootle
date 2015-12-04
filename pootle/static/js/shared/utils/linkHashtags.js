@@ -22,7 +22,7 @@ export default function linkHashtags(text) {
     return '';
   }
 
-  return text.replace(hashtagRE, (match, before, hashtag, offset, string) => {
+  return text.replace(hashtagRE, (match, before, hashtag) => {
     return `${before}<a href="${linkToHashtag(hashtag)}">${hashtag}</a>`;
   });
 

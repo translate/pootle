@@ -27,11 +27,11 @@ const UserProfileEdit = React.createClass({
   },
 
   setupRoutes(router) {
-    router.on('route:main', (qs) => {
+    router.on('route:main', () => {
       this.setState({editing: false});
     });
 
-    router.on('route:edit', (id, qs) => {
+    router.on('route:edit', () => {
       this.setState({editing: true});
     });
   },
@@ -67,7 +67,7 @@ const UserProfileEdit = React.createClass({
     }
   },
 
-  handleSave(item) {
+  handleSave() {
     this.handleClose();
     window.location.reload();
   },
