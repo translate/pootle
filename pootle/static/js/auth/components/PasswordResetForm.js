@@ -94,7 +94,7 @@ const PasswordResetForm = React.createClass({
       return this.renderTokenFailed();
     }
     if (this.props.redirectTo) {
-      return <AuthProgress msg={gettext('Password changed, signing in...')} />
+      return <AuthProgress msg={gettext('Password changed, signing in...')} />;
     }
 
     let { errors } = this.state;

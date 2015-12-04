@@ -54,14 +54,14 @@ export function signIn(formData, nextURL) {
                     (data) => dispatch(signInSuccess(data.location)),
                     (data) => dispatch(signInFailure(data.responseJSON))
                   );
-  }
+  };
 }
 
 
 function signInRequest() {
   return {
     type: SIGNIN_REQUEST,
-  }
+  };
 }
 
 
@@ -69,7 +69,7 @@ function signInSuccess(nextURL) {
   return {
     type: SIGNIN_SUCCESS,
     nextURL,
-  }
+  };
 }
 
 
@@ -77,7 +77,7 @@ function signInFailure(jsonResponse) {
   return {
     type: SIGNIN_FAILURE,
     errors: handleErrors(jsonResponse),
-  }
+  };
 }
 
 
@@ -95,7 +95,7 @@ export function signUp(formData, nextURL) {
                     (data) => dispatch(signUpSuccess(data.location)),
                     (data) => dispatch(signUpFailure(data.responseJSON))
                   );
-  }
+  };
 }
 
 
@@ -103,7 +103,7 @@ function signUpRequest(email, nextURL) {
   return {
     type: SIGNUP_REQUEST,
     email,
-  }
+  };
 }
 
 
@@ -111,7 +111,7 @@ function signUpSuccess(nextURL) {
   return {
     type: SIGNUP_SUCCESS,
     nextURL,
-  }
+  };
 }
 
 
@@ -119,7 +119,7 @@ function signUpFailure(jsonResponse) {
   return {
     type: SIGNUP_FAILURE,
     errors: handleErrors(jsonResponse),
-  }
+  };
 }
 
 
@@ -137,7 +137,7 @@ export function requestPasswordReset(formData) {
                     (data) => dispatch(requestPasswordResetSuccess(data.location)),
                     (data) => dispatch(requestPasswordResetFailure(data.responseJSON))
                   );
-  }
+  };
 }
 
 
@@ -145,7 +145,7 @@ function requestPasswordResetRequest(email) {
   return {
     type: REQ_PW_RESET_REQUEST,
     email,
-  }
+  };
 }
 
 
@@ -153,7 +153,7 @@ function requestPasswordResetSuccess(nextURL) {
   return {
     type: REQ_PW_RESET_SUCCESS,
     nextURL,
-  }
+  };
 }
 
 
@@ -161,7 +161,7 @@ function requestPasswordResetFailure(jsonResponse) {
   return {
     type: REQ_PW_RESET_FAILURE,
     errors: handleErrors(jsonResponse),
-  }
+  };
 }
 
 
@@ -181,21 +181,21 @@ export function passwordReset(formData, url) {
                     (data) => dispatch(passwordResetSuccess()),
                     (data) => dispatch(passwordResetFailure(data.responseJSON))
                   );
-  }
+  };
 }
 
 
 function passwordResetRequest() {
   return {
     type: PW_RESET_REQUEST,
-  }
+  };
 }
 
 
 function passwordResetSuccess() {
   return {
     type: PW_RESET_SUCCESS,
-  }
+  };
 }
 
 
@@ -203,7 +203,7 @@ function passwordResetFailure(jsonResponse) {
   return {
     type: PW_RESET_FAILURE,
     errors: handleErrors(jsonResponse),
-  }
+  };
 }
 
 
@@ -221,14 +221,14 @@ export function verifySocial(formData) {
                     (data) => dispatch(verifySocialSuccess(data.location)),
                     (data) => dispatch(verifySocialFailure(data.responseJSON))
                   );
-  }
+  };
 }
 
 
 function verifySocialRequest() {
   return {
     type: VERIFY_SOCIAL_REQUEST,
-  }
+  };
 }
 
 
@@ -236,7 +236,7 @@ function verifySocialSuccess(nextURL) {
   return {
     type: VERIFY_SOCIAL_SUCCESS,
     nextURL,
-  }
+  };
 }
 
 
@@ -244,5 +244,5 @@ function verifySocialFailure(jsonResponse) {
   return {
     type: VERIFY_SOCIAL_FAILURE,
     errors: handleErrors(jsonResponse),
-  }
+  };
 }

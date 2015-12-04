@@ -1781,13 +1781,13 @@ PTL.editor = {
     if ($before.length || $after.length) {
       $before.show();
       $after.show();
-      this.replaceCtxControls(this.renderCtxControls({ hasData: true }))
+      this.replaceCtxControls(this.renderCtxControls({ hasData: true }));
     } else if (this.ctxQty > 0) {
       // This is an initial request for context, reset `ctxGap`
       this.ctxGap = 0;
       this.moreContext(this.ctxQty)
           .then(() => {
-            this.replaceCtxControls(this.renderCtxControls({ hasData: true }))
+            this.replaceCtxControls(this.renderCtxControls({ hasData: true }));
           });
     }
   },

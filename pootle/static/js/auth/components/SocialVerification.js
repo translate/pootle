@@ -68,7 +68,7 @@ const SocialVerification = React.createClass({
 
   render() {
     if (this.props.redirectTo) {
-      return <AuthProgress msg={gettext('Signed in. Redirecting...')} />
+      return <AuthProgress msg={gettext('Signed in. Redirecting...')} />;
     }
 
     let { errors } = this.state;

@@ -36,7 +36,7 @@ export const LiveEditor = React.createClass({
     return {
       value: this.props.initialValue,
       renderedValue: '',
-    }
+    };
   },
 
   componentWillMount() {

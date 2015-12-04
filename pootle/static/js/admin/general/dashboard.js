@@ -48,7 +48,7 @@ const dashboard = {
     $(document).on('click', '.slide', slideTable);
   },
 
-}
+};
 
 
 export default dashboard;

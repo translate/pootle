@@ -24,7 +24,7 @@ const staticpages = {
     );
   },
 
-}
+};
 
 
 export default staticpages;

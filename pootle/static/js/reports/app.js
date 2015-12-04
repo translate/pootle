@@ -532,7 +532,7 @@ PTL.reports = {
     var datetime;
     // set paid task datetime
     if (PTL.reports.now >= PTL.reports.month.clone().add({M: 1})) {
-      datetime = PTL.reports.month.clone().add({M: 1}).subtract({s: 1})
+      datetime = PTL.reports.month.clone().add({M: 1}).subtract({s: 1});
     } else if (PTL.reports.now <= PTL.reports.month) {
       datetime = PTL.reports.month;
     } else {
