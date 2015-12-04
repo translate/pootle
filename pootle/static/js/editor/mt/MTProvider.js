@@ -62,7 +62,7 @@ class MTProvider {
    */
   translate(sourceText, sourceLanguage, targetLanguage) {
     const placeholderCleaner = new PlaceholderCleaner();
-    const bodyOpts =  {
+    const bodyOpts = {
       sourceLanguage,
       targetLanguage,
       text: placeholderCleaner.replace(sourceText),
