@@ -15,7 +15,7 @@ var sel = {
     toggle: '[data-action="toggle"]',
   },
   target: '.dropdown-menu',
-  targetItems : 'li:not(.menu-divider) a',
+  targetItems: 'li:not(.menu-divider) a',
   open: 'show-dropdown',
 };
 
