@@ -92,7 +92,7 @@ var fancyEscape = function (text) {
 
   function replace(match) {
     var replaced;
-    var escapeHl= '<span class="highlight-escape">%s</span>';
+    var escapeHl = '<span class="highlight-escape">%s</span>';
     var htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
     var submap = {
       '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
@@ -109,7 +109,7 @@ var fancyEscape = function (text) {
     if (replaced === undefined) {
       replaced = htmlHl.replace(
             /%s/,
-            fancyEscape(match.slice(1, match.length-1))
+            fancyEscape(match.slice(1, match.length - 1))
         );
     }
 
@@ -124,7 +124,7 @@ var fancyEscape = function (text) {
 var fancySpaces = function (text) {
 
   function replace(match) {
-    var spaceHl= '<span class="translation-space"> </span>';
+    var spaceHl = '<span class="translation-space"> </span>';
 
     return Array(match.length + 1).join(spaceHl);
   }
@@ -199,7 +199,7 @@ var executeFunctionByName = function (functionName, context /*, args */) {
   var namespaces = functionName.split('.');
   var func = namespaces.pop();
 
-  for (var i=0; i<namespaces.length; i++) {
+  for (var i = 0; i < namespaces.length; i++) {
     context = context[namespaces[i]];
   }
 
@@ -210,7 +210,7 @@ var executeFunctionByName = function (functionName, context /*, args */) {
 var blinkClass = function ($elem, className, n, delay) {
   $elem.toggleClass(className);
   if (n > 1) {
-    setTimeout(() => blinkClass($elem, className, n-1, delay), delay);
+    setTimeout(() => blinkClass($elem, className, n - 1, delay), delay);
   }
 };
 

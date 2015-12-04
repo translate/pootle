@@ -25,6 +25,7 @@ module.exports = {
     'quotes': [2, 'single', 'avoid-escape'],
     'semi': [2, 'always'],
     'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }],
+    'space-infix-ops': 2,
     'strict': [2, 'never'],
   },
 };

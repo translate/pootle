@@ -607,7 +607,7 @@ PTL.editor = {
       var active;
       var max = sources.length - 1;
 
-      for (let i=0; i<targets.length; i++) {
+      for (let i = 0; i < targets.length; i++) {
         var newval = sources[i] || sources[max];
         $(targets.get(i)).val(newval).trigger('input');
       }
@@ -759,13 +759,13 @@ PTL.editor = {
       needsReview = checkbox.checked === true;
     }
 
-    for (i=0; i<translations.length && !areaChanged; i++) {
+    for (i = 0; i < translations.length && !areaChanged; i++) {
       area = translations[i];
       areaChanged = area.defaultValue !== area.value;
     }
 
     if (suggestions.length) {
-      for (i=0; i<translations.length && !suggestionExists; i++) {
+      for (i = 0; i < translations.length && !suggestionExists; i++) {
         area = translations[i];
         suggestionExists = suggestions.indexOf(area.value) !== -1;
       }
@@ -832,7 +832,7 @@ PTL.editor = {
     var similarity;
     var i;
 
-    for (i=0; i<$elements.length; i++) {
+    for (i = 0; i < $elements.length; i++) {
       $element = $elements.eq(i);
       aidText = $element.data(dataSelector);
       similarity = this.wordComparer.similarity(newTranslation, aidText);
@@ -965,7 +965,7 @@ PTL.editor = {
   },
 
   /* Displays an informative message */
-  displayMsg: function ({ showClose=true, body=null }) {
+  displayMsg: function ({ showClose = true, body = null }) {
     this.hideActivity();
     helpers.fixSidebarHeight();
     this.$msgOverlay.html(
@@ -1119,7 +1119,7 @@ PTL.editor = {
         );
       }
 
-      for (let i=0; i<unitGroup.units.length; i++) {
+      for (let i = 0; i < unitGroup.units.length; i++) {
         let unit = unitGroup.units[i];
 
         if (unit.id === currentUnit.id) {
@@ -1139,7 +1139,7 @@ PTL.editor = {
     const currentUnit = this.units.getCurrent();
     let rows = '';
 
-    for (let i=0; i<units.length; i++) {
+    for (let i = 0; i < units.length; i++) {
       // FIXME: Please let's use proper models for context units
       let unit = units[i];
       unit = assign({}, currentUnit.toJSON(), unit);
@@ -1180,7 +1180,7 @@ PTL.editor = {
       pootlePath = unit.get('store').get('pootlePath');
 
       if (pootlePath === prevPath) {
-        out[out.length-1].units.push(unit);
+        out[out.length - 1].units.push(unit);
       } else {
         out.push({
           path: pootlePath,
@@ -1250,7 +1250,7 @@ PTL.editor = {
   },
 
   /* Fetches more units in case they are needed */
-  fetchUnits: function ({ initial=false, uId=0 } = {}) {
+  fetchUnits: function ({ initial = false, uId = 0 } = {}) {
     let reqData = {
       path: this.settings.pootlePath,
     };
@@ -1316,7 +1316,7 @@ PTL.editor = {
       return false;
     }
 
-    for (let i=0; i<unitGroups.length; i++) {
+    for (let i = 0; i < unitGroups.length; i++) {
       const unitGroup = unitGroups[i];
       for (let pootlePath in unitGroup) {
         const group = unitGroup[pootlePath];
@@ -1481,7 +1481,7 @@ PTL.editor = {
   },
 
   /* Loads the next unit */
-  gotoNext: function (opts={isSubmission: true}) {
+  gotoNext: function (opts = {isSubmission: true}) {
     if (!this.canNavigate()) {
       return false;
     }
@@ -1556,7 +1556,7 @@ PTL.editor = {
 
       if (index && !isNaN(index) && index > 0 &&
           index <= this.units.total) {
-        var uId = this.units.uIds[index-1];
+        var uId = this.units.uIds[index - 1];
         var newHash = utils.updateHashPart('unit', uId);
         $.history.load(newHash);
       }
@@ -1693,7 +1693,7 @@ PTL.editor = {
   },
 
   /* Generates the edit context rows' UI */
-  renderCtxControls: function ({ hasData=false }) {
+  renderCtxControls: function ({ hasData = false }) {
     const ctxRowBefore = this.tmpl.editCtx({
       hasData,
       extraCls: 'before',
@@ -1734,7 +1734,7 @@ PTL.editor = {
   },
 
   /* Gets more context units */
-  moreContext: function (amount=CTX_STEP) {
+  moreContext: function (amount = CTX_STEP) {
     return (
       UnitAPI.getContext(this.units.getCurrent().id,
                          { gap: this.ctxGap, qty: amount })
@@ -1941,7 +1941,7 @@ PTL.editor = {
       }
     }
 
-    for (var i=0; i<results.length && i<3; i++) {
+    for (var i = 0; i < results.length && i < 3; i++) {
       if (results[i].username === 'nobody') {
         results[i].fullname = gettext('some anonymous user');
       } else if (!results[i].fullname) {
@@ -2052,7 +2052,7 @@ PTL.editor = {
 
 
   /* Accepts a suggestion */
-  acceptSuggestion: function (suggId, { skipToNext=false } = {}) {
+  acceptSuggestion: function (suggId, { skipToNext = false } = {}) {
     UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId)
       .then(
         (data) => this.processAcceptSuggestion(data, suggId, skipToNext),

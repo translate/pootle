@@ -48,7 +48,7 @@ class PlaceholderCleaner {
     }
 
     // Fix whitespace which may have been added around [N] blocks
-    for (let i=0; i<argSubs.length; i++) {
+    for (let i = 0; i < argSubs.length; i++) {
       if (sourceText.match(new RegExp('\\[' + i + '\\][^\\s]'))) {
         translation = translation.replace(
           new RegExp('\\[' + i + '\\]\\s+'), '[' + i + ']'
@@ -62,7 +62,7 @@ class PlaceholderCleaner {
     }
 
     // Replace temporary [N] placeholders back to their real values
-    for (let i=0; i<argSubs.length; i++) {
+    for (let i = 0; i < argSubs.length; i++) {
       const value = argSubs[i].replace(/\&/g, '&amp;')
                               .replace(/\</g, '&lt;')
                               .replace(/\>/g, '&gt;');

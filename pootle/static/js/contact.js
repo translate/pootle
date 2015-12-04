@@ -137,7 +137,7 @@ var contact = {
   validationError: function (fieldName, msgs) {
     var $field = $('#id_' + fieldName);
     var errorList = ['<ul class="errorlist">'];
-    for (var i=0; i<msgs.length; i++) {
+    for (var i = 0; i < msgs.length; i++) {
       errorList.push(['<li>', msgs[i], '</li>'].join(''));
     }
     errorList.push(['</ul>']);

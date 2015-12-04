@@ -20,7 +20,7 @@ const UnitAPI = {
     });
   },
 
-  fetchUnit(uId, body={}) {
+  fetchUnit(uId, body = {}) {
     return fetch({
       body,
       queue: 'unitWidget',
@@ -90,7 +90,7 @@ const UnitAPI = {
 
   /* Quality checks */
 
-  toggleCheck(uId, checkId, { mute=false }) {
+  toggleCheck(uId, checkId, { mute = false }) {
     return fetch({
       body: { mute },
       method: 'POST',

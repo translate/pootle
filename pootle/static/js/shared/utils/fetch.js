@@ -12,8 +12,8 @@ import $ from 'jquery';
 let requests = {};
 
 
-function fetch({ url, body, method='GET', dataType='json', queue=null,
-                 crossDomain=false }) {
+function fetch({ url, body, method = 'GET', dataType = 'json', queue = null,
+                 crossDomain = false }) {
   queue = queue || url;
 
   if (requests[queue]) {

@@ -18,7 +18,7 @@ import {
 } from './actions';
 
 
-function screen(state='signIn', action) {
+function screen(state = 'signIn', action) {
   switch (action.type) {
     case GOTO_SCREEN:
       return action.screen;
@@ -47,7 +47,7 @@ function screen(state='signIn', action) {
 }
 
 
-function isLoading(state=false, action) {
+function isLoading(state = false, action) {
   switch (action.type) {
     case SIGNIN_REQUEST:
     case SIGNUP_REQUEST:
@@ -74,7 +74,7 @@ function isLoading(state=false, action) {
 }
 
 
-function redirectTo(state=null, action) {
+function redirectTo(state = null, action) {
   switch (action.type) {
     case SIGNIN_SUCCESS:
       const { nextURL } = action;
@@ -97,7 +97,7 @@ function redirectTo(state=null, action) {
 }
 
 
-function resetEmail(state=null, action) {
+function resetEmail(state = null, action) {
   switch (action.type) {
     case REQ_PW_RESET_REQUEST:
       return action.email;
@@ -108,7 +108,7 @@ function resetEmail(state=null, action) {
 }
 
 
-function signUpEmail(state=null, action) {
+function signUpEmail(state = null, action) {
   switch (action.type) {
     case SIGNUP_REQUEST:
       return action.email;
@@ -119,7 +119,7 @@ function signUpEmail(state=null, action) {
 }
 
 
-function formErrors(state={}, action) {
+function formErrors(state = {}, action) {
   switch (action.type) {
     case SIGNIN_FAILURE:
     case SIGNUP_FAILURE:

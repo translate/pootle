@@ -20,7 +20,7 @@ export default function diff(a, b) {
 
   dmp.diff_cleanupSemantic(diff);
 
-  for (let i=0; i<diff.length; i++) {
+  for (let i = 0; i < diff.length; i++) {
     const op = diff[i][0];
     const text = fancyEscape(diff[i][1]);
     if (op === DMP.DIFF_INSERT) {

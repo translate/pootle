@@ -41,7 +41,7 @@ Spinner.defaults = {
   direction: 1,
   speed: 1,
   trail: 50,
-  opacity: 1/4,
+  opacity: 1 / 4,
   fps: 20,
   zIndex: 2e9,
   className: 'spinner',

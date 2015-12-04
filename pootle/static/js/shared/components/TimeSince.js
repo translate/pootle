@@ -44,7 +44,7 @@ const TimeSince = React.createClass({
     }
   },
 
-  tick(opts={refresh: true}) {
+  tick(opts = {refresh: true}) {
     const past = Date.parse(this.props.dateTime);
     const now = Date.now();
     const seconds = Math.round(Math.abs(now - past) / 1000);
@@ -53,9 +53,9 @@ const TimeSince = React.createClass({
 
     if (seconds < 60) {
       interval = 1000 * 30;
-    } else if (seconds < 60*60) {
+    } else if (seconds < 60 * 60) {
       interval = 1000 * 60;
-    } else if (seconds < 60*60*24) {
+    } else if (seconds < 60 * 60 * 24) {
       interval = 1000 * 60 * 60;
     }
 

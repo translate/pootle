@@ -24,7 +24,7 @@ export function gotoScreen(screen) {
  * Takes care of creating an object which contains errors related to
  * authentication and unhandled exceptions.
  */
-function handleErrors(jsonResponse={}) {
+function handleErrors(jsonResponse = {}) {
   let errors = {};
 
   if ('errors' in jsonResponse) {

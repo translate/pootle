@@ -267,13 +267,13 @@ PTL.reports = {
           lines: {show: false, steps: false },
           bars: {
             show: true,
-            barWidth: 1000*60*60*24,
+            barWidth: 1000 * 60 * 60 * 24,
             align: 'center',
           },
         },
         xaxis: {
-          min: parseInt(PTL.reports.dailyData.min_ts, 10) - 1000*60*60*12,
-          max: parseInt(PTL.reports.dailyData.max_ts, 10) - 1000*60*60*12,
+          min: parseInt(PTL.reports.dailyData.min_ts, 10) - 1000 * 60 * 60 * 12,
+          max: parseInt(PTL.reports.dailyData.max_ts, 10) - 1000 * 60 * 60 * 12,
           minTickSize: [1, 'day'],
           mode: 'time',
           timeformat: '%b %d, %a',
@@ -344,7 +344,7 @@ PTL.reports = {
     }
 
     translatedTotal = Math.round(translatedTotal);
-    scoreDeltaTotal = Math.round(scoreDeltaTotal*100)/100;
+    scoreDeltaTotal = Math.round(scoreDeltaTotal * 100) / 100;
     data.groupedSuggestedTotal = suggestedTotal;
     data.groupedTranslatedTotal = translatedTotal;
     data.groupedReviewedTotal = reviewedTotal;

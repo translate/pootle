@@ -79,7 +79,7 @@ var makeNavDropdown = function (selector, opts) {
 var fixDropdowns = function (e) {
   // We can't use `e.persisted` here. See bug 2949 for reference
   var selectors = [sel.navigation, sel.language, sel.project, sel.resource];
-  for (var i=0; i<selectors.length; i++) {
+  for (var i = 0; i < selectors.length; i++) {
     var $el = $(selectors[i]);
     var initial = $el.data('initial-code');
     $el.select2('val', initial);
