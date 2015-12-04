@@ -93,9 +93,9 @@ var contact = {
     var url = $form.attr('action');
     var data = $form.serializeObject();
     var captchaCallbacks = {
-          sfn: 'PTL.contact.onSubmit',
-          efn: 'PTL.contact.onError',
-        };
+      sfn: 'PTL.contact.onSubmit',
+      efn: 'PTL.contact.onError',
+    };
     $.extend(data, captchaCallbacks);
 
     this.sendMessage(url, data);

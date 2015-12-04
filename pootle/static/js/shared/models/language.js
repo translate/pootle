@@ -57,11 +57,11 @@ var Language = Backbone.Model.extend({
 var LanguageSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
-  model: Language,
+    model: Language,
 
-  url: l('/xhr/admin/languages/'),
+    url: l('/xhr/admin/languages/'),
 
-}));
+  }));
 
 
 module.exports = {

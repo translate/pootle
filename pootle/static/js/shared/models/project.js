@@ -64,11 +64,11 @@ var Project = Backbone.Model.extend({
 var ProjectSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
-  model: Project,
+    model: Project,
 
-  url: l('/xhr/admin/projects/'),
+    url: l('/xhr/admin/projects/'),
 
-}));
+  }));
 
 
 module.exports = {

@@ -60,11 +60,11 @@ var Tabs = React.createClass({
       }
 
       return React.cloneElement(child, {
-          key: index,
-          onClick: this.handleClick,
-          selected: isActive,
-          tabIndex: index,
-        });
+        key: index,
+        onClick: this.handleClick,
+        selected: isActive,
+        tabIndex: index,
+      });
     }, this);
 
     return (

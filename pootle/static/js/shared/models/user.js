@@ -68,11 +68,11 @@ var User = Backbone.Model.extend({
 var UserSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
-  model: User,
+    model: User,
 
-  url: l('/xhr/admin/users/'),
+    url: l('/xhr/admin/users/'),
 
-}));
+  }));
 
 
 module.exports = {

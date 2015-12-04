@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'comma-dangle': [2, 'always-multiline'],
     'comma-spacing': [2, {'before': false, 'after': true}],
+    'indent': [2, 2, { "SwitchCase": 1, "VariableDeclarator": 1 }],
     'one-var': [2, 'never'],
     'quotes': [2, 'single', 'avoid-escape'],
     'strict': [2, 'never'],

@@ -91,29 +91,29 @@ var cleanEscape = function (s) {
 var fancyEscape = function (text) {
 
   function replace(match) {
-      var replaced;
-      var escapeHl= '<span class="highlight-escape">%s</span>';
-      var htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
-      var submap = {
-            '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
-            '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
-            '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
-            '\t': escapeHl.replace(/%s/, '\\t'),
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-          };
+    var replaced;
+    var escapeHl= '<span class="highlight-escape">%s</span>';
+    var htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
+    var submap = {
+      '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
+      '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
+      '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
+      '\t': escapeHl.replace(/%s/, '\\t'),
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+    };
 
-      replaced = submap[match];
+    replaced = submap[match];
 
-      if (replaced === undefined) {
-        replaced = htmlHl.replace(
+    if (replaced === undefined) {
+      replaced = htmlHl.replace(
             /%s/,
             fancyEscape(match.slice(1, match.length-1))
         );
-      }
+    }
 
-      return replaced;
+    return replaced;
   }
 
   return text.replace(escapeRE, replace);
@@ -124,9 +124,9 @@ var fancyEscape = function (text) {
 var fancySpaces = function (text) {
 
   function replace(match) {
-      var spaceHl= '<span class="translation-space"> </span>';
+    var spaceHl= '<span class="translation-space"> </span>';
 
-      return Array(match.length + 1).join(spaceHl);
+    return Array(match.length + 1).join(spaceHl);
   }
 
   return text.replace(whitespaceRE, replace);

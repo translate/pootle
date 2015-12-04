@@ -744,8 +744,8 @@ PTL.editor = {
     var suggest = $('.js-suggest')[0];
     var translations = $('.js-translation-area').get();
     var suggestions = $('.js-user-suggestion').map(function () {
-            return $(this).data('translation-aid');
-          }).get();
+      return $(this).data('translation-aid');
+    }).get();
     var checkbox = $('#id_state')[0];
     var stateChanged = checkbox.defaultChecked !== checkbox.checked;
     var areaChanged = false;
@@ -989,7 +989,7 @@ PTL.editor = {
     var msg = '';
 
     if (s === 'abort') {
-        return;
+      return;
     }
 
     if (xhr.status === 0) {
@@ -1021,13 +1021,13 @@ PTL.editor = {
     var backLink = this.backToBrowserEl.getAttribute('href');
     var reloadMsg = gettext('Reload page');
     var html = [
-          '<div>', msgText, '</div>',
-          '<div class="editor-msg-btns">',
-            '<a class="btn btn-xs js-editor-reload" href="#">', reloadMsg, '</a>',
-            '<a class="btn btn-xs" href="', backLink, '">', backMsg, '</a>',
+      '<div>', msgText, '</div>',
+      '<div class="editor-msg-btns">',
+      '<a class="btn btn-xs js-editor-reload" href="#">', reloadMsg, '</a>',
+      '<a class="btn btn-xs" href="', backLink, '">', backMsg, '</a>',
 
-          '</div>',
-        ].join('');
+      '</div>',
+    ].join('');
 
     this.displayMsg({body: html, showClose: false});
   },
@@ -1590,9 +1590,9 @@ PTL.editor = {
     if (filterChecks !== 'none') {
       var sortBy = this.$filterSortBy.val();
       var newHash = {
-            filter: 'checks',
-            checks: filterChecks,
-          };
+        filter: 'checks',
+        checks: filterChecks,
+      };
 
       sortBy !== 'default' && (newHash.sort = sortBy);
 
@@ -2069,7 +2069,7 @@ PTL.editor = {
     // Update remaining suggestion's diff
     $.each(data.newdiffs, function (suggId, sugg) {
       $.each(sugg, function (i, target) {
-         $(`#suggdiff-${suggId}-${i}`).html(target);
+        $(`#suggdiff-${suggId}-${i}`).html(target);
       });
     });
 

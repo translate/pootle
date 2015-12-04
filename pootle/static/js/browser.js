@@ -36,11 +36,11 @@ var actionMap = {
 
 var makeNavDropdown = function (selector, opts) {
   var defaults = {
-      allowClear: true,
-      dropdownAutoWidth: true,
-      dropdownCssClass: 'breadcrumb-dropdown',
-      width: 'off',
-    };
+    allowClear: true,
+    dropdownAutoWidth: true,
+    dropdownCssClass: 'breadcrumb-dropdown',
+    width: 'off',
+  };
   var opts = $.extend({}, defaults, opts);
 
   return utils.makeSelectableInput(selector, opts,
@@ -126,8 +126,8 @@ var formatResource = function (path, container, query) {
 
   return [
     '<span class="', $el.data('icon'), '">',
-      '<i class="icon-', $el.data('icon'), '"></i>',
-      '<span class="text">', t, '</span>',
+    '<i class="icon-', $el.data('icon'), '"></i>',
+    '<span class="text">', t, '</span>',
     '</span>',
   ].join('');
 };
@@ -209,8 +209,8 @@ var browser = {
 
     var parts = ['', languageCode, projectCode, action, resource];
     var urlParts = parts.filter(function (p, i) {
-          return i === 0 || p !== '';
-        });
+      return i === 0 || p !== '';
+    });
     var newUrl;
 
     if (!resource) {

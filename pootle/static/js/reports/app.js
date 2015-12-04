@@ -272,14 +272,14 @@ PTL.reports = {
           },
         },
         xaxis: {
-            min: parseInt(PTL.reports.dailyData.min_ts, 10) - 1000*60*60*12,
-            max: parseInt(PTL.reports.dailyData.max_ts, 10) - 1000*60*60*12,
-            minTickSize: [1, 'day'],
-            mode: 'time',
-            timeformat: '%b %d, %a',
+          min: parseInt(PTL.reports.dailyData.min_ts, 10) - 1000*60*60*12,
+          max: parseInt(PTL.reports.dailyData.max_ts, 10) - 1000*60*60*12,
+          minTickSize: [1, 'day'],
+          mode: 'time',
+          timeformat: '%b %d, %a',
         },
         yaxis: {
-            max: PTL.reports.dailyData.max_day_score,
+          max: PTL.reports.dailyData.max_day_score,
         },
         colors: ['#66bb66', '#99ccff', '#ffcc33'],
       }

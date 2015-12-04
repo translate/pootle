@@ -31,7 +31,7 @@ const ItemTable = React.createClass({
           selectedItem={this.props.selectedItem}
           onSelectItem={this.props.onSelectItem} />
         );
-      };
+    };
 
     return (
       <table>
