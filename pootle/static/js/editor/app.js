@@ -1812,7 +1812,7 @@ PTL.editor = {
       let queryString = this.buildSearchQuery();
       newHash = 'search=' + queryString;
     } else {
-      newHash = utils.updateHashPart('filter', 'all', ['search', 'sfields','soptions']);
+      newHash = utils.updateHashPart('filter', 'all', ['search', 'sfields', 'soptions']);
     }
     $.history.load(newHash);
   },
