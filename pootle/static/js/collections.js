@@ -58,7 +58,7 @@ collections.UnitSet = Backbone.Collection.extend({
     return this.next() !== null;
   },
 
-  prev: function() {
+  prev: function () {
     var index = this.indexOf(this.getCurrent());
     return (index === 0) ? null : this.at(index - 1);
   },

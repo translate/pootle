@@ -44,7 +44,7 @@ PTL.reports = {
       paid_tasks: showSummary ? _.template($('#paid-tasks').html()) : '',
     };
 
-    $(window).resize(function() {
+    $(window).resize(function () {
       if (PTL.reports.data !== undefined &&
           PTL.reports.data.daily !== undefined &&
           PTL.reports.data.daily.nonempty) {
@@ -451,7 +451,7 @@ PTL.reports = {
             var task = document.querySelector('.task' + PTL.reports.params.task);
             if (!!task) {
               task.classList.add('highlight');
-              setTimeout(function() {
+              setTimeout(function () {
                 task.scrollIntoView();
               }, 0);
             } else {

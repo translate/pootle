@@ -536,7 +536,7 @@ PTL.editor = {
     this.reDraw();
   },
 
-  canNavigate: function() {
+  canNavigate: function () {
     if (this.isUnitDirty) {
       return window.confirm(
         gettext(
@@ -2135,7 +2135,7 @@ PTL.editor = {
   },
 
   /* FIXME: provide an alternative to such an ad-hoc entry point */
-  setTranslation: function(opts) {
+  setTranslation: function (opts) {
     const { translation } = opts;
     if (translation === undefined && opts.msg) {
       that.displayError(opts.msg);

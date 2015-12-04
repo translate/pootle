@@ -27,7 +27,7 @@ var getHash = function (win) {
 };
 
 
-var decodeURIParameter = function(s) {
+var decodeURIParameter = function (s) {
   return decodeURIComponent(s.replace(/\+/g, ' '));
 };
 
