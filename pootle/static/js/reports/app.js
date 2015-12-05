@@ -482,28 +482,29 @@ PTL.reports = {
       if (m1.month() === m2.month()) {
         if (m1.date() === m2.date()) {
           return m1.format(showYear ? 'MMMM D, YYYY' : 'MMMM D');
-        } else {
-          return [
-            m1.format('MMMM D'),
-            ' &mdash; ',
-            m2.date(),
-            showYear ? m2.format(', YYYY') : '',
-          ].join('');
         }
-      } else {
+
         return [
           m1.format('MMMM D'),
           ' &mdash; ',
-          m2.format(showYear ? 'MMMM D, YYYY' : 'MMMM D'),
+          m2.date(),
+          showYear ? m2.format(', YYYY') : '',
         ].join('');
       }
-    } else {
+
       return [
-        m1.format('MMMM D, YYYY'),
+        m1.format('MMMM D'),
         ' &mdash; ',
-        m2.format('MMMM D, YYYY'),
+        m2.format(showYear ? 'MMMM D, YYYY' : 'MMMM D'),
       ].join('');
     }
+
+    return [
+      m1.format('MMMM D, YYYY'),
+      ' &mdash; ',
+      m2.format('MMMM D, YYYY'),
+    ].join('');
+
   },
 
   formatDate: function (d) {

@@ -345,14 +345,15 @@ PTL.editor = {
         if (uIdParam && !isNaN(uIdParam)) {
           const current = this.units.getCurrent();
           const newUnit = this.units.get(uIdParam);
+
           if (newUnit && newUnit !== current) {
             this.setUnit(newUnit);
             return;
-          } else {
-            uId = uIdParam;
-            // Don't retrieve initial data if there are existing results
-            isInitial = !this.units.length;
           }
+
+          uId = uIdParam;
+          // Don't retrieve initial data if there are existing results
+          isInitial = !this.units.length;
         }
       }
 
