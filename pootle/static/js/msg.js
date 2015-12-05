@@ -80,12 +80,12 @@ var msg = {
     if (!messagesView) {
       messagesView = new MessageListView({collection: messages});
     }
-    var msg = new Message(opts);
+    const message = new Message(opts);
 
-    messages.add(msg);
+    messages.add(message);
 
     window.setTimeout(function () {
-      messages.remove(msg);
+      messages.remove(message);
     }, 2000);
   },
 

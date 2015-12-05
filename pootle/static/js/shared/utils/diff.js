@@ -15,14 +15,14 @@ const dmp = new DMP();
 
 
 export default function diff(a, b) {
-  const diff = dmp.diff_main(a, b);
+  const result = dmp.diff_main(a, b);
   const html = [];
 
-  dmp.diff_cleanupSemantic(diff);
+  dmp.diff_cleanupSemantic(result);
 
-  for (let i = 0; i < diff.length; i++) {
-    const op = diff[i][0];
-    const text = fancyEscape(diff[i][1]);
+  for (let i = 0; i < result.length; i++) {
+    const op = result[i][0];
+    const text = fancyEscape(result[i][1]);
     if (op === DMP.DIFF_INSERT) {
       html[i] = `<span class="diff-insert">${text}</span>`;
     } else if (op === DMP.DIFF_DELETE) {

@@ -986,33 +986,33 @@ PTL.editor = {
 
   /* Handles XHR errors */
   error: function (xhr, s) {
-    var msg = '';
+    let text = '';
 
     if (s === 'abort') {
       return;
     }
 
     if (xhr.status === 0) {
-      msg = gettext('Error while connecting to the server');
+      text = gettext('Error while connecting to the server');
     } else if (xhr.status === 402) {
       captcha.onError(xhr, 'PTL.editor.error');
     } else if (xhr.status === 404) {
-      msg = gettext('Not found');
+      text = gettext('Not found');
     } else if (xhr.status === 500) {
-      msg = gettext('Server error');
+      text = gettext('Server error');
     } else if (s === 'timeout') {
-      msg = gettext('The server seems down. Try again later.');
+      text = gettext('The server seems down. Try again later.');
     } else {
       // Since we use jquery-jsonp, we must differentiate between
       // the passed arguments
       if (xhr.hasOwnProperty('responseText')) {
-        msg = $.parseJSON(xhr.responseText).msg;
+        text = $.parseJSON(xhr.responseText).msg;
       } else {
-        msg = gettext('Unknown error');
+        text = gettext('Unknown error');
       }
     }
 
-    PTL.editor.displayError(msg);
+    PTL.editor.displayError(text);
   },
 
   displayObsoleteMsg: function () {
@@ -2065,9 +2065,9 @@ PTL.editor = {
     });
 
     // Update remaining suggestion's diff
-    $.each(data.newdiffs, function (suggId, sugg) {
+    $.each(data.newdiffs, function (suggestionId, sugg) {
       $.each(sugg, function (i, target) {
-        $(`#suggdiff-${suggId}-${i}`).html(target);
+        $(`#suggdiff-${suggestionId}-${i}`).html(target);
       });
     });
 

@@ -40,6 +40,11 @@ function cssId(id) {
 }
 
 
+function setTdWidth($td, w) {
+  w === 0 ? $td.hide() : $td.css('width', w + '%').show();
+}
+
+
 const stats = {
 
   init(options) {
@@ -116,9 +121,6 @@ const stats = {
 
     $td.find('table').attr('title', $legend.html());
 
-    function setTdWidth($td, w) {
-      w === 0 ? $td.hide() : $td.css('width', w + '%').show();
-    }
     setTdWidth($td.find('td.translated'), translated);
     setTdWidth($td.find('td.fuzzy'), fuzzy);
     setTdWidth($td.find('td.untranslated'), untranslated);
@@ -202,14 +204,14 @@ const stats = {
     React.render(<TimeSince {...props} />, el);
   },
 
-  updateLastUpdates(stats) {
-    if (stats.lastupdated) {
+  updateLastUpdates(statsData) {
+    if (statsData.lastupdated) {
       const lastUpdated = document.querySelector('#js-last-updated .last-updated');
-      this.renderLastUpdate(lastUpdated, stats.lastupdated);
+      this.renderLastUpdate(lastUpdated, statsData.lastupdated);
     }
-    if (stats.lastaction) {
+    if (statsData.lastaction) {
       const lastAction = document.querySelector('#js-last-action .last-action');
-      this.renderLastEvent(lastAction, stats.lastaction);
+      this.renderLastEvent(lastAction, statsData.lastaction);
     }
   },
 

@@ -27,6 +27,7 @@ module.exports = {
     'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
     'no-extra-semi': 2,
     'no-multi-spaces': 2,
+    'no-shadow': 2,
     'no-undef': 2,
     'no-unused-vars': [2, {'vars': 'local', 'args': 'after-used'}],
     'one-var': [2, 'never'],

@@ -165,7 +165,7 @@ PTL.common = {
     $.each(ids, function (i, id) {
       var $selects = $('select[id$="' + id + '"]');
 
-      $.each($selects, function (i, select) {
+      $.each($selects, function (j, select) {
         var $select = $(select);
         var options = $('option', $select);
         var selected;
