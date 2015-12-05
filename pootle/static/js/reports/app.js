@@ -115,7 +115,7 @@ PTL.reports = {
       },
       error: function (xhr) {
         $('body').spin(false);
-        alert('Error status: ' + xhr.status);
+        msg.show({ text: `Error: ${xhr.status}`, level: 'error' });
       },
     });
     return false;
@@ -138,7 +138,7 @@ PTL.reports = {
         }
       },
       error: function (xhr) {
-        alert('Error status: ' + xhr.status);
+        msg.show({ text: `Error: ${xhr.status}`, level: 'error' });
       },
     });
     return false;
@@ -153,7 +153,7 @@ PTL.reports = {
         PTL.reports.buildResults();
       },
       error: function (xhr) {
-        alert('Error status: ' + xhr.status);
+        msg.show({ text: `Error: ${xhr.status}`, level: 'error' });
       },
     });
     return false;
@@ -240,7 +240,7 @@ PTL.reports = {
       });
       $.history.load(newHash);
     } else {
-      alert('Wrong input data');
+      msg.show({ text: 'Wrong input data', level: 'error' });
     }
   },
 
@@ -463,8 +463,11 @@ PTL.reports = {
         $('body').spin(false);
       },
       error: function (xhr) {
-        alert('Error status: ' + $.parseJSON(xhr.responseText));
         $('body').spin(false);
+        msg.show({
+          text: `Error: ${$.parseJSON(xhr.responseText)}`,
+          level: 'error',
+        });
       },
     });
   },

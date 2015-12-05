@@ -25,6 +25,7 @@ module.exports = {
     'comma-spacing': [2, {'before': false, 'after': true}],
     'indent': [2, 2, { "SwitchCase": 1, "VariableDeclarator": 1 }],
     'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
+    'no-alert': 1,
     'no-extra-semi': 2,
     'no-multi-spaces': 2,
     'no-shadow': 2,

@@ -538,7 +538,7 @@ PTL.editor = {
 
   canNavigate: function () {
     if (this.isUnitDirty) {
-      return window.confirm(
+      return window.confirm(  // eslint-disable-line no-alert
         gettext(
           'You have unsaved changes in this string. Navigating away will discard those changes.'
         )
