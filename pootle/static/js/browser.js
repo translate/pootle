@@ -136,7 +136,7 @@ function formatProject(path) {
   const state = path.element[0].dataset.state;
 
   return `<span class="text project-${state}">${path.text}</span>`;
-};
+}
 
 
 var removeCtxEntries = function (results, container, query) {

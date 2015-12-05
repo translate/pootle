@@ -13,7 +13,7 @@ import $ from 'jquery';
 function setDeleteBg(e) {
   $(this).parents('tr').toggleClass('delete-selected',
                                     $(e.target).is(':checked'));
-};
+}
 
 
 /* Sets background color to table rows when checking standard selects */
@@ -23,7 +23,7 @@ function setSelectedBg(e) {
     $(this).parents('tr').toggleClass('other-selected',
                                       $(e.target).is(':checked'));
   }
-};
+}
 
 
 
@@ -32,7 +32,7 @@ function selectAll(e) {
   var className = e.target.id.split('-').reverse()[0];
   $(`td.${className} input`).prop('checked', $(e.target).is(':checked'));
   $(`td.${className} input`).change();
-};
+}
 
 
 const permissions = {
