@@ -14,7 +14,7 @@ import 'jquery-utils';
 import { updateInputState } from './helpers';
 
 
-var agreement = {
+const agreement = {
 
   init: function (url) {
     this.url = url;
@@ -46,8 +46,8 @@ var agreement = {
   displayContent: function (e) {
     e.preventDefault();
 
-    var that = this;
-    var url = e.target.href;
+    const that = this;
+    const url = e.target.href;
 
     $.magnificPopup.close();
     $.magnificPopup.open({
@@ -65,8 +65,8 @@ var agreement = {
   onSubmit: function (e) {
     e.preventDefault();
 
-    var $agreementBox = $('.js-agreement-box');
-    var $agreementForm = $('.js-agreement-form');
+    const $agreementBox = $('.js-agreement-box');
+    const $agreementForm = $('.js-agreement-form');
     $agreementBox.spin();
     $agreementBox.css({opacity: 0.5});
 
@@ -82,7 +82,7 @@ var agreement = {
         $agreementBox.css({opacity: 1});
 
         if (xhr.status === 400) {
-          var form = $.parseJSON(xhr.responseText).form;
+          const form = $.parseJSON(xhr.responseText).form;
           $agreementBox.parent().html(form);
         }
       },

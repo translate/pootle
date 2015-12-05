@@ -9,7 +9,7 @@
 import _ from 'underscore';
 
 
-var AdminAPIMixin = {
+const AdminAPIMixin = {
 
   initialize: function () {
     this.count = 0;
@@ -40,12 +40,12 @@ var AdminAPIMixin = {
   },
 
   fetchNextPage: function (opts) {
-    var newPage = this.page + 1;
-    var pageData = newPage === 1 ? {} : {p: newPage};
-    var keywordsData = this.keywords === '' ? {} : {q: this.keywords};
-    var reqData = _.extend({}, pageData, keywordsData);
-    var fetchOpts = {remove: false, silent: true, data: reqData};
+    const newPage = this.page + 1;
+    const pageData = newPage === 1 ? {} : { p: newPage };
+    const keywordsData = this.keywords === '' ? {} : { q: this.keywords };
+    const reqData = _.extend({}, pageData, keywordsData);
 
+    const fetchOpts = { remove: false, silent: true, data: reqData };
     _.defaults(fetchOpts, opts);
 
     return this.fetch(fetchOpts).done(function () {
@@ -54,10 +54,10 @@ var AdminAPIMixin = {
   },
 
   search: function (keywords) {
-    var opts = {};
+    const opts = {};
     if (keywords !== this.keywords) {
       this.setSearch(keywords);
-      opts = {reset: true};
+      opts.reset = true;
     }
     return this.fetchNextPage(opts);
   },

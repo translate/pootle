@@ -17,14 +17,14 @@ import utils from './utils';
  * Store
  */
 
-export var Store = Backbone.RelationalModel.extend({});
+export const Store = Backbone.RelationalModel.extend({});
 
 
 /*
  * Unit
  */
 
-export var Unit = Backbone.RelationalModel.extend({
+export const Unit = Backbone.RelationalModel.extend({
 
   relations: [{
     type: 'HasOne',

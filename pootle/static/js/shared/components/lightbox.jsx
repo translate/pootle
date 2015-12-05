@@ -13,18 +13,18 @@ import React from 'react';
 import './lightbox.css';
 
 
-var classNames = {
+const classNames = {
   lock: 'lightbox-lock',
 };
 
-var keys = {
+const keys = {
   ESC: 27,
 };
 
 
 /* Reusable micro components */
 
-var ModalHeader = React.createClass({
+const ModalHeader = React.createClass({
 
   render: function () {
     return (
@@ -37,7 +37,7 @@ var ModalHeader = React.createClass({
 });
 
 
-var ModalFooter = React.createClass({
+const ModalFooter = React.createClass({
 
   render: function () {
     return (
@@ -52,7 +52,7 @@ var ModalFooter = React.createClass({
 
 /* Actual components */
 
-var ModalContainer = React.createClass({
+const ModalContainer = React.createClass({
 
   _previousFocus: null,
   _ownsLock: false,
@@ -109,7 +109,7 @@ var ModalContainer = React.createClass({
 });
 
 
-export var Modal = React.createClass({
+export const Modal = React.createClass({
   mixins: [LayersMixin],
 
   propTypes: {
@@ -151,10 +151,10 @@ export var Modal = React.createClass({
       );
     }
 
-    var title = (this.props.title &&
+    const title = (this.props.title &&
       <h3 className="lightbox-title">{this.props.title}</h3>
     );
-    var closeBtn = (this.props.showClose &&
+    const closeBtn = (this.props.showClose &&
       <button className="lightbox-close"
               onClick={this.handleClose}>×</button>
     );
@@ -198,7 +198,7 @@ export var Modal = React.createClass({
 });
 
 
-export var Dialog = React.createClass({
+export const Dialog = React.createClass({
 
   propTypes: {
     okLabel: React.PropTypes.string,

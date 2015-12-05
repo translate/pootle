@@ -12,7 +12,7 @@ import _ from 'underscore';
 import AdminAPIMixin from 'mixins/admin_api';
 
 
-export var Project = Backbone.Model.extend({
+export const Project = Backbone.Model.extend({
 
   defaults: {
     'code': '',
@@ -53,7 +53,7 @@ export var Project = Backbone.Model.extend({
   },
 
   toJSON: function () {
-    var attrs = _.clone(this.attributes);
+    const attrs = _.clone(this.attributes);
     attrs.disabled = attrs.disabled ? gettext('disabled') : '';
     return attrs;
   },
@@ -61,7 +61,7 @@ export var Project = Backbone.Model.extend({
 });
 
 
-export var ProjectSet = Backbone.Collection.extend(
+export const ProjectSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
     model: Project,

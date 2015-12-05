@@ -19,7 +19,7 @@ const SEARCH_COOKIE_NAME = 'pootle-search';
 const search = {
 
   init(options) {
-    var that = this;
+    const that = this;
 
     this.state = {
       searchText: '',
@@ -62,10 +62,10 @@ const search = {
     });
 
     /* Dropdown toggling */
-    var toggleFields = function (event) {
+    function toggleFields(event) {
       event.preventDefault();
       that.$container.toggle();
-    };
+    }
 
     /* Event handlers */
     this.$input.click(function (e) {

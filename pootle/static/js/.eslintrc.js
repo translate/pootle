@@ -30,6 +30,7 @@ module.exports = {
     'no-shadow': 2,
     'no-undef': 2,
     'no-unused-vars': [2, {'vars': 'local', 'args': 'after-used'}],
+    'no-var': 2,
     'one-var': [2, 'never'],
     'prefer-const': 2,
     'quotes': [2, 'single', 'avoid-escape'],

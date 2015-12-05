@@ -11,8 +11,8 @@ import $ from 'jquery';
 import 'jquery-select2';
 
 
-var escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
-var whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
+const escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
+const whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
 
 
 /* Gets current URL's hash */
@@ -27,19 +27,19 @@ export function getHash(win) {
 }
 
 
-var decodeURIParameter = function (s) {
+function decodeURIParameter(s) {
   return decodeURIComponent(s.replace(/\+/g, ' '));
-};
+}
 
 
 export function getParsedHash(h) {
-  var params = {};
-  var e;
-  var r = /([^&;=]+)=?([^&;]*)/g;
+  const params = {};
+  const r = /([^&;=]+)=?([^&;]*)/g;
   if (h === undefined) {
     h = this.getHash();
   }
 
+  let e;
   while (e = r.exec(h)) {
     params[decodeURIParameter(e[1])] = decodeURIParameter(e[2]);
   }
@@ -49,14 +49,14 @@ export function getParsedHash(h) {
 
 /* Updates current URL's hash */
 export function updateHashPart(part, newVal, removeArray) {
-  var r = /([^&;=]+)=?([^&;]*)/g;
-  var params = [];
-  var h = getHash();
-  var e;
-  var ok;
-  var p;
+  const r = /([^&;=]+)=?([^&;]*)/g;
+  const params = [];
+  const h = getHash();
+  let ok = false;
+  let e;
+
   while (e = r.exec(h)) {
-    p = decodeURIParameter(e[1]);
+    const p = decodeURIParameter(e[1]);
     if (p === part) {
       // replace with the given value
       params.push([e[1], encodeURIComponent(newVal)].join('='));
@@ -91,10 +91,9 @@ export function cleanEscape(s) {
 export function fancyEscape(text) {
 
   function replace(match) {
-    var replaced;
-    var escapeHl = '<span class="highlight-escape">%s</span>';
-    var htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
-    var submap = {
+    const escapeHl = '<span class="highlight-escape">%s</span>';
+    const htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
+    const submap = {
       '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
       '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
       '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
@@ -104,7 +103,7 @@ export function fancyEscape(text) {
       '>': '&gt;',
     };
 
-    replaced = submap[match];
+    let replaced = submap[match];
 
     if (replaced === undefined) {
       replaced = htmlHl.replace(
@@ -121,16 +120,16 @@ export function fancyEscape(text) {
 
 
 /* Highlight spaces to make them easily visible */
-var fancySpaces = function (text) {
+function fancySpaces(text) {
 
   function replace(match) {
-    var spaceHl = '<span class="translation-space"> </span>';
+    const spaceHl = '<span class="translation-space"> </span>';
 
     return Array(match.length + 1).join(spaceHl);
   }
 
   return text.replace(whitespaceRE, replace);
-};
+}
 
 
 /* Fancy highlight: fancy spaces + fancy escape */
@@ -141,15 +140,15 @@ export function fancyHl(text) {
 
 /* Returns a string representing a relative datetime */
 export function relativeDate(date) {
-  var fmt;
-  var count;
-  var delta = Date.now() - date;
-  var seconds = Math.round(Math.abs(delta) / 1000);
-  var minutes = Math.round(seconds / 60);
-  var hours = Math.round(minutes / 60);
-  var days = Math.round(hours / 24);
-  var weeks = Math.round(days / 7);
-  var years = Math.round(days / 365);
+  const delta = Date.now() - date;
+  const seconds = Math.round(Math.abs(delta) / 1000);
+  const minutes = Math.round(seconds / 60);
+  const hours = Math.round(minutes / 60);
+  const days = Math.round(hours / 24);
+  const weeks = Math.round(days / 7);
+  const years = Math.round(days / 365);
+  let fmt;
+  let count;
 
   if (years > 0) {
     fmt = ngettext('A year ago', '%s years ago', years);
@@ -182,7 +181,7 @@ export function relativeDate(date) {
  */
 export function makeSelectableInput(selector, options, onChange) {
   // XXX: Check if this works with multiple selects per page
-  var $el = $(selector);
+  const $el = $(selector);
 
   if (!$el.length) {
     return;
@@ -195,11 +194,11 @@ export function makeSelectableInput(selector, options, onChange) {
 
 
 export function executeFunctionByName(functionName, context /*, args */) {
-  var args = Array.prototype.slice.call(arguments).splice(2);
-  var namespaces = functionName.split('.');
-  var func = namespaces.pop();
+  const args = Array.prototype.slice.call(arguments).splice(2);
+  const namespaces = functionName.split('.');
+  const func = namespaces.pop();
 
-  for (var i = 0; i < namespaces.length; i++) {
+  for (let i = 0; i < namespaces.length; i++) {
     context = context[namespaces[i]];
   }
 

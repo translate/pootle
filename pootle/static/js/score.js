@@ -10,9 +10,9 @@ import Backbone from 'backbone';
 import 'odometer';
 
 
-var Score = Backbone.Model.extend({
+const Score = Backbone.Model.extend({
   validate: function (attrs) {
-    var value = attrs.value;
+    const value = attrs.value;
 
     if (value === undefined || value === null) {
       return 'Not a number';
@@ -25,7 +25,7 @@ var Score = Backbone.Model.extend({
 });
 
 
-var ScoreView = Backbone.View.extend({
+const ScoreView = Backbone.View.extend({
   el: '.js-score',
 
   events: {
@@ -33,8 +33,8 @@ var ScoreView = Backbone.View.extend({
   },
 
   updateWidth: function () {
-    var elWidth = this.$el.find('.odometer-inside').width();
-    var newWidth = elWidth === 0 ? 'auto' : elWidth;
+    const elWidth = this.$el.find('.odometer-inside').width();
+    const newWidth = elWidth === 0 ? 'auto' : elWidth;
     if (this.oldWidth !== newWidth) {
       this.$el.css('width', newWidth);
       this.oldWidth = newWidth;
@@ -55,7 +55,7 @@ var ScoreView = Backbone.View.extend({
 });
 
 
-var scoreModel;
+let scoreModel;
 
 
 export function init(initialScoreValue) {

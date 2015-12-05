@@ -19,7 +19,7 @@ function slideTable(event) {
     url: l('/admin/more-stats/'),
     dataType: 'json',
     success: function (data) {
-      var newstats = '';
+      let newstats = '';
       $(data).each(function () {
         newstats += '<tr><th scope="row">' + this[0] + '</th>'
                     + '<td class="stats-number">' + this[1] + '</td></tr>';

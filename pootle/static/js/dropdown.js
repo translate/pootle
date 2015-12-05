@@ -10,7 +10,7 @@ import $ from 'jquery';
 import Backbone from 'backbone';
 
 
-var sel = {
+const sel = {
   data: {
     toggle: '[data-action="toggle"]',
   },
@@ -19,17 +19,17 @@ var sel = {
   open: 'show-dropdown',
 };
 
-var keys = {
+const keys = {
   ESC: 27,
   UP: 38,
   DOWN: 40,
 };
 
 
-var DropdownView = Backbone.View.extend({
+const DropdownView = Backbone.View.extend({
 
   events: function () {
-    var events = {
+    const events = {
       'keydown': 'onKey',
     };
     events['click ' + sel.data.toggle] = 'toggle';
@@ -61,13 +61,13 @@ var DropdownView = Backbone.View.extend({
     }
 
     if ([keys.UP, keys.DOWN].indexOf(e.which) !== -1) {
-      var $items = this.$target.find(sel.targetItems);
+      const $items = this.$target.find(sel.targetItems);
 
       if (!$items.length) {
         return false;
       }
 
-      var index = $items.index($items.filter(':focus'));
+      let index = $items.index($items.filter(':focus'));
 
       if (e.which === keys.UP && index > 0) {
         index--;
@@ -111,7 +111,7 @@ var DropdownView = Backbone.View.extend({
 });
 
 
-var dropdown = {
+const dropdown = {
 
   init: function (el) {
     el = el instanceof $ ? el : $(el);

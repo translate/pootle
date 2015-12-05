@@ -9,7 +9,7 @@
 import Backbone from 'backbone';
 
 
-var UserProfileRouter = Backbone.Router.extend({
+const UserProfileRouter = Backbone.Router.extend({
 
   routes: {
     '': 'main',

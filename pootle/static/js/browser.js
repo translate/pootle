@@ -15,7 +15,7 @@ import cookie from 'utils/cookie';
 import utils from './utils';
 
 
-var sel = {
+const sel = {
   breadcrumbs: '.js-breadcrumb',
   navigation: '#js-select-navigation',
   language: '#js-select-language',
@@ -24,7 +24,7 @@ var sel = {
 };
 
 
-var actionMap = {
+const actionMap = {
   'browse': '',
   'translate': 'translate',
   'admin-permissions': 'admin/permissions',
@@ -34,24 +34,23 @@ var actionMap = {
 };
 
 
-var makeNavDropdown = function (selector, opts) {
-  var defaults = {
+function makeNavDropdown(selector, opts) {
+  const defaults = {
     allowClear: true,
     dropdownAutoWidth: true,
     dropdownCssClass: 'breadcrumb-dropdown',
     width: 'off',
   };
-  var opts = $.extend({}, defaults, opts);
+  const options = $.extend({}, defaults, opts);
 
-  return utils.makeSelectableInput(selector, opts,
+  return utils.makeSelectableInput(selector, options,
     function () {
-      var $select = $(this);
-      var $opt = $select.find('option:selected');
-      var href = $opt.data('href');
-      var openInNewTab;
+      const $select = $(this);
+      const $opt = $select.find('option:selected');
+      const href = $opt.data('href');
 
       if (href) {
-        openInNewTab = $opt.data('new-tab');
+        const openInNewTab = $opt.data('new-tab');
 
         if (openInNewTab) {
           window.open(href, '_blank');
@@ -64,62 +63,61 @@ var makeNavDropdown = function (selector, opts) {
         return false;
       }
 
-      var langCode = $(sel.language).val();
-      var projectCode = $(sel.project).val();
-      var $resource = $(sel.resource);
-      var resource = $resource.length ? $resource.val()
-                                                 .replace('ctx-', '')
-                                      : '';
+      const langCode = $(sel.language).val();
+      const projectCode = $(sel.project).val();
+      const $resource = $(sel.resource);
+      const resource = $resource.length ? $resource.val()
+                                                  .replace('ctx-', '')
+                                       : '';
       browser.navigateTo(langCode, projectCode, resource);
     }
   );
-};
+}
 
 
-var fixDropdowns = function () {
+function fixDropdowns() {
   // We can't use `e.persisted` here. See bug 2949 for reference
-  var selectors = [sel.navigation, sel.language, sel.project, sel.resource];
-  for (var i = 0; i < selectors.length; i++) {
-    var $el = $(selectors[i]);
-    var initial = $el.data('initial-code');
-    $el.select2('val', initial);
+  const selectors = [sel.navigation, sel.language, sel.project, sel.resource];
+  for (let i = 0; i < selectors.length; i++) {
+    const $el = $(selectors[i]);
+    $el.select2('val', $el.data('initial-code'));
   }
   fixResourcePathBreadcrumbGeometry();
   $(sel.breadcrumbs).css('visibility', 'visible');
-};
+}
 
 
 /* Recalculate breadcrumb geometry on window resize */
-var fixResourcePathBreadcrumbGeometry = function () {
-  var $resourceDropdown = $('#s2id_js-select-resource');
+function fixResourcePathBreadcrumbGeometry() {
+  const $resourceDropdown = $('#s2id_js-select-resource');
   // on some pages there's no resource dropdown
   if ($resourceDropdown.length) {
-    var sideMargin = $('#s2id_js-select-navigation').position().left;
+    const sideMargin = $('#s2id_js-select-navigation').position().left;
 
-    var maxHeaderWidth = $('#header-meta').outerWidth() - sideMargin;
-    var resourceDropdownLeft = $resourceDropdown.position().left;
+    const maxHeaderWidth = $('#header-meta').outerWidth() - sideMargin;
+    const resourceDropdownLeft = $resourceDropdown.position().left;
 
-    var maxWidth = maxHeaderWidth - resourceDropdownLeft;
+    const maxWidth = maxHeaderWidth - resourceDropdownLeft;
     $resourceDropdown.css('max-width', maxWidth);
   }
-};
+}
 
 
-var formatResource = function (path, container, query) {
-  var $el = $(path.element);
+function formatResource(path, container, query) {
+  const $el = $(path.element);
 
   if ($el.prop('disabled')) {
     return '';
   }
 
-  var t = '/' + path.text.trim();
+  let t = '/' + path.text.trim();
 
   if (query.term !== '') {
-    var escaped_term = query.term.replace(
+    const escapedTerm = query.term.replace(
           /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
           '\\$&'
         );
-    var regex = new RegExp(escaped_term, 'gi');
+    const regex = new RegExp(escapedTerm, 'gi');
     t = t.replace(regex, '<span class="select2-match">$&</span>');
   }
 
@@ -129,7 +127,7 @@ var formatResource = function (path, container, query) {
     '<span class="text">', t, '</span>',
     '</span>',
   ].join('');
-};
+}
 
 
 function formatProject(path) {
@@ -139,17 +137,17 @@ function formatProject(path) {
 }
 
 
-var removeCtxEntries = function (results, container, query) {
+function removeCtxEntries(results, container, query) {
   if (query.term) {
     return _.filter(results, function (result) {
       return result.id.slice(0, 4) !== 'ctx-';
     });
   }
   return results;
-};
+}
 
 
-var browser = {
+const browser = {
 
   init: function () {
     $(window).on('pageshow', fixDropdowns);
@@ -179,25 +177,25 @@ var browser = {
   /* Navigates to `languageCode`, `projectCode`, `resource` while
    * retaining the current context when applicable */
   navigateTo: function (languageCode, projectCode, resource) {
-    var curProject = $(sel.project).data('initial-code');
-    var curLanguage = $(sel.language).data('initial-code');
-    var $resource = $(sel.resource);
-    var curResource = $resource.length ? $resource.data('initial-code')
-                                                  .replace('ctx-', '') : '';
-    var langChanged = languageCode !== curLanguage;
-    var projChanged = projectCode !== curProject;
-    var resChanged = resource !== curResource;
-    var hasChanged = langChanged || projChanged || resChanged;
+    const curProject = $(sel.project).data('initial-code');
+    const curLanguage = $(sel.language).data('initial-code');
+    const $resource = $(sel.resource);
+    const curResource = $resource.length ? $resource.data('initial-code')
+                                                    .replace('ctx-', '') : '';
+    const langChanged = languageCode !== curLanguage;
+    const projChanged = projectCode !== curProject;
+    const resChanged = resource !== curResource;
+    const hasChanged = langChanged || projChanged || resChanged;
 
     if (!hasChanged) {
       return;
     }
 
-    var actionKey = $(sel.navigation).val();
-    var action = actionMap[actionKey];
-    var inAdmin = (actionKey.indexOf('admin-') !== -1 &&
-                   ((curLanguage === '' && curProject !== '') ||
-                    (curLanguage !== '' && curProject === '')));
+    const actionKey = $(sel.navigation).val();
+    const action = actionMap[actionKey];
+    const inAdmin = (actionKey.indexOf('admin-') !== -1 &&
+                     ((curLanguage === '' && curProject !== '') ||
+                      (curLanguage !== '' && curProject === '')));
 
     if (!languageCode && !inAdmin) {
       languageCode = 'projects';
@@ -206,28 +204,27 @@ var browser = {
       resource = '';
     }
 
-    var parts = ['', languageCode, projectCode, action, resource];
-    var urlParts = parts.filter(function (p, i) {
+    const parts = ['', languageCode, projectCode, action, resource];
+    const urlParts = parts.filter(function (p, i) {
       return i === 0 || p !== '';
     });
-    var newUrl;
 
     if (!resource) {
       urlParts.push('');
     }
 
-    newUrl = l(urlParts.join('/'));
+    let newUrl = l(urlParts.join('/'));
 
-    var PTL = window.PTL || {};
+    const PTL = window.PTL || {};
     if (PTL.hasOwnProperty('editor')) {
-      var hash = utils.getHash().replace(/&?unit=\d+/, '');
+      const hash = utils.getHash().replace(/&?unit=\d+/, '');
       if (hash !== '') {
         newUrl = [newUrl, hash].join('#');
       }
     }
 
-    var changed = projChanged ? 'project' :
-                  langChanged ? 'language' : 'resource';
+    const changed = projChanged ? 'project' :
+                    langChanged ? 'language' : 'resource';
     cookie('user-choice', changed, { path: '/' });
 
     // Remember the latest language the user switched to

@@ -6,7 +6,7 @@
 
 /* Create a new "layer" on the page, like a modal or overlay.
  *
- * var LayeredComponent = React.createClass({
+ * const LayeredComponent = React.createClass({
  *     mixins: [LayeredComponentMixin],
  *     render: function() {
  *         // render like usual
@@ -20,7 +20,7 @@
 import React from 'react';
 
 
-var LayeredComponentMixin = {
+const LayeredComponentMixin = {
 
   componentDidMount: function () {
         // Appending to the body is easier than managing the z-index of
@@ -46,7 +46,7 @@ var LayeredComponentMixin = {
         // funnels React's hierarchical updates through to a DOM node on an
         // entirely different part of the page.
 
-    var layerElement = this.renderLayer();
+    const layerElement = this.renderLayer();
         // Renders can return null, but React.render() doesn't like being asked
         // to render null. If we get null back from renderLayer(), just render
         // a noscript element, like React does when an element's render returns

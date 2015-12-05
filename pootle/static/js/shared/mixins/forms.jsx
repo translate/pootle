@@ -12,7 +12,7 @@ import _ from 'underscore';
 import BackboneMixin from './backbone';
 
 
-export var FormValidationMixin = {
+export const FormValidationMixin = {
 
   getInitialState: function () {
     return {
@@ -26,7 +26,7 @@ export var FormValidationMixin = {
 
   validateResponse: function (xhr) {
     // XXX: should this also check for HTTP 500, 404 etc.?
-    var response = JSON.parse(xhr.responseText);
+    const response = JSON.parse(xhr.responseText);
     this.setState({errors: response.errors});
   },
 
@@ -41,7 +41,7 @@ export var FormValidationMixin = {
   /* Renders form's global errors. These errors come in a special
    * `__all__` field */
   renderAllFormErrors: function () {
-    var errors = this.state.errors;
+    const { errors } = this.state;
 
     if (errors.hasOwnProperty('__all__')) {
       return (
@@ -72,7 +72,7 @@ export var FormValidationMixin = {
  *  - `handleError (xhr)`:
  *    called in the `model.save()`'s error callback
  */
-export var FormMixin = {
+export const FormMixin = {
   mixins: [FormValidationMixin],
 
   /* Lifecycle */
@@ -87,9 +87,9 @@ export var FormMixin = {
   /* Handlers */
 
   handleChange: function (name, value) {
-    var newData = _.extend({}, this.state.formData);
+    const newData = _.extend({}, this.state.formData);
     newData[name] = value;
-    var isDirty = !_.isEqual(newData, this.initialData);
+    const isDirty = !_.isEqual(newData, this.initialData);
     this.setState({formData: newData, isDirty: isDirty});
   },
 
@@ -117,7 +117,7 @@ export var FormMixin = {
  * Backbone model form mixin.
  * Like `FormMixin` but specialized for BB models.
  */
-export var ModelFormMixin = {
+export const ModelFormMixin = {
   mixins: [BackboneMixin, FormMixin],
 
   propTypes: {

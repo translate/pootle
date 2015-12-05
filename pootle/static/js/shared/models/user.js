@@ -12,10 +12,10 @@ import _ from 'underscore';
 import AdminAPIMixin from 'mixins/admin_api';
 
 
-var metaUsers = ['nobody', 'default', 'system'];
+const metaUsers = ['nobody', 'default', 'system'];
 
 
-export var User = Backbone.Model.extend({
+export const User = Backbone.Model.extend({
 
   defaults: {
     'username': '',
@@ -65,7 +65,7 @@ export var User = Backbone.Model.extend({
 });
 
 
-export var UserSet = Backbone.Collection.extend(
+export const UserSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
     model: User,

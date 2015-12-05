@@ -21,7 +21,7 @@ import msg from '../msg';
 import utils from '../utils';
 
 
-var paidTaskTypes = {
+const paidTaskTypes = {
   translation: 0,
   review: 1,
   hourlyWork: 2,
@@ -37,7 +37,7 @@ PTL.reports = {
     _.defaults(this, opts);
 
     /* Compile templates */
-    var showSummary = !PTL.reports.freeUserReport && (PTL.reports.ownReport || PTL.reports.adminReport);
+    const showSummary = !PTL.reports.freeUserReport && (PTL.reports.ownReport || PTL.reports.adminReport);
     this.tmpl = {
       results: _.template($('#language_user_activity').html()),
       summary: showSummary ? _.template($('#summary').html()) : '',
@@ -69,11 +69,11 @@ PTL.reports = {
     $(document).on('keyup paste change', '#id_amount', this.addPaidTaskValidate);
     $(document).on('blur', '#id_amount', this.roundAmount);
 
-    var taskType = parseInt($('#id_task_type').val(), 10);
+    const taskType = parseInt($('#id_task_type').val(), 10);
     this.refreshAmountMeasureUnits(taskType);
 
     $.history.init(function (hash) {
-      var params = PTL.reports.params = utils.getParsedHash(hash);
+      const params = PTL.reports.params = utils.getParsedHash(hash);
 
       // Walk through known report criterias and apply them to the
       // reports object
@@ -99,7 +99,7 @@ PTL.reports = {
   },
 
   updateRates: function () {
-    var reqData = $('#user-rates-form').serializeObject();
+    const reqData = $('#user-rates-form').serializeObject();
     $('body').spin();
     $.ajax({
       url: PTL.reports.updateUserRatesUrl,
@@ -122,7 +122,7 @@ PTL.reports = {
   },
 
   addPaidTask: function () {
-    var reqData = $('#paid-task-form').serializeObject();
+    const reqData = $('#paid-task-form').serializeObject();
     $('#paid-task-form .submit').prop('disabled', true);
 
     $.ajax({
@@ -160,13 +160,13 @@ PTL.reports = {
   },
 
   refreshCurrency: function () {
-    var currency = $(this).val();
+    const currency = $(this).val();
     $('#user-rates-form .currency').text(currency);
     $('#paid-task-form .currency').text(currency);
   },
 
   onPaidTaskTypeChange: function () {
-    var taskType = parseInt($(this).val(), 10);
+    const taskType = parseInt($(this).val(), 10);
 
     PTL.reports.refreshAmountMeasureUnits(taskType);
     $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
@@ -174,9 +174,9 @@ PTL.reports = {
   },
 
   roundAmount: function () {
-    var $this = $(this);
-    var amount = $this.val();
-    var taskType = parseInt($('#id_task_type').val(), 10);
+    const $this = $(this);
+    const amount = $this.val();
+    const taskType = parseInt($('#id_task_type').val(), 10);
 
     if (taskType === paidTaskTypes.translation ||
         taskType === paidTaskTypes.review ||
@@ -192,9 +192,9 @@ PTL.reports = {
 
   addPaidTaskValidate: function () {
     setTimeout(function () {
-      var amount = $('#id_amount').val();
-      var description = $('#id_description').val();
-      var taskType = parseInt($('#id_task_type').val(), 10);
+      const amount = $('#id_amount').val();
+      const description = $('#id_description').val();
+      const taskType = parseInt($('#id_task_type').val(), 10);
 
       if (description === '' || amount <= 0 &&
           taskType !== paidTaskTypes.correction) {
@@ -234,7 +234,7 @@ PTL.reports = {
 
   update: function () {
     if (PTL.reports.validate()) {
-      var newHash = $.param({
+      const newHash = $.param({
         'username': PTL.reports.userName,
         'month': PTL.reports.month.format('YYYY-MM'),
       });
@@ -245,10 +245,10 @@ PTL.reports = {
   },
 
   compareParams: function (params) {
-    var result = true;
+    let result = true;
 
     if (PTL.reports.loadedHashParams) {
-      for (var p in params) {
+      for (const p in params) {
         result &= params[p] === PTL.reports.loadedHashParams[p];
       }
     } else {
@@ -288,8 +288,8 @@ PTL.reports = {
 
   getPaidTaskSummaryItem: function (type, rate) {
     if (PTL.reports.data.paid_task_summary) {
-      var summary = PTL.reports.data.paid_task_summary;
-      for (var index in summary) {
+      const summary = PTL.reports.data.paid_task_summary;
+      for (const index in summary) {
         if (summary[index].rate === rate && summary[index].type === type) {
           return summary[index];
         }
@@ -300,21 +300,18 @@ PTL.reports = {
   },
 
   setData: function (data) {
-    var translatedTotal = 0;
-    var reviewedTotal = 0;
-    var suggestedTotal = 0;
-    var scoreDeltaTotal = 0;
-    var translatedFloorTotal = 0;
-    var remainders;
-    var delta;
-    var i;
+    let translatedTotal = 0;
+    let reviewedTotal = 0;
+    let suggestedTotal = 0;
+    let scoreDeltaTotal = 0;
+    let translatedFloorTotal = 0;
 
     PTL.reports.data = data;
     data.paid_task_summary = [];
 
-    for (var index in data.paid_tasks) {
-      var task = data.paid_tasks[index];
-      var item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
+    for (const index in data.paid_tasks) {
+      const task = data.paid_tasks[index];
+      const item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
 
       task.datetime = moment(task.datetime, 'YYYY-MM-DD hh:mm:ss').format('MMMM D, HH:mm');
       if (item !== null) {
@@ -330,9 +327,9 @@ PTL.reports = {
       }
     }
 
-    for (var index in data.grouped) {
-      var row = data.grouped[index];
-      var floor = parseInt(row.translated, 10);
+    for (const index in data.grouped) {
+      const row = data.grouped[index];
+      const floor = parseInt(row.translated, 10);
 
       row.remainder = row.translated - floor;
       translatedTotal += row.translated;
@@ -349,16 +346,16 @@ PTL.reports = {
     data.groupedTranslatedTotal = translatedTotal;
     data.groupedReviewedTotal = reviewedTotal;
     data.groupedScoreDeltaTotal = scoreDeltaTotal;
-    delta = translatedTotal - translatedFloorTotal;
+    let delta = translatedTotal - translatedFloorTotal;
 
     if (delta > 0) {
-      remainders = data.grouped.slice(0);
+      const remainders = data.grouped.slice(0);
       remainders.sort(function (a, b) {
         return (b.remainder > a.remainder) ?
           1 : (b.remainder < a.remainder) ? -1 : 0;
       });
 
-      i = 0;
+      let i = 0;
       while (delta > 0) {
         remainders[i].translated += 1;
         i++;
@@ -368,7 +365,7 @@ PTL.reports = {
   },
 
   buildResults: function () {
-    var reqData = {
+    const reqData = {
       month: PTL.reports.month.format('YYYY-MM'),
       username: PTL.reports.userName,
     };
@@ -387,14 +384,14 @@ PTL.reports = {
         $('#reports-results').empty();
         $('#reports-results').html(PTL.reports.tmpl.results(PTL.reports.data)).show();
         $('#js-breadcrumb-user').text(data.meta.user.formatted_name).show();
-        var showChart = data.daily !== undefined && data.daily.nonempty;
+        const showChart = data.daily !== undefined && data.daily.nonempty;
         $('#reports-activity').toggle(showChart);
         if (showChart) {
           PTL.reports.dailyData = data.daily;
           PTL.reports.drawChart();
         }
 
-        var permalinkArgs = {
+        const permalinkArgs = {
           username: data.meta.user.username,
           month: data.meta.month,
           task: '',
@@ -404,7 +401,7 @@ PTL.reports = {
 
         if (PTL.reports.adminReport || !PTL.reports.freeUserReport &&
             PTL.reports.ownReport) {
-          var ctx = {
+          const ctx = {
             data: PTL.reports.data,
             paidTaskTypes: paidTaskTypes,
           };
@@ -439,7 +436,7 @@ PTL.reports = {
           $('#id_review_rate').val(PTL.reports.user.review_rate);
           $('#id_hourly_rate').val(PTL.reports.user.hourly_rate);
 
-          var taskType = parseInt($('#id_task_type').val(), 10);
+          const taskType = parseInt($('#id_task_type').val(), 10);
           $('#id_paid_task_rate').val(PTL.reports.getRateByTaskType(taskType));
 
           if (PTL.reports.user.currency) {
@@ -448,7 +445,7 @@ PTL.reports = {
           $('#user-rates-form .currency').text($('#id_currency').val());
 
           if ('task' in PTL.reports.params) {
-            var task = document.querySelector('.task' + PTL.reports.params.task);
+            const task = document.querySelector('.task' + PTL.reports.params.task);
             if (!!task) {
               task.classList.add('highlight');
               setTimeout(function () {
@@ -473,8 +470,8 @@ PTL.reports = {
   },
 
   dateRangeString: function (d1, d2, showYear) {
-    var m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss');
-    var m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
+    const m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss');
+    const m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
 
     showYear = showYear || true;
 
@@ -507,14 +504,14 @@ PTL.reports = {
   },
 
   formatDate: function (d) {
-    var m = moment(d, 'YYYY-MM-DD HH:mm:ss');
+    const m = moment(d, 'YYYY-MM-DD HH:mm:ss');
     return m.format('MMM, D');
   },
 
   updateMonthSelector: function () {
     $('.js-month').each(function () {
-      var $el = $(this);
-      var link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
+      const $el = $(this);
+      let link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
 
       if ($el.hasClass('js-previous')) {
         link += 'month=' + PTL.reports.month.clone().subtract({ M: 1 }).format('YYYY-MM');
@@ -528,7 +525,7 @@ PTL.reports = {
   },
 
   setPaidTaskDate: function () {
-    var datetime;
+    let datetime;
     // set paid task datetime
     if (PTL.reports.now >= PTL.reports.month.clone().add({M: 1})) {
       datetime = PTL.reports.month.clone().add({M: 1}).subtract({s: 1});

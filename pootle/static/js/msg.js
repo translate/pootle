@@ -10,7 +10,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 
 
-var Message = Backbone.Model.extend({
+const Message = Backbone.Model.extend({
   defaults: {
     text: '',
     level: 'info',
@@ -19,12 +19,12 @@ var Message = Backbone.Model.extend({
 });
 
 
-var MessageList = Backbone.Collection.extend({
+const MessageList = Backbone.Collection.extend({
   model: Message,
 });
 
 
-var MessageView = Backbone.View.extend({
+const MessageView = Backbone.View.extend({
   className: 'alert alert-block',
 
   render: function () {
@@ -39,7 +39,7 @@ var MessageView = Backbone.View.extend({
 });
 
 
-var MessageListView = Backbone.View.extend({
+const MessageListView = Backbone.View.extend({
   el: '.js-alerts',
 
   initialize: function () {
@@ -50,14 +50,14 @@ var MessageListView = Backbone.View.extend({
   },
 
   add: function (msg) {
-    var msgView = new MessageView({model: msg});
+    const msgView = new MessageView({model: msg});
     this.subViews.push(msgView);
 
     this.$el.prepend(msgView.render().el);
   },
 
   remove: function (msg) {
-    var currentView = _.find(this.subViews, function (view) {
+    const currentView = _.find(this.subViews, function (view) {
       return view.model === msg;
     });
     this.subViews = _(this.subViews).without(currentView);
@@ -70,11 +70,11 @@ var MessageListView = Backbone.View.extend({
 });
 
 
-var messages = new MessageList();
-var messagesView;
+const messages = new MessageList();
+let messagesView;
 
 
-var msg = {
+const msg = {
 
   show: function (opts) {
     if (!messagesView) {

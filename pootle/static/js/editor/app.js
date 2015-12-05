@@ -333,18 +333,18 @@ PTL.editor = {
 
     /* History support */
     $.history.init((hash) => {
-      var params = utils.getParsedHash(hash);
-      var isInitial = true;
-      var uId = 0;
+      const params = utils.getParsedHash(hash);
+      let isInitial = true;
+      let uId = 0;
 
       // Walk through known filtering criterias and apply them to the editor object
 
       if (params.unit) {
-        var uIdParam = parseInt(params.unit, 10);
+        const uIdParam = parseInt(params.unit, 10);
 
         if (uIdParam && !isNaN(uIdParam)) {
-          var current = this.units.getCurrent();
-          var newUnit = this.units.get(uIdParam);
+          const current = this.units.getCurrent();
+          const newUnit = this.units.get(uIdParam);
           if (newUnit && newUnit !== current) {
             this.setUnit(newUnit);
             return;
@@ -363,7 +363,7 @@ PTL.editor = {
       this.sortBy = 'default';
 
       if ('filter' in params) {
-        var filterName = params.filter;
+        const filterName = params.filter;
 
         // Set current state
         this.filter = filterName;
@@ -393,11 +393,10 @@ PTL.editor = {
 
       // Only accept the user parameter for 'user-*' filters
       if ('user' in params && this.filter.indexOf('user-') === 0) {
-        var user;
-        this.user = user = encodeURIComponent(params.user);
+        this.user = encodeURIComponent(params.user);
+        const user = this.user;
 
-        var newOpts = [];
-        var values = {
+        const values = {
           'user-suggestions':
             // Translators: '%s' is a username
             interpolate(gettext("%s's pending suggestions"), [user]),
@@ -415,7 +414,8 @@ PTL.editor = {
             // that were overwritten"
             interpolate(gettext("%s's overwritten submissions"), [user]),
         };
-        for (var key in values) {
+        const newOpts = [];
+        for (const key in values) {
           newOpts.push(
             `<option value="${key}" data-user="${user}" class="js-user-filter">` +
               values[key] +
@@ -450,7 +450,7 @@ PTL.editor = {
       // disable navigation on UI toolbar events to prevent data reload
       this.preventNavigation = true;
 
-      var filterValue = this.filter === 'search' ? 'all' : this.filter;
+      const filterValue = this.filter === 'search' ? 'all' : this.filter;
       this.$filterStatus.select2('val', filterValue);
 
       if (this.filter === 'checks') {
@@ -486,7 +486,7 @@ PTL.editor = {
 
   /* Stuff to be done when the editor is ready  */
   ready: function () {
-    var currentUnit = this.units.getCurrent();
+    const currentUnit = this.units.getCurrent();
     if (currentUnit.get('isObsolete')) {
       this.displayObsoleteMsg();
     }
@@ -499,7 +499,7 @@ PTL.editor = {
     $('.suggestion-translation-body').filter(':not([dir])').bidi();
 
     // Focus on the first textarea, if any
-    var firstArea = $('.focusthis')[0];
+    const firstArea = $('.focusthis')[0];
     if (firstArea) {
       firstArea.focus();
     }
@@ -516,7 +516,7 @@ PTL.editor = {
     }
 
     if (this.tmData !== null) {
-      var tmContent = this.getTMUnitsContent(this.tmData);
+      const tmContent = this.getTMUnitsContent(this.tmData);
       $('#extras-container').append(tmContent);
     }
 
@@ -581,11 +581,11 @@ PTL.editor = {
 
   /* Copies text into the focused textarea */
   copyText: function (e) {
-    var $el = $(e.currentTarget);
-    var action = $el.data('action');
-    var text = $el.data('string') || $el.data('translation-aid') || $el.text();
-    var $target = $(this.focused);
-    var start;
+    const $el = $(e.currentTarget);
+    const action = $el.data('action');
+    const text = $el.data('string') || $el.data('translation-aid') || $el.text();
+    const $target = $(this.focused);
+    let start;
 
     if (action === 'overwrite') {
       $target.val(text).trigger('input');
@@ -602,18 +602,17 @@ PTL.editor = {
 
   /* Copies source text(s) into the target textarea(s)*/
   copyOriginal: function (sources) {
-    var targets = $('.js-translation-area');
+    const targets = $('.js-translation-area');
     if (targets.length) {
-      var active;
-      var max = sources.length - 1;
+      const max = sources.length - 1;
 
       for (let i = 0; i < targets.length; i++) {
-        var newval = sources[i] || sources[max];
+        const newval = sources[i] || sources[max];
         $(targets.get(i)).val(newval).trigger('input');
       }
 
       // Focus on the first textarea
-      active = $(targets)[0];
+      const active = $(targets)[0];
       active.focus();
       autosize.update(active);
       // Make this fuzzy
@@ -659,7 +658,7 @@ PTL.editor = {
 
   /* Checks the current unit's fuzzy checkbox */
   doFuzzyBox: function () {
-    var $checkbox = $('input.fuzzycheck');
+    const $checkbox = $('input.fuzzycheck');
     $checkbox.prop('checked', true);
 
     if (!this.settings.isAdmin) {
@@ -675,7 +674,7 @@ PTL.editor = {
 
   /* Unchecks the current unit's fuzzy checkbox */
   undoFuzzyBox: function () {
-    var $checkbox = $('input.fuzzycheck');
+    const $checkbox = $('input.fuzzycheck');
     $checkbox.prop('checked', false);
     $checkbox.trigger('change');
   },
@@ -723,7 +722,7 @@ PTL.editor = {
     $('.js-translation-area').each(function () {
       this.defaultValue = this.value;
     });
-    var checkbox = $('#id_state')[0];
+    const checkbox = $('#id_state')[0];
     checkbox.defaultChecked = checkbox.checked;
     this.handleTranslationChange();
   },
@@ -740,32 +739,32 @@ PTL.editor = {
     const commentChanged = comment !== null ?
                            comment.value !== comment.defaultValue : false;
 
-    var submit = $('.js-submit')[0];
-    var suggest = $('.js-suggest')[0];
-    var translations = $('.js-translation-area').get();
-    var suggestions = $('.js-user-suggestion').map(function () {
+    const submit = $('.js-submit')[0];
+    const suggest = $('.js-suggest')[0];
+    const translations = $('.js-translation-area').get();
+    const suggestions = $('.js-user-suggestion').map(function () {
       return $(this).data('translation-aid');
     }).get();
-    var checkbox = $('#id_state')[0];
-    var stateChanged = checkbox.defaultChecked !== checkbox.checked;
-    var areaChanged = false;
-    var needsReview = false;
-    var suggestionExists = false;
-    var area;
-    var i;
+    const checkbox = $('#id_state')[0];
+    const stateChanged = checkbox.defaultChecked !== checkbox.checked;
+
+    let areaChanged = false;
+    let needsReview = false;
+    let suggestionExists = false;
+    let area;
 
     // Non-admin users are required to clear the fuzzy checkbox
     if (!this.settings.isAdmin) {
       needsReview = checkbox.checked === true;
     }
 
-    for (i = 0; i < translations.length && !areaChanged; i++) {
+    for (let i = 0; i < translations.length && !areaChanged; i++) {
       area = translations[i];
       areaChanged = area.defaultValue !== area.value;
     }
 
     if (suggestions.length) {
-      for (i = 0; i < translations.length && !suggestionExists; i++) {
+      for (let i = 0; i < translations.length && !suggestionExists; i++) {
         area = translations[i];
         suggestionExists = suggestions.indexOf(area.value) !== -1;
       }
@@ -796,9 +795,9 @@ PTL.editor = {
   onTextareaChange: function (e) {
     this.handleTranslationChange();
 
-    var that = this;
-    var el = e.target;
-    var hasChanged = el.defaultValue !== el.value;
+    const that = this;
+    const el = e.target;
+    const hasChanged = el.defaultValue !== el.value;
 
     if (hasChanged && !this.keepState) {
       this.ungoFuzzy();
@@ -817,7 +816,7 @@ PTL.editor = {
    */
 
   getSimilarityData: function () {
-    var currentUnit = this.units.getCurrent();
+    const currentUnit = this.units.getCurrent();
     return {
       similarity: currentUnit.get('similarityHuman'),
       mt_similarity: currentUnit.get('similarityMT'),
@@ -825,17 +824,13 @@ PTL.editor = {
   },
 
   calculateSimilarity: function (newTranslation, $elements, dataSelector) {
-    var maxSimilarity = 0;
-    var boxId = null;
-    var $element;
-    var aidText;
-    var similarity;
-    var i;
+    let maxSimilarity = 0;
+    let boxId = null;
 
-    for (i = 0; i < $elements.length; i++) {
-      $element = $elements.eq(i);
-      aidText = $element.data(dataSelector);
-      similarity = this.wordComparer.similarity(newTranslation, aidText);
+    for (let i = 0; i < $elements.length; i++) {
+      const $element = $elements.eq(i);
+      const aidText = $element.data(dataSelector);
+      const similarity = this.wordComparer.similarity(newTranslation, aidText);
 
       if (similarity > maxSimilarity) {
         maxSimilarity = similarity;
@@ -851,9 +846,9 @@ PTL.editor = {
   },
 
   checkSimilarTranslations: function () {
-    var dataSelector = 'translation-aid';
-    var dataSelectorMT = 'translation-aid-mt';
-    var $aidElementsMT = $(`[data-${dataSelectorMT}]`);
+    const dataSelector = 'translation-aid';
+    const dataSelectorMT = 'translation-aid-mt';
+    const $aidElementsMT = $(`[data-${dataSelectorMT}]`);
 
     let aidElementsSelector = `[data-${dataSelector}]`;
 
@@ -868,11 +863,10 @@ PTL.editor = {
       return false;
     }
 
-    var currentUnit = this.units.getCurrent();
-    var newTranslation = $('.js-translation-area').val();
-    var simHuman = {max: 0, boxId: null};
-    var simMT = {max: 0, boxId: null};
-    var similarity;
+    const currentUnit = this.units.getCurrent();
+    const newTranslation = $('.js-translation-area').val();
+    let simHuman = { max: 0, boxId: null };
+    let simMT = { max: 0, boxId: null };
 
     if ($aidElements.length) {
       simHuman = this.calculateSimilarity(newTranslation, $aidElements,
@@ -888,14 +882,14 @@ PTL.editor = {
       similarityMT: simMT.max,
     });
 
-    similarity = (simHuman.max > simMT.max) ? simHuman : simMT;
+    const similarity = (simHuman.max > simMT.max) ? simHuman : simMT;
     this.highlightBox(similarity.boxId, similarity.max === 1);
   },
 
   /* Applies highlight classes to `boxId`. */
   highlightBox: function (boxId, isExact) {
-    var bestMatchCls = 'best-match';
-    var exactMatchCls = 'exact-match';
+    const bestMatchCls = 'best-match';
+    const exactMatchCls = 'exact-match';
 
     $('.translate-table').find(`.${bestMatchCls}`)
                          .removeClass(`${bestMatchCls} ${exactMatchCls}`);
@@ -904,7 +898,7 @@ PTL.editor = {
       return false;
     }
 
-    var hlClasses = [bestMatchCls];
+    const hlClasses = [bestMatchCls];
     isExact && hlClasses.push(exactMatchCls);
     $(boxId).addClass(hlClasses.join(' '));
   },
@@ -943,10 +937,10 @@ PTL.editor = {
   },
 
   updateExportLink: function () {
-    var $exportOpt = $('.js-export-view');
-    var baseUrl = $exportOpt.data('export-url');
-    var hash = utils.getHash().replace(/&?unit=\d+/, '');
-    var exportLink = hash ? `${baseUrl}?${hash}` : baseUrl;
+    const $exportOpt = $('.js-export-view');
+    const baseUrl = $exportOpt.data('export-url');
+    const hash = utils.getHash().replace(/&?unit=\d+/, '');
+    const exportLink = hash ? `${baseUrl}?${hash}` : baseUrl;
 
     $exportOpt.data('href', exportLink);
   },
@@ -1016,11 +1010,11 @@ PTL.editor = {
   },
 
   displayObsoleteMsg: function () {
-    var msgText = gettext('This string no longer exists.');
-    var backMsg = gettext('Go back to browsing');
-    var backLink = this.backToBrowserEl.getAttribute('href');
-    var reloadMsg = gettext('Reload page');
-    var html = [
+    const msgText = gettext('This string no longer exists.');
+    const backMsg = gettext('Go back to browsing');
+    const backLink = this.backToBrowserEl.getAttribute('href');
+    const reloadMsg = gettext('Reload page');
+    const html = [
       '<div>', msgText, '</div>',
       '<div class="editor-msg-btns">',
       '<a class="btn btn-xs js-editor-reload" href="#">', reloadMsg, '</a>',
@@ -1039,7 +1033,7 @@ PTL.editor = {
 
   /* Gets common request data */
   getReqData: function () {
-    var reqData = {};
+    const reqData = {};
 
     if (this.filter === 'checks' && this.checks.length) {
       reqData.checks = this.checks.join(',');
@@ -1155,14 +1149,14 @@ PTL.editor = {
 
   /* Returns the unit groups for the current editor state */
   getUnitGroups: function () {
-    var limit = parseInt(((this.units.chunkSize - 1) / 2), 10);
-    var unitCount = this.units.length;
-    var currentUnit = this.units.getCurrent();
-    var curIndex = this.units.indexOf(currentUnit);
-    var begin = curIndex - limit;
-    var end = curIndex + 1 + limit;
-    var prevPath = null;
-    var pootlePath;
+    const limit = parseInt(((this.units.chunkSize - 1) / 2), 10);
+    const unitCount = this.units.length;
+    const currentUnit = this.units.getCurrent();
+    const curIndex = this.units.indexOf(currentUnit);
+
+    let begin = curIndex - limit;
+    let end = curIndex + 1 + limit;
+    let prevPath = null;
 
     if (begin < 0) {
       end = end + -begin;
@@ -1177,7 +1171,7 @@ PTL.editor = {
     }
 
     return this.units.slice(begin, end).reduce((out, unit) => {
-      pootlePath = unit.get('store').get('pootlePath');
+      const pootlePath = unit.get('store').get('pootlePath');
 
       if (pootlePath === prevPath) {
         out[out.length - 1].units.push(unit);
@@ -1243,7 +1237,7 @@ PTL.editor = {
 
     this.unitCountEl.textContent = this.units.total;
 
-    var currentUnit = this.units.getCurrent();
+    const currentUnit = this.units.getCurrent();
     if (currentUnit !== undefined) {
       this.unitIndexEl.textContent = this.units.uIds.indexOf(currentUnit.id) + 1;
     }
@@ -1412,11 +1406,11 @@ PTL.editor = {
 
   processSubmission: function (data) {
     // FIXME: handle this via events
-    var translations = $('.js-translation-area').map(function (i, el) {
+    const translations = $('.js-translation-area').map(function (i, el) {
       return $(el).val();
     }).get();
 
-    var unit = this.units.getCurrent();
+    const unit = this.units.getCurrent();
     unit.setTranslation(translations);
     unit.set('isfuzzy', this.isFuzzy());
 
@@ -1473,9 +1467,9 @@ PTL.editor = {
       return false;
     }
 
-    var newUnit = this.units.prev();
+    const newUnit = this.units.prev();
     if (newUnit) {
-      var newHash = utils.updateHashPart('unit', newUnit.id);
+      const newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     }
   },
@@ -1486,9 +1480,9 @@ PTL.editor = {
       return false;
     }
 
-    var newUnit = this.units.next();
+    const newUnit = this.units.next();
     if (newUnit) {
-      var newHash = utils.updateHashPart('unit', newUnit.id);
+      const newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
     } else if (opts.isSubmission) {
       cookie('finished', '1', { path: '/' });
@@ -1507,7 +1501,7 @@ PTL.editor = {
 
     // Ctrl + click / Alt + click / Cmd + click / Middle click opens a new tab
     if (e.ctrlKey || e.altKey || e.metaKey || e.which === 2) {
-      var $el = e.target.nodeName !== 'TD' ?
+      const $el = e.target.nodeName !== 'TD' ?
                   $(e.target).parents('td') :
                   $(e.target);
       window.open($el.data('target'), '_blank');
@@ -1521,11 +1515,11 @@ PTL.editor = {
 
     // Get clicked unit's uid from the row's id information and
     // try to load it
-    var m = this.id.match(/(row|ctx)([0-9]+)/);
+    const m = this.id.match(/(row|ctx)([0-9]+)/);
     if (m) {
-      var newHash;
-      var type = m[1];
-      var uid = parseInt(m[2], 10);
+      const type = m[1];
+      const uid = parseInt(m[2], 10);
+      let newHash;
       if (type === 'row') {
         newHash = utils.updateHashPart('unit', uid);
       } else {
@@ -1539,8 +1533,8 @@ PTL.editor = {
   unitIndex: function (e) {
     e.preventDefault();
 
-    var selection = window.getSelection();
-    var range = document.createRange();
+    const selection = window.getSelection();
+    const range = document.createRange();
 
     range.selectNodeContents(this.unitIndexEl);
     selection.removeAllRanges();
@@ -1552,12 +1546,12 @@ PTL.editor = {
   gotoIndex: function (e) {
     if (e.which === 13) { // Enter key
       e.preventDefault();
-      var index = parseInt(this.unitIndexEl.textContent, 10);
+      const index = parseInt(this.unitIndexEl.textContent, 10);
 
       if (index && !isNaN(index) && index > 0 &&
           index <= this.units.total) {
-        var uId = this.units.uIds[index - 1];
-        var newHash = utils.updateHashPart('unit', uId);
+        const uId = this.units.uIds[index - 1];
+        const newHash = utils.updateHashPart('unit', uId);
         $.history.load(newHash);
       }
     }
@@ -1585,11 +1579,11 @@ PTL.editor = {
       return false;
     }
 
-    var filterChecks = this.$filterChecks.val();
+    const filterChecks = this.$filterChecks.val();
 
     if (filterChecks !== 'none') {
-      var sortBy = this.$filterSortBy.val();
-      var newHash = {
+      const sortBy = this.$filterSortBy.val();
+      const newHash = {
         filter: 'checks',
         checks: filterChecks,
       };
@@ -1603,16 +1597,16 @@ PTL.editor = {
   /* Adds the failing checks to the UI */
   appendChecks: function (checks) {
     if (Object.keys(checks).length) {
-      var $checks = this.$filterChecks;
-      var selectedValue = this.checks[0] || 'none';
+      const $checks = this.$filterChecks;
+      const selectedValue = this.checks[0] || 'none';
 
       $checks.find('optgroup').each(function () {
-        var empty = true;
-        var $gr = $(this);
+        const $gr = $(this);
+        let empty = true;
 
         $gr.find('option').each(function () {
-          var $opt = $(this);
-          var value = $opt.val();
+          const $opt = $(this);
+          const value = $opt.val();
 
           if (value in checks) {
             empty = false;
@@ -1666,9 +1660,8 @@ PTL.editor = {
 
     // this function can be executed in different contexts,
     // so using the full selector here
-    var $selected = this.$filterStatus.find('option:selected');
-    var filterBy = $selected.val();
-    var isUserFilter = $selected.data('user');
+    const $selected = this.$filterStatus.find('option:selected');
+    const filterBy = $selected.val();
 
     if (filterBy === 'checks') {
       this.getCheckOptions();
@@ -1676,7 +1669,8 @@ PTL.editor = {
       this.$filterChecksWrapper.hide();
 
       if (!this.preventNavigation) {
-        var newHash = {filter: filterBy};
+        const newHash = {filter: filterBy};
+        const isUserFilter = $selected.data('user');
 
         if (this.user && isUserFilter) {
           newHash.user = this.user;
@@ -1728,7 +1722,7 @@ PTL.editor = {
     const after = this.renderCtxRows(data.ctx.after, 'after');
 
     // Append context rows to their respective places
-    var editCtxRows = $('tr.edit-ctx');
+    const editCtxRows = $('tr.edit-ctx');
     editCtxRows.first().after(before);
     editCtxRows.last().before(after);
   },
@@ -1810,7 +1804,7 @@ PTL.editor = {
       return false;
     }
 
-    var newHash;
+    let newHash;
 
     if (searchText) {
       const queryString = this.buildSearchQuery();
@@ -1928,20 +1922,20 @@ PTL.editor = {
   filterTMResults: function (results, sourceText) {
     // FIXME: this just retrieves the first three results
     // we could limit based on a threshold too.
-    var filtered = [];
+    const filtered = [];
 
     if (results.length > 0 && results[0].source === sourceText) {
-      var $element = $(this.focused);
+      const $element = $(this.focused);
       // set only if the textarea is empty
       if ($element.val() === '') {
-        var text = results[0].target;
+        const text = results[0].target;
         $element.val(text).trigger('input');
         $element.caret(text.length, text.length);
         this.goFuzzy();
       }
     }
 
-    for (var i = 0; i < results.length && i < 3; i++) {
+    for (let i = 0; i < results.length && i < 3; i++) {
       if (results[i].username === 'nobody') {
         results[i].fullname = gettext('some anonymous user');
       } else if (!results[i].fullname) {
@@ -1957,11 +1951,11 @@ PTL.editor = {
 
   /* TM suggestions */
   getTMUnitsContent: function (data) {
-    var unit = this.units.getCurrent();
-    var store = unit.get('store');
-    var sourceText = unit.get('source')[0];
-    var filtered = this.filterTMResults(data, sourceText);
-    var name = gettext('Similar translations');
+    const unit = this.units.getCurrent();
+    const store = unit.get('store');
+    const sourceText = unit.get('source')[0];
+    const filtered = this.filterTMResults(data, sourceText);
+    const name = gettext('Similar translations');
 
     if (filtered.length) {
       return this.tmpl.tm({
@@ -1977,13 +1971,13 @@ PTL.editor = {
 
   /* Gets TM suggestions from amaGama */
   getTMUnits: function () {
-    var unit = this.units.getCurrent();
-    var store = unit.get('store');
-    var src = store.get('source_lang');
-    var tgt = store.get('target_lang');
-    var sText = unit.get('source')[0];
-    var pStyle = store.get('project_style');
-    var tmUrl = this.settings.tmUrl + src + '/' + tgt +
+    const unit = this.units.getCurrent();
+    const store = unit.get('store');
+    const src = store.get('source_lang');
+    const tgt = store.get('target_lang');
+    const sText = unit.get('source')[0];
+    const pStyle = store.get('project_style');
+    let tmUrl = this.settings.tmUrl + src + '/' + tgt +
           '/unit/?source=' + encodeURIComponent(sText) + '&jsoncallback=?';
 
     if (!sText.length) {
@@ -2007,13 +2001,13 @@ PTL.editor = {
       cache: true,
       success: function (data) {
         if (data.length) {
-          var sourceText = unit.get('source')[0];
-          var filtered = PTL.editor.filterTMResults(data, sourceText);
-          var name = gettext('Similar translations');
-          var tm = PTL.editor.tmpl.tm({store: store.toJSON(),
-                                       unit: unit.toJSON(),
-                                       suggs: filtered,
-                                       name: name});
+          const sourceText = unit.get('source')[0];
+          const filtered = PTL.editor.filterTMResults(data, sourceText);
+          const name = gettext('Similar translations');
+          const tm = PTL.editor.tmpl.tm({store: store.toJSON(),
+                                         unit: unit.toJSON(),
+                                         suggs: filtered,
+                                         name: name});
 
           $(tm).hide().appendTo('#extras-container')
                       .slideDown(1000, 'easeOutQuad');

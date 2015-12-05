@@ -36,8 +36,8 @@ const AdminController = React.createClass({
     });
 
     router.on('route:edit', (id) => {
-      var Model = this.props.adminModule.model;
-      var item = new Model({id: id});
+      const Model = this.props.adminModule.model;
+      const item = new Model({id: id});
       this.handleSelectItem(item);
     });
   },
@@ -58,7 +58,7 @@ const AdminController = React.createClass({
   /* State-changing handlers */
 
   handleSearch(query, extraState) {
-    var newState = extraState || {};
+    const newState = extraState || {};
 
     if (query !== this.state.searchQuery) {
       newState.searchQuery = query;
@@ -72,7 +72,10 @@ const AdminController = React.createClass({
   },
 
   handleSelectItem(item) {
-    var newState = {selectedItem: item, view: 'edit'};
+    const newState = {
+      selectedItem: item,
+      view: 'edit',
+    };
 
     if (this.state.items.contains(item)) {
       this.setState(newState);
@@ -128,7 +131,7 @@ const AdminController = React.createClass({
   /* Layout */
 
   render() {
-    var model = this.props.adminModule.model;
+    const model = this.props.adminModule.model;
 
     // Inject dynamic model form choices
     // FIXME: hackish and too far from ideal
@@ -136,7 +139,7 @@ const AdminController = React.createClass({
     _.extend(model.prototype.fieldChoices, this.props.formChoices);
     _.extend(model.prototype.defaults, this.props.formChoices.defaults);
 
-    var props = {
+    const props = {
       items: this.state.items,
       selectedItem: this.state.selectedItem,
       searchQuery: this.state.searchQuery,

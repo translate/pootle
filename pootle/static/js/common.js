@@ -133,10 +133,10 @@ PTL.common = {
     /* Page sidebar */
     // TODO: create a named function
     $(document).on('click', '.js-sidebar-toggle', function () {
-      var $sidebar = $('.js-sidebar');
-      var openClass = 'sidebar-open';
-      var cookieName = 'pootle-browser-sidebar';
-      var cookieData = JSON.parse(cookie(cookieName)) || {};
+      const $sidebar = $('.js-sidebar');
+      const openClass = 'sidebar-open';
+      const cookieName = 'pootle-browser-sidebar';
+      const cookieData = JSON.parse(cookie(cookieName)) || {};
 
       $sidebar.toggleClass(openClass);
 
@@ -154,28 +154,28 @@ PTL.common = {
     /* Generic toggle */
     $(document).on('click', '.js-toggle', function (e) {
       e.preventDefault();
-      var target = $(this).attr('href') || $(this).data('target');
+      const target = $(this).attr('href') || $(this).data('target');
       $(target).toggle();
     });
 
     /* Sorts language names within select elements */
-    var ids = ['id_languages', 'id_alt_src_langs', '-language',
-               '-source_language'];
+    const ids = ['id_languages', 'id_alt_src_langs', '-language',
+                 '-source_language'];
 
     $.each(ids, function (i, id) {
-      var $selects = $('select[id$="' + id + '"]');
+      const $selects = $('select[id$="' + id + '"]');
 
       $.each($selects, function (j, select) {
-        var $select = $(select);
-        var options = $('option', $select);
-        var selected;
+        const $select = $(select);
+        const options = $('option', $select);
+        let selected;
 
         if (options.length) {
           if (!$select.is('[multiple]')) {
             selected = $(':selected', $select);
           }
 
-          var opsArray = $.makeArray(options);
+          const opsArray = $.makeArray(options);
           opsArray.sort(function (a, b) {
             return utils.strCmp($(a).text(), $(b).text());
           });

@@ -12,7 +12,7 @@ import _ from 'underscore';
 import Select from 'react-select';
 
 
-export var FormElement = React.createClass({
+export const FormElement = React.createClass({
 
   propTypes: {
     type: React.PropTypes.string,
@@ -36,14 +36,14 @@ export var FormElement = React.createClass({
   /* Layout */
 
   render: function () {
-    var attribute = this.props.attribute;
-    var fieldId = ['id', attribute].join('_');
-    var hint = this.props.help;
+    const { attribute } = this.props;
+    const fieldId = ['id', attribute].join('_');
+    const hint = this.props.help;
 
-    var errors = (_.size(this.props.errors) > 0 &&
-                  this.props.errors[attribute]);
+    const errors = (_.size(this.props.errors) > 0 &&
+                    this.props.errors[attribute]);
 
-    var inputClass = {
+    const inputClass = {
       text: FormValueInput,
       email: FormValueInput,
       password: FormValueInput,
@@ -55,7 +55,7 @@ export var FormElement = React.createClass({
       select: FormSelectInput,
     }[this.props.type];
 
-    var newProps = {
+    const newProps = {
       id: fieldId,
       name: attribute,
       value: this.props.formData[attribute],
@@ -71,8 +71,8 @@ export var FormElement = React.createClass({
       newProps.searchPromptText = gettext('Type to search');
     }
 
-    var inputProps = _.extend({}, this.props, newProps);
-    var formInput = React.createFactory(inputClass)(inputProps);
+    const inputProps = _.extend({}, this.props, newProps);
+    const formInput = React.createFactory(inputClass)(inputProps);
 
     return (
       <div className="field-wrapper">
@@ -91,7 +91,7 @@ export var FormElement = React.createClass({
 });
 
 
-var FormValueInput = React.createClass({
+const FormValueInput = React.createClass({
 
   /* Handlers */
 
@@ -113,7 +113,7 @@ var FormValueInput = React.createClass({
 });
 
 
-var FormCheckedInput = React.createClass({
+const FormCheckedInput = React.createClass({
 
   /* Handlers */
 
@@ -132,7 +132,7 @@ var FormCheckedInput = React.createClass({
 });
 
 
-var FormSelectInput = React.createClass({
+const FormSelectInput = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string.isRequired,

@@ -11,16 +11,16 @@ import $ from 'jquery';
 import utils from './utils';
 
 
-var updateInputState = function ($checkboxes, $input) {
+function updateInputState($checkboxes, $input) {
   if ($checkboxes.length === $checkboxes.filter(':checked').length) {
     $input.prop('disabled', false);
   } else {
     $input.prop('disabled', true);
   }
-};
+}
 
 
-var helpers = {
+const helpers = {
 
   /* Updates relative dates */
   updateRelativeDates: function () {
@@ -30,19 +30,17 @@ var helpers = {
   },
 
   fixSidebarHeight: function () {
-    var $body = $('#body');
-    var bodyHeight = $body.height();
-    var bodyPadding = parseInt($body.css('padding-bottom'), 10);
-    var contentAreaHeight = $('#wrapper').height() - $body.offset().top -
-                            bodyPadding;
-    var sidebarHeight;
-    var newHeight;
+    const $body = $('#body');
+    const bodyHeight = $body.height();
+    const bodyPadding = parseInt($body.css('padding-bottom'), 10);
+    const contentAreaHeight = $('#wrapper').height() - $body.offset().top -
+                              bodyPadding;
 
     // Set sidebar width before measuring height of content
     $('#sidebar').css('width', '30%');
-    sidebarHeight = $('#sidebar #sidebar-content').height() +
-                    $('#footer').height() + bodyPadding;
-    newHeight = Math.max(contentAreaHeight, sidebarHeight);
+    const sidebarHeight = $('#sidebar #sidebar-content').height() +
+                          $('#footer').height() + bodyPadding;
+    const newHeight = Math.max(contentAreaHeight, sidebarHeight);
 
     // Remove sidebar width setting - allow CSS to set width
     $('#sidebar').css('width', '');
@@ -55,9 +53,9 @@ var helpers = {
    * checked status of input checkboxes.
    */
   updateInputState: function (checkboxSelector, inputSelector) {
-    var $checkbox = $(checkboxSelector);
+    const $checkbox = $(checkboxSelector);
     if ($checkbox.length) {
-      var $input = $(inputSelector);
+      const $input = $(inputSelector);
       updateInputState($checkbox, $input);
       $checkbox.change(function () {
         updateInputState($checkbox, $input);

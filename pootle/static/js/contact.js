@@ -11,7 +11,7 @@ import 'jquery-magnific-popup';
 import 'jquery-serializeObject';
 
 
-var sel = {
+const sel = {
   data: {
     target: '[data-action="contact"]',
     subjectPrefix: 'subject-prefix',
@@ -27,7 +27,7 @@ var sel = {
 };
 
 
-var contact = {
+const contact = {
 
   url: null,
 
@@ -45,11 +45,11 @@ var contact = {
   onClick: function (e) {
     e.preventDefault();
 
-    var $el = $(e.target);
-    var sP = $el.data(sel.data.subjectPrefix);
-    var subjectPrefix = sP ? ['[', sP, '] '].join('') : sP;
-    var subject = $el.data(sel.data.subject);
-    var body = $el.data(sel.data.body);
+    const $el = $(e.target);
+    const sP = $el.data(sel.data.subjectPrefix);
+    const subjectPrefix = sP ? ['[', sP, '] '].join('') : sP;
+    const subject = $el.data(sel.data.subject);
+    const body = $el.data(sel.data.body);
 
     this.open({
       subjectPrefix: subjectPrefix,
@@ -61,7 +61,7 @@ var contact = {
   open: function (opts) {
     opts = opts || {};
 
-    var contactUrl = opts.url || this.url;
+    const contactUrl = opts.url || this.url;
     if (contactUrl === null) {
       return false;
     }
@@ -73,7 +73,7 @@ var contact = {
       },
       callbacks: {
         ajaxContentAdded: function () {
-          var newSubject = [];
+          const newSubject = [];
           opts.subjectPrefix && newSubject.push(opts.subjectPrefix);
           opts.subject && newSubject.push(opts.subject);
 
@@ -88,10 +88,10 @@ var contact = {
   onSubmit: function (e) {
     e.preventDefault();
 
-    var $form = $(sel.form);
-    var url = $form.attr('action');
-    var data = $form.serializeObject();
-    var captchaCallbacks = {
+    const $form = $(sel.form);
+    const url = $form.attr('action');
+    const data = $form.serializeObject();
+    const captchaCallbacks = {
       sfn: 'PTL.contact.onSubmit',
       efn: 'PTL.contact.onError',
     };
@@ -101,7 +101,7 @@ var contact = {
   },
 
   sendMessage: function (url, data) {
-    var that = this;
+    const that = this;
     $.ajax({
       url: url,
       type: 'POST',
@@ -126,7 +126,7 @@ var contact = {
   displayErrors: function (errors) {
     $('ul.errorlist').remove();
 
-    for (var fieldName in errors) {
+    for (const fieldName in errors) {
       this.validationError(fieldName, errors[fieldName]);
     }
   },
@@ -134,9 +134,9 @@ var contact = {
   /* Injects a form validation error next to the input it failed to
    * validate */
   validationError: function (fieldName, msgs) {
-    var $field = $('#id_' + fieldName);
-    var errorList = ['<ul class="errorlist">'];
-    for (var i = 0; i < msgs.length; i++) {
+    const $field = $('#id_' + fieldName);
+    const errorList = ['<ul class="errorlist">'];
+    for (let i = 0; i < msgs.length; i++) {
       errorList.push(['<li>', msgs[i], '</li>'].join(''));
     }
     errorList.push(['</ul>']);

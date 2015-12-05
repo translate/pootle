@@ -1,7 +1,7 @@
 
 // XXX: let's try to get rid of this at some stage
 // See http://khan.github.io/react-components/#backbone-mixin
-var BackboneMixin = {
+const BackboneMixin = {
 
   componentDidMount: function () {
     this._boundForceUpdate = this.forceUpdate.bind(this, null);

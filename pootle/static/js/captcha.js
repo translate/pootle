@@ -13,7 +13,7 @@ import 'jquery-serializeObject';
 import utils from './utils';
 
 
-var display = function (html) {
+function display(html) {
   $(document).on('submit', '#js-captcha', onSubmit);
 
   $.magnificPopup.open({
@@ -23,16 +23,16 @@ var display = function (html) {
     },
     focus: '#id_captcha_answer',
   });
-};
+}
 
 
-var onSubmit = function (e) {
+function onSubmit(e) {
   e.preventDefault();
-  var $form = $(this);
-  var reqData = $form.serializeObject();
-  var successFn = reqData.sfn;
-  var errorFn = reqData.efn;
-  var url = $form.attr('action');
+  const $form = $(this);
+  const reqData = $form.serializeObject();
+  const successFn = reqData.sfn;
+  const errorFn = reqData.efn;
+  const url = $form.attr('action');
 
   $.ajax({
     url: url,
@@ -46,7 +46,7 @@ var onSubmit = function (e) {
       onError(xhr, errorFn);
     },
   });
-};
+}
 
 
 export function onError(xhr, errorFn) {

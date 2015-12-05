@@ -12,7 +12,7 @@ import _ from 'underscore';
 import AdminAPIMixin from 'mixins/admin_api';
 
 
-export var Language = Backbone.Model.extend({
+export const Language = Backbone.Model.extend({
 
   defaults: {
     'code': '',
@@ -54,7 +54,7 @@ export var Language = Backbone.Model.extend({
 });
 
 
-export var LanguageSet = Backbone.Collection.extend(
+export const LanguageSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
     model: Language,

@@ -11,7 +11,7 @@ import Backbone from 'backbone';
 import { Unit } from './models';
 
 
-var collections = {};
+const collections = {};
 
 
 /*
@@ -50,7 +50,7 @@ collections.UnitSet = Backbone.Collection.extend({
   },
 
   next: function () {
-    var index = this.indexOf(this.getCurrent());
+    const index = this.indexOf(this.getCurrent());
     return (index + 1 === this.length) ? null : this.at(index + 1);
   },
 
@@ -59,7 +59,7 @@ collections.UnitSet = Backbone.Collection.extend({
   },
 
   prev: function () {
-    var index = this.indexOf(this.getCurrent());
+    const index = this.indexOf(this.getCurrent());
     return (index === 0) ? null : this.at(index - 1);
   },
 

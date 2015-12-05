@@ -16,14 +16,14 @@ import Avatar from 'components/Avatar';
 
 
 // XXX: should probably live somewhere else
-var linkify = function (input) {
+const linkify = function (input) {
   return {
     __html: link(input),
   };
 };
 
 
-export var UserProfileForm = React.createClass({
+export const UserProfileForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
@@ -53,14 +53,15 @@ export var UserProfileForm = React.createClass({
   /* Layout */
 
   render: function () {
-    var model = this.getResource();
-    var errors = this.state.errors;
-    var formData = this.state.formData;
-    var avatarHelp = gettext(
+    const model = this.getResource();
+    const { errors } = this.state;
+    const { formData } = this.state;
+    const avatarHelpMsg = gettext(
       'To set or change your avatar for your email address ' +
       '(%(email)s), please go to gravatar.com.'
     );
-    avatarHelp = interpolate(avatarHelp, {email: model.get('email')}, true);
+    const avatarHelp = interpolate(avatarHelpMsg, {email: model.get('email')},
+                                   true);
 
     return (
       <form method="post"
