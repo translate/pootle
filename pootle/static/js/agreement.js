@@ -6,13 +6,12 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
+import $ from 'jquery';
+import 'jquery-magnific-popup';
+import 'jquery-serializeObject';
+import 'jquery-utils';
 
-require('jquery-magnific-popup');
-require('jquery-serializeObject');
-require('jquery-utils');
-
-const { updateInputState } = require('./helpers');
+import { updateInputState } from './helpers';
 
 
 var agreement = {
@@ -93,4 +92,4 @@ var agreement = {
 };
 
 
-module.exports = agreement;
+export default agreement;

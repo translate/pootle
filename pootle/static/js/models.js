@@ -6,26 +6,25 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var _ = require('underscore');
-var Backbone = require('backbone');
+import Backbone from 'backbone';
+import 'backbone-relational';
+import _ from 'underscore';
 
-require('backbone-relational');
-
-var utils = require('./utils.js');
+import utils from './utils';
 
 
 /*
  * Store
  */
 
-var Store = Backbone.RelationalModel.extend({});
+export var Store = Backbone.RelationalModel.extend({});
 
 
 /*
  * Unit
  */
 
-var Unit = Backbone.RelationalModel.extend({
+export var Unit = Backbone.RelationalModel.extend({
 
   relations: [{
     type: 'HasOne',
@@ -49,9 +48,3 @@ var Unit = Backbone.RelationalModel.extend({
   },
 
 });
-
-
-module.exports = {
-  Store: Store,
-  Unit: Unit,
-};

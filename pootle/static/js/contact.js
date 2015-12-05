@@ -6,10 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
-
-require('jquery-magnific-popup');
-require('jquery-serializeObject');
+import $ from 'jquery';
+import 'jquery-magnific-popup';
+import 'jquery-serializeObject';
 
 
 var sel = {
@@ -148,4 +147,4 @@ var contact = {
 };
 
 
-module.exports = contact;
+export default contact;

@@ -1,10 +1,9 @@
 import cx from 'classnames';
+import React from 'react';
+import { PureRenderMixin } from 'react';
 
-var React = require('react');
-var { PureRenderMixin } = require('react');
 
-
-var Tabs = React.createClass({
+export var Tabs = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -82,7 +81,7 @@ var Tabs = React.createClass({
 });
 
 
-var Tab = React.createClass({
+export var Tab = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -121,9 +120,3 @@ var Tab = React.createClass({
   },
 
 });
-
-
-module.exports = {
-  Tabs: Tabs,
-  Tab: Tab,
-};

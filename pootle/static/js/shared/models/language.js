@@ -6,13 +6,13 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var _ = require('underscore');
-var Backbone = require('backbone');
+import Backbone from 'backbone';
+import _ from 'underscore';
 
-var AdminAPIMixin = require('mixins/admin_api');
+import AdminAPIMixin from 'mixins/admin_api';
 
 
-var Language = Backbone.Model.extend({
+export var Language = Backbone.Model.extend({
 
   defaults: {
     'code': '',
@@ -54,7 +54,7 @@ var Language = Backbone.Model.extend({
 });
 
 
-var LanguageSet = Backbone.Collection.extend(
+export var LanguageSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
     model: Language,
@@ -62,9 +62,3 @@ var LanguageSet = Backbone.Collection.extend(
     url: l('/xhr/admin/languages/'),
 
   }));
-
-
-module.exports = {
-  Language: Language,
-  LanguageSet: LanguageSet,
-};

@@ -2136,7 +2136,7 @@ PTL.editor = {
   setTranslation: function (opts) {
     const { translation } = opts;
     if (translation === undefined && opts.msg) {
-      that.displayError(opts.msg);
+      this.displayError(opts.msg);
       return false;
     }
 

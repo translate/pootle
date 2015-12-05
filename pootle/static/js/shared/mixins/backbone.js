@@ -15,4 +15,4 @@ var BackboneMixin = {
 };
 
 
-module.exports = BackboneMixin;
+export default BackboneMixin;

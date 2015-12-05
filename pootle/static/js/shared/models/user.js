@@ -6,16 +6,16 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var _ = require('underscore');
-var Backbone = require('backbone');
+import Backbone from 'backbone';
+import _ from 'underscore';
 
-var AdminAPIMixin = require('mixins/admin_api');
+import AdminAPIMixin from 'mixins/admin_api';
 
 
 var metaUsers = ['nobody', 'default', 'system'];
 
 
-var User = Backbone.Model.extend({
+export var User = Backbone.Model.extend({
 
   defaults: {
     'username': '',
@@ -65,7 +65,7 @@ var User = Backbone.Model.extend({
 });
 
 
-var UserSet = Backbone.Collection.extend(
+export var UserSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
     model: User,
@@ -73,9 +73,3 @@ var UserSet = Backbone.Collection.extend(
     url: l('/xhr/admin/users/'),
 
   }));
-
-
-module.exports = {
-  User: User,
-  UserSet: UserSet,
-};

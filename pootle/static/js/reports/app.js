@@ -6,19 +6,19 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
-var _ = require('underscore');
-var moment = require('moment');
+import $ from 'jquery';
+import moment from 'moment';
+import _ from 'underscore';
 
-require('jquery-flot');
-require('jquery-flot-stack');
-require('jquery-flot-marks');
-require('jquery-flot-time');
-require('jquery-history');
-require('jquery-serializeObject');
+import 'jquery-flot';
+import 'jquery-flot-stack';
+import 'jquery-flot-marks';
+import 'jquery-flot-time';
+import 'jquery-history';
+import 'jquery-serializeObject';
 
-var msg = require('../msg.js');
-var utils = require('../utils.js');
+import msg from '../msg';
+import utils from '../utils';
 
 
 var paidTaskTypes = {

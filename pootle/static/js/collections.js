@@ -6,9 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var Backbone = require('backbone');
+import Backbone from 'backbone';
 
-var Unit = require('./models.js').Unit;
+import { Unit } from './models';
 
 
 var collections = {};
@@ -70,4 +70,4 @@ collections.UnitSet = Backbone.Collection.extend({
 });
 
 
-module.exports = collections;
+export default collections;

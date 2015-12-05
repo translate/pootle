@@ -6,13 +6,13 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var React = require('react');
-var _ = require('underscore');
+import React from 'react';
+import _ from 'underscore';
 
-var BackboneMixin = require('./backbone');
+import BackboneMixin from './backbone';
 
 
-var FormValidationMixin = {
+export var FormValidationMixin = {
 
   getInitialState: function () {
     return {
@@ -72,7 +72,7 @@ var FormValidationMixin = {
  *  - `handleError (xhr)`:
  *    called in the `model.save()`'s error callback
  */
-var FormMixin = {
+export var FormMixin = {
   mixins: [FormValidationMixin],
 
   /* Lifecycle */
@@ -117,7 +117,7 @@ var FormMixin = {
  * Backbone model form mixin.
  * Like `FormMixin` but specialized for BB models.
  */
-var ModelFormMixin = {
+export var ModelFormMixin = {
   mixins: [BackboneMixin, FormMixin],
 
   propTypes: {
@@ -161,11 +161,4 @@ var ModelFormMixin = {
                       .error(this.handleFormError);
   },
 
-};
-
-
-module.exports = {
-  FormMixin: FormMixin,
-  FormValidationMixin: FormValidationMixin,
-  ModelFormMixin: ModelFormMixin,
 };

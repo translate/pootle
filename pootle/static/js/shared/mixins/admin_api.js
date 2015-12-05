@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var _ = require('underscore');
+import _ from 'underscore';
 
 
 var AdminAPIMixin = {
@@ -70,4 +70,4 @@ var AdminAPIMixin = {
 };
 
 
-module.exports = AdminAPIMixin;
+export default AdminAPIMixin;

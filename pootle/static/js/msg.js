@@ -6,8 +6,8 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var _ = require('underscore');
-var Backbone = require('backbone');
+import Backbone from 'backbone';
+import _ from 'underscore';
 
 
 var Message = Backbone.Model.extend({
@@ -92,4 +92,4 @@ var msg = {
 };
 
 
-module.exports = msg;
+export default msg;

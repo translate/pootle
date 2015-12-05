@@ -6,12 +6,11 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var React = require('react');
+import { link } from 'autolinker';
+import React from 'react';
 
-var link = require('autolinker').link;
-
-var FormElement = require('components/forms').FormElement;
-var ModelFormMixin = require('mixins/forms').ModelFormMixin;
+import { FormElement } from 'components/forms';
+import { ModelFormMixin } from 'mixins/forms';
 
 import Avatar from 'components/Avatar';
 
@@ -24,7 +23,7 @@ var linkify = function (input) {
 };
 
 
-var UserProfileForm = React.createClass({
+export var UserProfileForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
@@ -123,8 +122,3 @@ var UserProfileForm = React.createClass({
   },
 
 });
-
-
-module.exports = {
-  UserProfileForm: UserProfileForm,
-};

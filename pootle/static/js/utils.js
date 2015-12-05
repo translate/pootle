@@ -6,9 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
+import $ from 'jquery';
 
-require('jquery-select2');
+import 'jquery-select2';
 
 
 var escapeRE = /<[^<]*?>|\r\n|[\r\n\t&<>]/gm;
@@ -16,7 +16,7 @@ var whitespaceRE = /^ +| +$|[\r\n\t] +| {2,}/gm;
 
 
 /* Gets current URL's hash */
-var getHash = function (win) {
+export function getHash(win) {
   // Mozilla has a bug when it automatically unescapes %26 to '&'
   // when getting hash from `window.location.hash'.
   // So, we have to extract it from the `window.location'.
@@ -24,7 +24,7 @@ var getHash = function (win) {
   // as it will break encoded ampersand again
   // (decoding can be done on the higher level, if needed)
   return (win || window).location.toString().split('#', 2)[1] || '';
-};
+}
 
 
 var decodeURIParameter = function (s) {
@@ -32,7 +32,7 @@ var decodeURIParameter = function (s) {
 };
 
 
-var getParsedHash = function (h) {
+export function getParsedHash(h) {
   var params = {};
   var e;
   var r = /([^&;=]+)=?([^&;]*)/g;
@@ -44,11 +44,11 @@ var getParsedHash = function (h) {
     params[decodeURIParameter(e[1])] = decodeURIParameter(e[2]);
   }
   return params;
-};
+}
 
 
 /* Updates current URL's hash */
-var updateHashPart = function (part, newVal, removeArray) {
+export function updateHashPart(part, newVal, removeArray) {
   var r = /([^&;=]+)=?([^&;]*)/g;
   var params = [];
   var h = getHash();
@@ -72,23 +72,23 @@ var updateHashPart = function (part, newVal, removeArray) {
       encodeURIComponent(newVal)].join('='));
   }
   return params.join('&');
-};
+}
 
 
 /* Cross-browser comparison function */
-var strCmp = function (a, b) {
+export function strCmp(a, b) {
   return a === b ? 0 : a < b ? -1 : 1;
-};
+}
 
 
 /* Cleans '\n' escape sequences and adds '\t' sequences */
-var cleanEscape = function (s) {
+export function cleanEscape(s) {
   return s.replace(/\\t/g, '\t').replace(/\\n/g, '');
-};
+}
 
 
 /* Fancy escapes to highlight parts of the text such as HTML tags */
-var fancyEscape = function (text) {
+export function fancyEscape(text) {
 
   function replace(match) {
     var replaced;
@@ -117,7 +117,7 @@ var fancyEscape = function (text) {
   }
 
   return text.replace(escapeRE, replace);
-};
+}
 
 
 /* Highlight spaces to make them easily visible */
@@ -134,13 +134,13 @@ var fancySpaces = function (text) {
 
 
 /* Fancy highlight: fancy spaces + fancy escape */
-var fancyHl = function (text) {
+export function fancyHl(text) {
   return fancySpaces(fancyEscape(text));
-};
+}
 
 
 /* Returns a string representing a relative datetime */
-var relativeDate = function (date) {
+export function relativeDate(date) {
   var fmt;
   var count;
   var delta = Date.now() - date;
@@ -173,14 +173,14 @@ var relativeDate = function (date) {
   }
 
   return gettext('A few seconds ago');
-};
+}
 
 
 /* Converts the elements matched by `selector` into selectable inputs.
  *
  * `onChange` function will be fired when the select choice changes.
  */
-var makeSelectableInput = function (selector, options, onChange) {
+export function makeSelectableInput(selector, options, onChange) {
   // XXX: Check if this works with multiple selects per page
   var $el = $(selector);
 
@@ -191,10 +191,10 @@ var makeSelectableInput = function (selector, options, onChange) {
   $el.select2(options);
 
   $el.on('change', onChange);
-};
+}
 
 
-var executeFunctionByName = function (functionName, context /*, args */) {
+export function executeFunctionByName(functionName, context /*, args */) {
   var args = Array.prototype.slice.call(arguments).splice(2);
   var namespaces = functionName.split('.');
   var func = namespaces.pop();
@@ -204,27 +204,27 @@ var executeFunctionByName = function (functionName, context /*, args */) {
   }
 
   return context[func].apply(this, args);
-};
+}
 
 
-var blinkClass = function ($elem, className, n, delay) {
+export function blinkClass($elem, className, n, delay) {
   $elem.toggleClass(className);
   if (n > 1) {
     setTimeout(() => blinkClass($elem, className, n - 1, delay), delay);
   }
-};
+}
 
 
-module.exports = {
-  getHash: getHash,
-  getParsedHash: getParsedHash,
-  updateHashPart: updateHashPart,
-  strCmp: strCmp,
-  cleanEscape: cleanEscape,
-  fancyEscape: fancyEscape,
-  fancyHl: fancyHl,
-  relativeDate: relativeDate,
-  makeSelectableInput: makeSelectableInput,
-  executeFunctionByName: executeFunctionByName,
-  blinkClass: blinkClass,
+export default {
+  blinkClass,
+  cleanEscape,
+  executeFunctionByName,
+  fancyEscape,
+  fancyHl,
+  getHash,
+  getParsedHash,
+  makeSelectableInput,
+  relativeDate,
+  strCmp,
+  updateHashPart,
 };

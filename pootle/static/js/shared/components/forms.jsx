@@ -6,13 +6,13 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var React = require('react');
-var _ = require('underscore');
+import React from 'react';
+import _ from 'underscore';
 
-var Select = require('react-select');
+import Select from 'react-select';
 
 
-var FormElement = React.createClass({
+export var FormElement = React.createClass({
 
   propTypes: {
     type: React.PropTypes.string,
@@ -163,8 +163,3 @@ var FormSelectInput = React.createClass({
   },
 
 });
-
-
-module.exports = {
-  FormElement: FormElement,
-};

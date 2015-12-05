@@ -22,7 +22,7 @@ const commonProps = {
 };
 
 
-module.exports = {
+export default {
 
   init(props) {
     $(document).on('click', '.js-login', (e) => {

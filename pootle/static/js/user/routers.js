@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var Backbone = require('backbone');
+import Backbone from 'backbone';
 
 
 var UserProfileRouter = Backbone.Router.extend({
@@ -19,4 +19,4 @@ var UserProfileRouter = Backbone.Router.extend({
 });
 
 
-module.exports = UserProfileRouter;
+export default UserProfileRouter;

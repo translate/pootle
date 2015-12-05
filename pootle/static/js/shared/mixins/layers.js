@@ -17,7 +17,7 @@
  * });
  */
 
-var React = require('react');
+import React from 'react';
 
 
 var LayeredComponentMixin = {
@@ -73,4 +73,4 @@ var LayeredComponentMixin = {
 };
 
 
-module.exports = LayeredComponentMixin;
+export default LayeredComponentMixin;

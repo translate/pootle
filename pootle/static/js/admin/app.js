@@ -11,6 +11,9 @@ import 'imports?Backbone=>require("backbone")!backbone-move';
 import React from 'react';
 
 import AdminController from './components/AdminController';
+import User from './components/User';
+import Language from './components/Language';
+import Project from './components/Project';
 import AdminRouter from './AdminRouter';
 
 
@@ -18,9 +21,9 @@ window.PTL = window.PTL || {};
 
 
 const itemTypes = {
-  user: require('./components/User'),
-  language: require('./components/Language'),
-  project: require('./components/Project'),
+  user: User,
+  language: Language,
+  project: Project,
 };
 
 

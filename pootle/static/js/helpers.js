@@ -6,9 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
+import $ from 'jquery';
 
-var utils = require('./utils.js');
+import utils from './utils';
 
 
 var updateInputState = function ($checkboxes, $input) {
@@ -68,4 +68,4 @@ var helpers = {
 };
 
 
-module.exports = helpers;
+export default helpers;

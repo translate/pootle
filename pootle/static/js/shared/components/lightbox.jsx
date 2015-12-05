@@ -7,12 +7,10 @@
  */
 
 import cx from 'classnames';
+import LayersMixin from 'mixins/layers';
+import React from 'react';
 
-var React = require('react');
-
-var LayersMixin = require('mixins/layers');
-
-require('./lightbox.css');
+import './lightbox.css';
 
 
 var classNames = {
@@ -111,7 +109,7 @@ var ModalContainer = React.createClass({
 });
 
 
-var Modal = React.createClass({
+export var Modal = React.createClass({
   mixins: [LayersMixin],
 
   propTypes: {
@@ -200,7 +198,7 @@ var Modal = React.createClass({
 });
 
 
-var Dialog = React.createClass({
+export var Dialog = React.createClass({
 
   propTypes: {
     okLabel: React.PropTypes.string,
@@ -247,9 +245,3 @@ var Dialog = React.createClass({
   },
 
 });
-
-
-module.exports = {
-  Modal: Modal,
-  Dialog: Dialog,
-};

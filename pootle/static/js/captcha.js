@@ -6,12 +6,11 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
+import $ from 'jquery';
+import 'jquery-magnific-popup';
+import 'jquery-serializeObject';
 
-require('jquery-magnific-popup');
-require('jquery-serializeObject');
-
-var utils = require('./utils.js');
+import utils from './utils';
 
 
 var display = function (html) {
@@ -50,15 +49,10 @@ var onSubmit = function (e) {
 };
 
 
-var onError = function (xhr, errorFn) {
+export function onError(xhr, errorFn) {
   if (xhr.status === 402) {
     display(xhr.responseText);
   } else {
     utils.executeFunctionByName(errorFn, window, xhr);
   }
-};
-
-
-module.exports = {
-  onError: onError,
-};
+}

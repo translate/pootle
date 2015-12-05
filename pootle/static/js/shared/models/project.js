@@ -6,13 +6,13 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var _ = require('underscore');
-var Backbone = require('backbone');
+import Backbone from 'backbone';
+import _ from 'underscore';
 
-var AdminAPIMixin = require('mixins/admin_api');
+import AdminAPIMixin from 'mixins/admin_api';
 
 
-var Project = Backbone.Model.extend({
+export var Project = Backbone.Model.extend({
 
   defaults: {
     'code': '',
@@ -61,7 +61,7 @@ var Project = Backbone.Model.extend({
 });
 
 
-var ProjectSet = Backbone.Collection.extend(
+export var ProjectSet = Backbone.Collection.extend(
   _.extend({}, AdminAPIMixin, {
 
     model: Project,
@@ -69,9 +69,3 @@ var ProjectSet = Backbone.Collection.extend(
     url: l('/xhr/admin/projects/'),
 
   }));
-
-
-module.exports = {
-  Project: Project,
-  ProjectSet: ProjectSet,
-};

@@ -6,9 +6,8 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var Backbone = require('backbone');
-
-require('odometer');
+import Backbone from 'backbone';
+import 'odometer';
 
 
 var Score = Backbone.Model.extend({
@@ -59,23 +58,24 @@ var ScoreView = Backbone.View.extend({
 var scoreModel;
 
 
-var init = function (initialScoreValue) {
+export function init(initialScoreValue) {
   scoreModel = new Score({value: initialScoreValue}, {validate: true});
   new ScoreView({model: scoreModel});
-};
+}
 
-var set = function (newScore) {
+
+export function set(newScore) {
   scoreModel.set({value: newScore}, {validate: true});
   return this;
-};
+}
 
-var get = function () {
+export function get() {
   return scoreModel.get('value');
-};
+}
 
 
-module.exports = {
-  init: init,
-  set: set,
-  get: get,
+export default {
+  init,
+  get,
+  set,
 };

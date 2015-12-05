@@ -6,8 +6,8 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-var $ = require('jquery');
-var Backbone = require('backbone');
+import $ from 'jquery';
+import Backbone from 'backbone';
 
 
 var sel = {
@@ -121,4 +121,4 @@ var dropdown = {
 };
 
 
-module.exports = dropdown;
+export default dropdown;
