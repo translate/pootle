@@ -25,10 +25,10 @@ import msg from './msg';
 
 function nicePercentage(part, total, noTotalDefault) {
   const percentage = total ? part / total * 100 : noTotalDefault;
-  if (99 < percentage && percentage < 100) {
+  if (percentage > 99 && percentage < 100) {
     return 99;
   }
-  if (0 < percentage && percentage < 1) {
+  if (percentage > 0 && percentage < 1) {
     return 1;
   }
   return Math.round(percentage);

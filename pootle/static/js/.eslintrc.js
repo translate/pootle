@@ -31,5 +31,6 @@ module.exports = {
     'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }],
     'space-infix-ops': 2,
     'strict': [2, 'never'],
+    'yoda': 2,
   },
 };
