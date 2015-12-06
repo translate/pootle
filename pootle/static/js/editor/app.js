@@ -1980,7 +1980,7 @@ PTL.editor = {
       return;
     }
 
-    if (pStyle.length && pStyle != 'standard') {
+    if (pStyle.length && pStyle !== 'standard') {
       tmUrl += '&style=' + pStyle;
     }
 

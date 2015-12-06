@@ -25,6 +25,7 @@ module.exports = {
     'comma-dangle': [2, 'always-multiline'],
     'comma-spacing': [2, {'before': false, 'after': true}],
     'consistent-return': 2,
+    'eqeqeq': 2,
     'func-names': 1,
     'indent': [2, 2, { "SwitchCase": 1, "VariableDeclarator": 1 }],
     'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
