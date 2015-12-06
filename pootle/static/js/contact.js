@@ -58,9 +58,7 @@ const contact = {
     });
   },
 
-  open(opts) {
-    opts = opts || {};
-
+  open(opts = {}) {
     const contactUrl = opts.url || this.url;
     if (contactUrl === null) {
       return false;

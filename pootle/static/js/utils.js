@@ -32,9 +32,11 @@ function decodeURIParameter(s) {
 }
 
 
-export function getParsedHash(h) {
+export function getParsedHash(hash) {
   const params = {};
   const r = /([^&;=]+)=?([^&;]*)/g;
+
+  let h = hash;
   if (h === undefined) {
     h = this.getHash();
   }
@@ -191,11 +193,12 @@ export function makeSelectableInput(selector, options, onChange) {
 }
 
 
-export function executeFunctionByName(functionName, context /*, args */) {
+export function executeFunctionByName(functionName, ctx /*, args */) {
   const args = Array.prototype.slice.call(arguments).splice(2);
   const namespaces = functionName.split('.');
   const func = namespaces.pop();
 
+  let context = ctx;
   for (let i = 0; i < namespaces.length; i++) {
     context = context[namespaces[i]];
   }

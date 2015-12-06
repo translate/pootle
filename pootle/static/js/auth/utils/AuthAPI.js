@@ -35,7 +35,8 @@ const AuthAPI = {
     return this.fetch(url, reqData);
   },
 
-  passwordReset(reqData, url) {
+  passwordReset(reqData, reqUrl) {
+    let url = reqUrl;
     // XXX: this won't work still as we don't have the data separately
     if (!url) {
       const { uidb36, key } = reqData;

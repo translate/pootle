@@ -471,11 +471,9 @@ PTL.reports = {
     });
   },
 
-  dateRangeString(d1, d2, showYear) {
+  dateRangeString(d1, d2, showYear = true) {
     const m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss');
     const m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
-
-    showYear = showYear || true;
 
     if (m1.year() === m2.year()) {
       if (m1.month() === m2.month()) {

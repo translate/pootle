@@ -114,8 +114,7 @@ const DropdownView = Backbone.View.extend({
 const dropdown = {
 
   init(el) {
-    el = el instanceof $ ? el : $(el);
-    return new DropdownView({el: el});
+    return new DropdownView({ el: el instanceof $ ? el : $(el) });
   },
 
 };

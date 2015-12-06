@@ -39,10 +39,11 @@ export const Unit = Backbone.RelationalModel.extend({
    * Sets the current unit's translation.
    */
   setTranslation(value) {
+    let newValue = value;
     if (!_.isArray(value)) {
-      value = [value];
+      newValue = [value];
     }
-    this.set('target', _.map(value, (item) => utils.cleanEscape(item)));
+    this.set('target', _.map(newValue, (item) => utils.cleanEscape(item)));
   },
 
 });

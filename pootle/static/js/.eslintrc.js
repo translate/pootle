@@ -33,6 +33,7 @@ module.exports = {
     'no-else-return': 2,
     'no-extra-semi': 2,
     'no-multi-spaces': 2,
+    'no-param-reassign': 2,
     'no-shadow': 2,
     'no-undef': 2,
     'no-unused-vars': [2, {'vars': 'local', 'args': 'after-used'}],

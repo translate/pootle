@@ -28,10 +28,11 @@ const AdminController = React.createClass({
 
   setupRoutes(router) {
     router.on('route:main', (searchQuery) => {
+      let query = searchQuery;
       if (searchQuery === undefined || searchQuery === null) {
-        searchQuery = '';
+        query = '';
       }
-      this.handleSearch(searchQuery);
+      this.handleSearch(query);
     });
 
     router.on('route:edit', (id) => {

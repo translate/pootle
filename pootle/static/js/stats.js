@@ -215,7 +215,8 @@ const stats = {
     }
   },
 
-  processTableItem(item, code, $table, $td, now) {
+  processTableItem(item, code, $table, $tdEl, now) {
+    let $td = $tdEl;
     if (!$td.length) {
       return null;
     }

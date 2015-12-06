@@ -197,19 +197,21 @@ const browser = {
                      ((curLanguage === '' && curProject !== '') ||
                       (curLanguage !== '' && curProject === '')));
 
-    if (!languageCode && !inAdmin) {
-      languageCode = 'projects';
+    let newLanguageCode = languageCode;
+    if (!newLanguageCode && !inAdmin) {
+      newLanguageCode = 'projects';
     }
+    let newResource = resource;
     if (projectCode === '' || projChanged) {
-      resource = '';
+      newResource = '';
     }
 
-    const parts = ['', languageCode, projectCode, action, resource];
+    const parts = ['', newLanguageCode, projectCode, action, newResource];
     const urlParts = parts.filter((p, i) => {
       return i === 0 || p !== '';
     });
 
-    if (!resource) {
+    if (!newResource) {
       urlParts.push('');
     }
 
@@ -229,7 +231,7 @@ const browser = {
 
     // Remember the latest language the user switched to
     if (langChanged) {
-      cookie('pootle-language', languageCode, { path: '/' });
+      cookie('pootle-language', newLanguageCode, { path: '/' });
     }
 
     window.location.href = newUrl;

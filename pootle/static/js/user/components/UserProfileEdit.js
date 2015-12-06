@@ -52,8 +52,7 @@ const UserProfileEdit = React.createClass({
     this.setState({editing: true});
   },
 
-  handleClose(opts) {
-    opts = opts || {};
+  handleClose(opts = {}) {
     const forceClose = opts.forceClose || false;
 
     if (this.state.isDirty && !forceClose) {

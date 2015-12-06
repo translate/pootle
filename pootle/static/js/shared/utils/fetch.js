@@ -14,13 +14,13 @@ const requests = {};
 
 function fetch({ url, body, method = 'GET', dataType = 'json', queue = null,
                  crossDomain = false }) {
-  queue = queue || url;
+  const queueName = queue || url;
 
-  if (requests[queue]) {
-    requests[queue].abort();
+  if (requests[queueName]) {
+    requests[queueName].abort();
   }
 
-  requests[queue] = (
+  requests[queueName] = (
     $.ajax({
       crossDomain,
       method,
@@ -30,7 +30,7 @@ function fetch({ url, body, method = 'GET', dataType = 'json', queue = null,
     })
   );
 
-  return requests[queue];
+  return requests[queueName];
 }
 
 

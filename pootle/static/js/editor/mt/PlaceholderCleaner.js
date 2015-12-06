@@ -47,15 +47,16 @@ class PlaceholderCleaner {
       throw new Error('Attempted to recover without calling `replace()` first');
     }
 
+    let recoveredTranslation = translation;
     // Fix whitespace which may have been added around [N] blocks
     for (let i = 0; i < argSubs.length; i++) {
       if (sourceText.match(new RegExp('\\[' + i + '\\][^\\s]'))) {
-        translation = translation.replace(
+        recoveredTranslation = recoveredTranslation.replace(
           new RegExp('\\[' + i + '\\]\\s+'), '[' + i + ']'
         );
       }
       if (sourceText.match(new RegExp('[^\\s]\\[' + i + '\\]'))) {
-        translation = translation.replace(
+        recoveredTranslation = recoveredTranslation.replace(
           new RegExp('\\s+\\[' + i + '\\]'), '[' + i + ']'
         );
       }
@@ -66,12 +67,12 @@ class PlaceholderCleaner {
       const value = argSubs[i].replace(/\&/g, '&amp;')
                               .replace(/\</g, '&lt;')
                               .replace(/\>/g, '&gt;');
-      translation = translation.replace('[' + i + ']', value);
+      recoveredTranslation = recoveredTranslation.replace('[' + i + ']', value);
     }
 
     this.resetState();
 
-    return translation;
+    return recoveredTranslation;
   }
 
 }

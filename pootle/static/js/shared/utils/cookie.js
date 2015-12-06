@@ -25,8 +25,9 @@ function getCookie(name) {
 
 
 function setCookie(name, value, options = {}) {
-  if (value === null) {
-    value = '';
+  let newValue = value;
+  if (newValue === null) {
+    newValue = '';
     options.expires = -1;
   }
 
@@ -51,7 +52,7 @@ function setCookie(name, value, options = {}) {
   const path = options.path ? `; path=${options.path}` : '';
   const domain = options.domain ? `; domain=${options.domain}` : '';
   const secure = options.secure ? '; secure' : '';
-  document.cookie = `${name}=${encodeURIComponent(value)}` +
+  document.cookie = `${name}=${encodeURIComponent(newValue)}` +
                     `${expires}${path}${domain}${secure}`;
 }
 
