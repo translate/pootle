@@ -60,24 +60,30 @@ class DirectoryFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_app.Directory'
-        django_get_or_create = ("pootle_path", )
+        django_get_or_create = ("name", "parent")
+
+    obsolete = False
 
 
 class LanguageFactory(factory.django.DjangoModelFactory):
-
-    @factory.lazy_attribute
-    def directory(self):
-        from pootle_app.models import Directory
-
-        root = Directory.objects.get(parent=None)
-        return DirectoryFactory(name=self.code, parent=root)
 
     class Meta(object):
         model = 'pootle_language.Language'
         django_get_or_create = ("code", )
 
-    code = factory.Sequence(lambda n: 'language%s' % n)
-    fullname = factory.Sequence(lambda n: 'Language %s' % n)
+    @factory.lazy_attribute
+    def code(self):
+        from pootle_language.models import Language
+
+        # returns an incrementing index relative to the tp
+        return 'language%s' % Language.objects.count()
+
+    @factory.lazy_attribute
+    def fullname(self):
+        from pootle_language.models import Language
+
+        # returns an incrementing index relative to the tp
+        return 'Language %s' % Language.objects.count()
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):
@@ -86,8 +92,20 @@ class ProjectFactory(factory.django.DjangoModelFactory):
         model = 'pootle_project.Project'
         django_get_or_create = ("code", )
 
-    code = factory.Sequence(lambda n: 'project%s' % n)
-    fullname = factory.Sequence(lambda n: 'Project %s' % n)
+    @factory.lazy_attribute
+    def code(self):
+        from pootle_project.models import Project
+
+        # returns an incrementing index relative to the tp
+        return 'project%s' % Project.objects.count()
+
+    @factory.lazy_attribute
+    def fullname(self):
+        from pootle_project.models import Project
+
+        # returns an incrementing index relative to the tp
+        return 'Project %s' % Project.objects.count()
+
     pootle_path = factory.LazyAttribute(lambda p: "/projects/%s" % p.code)
 
 
