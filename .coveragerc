@@ -1,6 +1,5 @@
 [run]
 omit =
-    tests/*
     */migrations/*
     setup.py
     .tox/*
