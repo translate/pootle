@@ -40,7 +40,3 @@ notifications:
       - "(%{branch} @ %{commit} : %{author}): %{message} %{build_url}"
 services:
   - redis-server
-after_success:
-  - if [[ $TOXENV == py27-django17* ]]; then
-        coveralls;
-    fi
