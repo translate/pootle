@@ -9,7 +9,7 @@
 import assign from 'object-assign';
 import React from 'react';
 
-import { FormElement } from 'components/forms';
+import FormElement from 'components/FormElement';
 import { FormMixin } from 'mixins/forms';
 
 import { gotoScreen, verifySocial } from '../actions';

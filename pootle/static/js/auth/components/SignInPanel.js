@@ -9,7 +9,8 @@
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
-import { Tabs, Tab } from 'components/Tabs';
+import Tab from 'components/Tab';
+import Tabs from 'components/Tabs';
 import cookie from 'utils/cookie';
 
 import AuthProgress from './AuthProgress';

@@ -9,7 +9,8 @@
 import Backbone from 'backbone';
 import React from 'react';
 
-import { Dialog, Modal } from 'components/lightbox';
+import Dialog from 'components/Dialog';
+import Modal from 'components/Modal';
 
 import { UserProfileForm } from '../forms';
 

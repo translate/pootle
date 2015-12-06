@@ -9,10 +9,12 @@
 import React from 'react';
 import _ from 'underscore';
 
-import Select from 'react-select';
+import FormCheckedInput from './FormCheckedInput';
+import FormValueInput from './FormValueInput';
+import FormSelectInput from './FormSelectInput';
 
 
-export const FormElement = React.createClass({
+const FormElement = React.createClass({
 
   propTypes: {
     type: React.PropTypes.string,
@@ -91,75 +93,4 @@ export const FormElement = React.createClass({
 });
 
 
-const FormValueInput = React.createClass({
-
-  /* Handlers */
-
-  handleChange(e) {
-    this.props.handleChange(e.target.name, e.target.value);
-  },
-
-
-  /* Layout */
-
-  render() {
-    if (this.props.type === 'textarea') {
-      return <textarea onChange={this.handleChange} {...this.props} />;
-    }
-
-    return <input onChange={this.handleChange} {...this.props} />;
-  },
-
-});
-
-
-const FormCheckedInput = React.createClass({
-
-  /* Handlers */
-
-  handleChange(e) {
-    this.props.handleChange(e.target.name, e.target.checked);
-  },
-
-
-  /* Layout */
-
-  render() {
-    return <input checked={this.props.value} onChange={this.handleChange}
-                  {...this.props} />;
-  },
-
-});
-
-
-const FormSelectInput = React.createClass({
-
-  propTypes: {
-    name: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string.isRequired,
-    options: React.PropTypes.array.isRequired,
-    handleChange: React.PropTypes.func.isRequired,
-  },
-
-
-  /* Handlers */
-
-  handleChange(value) {
-    this.props.handleChange(this.props.name, value);
-  },
-
-
-  /* Layout */
-
-  render() {
-    return (
-      <Select
-        value={this.props.value.toString()}
-        options={this.props.options}
-        onChange={this.handleChange}
-        {...this.props}
-      />
-    );
-  },
-
-});
+export default FormElement;

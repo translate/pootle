@@ -10,7 +10,7 @@ import assign from 'object-assign';
 import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
-import { FormElement } from 'components/forms';
+import FormElement from 'components/FormElement';
 import { FormMixin } from 'mixins/forms';
 
 import { gotoScreen, requestPasswordReset } from '../actions';

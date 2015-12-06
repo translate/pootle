@@ -9,7 +9,7 @@
 import { link } from 'autolinker';
 import React from 'react';
 
-import { FormElement } from 'components/forms';
+import FormElement from 'components/FormElement';
 import { ModelFormMixin } from 'mixins/forms';
 
 import Avatar from 'components/Avatar';

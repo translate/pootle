@@ -10,7 +10,7 @@ import assign from 'object-assign';
 import React from 'react';
 
 import { gotoScreen, signIn } from '../actions';
-import { FormElement } from 'components/forms';
+import FormElement from 'components/FormElement';
 import { FormMixin } from 'mixins/forms';
 
 

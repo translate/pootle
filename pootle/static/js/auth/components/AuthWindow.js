@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Modal } from 'components/lightbox';
+import Modal from 'components/Modal';
 
 
 const AuthWindow = React.createClass({
