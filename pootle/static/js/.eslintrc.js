@@ -46,6 +46,10 @@ module.exports = {
     'space-before-blocks': 2,
     'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }],
     'space-infix-ops': 2,
+    'spaced-comment': [2, 'always', {
+      'exceptions': ['-', '+'],
+      'markers': ['=', '!']
+    }],
     'strict': [2, 'never'],
     'yoda': 2,
   },

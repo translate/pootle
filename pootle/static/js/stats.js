@@ -314,7 +314,7 @@ const stats = {
           if (this.isAdmin || item.isVisible) {
             this.processTableItem(item, code, $vfoldersTable, $td, now);
           } else {
-            //FIXME vfolders might be added or removed since they can become
+            // FIXME vfolders might be added or removed since they can become
             // completely translated or stop being completely translated, so
             // they might be displayable after the initial load of the
             // browser.
