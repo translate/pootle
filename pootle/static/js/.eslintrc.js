@@ -35,6 +35,7 @@ module.exports = {
     'no-unused-vars': [2, {'vars': 'local', 'args': 'after-used'}],
     'no-var': 2,
     'one-var': [2, 'never'],
+    'padded-blocks': [2, 'never'],
     'prefer-const': 2,
     'quotes': [2, 'single', 'avoid-escape'],
     'semi': [2, 'always'],

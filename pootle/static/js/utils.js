@@ -89,7 +89,6 @@ export function cleanEscape(s) {
 
 /* Fancy escapes to highlight parts of the text such as HTML tags */
 export function fancyEscape(text) {
-
   function replace(match) {
     const escapeHl = '<span class="highlight-escape">%s</span>';
     const htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
@@ -121,7 +120,6 @@ export function fancyEscape(text) {
 
 /* Highlight spaces to make them easily visible */
 function fancySpaces(text) {
-
   function replace(match) {
     const spaceHl = '<span class="translation-space"> </span>';
 

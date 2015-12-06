@@ -98,7 +98,6 @@ class MTProvider {
     const targetLang = normalizeCode(unit.store.target_lang);
 
     if (this.isSupportedTarget(targetLang)) {
-
       Object.keys(unit.sources).forEach((sourceLanguage) => {
         const sourceLang = normalizeCode(sourceLanguage);
 

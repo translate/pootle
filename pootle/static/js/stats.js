@@ -344,7 +344,6 @@ const stats = {
         }, 1);
       }
     }
-
   },
 
   updateDirty() {

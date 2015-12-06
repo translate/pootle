@@ -95,7 +95,6 @@ PTL.reports = {
       PTL.reports.loadedHashParams = params;
       $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + utils.getHash());
     }, {'unescape': true});
-
   },
 
   updateRates() {
@@ -504,7 +503,6 @@ PTL.reports = {
       ' &mdash; ',
       m2.format('MMMM D, YYYY'),
     ].join('');
-
   },
 
   formatDate(d) {

@@ -72,7 +72,6 @@ PTL.editor = {
 
   /* Initializes the editor */
   init(options) {
-
     /* Default settings */
     this.settings = {
       mt: [],
@@ -480,9 +479,7 @@ PTL.editor = {
         }
         this.setUnit(uId);
       });
-
     }, {'unescape': true});
-
   },
 
   /* Stuff to be done when the editor is ready  */

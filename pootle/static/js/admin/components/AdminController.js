@@ -27,7 +27,6 @@ const AdminController = React.createClass({
   },
 
   setupRoutes(router) {
-
     router.on('route:main', (searchQuery) => {
       if (searchQuery === undefined || searchQuery === null) {
         searchQuery = '';
