@@ -45,7 +45,7 @@ const search = {
     shortcut.add('escape', (e) => {
       if (this.$form.hasClass('focused')) {
         this.$input.blur();
-        toggleFields(e);
+        this.toggleFields(e);
       }
     });
 
@@ -61,18 +61,12 @@ const search = {
       this.$form.removeClass('focused');
     });
 
-    /* Dropdown toggling */
-    function toggleFields(event) {
-      event.preventDefault();
-      that.$container.toggle();
-    }
-
     /* Event handlers */
     this.$input.click((e) => {
       if (search.isOpen()) {
         return;
       }
-      toggleFields(e);
+      this.toggleFields(e);
     });
 
     this.$input.on('keypress', (e) => {
@@ -87,7 +81,7 @@ const search = {
       if (this.isOpen() &&
           e.target !== that.$input.get(0) &&
           !this.$container.find(e.target).length) {
-        toggleFields(e);
+        this.toggleFields(e);
       }
     });
   },
@@ -95,6 +89,12 @@ const search = {
   setState(newState) {
     this.state = assign({}, this.state, newState);
     this.updateUI();
+  },
+
+  /* Dropdown toggling */
+  toggleFields(event) {
+    event.preventDefault();
+    this.$container.toggle();
   },
 
   /* Returns true if the search drop-down is open */

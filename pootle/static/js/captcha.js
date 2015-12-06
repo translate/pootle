@@ -13,16 +13,12 @@ import 'jquery-serializeObject';
 import utils from './utils';
 
 
-function display(html) {
-  $(document).on('submit', '#js-captcha', onSubmit);
-
-  $.magnificPopup.open({
-    items: {
-      src: html,
-      type: 'inline',
-    },
-    focus: '#id_captcha_answer',
-  });
+export function onError(xhr, errorFn) {
+  if (xhr.status === 402) {
+    display(xhr.responseText);  // eslint-disable-line no-use-before-define
+  } else {
+    utils.executeFunctionByName(errorFn, window, xhr);
+  }
 }
 
 
@@ -49,10 +45,14 @@ function onSubmit(e) {
 }
 
 
-export function onError(xhr, errorFn) {
-  if (xhr.status === 402) {
-    display(xhr.responseText);
-  } else {
-    utils.executeFunctionByName(errorFn, window, xhr);
-  }
+function display(html) {
+  $(document).on('submit', '#js-captcha', onSubmit);
+
+  $.magnificPopup.open({
+    items: {
+      src: html,
+      type: 'inline',
+    },
+    focus: '#id_captcha_answer',
+  });
 }

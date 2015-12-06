@@ -34,6 +34,70 @@ const actionMap = {
 };
 
 
+/* Navigates to `languageCode`, `projectCode`, `resource` while
+ * retaining the current context when applicable */
+function navigateTo(languageCode, projectCode, resource) {
+  const curProject = $(sel.project).data('initial-code');
+  const curLanguage = $(sel.language).data('initial-code');
+  const $resource = $(sel.resource);
+  const curResource = $resource.length ? $resource.data('initial-code')
+                                                  .replace('ctx-', '') : '';
+  const langChanged = languageCode !== curLanguage;
+  const projChanged = projectCode !== curProject;
+  const resChanged = resource !== curResource;
+  const hasChanged = langChanged || projChanged || resChanged;
+
+  if (!hasChanged) {
+    return;
+  }
+
+  const actionKey = $(sel.navigation).val();
+  const action = actionMap[actionKey];
+  const inAdmin = (actionKey.indexOf('admin-') !== -1 &&
+                   ((curLanguage === '' && curProject !== '') ||
+                    (curLanguage !== '' && curProject === '')));
+
+  let newLanguageCode = languageCode;
+  if (!newLanguageCode && !inAdmin) {
+    newLanguageCode = 'projects';
+  }
+  let newResource = resource;
+  if (projectCode === '' || projChanged) {
+    newResource = '';
+  }
+
+  const parts = ['', newLanguageCode, projectCode, action, newResource];
+  const urlParts = parts.filter((p, i) => {
+    return i === 0 || p !== '';
+  });
+
+  if (!newResource) {
+    urlParts.push('');
+  }
+
+  let newUrl = l(urlParts.join('/'));
+
+  const PTL = window.PTL || {};
+  if (PTL.hasOwnProperty('editor')) {
+    const hash = utils.getHash().replace(/&?unit=\d+/, '');
+    if (hash !== '') {
+      newUrl = [newUrl, hash].join('#');
+    }
+  }
+
+  const changed = projChanged ? 'project' :
+                  langChanged ? 'language' : 'resource';
+  cookie('user-choice', changed, { path: '/' });
+
+  // Remember the latest language the user switched to
+  if (langChanged) {
+    cookie('pootle-language', newLanguageCode, { path: '/' });
+  }
+
+  window.location.href = newUrl;
+}
+
+
 function makeNavDropdown(selector, opts) {
   const defaults = {
     allowClear: true,
@@ -44,7 +108,7 @@ function makeNavDropdown(selector, opts) {
   const options = $.extend({}, defaults, opts);
 
   return utils.makeSelectableInput(selector, options,
-    function navigateTo() {
+    function handleSelectClick() {
       const $select = $(this);
       const $opt = $select.find('option:selected');
       const href = $opt.data('href');
@@ -69,21 +133,9 @@ function makeNavDropdown(selector, opts) {
       const resource = $resource.length ? $resource.val()
                                                   .replace('ctx-', '')
                                        : '';
-      browser.navigateTo(langCode, projectCode, resource);
+      navigateTo(langCode, projectCode, resource);
     }
   );
-}
-
-
-function fixDropdowns() {
-  // We can't use `e.persisted` here. See bug 2949 for reference
-  const selectors = [sel.navigation, sel.language, sel.project, sel.resource];
-  for (let i = 0; i < selectors.length; i++) {
-    const $el = $(selectors[i]);
-    $el.select2('val', $el.data('initial-code'));
-  }
-  fixResourcePathBreadcrumbGeometry();
-  $(sel.breadcrumbs).css('visibility', 'visible');
 }
 
 
@@ -100,6 +152,18 @@ function fixResourcePathBreadcrumbGeometry() {
     const maxWidth = maxHeaderWidth - resourceDropdownLeft;
     $resourceDropdown.css('max-width', maxWidth);
   }
+}
+
+
+function fixDropdowns() {
+  // We can't use `e.persisted` here. See bug 2949 for reference
+  const selectors = [sel.navigation, sel.language, sel.project, sel.resource];
+  for (let i = 0; i < selectors.length; i++) {
+    const $el = $(selectors[i]);
+    $el.select2('val', $el.data('initial-code'));
+  }
+  fixResourcePathBreadcrumbGeometry();
+  $(sel.breadcrumbs).css('visibility', 'visible');
 }
 
 
@@ -172,69 +236,6 @@ const browser = {
     $(window).on('resize', () => {
       fixResourcePathBreadcrumbGeometry();
     });
-  },
-
-  /* Navigates to `languageCode`, `projectCode`, `resource` while
-   * retaining the current context when applicable */
-  navigateTo(languageCode, projectCode, resource) {
-    const curProject = $(sel.project).data('initial-code');
-    const curLanguage = $(sel.language).data('initial-code');
-    const $resource = $(sel.resource);
-    const curResource = $resource.length ? $resource.data('initial-code')
-                                                    .replace('ctx-', '') : '';
-    const langChanged = languageCode !== curLanguage;
-    const projChanged = projectCode !== curProject;
-    const resChanged = resource !== curResource;
-    const hasChanged = langChanged || projChanged || resChanged;
-
-    if (!hasChanged) {
-      return;
-    }
-
-    const actionKey = $(sel.navigation).val();
-    const action = actionMap[actionKey];
-    const inAdmin = (actionKey.indexOf('admin-') !== -1 &&
-                     ((curLanguage === '' && curProject !== '') ||
-                      (curLanguage !== '' && curProject === '')));
-
-    let newLanguageCode = languageCode;
-    if (!newLanguageCode && !inAdmin) {
-      newLanguageCode = 'projects';
-    }
-    let newResource = resource;
-    if (projectCode === '' || projChanged) {
-      newResource = '';
-    }
-
-    const parts = ['', newLanguageCode, projectCode, action, newResource];
-    const urlParts = parts.filter((p, i) => {
-      return i === 0 || p !== '';
-    });
-
-    if (!newResource) {
-      urlParts.push('');
-    }
-
-    let newUrl = l(urlParts.join('/'));
-
-    const PTL = window.PTL || {};
-    if (PTL.hasOwnProperty('editor')) {
-      const hash = utils.getHash().replace(/&?unit=\d+/, '');
-      if (hash !== '') {
-        newUrl = [newUrl, hash].join('#');
-      }
-    }
-
-    const changed = projChanged ? 'project' :
-                    langChanged ? 'language' : 'resource';
-    cookie('user-choice', changed, { path: '/' });
-
-    // Remember the latest language the user switched to
-    if (langChanged) {
-      cookie('pootle-language', newLanguageCode, { path: '/' });
-    }
-
-    window.location.href = newUrl;
   },
 
 };

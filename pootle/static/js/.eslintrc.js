@@ -37,6 +37,7 @@ module.exports = {
     'no-shadow': 2,
     'no-undef': 2,
     'no-unused-vars': [2, {'vars': 'local', 'args': 'after-used'}],
+    'no-use-before-define': 2,
     'no-var': 2,
     'one-var': [2, 'never'],
     'padded-blocks': [2, 'never'],
