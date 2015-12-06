@@ -33,6 +33,8 @@ from fixtures.models.user import (
     no_perms_user)
 
 from fixtures.cache import delete_pattern
+from fixtures.forms import (
+    UNITS_FORM, units_form_tests, units_search_tests, units_filter_tests)
 from fixtures.import_export_fixtures import (
     FILE_IMPORT_FAIL_TESTS,
     file_import_failure, ts_directory, en_tutorial_ts)
@@ -72,7 +74,8 @@ __all__ = (
     'en_tutorial_ts', 'file_import_failure', 'ts_directory', 'revision',
     'project_views', 'tp_views', 'language_views',
     'bad_views', 'post_db_setup', 'no_projects', 'no_permission_sets',
-    'no_permissions', 'no_submissions', 'no_users', 'no_extra_users')
+    'no_permissions', 'no_submissions', 'no_users', 'no_extra_users',
+    'units_form_tests', 'units_search_tests', 'units_filter_tests')
 
 
 PARAMETERS = (
@@ -82,7 +85,8 @@ PARAMETERS = (
     ("project_view_names", PROJECT_VIEW_TESTS),
     ("language_view_names", LANGUAGE_VIEW_TESTS),
     ("tp_view_names", TP_VIEW_TESTS),
-    ("bad_view_names", BAD_VIEW_TESTS))
+    ("bad_view_names", BAD_VIEW_TESTS),
+    ("units_form_test_names", UNITS_FORM))
 
 
 def pytest_generate_tests(metafunc):
