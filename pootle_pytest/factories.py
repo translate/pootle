@@ -164,13 +164,13 @@ class UnitFactory(factory.django.DjangoModelFactory):
     def source_f(self):
         return (
             "%s Source %s %s"
-            % (pootle_store.util.get_state_name(self).capitalize(),
+            % (pootle_store.util.get_state_name(self.state).capitalize(),
                self.store.pootle_path,
                self.index))
 
     @factory.lazy_attribute
     def target_f(self):
-        state_name = pootle_store.util.get_state_name(self)
+        state_name = pootle_store.util.get_state_name(self.state)
         if state_name in ["translated", "fuzzy", "obsolete"]:
             return (
                 "%s Target %s %s"
