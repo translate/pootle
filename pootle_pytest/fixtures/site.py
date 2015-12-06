@@ -20,9 +20,16 @@ def site_matrix(request, system, settings):
         TranslationProjectFactory, StoreFactory, UnitFactory)
 
     from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
+    from pootle_app.models import Directory
 
-    # create root and projects directories
-    DirectoryFactory(name="projects", parent=DirectoryFactory(parent=None))
+    # create root and projects directories, first clear the class cache
+    if "root" in Directory.objects.__dict__:
+        del Directory.objects.__dict__['root']
+    if "projects" in Directory.objects.__dict__:
+        del Directory.objects.__dict__['projects']
+    DirectoryFactory(
+        name="projects",
+        parent=DirectoryFactory(parent=None, name=""))
 
     # add 2 languages
     languages = [LanguageFactory() for i in range(0, 2)]
@@ -45,6 +52,10 @@ def site_matrix(request, system, settings):
                         UnitFactory(store=store, state=state)
 
     def _teardown():
+        if "root" in Directory.objects.__dict__:
+            del Directory.objects.__dict__['root']
+        if "projects" in Directory.objects.__dict__:
+            del Directory.objects.__dict__['projects']
         # required to get clean slate 8/
         for trans_dir in os.listdir(settings.POOTLE_TRANSLATION_DIRECTORY):
             if trans_dir.startswith("project"):
