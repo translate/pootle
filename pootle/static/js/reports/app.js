@@ -520,7 +520,7 @@ PTL.reports = {
       if ($el.hasClass('js-previous')) {
         link += 'month=' + PTL.reports.month.clone().subtract({ M: 1 }).format('YYYY-MM');
       }
-      if ($el.hasClass('js-next')){
+      if ($el.hasClass('js-next')) {
         link += 'month=' + PTL.reports.month.clone().add({ M: 1 }).format('YYYY-MM');
       }
       $el.attr('href', link);
