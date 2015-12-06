@@ -90,6 +90,9 @@ class StoreFactory(factory.django.DjangoModelFactory):
         model = 'pootle_store.Store'
         django_get_or_create = ("pootle_path", )
 
+    parent = factory.LazyAttribute(
+        lambda s: s.translation_project.directory)
+
     @factory.lazy_attribute
     def pootle_path(self):
         return (
@@ -97,9 +100,10 @@ class StoreFactory(factory.django.DjangoModelFactory):
             % (self.translation_project.pootle_path.rstrip("/"),
                self.name))
 
-    name = factory.Sequence(lambda n: 'store%s.po' % n)
-    parent = factory.LazyAttribute(
-        lambda s: s.translation_project.directory)
+    @factory.lazy_attribute
+    def name(self):
+        # returns an incrementing index relative to the tp
+        return 'store%s.po' % self.translation_project.stores.count()
 
 
 class TranslationProjectFactory(factory.django.DjangoModelFactory):
