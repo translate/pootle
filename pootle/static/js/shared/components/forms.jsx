@@ -26,7 +26,7 @@ export const FormElement = React.createClass({
 
   /* Lifecycle */
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       type: 'text',
     };
@@ -35,7 +35,7 @@ export const FormElement = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     const { attribute } = this.props;
     const fieldId = ['id', attribute].join('_');
     const hint = this.props.help;
@@ -79,7 +79,7 @@ export const FormElement = React.createClass({
         <label htmlFor={fieldId}>{this.props.label}</label>
         {formInput}
       {errors &&
-        <ul className="errorlist">{errors.map(function (msg, i) {
+        <ul className="errorlist">{errors.map((msg, i) => {
           return <li key={i}>{msg}</li>;
         })}</ul>}
       {hint &&
@@ -95,14 +95,14 @@ const FormValueInput = React.createClass({
 
   /* Handlers */
 
-  handleChange: function (e) {
+  handleChange(e) {
     this.props.handleChange(e.target.name, e.target.value);
   },
 
 
   /* Layout */
 
-  render: function () {
+  render() {
     if (this.props.type === 'textarea') {
       return <textarea onChange={this.handleChange} {...this.props} />;
     }
@@ -117,14 +117,14 @@ const FormCheckedInput = React.createClass({
 
   /* Handlers */
 
-  handleChange: function (e) {
+  handleChange(e) {
     this.props.handleChange(e.target.name, e.target.checked);
   },
 
 
   /* Layout */
 
-  render: function () {
+  render() {
     return <input checked={this.props.value} onChange={this.handleChange}
                   {...this.props} />;
   },
@@ -144,14 +144,14 @@ const FormSelectInput = React.createClass({
 
   /* Handlers */
 
-  handleChange: function (value) {
+  handleChange(value) {
     this.props.handleChange(this.props.name, value);
   },
 
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <Select
         value={this.props.value.toString()}

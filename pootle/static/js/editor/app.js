@@ -71,7 +71,7 @@ window.PTL = window.PTL || {};
 PTL.editor = {
 
   /* Initializes the editor */
-  init: function (options) {
+  init(options) {
 
     /* Default settings */
     this.settings = {
@@ -142,7 +142,7 @@ PTL.editor = {
     this.$filterSortBy.select2(sortSelectOpts);
 
     /* Screenshot images */
-    $(document).on('click', '.js-dev-img', function (e) {
+    $(document).on('click', '.js-dev-img', function displayScreenshot(e) {
       e.preventDefault();
 
       $(this).magnificPopup({
@@ -172,12 +172,12 @@ PTL.editor = {
                    (e) => this.toggleSuggestMode(e));
 
     /* Update focus when appropriate */
-    $(document).on('focus', '.focusthis', function (e) {
+    $(document).on('focus', '.focusthis', (e) => {
       PTL.editor.focused = e.target;
     });
 
     /* General */
-    $(document).on('click', '.js-editor-reload', function (e) {
+    $(document).on('click', '.js-editor-reload', (e) => {
       e.preventDefault();
       $.history.load('');
     });
@@ -237,7 +237,7 @@ PTL.editor = {
     $(document).on('click', '.js-hide-ctx', () => this.hideContext());
 
     /* Commenting */
-    $(document).on('click', '.js-editor-comment', function (e) {
+    $(document).on('click', '.js-editor-comment', (e) => {
       e.preventDefault();
       const $elem = $('.js-editor-comment-form');
       const $comment = $('.js-editor-comment');
@@ -255,7 +255,7 @@ PTL.editor = {
     /* Misc */
     $(document).on('click', '.js-editor-msg-hide', () => this.hideMsg());
 
-    $(document).on('click', '.js-toggle-raw', function (e) {
+    $(document).on('click', '.js-toggle-raw', (e) => {
       e.preventDefault();
       $('.js-translate-translation').toggleClass('raw');
       $('.js-toggle-raw').toggleClass('selected');
@@ -486,7 +486,7 @@ PTL.editor = {
   },
 
   /* Stuff to be done when the editor is ready  */
-  ready: function () {
+  ready() {
     const currentUnit = this.units.getCurrent();
     if (currentUnit.get('isObsolete')) {
       this.displayObsoleteMsg();
@@ -532,12 +532,12 @@ PTL.editor = {
   },
 
   /* Things to do when no results are returned */
-  noResults: function () {
+  noResults() {
     this.displayMsg({body: gettext('No results.')});
     this.reDraw();
   },
 
-  canNavigate: function () {
+  canNavigate() {
     if (this.isUnitDirty) {
       return window.confirm(  // eslint-disable-line no-alert
         gettext(
@@ -555,7 +555,7 @@ PTL.editor = {
    */
 
   /* Highlights search results */
-  hlSearch: function () {
+  hlSearch() {
     const { searchText, searchFields, searchOptions } = search.state;
     const selMap = {
       notes: 'div.developer-comments',
@@ -581,7 +581,7 @@ PTL.editor = {
 
 
   /* Copies text into the focused textarea */
-  copyText: function (e) {
+  copyText(e) {
     const $el = $(e.currentTarget);
     const action = $el.data('action');
     const text = $el.data('string') || $el.data('translation-aid') || $el.text();
@@ -602,7 +602,7 @@ PTL.editor = {
 
 
   /* Copies source text(s) into the target textarea(s)*/
-  copyOriginal: function (sources) {
+  copyOriginal(sources) {
     const targets = $('.js-translation-area');
     if (targets.length) {
       const max = sources.length - 1;
@@ -626,7 +626,7 @@ PTL.editor = {
     }
   },
 
-  copyComment: function (text) {
+  copyComment(text) {
     const comment = document.querySelector('.js-editor-comment');
     const commentForm = document.querySelector('.js-editor-comment-form');
     const commentInput = document.querySelector('#id_translator_comment');
@@ -646,19 +646,19 @@ PTL.editor = {
    */
 
   /* Sets the current unit's styling as fuzzy */
-  doFuzzyStyle: function () {
+  doFuzzyStyle() {
     $('tr.edit-row').addClass('fuzzy-unit');
   },
 
 
   /* Unsets the current unit's styling as fuzzy */
-  undoFuzzyStyle: function () {
+  undoFuzzyStyle() {
     $('tr.edit-row').removeClass('fuzzy-unit');
   },
 
 
   /* Checks the current unit's fuzzy checkbox */
-  doFuzzyBox: function () {
+  doFuzzyBox() {
     const $checkbox = $('input.fuzzycheck');
     $checkbox.prop('checked', true);
 
@@ -674,7 +674,7 @@ PTL.editor = {
 
 
   /* Unchecks the current unit's fuzzy checkbox */
-  undoFuzzyBox: function () {
+  undoFuzzyBox() {
     const $checkbox = $('input.fuzzycheck');
     $checkbox.prop('checked', false);
     $checkbox.trigger('change');
@@ -682,7 +682,7 @@ PTL.editor = {
 
 
   /* Sets the current unit status as fuzzy (both styling and checkbox) */
-  goFuzzy: function () {
+  goFuzzy() {
     if (!this.isFuzzy()) {
       this.doFuzzyStyle();
       this.doFuzzyBox();
@@ -691,7 +691,7 @@ PTL.editor = {
 
 
   /* Unsets the current unit status as fuzzy (both styling and checkbox) */
-  ungoFuzzy: function () {
+  ungoFuzzy() {
     if (this.isFuzzy()) {
       this.undoFuzzyStyle();
       this.undoFuzzyBox();
@@ -700,11 +700,11 @@ PTL.editor = {
 
 
   /* Returns whether the current unit is fuzzy or not */
-  isFuzzy: function () {
+  isFuzzy() {
     return $('input.fuzzycheck').prop('checked');
   },
 
-  toggleFuzzyStyle: function () {
+  toggleFuzzyStyle() {
     if (this.isFuzzy()) {
       this.doFuzzyStyle();
     } else {
@@ -712,15 +712,15 @@ PTL.editor = {
     }
   },
 
-  toggleState: function () {
+  toggleState() {
     // `blur()` prevents a double-click effect if the checkbox was
     // previously clicked using the mouse
     $('input.fuzzycheck').blur().click();
   },
 
   /* Updates unit textarea and input's `default*` values. */
-  updateUnitDefaultProperties: function () {
-    $('.js-translation-area').each(function () {
+  updateUnitDefaultProperties() {
+    $('.js-translation-area').each(function setDefaultValue() {
       this.defaultValue = this.value;
     });
     const checkbox = $('#id_state')[0];
@@ -729,13 +729,13 @@ PTL.editor = {
   },
 
   /* Updates comment area's `defaultValue` value. */
-  updateCommentDefaultProperties: function () {
+  updateCommentDefaultProperties() {
     const comment = document.querySelector('#id_translator_comment');
     comment.defaultValue = comment.value;
     this.handleTranslationChange();
   },
 
-  handleTranslationChange: function () {
+  handleTranslationChange() {
     const comment = document.querySelector('#id_translator_comment');
     const commentChanged = comment !== null ?
                            comment.value !== comment.defaultValue : false;
@@ -743,7 +743,7 @@ PTL.editor = {
     const submit = $('.js-submit')[0];
     const suggest = $('.js-suggest')[0];
     const translations = $('.js-translation-area').get();
-    const suggestions = $('.js-user-suggestion').map(function () {
+    const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return $(this).data('translation-aid');
     }).get();
     const checkbox = $('#id_state')[0];
@@ -782,21 +782,20 @@ PTL.editor = {
     }
   },
 
-  onStateChange: function () {
+  onStateChange() {
     this.handleTranslationChange();
 
     this.toggleFuzzyStyle();
   },
 
-  onStateClick: function () {
+  onStateClick() {
     // Prevent automatic unfuzzying on explicit user action
     this.keepState = true;
   },
 
-  onTextareaChange: function (e) {
+  onTextareaChange(e) {
     this.handleTranslationChange();
 
-    const that = this;
     const el = e.target;
     const hasChanged = el.defaultValue !== el.value;
 
@@ -805,9 +804,9 @@ PTL.editor = {
     }
 
     clearTimeout(this.similarityTimer);
-    this.similarityTimer = setTimeout(function () {
-      that.checkSimilarTranslations();
-      that.similarityTimer = null;  // So we know the code was run
+    this.similarityTimer = setTimeout(() => {
+      this.checkSimilarTranslations();
+      this.similarityTimer = null;  // So we know the code was run
     }, 200);
   },
 
@@ -816,7 +815,7 @@ PTL.editor = {
    * Translation's similarity
    */
 
-  getSimilarityData: function () {
+  getSimilarityData() {
     const currentUnit = this.units.getCurrent();
     return {
       similarity: currentUnit.get('similarityHuman'),
@@ -824,7 +823,7 @@ PTL.editor = {
     };
   },
 
-  calculateSimilarity: function (newTranslation, $elements, dataSelector) {
+  calculateSimilarity(newTranslation, $elements, dataSelector) {
     let maxSimilarity = 0;
     let boxId = null;
 
@@ -846,7 +845,7 @@ PTL.editor = {
     };
   },
 
-  checkSimilarTranslations: function () {
+  checkSimilarTranslations() {
     const dataSelector = 'translation-aid';
     const dataSelectorMT = 'translation-aid-mt';
     const $aidElementsMT = $(`[data-${dataSelectorMT}]`);
@@ -888,7 +887,7 @@ PTL.editor = {
   },
 
   /* Applies highlight classes to `boxId`. */
-  highlightBox: function (boxId, isExact) {
+  highlightBox(boxId, isExact) {
     const bestMatchCls = 'best-match';
     const exactMatchCls = 'exact-match';
 
@@ -910,25 +909,25 @@ PTL.editor = {
    */
 
   /* Changes the editor into suggest mode */
-  doSuggestMode: function () {
+  doSuggestMode() {
     this.editorTableEl.classList.add('suggest-mode');
   },
 
 
   /* Changes the editor into submit mode */
-  undoSuggestMode: function () {
+  undoSuggestMode() {
     this.editorTableEl.classList.remove('suggest-mode');
   },
 
 
   /* Returns true if the editor is in suggest mode */
-  isSuggestMode: function () {
+  isSuggestMode() {
     return this.editorTableEl.classList.contains('suggest-mode');
   },
 
 
   /* Toggles suggest/submit modes */
-  toggleSuggestMode: function (e) {
+  toggleSuggestMode(e) {
     e.preventDefault();
     if (this.isSuggestMode()) {
       this.undoSuggestMode();
@@ -937,7 +936,7 @@ PTL.editor = {
     }
   },
 
-  updateExportLink: function () {
+  updateExportLink() {
     const $exportOpt = $('.js-export-view');
     const baseUrl = $exportOpt.data('export-url');
     const hash = utils.getHash().replace(/&?unit=\d+/, '');
@@ -950,17 +949,17 @@ PTL.editor = {
    * Indicators, messages, error handling
    */
 
-  showActivity: function () {
+  showActivity() {
     this.hideMsg();
     this.$editorActivity.spin().fadeIn(300);
   },
 
-  hideActivity: function () {
+  hideActivity() {
     this.$editorActivity.spin(false).fadeOut(300);
   },
 
   /* Displays an informative message */
-  displayMsg: function ({ showClose = true, body = null }) {
+  displayMsg({ showClose = true, body = null }) {
     this.hideActivity();
     helpers.fixSidebarHeight();
     this.$msgOverlay.html(
@@ -968,19 +967,19 @@ PTL.editor = {
     ).fadeIn(300);
   },
 
-  hideMsg: function () {
+  hideMsg() {
     this.$msgOverlay.length && this.$msgOverlay.fadeOut(300);
   },
 
   /* Displays error messages on top of the toolbar */
-  displayError: function (text) {
+  displayError(text) {
     this.hideActivity();
     msg.show({text: text, level: 'error'});
   },
 
 
   /* Handles XHR errors */
-  error: function (xhr, s) {
+  error(xhr, s) {
     let text = '';
 
     if (s === 'abort') {
@@ -1010,7 +1009,7 @@ PTL.editor = {
     PTL.editor.displayError(text);
   },
 
-  displayObsoleteMsg: function () {
+  displayObsoleteMsg() {
     const msgText = gettext('This string no longer exists.');
     const backMsg = gettext('Go back to browsing');
     const backLink = this.backToBrowserEl.getAttribute('href');
@@ -1033,7 +1032,7 @@ PTL.editor = {
    */
 
   /* Gets common request data */
-  getReqData: function () {
+  getReqData() {
     const reqData = {};
 
     if (this.filter === 'checks' && this.checks.length) {
@@ -1072,7 +1071,7 @@ PTL.editor = {
 
 
   /* Renders a single row */
-  renderRow: function (unit) {
+  renderRow(unit) {
     return (
       `<tr id="row${unit.id}" class="view-row">` +
         this.tmpl.vUnit({unit: unit.toJSON()}) +
@@ -1080,7 +1079,7 @@ PTL.editor = {
     );
   },
 
-  renderEditorRow: function (unit) {
+  renderEditorRow(unit) {
     const eClass = cx('edit-row', {
       'fuzzy-unit': unit.get('isfuzzy'),
       'with-ctx': this.filter !== 'all',
@@ -1098,7 +1097,7 @@ PTL.editor = {
   },
 
   /* Renders the editor rows */
-  renderRows: function () {
+  renderRows() {
     const unitGroups = this.getUnitGroups();
     const currentUnit = this.units.getCurrent();
 
@@ -1130,7 +1129,7 @@ PTL.editor = {
 
 
   /* Renders context rows for units passed as 'units' */
-  renderCtxRows: function (units, extraCls) {
+  renderCtxRows(units, extraCls) {
     const currentUnit = this.units.getCurrent();
     let rows = '';
 
@@ -1149,7 +1148,7 @@ PTL.editor = {
 
 
   /* Returns the unit groups for the current editor state */
-  getUnitGroups: function () {
+  getUnitGroups() {
     const limit = parseInt(((this.units.chunkSize - 1) / 2), 10);
     const unitCount = this.units.length;
     const currentUnit = this.units.getCurrent();
@@ -1191,7 +1190,7 @@ PTL.editor = {
 
 
   /* Sets the edit view for the current active unit */
-  renderUnit: function () {
+  renderUnit() {
     if (this.units.length) {
       this.hideMsg();
 
@@ -1201,7 +1200,7 @@ PTL.editor = {
 
 
   /* reDraws the translate table rows */
-  reDraw: function (newTbody) {
+  reDraw(newTbody) {
     const $oldRows = this.$editorBody.find('tr');
 
     $oldRows.remove();
@@ -1215,7 +1214,7 @@ PTL.editor = {
 
 
   /* Updates a button in `selector` to the `disable` state */
-  updateNavButton: function ($button, disable) {
+  updateNavButton($button, disable) {
     // Avoid unnecessary actions
     if ($button.is(':disabled') && disable || $button.is(':enabled') && !disable) {
       return;
@@ -1232,7 +1231,7 @@ PTL.editor = {
 
 
   /* Updates the navigation widget */
-  updateNavigation: function () {
+  updateNavigation() {
     this.updateNavButton(this.$navPrev, !this.units.hasPrev());
     this.updateNavButton(this.$navNext, !this.units.hasNext());
 
@@ -1245,7 +1244,7 @@ PTL.editor = {
   },
 
   /* Fetches more units in case they are needed */
-  fetchUnits: function ({ initial = false, uId = 0 } = {}) {
+  fetchUnits({ initial = false, uId = 0 } = {}) {
     const reqData = {
       path: this.settings.pootlePath,
     };
@@ -1296,7 +1295,7 @@ PTL.editor = {
       );
   },
 
-  storeUnitData: function (data) {
+  storeUnitData(data) {
     if (data.uIds) {
       // Clear old data and add new results
       this.units.reset();
@@ -1325,7 +1324,7 @@ PTL.editor = {
   },
 
   /* Stores editor data for the current unit */
-  setEditUnit: function (data) {
+  setEditUnit(data) {
     const currentUnit = this.units.getCurrent();
     currentUnit.set('isObsolete', data.is_obsolete);
     currentUnit.set('sources', data.sources);
@@ -1335,7 +1334,7 @@ PTL.editor = {
   },
 
   /* Sets a new unit as the current one, rendering it as well */
-  setUnit: function (unit) {
+  setUnit(unit) {
     const newUnit = this.units.setCurrent(unit);
 
     this.updateNavigation();
@@ -1356,10 +1355,10 @@ PTL.editor = {
   },
 
   /* Pushes translation submissions and moves to the next unit */
-  handleSubmit: function () {
+  handleSubmit() {
     const el = document.querySelector('input.submit');
     const newTranslation = $('.js-translation-area')[0].value;
-    const suggestions = $('.js-user-suggestion').map(function () {
+    const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return {
         text: this.dataset.translationAid,
         id: this.dataset.suggId,
@@ -1405,11 +1404,10 @@ PTL.editor = {
       );
   },
 
-  processSubmission: function (data) {
+  processSubmission(data) {
     // FIXME: handle this via events
-    const translations = $('.js-translation-area').map(function (i, el) {
-      return $(el).val();
-    }).get();
+    const translations = $('.js-translation-area').map((i, el) => $(el).val())
+                                                  .get();
 
     const unit = this.units.getCurrent();
     unit.setTranslation(translations);
@@ -1430,7 +1428,7 @@ PTL.editor = {
   },
 
   /* Pushes translation suggestions and moves to the next unit */
-  handleSuggest: function () {
+  handleSuggest() {
     const captchaCallbacks = {
       sfn: 'PTL.editor.processSuggestion',
       efn: 'PTL.editor.error',
@@ -1453,7 +1451,7 @@ PTL.editor = {
       );
   },
 
-  processSuggestion: function (data) {
+  processSuggestion(data) {
     if (data.user_score) {
       score.set(data.user_score);
     }
@@ -1463,7 +1461,7 @@ PTL.editor = {
 
 
   /* Loads the previous unit */
-  gotoPrev: function () {
+  gotoPrev() {
     if (!this.canNavigate()) {
       return false;
     }
@@ -1476,7 +1474,7 @@ PTL.editor = {
   },
 
   /* Loads the next unit */
-  gotoNext: function (opts = {isSubmission: true}) {
+  gotoNext(opts = {isSubmission: true}) {
     if (!this.canNavigate()) {
       return false;
     }
@@ -1493,7 +1491,7 @@ PTL.editor = {
 
 
   /* Loads the editor with a specific unit */
-  gotoUnit: function (e) {
+  gotoUnit(e) {
     e.preventDefault();
 
     if (!PTL.editor.canNavigate()) {
@@ -1531,7 +1529,7 @@ PTL.editor = {
   },
 
   /* Selects the element's contents and sets the focus */
-  unitIndex: function (e) {
+  unitIndex(e) {
     e.preventDefault();
 
     const selection = window.getSelection();
@@ -1544,7 +1542,7 @@ PTL.editor = {
   },
 
   /* Loads the editor on a index */
-  gotoIndex: function (e) {
+  gotoIndex(e) {
     if (e.which === 13) { // Enter key
       e.preventDefault();
       const index = parseInt(this.unitIndexEl.textContent, 10);
@@ -1563,7 +1561,7 @@ PTL.editor = {
    */
 
   /* Gets the failing check options for the current query */
-  getCheckOptions: function () {
+  getCheckOptions() {
     StatsAPI.getChecks(this.settings.pootlePath)
       .then(
         (data) => this.appendChecks(data),
@@ -1572,7 +1570,7 @@ PTL.editor = {
   },
 
   /* Loads units based on checks filtering */
-  filterChecks: function () {
+  filterChecks() {
     if (this.preventNavigation) {
       return;
     }
@@ -1596,16 +1594,16 @@ PTL.editor = {
   },
 
   /* Adds the failing checks to the UI */
-  appendChecks: function (checks) {
+  appendChecks(checks) {
     if (Object.keys(checks).length) {
       const $checks = this.$filterChecks;
       const selectedValue = this.checks[0] || 'none';
 
-      $checks.find('optgroup').each(function () {
+      $checks.find('optgroup').each(function displayGroups() {
         const $gr = $(this);
         let empty = true;
 
-        $gr.find('option').each(function () {
+        $gr.find('option').each(function displayOptions() {
           const $opt = $(this);
           const value = $opt.val();
 
@@ -1630,7 +1628,7 @@ PTL.editor = {
     }
   },
 
-  filterSort: function () {
+  filterSort() {
     const filterBy = this.$filterStatus.val();
     // #104: Since multiple values can't be selected in the select
     // element, we also need to check for `this.checks`.
@@ -1654,7 +1652,7 @@ PTL.editor = {
 
 
   /* Loads units based on filtering */
-  filterStatus: function () {
+  filterStatus() {
     if (!this.canNavigate()) {
       return false;
     }
@@ -1688,7 +1686,7 @@ PTL.editor = {
   },
 
   /* Generates the edit context rows' UI */
-  renderCtxControls: function ({ hasData = false }) {
+  renderCtxControls({ hasData = false }) {
     const ctxRowBefore = this.tmpl.editCtx({
       hasData,
       extraCls: 'before',
@@ -1701,14 +1699,14 @@ PTL.editor = {
     return [ctxRowBefore, ctxRowAfter];
   },
 
-  replaceCtxControls: function (ctx) {
+  replaceCtxControls(ctx) {
     const [ctxRowBefore, ctxRowAfter] = ctx;
 
     $('tr.edit-ctx.before').replaceWith(ctxRowBefore);
     $('tr.edit-ctx.after').replaceWith(ctxRowAfter);
   },
 
-  handleContextSuccess: function (data) {
+  handleContextSuccess(data) {
     if (!data.ctx.before.length && !data.ctx.after.length) {
       return undefined;
     }
@@ -1729,7 +1727,7 @@ PTL.editor = {
   },
 
   /* Gets more context units */
-  moreContext: function (amount = CTX_STEP) {
+  moreContext(amount = CTX_STEP) {
     return (
       UnitAPI.getContext(this.units.getCurrent().id,
                          { gap: this.ctxGap, qty: amount })
@@ -1741,7 +1739,7 @@ PTL.editor = {
   },
 
   /* Shrinks context lines */
-  lessContext: function () {
+  lessContext() {
     const $before = $('.ctx-row.before');
     const $after = $('.ctx-row.after');
 
@@ -1769,7 +1767,7 @@ PTL.editor = {
   },
 
   /* Shows context rows */
-  showContext: function () {
+  showContext() {
     const $before = $('.ctx-row.before');
     const $after = $('.ctx-row.after');
 
@@ -1788,7 +1786,7 @@ PTL.editor = {
   },
 
   /* Hides context rows */
-  hideContext: function () {
+  hideContext() {
     const $before = $('.ctx-row.before');
     const $after = $('.ctx-row.after');
 
@@ -1800,7 +1798,7 @@ PTL.editor = {
 
 
   /* Loads the search view */
-  onSearch: function (searchText) {
+  onSearch(searchText) {
     if (!PTL.editor.canNavigate()) {
       return false;
     }
@@ -1821,7 +1819,7 @@ PTL.editor = {
    * Comments
    */
 
-  addComment: function (e) {
+  addComment(e) {
     e.preventDefault();
     this.updateCommentDefaultProperties();
 
@@ -1832,7 +1830,7 @@ PTL.editor = {
       );
   },
 
-  processAddComment: function (data) {
+  processAddComment(data) {
     $('.js-editor-comment').removeClass('selected');
     $('#editor-comment').fadeOut(200);
 
@@ -1849,7 +1847,7 @@ PTL.editor = {
   },
 
   /* Removes last comment */
-  removeComment: function (e) {
+  removeComment(e) {
     e.preventDefault();
 
     UnitAPI.removeComment(this.units.getCurrent().id)
@@ -1865,7 +1863,7 @@ PTL.editor = {
    */
 
   /* Get the timeline data */
-  showTimeline: function () {
+  showTimeline() {
     const $results = $('#timeline-results');
     if ($results.length) {
       $results.slideDown(1000, 'easeOutQuad');
@@ -1883,7 +1881,7 @@ PTL.editor = {
       .always(() => $node.spin(false));
   },
 
-  renderTimeline: function (data) {
+  renderTimeline(data) {
     const uid = data.uid;
 
     if (data.timeline && uid === this.units.getCurrent().id) {
@@ -1903,7 +1901,7 @@ PTL.editor = {
   },
 
   /* Hide the timeline panel */
-  toggleTimeline: function (e) {
+  toggleTimeline(e) {
     e.preventDefault();
     const $timelineToggle = $('#js-toggle-timeline');
     $timelineToggle.toggleClass('selected');
@@ -1920,7 +1918,7 @@ PTL.editor = {
    */
 
   /* Filters TM results and does some processing */
-  filterTMResults: function (results, sourceText) {
+  filterTMResults(results, sourceText) {
     // FIXME: this just retrieves the first three results
     // we could limit based on a threshold too.
     const filtered = [];
@@ -1951,7 +1949,7 @@ PTL.editor = {
   },
 
   /* TM suggestions */
-  getTMUnitsContent: function (data) {
+  getTMUnitsContent(data) {
     const unit = this.units.getCurrent();
     const store = unit.get('store');
     const sourceText = unit.get('source')[0];
@@ -1971,7 +1969,7 @@ PTL.editor = {
   },
 
   /* Gets TM suggestions from amaGama */
-  getTMUnits: function () {
+  getTMUnits() {
     const unit = this.units.getCurrent();
     const store = unit.get('store');
     const src = store.get('source_lang');
@@ -2000,7 +1998,7 @@ PTL.editor = {
       callback: '_jsonp' + unit.id,
       dataType: 'jsonp',
       cache: true,
-      success: function (data) {
+      success(data) {
         if (data.length) {
           const sourceText = unit.get('source')[0];
           const filtered = PTL.editor.filterTMResults(data, sourceText);
@@ -2020,7 +2018,7 @@ PTL.editor = {
 
 
   /* Rejects a suggestion */
-  rejectSuggestion: function (suggId) {
+  rejectSuggestion(suggId) {
     UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId)
       .then(
         (data) => this.processRejectSuggestion(data, suggId),
@@ -2028,12 +2026,12 @@ PTL.editor = {
       );
   },
 
-  processRejectSuggestion: function (data, suggId) {
+  processRejectSuggestion(data, suggId) {
     if (data.user_score) {
       score.set(data.user_score);
     }
 
-    $(`#suggestion-${suggId}`).fadeOut(200, function () {
+    $(`#suggestion-${suggId}`).fadeOut(200, function handleRemove() {
       $(this).remove();
 
       // Go to the next unit if there are no more suggestions left
@@ -2045,7 +2043,7 @@ PTL.editor = {
 
 
   /* Accepts a suggestion */
-  acceptSuggestion: function (suggId, { skipToNext = false } = {}) {
+  acceptSuggestion(suggId, { skipToNext = false } = {}) {
     UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId)
       .then(
         (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
@@ -2053,23 +2051,22 @@ PTL.editor = {
       );
   },
 
-  processAcceptSuggestion: function (data, suggId, skipToNext) {
+  processAcceptSuggestion(data, suggId, skipToNext) {
     // Update target textareas
-    $.each(data.newtargets, function (i, target) {
+    $.each(data.newtargets, (i, target) => {
       $(`#id_target_f_${i}`).val(target).focus();
     });
 
     // Update remaining suggestion's diff
-    $.each(data.newdiffs, function (suggestionId, sugg) {
-      $.each(sugg, function (i, target) {
+    $.each(data.newdiffs, (suggestionId, sugg) => {
+      $.each(sugg, (i, target) => {
         $(`#suggdiff-${suggestionId}-${i}`).html(target);
       });
     });
 
     // FIXME: handle this via events
-    const translations = $('.js-translation-area').map(function (i, el) {
-      return $(el).val();
-    }).get();
+    const translations = $('.js-translation-area').map((i, el) => $(el).val())
+                                                  .get();
     const unit = this.units.getCurrent();
     unit.setTranslation(translations);
     unit.set('isfuzzy', false);
@@ -2084,7 +2081,7 @@ PTL.editor = {
       _refreshChecksSnippet(data.checks);
     }
 
-    $(`#suggestion-${suggId}`).fadeOut(200, function () {
+    $(`#suggestion-${suggId}`).fadeOut(200, function handleRemove() {
       $(this).remove();
 
       // Go to the next unit if there are no more suggestions left,
@@ -2096,7 +2093,7 @@ PTL.editor = {
   },
 
   /* Mutes or unmutes a quality check marking it as false positive or not */
-  toggleCheck: function (checkId) {
+  toggleCheck(checkId) {
     const $check = $(`.js-check-${checkId}`);
     const isFalsePositive = !$check.hasClass('false-positive');
 
@@ -2108,7 +2105,7 @@ PTL.editor = {
       );
   },
 
-  processToggleCheck: function (checkId, isFalsePositive) {
+  processToggleCheck(checkId, isFalsePositive) {
     $(`.js-check-${checkId}`).toggleClass('false-positive', isFalsePositive);
 
     const hasError = $('#translate-checks-block .check')
@@ -2121,14 +2118,14 @@ PTL.editor = {
    * Machine Translation
    */
 
-  runHooks: function () {
+  runHooks() {
     mtProviders.forEach((provider) => provider.init({
       unit: this.units.getCurrent().toJSON(),
     }));
   },
 
   /* FIXME: provide an alternative to such an ad-hoc entry point */
-  setTranslation: function (opts) {
+  setTranslation(opts) {
     const { translation } = opts;
     if (translation === undefined && opts.msg) {
       this.displayError(opts.msg);

@@ -44,7 +44,7 @@ function makeNavDropdown(selector, opts) {
   const options = $.extend({}, defaults, opts);
 
   return utils.makeSelectableInput(selector, options,
-    function () {
+    function navigateTo() {
       const $select = $(this);
       const $opt = $select.find('option:selected');
       const href = $opt.data('href');
@@ -139,7 +139,7 @@ function formatProject(path) {
 
 function removeCtxEntries(results, container, query) {
   if (query.term) {
-    return _.filter(results, function (result) {
+    return _.filter(results, (result) => {
       return result.id.slice(0, 4) !== 'ctx-';
     });
   }
@@ -149,7 +149,7 @@ function removeCtxEntries(results, container, query) {
 
 const browser = {
 
-  init: function () {
+  init() {
     $(window).on('pageshow', fixDropdowns);
 
     makeNavDropdown(sel.navigation, {
@@ -169,14 +169,14 @@ const browser = {
     });
 
     /* Adjust breadcrumb layout on window resize */
-    $(window).on('resize', function () {
+    $(window).on('resize', () => {
       fixResourcePathBreadcrumbGeometry();
     });
   },
 
   /* Navigates to `languageCode`, `projectCode`, `resource` while
    * retaining the current context when applicable */
-  navigateTo: function (languageCode, projectCode, resource) {
+  navigateTo(languageCode, projectCode, resource) {
     const curProject = $(sel.project).data('initial-code');
     const curLanguage = $(sel.language).data('initial-code');
     const $resource = $(sel.resource);
@@ -205,7 +205,7 @@ const browser = {
     }
 
     const parts = ['', languageCode, projectCode, action, resource];
-    const urlParts = parts.filter(function (p, i) {
+    const urlParts = parts.filter((p, i) => {
       return i === 0 || p !== '';
     });
 

@@ -128,7 +128,7 @@ const SearchBox = React.createClass({
   },
 
   componentWillMount() {
-    this.handleSearchDebounced = _.debounce(function () {
+    this.handleSearchDebounced = _.debounce(() => {
       this.props.onSearch.apply(this, [this.state.searchQuery]);
     }, 300);
   },

@@ -33,7 +33,7 @@ window.PTL = window.PTL || {};
 
 PTL.reports = {
 
-  init: function (opts) {
+  init(opts) {
     _.defaults(this, opts);
 
     /* Compile templates */
@@ -44,7 +44,7 @@ PTL.reports = {
       paid_tasks: showSummary ? _.template($('#paid-tasks').html()) : '',
     };
 
-    $(window).resize(function () {
+    $(window).resize(() => {
       if (PTL.reports.data !== undefined &&
           PTL.reports.data.daily !== undefined &&
           PTL.reports.data.daily.nonempty) {
@@ -53,7 +53,7 @@ PTL.reports = {
     });
 
     if (PTL.reports.adminReport) {
-      $(document).on('change', '#reports-user', function () {
+      $(document).on('change', '#reports-user', () => {
         PTL.reports.userName = $('#reports-user').val();
         PTL.reports.update();
       });
@@ -72,7 +72,7 @@ PTL.reports = {
     const taskType = parseInt($('#id_task_type').val(), 10);
     this.refreshAmountMeasureUnits(taskType);
 
-    $.history.init(function (hash) {
+    $.history.init((hash) => {
       const params = PTL.reports.params = utils.getParsedHash(hash);
 
       // Walk through known report criterias and apply them to the
@@ -98,7 +98,7 @@ PTL.reports = {
 
   },
 
-  updateRates: function () {
+  updateRates() {
     const reqData = $('#user-rates-form').serializeObject();
     $('body').spin();
     $.ajax({
@@ -106,14 +106,14 @@ PTL.reports = {
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      success: function (data) {
+      success(data) {
         if (data.scorelog_count + data.paid_task_count > 0) {
           PTL.reports.buildResults();
         }
         $('#id_effective_from').val('');
         $('body').spin(false);
       },
-      error: function (xhr) {
+      error(xhr) {
         $('body').spin(false);
         msg.show({ text: `Error: ${xhr.status}`, level: 'error' });
       },
@@ -121,7 +121,7 @@ PTL.reports = {
     return false;
   },
 
-  addPaidTask: function () {
+  addPaidTask() {
     const reqData = $('#paid-task-form').serializeObject();
     $('#paid-task-form .submit').prop('disabled', true);
 
@@ -130,42 +130,42 @@ PTL.reports = {
       type: 'POST',
       data: reqData,
       dataType: 'json',
-      success: function (data) {
+      success(data) {
         if (data.result > 0) {
           $('#id_amount').val(0);
           $('#id_description').val('');
           PTL.reports.buildResults();
         }
       },
-      error: function (xhr) {
+      error(xhr) {
         msg.show({ text: `Error: ${xhr.status}`, level: 'error' });
       },
     });
     return false;
   },
 
-  removePaidTask: function () {
+  removePaidTask() {
     $.ajax({
       url: PTL.reports.removePaidTaskUrl + $(this).data('id'),
       type: 'DELETE',
       dataType: 'json',
-      success: function () {
+      success() {
         PTL.reports.buildResults();
       },
-      error: function (xhr) {
+      error(xhr) {
         msg.show({ text: `Error: ${xhr.status}`, level: 'error' });
       },
     });
     return false;
   },
 
-  refreshCurrency: function () {
+  refreshCurrency() {
     const currency = $(this).val();
     $('#user-rates-form .currency').text(currency);
     $('#paid-task-form .currency').text(currency);
   },
 
-  onPaidTaskTypeChange: function () {
+  onPaidTaskTypeChange() {
     const taskType = parseInt($(this).val(), 10);
 
     PTL.reports.refreshAmountMeasureUnits(taskType);
@@ -173,7 +173,7 @@ PTL.reports = {
     $('#paid-task-form .currency').text(PTL.reports.user.currency);
   },
 
-  roundAmount: function () {
+  roundAmount() {
     const $this = $(this);
     const amount = $this.val();
     const taskType = parseInt($('#id_task_type').val(), 10);
@@ -190,8 +190,8 @@ PTL.reports = {
     }
   },
 
-  addPaidTaskValidate: function () {
-    setTimeout(function () {
+  addPaidTaskValidate() {
+    setTimeout(() => {
       const amount = $('#id_amount').val();
       const description = $('#id_description').val();
       const taskType = parseInt($('#id_task_type').val(), 10);
@@ -205,12 +205,12 @@ PTL.reports = {
     }, 100);
   },
 
-  refreshAmountMeasureUnits: function (taskType) {
+  refreshAmountMeasureUnits(taskType) {
     $('#paid-task-form .units').hide();
     $('#paid-task-form .units.task-' + taskType).show();
   },
 
-  getRateByTaskType: function (taskType) {
+  getRateByTaskType(taskType) {
     if (taskType === paidTaskTypes.translation) {
       return PTL.reports.user.rate;
     }
@@ -224,7 +224,7 @@ PTL.reports = {
     return 1;
   },
 
-  validate: function () {
+  validate() {
     if (!!PTL.reports.userName) {
       // month should be defined correctly
       return moment(PTL.reports.month).date() === 1;
@@ -232,7 +232,7 @@ PTL.reports = {
     return false;
   },
 
-  update: function () {
+  update() {
     if (PTL.reports.validate()) {
       const newHash = $.param({
         'username': PTL.reports.userName,
@@ -244,7 +244,7 @@ PTL.reports = {
     }
   },
 
-  compareParams: function (params) {
+  compareParams(params) {
     let result = true;
 
     if (PTL.reports.loadedHashParams) {
@@ -258,7 +258,7 @@ PTL.reports = {
     return result;
   },
 
-  drawChart: function () {
+  drawChart() {
     $.plot($('#daily-chart'),
       PTL.reports.dailyData.data,
       {
@@ -286,7 +286,7 @@ PTL.reports = {
     );
   },
 
-  getPaidTaskSummaryItem: function (type, rate) {
+  getPaidTaskSummaryItem(type, rate) {
     if (PTL.reports.data.paid_task_summary) {
       const summary = PTL.reports.data.paid_task_summary;
       for (const index in summary) {
@@ -299,7 +299,7 @@ PTL.reports = {
     return null;
   },
 
-  setData: function (data) {
+  setData(data) {
     let translatedTotal = 0;
     let reviewedTotal = 0;
     let suggestedTotal = 0;
@@ -350,7 +350,7 @@ PTL.reports = {
 
     if (delta > 0) {
       const remainders = data.grouped.slice(0);
-      remainders.sort(function (a, b) {
+      remainders.sort((a, b) => {
         return (b.remainder > a.remainder) ?
           1 : (b.remainder < a.remainder) ? -1 : 0;
       });
@@ -364,7 +364,7 @@ PTL.reports = {
     }
   },
 
-  buildResults: function () {
+  buildResults() {
     const reqData = {
       month: PTL.reports.month.format('YYYY-MM'),
       username: PTL.reports.userName,
@@ -375,7 +375,7 @@ PTL.reports = {
       url: 'activity',
       data: reqData,
       dataType: 'json',
-      success: function (data) {
+      success(data) {
         PTL.reports.serverTime = data.meta.now;
         PTL.reports.now = moment(data.meta.now, 'YYYY-MM-DD HH:mm:ss');
         PTL.reports.month = moment(data.meta.month, 'YYYY-MM');
@@ -448,7 +448,7 @@ PTL.reports = {
             const task = document.querySelector('.task' + PTL.reports.params.task);
             if (!!task) {
               task.classList.add('highlight');
-              setTimeout(function () {
+              setTimeout(() => {
                 task.scrollIntoView();
               }, 0);
             } else {
@@ -462,7 +462,7 @@ PTL.reports = {
         }
         $('body').spin(false);
       },
-      error: function (xhr) {
+      error(xhr) {
         $('body').spin(false);
         msg.show({
           text: `Error: ${$.parseJSON(xhr.responseText)}`,
@@ -472,7 +472,7 @@ PTL.reports = {
     });
   },
 
-  dateRangeString: function (d1, d2, showYear) {
+  dateRangeString(d1, d2, showYear) {
     const m1 = moment(d1, 'YYYY-MM-DD HH:mm:ss');
     const m2 = moment(d2, 'YYYY-MM-DD HH:mm:ss');
 
@@ -507,13 +507,13 @@ PTL.reports = {
 
   },
 
-  formatDate: function (d) {
+  formatDate(d) {
     const m = moment(d, 'YYYY-MM-DD HH:mm:ss');
     return m.format('MMM, D');
   },
 
-  updateMonthSelector: function () {
-    $('.js-month').each(function () {
+  updateMonthSelector() {
+    $('.js-month').each(function setLink() {
       const $el = $(this);
       let link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
 
@@ -528,7 +528,7 @@ PTL.reports = {
     $('.dates .selected').html(PTL.reports.month.format('MMMM, YYYY'));
   },
 
-  setPaidTaskDate: function () {
+  setPaidTaskDate() {
     let datetime;
     // set paid task datetime
     if (PTL.reports.now >= PTL.reports.month.clone().add({M: 1})) {

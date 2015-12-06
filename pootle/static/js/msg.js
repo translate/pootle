@@ -27,7 +27,7 @@ const MessageList = Backbone.Collection.extend({
 const MessageView = Backbone.View.extend({
   className: 'alert alert-block',
 
-  render: function () {
+  render() {
     this.$el.addClass(['alert', this.model.get('level')].join('-'));
     this.$el.attr('lang', this.model.get('language'));
 
@@ -42,27 +42,25 @@ const MessageView = Backbone.View.extend({
 const MessageListView = Backbone.View.extend({
   el: '.js-alerts',
 
-  initialize: function () {
+  initialize() {
     this.subViews = [];
 
     this.listenTo(this.collection, 'add', this.add);
     this.listenTo(this.collection, 'remove', this.remove);
   },
 
-  add: function (msg) {
+  add(msg) {
     const msgView = new MessageView({model: msg});
     this.subViews.push(msgView);
 
     this.$el.prepend(msgView.render().el);
   },
 
-  remove: function (msg) {
-    const currentView = _.find(this.subViews, function (view) {
-      return view.model === msg;
-    });
+  remove(msg) {
+    const currentView = _.find(this.subViews, (view) => view.model === msg);
     this.subViews = _(this.subViews).without(currentView);
 
-    currentView.$el.fadeOut(3500, function () {
+    currentView.$el.fadeOut(3500, () => {
       currentView.remove();
     });
   },
@@ -76,7 +74,7 @@ let messagesView;
 
 const msg = {
 
-  show: function (opts) {
+  show(opts) {
     if (!messagesView) {
       messagesView = new MessageListView({collection: messages});
     }
@@ -84,7 +82,7 @@ const msg = {
 
     messages.add(message);
 
-    window.setTimeout(function () {
+    window.setTimeout(() => {
       messages.remove(message);
     }, 2000);
   },

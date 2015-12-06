@@ -30,7 +30,7 @@ export const User = Backbone.Model.extend({
     'bio': '',
   },
 
-  initialize: function (args, opts) {
+  initialize(args, opts) {
     if (opts && opts.urlRoot) {
       this.urlRoot = opts.urlRoot;
     }
@@ -42,23 +42,23 @@ export const User = Backbone.Model.extend({
    */
   urlRoot: l('/xhr/admin/users/'),
 
-  getProfileUrl: function () {
+  getProfileUrl() {
     return l(`/user/${this.get('username')}/`);
   },
 
-  getSettingsUrl: function () {
+  getSettingsUrl() {
     return l(`/user/${this.get('username')}/settings/`);
   },
 
-  getStatsUrl: function () {
+  getStatsUrl() {
     return l(`/user/${this.get('username')}/stats/`);
   },
 
-  getReportsUrl: function () {
+  getReportsUrl() {
     return l(`/admin/reports/#username=${this.get('username')}`);
   },
 
-  isMeta: function () {
+  isMeta() {
     return metaUsers.indexOf(this.get('username')) !== -1;
   },
 

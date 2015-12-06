@@ -336,7 +336,7 @@ const stats = {
       if (columnSort !== null) {
         const $th = $('#' + columnSort.columnId);
         $th.removeClass('sorttable_sorted sorttable_sorted_reverse');
-        setTimeout(function () {
+        setTimeout(() => {
           $th.click();
           if (columnSort.order === 'desc') {
             $th.click();
@@ -412,11 +412,11 @@ const stats = {
     const data = this.state.checksData;
 
     if (data !== null && Object.keys(data).length) {
-      this.$extraDetails.find('.js-checks').each(function () {
+      this.$extraDetails.find('.js-checks').each(function updateChecksCategory() {
         const $cat = $(this);
         let empty = true;
 
-        $cat.find('.js-check').each(function () {
+        $cat.find('.js-check').each(function updateCheck() {
           const $check = $(this);
           const code = $(this).data('code');
           if (code in data) {

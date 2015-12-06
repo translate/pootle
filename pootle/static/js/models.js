@@ -38,13 +38,11 @@ export const Unit = Backbone.RelationalModel.extend({
   /*
    * Sets the current unit's translation.
    */
-  setTranslation: function (value) {
+  setTranslation(value) {
     if (!_.isArray(value)) {
       value = [value];
     }
-    this.set('target', _.map(value, function (item) {
-      return utils.cleanEscape(item);
-    }));
+    this.set('target', _.map(value, (item) => utils.cleanEscape(item)));
   },
 
 });

@@ -14,17 +14,17 @@ import BackboneMixin from './backbone';
 
 export const FormValidationMixin = {
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       errors: {},
     };
   },
 
-  clearValidation: function () {
+  clearValidation() {
     this.setState({errors: {}});
   },
 
-  validateResponse: function (xhr) {
+  validateResponse(xhr) {
     // XXX: should this also check for HTTP 500, 404 etc.?
     const response = JSON.parse(xhr.responseText);
     this.setState({errors: response.errors});
@@ -33,14 +33,14 @@ export const FormValidationMixin = {
 
   /* Layout */
 
-  renderSingleError: function (errorMsg, i) {
+  renderSingleError(errorMsg, i) {
     return <li key={i}>{errorMsg}</li>;
   },
 
 
   /* Renders form's global errors. These errors come in a special
    * `__all__` field */
-  renderAllFormErrors: function () {
+  renderAllFormErrors() {
     const { errors } = this.state;
 
     if (errors.hasOwnProperty('__all__')) {
@@ -77,7 +77,7 @@ export const FormMixin = {
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       isDirty: false,
     };
@@ -86,14 +86,14 @@ export const FormMixin = {
 
   /* Handlers */
 
-  handleChange: function (name, value) {
+  handleChange(name, value) {
     const newData = _.extend({}, this.state.formData);
     newData[name] = value;
     const isDirty = !_.isEqual(newData, this.initialData);
     this.setState({formData: newData, isDirty: isDirty});
   },
 
-  handleFormSuccess: function () {
+  handleFormSuccess() {
     // Cleanup state
     this.clearValidation();
     this.initialData = _.extend({}, this.state.formData);
@@ -104,7 +104,7 @@ export const FormMixin = {
     this.handleSuccess && this.handleSuccess(this.getResource());
   },
 
-  handleFormError: function (xhr) {
+  handleFormError(xhr) {
     this.validateResponse(xhr);
 
     this.handleError && this.handleError(xhr);
@@ -127,14 +127,14 @@ export const ModelFormMixin = {
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     this.initialData = _.pick(this.getResource().toJSON(), this.fields);
     return {
       formData: _.extend({}, this.initialData),
     };
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     if (_.isUndefined(this.fields)) {
       throw new Error(
         'To use ModelFormMixin, you must define a `fields` property.'
@@ -146,14 +146,14 @@ export const ModelFormMixin = {
   },
 
   /* BackboneMixin */
-  getResource: function () {
+  getResource() {
     return this.props.model;
   },
 
 
   /* Handlers */
 
-  handleFormSubmit: function (e) {
+  handleFormSubmit(e) {
     e.preventDefault();
 
     this.getResource().save(this.state.formData, {wait: true})

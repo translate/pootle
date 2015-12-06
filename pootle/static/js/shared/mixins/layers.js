@@ -8,10 +8,10 @@
  *
  * const LayeredComponent = React.createClass({
  *     mixins: [LayeredComponentMixin],
- *     render: function() {
+ *     render() {
  *         // render like usual
  *     },
- *     renderLayer: function() {
+ *     renderLayer() {
  *         // render a separate layer (the modal or overlay)
  *     }
  * });
@@ -22,7 +22,7 @@ import React from 'react';
 
 const LayeredComponentMixin = {
 
-  componentDidMount: function () {
+  componentDidMount() {
         // Appending to the body is easier than managing the z-index of
         // everything on the page.  It's also better for accessibility and
         // makes stacking a snap (since components will stack in mount order).
@@ -31,16 +31,16 @@ const LayeredComponentMixin = {
     this._renderLayer();
   },
 
-  componentDidUpdate: function () {
+  componentDidUpdate() {
     this._renderLayer();
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     this._unrenderLayer();
     document.body.removeChild(this._layer);
   },
 
-  _renderLayer: function () {
+  _renderLayer() {
         // By calling this method in componentDidMount() and
         // componentDidUpdate(), you're effectively creating a "wormhole" that
         // funnels React's hierarchical updates through to a DOM node on an
@@ -62,7 +62,7 @@ const LayeredComponentMixin = {
     }
   },
 
-  _unrenderLayer: function () {
+  _unrenderLayer() {
     if (this.layerWillUnmount) {
       this.layerWillUnmount(this._layer);
     }

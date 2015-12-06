@@ -21,49 +21,47 @@ const collections = {};
 collections.UnitSet = Backbone.Collection.extend({
   model: Unit,
 
-  initialize: function (model, opts) {
+  initialize(model, opts) {
     this.chunkSize = opts.chunkSize;
     this.uIds = [];
     this.total = 0;
   },
 
-  comparator: function (unit) {
+  comparator(unit) {
     return this.uIds.indexOf(unit.id);
   },
 
-  getByUnitId: function (uId) {
+  getByUnitId(uId) {
     return uId > 0 ? this.get(uId) : this.at(0);
   },
 
-  getCurrent: function () {
+  getCurrent() {
     return this.activeUnit;
   },
-  setCurrent: function (unit) {
+  setCurrent(unit) {
     this.activeUnit = unit instanceof this.model ? unit : this.getByUnitId(unit);
     return this.activeUnit;
   },
 
-  fetchedIds: function () {
-    return this.map(function (unit) {
-      return unit.id;
-    });
+  fetchedIds() {
+    return this.map((unit) => unit.id);
   },
 
-  next: function () {
+  next() {
     const index = this.indexOf(this.getCurrent());
     return (index + 1 === this.length) ? null : this.at(index + 1);
   },
 
-  hasNext: function () {
+  hasNext() {
     return this.next() !== null;
   },
 
-  prev: function () {
+  prev() {
     const index = this.indexOf(this.getCurrent());
     return (index === 0) ? null : this.at(index - 1);
   },
 
-  hasPrev: function () {
+  hasPrev() {
     return this.prev() !== null;
   },
 

@@ -3,12 +3,12 @@
 // See http://khan.github.io/react-components/#backbone-mixin
 const BackboneMixin = {
 
-  componentDidMount: function () {
+  componentDidMount() {
     this._boundForceUpdate = this.forceUpdate.bind(this, null);
     this.getResource().on('all', this._boundForceUpdate, this);
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     this.getResource().off('all', this._boundForceUpdate);
   },
 

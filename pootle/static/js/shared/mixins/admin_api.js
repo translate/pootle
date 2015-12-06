@@ -11,7 +11,7 @@ import _ from 'underscore';
 
 const AdminAPIMixin = {
 
-  initialize: function () {
+  initialize() {
     this.count = 0;
     this.page = 0;
     this.keywords = '';
@@ -20,7 +20,7 @@ const AdminAPIMixin = {
     this.on('remove', this.decrCount);
   },
 
-  parse: function (response) {
+  parse(response) {
     this.count = response.count;
 
     return response.models;
@@ -31,15 +31,15 @@ const AdminAPIMixin = {
 
   /* Methods */
 
-  incrCount: function () {
+  incrCount() {
     this.count++;
   },
 
-  decrCount: function () {
+  decrCount() {
     this.count--;
   },
 
-  fetchNextPage: function (opts) {
+  fetchNextPage(opts) {
     const newPage = this.page + 1;
     const pageData = newPage === 1 ? {} : { p: newPage };
     const keywordsData = this.keywords === '' ? {} : { q: this.keywords };
@@ -48,12 +48,12 @@ const AdminAPIMixin = {
     const fetchOpts = { remove: false, silent: true, data: reqData };
     _.defaults(fetchOpts, opts);
 
-    return this.fetch(fetchOpts).done(function () {
+    return this.fetch(fetchOpts).done(() => {
       this.page = newPage;
-    }.bind(this));
+    });
   },
 
-  search: function (keywords) {
+  search(keywords) {
     const opts = {};
     if (keywords !== this.keywords) {
       this.setSearch(keywords);
@@ -62,7 +62,7 @@ const AdminAPIMixin = {
     return this.fetchNextPage(opts);
   },
 
-  setSearch: function (keywords) {
+  setSearch(keywords) {
     this.keywords = keywords;
     this.page = 0;
   },

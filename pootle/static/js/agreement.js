@@ -16,7 +16,7 @@ import { updateInputState } from './helpers';
 
 const agreement = {
 
-  init: function (url) {
+  init(url) {
     this.url = url;
 
     $(document).on('click', '.js-agreement-popup', this.displayContent.bind(this));
@@ -25,17 +25,17 @@ const agreement = {
     this.display();
   },
 
-  display: function () {
+  display() {
     $.magnificPopup.open({
       items: {
         src: this.url,
         type: 'ajax',
       },
       callbacks: {
-        parseAjax: function (mfpResponse) {
+        parseAjax(mfpResponse) {
           mfpResponse.data = mfpResponse.data.form;
         },
-        ajaxContentAdded: function () {
+        ajaxContentAdded() {
           updateInputState('.js-legalfield', '.js-agreement-continue');
         },
       },
@@ -43,7 +43,7 @@ const agreement = {
     });
   },
 
-  displayContent: function (e) {
+  displayContent(e) {
     e.preventDefault();
 
     const that = this;
@@ -62,7 +62,7 @@ const agreement = {
     });
   },
 
-  onSubmit: function (e) {
+  onSubmit(e) {
     e.preventDefault();
 
     const $agreementBox = $('.js-agreement-box');
@@ -74,10 +74,10 @@ const agreement = {
       url: $agreementForm.attr('action'),
       type: 'POST',
       data: $agreementForm.serializeObject(),
-      success: function () {
+      success() {
         $.magnificPopup.close();
       },
-      complete: function (xhr) {
+      complete(xhr) {
         $agreementBox.spin(false);
         $agreementBox.css({opacity: 1});
 

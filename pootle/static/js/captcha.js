@@ -38,11 +38,11 @@ function onSubmit(e) {
     url: url,
     type: 'POST',
     data: reqData,
-    success: function () {
+    success() {
       utils.executeFunctionByName(successFn, window, e);
       $.magnificPopup.close();
     },
-    error: function (xhr) {
+    error(xhr) {
       onError(xhr, errorFn);
     },
   });

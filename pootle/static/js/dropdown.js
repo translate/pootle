@@ -28,7 +28,7 @@ const keys = {
 
 const DropdownView = Backbone.View.extend({
 
-  events: function () {
+  events() {
     const events = {
       'keydown': 'onKey',
     };
@@ -37,7 +37,7 @@ const DropdownView = Backbone.View.extend({
     return events;
   },
 
-  initialize: function () {
+  initialize() {
     this.$toggle = this.$(sel.data.toggle);
     this.$target = this.$(sel.target);
 
@@ -46,7 +46,7 @@ const DropdownView = Backbone.View.extend({
     $(document).on('click.PTL.dropdown', this.hide.bind(this));
   },
 
-  onKey: function (e) {
+  onKey(e) {
     // Avoid hijacking browser keyboard shortcuts when not shown
     if (!this.isVisible()) {
       return true;
@@ -83,19 +83,19 @@ const DropdownView = Backbone.View.extend({
     }
   },
 
-  isVisible: function () {
+  isVisible() {
     return this.$el.hasClass(sel.open);
   },
 
-  show: function () {
+  show() {
     !this.isVisible() && this.$el.addClass(sel.open);
   },
 
-  hide: function () {
+  hide() {
     this.isVisible() && this.$el.removeClass(sel.open);
   },
 
-  toggle: function (e) {
+  toggle(e) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -113,7 +113,7 @@ const DropdownView = Backbone.View.extend({
 
 const dropdown = {
 
-  init: function (el) {
+  init(el) {
     el = el instanceof $ ? el : $(el);
     return new DropdownView({el: el});
   },

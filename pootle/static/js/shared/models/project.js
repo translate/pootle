@@ -26,25 +26,25 @@ export const Project = Backbone.Model.extend({
     'disabled': false,
   },
 
-  urlRoot: function () {
+  urlRoot() {
     return l('/xhr/admin/projects/');
   },
 
-  getAbsoluteUrl: function () {
+  getAbsoluteUrl() {
     return l(['', 'projects', this.get('code'), ''].join('/'));
   },
 
-  getLanguagesUrl: function () {
+  getLanguagesUrl() {
     return l(['', 'projects', this.get('code'), 'admin', 'languages', ''].join('/'));
   },
 
-  getPermissionsUrl: function () {
+  getPermissionsUrl() {
     return l(['', 'projects', this.get('code'), 'admin', 'permissions', ''].join('/'));
   },
 
-  getFieldChoices: function (fieldName) {
+  getFieldChoices(fieldName) {
     if (this.fieldChoices && this.fieldChoices.hasOwnProperty(fieldName)) {
-      return this.fieldChoices[fieldName].map(function (field) {
+      return this.fieldChoices[fieldName].map((field) => {
         // FIXME: react-select's issue #25 prevents using non-string values
         return {value: field[0].toString(), label: field[1]};
       });
@@ -52,7 +52,7 @@ export const Project = Backbone.Model.extend({
     return [];
   },
 
-  toJSON: function () {
+  toJSON() {
     const attrs = _.clone(this.attributes);
     attrs.disabled = attrs.disabled ? gettext('disabled') : '';
     return attrs;

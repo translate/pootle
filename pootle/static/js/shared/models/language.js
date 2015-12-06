@@ -29,21 +29,21 @@ export const Language = Backbone.Model.extend({
     ],
   },
 
-  urlRoot: function () {
+  urlRoot() {
     return l('/xhr/admin/languages/');
   },
 
-  getAbsoluteUrl: function () {
+  getAbsoluteUrl() {
     return l(['', this.get('code'), ''].join('/'));
   },
 
-  getPermissionsUrl: function () {
+  getPermissionsUrl() {
     return l(['', this.get('code'), 'admin', 'permissions', ''].join('/'));
   },
 
-  getFieldChoices: function (fieldName) {
+  getFieldChoices(fieldName) {
     if (this.fieldChoices && this.fieldChoices.hasOwnProperty(fieldName)) {
-      return this.fieldChoices[fieldName].map(function (field) {
+      return this.fieldChoices[fieldName].map((field) => {
         // FIXME: react-select's issue #25 prevents using non-string values
         return {value: field[0].toString(), label: field[1]};
       });

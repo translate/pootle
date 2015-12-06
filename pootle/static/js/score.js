@@ -11,7 +11,7 @@ import 'odometer';
 
 
 const Score = Backbone.Model.extend({
-  validate: function (attrs) {
+  validate(attrs) {
     const value = attrs.value;
 
     if (value === undefined || value === null) {
@@ -32,7 +32,7 @@ const ScoreView = Backbone.View.extend({
     'odometer-digit-added': 'updateWidth',
   },
 
-  updateWidth: function () {
+  updateWidth() {
     const elWidth = this.$el.find('.odometer-inside').width();
     const newWidth = elWidth === 0 ? 'auto' : elWidth;
     if (this.oldWidth !== newWidth) {
@@ -41,13 +41,13 @@ const ScoreView = Backbone.View.extend({
     }
   },
 
-  initialize: function () {
+  initialize() {
     this.oldWidth = -1;
     this.updateWidth();
     this.listenTo(this.model, 'change:value', this.render);
   },
 
-  render: function () {
+  render() {
     this.$el.text(this.model.get('value'));
     return this;
   },

@@ -20,7 +20,7 @@ window.PTL = window.PTL || {};
 
 PTL.user = {
 
-  init: function (opts) {
+  init(opts) {
     if (opts.userData !== undefined) {
       const editButton = document.querySelector('.js-user-profile-edit');
 

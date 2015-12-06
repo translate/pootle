@@ -77,11 +77,11 @@ PTL.store = configureStore();
 
 PTL.common = {
 
-  init: function (opts) {
+  init(opts) {
     PTL.auth.init();
     PTL.browser.init();
 
-    $(window).load(function () {
+    $(window).load(() => {
       $('body').removeClass('preload');
     });
 
@@ -112,7 +112,7 @@ PTL.common = {
     $.ajaxSetup({
       traditional: true,
       crossDomain: false,
-      beforeSend: function (xhr, settings) {
+      beforeSend(xhr, settings) {
         if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
           xhr.setRequestHeader('X-CSRFToken', cookie('csrftoken'));
         }
@@ -121,7 +121,7 @@ PTL.common = {
 
     /* Collapsing functionality */
     // XXX: crappy code, only used in `term_edit.html`
-    $(document).on('click', '.collapse', function (e) {
+    $(document).on('click', '.collapse', function collapse(e) {
       e.preventDefault();
       $(this).siblings('.collapsethis').slideToggle('fast');
 
@@ -132,7 +132,7 @@ PTL.common = {
 
     /* Page sidebar */
     // TODO: create a named function
-    $(document).on('click', '.js-sidebar-toggle', function () {
+    $(document).on('click', '.js-sidebar-toggle', () => {
       const $sidebar = $('.js-sidebar');
       const openClass = 'sidebar-open';
       const cookieName = 'pootle-browser-sidebar';
@@ -152,7 +152,7 @@ PTL.common = {
     });
 
     /* Generic toggle */
-    $(document).on('click', '.js-toggle', function (e) {
+    $(document).on('click', '.js-toggle', function toggle(e) {
       e.preventDefault();
       const target = $(this).attr('href') || $(this).data('target');
       $(target).toggle();
@@ -162,10 +162,10 @@ PTL.common = {
     const ids = ['id_languages', 'id_alt_src_langs', '-language',
                  '-source_language'];
 
-    $.each(ids, function (i, id) {
+    $.each(ids, (i, id) => {
       const $selects = $('select[id$="' + id + '"]');
 
-      $.each($selects, function (j, select) {
+      $.each($selects, (j, select) => {
         const $select = $(select);
         const options = $('option', $select);
         let selected;
@@ -176,7 +176,7 @@ PTL.common = {
           }
 
           const opsArray = $.makeArray(options);
-          opsArray.sort(function (a, b) {
+          opsArray.sort((a, b) => {
             return utils.strCmp($(a).text(), $(b).text());
           });
 

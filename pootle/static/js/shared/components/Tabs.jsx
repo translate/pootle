@@ -13,13 +13,13 @@ export const Tabs = React.createClass({
 
   /* Lifecycle */
 
-  getInitialState: function () {
+  getInitialState() {
     return {
       selectedTab: this.props.initialTab,
     };
   },
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       initialTab: 0,
     };
@@ -28,7 +28,7 @@ export const Tabs = React.createClass({
 
   /* Handlers */
 
-  handleClick: function (index) {
+  handleClick(index) {
     this.setState({selectedTab: index});
 
     this.props.onChange && this.props.onChange(index);
@@ -37,11 +37,11 @@ export const Tabs = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     let tabContent;
 
     // TODO: move to a function, retrieve values via destructuring assig.
-    const tabList = React.Children.map(this.props.children, function (child, index) {
+    const tabList = React.Children.map(this.props.children, (child, index) => {
       const elementType = child.type.displayName || child.type;
       // FIXME: validate via custom propTypes
       if (elementType !== 'Tab') {
@@ -92,7 +92,7 @@ export const Tab = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     const classes = cx({
       'TabList__Tab': true,
       'TabList__Tab--is-active': this.props.selected,

@@ -23,13 +23,13 @@ function updateInputState($checkboxes, $input) {
 const helpers = {
 
   /* Updates relative dates */
-  updateRelativeDates: function () {
-    $('.js-relative-date').each(function (i, e) {
+  updateRelativeDates() {
+    $('.js-relative-date').each((i, e) => {
       $(e).text(utils.relativeDate(Date.parse($(e).attr('datetime'))));
     });
   },
 
-  fixSidebarHeight: function () {
+  fixSidebarHeight() {
     const $body = $('#body');
     const bodyHeight = $body.height();
     const bodyPadding = parseInt($body.css('padding-bottom'), 10);
@@ -52,12 +52,12 @@ const helpers = {
   /* Updates the disabled state of an input button according to the
    * checked status of input checkboxes.
    */
-  updateInputState: function (checkboxSelector, inputSelector) {
+  updateInputState(checkboxSelector, inputSelector) {
     const $checkbox = $(checkboxSelector);
     if ($checkbox.length) {
       const $input = $(inputSelector);
       updateInputState($checkbox, $input);
-      $checkbox.change(function () {
+      $checkbox.change(() => {
         updateInputState($checkbox, $input);
       });
     }

@@ -16,11 +16,11 @@ import Avatar from 'components/Avatar';
 
 
 // XXX: should probably live somewhere else
-const linkify = function (input) {
+function linkify(input) {
   return {
     __html: link(input),
   };
-};
+}
 
 
 export const UserProfileForm = React.createClass({
@@ -36,7 +36,7 @@ export const UserProfileForm = React.createClass({
 
   /* Lifecycle */
 
-  componentWillUpdate: function (nextProps, nextState) {
+  componentWillUpdate(nextProps, nextState) {
     if (nextState.isDirty !== this.state.isDirty) {
       this.props.onDirty(nextState.isDirty);
     }
@@ -45,14 +45,14 @@ export const UserProfileForm = React.createClass({
 
   /* Handlers */
 
-  handleSuccess: function (user) {
+  handleSuccess(user) {
     this.props.onSuccess(user);
   },
 
 
   /* Layout */
 
-  render: function () {
+  render() {
     const model = this.getResource();
     const { errors } = this.state;
     const { formData } = this.state;

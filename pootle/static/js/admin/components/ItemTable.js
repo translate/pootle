@@ -21,7 +21,7 @@ const ItemTable = React.createClass({
   },
 
   render() {
-    const createRow = function (item, index) {
+    function createRow(item, index) {
       return (
         <ItemTableRow
           fields={this.props.fields}
@@ -31,7 +31,7 @@ const ItemTable = React.createClass({
           selectedItem={this.props.selectedItem}
           onSelectItem={this.props.onSelectItem} />
         );
-    };
+    }
 
     return (
       <table>
@@ -63,9 +63,9 @@ const ItemTableRow = React.createClass({
     const values = item.toJSON();
 
     values.index = index + 1;
-    const createColumn = function (field, i) {
+    function createColumn(field, i) {
       return <td key={i}>{values[field]}</td>;
-    };
+    }
 
     const classNames = cx({
       'is-selected': selectedItem && item.id === selectedItem.id,

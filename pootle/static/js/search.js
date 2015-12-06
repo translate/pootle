@@ -68,7 +68,7 @@ const search = {
     }
 
     /* Event handlers */
-    this.$input.click(function (e) {
+    this.$input.click((e) => {
       if (search.isOpen()) {
         return;
       }
@@ -138,10 +138,10 @@ const search = {
     const searchOptions = [];
     let searchFields = [];
 
-    this.$fields.find('input:checked').each(function () {
+    this.$fields.find('input:checked').each(function populateFields() {
       searchFields.push($(this).val());
     });
-    this.$options.find('input:checked').each(function () {
+    this.$options.find('input:checked').each(function populateOptions() {
       searchOptions.push($(this).val());
     });
 
@@ -173,11 +173,11 @@ const search = {
     this.$input.val(this.state.searchText).focus();
     const { searchFields, searchOptions } = this.state;
 
-    this.$fields.find('input').each(function () {
+    this.$fields.find('input').each(function updateFieldsProps() {
       $(this).prop('checked', searchFields.indexOf(this.value) !== -1);
     });
 
-    this.$options.find('input').each(function () {
+    this.$options.find('input').each(function updateOptionsProps() {
       $(this).prop('checked', searchOptions.indexOf(this.value) !== -1);
     });
   },

@@ -26,7 +26,7 @@ const keys = {
 
 const ModalHeader = React.createClass({
 
-  render: function () {
+  render() {
     return (
       <div className="lightbox-header">
         {this.props.children}
@@ -39,7 +39,7 @@ const ModalHeader = React.createClass({
 
 const ModalFooter = React.createClass({
 
-  render: function () {
+  render() {
     return (
       <div className="lightbox-footer">
         {this.props.children}
@@ -60,11 +60,11 @@ const ModalContainer = React.createClass({
 
   /* Lifecycle */
 
-  componentWillMount: function () {
+  componentWillMount() {
     this._previousFocus = document.activeElement;
   },
 
-  componentDidMount: function () {
+  componentDidMount() {
     if (!document.body.classList.contains(classNames.lock)) {
       this._ownsLock = true;
       document.body.classList.add(classNames.lock);
@@ -72,7 +72,7 @@ const ModalContainer = React.createClass({
     }
   },
 
-  componentWillUnmount: function () {
+  componentWillUnmount() {
     if (this._ownsLock) {
       document.body.classList.remove(classNames.lock);
       document.removeEventListener('keydown', this.handleKeyDown);
@@ -83,7 +83,7 @@ const ModalContainer = React.createClass({
 
   /* Handlers */
 
-  handleKeyDown: function (e) {
+  handleKeyDown(e) {
     if (e.keyCode === keys.ESC) {
       this.props.onClose();
     }
@@ -92,7 +92,7 @@ const ModalContainer = React.createClass({
 
   /* Layout */
 
-  render: function () {
+  render() {
     return (
       <div className="lightbox-bg">
         <div className="lightbox-container">
@@ -123,7 +123,7 @@ export const Modal = React.createClass({
 
   /* Lifecycle */
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       title: '',
       showClose: true,
@@ -133,7 +133,7 @@ export const Modal = React.createClass({
 
   /* Handlers */
 
-  handleClose: function () {
+  handleClose() {
     // Parent components need to take care of rendering the component
     // and unmounting it according to their needs
     this.props.onClose();
@@ -142,7 +142,7 @@ export const Modal = React.createClass({
 
   /* Layout */
 
-  renderHeader: function () {
+  renderHeader() {
     if (this.props.header) {
       return (
         <ModalHeader>
@@ -167,7 +167,7 @@ export const Modal = React.createClass({
     );
   },
 
-  renderFooter: function () {
+  renderFooter() {
     if (this.props.footer) {
       return (
         <ModalFooter>
@@ -179,7 +179,7 @@ export const Modal = React.createClass({
     return null;
   },
 
-  renderLayer: function () {
+  renderLayer() {
     return (
       <ModalContainer {...this.props}>
         {this.renderHeader()}
@@ -191,7 +191,7 @@ export const Modal = React.createClass({
     );
   },
 
-  render: function () {
+  render() {
     return null;
   },
 
@@ -212,7 +212,7 @@ export const Dialog = React.createClass({
 
   /* Lifecycle */
 
-  getDefaultProps: function () {
+  getDefaultProps() {
     return {
       okLabel: 'OK',
       cancelLabel: 'Cancel',
@@ -222,7 +222,7 @@ export const Dialog = React.createClass({
 
   /* Layout */
 
-  renderFooter: function () {
+  renderFooter() {
     return (
       <ModalFooter>
         <button className="btn btn-primary"
@@ -238,7 +238,7 @@ export const Dialog = React.createClass({
     );
   },
 
-  render: function () {
+  render() {
     return (
       <Modal {...this.props} footer={this.renderFooter} />
     );

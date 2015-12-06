@@ -31,7 +31,7 @@ const contact = {
 
   url: null,
 
-  init: function (options) {
+  init(options) {
     options && $.extend(this, options);
 
     $(document).on('click', sel.trigger, (e) => {
@@ -42,7 +42,7 @@ const contact = {
     $(document).on('submit', sel.form, this.onSubmit.bind(this));
   },
 
-  onClick: function (e) {
+  onClick(e) {
     e.preventDefault();
 
     const $el = $(e.target);
@@ -58,7 +58,7 @@ const contact = {
     });
   },
 
-  open: function (opts) {
+  open(opts) {
     opts = opts || {};
 
     const contactUrl = opts.url || this.url;
@@ -72,7 +72,7 @@ const contact = {
         type: 'ajax',
       },
       callbacks: {
-        ajaxContentAdded: function () {
+        ajaxContentAdded() {
           const newSubject = [];
           opts.subjectPrefix && newSubject.push(opts.subjectPrefix);
           opts.subject && newSubject.push(opts.subject);
@@ -85,7 +85,7 @@ const contact = {
     });
   },
 
-  onSubmit: function (e) {
+  onSubmit(e) {
     e.preventDefault();
 
     const $form = $(sel.form);
@@ -100,7 +100,7 @@ const contact = {
     this.sendMessage(url, data);
   },
 
-  sendMessage: function (url, data) {
+  sendMessage(url, data) {
     const that = this;
     $.ajax({
       url: url,
@@ -112,18 +112,18 @@ const contact = {
     });
   },
 
-  onSuccess: function () {
+  onSuccess() {
     // Display thank you message
     $(sel.wrapper).hide();
     $(sel.formSent).show();
   },
 
-  onError: function (xhr) {
+  onError(xhr) {
     this.displayErrors(xhr.responseJSON.errors);
   },
 
   /* Displays errors returned by the contact request */
-  displayErrors: function (errors) {
+  displayErrors(errors) {
     $('ul.errorlist').remove();
 
     for (const fieldName in errors) {
@@ -133,7 +133,7 @@ const contact = {
 
   /* Injects a form validation error next to the input it failed to
    * validate */
-  validationError: function (fieldName, msgs) {
+  validationError(fieldName, msgs) {
     const $field = $('#id_' + fieldName);
     const errorList = ['<ul class="errorlist">'];
     for (let i = 0; i < msgs.length; i++) {
