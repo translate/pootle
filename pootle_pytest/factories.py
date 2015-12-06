@@ -178,3 +178,15 @@ class UnitFactory(factory.django.DjangoModelFactory):
                    self.store.pootle_path,
                    self.index))
         return ""
+
+
+class VirtualFolderFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'virtualfolder.VirtualFolder'
+        django_get_or_create = ("location", "filter_rules")
+
+    name = factory.Sequence(lambda n: 'virtualfolder%s' % n)
+    priority = 2
+    is_public = True
+    location = "/{LANG}/{PROJ}/"
