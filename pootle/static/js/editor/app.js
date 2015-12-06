@@ -1277,7 +1277,7 @@ PTL.editor = {
       uIds = _.difference(uIds, fetchedIds);
 
       if (!uIds.length) {
-        return;  // Nothing to be done
+        return $.Deferred((deferred) => deferred.reject(false));
       }
 
       reqData.uids = uIds.join(',');
@@ -1501,12 +1501,12 @@ PTL.editor = {
                   $(e.target).parents('td') :
                   $(e.target);
       window.open($el.data('target'), '_blank');
-      return;
+      return false;
     }
 
     // Don't load anything if we're just selecting text
     if (window.getSelection().toString() !== '') {
-      return;
+      return false;
     }
 
     // Get clicked unit's uid from the row's id information and
@@ -1569,7 +1569,7 @@ PTL.editor = {
   /* Loads units based on checks filtering */
   filterChecks() {
     if (this.preventNavigation) {
-      return;
+      return false;
     }
     if (!this.canNavigate()) {
       return false;
