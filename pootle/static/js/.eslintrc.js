@@ -21,6 +21,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'brace-style': [2, '1tbs', {'allowSingleLine': true }],
     'comma-dangle': [2, 'always-multiline'],
     'comma-spacing': [2, {'before': false, 'after': true}],
     'consistent-return': 2,

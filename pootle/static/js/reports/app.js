@@ -213,10 +213,10 @@ PTL.reports = {
     if (taskType === paidTaskTypes.translation) {
       return PTL.reports.user.rate;
     }
-    else if (taskType === paidTaskTypes.review) {
+    if (taskType === paidTaskTypes.review) {
       return PTL.reports.user.review_rate;
     }
-    else if (taskType === paidTaskTypes.hourlyWork) {
+    if (taskType === paidTaskTypes.hourlyWork) {
       return PTL.reports.user.hourly_rate;
     }
 
