@@ -65,6 +65,13 @@ class DirectoryFactory(factory.django.DjangoModelFactory):
 
 class LanguageFactory(factory.django.DjangoModelFactory):
 
+    @factory.lazy_attribute
+    def directory(self):
+        from pootle_app.models import Directory
+
+        root = Directory.objects.get(parent=None)
+        return DirectoryFactory(name=self.code, parent=root)
+
     class Meta(object):
         model = 'pootle_language.Language'
         django_get_or_create = ("code", )
