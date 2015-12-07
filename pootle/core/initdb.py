@@ -36,7 +36,7 @@ CLDR_FALLBACK_ALIASES = {
 
 class InitDB(object):
 
-    def init_db(self, create_projects=True, cldr=False, aliases=CLDR_FALLBACK_ALIASES):
+    def init_db(self, create_projects=True, cldr=False):
         """Populate the database with default initial data.
 
         This creates the default database to get a working Pootle installation.
@@ -319,25 +319,6 @@ class InitDB(object):
             code = attrs.pop('code')
             self._create_object(Language, code=code, defaults=attrs)
 
-
-    def update_languages_to_cldr(self):
-        """
-        Take all existing languages, and update definitions according to the latest CLDR definition rules database
-
-        It's not used anywhere in the code, but if you need, you can just call it manually.
-        """
-        from pootle_language.models import Language
-        cldr_languages = {l['code']: l for l in self.get_cldr_languages()}
-        for lang_obj in Language.objects.all():
-            try:
-                cldr_lang = cldr_languages[lang_obj.code]
-            except KeyError:
-                continue
-            for k, v in cldr_lang.items():
-                setattr(lang_obj, k, v)
-                lang_obj.save()
-
-
     def get_cldr_languages(self):
         """
         Helper function to extract CLDR information. Heavily relied on babel functionality
@@ -351,7 +332,8 @@ class InitDB(object):
 
             plurals_str = plural.to_gettext(locale.plural_form)
             nplurals, pluralequation = re_plurals.match(plurals_str).groups()
-            lang_aliases = {lang}.union(set(self.aliases.get(lang, [])))
+            lang_aliases = set(CLDR_FALLBACK_ALIASES.get(lang, []))
+            lang_aliases.add(lang)
             for alias in lang_aliases:
                 yield {
                     'code': alias,
