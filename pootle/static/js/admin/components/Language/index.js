@@ -10,8 +10,8 @@ import { Language, LanguageSet } from 'models/language';
 import LanguageController from './LanguageController';
 
 
-export {
-  LanguageController as Controller,
-  Language as model,
-  LanguageSet as collection,
+export default {
+  Controller: LanguageController,
+  model: Language,
+  collection: LanguageSet,
 };

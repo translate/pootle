@@ -10,8 +10,8 @@ import { User, UserSet } from 'models/user';
 import UserController from './UserController';
 
 
-export {
-  UserController as Controller,
-  User as model,
-  UserSet as collection,
+export default {
+  Controller: UserController,
+  model: User,
+  collection: UserSet,
 };

@@ -10,8 +10,8 @@ import { Project, ProjectSet } from 'models/project';
 import ProjectController from './ProjectController';
 
 
-export {
-  ProjectController as Controller,
-  Project as model,
-  ProjectSet as collection,
+export default {
+  Controller: ProjectController,
+  model: Project,
+  collection: ProjectSet,
 };
