@@ -1330,7 +1330,9 @@ PTL.editor = {
 
         const group = unitGroup[pootlePath];
         const store = assign({ pootlePath: pootlePath }, group.meta);
-        const units = group.units.map((unit) => assign(unit, { store }));
+        const units = group.units.map(
+          (unit) => assign(unit, { store })  // eslint-disable-line no-loop-func
+        );
         this.units.set(units, { remove: false });
       }
     }

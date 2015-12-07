@@ -35,6 +35,7 @@ module.exports = {
     'no-cond-assign': [2, 'always'],
     'no-else-return': 2,
     'no-extra-semi': 2,
+    'no-loop-func': 2,
     'no-multi-spaces': 2,
     'no-multiple-empty-lines': [2, {'max': 2, 'maxEOF': 1}],
     'no-nested-ternary': 2,
