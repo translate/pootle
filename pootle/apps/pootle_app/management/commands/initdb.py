@@ -29,7 +29,15 @@ class Command(NoArgsCommand):
             default=True,
             help="Do not create the default 'terminology' and 'tutorial'"
                  "projects.",
-        ), )
+        ),
+        make_option(
+            '--cldr',
+            action='store_true',
+            dest='cldr',
+            default=False,
+            help="Initialize the list of language from CLDR database instead of built-in",
+        )
+    )
 
     def handle_noargs(self, **options):
         self.stdout.write('Populating the database.')

@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import re
 import logging
 
 from django.contrib.auth import get_user_model
@@ -23,11 +24,19 @@ from staticpages.models import StaticPage as Announcement
 
 
 logger = logging.getLogger(__name__)
+re_plurals = re.compile(r'nplurals=(\d); plural=(.+)$')
+
+
+CLDR_FALLBACK_ALIASES = {
+    # new name: list of fallback names
+    'zh_Hans': ['zh_CN'],
+    'zh_Hant': ['zh_TW', 'zh_HK'],
+}
 
 
 class InitDB(object):
 
-    def init_db(self, create_projects=True):
+    def init_db(self, create_projects=True, cldr=False, aliases=CLDR_FALLBACK_ALIASES):
         """Populate the database with default initial data.
 
         This creates the default database to get a working Pootle installation.
@@ -42,7 +51,10 @@ class InitDB(object):
         self.create_pootle_permission_sets()
         if create_projects:
             self.create_default_projects()
-        self.create_default_languages()
+        if cldr:
+            self.create_default_languages_cldr()
+        else:
+            self.create_default_languages()
 
     def _create_object(self, model_klass, **criteria):
         instance, created = model_klass.objects.get_or_create(**criteria)
@@ -201,12 +213,11 @@ class InitDB(object):
     def require_english(self):
         """Create the English Language item."""
         criteria = {
-            'code': "en",
             'fullname': u"English",
             'nplurals': 2,
             'pluralequation': "(n != 1)",
         }
-        en, created = self._create_object(Language, **criteria)
+        en, created = self._create_object(Language, code='en', defaults=criteria)
         return en
 
     def create_root_directories(self):
@@ -221,7 +232,7 @@ class InitDB(object):
         untranslated template files.
         """
         self._create_object(
-            Language, **dict(code="templates", fullname="Templates"))
+            Language, code='templates', defaults=dict(fullname="Templates"))
         self.require_english()
 
     def create_terminology_project(self):
@@ -295,3 +306,56 @@ class InitDB(object):
                 self._create_object(Language, **criteria)
             except:
                 pass
+
+    def create_default_languages_cldr(self):
+        """
+        Generate Language objects from CLDR database
+
+        You can optionally set up a list of 'fallback aliases' (mappings from language definitions existing in CLDR
+        to locale names which you need in your Pootle installation)
+        """
+        from pootle_language.models import Language
+        for attrs in self.get_cldr_languages():
+            code = attrs.pop('code')
+            self._create_object(Language, code=code, defaults=attrs)
+
+
+    def update_languages_to_cldr(self):
+        """
+        Take all existing languages, and update definitions according to the latest CLDR definition rules database
+
+        It's not used anywhere in the code, but if you need, you can just call it manually.
+        """
+        from pootle_language.models import Language
+        cldr_languages = {l['code']: l for l in self.get_cldr_languages()}
+        for lang_obj in Language.objects.all():
+            try:
+                cldr_lang = cldr_languages[lang_obj.code]
+            except KeyError:
+                continue
+            for k, v in cldr_lang.items():
+                setattr(lang_obj, k, v)
+                lang_obj.save()
+
+
+    def get_cldr_languages(self):
+        """
+        Helper function to extract CLDR information. Heavily relied on babel functionality
+        """
+        from babel import Locale, localedata, plural
+
+        for lang in localedata.locale_identifiers():
+            locale = Locale(lang)
+            if not locale.english_name:
+                continue
+
+            plurals_str = plural.to_gettext(locale.plural_form)
+            nplurals, pluralequation = re_plurals.match(plurals_str).groups()
+            lang_aliases = {lang}.union(set(self.aliases.get(lang, [])))
+            for alias in lang_aliases:
+                yield {
+                    'code': alias,
+                    'fullname': locale.english_name,
+                    'nplurals': int(nplurals),
+                    'pluralequation': pluralequation,
+                }

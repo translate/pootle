@@ -102,7 +102,7 @@ class Language(models.Model, TreeItem):
         verbose_name=_("Number of Plurals"), help_text=plurals_help_text
     )
     pluralequation = models.CharField(
-        max_length=255, blank=True, verbose_name=_("Plural Equation"),
+        max_length=512, blank=True, verbose_name=_("Plural Equation"),
         help_text=plurals_help_text)
 
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
