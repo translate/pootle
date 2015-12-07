@@ -248,6 +248,10 @@ PTL.reports = {
 
     if (PTL.reports.loadedHashParams) {
       for (const p in params) {
+        if (!params.hasOwnProperty(p)) {
+          continue;
+        }
+
         result &= params[p] === PTL.reports.loadedHashParams[p];
       }
     } else {
@@ -309,6 +313,10 @@ PTL.reports = {
     data.paid_task_summary = [];
 
     for (const index in data.paid_tasks) {
+      if (!data.paid_tasks.hasOwnProperty(index)) {
+        continue;
+      }
+
       const task = data.paid_tasks[index];
       const item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
 
@@ -327,6 +335,10 @@ PTL.reports = {
     }
 
     for (const index in data.grouped) {
+      if (!data.grouped.hasOwnProperty(index)) {
+        continue;
+      }
+
       const row = data.grouped[index];
       const floor = parseInt(row.translated, 10);
 
@@ -407,12 +419,20 @@ PTL.reports = {
           $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(ctx));
           ctx.data.total = 0;
           for (const i in ctx.data.summary) {
+            if (!ctx.data.summary.hasOwnProperty(i)) {
+              continue;
+            }
+
             const row = ctx.data.summary[i];
             row.subTotal = Math.round(row.amount) * row.rate;
             row.subTotal = +row.subTotal.toFixed(2);
             ctx.data.total += row.subTotal;
           }
           for (const i in ctx.data.paid_task_summary) {
+            if (!ctx.data.paid_task_summary.hasOwnProperty(i)) {
+              continue;
+            }
+
             const row = ctx.data.paid_task_summary[i];
             row.subTotal = row.amount * row.rate;
             ctx.data.total += row.subTotal;

@@ -416,6 +416,10 @@ PTL.editor = {
         };
         const newOpts = [];
         for (const key in values) {
+          if (!values.hasOwnProperty(key)) {
+            continue;
+          }
+
           newOpts.push(
             `<option value="${key}" data-user="${user}" class="js-user-filter">` +
               values[key] +
@@ -1312,6 +1316,10 @@ PTL.editor = {
     for (let i = 0; i < unitGroups.length; i++) {
       const unitGroup = unitGroups[i];
       for (const pootlePath in unitGroup) {
+        if (!unitGroup.hasOwnProperty(pootlePath)) {
+          continue;
+        }
+
         const group = unitGroup[pootlePath];
         const store = assign({ pootlePath: pootlePath }, group.meta);
         const units = group.units.map((unit) => assign(unit, { store }));

@@ -125,6 +125,10 @@ const contact = {
     $('ul.errorlist').remove();
 
     for (const fieldName in errors) {
+      if (!errors.hasOwnProperty(fieldName)) {
+        continue;
+      }
+
       this.validationError(fieldName, errors[fieldName]);
     }
   },

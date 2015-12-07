@@ -297,6 +297,10 @@ const stats = {
     if ($table.length) {
       // this is a directory that contains subitems
       for (const name in data.children) {
+        if (!data.children.hasOwnProperty(name)) {
+          continue;
+        }
+
         const item = data.children[name];
         const code = cssId(name);
         const $td = $table.find(`#total-words-${code}`);
@@ -306,6 +310,10 @@ const stats = {
 
       if ($vfoldersTable.length) {
         for (const name in data.vfolders) {
+          if (!data.vfolders.hasOwnProperty(name)) {
+            continue;
+          }
+
           const item = data.vfolders[name];
           const code = cssId(name);
           const $td = $vfoldersTable.find(`#total-words-${code}`);

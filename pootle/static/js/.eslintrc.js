@@ -27,6 +27,7 @@ module.exports = {
     'consistent-return': 2,
     'eqeqeq': 2,
     'func-names': 1,
+    'guard-for-in': 2,
     'indent': [2, 2, { "SwitchCase": 1, "VariableDeclarator": 1 }],
     'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
     'new-cap': [2, {'newIsCap': true}],
