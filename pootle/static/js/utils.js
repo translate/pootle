@@ -41,9 +41,10 @@ export function getParsedHash(hash) {
     h = this.getHash();
   }
 
-  let e;
-  while (e = r.exec(h)) {
+  let e = r.exec(h);
+  while (e !== null) {
     params[decodeURIParameter(e[1])] = decodeURIParameter(e[2]);
+    e = r.exec(h);
   }
   return params;
 }
@@ -55,9 +56,9 @@ export function updateHashPart(part, newVal, removeArray) {
   const params = [];
   const h = getHash();
   let ok = false;
-  let e;
+  let e = r.exec(h);
 
-  while (e = r.exec(h)) {
+  while (e !== null) {
     const p = decodeURIParameter(e[1]);
     if (p === part) {
       // replace with the given value
@@ -67,6 +68,8 @@ export function updateHashPart(part, newVal, removeArray) {
       // use the parameter as is
       params.push([e[1], e[2]].join('='));
     }
+
+    e = r.exec(h);
   }
   // if there was no old parameter, push the param at the end
   if (!ok) {

@@ -32,6 +32,7 @@ module.exports = {
     'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
     'new-cap': [2, {'newIsCap': true}],
     'no-alert': 1,
+    'no-cond-assign': [2, 'always'],
     'no-else-return': 2,
     'no-extra-semi': 2,
     'no-multi-spaces': 2,
