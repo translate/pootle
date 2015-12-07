@@ -44,7 +44,7 @@ class CheckableUnit(UnitProxy):
 
 class UnitQualityCheck(object):
 
-    def __init__(self, unit, checker original_checks,
+    def __init__(self, unit, checker, original_checks,
                  check_names, keep_false_positives=True):
         """Refreshes QualityChecks for a Unit
 
