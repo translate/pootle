@@ -11,7 +11,7 @@ import assign from 'object-assign';
 
 import { gotoScreen, signUp } from '../actions';
 import FormElement from 'components/FormElement';
-import { FormMixin } from 'mixins/forms';
+import FormMixin from 'mixins/FormMixin';
 
 
 const SignUpForm = React.createClass({

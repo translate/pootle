@@ -10,7 +10,7 @@ import { link } from 'autolinker';
 import React from 'react';
 
 import FormElement from 'components/FormElement';
-import { ModelFormMixin } from 'mixins/forms';
+import ModelFormMixin from 'mixins/ModelFormMixin';
 
 import Avatar from 'components/Avatar';
 

@@ -9,7 +9,7 @@
 import React from 'react';
 
 import FormElement from 'components/FormElement';
-import { ModelFormMixin } from 'mixins/forms';
+import ModelFormMixin from 'mixins/ModelFormMixin';
 
 import ItemDelete from '../ItemDelete';
 

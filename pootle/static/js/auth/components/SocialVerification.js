@@ -10,7 +10,7 @@ import assign from 'object-assign';
 import React from 'react';
 
 import FormElement from 'components/FormElement';
-import { FormMixin } from 'mixins/forms';
+import FormMixin from 'mixins/FormMixin';
 
 import { gotoScreen, verifySocial } from '../actions';
 import AuthProgress from './AuthProgress';

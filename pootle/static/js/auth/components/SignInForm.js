@@ -11,7 +11,7 @@ import React from 'react';
 
 import { gotoScreen, signIn } from '../actions';
 import FormElement from 'components/FormElement';
-import { FormMixin } from 'mixins/forms';
+import FormMixin from 'mixins/FormMixin';
 
 
 const SignInForm = React.createClass({

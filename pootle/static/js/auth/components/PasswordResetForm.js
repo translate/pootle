@@ -11,7 +11,7 @@ import React from 'react';
 import { PureRenderMixin } from 'react/addons';
 
 import FormElement from 'components/FormElement';
-import { FormMixin } from 'mixins/forms';
+import FormMixin from 'mixins/FormMixin';
 
 import { gotoScreen, passwordReset } from '../actions';
 import AuthContent from './AuthContent';
