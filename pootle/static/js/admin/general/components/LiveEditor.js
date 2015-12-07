@@ -59,31 +59,6 @@ export const LiveEditor = React.createClass({
     window.removeEventListener('resize', this.updateDimensions);
   },
 
-  handleChange(newValue) {
-    this.setState({ value: newValue });
-    this.loadPreview();
-  },
-
-  loadRemotePreview() {
-    fetch({
-      url: '/xhr/preview/',
-      body: {
-        text: this.state.value,
-      },
-    }).then((response) => {
-      this.setState({ renderedValue: response.rendered });
-    });
-  },
-
-  updateDimensions() {
-    // FIXME: this can perfectly be part of the single state atom, and be
-    // available to any component needing it via context.
-    this.setState({
-      height: window.innerHeight,
-      width: window.innerWidth,
-    });
-  },
-
   getContentHeight() {
     const topHeight = (
       outerHeight(document.querySelector('#navbar')) +
@@ -107,6 +82,31 @@ export const LiveEditor = React.createClass({
     }
 
     return contentHeight;
+  },
+
+  updateDimensions() {
+    // FIXME: this can perfectly be part of the single state atom, and be
+    // available to any component needing it via context.
+    this.setState({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
+  },
+
+  loadRemotePreview() {
+    fetch({
+      url: '/xhr/preview/',
+      body: {
+        text: this.state.value,
+      },
+    }).then((response) => {
+      this.setState({ renderedValue: response.rendered });
+    });
+  },
+
+  handleChange(newValue) {
+    this.setState({ value: newValue });
+    this.loadPreview();
   },
 
   render() {

@@ -38,13 +38,13 @@ const Search = React.createClass({
 
   /* State-changing callbacks */
 
+  onResultsFetched() {
+    this.setState({isLoading: false});
+  },
+
   fetchResults(query) {
     this.setState({isLoading: true});
     this.props.onSearch(query).then(this.onResultsFetched);
-  },
-
-  onResultsFetched() {
-    this.setState({isLoading: false});
   },
 
   loadMore() {
