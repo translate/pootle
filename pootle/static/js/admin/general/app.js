@@ -17,17 +17,17 @@ PTL.commonAdmin = {
 
   init(opts) {
     switch (opts.page) {
-      case 'dashboard':
-        dashboard.init();
-        break;
-      case 'permissions':
-        permissions.init();
-        break;
-      case 'staticpages':
-        staticpages.init(opts.opts);
-        break;
-      default:
-        break;
+    case 'dashboard':
+      dashboard.init();
+      break;
+    case 'permissions':
+      permissions.init();
+      break;
+    case 'staticpages':
+      staticpages.init(opts.opts);
+      break;
+    default:
+      break;
     }
   },
 
