@@ -12,7 +12,7 @@ import React from 'react';
 import Dialog from 'components/Dialog';
 import Modal from 'components/Modal';
 
-import { UserProfileForm } from '../forms';
+import UserProfileForm from './UserProfileForm';
 
 
 const UserProfileEdit = React.createClass({

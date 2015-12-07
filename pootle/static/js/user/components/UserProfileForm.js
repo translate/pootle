@@ -122,3 +122,6 @@ export const UserProfileForm = React.createClass({
   },
 
 });
+
+
+export default UserProfileForm;
