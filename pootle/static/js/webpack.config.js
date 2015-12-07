@@ -26,7 +26,7 @@ var entries = {
 
 
 var resolve = {
-  extensions: ['', '.js', '.jsx'],
+  extensions: ['', '.js'],
   modulesDirectories: ['node_modules', 'shared'],
   alias: {
     pootle: __dirname,
@@ -137,7 +137,7 @@ var config = {
     loaders: [
       { test: /\.css/, loader: 'style-loader!css-loader' },
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         query: {
           cacheDirectory: true,
