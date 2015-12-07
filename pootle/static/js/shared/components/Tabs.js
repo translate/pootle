@@ -10,7 +10,7 @@ import React from 'react';
 import { PureRenderMixin } from 'react';
 
 
-export const Tabs = React.createClass({
+const Tabs = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -84,3 +84,6 @@ export const Tabs = React.createClass({
   },
 
 });
+
+
+export default Tabs;
