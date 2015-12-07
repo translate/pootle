@@ -56,7 +56,7 @@ export const ModelFormMixin = {
   handleFormSubmit(e) {
     e.preventDefault();
 
-    this.getResource().save(this.state.formData, {wait: true})
+    this.getResource().save(this.state.formData, { wait: true })
                       .done(this.handleFormSuccess)
                       .error(this.handleFormError);
   },

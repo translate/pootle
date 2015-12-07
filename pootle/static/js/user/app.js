@@ -24,7 +24,7 @@ PTL.user = {
     if (opts.userData !== undefined) {
       const editButton = document.querySelector('.js-user-profile-edit');
 
-      const user = new User(opts.userData, {urlRoot: l('/xhr/users/')});
+      const user = new User(opts.userData, { urlRoot: l('/xhr/users/') });
       const props = {
         router: new UserProfileRouter(),
         appRoot: opts.appRoot,

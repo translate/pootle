@@ -45,7 +45,7 @@ const AccountActivation = React.createClass({
       <AuthContent>
         <div className="actions sign-up">
           <p>{activationWarningMsg}</p>
-          <p dangerouslySetInnerHTML={{__html: emailLinkMsg}} />
+          <p dangerouslySetInnerHTML={{ __html: emailLinkMsg }} />
           <p>{instructionsMsg}</p>
           {this.props.signUpEmail &&
             <div>

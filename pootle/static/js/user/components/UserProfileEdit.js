@@ -35,7 +35,7 @@ const UserProfileEdit = React.createClass({
 
   componentWillMount() {
     this.setupRoutes(this.props.router);
-    Backbone.history.start({pushState: true, root: this.props.appRoot});
+    Backbone.history.start({ pushState: true, root: this.props.appRoot });
   },
 
   componentWillUpdate(nextProps, nextState) {
@@ -44,11 +44,11 @@ const UserProfileEdit = React.createClass({
 
   setupRoutes(router) {
     router.on('route:main', () => {
-      this.setState({editing: false});
+      this.setState({ editing: false });
     });
 
     router.on('route:edit', () => {
-      this.setState({editing: true});
+      this.setState({ editing: true });
     });
   },
 
@@ -56,14 +56,14 @@ const UserProfileEdit = React.createClass({
   /* State-changing handlers */
 
   handleEdit() {
-    this.setState({editing: true});
+    this.setState({ editing: true });
   },
 
   handleClose(opts = {}) {
     const forceClose = opts.forceClose || false;
 
     if (this.state.isDirty && !forceClose) {
-      this.setState({confirmClose: true});
+      this.setState({ confirmClose: true });
     } else {
       this.setState({
         editing: false,
@@ -79,15 +79,15 @@ const UserProfileEdit = React.createClass({
   },
 
   handleDlgOk() {
-    this.handleClose({forceClose: true});
+    this.handleClose({ forceClose: true });
   },
 
   handleDlgCancel() {
-    this.setState({confirmClose: false});
+    this.setState({ confirmClose: false });
   },
 
   handleDirtyFlag(isDirty) {
-    this.setState({isDirty: isDirty});
+    this.setState({ isDirty: isDirty });
   },
 
 

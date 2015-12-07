@@ -90,7 +90,7 @@ const stats = {
     window.addEventListener('popstate', (e) => {
       const state = e.state;
       if (state) {
-        this.setState({isExpanded: state.isExpanded});
+        this.setState({ isExpanded: state.isExpanded });
       }
     });
 
@@ -401,7 +401,7 @@ const stats = {
   /* Path summary */
   toggleChecks() {
     if (this.state.checksData) {
-      this.setState({isExpanded: !this.state.isExpanded});
+      this.setState({ isExpanded: !this.state.isExpanded });
       this.navigate();
     } else {
       this.loadChecks().done(() => this.navigate());
@@ -459,7 +459,7 @@ const stats = {
     const path = l(this.pootlePath);
     const newURL = isExpanded ? `${path}?details` : path;
     if (currentURL !== newURL) {
-      window.history.pushState({isExpanded}, '', newURL);
+      window.history.pushState({ isExpanded }, '', newURL);
     }
   },
 

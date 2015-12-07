@@ -37,7 +37,7 @@ const UserForm = React.createClass({
     // we need to move them to the first position, as Backbone doesn't
     // honor the `at: <pos>` option in that scenario and there's
     // no modified time attribute that could be used for sorting.
-    this.props.collection.unshift(model, {merge: true});
+    this.props.collection.unshift(model, { merge: true });
     this.props.collection.move(model, 0);
 
     this.props.onSuccess(model);

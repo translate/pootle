@@ -18,13 +18,13 @@ export const FormValidationMixin = {
   },
 
   clearValidation() {
-    this.setState({errors: {}});
+    this.setState({ errors: {} });
   },
 
   validateResponse(xhr) {
     // XXX: should this also check for HTTP 500, 404 etc.?
     const response = JSON.parse(xhr.responseText);
-    this.setState({errors: response.errors});
+    this.setState({ errors: response.errors });
   },
 
 

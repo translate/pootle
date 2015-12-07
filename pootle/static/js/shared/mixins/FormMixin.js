@@ -43,7 +43,7 @@ export const FormMixin = {
     const newData = _.extend({}, this.state.formData);
     newData[name] = value;
     const isDirty = !_.isEqual(newData, this.initialData);
-    this.setState({formData: newData, isDirty: isDirty});
+    this.setState({ formData: newData, isDirty: isDirty });
   },
 
   handleFormSuccess() {

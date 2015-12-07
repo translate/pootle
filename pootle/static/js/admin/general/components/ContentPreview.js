@@ -26,7 +26,7 @@ const ContentPreview = React.createClass({
         {this.props.value ?
           <div
             className="staticpage"
-            dangerouslySetInnerHTML={{__html: this.props.value}}
+            dangerouslySetInnerHTML={{ __html: this.props.value }}
           /> :
           <div className="placeholder">
             {gettext('Preview will be displayed here.')}

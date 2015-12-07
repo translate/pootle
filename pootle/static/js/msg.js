@@ -50,7 +50,7 @@ const MessageListView = Backbone.View.extend({
   },
 
   add(msg) {
-    const msgView = new MessageView({model: msg});
+    const msgView = new MessageView({ model: msg });
     this.subViews.push(msgView);
 
     this.$el.prepend(msgView.render().el);
@@ -76,7 +76,7 @@ const msg = {
 
   show(opts) {
     if (!messagesView) {
-      messagesView = new MessageListView({collection: messages});
+      messagesView = new MessageListView({ collection: messages });
     }
     const message = new Message(opts);
 

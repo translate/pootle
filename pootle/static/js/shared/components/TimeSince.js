@@ -25,7 +25,7 @@ const TimeSince = React.createClass({
   componentWillMount() {
     this.tickTimer = null;
 
-    this.tick({refresh: false});
+    this.tick({ refresh: false });
   },
 
   componentWillReceiveProps(nextProps) {
@@ -45,7 +45,7 @@ const TimeSince = React.createClass({
     }
   },
 
-  tick(opts = {refresh: true}) {
+  tick(opts = { refresh: true }) {
     const past = Date.parse(this.props.dateTime);
     const now = Date.now();
     const seconds = Math.round(Math.abs(now - past) / 1000);

@@ -59,7 +59,7 @@ export const UserProfileForm = React.createClass({
       'To set or change your avatar for your email address ' +
       '(%(email)s), please go to gravatar.com.'
     );
-    const avatarHelp = interpolate(avatarHelpMsg, {email: model.get('email')},
+    const avatarHelp = interpolate(avatarHelpMsg, { email: model.get('email') },
                                    true);
 
     return (

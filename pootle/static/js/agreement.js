@@ -68,7 +68,7 @@ const agreement = {
     const $agreementBox = $('.js-agreement-box');
     const $agreementForm = $('.js-agreement-form');
     $agreementBox.spin();
-    $agreementBox.css({opacity: 0.5});
+    $agreementBox.css({ opacity: 0.5 });
 
     $.ajax({
       url: $agreementForm.attr('action'),
@@ -79,7 +79,7 @@ const agreement = {
       },
       complete(xhr) {
         $agreementBox.spin(false);
-        $agreementBox.css({opacity: 1});
+        $agreementBox.css({ opacity: 1 });
 
         if (xhr.status === 400) {
           const form = $.parseJSON(xhr.responseText).form;

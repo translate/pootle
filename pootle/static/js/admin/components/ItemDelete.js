@@ -30,7 +30,7 @@ const ItemDelete = React.createClass({
   /* Handlers */
 
   toggleButton() {
-    this.setState({buttonDisabled: !this.state.buttonDisabled});
+    this.setState({ buttonDisabled: !this.state.buttonDisabled });
   },
 
   handleClick(e) {

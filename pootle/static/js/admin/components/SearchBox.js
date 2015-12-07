@@ -39,7 +39,7 @@ const SearchBox = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.searchQuery !== this.state.searchQuery) {
-      this.setState({searchQuery: nextProps.searchQuery});
+      this.setState({ searchQuery: nextProps.searchQuery });
     }
   },
 
@@ -54,7 +54,7 @@ const SearchBox = React.createClass({
   },
 
   handleChange() {
-    this.setState({searchQuery: React.findDOMNode(this.refs.input).value});
+    this.setState({ searchQuery: React.findDOMNode(this.refs.input).value });
     this.handleSearchDebounced();
   },
 

@@ -123,7 +123,7 @@ PTL.editor = {
     this.tmReq = null;
 
     /* Levenshtein word comparer */
-    this.wordComparer = new Levenshtein({compare: 'words'});
+    this.wordComparer = new Levenshtein({ compare: 'words' });
 
     /* Compile templates */
     this.tmpl = {
@@ -286,8 +286,8 @@ PTL.editor = {
     shortcut.add('ctrl+up', () => this.gotoPrev());
     shortcut.add('ctrl+,', () => this.gotoPrev());
 
-    shortcut.add('ctrl+down', () => this.gotoNext({isSubmission: false}));
-    shortcut.add('ctrl+.', () => this.gotoNext({isSubmission: false}));
+    shortcut.add('ctrl+down', () => this.gotoNext({ isSubmission: false }));
+    shortcut.add('ctrl+.', () => this.gotoNext({ isSubmission: false }));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -485,7 +485,7 @@ PTL.editor = {
         }
         this.setUnit(uId);
       });
-    }, {'unescape': true});
+    }, { 'unescape': true });
   },
 
   /* Stuff to be done when the editor is ready  */
@@ -536,7 +536,7 @@ PTL.editor = {
 
   /* Things to do when no results are returned */
   noResults() {
-    this.displayMsg({body: gettext('No results.')});
+    this.displayMsg({ body: gettext('No results.') });
     this.reDraw();
   },
 
@@ -981,7 +981,7 @@ PTL.editor = {
   /* Displays error messages on top of the toolbar */
   displayError(text) {
     this.hideActivity();
-    msg.show({text: text, level: 'error'});
+    msg.show({ text: text, level: 'error' });
   },
 
 
@@ -1030,7 +1030,7 @@ PTL.editor = {
       '</div>',
     ].join('');
 
-    this.displayMsg({body: html, showClose: false});
+    this.displayMsg({ body: html, showClose: false });
   },
 
 
@@ -1083,7 +1083,7 @@ PTL.editor = {
   renderRow(unit) {
     return (
       `<tr id="row${unit.id}" class="view-row">` +
-        this.tmpl.vUnit({unit: unit.toJSON()}) +
+        this.tmpl.vUnit({ unit: unit.toJSON() }) +
       '</tr>'
     );
   },
@@ -1148,7 +1148,7 @@ PTL.editor = {
       unit = assign({}, currentUnit.toJSON(), unit);
 
       rows += `<tr id="ctx${unit.id}" class="ctx-row ${extraCls}">`;
-      rows += this.tmpl.vUnit({unit: unit});
+      rows += this.tmpl.vUnit({ unit: unit });
       rows += '</tr>';
     }
 
@@ -1493,7 +1493,7 @@ PTL.editor = {
   },
 
   /* Loads the next unit */
-  gotoNext(opts = {isSubmission: true}) {
+  gotoNext(opts = { isSubmission: true }) {
     if (!this.canNavigate()) {
       return false;
     }
@@ -1693,7 +1693,7 @@ PTL.editor = {
       this.$filterChecksWrapper.hide();
 
       if (!this.preventNavigation) {
-        const newHash = {filter: filterBy};
+        const newHash = { filter: filterBy };
         const isUserFilter = $selected.data('user');
 
         if (this.user && isUserFilter) {
@@ -1863,11 +1863,11 @@ PTL.editor = {
 
     if ($('#translator-comment').length) {
       $(data.comment).hide().prependTo('#translator-comment').delay(200)
-        .animate({height: 'show'}, 1000, 'easeOutQuad');
+        .animate({ height: 'show' }, 1000, 'easeOutQuad');
     } else {
       $(`<div id='translator-comment'>${data.comment}</div>`)
         .prependTo('#extras-container').delay(200)
-        .hide().animate({height: 'show'}, 1000, 'easeOutQuad');
+        .hide().animate({ height: 'show' }, 1000, 'easeOutQuad');
     }
 
     helpers.updateRelativeDates();
@@ -2030,10 +2030,10 @@ PTL.editor = {
           const sourceText = unit.get('source')[0];
           const filtered = PTL.editor.filterTMResults(data, sourceText);
           const name = gettext('Similar translations');
-          const tm = PTL.editor.tmpl.tm({store: store.toJSON(),
+          const tm = PTL.editor.tmpl.tm({ store: store.toJSON(),
                                          unit: unit.toJSON(),
                                          suggs: filtered,
-                                         name: name});
+                                         name: name });
 
           $(tm).hide().appendTo('#extras-container')
                       .slideDown(1000, 'easeOutQuad');

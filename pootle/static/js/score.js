@@ -59,13 +59,13 @@ let scoreModel;
 
 
 export function init(initialScoreValue) {
-  scoreModel = new Score({value: initialScoreValue}, {validate: true});
-  new ScoreView({model: scoreModel});  // eslint-disable-line no-new
+  scoreModel = new Score({ value: initialScoreValue }, { validate: true });
+  new ScoreView({ model: scoreModel });  // eslint-disable-line no-new
 }
 
 
 export function set(newScore) {
-  scoreModel.set({value: newScore}, {validate: true});
+  scoreModel.set({ value: newScore }, { validate: true });
   return this;
 }
 

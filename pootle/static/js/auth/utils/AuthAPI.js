@@ -14,7 +14,7 @@ const AuthAPI = {
   apiRoot: '/accounts/',
 
   fetch(url, body) {
-    return fetch({url, body, method: 'POST'});
+    return fetch({ url, body, method: 'POST' });
   },
 
   signIn(reqData, nextURL) {

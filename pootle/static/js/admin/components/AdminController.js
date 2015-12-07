@@ -35,7 +35,7 @@ const AdminController = React.createClass({
 
   componentWillMount() {
     this.setupRoutes(this.props.router);
-    Backbone.history.start({pushState: true, root: this.props.appRoot});
+    Backbone.history.start({ pushState: true, root: this.props.appRoot });
   },
 
   componentWillUpdate(nextProps, nextState) {
@@ -57,7 +57,7 @@ const AdminController = React.createClass({
 
     router.on('route:edit', (id) => {
       const { Model } = this.props.adminModule;
-      const item = new Model({id: id});
+      const item = new Model({ id: id });
       this.handleSelectItem(item);
     });
   },
@@ -94,11 +94,11 @@ const AdminController = React.createClass({
   },
 
   handleAdd() {
-    this.setState({selectedItem: null, view: 'add'});
+    this.setState({ selectedItem: null, view: 'add' });
   },
 
   handleCancel() {
-    this.setState({selectedItem: null, view: 'edit'});
+    this.setState({ selectedItem: null, view: 'edit' });
   },
 
   handleSave(item) {
@@ -110,7 +110,7 @@ const AdminController = React.createClass({
   },
 
   handleDelete() {
-    this.setState({selectedItem: null});
+    this.setState({ selectedItem: null });
     msg.show({
       text: gettext('Deleted successfully.'),
       level: 'danger',
@@ -142,7 +142,7 @@ const AdminController = React.createClass({
 
     // Inject dynamic model form choices
     // FIXME: hackish and too far from ideal
-    _.defaults(Model.prototype, {fieldChoices: {}});
+    _.defaults(Model.prototype, { fieldChoices: {} });
     _.extend(Model.prototype.fieldChoices, this.props.formChoices);
     _.extend(Model.prototype.defaults, this.props.formChoices.defaults);
 

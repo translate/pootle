@@ -59,7 +59,7 @@ PTL.reports = {
       });
       $(document).on('click', '#user-rates-form input.submit', this.updateRates);
       $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
-      $('#reports-user').select2({'data': PTL.reports.users});
+      $('#reports-user').select2({ 'data': PTL.reports.users });
     }
 
     $(document).on('click', '#paid-task-form input.submit', this.addPaidTask);
@@ -94,7 +94,7 @@ PTL.reports = {
 
       PTL.reports.loadedHashParams = params;
       $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + utils.getHash());
-    }, {'unescape': true});
+    }, { 'unescape': true });
   },
 
   updateRates() {
@@ -267,7 +267,7 @@ PTL.reports = {
       {
         series: {
           stack: true,
-          lines: {show: false, steps: false },
+          lines: { show: false, steps: false },
           bars: {
             show: true,
             barWidth: 1000 * 60 * 60 * 24,
@@ -478,7 +478,7 @@ PTL.reports = {
                 task.scrollIntoView();
               }, 0);
             } else {
-              msg.show({text: 'Task with this ID not found', level: 'error'});
+              msg.show({ text: 'Task with this ID not found', level: 'error' });
             }
           }
 
@@ -554,8 +554,8 @@ PTL.reports = {
   setPaidTaskDate() {
     let datetime;
     // set paid task datetime
-    if (PTL.reports.now >= PTL.reports.month.clone().add({M: 1})) {
-      datetime = PTL.reports.month.clone().add({M: 1}).subtract({s: 1});
+    if (PTL.reports.now >= PTL.reports.month.clone().add({ M: 1 })) {
+      datetime = PTL.reports.month.clone().add({ M: 1 }).subtract({ s: 1 });
     } else if (PTL.reports.now <= PTL.reports.month) {
       datetime = PTL.reports.month;
     } else {

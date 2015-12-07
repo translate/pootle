@@ -50,7 +50,7 @@ const RequestPasswordResetSent = React.createClass({
     return (
       <AuthContent>
         <div className="actions password-reset">
-          <p dangerouslySetInnerHTML={{__html: emailLinkMsg}} />
+          <p dangerouslySetInnerHTML={{ __html: emailLinkMsg }} />
           <p>{instructionsMsg}</p>
           <hr />
           <p>{resendMsg}</p>

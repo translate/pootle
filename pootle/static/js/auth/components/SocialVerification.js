@@ -41,7 +41,7 @@ const SocialVerification = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (this.state.errors !== nextProps.formErrors) {
-      this.setState({errors: nextProps.formErrors});
+      this.setState({ errors: nextProps.formErrors });
     }
   },
 
@@ -83,7 +83,7 @@ const SocialVerification = React.createClass({
 
     return (
       <div className="actions">
-        <p dangerouslySetInnerHTML={{__html: verificationMsg}} />
+        <p dangerouslySetInnerHTML={{ __html: verificationMsg }} />
         <div>
           <form
             method="post"

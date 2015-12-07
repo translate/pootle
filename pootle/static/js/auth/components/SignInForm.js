@@ -40,7 +40,7 @@ const SignInForm = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (this.state.errors !== nextProps.formErrors) {
-      this.setState({errors: nextProps.formErrors});
+      this.setState({ errors: nextProps.formErrors });
     }
   },
 
