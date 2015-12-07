@@ -60,7 +60,7 @@ let scoreModel;
 
 export function init(initialScoreValue) {
   scoreModel = new Score({value: initialScoreValue}, {validate: true});
-  new ScoreView({model: scoreModel});
+  new ScoreView({model: scoreModel});  // eslint-disable-line no-new
 }
 
 

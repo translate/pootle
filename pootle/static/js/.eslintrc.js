@@ -39,6 +39,7 @@ module.exports = {
     'no-multi-spaces': 2,
     'no-multiple-empty-lines': [2, {'max': 2, 'maxEOF': 1}],
     'no-nested-ternary': 2,
+    'no-new': 2,
     'no-param-reassign': 2,
     'no-shadow': 2,
     'no-undef': 2,
