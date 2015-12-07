@@ -26,6 +26,8 @@ PTL.commonAdmin = {
       case 'staticpages':
         staticpages.init(opts.opts);
         break;
+      default:
+        break;
     }
   },
 

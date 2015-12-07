@@ -147,6 +147,9 @@ const Auth = React.createClass({
           content: SocialVerification,
         };
         break;
+
+      default:
+        break;
     }
   },
 
