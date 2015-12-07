@@ -33,6 +33,7 @@ module.exports = {
     'no-else-return': 2,
     'no-extra-semi': 2,
     'no-multi-spaces': 2,
+    'no-multiple-empty-lines': [2, {'max': 2, 'maxEOF': 1}],
     'no-param-reassign': 2,
     'no-shadow': 2,
     'no-undef': 2,

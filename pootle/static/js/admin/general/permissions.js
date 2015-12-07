@@ -26,7 +26,6 @@ function setSelectedBg(e) {
 }
 
 
-
 /* Selects all checkboxes */
 function selectAll(e) {
   const className = e.target.id.split('-').reverse()[0];
