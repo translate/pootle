@@ -11,14 +11,11 @@ import Backbone from 'backbone';
 import { Unit } from './models';
 
 
-const collections = {};
-
-
 /*
  * collections.UnitSet
  */
 
-collections.UnitSet = Backbone.Collection.extend({
+export const UnitSet = Backbone.Collection.extend({
   model: Unit,
 
   initialize(model, opts) {
@@ -66,6 +63,3 @@ collections.UnitSet = Backbone.Collection.extend({
   },
 
 });
-
-
-export default collections;
