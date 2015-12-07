@@ -68,4 +68,5 @@ export const ProjectSet = Backbone.Collection.extend(
 
     url: l('/xhr/admin/projects/'),
 
-  }));
+  })
+);

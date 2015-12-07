@@ -61,4 +61,5 @@ export const LanguageSet = Backbone.Collection.extend(
 
     url: l('/xhr/admin/languages/'),
 
-  }));
+  })
+);

@@ -72,4 +72,5 @@ export const UserSet = Backbone.Collection.extend(
 
     url: l('/xhr/admin/users/'),
 
-  }));
+  })
+);
