@@ -54,6 +54,7 @@ module.exports = {
     'padded-blocks': [2, 'never'],
     'prefer-const': 2,
     'quotes': [2, 'single', 'avoid-escape'],
+    'react/jsx-boolean-value': 2,
     'react/no-multi-comp': 2,
     'react/prop-types': 2,
     'react/sort-comp': 2,

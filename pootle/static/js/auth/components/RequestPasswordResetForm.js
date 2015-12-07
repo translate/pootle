@@ -90,11 +90,11 @@ const RequestPasswordResetForm = React.createClass({
           <div className="fields">
             {this.renderAllFormErrors()}
             <FormElement
+              autoFocus
               type="email"
               attribute="email"
               label={gettext('Email Address')}
               help={gettext('Enter your email address, and we will send you a message with the special link to reset your password.')}
-              autoFocus={true}
               handleChange={this.handleChange}
               formData={formData}
               errors={errors}

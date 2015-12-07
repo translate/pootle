@@ -44,7 +44,7 @@ const Dialog = React.createClass({
           {this.props.okLabel}
         </button>
         <button className="btn"
-                autoFocus={true}
+                autoFocus
                 onClick={this.props.onCancel}>
           {this.props.cancelLabel}
         </button>

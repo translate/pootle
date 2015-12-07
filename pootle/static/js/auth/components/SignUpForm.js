@@ -79,9 +79,9 @@ const SignUpForm = React.createClass({
         onSubmit={this.handleFormSubmit}>
         <div className="fields">
           <FormElement
+            autoFocus
             attribute="username"
             label={gettext('Username')}
-            autoFocus={true}
             handleChange={this.handleChange}
             formData={formData}
             errors={errors}

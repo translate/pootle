@@ -71,7 +71,7 @@ export const UserProfileForm = React.createClass({
           <FormElement attribute="full_name"
                        label={gettext('Full Name')}
                        placeholder={gettext('Your Full Name')}
-                       autoFocus={true}
+                       autoFocus
                        handleChange={this.handleChange}
                        formData={formData}
                        errors={errors} />

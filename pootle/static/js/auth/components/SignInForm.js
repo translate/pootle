@@ -91,9 +91,9 @@ const SignInForm = React.createClass({
       >
         <div className="fields">
           <FormElement
+            autoFocus
             attribute="login"
             label={gettext('Username')}
-            autoFocus={true}
             handleChange={this.handleChange}
             formData={formData}
             errors={errors}

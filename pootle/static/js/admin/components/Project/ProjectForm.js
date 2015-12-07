@@ -56,7 +56,7 @@ const ProjectForm = React.createClass({
             onSubmit={this.handleFormSubmit}>
         <div className="fields">
           <FormElement
-            autoFocus={true}
+            autoFocus
             attribute="code"
             disabled={model.hasOwnProperty('id')}
             label={gettext('Code')}

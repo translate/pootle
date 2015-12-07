@@ -109,10 +109,10 @@ const PasswordResetForm = React.createClass({
           onSubmit={this.handleFormSubmit}>
           <div className="fields">
             <FormElement
+              autoFocus
               type="password"
               attribute="password1"
               label={gettext('Password')}
-              autoFocus={true}
               handleChange={this.handleChange}
               formData={formData}
               errors={errors}
