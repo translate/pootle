@@ -13,12 +13,12 @@ import AuthContent from './AuthContent';
 
 
 const SocialAuthError = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     socialError: React.PropTypes.object,
   },
 
+  mixins: [PureRenderMixin],
 
   /* Layout */
 

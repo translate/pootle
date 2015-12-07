@@ -33,6 +33,19 @@ const AdminController = React.createClass({
     };
   },
 
+  componentWillMount() {
+    this.setupRoutes(this.props.router);
+    Backbone.history.start({pushState: true, root: this.props.appRoot});
+  },
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.searchQuery !== this.state.searchQuery ||
+        nextState.selectedItem !== this.state.selectedItem) {
+      this.handleURL(nextState);
+    }
+  },
+
+
   setupRoutes(router) {
     router.on('route:main', (searchQuery) => {
       let query = searchQuery;
@@ -48,19 +61,6 @@ const AdminController = React.createClass({
       this.handleSelectItem(item);
     });
   },
-
-  componentWillMount() {
-    this.setupRoutes(this.props.router);
-    Backbone.history.start({pushState: true, root: this.props.appRoot});
-  },
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.searchQuery !== this.state.searchQuery ||
-        nextState.selectedItem !== this.state.selectedItem) {
-      this.handleURL(nextState);
-    }
-  },
-
 
   /* State-changing handlers */
 

@@ -19,7 +19,6 @@ import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
 
 const RequestPasswordResetForm = React.createClass({
-  mixins: [PureRenderMixin, FormMixin],
 
   propTypes: {
     canRegister: React.PropTypes.bool.isRequired,
@@ -28,6 +27,7 @@ const RequestPasswordResetForm = React.createClass({
     isLoading: React.PropTypes.bool.isRequired,
   },
 
+  mixins: [PureRenderMixin, FormMixin],
 
   /* Lifecycle */
 

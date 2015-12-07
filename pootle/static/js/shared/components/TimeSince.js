@@ -14,12 +14,13 @@ import { relativeDate } from '../../utils';
 
 
 const TimeSince = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     dateTime: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   },
+
+  mixins: [PureRenderMixin],
 
   componentWillMount() {
     this.tickTimer = null;

@@ -16,7 +16,6 @@ import ModalHeader from './ModalHeader';
 
 
 const Modal = React.createClass({
-  mixins: [LayersMixin],
 
   propTypes: {
     children: React.PropTypes.node.isRequired,
@@ -27,6 +26,7 @@ const Modal = React.createClass({
     footer: React.PropTypes.func,
   },
 
+  mixins: [LayersMixin],
 
   /* Lifecycle */
 

@@ -30,10 +30,6 @@ const ModalContainer = React.createClass({
     style: React.PropTypes.object,
   },
 
-  _previousFocus: null,
-  _ownsLock: false,
-
-
   /* Lifecycle */
 
   componentWillMount() {
@@ -55,6 +51,9 @@ const ModalContainer = React.createClass({
     }
     this._previousFocus.focus();
   },
+
+  _previousFocus: null,
+  _ownsLock: false,
 
 
   /* Handlers */

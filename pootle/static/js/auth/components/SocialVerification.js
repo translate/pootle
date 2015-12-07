@@ -17,7 +17,6 @@ import AuthProgress from './AuthProgress';
 
 
 const SocialVerification = React.createClass({
-  mixins: [FormMixin],
 
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
@@ -28,6 +27,7 @@ const SocialVerification = React.createClass({
     redirectTo: React.PropTypes.string,
   },
 
+  mixins: [FormMixin],
 
   getInitialState() {
     // XXX: initialData required by `FormMixin`; this is really OBSCURE

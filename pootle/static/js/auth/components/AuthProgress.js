@@ -13,11 +13,12 @@ import AuthContent from './AuthContent';
 
 
 const AuthProgress = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     msg: React.PropTypes.string.isRequired,
   },
+
+  mixins: [PureRenderMixin],
 
   render() {
     const msgStyle = {

@@ -13,12 +13,13 @@ import AuthContent from './AuthContent';
 
 
 const AccountActivation = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     onClose: React.PropTypes.func.isRequired,
     signUpEmail: React.PropTypes.string,
   },
+
+  mixins: [PureRenderMixin],
 
 
   /* Layout */

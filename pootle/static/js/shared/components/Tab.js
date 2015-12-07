@@ -12,7 +12,6 @@ import { PureRenderMixin } from 'react';
 
 
 const Tab = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     onClick: React.PropTypes.func, // Required but added dynamically
@@ -21,6 +20,7 @@ const Tab = React.createClass({
     selected: React.PropTypes.bool,
   },
 
+  mixins: [PureRenderMixin],
 
   render() {
     const classes = cx({

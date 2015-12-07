@@ -12,7 +12,6 @@ import { PureRenderMixin } from 'react/addons';
 
 
 const Avatar = React.createClass({
-  mixins: [PureRenderMixin],
 
   // FIXME: be smarter with props validation, e.g. `email` should be required if
   // `src` is missing etc.
@@ -24,6 +23,8 @@ const Avatar = React.createClass({
     title: PropTypes.string,
     username: PropTypes.string,
   },
+
+  mixins: [PureRenderMixin],
 
   getDefaultProps() {
     return {

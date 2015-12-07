@@ -27,12 +27,6 @@ const SearchBox = React.createClass({
     };
   },
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.searchQuery !== this.state.searchQuery) {
-      this.setState({searchQuery: nextProps.searchQuery});
-    }
-  },
-
   componentWillMount() {
     this.handleSearchDebounced = _.debounce(() => {
       this.props.onSearch.apply(this, [this.state.searchQuery]);
@@ -41,6 +35,12 @@ const SearchBox = React.createClass({
 
   componentDidMount() {
     React.findDOMNode(this.refs.input).focus();
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searchQuery !== this.state.searchQuery) {
+      this.setState({searchQuery: nextProps.searchQuery});
+    }
   },
 
 

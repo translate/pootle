@@ -15,13 +15,14 @@ import ItemDelete from '../ItemDelete';
 
 
 const UserForm = React.createClass({
-  mixins: [ModelFormMixin],
 
   propTypes: {
     collection: React.PropTypes.object.isRequired,
     onDelete: React.PropTypes.func,
     onSuccess: React.PropTypes.func.isRequired,
   },
+
+  mixins: [ModelFormMixin],
 
   fields: [
     'username', 'is_active', 'password', 'full_name', 'email',

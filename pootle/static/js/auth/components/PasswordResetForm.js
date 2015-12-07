@@ -19,7 +19,6 @@ import AuthProgress from './AuthProgress';
 
 
 const PasswordResetForm = React.createClass({
-  mixins: [PureRenderMixin, FormMixin],
 
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
@@ -29,6 +28,7 @@ const PasswordResetForm = React.createClass({
     redirectTo: React.PropTypes.string.isRequired,
   },
 
+  mixins: [PureRenderMixin, FormMixin],
 
   /* Lifecycle */
 

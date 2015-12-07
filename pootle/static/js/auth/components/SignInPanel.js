@@ -22,7 +22,6 @@ const SIGNIN_TAB_COOKIE_NAME = 'pootle-auth-signin-tab';
 
 
 const SignInPanel = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     canRegister: React.PropTypes.bool.isRequired,
@@ -32,6 +31,7 @@ const SignInPanel = React.createClass({
     redirectTo: React.PropTypes.string,
   },
 
+  mixins: [PureRenderMixin],
 
   /* Handlers */
 

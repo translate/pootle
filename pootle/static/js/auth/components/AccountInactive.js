@@ -13,11 +13,12 @@ import AuthContent from './AuthContent';
 
 
 const AccountInactive = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     onClose: React.PropTypes.func.isRequired,
   },
+
+  mixins: [PureRenderMixin],
 
 
   /* Layout */

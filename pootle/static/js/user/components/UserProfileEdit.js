@@ -33,6 +33,15 @@ const UserProfileEdit = React.createClass({
     };
   },
 
+  componentWillMount() {
+    this.setupRoutes(this.props.router);
+    Backbone.history.start({pushState: true, root: this.props.appRoot});
+  },
+
+  componentWillUpdate(nextProps, nextState) {
+    this.handleURL(nextState);
+  },
+
   setupRoutes(router) {
     router.on('route:main', () => {
       this.setState({editing: false});
@@ -41,15 +50,6 @@ const UserProfileEdit = React.createClass({
     router.on('route:edit', () => {
       this.setState({editing: true});
     });
-  },
-
-  componentWillMount() {
-    this.setupRoutes(this.props.router);
-    Backbone.history.start({pushState: true, root: this.props.appRoot});
-  },
-
-  componentWillUpdate(nextProps, nextState) {
-    this.handleURL(nextState);
   },
 
 

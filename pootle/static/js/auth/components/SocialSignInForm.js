@@ -11,12 +11,12 @@ import { PureRenderMixin } from 'react/addons';
 
 
 const SocialSignInForm = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     socialAuthProviders: React.PropTypes.array.isRequired,
   },
 
+  mixins: [PureRenderMixin],
 
   /* Handlers */
 

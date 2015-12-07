@@ -24,15 +24,13 @@ function linkify(input) {
 
 
 export const UserProfileForm = React.createClass({
-  mixins: [ModelFormMixin],
 
   propTypes: {
     onDirty: React.PropTypes.func.isRequired,
     onSuccess: React.PropTypes.func.isRequired,
   },
 
-  fields: ['full_name', 'twitter', 'linkedin', 'website', 'bio'],
-
+  mixins: [ModelFormMixin],
 
   /* Lifecycle */
 
@@ -42,6 +40,7 @@ export const UserProfileForm = React.createClass({
     }
   },
 
+  fields: ['full_name', 'twitter', 'linkedin', 'website', 'bio'],
 
   /* Handlers */
 

@@ -15,7 +15,6 @@ import { FormMixin } from 'mixins/forms';
 
 
 const SignInForm = React.createClass({
-  mixins: [FormMixin],
 
   propTypes: {
     canRegister: React.PropTypes.bool.isRequired,
@@ -24,6 +23,7 @@ const SignInForm = React.createClass({
     isLoading: React.PropTypes.bool.isRequired,
   },
 
+  mixins: [FormMixin],
 
   /* Lifecycle */
 

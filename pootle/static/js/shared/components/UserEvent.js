@@ -15,7 +15,6 @@ import TimeSince from 'components/TimeSince';
 
 
 const UserEvent = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     displayDatetime: PropTypes.string.isRequired,
@@ -31,6 +30,8 @@ const UserEvent = React.createClass({
     translationActionType: PropTypes.number,
     username: PropTypes.string,
   },
+
+  mixins: [PureRenderMixin],
 
   getActionText() {
     const { checkName } = this.props;

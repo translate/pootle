@@ -13,11 +13,12 @@ import AuthProgress from './AuthProgress';
 
 
 const RequestPasswordResetProgress = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     email: React.PropTypes.string.isRequired,
   },
+
+  mixins: [PureRenderMixin],
 
   render() {
     const sendingMsg = interpolate(gettext('Sending email to %s...'),

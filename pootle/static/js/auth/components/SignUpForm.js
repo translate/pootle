@@ -15,7 +15,6 @@ import { FormMixin } from 'mixins/forms';
 
 
 const SignUpForm = React.createClass({
-  mixins: [FormMixin],
 
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
@@ -23,6 +22,7 @@ const SignUpForm = React.createClass({
     isLoading: React.PropTypes.bool.isRequired,
   },
 
+  mixins: [FormMixin],
 
   /* Lifecycle */
 

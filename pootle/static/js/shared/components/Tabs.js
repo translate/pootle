@@ -22,15 +22,15 @@ const Tabs = React.createClass({
 
   /* Lifecycle */
 
-  getInitialState() {
-    return {
-      selectedTab: this.props.initialTab,
-    };
-  },
-
   getDefaultProps() {
     return {
       initialTab: 0,
+    };
+  },
+
+  getInitialState() {
+    return {
+      selectedTab: this.props.initialTab,
     };
   },
 

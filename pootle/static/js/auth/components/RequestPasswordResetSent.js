@@ -15,7 +15,6 @@ import RequestPasswordResetProgress from './RequestPasswordResetProgress';
 
 
 const RequestPasswordResetSent = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     dispatch: React.PropTypes.func.isRequired,
@@ -23,6 +22,7 @@ const RequestPasswordResetSent = React.createClass({
     resetEmail: React.PropTypes.string.isRequired,
   },
 
+  mixins: [PureRenderMixin],
 
   /* Handlers */
 

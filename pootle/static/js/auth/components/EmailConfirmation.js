@@ -13,12 +13,12 @@ import AuthContent from './AuthContent';
 
 
 const EmailConfirmation = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
     onClose: React.PropTypes.func.isRequired,
   },
 
+  mixins: [PureRenderMixin],
 
   /* Layout */
 
