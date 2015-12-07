@@ -40,13 +40,15 @@ class Command(PootleCommand):
         ),
     )
     help = "Save new translations to disk manually."
+    process_disabled_projects = True
 
     def handle_all_stores(self, translation_project, **options):
-        translation_project.sync(
-            conservative=not options['overwrite'],
-            skip_missing=options['skip_missing'],
-            only_newer=not options['force']
-        )
+        if translation_project.directory_exists_on_disk():
+            translation_project.sync(
+                conservative=not options['overwrite'],
+                skip_missing=options['skip_missing'],
+                only_newer=not options['force']
+            )
 
     def handle_store(self, store, **options):
         store.sync(
