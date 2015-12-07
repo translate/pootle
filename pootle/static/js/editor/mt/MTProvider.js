@@ -76,7 +76,7 @@ class MTProvider {
       (response) => this.handleSuccess(response)
     ).then(
       (result) => {
-        if (!'translation' in result) {
+        if (!('translation' in result)) {
           return result;
         }
         result.translation = placeholderCleaner.recover(result.translation);

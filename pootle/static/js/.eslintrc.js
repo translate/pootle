@@ -38,6 +38,7 @@ module.exports = {
     'no-loop-func': 2,
     'no-multi-spaces': 2,
     'no-multiple-empty-lines': [2, {'max': 2, 'maxEOF': 1}],
+    'no-negated-in-lhs': 2,
     'no-nested-ternary': 2,
     'no-new': 2,
     'no-param-reassign': 2,
