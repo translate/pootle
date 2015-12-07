@@ -20,10 +20,12 @@ const SocialVerification = React.createClass({
   mixins: [FormMixin],
 
   propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
     email: React.PropTypes.string.isRequired,
     formErrors: React.PropTypes.object.isRequired,
     isLoading: React.PropTypes.bool.isRequired,
     providerName: React.PropTypes.string.isRequired,
+    redirectTo: React.PropTypes.string,
   },
 
 

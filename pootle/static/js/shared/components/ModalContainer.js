@@ -23,6 +23,13 @@ const keys = {
 
 const ModalContainer = React.createClass({
 
+  propTypes: {
+    children: React.PropTypes.node.isRequired,
+    onClose: React.PropTypes.func.isRequired,
+    className: React.PropTypes.string,
+    style: React.PropTypes.object,
+  },
+
   _previousFocus: null,
   _ownsLock: false,
 

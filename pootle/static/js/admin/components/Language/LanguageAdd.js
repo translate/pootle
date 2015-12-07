@@ -14,6 +14,8 @@ import LanguageForm from './LanguageForm';
 const LanguageAdd = React.createClass({
 
   propTypes: {
+    collection: React.PropTypes.object.isRequired,
+    model: React.PropTypes.func.isRequired,
     onCancel: React.PropTypes.func.isRequired,
     onSuccess: React.PropTypes.func.isRequired,
   },

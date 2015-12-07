@@ -11,6 +11,12 @@ import React from 'react';
 
 const FormValueInput = React.createClass({
 
+  propTypes: {
+    handleChange: React.PropTypes.func.isRequired,
+    type: React.PropTypes.string,
+    value: React.PropTypes.string,
+  },
+
   handleChange(e) {
     this.props.handleChange(e.target.name, e.target.value);
   },

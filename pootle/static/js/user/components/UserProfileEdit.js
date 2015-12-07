@@ -17,6 +17,12 @@ import { UserProfileForm } from '../forms';
 
 const UserProfileEdit = React.createClass({
 
+  propTypes: {
+    appRoot: React.PropTypes.string.isRequired,
+    router: React.PropTypes.object.isRequired,
+    user: React.PropTypes.object.isRequired,
+  },
+
   /* Lifecycle */
 
   getInitialState() {

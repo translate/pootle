@@ -44,6 +44,7 @@ module.exports = {
     'prefer-const': 2,
     'quotes': [2, 'single', 'avoid-escape'],
     'react/no-multi-comp': 2,
+    'react/prop-types': 2,
     'semi': [2, 'always'],
     'space-before-blocks': 2,
     'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }],

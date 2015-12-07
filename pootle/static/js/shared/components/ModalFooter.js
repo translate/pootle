@@ -11,6 +11,10 @@ import React from 'react';
 
 const ModalFooter = React.createClass({
 
+  propTypes: {
+    children: React.PropTypes.node.isRequired,
+  },
+
   render() {
     return (
       <div className="lightbox-footer">

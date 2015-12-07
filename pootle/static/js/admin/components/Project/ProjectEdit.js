@@ -14,6 +14,8 @@ import ProjectForm from './ProjectForm';
 const ProjectEdit = React.createClass({
 
   propTypes: {
+    collection: React.PropTypes.object.isRequired,
+    model: React.PropTypes.object,
     onAdd: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
     onSuccess: React.PropTypes.func.isRequired,

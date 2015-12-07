@@ -17,6 +17,8 @@ import LanguageEdit from './LanguageEdit';
 const LanguageController = React.createClass({
 
   propTypes: {
+    items: React.PropTypes.object.isRequired,
+    model: React.PropTypes.func.isRequired,
     onAdd: React.PropTypes.func.isRequired,
     onCancel: React.PropTypes.func.isRequired,
     onDelete: React.PropTypes.func.isRequired,
@@ -25,6 +27,7 @@ const LanguageController = React.createClass({
     onSuccess: React.PropTypes.func.isRequired,
     searchQuery: React.PropTypes.string.isRequired,
     selectedItem: React.PropTypes.object,
+    view: React.PropTypes.string.isRequired,
   },
 
   render() {

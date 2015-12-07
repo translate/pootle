@@ -18,6 +18,8 @@ const LanguageForm = React.createClass({
   mixins: [ModelFormMixin],
 
   propTypes: {
+    collection: React.PropTypes.object.isRequired,
+    onDelete: React.PropTypes.func,
     onSuccess: React.PropTypes.func.isRequired,
   },
 

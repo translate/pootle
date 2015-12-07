@@ -14,6 +14,8 @@ import UserForm from './UserForm';
 const UserAdd = React.createClass({
 
   propTypes: {
+    collection: React.PropTypes.object.isRequired,
+    model: React.PropTypes.func.isRequired,
     onCancel: React.PropTypes.func.isRequired,
     onSuccess: React.PropTypes.func.isRequired,
   },

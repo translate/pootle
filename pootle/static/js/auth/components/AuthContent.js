@@ -12,6 +12,11 @@ import { PureRenderMixin } from 'react/addons';
 
 
 const AuthContent = React.createClass({
+  propTypes: {
+    children: React.PropTypes.node,
+    style: React.PropTypes.object,
+  },
+
   mixins: [PureRenderMixin],
 
   render() {

@@ -33,7 +33,9 @@ const Auth = React.createClass({
 
     canContact: React.PropTypes.bool.isRequired,
     canRegister: React.PropTypes.bool.isRequired,
+    dispatch: React.PropTypes.func.isRequired,
     onClose: React.PropTypes.func.isRequired,
+    screen: React.PropTypes.string.isRequired,
     socialAuthProviders: React.PropTypes.array.isRequired,
     socialError: React.PropTypes.object,
     tokenFailed: React.PropTypes.bool,

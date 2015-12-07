@@ -15,6 +15,13 @@ import msg from '../../msg';
 
 const AdminController = React.createClass({
 
+  propTypes: {
+    adminModule: React.PropTypes.object.isRequired,
+    appRoot: React.PropTypes.string.isRequired,
+    formChoices: React.PropTypes.object.isRequired,
+    router: React.PropTypes.object.isRequired,
+  },
+
   /* Lifecycle */
 
   getInitialState() {

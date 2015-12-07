@@ -22,9 +22,11 @@ const PasswordResetForm = React.createClass({
   mixins: [PureRenderMixin, FormMixin],
 
   propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
     formErrors: React.PropTypes.object.isRequired,
     isLoading: React.PropTypes.bool.isRequired,
     tokenFailed: React.PropTypes.bool.isRequired,
+    redirectTo: React.PropTypes.string.isRequired,
   },
 
 

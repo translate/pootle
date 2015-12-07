@@ -18,6 +18,7 @@ const SignUpForm = React.createClass({
   mixins: [FormMixin],
 
   propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
     formErrors: React.PropTypes.object.isRequired,
     isLoading: React.PropTypes.bool.isRequired,
   },

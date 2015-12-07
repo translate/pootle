@@ -14,6 +14,8 @@ import ProjectForm from './ProjectForm';
 const ProjectAdd = React.createClass({
 
   propTypes: {
+    collection: React.PropTypes.object.isRequired,
+    model: React.PropTypes.func.isRequired,
     onCancel: React.PropTypes.func.isRequired,
     onSuccess: React.PropTypes.func.isRequired,
   },

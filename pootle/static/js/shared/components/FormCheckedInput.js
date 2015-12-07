@@ -11,6 +11,11 @@ import React from 'react';
 
 const FormCheckedInput = React.createClass({
 
+  propTypes: {
+    handleChange: React.PropTypes.func.isRequired,
+    value: React.PropTypes.bool.isRequired,
+  },
+
   handleChange(e) {
     this.props.handleChange(e.target.name, e.target.checked);
   },

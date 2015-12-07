@@ -19,6 +19,7 @@ const Modal = React.createClass({
   mixins: [LayersMixin],
 
   propTypes: {
+    children: React.PropTypes.node.isRequired,
     title: React.PropTypes.string,
     showClose: React.PropTypes.bool,
     onClose: React.PropTypes.func.isRequired,

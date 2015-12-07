@@ -11,12 +11,14 @@ import { PureRenderMixin } from 'react';
 
 
 const Tabs = React.createClass({
-  mixins: [PureRenderMixin],
 
   propTypes: {
+    children: React.PropTypes.node.isRequired,
     initialTab: React.PropTypes.number,
+    onChange: React.PropTypes.func,
   },
 
+  mixins: [PureRenderMixin],
 
   /* Lifecycle */
 

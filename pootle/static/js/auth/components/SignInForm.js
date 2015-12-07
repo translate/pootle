@@ -19,6 +19,7 @@ const SignInForm = React.createClass({
 
   propTypes: {
     canRegister: React.PropTypes.bool.isRequired,
+    dispatch: React.PropTypes.func.isRequired,
     formErrors: React.PropTypes.object.isRequired,
     isLoading: React.PropTypes.bool.isRequired,
   },

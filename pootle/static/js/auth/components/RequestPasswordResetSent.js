@@ -18,6 +18,7 @@ const RequestPasswordResetSent = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
+    dispatch: React.PropTypes.func.isRequired,
     isLoading: React.PropTypes.bool.isRequired,
     resetEmail: React.PropTypes.string.isRequired,
   },
