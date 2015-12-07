@@ -14,7 +14,6 @@ import 'jquery-caret';
 import 'jquery-easing';
 import 'jquery-highlightRegex';
 import 'jquery-history';
-import 'jquery-jsonp';
 import 'jquery-serializeObject';
 import 'jquery-utils';
 
@@ -28,6 +27,7 @@ import 'shortcut';
 import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
+import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
 import captcha from '../captcha';
@@ -118,9 +118,6 @@ PTL.editor = {
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
-
-    /* TM requests handler */
-    this.tmReq = null;
 
     /* Levenshtein word comparer */
     this.wordComparer = new Levenshtein({ compare: 'words' });
@@ -1004,13 +1001,7 @@ PTL.editor = {
     } else if (s === 'timeout') {
       text = gettext('The server seems down. Try again later.');
     } else {
-      // Since we use jquery-jsonp, we must differentiate between
-      // the passed arguments
-      if (xhr.hasOwnProperty('responseText')) {
-        text = $.parseJSON(xhr.responseText).msg;
-      } else {
-        text = gettext('Unknown error');
-      }
+      text = $.parseJSON(xhr.responseText).msg;
     }
 
     PTL.editor.displayError(text);
@@ -2003,8 +1994,8 @@ PTL.editor = {
     const tgt = store.get('target_lang');
     const sText = unit.get('source')[0];
     const pStyle = store.get('project_style');
-    let tmUrl = this.settings.tmUrl + src + '/' + tgt +
-          '/unit/?source=' + encodeURIComponent(sText) + '&jsoncallback=?';
+    let tmUrl = `${this.settings.tmUrl}${src}/${tgt}/unit/` +
+      `?source=${encodeURIComponent(sText)}`;
 
     if (!sText.length) {
       return;
@@ -2014,33 +2005,30 @@ PTL.editor = {
       tmUrl += '&style=' + pStyle;
     }
 
-    // Always abort previous requests so we only get results for the
-    // current unit
-    if (this.tmReq !== null) {
-      this.tmReq.abort();
+    fetch({ url: tmUrl, crossDomain: true })
+      .then(
+        (data) => this.handleTmResults(data, store, unit),
+        this.error
+      );
+  },
+
+  handleTmResults(data, store, unit) {
+    if (!data.length) {
+      return false;
     }
 
-    this.tmReq = $.jsonp({
-      url: tmUrl,
-      callback: '_jsonp' + unit.id,
-      dataType: 'jsonp',
-      cache: true,
-      success(data) {
-        if (data.length) {
-          const sourceText = unit.get('source')[0];
-          const filtered = PTL.editor.filterTMResults(data, sourceText);
-          const name = gettext('Similar translations');
-          const tm = PTL.editor.tmpl.tm({ store: store.toJSON(),
-                                         unit: unit.toJSON(),
-                                         suggs: filtered,
-                                         name: name });
-
-          $(tm).hide().appendTo('#extras-container')
-                      .slideDown(1000, 'easeOutQuad');
-        }
-      },
-      error: PTL.editor.error,
+    const sourceText = unit.get('source')[0];
+    const filtered = PTL.editor.filterTMResults(data, sourceText);
+    const name = gettext('Similar translations');
+    const tm = PTL.editor.tmpl.tm({
+      store: store.toJSON(),
+      unit: unit.toJSON(),
+      suggs: filtered,
+      name: name,
     });
+
+    $(tm).hide().appendTo('#extras-container')
+                .slideDown(1000, 'easeOutQuad');
   },
 
 

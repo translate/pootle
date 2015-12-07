@@ -48,7 +48,6 @@ var resolve = {
     'jquery-flot-time': __dirname + '/vendor/jquery/jquery.flot.time.js',
     'jquery-highlightRegex': __dirname + '/vendor/jquery/jquery.highlightRegex.js',
     'jquery-history': __dirname + '/vendor/jquery/jquery.history.js',
-    'jquery-jsonp': __dirname + '/vendor/jquery/jquery.jsonp.js',
     'jquery-magnific-popup': __dirname + '/vendor/jquery/jquery.magnific-popup.js',
     'jquery-select2': __dirname + '/vendor/jquery/jquery.select2.js',
     'jquery-serializeObject': __dirname + '/vendor/jquery/jquery.serializeObject.js',

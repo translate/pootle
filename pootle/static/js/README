@@ -191,18 +191,6 @@ Directory contents
 
         http://github.com/tkyk/jquery-history-plugin/
 
-      - jquery.jsonp.js :
-        Alternative solution to jQuery's JSONP support.
-
-        jQuery's JSONP support has some limitations (the abort method doesn't
-        really abort), and this plugin tries to address those issues.
-
-        These features may be implemented in jQuery core at some stage.
-
-        Using version 2.4.0.
-
-        https://github.com/jaubourg/jquery-jsonp
-
       - jquery.magnific-popup.js :
         Lightbox overlay popups to display all sorts of content: images,
         HTML, AJAX data, ...
