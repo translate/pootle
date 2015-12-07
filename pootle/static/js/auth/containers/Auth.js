@@ -83,70 +83,60 @@ const Auth = React.createClass({
           title: hasSocialAuth ? gettext('Sign In With...') : gettext('Sign In'),
           content: SignInPanel,
         };
-        break;
 
       case 'inactive':
         return {
           title: gettext('Account Inactive'),
           content: AccountInactive,
         };
-        break;
 
       case 'signUp':
         return {
           title: gettext('Sign Up'),
           content: SignUpForm,
         };
-        break;
 
       case 'activation':
         return {
           title: gettext('Account Activation'),
           content: AccountActivation,
         };
-        break;
 
       case 'emailConfirmation':
         return {
           title: gettext('Email Confirmation'),
           content: EmailConfirmation,
         };
-        break;
 
       case 'requestPasswordReset':
         return {
           title: gettext('Reset Your Password'),
           content: RequestPasswordResetForm,
         };
-        break;
 
       case 'requestPasswordResetSent':
         return {
           title: gettext('Reset Your Password'),
           content: RequestPasswordResetSent,
         };
-        break;
 
       case 'passwordReset':
         return {
           title: gettext('Reset Your Password'),
           content: PasswordResetForm,
         };
-        break;
 
       case 'socialAuthError':
         return {
           title: gettext('Oops...'),
           content: SocialAuthError,
         };
-        break;
 
       case 'socialVerification':
         return {
           title: gettext('Social Verification'),
           content: SocialVerification,
         };
-        break;
 
       default:
         break;
