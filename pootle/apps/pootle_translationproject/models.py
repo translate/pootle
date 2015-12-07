@@ -215,10 +215,23 @@ class TranslationProject(models.Model, CachedTreeItem):
                                            checks.StandardUnitChecker)
             ]
 
-        return checks.TeeChecker(checkerclasses=checkerclasses,
-                                 excludefilters=excluded_filters,
-                                 errorhandler=self.filtererrorhandler,
-                                 languagecode=self.language.code)
+        checker = checks.TeeChecker(checkerclasses=checkerclasses,
+                                    excludefilters=excluded_filters,
+                                    errorhandler=self.filtererrorhandler,
+                                    languagecode=self.language.code)
+
+        # patch checker configuration with Pootle-provided language information
+        def _update_lang(ch):
+            ch.config.lang.fullname = self.language.fullname
+            ch.config.lang.nplurals = self.language.nplurals
+            ch.config.lang.pluralequation = self.language.pluralequation
+            if hasattr(ch, 'checkers'):
+                for child_ch in ch.checkers:
+                    _update_lang(child_ch)
+
+        _update_lang(checker)
+        return checker
+
 
     @property
     def non_db_state(self):
