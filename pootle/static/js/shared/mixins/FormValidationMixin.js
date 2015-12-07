@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import React from 'react';
+import React from 'react';  // eslint-disable-line no-unused-vars
 
 
 export const FormValidationMixin = {
