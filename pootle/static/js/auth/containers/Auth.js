@@ -77,69 +77,69 @@ const Auth = React.createClass({
   getScreen(screenName, props) {
     // FIXME: use react-router
     switch (screenName) {
-    case 'signIn':
-      const hasSocialAuth = props.socialAuthProviders.length !== 0;
-      return {
-        title: hasSocialAuth ? gettext('Sign In With...') : gettext('Sign In'),
-        content: SignInPanel,
-      };
+      case 'signIn':
+        const hasSocialAuth = props.socialAuthProviders.length !== 0;
+        return {
+          title: hasSocialAuth ? gettext('Sign In With...') : gettext('Sign In'),
+          content: SignInPanel,
+        };
 
-    case 'inactive':
-      return {
-        title: gettext('Account Inactive'),
-        content: AccountInactive,
-      };
+      case 'inactive':
+        return {
+          title: gettext('Account Inactive'),
+          content: AccountInactive,
+        };
 
-    case 'signUp':
-      return {
-        title: gettext('Sign Up'),
-        content: SignUpForm,
-      };
+      case 'signUp':
+        return {
+          title: gettext('Sign Up'),
+          content: SignUpForm,
+        };
 
-    case 'activation':
-      return {
-        title: gettext('Account Activation'),
-        content: AccountActivation,
-      };
+      case 'activation':
+        return {
+          title: gettext('Account Activation'),
+          content: AccountActivation,
+        };
 
-    case 'emailConfirmation':
-      return {
-        title: gettext('Email Confirmation'),
-        content: EmailConfirmation,
-      };
+      case 'emailConfirmation':
+        return {
+          title: gettext('Email Confirmation'),
+          content: EmailConfirmation,
+        };
 
-    case 'requestPasswordReset':
-      return {
-        title: gettext('Reset Your Password'),
-        content: RequestPasswordResetForm,
-      };
+      case 'requestPasswordReset':
+        return {
+          title: gettext('Reset Your Password'),
+          content: RequestPasswordResetForm,
+        };
 
-    case 'requestPasswordResetSent':
-      return {
-        title: gettext('Reset Your Password'),
-        content: RequestPasswordResetSent,
-      };
+      case 'requestPasswordResetSent':
+        return {
+          title: gettext('Reset Your Password'),
+          content: RequestPasswordResetSent,
+        };
 
-    case 'passwordReset':
-      return {
-        title: gettext('Reset Your Password'),
-        content: PasswordResetForm,
-      };
+      case 'passwordReset':
+        return {
+          title: gettext('Reset Your Password'),
+          content: PasswordResetForm,
+        };
 
-    case 'socialAuthError':
-      return {
-        title: gettext('Oops...'),
-        content: SocialAuthError,
-      };
+      case 'socialAuthError':
+        return {
+          title: gettext('Oops...'),
+          content: SocialAuthError,
+        };
 
-    case 'socialVerification':
-      return {
-        title: gettext('Social Verification'),
-        content: SocialVerification,
-      };
+      case 'socialVerification':
+        return {
+          title: gettext('Social Verification'),
+          content: SocialVerification,
+        };
 
-    default:
-      break;
+      default:
+        break;
     }
   },
 
