@@ -10,6 +10,7 @@ import React from 'react';
 
 import LayersMixin from 'mixins/layers';
 
+import ModalContainer from './ModalContainer';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
 
