@@ -60,9 +60,14 @@ const Search = React.createClass({
     let loadMoreBtn;
 
     if (items.count > 0 && items.length < items.count) {
-      loadMoreBtn = <button className="btn" onClick={this.loadMore}>
-                    {gettext('Load More')}
-                    </button>;
+      loadMoreBtn = (
+        <button
+          className="btn"
+          onClick={this.loadMore}
+        >
+          {gettext('Load More')}
+        </button>
+      );
     }
 
     const resultsClassNames = cx({
