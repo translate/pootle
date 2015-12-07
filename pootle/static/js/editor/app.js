@@ -574,7 +574,7 @@ PTL.editor = {
     ]).reduce((a, b) => a.concat(b), []);
 
     let hlRegex;
-    if (searchOptions.indexOf('exact') >= 0 ) {
+    if (searchOptions.indexOf('exact') >= 0) {
       hlRegex = new RegExp(`(${escapeUnsafeRegexSymbols(searchText)})`);
     } else {
       hlRegex = new RegExp(makeRegexForMultipleWords(searchText), 'i');

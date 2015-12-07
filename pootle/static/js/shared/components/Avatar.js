@@ -42,7 +42,7 @@ const Avatar = React.createClass({
     let imgSrc = this.props.src;
     if (email) {
       let emailMd5 = email;
-      if (email.indexOf('@') > -1 ) {
+      if (email.indexOf('@') > -1) {
         emailMd5 = md5(email);
       }
       imgSrc = `https://secure.gravatar.com/avatar/${emailMd5}?s=${size}&d=mm`;
