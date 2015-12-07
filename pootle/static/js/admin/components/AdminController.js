@@ -26,7 +26,7 @@ const AdminController = React.createClass({
 
   getInitialState() {
     return {
-      items: new this.props.adminModule.collection(),
+      items: new this.props.adminModule.Collection(),
       selectedItem: null,
       searchQuery: '',
       view: 'edit',
@@ -56,7 +56,7 @@ const AdminController = React.createClass({
     });
 
     router.on('route:edit', (id) => {
-      const Model = this.props.adminModule.model;
+      const { Model } = this.props.adminModule;
       const item = new Model({id: id});
       this.handleSelectItem(item);
     });
@@ -138,13 +138,13 @@ const AdminController = React.createClass({
   /* Layout */
 
   render() {
-    const model = this.props.adminModule.model;
+    const { Model } = this.props.adminModule;
 
     // Inject dynamic model form choices
     // FIXME: hackish and too far from ideal
-    _.defaults(model.prototype, {fieldChoices: {}});
-    _.extend(model.prototype.fieldChoices, this.props.formChoices);
-    _.extend(model.prototype.defaults, this.props.formChoices.defaults);
+    _.defaults(Model.prototype, {fieldChoices: {}});
+    _.extend(Model.prototype.fieldChoices, this.props.formChoices);
+    _.extend(Model.prototype.defaults, this.props.formChoices.defaults);
 
     const props = {
       items: this.state.items,
@@ -152,7 +152,7 @@ const AdminController = React.createClass({
       searchQuery: this.state.searchQuery,
       view: this.state.view,
       collection: this.props.adminModule.collection,
-      model: model,
+      model: Model,
 
       onSearch: this.handleSearch,
       onSelectItem: this.handleSelectItem,

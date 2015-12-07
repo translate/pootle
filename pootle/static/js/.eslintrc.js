@@ -29,6 +29,7 @@ module.exports = {
     'func-names': 1,
     'indent': [2, 2, { "SwitchCase": 1, "VariableDeclarator": 1 }],
     'key-spacing': [2, {'beforeColon': false, 'afterColon': true}],
+    'new-cap': [2, {'newIsCap': true}],
     'no-alert': 1,
     'no-else-return': 2,
     'no-extra-semi': 2,

@@ -1277,7 +1277,9 @@ PTL.editor = {
       uIds = _.difference(uIds, fetchedIds);
 
       if (!uIds.length) {
+        /* eslint-disable new-cap */
         return $.Deferred((deferred) => deferred.reject(false));
+        /* eslint-enable new-cap */
       }
 
       reqData.uids = uIds.join(',');

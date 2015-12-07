@@ -12,6 +12,6 @@ import LanguageController from './LanguageController';
 
 export default {
   Controller: LanguageController,
-  model: Language,
-  collection: LanguageSet,
+  Model: Language,
+  Collection: LanguageSet,
 };

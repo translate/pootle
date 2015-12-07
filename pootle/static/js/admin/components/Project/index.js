@@ -12,6 +12,6 @@ import ProjectController from './ProjectController';
 
 export default {
   Controller: ProjectController,
-  model: Project,
-  collection: ProjectSet,
+  Model: Project,
+  Collection: ProjectSet,
 };

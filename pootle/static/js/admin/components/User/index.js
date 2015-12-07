@@ -12,6 +12,6 @@ import UserController from './UserController';
 
 export default {
   Controller: UserController,
-  model: User,
-  collection: UserSet,
+  Model: User,
+  Collection: UserSet,
 };

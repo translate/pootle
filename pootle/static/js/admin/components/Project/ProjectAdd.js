@@ -21,6 +21,7 @@ const ProjectAdd = React.createClass({
   },
 
   render() {
+    const Model = this.props.model;
     return (
       <div className="item-add">
         <div className="hd">
@@ -34,7 +35,7 @@ const ProjectAdd = React.createClass({
         </div>
         <div className="bd">
           <ProjectForm
-            model={new this.props.model()}
+            model={new Model()}
             collection={this.props.collection}
             onSuccess={this.props.onSuccess}
           />
