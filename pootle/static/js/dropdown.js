@@ -88,11 +88,15 @@ const DropdownView = Backbone.View.extend({
   },
 
   show() {
-    !this.isVisible() && this.$el.addClass(sel.open);
+    if (!this.isVisible()) {
+      this.$el.addClass(sel.open);
+    }
   },
 
   hide() {
-    this.isVisible() && this.$el.removeClass(sel.open);
+    if (this.isVisible()) {
+      this.$el.removeClass(sel.open);
+    }
   },
 
   toggle(e) {

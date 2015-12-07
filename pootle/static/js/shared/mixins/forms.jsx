@@ -101,13 +101,17 @@ export const FormMixin = {
       isDirty: false,
     });
 
-    this.handleSuccess && this.handleSuccess(this.getResource());
+    if (this.handleSuccess) {
+      this.handleSuccess(this.getResource());
+    }
   },
 
   handleFormError(xhr) {
     this.validateResponse(xhr);
 
-    this.handleError && this.handleError(xhr);
+    if (this.handleError) {
+      this.handleError(xhr);
+    }
   },
 
 };

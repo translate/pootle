@@ -41,7 +41,11 @@ function cssId(id) {
 
 
 function setTdWidth($td, w) {
-  w === 0 ? $td.hide() : $td.css('width', w + '%').show();
+  if (w === 0) {
+    $td.hide();
+  } else {
+    $td.css('width', w + '%').show();
+  }
 }
 
 

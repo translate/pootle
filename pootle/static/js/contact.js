@@ -32,7 +32,9 @@ const contact = {
   url: null,
 
   init(options) {
-    options && $.extend(this, options);
+    if (options) {
+      $.extend(this, options);
+    }
 
     $(document).on('click', sel.trigger, (e) => {
       e.preventDefault();
@@ -72,11 +74,18 @@ const contact = {
       callbacks: {
         ajaxContentAdded() {
           const newSubject = [];
-          opts.subjectPrefix && newSubject.push(opts.subjectPrefix);
-          opts.subject && newSubject.push(opts.subject);
-
-          newSubject.length && $(sel.subject).val(newSubject.join(''));
-          opts.body && $(sel.body).val(opts.body);
+          if (opts.subjectPrefix) {
+            newSubject.push(opts.subjectPrefix);
+          }
+          if (opts.subject) {
+            newSubject.push(opts.subject);
+          }
+          if (newSubject.length) {
+            $(sel.subject).val(newSubject.join(''));
+          }
+          if (opts.body) {
+            $(sel.body).val(opts.body);
+          }
         },
       },
       mainClass: 'popup-ajax',

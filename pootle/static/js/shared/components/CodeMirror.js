@@ -51,7 +51,9 @@ const CodeMirror = React.createClass({
   },
 
   handleChange() {
-    this.props.onChange && this.props.onChange(this.codemirror.getValue());
+    if (this.props.onChange) {
+      this.props.onChange(this.codemirror.getValue());
+    }
   },
 
   render() {

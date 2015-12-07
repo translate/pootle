@@ -40,7 +40,9 @@ const Tabs = React.createClass({
   handleClick(index) {
     this.setState({selectedTab: index});
 
-    this.props.onChange && this.props.onChange(index);
+    if (this.props.onChange) {
+      this.props.onChange(index);
+    }
   },
 
 

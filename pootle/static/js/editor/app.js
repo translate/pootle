@@ -77,7 +77,9 @@ PTL.editor = {
       mt: [],
     };
 
-    options && assign(this.settings, options);
+    if (options) {
+      assign(this.settings, options);
+    }
 
     /* Cached elements */
     this.backToBrowserEl = document.querySelector('.js-back-to-browser');
@@ -900,7 +902,9 @@ PTL.editor = {
     }
 
     const hlClasses = [bestMatchCls];
-    isExact && hlClasses.push(exactMatchCls);
+    if (isExact) {
+      hlClasses.push(exactMatchCls);
+    }
     $(boxId).addClass(hlClasses.join(' '));
   },
 
@@ -969,7 +973,9 @@ PTL.editor = {
   },
 
   hideMsg() {
-    this.$msgOverlay.length && this.$msgOverlay.fadeOut(300);
+    if (this.$msgOverlay.length) {
+      this.$msgOverlay.fadeOut(300);
+    }
   },
 
   /* Displays error messages on top of the toolbar */
@@ -1051,7 +1057,9 @@ PTL.editor = {
       reqData.soptions = searchOptions;
     } else {
       reqData.filter = this.filter;
-      this.sortBy !== 'default' && (reqData.sort = this.sortBy);
+      if (this.sortBy !== 'default') {
+        reqData.sort = this.sortBy;
+      }
     }
 
     if (this.modifiedSince !== null) {
@@ -1349,7 +1357,9 @@ PTL.editor = {
     this.fetchUnits();
 
     const body = {};
-    this.settings.vFolder && (body.vfolder = this.settings.vFolder);
+    if (this.settings.vFolder) {
+      body.vfolder = this.settings.vFolder;
+    }
 
     UnitAPI.fetchUnit(newUnit.id, body)
       .then(
@@ -1594,7 +1604,9 @@ PTL.editor = {
         checks: filterChecks,
       };
 
-      sortBy !== 'default' && (newHash.sort = sortBy);
+      if (sortBy !== 'default') {
+        newHash.sort = sortBy;
+      }
 
       $.history.load($.param(newHash));
     }
@@ -1651,8 +1663,12 @@ PTL.editor = {
       newHash.checks = filterChecks;
     }
 
-    sortBy !== 'default' && (newHash.sort = sortBy);
-    user !== null && (newHash.user = user);
+    if (sortBy !== 'default') {
+      newHash.sort = sortBy;
+    }
+    if (user !== null) {
+      newHash.user = user;
+    }
 
     $.history.load($.param(newHash));
   },
@@ -1684,7 +1700,9 @@ PTL.editor = {
           this.user = null;
           $('.js-user-filter').remove();
 
-          this.sortBy !== 'default' && (newHash.sort = this.sortBy);
+          if (this.sortBy !== 'default') {
+            newHash.sort = this.sortBy;
+          }
         }
 
         $.history.load($.param(newHash));
