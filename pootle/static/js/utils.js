@@ -82,7 +82,15 @@ export function updateHashPart(part, newVal, removeArray) {
 
 /* Cross-browser comparison function */
 export function strCmp(a, b) {
-  return a === b ? 0 : a < b ? -1 : 1;
+  let rv;
+  if (a === b) {
+    rv = 0;
+  } else if (a < b) {
+    rv = -1;
+  } else {
+    rv = 1;
+  }
+  return rv;
 }
 
 

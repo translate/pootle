@@ -362,8 +362,15 @@ PTL.reports = {
     if (delta > 0) {
       const remainders = data.grouped.slice(0);
       remainders.sort((a, b) => {
-        return (b.remainder > a.remainder) ?
-          1 : (b.remainder < a.remainder) ? -1 : 0;
+        let rv;
+        if (b.remainder > a.remainder) {
+          rv = 1;
+        } else if (b.remainder < a.remainder) {
+          rv = -1;
+        } else {
+          rv = 0;
+        }
+        return rv;
       });
 
       let i = 0;

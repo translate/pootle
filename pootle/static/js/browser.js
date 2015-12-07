@@ -85,8 +85,15 @@ function navigateTo(languageCode, projectCode, resource) {
     }
   }
 
-  const changed = projChanged ? 'project' :
-                  langChanged ? 'language' : 'resource';
+  let changed;
+  if (projChanged) {
+    changed = 'project';
+  } else if (langChanged) {
+    changed = 'language';
+  } else {
+    changed = 'resource';
+  }
+
   cookie('user-choice', changed, { path: '/' });
 
   // Remember the latest language the user switched to
