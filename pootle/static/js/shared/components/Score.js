@@ -8,18 +8,22 @@
 
 import React from 'react';
 
-import Score from 'components/Score';
+import Odometer from './Odometer';
 
 
-function init(value) {
-  React.render(
-    <Score value={value} />,
-    document.querySelector('.js-score')
-  );
-}
+const Score = React.createClass({
+
+  propTypes: {
+    value: React.PropTypes.number.isRequired,
+  },
+
+  render() {
+    return (
+      <Odometer value={this.props.value} />
+    );
+  },
+
+});
 
 
-export default {
-  init,
-  set: init,
-};
+export default Score;
