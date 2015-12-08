@@ -95,6 +95,24 @@ def test_sync(fr_tutorial_remove_sync_po):
 
 
 @pytest.mark.django_db
+def test_update_from_ts(en_tutorial_po):
+    from django.conf import settings
+    from translate.storage.factory import getclass
+
+    # Parse store
+    en_tutorial_po.update_from_disk()
+    ts_dir = os.path.join(settings.ROOT_DIR, 'tests', 'data', 'ts')
+    tp = en_tutorial_po.translation_project
+    store_filepath = os.path.join(ts_dir, tp.real_path, 'tutorial.ts')
+    with open(store_filepath) as storefile:
+        store = getclass(storefile)(storefile.read())
+    en_tutorial_po.update(store)
+
+    assert(not en_tutorial_po.units[1].hasplural())
+    assert(en_tutorial_po.units[2].hasplural())
+
+
+@pytest.mark.django_db
 def test_update_unit_order(ru_tutorial_po):
     """Tests unit order after a specific update.
     """
