@@ -9,12 +9,10 @@ page.viewportSize = { width: 600, height: 600 };
 page.paperSize = { format: 'Letter', orientation: 'portrait', margin: '1cm' }
 page.zoomFactor = 1.3;
 
-//console.log('Loading', infile);
 page.open(infile, function (status) {
     if (status !== 'success') {
         console.log('Failed to load the file');
     } else {
-        //console.log('Saving', outfile);
         page.render(outfile);
     }
     phantom.exit();
