@@ -209,3 +209,9 @@ class AnnouncementFactory(factory.django.DjangoModelFactory):
     class Meta(object):
         model = 'staticpages.StaticPage'
     active = True
+
+
+class SuggestionFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'pootle_store.Suggestion'

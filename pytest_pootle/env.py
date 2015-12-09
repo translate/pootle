@@ -8,6 +8,7 @@
 
 import os
 import shutil
+from datetime import datetime, timedelta
 
 from django.utils.functional import cached_property
 
@@ -17,7 +18,7 @@ class PootleTestEnv(object):
     methods = (
         "case_sensitive_schema", "content_type", "site_root", "system_users",
         "permissions", "site_permissions", "tps", "languages", "vfolders",
-        "subdirs", "announcements")
+        "subdirs", "submissions", "announcements")
 
     def __init__(self, request):
         self.request = request
@@ -280,6 +281,15 @@ class PootleTestEnv(object):
             self._add_stores(tp, n=(2, 1), parent=subdir0)
             self._add_stores(tp, n=(1, 1), parent=subdir1)
 
+    def setup_submissions(self):
+        from pootle_store.models import Unit
+
+        year_ago = datetime.now() - timedelta(days=365)
+        Unit.objects.update(creation_time=year_ago)
+
+        for unit in Unit.objects.all():
+            self._add_submissions(unit, year_ago)
+
     def teardown(self):
         from django.conf import settings
 
@@ -343,3 +353,64 @@ class PootleTestEnv(object):
             for state in [UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE]:
                 for i in range(0, n[1]):
                     UnitFactory(store=store, state=state)
+
+    def _update_submission_times(self, update_time, last_update=None):
+        from pootle_statistics.models import Submission
+
+        submissions = Submission.objects.all()
+        if last_update:
+            submissions = submissions.exclude(
+                creation_time__lte=last_update)
+        submissions.update(creation_time=update_time)
+
+    def _add_submissions(self, unit, created):
+        from pootle_store.models import UNTRANSLATED, FUZZY, OBSOLETE, Unit
+
+        from django.contrib.auth import get_user_model
+
+        original_state = unit.state
+        unit.created = created
+
+        User = get_user_model()
+        admin = User.objects.get(username="admin")
+        member = User.objects.get(username="member")
+        member2 = User.objects.get(username="member2")
+
+        first_modified = created + timedelta(days=((30 * unit.index) + 10))
+
+        # add suggestion at first_modified
+        suggestion, _ = unit.add_suggestion(
+            "Suggestion for %s" % unit.source,
+            user=member,
+            touch=False)
+        self._update_submission_times(first_modified, created)
+
+        # accept the suggestion 7 days later if not untranslated
+        next_time = first_modified + timedelta(days=7)
+        if original_state == UNTRANSLATED:
+            unit.reject_suggestion(
+                suggestion, unit.store.translation_project, admin)
+        else:
+            unit.accept_suggestion(
+                suggestion, unit.store.translation_project, admin)
+            Unit.objects.filter(pk=unit.pk).update(
+                submitted_on=next_time, mtime=next_time)
+        self._update_submission_times(
+            next_time, first_modified)
+
+        # add another suggestion as different user 7 days later
+        suggestion2, _ = unit.add_suggestion(
+            "Suggestion 2 for %s" % unit.source,
+            user=member2,
+            touch=False)
+        self._update_submission_times(
+            first_modified + timedelta(days=14),
+            next_time)
+
+        # mark FUZZY
+        if original_state == FUZZY:
+            unit.markfuzzy()
+
+        # mark OBSOLETE
+        if original_state == OBSOLETE:
+            unit.makeobsolete()
