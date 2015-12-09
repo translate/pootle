@@ -44,7 +44,7 @@ def get_previous_month():
 
 
 class Command(NoArgsCommand):
-    help = ""
+    help = "Generate invoices and send them via e-mail."
     shared_option_list = (
         make_option('--debug-month', dest='month',
                     help='Month (get previous month if no data provided)',
