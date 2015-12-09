@@ -48,10 +48,6 @@ class Command(PootleCommand):
     def handle_all(self, **options):
         if not self.projects and not self.languages:
             logging.info(u"Running %s (noargs)", self.name)
-
-            try:
-                QualityCheckUpdater(options['check_names']).update()
-            except Exception:
-                logging.exception(u"Failed to run %s", self.name)
+            QualityCheckUpdater(options['check_names']).update()
         else:
             super(Command, self).handle_all(**options)
