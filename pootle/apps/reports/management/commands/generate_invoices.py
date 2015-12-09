@@ -112,10 +112,10 @@ class Command(NoArgsCommand):
             self.stdout.write("ERROR: sending failed")
 
     def handle_noargs(self, **options):
-        # The script prefix needs to be set here because the generated
-        # URLs need to be aware of that and they are cached. Ideally
-        # Django should take care of setting this up, but it doesn't yet:
-        # https://code.djangoproject.com/ticket/16734
+        # The script prefix needs to be set here because the generated URLs need
+        # to be aware of that and they are cached. Ideally Django should take
+        # care of setting this up, but it's only available starting from
+        # Django 1.10: https://code.djangoproject.com/ticket/16734
         script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
                             else force_unicode(settings.FORCE_SCRIPT_NAME))
         set_script_prefix(script_name)
