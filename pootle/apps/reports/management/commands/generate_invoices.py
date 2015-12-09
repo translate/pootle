@@ -66,8 +66,10 @@ class Command(NoArgsCommand):
         if currency not in self.change_rates:
             url = 'http://www.x-rates.com/average/?from=%s&to=USD&year=%s' % \
                   (currency, date.year)
-            self.stdout.write("Loading USD/%s exchange rate from external service" %
-                              currency)
+            self.stdout.write(
+                'Loading USD/%s exchange rate from external service'
+                % currency
+            )
 
             try:
                 html = urllib2.urlopen(url).read()
@@ -77,12 +79,18 @@ class Command(NoArgsCommand):
                     raise
 
                 monthly_avg = re.split(",", match.group(1))
-                self.change_rates[currency] = round(float(monthly_avg[date.month - 1]), 3)
+                self.change_rates[currency] = round(
+                    float(monthly_avg[date.month - 1]),
+                    3,
+                )
 
             except Exception:
                 # set change rate to zero to invalidate summary
                 # if we couldn't get a proper value
-                self.stdout.write("ERROR: Failed to get %s/USD change rate." % currency)
+                self.stdout.write(
+                    'ERROR: Failed to get %s/USD change rate.'
+                    % currency
+                )
                 exit(1)
 
         return self.change_rates[currency]
@@ -121,7 +129,10 @@ class Command(NoArgsCommand):
         set_script_prefix(script_name)
 
         if not hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
-            self.stdout.write('NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_BIN not defined; will not generate PDFs')
+            self.stdout.write(
+                'NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_BIN not defined; '
+                'PDFs will not be generated'
+            )
 
         month = options.get('month', None)
         add_correction = False
@@ -144,9 +155,11 @@ class Command(NoArgsCommand):
         try:
             [start, end] = get_date_interval(month)
         except ValueError:
-            message = '--month parameter has an invalid format: "%s", while it should be in "YYYY-MM" format' \
-                      % month
-            self.stdout.write(message)
+            self.stdout.write(
+                '--month parameter has an invalid format: "%s", '
+                'while it should be in "YYYY-MM" format'
+                % month
+            )
             exit(1)
 
         date = end if now > end else now
@@ -178,7 +191,6 @@ class Command(NoArgsCommand):
                 try:
                     User = get_user_model()
                     user_dict[username] = User.objects.get(username=username)
-
                 except User.DoesNotExist:
                     self.stdout.write('ERROR: User %s not found.' % username)
                     exit(1)
@@ -243,18 +255,22 @@ class Command(NoArgsCommand):
                 if ctx['total'] > 0 and ctx['total'] < ctx['minimal_payment']:
                     first_moment = now.replace(day=1, hour=0, minute=0,
                                                second=0, tzinfo=tz)
-                    PaidTask.objects.create(task_type=PaidTaskTypes.CORRECTION,
-                                            amount=(-1) * ctx['total'],
-                                            rate=1,
-                                            datetime=end,
-                                            description='Carryover to the next month',
-                                            user=user)
-                    PaidTask.objects.create(task_type=PaidTaskTypes.CORRECTION,
-                                            amount=ctx['total'],
-                                            rate=1,
-                                            datetime=first_moment,
-                                            description='Carryover from the previous month',
-                                            user=user)
+                    PaidTask.objects.create(
+                        task_type=PaidTaskTypes.CORRECTION,
+                        amount=(-1) * ctx['total'],
+                        rate=1,
+                        datetime=end,
+                        description='Carryover to the next month',
+                        user=user,
+                    )
+                    PaidTask.objects.create(
+                        task_type=PaidTaskTypes.CORRECTION,
+                        amount=ctx['total'],
+                        rate=1,
+                        datetime=first_moment,
+                        description='Carryover from the previous month',
+                        user=user,
+                    )
                     ctx['correction_added'] = True
                     ctx['balance'] = ctx['total']
                     ctx['total'] = 0
@@ -283,8 +299,7 @@ class Command(NoArgsCommand):
             user_conf['paid_by'] = user_conf['paid_by'].lstrip()
             ctx.update(user_conf)
 
-            name = 'Invoice - %s - %s' % \
-                       (ctx['name'], ctx['id'])
+            name = 'Invoice - %s - %s' % (ctx['name'], ctx['id'])
 
             filename = os.path.join(month_dir, name)
 
@@ -302,10 +317,15 @@ class Command(NoArgsCommand):
                 ctx['to_email_list'] = user_conf['accounting-email'].split(',')
                 ctx['cc_email_list'] = None
                 if 'accounting-email-cc' in user_conf:
-                    ctx['cc_email_list'] = user_conf['accounting-email-cc'].split(',')
+                    ctx['cc_email_list'] = (
+                        user_conf['accounting-email-cc'].split(',')
+                    )
 
                 if ctx['total'] > 0:
-                    subject = u"For payment: Invoice %s, %s" % (ctx['id'], ctx['name'])
+                    subject = (
+                        u'For payment: Invoice %s, %s'
+                        % (ctx['id'], ctx['name'])
+                    )
                     to = debug_email_list or ctx['to_email_list']
                     cc = ctx['cc_email_list']
                     if debug_email_list:
@@ -320,9 +340,15 @@ class Command(NoArgsCommand):
 
                 if ctx['total'] > 0:
                     html = render_to_string('invoices/invoice_message.html', ctx)
-                    subject = u"Sent for payment: Invoice %s, %s" % (ctx['id'], ctx['name'])
+                    subject = (
+                        u'Sent for payment: Invoice %s, %s'
+                        % (ctx['id'], ctx['name'])
+                    )
                 else:
-                    subject = u"Notice: No payment will be sent this month to %s" % ctx['name']
+                    subject = (
+                        u'Notice: No payment will be sent this month to %s'
+                        % ctx['name']
+                    )
                     html = render_to_string('invoices/no_invoice_message.html', ctx)
                     pdf_filename = None
                     if ctx['correction_added']:
