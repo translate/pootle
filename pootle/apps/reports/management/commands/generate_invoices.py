@@ -88,11 +88,11 @@ class Command(NoArgsCommand):
         return self.change_rates[currency]
 
     def html2pdf(self, html_filename, pdf_filename):
-        if hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_EXECUTABLE'):
+        if hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
             html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                        '../../', 'html2pdf.js')
             self.stdout.write("Saving PDF to '{f}'".format(f=pdf_filename))
-            result = call([settings.POOTLE_INVOICES_PHANTOMJS_EXECUTABLE,
+            result = call([settings.POOTLE_INVOICES_PHANTOMJS_BIN,
                            html2pdf_js, html_filename, pdf_filename])
             if result:
                 self.stdout.write('Script returned result: {r}'.format(r=result))
@@ -120,8 +120,8 @@ class Command(NoArgsCommand):
                             else force_unicode(settings.FORCE_SCRIPT_NAME))
         set_script_prefix(script_name)
 
-        if not hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_EXECUTABLE'):
-            self.stdout.write('NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_EXECUTABLE not defined; will not generate PDFs')
+        if not hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
+            self.stdout.write('NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_BIN not defined; will not generate PDFs')
 
         month = options.get('month', None)
         add_correction = False
