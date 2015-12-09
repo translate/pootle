@@ -33,8 +33,6 @@ class Command(PootleCommand):
         ),
     )
     option_list = PootleCommand.option_list + shared_option_list
-
-    cached_methods = [CachedMethods.CHECKS]
     process_disabled_projects = True
 
     def handle_all_stores(self, translation_project, **options):
