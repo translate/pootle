@@ -40,10 +40,13 @@ from fixtures.revision import revision
 from fixtures.site import site_matrix
 from fixtures.views import admin_client
 
+from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
+
 
 PARAMETERS = (
     ("update_store_test_names", UPDATE_STORE_TESTS),
-    ("file_import_failure_names", FILE_IMPORT_FAIL_TESTS))
+    ("file_import_failure_names", FILE_IMPORT_FAIL_TESTS),
+    ("wordcount_names", WORDCOUNT_TESTS))
 
 
 def pytest_generate_tests(metafunc):
@@ -71,4 +74,4 @@ __all__ = (
     'english_tutorial', 'french_tutorial', 'italian_tutorial',
     'russian_tutorial', 'spanish_tutorial', 'templates_tutorial',
     'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
-    'revision', 'admin_client', 'site_matrix')
+    'revision', 'admin_client', 'site_matrix', 'wordcount_names')
