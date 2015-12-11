@@ -2149,7 +2149,7 @@ PTL.editor = {
 
     const area = document.querySelector('.js-translation-area');
 
-    area.value = translation;
+    area.value = _.unescape(translation);
     autosize.update(area);
 
     // Save a copy of the resulting text in the DOM for further
