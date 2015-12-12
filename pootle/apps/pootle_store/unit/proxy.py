@@ -28,3 +28,14 @@ class UnitProxy(object):
             return self.__dict__["unit"][k] or ""
         except KeyError:
             return self.__getattribute__(k)
+
+    def getlocations(self):
+        if self.locations is None:
+            return []
+        return filter(None, self.locations.split('\n'))
+
+    def hasplural(self):
+        return (
+            self.source is not None
+            and (len(self.source.strings) > 1
+                 or getattr(self.source, "plural", None)))
