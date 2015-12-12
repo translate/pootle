@@ -13,16 +13,14 @@ from django.utils.functional import cached_property
 
 from .util import OBSOLETE
 from .fields import to_python as multistring_to_python
+from .unit import UnitProxy
 
 
-class UnitProxy(object):
+class UnitDiffProxy(UnitProxy):
     """Wraps File/DB Unit dicts used by StoreDiff for equality comparison"""
 
     match_attrs = ["context", "developer_comment", "locations",
                    "source", "target", "translator_comment"]
-
-    def __init__(self, unit):
-        self.unit = unit
 
     def __eq__(self, other):
         return all(getattr(self, k) == getattr(other, k)
@@ -31,25 +29,13 @@ class UnitProxy(object):
     def __ne__(self, other):
         return not self == other
 
-    def __getattr__(self, k):
-        try:
-            return self.__dict__["unit"][k] or ""
-        except KeyError:
-            return self.__getattribute__(k)
+
+class DBUnit(UnitDiffProxy):
+
+    pass
 
 
-class DBUnit(UnitProxy):
-
-    @property
-    def source(self):
-        return multistring_to_python(self.unit["source_f"])
-
-    @property
-    def target(self):
-        return multistring_to_python(self.unit["target_f"])
-
-
-class FileUnit(UnitProxy):
+class FileUnit(UnitDiffProxy):
 
     @property
     def locations(self):
