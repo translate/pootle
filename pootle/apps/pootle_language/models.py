@@ -25,17 +25,6 @@ from pootle.i18n.gettext import tr_lang, language_dir
 from staticpages.models import StaticPage
 
 
-class LanguageManager(models.Manager):
-
-    def get_queryset(self):
-        """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return (
-            super(LanguageManager, self).get_queryset().select_related(
-                'directory',
-            )
-        )
-
-
 class LiveLanguageManager(models.Manager):
     """Manager that only considers `live` languages.
 
@@ -108,7 +97,7 @@ class Language(models.Model, TreeItem):
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
                                      editable=False)
 
-    objects = LanguageManager()
+    objects = models.Manager()
     live = LiveLanguageManager()
 
     class Meta(object):

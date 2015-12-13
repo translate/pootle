@@ -138,20 +138,7 @@ def check_permission(permission_codename, request):
             permission_codename in request.permissions)
 
 
-class PermissionSetManager(models.Manager):
-
-    def get_queryset(self):
-        """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return (
-            super(PermissionSetManager, self).get_queryset().select_related(
-                'user', 'directory',
-            )
-        )
-
-
 class PermissionSet(models.Model):
-
-    objects = PermissionSetManager()
 
     class Meta(object):
         unique_together = ('user', 'directory')

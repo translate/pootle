@@ -120,15 +120,6 @@ class SubmissionManager(BaseSubmissionManager):
 
     use_for_related_fields = True
 
-    def get_queryset(self):
-        """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return (
-            super(SubmissionManager, self).get_queryset().select_related(
-                'translation_project', 'suggestion', 'submitter', 'unit',
-                'quality_check', 'store',
-            )
-        )
-
     def get_unit_comments(self):
         """Submissions that change a `Unit`'s comment.
 

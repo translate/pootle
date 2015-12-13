@@ -278,10 +278,6 @@ class VirtualFolder(models.Model):
 class VirtualFolderTreeItemManager(models.Manager):
     use_for_related_fields = True
 
-    def get_queryset(self):
-        return super(VirtualFolderTreeItemManager, self) \
-            .get_queryset().select_related('vfolder')
-
     def live(self):
         """Filter VirtualFolderTreeItems with non-obsolete directories."""
         return self.filter(directory__obsolete=False)

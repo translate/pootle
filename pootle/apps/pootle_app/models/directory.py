@@ -21,12 +21,6 @@ from pootle_misc.baseurl import l
 class DirectoryManager(models.Manager):
     use_for_related_fields = True
 
-    def get_queryset(self):
-        # ForeignKey fields with null=True are not selected by select_related
-        # unless explicitly specified
-        return super(DirectoryManager, self).get_queryset() \
-                                            .select_related('parent')
-
     def live(self):
         """Filters non-obsolete directories."""
         return self.filter(obsolete=False)

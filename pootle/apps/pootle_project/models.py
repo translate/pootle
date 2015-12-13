@@ -44,14 +44,6 @@ RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 
 class ProjectManager(models.Manager):
 
-    def get_queryset(self):
-        """Mimics `select_related(depth=1)` behavior. Pending review."""
-        return (
-            super(ProjectManager, self).get_queryset().select_related(
-                'source_language', 'directory',
-            )
-        )
-
     def cached_dict(self, user):
         """Return a cached list of projects tuples for `user`.
 
