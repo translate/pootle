@@ -8,6 +8,7 @@ django-overextends>=0.3.2
 django-redis
 django-rq
 django-transaction-hooks
+django-haystack==2.4.1
 
 # Libraries
 cssmin
