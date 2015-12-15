@@ -62,6 +62,10 @@
     </div>
     {% endif %}
     {% endwith %}
+
+    <h3 class="user-detailed-stats">
+      <a href="{% url 'pootle-user-stats' object.username %}">{% trans 'Statistics' %}</a>
+    </h3>
   </div>
 
   {% if object.bio or object.has_contact_details or user == object %}

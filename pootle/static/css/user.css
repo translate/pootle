@@ -64,6 +64,12 @@
     color: #5A8295;
 }
 
+#user-stats .user-detailed-stats,
+#user-stats .user-detailed-stats
+{
+    margin-bottom: 1em;
+}
+
 #user-stats .user-position
 {
     display: inline-block;
