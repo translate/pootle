@@ -39,7 +39,8 @@ from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.storage import PootleFileSystemStorage
-from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.core.url_helpers import (
+    get_editor_filter, split_pootle_path, PathResolver)
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
@@ -240,34 +241,14 @@ class UnitManager(models.Manager):
         :param pootle_path: An internal pootle path.
         :param user: The user who is accessing the units.
         """
-        lang, proj, dir_path, filename = split_pootle_path(pootle_path)
 
-        units_qs = self.get_for_user(user)
+        units_qs = self.get_for_user(user).exclude(
+            store__pootle_path__startswith="/templates/")
 
-        # /projects/<project_code>/translate/*
-        if lang is None and proj is not None:
-            if dir_path and filename:
-                units_path = ''.join(['/%/', proj, '/', dir_path, filename])
-            elif dir_path:
-                units_path = ''.join(['/%/', proj, '/', dir_path, '%'])
-            elif filename:
-                units_path = ''.join(['/%/', proj, '/', filename])
-            else:
-                units_path = ''.join(['/%/', proj, '/%'])
-        # /projects/translate/*
-        elif lang is None and proj is None:
-            units_path = '/%'
-        # /<lang_code>/<project_code>/translate/*
-        # /<lang_code>/translate/*
-        else:
-            units_path = ''.join([pootle_path, '%'])
-
-        units_qs = units_qs.extra(
-            where=[
-                'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path NOT LIKE %s',
-            ], params=[units_path, '/templates/%']
-        )
+        resolver = PathResolver(pootle_path)
+        if resolver.regex is not None:
+            units_qs = units_qs.filter(
+                store__pootle_path__regex=resolver.regex)
 
         # Non-superusers are limited to the projects they have access to
         if not user.is_superuser:
