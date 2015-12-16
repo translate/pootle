@@ -74,4 +74,4 @@ __all__ = (
     'english_tutorial', 'french_tutorial', 'italian_tutorial',
     'russian_tutorial', 'spanish_tutorial', 'templates_tutorial',
     'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
-    'revision', 'admin_client', 'site_matrix', 'wordcount_names')
+    'revision', 'admin_client', 'site_matrix')
