@@ -12,14 +12,44 @@ import shutil
 import pytest
 
 
+def _add_stores(tp, n=(3, 2), parent=None):
+    from pootle_pytest.factories import StoreFactory, UnitFactory
+
+    from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
+
+    for i in range(0, n[0]):
+        # add 3 stores
+        if parent is None:
+            store = StoreFactory(translation_project=tp)
+        else:
+            store = StoreFactory(translation_project=tp, parent=parent)
+
+        # add 8 units to each store
+        for state in [UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE]:
+            for i in range(0, n[1]):
+                UnitFactory(store=store, state=state)
+
+
+@pytest.fixture
+def site_matrix_with_subdirs(site_matrix):
+    from pootle_pytest.factories import DirectoryFactory
+
+    from pootle_translationproject.models import TranslationProject
+
+    for tp in TranslationProject.objects.all():
+        subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory)
+        subdir1 = DirectoryFactory(name="subdir1", parent=subdir0)
+        _add_stores(tp, n=(2, 1), parent=subdir0)
+        _add_stores(tp, n=(1, 1), parent=subdir1)
+
+
 @pytest.fixture
 def site_matrix(request, system, settings):
 
     from pootle_pytest.factories import (
         ProjectFactory, DirectoryFactory, LanguageFactory,
-        TranslationProjectFactory, StoreFactory, UnitFactory)
+        TranslationProjectFactory)
 
-    from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
     from pootle_app.models import Directory
 
     # create root and projects directories, first clear the class cache
@@ -41,15 +71,7 @@ def site_matrix(request, system, settings):
         for language in languages:
             # add a TP to the project for each language
             tp = TranslationProjectFactory(project=project, language=language)
-
-            for i in range(0, 3):
-                # add 3 stores
-                store = StoreFactory(translation_project=tp)
-
-                # add 8 units to each store
-                for state in [UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE]:
-                    for i in range(0, 2):
-                        UnitFactory(store=store, state=state)
+            _add_stores(tp)
 
     def _teardown():
         if "root" in Directory.objects.__dict__:
