@@ -72,7 +72,7 @@ To install and run Redis on a Debian-based system:
 .. code-block:: bash
 
    $ sudo apt-get install redis-server
-   $ sudo services redis-server start
+   $ sudo service redis-server start
 
 .. note:: Pootle requires a minimum Redis server version of 2.8.4. If you are using
    Debian Wheezy you will need to install `redis-server` from backports.
