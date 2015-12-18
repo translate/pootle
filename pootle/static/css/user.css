@@ -64,6 +64,12 @@
     color: #5A8295;
 }
 
+#user-meta .admin,
+#user-meta .admin:hover
+{
+    color: #f33;
+}
+
 #user-stats .user-detailed-stats,
 #user-stats .user-detailed-stats
 {
