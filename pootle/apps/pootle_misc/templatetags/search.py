@@ -17,9 +17,6 @@ register = template.Library()
 
 @register.inclusion_tag('core/search.html', takes_context=True)
 def render_search(context):
-    request = context['request']
-
     return {
-        'search_form': make_search_form(request=request),
-        'search_action': request.resource_obj.get_translate_url(),
-    }
+        'search_form': make_search_form(request=context['request']),
+        'search_action': context["object"].get_translate_url()}
