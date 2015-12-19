@@ -9,6 +9,10 @@
 
 from django.conf.urls import patterns, url
 
+from .views import (
+    TPBrowseStoreView, TPBrowseView, TPExportStoreView, TPExportView,
+    TPTranslateStoreView, TPTranslateView)
+
 
 urlpatterns = patterns(
     'pootle_translationproject.views',
@@ -21,19 +25,30 @@ urlpatterns = patterns(
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'translate',
+        r'translate/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?$',
+        TPTranslateView.as_view(),
         name='pootle-tp-translate'),
-
-    # Export view for proofreading
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'export_view',
+        r'translate/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?(?P<filename>.*\.*)$',
+        TPTranslateStoreView.as_view(),
+        name='pootle-tp-store-translate'),
+
+    # Export view
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'export-view/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?$',
+        TPExportView.as_view(),
         name='pootle-tp-export'),
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'export-view/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?(?P<filename>.*\.*)$',
+        TPExportStoreView.as_view(),
+        name='pootle-tp-store-export'),
 
     # Browser
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
-        'browse',
+        r'(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?$',
+        TPBrowseView.as_view(),
         name='pootle-tp-browse'),
-)
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
+        r'(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)(?P<filename>.*\.*)?$',
+        TPBrowseStoreView.as_view(),
+        name='pootle-tp-store-browse'))

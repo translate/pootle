@@ -133,15 +133,21 @@ def tp_views(site_permissions, tp_view_names, site_matrix_with_vfolders,
 
     test_type = tp_view_names.split("_")[0]
     tp = TranslationProject.objects.all()[0]
+    tp_view = "pootle-tp"
     kwargs = {
         "project_code": tp.project.code,
         "language_code": tp.language.code,
         "dir_path": "",
         "filename": ""}
     kwargs.update(TP_VIEW_TESTS[tp_view_names])
-    view_name = "pootle-tp-%s" % test_type
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
+    if kwargs.get("filename"):
+        tp_view = "%s-store" % tp_view
+    else:
+        del kwargs["filename"]
+    view_name = "%s-%s" % (tp_view, test_type)
     response = client.get(reverse(view_name, kwargs=kwargs))
+    kwargs["filename"] = kwargs.get("filename", "")
     return test_type, tp, response.wsgi_request, response, kwargs
 
 

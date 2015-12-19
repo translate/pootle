@@ -7,21 +7,35 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import functools
+
 from django.conf import settings
-from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse
+from django.http import Http404
+from django.shortcuts import get_object_or_404, redirect
+from django.utils.functional import cached_property
+from django.utils.lru_cache import lru_cache
 
 from import_export.views import handle_upload_form
-from pootle.core.browser import (get_children, get_parent, get_table_headings,
-                                 get_vfolders)
-from pootle.core.decorators import (get_path_obj, get_resource,
-                                    permission_required)
-from pootle.core.helpers import (SIDEBAR_COOKIE_NAME, get_browser_context,
-                                 get_export_view_context,
-                                 get_sidebar_announcements_context,
-                                 get_translation_context)
-from pootle.core.utils.json import jsonify
-from pootle_app.models.permissions import check_permission
+from pootle.core.browser import (
+    get_children, get_parent, get_table_headings)
+from pootle.core.decorators import (
+    get_path_obj, permission_required)
+from pootle.core.helpers import (
+    get_sidebar_announcements_context)
+from pootle.core.views import (
+    PootleBrowseView, PootleTranslateView, PootleExportView,
+    requires_permission, set_permissions)
+from pootle_app.models import Directory
+from pootle_app.models.permissions import (
+    check_permission, get_matching_permissions)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
+from pootle_store.models import Store
+from pootle_translationproject.models import TranslationProject
+from virtualfolder.helpers import (
+    extract_vfolder_from_path, make_vfolder_treeitem_dict)
+from virtualfolder.models import VirtualFolderTreeItem
 
 
 @get_path_obj
@@ -43,120 +57,331 @@ def admin_permissions(request, translation_project):
                        'translation_projects/admin/permissions.html', ctx)
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource
-def browse(request, translation_project, dir_path, filename=None):
-    project = translation_project.project
-    language = translation_project.language
+def redirect_to_tp_on_404(f):
 
-    directory = request.directory
-    store = request.store
-    is_admin = check_permission('administrate', request)
+    @functools.wraps(f)
+    def method_wrapper(self, request, *args, **kwargs):
+        User = get_user_model()
+        request.profile = User.get(self.request.user)
+        try:
+            request.permissions = get_matching_permissions(
+                request.profile,
+                self.permission_context) or []
+        except Http404 as e:
+            if (kwargs["dir_path"] or kwargs.get("filename", None)):
+                try:
+                    TranslationProject.objects.get(
+                        project__code=kwargs["project_code"],
+                        language__code=kwargs["language_code"])
+                    # the TP exists so redirect to it
+                    return redirect(
+                        reverse(
+                            'pootle-tp-browse',
+                            kwargs={
+                                k: v
+                                for k, v
+                                in kwargs.items()
+                                if k in [
+                                    "language_code",
+                                    "project_code"]}))
+                except TranslationProject.DoesNotExist:
+                    pass
 
-    ctx, cookie_data = get_sidebar_announcements_context(
-        request,
-        (project, language, translation_project, ),
-    )
-
-    ctx.update(get_browser_context(request))
-
-    # TODO improve plugin logic
-    if "import_export" in settings.INSTALLED_APPS:
-        if request.user.is_authenticated():
-            if check_permission('translate', request):
-                ctx.update(handle_upload_form(request, project))
-            ctx.update({'display_download': True,
-                        'has_sidebar': True})
-
-    stats = request.resource_obj.get_stats()
-
-    if store is None:
-        table_fields = ['name', 'progress', 'total', 'need-translation',
-                        'suggestions', 'critical', 'last-updated', 'activity']
-        ctx.update({
-            'table': {
-                'id': 'tp',
-                'fields': table_fields,
-                'headings': get_table_headings(table_fields),
-                'items': get_children(directory),
-            }
-        })
-
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            vfolders = get_vfolders(directory, all_vfolders=is_admin)
-            if len(vfolders) > 0:
-                table_fields = ['name', 'priority', 'progress', 'total',
-                                'need-translation', 'suggestions', 'critical',
-                                'last-updated', 'activity']
-                ctx.update({
-                    'vfolders': {
-                        'id': 'vfolders',
-                        'fields': table_fields,
-                        'headings': get_table_headings(table_fields),
-                        'items': vfolders,
-                    },
-                })
-
-                # FIXME: set vfolders stats in the resource, don't inject them
-                # here.
-                stats['vfolders'] = {}
-
-                for vfolder_treeitem in directory.vf_treeitems.iterator():
-                    if (request.user.is_superuser or
-                            vfolder_treeitem.is_visible):
-                        stats['vfolders'][vfolder_treeitem.code] = \
-                            vfolder_treeitem.get_stats(include_children=False)
-
-    ctx.update({
-        'parent': get_parent(directory if store is None else store),
-        'translation_project': translation_project,
-        'project': project,
-        'language': language,
-        'stats': jsonify(stats),
-        'is_admin': is_admin,
-        'is_store': store is not None,
-
-        'browser_extends': 'translation_projects/base.html',
-    })
-
-    response = render(request, 'browser/index.html', ctx)
-
-    if cookie_data:
-        response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)
-
-    return response
+            # if we get here - the TP does not exist
+            user_choice = self.request.COOKIES.get(
+                'user-choice', None)
+            if user_choice:
+                url = None
+                if user_choice == 'language':
+                    url = reverse(
+                        'pootle-language-browse',
+                        args=[kwargs["language_code"]])
+                elif user_choice == "project":
+                    url = reverse(
+                        'pootle-project-browse',
+                        args=[kwargs["project_code"], '', ''])
+                if url:
+                    response = redirect(url)
+                    response.delete_cookie('user-choice')
+                    return response
+            raise e
+        return f(self, request, *args, **kwargs)
+    return method_wrapper
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource
-def translate(request, translation_project, dir_path, filename):
-    project = translation_project.project
+class TPMixin(object):
+    """This Mixin is used by all TP views.
 
-    ctx = get_translation_context(request)
+    The context object may be a resource with the TP, ie a Directory or Store.
+    """
 
-    ctx.update({
-        'language': translation_project.language,
-        'project': project,
-        'translation_project': translation_project,
+    @redirect_to_tp_on_404
+    @set_permissions
+    @requires_permission("view")
+    def dispatch(self, request, *args, **kwargs):
+        # get funky with the request 8/
+        return super(TPMixin, self).dispatch(request, *args, **kwargs)
 
-        'editor_extends': 'translation_projects/base.html',
-    })
+    @property
+    def ctx_path(self):
+        return self.tp.pootle_path
 
-    return render(request, "editor/main.html", ctx)
+    @property
+    def resource_path(self):
+        return self.object.pootle_path.replace(self.ctx_path, "")
+
+    @property
+    def dir_path(self):
+        return self.resource_path
+
+    @cached_property
+    def tp(self):
+        return self.object.translation_project
+
+    @cached_property
+    def project(self):
+        return self.tp.project
+
+    @cached_property
+    def language(self):
+        return self.tp.language
+
+    @cached_property
+    def sidebar_announcements(self):
+        return get_sidebar_announcements_context(
+            self.request,
+            (self.project, self.language, self.tp))
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource
-def export_view(request, translation_project, dir_path, filename=None):
-    """Displays a list of units with filters applied."""
-    ctx = get_export_view_context(request)
-    ctx.update({
-        'source_language': translation_project.project.source_language,
-        'language': translation_project.language,
-        'project': translation_project.project,
-    })
+class TPDirectoryMixin(TPMixin):
+    model = Directory
+    browse_url_path = "pootle-tp-browse"
+    export_url_path = "pootle-tp-export"
+    translate_url_path = "pootle-tp-translate"
 
-    return render(request, 'editor/export_view.html', ctx)
+    @lru_cache()
+    def get_object(self):
+        return get_object_or_404(
+            Directory.objects.all(),
+            pootle_path=self.path)
+
+    @property
+    def url_kwargs(self):
+        return {
+            "language_code": self.language.code,
+            "project_code": self.project.code,
+            "dir_path": self.dir_path}
+
+
+class TPStoreMixin(TPMixin):
+    model = Store
+    browse_url_path = "pootle-tp-store-browse"
+    export_url_path = "pootle-tp-store-export"
+    translate_url_path = "pootle-tp-store-translate"
+    is_store = True
+
+    @property
+    def permission_context(self):
+        return self.get_object().parent
+
+    @property
+    def dir_path(self):
+        return self.resource_path.replace(self.object.name, "")
+
+    @property
+    def url_kwargs(self):
+        return {
+            "language_code": self.language.code,
+            "project_code": self.project.code,
+            "dir_path": self.dir_path,
+            "filename": self.object.name}
+
+    @lru_cache()
+    def get_object(self):
+        path = (
+            "/%(language_code)s/%(project_code)s/%(dir_path)s%(filename)s"
+            % self.kwargs)
+        return get_object_or_404(
+            Store.objects.select_related(
+                "parent",
+                "translation_project__language",
+                "translation_project__project"),
+            pootle_path=path)
+
+
+class TPBrowseBaseView(PootleBrowseView):
+    template_extends = 'translation_projects/base.html'
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(TPBrowseBaseView, self).get_context_data(*args, **kwargs)
+        ctx.update(
+            {'parent': get_parent(self.object)})
+        return ctx
+
+
+class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
+    pass
+
+
+class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
+    table_id = "tp"
+    table_fields = [
+        'name', 'progress', 'total', 'need-translation',
+        'suggestions', 'critical', 'last-updated', 'activity']
+
+    @cached_property
+    def items(self):
+        return get_children(self.object)
+
+    def get_upload_widget(self, project):
+        ctx = {}
+        has_upload = (
+            "import_export" in settings.INSTALLED_APPS
+            and self.request.user.is_authenticated()
+            and check_permission('translate', self.request))
+        if has_upload:
+            ctx.update(handle_upload_form(self.request, project))
+            ctx.update(
+                {'display_download': True,
+                 'has_sidebar': True})
+        return ctx
+
+    @cached_property
+    def has_vfolders(self):
+        return self.object.has_vfolders
+
+    @cached_property
+    def vfolders(self):
+        vftis = self.object.vf_treeitems
+        if not self.is_admin:
+            vftis = vftis.filter(vfolder__is_public=True)
+        return [
+            make_vfolder_treeitem_dict(vfolder_treeitem)
+            for vfolder_treeitem
+            in vftis.order_by('-vfolder__priority').select_related("vfolder")
+            if (self.is_admin
+                or vfolder_treeitem.is_visible)]
+
+    @cached_property
+    def vfolder_data(self):
+        ctx = {}
+        if 'virtualfolder' not in settings.INSTALLED_APPS:
+            return {}
+        if len(self.vfolders) > 0:
+            table_fields = [
+                'name', 'priority', 'progress', 'total',
+                'need-translation', 'suggestions', 'critical',
+                'last-updated', 'activity']
+            ctx.update({
+                'vfolders': {
+                    'id': 'vfolders',
+                    'fields': table_fields,
+                    'headings': get_table_headings(table_fields),
+                    'items': self.vfolders}})
+        return ctx
+
+    @cached_property
+    def vfolder_stats(self):
+        if 'virtualfolder' not in settings.INSTALLED_APPS:
+            return {}
+        stats = {"vfolders": {}}
+        for vfolder_treeitem in self.vfolders or []:
+            stats['vfolders'][
+                vfolder_treeitem['code']] = vfolder_treeitem["stats"]
+            del vfolder_treeitem["stats"]
+        return stats
+
+    @cached_property
+    def stats(self):
+        stats = self.vfolder_stats
+        if stats and stats["vfolders"]:
+            stats.update(self.object.get_stats())
+        else:
+            stats = self.object.get_stats()
+        return stats
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
+        ctx.update(self.get_upload_widget(self.project))
+        ctx.update(self.vfolder_data)
+        return ctx
+
+
+class TPTranslateBaseView(PootleTranslateView):
+    translate_url_path = "pootle-tp-translate"
+    browse_url_path = "pootle-tp-browse"
+    export_url_path = "pootle-tp-export"
+    template_extends = 'translation_projects/base.html'
+
+    @property
+    def pootle_path(self):
+        return "%s%s" % (self.ctx_path, self.resource_path)
+
+    @property
+    def display_vfolder_priority(self):
+        if 'virtualfolder' not in settings.INSTALLED_APPS:
+            return False
+        return VirtualFolderTreeItem.objects.filter(
+            pootle_path__startswith=self.object.pootle_path).exists()
+
+
+class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
+
+    @property
+    def request_path(self):
+        return "/%(language_code)s/%(project_code)s/%(dir_path)s" % self.kwargs
+
+    @cached_property
+    def extracted_path(self):
+        return extract_vfolder_from_path(self.request_path)
+
+    @property
+    def display_vfolder_priority(self):
+        if 'virtualfolder' not in settings.INSTALLED_APPS:
+            return False
+        vfolder = self.extracted_path[0]
+        if vfolder:
+            return False
+        return VirtualFolderTreeItem.objects.filter(
+            pootle_path__startswith=self.object.pootle_path).exists()
+
+    @property
+    def resource_path(self):
+        vfolder = self.extracted_path[0]
+        path = ""
+        if vfolder:
+            path = "%s/" % vfolder.name
+        return (
+            "%s%s"
+            % (path,
+               self.object.pootle_path.replace(self.ctx_path, "")))
+
+    @property
+    def path(self):
+        return self.extracted_path[1]
+
+    @property
+    def vfolder_pk(self):
+        vfolder = self.extracted_path[0]
+        if vfolder:
+            return vfolder.pk
+        return ""
+
+
+class TPTranslateStoreView(TPStoreMixin, TPTranslateBaseView):
+    pass
+
+
+class TPExportBaseView(PootleExportView):
+
+    @property
+    def source_language(self):
+        return self.project.source_language
+
+
+class TPExportView(TPDirectoryMixin, TPExportBaseView):
+    pass
+
+
+class TPExportStoreView(TPStoreMixin, TPExportBaseView):
+    pass
