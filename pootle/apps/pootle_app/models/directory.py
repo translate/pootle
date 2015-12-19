@@ -131,7 +131,7 @@ class Directory(models.Model, CachedTreeItem):
 
         if lang and proj:
             pattern_name = 'pootle-tp-translate'
-            pattern_args = [lang, proj, dir, fn]
+            pattern_args = [lang, proj, dir]
         elif lang:
             pattern_name = 'pootle-language-translate'
             pattern_args = [lang]

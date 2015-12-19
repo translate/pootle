@@ -531,15 +531,13 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.update_dirty_cache()
 
     def get_absolute_url(self):
-        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
-        return reverse('pootle-tp-browse', args=[lang, proj, dir, fn])
+        return self.store.get_absolute_url()
 
     def get_translate_url(self):
-        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
-        return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
-            '#unit=', unicode(self.id),
-        ])
+        return (
+            "%s%s"
+            % (self.store.get_translate_url(),
+               '#unit=%s' % unicode(self.id)))
 
     def get_search_locations_url(self, **kwargs):
         lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
@@ -1497,15 +1495,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.clear_all_cache(parents=False, children=False)
 
     def get_absolute_url(self):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return reverse('pootle-tp-browse', args=[lang, proj, dir, fn])
+        return reverse(
+            'pootle-tp-store-browse',
+            args=split_pootle_path(self.pootle_path))
 
     def get_translate_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
-            get_editor_filter(**kwargs),
-        ])
+        return u''.join(
+            [reverse("pootle-tp-store-translate",
+                     args=split_pootle_path(self.pootle_path)),
+             get_editor_filter(**kwargs)])
 
     def require_dbid_index(self, update=False, obsolete=False):
         """build a quick mapping index between unit ids and database ids"""

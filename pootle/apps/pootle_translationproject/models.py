@@ -316,15 +316,15 @@ class TranslationProject(models.Model, CachedTreeItem):
         directory.delete()
 
     def get_absolute_url(self):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return reverse('pootle-tp-browse', args=[lang, proj, dir, fn])
+        return reverse(
+            'pootle-tp-browse',
+            args=split_pootle_path(self.pootle_path)[:-1])
 
     def get_translate_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
-        return u''.join([
-            reverse('pootle-tp-translate', args=[lang, proj, dir, fn]),
-            get_editor_filter(**kwargs),
-        ])
+        return u''.join(
+            [reverse("pootle-tp-translate",
+                     args=split_pootle_path(self.pootle_path)[:-1]),
+             get_editor_filter(**kwargs)])
 
     def get_announcement(self, user=None):
         """Return the related announcement, if any."""
