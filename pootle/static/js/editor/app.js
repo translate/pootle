@@ -37,7 +37,9 @@ import msg from '../msg';
 import score from '../score';
 import search from '../search';
 import utils from '../utils';
-import { escapeUnsafeRegexSymbols, makeRegexForMultipleWords } from './utils';
+import {
+  decodeEntities, escapeUnsafeRegexSymbols, makeRegexForMultipleWords
+} from './utils';
 
 
 const CTX_STEP = 1;
@@ -2149,7 +2151,7 @@ PTL.editor = {
 
     const area = document.querySelector('.js-translation-area');
 
-    area.value = _.unescape(translation);
+    area.value = decodeEntities(translation);
     autosize.update(area);
 
     // Save a copy of the resulting text in the DOM for further
