@@ -34,10 +34,11 @@ class PlaceholderCleaner {
     this.sourceText = text;
 
     // Walk through known patterns and replace them with [N] placeholders
-    return text.replace(HTML_PAT, (s) => this.collectArguments(s))
-               .replace(C_PRINTF_PAT, (s) => this.collectArguments(s))
-               .replace(C_SHARP_STR_PAT, (s) => this.collectArguments(s))
-               .replace(PERCENT_NUMBER_PAT, (s) => this.collectArguments(s));
+    return text
+      .replace(HTML_PAT, (s) => this.collectArguments(s))
+      .replace(C_PRINTF_PAT, (s) => this.collectArguments(s))
+      .replace(C_SHARP_STR_PAT, (s) => this.collectArguments(s))
+      .replace(PERCENT_NUMBER_PAT, (s) => this.collectArguments(s));
   }
 
   recover(translation) {
