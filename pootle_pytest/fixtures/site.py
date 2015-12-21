@@ -44,11 +44,11 @@ def site_matrix_with_subdirs(site_matrix):
 
 
 @pytest.fixture
-def site_matrix(request, system, settings):
+def site_root(request, system, settings):
 
     from pootle_pytest.factories import (
-        ProjectFactory, DirectoryFactory, LanguageFactory,
-        TranslationProjectFactory)
+        ProjectFactory, DirectoryFactory, LanguageFactory
+    )
 
     from pootle_app.models import Directory
 
@@ -68,11 +68,6 @@ def site_matrix(request, system, settings):
         # add 2 projects
         project = ProjectFactory(source_language=languages[0])
 
-        for language in languages:
-            # add a TP to the project for each language
-            tp = TranslationProjectFactory(project=project, language=language)
-            _add_stores(tp)
-
     def _teardown():
         if "root" in Directory.objects.__dict__:
             del Directory.objects.__dict__['root']
@@ -86,3 +81,16 @@ def site_matrix(request, system, settings):
                         settings.POOTLE_TRANSLATION_DIRECTORY, trans_dir))
 
     request.addfinalizer(_teardown)
+
+
+@pytest.fixture
+def site_matrix(site_root):
+    from pootle_project.models import Project
+    from pootle_language.models import Language
+    from pootle_pytest.factories import TranslationProjectFactory
+
+    for project in Project.objects.all():
+        for language in Language.objects.all():
+            # add a TP to the project for each language
+            tp = TranslationProjectFactory(project=project, language=language)
+            _add_stores(tp)

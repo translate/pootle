@@ -27,14 +27,6 @@ def test_tp_create_fail(tutorial, english):
         TranslationProject.objects.create(project=tutorial, language=english)
 
 
-@pytest.mark.django_db
-def test_tp_create_no_files(tutorial, fish):
-    # There are no files on disk so TP was not automagically created and there
-    # are no templates loaded
-    tp = TranslationProject.objects.create(project=tutorial, language=fish)
-    assert list(tp.stores.all()) == []
-
-
 def _test_tp_stores_match(tp1, tp2):
     # For testing tp creation from templates
     assert tp1.stores.count() == tp2.stores.count()
@@ -79,3 +71,28 @@ def test_tp_create_with_files(tutorial, english, klingon, settings):
     TranslationProject.objects.create(project=tutorial, language=klingon)
 
     shutil.rmtree(os.path.join(trans_dir, "tutorial/kl"))
+
+
+@pytest.mark.django_db
+def test_tp_empty_stats(site_root):
+    from pootle_project.models import Project
+    from pootle_language.models import Language
+    from pootle_translationproject.models import TranslationProject
+
+    project = Project.objects.first()
+    language = Language.objects.first()
+
+    tp, created = TranslationProject.objects.get_or_create(language=language,
+                                                           project=project)
+
+    # There are no files on disk so TP was not automagically created and there
+    # are no templates loaded
+    assert list(tp.stores.all()) == []
+
+    # Check if zero stats is calculated and available
+    stats = tp.get_stats()
+    assert stats['total'] == 0
+    assert stats['translated'] == 0
+    assert stats['fuzzy'] == 0
+    assert stats['suggestions'] == 0
+    assert stats['critical'] == 0
