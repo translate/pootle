@@ -287,6 +287,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                     init_store_from_template(self, template_store)
 
             self.scan_files()
+            # If this TP has no stores cache should be updated forcibly.
+            if self.stores.live().count() == 0:
+                self.update_all_cache()
 
             # Create units from disk store
             for store in self.stores.live().iterator():
