@@ -60,7 +60,7 @@ export function makeRegexForMultipleWords(s) {
  * Refs. https://stackoverflow.com/a/1395954/783019
  */
 export function decodeEntities(encodedString) {
-  var textarea = document.createElement('textarea');
+  const textarea = document.createElement('textarea');
   textarea.innerHTML = encodedString;
   return textarea.textContent;
 }

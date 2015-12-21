@@ -38,7 +38,7 @@ import score from '../score';
 import search from '../search';
 import utils from '../utils';
 import {
-  decodeEntities, escapeUnsafeRegexSymbols, makeRegexForMultipleWords
+  decodeEntities, escapeUnsafeRegexSymbols, makeRegexForMultipleWords,
 } from './utils';
 
 
