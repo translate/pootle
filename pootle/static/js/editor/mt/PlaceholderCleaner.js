@@ -22,7 +22,7 @@ class PlaceholderCleaner {
   resetState() {
     this.argSubs = [];
     this.argPos = 0;
-    this.sourceText = null;
+    this.replacedSourceText = null;
   }
 
   collectArguments(s) {
@@ -31,32 +31,32 @@ class PlaceholderCleaner {
   }
 
   replace(text) {
-    this.sourceText = text;
-
     // Walk through known patterns and replace them with [N] placeholders
-    return text
+    this.replacedSourceText = text
       .replace(HTML_PAT, (s) => this.collectArguments(s))
       .replace(C_PRINTF_PAT, (s) => this.collectArguments(s))
       .replace(C_SHARP_STR_PAT, (s) => this.collectArguments(s))
       .replace(PERCENT_NUMBER_PAT, (s) => this.collectArguments(s));
+
+    return this.replacedSourceText;
   }
 
   recover(translation) {
-    const { argSubs, sourceText } = this;
+    const { argSubs, replacedSourceText } = this;
 
-    if (sourceText === null) {
+    if (replacedSourceText === null) {
       throw new Error('Attempted to recover without calling `replace()` first');
     }
 
     let recoveredTranslation = translation;
     // Fix whitespace which may have been added around [N] blocks
     for (let i = 0; i < argSubs.length; i++) {
-      if (sourceText.match(new RegExp('\\[' + i + '\\][^\\s]'))) {
+      if (replacedSourceText.match(new RegExp('\\[' + i + '\\][^\\s]'))) {
         recoveredTranslation = recoveredTranslation.replace(
           new RegExp('\\[' + i + '\\]\\s+'), '[' + i + ']'
         );
       }
-      if (sourceText.match(new RegExp('[^\\s]\\[' + i + '\\]'))) {
+      if (replacedSourceText.match(new RegExp('[^\\s]\\[' + i + '\\]'))) {
         recoveredTranslation = recoveredTranslation.replace(
           new RegExp('\\s+\\[' + i + '\\]'), '[' + i + ']'
         );
