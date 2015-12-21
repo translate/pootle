@@ -96,3 +96,15 @@ def test_tp_empty_stats(site_root):
     assert stats['fuzzy'] == 0
     assert stats['suggestions'] == 0
     assert stats['critical'] == 0
+
+
+@pytest.mark.django_db
+def test_tp_stats_created_from_template(tutorial, fish, templates):
+    tp = TranslationProject.objects.create(project=tutorial, language=fish)
+    assert tp.stores.all().count() == 1
+    stats = tp.get_stats()
+    assert stats['total'] == 2  # there are 2 words in test template
+    assert stats['translated'] == 0
+    assert stats['fuzzy'] == 0
+    assert stats['suggestions'] == 0
+    assert stats['critical'] == 0
