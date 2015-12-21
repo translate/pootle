@@ -20,9 +20,9 @@ function slideTable(event) {
     dataType: 'json',
     success(data) {
       let newstats = '';
-      $(data).each(() => {
-        newstats += '<tr><th scope="row">' + this[0] + '</th>'
-                    + '<td class="stats-number">' + this[1] + '</td></tr>';
+      data.forEach((values) => {
+        newstats += '<tr><th scope="row">' + values[0] + '</th>'
+                    + '<td class="stats-number">' + values[1] + '</td></tr>';
       });
       $node.append(newstats);
       $node.slideDown('fast');
