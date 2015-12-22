@@ -1,4 +1,4 @@
 factory_boy>=2.5
 pytest
-pytest-django>=2.8,<2.9
 pytest-cov
+pytest-django>=2.8,<2.9

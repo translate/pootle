@@ -1,7 +1,7 @@
 -r build.txt
 
+django-debug-toolbar>=1.2
 django-extensions
 glue>=0.2.8.1
-django-debug-toolbar>=1.2
 ipython
 pep257
