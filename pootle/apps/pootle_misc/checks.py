@@ -373,8 +373,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"mustache_placeholder_pairs")
+
+        raise checks.FilterFailure(u"mustache_placeholder_pairs")
 
     @critical
     def mustache_like_placeholder_pairs(self, str1, str2):
@@ -419,8 +419,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"mustache_like_placeholder_pairs")
+
+        raise checks.FilterFailure(u"mustache_like_placeholder_pairs")
 
     @critical
     def date_format(self, str1, str2):
@@ -438,8 +438,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Incorrect date format")
+
+        raise checks.FilterFailure(u"Incorrect date format")
 
     @critical
     def whitespace(self, str1, str2):
@@ -469,8 +469,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Incorrect whitespaces")
+
+        raise checks.FilterFailure(u"Incorrect whitespaces")
 
     @critical
     def test_check(self, str1, str2):
@@ -479,8 +479,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Incorrect test check")
+
+        raise checks.FilterFailure(u"Incorrect test check")
 
     @critical
     def unescaped_ampersands(self, str1, str2):
@@ -539,8 +539,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Changed attributes")
+
+        raise checks.FilterFailure(u"Changed attributes")
 
     @critical
     def c_format(self, str1, str2):
@@ -562,8 +562,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Incorrect C format")
+
+        raise checks.FilterFailure(u"Incorrect C format")
 
     @critical
     def non_printable(self, str1, str2):
@@ -586,8 +586,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Non printable mismatch")
+
+        raise checks.FilterFailure(u"Non printable mismatch")
 
     @critical
     def unbalanced_tag_braces(self, str1, str2):
@@ -614,8 +614,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Unbalanced tag braces")
+
+        raise checks.FilterFailure(u"Unbalanced tag braces")
 
     @critical
     def unbalanced_curly_braces(self, str1, str2):
@@ -650,8 +650,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Unbalanced curly braces")
+
+        raise checks.FilterFailure(u"Unbalanced curly braces")
 
     @critical
     def tags_differ(self, str1, str2):
@@ -696,8 +696,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Tags differ")
+
+        raise checks.FilterFailure(u"Tags differ")
 
     @critical
     def accelerators(self, str1, str2):
@@ -746,8 +746,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Accelerator mismatch")
+
+        raise checks.FilterFailure(u"Accelerator mismatch")
 
     @critical
     def broken_entities(self, str1, str2):
@@ -818,8 +818,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Broken HTML entities")
+
+        raise checks.FilterFailure(u"Broken HTML entities")
 
     @critical
     def potential_unwanted_placeholders(self, str1, str2):
@@ -844,8 +844,8 @@ class ENChecker(checks.TranslationChecker):
 
         if a_fingerprint >= b_fingerprint:
             return True
-        else:
-            raise checks.FilterFailure(u"Potential unwanted placeholders")
+
+        raise checks.FilterFailure(u"Potential unwanted placeholders")
 
     @cosmetic
     def doublequoting(self, str1, str2):
@@ -874,8 +874,8 @@ class ENChecker(checks.TranslationChecker):
 
         if check_translation(get_fingerprint, str1, str2):
             return True
-        else:
-            raise checks.FilterFailure(u"Double quotes mismatch")
+
+        raise checks.FilterFailure(u"Double quotes mismatch")
 
     @critical
     def double_quotes_in_tags(self, str1, str2):
@@ -1075,8 +1075,8 @@ def _generic_check(str1, str2, regex, message):
 
     if check_translation(get_fingerprint, str1, str2):
         return True
-    else:
-        raise checks.FilterFailure(message)
+
+    raise checks.FilterFailure(message)
 
 
 def check_translation(get_fingerprint_func, string, translation):
