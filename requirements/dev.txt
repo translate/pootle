@@ -5,3 +5,4 @@ django-extensions
 glue>=0.2.8.1
 ipython
 pep257
+pep8<1.6
