@@ -247,11 +247,11 @@ def check_settings(app_configs=None, **kwargs):
         if markup_filter is not None:
             try:
                 if markup_filter == 'textile':
-                    import textile
+                    import textile  # noqa
                 elif markup_filter == 'markdown':
-                    import markdown
+                    import markdown  # noqa
                 elif markup_filter == 'restructuredtext':
-                    import docutils
+                    import docutils  # noqa
                 else:
                     errors.append(checks.Warning(
                         _("Invalid markup in POOTLE_MARKUP_FILTER."),

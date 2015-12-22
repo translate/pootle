@@ -14,7 +14,6 @@ from optparse import make_option
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle.core.mixins.treeitem import CachedMethods
 from pootle.core.checks.checker import QualityCheckUpdater
 
 from . import PootleCommand

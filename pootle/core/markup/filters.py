@@ -73,11 +73,11 @@ def get_markup_filter():
         if markup_filter is None:
             return (None, "unset")
         elif markup_filter == 'textile':
-            import textile
+            import textile  # noqa
         elif markup_filter == 'markdown':
-            import markdown
+            import markdown  # noqa
         elif markup_filter == 'restructuredtext':
-            import docutils
+            import docutils  # noqa
         else:
             return (None, '')
     except Exception:

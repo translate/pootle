@@ -15,7 +15,8 @@ See https://docs.djangoproject.com/en/1.7/ref/applications/
 from django.apps import AppConfig
 from django.core import checks
 
-from pootle import checks as pootle_checks
+# imported to force checks to run.  FIXME use AppConfig
+from pootle import checks as pootle_checks  # noqa
 from pootle.core.utils import deprecation
 
 
