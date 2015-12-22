@@ -1048,18 +1048,16 @@ def _generic_check(str1, str2, regex, message):
     def get_fingerprint(str, is_source=False, translation=''):
         chunks = regex.split(str)
 
-        translate = False
         d = {}
         fingerprint = ''
 
         if is_source and len(chunks) == 1:
             raise SkipCheck()
 
-        for chunk in chunks:
-            translate = not translate
-
-            if translate:
-                # ordinary text (safe to translate)
+        for index, chunk in enumerate(chunks):
+            # Chunks contain ordinary text in even positions, so they are safe
+            # to be skipped.
+            if index % 2 == 0:
                 continue
 
             # special text
