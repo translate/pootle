@@ -16,6 +16,13 @@ from django.utils import timezone
 import pootle_store
 
 
+class ScoreLogFactory(factory.django.DjangoModelFactory):
+    creation_time = timezone.now()
+
+    class Meta(object):
+        model = 'pootle_statistics.ScoreLog'
+
+
 class SubmissionFactory(factory.django.DjangoModelFactory):
     creation_time = timezone.now()
 
