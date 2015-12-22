@@ -1085,11 +1085,13 @@ def check_translation(get_fingerprint_func, string, translation):
         return True
 
     try:
-        a_fingerprint = get_fingerprint_func(string, True, translation)
+        a_fingerprint = get_fingerprint_func(string, is_source=True,
+                                             translation=translation)
     except SkipCheck:
         # skip translation as it doesn't match required criteria
         return True
 
-    b_fingerprint = get_fingerprint_func(translation, False, string)
+    b_fingerprint = get_fingerprint_func(translation, is_source=False,
+                                         translation=string)
 
     return a_fingerprint == b_fingerprint
