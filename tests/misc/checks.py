@@ -14,6 +14,12 @@ checker = ENChecker()
 
 
 def do_test(check, tests):
+    """Runs `check` against a list of `tests`.
+
+    :param check: Checker function.
+    :param tests: List of tuples in the form of:
+        `(source string, target string, whether the check should skip or not)`.
+    """
     for str1, str2, state in tests:
         info = "check('%s', '%s') == %s" % (str1, str2, state)
         try:
