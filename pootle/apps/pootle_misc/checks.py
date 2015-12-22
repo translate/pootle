@@ -239,6 +239,8 @@ potential_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 fmt = u"\%\{{1}[^\}]+\}{1}"
 percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
+plurr_format_regex = re.compile(u'{[^{}]*:.*?}')
+
 
 def get_checker(unit):
     if settings.POOTLE_QUALITY_CHECKER:
@@ -318,6 +320,10 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def mustache_placeholders(self, str1, str2):
+        # Ignore check for Plurr-formatted strings
+        if plurr_format_regex.search(str1):
+            return True
+
         return _generic_check(str1, str2, mustache_placeholders_regex,
                               u"mustache_placeholders")
 
@@ -647,6 +653,10 @@ class ENChecker(checks.TranslationChecker):
                 fingerprint += u"\001"
 
             return fingerprint
+
+        # Ignore check for Plurr-formatted strings
+        if plurr_format_regex.search(str1):
+            return True
 
         if check_translation(get_fingerprint, str1, str2):
             return True
