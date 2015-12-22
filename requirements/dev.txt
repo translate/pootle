@@ -2,6 +2,7 @@
 
 django-debug-toolbar>=1.2
 django-extensions
+flake8
 glue>=0.2.8.1
 ipython
 pep257
