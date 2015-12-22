@@ -277,6 +277,18 @@ class User(AbstractBaseUser):
         """Returns `True` if this is the special `system` user."""
         return self.username == 'system'
 
+    def has_manager_permissions(self):
+        """Tells if the user is a manager for any language, project or TP."""
+        if self.is_anonymous():
+            return False
+        if self.is_superuser:
+            return True
+        criteria = {
+            'positive_permissions__codename': 'administrate',
+            'directory__pootle_path__regex': r'^/[^/]*/([^/]*/)?$',
+        }
+        return self.permissionset_set.filter(**criteria).exists()
+
     def get_full_name(self):
         """Returns the user's full name."""
         return self.full_name.strip()

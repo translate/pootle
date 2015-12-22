@@ -101,3 +101,9 @@ def member2(db):
 def evil_member(transactional_db):
     """Require a evil_member user."""
     return _require_user('evil_member', 'Evil member')
+
+
+@pytest.fixture
+def no_perms_user(transactional_db):
+    """Require a user with no permissions."""
+    return _require_user('no_perms_member', 'User with no permissions')

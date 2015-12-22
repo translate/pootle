@@ -429,3 +429,44 @@ def test_update_user_email_bad_invalid_duplicate(member_with_email, member2):
     with pytest.raises(ValidationError):
         accounts.utils.update_user_email(member_with_email,
                                          "alt_email@this.test")
+
+
+@pytest.mark.django_db
+def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
+                                      afrikaans, afrikaans_tutorial):
+    """Test user `has_manager_permissions` method."""
+    from pootle_app.models.permissions import PermissionSet
+
+    # User has no permissions, so can't be manager.
+    assert not no_perms_user.has_manager_permissions()
+
+    # Assign 'administrate' right for 'Afrikaans (Tutorial)' TP and check user
+    # is manager.
+    criteria = {
+        'user': no_perms_user,
+        'directory': afrikaans_tutorial.directory,
+    }
+    ps, created = PermissionSet.objects.get_or_create(**criteria)
+    ps.positive_permissions = [administrate]
+    ps.save()
+    assert no_perms_user.has_manager_permissions()
+    ps.positive_permissions.clear()
+    assert not no_perms_user.has_manager_permissions()
+
+    # Assign 'administrate' right for 'Afrikaans' and check user is manager.
+    criteria['directory'] = afrikaans.directory
+    ps, created = PermissionSet.objects.get_or_create(**criteria)
+    ps.positive_permissions = [administrate]
+    ps.save()
+    assert no_perms_user.has_manager_permissions()
+    ps.positive_permissions.clear()
+    assert not no_perms_user.has_manager_permissions()
+
+    # Assign 'administrate' right for 'Tutorial' and check user is manager.
+    criteria['directory'] = tutorial.directory
+    ps, created = PermissionSet.objects.get_or_create(**criteria)
+    ps.positive_permissions = [administrate]
+    ps.save()
+    assert no_perms_user.has_manager_permissions()
+    ps.positive_permissions.clear()
+    assert not no_perms_user.has_manager_permissions()

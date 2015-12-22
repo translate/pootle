@@ -30,7 +30,7 @@ from fixtures.models.translation_project import (
     afrikaans_vfolder_test, templates_tutorial)
 from fixtures.models.user import (
     default, system, nobody, trans_nobody, admin, member, trans_member,
-    trans_system, member_with_email, member2, evil_member)
+    trans_system, member_with_email, member2, evil_member, no_perms_user)
 
 from fixtures.cache import delete_pattern
 from fixtures.import_export_fixtures import (
@@ -50,7 +50,7 @@ from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
 
 
 __all__ = (
-    'admin', 'default', 'evil_member', 'member', 'member2',
+    'admin', 'default', 'evil_member', 'member', 'member2', 'no_perms_user',
     'member_with_email', 'nobody', 'system', 'trans_member', 'trans_nobody',
     'trans_system', 'projects', 'root', 'afrikaans', 'arabic', 'english',
     'fish', 'french', 'italian', 'klingon', 'klingon_vpw', 'russian',

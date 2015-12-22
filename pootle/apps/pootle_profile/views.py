@@ -30,6 +30,12 @@ class UserAPIView(TestUserFieldMixin, APIView):
 class UserDetailView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/profile.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        user = User.get(self.request.user)
+        context['user_is_manager'] = user.has_manager_permissions()
+        return context
+
 
 class UserSettingsView(TestUserFieldMixin, UserObjectMixin, UpdateView):
     fields = ('unit_rows', 'alt_src_langs')

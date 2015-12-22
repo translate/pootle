@@ -18,7 +18,7 @@
         {{ object.display_name }}
       {% endif %}
     </h1>
-    {% if user.is_superuser or request.permissions.administrate %}
+    {% if user_is_manager %}
     <p><a class="admin" href="mailto:{{ object.email }}">{{ object.email }}</a></p>
     {% endif %}
   </div>
