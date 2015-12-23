@@ -24,31 +24,33 @@ IMPORT_UNSUPP_FILE = "tutorial.ts"
 
 
 def _import_file(file_name, file_dir=TEST_PO_DIR,
-                 content_type="text/x-gettext-translation"):
+                 content_type="text/x-gettext-translation",
+                 user=None):
     with open(os.path.join(file_dir, file_name), "r") as f:
-        import_file(SimpleUploadedFile(file_name,
-                                       f.read(),
-                                       content_type))
+        import_file(
+            SimpleUploadedFile(file_name, f.read(), content_type),
+            user=user)
 
 
 @pytest.mark.django_db
-def test_import_success(en_tutorial_po_no_file):
+def test_import_success(en_tutorial_po_no_file, admin):
     assert en_tutorial_po_no_file.state == NEW
-    _import_file(IMPORT_SUCCESS)
+    _import_file(IMPORT_SUCCESS, user=admin)
     store = Store.objects.get(pk=en_tutorial_po_no_file.pk)
     assert store.state == PARSED
 
 
 @pytest.mark.django_db
-def test_import_failure(file_import_failure, en_tutorial_po):
+def test_import_failure(file_import_failure, en_tutorial_po, member):
     filename, exception = file_import_failure
     with pytest.raises(exception):
-        _import_file(filename)
+        _import_file(filename, user=member)
 
 
 @pytest.mark.django_db
-def test_import_unsupported(en_tutorial_ts, ts_directory):
+def test_import_unsupported(en_tutorial_ts, ts_directory, member):
     with pytest.raises(UnsupportedFiletypeError):
         _import_file(IMPORT_UNSUPP_FILE,
                      file_dir=os.path.join(ts_directory, "tutorial/en"),
-                     content_type="text/vnd.trolltech.linguist")
+                     content_type="text/vnd.trolltech.linguist",
+                     user=member)
