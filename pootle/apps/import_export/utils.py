@@ -50,7 +50,8 @@ def import_file(file, user=None):
 
     try:
         store.update(store=f, user=user,
-                     submission_type=SubmissionTypes.UPLOAD)
+                     submission_type=SubmissionTypes.UPLOAD,
+                     store_revision=rev)
     except Exception as e:
         # This should not happen!
         logger.error("Error importing file: %s", str(e))
