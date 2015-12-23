@@ -1502,7 +1502,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def update_units(self, store, uids_to_update, uid_index_map, user,
                      store_revision, update_revision, submission_type=None,
-                     resolve_conflict=POOTLE_WINS):
+                     resolve_conflict=POOTLE_WINS, change_indexes=True):
         """Updates existing units in the store.
 
         :param uids_to_update: UIDs of the units to be updated.
@@ -1511,6 +1511,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         :param revision: set updated unit revision to this value.
         :param submission_type: set submission type for update.
         :param resolve_conflict: set how conflicts are resolved.
+        :param change_indexes: set if it is allowed to change unit indexing.
         :return: a tuple ``(updated, suggested)`` where ``updated`` is the
             the number of units that were actually updated, and ``suggested``
             is the number of suggestions added due to revision conflicts.
@@ -1547,7 +1548,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             if should_update:
                 changed = unit.update(newunit, user=user)
 
-            if uid in uid_index_map:
+            if change_indexes and uid in uid_index_map:
                 unit.index = uid_index_map[uid]['index']
                 changed = True
 
@@ -1634,7 +1635,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             )
 
     def update(self, store, user=None, store_revision=None,
-               submission_type=None, resolve_conflict=POOTLE_WINS):
+               submission_type=None, resolve_conflict=POOTLE_WINS,
+               allow_add_and_obsolete=True):
         """Update DB with units from a ttk Store.
 
         :param store: a source `Store` instance from TTK.
@@ -1642,6 +1644,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             synced.
         :param user: User to attribute updates to.
         :param submission_type: Submission type of saved updates.
+        :param allow_add_and_obsolete: allow to add new units
+            and make obsolete existing units
         """
 
         logging.debug(u"Updating %s", self.pootle_path)
@@ -1661,7 +1665,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                                 store_revision,
                                                 diff, update_revision,
                                                 user, submission_type,
-                                                resolve_conflict)
+                                                resolve_conflict,
+                                                allow_add_and_obsolete)
         finally:
             if old_state < PARSED:
                 self.state = PARSED
@@ -1678,22 +1683,24 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def update_from_diff(self, store, store_revision,
                          to_change, update_revision, user,
-                         submission_type, resolve_conflict=POOTLE_WINS):
+                         submission_type, resolve_conflict=POOTLE_WINS,
+                         allow_add_and_obsolete=True):
         changes = {}
 
-        # Update indexes
-        for start, delta in to_change["index"]:
-            self.update_index(start=start, delta=delta)
+        if allow_add_and_obsolete:
+            # Update indexes
+            for start, delta in to_change["index"]:
+                self.update_index(start=start, delta=delta)
 
-        # Add new units
-        for unit, new_unit_index in to_change["add"]:
-            self.addunit(unit, new_unit_index, user=user,
-                         update_revision=update_revision)
-        changes["added"] = len(to_change["add"])
+            # Add new units
+            for unit, new_unit_index in to_change["add"]:
+                self.addunit(unit, new_unit_index, user=user,
+                             update_revision=update_revision)
+            changes["added"] = len(to_change["add"])
 
-        # Obsolete units
-        changes["obsoleted"] = self.mark_units_obsolete(to_change["obsolete"],
-                                                        update_revision)
+            # Obsolete units
+            changes["obsoleted"] = self.mark_units_obsolete(to_change["obsolete"],
+                                                            update_revision)
 
         # Update units
         update_dbids, uid_index_map = to_change['update']
@@ -1703,7 +1710,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                               uid_index_map, user,
                               store_revision, update_revision,
                               submission_type=submission_type,
-                              resolve_conflict=resolve_conflict))
+                              resolve_conflict=resolve_conflict,
+                              change_indexes=allow_add_and_obsolete))
         return changes
 
     def update_from_disk(self, overwrite=False):
