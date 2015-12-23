@@ -11,6 +11,8 @@ import json
 import locale
 import os
 
+from redis.exceptions import ConnectionError
+
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
@@ -19,7 +21,6 @@ from django.utils.translation import ugettext as _, ungettext
 
 from django_rq.queues import get_queue, get_failed_queue
 from django_rq.workers import Worker
-from redis.exceptions import ConnectionError
 
 from pootle.core.decorators import admin_required
 from pootle_misc.aggregate import sum_column

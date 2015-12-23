@@ -12,9 +12,9 @@ import shutil
 import tempfile
 from collections import OrderedDict
 
-from django.utils import timezone
-
 import pytest
+
+from django.utils import timezone
 
 from pootle_pytest.utils import update_store, create_store
 
