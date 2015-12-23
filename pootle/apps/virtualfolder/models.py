@@ -22,6 +22,7 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store, Unit
 from pootle_store.util import OBSOLETE
+
 from .signals import vfolder_post_save
 
 

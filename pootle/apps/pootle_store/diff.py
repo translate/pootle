@@ -11,9 +11,9 @@ from collections import OrderedDict
 
 from django.utils.functional import cached_property
 
-from .util import OBSOLETE
 from .fields import to_python as multistring_to_python
 from .unit import UnitProxy
+from .util import OBSOLETE
 
 
 class UnitDiffProxy(UnitProxy):

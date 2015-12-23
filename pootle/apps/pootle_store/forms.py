@@ -23,8 +23,8 @@ from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .models import Unit
 from .fields import to_db
+from .models import Unit
 from .util import UNTRANSLATED, FUZZY, TRANSLATED, OBSOLETE
 
 # # # # # # #  text cleanup and highlighting # # # # # # # # # # # # #
