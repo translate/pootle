@@ -11,8 +11,8 @@ import logging
 import re
 re._MAXCACHE = 2000
 
-from translate.filters.decorators import Category, critical, cosmetic
 from translate.filters import checks
+from translate.filters.decorators import Category, critical, cosmetic
 from translate.lang import data
 
 from django.conf import settings

@@ -12,11 +12,11 @@
 import locale
 import os
 
+from translate.lang import data
+
 from django.utils import translation
 from django.utils.functional import lazy
 from django.utils.translation import trans_real
-
-from translate.lang import data
 
 from pootle.i18n import bidi, gettext
 

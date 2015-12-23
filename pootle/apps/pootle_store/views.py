@@ -9,6 +9,8 @@
 
 from itertools import groupby
 
+from translate.lang import data
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
@@ -23,8 +25,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.utils import timezone
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
-
-from translate.lang import data
 
 from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,

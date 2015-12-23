@@ -9,9 +9,9 @@
 
 import logging
 
-from django.utils.translation import ugettext as _
-
 from translate.storage.factory import getclass
+
+from django.utils.translation import ugettext as _
 
 from pootle_store.models import Store
 from pootle_statistics.models import SubmissionTypes

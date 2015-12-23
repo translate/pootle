@@ -7,10 +7,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from translate.lang import data as langdata
+
 from django.utils import translation
 from django.utils.translation import _trans
-
-from translate.lang import data as langdata
 
 
 def _format_translation(message, vars=None):

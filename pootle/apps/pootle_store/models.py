@@ -13,6 +13,9 @@ import operator
 import os
 from hashlib import md5
 
+from translate.filters.decorators import Category
+from translate.storage import base
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
@@ -25,9 +28,6 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
-
-from translate.filters.decorators import Category
-from translate.storage import base
 
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,

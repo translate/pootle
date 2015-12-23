@@ -12,10 +12,11 @@
 import logging
 import os
 
+from translate.misc.multistring import multistring
+
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 
-from translate.misc.multistring import multistring
 
 # # # # # # # # # String # # # # # # # # # # # # # # #
 

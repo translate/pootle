@@ -11,6 +11,9 @@ import logging
 import os
 from collections import OrderedDict
 
+from translate.filters import checks
+from translate.lang.data import langcode_re
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
@@ -23,9 +26,6 @@ from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
-
-from translate.filters import checks
-from translate.lang.data import langcode_re
 
 from pootle.core.cache import make_method_key
 from pootle.core.mixins import CachedTreeItem
