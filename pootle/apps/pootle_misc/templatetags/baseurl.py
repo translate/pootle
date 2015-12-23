@@ -11,6 +11,7 @@ from django import template
 
 from pootle_misc.baseurl import get_next
 
+
 register = template.Library()
 
 register.filter('get_next', get_next)

@@ -18,6 +18,7 @@
 # Fake imports
 from django.utils.translation import ugettext as _
 
+
 #########
 # Django
 #########

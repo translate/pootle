@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 """Form fields required for handling translation files."""
+
 import re
 
 from translate.misc.multistring import multistring

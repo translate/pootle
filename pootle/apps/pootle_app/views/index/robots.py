@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.http import HttpResponse
+
 from pootle_language.models import Language
 
 

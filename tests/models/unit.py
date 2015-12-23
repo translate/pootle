@@ -8,7 +8,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import pytest
-
 from translate.storage import factory
 
 from django.contrib.auth import get_user_model

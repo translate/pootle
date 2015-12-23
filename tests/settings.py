@@ -11,6 +11,7 @@
 
 import os
 
+
 SECRET_KEY = "test_secret_key"
 
 

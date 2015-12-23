@@ -14,6 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle_misc.aggregate import sum_column
 
+
 # Unit States
 #: Unit is no longer part of the store
 OBSOLETE = -100

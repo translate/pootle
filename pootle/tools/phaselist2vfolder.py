@@ -9,6 +9,7 @@
 
 import json
 
+
 # Config
 # Goals file to convert to JSON
 phaselistfile = 'firefox.phaselist'

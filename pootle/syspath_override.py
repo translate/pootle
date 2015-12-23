@@ -15,6 +15,7 @@
 import os
 import sys
 
+
 ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 POOTLE_DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, ROOT_DIR)  # Top level directory
