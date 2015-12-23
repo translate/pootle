@@ -56,7 +56,7 @@ def test_get_similarity(similarity):
 
 
 @pytest.mark.parametrize('similarity, mt_similarity', [(0, 1), (0.5, 0.5), (1, 0)])
-def test_is_similarity_is_taken_from_mt(similarity, mt_similarity):
+def test_is_similarity_taken_from_mt(similarity, mt_similarity):
     submission = SubmissionFactory.build(similarity=similarity,
                                          mt_similarity=mt_similarity)
     score_log = ScoreLogFactory.build(submission=submission)
