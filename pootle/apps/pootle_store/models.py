@@ -1593,6 +1593,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         :param user: attribute specific changes to this user.
         :param revision: set updated unit revision to this value.
         :param submission_type: set submission type for update.
+        :param resolve_conflict: set how conflicts are resolved.
         :return: a tuple ``(updated, suggested)`` where ``updated`` is the
             the number of units that were actually updated, and ``suggested``
             is the number of suggestions added due to revision conflicts.
