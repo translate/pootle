@@ -19,10 +19,10 @@ from django.db.models import Max, Q
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template import loader, RequestContext
+from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
-from django.utils import timezone
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 

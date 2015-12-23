@@ -12,10 +12,10 @@ import shutil
 import time
 
 import pytest
+from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from translate.storage.factory import getclass
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
