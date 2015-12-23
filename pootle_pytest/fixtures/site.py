@@ -85,7 +85,7 @@ def site_root(request, system, settings):
 
     for i in range(0, 2):
         # add 2 projects
-        project = ProjectFactory(source_language=languages[0])
+        ProjectFactory(source_language=languages[0])
 
     def _teardown():
         if "root" in Directory.objects.__dict__:
