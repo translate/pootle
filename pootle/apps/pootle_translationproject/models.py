@@ -19,10 +19,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
-from pootle_app.project_tree import does_not_exist
 from pootle.core.mixins import CachedTreeItem, CachedMethods
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
+from pootle_app.project_tree import does_not_exist
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project

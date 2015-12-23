@@ -8,12 +8,13 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+
 import pytest
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from import_export.utils import import_file
 from import_export.exceptions import UnsupportedFiletypeError
+from import_export.utils import import_file
 from pootle_store.models import NEW, PARSED, Store
 
 

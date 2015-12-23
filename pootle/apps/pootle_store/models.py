@@ -37,8 +37,8 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              action_log, store_log, log)
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
-from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.search import SearchBroker
+from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
