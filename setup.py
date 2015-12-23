@@ -10,10 +10,9 @@
 import os
 import re
 import sys
-
 from distutils import log
-from distutils.core import Command
 from distutils.command.build import build as DistutilsBuild
+from distutils.core import Command
 from distutils.errors import DistutilsOptionError
 
 from setuptools import find_packages, setup

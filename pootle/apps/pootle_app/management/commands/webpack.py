@@ -11,7 +11,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import subprocess
 import sys
-
 from optparse import make_option
 
 from django.conf import settings

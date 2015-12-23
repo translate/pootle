@@ -10,7 +10,6 @@
 __all__ = ('TreeItem', 'CachedTreeItem', 'CachedMethods')
 
 import logging
-
 from datetime import datetime
 from functools import wraps
 

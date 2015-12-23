@@ -10,7 +10,6 @@
 # This file was cribbed from https://github.com/brechtm/citeproc-py
 
 import os
-
 from distutils.sysconfig import get_python_lib
 from subprocess import call
 

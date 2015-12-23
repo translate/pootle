@@ -11,7 +11,6 @@ import datetime
 import logging
 import operator
 import os
-
 from hashlib import md5
 
 from django.conf import settings
