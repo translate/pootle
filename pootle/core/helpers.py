@@ -132,19 +132,19 @@ def get_export_view_context(request):
 
     units_qs = Unit.objects.get_for_path(request.pootle_path,
                                          request.profile)
-    units = get_step_query(request, units_qs)
-    unit_total_count = units.annotate().count()
+    units_qs = get_step_query(request, units_qs)
+    unit_total_count = units_qs.annotate().count()
 
-    units = units.select_related('store')
+    units_qs = units_qs.select_related('store')
     if unit_total_count > EXPORT_VIEW_QUERY_LIMIT:
-        units = units[:EXPORT_VIEW_QUERY_LIMIT]
+        units_qs = units_qs[:EXPORT_VIEW_QUERY_LIMIT]
         res.update({
             'unit_total_count': unit_total_count,
             'displayed_unit_count': EXPORT_VIEW_QUERY_LIMIT,
         })
 
     unit_groups = [(path, list(units)) for path, units in
-                   groupby(units, lambda x: x.store.pootle_path)]
+                   groupby(units_qs, lambda x: x.store.pootle_path)]
 
     res.update({
         'unit_groups': unit_groups,
