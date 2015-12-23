@@ -16,7 +16,7 @@ import pytest
 
 from django.utils import timezone
 
-from pootle_pytest.utils import update_store, create_store
+from pootle_pytest.utils import create_store, update_store
 
 
 DEFAULT_STORE_UNITS_1 = [("Unit 1", "Unit 1"),
@@ -179,7 +179,7 @@ def param_update_store_test(en_tutorial_po, member, member2,
 
 def _require_store(tp, po_dir, name):
     """Helper to get/create a new store."""
-    from pootle_store.models import Store, PARSED
+    from pootle_store.models import PARSED, Store
 
     file_path = os.path.join(po_dir, tp.real_path, name)
     parent_dir = tp.directory
@@ -221,8 +221,8 @@ def _create_submission_and_suggestion(store, user,
 
 
 def _create_comment_on_unit(unit, user, comment):
-    from pootle_statistics.models import (SubmissionFields,
-                                          SubmissionTypes, Submission)
+    from pootle_statistics.models import (Submission, SubmissionFields,
+                                          SubmissionTypes)
 
     unit.translator_comment = comment
     unit.commented_on = timezone.now()
@@ -244,8 +244,8 @@ def _create_comment_on_unit(unit, user, comment):
 
 def _mark_unit_fuzzy(unit, user):
     from pootle_store.util import FUZZY
-    from pootle_statistics.models import (SubmissionFields,
-                                          SubmissionTypes, Submission)
+    from pootle_statistics.models import (Submission, SubmissionFields,
+                                          SubmissionTypes)
     sub = Submission(
         creation_time=unit.commented_on,
         translation_project=unit.store.translation_project,

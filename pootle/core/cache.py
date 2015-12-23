@@ -9,7 +9,7 @@
 
 
 from django.conf import settings
-from django.core.cache import caches, cache as default_cache
+from django.core.cache import cache as default_cache, caches
 from django.core.cache.backends.base import InvalidCacheBackendError
 from django.core.exceptions import ImproperlyConfigured
 

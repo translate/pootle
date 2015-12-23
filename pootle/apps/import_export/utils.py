@@ -16,8 +16,8 @@ from django.utils.translation import ugettext as _
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import Store
 
-from .exceptions import (UnsupportedFiletypeError, MissingPootlePathError,
-                         MissingPootleRevError, FileImportError)
+from .exceptions import (FileImportError, MissingPootlePathError,
+                         MissingPootleRevError, UnsupportedFiletypeError)
 
 
 logger = logging.getLogger(__name__)

@@ -19,15 +19,15 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
-from pootle.core.mixins import CachedTreeItem, CachedMethods
+from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import does_not_exist
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
-from pootle_store.models import Store, Unit, PARSED
-from pootle_store.util import absolute_real_path, relative_real_path, OBSOLETE
+from pootle_store.models import PARSED, Store, Unit
+from pootle_store.util import OBSOLETE, absolute_real_path, relative_real_path
 from staticpages.models import StaticPage
 
 

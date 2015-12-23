@@ -9,7 +9,7 @@
 
 """Wrappers around Django 1.1+ aggregate query functions."""
 
-from django.db.models import Sum, Count, Max
+from django.db.models import Count, Max, Sum
 
 
 def max_column(queryset, column, default):

@@ -10,7 +10,7 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
-from zipfile import is_zipfile, ZipFile
+from zipfile import ZipFile, is_zipfile
 
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand, CommandError

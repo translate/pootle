@@ -21,7 +21,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_language.models import Language
-from pootle_project.models import Project, ProjectSet, ProjectResource
+from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 from virtualfolder.helpers import extract_vfolder_from_path

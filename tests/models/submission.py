@@ -11,8 +11,8 @@ import pytest
 
 from django.utils import timezone
 
-from pootle_statistics.models import (Submission,
-                                      SubmissionTypes, SubmissionFields)
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 from pootle_store.util import TRANSLATED, UNTRANSLATED
 
 from pootle_pytest.factories import SubmissionFactory

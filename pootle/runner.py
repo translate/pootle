@@ -9,7 +9,7 @@
 
 import os
 import sys
-from argparse import ArgumentParser, SUPPRESS
+from argparse import SUPPRESS, ArgumentParser
 
 from django.conf import settings
 from django.core import management

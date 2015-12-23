@@ -17,7 +17,7 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.log import log, SCORE_CHANGED
+from pootle.core.log import SCORE_CHANGED, log
 from pootle.core.utils import dateformat
 from pootle.core.utils.json import jsonify
 from pootle_misc.checks import check_names

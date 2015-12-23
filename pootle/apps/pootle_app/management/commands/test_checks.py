@@ -16,7 +16,7 @@ from optparse import make_option
 from translate.filters.checks import FilterFailure, projectcheckers
 
 from django.conf import settings
-from django.core.management.base import NoArgsCommand, CommandError
+from django.core.management.base import CommandError, NoArgsCommand
 
 from pootle_misc.checks import get_qualitychecks
 from pootle_misc.util import import_func

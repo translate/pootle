@@ -9,8 +9,8 @@
 
 from django.conf.urls import patterns, url
 
-from .views import (UserStatsView, UserDetailedStatsView,
-                    UserActivityView, AddUserPaidTaskView)
+from .views import (AddUserPaidTaskView, UserActivityView,
+                    UserDetailedStatsView, UserStatsView)
 
 
 urlpatterns = patterns(

@@ -29,12 +29,12 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
-                             TRANSLATION_DELETED, UNIT_ADDED, UNIT_DELETED,
-                             UNIT_OBSOLETE, UNIT_RESURRECTED,
-                             STORE_ADDED, STORE_OBSOLETE, STORE_DELETED,
-                             MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
-                             action_log, store_log, log)
+from pootle.core.log import (
+    TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
+    UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
+    STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
+    MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
+    action_log, log, store_log)
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
@@ -43,17 +43,17 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
-from pootle_misc.checks import check_names, run_given_filters, get_checker
+from pootle_misc.checks import check_names, get_checker, run_given_filters
 from pootle_misc.util import import_func
-from pootle_statistics.models import (SubmissionFields,
-                                      SubmissionTypes, Submission)
+from pootle_statistics.models import (Submission, SubmissionFields,
+                                      SubmissionTypes)
 
 from .diff import StoreDiff
-from .fields import (TranslationStoreField, MultiStringField,
-                     PLURAL_PLACEHOLDER, SEPARATOR)
+from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
+                     TranslationStoreField)
 from .filetypes import factory_classes
 from .util import (
-    OBSOLETE, UNTRANSLATED, FUZZY, TRANSLATED, get_change_str,
+    FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED, get_change_str,
     vfolders_installed)
 
 

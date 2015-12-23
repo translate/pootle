@@ -16,7 +16,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle_misc.checks import run_given_filters
 from pootle_misc.util import import_func
-from pootle_store.models import QualityCheck, Unit, Store
+from pootle_store.models import QualityCheck, Store, Unit
 from pootle_store.unit import UnitProxy
 from pootle_store.util import OBSOLETE
 from pootle_translationproject.models import TranslationProject

@@ -18,7 +18,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
 from django.http import Http404
 from django.shortcuts import redirect
-from django.template import loader, RequestContext
+from django.template import RequestContext, loader
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.translation import to_locale, ugettext as _
@@ -34,21 +34,20 @@ from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
-from pootle_misc.checks import get_category_id, check_names
+from pootle_misc.checks import check_names, get_category_id
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, to_int, get_date_interval
+from pootle_misc.util import ajax_required, get_date_interval, to_int
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .decorators import get_unit_context
 from .fields import to_python
-from .forms import (unit_comment_form_factory, unit_form_factory,
-                    highlight_whitespace)
-from .models import Unit, SuggestionStates
+from .forms import (highlight_whitespace, unit_comment_form_factory,
+                    unit_form_factory)
+from .models import SuggestionStates, Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
-from .util import (UNTRANSLATED, FUZZY, TRANSLATED, STATES_MAP,
-                   find_altsrcs)
+from .util import FUZZY, STATES_MAP, TRANSLATED, UNTRANSLATED, find_altsrcs
 
 
 #: Mapping of allowed sorting criteria.

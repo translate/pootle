@@ -12,7 +12,7 @@ import logging
 import sys
 
 from django.contrib.auth import get_user_model
-from django.core.validators import validate_email, ValidationError
+from django.core.validators import ValidationError, validate_email
 from django.db.models import Count
 
 from allauth.account.models import EmailAddress

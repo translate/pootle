@@ -9,7 +9,7 @@
 
 from django.conf.urls import patterns, url
 
-from .views import ContactFormView, ContactFormTemplateView, ReportFormView
+from .views import ContactFormTemplateView, ContactFormView, ReportFormView
 
 
 urlpatterns = patterns(

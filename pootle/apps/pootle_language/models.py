@@ -21,7 +21,7 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.cache import make_method_key
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
-from pootle.i18n.gettext import tr_lang, language_dir
+from pootle.i18n.gettext import language_dir, tr_lang
 from staticpages.models import StaticPage
 
 

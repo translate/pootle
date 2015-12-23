@@ -14,7 +14,7 @@ import re
 
 from django.conf import settings
 
-from pootle.core.log import store_log, STORE_RESURRECTED
+from pootle.core.log import STORE_RESURRECTED, store_log
 from pootle.core.utils.timezone import datetime_min
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language

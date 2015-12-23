@@ -11,13 +11,14 @@ from django.conf import settings
 from django.shortcuts import render
 
 from import_export.views import handle_upload_form
-from pootle.core.browser import (get_children, get_table_headings, get_parent,
+from pootle.core.browser import (get_children, get_parent, get_table_headings,
                                  get_vfolders)
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle.core.helpers import (get_export_view_context, get_browser_context,
+from pootle.core.helpers import (SIDEBAR_COOKIE_NAME, get_browser_context,
+                                 get_export_view_context,
                                  get_sidebar_announcements_context,
-                                 get_translation_context, SIDEBAR_COOKIE_NAME)
+                                 get_translation_context)
 from pootle.core.utils.json import jsonify
 from pootle_app.models.permissions import check_permission
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms

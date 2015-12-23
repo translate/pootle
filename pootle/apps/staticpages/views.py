@@ -23,7 +23,7 @@ from pootle.core.views import SuperuserRequiredMixin
 from pootle_misc.util import ajax_required
 
 from .forms import agreement_form_factory
-from .models import AbstractPage, LegalPage, StaticPage, ANN_TYPE, ANN_VPATH
+from .models import ANN_TYPE, ANN_VPATH, AbstractPage, LegalPage, StaticPage
 
 
 class PageModelMixin(object):

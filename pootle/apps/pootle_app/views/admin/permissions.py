@@ -12,8 +12,8 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 
 from pootle_app.models import Directory
-from pootle_app.models.permissions import (get_permission_contenttype,
-                                           PermissionSet)
+from pootle_app.models.permissions import (PermissionSet,
+                                           get_permission_contenttype)
 from pootle_app.views.admin import util
 from pootle_misc.forms import GroupedModelChoiceField
 

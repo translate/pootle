@@ -7,8 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.url_helpers import (urljoin, get_all_pootle_paths,
-                                     get_editor_filter, split_pootle_path)
+from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
+                                     split_pootle_path, urljoin)
 
 
 def test_urljoin():

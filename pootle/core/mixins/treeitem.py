@@ -15,7 +15,7 @@ from functools import wraps
 
 from redis import WatchError
 from rq import get_current_job
-from rq.job import JobStatus, Job, loads, dumps
+from rq.job import Job, JobStatus, dumps, loads
 from rq.utils import utcnow
 
 from django.conf import settings
@@ -23,7 +23,7 @@ from django.core.urlresolvers import set_script_prefix
 from django.db import connection
 from django.utils.encoding import force_unicode, iri_to_uri
 
-from django_rq.queues import get_queue, get_connection
+from django_rq.queues import get_connection, get_queue
 
 from pootle.core.cache import get_cache
 from pootle.core.log import log

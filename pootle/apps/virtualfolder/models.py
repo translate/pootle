@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.markup import get_markup_filter_display_name, MarkupField
+from pootle.core.markup import MarkupField, get_markup_filter_display_name
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.mixins.treeitem import NoCachedStats
 from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,

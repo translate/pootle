@@ -10,7 +10,7 @@
 from django.contrib.auth import get_user_model
 
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_store.forms import unit_form_factory, UnitStateField
+from pootle_store.forms import UnitStateField, unit_form_factory
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 

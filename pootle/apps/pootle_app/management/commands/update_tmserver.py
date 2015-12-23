@@ -15,7 +15,7 @@ from optparse import make_option
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from elasticsearch import helpers, Elasticsearch
+from elasticsearch import Elasticsearch, helpers
 from translate.storage import factory
 
 from django.conf import settings

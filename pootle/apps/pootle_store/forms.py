@@ -16,8 +16,8 @@ from django import forms
 from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
-from pootle.core.log import (TRANSLATION_ADDED,
-                             TRANSLATION_CHANGED, TRANSLATION_DELETED)
+from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
+                             TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -25,7 +25,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 
 from .fields import to_db
 from .models import Unit
-from .util import UNTRANSLATED, FUZZY, TRANSLATED, OBSOLETE
+from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 # # # # # # #  text cleanup and highlighting # # # # # # # # # # # # #
 

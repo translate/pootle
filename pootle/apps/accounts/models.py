@@ -22,7 +22,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import ProtectedError, Sum, Q
+from django.db.models import ProtectedError, Q, Sum
 from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
