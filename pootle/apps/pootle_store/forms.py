@@ -28,7 +28,6 @@ from .fields import to_db
 from .models import Unit
 from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
-# # # # # # #  text cleanup and highlighting # # # # # # # # # # # # #
 
 FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
 
