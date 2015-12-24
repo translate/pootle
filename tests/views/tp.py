@@ -85,11 +85,6 @@ def _test_browse_view(tp, request, response, kwargs):
     if vfolders:
         filters['sort'] = 'priority'
 
-    if resource_path:
-        resource_obj = ob
-    else:
-        resource_obj = tp
-
     if not kwargs.get("filename"):
         table_fields = [
             'name', 'progress', 'total', 'need-translation',
@@ -103,10 +98,10 @@ def _test_browse_view(tp, request, response, kwargs):
 
     assertions = dict(
         page="browse",
+        object=ob,
         translation_project=tp,
         language=tp.language,
         project=tp.project,
-        resource_obj=resource_obj,
         is_admin=False,
         is_store=(kwargs.get("filename") and True or False),
         browser_extends="translation_projects/base.html",

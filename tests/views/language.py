@@ -48,7 +48,7 @@ def _test_browse_view(language, request, response, kwargs):
         'items': items}
     assertions = dict(
         page="browse",
-        resource_obj=language,
+        object=language,
         language={
             'code': language.code,
             'name': language.name},
