@@ -9,7 +9,6 @@
 
 import logging
 import re
-re._MAXCACHE = 2000
 
 from translate.filters import checks
 from translate.filters.decorators import Category, cosmetic, critical
@@ -20,6 +19,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from .util import import_func
 
+
+re._MAXCACHE = 2000
 
 CATEGORY_IDS = {
     'critical': Category.CRITICAL,
