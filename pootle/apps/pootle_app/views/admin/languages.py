@@ -7,13 +7,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('LanguageAdminView', 'LanguageAPIView')
-
 from django.views.generic import TemplateView
 
 from pootle.core.views import APIView, SuperuserRequiredMixin
 from pootle_app.forms import LanguageForm
 from pootle_language.models import Language
+
+
+__all__ = ('LanguageAdminView', 'LanguageAPIView')
 
 
 class LanguageAdminView(SuperuserRequiredMixin, TemplateView):

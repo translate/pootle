@@ -7,9 +7,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('DirtyFieldsMixin',)
-
 from django.db.models.signals import post_save
+
+
+__all__ = ('DirtyFieldsMixin',)
 
 
 class DirtyFieldsMixin(object):

@@ -7,13 +7,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('UserAdminView', 'UserAPIView')
-
 from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView
 
 from pootle.core.views import APIView, SuperuserRequiredMixin
 from pootle_app.forms import UserForm
+
+
+__all__ = ('UserAdminView', 'UserAPIView')
 
 
 class UserAdminView(SuperuserRequiredMixin, TemplateView):

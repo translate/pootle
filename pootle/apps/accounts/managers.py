@@ -7,12 +7,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('UserManager', )
-
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 
 from . import utils
+
+
+__all__ = ('UserManager', )
 
 
 class UserManager(BaseUserManager):

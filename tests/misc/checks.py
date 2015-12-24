@@ -8,7 +8,9 @@
 # AUTHORS file for copyright and authorship information.
 
 from translate.filters.checks import FilterFailure
+
 from pootle_misc.checks import ENChecker
+
 
 checker = ENChecker()
 

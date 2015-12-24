@@ -49,21 +49,6 @@ from fixtures.views import (
 from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
 
 
-PARAMETERS = (
-    ("update_store_test_names", UPDATE_STORE_TESTS),
-    ("file_import_failure_names", FILE_IMPORT_FAIL_TESTS),
-    ("wordcount_names", WORDCOUNT_TESTS),
-    ("project_view_names", PROJECT_VIEW_TESTS),
-    ("language_view_names", LANGUAGE_VIEW_TESTS),
-    ("tp_view_names", TP_VIEW_TESTS),
-    ("bad_view_names", BAD_VIEW_TESTS))
-
-
-def pytest_generate_tests(metafunc):
-    for name, params in PARAMETERS:
-        if name in metafunc.fixturenames:
-            metafunc.parametrize(name, params)
-
 __all__ = (
     'admin', 'default', 'evil_member', 'member', 'member2',
     'member_with_email', 'nobody', 'system', 'trans_member', 'trans_nobody',
@@ -88,3 +73,19 @@ __all__ = (
     'site_root', 'site_matrix_with_vfolders', 'site_matrix_with_announcements',
     'site_permissions', 'project_views', 'tp_views', 'language_views',
     'bad_views')
+
+
+PARAMETERS = (
+    ("update_store_test_names", UPDATE_STORE_TESTS),
+    ("file_import_failure_names", FILE_IMPORT_FAIL_TESTS),
+    ("wordcount_names", WORDCOUNT_TESTS),
+    ("project_view_names", PROJECT_VIEW_TESTS),
+    ("language_view_names", LANGUAGE_VIEW_TESTS),
+    ("tp_view_names", TP_VIEW_TESTS),
+    ("bad_view_names", BAD_VIEW_TESTS))
+
+
+def pytest_generate_tests(metafunc):
+    for name, params in PARAMETERS:
+        if name in metafunc.fixturenames:
+            metafunc.parametrize(name, params)

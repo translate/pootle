@@ -7,8 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('TreeItem', 'CachedTreeItem', 'CachedMethods')
-
 import logging
 from datetime import datetime
 from functools import wraps
@@ -30,6 +28,9 @@ from pootle.core.log import log
 from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle.core.utils.timezone import datetime_min
 from pootle_misc.util import dictsum
+
+
+__all__ = ('TreeItem', 'CachedTreeItem', 'CachedMethods')
 
 
 POOTLE_DIRTY_TREEITEMS = 'pootle:dirty:treeitems'

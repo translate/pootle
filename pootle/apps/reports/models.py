@@ -7,12 +7,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('PaidTask', )
-
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
+
+__all__ = ('PaidTask', )
 
 
 class PaidTaskTypes(object):

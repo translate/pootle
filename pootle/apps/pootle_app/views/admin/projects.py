@@ -7,8 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-__all__ = ('ProjectAdminView', 'ProjectAPIView')
-
 from django.views.generic import TemplateView
 
 from pootle.core.utils.json import jsonify
@@ -17,6 +15,9 @@ from pootle_app.forms import ProjectForm
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.filetypes import filetype_choices
+
+
+__all__ = ('ProjectAdminView', 'ProjectAPIView')
 
 
 class ProjectAdminView(SuperuserRequiredMixin, TemplateView):

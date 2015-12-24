@@ -7,9 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-
-__all__ = ('User', )
-
 import datetime
 import re
 from hashlib import md5
@@ -39,6 +36,9 @@ from pootle_store.models import SuggestionStates, Unit
 
 from .managers import UserManager
 from .utils import UserMerger, UserPurger
+
+
+__all__ = ('User', )
 
 
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'), ('CNY', 'CNY'), ('JPY', 'JPY'))

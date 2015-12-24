@@ -11,9 +11,6 @@ from __future__ import absolute_import
 
 import logging
 
-
-__all__ = ('ElasticSearchBackend',)
-
 try:
     from elasticsearch import Elasticsearch
     from elasticsearch.exceptions import ElasticsearchException
@@ -21,6 +18,9 @@ except:
     Elasticsearch = None
 
 from ..base import SearchBackend
+
+
+__all__ = ('ElasticSearchBackend',)
 
 
 logger = logging.getLogger(__name__)
