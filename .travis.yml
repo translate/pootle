@@ -6,12 +6,12 @@ env:
   - TOXENV=py27-django17-mysql
   - TOXENV=py27-django17-postgres
   # Meta
-  - TOXENV=docs
+  - TOXENV=sdist
   - TOXENV=eslint
+  - TOXENV=docs
   - TOXENV=mo
   - TOXENV=pep8
   - TOXENV=pep257
-  - TOXENV=sdist
 cache:
   directories:
     - pootle/assets/js/node_modules
