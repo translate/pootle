@@ -6,9 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from fixtures.models.user import (
-    default, system, nobody, trans_nobody, admin, member, trans_member,
-    trans_system, member_with_email, member2, evil_member)
 from fixtures.models.directory import projects, root
 from fixtures.models.language import (
     english, templates, afrikaans, arabic, french, spanish, italian, russian,
@@ -31,6 +28,9 @@ from fixtures.models.translation_project import (
     afrikaans_tutorial, arabic_tutorial_obsolete, english_tutorial,
     french_tutorial, spanish_tutorial, italian_tutorial, russian_tutorial,
     afrikaans_vfolder_test, templates_tutorial)
+from fixtures.models.user import (
+    default, system, nobody, trans_nobody, admin, member, trans_member,
+    trans_system, member_with_email, member2, evil_member)
 
 from fixtures.cache import delete_pattern
 from fixtures.import_export_fixtures import (
