@@ -131,7 +131,6 @@ def _setup_store_test(store, member, member2, test):
             _create_comment_on_unit(unit, member, comment)
 
     store_revision, units_update = test["update_store"]
-    revision_min = store.get_max_unit_revision()
     units_before = [
         unit for unit in store.unit_set.all().order_by("index")]
 
@@ -143,9 +142,6 @@ def _setup_store_test(store, member, member2, test):
 
     if store_revision == "MAX":
         store_revision = store.get_max_unit_revision()
-
-    elif store_revision == "MIN":
-        store_revision = revision_min
 
     elif store_revision == "MID":
         revisions = [unit.revision for unit in units_before]
