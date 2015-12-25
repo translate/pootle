@@ -174,8 +174,6 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
             assert unit.mtime == updated_unit.mtime
 
 
-#@pytest.mark.xfail("last_sync_revision is no longer set in Store.update "
-#                   "- we need to test command instead")
 @pytest.mark.django_db
 def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     """Tests setting last_sync_revision after store creation.
