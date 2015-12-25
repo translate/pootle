@@ -59,8 +59,16 @@ UPDATE_STORE_TESTS['old_subset_1'] = {
 UPDATE_STORE_TESTS['old_subset_2'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_2)
 }
+UPDATE_STORE_TESTS['old_subset_2_pootle_wins'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_2),
+    "fs_wins": False
+}
 UPDATE_STORE_TESTS['old_same_updated'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2)
+}
+UPDATE_STORE_TESTS['old_same_updated_pootle_wins'] = {
+    "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2),
+    "fs_wins": False
 }
 
 UPDATE_STORE_TESTS['old_unobsolete'] = {
@@ -72,11 +80,6 @@ UPDATE_STORE_TESTS['old_unobsolete'] = {
 
 UPDATE_STORE_TESTS['old_merge'] = {
     "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_3)
-}
-
-UPDATE_STORE_TESTS['old_same_updated_fs_wins'] = {
-    "update_store": ("MID", UPDATED_STORE_UNITS_1 + UPDATED_STORE_UNITS_2),
-    "fs_wins": True
 }
 
 UPDATE_STORE_TESTS['max_empty'] = {"update_store": ("MAX", [])}
