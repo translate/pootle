@@ -189,7 +189,6 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     store.update_from_disk()
     assert store.last_sync_revision == saved_last_sync_revision
 
-
     dir_path = os.path.join(store.translation_project.project.get_real_path(),
                             store.translation_project.language.code)
     copied_initial_filepath = os.path.join(
