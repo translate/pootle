@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import shutil
 import time
 
 import pytest
@@ -173,28 +174,40 @@ def test_update_save_changed_units(ru_update_save_changed_units_po):
             assert unit.mtime == updated_unit.mtime
 
 
-@pytest.mark.xfail("last_sync_revision is no longer set in Store.update "
-                   "- we need to test command instead")
-def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
+#@pytest.mark.xfail("last_sync_revision is no longer set in Store.update "
+#                   "- we need to test command instead")
+@pytest.mark.django_db
+def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     """Tests setting last_sync_revision after store creation.
     """
     store = ru_update_set_last_sync_revision_po
 
-    # Parse a store during first update store.last_sync_revision is set to the
-    # next global revision
-    next_revision = Revision.get() + 1
-    store.update(store.file.store)
-    assert store.last_sync_revision == next_revision
-    assert store.get_max_unit_revision() == next_revision
+    # Store is already parsed and store.last_sync_revision should be equal to
+    # max unit revision
+    assert store.last_sync_revision == store.get_max_unit_revision()
 
     # store.last_sync_revision is not changed after empty update
-    store.update(store.file.store)
-    assert store.last_sync_revision == next_revision
+    saved_last_sync_revision = store.last_sync_revision
+    store.update_from_disk()
+    assert store.last_sync_revision == saved_last_sync_revision
+
+
+    dir_path = os.path.join(store.translation_project.project.get_real_path(),
+                            store.translation_project.language.code)
+    copied_initial_filepath = os.path.join(
+        dir_path,
+        'update_set_last_sync_revision.po.temp'
+    )
+    shutil.copy(store.file.path, copied_initial_filepath)
+    updated_filepath = os.path.join(
+        dir_path,
+        'update_set_last_sync_revision_updated.po'
+    )
+    shutil.copy(updated_filepath, store.file.path)
 
     # any non-empty update sets last_sync_revision to next global revision
-    store.file = 'tutorial/ru/update_set_last_sync_revision_updated.po'
     next_revision = Revision.get() + 1
-    store.update(store.file.store)
+    store.update_from_disk()
     assert store.last_sync_revision == next_revision
 
     # store.last_sync_revision is not changed after empty update (even if it
@@ -204,20 +217,21 @@ def __test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     dbunit = _update_translation(store, item_index, {'target': u'first'},
                                  sync=False)
     assert dbunit.revision == next_unit_revision
-    store.update(store.file.store, store_revision=0)
+    store.update_from_disk()
     assert store.last_sync_revision == next_revision
 
     # Non-empty update sets store.last_sync_revision to next global revision
     # (even the store has unsynced units).  There is only one unsynced unit in
     # this case so its revision should be set next to store.last_sync_revision
     next_revision = Revision.get() + 1
-    store.file = 'tutorial/ru/update_set_last_sync_revision.po'
-    store.update(store.file.store,
-                 store_revision=store.get_max_unit_revision())
+    shutil.move(copied_initial_filepath, store.file.path)
+    store.update_from_disk()
     assert store.last_sync_revision == next_revision
-    unit = store.getitem(item_index)
-    # not sure why this was store.last_sync_revision + 1 - but no longer works
-    assert unit.revision == store.last_sync_revision
+    # Get unsynced unit in DB. Its revision should be greater
+    # than store.last_sync_revision to allow to keep this change during
+    # update from a file
+    dbunit = store.getitem(item_index)
+    assert dbunit.revision == store.last_sync_revision + 1
 
 
 @pytest.mark.django_db
