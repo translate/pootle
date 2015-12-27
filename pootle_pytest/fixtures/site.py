@@ -44,6 +44,25 @@ def site_matrix_with_subdirs(site_matrix):
 
 
 @pytest.fixture
+def site_matrix_with_vfolders(site_matrix):
+    from pootle_pytest.factories import VirtualFolderFactory
+
+    VirtualFolderFactory(filter_rules="store0.po")
+    VirtualFolderFactory(filter_rules="store1.po")
+    vfolder2 = VirtualFolderFactory(
+        location='/{LANG}/project0/',
+        filter_rules="store0.po")
+    vfolder3 = VirtualFolderFactory(
+        location='/{LANG}/project0/',
+        filter_rules="store1.po")
+
+    vfolder2.is_public = False
+    vfolder2.save()
+    vfolder3.is_public = False
+    vfolder3.save()
+
+
+@pytest.fixture
 def site_root(request, system, settings):
 
     from pootle_pytest.factories import (

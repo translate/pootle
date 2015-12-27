@@ -37,7 +37,9 @@ from fixtures.import_export_fixtures import (
     FILE_IMPORT_FAIL_TESTS,
     file_import_failure, ts_directory, en_tutorial_ts)
 from fixtures.revision import revision
-from fixtures.site import site_matrix, site_matrix_with_subdirs, site_root
+from fixtures.site import (
+    site_matrix, site_matrix_with_subdirs, site_matrix_with_vfolders,
+    site_root)
 from fixtures.views import admin_client
 
 from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
@@ -75,4 +77,4 @@ __all__ = (
     'russian_tutorial', 'spanish_tutorial', 'templates_tutorial',
     'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
     'revision', 'admin_client', 'site_matrix', 'site_matrix_with_subdirs',
-    'site_root',)
+    'site_root', 'site_matrix_with_vfolders')
