@@ -7,81 +7,32 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
-from pootle_app.models import Directory
-from pootle_store.models import Store
+from pootle.core.url_helpers import get_all_pootle_paths
 
-from .models import VirtualFolder
+from .models import VirtualFolderTreeItem
 
 
-def extract_vfolder_from_path(pootle_path):
-    """Return a valid virtual folder and an adjusted pootle path.
-
-    This accepts a pootle path and extracts the virtual folder from it (if
-    present) returning the virtual folder and the clean path.
-
-    If it can't be determined the virtual folder, then the provided path is
-    returned unchanged along as a None value.
-
-    The path /gl/firefox/browser/vfolder/chrome/file.po with the vfolder
-    virtual folder on it will be converted to
-    /gl/firefox/browser/chrome/file.po if the virtual folder exists and is
-    public.
-
-    Have in mind that several virtual folders with the same name might apply in
-    the same path (as long as they have different locations this is possible)
-    and in such cases the one with higher priority is returned.
+def extract_vfolder_from_path(request_path):
     """
-    lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+    Matches request_path to a VirtualFolderTreeItem pootle_path
 
-    if ((filename and Store.objects.filter(pootle_path=pootle_path).exists())
-        or Directory.objects.filter(pootle_path=pootle_path).exists()):
-        # If there is no vfolder then return the provided path.
-        return None, pootle_path
+    If a match is found, the associated VirtualFolder and Directory.pootle_path
+    are returned. Otherwise the original request_path is returned.
 
-    # Get the pootle paths for all the parents except the one for the file and
-    # those for the translation project and above.
-    all_dir_paths = [path for path in get_all_pootle_paths(pootle_path)
-                     if path.count('/') > 3 and path.endswith('/')]
-    all_dir_paths = sorted(all_dir_paths)
-
-    for dir_path in all_dir_paths:
-        if Directory.objects.filter(pootle_path=dir_path).exists():
-            continue
-
-        # There is no directory with such path, and that might mean that it
-        # includes a virtual folder.
-        valid_starting_path, vfolder_name = dir_path.rstrip('/').rsplit('/', 1)
-
-        vfolders = VirtualFolder.objects.filter(
-            name=vfolder_name,
-            is_public=True
-        ).order_by('-priority')
-
-        vfolder = None
-
-        for vf in vfolders:
-            # There might be several virtual folders with the same name, so get
-            # the first higher priority one that applies to the adjusted path.
-            try:
-                # Ensure that the virtual folder applies in the path.
-                vf.get_adjusted_location(valid_starting_path + '/')
-            except Exception:
-                continue
-
-            vfolder = vf
-            break
-
-        if vfolder is None:
-            # The virtual folder does not exist or is not public or doesn't
-            # apply in this location, so this is an invalid path.
-            break
-
-        valid_ending_path = pootle_path.replace(dir_path, '')
-        adjusted_path = '/'.join([valid_starting_path, valid_ending_path])
-
-        return vfolder, adjusted_path
-
-    # There is no virtual folder (or is not public) and the provided path
-    # doesn't exist, so let the calling code to deal with this.
-    return None, pootle_path
+    :param request_path: a path that may contain a virtual folder
+    :return: (`VirtualFolder`, path)
+    """
+    all_dir_paths = [
+        dir_path for dir_path in get_all_pootle_paths(request_path)
+        if dir_path.count('/') > 3 and dir_path.endswith('/')]
+    vftis = VirtualFolderTreeItem.objects.filter(pootle_path__in=all_dir_paths)
+    if vftis.exists():
+        # There may be more than one vfti with matching pootle_path, so we get
+        # the one with the shortest path or highest priority.
+        vfti = sorted(
+            vftis.select_related("vfolder", "directory"),
+            key=lambda obj: (
+                -len(obj.pootle_path),
+                obj.vfolder.priority))[0]
+        return vfti.vfolder, vfti.directory.pootle_path
+    return None, request_path
