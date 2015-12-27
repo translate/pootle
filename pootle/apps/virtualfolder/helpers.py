@@ -42,7 +42,7 @@ def extract_vfolder_from_path(pootle_path):
     # Get the pootle paths for all the parents except the one for the file and
     # those for the translation project and above.
     all_dir_paths = [path for path in get_all_pootle_paths(pootle_path)
-                     if dir_path.count('/') > 3 and dir_path.endswith('/')]
+                     if path.count('/') > 3 and path.endswith('/')]
     all_dir_paths = sorted(all_dir_paths)
 
     for dir_path in all_dir_paths:
