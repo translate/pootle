@@ -1,12 +1,12 @@
 {% load i18n %}
 <option
-  value="browse"
-  data-href="{% url 'pootle-language-browse' language.code %}">
+   value="browse"
+   data-href="{{ browse_url }}">
   {% trans "Browse" %}
 </option>
 <option
   value="translate"
-  data-href="{% url 'pootle-language-translate' language.code %}">
+  data-href="{{ translate_url }}">
   {% trans "Translate" %}
 </option>
 {% if page == 'translate' %}
@@ -14,7 +14,7 @@
 <option
   value="export" class="js-export-view"
   data-new-tab="true"
-  data-export-url="{% url 'pootle-language-export' language.code %}">
+  data-export-url="{{ export_url }}">
   {% trans "Export View" %}
 </option>
 {% endif %}
