@@ -14,7 +14,7 @@ from translate.lang import data
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import resolve, reverse, Resolver404
 from django.db.models import Max, Q
 from django.http import Http404
 from django.shortcuts import redirect
@@ -29,7 +29,6 @@ from django.views.decorators.http import require_http_methods
 from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
@@ -461,7 +460,9 @@ def get_units(request):
     """
     pootle_path = request.GET.get('path', None)
     if pootle_path is None:
-        raise Http400(_('Arguments missing.'))
+        raise Http404(_('Arguments missing.'))
+    elif len(pootle_path) > 2048:
+        raise Http404(_('Path too long.'))
 
     User = get_user_model()
     request.profile = User.get(request.user)
@@ -473,9 +474,20 @@ def get_units(request):
 
         vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
 
-    units_qs = (
-        Unit.objects.get_for_path(pootle_path, request.profile)
-                    .order_by("store", "index"))
+    path_keys = [
+        "project_code", "language_code", "dir_path", "filename"]
+    try:
+        path_kwargs = {
+            k: v
+            for k, v in resolve(pootle_path).kwargs.items()
+            if k in path_keys}
+    except Resolver404:
+        raise Http404('Unrecognised path')
+
+    units_qs = Unit.objects.get_translatable(
+        user=request.profile,
+        **path_kwargs)
+    units_qs = units_qs.order_by("store", "index")
 
     if vfolder is not None:
         units_qs = units_qs.filter(vfolders=vfolder)

@@ -83,6 +83,9 @@ CHECKED = 2
 POOTLE_WINS = 1
 FILE_WINS = 2
 
+LANGUAGE_REGEX = r"[^/]{,255}"
+PROJECT_REGEX = r"[^/]{,255}"
+
 
 # # # # # # # # Quality Check # # # # # # #
 
@@ -234,50 +237,62 @@ class UnitManager(models.Manager):
         return self.live() \
                    .filter(store__translation_project__project__disabled=False)
 
-    def get_for_path(self, pootle_path, user):
+    def get_translatable(self, user, project_code=None, language_code=None,
+                         dir_path=None, filename=None):
         """Returns units that fall below the `pootle_path` umbrella.
 
-        :param pootle_path: An internal pootle path.
+        :param project_code: A string for matching the code of a Project.
+        :param language_code: A string for matching the code of a Language.
+        :param dir_path: A string for matching the dir_path and descendants
+           from the TP.
+        :param filename: A string for matching the filename of Stores.
         :param user: The user who is accessing the units.
         """
-        lang, proj, dir_path, filename = split_pootle_path(pootle_path)
+        from pootle_project.models import Project
+
+        if not user.is_superuser:
+            user_projects = Project.accessible_by_user(user)
+            if project_code and project_code not in user_projects:
+                return self.none()
 
         units_qs = self.get_for_user(user)
 
-        # /projects/<project_code>/translate/*
-        if lang is None and proj is not None:
-            if dir_path and filename:
-                units_path = ''.join(['/%/', proj, '/', dir_path, filename])
-            elif dir_path:
-                units_path = ''.join(['/%/', proj, '/', dir_path, '%'])
-            elif filename:
-                units_path = ''.join(['/%/', proj, '/', filename])
-            else:
-                units_path = ''.join(['/%/', proj, '/%'])
-        # /projects/translate/*
-        elif lang is None and proj is None:
-            units_path = '/%'
-        # /<lang_code>/<project_code>/translate/*
-        # /<lang_code>/translate/*
-        else:
-            units_path = ''.join([pootle_path, '%'])
-
-        units_qs = units_qs.extra(
-            where=[
-                'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path NOT LIKE %s',
-            ], params=[units_path, '/templates/%']
-        )
-
-        # Non-superusers are limited to the projects they have access to
-        if not user.is_superuser:
-            from pootle_project.models import Project
-            user_projects = Project.accessible_by_user(user)
+        if language_code:
             units_qs = units_qs.filter(
-                store__translation_project__project__code__in=user_projects,
-            )
+                store__translation_project__language__code=language_code)
+        else:
+            units_qs = units_qs.exclude(
+                store__pootle_path__startswith="/templates/")
 
-        return units_qs
+        if project_code:
+            units_qs = units_qs.filter(
+                store__translation_project__project__code=project_code)
+        elif not user.is_superuser:
+            units_qs = units_qs.filter(
+                store__translation_project__project__code__in=user_projects)
+
+        if not (dir_path or filename):
+            return units_qs
+
+        pootle_path = "/%s/%s/%s%s" % (
+            language_code or LANGUAGE_REGEX,
+            project_code or PROJECT_REGEX,
+            dir_path or "",
+            filename or "")
+        if language_code and project_code:
+            if filename:
+                return units_qs.filter(
+                    store__pootle_path=pootle_path)
+            else:
+                return units_qs.filter(
+                    store__pootle_path__startswith=pootle_path)
+        else:
+            # we need to use a regex in this case as lang or proj are not
+            # set
+            if filename:
+                pootle_path = "%s$" % pootle_path
+            return units_qs.filter(
+                store__pootle_path__regex=pootle_path)
 
 
 class Unit(models.Model, base.TranslationUnit):

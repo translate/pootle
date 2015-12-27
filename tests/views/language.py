@@ -102,8 +102,8 @@ def _test_export_view(language, request, response, kwargs):
     # TODO: export views should be parsed in a form
     ctx = response.context
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_for_path(
-        language.pootle_path, request.profile)
+    units_qs = Unit.objects.get_translatable(
+        request.profile, **kwargs)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [

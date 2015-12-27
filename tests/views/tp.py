@@ -176,19 +176,9 @@ def _test_translate_view(tp, request, response, kwargs, settings):
 
 def _test_export_view(tp, request, response, kwargs):
     ctx = response.context
-    resource_path = "%(dir_path)s%(filename)s" % kwargs
-    pootle_path = "%s%s" % (tp.pootle_path, resource_path)
-    if not (kwargs["dir_path"] or kwargs.get("filename")):
-        ob = tp.directory
-    elif not kwargs.get("filename"):
-        ob = Directory.objects.get(
-            pootle_path=pootle_path)
-    else:
-        ob = Store.objects.get(
-            pootle_path=pootle_path)
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_for_path(
-        ob.pootle_path, request.profile)
+    units_qs = Unit.objects.get_translatable(
+        request.profile, **kwargs)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [

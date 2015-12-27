@@ -629,8 +629,11 @@ class PootleExportView(PootleDetailView):
     def get_context_data(self, *args, **kwargs):
         ctx = {}
         filter_name, filter_extra = get_filter_name(self.request.GET)
-        units_qs = Unit.objects.get_for_path(self.object.pootle_path,
-                                             self.request.profile)
+
+        units_qs = Unit.objects.get_translatable(
+            self.request.profile,
+            **self.kwargs)
+
         units_qs = get_step_query(self.request, units_qs)
         unit_total_count = units_qs.count()
         units_qs = units_qs.select_related('store')

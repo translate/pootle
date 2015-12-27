@@ -141,28 +141,9 @@ def _test_browse_view(project, request, response, kwargs):
 def _test_export_view(project, request, response, kwargs):
     ctx = response.context
     kwargs["project_code"] = project.code
-
-    resource_path = (
-        "%(dir_path)s%(filename)s" % kwargs)
-    project_path = (
-        "%s/%s"
-        % (kwargs["project_code"], resource_path))
-    if not (kwargs["dir_path"] or kwargs["filename"]):
-        ob = project
-    elif not kwargs["filename"]:
-        ob = ProjectResource(
-            Directory.objects.live().filter(
-                pootle_path__regex="^/.*/%s$" % project_path),
-            pootle_path="/projects/%s" % project_path)
-    else:
-        ob = ProjectResource(
-            Store.objects.live().filter(
-                pootle_path__regex="^/.*/%s$" % project_path),
-            pootle_path="/projects/%s" % project_path)
-
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_for_path(
-        ob.pootle_path, request.profile)
+    units_qs = Unit.objects.get_translatable(
+        request.profile, **kwargs)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [
@@ -272,8 +253,8 @@ def test_view_projects_export(site_permissions, site_matrix_with_vfolders,
     ctx = response.context
     request = response.wsgi_request
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_for_path(
-        "/projects/", request.profile)
+    units_qs = Unit.objects.get_translatable(
+        request.profile)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [
