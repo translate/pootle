@@ -10,99 +10,154 @@
 import locale
 
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from django.utils.functional import cached_property
+from django.utils.lru_cache import lru_cache
 
-from pootle.core.browser import (get_table_headings, make_language_item,
-                                 make_project_list_item, make_xlanguage_item)
-from pootle.core.decorators import (get_path_obj, get_resource,
-                                    permission_required)
-from pootle.core.helpers import (SIDEBAR_COOKIE_NAME, get_browser_context,
-                                 get_export_view_context,
-                                 get_sidebar_announcements_context,
-                                 get_translation_context)
+from pootle.core.browser import (
+    make_language_item, make_project_list_item, make_xlanguage_item)
+from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.url_helpers import split_pootle_path
-from pootle.core.utils.json import jsonify
+from pootle.core.views import (
+    PootleBrowseView, PootleExportView, PootleTranslateView)
+from pootle_app.models import Directory
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_project.forms import tp_form_factory
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
+from pootle_project.models import Project, ProjectSet, ProjectResource
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource
-def browse(request, project, dir_path, filename):
-    """Languages browser for a given project."""
-    item_func = (make_xlanguage_item
-                 if dir_path or filename
-                 else make_language_item)
-    items = [item_func(item) for item in
-             request.resource_obj.get_children_for_user(request.profile)]
-    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
+class ProjectMixin(object):
+    model = Project
+    browse_url_path = "pootle-project-browse"
+    export_url_path = "pootle-project-export"
+    translate_url_path = "pootle-project-translate"
+    template_extends = 'projects/base.html'
 
-    table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'project',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': items,
-    }
+    @property
+    def ctx_path(self):
+        return "/projects/%s/" % self.project.code
 
-    ctx, cookie_data = get_sidebar_announcements_context(
-        request,
-        (project, ),
-    )
+    @property
+    def permission_context(self):
+        return self.project.directory
 
-    ctx.update(get_browser_context(request))
-    ctx.update({
-        'project': project,
-        'table': table,
-        'stats': jsonify(
-            request.resource_obj.get_stats_for_user(request.user)),
+    @cached_property
+    def project(self):
+        return get_object_or_404(
+            Project, code=self.kwargs["project_code"])
 
-        'browser_extends': 'projects/base.html',
-    })
+    @property
+    def url_kwargs(self):
+        return {
+            "project_code": self.project.code,
+            "dir_path": self.kwargs["dir_path"],
+            "filename": self.kwargs["filename"]}
 
-    response = render(request, 'browser/index.html', ctx)
+    @lru_cache()
+    def get_object(self):
+        if not (self.kwargs["dir_path"] or self.kwargs["filename"]):
+            return self.project
 
-    if cookie_data:
-        response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)
+        regex = (
+            r"^/.*/%s/%s"
+            % (self.project.code,
+               self.kwargs['dir_path']))
 
-    return response
+        if not self.kwargs["filename"]:
+            dirs = Directory.objects.live().select_related("parent__pootle_path")
+            resources = (
+                dirs.filter(pootle_path__regex="%s$" % regex)
+                    .exclude(pootle_path__startswith="/templates"))
+        else:
+            regex = "%s%s$" % (regex, self.kwargs["filename"])
+            resources = (
+                Store.objects.live()
+                             .select_related("translation_project__language")
+                             .filter(pootle_path__regex=regex))
+        if resources.exists():
+            return ProjectResource(
+                resources,
+                ("/projects/%(project_code)s/%(dir_path)s%(filename)s"
+                 % self.kwargs))
+        raise Http404
+
+    @property
+    def resource_path(self):
+        return "%(dir_path)s%(filename)s" % self.kwargs
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource
-def translate(request, project, dir_path, filename):
-    language = None
+class ProjectBrowseView(ProjectMixin, PootleBrowseView):
+    table_id = "project"
+    table_fields = [
+        'name', 'progress', 'total', 'need-translation',
+        'suggestions', 'critical', 'last-updated', 'activity']
 
-    ctx = get_translation_context(request)
-    ctx.update({
-        'language': language,
-        'project': project,
+    @property
+    def stats(self):
+        return self.object.get_stats_for_user(
+            self.request.user)
 
-        'editor_extends': 'projects/base.html',
-    })
+    @property
+    def pootle_path(self):
+        return self.object.pootle_path
 
-    return render(request, 'editor/main.html', ctx)
+    @property
+    def permission_context(self):
+        return self.project.directory
+
+    @cached_property
+    def sidebar_announcements(self):
+        return get_sidebar_announcements_context(
+            self.request,
+            (self.project, ))
+
+    @property
+    def url_kwargs(self):
+        return self.kwargs
+
+    @cached_property
+    def items(self):
+        item_func = (
+            make_xlanguage_item
+            if (self.kwargs['dir_path']
+                or self.kwargs['filename'])
+            else make_language_item)
+        dir_path, filename = split_pootle_path(self.pootle_path)[2:]
+        if dir_path.count("/"):
+            tp_prefix = "parent__" * dir_path.count("/")
+            selects = [
+                "%stranslationproject" % tp_prefix,
+                "%stranslationproject" % tp_prefix,
+                "%stranslationproject__language" % tp_prefix]
+        elif not filename:
+            selects = ["language", "directory"]
+        else:
+            selects = None
+        items = [
+            item_func(item)
+            for item
+            in self.object.get_children_for_user(
+                self.request.profile,
+                select_related=selects)]
+        items.sort(
+            lambda x, y: locale.strcoll(x['title'], y['title']))
+        return items
 
 
-@get_path_obj
-@permission_required('view')
-@get_resource
-def export_view(request, project, dir_path, filename):
-    language = None
+class ProjectTranslateView(ProjectMixin, PootleTranslateView):
 
-    ctx = get_export_view_context(request)
-    ctx.update({
-        'source_language': 'en',
-        'language': language,
-        'project': project,
-    })
+    @property
+    def pootle_path(self):
+        return self.object.pootle_path
 
-    return render(request, 'editor/export_view.html', ctx)
+
+class ProjectExportView(ProjectMixin, PootleExportView):
+    source_language = "en"
 
 
 @get_path_obj
@@ -152,59 +207,63 @@ def project_admin_permissions(request, project):
                              'projects/admin/permissions.html', ctx)
 
 
-@get_path_obj
-@permission_required('view')
-def projects_browse(request, project_set):
-    """Page listing all projects"""
-    items = [make_project_list_item(project)
-             for project in project_set.children]
-    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
+class ProjectsMixin(object):
+    template_extends = 'projects/all/base.html'
+    browse_url_path = "pootle-projects-browse"
+    export_url_path = "pootle-projects-export"
+    translate_url_path = "pootle-projects-translate"
 
-    table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'projects',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'items': items,
-    }
+    @lru_cache()
+    def get_object(self):
+        user_projects = Project.accessible_by_user(self.request.user)
+        user_projects = (
+            Project.objects.for_user(self.request.user)
+                           .filter(code__in=user_projects)
+                           .select_related("directory__pootle_path"))
+        return ProjectSet(user_projects)
 
-    ctx = get_browser_context(request)
-    ctx.update({
-        'table': table,
-        'stats': jsonify(request.resource_obj.get_stats()),
+    @property
+    def permission_context(self):
+        return self.get_object().directory
 
-        'browser_extends': 'projects/all/base.html',
-    })
+    @property
+    def is_admin(self):
+        return False
 
-    response = render(request, 'browser/index.html', ctx)
-    response.set_cookie('pootle-language', 'projects')
-
-    return response
+    @property
+    def url_kwargs(self):
+        return {}
 
 
-@get_path_obj
-@permission_required('view')
-def projects_translate(request, project_set):
-    ctx = get_translation_context(request)
-    ctx.update({
-        'language': None,
-        'project': None,
+class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
+    table_id = "projects"
+    table_fields = [
+        'name', 'progress', 'total', 'need-translation',
+        'suggestions', 'critical', 'last-updated', 'activity']
 
-        'editor_extends': 'projects/all/base.html',
-    })
+    @property
+    def items(self):
+        items = [
+            make_project_list_item(project)
+            for project
+            in self.object.children]
+        items.sort(
+            lambda x, y: locale.strcoll(x['title'], y['title']))
+        return items
 
-    return render(request, 'editor/main.html', ctx)
+    @property
+    def sidebar_announcements(self):
+        return {}, None
+
+    def get(self, *args, **kwargs):
+        response = super(ProjectsBrowseView, self).get(*args, **kwargs)
+        response.set_cookie('pootle-language', "projects")
+        return response
 
 
-@get_path_obj
-@permission_required('view')
-def projects_export_view(request, project_set):
-    ctx = get_export_view_context(request)
-    ctx.update({
-        'source_language': 'en',
-        'language': None,
-        'project': None,
-    })
+class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):
+    pass
 
-    return render(request, 'editor/export_view.html', ctx)
+
+class ProjectsExportView(ProjectsMixin, PootleExportView):
+    source_language = "en"
