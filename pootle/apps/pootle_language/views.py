@@ -7,104 +7,83 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.utils.functional import cached_property
 
-from pootle.core.browser import get_table_headings, make_project_item
+from pootle.core.browser import make_project_item
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.helpers import (SIDEBAR_COOKIE_NAME, get_browser_context,
-                                 get_export_view_context,
-                                 get_sidebar_announcements_context,
-                                 get_translation_context)
-from pootle.core.utils.json import jsonify
+from pootle.core.views import (
+    PootleBrowseView, PootleTranslateView, PootleExportView)
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
 
 from .forms import LanguageSpecialCharsForm
+from .models import Language
 
 
-@get_path_obj
-@permission_required('view')
-def browse(request, language):
-    user_tps = language.get_children_for_user(request.user)
-    items = [make_project_item(tp) for tp in user_tps]
+class LanguageMixin(object):
+    model = Language
+    browse_url_path = "pootle-language-browse"
+    export_url_path = "pootle-language-export"
+    translate_url_path = "pootle-language-translate"
+    template_extends = 'languages/base.html'
 
-    table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'last-updated', 'activity']
+    @property
+    def language(self):
+        return self.object
 
-    ctx, cookie_data = get_sidebar_announcements_context(
-        request,
-        (language, ),
-    )
+    @property
+    def permission_context(self):
+        return self.get_object().directory
 
-    ctx.update(get_browser_context(request))
-    ctx.update({
-        'language': {
-            'code': language.code,
-            'name': tr_lang(language.fullname),
-        },
-        'table': {
-            'id': 'language',
-            'fields': table_fields,
-            'headings': get_table_headings(table_fields),
-            'items': items,
-        },
-        'stats': jsonify(
-            request.resource_obj.get_stats_for_user(request.user)),
-        'browser_extends': 'languages/base.html',
-    })
+    @property
+    def url_kwargs(self):
+        return {"language_code": self.object.code}
 
-    response = render(request, 'browser/index.html', ctx)
-    response.set_cookie('pootle-language', language.code)
-
-    if cookie_data:
-        response.set_cookie(SIDEBAR_COOKIE_NAME, cookie_data)
-
-    return response
+    def get_object(self):
+        return get_object_or_404(
+            Language, code=self.kwargs["language_code"])
 
 
-@get_path_obj
-@permission_required('view')
-def translate(request, language):
-    request.pootle_path = language.pootle_path
-    request.ctx_path = language.pootle_path
+class LanguageBrowseView(LanguageMixin, PootleBrowseView):
+    table_id = "language"
+    table_fields = [
+        'name', 'progress', 'total', 'need-translation',
+        'suggestions', 'critical', 'last-updated', 'activity']
 
-    request.store = None
-    request.directory = language.directory
+    @property
+    def stats(self):
+        return self.object.get_stats_for_user(self.request.user)
 
-    project = None
+    @cached_property
+    def items(self):
+        return [
+            make_project_item(tp)
+            for tp
+            in self.object.get_children_for_user(
+                self.request.user, select_related=["project"])]
 
-    context = get_translation_context(request)
-    context.update({
-        'language': language,
-        'project': project,
+    @property
+    def language(self):
+        return {
+            'code': self.object.code,
+            'name': tr_lang(self.object.fullname)}
 
-        'editor_extends': 'languages/base.html',
-    })
+    def get(self, *args, **kwargs):
+        response = super(LanguageBrowseView, self).get(*args, **kwargs)
+        response.set_cookie('pootle-language', self.object.code)
+        return response
 
-    return render(request, "editor/main.html", context)
+
+class LanguageTranslateView(LanguageMixin, PootleTranslateView):
+
+    @property
+    def display_vfolder_priority(self):
+        return False
 
 
-@get_path_obj
-@permission_required('view')
-def export_view(request, language):
-    """Displays a list of units with filters applied."""
-    request.pootle_path = language.pootle_path
-    request.ctx_path = language.pootle_path
-    request.resource_path = ''
-
-    request.store = None
-    request.directory = language.directory
-
-    project = None
-
-    ctx = get_export_view_context(request)
-    ctx.update({
-        'source_language': 'en',
-        'language': language,
-        'project': project,
-    })
-
-    return render(request, "editor/export_view.html", ctx)
+class LanguageExportView(LanguageMixin, PootleExportView):
+    source_language = "en"
 
 
 @get_path_obj
