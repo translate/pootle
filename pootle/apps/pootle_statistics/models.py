@@ -353,7 +353,7 @@ class Submission(models.Model):
         super(Submission, self).save(*args, **kwargs)
 
         if self.needs_scorelog():
-            ScoreLog.record_submission(submission=self)
+            ScoreLog.record_scorelogs(submission=self)
 
 
 class TranslationActionCodes(object):
@@ -412,7 +412,7 @@ class ScoreLog(models.Model):
         unique_together = ('submission', 'action_code')
 
     @classmethod
-    def record_submission(cls, submission):
+    def record_scorelogs(cls, submission):
         """Records a new log entry for ``submission``."""
         score_dict = {
             'creation_time': submission.creation_time,
