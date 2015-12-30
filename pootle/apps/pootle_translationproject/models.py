@@ -231,13 +231,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         return self._non_db_state
 
     @property
-    def units(self):
-        # FIXME: we rely on implicit ordering defined in the model. We might
-        # want to consider pootle_path as well
-        return Unit.objects.filter(store__translation_project=self,
-                                   state__gt=OBSOLETE).select_related('store')
-
-    @property
     def disabled(self):
         return self.project.disabled
 
