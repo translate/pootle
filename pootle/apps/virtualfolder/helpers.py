@@ -12,6 +12,23 @@ from pootle.core.url_helpers import get_all_pootle_paths
 from .models import VirtualFolderTreeItem
 
 
+def make_vfolder_treeitem_dict(vfolder_treeitem):
+    return {
+        'href_all': vfolder_treeitem.get_translate_url(),
+        'href_todo': vfolder_treeitem.get_translate_url(
+            state='incomplete'),
+        'href_sugg': vfolder_treeitem.get_translate_url(
+            state='suggestions'),
+        'href_critical': vfolder_treeitem.get_critical_url(),
+        'title': vfolder_treeitem.vfolder.name,
+        'code': vfolder_treeitem.code,
+        'priority': vfolder_treeitem.vfolder.priority,
+        'is_grayed': not vfolder_treeitem.is_visible,
+        'stats': vfolder_treeitem.get_stats(
+            include_children=False),
+        'icon': 'vfolder'}
+
+
 def extract_vfolder_from_path(request_path):
     """
     Matches request_path to a VirtualFolderTreeItem pootle_path
