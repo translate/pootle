@@ -514,6 +514,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
 class ProjectResource(VirtualResource, ProjectURLMixin):
 
+    def __eq__(self, other):
+        return (
+            self.pootle_path == other.pootle_path
+            and list(self.get_children()) == list(other.get_children()))
+
     # # # TreeItem
 
     def _get_code(self, resource):
