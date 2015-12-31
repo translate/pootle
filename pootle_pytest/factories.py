@@ -193,7 +193,12 @@ class VirtualFolderFactory(factory.django.DjangoModelFactory):
         model = 'virtualfolder.VirtualFolder'
         django_get_or_create = ("location", "filter_rules")
 
-    name = factory.Sequence(lambda n: 'virtualfolder%s' % n)
     priority = 2
     is_public = True
     location = "/{LANG}/{PROJ}/"
+
+    @factory.lazy_attribute
+    def name(self):
+        from virtualfolder.models import VirtualFolder
+
+        return 'virtualfolder%s' % VirtualFolder.objects.count()
