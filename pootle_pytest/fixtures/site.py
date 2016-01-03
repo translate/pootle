@@ -112,4 +112,9 @@ def site_matrix(site_root):
         for language in Language.objects.all():
             # add a TP to the project for each language
             tp = TranslationProjectFactory(project=project, language=language)
+            # As there are no files on the FS we have to currently unobsolete
+            # the directory
+            tp_dir = tp.directory
+            tp_dir.obsolete = False
+            tp_dir.save()
             _add_stores(tp)
