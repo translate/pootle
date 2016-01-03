@@ -118,3 +118,21 @@ def site_matrix(site_root):
             tp_dir.obsolete = False
             tp_dir.save()
             _add_stores(tp)
+
+
+@pytest.fixture
+def site_permissions(pootle_content_type, view, hide, suggest,
+                     translate, review, administrate, site_root,
+                     nobody, default):
+    from pootle_app.models import Directory, PermissionSet
+    criteria = {
+        'user': nobody,
+        'directory': Directory.objects.root}
+    permission_set = PermissionSet.objects.create(**criteria)
+    permission_set.positive_permissions = [view, suggest]
+    permission_set.save()
+
+    criteria['user'] = default
+    permission_set = PermissionSet.objects.create(**criteria)
+    permission_set.positive_permissions = [view, suggest, translate]
+    permission_set.save()
