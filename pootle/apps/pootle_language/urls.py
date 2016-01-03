@@ -22,7 +22,7 @@ urlpatterns = patterns(
 
     url(r'^(?P<language_code>[^/]*)/export-view/$',
         'export_view',
-        name='pootle-language-export-view'),
+        name='pootle-language-export'),
 
     # Admin
     url(r'^(?P<language_code>[^/]*)/admin/permissions/$',

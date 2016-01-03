@@ -24,7 +24,7 @@ urlpatterns = patterns(
 
     url(r'^export-view/$',
         'projects_export_view',
-        name='pootle-projects-export-view'),
+        name='pootle-projects-export'),
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',
@@ -43,7 +43,7 @@ urlpatterns = patterns(
     url(r'^(?P<project_code>[^/]*)/export-view/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
-        name='pootle-project-export-view'),
+        name='pootle-project-export'),
 
     url(r'^(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',

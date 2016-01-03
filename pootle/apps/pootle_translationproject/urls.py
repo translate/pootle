@@ -29,7 +29,7 @@ urlpatterns = patterns(
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         'export_view',
-        name='pootle-tp-export-view'),
+        name='pootle-tp-export'),
 
     # Browser
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
