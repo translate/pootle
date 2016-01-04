@@ -286,10 +286,10 @@ class TranslationProject(models.Model, CachedTreeItem):
                 for template_store in template_stores.iterator():
                     init_store_from_template(self, template_store)
 
-            changed = self.update_from_disk()
-            # If this TP has no stores, cache should be updated forcibly.
-            if not changed:
-                self.update_all_cache()
+                changed = self.update_from_disk()
+                # If this TP has no stores, cache should be updated forcibly.
+                if not changed:
+                    self.update_all_cache()
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -470,7 +470,9 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
         return
 
     for language in Language.objects.iterator():
-        create_translation_project(language, instance)
+        tp = create_translation_project(language, instance)
+        if tp is not None:
+            tp.update_from_disk()
 
 
 @receiver(post_save, sender=Language)
@@ -479,4 +481,6 @@ def scan_projects(sender, instance, created=False, raw=False, **kwargs):
         return
 
     for project in Project.objects.enabled().iterator():
-        create_translation_project(instance, project)
+        tp = create_translation_project(instance, project)
+        if tp is not None:
+            tp.update_from_disk()
