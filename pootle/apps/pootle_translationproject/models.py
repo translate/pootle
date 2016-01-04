@@ -286,20 +286,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                 for template_store in template_stores.iterator():
                     init_store_from_template(self, template_store)
 
-            self.scan_files()
-            # If this TP has no stores cache should be updated forcibly.
-            if self.stores.live().count() == 0:
+            changed = self.update_from_disk()
+            if not changed:
                 self.update_all_cache()
-
-            # Create units from disk store
-            for store in self.stores.live().iterator():
-                changed = store.update_from_disk()
-
-                # If there were changes stats will be refreshed anyway -
-                # otherwise...  Trigger stats refresh for TP added from UI.
-                # FIXME: This won't be necessary once #3547 is fixed.
-                if not changed:
-                    store.save(update_cache=True)
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -335,6 +324,17 @@ class TranslationProject(models.Model, CachedTreeItem):
             return True
 
         return self.project.code in Project.accessible_by_user(user)
+
+    def update_from_disk(self):
+        """Update all stores to reflect state on disk"""
+        changed = False
+        # Create new, make obsolete in-DB stores to reflect state on disk
+        self.scan_files()
+        # Update all existing stores
+        for store in self.stores.live().exclude(file='').iterator():
+            changed = store.update_from_disk() or changed
+
+        return changed
 
     def update(self):
         """Update all stores to reflect state on disk"""
