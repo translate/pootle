@@ -25,7 +25,7 @@ from .forms import LanguageSpecialCharsForm
 @permission_required('view')
 def browse(request, language):
     user_tps = language.get_children_for_user(request.user)
-    items = (make_project_item(tp) for tp in user_tps)
+    items = [make_project_item(tp) for tp in user_tps]
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
                     'suggestions', 'critical', 'last-updated', 'activity']
