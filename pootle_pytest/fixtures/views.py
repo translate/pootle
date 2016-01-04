@@ -15,6 +15,21 @@ import pytest
 from django.core.urlresolvers import reverse
 
 
+BAD_VIEW_TESTS = OrderedDict(
+    (("/foo/bar", dict(code=301, location="/foo/bar/")),
+     ("/foo/bar/", {}),
+     ("/projects", dict(code=301, location="/projects/")),
+     ("/projects/project0",
+      dict(code=301, location="/projects/project0/")),
+     ("/projects/projectfoo",
+      dict(code=301, location="/projects/projectfoo/")),
+     ("/projects/projectfoo/", {}),
+     ("/language0/projectfoo",
+      dict(code=301, location="/language0/projectfoo/")),
+     ("/language0/projectfoo/", {}),
+     ("/language0/project0",
+      dict(code=301, location="/language0/project0/"))))
+
 LANGUAGE_VIEW_TESTS = OrderedDict(
     (("browse", {}),
      ("translate", {}),
@@ -138,3 +153,16 @@ def language_views(site_permissions, language_view_names,
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     response = client.get(reverse(view_name, kwargs=kwargs))
     return test_type, language, response.wsgi_request, response, kwargs
+
+
+@pytest.fixture
+def bad_views(site_permissions, bad_view_names,
+              site_matrix_with_vfolders, site_matrix_with_subdirs,
+              site_matrix_with_announcements,
+              default, nobody, client):
+    test = dict(code=404)
+    test.update(BAD_VIEW_TESTS[bad_view_names])
+    return (
+        bad_view_names,
+        client.get(bad_view_names),
+        test)

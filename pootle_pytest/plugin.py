@@ -41,6 +41,7 @@ from fixtures.site import (
     site_matrix, site_matrix_with_subdirs, site_matrix_with_vfolders,
     site_matrix_with_announcements, site_root, site_permissions)
 from fixtures.views import (
+    BAD_VIEW_TESTS, bad_views,
     LANGUAGE_VIEW_TESTS, language_views,
     PROJECT_VIEW_TESTS, project_views,
     TP_VIEW_TESTS, tp_views,
@@ -54,7 +55,8 @@ PARAMETERS = (
     ("wordcount_names", WORDCOUNT_TESTS),
     ("project_view_names", PROJECT_VIEW_TESTS),
     ("language_view_names", LANGUAGE_VIEW_TESTS),
-    ("tp_view_names", TP_VIEW_TESTS))
+    ("tp_view_names", TP_VIEW_TESTS),
+    ("bad_view_names", BAD_VIEW_TESTS))
 
 
 def pytest_generate_tests(metafunc):
@@ -84,4 +86,5 @@ __all__ = (
     'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
     'revision', 'admin_client', 'site_matrix', 'site_matrix_with_subdirs',
     'site_root', 'site_matrix_with_vfolders', 'site_matrix_with_announcements',
-    'site_permissions', 'project_views', 'tp_views', 'language_views')
+    'site_permissions', 'project_views', 'tp_views', 'language_views',
+    'bad_views')
