@@ -40,14 +40,21 @@ from fixtures.revision import revision
 from fixtures.site import (
     site_matrix, site_matrix_with_subdirs, site_matrix_with_vfolders,
     site_matrix_with_announcements, site_root, site_permissions)
-from fixtures.views import admin_client
+from fixtures.views import (
+    LANGUAGE_VIEW_TESTS, language_views,
+    PROJECT_VIEW_TESTS, project_views,
+    TP_VIEW_TESTS, tp_views,
+    admin_client)
 from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
 
 
 PARAMETERS = (
     ("update_store_test_names", UPDATE_STORE_TESTS),
     ("file_import_failure_names", FILE_IMPORT_FAIL_TESTS),
-    ("wordcount_names", WORDCOUNT_TESTS))
+    ("wordcount_names", WORDCOUNT_TESTS),
+    ("project_view_names", PROJECT_VIEW_TESTS),
+    ("language_view_names", LANGUAGE_VIEW_TESTS),
+    ("tp_view_names", TP_VIEW_TESTS))
 
 
 def pytest_generate_tests(metafunc):
@@ -77,4 +84,4 @@ __all__ = (
     'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
     'revision', 'admin_client', 'site_matrix', 'site_matrix_with_subdirs',
     'site_root', 'site_matrix_with_vfolders', 'site_matrix_with_announcements',
-    'site_permissions')
+    'site_permissions', 'project_views', 'tp_views', 'language_views')
