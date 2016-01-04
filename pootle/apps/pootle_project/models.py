@@ -535,6 +535,11 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
 
 class ProjectSet(VirtualResource, ProjectURLMixin):
 
+    def __eq__(self, other):
+        return (
+            self.pootle_path == other.pootle_path
+            and list(self.get_children()) == list(other.get_children()))
+
     def __init__(self, resources, *args, **kwargs):
         self.directory = Directory.objects.projects
         super(ProjectSet, self).__init__(resources, self.directory.pootle_path)
