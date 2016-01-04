@@ -339,7 +339,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def update(self):
         """Update all stores to reflect state on disk"""
-        stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
+        stores = self.stores.live().exclude(file='')
         for store in stores.iterator():
             store.update_from_disk()
 
