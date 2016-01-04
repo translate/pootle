@@ -187,32 +187,3 @@ def get_children(directory):
               for child_store in directory.child_stores.live().iterator()]
 
     return directories + stores
-
-
-def make_vfolder_treeitem(vfolder_treeitem):
-    return {
-        'href_all': vfolder_treeitem.get_translate_url(),
-        'href_todo': vfolder_treeitem.get_translate_url(state='incomplete'),
-        'href_sugg': vfolder_treeitem.get_translate_url(state='suggestions'),
-        'href_critical': vfolder_treeitem.get_critical_url(),
-        'title': vfolder_treeitem.vfolder.name,
-        'code': vfolder_treeitem.code,
-        'priority': vfolder_treeitem.vfolder.priority,
-        'is_grayed': not vfolder_treeitem.is_visible,
-        'icon': 'vfolder',
-    }
-
-
-def get_vfolders(directory, all_vfolders=False):
-    """Return a list of virtual folders for this ``directory``.
-
-    The elements of the list are dictionaries which keys are populated after
-    in the templates.
-
-    If ``all_vfolders`` is True then all the virtual folders matching the
-    provided directory are returned. If not only the visible ones are returned.
-    """
-    return [make_vfolder_treeitem(vfolder_treeitem)
-            for vfolder_treeitem
-            in directory.vf_treeitems.order_by('-vfolder__priority').iterator()
-            if all_vfolders or vfolder_treeitem.is_visible]

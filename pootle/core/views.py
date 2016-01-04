@@ -31,8 +31,8 @@ from django.views.generic import View, DetailView
 from pootle.core.browser import get_table_headings
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
-    get_sidebar_announcements_context, get_path_parts)
-from pootle.core.url_helpers import get_previous_url
+    get_sidebar_announcements_context)
+from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.json import jsonify
 
 from pootle_app.models.permissions import (
