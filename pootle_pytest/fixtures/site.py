@@ -136,3 +136,49 @@ def site_permissions(pootle_content_type, view, hide, suggest,
     permission_set = PermissionSet.objects.create(**criteria)
     permission_set.positive_permissions = [view, suggest, translate]
     permission_set.save()
+
+
+@pytest.fixture
+def site_matrix_with_announcements(site_matrix):
+    from pootle_project.models import Project
+    from pootle_language.models import Language
+    from pootle_translationproject.models import TranslationProject
+
+    from pootle_pytest.factories import AnnouncementFactory
+
+    for language in Language.objects.all():
+        AnnouncementFactory(
+            title="Language announcement for: %s" % language,
+            body=(
+                '<div dir="ltr" lang="en">This is an example announcements. '
+                'Just like a real announcement it contains text and some '
+                'markup, and even a random link about localisation.<br />'
+                '<a href="http://docs.translatehouse.org/languages/'
+                'localization-guide/en/latest/guide/start.html">localisation '
+                'guide</a>.</div>'),
+            virtual_path="announcements/%s" % language.code)
+
+    for project in Project.objects.all():
+        AnnouncementFactory(
+            title="Project announcement for: %s" % project,
+            body=(
+                '<div dir="ltr" lang="en">This is an example announcements. '
+                'Just like a real announcement it contains text and some '
+                'markup, and even a random link about localisation.<br />'
+                '<a href="http://docs.translatehouse.org/projects/'
+                'localization-guide/en/latest/guide/start.html">localisation '
+                'guide</a>.</div>'),
+            virtual_path="announcements/projects/%s" % project.code)
+
+    for tp in TranslationProject.objects.all():
+        AnnouncementFactory(
+            title="TP announcement for: %s" % tp,
+            body=(
+                '<div dir="ltr" lang="en">This is an example announcements. '
+                'Just like a real announcement it contains text and some '
+                'markup, and even a random link about localisation.<br />'
+                '<a href="http://docs.translatehouse.org/tps/'
+                'localization-guide/en/latest/guide/start.html">localisation '
+                'guide</a>.</div>'),
+            virtual_path="announcements/%s/%s"
+            % (tp.language.code, tp.project.code))

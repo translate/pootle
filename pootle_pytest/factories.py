@@ -202,3 +202,10 @@ class VirtualFolderFactory(factory.django.DjangoModelFactory):
         from virtualfolder.models import VirtualFolder
 
         return 'virtualfolder%s' % VirtualFolder.objects.count()
+
+
+class AnnouncementFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'staticpages.StaticPage'
+    active = True
