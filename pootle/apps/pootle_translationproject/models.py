@@ -55,14 +55,10 @@ def create_or_resurrect_translation_project(language, project):
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_dir_exists(language, project):
-        try:
-            translation_project, created = TranslationProject.objects.all() \
-                .get_or_create(language=language, project=project)
-            return translation_project
-        except OSError:
-            return None
-        except IndexError:
-            return None
+        translation_project, created = TranslationProject.objects.all() \
+            .get_or_create(language=language, project=project)
+        return translation_project
+    return None
 
 
 def scan_translation_projects(languages=None, projects=None):
