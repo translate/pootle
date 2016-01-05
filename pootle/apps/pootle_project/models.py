@@ -522,7 +522,7 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
     # # # TreeItem
 
     def _get_code(self, resource):
-        return resource.translation_project.language.code
+        return split_pootle_path(resource.pootle_path)[0]
 
     # # # /TreeItem
 
