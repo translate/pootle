@@ -329,7 +329,8 @@ class CachedTreeItem(TreeItem):
 
     def get_stats(self, include_children=True):
         """get stats for self and - optionally - for children"""
-        self.initialize_children()
+        if include_children:
+            self.initialize_children()
         result = {
             'total': None,
             'translated': None,
