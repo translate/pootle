@@ -17,7 +17,7 @@ from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
     get_children, get_parent, get_table_headings)
 from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME, display_vfolder_priority,
+    SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.json import jsonify
@@ -28,6 +28,7 @@ from pootle_store.models import Store, Unit
 from pootle_store.views import get_step_query
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
+from virtualfolder.models import VirtualFolderTreeItem
 
 from pootle_pytest.suite import view_context_test
 
@@ -148,6 +149,11 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         vfolder.pk
         if vfolder
         else "")
+    display_priority = (
+        not current_vfolder_pk
+        and (
+            VirtualFolderTreeItem.objects.filter(
+                pootle_path__startswith=pootle_path).exists()))
     assertions = dict(
         page="translate",
         translation_project=tp,
@@ -163,7 +169,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         check_categories=get_qualitycheck_schema(),
         previous_url=get_previous_url(request),
         current_vfolder_pk=current_vfolder_pk,
-        display_priority=display_vfolder_priority(request),
+        display_priority=display_priority,
         cantranslate=check_permission("translate", request),
         cansuggest=check_permission("suggest", request),
         canreview=check_permission("review", request),

@@ -21,7 +21,7 @@ from pootle.core.browser import (
     get_table_headings, make_language_item, make_xlanguage_item,
     make_project_list_item)
 from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME, display_vfolder_priority,
+    SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
 from pootle.core.utils.json import jsonify
 from pootle.core.url_helpers import get_previous_url, get_path_parts
@@ -31,6 +31,7 @@ from pootle_misc.stats import get_translation_states
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store, Unit
 from pootle_store.views import get_step_query
+from virtualfolder.models import VirtualFolderTreeItem
 
 from pootle_pytest.suite import view_context_test
 
@@ -43,6 +44,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
         "/projects/%(project_code)s/" % kwargs)
     resource_path = (
         "%(dir_path)s%(filename)s" % kwargs)
+    pootle_path = "%s%s" % (ctx_path, resource_path)
     view_context_test(
         ctx,
         **dict(
@@ -58,7 +60,9 @@ def _test_translate_view(project, request, response, kwargs, settings):
             editor_extends="projects/base.html",
             check_categories=get_qualitycheck_schema(),
             previous_url=get_previous_url(request),
-            display_priority=display_vfolder_priority(request),
+            display_priority=(
+                VirtualFolderTreeItem.objects.filter(
+                    pootle_path__startswith=pootle_path).exists()),
             cantranslate=check_permission("translate", request),
             cansuggest=check_permission("suggest", request),
             canreview=check_permission("review", request),
@@ -251,7 +255,7 @@ def test_view_projects_translate(site_permissions, site_matrix_with_vfolders,
         editor_extends="projects/all/base.html",
         check_categories=get_qualitycheck_schema(),
         previous_url=get_previous_url(request),
-        display_priority=display_vfolder_priority(request),
+        display_priority=False,
         cantranslate=check_permission("translate", request),
         cansuggest=check_permission("suggest", request),
         canreview=check_permission("review", request),
