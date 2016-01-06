@@ -312,8 +312,7 @@ class Unit(models.Model, base.TranslationUnit):
     # Metadata
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
-    mtime = models.DateTimeField(auto_now=True, auto_now_add=True,
-                                 db_index=True, editable=False)
+    mtime = models.DateTimeField(auto_now=True, db_index=True, editable=False)
 
     # unit translator
     submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
