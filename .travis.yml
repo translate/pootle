@@ -2,9 +2,9 @@
 sudo: false
 language: python
 env:
-  - TOXENV=py27-django17-sqlite
-  - TOXENV=py27-django17-mysql
-  - TOXENV=py27-django17-postgres
+  - TOXENV=py27-django18-sqlite
+  - TOXENV=py27-django18-mysql
+  - TOXENV=py27-django18-postgres
   # Meta
   - TOXENV=sdist
   - TOXENV=eslint
