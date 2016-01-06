@@ -22,15 +22,15 @@ from pootle.core.browser import (
     make_project_list_item)
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME, display_vfolder_priority,
-    get_filter_name, get_path_parts, get_sidebar_announcements_context,
-    get_step_query)
+    get_filter_name, get_sidebar_announcements_context)
 from pootle.core.utils.json import jsonify
-from pootle.core.url_helpers import get_previous_url
+from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store, Unit
+from pootle_store.views import get_step_query
 
 from pootle_pytest.suite import view_context_test
 

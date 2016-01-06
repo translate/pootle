@@ -18,14 +18,14 @@ from pootle.core.browser import (
     get_children, get_parent, get_table_headings)
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME, display_vfolder_priority,
-    get_filter_name, get_path_parts, get_sidebar_announcements_context,
-    get_step_query)
-from pootle.core.url_helpers import get_previous_url
+    get_filter_name, get_sidebar_announcements_context)
+from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.json import jsonify
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
 from pootle_store.models import Store, Unit
+from pootle_store.views import get_step_query
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
 
