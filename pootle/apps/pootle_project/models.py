@@ -403,11 +403,14 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     def get_stats_for_user(self, user):
         self.set_children(self.get_children_for_user(user))
+
         return self.get_stats()
 
-    def get_children_for_user(self, user):
+    def get_children_for_user(self, user, select_related=None):
         """Returns children translation projects for a specific `user`."""
-        return self.translationproject_set.for_user(user)
+        return (
+            self.translationproject_set.for_user(user, select_related)
+                                       .select_related("language"))
 
     def get_announcement(self, user=None):
         """Return the related announcement, if any."""
@@ -526,7 +529,9 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
 
     # # # /TreeItem
 
-    def get_children_for_user(self, user):
+    def get_children_for_user(self, user, select_related=None):
+        if select_related:
+            return self.children.select_related(*select_related)
         return self.children
 
     def get_stats_for_user(self, user):

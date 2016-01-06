@@ -110,7 +110,7 @@ class TranslationProjectManager(models.Manager):
         """Filters translation projects that belong to disabled projects."""
         return self.filter(project__disabled=True)
 
-    def for_user(self, user):
+    def for_user(self, user, select_related=None):
         """Filters translation projects for a specific user.
 
         - Admins always get all translation projects.
@@ -120,12 +120,17 @@ class TranslationProjectManager(models.Manager):
             retrieved for.
         :return: A filtered queryset with `TranslationProject`s for `user`.
         """
+        qs = self.live()
+        if select_related is not None:
+            qs = qs.select_related(*select_related)
+
         if user.is_superuser:
-            return self.live()
+            return qs
 
-        return self.live().filter(project__disabled=False)
+        return qs.filter(project__disabled=False)
 
-    def get_for_user(self, user, project_code, language_code):
+    def get_for_user(self, user, project_code, language_code,
+                     select_related=None):
         """Gets a `language_code`/`project_code` translation project
         for a specific `user`.
 
@@ -141,8 +146,10 @@ class TranslationProjectManager(models.Manager):
         :return: The `TranslationProject` matching the params, raises
             otherwise.
         """
-        return self.for_user(user).get(project__code=project_code,
-                                       language__code=language_code)
+        return self.for_user(
+            user, select_related).get(
+                project__code=project_code,
+                language__code=language_code)
 
 
 class TranslationProject(models.Model, CachedTreeItem):
@@ -355,7 +362,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         return self.directory.children
 
     def get_cachekey(self):
-        return self.directory.pootle_path
+        return self.pootle_path
 
     def get_parents(self):
         return [self.project]

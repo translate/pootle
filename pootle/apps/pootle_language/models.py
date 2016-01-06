@@ -170,17 +170,14 @@ class Language(models.Model, TreeItem):
 
     def get_stats_for_user(self, user):
         self.set_children(self.get_children_for_user(user))
-
         return self.get_stats()
 
-    def get_children_for_user(self, user):
-        translation_projects = self.translationproject_set \
-                                   .for_user(user) \
-                                   .order_by('project__fullname')
-        user_tps = filter(lambda x: x.is_accessible_by(user),
-                          translation_projects)
-
-        return user_tps
+    def get_children_for_user(self, user, select_related=None):
+        tps = self.translationproject_set.for_user(
+            user, select_related=select_related).select_related("project")
+        return filter(
+            lambda x: x.is_accessible_by(user),
+            tps.order_by('project__fullname'))
 
     def get_announcement(self, user=None):
         """Return the related announcement, if any."""
