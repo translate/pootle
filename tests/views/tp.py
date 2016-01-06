@@ -222,3 +222,25 @@ def test_views_tp(site_permissions, tp_views, settings):
         _test_translate_view(tp, request, response, kwargs, settings)
     else:
         _test_export_view(tp, request, response, kwargs)
+
+
+@pytest.mark.django_db
+def test_view_user_choice(site_matrix,
+                          default, nobody, client):
+
+    client.cookies["user-choice"] = "language"
+    response = client.get("/foo/bar/baz")
+    assert response.status_code == 302
+    assert response.get("location") == "http://testserver/foo/"
+    assert "user-choice" not in response
+
+    client.cookies["user-choice"] = "project"
+    response = client.get("/foo/bar/baz")
+    assert response.status_code == 302
+    assert response.get("location") == "http://testserver/projects/bar/"
+    assert "user-choice" not in response
+
+    client.cookies["user-choice"] = "foo"
+    response = client.get("/foo/bar/baz")
+    assert response.status_code == 404
+    assert "user-choice" not in response
