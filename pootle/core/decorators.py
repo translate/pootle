@@ -75,7 +75,7 @@ def get_path_obj(func):
                     # Explicit selection via the UI: redirect either to
                     # ``/language_code/`` or ``/projects/project_code/``
                     user_choice = request.COOKIES.get('user-choice', None)
-                    if user_choice and user_choice in ('language', 'project',):
+                    if user_choice in ('language', 'project',):
                         url = {
                             'language': reverse('pootle-language-browse',
                                                 args=[language_code]),

@@ -73,7 +73,7 @@ class ProjectForm(forms.ModelForm):
 
         def clean_localfiletype(self):
             value = self.cleaned_data.get('localfiletype', None)
-            if not value:
+            if value is None:
                 value = self.instance.localfiletype
             filetypes = [x[0] for x in filetype_choices]
             if value not in filetypes:
@@ -84,7 +84,7 @@ class ProjectForm(forms.ModelForm):
 
         def clean_treestyle(self):
             value = self.cleaned_data.get('treestyle', None)
-            if not value:
+            if value is None:
                 value = self.instance.treestyle
             return value
 

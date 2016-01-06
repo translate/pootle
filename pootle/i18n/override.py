@@ -65,7 +65,7 @@ def lang_choices():
 def get_lang_from_session(request, supported):
     if hasattr(request, 'session'):
         lang_code = request.session.get('django_language', None)
-        if lang_code and lang_code in supported:
+        if lang_code is not None and lang_code in supported:
             return lang_code
 
     return None
