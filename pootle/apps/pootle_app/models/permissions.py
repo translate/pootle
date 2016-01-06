@@ -16,8 +16,7 @@ from django.utils.encoding import iri_to_uri
 
 
 def get_permission_contenttype():
-    content_type = ContentType.objects.filter(name='pootle',
-                                              app_label='pootle_app',
+    content_type = ContentType.objects.filter(app_label='pootle_app',
                                               model="directory")[0]
     return content_type
 

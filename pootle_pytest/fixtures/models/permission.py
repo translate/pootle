@@ -20,7 +20,6 @@ def pootle_content_type(db):
         'model': 'directory',
     }
     content_type, created = ContentType.objects.get_or_create(**args)
-    content_type.name = 'pootle'
     content_type.save()
 
     return content_type

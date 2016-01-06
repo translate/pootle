@@ -122,7 +122,6 @@ class InitDB(object):
         }
 
         pootle_content_type, created = self._create_object(ContentType, **args)
-        pootle_content_type.name = 'pootle'
         pootle_content_type.save()
 
         # Create the permissions.
