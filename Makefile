@@ -39,6 +39,7 @@ docs-review: docs
 
 sprite:
 	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+	optipng -o7 ${IMAGES_DIR}/sprite.png
 
 clean:
 	rm -rf ${TEST_ENV_NAME}
