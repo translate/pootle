@@ -9,6 +9,7 @@
 
 from translate.lang import data as langdata
 
+from django.conf import settings
 from django.utils import translation
 from django.utils.translation import _trans
 
@@ -48,7 +49,10 @@ def ngettext(singular, plural, number, vars=None):
 
 def tr_lang(language_name):
     """Translates language names."""
-    language_code = translation.to_locale(translation.get_language())
+    language_code = translation.get_language()
+    if language_code is None:
+        language_code = settings.LANGUAGE_CODE
+    language_code = translation.to_locale(language_code)
 
     return langdata.tr_lang(language_code)(language_name)
 
