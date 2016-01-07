@@ -128,7 +128,7 @@ def rq_stats():
 def checks():
     from django.core.checks.registry import registry
 
-    return sum([check() for check in registry.registered_checks], [])
+    return registry.run_checks()
 
 
 @admin_required
