@@ -28,10 +28,6 @@ SECRET_KEY = '__P00TL3d3vS3CR3T__'
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
 
-# Whether to debug template rendering
-# https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-TEMPLATE_DEBUG = DEBUG
-
 # A list of strings representing the host/domain names that this Pootle server
 # can serve. This is a Django's security measure. More details at
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
