@@ -237,4 +237,4 @@ def do_include_raw(parser, token):
     source, path = get_template(
         template_name).origin.loader(template_name)
 
-    return template.TextNode(source)
+    return template.base.TextNode(source)
