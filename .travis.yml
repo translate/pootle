@@ -2,9 +2,9 @@
 sudo: false
 language: python
 env:
-  - TOXENV=py27-django18-sqlite PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
-  - TOXENV=py27-django18-mysql PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
-  - TOXENV=py27-django18-postgres PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django19-sqlite PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django19-mysql PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django19-postgres PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
   # Meta
   - TOXENV=project PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
 cache:
