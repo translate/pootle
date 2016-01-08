@@ -9,19 +9,18 @@
 
 from django.conf.urls import url
 
+from . import index, robots
 from .index import AboutView
 
 
 urlpatterns = [
     url(r'^robots.txt$',
-        'robots.view',
-        name='pootle-robots',
-        prefix='pootle_app.views.index'),
+        robots.view,
+        name='pootle-robots'),
 
     url(r'^/?$',
-        'index.view',
-        name='pootle-home',
-        prefix='pootle_app.views.index'),
+        index.view,
+        name='pootle-home'),
 
     url(r'^about/$',
         AboutView.as_view(),

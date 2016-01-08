@@ -9,10 +9,11 @@
 
 from django.conf.urls import url
 
+from .views import export
+
 
 urlpatterns = [
     url(r"^export/$",
-        "export",
-        name="pootle-export",
-        prefix="import_export.views")
+        export,
+        name="pootle-export")
 ]

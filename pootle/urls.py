@@ -10,11 +10,13 @@
 from django.conf import settings
 from django.conf.urls import include, url
 from django.views.generic import TemplateView
+from django.views.i18n import javascript_catalog
 
 
 urlpatterns = [
     # JavaScript i18n
-    url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog',
+    url(r'^jsi18n/$',
+        javascript_catalog,
         {'packages': ('pootle', ), }, ),
 
     # Allauth

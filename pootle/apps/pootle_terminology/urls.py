@@ -9,10 +9,11 @@
 
 from django.conf.urls import url
 
+from .views import manage
+
 
 urlpatterns = [
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/terminology/',
-        'manage',
-        name='pootle-terminology-manage',
-        prefix='pootle_terminology.views'),
+        manage,
+        name='pootle-terminology-manage'),
 ]

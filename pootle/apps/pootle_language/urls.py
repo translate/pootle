@@ -10,7 +10,8 @@
 from django.conf.urls import url
 
 from .views import (
-    LanguageBrowseView, LanguageExportView, LanguageTranslateView)
+    LanguageBrowseView, LanguageExportView, LanguageTranslateView,
+    language_admin, language_characters_admin)
 
 
 urlpatterns = [
@@ -28,11 +29,9 @@ urlpatterns = [
 
     # Admin
     url(r'^(?P<language_code>[^/]*)/admin/permissions/$',
-        'language_admin',
-        name='pootle-language-admin-permissions',
-        prefix='pootle_language.views'),
+        language_admin,
+        name='pootle-language-admin-permissions'),
     url(r'^(?P<language_code>[^/]*)/admin/characters/$',
-        'language_characters_admin',
-        name='pootle-language-admin-characters',
-        prefix='pootle_language.views'),
+        language_characters_admin,
+        name='pootle-language-admin-characters'),
 ]

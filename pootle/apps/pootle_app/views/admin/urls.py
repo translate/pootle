@@ -12,14 +12,14 @@ from django.conf.urls import include, url
 import staticpages.urls
 
 from . import (LanguageAdminView, LanguageAPIView, ProjectAdminView,
-               ProjectAPIView, UserAdminView, UserAPIView)
+               ProjectAPIView, UserAdminView, UserAPIView, adminroot,
+               dashboard)
 
 
 urlpatterns = [
     url(r'^/?$',
-        'dashboard.view',
-        name='pootle-admin',
-        prefix='pootle_app.views.admin'),
+        dashboard.view,
+        name='pootle-admin'),
 
     # FIXME: remove ad-hoc inclusion, make this pluggable
     url(r'^/pages/',
@@ -47,15 +47,13 @@ urlpatterns = [
         name='pootle-admin-project-edit'),
 
     url(r'^/permissions/$',
-        'adminroot.view',
-        name='pootle-admin-permissions',
-        prefix='pootle_app.views.admin'),
+        adminroot.view,
+        name='pootle-admin-permissions'),
 
     # XHR
     url(r'^/more-stats/?$',
-        'dashboard.server_stats_more',
-        name='pootle-admin-more-stats',
-        prefix='pootle_app.views.admin'),
+        dashboard.server_stats_more,
+        name='pootle-admin-more-stats'),
 ]
 
 

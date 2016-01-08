@@ -11,7 +11,8 @@ from django.conf.urls import url
 
 from .views import (
     ProjectBrowseView, ProjectExportView, ProjectsBrowseView,
-    ProjectsExportView, ProjectsTranslateView, ProjectTranslateView)
+    ProjectsExportView, ProjectsTranslateView, ProjectTranslateView,
+    project_admin, project_admin_permissions)
 
 
 urlpatterns = [
@@ -30,13 +31,11 @@ urlpatterns = [
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',
-        'project_admin',
-        name='pootle-project-admin-languages',
-        prefix='pootle_project.views'),
+        project_admin,
+        name='pootle-project-admin-languages'),
     url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
-        'project_admin_permissions',
-        name='pootle-project-admin-permissions',
-        prefix='pootle_project.views'),
+        project_admin_permissions,
+        name='pootle-project-admin-permissions'),
 
     # Specific project
     url(r'^(?P<project_code>[^/]*)/translate/'

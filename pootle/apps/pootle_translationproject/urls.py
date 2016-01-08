@@ -11,16 +11,15 @@ from django.conf.urls import url
 
 from .views import (
     TPBrowseStoreView, TPBrowseView, TPExportStoreView, TPExportView,
-    TPTranslateStoreView, TPTranslateView)
+    TPTranslateStoreView, TPTranslateView, admin_permissions)
 
 
 urlpatterns = [
     # Admin views
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
         r'/admin/permissions/',
-        'admin_permissions',
-        name='pootle-tp-admin-permissions',
-        prefix='pootle_translationproject.views'),
+        admin_permissions,
+        name='pootle-tp-admin-permissions'),
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

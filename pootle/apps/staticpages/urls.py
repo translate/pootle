@@ -10,15 +10,16 @@
 from django.conf.urls import include, url
 
 from .views import (AdminTemplateView, PageCreateView, PageDeleteView,
-                    PageUpdateView)
+                    PageUpdateView, display_page, legal_agreement,
+                    preview_content)
 
 
 page_patterns = [
     url(r'^legal/agreement/$',
-        'staticpages.views.legal_agreement',
+        legal_agreement,
         name='pootle-staticpages-legal-agreement'),
     url(r'^(?P<virtual_path>.+)/$',
-        'staticpages.views.display_page',
+        display_page,
         name='pootle-staticpages-display'),
 ]
 
@@ -41,7 +42,7 @@ admin_patterns = [
 
 xhr_patterns = [
     url(r'^preview/?$',
-        'staticpages.views.preview_content',
+        preview_content,
         name='pootle-xhr-preview'),
 ]
 
