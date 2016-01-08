@@ -16,41 +16,41 @@ from . import (LanguageAdminView, LanguageAPIView, ProjectAdminView,
 
 
 urlpatterns = [
-    url(r'^/?$',
+    url(r'^$',
         dashboard.view,
         name='pootle-admin'),
 
     # FIXME: remove ad-hoc inclusion, make this pluggable
-    url(r'^/pages/',
+    url(r'^pages/',
         include(staticpages.urls.admin_patterns)),
 
-    url(r'^/users/$',
+    url(r'^users/$',
         UserAdminView.as_view(),
         name='pootle-admin-users'),
-    url(r'^/users/(?P<id>[0-9]+)/?$',
+    url(r'^users/(?P<id>[0-9]+)/?$',
         UserAdminView.as_view(),
         name='pootle-admin-user-edit'),
 
-    url(r'^/languages/$',
+    url(r'^languages/$',
         LanguageAdminView.as_view(),
         name='pootle-admin-languages'),
-    url(r'^/languages/(?P<id>[0-9]+)/?$',
+    url(r'^languages/(?P<id>[0-9]+)/?$',
         LanguageAdminView.as_view(),
         name='pootle-admin-language-edit'),
 
-    url(r'^/projects/$',
+    url(r'^projects/$',
         ProjectAdminView.as_view(),
         name='pootle-admin-projects'),
-    url(r'^/projects/(?P<id>[0-9]+)/?$',
+    url(r'^projects/(?P<id>[0-9]+)/?$',
         ProjectAdminView.as_view(),
         name='pootle-admin-project-edit'),
 
-    url(r'^/permissions/$',
+    url(r'^permissions/$',
         adminroot.view,
         name='pootle-admin-permissions'),
 
     # XHR
-    url(r'^/more-stats/?$',
+    url(r'^more-stats/?$',
         dashboard.server_stats_more,
         name='pootle-admin-more-stats'),
 ]

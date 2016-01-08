@@ -19,7 +19,7 @@ urlpatterns = [
                              content_type='text/plain'),
         name="pootle-robots"),
 
-    url(r'^/?$',
+    url(r'^$',
         index.view,
         name='pootle-home'),
 
