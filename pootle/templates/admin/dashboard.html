@@ -68,7 +68,7 @@
     {% for check in checks %}
       <li>
         <i class="icon-{% if check.is_serious %}error{% else %}warning{% endif %}"></i>
-        {{ check.msg }} <em>{{ check.hint }}</em>
+        {{ check.msg }}{% if check.hint %} <em>{{ check.hint }}</em>{% endif %}
       </li>
     {% empty %}
       <li><i class="icon-tick"></i> {% trans "No issues have been detected. All is good!" %}</li>
