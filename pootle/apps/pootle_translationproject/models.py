@@ -55,14 +55,10 @@ def create_or_resurrect_translation_project(language, project):
 def create_translation_project(language, project):
     from pootle_app import project_tree
     if project_tree.translation_project_dir_exists(language, project):
-        try:
-            translation_project, created = TranslationProject.objects.all() \
-                .get_or_create(language=language, project=project)
-            return translation_project
-        except OSError:
-            return None
-        except IndexError:
-            return None
+        translation_project, created = TranslationProject.objects.all() \
+            .get_or_create(language=language, project=project)
+        return translation_project
+    return None
 
 
 def scan_translation_projects(languages=None, projects=None):
@@ -293,20 +289,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                 for template_store in template_stores.iterator():
                     init_store_from_template(self, template_store)
 
-            self.scan_files()
-            # If this TP has no stores cache should be updated forcibly.
-            if self.stores.live().count() == 0:
+            changed = self.update_from_disk()
+            if not changed:
                 self.update_all_cache()
-
-            # Create units from disk store
-            for store in self.stores.live().iterator():
-                changed = store.update_from_disk()
-
-                # If there were changes stats will be refreshed anyway -
-                # otherwise...  Trigger stats refresh for TP added from UI.
-                # FIXME: This won't be necessary once #3547 is fixed.
-                if not changed:
-                    store.save(update_cache=True)
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -343,11 +328,16 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.project.code in Project.accessible_by_user(user)
 
-    def update(self):
+    def update_from_disk(self):
         """Update all stores to reflect state on disk"""
-        stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
-        for store in stores.iterator():
-            store.update_from_disk()
+        changed = False
+        # Create new, make obsolete in-DB stores to reflect state on disk
+        self.scan_files()
+        # Update all existing stores
+        for store in self.stores.live().exclude(file='').iterator():
+            changed = store.update_from_disk() or changed
+
+        return changed
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
