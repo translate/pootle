@@ -49,7 +49,7 @@ def extract_vfolder_from_path(request_path):
         vfti = sorted(
             vftis.select_related("vfolder", "directory"),
             key=lambda obj: (
-                -len(obj.pootle_path),
+                -obj.pootle_path.count("/"),
                 obj.vfolder.priority))[0]
         return vfti.vfolder, vfti.directory.pootle_path
     return None, request_path
