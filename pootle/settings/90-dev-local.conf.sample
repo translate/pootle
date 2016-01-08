@@ -45,7 +45,7 @@ ALLOWED_HOSTS = [
 DATABASES = {
     'default': {
         # Although has issues with locking, SQLite is handy for development
-        'ENGINE': 'transaction_hooks.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         # Database name or path to database file if using sqlite3.
         'NAME': working_path('dbs/pootle.db'),
         # Not used with sqlite3.

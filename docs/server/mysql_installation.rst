@@ -88,20 +88,6 @@ You will most likely want to edit your Pootle configuration (default location:
 Database backend
 ----------------
 
-Please note that Pootle uses `django-transaction-hooks
-<https://pypi.python.org/pypi/django-transaction-hooks/>`_ backends for
-connecting to the database. For MySQL the correct :setting:`ENGINE
-<django:DATABASE-ENGINE>` to set for the backend is:
-
-.. code-block:: python
-
-   DATABASES = {
-       'default': {
-           'ENGINE': 'transaction_hooks.backends.mysql',
-           ...
-       }
-   }
-
 
 .. _mysql_installation#persistent-connections:
 

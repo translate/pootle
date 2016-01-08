@@ -391,16 +391,15 @@ def check_users(app_configs=None, **kwargs):
 
 
 @checks.register()
-def check_db_transaction_on_commit(app_configs=None, **kwargs):
-    from django.db import connection
+def check_db_transaction_hooks(app_configs=None, **kwargs):
+    from django.conf import settings
+
     errors = []
-    try:
-        connection.on_commit
-    except AttributeError:
+    if settings.DATABASES['default']['ENGINE'].startswith("transaction_hooks"):
         errors.append(checks.Critical(
-            _("Database connection does not implement on_commit."),
-            hint=_("Set the DATABASES['default']['ENGINE'] to use a backend "
-                   "from transaction_hooks.backends."),
+            _("Database connection uses transaction_hooks."),
+            hint=_("Set the DATABASES['default']['ENGINE'] to use a Django "
+                   "backend from django.db.backends."),
             id="pootle.C006",
         ))
     return errors
