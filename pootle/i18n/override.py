@@ -16,7 +16,7 @@ from translate.lang import data
 
 from django.utils import translation
 from django.utils.functional import lazy
-from django.utils.translation import trans_real
+from django.utils.translation import LANGUAGE_SESSION_KEY, trans_real
 
 from pootle.i18n import bidi, gettext
 
@@ -64,7 +64,7 @@ def lang_choices():
 
 def get_lang_from_session(request, supported):
     if hasattr(request, 'session'):
-        lang_code = request.session.get('django_language', None)
+        lang_code = request.session.get(LANGUAGE_SESSION_KEY, None)
         if lang_code and lang_code in supported:
             return lang_code
 
