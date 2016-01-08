@@ -7,13 +7,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import ContactFormTemplateView, ContactFormView, ReportFormView
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$',
         ContactFormTemplateView.as_view(),
         name='pootle-contact'),
@@ -23,4 +22,4 @@ urlpatterns = patterns(
     url(r'report/$',
         ReportFormView.as_view(),
         name='pootle-contact-report-error'),
-)
+]

@@ -7,13 +7,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 
 from .views import UserAPIView, UserDetailView, UserSettingsView
 
 
-user_patterns = patterns(
-    'pootle_profile.views',
+user_patterns = [
     url(r'^(?P<username>[^/]+)/$',
         UserDetailView.as_view(),
         name='pootle-user-profile'),
@@ -23,19 +22,17 @@ user_patterns = patterns(
     url(r'^(?P<username>[^/]+)/settings/$',
         UserSettingsView.as_view(),
         name='pootle-user-settings'),
-)
+]
 
 
-api_patterns = patterns(
-    '',
+api_patterns = [
     url(r'^users/(?P<id>[0-9]+)/?$',
         UserAPIView.as_view(),
         name='pootle-xhr-user'),
-)
+]
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^user/', include(user_patterns)),
     url(r'^xhr/', include(api_patterns)),
-)
+]

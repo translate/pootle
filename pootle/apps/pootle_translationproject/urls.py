@@ -7,21 +7,20 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import (
     TPBrowseStoreView, TPBrowseView, TPExportStoreView, TPExportView,
     TPTranslateStoreView, TPTranslateView)
 
 
-urlpatterns = patterns(
-    'pootle_translationproject.views',
-
+urlpatterns = [
     # Admin views
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
         r'/admin/permissions/',
         'admin_permissions',
-        name='pootle-tp-admin-permissions'),
+        name='pootle-tp-admin-permissions',
+        prefix='pootle_translationproject.views'),
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
@@ -51,4 +50,5 @@ urlpatterns = patterns(
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         TPBrowseStoreView.as_view(),
-        name='pootle-tp-store-browse'))
+        name='pootle-tp-store-browse')
+]

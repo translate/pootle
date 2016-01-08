@@ -7,14 +7,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import (
     LanguageBrowseView, LanguageExportView, LanguageTranslateView)
 
 
-urlpatterns = patterns(
-    'pootle_language.views',
+urlpatterns = [
     url(r'^(?P<language_code>[^/]*)/$',
         LanguageBrowseView.as_view(),
         name='pootle-language-browse'),
@@ -30,8 +29,10 @@ urlpatterns = patterns(
     # Admin
     url(r'^(?P<language_code>[^/]*)/admin/permissions/$',
         'language_admin',
-        name='pootle-language-admin-permissions'),
+        name='pootle-language-admin-permissions',
+        prefix='pootle_language.views'),
     url(r'^(?P<language_code>[^/]*)/admin/characters/$',
         'language_characters_admin',
-        name='pootle-language-admin-characters'),
-)
+        name='pootle-language-admin-characters',
+        prefix='pootle_language.views'),
+]

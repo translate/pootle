@@ -7,23 +7,24 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .index import AboutView
 
 
-urlpatterns = patterns(
-    'pootle_app.views.index',
-
+urlpatterns = [
     url(r'^robots.txt$',
         'robots.view',
-        name='pootle-robots'),
+        name='pootle-robots',
+        prefix='pootle_app.views.index'),
 
     url(r'^/?$',
         'index.view',
-        name='pootle-home'),
+        name='pootle-home',
+        prefix='pootle_app.views.index'),
 
     url(r'^about/$',
         AboutView.as_view(),
-        name='pootle-about'),
-)
+        name='pootle-about',
+        prefix='pootle_app.views.index'),
+]

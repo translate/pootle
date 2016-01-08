@@ -7,14 +7,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import (AddUserPaidTaskView, UserActivityView,
                     UserDetailedStatsView, UserStatsView)
 
 
-urlpatterns = patterns(
-    'reports.views',
+urlpatterns = [
     url('^user/(?P<username>[^/]+)/stats/detailed/?$',
         UserDetailedStatsView.as_view(),
         name='pootle-user-detailed-stats'),
@@ -27,4 +26,4 @@ urlpatterns = patterns(
     url('^user/(?P<username>[^/]+)/paid-tasks/?$',
         AddUserPaidTaskView.as_view(),
         name='pootle-user-add-paid-task'),
-)
+]

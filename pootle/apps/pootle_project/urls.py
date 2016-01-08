@@ -7,16 +7,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import (
     ProjectBrowseView, ProjectExportView, ProjectsBrowseView,
     ProjectsExportView, ProjectsTranslateView, ProjectTranslateView)
 
 
-urlpatterns = patterns(
-    'pootle_project.views',
-
+urlpatterns = [
     # All projects
     url(r'^$',
         ProjectsBrowseView.as_view(),
@@ -33,10 +31,12 @@ urlpatterns = patterns(
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',
         'project_admin',
-        name='pootle-project-admin-languages'),
+        name='pootle-project-admin-languages',
+        prefix='pootle_project.views'),
     url(r'^(?P<project_code>[^/]*)/admin/permissions/$',
         'project_admin_permissions',
-        name='pootle-project-admin-permissions'),
+        name='pootle-project-admin-permissions',
+        prefix='pootle_project.views'),
 
     # Specific project
     url(r'^(?P<project_code>[^/]*)/translate/'
@@ -52,4 +52,5 @@ urlpatterns = patterns(
     url(r'^(?P<project_code>[^/]*)/'
         r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         ProjectBrowseView.as_view(),
-        name='pootle-project-browse'))
+        name='pootle-project-browse')
+]
