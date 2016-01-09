@@ -713,6 +713,16 @@ and the process will start a watchdog to track any client-side scripts for
 changes. Use this only when developing Pootle.
 
 
+.. django-admin:: start
+
+start
+^^^^^
+
+Run Pootle using the default Django server.
+
+.. note:: Use a real server in production, this is just for testing and evaluation.
+
+
 .. _commands#user-management:
 
 Managing users
