@@ -18,7 +18,7 @@ User = get_user_model()
 
 class Command(BaseCommand):
 
-    def handle(self, *args, **kwargs):
+    def handle(self, **options):
         duplicates = get_duplicate_emails()
         if not duplicates:
             self.stdout.write("There are no accounts with duplicate emails\n")

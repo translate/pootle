@@ -10,36 +10,34 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option(
+    help = "List language codes."
+
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--project',
             action='append',
             dest='projects',
-            help='Limit to PROJECTS'),
-        make_option(
+            help='Limit to PROJECTS',
+        )
+        parser.add_argument(
             "--modified-since",
             action="store",
             dest="modified_since",
             type=int,
             default=0,
             help="Only process translations newer than specified "
-                 "revision"),
-    )
-    help = "List language codes."
+                 "revision",
+        )
 
     def handle(self, **options):
         self.list_languages(**options)
 
     def list_languages(self, **options):
         """List all languages on the server or the given projects."""
-        projects = options.get('projects', [])
-
         from pootle_translationproject.models import TranslationProject
         tps = TranslationProject.objects.distinct()
         tps = tps.exclude(
@@ -49,8 +47,8 @@ class Command(BaseCommand):
             tps = tps.filter(
                 submission__unit__revision__gt=options['modified_since'])
 
-        if projects:
-            tps = tps.filter(project__code__in=projects)
+        if options['projects']:
+            tps = tps.filter(project__code__in=options['projects'])
 
         for lang in tps.values_list('language__code', flat=True):
             self.stdout.write(lang)

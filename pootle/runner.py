@@ -106,10 +106,11 @@ def init_command(parser, settings_template, args):
 
     src_dir = os.path.abspath(os.path.dirname(__file__))
     add_help_to_parser(parser)
-    parser.add_argument("--db", default="sqlite",
+    parser.add_argument("--db",
+                        default="sqlite",
+                        choices=['sqlite', 'mysql', 'postgresql'],
                         help=(u"Use the specified database backend (default: "
-                              u"'sqlite'; other options: 'mysql', "
-                              u"'postgresql')."))
+                              u"%(default)s)."))
     parser.add_argument("--db-name", default="",
                         help=(u"Database name (default: 'pootledb') or path "
                               u"to database file if using sqlite (default: "
@@ -137,11 +138,6 @@ def init_command(parser, settings_template, args):
         if resp not in ("y", "yes"):
             print("File already exists, not overwriting.")
             exit(2)
-
-    if args.db not in ["mysql", "postgresql", "sqlite"]:
-        raise management.CommandError("Unrecognised database '%s': should "
-                                      "be one of 'sqlite', 'mysql' or "
-                                      "'postgresql'" % args.db)
 
     try:
         init_settings(config_path, settings_template,

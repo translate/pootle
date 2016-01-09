@@ -8,7 +8,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -21,15 +20,15 @@ from pootle.core.initdb import InitDB
 class Command(BaseCommand):
     help = 'Populates the database with initial values: users, projects, ...'
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--no-projects',
             action='store_false',
             dest='create_projects',
             default=True,
             help="Do not create the default 'terminology' and 'tutorial' "
                  "projects.",
-        ), )
+        )
 
     def handle(self, **options):
         self.stdout.write('Populating the database.')

@@ -9,7 +9,6 @@
 
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
-from optparse import make_option
 from zipfile import ZipFile, is_zipfile
 
 from django.contrib.auth import get_user_model
@@ -19,19 +18,23 @@ from import_export.utils import import_file
 
 
 class Command(BaseCommand):
-    args = "<file file ...>"
-    option_list = BaseCommand.option_list + (
-        make_option(
-            "--user",
-            action="store",
-            dest="user",
-            help="Import translation file(s) as USER",
-        ),
-    )
     help = "Import a translation file or a zip of translation files. " \
            "X-Pootle-Path header must be present."
 
-    def handle(self, *args, **options):
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "file",
+            nargs="+",
+            help="file to import"
+        )
+        parser.add_argument(
+            "--user",
+            action="store",
+            dest="user",
+            help="Import translations as USER",
+        )
+
+    def handle(self, **options):
         user = None
         if options["user"] is not None:
             User = get_user_model()
@@ -40,7 +43,7 @@ class Command(BaseCommand):
             except User.DoesNotExist:
                 raise CommandError("Unrecognised user: %s" % options["user"])
 
-        for filename in args:
+        for filename in options['file']:
             if is_zipfile(filename):
                 with ZipFile(filename, "r") as zf:
                     for path in zf.namelist():

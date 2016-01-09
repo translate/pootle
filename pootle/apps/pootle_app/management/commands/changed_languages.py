@@ -12,8 +12,6 @@ import os
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from django.core.management.base import BaseCommand
 from django.db.models import Max
 
@@ -24,15 +22,14 @@ from pootle_store.models import Store, Unit
 class Command(BaseCommand):
     help = "List languages that were changed since last synchronization"
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--after-revision',
             action='store',
             dest='after_revision',
             type=int,
             help='Show languages changed after any arbitrary revision',
-        ),
-    )
+        )
 
     def handle(self, **options):
         last_known_revision = Revision.get()
