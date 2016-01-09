@@ -82,7 +82,7 @@ class Command(NoArgsCommand):
                 unit = Unit.objects.get(id=unit_id)
                 source = unit.source
                 target = unit.target
-            except Unit.DoesNotExist, e:
+            except Unit.DoesNotExist as e:
                 raise CommandError(e)
         else:
             source = options.get('source', '').decode('utf-8')
@@ -109,7 +109,7 @@ class Command(NoArgsCommand):
                             filterresult = test(source, target)
                         except AttributeError:
                             continue
-                except FilterFailure, e:
+                except FilterFailure as e:
                     filterresult = False
                     filtermessage = unicode(e)
 
