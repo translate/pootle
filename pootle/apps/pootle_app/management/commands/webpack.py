@@ -20,6 +20,7 @@ from pootle_misc.baseurl import l
 
 class Command(BaseCommand):
     help = 'Builds and bundles static assets using webpack'
+    requires_system_checks = False
 
     def add_arguments(self, parser):
         parser.add_argument(
