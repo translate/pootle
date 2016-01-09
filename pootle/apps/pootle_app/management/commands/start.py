@@ -15,12 +15,13 @@ class Command(BaseCommand):
     args = '<server>'
     help = 'Starts the Pootle server'
 
-    def handle(self, server_name='cherrypy', **options):
+    def handle(self, server_name='django', **options):
         # XXX: Find a cleaner way to handle these and their custom options
         servers = {
             'cherrypy': 'run_cherrypy',
             'fcgi': 'runfcgi',
             'gunicorn': 'run_gunicorn',
+            'django': 'runserver',
         }
 
         try:
