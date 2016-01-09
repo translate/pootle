@@ -7,9 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf import settings
 from django.template.base import TemplateDoesNotExist
-from django.template.loader import find_template_loader
+from django.template.engine import Engine
 
 
 def get_template_source(name, dirs=None):
@@ -20,14 +19,12 @@ def get_template_source(name, dirs=None):
     :return: tuple including file contents and file path.
     """
     loaders = []
-    for loader_name in settings.TEMPLATE_LOADERS:
-        loader = find_template_loader(loader_name)
-        if loader is not None:
-            # The cached loader includes the actual loaders underneath
-            if hasattr(loader, 'loaders'):
-                loaders.extend(loader.loaders)
-            else:
-                loaders.append(loader)
+    for loader in Engine.get_default().template_loaders:
+        # The cached loader includes the actual loaders underneath
+        if hasattr(loader, 'loaders'):
+            loaders.extend(loader.loaders)
+        else:
+            loaders.append(loader)
 
     for loader in loaders:
         try:
