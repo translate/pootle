@@ -31,6 +31,8 @@ from fixtures.models.translation_project import (
 from fixtures.models.user import (
     default, system, nobody, trans_nobody, admin, member, trans_member,
     trans_system, member_with_email, member2, evil_member)
+from fixtures.models.unit import (
+    UNIT_PATH_RESOLVER_TESTS, unit_path_resolver_tests)
 
 from fixtures.cache import delete_pattern
 from fixtures.import_export_fixtures import (
@@ -72,7 +74,7 @@ __all__ = (
     'revision', 'admin_client', 'site_matrix', 'site_matrix_with_subdirs',
     'site_root', 'site_matrix_with_vfolders', 'site_matrix_with_announcements',
     'site_permissions', 'project_views', 'tp_views', 'language_views',
-    'bad_views')
+    'bad_views', 'unit_path_resolver_tests')
 
 
 PARAMETERS = (
@@ -82,7 +84,8 @@ PARAMETERS = (
     ("project_view_names", PROJECT_VIEW_TESTS),
     ("language_view_names", LANGUAGE_VIEW_TESTS),
     ("tp_view_names", TP_VIEW_TESTS),
-    ("bad_view_names", BAD_VIEW_TESTS))
+    ("bad_view_names", BAD_VIEW_TESTS),
+    ("unit_path_resolver_names", UNIT_PATH_RESOLVER_TESTS))
 
 
 def pytest_generate_tests(metafunc):

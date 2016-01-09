@@ -280,3 +280,41 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     assert (
         it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated']
         == 2)
+
+
+@pytest.mark.django_db
+def test_unit_path_resolver(unit_path_resolver_tests):
+
+    from pootle_store.models import Unit
+
+    resolved, test = unit_path_resolver_tests
+    result = test.get("result", {})
+
+    for k in ["language", "project", "directory", "filename"]:
+        parsed = getattr(resolved, k)
+        if parsed:
+            assert parsed == result[k]
+        elif k in ["language", "project"]:
+            assert parsed is None
+        else:
+            assert parsed == ""
+
+    units = Unit.objects.order_by("pk")
+    if resolved.regex:
+        expected = units.filter(store__pootle_path__regex=resolved.regex)
+    else:
+        expected = units.all()
+    if result.get("project"):
+        units = units.filter(
+            store__translation_project__project__code=result["project"])
+    if result.get("language"):
+        units = units.filter(
+            store__translation_project__language__code=result["language"])
+    if result.get("directory"):
+        units = units.filter(
+            store__pootle_path__contains=result["directory"])
+
+    if result.get("filename"):
+        units = units.filter(
+            store__pootle_path__endswith=(result["filename"]))
+    assert list(expected) == list(units)

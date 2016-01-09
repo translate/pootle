@@ -12,15 +12,101 @@ import re
 import urllib
 import urlparse
 
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, resolve
+from django.utils.functional import cached_property
+
+
+class PathValidator(object):
+    """Converts a request.path into parts for matching pootle_path
+    with a regex
+    """
+
+    def __init__(self, path):
+        self._path = path
+
+    @cached_property
+    def kwargs(self):
+        if not self.path:
+            return {}
+        return resolve(self.path).kwargs
+
+    @property
+    def directory_path(self):
+        if not self.path:
+            return ""
+        directory = self.kwargs.get("dir_path", "") or ""
+        if directory and not directory.endswith("/"):
+            directory = "%s/" % directory
+        return directory
+
+    @property
+    def filename(self):
+        return self.kwargs.get("filename", "") or ""
+
+    @property
+    def language_code(self):
+        return self.kwargs.get("language_code", None) or None
+
+    @cached_property
+    def path(self):
+        if not self._path:
+            return self._path
+        path = self._extracted_vfolder_and_path[1]
+        parts = path.split("/")
+        if "." in parts[-1]:
+            return "/%s" % path.strip("/")
+        return "/%s/" % path.strip("/")
+
+    @property
+    def project_code(self):
+        return self.kwargs.get("project_code", None) or None
+
+    @property
+    def regex(self):
+        if not (self.project_code or self.language_code):
+            return None
+        regex = r"^/"
+
+        if self.language_code:
+            regex = r"%s%s/" % (regex, self.language_code)
+        else:
+            regex = r"%s[a-zA-Z0-9\-\_]*/" % regex
+
+        if self.project_code:
+            regex = r"%s%s/" % (regex, self.project_code)
+        else:
+            regex = r"%s[a-zA-Z0-9\-\_]*/" % regex
+
+        if self.directory_path:
+            regex = r"%s%s" % (regex, self.directory_path)
+
+        if self.filename:
+            regex = (
+                r"%s%s$"
+                % (regex,
+                   self.filename.replace(".", "\.")))
+        return regex
+
+    @cached_property
+    def vfolder(self):
+        return self._extracted_vfolder_and_path[0]
+
+    @cached_property
+    def _extracted_vfolder_and_path(self):
+        from virtualfolder.helpers import extract_vfolder_from_path
+        # extract_vfolder_path_old)
+        from virtualfolder.utils import vfolders_installed
+
+        if not vfolders_installed():
+            return None, self._path
+        res1 = extract_vfolder_from_path(self._path)
+        # res2 = extract_vfolder_path_old(self._path)
+        return res1
 
 
 def split_pootle_path(pootle_path):
-    """Split an internal `pootle_path` into proper parts.
+    import os
 
-    :return: A tuple containing each part of a pootle_path`::
-        (language code, project code, directory path, filename)
-    """
     slash_count = pootle_path.count(u'/')
     parts = pootle_path.split(u'/', 3)[1:]
 
@@ -29,14 +115,11 @@ def split_pootle_path(pootle_path):
     ctx = ''
 
     if slash_count != 0 and pootle_path != '/projects/':
-        # /<lang_code>/
         if slash_count == 2:
             language_code = parts[0]
-        # /projects/<project_code>/
         elif pootle_path.startswith('/projects/'):
             project_code = parts[1]
             ctx = parts[2]
-        # /<lang_code>/<project_code>/*
         elif slash_count != 1:
             language_code = parts[0]
             project_code = parts[1]
