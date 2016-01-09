@@ -83,7 +83,7 @@ class Command(NoArgsCommand):
                 source = unit.source
                 target = unit.target
             except Unit.DoesNotExist, e:
-                raise CommandError(e.message)
+                raise CommandError(e)
         else:
             source = options.get('source', '').decode('utf-8')
             target = options.get('target', '').decode('utf-8')

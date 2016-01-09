@@ -82,7 +82,7 @@ class Command(BaseCommand):
                 except ValidationError as e:
                     errored_count += 1
                     self.stdout.write('FAILED')
-                    self.stderr.write(e.message)
+                    self.stderr.write(e)
                 else:
                     self.stdout.write('DONE')
                     added_count += 1
@@ -129,7 +129,7 @@ class Command(BaseCommand):
                     except ValidationError as e:
                         errored_count += 1
                         self.stdout.write('FAILED')
-                        self.stderr.write(e.message)
+                        self.stderr.write(e)
                     else:
                         self.stdout.write('DONE')
                         updated_count += 1

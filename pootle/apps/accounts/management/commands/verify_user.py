@@ -48,10 +48,10 @@ class Command(UserCommand):
                     utils.verify_user(user)
                     print("Verified user '%s'" % user.username)
                 except (ValueError, ValidationError) as e:
-                    print(e.message)
+                    print(e)
         else:
             try:
                 utils.verify_user(self.get_user(args[0]))
                 print("User '%s' has been verified" % args[0])
             except (ValueError, ValidationError) as e:
-                raise CommandError(e.message)
+                raise CommandError(e)

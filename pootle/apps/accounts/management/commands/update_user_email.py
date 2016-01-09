@@ -28,5 +28,5 @@ class Command(UserCommand):
         try:
             accounts.utils.update_user_email(self.get_user(args[0]), args[1])
         except ValidationError as e:
-            raise CommandError(e.message)
+            raise CommandError(e)
         self.stdout.write("Email updated: %s, %s\n" % args)

@@ -92,7 +92,7 @@ def handle_upload_form(request, project):
                     django_file.seek(0)
                     import_file(django_file, user=request.user)
             except Exception as e:
-                upload_form.add_error("file", e.message)
+                upload_form.add_error("file", e)
                 return {
                     "upload_form": upload_form,
                 }
