@@ -32,14 +32,17 @@ class UnitSearch(object):
 
     @cached_property
     def qs(self):
+        from pootle.core.views import RequestPathRegex
+
         from pootle_store.models import Unit
+        import pdb; pdb.set_trace()
 
         if self.kwa.get("pootle_path", None):
             return Unit.objects.get_for_path(
-                self.kwa["pootle_path"],
-                self.request_user)
+                self.request_user,
+                RequestPathRegex(self.kwa["pootle_path"]).regex)
         else:
-            return Unit.objects.get_for_user(self.request_user)
+            return Unit.objects.get_for_pat(self.request_user)
 
     @cached_property
     def limit(self):
