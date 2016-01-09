@@ -20,13 +20,11 @@ from django.db.models import Max
 from pootle.core.models import Revision
 from pootle_store.models import Store, Unit
 
-from . import BaseRunCommand
-
 
 class Command(BaseCommand):
     help = "List languages that were changed since last synchronization"
 
-    option_list = BaseRunCommand.option_list + (
+    option_list = BaseCommand.option_list + (
         make_option(
             '--after-revision',
             action='store',
