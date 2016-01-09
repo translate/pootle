@@ -214,7 +214,7 @@ run it, just issue:
 
 .. code-block:: bash
 
-   (env) $ pootle start
+   (env) $ pootle runserver
 
 And the server will start listening on port 8000. Pootle can then be accessed
 from your web browser at `localhost:8000 <http://localhost:8000/>`_.

@@ -14,8 +14,8 @@ Major Changes
 Details of changes
 ==================
 
-- :djadmin:`run_cherrypy` has been removed. :djadmin:`start` will now use
-  Django's server by default instead of CherryPy.
+- :djadmin:`run_cherrypy` has been removed.
+- :djadmin:`start` has been removed, use :djadmin:`runserver` instead.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

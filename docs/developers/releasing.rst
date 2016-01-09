@@ -306,7 +306,7 @@ You can then proceed with other tests such as checking:
 
      (test-pootle-release)$ pootle migrate
      (test-pootle-release)$ pootle initdb
-     (test-pootle-release)$ pootle start
+     (test-pootle-release)$ pootle runserver
      (test-pootle-release)$  # Browse to localhost:8000
 
 #. MySQL installation check:
@@ -326,7 +326,7 @@ You can then proceed with other tests such as checking:
 
         (test-pootle-release)$ pootle migrate
         (test-pootle-release)$ pootle initdb
-        (test-pootle-release)$ pootle start
+        (test-pootle-release)$ pootle runserver
         (test-pootle-release)$  # Browse to localhost:8000
 
    #. Drop the MySQL database you have created:
@@ -356,7 +356,7 @@ You can then proceed with other tests such as checking:
       .. code-block:: bash
 
         (test-pootle-release)$ pootle migrate
-        (test-pootle-release)$ pootle start
+        (test-pootle-release)$ pootle runserver
         (test-pootle-release)$  # Browse to localhost:8000
 
    #. Drop the MySQL database you have created:
