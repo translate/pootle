@@ -11,32 +11,33 @@ import logging
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from pootle_app.management.commands import PootleCommand
 from pootle_translationproject.models import scan_translation_projects
 
 
 class Command(PootleCommand):
-    option_list = PootleCommand.option_list + (
-        make_option(
+    help = "Update database stores from files."
+    process_disabled_projects = True
+
+    def add_arguments(self, parser):
+        super(Command, self).add_arguments(parser)
+        parser.add_argument(
             '--overwrite',
             action='store_true',
             dest='overwrite',
             default=False,
             help="Don't just update untranslated units "
                  "and add new units, but overwrite database "
-                 "translations to reflect state in files."),
-        make_option(
+                 "translations to reflect state in files.",
+        )
+        parser.add_argument(
             '--force',
             action='store_true',
             dest='force',
             default=False,
             help="Unconditionally process all files (even if they "
-                 "appear unchanged)."),
-    )
-    help = "Update database stores from files."
-    process_disabled_projects = True
+                 "appear unchanged).",
+        )
 
     def handle_translation_project(self, translation_project, **options):
         """

@@ -16,8 +16,6 @@ sys.setdefaultencoding('utf-8')
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from django.core.management.base import CommandError
 
 from pootle_app.management.commands import PootleCommand
@@ -42,30 +40,30 @@ DUMPED = {
 class Command(PootleCommand):
     help = "Dump data."
 
-    shared_option_list = (
-        make_option(
+    def add_arguments(self, parser):
+        super(Command, self).add_arguments(parser)
+        parser.add_argument(
             '--stats',
             action='store_true',
             dest='stats',
             default=False,
             help='Dump stats',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--data',
             action='store_true',
             dest='data',
             default=False,
             help='Data all data',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--stop-level',
             action='store',
             dest='stop_level',
             default=-1,
             type=int,
-        ),
-    )
-    option_list = PootleCommand.option_list + shared_option_list
+            help="Depth of data to retreive",
+        )
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:

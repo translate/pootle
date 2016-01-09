@@ -9,7 +9,6 @@
 
 import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
-from optparse import make_option
 from zipfile import ZipFile
 
 from django.core.management.base import CommandError
@@ -21,16 +20,17 @@ from pootle_store.models import Store
 
 
 class Command(PootleCommand):
-    option_list = PootleCommand.option_list + (
-        make_option(
+    help = "Export a Project, Translation Project, or path. " \
+           "Multiple files will be zipped."
+
+    def add_arguments(self, parser):
+        super(Command, self).add_arguments(parser)
+        parser.add_argument(
             "--path",
             action="store",
             dest="pootle_path",
             help="Export a single file",
-        ),
-    )
-    help = "Export a Project, Translation Project, or path. " \
-           "Multiple files will be zipped."
+        )
 
     def _create_zip(self, stores, prefix):
         with open("%s.zip" % (prefix), "wb") as f:
