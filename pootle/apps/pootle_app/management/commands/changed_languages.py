@@ -14,7 +14,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from django.db.models import Max
 
 from pootle.core.models import Revision
@@ -23,7 +23,7 @@ from pootle_store.models import Store, Unit
 from . import BaseRunCommand
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = "List languages that were changed since last synchronization"
 
     option_list = BaseRunCommand.option_list + (
@@ -36,7 +36,7 @@ class Command(NoArgsCommand):
         ),
     )
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         last_known_revision = Revision.get()
 
         if options['after_revision'] is not None:

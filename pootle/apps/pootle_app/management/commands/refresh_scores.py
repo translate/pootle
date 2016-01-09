@@ -14,12 +14,12 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from optparse import make_option
 
 from django.contrib.auth import get_user_model
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 
 from pootle_statistics.models import ScoreLog
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = "Refresh score"
 
     shared_option_list = (
@@ -32,9 +32,9 @@ class Command(NoArgsCommand):
         ),
     )
 
-    option_list = NoArgsCommand.option_list + shared_option_list
+    option_list = BaseCommand.option_list + shared_option_list
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
 
         if options['reset']:
             User = get_user_model()

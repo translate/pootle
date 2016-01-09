@@ -13,15 +13,15 @@ from optparse import make_option
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 
 from pootle.core.initdb import InitDB
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = 'Populates the database with initial values: users, projects, ...'
 
-    option_list = NoArgsCommand.option_list + (
+    option_list = BaseCommand.option_list + (
         make_option(
             '--no-projects',
             action='store_false',
@@ -31,7 +31,7 @@ class Command(NoArgsCommand):
                  "projects.",
         ), )
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         self.stdout.write('Populating the database.')
         InitDB().init_db(options["create_projects"])
         self.stdout.write('Successfully populated the database.')

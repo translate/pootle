@@ -12,14 +12,14 @@ import logging
 
 from optparse import make_option
 
-from django.core.management.base import BaseCommand, NoArgsCommand
+from django.core.management.base import BaseCommand
 
 from pootle.runner import set_sync_mode
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
 
-class PootleCommand(NoArgsCommand):
+class PootleCommand(BaseCommand):
     """Base class for handling recursive pootle store management commands."""
 
     shared_option_list = (
@@ -49,7 +49,7 @@ class PootleCommand(NoArgsCommand):
                   "using rq workers"),
         ),
     )
-    option_list = NoArgsCommand.option_list + shared_option_list
+    option_list = BaseCommand.option_list + shared_option_list
     process_disabled_projects = False
 
     def __init__(self, *args, **kwargs):
@@ -90,7 +90,7 @@ class PootleCommand(NoArgsCommand):
                     logging.exception(u"Failed to run %s over %s",
                                       self.name, store.pootle_path)
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         # adjust debug level to the verbosity option
         verbosity = int(options.get('verbosity', 1))
         debug_levels = {

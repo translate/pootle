@@ -16,14 +16,14 @@ from optparse import make_option
 from translate.filters.checks import FilterFailure, projectcheckers
 
 from django.conf import settings
-from django.core.management.base import CommandError, NoArgsCommand
+from django.core.management.base import CommandError, BaseCommand
 
 from pootle_misc.checks import get_qualitychecks
 from pootle_misc.util import import_func
 from pootle_store.models import Unit
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = "Tests quality checks against string pairs."
 
     shared_option_list = (
@@ -49,9 +49,9 @@ class Command(NoArgsCommand):
             help='Translation string',
         ),
     )
-    option_list = NoArgsCommand.option_list + shared_option_list
+    option_list = BaseCommand.option_list + shared_option_list
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         # adjust debug level to the verbosity option
         verbosity = int(options.get('verbosity', 1))
         debug_levels = {

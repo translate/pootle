@@ -13,13 +13,13 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from optparse import make_option
 
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 
 from pootle.core.models import Revision
 
 
-class Command(NoArgsCommand):
-    option_list = NoArgsCommand.option_list + (
+class Command(BaseCommand):
+    option_list = BaseCommand.option_list + (
         make_option(
             '--restore',
             action='store_true',
@@ -31,7 +31,7 @@ class Command(NoArgsCommand):
 
     help = "Print the number of the current revision."
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         if options['restore']:
             from pootle_store.models import Unit
             Revision.set(Unit.max_revision())
