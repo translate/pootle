@@ -234,7 +234,8 @@ def do_include_raw(parser, token):
             template_name[-1] == template_name[0]):
         template_name = template_name[1:-1]
 
-    source, path = get_template(
-        template_name).origin.loader(template_name)
-
-    return template.base.TextNode(source)
+    return template.base.TextNode(
+        u"\n".join(
+            [x.s
+             for x
+             in get_template(template_name).template.nodelist]))
