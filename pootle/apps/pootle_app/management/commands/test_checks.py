@@ -11,8 +11,6 @@ import logging
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from translate.filters.checks import FilterFailure, projectcheckers
 
 from django.conf import settings
@@ -26,30 +24,28 @@ from pootle_store.models import Unit
 class Command(BaseCommand):
     help = "Tests quality checks against string pairs."
 
-    shared_option_list = (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--check',
             action='append',
             dest='checks',
             help='Check name to check for',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--source',
             dest='source',
             help='Source string',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--unit',
             dest='unit',
             help='Unit id',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--target',
             dest='target',
             help='Translation string',
-        ),
-    )
-    option_list = BaseCommand.option_list + shared_option_list
+        )
 
     def handle(self, **options):
         # adjust debug level to the verbosity option

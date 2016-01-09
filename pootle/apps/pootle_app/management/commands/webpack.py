@@ -11,7 +11,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import subprocess
 import sys
-from optparse import make_option
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -22,15 +21,14 @@ from pootle_misc.baseurl import l
 class Command(BaseCommand):
     help = 'Builds and bundles static assets using webpack'
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--dev',
             action='store_true',
             dest='dev',
             default=False,
             help='Enable development builds and watch for changes.',
-        ),
-    )
+        )
 
     def handle(self, *args, **options):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')
