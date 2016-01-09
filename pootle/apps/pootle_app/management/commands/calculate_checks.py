@@ -9,7 +9,6 @@
 
 import logging
 import os
-from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -21,18 +20,17 @@ from . import PootleCommand
 
 class Command(PootleCommand):
     help = "Allow checks to be recalculated manually."
+    process_disabled_projects = True
 
-    shared_option_list = (
-        make_option(
+    def add_arguments(self, parser):
+        super(Command, self).add_arguments(parser)
+        parser.add_argument(
             '--check',
             action='append',
             dest='check_names',
             default=None,
-            help='Check to recalculate'
-        ),
-    )
-    option_list = PootleCommand.option_list + shared_option_list
-    process_disabled_projects = True
+            help='Check to recalculate',
+        )
 
     def handle_all_stores(self, translation_project, **options):
         logging.info(

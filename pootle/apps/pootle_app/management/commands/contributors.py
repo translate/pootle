@@ -9,7 +9,6 @@
 
 import os
 from collections import Counter
-from optparse import make_option
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
 
@@ -24,26 +23,25 @@ User = get_user_model()
 
 
 class Command(PootleCommand):
-    option_list = PootleCommand.option_list + (
-        make_option(
+    help = "Print a list of contributors."
+
+    def add_arguments(self, parser):
+        super(Command, self).add_arguments(parser)
+        parser.add_argument(
             "--from-revision",
             type=int,
             default=0,
             dest="revision",
             help="Only count contributions newer than this revision",
-        ),
-        make_option(
+        )
+        parser.add_argument(
             "--sort-by",
-            type="choice",
             default="name",
             choices=["name", "contributions"],
             dest="sort_by",
             help="Sort by specified item. Accepts name and contributions. "
-                 "Default: %default",
-        ),
-    )
-
-    help = "Print a list of contributors."
+                 "Default: %(default)s",
+        )
 
     def handle_all(self, **options):
         system_user = User.objects.get_system_user()
