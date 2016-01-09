@@ -10,8 +10,6 @@
 import datetime
 import logging
 
-from optparse import make_option
-
 from django.core.management.base import BaseCommand
 
 from pootle.runner import set_sync_mode
@@ -22,35 +20,34 @@ from pootle_translationproject.models import TranslationProject
 class PootleCommand(BaseCommand):
     """Base class for handling recursive pootle store management commands."""
 
-    shared_option_list = (
-        make_option(
+    process_disabled_projects = False
+
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--project',
             action='append',
             dest='projects',
             help='Project to refresh',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             '--language',
             action='append',
             dest='languages',
             help='Language to refresh',
-        ),
-        make_option(
+        )
+        parser.add_argument(
             "--noinput",
             action="store_true",
             default=False,
             help=u"Never prompt for input",
-        ),
-        make_option(
+        )
+        parser.add_argument(
             "--no-rq",
             action="store_true",
             default=False,
             help=(u"Run all jobs in a single process, without "
                   "using rq workers"),
-        ),
-    )
-    option_list = BaseCommand.option_list + shared_option_list
-    process_disabled_projects = False
+        )
 
     def __init__(self, *args, **kwargs):
         self.languages = []
