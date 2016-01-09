@@ -33,9 +33,9 @@ REDIS_MINIMUM_REQUIRED_VERSION = (2, 8, 4)
 # XXX List of manage.py commands not to run the rqworker check on.
 # Maybe tagging can improve this?
 RQWORKER_WHITELIST = [
-    "start", "initdb", "revision", "sync_stores", "run_cherrypy",
-    "refresh_stats", "update_stores", "calculate_checks", "retry_failed_jobs",
-    "check", "runserver",
+    "start", "initdb", "revision", "sync_stores", "refresh_stats",
+    "update_stores", "calculate_checks", "retry_failed_jobs", "check",
+    "runserver",
 ]
 
 

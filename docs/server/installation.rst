@@ -209,16 +209,15 @@ their email address:
 Running Pootle
 --------------
 
-By default Pootle provides a built-in `CherryPy server
-<http://www.cherrypy.org/>`_ that will be enough for quickly testing the
-software. To run it, just issue:
+The Django default server will be enough for quickly testing the software. To
+run it, just issue:
 
 .. code-block:: bash
 
    (env) $ pootle start
 
-And the server will start listening on port 8000. This can be accessed from
-your web browser at `localhost:8000 <http://localhost:8000/>`_.
+And the server will start listening on port 8000. Pootle can then be accessed
+from your web browser at `localhost:8000 <http://localhost:8000/>`_.
 
 
 .. _installation#next-steps:

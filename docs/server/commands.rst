@@ -834,50 +834,9 @@ There are multiple ways to run Pootle, and some of them rely on running WSGI
 servers that can be reverse proxied to a proper HTTP web server such as nginx
 or lighttpd.
 
-The Translate Toolkit offers a bundled CherryPy server but there are many more
-options such as gunicorn, flup, paste, etc.
-
-
-.. django-admin:: run_cherrypy
-
-run_cherrypy
-^^^^^^^^^^^^
-
-Run the CherryPy server bundled with the Translate Toolkit.
-
-Available options:
-
-:option:`--host`
-  The hostname to listen on.
-
-  Default: ``127.0.0.1``.
-
-:option:`--port`
-  The TCP port on which the server should listen for new connections.
-
-  Default: ``8080``.
-
-:option:`--threads`
-  The number of working threads to create.
-
-  Default: ``1``.
-
-:option:`--name`
-  The name of the worker process.
-
-  Default: :func:`socket.gethostname`.
-
-:option:`--queue`
-  Specifies the maximum number of queued connections. This is the the
-  ``backlog`` argument to :func:`socket.listen`.
-
-  Default: ``5``.
-
-:option:`--ssl_certificate`
-  The filename of the server SSL certificate.
-
-:option:`--ssl_privatekey`
-  The filename of the server's private key file.
+There are many more options such as `uWSGI
+<http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html>`_, `Gunicorn
+<http://gunicorn.org/>`_, etc.
 
 
 .. _commands#deprecated:
@@ -916,10 +875,20 @@ later release.
 update_from_vcs
 ^^^^^^^^^^^^^^^
 
-.. deprecated:: 2.7
+.. deprecated:: 2.7.3
 
 Version Control support has been removed from Pootle and will reappear in a
 later release.
+
+
+.. django-admin:: run_cherrypy
+
+run_cherrypy
+^^^^^^^^^^^^
+
+.. deprecated:: 2.7
+
+Run the CherryPy server bundled with the Translate Toolkit.
 
 
 .. _commands#running_in_cron:

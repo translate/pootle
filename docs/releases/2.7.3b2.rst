@@ -1,0 +1,32 @@
+=================================
+Welcome to the new Pootle 2.7.3b2
+=================================
+
+*Not yet released*
+
+Bugfix release for 2.7.2.
+
+
+Major Changes
+=============
+
+
+Details of changes
+==================
+
+- :djadmin:`run_cherrypy` has been removed. :djadmin:`start` will now use
+  Django's server by default instead of CherryPy.
+
+
+...and lots of refactoring, new tests, cleanups, improved documentation and of
+course, loads of bugs were fixed.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+%CONTRIBUTORS%
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
