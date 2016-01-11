@@ -650,7 +650,7 @@ class JobWrapper(object):
         args = (self.instance,)
         return Job.create(self.func, args=args, id=self.id,
                           connection=self.connection, depends_on=depends_on,
-                          status=status)
+                          status=status, origin=self.origin)
 
     def save_enqueued(self, pipe):
         """
