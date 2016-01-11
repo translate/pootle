@@ -70,7 +70,7 @@ def spanish(english):
 
 @pytest.fixture
 def italian(english):
-    """Require the Spanish language."""
+    """Require the Italian language."""
     return _require_language('it', 'Italian')
 
 
