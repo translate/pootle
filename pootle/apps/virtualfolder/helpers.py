@@ -46,10 +46,7 @@ def extract_vfolder_from_path(request_path):
     if vftis.exists():
         # There may be more than one vfti with matching pootle_path, so we get
         # the one with the shortest path or highest priority.
-        vfti = sorted(
-            vftis.select_related("vfolder", "directory"),
-            key=lambda obj: (
-                -obj.pootle_path.count("/"),
-                obj.vfolder.priority))[0]
+        vfti = (vftis.select_related("vfolder", "directory")
+                     .order_by("pootle_path").first())
         return vfti.vfolder, vfti.directory.pootle_path
     return None, request_path
