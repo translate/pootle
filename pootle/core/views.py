@@ -28,13 +28,6 @@ from django.views.defaults import (permission_denied as django_403,
                                    server_error as django_500)
 from django.views.generic import View, DetailView
 
-from pootle.core.browser import get_table_headings
-from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME,
-    get_sidebar_announcements_context)
-from pootle.core.url_helpers import get_previous_url, get_path_parts
-from pootle.core.utils.json import jsonify
-
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_misc.stats import get_translation_states
@@ -44,9 +37,12 @@ from pootle_store.models import Unit
 from pootle_store.views import get_step_query
 from virtualfolder.models import VirtualFolderTreeItem
 
-from .helpers import get_filter_name, EXPORT_VIEW_QUERY_LIMIT
+from .browser import get_table_headings
+from .helpers import (EXPORT_VIEW_QUERY_LIMIT, SIDEBAR_COOKIE_NAME,
+                      get_filter_name, get_sidebar_announcements_context)
 from .http import JsonResponse, JsonResponseBadRequest
-from .utils.json import PootleJSONEncoder
+from .url_helpers import get_path_parts, get_previous_url
+from .utils.json import PootleJSONEncoder, jsonify
 
 
 def check_directory_permission(permission_codename, request, directory):

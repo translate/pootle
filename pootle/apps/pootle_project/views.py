@@ -28,7 +28,8 @@ from pootle_app.views.admin.permissions import admin_permissions
 from pootle_project.forms import tp_form_factory
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
-from pootle_project.models import Project, ProjectSet, ProjectResource
+
+from .models import Project, ProjectSet, ProjectResource
 
 
 class ProjectMixin(object):

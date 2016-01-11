@@ -32,10 +32,11 @@ from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_store.models import Store
-from pootle_translationproject.models import TranslationProject
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
 from virtualfolder.models import VirtualFolderTreeItem
+
+from .models import TranslationProject
 
 
 @get_path_obj
