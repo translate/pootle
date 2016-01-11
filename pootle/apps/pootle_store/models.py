@@ -1697,6 +1697,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             submission_type = SubmissionTypes.SYSTEM
 
         # Create Submission after unit saved
+        # FIXME: we can store these objects in a list and
+        # `bulk_create()` them in a single go
         for field in create_subs:
             Submission.objects.create(
                 creation_time=current_time,
@@ -1709,8 +1711,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 old_value=create_subs[field][0],
                 new_value=create_subs[field][1]
             )
-            # FIXME: we can store these objects in a list and
-            # `bulk_create()` them in a single go
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS):
