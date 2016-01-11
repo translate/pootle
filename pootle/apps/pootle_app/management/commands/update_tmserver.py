@@ -280,7 +280,7 @@ class Command(BaseCommand):
                                "correctly." % options['tm'])
 
         self.INDEX_NAME = self.tm_settings['INDEX_NAME']
-        self.is_local_tm = options.get('tm') == 'local'
+        self.is_local_tm = options['tm'] == 'local'
 
         self.es = Elasticsearch([
             {
@@ -295,22 +295,19 @@ class Command(BaseCommand):
                 raise CommandError('You cannot add translations from files to '
                                    'a local TM.')
 
-            self.target_language = options.pop('target_language')
-            self.project = options.pop('project')
-
-            if not self.project:
+            if not options['project']:
                 raise CommandError('You must specify a project name with '
                                    '--display-name.')
             self.parser = FileParser(stdout=self.stdout, index=self.INDEX_NAME,
-                                     language=self.target_language,
-                                     project=self.project)
+                                     language=options['target_language'],
+                                     project=options['project'])
         elif not self.is_local_tm:
             raise CommandError('You cannot add translations from database to '
                                'an external TM.')
         else:
             self.parser = DBParser(
                 stdout=self.stdout, index=self.INDEX_NAME,
-                disabled_projects=options.pop('disabled_projects'))
+                disabled_projects=options['disabled_projects'])
 
     def _set_latest_indexed_revision(self, **options):
         self.last_indexed_revision = -1
