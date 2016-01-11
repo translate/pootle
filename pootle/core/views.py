@@ -567,7 +567,6 @@ class PootleBrowseView(PootleDetailView):
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
         ctx.update(
             {'page': 'browse',
-             # 'parent': get_parent(self.object),
              'stats': jsonify(self.stats),
              'translation_states': get_translation_states(self.object),
              'check_categories': get_qualitycheck_schema(self.object),
