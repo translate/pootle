@@ -10,7 +10,6 @@
 import os
 import sys
 from hashlib import md5
-from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -173,52 +172,75 @@ class FileParser(object):
 
 class Command(BaseCommand):
     help = "Load Translation Memory with translations"
-    args = "[files]"
-    option_list = BaseCommand.option_list + (
-        make_option('--refresh',
-                    action='store_true',
-                    dest='refresh',
-                    default=False,
-                    help='Process all items, not just the new ones, so '
-                         'existing translations are refreshed'),
-        make_option('--rebuild',
-                    action='store_true',
-                    dest='rebuild',
-                    default=False,
-                    help='Drop the entire TM on start and update everything '
-                         'from scratch'),
-        make_option('--dry-run',
-                    action='store_true',
-                    dest='dry_run',
-                    default=False,
-                    help='Report the number of translations to index and '
-                         'quit'),
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--refresh',
+            action='store_true',
+            dest='refresh',
+            default=False,
+            help='Process all items, not just the new ones, so '
+                 'existing translations are refreshed'
+        )
+        parser.add_argument(
+            '--rebuild',
+            action='store_true',
+            dest='rebuild',
+            default=False,
+            help='Drop the entire TM on start and update everything '
+                 'from scratch'
+        )
+        parser.add_argument(
+            '--dry-run',
+            action='store_true',
+            dest='dry_run',
+            default=False,
+            help='Report the number of translations to index and quit'
+        )
+
         # Local TM specific options.
-        make_option('--include-disabled-projects',
-                    action='store_true',
-                    dest='disabled_projects',
-                    default=False,
-                    help='Add translations from disabled projects'),
+        local = parser.add_argument_group('Local TM', 'Pootle Local '
+                                          'Translation Memory')
+        local.add_argument(
+            '--include-disabled-projects',
+            action='store_true',
+            dest='disabled_projects',
+            default=False,
+            help='Add translations from disabled projects'
+        )
+
         # External TM specific options.
-        make_option('--tm',
-                    action='store',
-                    dest='tm',
-                    default='local',
-                    help="TM to use. TM must exist on settings. TM will be "
-                         "created on the server if it doesn't exist"),
-        make_option('--target-language',
-                    action='store',
-                    dest='target_language',
-                    default='',
-                    help="Target language to fallback to use in case it can't "
-                         "be guessed for any of the input files."),
-        make_option('--display-name',
-                    action='store',
-                    dest='project',
-                    default='',
-                    help='Name used when displaying TM matches for these '
-                         'translations.'),
-    )
+        external = parser.add_argument_group('External TM', 'Pootle External '
+                                             'Translation Memory')
+        external.add_argument(
+            nargs='*',
+            dest='files',
+            help='Translation memory files',
+        )
+        external.add_argument(
+            '--tm',
+            action='store',
+            dest='tm',
+            default='local',
+            help="TM to use. TM must exist on settings. TM will be "
+                 "created on the server if it doesn't exist"
+        )
+        external.add_argument(
+            '--target-language',
+            action='store',
+            dest='target_language',
+            default='',
+            help="Target language to fallback to use in case it can't "
+                 "be guessed for any of the input files."
+        )
+        external.add_argument(
+            '--display-name',
+            action='store',
+            dest='project',
+            default='',
+            help='Name used when displaying TM matches for these '
+                 'translations.'
+        )
 
     def _parse_translations(self, *args, **options):
         units, total = self.parser.get_units(*args)
@@ -268,7 +290,7 @@ class Command(BaseCommand):
         )
 
         # If files to import have been provided.
-        if args:
+        if options['files']:
             if self.is_local_tm:
                 raise CommandError('You cannot add translations from files to '
                                    'a local TM.')
