@@ -885,7 +885,7 @@ later release.
 update_from_vcs
 ^^^^^^^^^^^^^^^
 
-.. deprecated:: 2.7.3
+.. deprecated:: 2.7
 
 Version Control support has been removed from Pootle and will reappear in a
 later release.
@@ -896,7 +896,7 @@ later release.
 run_cherrypy
 ^^^^^^^^^^^^
 
-.. deprecated:: 2.7
+.. deprecated:: 2.7.3
 
 Run the CherryPy server bundled with the Translate Toolkit.
 
