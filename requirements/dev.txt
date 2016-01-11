@@ -1,6 +1,6 @@
 -r build.txt
 
-django-debug-toolbar>=1.2
+django-debug-toolbar>=1.4
 django-extensions
 flake8
 glue>=0.2.8.1
