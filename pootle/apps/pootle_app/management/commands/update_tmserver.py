@@ -250,12 +250,12 @@ class Command(BaseCommand):
             raise CommandError('POOTLE_TM_SERVER setting is missing.')
 
         try:
-            self.tm_settings = settings.POOTLE_TM_SERVER[options.get('tm')]
+            self.tm_settings = settings.POOTLE_TM_SERVER[options['tm']]
         except KeyError:
             raise CommandError("Translation Memory '%s' is not defined in the "
                                "POOTLE_TM_SERVER setting. Please ensure it "
                                "exists and double-check you typed it "
-                               "correctly." % options.get('tm'))
+                               "correctly." % options['tm'])
 
         self.INDEX_NAME = self.tm_settings['INDEX_NAME']
         self.is_local_tm = options.get('tm') == 'local'
