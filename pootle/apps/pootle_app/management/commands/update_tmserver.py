@@ -242,8 +242,8 @@ class Command(BaseCommand):
                  'translations.'
         )
 
-    def _parse_translations(self, *args, **options):
-        units, total = self.parser.get_units(*args)
+    def _parse_translations(self, **options):
+        units, total = self.parser.get_units(options['files'])
 
         if total == 0:
             self.stdout.write("No translations to index")
@@ -267,7 +267,7 @@ class Command(BaseCommand):
         if i != total:
             self.stdout.write("Expected %d, loaded %d." % (total, i))
 
-    def _initialize(self, *args, **options):
+    def _initialize(self, **options):
         if not settings.POOTLE_TM_SERVER:
             raise CommandError('POOTLE_TM_SERVER setting is missing.')
 
@@ -338,8 +338,8 @@ class Command(BaseCommand):
         self.stdout.write("Last indexed revision = %s" %
                           self.last_indexed_revision)
 
-    def handle(self, *args, **options):
-        self._initialize(*args, **options)
+    def handle(self, **options):
+        self._initialize(**options)
 
         if (options['rebuild'] and
             not options['dry_run'] and
@@ -356,4 +356,4 @@ class Command(BaseCommand):
             self._set_latest_indexed_revision(**options)
 
         success, _ = helpers.bulk(self.es,
-                                  self._parse_translations(*args, **options))
+                                  self._parse_translations(**options))
