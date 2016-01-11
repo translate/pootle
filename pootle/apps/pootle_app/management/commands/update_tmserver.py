@@ -246,7 +246,7 @@ class Command(BaseCommand):
             self.stdout.write("Expected %d, loaded %d." % (total, i))
 
     def _initialize(self, *args, **options):
-        if not getattr(settings, 'POOTLE_TM_SERVER', False):
+        if not settings.POOTLE_TM_SERVER:
             raise CommandError('POOTLE_TM_SERVER setting is missing.')
 
         try:
