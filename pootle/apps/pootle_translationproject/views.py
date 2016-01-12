@@ -156,10 +156,19 @@ class TPDirectoryMixin(TPMixin):
     export_url_path = "pootle-tp-export"
     translate_url_path = "pootle-tp-translate"
 
+    @property
+    def object_related(self):
+        tp_prefix = (
+            "parent__" * self.kwargs.get("dir_path", "").count("/"))
+        return [
+            "%stranslationproject" % tp_prefix,
+            "%stranslationproject__language" % tp_prefix,
+            "%stranslationproject__project" % tp_prefix]
+
     @lru_cache()
     def get_object(self):
         return get_object_or_404(
-            Directory.objects.all(),
+            Directory.objects.select_related(*self.object_related),
             pootle_path=self.path)
 
     @property
