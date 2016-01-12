@@ -25,8 +25,7 @@ from pootle.core.decorators import (
 from pootle.core.helpers import (
     get_sidebar_announcements_context)
 from pootle.core.views import (
-    PootleBrowseView, PootleTranslateView, PootleExportView,
-    requires_permission, set_permissions)
+    PootleBrowseView, PootleTranslateView, PootleExportView)
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
@@ -117,10 +116,7 @@ class TPMixin(object):
     """
 
     @redirect_to_tp_on_404
-    @set_permissions
-    @requires_permission("view")
     def dispatch(self, request, *args, **kwargs):
-        # get funky with the request 8/
         return super(TPMixin, self).dispatch(request, *args, **kwargs)
 
     @property
