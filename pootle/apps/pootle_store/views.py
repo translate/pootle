@@ -590,7 +590,7 @@ def timeline(request, unit):
         field=SubmissionFields.COMMENT,
         creation_time=unit.commented_on
     ).order_by("id")
-    timeline = timeline.select_related("submitter__user",
+    timeline = timeline.select_related("submitter",
                                        "translation_project__language")
 
     User = get_user_model()
