@@ -9,7 +9,7 @@
 
 """
 Pootle App Config
-See https://docs.djangoproject.com/en/1.7/ref/applications/
+See https://docs.djangoproject.com/en/1.8/ref/applications/
 """
 
 from django.apps import AppConfig
