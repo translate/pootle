@@ -35,7 +35,7 @@ class DBParser(object):
         self.INDEX_NAME = kwargs.pop('index', None)
         self.exclude_disabled_projects = not kwargs.pop('disabled_projects')
 
-    def get_units(self, *filenames):
+    def get_units(self, filenames):
         """Gets the units to import and its total count."""
         units_qs = Unit.simple_objects \
             .exclude(target_f__isnull=True) \
@@ -111,7 +111,7 @@ class FileParser(object):
         self.target_language = kwargs.pop('language', None)
         self.project = kwargs.pop('project', None)
 
-    def get_units(self, *filenames):
+    def get_units(self, filenames):
         """Gets the units to import and its total count."""
         units = []
         all_filenames = set()
