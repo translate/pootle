@@ -57,7 +57,7 @@ class PageModelMixin(object):
         kwargs.update({'label_suffix': ''})
         return kwargs
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=None):
         form = super(PageModelMixin, self).get_form(form_class)
 
         if self.page_type == ANN_TYPE:
@@ -128,7 +128,7 @@ class PageCreateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin,
 
         return initial
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=None):
         form = super(PageCreateView, self).get_form(form_class)
 
         if self.page_type == ANN_TYPE:
