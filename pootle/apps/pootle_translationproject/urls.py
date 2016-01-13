@@ -25,30 +25,30 @@ urlpatterns = patterns(
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'translate/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?$',
+        r'translate/(?P<dir_path>(.*/)*)?$',
         TPTranslateView.as_view(),
         name='pootle-tp-translate'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'translate/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?(?P<filename>.*\.*)$',
+        r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)$',
         TPTranslateStoreView.as_view(),
         name='pootle-tp-store-translate'),
 
     # Export view
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'export-view/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?$',
+        r'export-view/(?P<dir_path>(.*/)*)?$',
         TPExportView.as_view(),
         name='pootle-tp-export'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'export-view/(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?(?P<filename>.*\.*)$',
+        r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)$',
         TPExportStoreView.as_view(),
         name='pootle-tp-store-export'),
 
     # Browser
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)?$',
+        r'(?P<dir_path>(.*/)*)?$',
         TPBrowseView.as_view(),
         name='pootle-tp-browse'),
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'(?P<dir_path>([a-zA-Z0-9\-\_]*/)*)(?P<filename>.*\.*)?$',
+        r'(?P<dir_path>(.*/)*)(?P<filename>.*\.*)?$',
         TPBrowseStoreView.as_view(),
         name='pootle-tp-store-browse'))
