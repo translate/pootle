@@ -23,12 +23,12 @@ __all__ = (
 )
 
 
-def permission_denied(request):
-    return django_403(request, template_name='errors/403.html')
+def permission_denied(request, exception):
+    return django_403(request, exception, template_name='errors/403.html')
 
 
-def page_not_found(request):
-    return django_404(request, template_name='errors/404.html')
+def page_not_found(request, exception):
+    return django_404(request, exception, template_name='errors/404.html')
 
 
 def server_error(request):
