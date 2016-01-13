@@ -7,32 +7,40 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from optparse import make_option
-
 from . import UserCommand
 from ... import utils
 
 
 class Command(UserCommand):
-    args = "user other_user"
     help = "Merge user to other_user"
-    shared_option_list = (
-        make_option(
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "user",
+            nargs=1,
+            help="Username of account to merge from",
+        )
+        parser.add_argument(
+            "other_user",
+            nargs=1,
+            help="Username of account to merge into",
+        )
+
+        parser.add_argument(
             "--no-delete",
             dest='delete',
             action="store_false",
             default=True,
             help="Don't delete user after merging.",
-        ),
-    )
-    option_list = UserCommand.option_list + shared_option_list
+        )
 
-    def handle(self, *args, **kwargs):
-        super(Command, self).handle(*args, **kwargs)
-        src_user = self.get_user(username=args[0])
-        utils.UserMerger(src_user, self.get_user(username=args[1])).merge()
+    def handle(self, **options):
+        super(Command, self).handle(**options)
+        src_user = self.get_user(username=options['user'][0])
+        utils.UserMerger(src_user,
+                         self.get_user(username=options['other_user'][0])).merge()
 
-        if kwargs.get("delete"):
+        if options["delete"]:
             self.stdout.write("Deleting user: %s...\n" % src_user.username)
             src_user.delete()
             self.stdout.write("User deleted: %s\n" % src_user.username)

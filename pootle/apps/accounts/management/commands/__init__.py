@@ -17,7 +17,12 @@ User = get_user_model()
 class UserCommand(BaseCommand):
     """Base class for handling user commands."""
 
-    args = "user"
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "user",
+            nargs='+',
+            help="Username of account",
+        )
 
     def handle(self, *args, **kwargs):
         self.check_args(*args)

@@ -20,13 +20,24 @@ User = get_user_model()
 
 
 class Command(UserCommand):
-    args = "user email"
     help = "Update user email address"
 
-    def handle(self, *args, **kwargs):
-        super(Command, self).handle(*args, **kwargs)
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "user",
+            help="Username of account",
+        )
+        parser.add_argument(
+            "email",
+            help="New email address",
+        )
+
+    def handle(self, **options):
+        super(Command, self).handle(**options)
         try:
-            accounts.utils.update_user_email(self.get_user(args[0]), args[1])
+            accounts.utils.update_user_email(self.get_user(options['user']),
+                                             options['email'])
         except ValidationError as e:
             raise CommandError(e)
-        self.stdout.write("Email updated: %s, %s\n" % args)
+        self.stdout.write("Email updated: %s, %s\n" % (options['user'],
+                                                       options['email']))

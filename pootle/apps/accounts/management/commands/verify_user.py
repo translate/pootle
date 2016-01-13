@@ -7,8 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from optparse import make_option
-
 from django.contrib.auth import get_user_model
 from django.core.management.base import CommandError
 from django.core.validators import ValidationError
@@ -18,31 +16,34 @@ from ... import utils
 
 
 class Command(UserCommand):
-    args = "[user]"
     help = "Verify a user of the system without requiring email verification"
-    shared_option_list = (
-        make_option(
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "user",
+            nargs='+',
+            help="Username of account",
+        )
+        parser.add_argument(
             '--all',
             dest='all',
             action="store_true",
+            default=False,
             help='Verify all users',
-        ),
-    )
-    option_list = UserCommand.option_list + shared_option_list
+        )
 
-    def handle(self, *args, **kwargs):
-        self.check_args(*args)
-        verify_all = kwargs.get("all")
+    def handle(self, **options):
+        self.check_args(options['user'])
 
         # Either [user] OR --all should be set
-        both_or_neither = ((args and verify_all)
-                           or (not args and not verify_all))
+        both_or_neither = ((options['user'] and options['all'])
+                           or (not options['user'] and not options['all']))
         if both_or_neither:
             raise CommandError("You must either provide a [user] to verify or "
                                "use '--all' to verify all users\n\n%s"
                                % self.usage_string())
 
-        if verify_all:
+        if options['all']:
             for user in get_user_model().objects.hide_meta():
                 try:
                     utils.verify_user(user)
@@ -50,8 +51,9 @@ class Command(UserCommand):
                 except (ValueError, ValidationError) as e:
                     print(e)
         else:
-            try:
-                utils.verify_user(self.get_user(args[0]))
-                print("User '%s' has been verified" % args[0])
-            except (ValueError, ValidationError) as e:
-                raise CommandError(e)
+            for user in options['user']:
+                try:
+                    utils.verify_user(self.get_user(user))
+                    print("User '%s' has been verified" % user)
+                except (ValueError, ValidationError) as e:
+                    raise CommandError(e)
