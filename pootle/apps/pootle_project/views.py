@@ -70,16 +70,23 @@ class ProjectMixin(object):
                self.kwargs['dir_path']))
 
         if not self.kwargs["filename"]:
-            dirs = Directory.objects.live().select_related("parent__pootle_path")
+            if self.is_admin:
+                dirs = Directory.objects.all()
+            else:
+                dirs = Directory.objects.live()
             resources = (
-                dirs.filter(pootle_path__regex="%s$" % regex)
+                dirs.select_related("parent")
+                    .filter(pootle_path__regex="%s$" % regex)
                     .exclude(pootle_path__startswith="/templates"))
         else:
+            if self.is_admin:
+                stores = Store.objects.all()
+            else:
+                stores = Store.objects.live()
             regex = "%s%s$" % (regex, self.kwargs["filename"])
             resources = (
-                Store.objects.live()
-                             .select_related("translation_project__language")
-                             .filter(pootle_path__regex=regex))
+                stores.select_related("translation_project__language").filter(
+                    pootle_path__regex=regex))
         if resources.exists():
             return ProjectResource(
                 resources,
