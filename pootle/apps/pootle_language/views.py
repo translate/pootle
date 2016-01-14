@@ -42,7 +42,7 @@ class LanguageMixin(object):
 
     def get_object(self):
         return get_object_or_404(
-            Language, code=self.kwargs["language_code"])
+            Language, code__iexact=self.kwargs["language_code"])
 
 
 class LanguageBrowseView(LanguageMixin, PootleBrowseView):

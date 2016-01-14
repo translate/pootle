@@ -72,7 +72,7 @@ def redirect_to_tp_on_404(f):
                 try:
                     TranslationProject.objects.get(
                         project__code=kwargs["project_code"],
-                        language__code=kwargs["language_code"])
+                        language__code__iexact=kwargs["language_code"])
                     # the TP exists so redirect to it
                     return redirect(
                         reverse(
