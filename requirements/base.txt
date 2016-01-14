@@ -6,7 +6,7 @@ django-assets>=0.11
 django-contact-form==1.0
 django-overextends>=0.4.1
 django-redis
-django-rq
+django-rq>=0.8.0
 django-transaction-hooks
 
 # Libraries
