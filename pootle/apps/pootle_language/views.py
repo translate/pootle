@@ -59,9 +59,8 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
     def items(self):
         return [
             make_project_item(tp)
-            for tp
-            in self.object.get_children_for_user(
-                self.request.user, select_related=["project"])]
+            for tp in self.object.get_children_for_user(self.request.user)
+        ]
 
     @property
     def language(self):
