@@ -49,6 +49,7 @@ class Directory(models.Model, CachedTreeItem):
 
     class Meta(object):
         ordering = ['name']
+        default_permissions = ()
         app_label = "pootle_app"
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
