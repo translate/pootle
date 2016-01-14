@@ -262,13 +262,13 @@ def test_view_user_choice(client):
     client.cookies["user-choice"] = "language"
     response = client.get("/foo/bar/baz")
     assert response.status_code == 302
-    assert response.get("location") == "http://testserver/foo/"
+    assert response.get("location") == "/foo/"
     assert "user-choice" not in response
 
     client.cookies["user-choice"] = "project"
     response = client.get("/foo/bar/baz")
     assert response.status_code == 302
-    assert response.get("location") == "http://testserver/projects/bar/"
+    assert response.get("location") == "/projects/bar/"
     assert "user-choice" not in response
 
     client.cookies["user-choice"] = "foo"

@@ -14,5 +14,4 @@ def test_views_bad(bad_views):
     path_, response, test = bad_views
     assert response.status_code == test["code"]
     if test.get("location"):
-        location = "http://testserver/%s" % test["location"].lstrip("/")
-        assert response.get("location") == location
+        assert response.get("location") == test["location"]
