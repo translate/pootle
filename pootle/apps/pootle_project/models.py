@@ -19,7 +19,7 @@ from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
-from django.db import connection, models
+from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_delete, post_save, pre_delete
 from django.dispatch import receiver
@@ -30,11 +30,12 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.cache import make_method_key
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
-from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
-                                     split_pootle_path, to_tp_relative_path)
+from pootle.core.url_helpers import (
+    get_editor_filter, get_path_sortkey, split_pootle_path)
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_store.filetypes import factory_classes
+from pootle_store.models import Store
 from pootle_store.util import absolute_real_path
 from staticpages.models import StaticPage
 
@@ -282,21 +283,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         """Returns ``True`` if this project is a terminology project."""
         return self.checkstyle == 'terminology'
 
-    @property
-    def vfolders(self):
-        """Return the public virtual folders for this project."""
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            # This import must be here to avoid circular import issues.
-            from virtualfolder.models import VirtualFolder
-
-            return [vf.tp_relative_path
-                    for vf in VirtualFolder.objects.filter(
-                        units__store__translation_project__project__code=self.code,
-                        is_public=True
-                    ).distinct()]
-
-        return []
-
     @cached_property
     def languages(self):
         """Returns a list of active :cls:`~pootle_languages.models.Language`
@@ -314,36 +300,33 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         :cls:`~pootle_store.models.Store` resource paths available for
         this :cls:`~pootle_project.models.Project` across all languages.
         """
-        cache_key = make_method_key(self, 'resources', self.code)
+        from virtualfolder.models import VirtualFolderTreeItem
 
+        cache_key = make_method_key(self, 'resources', self.code)
         resources = cache.get(cache_key, None)
         if resources is not None:
             return resources
 
-        logging.debug(u'Cache miss for %s', cache_key)
-
-        resources_path = ''.join(['/%/', self.code, '/%'])
-
-        sql_query = '''
-        SELECT pootle_path
-        FROM pootle_store_store
-        WHERE pootle_path LIKE %s
-          UNION
-        SELECT pootle_path
-        FROM pootle_app_directory
-        WHERE pootle_path LIKE %s;
-        '''
-        cursor = connection.cursor()
-        cursor.execute(sql_query, [resources_path, resources_path])
-        results = cursor.fetchall()
-
-        # Calculate TP-relative paths and sort them
-        resources_set = {to_tp_relative_path(result[0]) for result in results}
-        resources = sorted(resources_set | set(self.vfolders),
-                           key=get_path_sortkey)
-
+        stores = Store.objects.live().order_by().filter(
+            translation_project__project__pk=self.pk)
+        dirs = Directory.objects.live().order_by().filter(
+            pootle_path__regex=r"^/[^/]*/%s/" % self.code)
+        vftis = (
+            VirtualFolderTreeItem.objects.filter(
+                vfolder__is_public=True,
+                pootle_path__regex=r"^/[^/]*/%s/" % self.code)
+            if 'virtualfolder' in settings.INSTALLED_APPS
+            else [])
+        resources = sorted(
+            {"/".join(x.split("/")[3:])
+             for x
+             in (set(stores.values_list("pootle_path", flat=True))
+                 | set(dirs.values_list("pootle_path", flat=True))
+                 | set(vftis.values_list("pootle_path", flat=True)
+                       if vftis
+                       else []))},
+            key=get_path_sortkey)
         cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
-
         return resources
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
