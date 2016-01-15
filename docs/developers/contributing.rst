@@ -8,8 +8,8 @@ know programming! Want to know how? Please keep reading.
 
 - You can give us feedback about things that annoy you or about areas you see
   for improvement. You can reach us in `our mailing list
-  <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ or on IRC in
-  the `#pootle channel in FreeNode <irc://irc.freenode.net/#pootle>`_.
+  <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ or in the
+  `Pootle channel <https://gitter.im/translate/pootle>`_.
 
 - Found a bug? Report it in our `Bugzilla tracker
   <https://github.com/translate/pootle/issues/>`_. You can also always contact
@@ -69,7 +69,7 @@ you when reporting or requesting the feature.
     * Isn't it a bit unfair that you expect a volunteer coder to create the
       mockup for your feature?
 
-3.  Did you have some discussion on the mailing list or on #pootle?
+3.  Did you have some discussion on the mailing list or on the Pootle channel?
 
     * Drive-by feature requests usually don't get attention.  But if you have
       built a case and some links to developers, i.e. they know you, then they
@@ -151,7 +151,7 @@ you information quicker.
 Be available
 ^^^^^^^^^^^^
 
-If you can be on `IRC on #pootle <irc://irc.freenode.net/#pootle>`_ or the
+If you can be on `Pootle channel <https://gitter.im/translate/pootle>`_ or the
 `mailing list <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_
 to answer questions and test possible fixes then this will help to get your
 problem fixed quickly.
@@ -173,8 +173,8 @@ language administrators.
 
 If you can't find your language and want to have that added or have concerns of
 any other means, contact us on our `mailing list
-<https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ or `on IRC
-<irc://irc.freenode.net/#pootle>`_.
+<https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ or on the
+`Pootle channel <https://gitter.im/translate/pootle>`_.
 
 Although desirable, it's not mandatory to use the official Pootle server to
 translate Pootle itself. In case you feel more comfortable working with files

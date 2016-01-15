@@ -524,13 +524,9 @@ Let people know that there is a new version:
    - translate-pootle@lists.sourceforge.net
    - translate-devel@lists.sourceforge.net
 
-#. Adjust the #pootle channel notice. Use ``/topic [new topic]`` to change the
-   topic. It is easier if you copy the previous topic and adjust it.
-
-   .. note:: You might need to identify yourself by using
-      ``/msg nickserv identify [password]`` so the IRC server knows you in
-      order to check if you have enough permissions.
-
+#. Adjust the `Pootle channel <https://gitter.im/translate/pootle>`_ notice.
+   Use ``/topic [new topic]`` to change the topic. It is easier if you copy the
+   previous topic and adjust it.
 #. Email important users
 #. Tweet about it
 #. Update `Pootle's Wikipedia page <https://en.wikipedia.org/wiki/Pootle>`_

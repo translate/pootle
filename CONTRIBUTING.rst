@@ -64,5 +64,5 @@ Please `translate online <http://pootle.locamotion.org/projects/pootle/>`_.
 Not sure how to contribute?
 ---------------------------
 
-You can always seek for help in the `#pootle <irc://irc.freenode.net/#pootle>`_
-IRC channel.
+You can always get help in the `Pootle channel
+<https://gitter.im/translate/pootle>`_.

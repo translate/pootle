@@ -27,9 +27,9 @@ The "rules" of deprecation
 So some rough "rules".  These apply to features, management commands and
 settings.
 
-1. If it's **not released**.  Drop it and tell others on `#pootle-dev
-   <irc://irc.freenode.net/#pootle-dev>`_.  If it has settings add them to the
-   settings deprecation infrastructure to force removal if required.
+1. If it's **not released**.  Drop it and tell others on `Pootle development
+   channel <https://gitter.im/translate/dev>`_.  If it has settings add them to
+   the settings deprecation infrastructure to force removal if required.
 2. If it is **obsolete or replaced** with an equivalent then drop with no
    fanfare and add settings to the deprecation infrastructure so that an admin
    will remove settings from their settings files.  Add to release notes if
