@@ -89,15 +89,15 @@ class PootleCommand(BaseCommand):
 
     def handle(self, **options):
         # adjust debug level to the verbosity option
-        verbosity = int(options.get('verbosity', 1))
         debug_levels = {
             0: logging.ERROR,
             1: logging.WARNING,
             2: logging.INFO,
             3: logging.DEBUG
         }
-        debug_level = debug_levels.get(verbosity, logging.DEBUG)
-        logging.getLogger().setLevel(debug_level)
+        logging.getLogger().setLevel(
+            debug_levels.get(options['verbosity'], logging.DEBUG)
+        )
 
         # reduce size of parse pool early on
         self.name = self.__class__.__module__.split('.')[-1]
@@ -121,8 +121,8 @@ class PootleCommand(BaseCommand):
         logging.info('All done for %s in %s', self.name, end - start)
 
     def handle_all(self, **options):
-        if options.get("no_rq", False):
-            set_sync_mode(options.get('noinput', False))
+        if options["no_rq"]:
+            set_sync_mode(options['noinput'])
 
         if self.process_disabled_projects:
             project_query = Project.objects.all()
