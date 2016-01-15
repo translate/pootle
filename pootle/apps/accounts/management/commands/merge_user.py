@@ -35,7 +35,6 @@ class Command(UserCommand):
         )
 
     def handle(self, **options):
-        super(Command, self).handle(**options)
         src_user = self.get_user(username=options['user'][0])
         utils.UserMerger(src_user,
                          self.get_user(username=options['other_user'][0])).merge()

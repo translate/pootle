@@ -33,7 +33,6 @@ class Command(UserCommand):
         )
 
     def handle(self, **options):
-        super(Command, self).handle(**options)
         try:
             accounts.utils.update_user_email(self.get_user(options['user']),
                                              options['email'])

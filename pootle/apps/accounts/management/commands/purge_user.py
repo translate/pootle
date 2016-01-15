@@ -14,6 +14,5 @@ class Command(UserCommand):
     help = "Delete user and all related objects"
 
     def handle(self, **options):
-        super(Command, self).handle(**options)
         for user in options['user']:
             self.get_user(user).delete(purge=True)

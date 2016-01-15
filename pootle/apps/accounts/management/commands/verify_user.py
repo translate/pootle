@@ -33,8 +33,6 @@ class Command(UserCommand):
         )
 
     def handle(self, **options):
-        self.check_args(options['user'])
-
         # Either [user] OR --all should be set
         both_or_neither = ((options['user'] and options['all'])
                            or (not options['user'] and not options['all']))
