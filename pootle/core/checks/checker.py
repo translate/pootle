@@ -203,7 +203,7 @@ class QualityCheckUpdater(object):
     def units(self):
         """Result set of Units, restricted to TP if set
         """
-        units = Unit.simple_objects.all()
+        units = Unit.objects.all()
         if self.translation_project is not None:
             units = units.filter(
                 store__translation_project=self.translation_project)

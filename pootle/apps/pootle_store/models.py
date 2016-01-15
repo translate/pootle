@@ -353,7 +353,6 @@ class Unit(models.Model, base.TranslationUnit):
         validators=[MinValueValidator(0)])
 
     objects = UnitManager()
-    simple_objects = models.Manager()
 
     class Meta(object):
         unique_together = ('store', 'unitid_hash')
@@ -1394,7 +1393,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     obsolete = models.BooleanField(default=False)
 
     objects = StoreManager()
-    simple_objects = models.Manager()
 
     class Meta(object):
         ordering = ['pootle_path']
@@ -1830,7 +1828,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             'state__gt': OBSOLETE,
         }
         count = 0
-        for unit in Unit.simple_objects.filter(**filter_by):
+        for unit in Unit.objects.filter(**filter_by):
             unit.save(revision=Revision.incr())
             count += 1
 
