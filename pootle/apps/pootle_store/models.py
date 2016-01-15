@@ -2182,9 +2182,18 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def _get_last_action(self, submission=None):
         if submission is None:
             try:
-                sub = Submission.simple_objects.filter(store=self) \
-                                .exclude(type=SubmissionTypes.UNIT_CREATE) \
-                                .latest()
+                sub = self.submission_set.select_related(
+                    'unit',
+                    'submitter',
+                    'suggestion',
+                    'suggestion__reviewer',
+                    'quality_check'
+                ).exclude(type=SubmissionTypes.UNIT_CREATE).latest()
+
+                # Use self as store to avoid extra queries
+                sub.store = self
+                sub.unit.store = self
+
             except Submission.DoesNotExist:
                 return CachedTreeItem._get_last_action()
         else:
