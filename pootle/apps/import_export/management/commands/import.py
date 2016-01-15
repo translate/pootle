@@ -24,8 +24,8 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             "file",
-            dest='files',
             nargs="+",
+            help="file to import"
         )
         parser.add_argument(
             "--user",
@@ -43,7 +43,7 @@ class Command(BaseCommand):
             except User.DoesNotExist:
                 raise CommandError("Unrecognised user: %s" % options["user"])
 
-        for filename in options['files']:
+        for filename in options['file']:
             if is_zipfile(filename):
                 with ZipFile(filename, "r") as zf:
                     for path in zf.namelist():
