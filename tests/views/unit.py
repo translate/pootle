@@ -11,6 +11,7 @@ import pytest
 
 from django.http import Http404
 
+from pootle.core.exceptions import Http400
 from pootle_store.views import get_units
 
 from pootle_pytest.utils import create_api_request
@@ -23,7 +24,7 @@ def test_get_units(rf, default):
 
     # `path` query parameter missing
     request = create_api_request(rf, user=default)
-    with pytest.raises(Http404):
+    with pytest.raises(Http400):
         view(request)
 
     # `path` query parameter present

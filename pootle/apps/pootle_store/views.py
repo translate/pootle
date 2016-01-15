@@ -29,6 +29,7 @@ from django.views.decorators.http import require_http_methods
 from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
+from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
@@ -460,9 +461,9 @@ def get_units(request):
     """
     pootle_path = request.GET.get('path', None)
     if pootle_path is None:
-        raise Http404(_('Arguments missing.'))
+        raise Http400(_('Arguments missing.'))
     elif len(pootle_path) > 2048:
-        raise Http404(_('Path too long.'))
+        raise Http400(_('Path too long.'))
 
     User = get_user_model()
     request.profile = User.get(request.user)
