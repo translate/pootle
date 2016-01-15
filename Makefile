@@ -23,7 +23,7 @@ assets:
 	cd ${CWD}
 	python manage.py webpack
 	mkdir -p ${ASSETS_DIR}
-	python manage.py collectstatic --noinput --clear -i node_modules -i *.jsx ${TAIL}
+	python manage.py collectstatic --noinput --clear -i node_modules ${TAIL}
 	python manage.py assets build ${TAIL}
 	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 

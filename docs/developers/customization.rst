@@ -149,5 +149,5 @@ commands.
 .. code-block:: bash
 
    (env) $ pootle webpack
-   (env) $ pootle collectstatic --noinput --clear -i node_modules -i *.jsx
+   (env) $ pootle collectstatic --noinput --clear -i node_modules
    (env) $ pootle assets build
