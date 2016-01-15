@@ -318,8 +318,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             if 'virtualfolder' in settings.INSTALLED_APPS
             else [])
         resources = sorted(
-            {"/".join(x.split("/")[3:])
-             for x
+            {"/".join(pootle_path.split("/")[3:])
+             for pootle_path
              in (set(stores.values_list("pootle_path", flat=True))
                  | set(dirs.values_list("pootle_path", flat=True))
                  | set(vftis.values_list("pootle_path", flat=True)
