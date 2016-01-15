@@ -27,7 +27,7 @@ class Command(BaseCommand):
             action='store_false',
             dest='create_projects',
             default=True,
-            help="Do not create the default 'terminology' and 'tutorial'"
+            help="Do not create the default 'terminology' and 'tutorial' "
                  "projects.",
         ), )
 
