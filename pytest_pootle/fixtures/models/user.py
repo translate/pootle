@@ -98,6 +98,15 @@ def member2(db):
 
 
 @pytest.fixture
+def member2_with_email(transactional_db):
+    """Require a member2 user."""
+    user = _require_user('member2_with_email', 'Member2 with email')
+    user.email = "member2_with_email@this.test"
+    user.save()
+    return user
+
+
+@pytest.fixture
 def evil_member(transactional_db):
     """Require a evil_member user."""
     return _require_user('evil_member', 'Evil member')

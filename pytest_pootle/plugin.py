@@ -30,7 +30,8 @@ from fixtures.models.translation_project import (
     afrikaans_vfolder_test, templates_tutorial)
 from fixtures.models.user import (
     default, system, nobody, trans_nobody, admin, member, trans_member,
-    trans_system, member_with_email, member2, evil_member, no_perms_user)
+    trans_system, member_with_email, member2, member2_with_email, evil_member,
+    no_perms_user)
 
 from fixtures.cache import delete_pattern
 from fixtures.import_export_fixtures import (
@@ -51,26 +52,27 @@ from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
 
 __all__ = (
     'admin', 'default', 'evil_member', 'member', 'member2', 'no_perms_user',
-    'member_with_email', 'nobody', 'system', 'trans_member', 'trans_nobody',
-    'trans_system', 'projects', 'root', 'afrikaans', 'arabic', 'english',
-    'fish', 'french', 'italian', 'klingon', 'klingon_vpw', 'russian',
-    'spanish', 'templates', 'administrate', 'hide', 'pootle_content_type',
-    'review', 'suggest', 'translate', 'view', 'default_ps', 'nobody_ps',
-    'project_bar', 'project_foo', 'tutorial', 'tutorial_disabled',
-    'vfolder_test', 'af_tutorial_po', 'af_tutorial_subdir_po',
-    'af_vfolder_test_browser_defines_po', 'en_tutorial_po',
-    'en_tutorial_po_member_updated', 'en_tutorial_po_no_file',
-    'es_tutorial_subdir_remove_po', 'fr_tutorial_remove_sync_po',
-    'fr_tutorial_subdir_to_remove_po', 'issue_2401_po', 'it_tutorial_po',
-    'param_update_store_test', 'po_directory', 'ru_tutorial_po',
-    'ru_update_save_changed_units_po', 'ru_update_set_last_sync_revision_po',
-    'store_diff_tests', 'templates_tutorial_pot', 'test_get_units_po',
-    'afrikaans_tutorial', 'afrikaans_vfolder_test', 'arabic_tutorial_obsolete',
-    'english_tutorial', 'french_tutorial', 'italian_tutorial',
-    'russian_tutorial', 'spanish_tutorial', 'templates_tutorial',
-    'delete_pattern', 'en_tutorial_ts', 'file_import_failure', 'ts_directory',
-    'revision', 'admin_client', 'site_matrix', 'site_matrix_with_subdirs',
-    'site_root', 'site_matrix_with_vfolders', 'site_matrix_with_announcements',
+    'member_with_email', 'member2_with_email', 'nobody', 'system',
+    'trans_member', 'trans_nobody', 'trans_system', 'projects', 'root',
+    'afrikaans', 'arabic', 'english', 'fish', 'french', 'italian', 'klingon',
+    'klingon_vpw', 'russian', 'spanish', 'templates', 'administrate', 'hide',
+    'pootle_content_type', 'review', 'suggest', 'translate', 'view',
+    'default_ps', 'nobody_ps', 'project_bar', 'project_foo', 'tutorial',
+    'tutorial_disabled', 'vfolder_test', 'af_tutorial_po',
+    'af_tutorial_subdir_po', 'af_vfolder_test_browser_defines_po',
+    'en_tutorial_po', 'en_tutorial_po_member_updated',
+    'en_tutorial_po_no_file', 'es_tutorial_subdir_remove_po',
+    'fr_tutorial_remove_sync_po', 'fr_tutorial_subdir_to_remove_po',
+    'issue_2401_po', 'it_tutorial_po', 'param_update_store_test',
+    'po_directory', 'ru_tutorial_po', 'ru_update_save_changed_units_po',
+    'ru_update_set_last_sync_revision_po', 'store_diff_tests',
+    'templates_tutorial_pot', 'test_get_units_po', 'afrikaans_tutorial',
+    'afrikaans_vfolder_test', 'arabic_tutorial_obsolete', 'english_tutorial',
+    'french_tutorial', 'italian_tutorial', 'russian_tutorial',
+    'spanish_tutorial', 'templates_tutorial', 'delete_pattern',
+    'en_tutorial_ts', 'file_import_failure', 'ts_directory', 'revision',
+    'admin_client', 'site_matrix', 'site_matrix_with_subdirs', 'site_root',
+    'site_matrix_with_vfolders', 'site_matrix_with_announcements',
     'site_permissions', 'project_views', 'tp_views', 'language_views',
     'bad_views')
 
