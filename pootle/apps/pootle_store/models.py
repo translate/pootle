@@ -239,14 +239,15 @@ class UnitManager(models.Manager):
 
     def get_translatable(self, user, project_code=None, language_code=None,
                          dir_path=None, filename=None):
-        """Returns units that fall below the `pootle_path` umbrella.
+        """Returns translatable units for a `user`, optionally filtered by their
+        location within Pootle.
 
+        :param user: The user who is accessing the units.
         :param project_code: A string for matching the code of a Project.
         :param language_code: A string for matching the code of a Language.
         :param dir_path: A string for matching the dir_path and descendants
            from the TP.
         :param filename: A string for matching the filename of Stores.
-        :param user: The user who is accessing the units.
         """
         from pootle_project.models import Project
 
