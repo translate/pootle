@@ -1983,8 +1983,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if self.last_sync_revision is not None:
             filter_by.update({'revision__gt': self.last_sync_revision})
 
-        modified_units = set(Unit.objects.filter(**filter_by)
-                                 .values_list('id', flat=True).distinct())
+        if last_revision > self.last_sync_revision:
+            modified_units = set(
+                Unit.objects.filter(**filter_by).values_list(
+                    'id', flat=True).distinct())
+        else:
+            modified_units = set()
 
         common_dbids = set(self.dbid_index.get(uid)
                            for uid in old_ids & new_ids)
