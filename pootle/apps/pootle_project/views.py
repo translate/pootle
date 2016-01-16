@@ -70,12 +70,18 @@ class ProjectMixin(object):
                self.kwargs['dir_path']))
 
         if not self.kwargs["filename"]:
-            dirs = Directory.objects.live().select_related("parent__pootle_path")
+            dirs = Directory.objects.live()
+            if self.kwargs['dir_path'].count("/"):
+                tp_prefix = "parent__" * self.kwargs['dir_path'].count("/")
+                dirs = dirs.select_related(
+                    "%stranslationproject" % tp_prefix,
+                    "%stranslationproject__language" % tp_prefix)
             resources = (
                 dirs.filter(pootle_path__regex="%s$" % regex)
                     .exclude(pootle_path__startswith="/templates"))
         else:
             regex = "%s%s$" % (regex, self.kwargs["filename"])
+
             resources = (
                 Store.objects.live()
                              .select_related("translation_project__language")
@@ -128,25 +134,16 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
             if (self.kwargs['dir_path']
                 or self.kwargs['filename'])
             else make_language_item)
-        dir_path, filename = split_pootle_path(self.pootle_path)[2:]
-        if dir_path.count("/"):
-            tp_prefix = "parent__" * dir_path.count("/")
-            selects = [
-                "%stranslationproject" % tp_prefix,
-                "%stranslationproject" % tp_prefix,
-                "%stranslationproject__language" % tp_prefix]
-        elif not filename:
-            selects = ["language", "directory"]
-        else:
-            selects = None
+
         items = [
             item_func(item)
             for item
             in self.object.get_children_for_user(
-                self.request.profile,
-                select_related=selects)]
+                self.request.profile)]
+
         items.sort(
             lambda x, y: locale.strcoll(x['title'], y['title']))
+
         return items
 
 
