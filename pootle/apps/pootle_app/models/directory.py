@@ -159,15 +159,17 @@ class Directory(models.Model, CachedTreeItem):
     def get_children(self):
         result = []
         if not self.is_projects_root():
-            # FIXME: can we replace this with a quicker path query?
-            result.extend([item for item in
-                           self.child_stores.live().iterator()])
-            result.extend([item for item in self.child_dirs.live().iterator()])
+            result.extend(
+                self.child_stores.live().select_related(
+                    "parent", "translation_project"))
+            result.extend(self.child_dirs.live())
         else:
-            project_list = [item.project for item in self.child_dirs.iterator()
-                            if not item.project.disabled]
-            result.extend(project_list)
-
+            result.extend(
+                [item.project
+                 for item
+                 in (self.child_dirs.select_related("parent")
+                                    .iterator())
+                 if not item.project.disabled])
         return result
 
     def get_parents(self):
