@@ -39,6 +39,7 @@ from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required, get_date_interval, to_int
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from virtualfolder.models import VirtualFolderTreeItem
 
 from .decorators import get_unit_context
 from .fields import to_python
@@ -452,7 +453,10 @@ def get_units(request):
     if 'virtualfolder' in settings.INSTALLED_APPS:
         from virtualfolder.helpers import extract_vfolder_from_path
 
-        vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
+        vfolder, pootle_path = extract_vfolder_from_path(
+            pootle_path,
+            vfti=VirtualFolderTreeItem.objects.select_related(
+                "directory", "vfolder"))
 
     path_keys = [
         "project_code", "language_code", "dir_path", "filename"]

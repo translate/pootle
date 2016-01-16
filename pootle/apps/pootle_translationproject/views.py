@@ -353,7 +353,10 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
 
     @cached_property
     def extracted_path(self):
-        return extract_vfolder_from_path(self.request_path)
+        return extract_vfolder_from_path(
+            self.request_path,
+            vfti=VirtualFolderTreeItem.objects.select_related(
+                "directory", "vfolder"))
 
     @property
     def display_vfolder_priority(self):

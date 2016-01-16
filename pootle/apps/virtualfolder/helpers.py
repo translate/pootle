@@ -29,21 +29,27 @@ def make_vfolder_treeitem_dict(vfolder_treeitem):
         'icon': 'vfolder'}
 
 
-def extract_vfolder_from_path(request_path):
+def extract_vfolder_from_path(request_path, vfti=None):
     """
     Matches request_path to a VirtualFolderTreeItem pootle_path
 
     If a match is found, the associated VirtualFolder and Directory.pootle_path
     are returned. Otherwise the original request_path is returned.
 
+    A `VirtualFolderTreeItem` queryset can be passed in for checking for
+    Vfolder pootle_paths. This is useful to `select_related` related fields.
+
     :param request_path: a path that may contain a virtual folder
+    :param vfti: optional `VirtualFolderTreeItem` queryset
     :return: (`VirtualFolder`, path)
     """
     if not (request_path.count('/') > 3 and request_path.endswith('/')):
         return None, request_path
 
+    if vfti is None:
+        vfti = VirtualFolderTreeItem.objects.all()
     try:
-        vfti = VirtualFolderTreeItem.objects.get(pootle_path=request_path)
+        vfti = vfti.get(pootle_path=request_path)
     except VirtualFolderTreeItem.DoesNotExist:
         return None, request_path
     else:
