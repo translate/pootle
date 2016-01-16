@@ -50,7 +50,8 @@ class ProjectMixin(object):
     @cached_property
     def project(self):
         return get_object_or_404(
-            Project, code=self.kwargs["project_code"])
+            Project.objects.select_related("directory"),
+            code=self.kwargs["project_code"])
 
     @property
     def url_kwargs(self):
