@@ -17,7 +17,7 @@ from django.core.management.base import CommandError
 def test_verify_user_nouser(capfd):
     with pytest.raises(CommandError) as e:
         call_command('verify_user')
-    assert "You must either provide a [user] to verify or use '--all'" in str(e)
+    assert "Either provide a 'user' to verify or use '--all'" in str(e)
 
 
 @pytest.mark.cmd
