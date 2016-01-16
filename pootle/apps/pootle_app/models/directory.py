@@ -31,7 +31,10 @@ class DirectoryManager(models.Manager):
 
     @cached_property
     def projects(self):
-        return self.get(pootle_path='/projects/')
+        return self.select_related(
+            "parent",
+            "parent__translationproject",
+            "project").get(pootle_path='/projects/')
 
 
 class Directory(models.Model, CachedTreeItem):
