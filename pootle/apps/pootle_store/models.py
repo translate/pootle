@@ -2276,21 +2276,36 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             mtime = self.get_cached_value(CachedMethods.MTIME)
             if mtime is None or mtime == datetime_min:
                 mtime = timezone.now()
+            user_displayname = None
+            user_email = None
             if user is None:
+                submissions = self.translation_project.submission_set.exclude(
+                    submitter__username="nobody")
                 try:
-                    submit = self.translation_project.submission_set \
-                                 .filter(creation_time=mtime).latest()
-                    if submit.submitter.username != 'nobody':
-                        user = submit.submitter
-                except ObjectDoesNotExist:
+                    username, fullname, user_email = (
+                        submissions.filter(creation_time=mtime).values_list(
+                            "submitter__username",
+                            "submitter__full_name",
+                            "submitter__email").latest())
+                except Submission.DoesNotExist:
                     try:
-                        lastsubmit = self.translation_project.submission_set \
-                                                             .latest()
-                        if lastsubmit.submitter.username != 'nobody':
-                            user = lastsubmit.submitter
-                        mtime = min(lastsubmit.creation_time, mtime)
+                        _mtime, username, fullname, user_email = (
+                            submissions.values_list(
+                                "creation_time",
+                                "submitter__username",
+                                "submitter__full_name",
+                                "submitter__email").latest())
+                        mtime = min(_mtime, mtime)
                     except ObjectDoesNotExist:
                         pass
+                if user_email:
+                    user_displayname = (
+                        fullname.strip()
+                        if fullname.strip()
+                        else username)
+            elif user.is_authenticated:
+                user_displayname = user.display_name
+                user_email = user.email
 
             po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + \
                 poheader.tzstring()
@@ -2303,9 +2318,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                    (int(dateformat.format(mtime, 'U')),
                                     mtime.microsecond)),
             }
-            if user and user.is_authenticated():
-                headerupdates['Last_Translator'] = '%s <%s>' % \
-                    (user.display_name, user.email)
+
+            if user_displayname and user_email:
+                headerupdates['Last_Translator'] = (
+                    '%s <%s>' % (user_displayname, user_email))
             else:
                 # FIXME: maybe insert settings.POOTLE_TITLE or domain here?
                 headerupdates['Last_Translator'] = 'Anonymous Pootle User'
