@@ -203,7 +203,7 @@ def units_search_tests(site_matrix, rf,
     params["cleaned_data"]['pootle_path'] = params["cleaned_data"]['path']
 
     limit = params.get("limit", None)
-
+ 
     qs = Unit.objects.get_for_path(
         params["cleaned_data"]["pootle_path"],
         user)
@@ -239,9 +239,10 @@ def units_filter_tests(site_matrix, rf,
     if "get" in params:
         if "uids" in params["get"]:
             params["cleaned_data"]["uids"] = [params["get"]["uids"]()]
-
-    qs = Unit.objects.get_for_path(
-        params["cleaned_data"]["pootle_path"],
-        user)
+ 
+    qs = Unit.objects.get_translatable(
+        user,
+        project_code=params["cleaned_data"]["project"],
+        language_code=params["cleaned_data"]["language"])
     unit_filter = SearchFilter(qs=qs)
     return (unit_filter, params, user, qs)
