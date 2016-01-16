@@ -13,7 +13,7 @@ import pytest
 
 
 def _add_stores(tp, n=(3, 2), parent=None):
-    from pootle_pytest.factories import StoreFactory, UnitFactory
+    from pytest_pootle.factories import StoreFactory, UnitFactory
 
     from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
 
@@ -32,7 +32,7 @@ def _add_stores(tp, n=(3, 2), parent=None):
 
 @pytest.fixture
 def site_matrix_with_subdirs(site_matrix):
-    from pootle_pytest.factories import DirectoryFactory
+    from pytest_pootle.factories import DirectoryFactory
 
     from pootle_translationproject.models import TranslationProject
 
@@ -45,7 +45,7 @@ def site_matrix_with_subdirs(site_matrix):
 
 @pytest.fixture
 def site_matrix_with_vfolders(site_matrix):
-    from pootle_pytest.factories import VirtualFolderFactory
+    from pytest_pootle.factories import VirtualFolderFactory
 
     VirtualFolderFactory(filter_rules="store0.po")
     VirtualFolderFactory(filter_rules="store1.po")
@@ -65,7 +65,7 @@ def site_matrix_with_vfolders(site_matrix):
 @pytest.fixture
 def site_root(request, system, settings):
 
-    from pootle_pytest.factories import (
+    from pytest_pootle.factories import (
         ProjectFactory, DirectoryFactory, LanguageFactory
     )
 
@@ -106,7 +106,7 @@ def site_root(request, system, settings):
 def site_matrix(site_root):
     from pootle_project.models import Project
     from pootle_language.models import Language
-    from pootle_pytest.factories import TranslationProjectFactory
+    from pytest_pootle.factories import TranslationProjectFactory
 
     for project in Project.objects.all():
         for language in Language.objects.all():
@@ -140,11 +140,11 @@ def site_permissions(pootle_content_type, view, hide, suggest,
 
 @pytest.fixture
 def site_matrix_with_announcements(site_matrix):
+    from pytest_pootle.factories import AnnouncementFactory
+
     from pootle_project.models import Project
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
-
-    from pootle_pytest.factories import AnnouncementFactory
 
     for language in Language.objects.all():
         AnnouncementFactory(

@@ -15,6 +15,8 @@ import pytest
 
 from django.core.urlresolvers import reverse
 
+from pytest_pootle.suite import view_context_test
+
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
@@ -32,8 +34,6 @@ from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store, Unit
 from pootle_store.views import get_step_query
 from virtualfolder.models import VirtualFolderTreeItem
-
-from pootle_pytest.suite import view_context_test
 
 
 def _test_translate_view(project, request, response, kwargs, settings):

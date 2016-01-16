@@ -14,11 +14,11 @@ import pytest
 from django import forms
 from django.http import Http404
 
+from pytest_pootle.factories import UserFactory
+from pytest_pootle.utils import create_api_request
+
 from pootle.core.views import APIView
 from accounts.models import User
-
-from pootle_pytest.factories import UserFactory
-from pootle_pytest.utils import create_api_request
 
 
 class UserAPIView(APIView):

@@ -11,10 +11,10 @@ import pytest
 
 from datetime import datetime
 
+from pytest_pootle.factories import ScoreLogFactory, SubmissionFactory
+
 from pootle_statistics.models import (ScoreLog, SubmissionTypes, SubmissionFields,
                                       SIMILARITY_THRESHOLD)
-
-from pootle_pytest.factories import ScoreLogFactory, SubmissionFactory
 
 
 TEST_EDIT_TYPES = (SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM,

@@ -9,13 +9,11 @@
 
 import pytest
 
+from pytest_pootle.factories import UserFactory
+from pytest_pootle.fixtures.models.permission_set import _require_permission_set
+from pytest_pootle.utils import items_equal
+
 from pootle_project.models import Project
-
-from pootle_pytest.factories import UserFactory
-from pootle_pytest.fixtures.models.permission_set import (
-    _require_permission_set)
-
-from pootle_pytest.utils import items_equal
 
 
 @pytest.mark.django_db

@@ -12,6 +12,8 @@ from urllib import unquote
 
 import pytest
 
+from pytest_pootle.suite import view_context_test
+
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
@@ -29,8 +31,6 @@ from pootle_store.views import get_step_query
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
 from virtualfolder.models import VirtualFolderTreeItem
-
-from pootle_pytest.suite import view_context_test
 
 
 def _test_browse_view(tp, request, response, kwargs):

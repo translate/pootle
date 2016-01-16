@@ -16,7 +16,7 @@ import pytest
 
 from django.utils import timezone
 
-from pootle_pytest.utils import create_store, update_store
+from pytest_pootle.utils import create_store, update_store
 
 
 DEFAULT_STORE_UNITS_1 = [("Unit 1", "Unit 1"),

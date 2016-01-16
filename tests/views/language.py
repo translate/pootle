@@ -12,6 +12,8 @@ from urllib import unquote
 
 import pytest
 
+from pytest_pootle.suite import view_context_test
+
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import make_project_item, get_table_headings
 from pootle.core.helpers import (
@@ -24,8 +26,6 @@ from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
 from pootle_store.models import Unit
 from pootle_store.views import get_step_query
-
-from pootle_pytest.suite import view_context_test
 
 
 def _test_browse_view(language, request, response, kwargs):

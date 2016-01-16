@@ -11,7 +11,7 @@ from __future__ import absolute_import
 
 import pytest
 
-from pootle_pytest.factories import VirtualFolderFactory
+from pytest_pootle.factories import VirtualFolderFactory
 
 from pootle_store.models import Unit
 from pootle_store.util import OBSOLETE, TRANSLATED

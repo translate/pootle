@@ -11,11 +11,11 @@ import pytest
 
 from django.utils import timezone
 
+from pytest_pootle.factories import SubmissionFactory
+
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from pootle_store.util import TRANSLATED, UNTRANSLATED
-
-from pootle_pytest.factories import SubmissionFactory
 
 
 def _create_comment_submission(unit, user, creation_time, comment):

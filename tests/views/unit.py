@@ -11,10 +11,10 @@ import pytest
 
 from django.http import Http404
 
+from pytest_pootle.utils import create_api_request
+
 from pootle.core.exceptions import Http400
 from pootle_store.views import get_units
-
-from pootle_pytest.utils import create_api_request
 
 
 @pytest.mark.django_db

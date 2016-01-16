@@ -9,8 +9,9 @@
 
 from translate.storage.statsdb import wordcount as ttk_wordcount
 
+from pytest_pootle.fixtures.core.utils.wordcount import WORDCOUNT_TESTS
+
 from pootle.core.utils.wordcount import wordcount as ptl_wordcount
-from pootle_pytest.fixtures.core.utils.wordcount import WORDCOUNT_TESTS
 
 
 def test_param_wordcount(wordcount_names):
