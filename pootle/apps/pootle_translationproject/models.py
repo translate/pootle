@@ -353,7 +353,7 @@ class TranslationProject(models.Model, CachedTreeItem):
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
         """Sync unsaved work on all stores to disk"""
         stores = self.stores.live().exclude(file='').filter(state__gte=PARSED)
-        for store in stores.iterator():
+        for store in stores.select_related("parent").iterator():
             store.sync(update_structure=not conservative,
                        conservative=conservative,
                        skip_missing=skip_missing, only_newer=only_newer)
