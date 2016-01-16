@@ -39,7 +39,8 @@ from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.storage import PootleFileSystemStorage
-from pootle.core.url_helpers import get_editor_filter, split_pootle_path
+from pootle.core.url_helpers import (
+    get_all_pootle_paths, get_editor_filter, split_pootle_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
@@ -2241,10 +2242,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         of current TreeItem
         """
         pootle_paths = super(Store, self).all_pootle_paths()
-
-        for vfolder_treeitem in self.parent_vfolder_treeitems:
-            pootle_paths.extend(vfolder_treeitem.all_pootle_paths())
-
+        vftis = self.parent_vfolder_treeitems.values_list(
+            "vfolder__location", "pootle_path")
+        for location, pootle_path in vftis:
+            pootle_paths.extend(
+                [p for p
+                 in get_all_pootle_paths(pootle_path)
+                 if p.count('/') > location.count('/')])
         return pootle_paths
 
     # # # /TreeItem
