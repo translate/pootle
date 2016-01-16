@@ -18,7 +18,7 @@ matrix:
     - env: TOXENV=isort
 cache:
   directories:
-    - pootle/assets/js/node_modules
+    - pootle/static/js/node_modules
     - $HOME/.cache/pip
     - docs/_build
 before_install:
