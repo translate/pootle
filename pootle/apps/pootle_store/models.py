@@ -2133,7 +2133,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             parents = [self.parent]
 
         if 'virtualfolder' in settings.INSTALLED_APPS:
-            parents.extend(self.parent_vf_treeitems.all())
+            parents.extend(
+                self.parent_vfolder_treeitems.select_related(
+                    ("parent__" * self.pootle_path.count("/")).strip("__"),
+                    ("%sdirectory__translationproject"
+                     % ("parent__" * (self.pootle_path.count("/") - 3))),
+                    "directory", "vfolder"))
 
         return parents
 
