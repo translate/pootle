@@ -42,8 +42,10 @@ BAD_VIEW_TESTS = OrderedDict(
      ("/projects/PROJECT0/", {}),
      ("/language0/PROJECT0/", {}),
      ("/language0/PROJECT0/subdir0/", {}),
-     ("/language0/PROJECT0/store0.po", {})))
+     ("/language0/PROJECT0/store0.po", {}),
 
+     ("/LANGUAGE0/",
+      dict(code=301, location="/language0/"))))
 
 LANGUAGE_VIEW_TESTS = OrderedDict(
     (("browse", {}),
