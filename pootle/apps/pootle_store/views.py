@@ -55,7 +55,7 @@ from .util import FUZZY, STATES_MAP, TRANSLATED, UNTRANSLATED, find_altsrcs
 #: will be used against the DB.
 ALLOWED_SORTS = {
     'units': {
-        'priority': 'priority',
+        'priority': '-priority',
         'oldest': 'submitted_on',
         'newest': '-submitted_on',
     },
