@@ -61,6 +61,8 @@ class LiveLanguageManager(models.Manager):
 
 class Language(models.Model, TreeItem):
 
+    # any changes to the `code` field may require updating the schema
+    # see migration 0002_case_insensitive_schema.py
     code = models.CharField(
         max_length=50, null=False, unique=True, db_index=True,
         verbose_name=_("Code"),
