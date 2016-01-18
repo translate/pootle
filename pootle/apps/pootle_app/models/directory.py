@@ -36,9 +36,13 @@ class DirectoryManager(models.Manager):
 
 class Directory(models.Model, CachedTreeItem):
 
+    # any changes to the `name` field may require updating the schema
+    # see migration 0005_case_sensitive_schema.py
     name = models.CharField(max_length=255, null=False)
     parent = models.ForeignKey('Directory', related_name='child_dirs',
                                null=True, db_index=True)
+    # any changes to the `pootle_path` field may require updating the schema
+    # see migration 0005_case_sensitive_schema.py
     pootle_path = models.CharField(max_length=255, null=False, db_index=True,
                                    unique=True)
     obsolete = models.BooleanField(default=False)
