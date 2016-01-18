@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils.functional import cached_property
 
@@ -41,11 +42,22 @@ class LanguageMixin(object):
         return {"language_code": self.object.code}
 
     def get_object(self):
-        return get_object_or_404(
-            Language, code__iexact=self.kwargs["language_code"])
+        try:
+            return Language.objects.get(code__iexact=self.kwargs["language_code"])
+        except Language.DoesNotExist:
+            if "-" in self.kwargs["language_code"]:
+                return get_object_or_404(
+                    Language,
+                    code__iexact=self.kwargs["language_code"].replace("-", "_"))
+            elif "-" in self.kwargs["language_code"]:
+                return get_object_or_404(
+                    Language,
+                    code__iexact=self.kwargs["language_code"].replace("_", "-"))
+            raise Http404
 
 
 class LanguageBrowseView(LanguageMixin, PootleBrowseView):
+    url_pattern_name = "pootle-language-browse"
     table_id = "language"
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
@@ -69,6 +81,12 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
             'name': tr_lang(self.object.fullname)}
 
     def get(self, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.code != kwargs["language_code"]:
+            return redirect(
+                self.url_pattern_name,
+                self.object.code,
+                permanent=True)
         response = super(LanguageBrowseView, self).get(*args, **kwargs)
         response.set_cookie('pootle-language', self.object.code)
         return response
