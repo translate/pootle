@@ -42,7 +42,7 @@
     <script type="text/javascript">
     function l(path) {
       var basepath = "{{ settings.SCRIPT_NAME  }}";
-      if (path[0] == '/') {
+      if (path[0] === '/' && path.indexOf(basepath) !== 0) {
         return basepath + path;
       }
       return path;
