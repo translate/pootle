@@ -8,7 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.http import Http404
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render
 from django.utils.functional import cached_property
 
 from pootle.core.browser import make_project_item
@@ -42,18 +42,10 @@ class LanguageMixin(object):
         return {"language_code": self.object.code}
 
     def get_object(self):
-        try:
-            return Language.objects.get(code__iexact=self.kwargs["language_code"])
-        except Language.DoesNotExist:
-            if "-" in self.kwargs["language_code"]:
-                return get_object_or_404(
-                    Language,
-                    code__iexact=self.kwargs["language_code"].replace("-", "_"))
-            elif "-" in self.kwargs["language_code"]:
-                return get_object_or_404(
-                    Language,
-                    code__iexact=self.kwargs["language_code"].replace("_", "-"))
+        lang = Language.get_canonical(self.kwargs["language_code"])
+        if lang is None:
             raise Http404
+        return lang
 
     def get(self, *args, **kwargs):
         self.object = self.get_object()

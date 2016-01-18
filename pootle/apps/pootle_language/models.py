@@ -124,6 +124,27 @@ class Language(models.Model, TreeItem):
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
+    @classmethod
+    def get_canonical(cls, language_code):
+        """Returns the canonical `Language` object matching `language_code`.
+
+        If no language can be matched, `None` will be returned.
+
+        :param language_code: the code of the language to retrieve.
+        """
+        try:
+            return cls.objects.get(code__iexact=language_code)
+        except cls.DoesNotExist:
+            _lang_code = language_code
+            if "-" in language_code:
+                _lang_code = language_code.replace("-", "_")
+            elif "_" in language_code:
+                _lang_code = language_code.replace("_", "-")
+            try:
+                return cls.objects.get(code__iexact=_lang_code)
+            except cls.DoesNotExist:
+                return None
+
     def __unicode__(self):
         return u"%s - %s" % (self.name, self.code)
 
