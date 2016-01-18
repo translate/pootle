@@ -1,9 +1,9 @@
 Pootle
 ======
 
-.. image:: https://badges.gitter.im/translate/pootle.svg
+.. image:: https://img.shields.io/gitter/room/translate/pootle.svg?style=flat-square
    :alt: Join the chat at https://gitter.im/translate/pootle
-   :target: https://gitter.im/translate/pootle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+   :target: https://gitter.im/translate/pootle
 
 .. image:: https://img.shields.io/travis/translate/pootle.svg?style=flat-square
     :alt: Build Status
