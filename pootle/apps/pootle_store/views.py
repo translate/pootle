@@ -287,8 +287,7 @@ def get_step_query(request, units_queryset):
             sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
             if sort_by is not None:
                 if sort_on in SIMPLY_SORTED:
-                    if sort_by == 'priority':
-                        match_queryset = match_queryset.order_by(sort_by)
+                    match_queryset = match_queryset.order_by(sort_by)
                 else:
                     # Omit leading `-` sign
                     if sort_by[0] == '-':
