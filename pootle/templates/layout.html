@@ -59,7 +59,7 @@
       });
 
       {% if user.is_authenticated %}
-      PTL.score.init({{ request.user.public_score }});
+      PTL.score.init({{ user.public_score }});
       PTL.dropdown.init('.js-navbar-dropdown');
       {% endif %}
 
