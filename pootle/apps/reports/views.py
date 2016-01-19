@@ -29,7 +29,7 @@ from pootle.core.http import (JsonResponse, JsonResponseBadRequest,
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
 from pootle.core.utils.json import jsonify
 from pootle.core.utils.timezone import make_aware, make_naive
-from pootle.core.views import AjaxResponseMixin
+from pootle.core.views import AjaxResponseMixin, UserObjectMixin
 from pootle_misc.util import (ajax_required, get_date_interval,
                               get_max_month_datetime, import_func)
 from pootle_profile.views import (DetailView, NoDefaultUserMixin,
@@ -57,10 +57,7 @@ STAT_FIELDS = ['n1']
 INITIAL_STATES = ['new', 'edit']
 
 
-class UserStatsView(NoDefaultUserMixin, DetailView):
-    model = get_user_model()
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+class UserStatsView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/stats.html'
 
     def get_context_data(self, **kwargs):
@@ -78,10 +75,7 @@ class UserStatsView(NoDefaultUserMixin, DetailView):
         return ctx
 
 
-class UserActivityView(NoDefaultUserMixin, DetailView):
-    model = get_user_model()
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+class UserActivityView(NoDefaultUserMixin, UserObjectMixin, DetailView):
 
     @method_decorator(ajax_required)
     def dispatch(self, request, *args, **kwargs):
@@ -93,10 +87,7 @@ class UserActivityView(NoDefaultUserMixin, DetailView):
         return JsonResponse(data)
 
 
-class UserDetailedStatsView(NoDefaultUserMixin, DetailView):
-    model = get_user_model()
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+class UserDetailedStatsView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/detailed_stats.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -114,10 +105,7 @@ class UserDetailedStatsView(NoDefaultUserMixin, DetailView):
 
 
 class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin,
-                          AjaxResponseMixin, CreateView):
-    model = get_user_model()
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+                          AjaxResponseMixin, UserObjectMixin, CreateView):
     form_class = PaidTaskForm
     template_name = 'admin/reports/paid_task_form.html'
 

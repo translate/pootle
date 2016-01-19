@@ -118,6 +118,13 @@ class LoginRequiredMixin(object):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
+class UserObjectMixin(object):
+    """Generic field definitions to be reused across user views."""
+    model = get_user_model()
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+
 class TestUserFieldMixin(LoginRequiredMixin):
     """Require a field from the URL pattern to match a field of the
     current user.

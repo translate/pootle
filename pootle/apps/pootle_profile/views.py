@@ -11,7 +11,8 @@ from django.contrib import auth
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView, UpdateView
 
-from pootle.core.views import APIView, NoDefaultUserMixin, TestUserFieldMixin
+from pootle.core.views import (APIView, NoDefaultUserMixin, TestUserFieldMixin,
+                               UserObjectMixin)
 
 from .forms import EditUserForm
 
@@ -26,18 +27,12 @@ class UserAPIView(TestUserFieldMixin, APIView):
     edit_form_class = EditUserForm
 
 
-class UserDetailView(NoDefaultUserMixin, DetailView):
-    model = User
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
+class UserDetailView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/profile.html'
 
 
-class UserSettingsView(TestUserFieldMixin, UpdateView):
-    model = User
+class UserSettingsView(TestUserFieldMixin, UserObjectMixin, UpdateView):
     fields = ('unit_rows', 'alt_src_langs')
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
     template_name = 'user/settings.html'
 
     def get_form_kwargs(self):
