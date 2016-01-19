@@ -110,8 +110,7 @@ class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin,
     template_name = 'admin/reports/paid_task_form.html'
 
     def get_success_url(self):
-        # XXX: This is unused. We don't need this URL, but
-        # the parent :cls:`PaidTaskFormView` enforces us to set some value here
+        # XXX: This is unused but enforced by `CreateView`
         return reverse('pootle-user-stats', kwargs=self.kwargs)
 
     def form_valid(self, form):
