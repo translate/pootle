@@ -55,6 +55,17 @@ class LanguageMixin(object):
                     code__iexact=self.kwargs["language_code"].replace("_", "-"))
             raise Http404
 
+    def get(self, *args, **kwargs):
+        self.object = self.get_object()
+        if self.object.code != kwargs["language_code"]:
+            return redirect(
+                self.url_pattern_name,
+                self.object.code,
+                permanent=True)
+        response = super(LanguageMixin, self).get(*args, **kwargs)
+        response.set_cookie('pootle-language', self.object.code)
+        return response
+
 
 class LanguageBrowseView(LanguageMixin, PootleBrowseView):
     url_pattern_name = "pootle-language-browse"
@@ -80,19 +91,9 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
             'code': self.object.code,
             'name': tr_lang(self.object.fullname)}
 
-    def get(self, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.code != kwargs["language_code"]:
-            return redirect(
-                self.url_pattern_name,
-                self.object.code,
-                permanent=True)
-        response = super(LanguageBrowseView, self).get(*args, **kwargs)
-        response.set_cookie('pootle-language', self.object.code)
-        return response
-
 
 class LanguageTranslateView(LanguageMixin, PootleTranslateView):
+    url_pattern_name = "pootle-language-translate"
 
     @property
     def display_vfolder_priority(self):
@@ -100,6 +101,7 @@ class LanguageTranslateView(LanguageMixin, PootleTranslateView):
 
 
 class LanguageExportView(LanguageMixin, PootleExportView):
+    url_pattern_name = "pootle-language-export"
     source_language = "en"
 
 
