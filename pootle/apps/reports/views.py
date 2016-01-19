@@ -114,7 +114,11 @@ class UserDetailedStatsView(NoDefaultUserMixin, DetailView):
         return ctx
 
 
-class PaidTaskFormView(AjaxResponseMixin, CreateView):
+class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin,
+                          AjaxResponseMixin, CreateView):
+    model = get_user_model()
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
     form_class = PaidTaskForm
     template_name = 'admin/reports/paid_task_form.html'
 
@@ -124,18 +128,11 @@ class PaidTaskFormView(AjaxResponseMixin, CreateView):
         return reverse('pootle-user-stats', kwargs=self.kwargs)
 
     def form_valid(self, form):
-        super(PaidTaskFormView, self).form_valid(form)
+        super(AddUserPaidTaskView, self).form_valid(form)
         # ignore redirect response
         log('%s\t%s\t%s' % (self.object.user.username, PAID_TASK_ADDED,
                             self.object))
         return JsonResponse({'result': self.object.id})
-
-
-class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin,
-                          PaidTaskFormView):
-    model = get_user_model()
-    slug_field = 'username'
-    slug_url_kwarg = 'username'
 
 
 @admin_required
