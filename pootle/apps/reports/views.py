@@ -20,8 +20,7 @@ from django.template import RequestContext
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import CreateView, View
-from django.views.generic.detail import SingleObjectMixin
+from django.views.generic import CreateView
 
 from accounts.models import CURRENCIES
 from pootle.core.decorators import admin_required
@@ -79,7 +78,7 @@ class UserStatsView(NoDefaultUserMixin, DetailView):
         return ctx
 
 
-class UserActivityView(NoDefaultUserMixin, SingleObjectMixin, View):
+class UserActivityView(NoDefaultUserMixin, DetailView):
     model = get_user_model()
     slug_field = 'username'
     slug_url_kwarg = 'username'
