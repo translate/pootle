@@ -28,7 +28,12 @@ from .signals import vfolder_post_save
 
 class VirtualFolder(models.Model):
 
+    # any changes to the `name` field may require updating the schema
+    # see migration 0003_case_sensitive_schema.py
     name = models.CharField(_('Name'), blank=False, max_length=70)
+
+    # any changes to the `location` field may require updating the schema
+    # see migration 0003_case_sensitive_schema.py
     location = models.CharField(
         _('Location'),
         blank=False,
