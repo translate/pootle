@@ -17,7 +17,7 @@ from pytest_pootle.suite import view_context_test
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
-    get_children, get_parent, get_table_headings)
+    get_parent, get_table_headings, make_directory_item, make_store_item)
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
@@ -31,6 +31,7 @@ from pootle_store.views import get_step_query
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
 from virtualfolder.models import VirtualFolderTreeItem
+from virtualfolder.helpers import vftis_for_child_dirs
 
 
 def _test_browse_view(tp, request, response, kwargs):
@@ -85,14 +86,30 @@ def _test_browse_view(tp, request, response, kwargs):
     if vfolders:
         filters['sort'] = 'priority'
 
+    dirs_with_vfolders = vftis_for_child_dirs(ob).values_list(
+        "directory__pk", flat=True)
+    directories = [
+        make_directory_item(
+            child,
+            **(dict(sort="priority")
+               if child.pk in dirs_with_vfolders
+               else {}))
+        for child in ob.get_children()
+        if isinstance(child, Directory)]
+    stores = [
+        make_store_item(child)
+        for child in ob.get_children()
+        if isinstance(child, Store)]
+
     if not kwargs.get("filename"):
         table_fields = [
             'name', 'progress', 'total', 'need-translation',
             'suggestions', 'critical', 'last-updated', 'activity']
-        table = {'id': 'tp',
-                 'fields': table_fields,
-                 'headings': get_table_headings(table_fields),
-                 'items': get_children(ob)}
+        table = {
+            'id': 'tp',
+            'fields': table_fields,
+            'headings': get_table_headings(table_fields),
+            'items': directories + stores}
     else:
         table = None
 

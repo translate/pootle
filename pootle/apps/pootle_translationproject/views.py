@@ -19,7 +19,7 @@ from django.utils.lru_cache import lru_cache
 
 from import_export.views import handle_upload_form
 from pootle.core.browser import (
-    get_children, get_parent, get_table_headings)
+    get_parent, get_table_headings, make_directory_item, make_store_item)
 from pootle.core.decorators import (
     get_path_obj, permission_required)
 from pootle.core.helpers import (
@@ -32,7 +32,7 @@ from pootle_app.models.permissions import (
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_store.models import Store
 from virtualfolder.helpers import (
-    extract_vfolder_from_path, make_vfolder_treeitem_dict)
+    extract_vfolder_from_path, make_vfolder_treeitem_dict, vftis_for_child_dirs)
 from virtualfolder.models import VirtualFolderTreeItem
 
 from .models import TranslationProject
@@ -233,7 +233,25 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def items(self):
-        return get_children(self.object)
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            dirs_with_vfolders = set(
+                vftis_for_child_dirs(self.object).values_list(
+                    "directory__pk", flat=True))
+        else:
+            dirs_with_vfolders = []
+        directories = [
+            make_directory_item(
+                child,
+                **(dict(sort="priority")
+                   if child.pk in dirs_with_vfolders
+                   else {}))
+            for child in self.object.children
+            if isinstance(child, Directory)]
+        stores = [
+            make_store_item(child)
+            for child in self.object.children
+            if isinstance(child, Store)]
+        return directories + stores
 
     def get_upload_widget(self, project):
         ctx = {}
