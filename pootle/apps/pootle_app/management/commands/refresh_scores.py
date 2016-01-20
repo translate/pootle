@@ -11,8 +11,6 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
@@ -22,17 +20,14 @@ from pootle_statistics.models import ScoreLog
 class Command(BaseCommand):
     help = "Refresh score"
 
-    shared_option_list = (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--reset',
             action='store_true',
             dest='reset',
             default=False,
             help='Reset all scores to zero',
-        ),
-    )
-
-    option_list = BaseCommand.option_list + shared_option_list
+        )
 
     def handle(self, **options):
 

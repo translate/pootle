@@ -11,7 +11,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import subprocess
 import sys
-from optparse import make_option
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -21,18 +20,18 @@ from pootle_misc.baseurl import l
 
 class Command(BaseCommand):
     help = 'Builds and bundles static assets using webpack'
+    requires_system_checks = False
 
-    option_list = BaseCommand.option_list + (
-        make_option(
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--dev',
             action='store_true',
             dest='dev',
             default=False,
             help='Enable development builds and watch for changes.',
-        ),
-    )
+        )
 
-    def handle(self, *args, **options):
+    def handle(self, **options):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')
         custom_static_dirs = filter(lambda x: x != default_static_dir,
                                     settings.STATICFILES_DIRS)
@@ -44,11 +43,11 @@ class Command(BaseCommand):
         if os.name == 'nt':
             webpack_bin = '%s.cmd' % webpack_bin
 
-        args = [webpack_bin, '--config=%s' % webpack_config_file, '--progress',
-                '--colors']
+        webpack_args = [webpack_bin, '--config=%s' % webpack_config_file,
+                        '--progress', '--colors']
 
         if options['dev']:
-            args.extend(['--watch', '--display-error-details'])
+            webpack_args.extend(['--watch', '--display-error-details'])
         else:
             os.environ['NODE_ENV'] = 'production'
 
@@ -65,7 +64,7 @@ class Command(BaseCommand):
             os.environ['WEBPACK_ROOT'] = ':'.join(custom_static_dirs)
 
         try:
-            subprocess.call(args)
+            subprocess.call(webpack_args)
         except OSError:
             raise CommandError(
                 'webpack executable not found.\n'

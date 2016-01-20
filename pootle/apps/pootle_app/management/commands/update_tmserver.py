@@ -10,7 +10,6 @@
 import os
 import sys
 from hashlib import md5
-from optparse import make_option
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -36,7 +35,7 @@ class DBParser(object):
         self.INDEX_NAME = kwargs.pop('index', None)
         self.exclude_disabled_projects = not kwargs.pop('disabled_projects')
 
-    def get_units(self, *filenames):
+    def get_units(self, filenames):
         """Gets the units to import and its total count."""
         units_qs = Unit.simple_objects \
             .exclude(target_f__isnull=True) \
@@ -112,7 +111,7 @@ class FileParser(object):
         self.target_language = kwargs.pop('language', None)
         self.project = kwargs.pop('project', None)
 
-    def get_units(self, *filenames):
+    def get_units(self, filenames):
         """Gets the units to import and its total count."""
         units = []
         all_filenames = set()
@@ -173,55 +172,78 @@ class FileParser(object):
 
 class Command(BaseCommand):
     help = "Load Translation Memory with translations"
-    args = "[files]"
-    option_list = BaseCommand.option_list + (
-        make_option('--refresh',
-                    action='store_true',
-                    dest='refresh',
-                    default=False,
-                    help='Process all items, not just the new ones, so '
-                         'existing translations are refreshed'),
-        make_option('--rebuild',
-                    action='store_true',
-                    dest='rebuild',
-                    default=False,
-                    help='Drop the entire TM on start and update everything '
-                         'from scratch'),
-        make_option('--dry-run',
-                    action='store_true',
-                    dest='dry_run',
-                    default=False,
-                    help='Report the number of translations to index and '
-                         'quit'),
-        # Local TM specific options.
-        make_option('--include-disabled-projects',
-                    action='store_true',
-                    dest='disabled_projects',
-                    default=False,
-                    help='Add translations from disabled projects'),
-        # External TM specific options.
-        make_option('--tm',
-                    action='store',
-                    dest='tm',
-                    default='local',
-                    help="TM to use. TM must exist on settings. TM will be "
-                         "created on the server if it doesn't exist"),
-        make_option('--target-language',
-                    action='store',
-                    dest='target_language',
-                    default='',
-                    help="Target language to fallback to use in case it can't "
-                         "be guessed for any of the input files."),
-        make_option('--display-name',
-                    action='store',
-                    dest='project',
-                    default='',
-                    help='Name used when displaying TM matches for these '
-                         'translations.'),
-    )
 
-    def _parse_translations(self, *args, **options):
-        units, total = self.parser.get_units(*args)
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--refresh',
+            action='store_true',
+            dest='refresh',
+            default=False,
+            help='Process all items, not just the new ones, so '
+                 'existing translations are refreshed'
+        )
+        parser.add_argument(
+            '--rebuild',
+            action='store_true',
+            dest='rebuild',
+            default=False,
+            help='Drop the entire TM on start and update everything '
+                 'from scratch'
+        )
+        parser.add_argument(
+            '--dry-run',
+            action='store_true',
+            dest='dry_run',
+            default=False,
+            help='Report the number of translations to index and quit'
+        )
+
+        # Local TM specific options.
+        local = parser.add_argument_group('Local TM', 'Pootle Local '
+                                          'Translation Memory')
+        local.add_argument(
+            '--include-disabled-projects',
+            action='store_true',
+            dest='disabled_projects',
+            default=False,
+            help='Add translations from disabled projects'
+        )
+
+        # External TM specific options.
+        external = parser.add_argument_group('External TM', 'Pootle External '
+                                             'Translation Memory')
+        external.add_argument(
+            nargs='*',
+            dest='files',
+            help='Translation memory files',
+        )
+        external.add_argument(
+            '--tm',
+            action='store',
+            dest='tm',
+            default='local',
+            help="TM to use. TM must exist on settings. TM will be "
+                 "created on the server if it doesn't exist"
+        )
+        external.add_argument(
+            '--target-language',
+            action='store',
+            dest='target_language',
+            default='',
+            help="Target language to fallback to use in case it can't "
+                 "be guessed for any of the input files."
+        )
+        external.add_argument(
+            '--display-name',
+            action='store',
+            dest='project',
+            default='',
+            help='Name used when displaying TM matches for these '
+                 'translations.'
+        )
+
+    def _parse_translations(self, **options):
+        units, total = self.parser.get_units(options['files'])
 
         if total == 0:
             self.stdout.write("No translations to index")
@@ -245,20 +267,20 @@ class Command(BaseCommand):
         if i != total:
             self.stdout.write("Expected %d, loaded %d." % (total, i))
 
-    def _initialize(self, *args, **options):
+    def _initialize(self, **options):
         if not settings.POOTLE_TM_SERVER:
             raise CommandError('POOTLE_TM_SERVER setting is missing.')
 
         try:
-            self.tm_settings = settings.POOTLE_TM_SERVER[options.get('tm')]
+            self.tm_settings = settings.POOTLE_TM_SERVER[options['tm']]
         except KeyError:
             raise CommandError("Translation Memory '%s' is not defined in the "
                                "POOTLE_TM_SERVER setting. Please ensure it "
                                "exists and double-check you typed it "
-                               "correctly." % options.get('tm'))
+                               "correctly." % options['tm'])
 
         self.INDEX_NAME = self.tm_settings['INDEX_NAME']
-        self.is_local_tm = options.get('tm') == 'local'
+        self.is_local_tm = options['tm'] == 'local'
 
         self.es = Elasticsearch([
             {
@@ -268,27 +290,24 @@ class Command(BaseCommand):
         )
 
         # If files to import have been provided.
-        if args:
+        if options['files']:
             if self.is_local_tm:
                 raise CommandError('You cannot add translations from files to '
                                    'a local TM.')
 
-            self.target_language = options.pop('target_language')
-            self.project = options.pop('project')
-
-            if not self.project:
+            if not options['project']:
                 raise CommandError('You must specify a project name with '
                                    '--display-name.')
             self.parser = FileParser(stdout=self.stdout, index=self.INDEX_NAME,
-                                     language=self.target_language,
-                                     project=self.project)
+                                     language=options['target_language'],
+                                     project=options['project'])
         elif not self.is_local_tm:
             raise CommandError('You cannot add translations from database to '
                                'an external TM.')
         else:
             self.parser = DBParser(
                 stdout=self.stdout, index=self.INDEX_NAME,
-                disabled_projects=options.pop('disabled_projects'))
+                disabled_projects=options['disabled_projects'])
 
     def _set_latest_indexed_revision(self, **options):
         self.last_indexed_revision = -1
@@ -319,8 +338,8 @@ class Command(BaseCommand):
         self.stdout.write("Last indexed revision = %s" %
                           self.last_indexed_revision)
 
-    def handle(self, *args, **options):
-        self._initialize(*args, **options)
+    def handle(self, **options):
+        self._initialize(**options)
 
         if (options['rebuild'] and
             not options['dry_run'] and
@@ -337,4 +356,4 @@ class Command(BaseCommand):
             self._set_latest_indexed_revision(**options)
 
         success, _ = helpers.bulk(self.es,
-                                  self._parse_translations(*args, **options))
+                                  self._parse_translations(**options))

@@ -10,28 +10,28 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from optparse import make_option
-
 from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option(
+    help = "List language codes."
+
+    def add_arguments(self, parser):
+        parser.add_argument(
             '--project',
             action='append',
             dest='projects',
-            help='Limit to PROJECTS'),
-        make_option(
+            help='Limit to PROJECTS',
+        )
+        parser.add_argument(
             "--modified-since",
             action="store",
             dest="modified_since",
             type=int,
             default=0,
             help="Only process translations newer than specified "
-                 "revision"),
-    )
-    help = "List language codes."
+                 "revision",
+        )
 
     def handle(self, **options):
         self.list_languages(**options)
