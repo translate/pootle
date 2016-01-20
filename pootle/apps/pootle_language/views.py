@@ -54,9 +54,7 @@ class LanguageMixin(object):
                 self.url_pattern_name,
                 self.object.code,
                 permanent=True)
-        response = super(LanguageMixin, self).get(*args, **kwargs)
-        response.set_cookie('pootle-language', self.object.code)
-        return response
+        return super(LanguageMixin, self).get(*args, **kwargs)
 
 
 class LanguageBrowseView(LanguageMixin, PootleBrowseView):
@@ -82,6 +80,11 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
         return {
             'code': self.object.code,
             'name': tr_lang(self.object.fullname)}
+
+    def get(self, *args, **kwargs):
+        response = super(LanguageBrowseView, self).get(*args, **kwargs)
+        response.set_cookie('pootle-language', self.object.code)
+        return response
 
 
 class LanguageTranslateView(LanguageMixin, PootleTranslateView):
