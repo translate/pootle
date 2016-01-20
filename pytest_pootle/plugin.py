@@ -39,6 +39,7 @@ from fixtures.import_export_fixtures import (
     file_import_failure, ts_directory, en_tutorial_ts)
 from fixtures.revision import revision
 from fixtures.site import (
+    case_sensitive_schema,
     site_matrix, site_matrix_with_subdirs, site_matrix_with_vfolders,
     site_matrix_with_announcements, site_root, site_permissions)
 from fixtures.views import (
@@ -74,7 +75,7 @@ __all__ = (
     'admin_client', 'site_matrix', 'site_matrix_with_subdirs', 'site_root',
     'site_matrix_with_vfolders', 'site_matrix_with_announcements',
     'site_permissions', 'project_views', 'tp_views', 'language_views',
-    'bad_views')
+    'bad_views', 'case_sensitive_schema')
 
 
 PARAMETERS = (

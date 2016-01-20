@@ -182,3 +182,88 @@ def site_matrix_with_announcements(site_matrix):
                 'guide</a>.</div>'),
             virtual_path="announcements/%s/%s"
             % (tp.language.code, tp.project.code))
+
+
+@pytest.fixture
+def case_sensitive_schema(db):
+    from django.db import connection
+    from django.apps import apps
+
+    from pootle.core.utils.db import set_mysql_collation_for_column
+
+    cursor = connection.cursor()
+
+    # Language
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "pootle_language.Language",
+        "code",
+        "utf8_general_ci",
+        "varchar(50)")
+
+    # Project
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "pootle_project.Project",
+        "code",
+        "utf8_bin",
+        "varchar(255)")
+
+    # Directory
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "pootle_app.Directory",
+        "pootle_path",
+        "utf8_bin",
+        "varchar(255)")
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "pootle_app.Directory",
+        "name",
+        "utf8_bin",
+        "varchar(255)")
+
+    # Store
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "pootle_store.Store",
+        "pootle_path",
+        "utf8_bin",
+        "varchar(255)")
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "pootle_store.Store",
+        "name",
+        "utf8_bin",
+        "varchar(255)")
+
+    # VirtualFolderTreeItem
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "virtualfolder.VirtualFolderTreeItem",
+        "pootle_path",
+        "utf8_bin",
+        "varchar(255)")
+
+    # VirtualFolder
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "virtualfolder.VirtualFolder",
+        "name",
+        "utf8_bin",
+        "varchar(70)")
+    set_mysql_collation_for_column(
+        apps,
+        cursor,
+        "virtualfolder.VirtualFolder",
+        "location",
+        "utf8_bin",
+        "varchar(255)")

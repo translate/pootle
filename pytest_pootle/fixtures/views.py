@@ -171,7 +171,7 @@ def language_views(site_permissions, language_view_names,
 
 
 @pytest.fixture
-def bad_views(site_permissions, bad_view_names,
+def bad_views(site_permissions, bad_view_names, case_sensitive_schema,
               site_matrix_with_vfolders, site_matrix_with_subdirs,
               site_matrix_with_announcements,
               default, nobody, client):
