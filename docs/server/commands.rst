@@ -774,9 +774,12 @@ removing a spam account or other malicious user.
 This command requires a mandatory ``username`` argument, which should be a valid
 username for a user of your site.
 
+.. versionchanged:: 2.7.3 :djadmin:`purge_user` can accept multiple user
+   accounts to purge.
+
 .. code-block:: bash
 
-    $ pootle purge_user username
+    $ pootle purge_user username [username ...]
 
 
 .. django-admin:: update_user_email
@@ -794,9 +797,12 @@ update_user_email
 This command can be used if you wish to update a user's email address. This
 might be useful if you have users with duplicate email addresses.
 
-This command requires a mandatory ``username`` argument, which should be a valid
-username for a user of your site, and a mandatory ``email`` argument which
-should to update a valid email address.
+This command requires a mandatory ``username``, which should be a valid
+username for a user of your site, and a mandatory valid ``email`` address.
+
+.. code-block:: bash
+
+    $ pootle update_user_email username email
 
 
 .. django-admin:: verify_user
@@ -811,13 +817,16 @@ Verify a user without the user having to go through email verification process.
 This is useful if you are migrating users that have already been verified, or
 if you want to create a superuser that can log in immediately.
 
-This command requires either a mandatory ``username`` argument, which should be a
-valid username for a user of your site, or the :option:`--all` flag if you wish to
-verify all users of your site.
+This command requires either mandatory ``username`` arguments, which should be
+valid username(s) for user(s) on your site, or the :option:`--all` flag if you
+wish to verify all users of your site.
+
+.. versionchanged:: 2.7.3 :djadmin:`verify_user` can accept multiple user
+   accounts to verify.
 
 .. code-block:: bash
 
-    $ pootle verify_user username
+    $ pootle verify_user username [username ...]
 
 Available options:
 

@@ -16,6 +16,8 @@ Details of changes
 
 - :djadmin:`run_cherrypy` has been removed.
 - :djadmin:`start` has been removed, use :djadmin:`runserver` instead.
+- :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
+  usernames.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of
