@@ -10,6 +10,7 @@
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.utils.functional import cached_property
+from django.utils.lru_cache import lru_cache
 
 from pootle.core.browser import make_project_item
 from pootle.core.decorators import get_path_obj, permission_required
@@ -41,6 +42,7 @@ class LanguageMixin(object):
     def url_kwargs(self):
         return {"language_code": self.object.code}
 
+    @lru_cache()
     def get_object(self):
         lang = Language.get_canonical(self.kwargs["language_code"])
         if lang is None:
