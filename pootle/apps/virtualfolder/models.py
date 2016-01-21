@@ -307,6 +307,8 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         null=True,
         db_index=True,
     )
+    # any changes to the `pootle_path` field may require updating the schema
+    # see migration 0003_case_sensitive_schema.py
     pootle_path = models.CharField(
         max_length=255,
         null=False,
