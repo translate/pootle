@@ -83,8 +83,8 @@ CHECKED = 2
 POOTLE_WINS = 1
 FILE_WINS = 2
 
-LANGUAGE_REGEX = r"[^/]{,255}"
-PROJECT_REGEX = r"[^/]{,255}"
+LANGUAGE_REGEX = r"[^/]{2,255}"
+PROJECT_REGEX = r"[^/]{1,255}"
 
 
 # # # # # # # # Quality Check # # # # # # #
