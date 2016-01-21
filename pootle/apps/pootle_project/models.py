@@ -137,6 +137,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     code_help_text = _('A short code for the project. This should only '
                        'contain ASCII characters, numbers, and the underscore '
                        '(_) character.')
+    # any changes to the `code` field may require updating the schema
+    # see migration 0003_case_sensitive_schema.py
     code = models.CharField(max_length=255, null=False, unique=True,
                             db_index=True, verbose_name=_('Code'),
                             help_text=code_help_text)
