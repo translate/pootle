@@ -94,6 +94,7 @@ class Command(BaseCommand):
         for checker in checkers:
             for check in checks:
                 filtermessage = ''
+                filterresult = True
                 if check in error_checks:
                     continue
                 try:
