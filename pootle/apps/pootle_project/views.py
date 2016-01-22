@@ -80,7 +80,7 @@ class ProjectMixin(object):
                 Store.objects.live()
                              .select_related("translation_project__language")
                              .filter(pootle_path__regex=regex))
-        if resources.exists():
+        if resources:
             return ProjectResource(
                 resources,
                 ("/projects/%(project_code)s/%(dir_path)s%(filename)s"
