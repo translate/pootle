@@ -13,6 +13,7 @@ Installation
 
    requirements
    installation
+   project_setup
    mysql_installation
    postgresql_installation
    web
