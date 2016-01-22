@@ -44,6 +44,9 @@ class Command(BaseCommand):
                 raise CommandError("Unrecognised user: %s" % options["user"])
 
         for filename in options['file']:
+            if not os.path.isfile(filename):
+                raise CommandError("No such file '%s'" % filename)
+
             if is_zipfile(filename):
                 with ZipFile(filename, "r") as zf:
                     for path in zf.namelist():
