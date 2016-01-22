@@ -7,6 +7,7 @@
  */
 
 import Backbone from 'backbone';
+import $ from 'jquery';
 import React from 'react';
 import _ from 'underscore';
 
@@ -77,33 +78,35 @@ const AdminController = React.createClass({
   },
 
   handleSelectItem(itemId) {
-    let item = this.state.items.get(itemId);
+    const item = this.state.items.get(itemId);
     if (item) {
       this.setState({ selectedItem: item, view: 'edit' });
     } else {
       const { items } = this.state;
       items.search('')
         .then(() => {
+          /* eslint-disable new-cap */
           const deferred = $.Deferred();
+          /* eslint-enable new-cap */
 
-          item = items.get(itemId);
-          if (item !== undefined) {
-            deferred.resolve(item);
+          let newItem = items.get(itemId);
+          if (newItem !== undefined) {
+            deferred.resolve(newItem);
           } else {
-            item = new this.props.adminModule.Model({ id: itemId });
-            item.fetch({
+            newItem = new this.props.adminModule.Model({ id: itemId });
+            newItem.fetch({
               success: () => {
-                deferred.resolve(item);
+                deferred.resolve(newItem);
               },
             });
           }
 
           return deferred.promise();
-        }).then((item) => {
-          items.unshift(item, { merge: true });
+        }).then((newItem) => {
+          items.unshift(newItem, { merge: true });
           this.setState({
             items,
-            selectedItem: item,
+            selectedItem: newItem,
             view: 'edit',
           });
         });
