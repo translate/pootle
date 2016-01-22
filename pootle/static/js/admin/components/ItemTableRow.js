@@ -39,9 +39,11 @@ const ItemTableRow = React.createClass({
     });
 
     return (
-      <tr className={classNames}
-          key={item.id}
-          onClick={this.props.onSelectItem.bind(null, item)}>
+      <tr
+        className={classNames}
+        key={item.id}
+        onClick={() => this.props.onSelectItem(item.id)}
+      >
         {this.props.fields.map(createColumn)}
       </tr>
     );
