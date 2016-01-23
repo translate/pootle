@@ -26,7 +26,7 @@ before_install:
   - python -m compileall -q -f .
 install:
   - pip install --upgrade pip # FIXME remove once Travis support pip7 by default
-  - pip install tox
+  - pip install --upgrade tox
 script:
   - tox -e $TOXENV
 notifications:
