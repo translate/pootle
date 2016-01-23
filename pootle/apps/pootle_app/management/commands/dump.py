@@ -9,7 +9,6 @@
 
 
 import os
-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -20,7 +19,10 @@ from django.core.management.base import CommandError
 
 from pootle_app.management.commands import PootleCommand
 from pootle_app.models import Directory
+from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_translationproject.models import TranslationProject
+
 
 DUMPED = {
     'TranslationProject': ('pootle_path', 'real_path', 'disabled'),
@@ -140,17 +142,18 @@ class Command(PootleCommand):
 
     def _dump_item(self, item, level, stop_level):
         self.stdout.write(self.dumped(item))
-        if item.is_dir:
-            # item is a Directory
-            if item.is_project():
-                self.stdout.write(self.dumped(item.project))
-            elif item.is_language():
-                self.stdout.write(self.dumped(item.language))
-            elif item.is_translationproject():
-                try:
-                    self.stdout.write(self.dumped(item.translationproject))
-                except:
-                    pass
+        if isinstance(item, Directory):
+            pass
+        elif isinstance(item, Language):
+            self.stdout.write(self.dumped(item.language))
+        elif isinstance(item, TranslationProject):
+            try:
+                self.stdout.write(self.dumped(item.translationproject))
+            except:
+                pass
+        elif isinstance(item, Project):
+            pass
+            # self.stdout.write(self.dumped(item))
         else:
             # item should be a Store
             for unit in item.units:
