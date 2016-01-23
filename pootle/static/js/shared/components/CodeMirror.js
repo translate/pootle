@@ -35,13 +35,12 @@ const CodeMirror = React.createClass({
   },
 
   componentDidMount() {
-    const textarea = React.findDOMNode(this.refs.editor);
     const mode = getMode(this.props.markup);
 
     // Using webpack's `bundle` loader so each mode goes into a separate chunk
     const bundledResult = require(`bundle!codemirror/mode/${mode}/${mode}.js`);
     bundledResult(() => {
-      this.codemirror = CM.fromTextArea(textarea, {
+      this.codemirror = CM.fromTextArea(this.refs.editor, {
         mode: mode,
         lineWrapping: true,
       });

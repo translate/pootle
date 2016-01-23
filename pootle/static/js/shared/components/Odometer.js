@@ -17,9 +17,8 @@ const Odometer = React.createClass({
   },
 
   componentDidMount() {
-    const el = React.findDOMNode(this);
     this.odometer = new OdometerLib({
-      el,
+      el: this.refs.odometer,
       value: this.props.value,
     });
   },
@@ -30,7 +29,7 @@ const Odometer = React.createClass({
 
   render() {
     return (
-      <div className="odometer"></div>
+      <div className="odometer" ref="odometer"></div>
     );
   },
 

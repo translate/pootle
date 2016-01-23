@@ -34,7 +34,7 @@ const SearchBox = React.createClass({
   },
 
   componentDidMount() {
-    React.findDOMNode(this.refs.input).focus();
+    this.refs.input.focus();
   },
 
   componentWillReceiveProps(nextProps) {
@@ -49,12 +49,12 @@ const SearchBox = React.createClass({
   handleKeyUp(e) {
     const key = e.nativeEvent.keyCode;
     if (key === 27) {
-      React.findDOMNode(this.refs.input).blur();
+      this.refs.input.blur();
     }
   },
 
   handleChange() {
-    this.setState({ searchQuery: React.findDOMNode(this.refs.input).value });
+    this.setState({ searchQuery: this.refs.input.value });
     this.handleSearchDebounced();
   },
 
