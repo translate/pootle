@@ -1,5 +1,0 @@
-[run]
-omit =
-    */migrations/*
-    setup.py
-    .tox/*
