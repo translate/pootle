@@ -7,12 +7,13 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import Score from 'components/Score';
 
 
 function init(value) {
-  React.render(
+  ReactDOM.render(
     <Score value={value} />,
     document.querySelector('.js-score')
   );

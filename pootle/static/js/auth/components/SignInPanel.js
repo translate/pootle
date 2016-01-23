@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { PureRenderMixin } from 'react/addons';
+import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
 import Tab from 'components/Tab';
 import Tabs from 'components/Tabs';

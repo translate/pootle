@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import UserEvent from 'components/UserEvent';
 import { User } from 'models/user';
@@ -30,7 +31,7 @@ PTL.user = {
         appRoot: opts.appRoot,
         user: user,
       };
-      React.render(<UserProfileEdit {...props} />, editButton);
+      ReactDOM.render(<UserProfileEdit {...props} />, editButton);
 
       // FIXME: let's make the whole profile page a component, so a lot of the
       // boilerplate here is rendered redundant
@@ -64,7 +65,7 @@ PTL.user = {
       unitUrl: data.unit_url,
       username: data.username,
     };
-    React.render(<UserEvent {...props} />, lastActivity);
+    ReactDOM.render(<UserEvent {...props} />, lastActivity);
   },
 
 };

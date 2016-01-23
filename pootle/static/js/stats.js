@@ -8,6 +8,7 @@
 
 import $ from 'jquery';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import 'jquery-bidi';
 import 'jquery-utils';
@@ -179,7 +180,7 @@ const stats = {
       unitUrl: data.unit_url,
       username: data.username,
     };
-    React.render(<UserEvent {...props} />, el);
+    ReactDOM.render(<UserEvent {...props} />, el);
   },
 
   renderLastUpdate(el, data) {
@@ -193,7 +194,7 @@ const stats = {
       unitSource: data.unit_source,
       unitUrl: data.unit_url,
     };
-    React.render(<LastUpdate {...props} />, el);
+    ReactDOM.render(<LastUpdate {...props} />, el);
   },
 
   renderLastUpdatedTime(el, data) {
@@ -205,7 +206,7 @@ const stats = {
       title: data.display_datetime,
       dateTime: data.iso_datetime,
     };
-    React.render(<TimeSince {...props} />, el);
+    ReactDOM.render(<TimeSince {...props} />, el);
   },
 
   updateLastUpdates(statsData) {

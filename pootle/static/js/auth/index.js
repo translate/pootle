@@ -9,6 +9,7 @@
 import $ from 'jquery';
 import assign from 'object-assign';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import Auth from './containers/Auth';
@@ -35,7 +36,7 @@ export default {
   open(props) {
     const newProps = assign({}, commonProps, props);
 
-    React.render(
+    ReactDOM.render(
       <Provider store={PTL.store}>
         {() => <Auth onClose={this.close} {...newProps} />}
       </Provider>,
@@ -44,7 +45,7 @@ export default {
   },
 
   close() {
-    React.unmountComponentAtNode(document.querySelector(mountNodeSelector));
+    ReactDOM.unmountComponentAtNode(document.querySelector(mountNodeSelector));
   },
 
 };

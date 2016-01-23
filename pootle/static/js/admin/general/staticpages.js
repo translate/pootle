@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import LiveEditor from './components/LiveEditor';
 
@@ -14,7 +15,7 @@ import LiveEditor from './components/LiveEditor';
 const staticpages = {
 
   init(opts) {
-    React.render(
+    ReactDOM.render(
       <LiveEditor
         initialValue={opts.initialValue}
         markup={opts.markup}

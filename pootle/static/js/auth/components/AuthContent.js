@@ -8,7 +8,7 @@
 
 import assign from 'object-assign';
 import React from 'react';
-import { PureRenderMixin } from 'react/addons';
+import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
 
 const AuthContent = React.createClass({

@@ -8,7 +8,7 @@
 
 import md5 from 'md5';
 import React, { PropTypes } from 'react';
-import { PureRenderMixin } from 'react/addons';
+import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
 
 const Avatar = React.createClass({

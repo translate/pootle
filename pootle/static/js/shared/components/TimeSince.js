@@ -7,7 +7,7 @@
  */
 
 import React, { PropTypes } from 'react';
-import { PureRenderMixin } from 'react/addons';
+import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
 // FIXME: avoid relative import
 import { relativeDate } from '../../utils';

@@ -9,6 +9,7 @@
 import 'imports?Backbone=>require("backbone")!backbone-move';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import AdminController from './components/AdminController';
 import User from './components/User';
@@ -34,7 +35,7 @@ PTL.admin = {
       throw new Error('Invalid `itemType`.');
     }
 
-    React.render(
+    ReactDOM.render(
       <AdminController
         adminModule={itemTypes[opts.itemType]}
         appRoot={opts.appRoot}
