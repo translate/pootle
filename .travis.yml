@@ -21,6 +21,7 @@ cache:
     - pootle/static/js/node_modules
     - $HOME/.cache/pip
     - docs/_build
+    - .tox
 before_install:
   # Error as early as possible if we can't compile
   - python -m compileall -q -f -x ".*[.]tox.*" .
