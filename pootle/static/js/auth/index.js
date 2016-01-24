@@ -38,7 +38,7 @@ export default {
 
     ReactDOM.render(
       <Provider store={PTL.store}>
-        {() => <Auth onClose={this.close} {...newProps} />}
+        <Auth onClose={this.close} {...newProps} />
       </Provider>,
       document.querySelector(mountNodeSelector)
     );
