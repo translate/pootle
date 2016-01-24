@@ -51,3 +51,4 @@ notifications:
     on_start: never
 services:
   - redis-server
+  - elasticsearch
