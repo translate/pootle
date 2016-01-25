@@ -1,9 +1,9 @@
 -r base.txt
 
 # Databases
-MySQL-python
+MySQL-python>=1.2.1p2
 # Uncomment for PostgreSQL
-# psycopg2
+# psycopg2>=2.4.5
 
 # Logging
 raven
