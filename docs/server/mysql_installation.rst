@@ -8,6 +8,9 @@ These instructions provide additional steps for setting up Pootle with MySQL.
 You should read the :ref:`full installation instructions <installation>` in
 order to install Pootle.
 
+Pootle supports the :ref:`versions of MySQL supported by Django
+<django:mysql-notes>`, make sure that your installed version is supported.
+
 
 .. _mysql_installation#setting-up-db:
 

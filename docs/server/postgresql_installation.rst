@@ -9,6 +9,9 @@ PostgreSQL.
 You should read the :ref:`full installation instructions <installation>` in
 order to install Pootle.
 
+Pootle supports the :ref:`versions of PostgreSQL supported by Django
+<django:postgresql-notes>`, make sure that your installed version is supported.
+
 
 .. _postgresql_installation#setting-up-db:
 
