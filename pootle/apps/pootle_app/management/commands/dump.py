@@ -64,7 +64,7 @@ class Command(PootleCommand):
             dest='stop_level',
             default=-1,
             type=int,
-            help="Depth of data to retreive",
+            help="Depth of data to retrieve",
         )
 
     def handle_all(self, **options):
