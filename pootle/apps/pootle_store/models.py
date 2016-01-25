@@ -1415,13 +1415,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return self.name.startswith('pootle-terminology')
 
     @property
-    def parent_vfolder_treeitems(self):
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            return self.parent_vf_treeitems.all()
-
-        return []
-
-    @property
     def units(self):
         if hasattr(self, '_units'):
             return self._units
@@ -2139,7 +2132,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         else:
             parents = [self.parent]
 
-        parents.extend(self.parent_vfolder_treeitems)
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            parents.extend(self.parent_vf_treeitems.all())
 
         return parents
 
@@ -2250,13 +2244,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         of current TreeItem
         """
         pootle_paths = super(Store, self).all_pootle_paths()
-        vftis = self.parent_vfolder_treeitems.values_list(
-            "vfolder__location", "pootle_path")
-        for location, pootle_path in vftis:
-            pootle_paths.extend(
-                [p for p
-                 in get_all_pootle_paths(pootle_path)
-                 if p.count('/') > location.count('/')])
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            vftis = self.parent_vf_treeitems.values_list(
+                "vfolder__location", "pootle_path")
+            for location, pootle_path in vftis:
+                pootle_paths.extend(
+                    [p for p
+                     in get_all_pootle_paths(pootle_path)
+                     if p.count('/') > location.count('/')])
         return pootle_paths
 
     # # # /TreeItem
