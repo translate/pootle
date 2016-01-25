@@ -24,7 +24,7 @@ def set_mysql_collation_for_column(apps, cursor, model, column, collation, schem
     # Get the current collation
     cursor.execute(
         "SELECT COLLATION_NAME"
-        " FROM information_schema.columns"
+        " FROM `information_schema`.`columns`"
         " WHERE TABLE_SCHEMA = '%s'"
         "  AND TABLE_NAME = '%s'"
         "  AND COLUMN_NAME = '%s';"
@@ -34,11 +34,11 @@ def set_mysql_collation_for_column(apps, cursor, model, column, collation, schem
     if current_collation != collation:
         # set collation
         cursor.execute(
-            "ALTER TABLE %s.%s"
-            " MODIFY %s"
+            "ALTER TABLE `%s`.`%s`"
+            " MODIFY `%s`"
             "  %s"
-            "  character set utf8"
-            "  collate %s"
+            "  CHARACTER SET utf8"
+            "  COLLATE %s"
             "  NOT NULL;"
             % (db_name, table_name,
                column, schema, collation))
