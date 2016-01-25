@@ -41,7 +41,7 @@ def test_dump_stats(capfd, afrikaans_tutorial):
     call_command('dump', '--stats')
     out, err = capfd.readouterr()
     # Ensure it's a --stats
-    assert 'False,None,None' in out
+    assert 'None,None' in out
     assert out.startswith('/')
     # Ensure its got all the files, the data differs due to differing load
     # sequences
@@ -59,7 +59,7 @@ def test_dump_stop_level(capfd, afrikaans_tutorial):
     call_command('dump', '--stats', '--stop-level=1')
     out, err = capfd.readouterr()
     # Ensure it's a --stats
-    assert 'False,None,None' in out
+    assert 'None,None' in out
     assert out.startswith('/')
     # First level
     assert '/af/tutorial/' in out
