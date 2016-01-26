@@ -250,6 +250,32 @@ Configuration settings for applications used by Pootle.
   - ``label`` specifying the text that will be displayed next to the mark.
 
 
+.. setting:: POOTLE_SCORE_COEFFICIENTS
+
+``POOTLE_SCORE_COEFFICIENTS``
+  Default::
+
+    {
+        'EDIT': 5.0/7,
+        'REVIEW': 2.0/7,
+        'SUGGEST': 0.2,
+        'ANALYZE': 0.1,
+    }
+
+  .. versionadded:: 2.7.3
+
+  Parameters:
+
+  - ``EDIT`` - coefficient to calculate an user score change for
+    edit actions.
+  - ``REVIEW`` - coefficient to calculate an user score change for
+    review actions.
+  - ``SUGGEST`` - coefficient to calculate an user score change for
+    new suggestions.
+  - ``ANALYZE`` - coefficient to calculate an user score change for
+    rejecting suggestions and penalty for the rejected suggestion.
+
+
 60-translation.conf
 ^^^^^^^^^^^^^^^^^^^
 

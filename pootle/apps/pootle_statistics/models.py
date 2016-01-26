@@ -25,10 +25,6 @@ from pootle_store.fields import to_python
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
-EDIT_COEF = 5.0/7
-REVIEW_COEF = 2.0/7
-SUGG_COEF = 0.2
-ANALYZE_COEF = 0.1
 SIMILARITY_THRESHOLD = 0.5
 
 
@@ -551,6 +547,11 @@ class ScoreLog(models.Model):
 
     def get_score_delta(self):
         """Returns the score change performed by the current action."""
+        EDIT_COEF = settings.POOTLE_SCORE_COEFFICIENTS['EDIT']
+        REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
+        SUGG_COEF = settings.POOTLE_SCORE_COEFFICIENTS['SUGGEST']
+        ANALYZE_COEF = settings.POOTLE_SCORE_COEFFICIENTS['ANALYZE']
+
         ns = self.wordcount
         s = self.similarity
         rawTranslationCost = ns * EDIT_COEF * (1 - s)
@@ -649,6 +650,10 @@ class ScoreLog(models.Model):
         """Returns the translated and reviewed wordcount in the current
         action.
         """
+
+        EDIT_COEF = settings.POOTLE_SCORE_COEFFICIENTS['EDIT']
+        REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
+
         ns = self.wordcount
         s = self.get_similarity()
 

@@ -340,6 +340,24 @@ def check_settings(app_configs=None, **kwargs):
                     id="pootle.W019",
                 ))
 
+    for coefficient_name in ['EDIT', 'REVIEW', 'SUGGEST', 'ANALYZE']:
+        if coefficient_name not in settings.POOTLE_SCORE_COEFFICIENTS:
+            errors.append(checks.Critical(
+                _("POOTLE_SCORE_COEFFICIENTS has no %s.", coefficient_name),
+                hint=_("Set %s in POOTLE_SCORE_COEFFICIENTS.", coefficient_name),
+                id="pootle.C014",
+            ))
+        else:
+            coef = settings.POOTLE_SCORE_COEFFICIENTS[coefficient_name]
+            if not isinstance(coef, float):
+                errors.append(checks.Critical(
+                    _("Invalid value for %s in POOTLE_SCORE_COEFFICIENTS.",
+                        coefficient_name),
+                    hint=_("Set a valid value for %s "
+                           "in POOTLE_SCORE_COEFFICIENTS.", coefficient_name),
+                    id="pootle.C015",
+                ))
+
     return errors
 
 
