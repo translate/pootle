@@ -604,7 +604,7 @@ class ScoreLog(models.Model):
                         .similarity
                 if s is None:
                     s = 0
-                self.similarity = 0
+                self.similarity = s
                 rawTranslationCost = ns * EDIT_COEF * (1 - s)
             except Submission.DoesNotExist:
                 rawTranslationCost = 0
