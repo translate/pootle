@@ -560,6 +560,8 @@ class ScoreLog(models.Model):
         def get_sugg_rejected():
             result = 0
             try:
+                # Get similarity from initial submission where
+                # the suggestion was added.
                 s = self.submission.suggestion.submission_set \
                         .get(type=SubmissionTypes.SUGG_ADD) \
                         .similarity
@@ -575,6 +577,8 @@ class ScoreLog(models.Model):
 
         def get_edit_penalty():
             try:
+                # Get similarity from initial submission where overwritten
+                # translation was added.
                 s = Submission.objects.get(
                     unit__id=self.submission.unit_id,
                     submitter__id=self.submission.unit.submitted_by_id,
@@ -593,6 +597,8 @@ class ScoreLog(models.Model):
 
         def get_sugg_accepted():
             try:
+                # Get similarity from initial submission where overwritten
+                # translation was added.
                 s = self.submission.suggestion.submission_set \
                         .get(type=SubmissionTypes.SUGG_ADD) \
                         .similarity
