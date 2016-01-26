@@ -78,6 +78,16 @@ To install and run Redis on a Debian-based system:
    Debian Wheezy you will need to install `redis-server` from backports.
 
 
+.. _requirements#database:
+
+Database requirements
+---------------------
+
+Make sure to install the requirements for your chosen database, either
+:ref:`MySQL <mysql_installation>` or
+:ref:`PostgreSQL <postgresql_installation>`.
+
+
 .. _requirements#customize-static:
 
 System requirements for customising static resources
