@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-09-21 12:38+0000\n"
-"Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
+"PO-Revision-Date: 2016-01-27 16:11+0000\n"
+"Last-Translator: Rhoslyn Prys <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
-"X-Generator: Pootle 2.5.1-rc1\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-POOTLE-MTIME: 1442839083.000000\n"
 
 #: apps/accounts/adapter.py:64
@@ -23,6 +23,8 @@ msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Digwyddodd anhawster wrth geisio anfon y neges e-bost cadarnhau. Ceisiwch "
+"eto yn nes ymlaen."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -136,6 +138,7 @@ msgstr "Mae'r cyfeiriad e-bost yma'n bodoli eisoes."
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Digwyddodd gwall wrth eich mewngofnodi. Cysylltwch â gweinyddwr eich system"
 
 #: apps/contact/forms.py:26
 msgid "Summary"
@@ -208,9 +211,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Heb lwyddo i greu '%s'. Project/Iaith goll? (%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Gallu trosysgrifennu cyfieithiadau wrth lwytho ffeiliau i fyny"
+msgstr "Bu gwall wrth lwytho eich ffeil i fyny."
 
 #: apps/pootle_app/forms.py:38
 msgid "Language code does not follow the ISO convention"
@@ -388,7 +390,7 @@ msgstr "Diolchiadau i gyfieithwyr"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Maint y deialogau"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -456,7 +458,7 @@ msgstr "Nifer o luosogion"
 
 #: apps/pootle_misc/checks.py:64
 msgid "Don't translate words"
-msgstr "Peidio cyfieithu geiriau"
+msgstr "Peidiwch cyfieithu geiriau"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Numbers"
@@ -664,7 +666,7 @@ msgstr "Chwilio"
 
 #: apps/pootle_misc/forms.py:91
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr "Chwilio (Ctrl+Shift+S)<br/>Teipiwch, yna pwyso Enter i chwilio"
+msgstr "Chwilio (Ctrl+Shift+S)<br/>Math, yna pwyso Enter i chwilio"
 
 #: apps/pootle_misc/forms.py:99
 msgid "Exact Match"
@@ -1037,11 +1039,8 @@ msgid "Redirect to URL"
 msgstr "Ailgyfeirio at URL"
 
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr ""
-"Os bydd wedi ei osod, bydd unrhyw gyfeiriad ar y dudalen hon yn ailgyfeirio "
-"at yr URL yma"
+msgstr "Os bydd wedi ei osod, bydd y dudalen hon yn ailgyfeirio at yr URL yma"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1073,9 +1072,8 @@ msgstr ""
 "<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Ymresymiadau ar goll."
+msgstr "Testun ar goll."
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1127,6 +1125,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Mae yna gyfrifon defnyddwyr gyda negeseuon e-bost dyblyg. Ni fydd hyn yn "
+"cael ei ganiatáu yn Pootle 2.8."
 
 #: checks.py:58
 msgid ""
@@ -1134,6 +1134,10 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Ceisiwch ddefnyddio 'find_duplicate_emails pootle', ac yna diweddaru "
+"negeseuon e-bost y defnyddiwr gyda ''pootle update_user_email username "
+"email'. Efallai y byddwch hefyd am ystyried defnyddio gorchmynion merge_user "
+"pootle neu purge_user"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1323,72 +1327,74 @@ msgstr "Gosod pecyn neu newid POOTLE_MARKUP_FILTER."
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "Nid oes gan POOTLE_TM_SERVER['%s'] INDEX_NAME."
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Gosod INDEX_NAME ar gyfer POOTLE_TM_SERVER['%s']."
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Dyblygu '%s' INDEX_NAME yn POOTLE_TM_SERVER."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Gosod INDEX_NAME gwahanol ar gyfer pob gweinydd yn POOTLE_TM_SERVER."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "Nid oes gan POOTLE_TM_SERVER['%s'] ENGINE."
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Gosod ENGINE ar gyfer POOTLE_TM_SERVER['%s']."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "Nid oes gan POOTLE_TM_SERVER['%s'] HOST."
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Gosod HOST ar gyfer POOTLE_TM_SERVER['%s']."
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "Nid oes gan POOTLE_TM_SERVER['%s'] PORT."
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Gosod PORT ar gyfer POOTLE_TM_SERVER['%s']."
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
+msgstr "Nid oes gan POOTLE_TM_SERVER['%s'] MIN_SCORE."
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Gosod MIN_SCORE ar gyfer POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "Mae gan POOTLE_TM_SERVER['%s'] WEIGHT o llai na 0.0 a mwy na 1.0"
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Gosod WEIGHT rhwng 0.0 a 1.0 (gan gynnwys y ddau) ar gyfer "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1412,11 +1418,13 @@ msgstr ""
 
 #: checks.py:387
 msgid "Email server is not available."
-msgstr ""
+msgstr "Nid yw'r gweinydd e-bost ar gael"
 
 #: checks.py:388
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Adnewyddwch eich gosodiadau e-bost a gwnewch yn siŵr fod eich gweinydd e-"
+"bost yn gweithio."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1798,17 +1806,15 @@ msgstr "Is gyfanswm"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "CP"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Swyddogaethau"
+msgstr "Is -swyddogaethau"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Cyfieithu"
+msgstr "Cyfieithiad Bras"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2391,14 +2397,14 @@ msgid "Last comment removed"
 msgstr "Sylw diwethaf wedi ei dynnu"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d gair</a>"
+msgstr "Mudwyd <a href=\"%(check_url)s\">%(check_name)s</a>gwiriad"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "adolygwyd gan <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "Dad-fudo<a href=\"%(check_url)s\">%(check_name)s</a>gwiriad"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2618,6 +2624,12 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"Er mwyn defnyddio'r nodwedd terminoleg, gwnewch yn siŵr eich bod yn "
+"ychwanegu ffeil terminoleg i'ch prosiect cyfieithu. Rhaid i'r ffeil "
+"terminoleg gael ei enwi 'pootle-terminology' a defnyddio'r un (fformat) "
+"estyniad ffeil â gweddill y ffeiliau prosiect.  Bydd y ffeil terminoleg hon "
+"yn cael ei defnyddio yn ogystal ag unrhyw awgrymiadau terminoleg a ddarperir "
+"gan y prosiect 'Terminoleg'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
