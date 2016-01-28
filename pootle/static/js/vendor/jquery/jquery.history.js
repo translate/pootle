@@ -90,30 +90,6 @@
         _options: {}
     };
 
-    implementations.timer = {
-        _appState: undefined,
-        _init: function() {
-            var current_hash = locationWrapper.get();
-            self._appState = current_hash;
-            self.callback(current_hash);
-            setInterval(self.check, 100);
-        },
-        check: function() {
-            var current_hash = locationWrapper.get();
-            if(current_hash != self._appState) {
-                self._appState = current_hash;
-                self.callback(current_hash);
-            }
-        },
-        load: function(hash) {
-            if(hash != self._appState) {
-                locationWrapper.put(hash);
-                self._appState = hash;
-                self.callback(hash);
-            }
-        }
-    };
-
     implementations.hashchangeEvent = {
         _init: function() {
             self.callback(locationWrapper.get());
@@ -129,11 +105,7 @@
 
     var self = $.extend({}, implementations.base);
 
-    if ("onhashchange" in window) {
-        self.type = 'hashchangeEvent';
-    } else {
-        self.type = 'timer';
-    }
+    self.type = 'hashchangeEvent';
 
     $.extend(self, implementations[self.type]);
     $.history = self;
