@@ -218,7 +218,7 @@ run it, just issue:
 
 
 .. warning:: There are :ref:`serious drawbacks <django:staticfiles-runserver>`
-   to using :option:`--insecure`. Never use it in production.
+   to using :command:`runserver`. Never use it in production.
 
 
 And the server will start listening on port 8000. Pootle can then be accessed
