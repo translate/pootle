@@ -1,4 +1,5 @@
 factory_boy>=2.5.2
 pytest
+pytest-capturelog
 pytest-cov
 pytest-django>=2.8,<2.9
