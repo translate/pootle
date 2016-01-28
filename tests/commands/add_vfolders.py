@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+
 import pytest
 
 from django.core.management import call_command
