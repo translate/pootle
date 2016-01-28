@@ -71,42 +71,27 @@
         }
     }
 
-    var implementations = {};
-
-    implementations.base = {
+    $.history = {
         callback: undefined,
         type: undefined,
 
-        check: function() {},
-        load:  function(hash) {},
-        init:  function(callback, options) {
-            initObjects(options);
-            self.callback = callback;
-            self._options = options;
-            self._init();
-        },
-
-        _init: function() {},
-        _options: {}
-    };
-
-    implementations.hashchangeEvent = {
-        _init: function() {
-            self.callback(locationWrapper.get());
-            $(window).bind('hashchange', self.check);
-        },
         check: function() {
-            self.callback(locationWrapper.get());
+            this.callback(locationWrapper.get());
         },
         load: function(hash) {
             locationWrapper.put(hash);
-        }
+        },
+        init:  function(callback, options) {
+            initObjects(options);
+            this.callback = callback;
+            this._options = options;
+            this._init();
+        },
+
+        _init: function() {
+            this.callback(locationWrapper.get());
+            $(window).bind('hashchange', this.check.bind(this));
+        },
+        _options: {}
     };
-
-    var self = $.extend({}, implementations.base);
-
-    self.type = 'hashchangeEvent';
-
-    $.extend(self, implementations[self.type]);
-    $.history = self;
 })(jQuery);
