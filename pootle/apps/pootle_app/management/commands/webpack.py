@@ -29,6 +29,12 @@ class Command(BaseCommand):
             default=False,
             help='Enable development builds and watch for changes.',
         )
+        parser.add_argument(
+            '--progress',
+            action='store_true',
+            default=False,
+            help='Show progress.',
+        )
 
     def handle(self, **options):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')
@@ -42,8 +48,10 @@ class Command(BaseCommand):
         if os.name == 'nt':
             webpack_bin = '%s.cmd' % webpack_bin
 
+        webpack_progress = '--progress' if options['progress'] else ''
+
         webpack_args = [webpack_bin, '--config=%s' % webpack_config_file,
-                        '--progress', '--colors']
+                        webpack_progress, '--colors']
 
         if options['dev']:
             webpack_args.extend(['--watch', '--display-error-details'])
