@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2016-01-27 16:11+0000\n"
-"Last-Translator: Rhoslyn Prys <rprys@yahoo.com>\n"
+"PO-Revision-Date: 2016-01-27 19:28+0100\n"
+"Last-Translator: Rhoslyn Prys <post@meddal.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-POOTLE-MTIME: 1442839083.000000\n"
 
 #: apps/accounts/adapter.py:64
@@ -2676,19 +2676,18 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
-"Fi yw #%(pos)s yn cyfranu tuag y %(lang_name)s y mis yma yn "
-"%(server_title)s! "
+"Fi yw cyfrannwr #%(pos)s y %(lang_name)s y mis yma ar %(server_title)s! "
 
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
-msgstr "#%(pos)s cyfrannwr %(lang_name)s y mis yma"
+msgstr "Cyfrannwr #%(pos)s %(lang_name)s y mis yma"
 
 #: templates/user/profile.html:49
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
-msgstr "#%(pos)s cyfrannwr <a href=\"%(url)s\">%(lang_name)s</a> y mis yma"
+msgstr "Cyfrannwr #%(pos)s <a href=\"%(url)s\">%(lang_name)s</a> y mis yma"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"
