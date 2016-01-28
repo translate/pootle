@@ -46,27 +46,6 @@
         encoder: encodeURIComponent
     };
 
-    var iframeWrapper = {
-        id: "__jQuery_history",
-        init: function() {
-            var html = '<iframe id="'+ this.id +'" style="display:none" src="javascript:false;" />';
-            $("body").prepend(html);
-            return this;
-        },
-        _document: function() {
-            return $("#"+ this.id)[0].contentWindow.document;
-        },
-        put: function(hash) {
-            var doc = this._document();
-            doc.open();
-            doc.close();
-            locationWrapper.put(hash, doc);
-        },
-        get: function() {
-            return locationWrapper.get(this._document());
-        }
-    };
-
     function initObjects(options) {
         options = $.extend({
                 unescape: false
