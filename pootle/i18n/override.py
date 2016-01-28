@@ -78,8 +78,8 @@ def get_lang_from_cookie(request, supported):
 
     if lang_code and lang_code in supported:
         return lang_code
-    else:
-        return None
+
+    return None
 
 
 def get_lang_from_http_header(request, supported):
