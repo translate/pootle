@@ -49,9 +49,10 @@ class Command(BaseCommand):
             webpack_bin = '%s.cmd' % webpack_bin
 
         webpack_progress = '--progress' if options['progress'] else ''
+        webpack_colors = '--colors' if not options['no_color'] else ''
 
         webpack_args = [webpack_bin, '--config=%s' % webpack_config_file,
-                        webpack_progress, '--colors']
+                        webpack_progress, webpack_colors]
 
         if options['dev']:
             webpack_args.extend(['--watch', '--display-error-details'])
