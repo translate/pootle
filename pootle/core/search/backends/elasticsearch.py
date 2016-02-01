@@ -94,23 +94,22 @@ class ElasticSearchBackend(SearchBackend):
 
         for hit in es_res['hits']['hits']:
             if self._is_valuable_hit(unit, hit):
-                translation_pair = hit['_source']['source'] + \
-                    hit['_source']['target']
+                body = hit['_source']
+                translation_pair = body['source'] + body['target']
                 if translation_pair not in counter:
                     counter[translation_pair] = 1
                     res.append({
                         'unit_id': hit['_id'],
-                        'source': hit['_source']['source'],
-                        'target': hit['_source']['target'],
-                        'project': hit['_source']['project'],
-                        'path': hit['_source']['path'],
-                        'username': hit['_source']['username'],
-                        'fullname': hit['_source']['fullname'],
-                        'email_md5': hit['_source']['email_md5'],
-                        'iso_submitted_on':
-                            hit['_source'].get('iso_submitted_on', None),
-                        'display_submitted_on':
-                            hit['_source'].get('display_submitted_on', None),
+                        'source': body['source'],
+                        'target': body['target'],
+                        'project': body['project'],
+                        'path': body['path'],
+                        'username': body['username'],
+                        'fullname': body['fullname'],
+                        'email_md5': body['email_md5'],
+                        'iso_submitted_on': body.get('iso_submitted_on', None),
+                        'display_submitted_on': body.get('display_submitted_on',
+                                                         None),
                         'score': hit['_score'] * self.weight,
                     })
                 else:
