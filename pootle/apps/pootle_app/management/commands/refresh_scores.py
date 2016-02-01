@@ -49,7 +49,13 @@ class Command(BaseCommand):
             scorelogs = ScoreLog.objects.all()
             if options['users']:
                 scorelogs = scorelogs.filter(user__in=users)
+
             scorelogs.delete()
+
+            if options['users']:
+                self.stdout.write('Scores for specified users were reset to 0.')
+            else:
+                self.stdout.write('Scores for all users were reset to 0.')
             return
 
         start = datetime.datetime.now()
