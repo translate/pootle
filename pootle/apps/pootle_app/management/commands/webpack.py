@@ -33,7 +33,7 @@ class Command(BaseCommand):
             '--progress',
             action='store_true',
             default=False,
-            help='Show progress.',
+            help='Show progress (implied if --dev is present).',
         )
 
     def handle(self, **options):
@@ -48,7 +48,9 @@ class Command(BaseCommand):
         if os.name == 'nt':
             webpack_bin = '%s.cmd' % webpack_bin
 
-        webpack_progress = '--progress' if options['progress'] else ''
+        webpack_progress = (
+            '--progress' if options['progress'] or options['dev'] else ''
+        )
         webpack_colors = '--colors' if not options['no_color'] else ''
 
         webpack_args = [webpack_bin, '--config=%s' % webpack_config_file,
