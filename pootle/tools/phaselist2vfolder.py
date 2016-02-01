@@ -33,6 +33,7 @@ priorities = {
     'security': 0.4,
     'notnb': 0.3,
     'never': 0.1,
+    'langpack': 6.0,
 }
 # If a goal should be marked as not public
 not_public = [
