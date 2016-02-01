@@ -19,6 +19,7 @@ matrix:
 cache:
   directories:
     - pootle/static/js/node_modules
+    - pootle/assets
     - $HOME/.cache/pip
     - docs/_build
     - .tox

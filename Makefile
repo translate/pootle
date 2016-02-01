@@ -27,6 +27,20 @@ assets:
 	python manage.py assets build ${TAIL}
 	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 
+travis-assets:
+	if [ -d "${ASSETS_DIR}.webassets-cache/" ]; then \
+		echo "eating cache - yum!"; \
+	else \
+		cd ${JS_DIR} && \
+		npm install && \
+		cd ${CWD}; \
+		python manage.py webpack --dev --nowatch; \
+		mkdir -p ${ASSETS_DIR}; \
+		python manage.py collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}; \
+		python manage.py assets build ${TAIL}; \
+		chmod 664 ${ASSETS_DIR}.webassets-cache/*; \
+	fi
+
 docs:
 	# Make sure that the submodule with docs theme is pulled and up-to-date.
 	git submodule update --init
