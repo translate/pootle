@@ -33,7 +33,7 @@ def test_test_checks_unit_unkown(afrikaans_tutorial):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_test_checks_unit(capfd, site_matrix):
+def __test_test_checks_unit(capfd, site_matrix):
     """Check a --unit"""
     # Unit 3/345 is /language0/project0/store0.po Translated Target
     # unitid varies on different databases
