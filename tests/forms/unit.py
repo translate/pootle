@@ -9,6 +9,8 @@
 
 from django.contrib.auth import get_user_model
 
+import pytest
+
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_store.forms import UnitStateField, unit_form_factory
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
@@ -35,6 +37,7 @@ def _create_unit_form(request, language, unit):
     return form_class(request.POST, instance=unit, request=request)
 
 
+@pytest.mark.django_db
 def test_submit_no_source(rf, default, default_ps, af_tutorial_po):
     """Tests that the source string cannot be modified."""
     language = af_tutorial_po.translation_project.language
@@ -59,6 +62,7 @@ def test_submit_no_source(rf, default, default_ps, af_tutorial_po):
     assert unit.target_f == 'dummy'
 
 
+@pytest.mark.django_db
 def test_submit_fuzzy(rf, admin, default, default_ps,
                       afrikaans, af_tutorial_po):
     """Tests that non-admin users can't set the fuzzy flag."""
@@ -82,6 +86,7 @@ def test_submit_fuzzy(rf, admin, default, default_ps,
     assert 'state' in user_form.errors
 
 
+@pytest.mark.django_db
 def test_submit_similarity(rf, default, default_ps, afrikaans, af_tutorial_po):
     """Tests that similarities are within a particular range."""
     language = afrikaans

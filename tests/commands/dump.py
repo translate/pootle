@@ -13,6 +13,7 @@ from django.core.management.base import CommandError
 
 
 @pytest.mark.cmd
+@pytest.mark.django_db
 def test_dump_noargs():
     """Dump requires an output option."""
     with pytest.raises(CommandError) as e:

@@ -13,6 +13,7 @@ from django.core.management.base import CommandError
 
 
 @pytest.mark.cmd
+@pytest.mark.django_db
 def test_purge_user_nousers():
     with pytest.raises(CommandError) as e:
         call_command('merge_user')
@@ -20,6 +21,7 @@ def test_purge_user_nousers():
 
 
 @pytest.mark.cmd
+@pytest.mark.django_db
 def test_purge_user_only_one_user(member):
     with pytest.raises(CommandError) as e:
         call_command('merge_user', 'member')

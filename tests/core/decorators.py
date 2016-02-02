@@ -60,6 +60,7 @@ def test_get_path_obj(rf, default, afrikaans_tutorial):
              project_code=project_code)
 
 
+@pytest.mark.django_db
 def test_get_path_obj_disabled(rf, default, admin, project_foo,
                                afrikaans_tutorial,
                                arabic_tutorial_obsolete,
@@ -119,6 +120,7 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
              project_code=project_code_obsolete)
 
 
+@pytest.mark.django_db
 def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
     """Tests that the correct resources are set for the given TP contexts."""
     store_name = 'tutorial.po'
@@ -160,6 +162,7 @@ def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
     assert afrikaans_tutorial.pootle_path in response.get('location')
 
 
+@pytest.mark.django_db
 def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
                               arabic_tutorial_obsolete):
     """Tests that the correct resources are set for the given Project

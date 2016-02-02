@@ -22,6 +22,7 @@ def test_admin_not_logged_in(client):
     assert response.status_code == 403
 
 
+@pytest.mark.django_db
 def test_admin_regular_user(client, default):
     """Checks regular users cannot access the admin site."""
     client.login(username=default.username, password='')
