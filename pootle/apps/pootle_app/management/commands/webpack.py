@@ -35,6 +35,12 @@ class Command(BaseCommand):
             default=False,
             help='Show progress (implied if --dev is present).',
         )
+        parser.add_argument(
+            '--extra',
+            action='append',
+            default=[],
+            help='Additional options to pass to the JavaScript webpack tool.',
+        )
 
     def handle(self, **options):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')
@@ -60,6 +66,8 @@ class Command(BaseCommand):
             webpack_args.extend(['--watch', '--display-error-details'])
         else:
             os.environ['NODE_ENV'] = 'production'
+
+        webpack_args.extend(options['extra'])
 
         static_base = l(settings.STATIC_URL)
         suffix = 'js/' if static_base.endswith('/') else '/js/'
