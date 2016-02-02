@@ -8,7 +8,7 @@ import django.core.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pootle_store', '0004_index_store_index_together'),        
+        ('pootle_store', '0004_index_store_index_together'),
     ]
 
     operations = [
