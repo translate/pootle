@@ -67,7 +67,7 @@ def test_tp_create_templates(tutorial, klingon_vpw, templates):
 
 
 @pytest.mark.django_db
-def test_tp_create_with_files(tutorial, english, klingon, settings):
+def test_tp_create_with_files(tutorial, klingon, settings):
     # lets add some files by hand
 
     trans_dir = settings.POOTLE_TRANSLATION_DIRECTORY
@@ -82,7 +82,7 @@ def test_tp_create_with_files(tutorial, english, klingon, settings):
 
 
 @pytest.mark.django_db
-def test_tp_empty_stats(site_root):
+def test_tp_empty_stats():
     from pootle_project.models import Project
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject

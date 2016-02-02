@@ -38,7 +38,9 @@ def _require_user(username, fullname, password=None,
 @pytest.fixture
 def nobody(db):
     """Require the default anonymous user."""
-    return _require_user('nobody', 'any anonymous user')
+    from django.contrib.auth import get_user_model
+
+    return get_user_model().objects.get_nobody_user()
 
 
 @pytest.fixture
@@ -50,27 +52,33 @@ def trans_nobody(transactional_db):
 @pytest.fixture
 def default(transactional_db):
     """Require the default authenticated user."""
-    return _require_user('default', 'any authenticated user',
-                         password='')
+    from django.contrib.auth import get_user_model
+
+    return get_user_model().objects.get_default_user()
 
 
 @pytest.fixture
 def system(db):
     """Require the system user."""
-    return _require_user('system', 'system user')
+    from django.contrib.auth import get_user_model
+
+    return get_user_model().objects.get_system_user()
 
 
 @pytest.fixture
 def admin(transactional_db):
     """Require the admin user."""
-    return _require_user('admin', 'Administrator', password='admin',
-                         is_superuser=True)
+    from django.contrib.auth import get_user_model
+
+    return get_user_model().objects.get(username="admin")
 
 
 @pytest.fixture
 def member(db):
     """Require a member user."""
-    return _require_user('member', 'Member')
+    from django.contrib.auth import get_user_model
+
+    return get_user_model().objects.get(username="member")
 
 
 @pytest.fixture
@@ -97,7 +105,9 @@ def member_with_email(transactional_db):
 @pytest.fixture
 def member2(db):
     """Require a member2 user."""
-    return _require_user('member2', 'Member2')
+    from django.contrib.auth import get_user_model
+
+    return get_user_model().objects.get(username="member2")
 
 
 @pytest.fixture

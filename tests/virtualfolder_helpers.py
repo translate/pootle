@@ -14,7 +14,7 @@ from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
 
 
 @pytest.mark.django_db
-def test_extract_vfolder_from_path(site_matrix_with_subdirs):
+def test_extract_vfolder_from_path():
     """Tests that vfolder is correctly extracted from path, if any."""
     subdir0 = TranslationProject.objects.first().directory.child_dirs.first()
 
