@@ -90,7 +90,7 @@ def test_apiview_get_single(rf):
 
     # Non-existent IDs should return 404
     with pytest.raises(Http404):
-        view(request, id='7')
+        view(request, id='777')
 
 
 @pytest.mark.django_db
