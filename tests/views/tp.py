@@ -216,7 +216,7 @@ def _test_export_view(tp, request, response, kwargs):
 
 
 @pytest.mark.django_db
-def test_views_tp(site_permissions, tp_views, settings):
+def test_views_tp(tp_views, settings):
     test_type, tp, request, response, kwargs = tp_views
     if test_type == "browse":
         _test_browse_view(tp, request, response, kwargs)
@@ -227,8 +227,7 @@ def test_views_tp(site_permissions, tp_views, settings):
 
 
 @pytest.mark.django_db
-def test_view_user_choice(site_matrix,
-                          default, nobody, client):
+def test_view_user_choice(client):
 
     client.cookies["user-choice"] = "language"
     response = client.get("/foo/bar/baz")

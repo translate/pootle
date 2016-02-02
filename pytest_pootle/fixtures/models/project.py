@@ -29,31 +29,31 @@ def _require_project(code, name, source_language, **kwargs):
 
 
 @pytest.fixture
-def tutorial(projects, english):
+def tutorial(english):
     """Require `tutorial` test project."""
     return _require_project('tutorial', 'Tutorial', english)
 
 
 @pytest.fixture
-def tutorial_disabled(projects, english):
+def tutorial_disabled(english):
     """Require `tutorial-disabled` test project in a disabled state."""
     return _require_project('tutorial-disabled', 'Tutorial', english,
                             disabled=True)
 
 
 @pytest.fixture
-def project_foo(projects, english):
+def project_foo(english):
     """Require `foo` test project."""
     return _require_project('foo', 'Foo Project', english)
 
 
 @pytest.fixture
-def project_bar(projects, english):
+def project_bar(english):
     """Require `bar` test project."""
     return _require_project('bar', 'Bar Project', english)
 
 
 @pytest.fixture
-def vfolder_test(projects, english):
+def vfolder_test(english):
     """Require `vfolder_test` test project."""
     return _require_project('vfolder_test', 'Virtual Folder Test', english)

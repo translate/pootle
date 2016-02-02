@@ -10,9 +10,6 @@ import pytest
 
 from pytest_pootle.env import PootleTestEnv
 
-from pootle_app.models import PermissionSet
-from pootle_project.models import Project
-
 
 @pytest.fixture(autouse=True, scope='session')
 def post_db_setup(_django_db_setup, _django_cursor_wrapper, request):
@@ -22,6 +19,8 @@ def post_db_setup(_django_db_setup, _django_cursor_wrapper, request):
 
 @pytest.fixture
 def no_projects():
+    from pootle_project.models import Project
+
     Project.objects.all().delete()
 
 
@@ -34,6 +33,8 @@ def no_permissions():
 
 @pytest.fixture
 def no_permission_sets():
+    from pootle_app.models import PermissionSet
+
     PermissionSet.objects.all().delete()
 
 

@@ -25,7 +25,7 @@ def test_list_languages_af_es_fr(capfd, afrikaans_tutorial, spanish_tutorial,
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_list_languages_project(capfd, site_matrix):
+def test_list_languages_project(capfd):
     """Languages on a specific project"""
     call_command('list_languages', '--project=project0')
     out, err = capfd.readouterr()

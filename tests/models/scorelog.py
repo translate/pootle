@@ -23,7 +23,7 @@ TEST_EDIT_TYPES = (SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM,
 
 @pytest.mark.parametrize('submission_type', TEST_EDIT_TYPES)
 @pytest.mark.django_db
-def test_record_submission(site_matrix, member, submission_type):
+def test_record_submission(member, submission_type):
     from pootle_store.models import Store
     store = Store.objects.first()
     unit = store.units.first()

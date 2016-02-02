@@ -14,6 +14,7 @@ import time
 import pytest
 from translate.storage.factory import getclass
 
+from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from pootle.core.models import Revision
@@ -22,6 +23,9 @@ from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
 from pootle_store.util import parse_pootle_revision
 
 from .unit import _update_translation
+
+
+User = get_user_model()
 
 
 def _update_from_upload_file(store, update_file,
@@ -232,9 +236,10 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
 
 
 @pytest.mark.django_db
-def test_update_upload_defaults(en_tutorial_po, system):
+def test_update_upload_defaults(en_tutorial_po):
     _update_from_upload_file(en_tutorial_po,
                              "tests/data/po/tutorial/en/tutorial_update.po")
+    system = User.objects.get_system_user()
     assert en_tutorial_po.units[0].submitted_by == system
     assert (en_tutorial_po.units[0].submission_set.first().type
             == SubmissionTypes.SYSTEM)

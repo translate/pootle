@@ -9,6 +9,7 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.http import Http404
 
 from pytest_pootle.utils import create_api_request
@@ -17,10 +18,14 @@ from pootle.core.exceptions import Http400
 from pootle_store.views import get_units
 
 
+User = get_user_model()
+
+
 @pytest.mark.django_db
-def test_get_units(rf, default):
+def test_get_units(rf):
     """Tests units can be retrieved."""
     view = get_units
+    default = User.objects.get_default_user()
 
     # `path` query parameter missing
     request = create_api_request(rf, user=default)
@@ -34,9 +39,10 @@ def test_get_units(rf, default):
 
 
 @pytest.mark.django_db
-def test_get_units_ordered(rf, default, admin, test_get_units_po):
+def test_get_units_ordered(rf, admin, test_get_units_po):
     """Tests units can be retrieved while applying order filters."""
     view = get_units
+    default = User.objects.get_default_user()
 
     url = '/?path=/af/tutorial/&filter=incomplete&sort=newest&initial=true'
 

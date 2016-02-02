@@ -117,17 +117,7 @@ TP_VIEW_TESTS = OrderedDict(
 
 
 @pytest.fixture
-def admin_client(admin, client):
-    """A Django test client logged in as an admin user."""
-    client.login(username=admin.username, password='admin')
-    return client
-
-
-@pytest.fixture
-def project_views(site_permissions, project_view_names,
-                  site_matrix_with_vfolders, site_matrix_with_subdirs,
-                  site_matrix_with_announcements,
-                  default, client, nobody):
+def project_views(project_view_names, client):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_project.models import Project
 
@@ -142,9 +132,7 @@ def project_views(site_permissions, project_view_names,
 
 
 @pytest.fixture
-def tp_views(site_permissions, tp_view_names, site_matrix_with_vfolders,
-             site_matrix_with_subdirs, site_matrix_with_announcements,
-             default, nobody, client):
+def tp_views(tp_view_names, client):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
 
@@ -169,16 +157,13 @@ def tp_views(site_permissions, tp_view_names, site_matrix_with_vfolders,
 
 
 @pytest.fixture
-def language_views(site_permissions, language_view_names,
-                   site_matrix_with_vfolders, site_matrix_with_subdirs,
-                   site_matrix_with_announcements,
-                   default, nobody, client):
+def language_views(language_view_names, client):
 
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_language.models import Language
 
     test_type = language_view_names.split("_")[0]
-    language = Language.objects.all()[0]
+    language = Language.objects.get(code="language0")
     kwargs = {"language_code": language.code}
     kwargs.update(LANGUAGE_VIEW_TESTS[language_view_names])
     view_name = "pootle-language-%s" % test_type
@@ -188,10 +173,7 @@ def language_views(site_permissions, language_view_names,
 
 
 @pytest.fixture
-def bad_views(site_permissions, bad_view_names, case_sensitive_schema,
-              site_matrix_with_vfolders, site_matrix_with_subdirs,
-              site_matrix_with_announcements,
-              default, nobody, client):
+def bad_views(bad_view_names, client):
     test = dict(code=404)
     test.update(BAD_VIEW_TESTS[bad_view_names])
     return (

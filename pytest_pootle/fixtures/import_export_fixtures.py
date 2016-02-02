@@ -68,7 +68,7 @@ def ts_directory(request, tmpdir):
 
 
 @pytest.fixture
-def en_tutorial_ts(settings, english_tutorial, system, ts_directory):
+def en_tutorial_ts(settings, english_tutorial, ts_directory):
     """Require the en/tutorial/tutorial.ts store."""
     return store._require_store(english_tutorial,
                                 ts_directory,

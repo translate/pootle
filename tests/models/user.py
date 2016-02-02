@@ -22,6 +22,9 @@ import accounts
 from pootle_store.util import FUZZY, TRANSLATED
 
 
+User = get_user_model()
+
+
 def _make_evil_member_updates(store, evil_member):
     # evil_member makes following changes:
     #   - rejects member's suggestion on unit
@@ -163,11 +166,11 @@ def test_merge_user(en_tutorial_po, member, member2):
 
 
 @pytest.mark.django_db
-def test_delete_user(en_tutorial_po, member, nobody):
+def test_delete_user(en_tutorial_po, member):
     """Test default behaviour of User.delete - merge to nobody"""
     unit = _create_submission_and_suggestion(en_tutorial_po, member)
     member.delete()
-    _test_user_merged(unit, member, nobody)
+    _test_user_merged(unit, member, User.objects.get_nobody_user())
 
 
 @pytest.mark.django_db

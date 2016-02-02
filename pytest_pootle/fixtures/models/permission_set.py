@@ -7,8 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import pytest
-
 
 def _require_permission_set(user, directory, positive_permissions=None,
                             negative_permissions=None):
@@ -28,15 +26,3 @@ def _require_permission_set(user, directory, positive_permissions=None,
     permission_set.save()
 
     return permission_set
-
-
-@pytest.fixture
-def nobody_ps(nobody, root, view, suggest):
-    """Require permission sets at the root for the `nobody` user."""
-    return _require_permission_set(nobody, root, [view, suggest])
-
-
-@pytest.fixture
-def default_ps(default, root, view, suggest, translate):
-    """Require permission sets at the root for the `default` user."""
-    return _require_permission_set(default, root, [view, suggest, translate])

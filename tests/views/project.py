@@ -163,7 +163,7 @@ def _test_export_view(project, request, response, kwargs):
 
 
 @pytest.mark.django_db
-def test_views_project(site_permissions, project_views, settings):
+def test_views_project(project_views, settings):
     test_type, project, request, response, kwargs = project_views
     if test_type == "browse":
         _test_browse_view(project, request, response, kwargs)
@@ -174,9 +174,7 @@ def test_views_project(site_permissions, project_views, settings):
 
 
 @pytest.mark.django_db
-def test_view_projects_browse(site_permissions, site_matrix_with_vfolders,
-                              site_matrix_with_announcements,
-                              client, nobody, default):
+def test_view_projects_browse(client):
     response = client.get(reverse("pootle-projects-browse"))
     assert response.cookies["pootle-language"].value == "projects"
     ctx = response.context
@@ -217,8 +215,7 @@ def test_view_projects_browse(site_permissions, site_matrix_with_vfolders,
 
 
 @pytest.mark.django_db
-def test_view_projects_translate(site_permissions, site_matrix_with_vfolders,
-                                 client, nobody, default, settings):
+def test_view_projects_translate(client, settings):
     response = client.get(reverse("pootle-projects-translate"))
     ctx = response.context
     request = response.wsgi_request
@@ -247,8 +244,7 @@ def test_view_projects_translate(site_permissions, site_matrix_with_vfolders,
 
 
 @pytest.mark.django_db
-def test_view_projects_export(site_permissions, site_matrix_with_vfolders,
-                              client, nobody, default):
+def test_view_projects_export(client):
     response = client.get(reverse("pootle-projects-export"))
     ctx = response.context
     request = response.wsgi_request
