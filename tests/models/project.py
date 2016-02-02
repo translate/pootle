@@ -13,11 +13,13 @@ from pytest_pootle.factories import UserFactory
 from pytest_pootle.fixtures.models.permission_set import _require_permission_set
 from pytest_pootle.utils import items_equal
 
+from pootle_app.models import Directory
 from pootle_project.models import Project
 
 
 @pytest.mark.django_db
 def test_no_root_view_permissions(nobody, default, admin, view,
+                                  no_permission_sets, no_projects,
                                   project_foo, project_bar):
     """Tests user-accessible projects when there are no permissions set at
     the root.
@@ -54,6 +56,7 @@ def test_no_root_view_permissions(nobody, default, admin, view,
 
 @pytest.mark.django_db
 def test_root_view_permissions(nobody, default, admin, view,
+                               no_projects, no_permission_sets,
                                project_foo, project_bar, root):
     """Tests user-accessible projects with view permissions at the root."""
     ALL_PROJECTS = [project_foo.code, project_bar.code]
@@ -97,10 +100,12 @@ def test_root_view_permissions(nobody, default, admin, view,
 
 @pytest.mark.django_db
 def test_no_root_hide_permissions(nobody, default, admin, hide, view,
+                                  no_projects, no_permission_sets,
                                   project_foo, project_bar, root):
     """Tests user-accessible projects when there are no `hide` permissions
     set at the root.
     """
+
     ALL_PROJECTS = [project_foo.code, project_bar.code]
 
     foo_user = UserFactory.create(username='foo')
@@ -144,10 +149,12 @@ def test_no_root_hide_permissions(nobody, default, admin, hide, view,
 
 @pytest.mark.django_db
 def test_root_hide_permissions(nobody, default, admin, hide, view,
+                               no_permission_sets, no_projects,
                                project_foo, project_bar, root):
     """Tests user-accessible projects when there are `hide` permissions
     set at the root.
     """
+
     ALL_PROJECTS = [project_foo.code, project_bar.code]
 
     foo_user = UserFactory.create(username='foo')

@@ -94,7 +94,7 @@ def test_apiview_get_single(rf):
 
 
 @pytest.mark.django_db
-def test_apiview_get_multiple(rf):
+def test_apiview_get_multiple(rf, no_extra_users):
     """Tests retrieving multiple objects using the API."""
     view = UserAPIView.as_view()
     UserFactory.create(username='foo')

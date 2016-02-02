@@ -38,7 +38,10 @@ from fixtures.import_export_fixtures import (
     FILE_IMPORT_FAIL_TESTS,
     file_import_failure, ts_directory, en_tutorial_ts)
 from fixtures.revision import revision
-from fixtures.site import post_db_setup
+from fixtures.site import (
+    no_extra_users,
+    no_projects, no_permissions, no_permission_sets, no_submissions, no_users,
+    post_db_setup)
 from fixtures.views import (
     BAD_VIEW_TESTS, bad_views,
     LANGUAGE_VIEW_TESTS, language_views,
@@ -70,7 +73,8 @@ __all__ = (
     'spanish_tutorial', 'templates_tutorial', 'delete_pattern',
     'en_tutorial_ts', 'file_import_failure', 'ts_directory', 'revision',
     'admin_client', 'project_views', 'tp_views', 'language_views',
-    'bad_views', 'post_db_setup')
+    'bad_views', 'post_db_setup', 'no_projects', 'no_permission_sets',
+    'no_permissions', 'no_submissions', 'no_users', 'no_extra_users')
 
 
 PARAMETERS = (
