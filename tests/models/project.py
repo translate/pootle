@@ -145,6 +145,7 @@ def test_no_root_hide_permissions(nobody, default, admin, hide, view,
 @pytest.mark.django_db
 def test_root_hide_permissions(nobody, default, admin, hide, view,
                                project_foo, project_bar, root):
+
     """Tests user-accessible projects when there are `hide` permissions
     set at the root.
     """
