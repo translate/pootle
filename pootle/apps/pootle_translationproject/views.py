@@ -143,6 +143,8 @@ class TPMixin(object):
 
     @cached_property
     def project(self):
+        if self.tp.project.disabled and not self.request.profile.is_superuser:
+            raise Http404
         return self.tp.project
 
     @cached_property

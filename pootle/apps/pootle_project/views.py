@@ -49,9 +49,12 @@ class ProjectMixin(object):
 
     @cached_property
     def project(self):
-        return get_object_or_404(
+        project = get_object_or_404(
             Project.objects.select_related("directory"),
             code=self.kwargs["project_code"])
+        if project.disabled and not self.request.profile.is_superuser:
+            raise Http404
+        return project
 
     @property
     def url_kwargs(self):
