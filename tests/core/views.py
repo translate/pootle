@@ -70,7 +70,7 @@ def test_apiview_invalid_method(rf):
     assert response.status_code == 405
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_apiview_get_single(rf):
     """Tests retrieving a single object using the API."""
     view = UserAPIView.as_view()
@@ -93,7 +93,7 @@ def test_apiview_get_single(rf):
         view(request, id='7')
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_apiview_get_multiple(rf):
     """Tests retrieving multiple objects using the API."""
     view = UserAPIView.as_view()
@@ -148,7 +148,7 @@ def test_apiview_get_multiple(rf):
     assert len(response_data['models']) == 1
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_apiview_post(rf):
     """Tests creating a new object using the API."""
     view = WriteableUserAPIView.as_view()
@@ -196,7 +196,7 @@ def test_apiview_post(rf):
     assert 'errors' in response_data
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_apiview_put(rf):
     """Tests updating an object using the API."""
     view = WriteableUserAPIView.as_view()
@@ -256,7 +256,7 @@ def test_apiview_put(rf):
     assert 'password' not in response_data
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_apiview_delete(rf, trans_nobody):
     """Tests deleting an object using the API."""
     view = UserAPIView.as_view()
@@ -281,7 +281,7 @@ def test_apiview_delete(rf, trans_nobody):
         view(request, id=user.id)
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_apiview_search(rf):
     """Tests filtering through a search query."""
     # Note that `UserAPIView` is configured to search in all defined fields,

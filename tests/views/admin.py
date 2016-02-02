@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse_lazy
 ADMIN_URL = reverse_lazy('pootle-admin')
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_admin_not_logged_in(client):
     """Checks logged-out users cannot access the admin site."""
     response = client.get(ADMIN_URL)

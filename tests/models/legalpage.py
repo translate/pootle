@@ -16,7 +16,7 @@ from pootle.core.utils.timezone import aware_datetime
 from staticpages.models import LegalPage
 
 
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db
 def test_pending_agreements():
     """Tests proper user pending agreements are returned."""
     foo_user = UserFactory.create(username='foo')
