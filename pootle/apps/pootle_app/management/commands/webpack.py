@@ -31,6 +31,13 @@ class Command(BaseCommand):
             default=False,
             help='Enable development builds and watch for changes.',
         ),
+        make_option(
+            '--extra',
+            action='append',
+            dest='extra',
+            default=[],
+            help='Additional options to pass to the JavaScript webpack tool.',
+        ),
     )
 
     def handle(self, *args, **options):
@@ -52,6 +59,8 @@ class Command(BaseCommand):
             args.extend(['--watch',  '--display-error-details'])
         else:
             os.environ['NODE_ENV'] = 'production'
+
+        args.extend(options['extra'])
 
         static_base = l(settings.STATIC_URL)
         suffix = 'js/' if static_base.endswith('/') else '/js/'
