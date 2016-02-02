@@ -109,7 +109,7 @@ def test_apiview_get_multiple(rf):
     assert isinstance(response_data, dict)
     assert 'count' in response_data
     assert 'models' in response_data
-    assert len(response_data['models']) == 1
+    assert len(response_data['models']) == User.objects.count()
 
     # Let's add more users
     UserFactory.create_batch(5)
@@ -121,7 +121,7 @@ def test_apiview_get_multiple(rf):
     assert isinstance(response_data, dict)
     assert 'count' in response_data
     assert 'models' in response_data
-    assert len(response_data['models']) == 6
+    assert len(response_data['models']) == User.objects.count()
 
     # Let's add even more users to test pagination
     UserFactory.create_batch(5)
@@ -145,7 +145,7 @@ def test_apiview_get_multiple(rf):
     assert isinstance(response_data, dict)
     assert 'count' in response_data
     assert 'models' in response_data
-    assert len(response_data['models']) == 1
+    assert len(response_data['models']) == User.objects.count() - 10
 
 
 @pytest.mark.django_db
