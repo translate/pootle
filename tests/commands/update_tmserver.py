@@ -27,6 +27,14 @@ def test_update_tmserver_nosetting(capfd, afrikaans_tutorial):
 @pytest.mark.django_db
 def test_update_tmserver_noargs(capfd, afrikaans_tutorial, settings):
     """Load TM from the database"""
+
+    from pootle_store.models import Unit
+
+    units_qs = (
+        Unit.objects
+            .exclude(target_f__isnull=True)
+            .exclude(target_f__exact=''))
+
     settings.POOTLE_TM_SERVER = {
         'local': {
             'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
@@ -38,7 +46,8 @@ def test_update_tmserver_noargs(capfd, afrikaans_tutorial, settings):
     call_command('update_tmserver')
     out, err = capfd.readouterr()
     assert "Last indexed revision = -1" in out
-    assert "5 translations to index" in out
+
+    assert ("%d translations to index" % units_qs.count()) in out
 
 
 @pytest.mark.cmd
