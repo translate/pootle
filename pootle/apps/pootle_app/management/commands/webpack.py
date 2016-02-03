@@ -30,6 +30,13 @@ class Command(BaseCommand):
             help='Enable development builds and watch for changes.',
         )
         parser.add_argument(
+            '--nowatch',
+            action='store_false',
+            dest='watch',
+            default=True,
+            help='Disable watching for changes.',
+        )
+        parser.add_argument(
             '--progress',
             action='store_true',
             default=False,
@@ -63,7 +70,8 @@ class Command(BaseCommand):
                         webpack_progress, webpack_colors]
 
         if options['dev']:
-            webpack_args.extend(['--watch', '--display-error-details'])
+            watch = '--watch' if options['watch'] else ''
+            webpack_args.extend([watch, '--display-error-details'])
         else:
             os.environ['NODE_ENV'] = 'production'
 
