@@ -85,6 +85,10 @@ mo:
 mo-all:
 	python setup.py build_mo --all
 
+jslint:
+	cd ${JS_DIR} \
+	&& npm run lint
+
 pep8:
 	@./pootle/tools/pep8.sh travis
 

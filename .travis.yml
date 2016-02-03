@@ -2,17 +2,11 @@
 sudo: false
 language: python
 env:
-  - TOXENV=py27-django18-sqlite
-  - TOXENV=py27-django18-mysql
-  - TOXENV=py27-django18-postgres
+  - TOXENV=py27-django18-sqlite PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django18-mysql PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django18-postgres PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
   # Meta
-  - TOXENV=sdist
-  - TOXENV=eslint
-  - TOXENV=docs
-  - TOXENV=mo
-  - TOXENV=isort
-  - TOXENV=pep8_flake8
-  - TOXENV=pep257
+  - TOXENV=project PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
 matrix:
   allow_failures:
     - env: TOXENV=isort
@@ -23,14 +17,17 @@ cache:
     - pootle/static/js/node_modules
     - pootle/assets
     - $HOME/.cache/pip
-    - docs/_build
-    - .tox
 before_install:
   # Error as early as possible if we can't compile
   - python -m compileall -q -f -x ".*[.]tox.*" .
 install:
   - pip install --upgrade "pip>=8.0" # FIXME remove once Travis support pip8 by default
   - pip install --upgrade "tox>=2.3"
+  - pip install
+      -r requirements/base.txt
+      -r requirements/travis.txt
+      -e .
+
 script:
   - tox -e $TOXENV
 notifications:
