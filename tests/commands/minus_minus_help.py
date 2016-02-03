@@ -10,12 +10,16 @@ import pytest
 
 from django.core.management import call_command, get_commands
 
+CORE_APPS_WITH_COMMANDS = (
+    'accounts', 'pootle_app', 'import_export', 'virtualfolder',
+)
+
 
 @pytest.mark.cmd
 @pytest.mark.parametrize("command,app", [
     (command, app)
     for command, app in get_commands().iteritems()
-    if not app.startswith("django")
+    if app.startswith('pootle_') or app in CORE_APPS_WITH_COMMANDS
 ])
 def test_initdb_help(capfd, command, app):
     """Catch any simple command issues"""
