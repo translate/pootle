@@ -30,6 +30,7 @@ install:
   - pip install --upgrade pip # FIXME remove once Travis support pip7 by default
   - pip install --upgrade tox
 script:
+  - make assets
   - tox -e $TOXENV
 notifications:
   email:
