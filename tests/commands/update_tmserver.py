@@ -25,7 +25,7 @@ def test_update_tmserver_nosetting(capfd, afrikaans_tutorial):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_tmserver_noargs(capfd, afrikaans_tutorial, settings):
+def __test_update_tmserver_noargs(capfd, afrikaans_tutorial, settings):
     """Load TM from the database"""
 
     from pootle_store.models import Unit
