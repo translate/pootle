@@ -28,7 +28,7 @@ assets:
 	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 
 build-test-assets:
-	if [ -d ${ASSETS_DIR} ]; then echo "eating cache - yum!"; else make assets; fi
+	if [ -d "${ASSETS_DIR}.webassets-cache/" ]; then echo "eating cache - yum!"; else make assets; fi
 
 docs:
 	# Make sure that the submodule with docs theme is pulled and up-to-date.
