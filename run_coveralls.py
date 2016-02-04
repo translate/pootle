@@ -28,7 +28,7 @@ if __name__ == '__main__':
     # create a report from the coverage data
     if 'TRAVIS' in os.environ:
         rc = call('coveralls')
-        raise SystemExit(rc)
+        raise SystemExit(0)
     else:
         rc = call(['coverage', 'report'])
         raise SystemExit(rc)
