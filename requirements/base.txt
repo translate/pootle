@@ -14,6 +14,7 @@ cssmin
 diff-match-patch>=20121119
 elasticsearch>=1.0.0,<1.7
 lxml>=2.2.0
+python-levenshtein
 rq>=0.5.0,<=0.5.6
 
 # Translate Toolkit

@@ -25,6 +25,9 @@ Details of changes
   scores calculation.
 - :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter, as
   it was misleading and had questionable effects.
+- :setting:`POOTLE_TM_SERVER` now accepts a ``MIN_SIMILARITY`` parameter, to
+  filter out results which might be irrelevant. To learn more, check the
+  documenation on :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>`.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

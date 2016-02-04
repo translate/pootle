@@ -312,8 +312,9 @@ Translation environment configuration settings.
 
   .. versionchanged:: 2.7.3
 
-     Added the :setting:`WEIGHT <POOTLE_TM_SERVER-WEIGHT>` option. Also added
-     another default TM used to import external translations from files.
+     Added the :setting:`WEIGHT <POOTLE_TM_SERVER-WEIGHT>` and
+     :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>` options. Also
+     added another default TM used to import external translations from files.
 
 
   Default: ``{}`` (empty dict)
@@ -357,6 +358,15 @@ Translation environment configuration settings.
   ``WEIGHT`` provides a weighting factor to alter the final score for TM
   results from this TM server. Valid values are between ``0.0`` and ``1.0``,
   both included. Defaults to ``1.0`` if not provided.
+
+  .. setting:: POOTLE_TM_SERVER-MIN_SIMILARITY
+
+  ``MIN_SIMILARITY`` serves as a threshold value to filter out results that are
+  potentially too far from the source text. The Levenshtein distance is
+  considered when measuring how similar the text is from the source text, and
+  this represents a real value in the (0..1) range, 1 being 100% similarity.
+  The default value (0.7) should work fine in most cases, although your mileage
+  might vary.
 
 
 .. setting:: POOTLE_MT_BACKENDS
