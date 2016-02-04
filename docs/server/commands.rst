@@ -142,6 +142,12 @@ recalculate only the ``date_format`` quality checks, run:
 
     $ pootle calculate_checks --check=date_format
 
+Multiple checks can be specifed in one run as well:
+
+.. code-block:: bash
+
+    $ pootle calculate_checks --check=date_format --check=accelerators
+
 
 .. django-admin:: clear_stats
 
