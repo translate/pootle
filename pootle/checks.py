@@ -321,14 +321,6 @@ def check_settings(app_configs=None, **kwargs):
                     id="pootle.C012",
                 ))
 
-            if 'MIN_SCORE' not in settings.POOTLE_TM_SERVER[server]:
-                errors.append(checks.Critical(
-                    _("POOTLE_TM_SERVER['%s'] has no MIN_SCORE.", server),
-                    hint=_("Set a MIN_SCORE for POOTLE_TM_SERVER['%s'].",
-                           server),
-                    id="pootle.C013",
-                ))
-
             if ('WEIGHT' in settings.POOTLE_TM_SERVER[server] and
                 not (0.0 <= settings.POOTLE_TM_SERVER[server]['WEIGHT']
                      <= 1.0)):

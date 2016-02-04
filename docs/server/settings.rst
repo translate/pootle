@@ -329,7 +329,6 @@ Translation environment configuration settings.
             'PORT': 9200,
             'INDEX_NAME': 'translations',
             'WEIGHT': 1,
-            'MIN_SCORE': 'AUTO',
         },
         'external': {
             'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
@@ -337,7 +336,6 @@ Translation environment configuration settings.
             'PORT': 9200,
             'INDEX_NAME': 'external-translations',
             'WEIGHT': 0.9,
-            'MIN_SCORE': 'AUTO',
         },
     }
 
@@ -345,12 +343,6 @@ Translation environment configuration settings.
   This is configured to access a standard Elasticsearch setup.  Change the
   settings for any non-standard setup.  Change ``HOST`` and ``PORT`` settings
   as required.
-
-  Use ``MIN_SCORE`` to set the Levenshtein Distance score.  Set it to ``AUTO``
-  so that Elasticsearch will adjust the required score depending on the length
-  of the string being translated. Elasticsearch documentation provides further
-  details on `Fuzzy matching
-  <https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html#fuzziness>`_.
 
   The default ``local`` TM is automatically updated every time a new
   translation is submitted. The other TMs are not automatically updated so they

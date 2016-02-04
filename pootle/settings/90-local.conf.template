@@ -111,9 +111,6 @@ DATABASES = {
 #        # from this TM server. Valid values are between ``0.0`` and ``1.0``,
 #        # both included. Defaults to ``1.0`` if not provided.
 #        'WEIGHT': 1.0,
-#        # For valid values for MIN_SCORE see
-#        # http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/common-options.html#fuzziness
-#        'MIN_SCORE': 'AUTO',
 #    },
 #    'external': {
 #        'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
@@ -121,7 +118,6 @@ DATABASES = {
 #        'PORT': 9200,
 #        'INDEX_NAME': 'external-translations',
 #        'WEIGHT': 0.9,
-#        'MIN_SCORE': 'AUTO',
 #    },
 #}
 

@@ -23,6 +23,8 @@ Details of changes
 
 - :setting:`POOTLE_SCORE_COEFFICIENTS` accepts custom settings for user
   scores calculation.
+- :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter, as
+  it was misleading and had questionable effects.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of

@@ -74,7 +74,7 @@ class ElasticSearchBackend(SearchBackend):
                     "match": {
                         "source": {
                             "query": unit.source,
-                            "fuzziness": self._settings['MIN_SCORE'],
+                            "fuzziness": 'AUTO',
                         }
                     }
                 }
