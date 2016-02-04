@@ -316,6 +316,10 @@ class ENChecker(checks.TranslationChecker):
 
     @critical
     def uppercase_placeholders(self, str1, str2):
+        # Ignore check for Plurr-formatted strings
+        if plurr_format_regex.search(str1):
+            return True
+
         return _generic_check(str1, str2, uppercase_placeholders_regex,
                               u"uppercase_placeholders")
 
@@ -754,6 +758,10 @@ class ENChecker(checks.TranslationChecker):
             )
 
             return fingerprint
+
+        # Ignore check for Plurr-formatted strings
+        if plurr_format_regex.search(str1):
+            return True
 
         if check_translation(get_fingerprint, str1, str2):
             return True

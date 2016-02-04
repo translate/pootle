@@ -110,6 +110,30 @@ def test_incorrectly_escaped_ampersands():
     do_test(check, tests)
 
 
+def test_uppercase_placeholders():
+    check = checker.uppercase_placeholders
+    tests = [
+        (u'NAME_COUNT', u'name_count', False),
+        (u'NAME_COUNT', u'NaMe_CouNT', False),
+        (u'NAME_COUNT', u'NAME_COUNT', True),
+
+        (u'NAME6_', u'name_', False),
+        (u'NAME6_', u'name_count', False),
+        (u'NAME6_', u'NAME7_', False),
+        (u'NAME6_', u'NAME6_', True),
+
+        # Ignore the check altogether for Plurr-like source strings
+        (u'{:{BAR}}', u'Foo', True),
+        (u'{:{:a|b}|c}', u'Foo', True),
+        (u'{FOO:{BAR}}', u'Foo', True),
+        (u'{FOO:{BAR:a|b}|c}', u'Foo', True),
+        (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
+        (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo', True),
+    ]
+
+    do_test(check, tests)
+
+
 def test_mustache_placeholders():
     check = checker.mustache_placeholders
     tests = [
@@ -230,6 +254,42 @@ def test_tags_differ():
         (u'<a href="">a</a>', u'<a href="">a</a>', True),
         (u'<a href="">a</a>', u'<a href="">a<a>', False),
         (u'<a class="a">a</a>', u'<b class="b">a</b>', False),
+    ]
+
+    do_test(check, tests)
+
+
+def test_accelerators():
+    check = checker.accelerators
+    tests = [
+        (u'&Foo', u'Foo', False),
+        (u'&Foo', u'_Foo', False),
+        (u'&Foo', u'^Foo', False),
+
+        (u'^Foo', u'Foo', False),
+        (u'^Foo', u'_Foo', False),
+        (u'^Foo', u'&Foo', False),
+
+        (u'_Foo', u'Foo', False),
+        (u'_Foo', u'&Foo', False),
+        (u'_Foo', u'^Foo', False),
+
+        (u'&Foo', u'&foo', True),
+        (u'&Foo', u'bar&foo', True),
+
+        (u'^Foo', u'^foo', True),
+        (u'^Foo', u'bar^foo', True),
+
+        (u'_Foo', u'_foo', True),
+        (u'_Foo', u'bar_foo', True),
+
+        # Ignore the check altogether for Plurr-like source strings
+        (u'{:{BAR}}', u'Foo', True),
+        (u'{:{:a|b}|c}', u'Foo', True),
+        (u'{FOO:{BAR}}', u'Foo', True),
+        (u'{FOO:{BAR:a|b}|c}', u'Foo', True),
+        (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
+        (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo', True),
     ]
 
     do_test(check, tests)
