@@ -1,5 +1,6 @@
 -r tests.txt
 
+tox>=2.3
 MySQL-python
 psycopg2
 coverage

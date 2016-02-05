@@ -7,27 +7,18 @@ env:
   - TOXENV=py27-django18-postgres PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
   # Meta
   - TOXENV=project PYTHONPATH=$HOME/virtualenv/python2.7.9/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
-matrix:
-  allow_failures:
-    - env: TOXENV=isort
-before_cache:
-  - rm -f $HOME/.cache/pip/log/debug.log
 cache:
   directories:
     - pootle/static/js/node_modules
     - pootle/assets
-    - $HOME/.cache/pip
-before_install:
-  # Error as early as possible if we can't compile
-  - python -m compileall -q -f -x ".*[.]tox.*" .
+    - $HOME/virtualenv/python2.7.9/lib
+    - $HOME/virtualenv/python2.7/bin
 install:
-  - pip install --upgrade "pip>=8.0" # FIXME remove once Travis support pip8 by default
-  - pip install --upgrade "tox>=2.3"
+  # - pip install "pip==8.0.2" # FIXME remove once Travis support pip8 by default
   - pip install
       -r requirements/base.txt
       -r requirements/travis.txt
       -e .
-
 script:
   - tox -e $TOXENV
 notifications:
