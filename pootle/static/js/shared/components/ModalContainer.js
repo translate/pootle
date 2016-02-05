@@ -71,9 +71,11 @@ const ModalContainer = React.createClass({
     return (
       <div className="lightbox-bg">
         <div className="lightbox-container">
-          <div className={cx('lightbox-body', this.props.className)}
-               style={this.props.style}
-               tabIndex="-1">
+          <div
+            className={cx('lightbox-body', this.props.className)}
+            style={this.props.style}
+            tabIndex="-1"
+          >
             {this.props.children}
           </div>
         </div>
