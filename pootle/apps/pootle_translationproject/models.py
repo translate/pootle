@@ -286,10 +286,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                 for template_store in template_stores.iterator():
                     init_store_from_template(self, template_store)
 
-                changed = self.update_from_disk()
-                # If this TP has no stores, cache should be updated forcibly.
-                if not changed:
-                    self.update_all_cache()
+                self.update_from_disk()
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -326,13 +323,28 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         return self.project.code in Project.accessible_by_user(user)
 
-    def update_from_disk(self):
+    def update_from_disk(self, force=False, overwrite=False):
         changed = False
         # Create new, make obsolete in-DB stores to reflect state on disk
         self.scan_files()
+
+        stores = self.stores.live().select_related('parent').exclude(file='')
         # Update store content from disk store
-        for store in self.stores.live().exclude(file='').iterator():
-            changed = store.update_from_disk() or changed
+        for store in stores.iterator():
+            if not store.file:
+                continue
+            disk_mtime = store.get_file_mtime()
+            if not force and disk_mtime == store.file_mtime:
+                # The file on disk wasn't changed since the last sync
+                logging.debug(u"File didn't change since last sync, "
+                              "skipping %s", store.pootle_path)
+                continue
+
+            changed = store.update_from_disk(overwrite=overwrite) or changed
+
+        # If this TP has no stores, cache should be updated forcibly.
+        if not changed and stores.count() == 0:
+            self.update_all_cache()
 
         return changed
 
