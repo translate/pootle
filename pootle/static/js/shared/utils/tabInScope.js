@@ -10,19 +10,13 @@ import tabbable from 'tabbable';
 
 
 export default function tabInScope(scopeNode, e) {
-  e.preventDefault();
-
   const tabbableNodes = tabbable(scopeNode);
-  const currentIndex = tabbableNodes.indexOf(document.activeElement);
+  const nodeIndex = tabbableNodes.indexOf(document.activeElement);
 
-  const nodesLength = tabbableNodes.length;
-  let nextIndex;
-  if (e.shiftKey) {
-    // JS modulo is not actually modulo: http://stackoverflow.com/a/4467624/783019
-    nextIndex = (((currentIndex - 1) % nodesLength) + nodesLength) % nodesLength;
-  } else {
-    nextIndex = (currentIndex + 1) % nodesLength;
+  // If it's at the edge of tabbable nodes, manually set the next focused node
+  if ((e.shiftKey && nodeIndex === 0) ||
+      (!e.shiftKey && nodeIndex === (tabbableNodes.length - 1))) {
+    e.preventDefault();
+    tabbableNodes[e.shiftKey ? tabbableNodes.length - 1 : 0].focus();
   }
-
-  tabbableNodes[nextIndex].focus();
 }
