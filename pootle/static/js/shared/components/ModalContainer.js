@@ -9,6 +9,8 @@
 import cx from 'classnames';
 import React from 'react';
 
+import tabInScope from 'utils/tabInScope';
+
 import './lightbox.css';
 
 
@@ -18,6 +20,7 @@ const classNames = {
 
 const keys = {
   ESC: 27,
+  TAB: 9,
 };
 
 
@@ -59,6 +62,9 @@ const ModalContainer = React.createClass({
   /* Handlers */
 
   handleKeyDown(e) {
+    if (e.keyCode === keys.TAB) {
+      tabInScope(this.refs.body, e);
+    }
     if (e.keyCode === keys.ESC) {
       this.props.onClose();
     }
@@ -73,6 +79,7 @@ const ModalContainer = React.createClass({
         <div className="lightbox-container">
           <div
             className={cx('lightbox-body', this.props.className)}
+            ref="body"
             style={this.props.style}
             tabIndex="-1"
           >
