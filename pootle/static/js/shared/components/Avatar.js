@@ -48,7 +48,15 @@ const Avatar = React.createClass({
       imgSrc = `https://secure.gravatar.com/avatar/${emailMd5}?s=${size}&d=mm`;
     }
 
-    const icon = <img src={imgSrc} height={size} width={size} title={title} />;
+    const icon = (
+      <img
+        className="avatar"
+        src={imgSrc}
+        height={size}
+        width={size}
+        title={title}
+      />
+    );
 
     if (username !== undefined) {
       return (

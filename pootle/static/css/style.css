@@ -1773,6 +1773,12 @@ html[dir="rtl"] #tabs li
  * MISC
  */
 
+.avatar
+{
+    display: inline-block;
+    overflow: hidden;
+}
+
 a.collapse,
 a.slide
 {

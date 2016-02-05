@@ -9,7 +9,7 @@
 <div id="user-profile" lang="{{ LANGUAGE_CODE }}">
 
   <div id="user-meta">
-    <img src="{{ object|gravatar:150 }}" width="150" height="150"
+    <img src="{{ object|gravatar:150 }}" width="150" height="150" class="avatar"
     {% if user == object %} title="{% trans "You can set or change your avatar image at www.gravatar.com" %}"{% endif %} />
     <h1 class="user-name">
       {% if object.is_anonymous %}

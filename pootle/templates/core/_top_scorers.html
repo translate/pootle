@@ -14,7 +14,7 @@
       <td class="number">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</td>
       <td class="user">
         <div class="gravatar">
-          <a href="{{ user.get_absolute_url }}"><img src="{{ user|gravatar:30 }}" /></a>
+          <a href="{{ user.get_absolute_url }}"><img src="{{ user|gravatar:30 }}" class="avatar" /></a>
         </div>
         <ul class="properties">
           <li class="name"><a href="{{ user.get_absolute_url }}">{{ user.display_name }}</a></li>

@@ -1,5 +1,6 @@
 {% load profile_tags %}
 <a href="{{ user.get_absolute_url }}">
   <img src="{{ user|gravatar:24 }}" alt="{{ user.display_name }}"
-       width="24" height="24" title="{{ user.display_name|force_escape|force_escape }}" />
+       width="24" height="24" title="{{ user.display_name|force_escape|force_escape }}"
+       class="avatar" />
 </a>
