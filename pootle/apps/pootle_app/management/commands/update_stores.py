@@ -44,9 +44,9 @@ class Command(PootleCommand):
         :return: flag if child stores should be updated
         """
         if translation_project.directory_exists_on_disk():
-            logging.info(u"Scanning for new files in %s", translation_project)
-            translation_project.scan_files()
-            return True
+            translation_project.update_from_disk(
+                force=options['force'], overwrite=options['overwrite'])
+            return False
 
         if translation_project.project.directory_exists_on_disk():
             translation_project.directory.makeobsolete()
