@@ -14,7 +14,6 @@ cache:
     - $HOME/virtualenv/python2.7.9/lib
     - $HOME/virtualenv/python2.7/bin
 install:
-  # - pip install "pip==8.0.2" # FIXME remove once Travis support pip8 by default
   - pip install
       -r requirements/base.txt
       -r requirements/travis.txt
