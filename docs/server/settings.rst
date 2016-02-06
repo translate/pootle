@@ -229,9 +229,9 @@ Configuration settings for applications used by Pootle.
   .. versionadded:: 2.7
 
   The graph of a user's activity, within reports, can be `marked
-  <https://code.google.com/p/flot-marks/>`_  to indicate events by using
-  this function. The setting must contain an import path to such a marking
-  function (string).
+  <https://code.google.com/archive/p/flot-marks/>`_  to indicate events by
+  using this function. The setting must contain an import path to such a
+  marking function (string).
 
   The function receives the user and graph ranges and returns an array of
   applicable marks.

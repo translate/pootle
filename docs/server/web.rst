@@ -98,8 +98,8 @@ If you do not have access to the main Apache configuration, you should still be
 able to configure things correctly using the *.htaccess* file.
 
 `More information
-<http://code.google.com/p/modwsgi/wiki/ConfigurationGuidelines>`_ on
-configuring *mod_wsgi* (including *.htaccess*)
+<https://code.google.com/archive/p/modwsgi/wikis/ConfigurationGuidelines.wiki>`_
+on configuring *mod_wsgi* (including *.htaccess*)
 
 
 .. _nginx:
