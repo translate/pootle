@@ -246,6 +246,9 @@ class TPBrowseBaseView(PootleBrowseView):
                  'has_sidebar': True})
         return ctx
 
+    def post(self, *args, **kwargs):
+        return self.get(*args, **kwargs)
+
 
 class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
     pass
