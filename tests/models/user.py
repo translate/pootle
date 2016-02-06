@@ -52,8 +52,10 @@ def _test_user_merged(unit, src_user, target_user):
         assert src_user.submitted.count() == 0
         assert src_user.suggestions.count() == 0
 
-    assert target_user.submitted.first() == unit
-    assert target_user.suggestions.first() == unit.get_suggestions().first()
+    assert unit in list(target_user.submitted.all())
+    assert (
+        unit.get_suggestions().first()
+        in list(target_user.suggestions.all()))
 
 
 def _test_before_evil_user_updated(store, member, teststate=False):
