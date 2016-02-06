@@ -11,7 +11,7 @@ in May.
 Pootle 2.5.1 has been in production for a number of users, so although it is a
 new official release, we've had many people running their production Pootle
 server off this code.  This includes `Mozilla
-<http://mozilla.locamotion.org/>`_ and `Evernote
+<https://mozilla.locamotion.org/>`_ and `Evernote
 <https://translate.evernote.com/>`_. So you are in good company.
 
 For those who can't wait you might be interested to know what we've got planned
