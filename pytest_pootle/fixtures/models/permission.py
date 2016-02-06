@@ -10,72 +10,54 @@
 import pytest
 
 
-@pytest.fixture
-def pootle_content_type(db):
-    """Require the pootle ContentType."""
+def _require_permission(code, name):
+    """Helper to get/create a new permission."""
+    from django.contrib.auth.models import Permission
     from django.contrib.contenttypes.models import ContentType
 
     args = {
         'app_label': 'pootle_app',
-        'model': 'directory',
-    }
-    content_type, created = ContentType.objects.get_or_create(**args)
-    content_type.save()
-
-    return content_type
-
-
-def _require_permission(code, name, content_type):
-    """Helper to get/create a new permission."""
-    from django.contrib.auth.models import Permission
-
+        'model': 'directory'}
     criteria = {
         'codename': code,
         'name': name,
-        'content_type': content_type,
-    }
+        'content_type': ContentType.objects.get(**args)}
     permission, created = Permission.objects.get_or_create(**criteria)
 
     return permission
 
 
 @pytest.fixture
-def view(pootle_content_type):
+def view():
     """Require the `view` permission."""
-    return _require_permission('view', 'Can access a project',
-                               pootle_content_type)
+    return _require_permission('view', 'Can access a project')
 
 
 @pytest.fixture
-def hide(pootle_content_type):
+def hide():
     """Require the `hide` permission."""
-    return _require_permission('hide', 'Cannot access a project',
-                               pootle_content_type)
+    return _require_permission('hide', 'Cannot access a project')
 
 
 @pytest.fixture
-def suggest(pootle_content_type):
+def suggest():
     """Require the `suggest` permission."""
-    return _require_permission('suggest', 'Can make a suggestion',
-                               pootle_content_type)
+    return _require_permission('suggest', 'Can make a suggestion')
 
 
 @pytest.fixture
-def translate(pootle_content_type):
+def translate():
     """Require the `translate` permission."""
-    return _require_permission('translate', 'Can submit translations',
-                               pootle_content_type)
+    return _require_permission('translate', 'Can submit translations')
 
 
 @pytest.fixture
-def review(pootle_content_type):
+def review():
     """Require the `review` permission."""
-    return _require_permission('review', 'Can review translations',
-                               pootle_content_type)
+    return _require_permission('review', 'Can review translations')
 
 
 @pytest.fixture
-def administrate(pootle_content_type):
+def administrate():
     """Require the `suggest` permission."""
-    return _require_permission('administrate', 'Can administrate a TP',
-                               pootle_content_type)
+    return _require_permission('administrate', 'Can administrate a TP')

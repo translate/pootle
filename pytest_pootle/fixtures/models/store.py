@@ -300,21 +300,21 @@ def po_directory(request):
 
 
 @pytest.fixture
-def af_tutorial_po(settings, afrikaans_tutorial, system):
+def af_tutorial_po(settings, afrikaans_tutorial):
     """Require the /af/tutorial/tutorial.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def en_tutorial_po(settings, english_tutorial, system):
+def en_tutorial_po(settings, english_tutorial):
     """Require the /en/tutorial/tutorial.po store."""
     return _require_store(english_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def en_tutorial_po_no_file(settings, english_tutorial, system):
+def en_tutorial_po_no_file(settings, english_tutorial):
     """Require an empty store."""
     return _require_store(english_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'no_file.po')
@@ -322,7 +322,7 @@ def en_tutorial_po_no_file(settings, english_tutorial, system):
 
 @pytest.fixture
 def en_tutorial_po_member_updated(settings, english_tutorial,
-                                  system, member):
+                                  member):
     """Require the /en/tutorial/tutorial.po store."""
     store = _require_store(english_tutorial,
                            settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -332,14 +332,14 @@ def en_tutorial_po_member_updated(settings, english_tutorial,
 
 
 @pytest.fixture
-def it_tutorial_po(settings, italian_tutorial, system):
+def it_tutorial_po(settings, italian_tutorial):
     """Require the /it/tutorial/tutorial.po store."""
     return _require_store(italian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def af_tutorial_subdir_po(settings, afrikaans_tutorial, system):
+def af_tutorial_subdir_po(settings, afrikaans_tutorial):
     """Require the /af/tutorial/subdir/tutorial.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -347,7 +347,7 @@ def af_tutorial_subdir_po(settings, afrikaans_tutorial, system):
 
 
 @pytest.fixture
-def issue_2401_po(settings, afrikaans_tutorial, system):
+def issue_2401_po(settings, afrikaans_tutorial):
     """Require the /af/tutorial/issue_2401.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -355,7 +355,7 @@ def issue_2401_po(settings, afrikaans_tutorial, system):
 
 
 @pytest.fixture
-def test_get_units_po(settings, afrikaans_tutorial, system):
+def test_get_units_po(settings, afrikaans_tutorial):
     """Require the /af/tutorial/test_get_units.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -363,7 +363,7 @@ def test_get_units_po(settings, afrikaans_tutorial, system):
 
 
 @pytest.fixture
-def fr_tutorial_subdir_to_remove_po(settings, french_tutorial, system):
+def fr_tutorial_subdir_to_remove_po(settings, french_tutorial):
     """Require the /fr/tutorial/subdir_to_remove/tutorial.po store."""
     return _require_store(french_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -371,7 +371,7 @@ def fr_tutorial_subdir_to_remove_po(settings, french_tutorial, system):
 
 
 @pytest.fixture
-def fr_tutorial_remove_sync_po(settings, french_tutorial, system):
+def fr_tutorial_remove_sync_po(settings, french_tutorial):
     """Require the /fr/tutorial/remove_sync_tutorial.po store."""
     return _require_store(french_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -379,7 +379,7 @@ def fr_tutorial_remove_sync_po(settings, french_tutorial, system):
 
 
 @pytest.fixture
-def es_tutorial_subdir_remove_po(settings, spanish_tutorial, system):
+def es_tutorial_subdir_remove_po(settings, spanish_tutorial):
     """Require the /es/tutorial/subdir/remove_tutorial.po store."""
     return _require_store(spanish_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -387,14 +387,14 @@ def es_tutorial_subdir_remove_po(settings, spanish_tutorial, system):
 
 
 @pytest.fixture
-def ru_tutorial_po(settings, russian_tutorial, system):
+def ru_tutorial_po(settings, russian_tutorial):
     """Require the /ru/tutorial/tutorial.po store."""
     return _require_store(russian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def ru_update_save_changed_units_po(settings, russian_tutorial, system):
+def ru_update_save_changed_units_po(settings, russian_tutorial):
     """Require the /ru/tutorial/tutorial.po store."""
     return _require_store(russian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -402,7 +402,7 @@ def ru_update_save_changed_units_po(settings, russian_tutorial, system):
 
 
 @pytest.fixture
-def ru_update_set_last_sync_revision_po(settings, russian_tutorial, system):
+def ru_update_set_last_sync_revision_po(settings, russian_tutorial):
     """Require the /ru/tutorial/tutorial.po store."""
     return _require_store(russian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -410,8 +410,7 @@ def ru_update_set_last_sync_revision_po(settings, russian_tutorial, system):
 
 
 @pytest.fixture
-def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test,
-                                       system):
+def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test):
     """Require the /af/vfolder_test/browser/defines.po store."""
     return _require_store(afrikaans_vfolder_test,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -419,7 +418,7 @@ def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test,
 
 
 @pytest.fixture
-def templates_tutorial_pot(settings, templates_tutorial, system):
+def templates_tutorial_pot(settings, templates_tutorial):
     """Require the /templates/tutorial/tutorial.pot store."""
     return _require_store(templates_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,

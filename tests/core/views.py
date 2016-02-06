@@ -90,11 +90,11 @@ def test_apiview_get_single(rf):
 
     # Non-existent IDs should return 404
     with pytest.raises(Http404):
-        view(request, id='7')
+        view(request, id='777')
 
 
 @pytest.mark.django_db
-def test_apiview_get_multiple(rf):
+def test_apiview_get_multiple(rf, no_extra_users):
     """Tests retrieving multiple objects using the API."""
     view = UserAPIView.as_view()
     UserFactory.create(username='foo')
@@ -257,7 +257,7 @@ def test_apiview_put(rf):
 
 
 @pytest.mark.django_db
-def test_apiview_delete(rf, trans_nobody):
+def test_apiview_delete(rf):
     """Tests deleting an object using the API."""
     view = UserAPIView.as_view()
 

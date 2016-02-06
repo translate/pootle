@@ -9,6 +9,7 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.http import Http404
 
 from pootle.core.decorators import get_path_obj, get_resource
@@ -19,8 +20,11 @@ from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 
+User = get_user_model()
+
+
 @pytest.mark.django_db
-def test_get_path_obj(rf, default, afrikaans_tutorial):
+def test_get_path_obj(rf, afrikaans_tutorial):
     """Ensure the correct path object is retrieved."""
     language_code = afrikaans_tutorial.language.code
     project_code = afrikaans_tutorial.project.code
@@ -29,7 +33,7 @@ def test_get_path_obj(rf, default, afrikaans_tutorial):
     project_code_fake = 'fake-tutorial'
 
     request = rf.get('/')
-    request.user = default
+    request.user = User.objects.get_default_user()
 
     # Fake decorated function
     func = get_path_obj(lambda x, y: (x, y))
@@ -61,7 +65,7 @@ def test_get_path_obj(rf, default, afrikaans_tutorial):
 
 
 @pytest.mark.django_db
-def test_get_path_obj_disabled(rf, default, admin, project_foo,
+def test_get_path_obj_disabled(rf, admin, project_foo,
                                afrikaans_tutorial,
                                arabic_tutorial_obsolete,
                                tutorial_disabled):
@@ -75,7 +79,7 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
 
     # Regular users first
     request = rf.get('/')
-    request.user = default
+    request.user = User.objects.get_default_user()
 
     func = get_path_obj(lambda x, y: (x, y))
 
@@ -121,7 +125,7 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
 
 
 @pytest.mark.django_db
-def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
+def test_get_resource_tp(rf, tutorial, afrikaans_tutorial):
     """Tests that the correct resources are set for the given TP contexts."""
     store_name = 'tutorial.po'
     subdir_name = 'subdir/'
@@ -130,7 +134,7 @@ def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
     store_name_fake = 'fake_store.po'
 
     request = rf.get('/')
-    request.user = default
+    request.user = User.objects.get_default_user()
 
     # Fake decorated function
     func = get_resource(lambda x, y, s, t: (x, y, s, t))
@@ -163,7 +167,7 @@ def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
 
 
 @pytest.mark.django_db
-def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
+def test_get_resource_project(rf, tutorial, afrikaans_tutorial,
                               arabic_tutorial_obsolete):
     """Tests that the correct resources are set for the given Project
     contexts.
@@ -172,7 +176,7 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     subdir_name = 'subdir/'
 
     request = rf.get('/')
-    request.user = default
+    request.user = User.objects.get_default_user()
 
     # Fake decorated function
     func = get_resource(lambda x, y, s, t: (x, y, s, t))

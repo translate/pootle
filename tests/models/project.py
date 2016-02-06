@@ -9,19 +9,28 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
+
 from pytest_pootle.factories import UserFactory
 from pytest_pootle.fixtures.models.permission_set import _require_permission_set
 from pytest_pootle.utils import items_equal
 
+from pootle_app.models import Directory
 from pootle_project.models import Project
 
 
+User = get_user_model()
+
+
 @pytest.mark.django_db
-def test_no_root_view_permissions(nobody, default, admin, view,
+def test_no_root_view_permissions(admin, view,
+                                  no_permission_sets, no_projects,
                                   project_foo, project_bar):
     """Tests user-accessible projects when there are no permissions set at
     the root.
     """
+    nobody = User.objects.get_nobody_user()
+    default = User.objects.get_default_user()
     ALL_PROJECTS = [project_foo.code, project_bar.code]
 
     foo_user = UserFactory.create(username='foo')
@@ -53,13 +62,17 @@ def test_no_root_view_permissions(nobody, default, admin, view,
 
 
 @pytest.mark.django_db
-def test_root_view_permissions(nobody, default, admin, view,
-                               project_foo, project_bar, root):
+def test_root_view_permissions(admin, view,
+                               no_projects, no_permission_sets,
+                               project_foo, project_bar):
     """Tests user-accessible projects with view permissions at the root."""
-    ALL_PROJECTS = [project_foo.code, project_bar.code]
 
+    nobody = User.objects.get_nobody_user()
+    default = User.objects.get_default_user()
     foo_user = UserFactory.create(username='foo')
     bar_user = UserFactory.create(username='bar')
+    root = Directory.objects.root
+    ALL_PROJECTS = [project_foo.code, project_bar.code]
 
     # We'll only give `bar_user` access to all projects server-wide
     _require_permission_set(bar_user, root, [view])
@@ -96,15 +109,19 @@ def test_root_view_permissions(nobody, default, admin, view,
 
 
 @pytest.mark.django_db
-def test_no_root_hide_permissions(nobody, default, admin, hide, view,
-                                  project_foo, project_bar, root):
+def test_no_root_hide_permissions(admin, hide, view,
+                                  no_projects, no_permission_sets,
+                                  project_foo, project_bar):
     """Tests user-accessible projects when there are no `hide` permissions
     set at the root.
     """
+    nobody = User.objects.get_nobody_user()
+    default = User.objects.get_default_user()
     ALL_PROJECTS = [project_foo.code, project_bar.code]
 
     foo_user = UserFactory.create(username='foo')
     bar_user = UserFactory.create(username='bar')
+    root = Directory.objects.root
 
     # By default everyone has access to projects
     _require_permission_set(default, root, [view])
@@ -143,15 +160,19 @@ def test_no_root_hide_permissions(nobody, default, admin, hide, view,
 
 
 @pytest.mark.django_db
-def test_root_hide_permissions(nobody, default, admin, hide, view,
-                               project_foo, project_bar, root):
+def test_root_hide_permissions(admin, hide, view,
+                               no_permission_sets, no_projects,
+                               project_foo, project_bar):
     """Tests user-accessible projects when there are `hide` permissions
     set at the root.
     """
+    nobody = User.objects.get_nobody_user()
+    default = User.objects.get_default_user()
     ALL_PROJECTS = [project_foo.code, project_bar.code]
 
     foo_user = UserFactory.create(username='foo')
     bar_user = UserFactory.create(username='bar')
+    root = Directory.objects.root
 
     # By default all projects are not accessible
     _require_permission_set(default, root, negative_permissions=[hide])

@@ -13,7 +13,7 @@ from django.core.management import call_command
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_find_duplicate_emails_nodups(capfd, nobody, system, admin):
+def test_find_duplicate_emails_nodups(capfd, no_extra_users):
     """No duplicates found.
 
     Standard users shouldn't flag any error.

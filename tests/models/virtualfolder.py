@@ -165,7 +165,7 @@ def test_vfolder_with_no_filter_rules():
 
 
 @pytest.mark.django_db
-def test_vfolder_membership(site_matrix):
+def test_vfolder_membership():
 
     vfolder = VirtualFolderFactory(filter_rules="store0.po")
 
@@ -214,7 +214,12 @@ def test_vfolder_membership(site_matrix):
 
 
 @pytest.mark.django_db
-def test_vfolder_unit_priorities(site_matrix):
+def test_vfolder_unit_priorities():
+    from virtualfolder.models import VirtualFolder
+
+    # remove the default vfolders and update units to reset priorities
+    VirtualFolder.objects.all().delete()
+    [unit.save() for unit in Unit.objects.all()]
 
     assert all(
         priority == 1

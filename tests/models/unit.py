@@ -177,11 +177,12 @@ def test_update_comment(af_tutorial_po):
 
 
 @pytest.mark.django_db
-def test_add_suggestion(af_tutorial_po, system):
+def test_add_suggestion(af_tutorial_po):
     """Tests adding new suggestions to units."""
     untranslated_unit = af_tutorial_po.getitem(0)
     translated_unit = af_tutorial_po.getitem(1)
     suggestion_text = 'foo bar baz'
+    system = User.objects.get_system_user()
 
     # Empty suggestion is not recorded
     sugg, added = untranslated_unit.add_suggestion('')
@@ -217,7 +218,7 @@ def test_add_suggestion(af_tutorial_po, system):
 
 
 @pytest.mark.django_db
-def test_accept_suggestion_changes_state(issue_2401_po, system):
+def test_accept_suggestion_changes_state(issue_2401_po):
     """Tests that accepting a suggestion will change the state of the unit."""
     tp = issue_2401_po.translation_project
 
@@ -228,7 +229,8 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     suggestion, created = unit.add_suggestion('foo')
     assert unit.state == UNTRANSLATED
 
-    unit.accept_suggestion(suggestion, tp, system)
+    unit.accept_suggestion(
+        suggestion, tp, User.objects.get_system_user())
     assert unit.state == TRANSLATED
 
     # Let's try with a translated unit now
@@ -238,7 +240,8 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     suggestion, created = unit.add_suggestion('bar')
     assert unit.state == TRANSLATED
 
-    unit.accept_suggestion(suggestion, tp, system)
+    unit.accept_suggestion(
+        suggestion, tp, User.objects.get_system_user())
     assert unit.state == TRANSLATED
 
     # And finally a fuzzy unit
@@ -248,12 +251,13 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     suggestion, created = unit.add_suggestion('baz')
     assert unit.state == FUZZY
 
-    unit.accept_suggestion(suggestion, tp, system)
+    unit.accept_suggestion(
+        suggestion, tp, User.objects.get_system_user())
     assert unit.state == TRANSLATED
 
 
 @pytest.mark.django_db
-def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
+def test_accept_suggestion_update_wordcount(it_tutorial_po):
     """Tests that accepting a suggestion for an untranslated unit will
     change the wordcount stats of the unit's store.
     """
@@ -275,7 +279,7 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     assert untranslated_unit.state == UNTRANSLATED
     untranslated_unit.accept_suggestion(sugg,
                                         it_tutorial_po.translation_project,
-                                        system)
+                                        User.objects.get_system_user())
     assert untranslated_unit.state == TRANSLATED
     assert (
         it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated']

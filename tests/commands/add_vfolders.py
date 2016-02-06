@@ -32,7 +32,7 @@ def test_add_vfolders_user_non_existant_file():
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_add_vfolders_emptyfile(capfd, site_matrix_with_vfolders, tmpdir):
+def test_add_vfolders_emptyfile(capfd, tmpdir):
     """Load an empty vfolder.json file"""
     p = tmpdir.mkdir("sub").join("empty.json")
     p.write("{}")

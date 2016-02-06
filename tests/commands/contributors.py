@@ -10,6 +10,8 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle_store.models import Unit
+
 
 @pytest.mark.cmd
 @pytest.mark.django_db
@@ -17,7 +19,8 @@ def test_contributors_noargs(capfd, en_tutorial_po_member_updated):
     """Contributors across the site."""
     call_command('contributors')
     out, err = capfd.readouterr()
-    assert "Member (1 contributions)" in out
+    contribs = Unit.objects.filter(submitted_by__username="member")
+    assert ("Member (%d contributions)" % contribs.count()) in out
 
 
 @pytest.mark.cmd
@@ -53,6 +56,9 @@ def test_contributors_sort(capfd, en_tutorial_po_member_updated, member):
     """Contributors in contribution order."""
     member.email = "member@test.email"
     member.save()
+    contribs = Unit.objects.filter(submitted_by__username="member")
     call_command('contributors', '--sort-by=contributions')
     out, err = capfd.readouterr()
-    assert "Member <member@test.email> (1 contributions)" in out
+    assert (
+        ("Member <member@test.email> (%d contributions)" % contribs.count())
+        in out)
