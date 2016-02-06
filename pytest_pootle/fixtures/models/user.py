@@ -10,7 +10,8 @@
 import pytest
 
 
-def _require_user(username, fullname, password=None, is_superuser=False):
+def _require_user(username, fullname, password=None,
+                  is_superuser=False, email=None):
     """Helper to get/create a new user."""
     from django.contrib.auth import get_user_model
     User = get_user_model()
@@ -27,6 +28,8 @@ def _require_user(username, fullname, password=None, is_superuser=False):
             user.set_unusable_password()
         else:
             user.set_password(password)
+        if email:
+            user.email = email
         user.save()
 
     return user
