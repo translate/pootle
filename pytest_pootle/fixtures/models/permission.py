@@ -10,7 +10,7 @@
 import pytest
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def pootle_content_type(db):
     """Require the pootle ContentType."""
     from django.contrib.contenttypes.models import ContentType
@@ -19,10 +19,7 @@ def pootle_content_type(db):
         'app_label': 'pootle_app',
         'model': 'directory',
     }
-    content_type, created = ContentType.objects.get_or_create(**args)
-    content_type.save()
-
-    return content_type
+    return ContentType.objects.get(**args)
 
 
 def _require_permission(code, name, content_type):
@@ -39,42 +36,42 @@ def _require_permission(code, name, content_type):
     return permission
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def view(pootle_content_type):
     """Require the `view` permission."""
     return _require_permission('view', 'Can access a project',
                                pootle_content_type)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def hide(pootle_content_type):
     """Require the `hide` permission."""
     return _require_permission('hide', 'Cannot access a project',
                                pootle_content_type)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def suggest(pootle_content_type):
     """Require the `suggest` permission."""
     return _require_permission('suggest', 'Can make a suggestion',
                                pootle_content_type)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def translate(pootle_content_type):
     """Require the `translate` permission."""
     return _require_permission('translate', 'Can submit translations',
                                pootle_content_type)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def review(pootle_content_type):
     """Require the `review` permission."""
     return _require_permission('review', 'Can review translations',
                                pootle_content_type)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def administrate(pootle_content_type):
     """Require the `suggest` permission."""
     return _require_permission('administrate', 'Can administrate a TP',

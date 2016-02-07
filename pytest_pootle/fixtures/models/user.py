@@ -35,7 +35,7 @@ def _require_user(username, fullname, password=None,
     return user
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def nobody(db):
     """Require the default anonymous user."""
     from django.contrib.auth import get_user_model
@@ -43,13 +43,7 @@ def nobody(db):
     return get_user_model().objects.get_nobody_user()
 
 
-@pytest.fixture
-def trans_nobody(transactional_db):
-    """Require the default anonymous user for use in a transactional test."""
-    return _require_user('nobody', 'any anonymous user')
-
-
-@pytest.fixture
+@pytest.fixture(scope="session")
 def default(transactional_db):
     """Require the default authenticated user."""
     from django.contrib.auth import get_user_model
@@ -57,7 +51,7 @@ def default(transactional_db):
     return get_user_model().objects.get_default_user()
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def system(db):
     """Require the system user."""
     from django.contrib.auth import get_user_model
@@ -65,7 +59,7 @@ def system(db):
     return get_user_model().objects.get_system_user()
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def admin(transactional_db):
     """Require the admin user."""
     from django.contrib.auth import get_user_model
@@ -73,7 +67,7 @@ def admin(transactional_db):
     return get_user_model().objects.get(username="admin")
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def member(db):
     """Require a member user."""
     from django.contrib.auth import get_user_model
