@@ -29,7 +29,8 @@ def test_contributors_revision(capfd, en_tutorial_po_member_updated):
     """Contributors since a given revision."""
     call_command('contributors', '--from-revision=1')
     out, err = capfd.readouterr()
-    assert "Member (1 contributions)" in out
+    contribs = Unit.objects.filter(submitted_by__username="member")
+    assert ("Member (%d contributions)" % contribs.count()) in out
 
 
 @pytest.mark.cmd
@@ -38,7 +39,10 @@ def test_contributors_project(capfd, en_tutorial_po_member_updated):
     """Contributors in a given project."""
     call_command('contributors', '--project=tutorial')
     out, err = capfd.readouterr()
-    assert "Member (1 contributions)" in out
+    contribs = Unit.objects.filter(
+        submitted_by__username="member",
+        store__translation_project__project__code="tutorial")
+    assert ("Member (%d contributions)" % contribs.count()) in out
 
 
 @pytest.mark.cmd
@@ -47,7 +51,10 @@ def test_contributors_language(capfd, en_tutorial_po_member_updated):
     """Contributors in a given language."""
     call_command('contributors', '--language=en')
     out, err = capfd.readouterr()
-    assert "Member (1 contributions)" in out
+    contribs = Unit.objects.filter(
+        submitted_by__username="member",
+        store__translation_project__language__code="en")
+    assert ("Member (%d contributions)" % contribs.count()) in out
 
 
 @pytest.mark.cmd
