@@ -10,23 +10,28 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle.core.models import Revision
+
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_changed_languages_noargs(capfd, afrikaans_tutorial, french_tutorial,
-                                  revision):
+def test_changed_languages_noargs(capfd, afrikaans_tutorial, french_tutorial):
     """Get changed languages since last sync."""
     call_command('changed_languages')
     out, err = capfd.readouterr()
     assert "(no known changes)" in err
-    assert ("Will show languages changed between revisions 6 (exclusive) and "
-            "6 (inclusive)" in err)
+    revision = Revision.get()
+    assert (
+        ("Will show languages changed between revisions %d (exclusive) and "
+         "%d (inclusive)"
+         % (revision, revision))
+        in err)
 
 
 @pytest.mark.cmd
 @pytest.mark.django_db
 def test_changed_languages_since_revision(capfd, afrikaans_tutorial,
-                                          french_tutorial, revision):
+                                          french_tutorial):
     """Changed languages since a given revision"""
     # Everything
     call_command('changed_languages', '--after-revision=0')
