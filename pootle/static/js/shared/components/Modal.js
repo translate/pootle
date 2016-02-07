@@ -8,8 +8,7 @@
 
 import React from 'react';
 
-import LayersMixin from 'mixins/layers';
-
+import LayeredComponent from './LayeredComponent';
 import ModalContainer from './ModalContainer';
 import ModalFooter from './ModalFooter';
 import ModalHeader from './ModalHeader';
@@ -25,8 +24,6 @@ const Modal = React.createClass({
     header: React.PropTypes.func,
     footer: React.PropTypes.func,
   },
-
-  mixins: [LayersMixin],
 
   /* Lifecycle */
 
@@ -99,7 +96,11 @@ const Modal = React.createClass({
   },
 
   render() {
-    return null;
+    return (
+      <LayeredComponent>
+        {this.renderLayer()}
+      </LayeredComponent>
+    );
   },
 
 });
