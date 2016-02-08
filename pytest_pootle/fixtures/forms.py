@@ -147,8 +147,7 @@ UNITS_FORM["sort_my_suggestion_oldest"] = {
 
 
 @pytest.fixture
-def units_form_tests(site_matrix, rf,
-                     default, member, member2,
+def units_form_tests(rf, default, member, member2,
                      units_form_test_names):
 
     from django.contrib.auth import get_user_model
@@ -179,9 +178,7 @@ def units_form_tests(site_matrix, rf,
 
 
 @pytest.fixture
-def units_search_tests(site_matrix, rf,
-                       default, member, member2,
-                       units_form_test_names):
+def units_search_tests(rf, units_form_test_names):
     from django.contrib.auth import get_user_model
 
     from pootle_store.unit.search import UnitSearch
@@ -216,9 +213,7 @@ def units_search_tests(site_matrix, rf,
 
 
 @pytest.fixture
-def units_filter_tests(site_matrix, rf,
-                       default, member, member2,
-                       units_form_test_names):
+def units_filter_tests(rf, units_form_test_names):
     from django.contrib.auth import get_user_model
 
     from pootle_store.unit.filters import SearchFilter
