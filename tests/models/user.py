@@ -165,8 +165,13 @@ def test_merge_user(en_tutorial_po, member, member2):
 
 
 @pytest.mark.django_db
-def test_delete_user(en_tutorial_po, member, nobody):
+def test_delete_user(en_tutorial_po):
     """Test default behaviour of User.delete - merge to nobody"""
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+
+    member = User.objects.get(username="member")
+    nobody = User.objects.get(username="nobody")
     unit = _create_submission_and_suggestion(en_tutorial_po, member)
     member.delete()
     _test_user_merged(unit, member, nobody)
