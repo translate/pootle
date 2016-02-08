@@ -10,7 +10,8 @@ import pytest
 
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.db import connection
+
+from pootle_store.models import Unit, TRANSLATED
 
 
 @pytest.mark.cmd
@@ -35,13 +36,11 @@ def test_test_checks_unit_unkown(afrikaans_tutorial):
 @pytest.mark.django_db
 def test_test_checks_unit(capfd, site_matrix):
     """Check a --unit"""
-    # Unit 3/345 is /language0/project0/store0.po Translated Target
-    # unitid varies on different databases
-    if connection.vendor == 'sqlite':
-        unitid = 345
-    else:
-        unitid = 3
-    call_command('test_checks', '--unit=%s' % unitid)
+
+    units = Unit.objects.filter(
+        store__pootle_path="/language0/project0/store0.po",
+        state=TRANSLATED)
+    call_command('test_checks', '--unit=%s' % units.first().id)
     out, err = capfd.readouterr()
     assert 'No errors found' in out
 
