@@ -257,7 +257,7 @@ def test_apiview_put(rf):
 
 
 @pytest.mark.django_db
-def test_apiview_delete(rf, trans_nobody):
+def test_apiview_delete(rf):
     """Tests deleting an object using the API."""
     view = UserAPIView.as_view()
 

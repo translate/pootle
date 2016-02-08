@@ -428,11 +428,3 @@ def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test,
     return _require_store(afrikaans_vfolder_test,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'browser/defines.po')
-
-
-@pytest.fixture
-def templates_tutorial_pot(settings, templates_tutorial, system):
-    """Require the /templates/tutorial/tutorial.pot store."""
-    return _require_store(templates_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'tutorial.pot')

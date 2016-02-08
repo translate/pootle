@@ -11,7 +11,7 @@ import pytest
 
 
 @pytest.fixture(scope="session")
-def pootle_content_type(db):
+def pootle_content_type():
     """Require the pootle ContentType."""
     from django.contrib.contenttypes.models import ContentType
 

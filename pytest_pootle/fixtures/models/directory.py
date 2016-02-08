@@ -11,7 +11,7 @@ import pytest
 
 
 @pytest.fixture(scope="session")
-def root(transactional_db, system):
+def root():
     """Require the root directory."""
     from pootle_app.models import Directory
 
@@ -19,7 +19,7 @@ def root(transactional_db, system):
 
 
 @pytest.fixture(scope="session")
-def projects(root):
+def projects():
     """Require the projects directory."""
     from pootle_app.models import Directory
 

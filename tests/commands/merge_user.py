@@ -46,7 +46,7 @@ def test_merge_user_noto(member):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_merge_user_withdelete(capfd, nobody, member, member2):
+def test_merge_user_withdelete(capfd, member, member2):
     call_command('merge_user', 'member', 'member2')
     out, err = capfd.readouterr()
     assert 'User merged: member --> member2' in out
@@ -55,7 +55,7 @@ def test_merge_user_withdelete(capfd, nobody, member, member2):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_merge_user_nodelete(capfd, nobody, member, member2):
+def test_merge_user_nodelete(capfd, member, member2):
     call_command('merge_user', '--no-delete', 'member', 'member2')
     out, err = capfd.readouterr()
     assert 'User merged: member --> member2' in out

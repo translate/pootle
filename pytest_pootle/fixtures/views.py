@@ -117,13 +117,6 @@ TP_VIEW_TESTS = OrderedDict(
 
 
 @pytest.fixture
-def admin_client(admin, client):
-    """A Django test client logged in as an admin user."""
-    client.login(username=admin.username, password='admin')
-    return client
-
-
-@pytest.fixture
 def project_views(project_view_names, client):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_project.models import Project

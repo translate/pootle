@@ -34,14 +34,14 @@ def _require_language(code, fullname, plurals=2, plural_equation='(n != 1)'):
 
 
 @pytest.fixture(scope="session")
-def english(root):
+def english():
     """Require the English language."""
     from pootle_language.models import Language
     return Language.objects.get(code="en")
 
 
 @pytest.fixture
-def templates(root):
+def templates():
     """Require the special Templates language."""
     return _require_language("templates", "Templates")
 

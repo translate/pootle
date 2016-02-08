@@ -13,7 +13,7 @@ from django.core.management import call_command
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_refresh_scores_recalculate(capfd, system):
+def test_refresh_scores_recalculate(capfd):
     """Recalculate scores."""
     call_command('refresh_scores')
     out, err = capfd.readouterr()
@@ -22,7 +22,7 @@ def test_refresh_scores_recalculate(capfd, system):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_refresh_scores_recalculate_user(capfd, system):
+def test_refresh_scores_recalculate_user(capfd):
     """Recalculate scores for given users."""
     call_command('refresh_scores', '--user=system')
     out, err = capfd.readouterr()
@@ -31,7 +31,7 @@ def test_refresh_scores_recalculate_user(capfd, system):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_refresh_scores_reset_user(capfd, system):
+def test_refresh_scores_reset_user(capfd):
     """Set scores to zero for given users."""
     call_command('refresh_scores', '--reset', '--user=system')
     out, err = capfd.readouterr()

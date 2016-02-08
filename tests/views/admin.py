@@ -31,7 +31,8 @@ def test_admin_regular_user(client, default):
 
 
 @pytest.mark.django_db
-def test_admin_access(admin_client):
+def test_admin_access(client):
     """Tests that admin users can access the admin site."""
-    response = admin_client.get(ADMIN_URL)
+    client.login(username="admin", password="admin")
+    response = client.get(ADMIN_URL)
     assert response.status_code == 200
