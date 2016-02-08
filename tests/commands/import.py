@@ -13,6 +13,8 @@ import pytest
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
+from pootle.core.models import Revision
+
 
 @pytest.mark.cmd
 def test_import_user_nofile():
@@ -49,11 +51,11 @@ def test_import_onefile(capfd, afrikaans_tutorial, tmpdir):
     p.write("""msgid ""
 msgstr ""
 "X-Pootle-Path: /af/tutorial/tutorial.po\\n"
-"X-Pootle-Revision: 12\\n"
+"X-Pootle-Revision: %s\\n"
 
 msgid "rest"
 msgstr "test"
-           """)
+           """ % (Revision.get() + 1))
     call_command('import', os.path.join(p.dirname, p.basename))
     out, err = capfd.readouterr()
     assert "[update]" in err
@@ -70,11 +72,11 @@ def test_import_onefile_with_user(capfd, afrikaans_tutorial, tmpdir, member):
     p.write("""msgid ""
 msgstr ""
 "X-Pootle-Path: /af/tutorial/tutorial.po\\n"
-"X-Pootle-Revision: 12\\n"
+"X-Pootle-Revision: %s\\n"
 
 msgid "rest"
 msgstr "test"
-           """)
+           """ % (Revision.get() + 1))
     call_command('import', '--user=member', os.path.join(p.dirname, p.basename))
     out, err = capfd.readouterr()
     assert "[update]" in err
