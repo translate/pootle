@@ -30,6 +30,7 @@ def test_admin_regular_user(client, default):
     assert response.status_code == 403
 
 
+@pytest.mark.django_db
 def test_admin_access(admin_client):
     """Tests that admin users can access the admin site."""
     response = admin_client.get(ADMIN_URL)
