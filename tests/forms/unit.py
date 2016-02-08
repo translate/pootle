@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) Pootle contributors.
@@ -12,7 +11,7 @@ from django.contrib.auth import get_user_model
 import pytest
 
 from pootle_app.models.permissions import get_matching_permissions
-from pootle_store.forms import UnitStateField, unit_form_factory
+from pootle_store.forms import unit_form_factory, UnitStateField
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
@@ -145,3 +144,81 @@ def test_unit_state():
     assert not field.clean('True')  # Unknown state value evaluates to False
     assert not field.clean(False)
     assert not field.clean('False')
+
+
+@pytest.mark.django_db
+def test_get_units_search(units_search_tests):
+    (search, params, request_user, limit, qs) = units_search_tests
+
+    cleaned = params["cleaned_data"]
+    if not cleaned.get("user", None):
+        cleaned["user"] = request_user
+
+    # the search instance has the qs attr
+    assert list(search.qs) == list(qs)
+
+    # filtered_qs is equiv to calling the the filter_class
+    # with the qs and the kwa
+    filtered_qs = search.filter_class(qs).filter_qs(**cleaned)
+    assert list(search.filtered_qs) == list(filtered_qs)
+    assert search.total == filtered_qs.count()
+
+    # sorted_qs is equiv to calling the the sort_class
+    # with the filtered_qs and the sort kwa
+    sorted_qs = search.sort_class(filtered_qs).sort_qs(
+        cleaned.get("sort_on"), cleaned.get("sort_by"))
+    assert list(search.sorted_qs) == list(sorted_qs)
+
+    # sort field and comparators
+    if sorted_qs.query.order_by:
+        assert search._order_by == sorted_qs.query.order_by[0]
+        assert search.order_by == search._order_by.strip("-")
+    else:
+        assert search._order_by is None
+        assert search.order_by == "pk"
+
+    lte = (
+        cleaned["sort_by"]
+        and cleaned["sort_by"].startswith("-"))
+    if lte:
+        search.compare_with == "lte"
+    else:
+        search.compare_with == "gte"
+
+    # result slicing
+    start_index = 0
+    next_uids = []
+    previous_uids = []
+    sliced_qs = sorted_qs.all()
+
+    if search.order_by == "sort_by_field":
+        uid_list = [x for x, y in sorted_qs.values_list("pk", "sort_by_field")]
+    else:
+        uid_list = list(sorted_qs.values_list("pk", flat=True))
+    uids = cleaned["uids"]
+    if uids:
+        start_index = uid_list.index(uids[0])
+        prev_start = start_index - 10
+        if prev_start < 0:
+            prev_start = 0
+        previous_uids = uid_list[prev_start:start_index]
+
+    sliced_qs = sliced_qs[start_index:]
+
+    if limit:
+        sliced_qs = sliced_qs[:limit]
+        next_uids = sliced_qs[limit:limit + 10]
+
+    assert list(search.sliced_qs) == list(sliced_qs)
+    assert search.previous_uids == previous_uids
+    assert search.next_uids == next_uids
+
+    unit_groups = search.group_class(sliced_qs).group_units()
+    for i, group in enumerate(unit_groups):
+        assert search.unit_groups[i] == group
+
+    grouped_search = search.grouped_search()
+    assert grouped_search["total"] == search.total
+    assert grouped_search["next_uids"] == search.next_uids
+    assert grouped_search["previous_uids"] == search.previous_uids
+    assert grouped_search["unitGroups"] == search.unit_groups
