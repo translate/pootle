@@ -12,6 +12,9 @@ import shutil
 import time
 
 import pytest
+
+from pytest_pootle.utils import update_store
+
 from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -233,8 +236,11 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
 
 @pytest.mark.django_db
 def test_update_upload_defaults(en_tutorial_po, system):
-    _update_from_upload_file(en_tutorial_po,
-                             "tests/data/po/tutorial/en/tutorial_update.po")
+    update_store(
+        en_tutorial_po,
+        [("Hello, world", "Hello, world UPDATED")],
+        user=system,
+        store_revision=Revision.get() + 1)
     assert en_tutorial_po.units[0].submitted_by == system
     assert (en_tutorial_po.units[0].submission_set.first().type
             == SubmissionTypes.SYSTEM)
@@ -242,26 +248,32 @@ def test_update_upload_defaults(en_tutorial_po, system):
 
 @pytest.mark.django_db
 def test_update_upload_member_user(en_tutorial_po, member):
-    _update_from_upload_file(en_tutorial_po,
-                             "tests/data/po/tutorial/en/tutorial_update.po",
-                             user=member)
+    update_store(
+        en_tutorial_po,
+        [("Hello, world", "Hello, world UPDATED")],
+        user=member,
+        store_revision=Revision.get() + 1)
     assert en_tutorial_po.units[0].submitted_by == member
 
 
 @pytest.mark.django_db
 def test_update_upload_submission_type(en_tutorial_po):
-    _update_from_upload_file(en_tutorial_po,
-                             "tests/data/po/tutorial/en/tutorial_update.po",
-                             submission_type=SubmissionTypes.UPLOAD)
+    update_store(
+        en_tutorial_po,
+        [("Hello, world", "Hello, world UPDATED")],
+        submission_type=SubmissionTypes.UPLOAD,
+        store_revision=Revision.get() + 1)
     assert (en_tutorial_po.units[0].submission_set.first().type
             == SubmissionTypes.UPLOAD)
 
 
 @pytest.mark.django_db
 def test_update_upload_new_revision(en_tutorial_po):
-    _update_from_upload_file(en_tutorial_po,
-                             "tests/data/po/tutorial/en/tutorial_update.po",
-                             submission_type=SubmissionTypes.UPLOAD)
+    update_store(
+        en_tutorial_po,
+        [("Hello, world", "Hello, world UPDATED")],
+        submission_type=SubmissionTypes.UPLOAD,
+        store_revision=Revision.get() + 1)
     assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
 
 
@@ -269,16 +281,20 @@ def test_update_upload_new_revision(en_tutorial_po):
 def test_update_upload_again_new_revision(en_tutorial_po_no_file):
     store = en_tutorial_po_no_file
     assert store.state == NEW
-    _update_from_upload_file(store,
-                             "tests/data/po/tutorial/en/tutorial_update.po",
-                             submission_type=SubmissionTypes.UPLOAD)
+    update_store(
+        store,
+        [("Hello, world", "Hello, world UPDATED")],
+        submission_type=SubmissionTypes.UPLOAD,
+        store_revision=Revision.get() + 1)
     store = Store.objects.get(pk=store.pk)
     assert store.state == PARSED
     assert store.units[0].target == "Hello, world UPDATED"
-    _update_from_upload_file(
+
+    update_store(
         store,
-        "tests/data/po/tutorial/en/tutorial_update_again.po",
-        submission_type=SubmissionTypes.UPLOAD)
+        [("Hello, world", "Hello, world UPDATED AGAIN")],
+        submission_type=SubmissionTypes.UPLOAD,
+        store_revision=Revision.get() + 1)
     store = Store.objects.get(pk=store.pk)
     assert store.state == PARSED
     assert store.units[0].target == "Hello, world UPDATED AGAIN"
@@ -286,12 +302,19 @@ def test_update_upload_again_new_revision(en_tutorial_po_no_file):
 
 @pytest.mark.django_db
 def test_update_upload_old_revision_unit_conflict(en_tutorial_po):
-    _update_from_upload_file(en_tutorial_po,
-                             "tests/data/po/tutorial/en/tutorial_update.po")
+    original_revision = Revision.get()
+    update_store(
+        en_tutorial_po,
+        [("Hello, world", "Hello, world UPDATED")],
+        submission_type=SubmissionTypes.UPLOAD,
+        store_revision=original_revision + 1)
 
     # load update with expired revision and conflicting unit
-    file_name = "tests/data/po/tutorial/en/tutorial_update_conflict.po"
-    _update_from_upload_file(en_tutorial_po, file_name)
+    update_store(
+        en_tutorial_po,
+        [("Hello, world", "Hello, world CONFLICT")],
+        submission_type=SubmissionTypes.UPLOAD,
+        store_revision=original_revision)
 
     # unit target is not updated
     assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
