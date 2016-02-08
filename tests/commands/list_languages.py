@@ -10,6 +10,8 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle_store.models import Unit
+
 
 @pytest.mark.cmd
 @pytest.mark.django_db
@@ -38,11 +40,11 @@ def test_list_languages_project(capfd, site_matrix):
 @pytest.mark.django_db
 def test_list_languages_modified_since(capfd, afrikaans_tutorial,
                                        spanish_tutorial, french_tutorial):
-    """Languages modified since a revision
-
-    We expect fr, as its is updated on revision 6 and 7.
-    """
-    call_command('list_languages', '--modified-since=5')
+    """Languages modified since a revision"""
+    fr_units = Unit.objects.filter(
+        store__translation_project__language=french_tutorial.language)
+    fr_revision = max(fr_units.values_list("revision", flat=True))
+    call_command('list_languages', '--modified-since=%d' % (fr_revision - 1))
     out, err = capfd.readouterr()
     assert 'af' not in out
     assert 'es' not in out
