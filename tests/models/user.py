@@ -14,8 +14,7 @@ import pytest
 
 from allauth.account.models import EmailAddress
 
-from pytest_pootle.fixtures.models.store import (TEST_EVIL_UPDATE_PO,
-                                                 _create_submission_and_suggestion,
+from pytest_pootle.fixtures.models.store import (_create_submission_and_suggestion,
                                                  _create_comment_on_unit)
 
 import accounts
@@ -31,13 +30,16 @@ def _make_evil_member_updates(store, evil_member):
     #   - adds a comment on unit
     #   - adds another unit
     member_suggestion = store.units[0].get_suggestions().first()
+    evil_units = [
+        ("Hello, world", "Hello, world EVIL"),
+        ("Goodbye, world", "Goodbye, world EVIL")]
     unit = store.units[0]
     unit.reject_suggestion(member_suggestion,
                            store.units[0].store.translation_project,
                            evil_member)
     _create_submission_and_suggestion(store,
                                       evil_member,
-                                      filename=TEST_EVIL_UPDATE_PO,
+                                      units=evil_units,
                                       suggestion="EVIL SUGGESTION")
     evil_suggestion = store.units[0].get_suggestions().first()
     store.units[0].accept_suggestion(evil_suggestion,
