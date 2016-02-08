@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import re
+
 import pytest
 
 from django.core.management import call_command
@@ -89,10 +91,12 @@ def test_dump_data_tp(capfd, afrikaans_tutorial):
 @pytest.mark.django_db
 def test_dump_stats_tp(capfd, afrikaans_tutorial):
     """--stats output with TP selection"""
+
     call_command('dump', '--stats', '--project=tutorial', '--language=af')
     out, err = capfd.readouterr()
     # Ensure it's a --stats
-    assert 'False,None,None' in out
+    stats_match = out.split("\n")[0].strip().split(" ").pop()
+    assert re.match(r"\d+,\d+,\d+", stats_match)
     assert out.startswith('/')
     # Ensure its got all the files (the data differs due to differing load
     # sequences)
