@@ -215,3 +215,10 @@ POOTLE_MT_BACKENDS = [
 #        ('GOOGLE_TRANSLATE', ''),
 #        ('YANDEX_TRANSLATE', ''),
 ]
+
+
+# Custom templates directories
+#
+TEMPLATES[0]['DIRS'] = [
+    # working_path(os.path.join('custom', 'templates')),
+]
