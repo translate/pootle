@@ -1912,9 +1912,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             # FIXME: put this is a `create_file()` method
             storeclass = self.get_file_class()
-            store_path = os.path.join(
-                self.translation_project.abs_real_path, self.name
+            lang, prj, dir, filename = split_pootle_path(self.pootle_path)
+            dir_path = os.path.join(
+                self.translation_project.abs_real_path, dir
             )
+            from pootle_app.project_tree import does_not_exist
+            if does_not_exist(dir_path):
+                os.makedirs(dir_path)
+            store_path = os.path.join(dir_path, filename)
             store = self.convert(storeclass)
             store.savefile(store_path)
             log(u"Created file for %s [revision: %d]" %
