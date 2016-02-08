@@ -14,4 +14,5 @@ import pytest
 def revision():
     """Sets up the revision counter for each test call."""
     from pootle.core.models import Revision
-    Revision.initialize(force=True)
+
+    Revision.initialize()
