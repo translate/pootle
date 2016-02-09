@@ -1,4 +1,5 @@
 -r build.txt
+-r tests.txt
 
 django-debug-toolbar>=1.4
 django-extensions
