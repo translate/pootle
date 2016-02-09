@@ -14,6 +14,7 @@ import pytest
 
 from django.core.urlresolvers import reverse
 
+from pytest_pootle.env import TEST_USERS
 
 BAD_VIEW_TESTS = OrderedDict(
     (("/foo/bar", dict(code=301, location="/foo/bar/")),
@@ -132,11 +133,21 @@ def project_views(request, client):
 
 
 @pytest.fixture(params=TP_VIEW_TESTS.keys())
-def tp_views(request, client):
+def tp_view_test_names(request):
+    return request.param
+
+
+@pytest.fixture(params=(None, 'member', 'admin'))
+def tp_view_usernames(request):
+    return request.param
+
+
+@pytest.fixture
+def tp_views(tp_view_test_names, tp_view_usernames, client):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
 
-    test_type = request.param.split("_")[0]
+    test_type = tp_view_test_names.split("_")[0]
     tp = TranslationProject.objects.all()[0]
     tp_view = "pootle-tp"
     kwargs = {
@@ -144,13 +155,16 @@ def tp_views(request, client):
         "language_code": tp.language.code,
         "dir_path": "",
         "filename": ""}
-    kwargs.update(TP_VIEW_TESTS[request.param])
+    kwargs.update(TP_VIEW_TESTS[tp_view_test_names])
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     if kwargs.get("filename"):
         tp_view = "%s-store" % tp_view
     else:
         del kwargs["filename"]
     view_name = "%s-%s" % (tp_view, test_type)
+    if tp_view_usernames is not None:
+        password = TEST_USERS[tp_view_usernames]['password']
+        client.login(username=tp_view_usernames, password=password)
     response = client.get(reverse(view_name, kwargs=kwargs))
     kwargs["filename"] = kwargs.get("filename", "")
     return test_type, tp, response.wsgi_request, response, kwargs

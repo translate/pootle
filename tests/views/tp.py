@@ -119,7 +119,7 @@ def _test_browse_view(tp, request, response, kwargs):
         translation_project=tp,
         language=tp.language,
         project=tp.project,
-        is_admin=False,
+        is_admin=check_permission('administrate', request),
         is_store=(kwargs.get("filename") and True or False),
         browser_extends="translation_projects/base.html",
         pootle_path=pootle_path,
@@ -144,7 +144,7 @@ def _test_browse_view(tp, request, response, kwargs):
     view_context_test(ctx, **assertions)
     if vfolders:
         for vfolder in ctx["vfolders"]["items"]:
-            assert vfolder["is_grayed"] is False
+            assert (vfolder["is_grayed"] and not ctx["is_admin"]) is False
         assert (
             ctx["vfolders"]["items"]
             == vfolders)
@@ -171,7 +171,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         translation_project=tp,
         language=tp.language,
         project=tp.project,
-        is_admin=False,
+        is_admin=check_permission('administrate', request),
         profile=request.profile,
         ctx_path=tp.pootle_path,
         pootle_path=request_path,
