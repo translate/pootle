@@ -149,6 +149,10 @@ def _test_browse_view(tp, request, response, kwargs):
             ctx["vfolders"]["items"]
             == vfolders)
 
+    assert (('display_download' in ctx and ctx['display_download']) ==
+            (request.user.is_authenticated()
+             and check_permission('translate', request)))
+
 
 def _test_translate_view(tp, request, response, kwargs, settings):
     ctx = response.context
