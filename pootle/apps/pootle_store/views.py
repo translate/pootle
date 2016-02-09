@@ -32,22 +32,22 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import (check_permission,
-                                           check_user_permission)
+from pootle_app.models.permissions import (
+    check_permission, check_user_permission)
 from pootle_misc.checks import check_names, get_category_id
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, get_date_interval, to_int
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
-from virtualfolder.models import VirtualFolderTreeItem
+from pootle_misc.util import ajax_required, get_date_interval
+from pootle_statistics.models import (
+    Submission, SubmissionFields, SubmissionTypes)
 
 from .decorators import get_unit_context
 from .fields import to_python
-from .forms import (highlight_whitespace, unit_comment_form_factory,
-                    unit_form_factory)
+from .forms import (
+    UnitSearchForm, unit_comment_form_factory,
+    unit_form_factory, highlight_whitespace)
 from .models import SuggestionStates, Unit
-from .templatetags.store_tags import (highlight_diffs, pluralize_source,
-                                      pluralize_target)
+from .templatetags.store_tags import (
+    highlight_diffs, pluralize_source, pluralize_target)
 from .util import FUZZY, STATES_MAP, TRANSLATED, UNTRANSLATED, find_altsrcs
 
 
@@ -437,118 +437,13 @@ def get_units(request):
         consider. The user's preference will be used by default.
 
         When the `initial` GET parameter is present, a sorted list of
-        the result set ids will be returned too.
+        the result set ids will be returned too. - wtf?
     """
-    pootle_path = request.GET.get('path', None)
-    if pootle_path is None:
-        raise Http400(_('Arguments missing.'))
-    elif len(pootle_path) > 2048:
-        raise Http400(_('Path too long.'))
+    form = UnitSearchForm(request.GET, user=request.user)
 
-    User = get_user_model()
-    request.profile = User.get(request.user)
-    limit = request.profile.get_unit_rows()
-    vfolder = None
-
-    if 'virtualfolder' in settings.INSTALLED_APPS:
-        from virtualfolder.helpers import extract_vfolder_from_path
-
-        vfolder, pootle_path = extract_vfolder_from_path(
-            pootle_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
-
-    path_keys = [
-        "project_code", "language_code", "dir_path", "filename"]
-    try:
-        path_kwargs = {
-            k: v
-            for k, v in resolve(pootle_path).kwargs.items()
-            if k in path_keys}
-    except Resolver404:
-        raise Http404('Unrecognised path')
-
-    units_qs = Unit.objects.get_translatable(
-        user=request.profile,
-        **path_kwargs)
-    units_qs = units_qs.order_by("store", "index")
-
-    if vfolder is not None:
-        units_qs = units_qs.filter(vfolders=vfolder)
-
-    units_qs = units_qs.select_related(
-        'store__translation_project__project',
-        'store__translation_project__language',
-    )
-    step_queryset = get_step_query(request, units_qs)
-
-    is_initial_request = request.GET.get('initial', False)
-    chunk_size = request.GET.get('count', limit)
-    uids_param = filter(None, request.GET.get('uids', '').split(u','))
-    uids = filter(None, map(to_int, uids_param))
-
-    units = []
-    unit_groups = []
-    uid_list = []
-
-    if is_initial_request:
-        sort_by_field = None
-        if len(step_queryset.query.order_by) == 1:
-            sort_by_field = step_queryset.query.order_by[0]
-
-        sort_on = None
-        for key, item in ALLOWED_SORTS.items():
-            if sort_by_field in item.values():
-                sort_on = key
-                break
-
-        if sort_by_field is None or sort_on == 'units':
-            # Since `extra()` has been used before, it's necessary to
-            # explicitly request the `store__pootle_path` field. This is a
-            # subtetly in Django's ORM.
-            uid_list = [u['id'] for u
-                        in step_queryset.values('id', 'store__pootle_path')]
-        else:
-            # Not using `values_list()` here because it doesn't know about all
-            # existing relations when `extra()` has been used before in the
-            # queryset. This affects annotated names such as those ending in
-            # `__max`, where Django thinks we're trying to lookup a field on a
-            # relationship field. That's why `sort_by_field` alias for `__max`
-            # is used here. This alias must be queried in
-            # `values('sort_by_field', 'id')` with `id` otherwise
-            # Django looks for `sort_by_field` field in the initial table.
-            # https://code.djangoproject.com/ticket/19434
-            uid_list = [u['id'] for u
-                        in step_queryset.values('id', 'sort_by_field',
-                                                'store__pootle_path')]
-
-        if len(uids) == 1:
-            try:
-                uid = uids[0]
-                index = uid_list.index(uid)
-                begin = max(index - chunk_size, 0)
-                end = min(index + chunk_size + 1, len(uid_list))
-                uids = uid_list[begin:end]
-            except ValueError:
-                raise Http404  # `uid` not found in `uid_list`
-        else:
-            count = 2 * chunk_size
-            uids = uid_list[:count]
-
-    if not units and uids:
-        units = step_queryset.filter(id__in=uids)
-
-    units_by_path = groupby(units, lambda x: x.store.pootle_path)
-    for pootle_path, units in units_by_path:
-        unit_groups.append(_path_units_with_meta(pootle_path, units))
-
-    response = {
-        'unitGroups': unit_groups,
-    }
-    if uid_list:
-        response['uIds'] = uid_list
-
-    return JsonResponse(response)
+    if form.is_valid():
+        return JsonResponse(form.search_units())
+    # TODO: raise error...
 
 
 @ajax_required
