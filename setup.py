@@ -48,7 +48,7 @@ class PyTest(TestCommand):
 
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['--tb=short', 'tests/']
+        self.test_args = ['--tb=short', 'tests/', '-p pytest_pootle.plugin']
         self.test_suite = True
 
     def run_tests(self):
@@ -252,7 +252,6 @@ setup(
         'console_scripts': [
             'pootle = pootle.runner:main',
         ],
-        'pytest11': ['pootle = pytest_pootle.plugin'],
     },
     cmdclass={
         'build_checks_templates': BuildChecksTemplatesCommand,
