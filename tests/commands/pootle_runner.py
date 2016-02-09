@@ -11,6 +11,10 @@ from subprocess import call
 import pytest
 
 
+pytestmark = pytest.mark.skipif(call(['which', 'pootle']) != 0,
+                                reason='not installed via setup.py')
+
+
 @pytest.mark.cmd
 def test_pootle_noargs(capfd):
     """Pootle no args should give help"""
