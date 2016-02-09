@@ -50,6 +50,12 @@ def filter_hits_by_distance(hits, source_text,
         similarity = (
             1 - distance / float(max(len(source_text), len(hit_source_text)))
         )
+
+        logger.debug(
+            'Similarity: %.2f (distance: %d)\nOriginal:\t%s\nComparing with:\t%s',
+            similarity, distance, source_text, hit_source_text
+        )
+
         if similarity < min_similarity:
             break
 
