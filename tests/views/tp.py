@@ -249,3 +249,9 @@ def test_view_user_choice(client):
     response = client.get("/foo/bar/baz")
     assert response.status_code == 404
     assert "user-choice" not in response
+
+
+@pytest.mark.django_db
+def test_uploads_tp(tp_uploads):
+    tp, request, response, kwargs = tp_uploads
+    assert response.status_code == 200

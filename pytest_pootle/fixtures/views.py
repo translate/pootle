@@ -15,6 +15,8 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from pytest_pootle.env import TEST_USERS
+from pytest_pootle.utils import create_store
+
 
 BAD_VIEW_TESTS = OrderedDict(
     (("/foo/bar", dict(code=301, location="/foo/bar/")),
@@ -194,3 +196,26 @@ def bad_views(request, client):
         request.param,
         client.get(request.param),
         test)
+
+
+@pytest.fixture
+def tp_uploads(client, member):
+    from pootle_translationproject.models import TranslationProject
+    from pootle_store.models import Store
+
+    tp = TranslationProject.objects.all()[0]
+    store = Store.objects.filter(parent=tp.directory)[0]
+    kwargs = {
+        "project_code": tp.project.code,
+        "language_code": tp.language.code,
+        "dir_path": "",
+        "filename": store.name}
+    password = TEST_USERS[member.username]['password']
+    client.login(username=member.username, password=password)
+    response = client.post(
+        reverse("pootle-tp-store-browse", kwargs=kwargs),
+        {'name': '', 'attachment': create_store([
+            (unit.source_f, "%s UPDATED" % unit.target_f)
+            for unit in store.units])})
+
+    return tp, response.wsgi_request, response, kwargs

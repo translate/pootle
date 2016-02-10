@@ -42,7 +42,7 @@ from fixtures.site import (
     post_db_setup)
 from fixtures.views import (
     bad_views, language_views, project_views, tp_views,
-    tp_view_test_names, tp_view_usernames)
+    tp_view_test_names, tp_view_usernames, tp_uploads)
 
 
 __all__ = (
@@ -70,4 +70,4 @@ __all__ = (
     'bad_views', 'post_db_setup', 'no_projects', 'no_permission_sets',
     'no_permissions', 'no_submissions', 'no_users', 'no_extra_users',
     'units_text_searches', 'wordcount_names', 'tp_view_test_names',
-    'tp_view_usernames')
+    'tp_view_usernames', 'tp_uploads')
