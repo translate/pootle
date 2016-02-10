@@ -13,6 +13,30 @@ from datetime import datetime, timedelta
 from django.utils.functional import cached_property
 
 
+TEST_USERS = {
+    'nobody': dict(
+        fullname='Nobody',
+        password=''),
+    'system': dict(
+        fullname='System',
+        password=''),
+    'default': dict(
+        fullname='Default',
+        password=''),
+    'admin': dict(
+        fullname='Admin',
+        password='admin',
+        is_superuser=True,
+        email="admin@poot.le"),
+    'member': dict(
+        fullname='Member',
+        password=''),
+    'member2': dict(
+        fullname='Member2',
+        password=''),
+}
+
+
 class PootleTestEnv(object):
 
     methods = (
@@ -227,22 +251,8 @@ class PootleTestEnv(object):
     def setup_system_users(self):
         from .fixtures.models.user import _require_user
 
-        _require_user('nobody', 'Nobody')
-        _require_user('system', 'System')
-        _require_user(
-            'default', 'Default', password='')
-
-        _require_user(
-            'admin', 'Admin',
-            password='admin',
-            is_superuser=True,
-            email="admin@poot.le")
-        _require_user(
-            'member', 'Member',
-            password='')
-        _require_user(
-            'member2', 'Member 2',
-            password='')
+        for username, user_params in TEST_USERS.items():
+            _require_user(username=username, **user_params)
 
     def setup_site_permissions(self):
         from django.contrib.auth import get_user_model
