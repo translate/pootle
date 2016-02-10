@@ -12,6 +12,12 @@ import os
 from django import setup
 from django.conf import settings
 
+from pytest_pootle import plugin
+
+for fixture in dir(plugin):
+    if not fixture.startswith("__"):
+        exec("from pytest_pootle.plugin import %s" % fixture)
+
 
 def pytest_configure():
     if not settings.configured:
