@@ -116,27 +116,27 @@ TP_VIEW_TESTS = OrderedDict(
        "filename": "store3.po"})))
 
 
-@pytest.fixture
-def project_views(project_view_names, client):
+@pytest.fixture(params=PROJECT_VIEW_TESTS.keys())
+def project_views(request, client):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_project.models import Project
 
-    test_type = project_view_names.split("_")[0]
+    test_type = request.param.split("_")[0]
     project = Project.objects.all()[0]
     kwargs = {"project_code": project.code, "dir_path": "", "filename": ""}
-    kwargs.update(PROJECT_VIEW_TESTS[project_view_names])
+    kwargs.update(PROJECT_VIEW_TESTS[request.param])
     view_name = "pootle-project-%s" % test_type
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     response = client.get(reverse(view_name, kwargs=kwargs))
     return test_type, project, response.wsgi_request, response, kwargs
 
 
-@pytest.fixture
-def tp_views(tp_view_names, client):
+@pytest.fixture(params=TP_VIEW_TESTS.keys())
+def tp_views(request, client):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
 
-    test_type = tp_view_names.split("_")[0]
+    test_type = request.param.split("_")[0]
     tp = TranslationProject.objects.all()[0]
     tp_view = "pootle-tp"
     kwargs = {
@@ -144,7 +144,7 @@ def tp_views(tp_view_names, client):
         "language_code": tp.language.code,
         "dir_path": "",
         "filename": ""}
-    kwargs.update(TP_VIEW_TESTS[tp_view_names])
+    kwargs.update(TP_VIEW_TESTS[request.param])
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     if kwargs.get("filename"):
         tp_view = "%s-store" % tp_view
@@ -156,27 +156,27 @@ def tp_views(tp_view_names, client):
     return test_type, tp, response.wsgi_request, response, kwargs
 
 
-@pytest.fixture
-def language_views(language_view_names, client):
+@pytest.fixture(params=LANGUAGE_VIEW_TESTS.keys())
+def language_views(request, client):
 
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_language.models import Language
 
-    test_type = language_view_names.split("_")[0]
+    test_type = request.param.split("_")[0]
     language = Language.objects.get(code="language0")
     kwargs = {"language_code": language.code}
-    kwargs.update(LANGUAGE_VIEW_TESTS[language_view_names])
+    kwargs.update(LANGUAGE_VIEW_TESTS[request.param])
     view_name = "pootle-language-%s" % test_type
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     response = client.get(reverse(view_name, kwargs=kwargs))
     return test_type, language, response.wsgi_request, response, kwargs
 
 
-@pytest.fixture
-def bad_views(bad_view_names, client):
+@pytest.fixture(params=BAD_VIEW_TESTS.keys())
+def bad_views(request, client):
     test = dict(code=404)
-    test.update(BAD_VIEW_TESTS[bad_view_names])
+    test.update(BAD_VIEW_TESTS[request.param])
     return (
-        bad_view_names,
-        client.get(bad_view_names),
+        request.param,
+        client.get(request.param),
         test)

@@ -9,6 +9,8 @@
 
 from collections import OrderedDict
 
+import pytest
+
 
 WORDCOUNT_TESTS = OrderedDict()
 
@@ -112,3 +114,8 @@ WORDCOUNT_TESTS['shortcuts_modifiers'] = {
     "ttk": 1,
     "pootle": 0,
 }
+
+
+@pytest.fixture(params=WORDCOUNT_TESTS.keys())
+def wordcount_names(request):
+    return request.param

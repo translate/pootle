@@ -54,15 +54,15 @@ UNITS_TEXT_SEARCH_TESTS["suggestion for translated FOO (target)"] = {
     "empty": True}
 
 
-@pytest.fixture
-def units_text_searches(units_text_search_names):
-    text = units_text_search_names
+@pytest.fixture(params=UNITS_TEXT_SEARCH_TESTS.keys())
+def units_text_searches(request):
+    text = request.param
     if text.startswith("exact:"):
         text = text[6:]
         exact = True
     else:
         exact = False
-    test = UNITS_TEXT_SEARCH_TESTS[units_text_search_names]
+    test = UNITS_TEXT_SEARCH_TESTS[request.param]
     test["text"] = test.get("text", text)
     test["empty"] = test.get("empty", False)
     test["exact"] = exact

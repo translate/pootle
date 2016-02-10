@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from fixtures.core.utils.wordcount import wordcount_names
 from fixtures.models.directory import projects, root
 from fixtures.models.language import (
     english, templates, afrikaans, arabic, french, spanish, italian, russian,
@@ -15,7 +16,6 @@ from fixtures.models.permission import (
 from fixtures.models.project import (
     tutorial, tutorial_disabled, project_foo, project_bar, vfolder_test)
 from fixtures.models.store import (
-    UPDATE_STORE_TESTS,
     po_directory, af_tutorial_po, en_tutorial_po, en_tutorial_po_no_file,
     en_tutorial_po_member_updated, it_tutorial_po, af_tutorial_subdir_po,
     issue_2401_po, test_get_units_po, fr_tutorial_subdir_to_remove_po,
@@ -31,10 +31,9 @@ from fixtures.models.user import (
     default, system, nobody, admin, member, trans_member,
     member_with_email, member2, member2_with_email, evil_member,
     no_perms_user)
-from fixtures.search import UNITS_TEXT_SEARCH_TESTS, units_text_searches
+from fixtures.search import units_text_searches
 from fixtures.cache import delete_pattern
 from fixtures.import_export_fixtures import (
-    FILE_IMPORT_FAIL_TESTS,
     file_import_failure, ts_directory, en_tutorial_ts)
 from fixtures.revision import revision
 from fixtures.site import (
@@ -42,11 +41,7 @@ from fixtures.site import (
     no_projects, no_permissions, no_permission_sets, no_submissions, no_users,
     post_db_setup)
 from fixtures.views import (
-    BAD_VIEW_TESTS, bad_views,
-    LANGUAGE_VIEW_TESTS, language_views,
-    PROJECT_VIEW_TESTS, project_views,
-    TP_VIEW_TESTS, tp_views)
-from fixtures.core.utils.wordcount import WORDCOUNT_TESTS
+    bad_views, language_views, project_views, tp_views)
 
 
 __all__ = (
@@ -73,21 +68,4 @@ __all__ = (
     'project_views', 'tp_views', 'language_views',
     'bad_views', 'post_db_setup', 'no_projects', 'no_permission_sets',
     'no_permissions', 'no_submissions', 'no_users', 'no_extra_users',
-    'units_text_searches')
-
-
-PARAMETERS = (
-    ("update_store_test_names", UPDATE_STORE_TESTS),
-    ("file_import_failure_names", FILE_IMPORT_FAIL_TESTS),
-    ("wordcount_names", WORDCOUNT_TESTS),
-    ("project_view_names", PROJECT_VIEW_TESTS),
-    ("language_view_names", LANGUAGE_VIEW_TESTS),
-    ("tp_view_names", TP_VIEW_TESTS),
-    ("bad_view_names", BAD_VIEW_TESTS),
-    ("units_text_search_names", UNITS_TEXT_SEARCH_TESTS))
-
-
-def pytest_generate_tests(metafunc):
-    for name, params in PARAMETERS:
-        if name in metafunc.fixturenames:
-            metafunc.parametrize(name, params)
+    'units_text_searches', 'wordcount_names')

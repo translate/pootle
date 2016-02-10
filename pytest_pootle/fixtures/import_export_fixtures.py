@@ -20,14 +20,14 @@ FILE_IMPORT_FAIL_TESTS["path_header_missing.po"] = "MissingPootlePathError"
 FILE_IMPORT_FAIL_TESTS["path_header_invalid.po"] = "FileImportError"
 
 
-@pytest.fixture
-def file_import_failure(file_import_failure_names):
+@pytest.fixture(params=FILE_IMPORT_FAIL_TESTS.keys())
+def file_import_failure(request):
     from import_export import exceptions
 
     return (
-        file_import_failure_names,
+        request.param,
         getattr(
-            exceptions, FILE_IMPORT_FAIL_TESTS[file_import_failure_names]))
+            exceptions, FILE_IMPORT_FAIL_TESTS[request.param]))
 
 
 @pytest.fixture
