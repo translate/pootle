@@ -304,7 +304,6 @@ of contributions they have.
 Available options:
 
 :option:`--from-revision`
-
   Tells to only take into account contributions newer than the specified
   revision.
 
