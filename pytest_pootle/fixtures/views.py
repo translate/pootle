@@ -256,20 +256,17 @@ def project_views(request, client):
     return test_type, project, response.wsgi_request, response, kwargs
 
 
-@pytest.fixture(params=TP_VIEW_TESTS.keys())
-def tp_view_test_names(request):
-    return request.param
-
-
 @pytest.fixture(params=(None, 'member', 'admin'))
 def tp_view_usernames(request):
     return request.param
 
 
-@pytest.fixture
-def tp_views(tp_view_test_names, tp_view_usernames, client):
+@pytest.fixture(params=TP_VIEW_TESTS.keys())
+def tp_views(request, client, tp_view_usernames):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
+
+    tp_view_test_names = request.param
 
     test_type = tp_view_test_names.split("_")[0]
     tp = TranslationProject.objects.all()[0]
