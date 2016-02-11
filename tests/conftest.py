@@ -12,12 +12,6 @@ import os
 from django import setup
 from django.conf import settings
 
-from pytest_pootle import plugin
-
-for fixture in dir(plugin):
-    if not fixture.startswith("__"):
-        exec("from pytest_pootle.plugin import %s" % fixture)
-
 
 def pytest_configure():
     if not settings.configured:
@@ -28,3 +22,6 @@ def pytest_configure():
         os.environ['POOTLE_SETTINGS'] = os.path.join(WORKING_DIR,
                                                      'settings.py')
         setup()  # Required until pytest-dev/pytest-django#146 is fixed
+
+
+pytest_plugins = 'pytest_pootle.plugin'
