@@ -6,6 +6,142 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.db.models import Q
+
+from pootle_statistics.models import SubmissionTypes
+from pootle_store.models import SuggestionStates
+from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+
+
+class FilterNotFound(Exception):
+    pass
+
+
+class BaseUnitFilter(object):
+
+    def __init__(self, qs, *args, **kwargs):
+        self.qs = qs
+
+    def filter(self, unit_filter):
+        try:
+            return getattr(
+                self, "filter_%s" % unit_filter.replace("-", "_"))()
+        except AttributeError:
+            raise FilterNotFound()
+
+
+class UnitChecksFilter(BaseUnitFilter):
+
+    def __init__(self, qs, *args, **kwargs):
+        self.qs = qs
+        self.checks = kwargs.get("checks")
+        self.category = kwargs.get("category")
+
+    def filter_checks(self):
+        if self.checks:
+            return self.qs.filter(
+                qualitycheck__false_positive=False,
+                qualitycheck__name__in=self.checks).distinct()
+        elif self.category:
+            return self.qs.filter(
+                qualitycheck__false_positive=False,
+                qualitycheck__category=self.category).distinct()
+        return self.qs.none()
+
+
+class UnitStateFilter(BaseUnitFilter):
+    """Filter a Unit qs based on unit state"""
+
+    def filter_all(self):
+        return self.qs.all()
+
+    def filter_translated(self):
+        return self.qs.filter(state=TRANSLATED)
+
+    def filter_untranslated(self):
+        return self.qs.filter(state=UNTRANSLATED)
+
+    def filter_fuzzy(self):
+        return self.qs.filter(state=FUZZY)
+
+    def filter_incomplete(self):
+        return self.qs.filter(
+            Q(state=UNTRANSLATED) | Q(state=FUZZY))
+
+
+class UnitContributionFilter(BaseUnitFilter):
+    """Filter a Unit qs based on user contributions"""
+
+    def __init__(self, qs, *args, **kwargs):
+        self.qs = qs
+        self.user = kwargs.get("user")
+
+    def filter_suggestions(self):
+        return self.qs.filter(
+            suggestion__state=SuggestionStates.PENDING).distinct()
+
+    def filter_user_suggestions(self):
+        if not self.user:
+            return self.qs.none()
+        return self.qs.filter(
+            suggestion__user=self.user,
+            suggestion__state=SuggestionStates.PENDING).distinct()
+
+    def filter_my_suggestions(self):
+        return self.filter_user_suggestions()
+
+    def filter_user_suggestions_accepted(self):
+        if not self.user:
+            return self.qs.none()
+        return self.qs.filter(
+            suggestion__user=self.user,
+            suggestion__state=SuggestionStates.ACCEPTED).distinct()
+
+    def filter_user_suggestions_rejected(self):
+        if not self.user:
+            return self.qs.none()
+        return self.qs.filter(
+            suggestion__user=self.user,
+            suggestion__state=SuggestionStates.REJECTED).distinct()
+
+    def filter_user_submissions(self):
+        if not self.user:
+            return self.qs.none()
+        return self.qs.filter(
+            submitted_by=self.user,
+            submission__type__in=SubmissionTypes.EDIT_TYPES).distinct()
+
+    def filter_my_submissions(self):
+        return self.filter_user_submissions()
+
+    def filter_user_submissions_overwritten(self):
+        if not self.user:
+            return self.qs.none()
+        qs = self.qs.filter(
+            submitted_by=self.user,
+            submission__type__in=SubmissionTypes.EDIT_TYPES)
+        return qs.exclude(submitted_by=self.user).distinct()
+
+    def filter_my_submissions_overwritten(self):
+        return self.filter_user_submissions_overwritten()
+
+
+class UnitSearchFilter(object):
+
+    filters = (
+        UnitChecksFilter, UnitStateFilter, UnitContributionFilter)
+
+    def filter(self, qs, unit_filter, *args, **kwargs):
+        for search_filter in self.filters:
+            # try each of the filter classes to find one with a method to handle
+            # `unit_filter`
+            try:
+                return search_filter(qs, *args, **kwargs).filter(unit_filter)
+            except FilterNotFound:
+                pass
+        # if none match then return the empty qs
+        return qs.none()
+
 
 class UnitTextSearch(object):
     """Search Unit's fields for text strings
