@@ -233,6 +233,7 @@ Next steps
 Now that you have Pootle up and running you may want to consider some of the
 following in order to build a production environment.
 
+- :ref:`Create and localise your first project <first_project>`
 - :ref:`Run Pootle and RQ workers as services <pootle#running_as_a_service>`
 - :ref:`Set up a reverse-proxy web server for static files <apache#reverse_proxy>`
 - :ref:`Use a wsgi server to serve dynamic content <apache#mod_wsgi>`
