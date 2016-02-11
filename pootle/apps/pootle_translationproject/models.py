@@ -210,7 +210,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         else:
             checkerclasses = [
                 checks.projectcheckers.get(self.project.checkstyle,
-                                           checks.StandardUnitChecker)
+                                           checks.StandardChecker)
             ]
 
         return checks.TeeChecker(checkerclasses=checkerclasses,
