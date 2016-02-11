@@ -45,11 +45,11 @@ from .decorators import get_unit_context
 from .fields import to_python
 from .forms import (highlight_whitespace, unit_comment_form_factory,
                     unit_form_factory)
-from .models import SuggestionStates, Unit
+from .models import Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
-from .unit.filters import UnitTextSearch
-from .util import FUZZY, STATES_MAP, TRANSLATED, UNTRANSLATED, find_altsrcs
+from .unit.filters import UnitSearchFilter, UnitTextSearch
+from .util import STATES_MAP, find_altsrcs
 
 
 #: Mapping of allowed sorting criteria.
@@ -131,71 +131,25 @@ def get_step_query(request, units_queryset):
                 pass
 
         if unit_filter:
-            match_queryset = units_queryset.none()
-
-            if unit_filter == 'all':
-                match_queryset = units_queryset
-            elif unit_filter == 'translated':
-                match_queryset = units_queryset.filter(state=TRANSLATED)
-            elif unit_filter == 'untranslated':
-                match_queryset = units_queryset.filter(state=UNTRANSLATED)
-            elif unit_filter == 'fuzzy':
-                match_queryset = units_queryset.filter(state=FUZZY)
-            elif unit_filter == 'incomplete':
-                match_queryset = units_queryset.filter(
-                    Q(state=UNTRANSLATED) | Q(state=FUZZY),
-                )
-            elif unit_filter == 'suggestions':
-                match_queryset = units_queryset.filter(
-                    suggestion__state=SuggestionStates.PENDING).distinct()
-            elif unit_filter in ('my-suggestions', 'user-suggestions'):
-                match_queryset = units_queryset.filter(
-                    suggestion__state=SuggestionStates.PENDING,
-                    suggestion__user=user,
-                ).distinct()
-                sort_on = 'suggestions'
-            elif unit_filter == 'user-suggestions-accepted':
-                match_queryset = units_queryset.filter(
-                    suggestion__state=SuggestionStates.ACCEPTED,
-                    suggestion__user=user,
-                ).distinct()
-            elif unit_filter == 'user-suggestions-rejected':
-                match_queryset = units_queryset.filter(
-                    suggestion__state=SuggestionStates.REJECTED,
-                    suggestion__user=user,
-                ).distinct()
-            elif unit_filter in ('my-submissions', 'user-submissions'):
-                match_queryset = units_queryset.filter(
-                    submission__submitter=user,
-                    submission__type__in=SubmissionTypes.EDIT_TYPES,
-                ).distinct()
-                sort_on = 'submissions'
-            elif (unit_filter in ('my-submissions-overwritten',
-                                  'user-submissions-overwritten')):
-                match_queryset = units_queryset.filter(
-                    submission__submitter=user,
-                    submission__type__in=SubmissionTypes.EDIT_TYPES,
-                ).exclude(submitted_by=user).distinct()
-            elif unit_filter == 'checks':
+            checks = None
+            category = None
+            if unit_filter == "checks":
                 if 'checks' in request.GET:
                     checks = request.GET['checks'].split(',')
-
-                    if checks:
-                        match_queryset = units_queryset.filter(
-                            qualitycheck__false_positive=False,
-                            qualitycheck__name__in=checks,
-                        ).distinct()
                 elif 'category' in request.GET:
                     category_name = request.GET['category']
                     try:
                         category = get_category_id(category_name)
                     except KeyError:
                         raise Http404
+            elif unit_filter in ["my-suggestions", "user-suggestions"]:
+                sort_on = "suggestions"
+            elif unit_filter in ["my-submissions", "user-submissions"]:
+                sort_on = "submissions"
 
-                    match_queryset = units_queryset.filter(
-                        qualitycheck__false_positive=False,
-                        qualitycheck__category=category,
-                    ).distinct()
+            match_queryset = UnitSearchFilter().filter(
+                units_queryset, unit_filter,
+                user=user, checks=checks, category=category)
 
             if modified_since is not None:
                 datetime_obj = parse_datetime(modified_since)
