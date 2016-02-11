@@ -9,12 +9,12 @@
 
 
 import codecs
+import logging
 import os
 import re
 import urllib2
 
 from datetime import timedelta
-from optparse import make_option
 from subprocess import call
 
 # This must be run before importing Django.
@@ -23,7 +23,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import EmailMultiAlternatives
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from django.core.urlresolvers import set_script_prefix
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -36,6 +36,9 @@ from reports.views import (get_date_interval, get_grouped_word_stats,
                            SCORE_TRANSLATION_PROJECT)
 
 
+logger = logging.getLogger(__name__)
+
+
 def get_previous_month():
     now = timezone.now()
     previous_month = now.replace(day=1) - timedelta(days=1)
@@ -43,24 +46,56 @@ def get_previous_month():
     return previous_month.strftime('%Y-%m')
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = "Generate invoices and send them via e-mail."
-    shared_option_list = (
-        make_option('--debug-month', dest='month',
-                    help='Month (get previous month if no data provided)',
-                    default=None),
-        make_option('--send-emails', action='store_true', dest='send_emails',
-                    help='Send generated invoices by email', default=False),
-        make_option('--debug-send-to', action='append', dest='debug_email_list',
-                    help='DEBUG email list', default=[]),
-        make_option('--bcc-send-to', action='append', dest='bcc_email_list',
-                    help='BCC email list', default=[]),
-        make_option('--user-list', action='append', dest='user_list',
-                    help='Limit list of users for generating invoices', default=[]),
 
-    )
-    option_list = NoArgsCommand.option_list + shared_option_list
     change_rates = {}
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--user-list',
+            action='append',
+            dest='user_list',
+            help='Limit list of users for generating invoices',
+            default=[],
+        )
+
+        email_group = parser.add_argument_group(
+            'E-mail',
+            'Controls whether invoices are sent via e-mail and how.',
+        )
+        email_group.add_argument(
+            '--send-emails',
+            action='store_true',
+            dest='send_emails',
+            help='Send generated invoices by email',
+            default=False,
+        )
+        email_group.add_argument(
+            '--bcc-send-to',
+            action='append',
+            dest='bcc_email_list',
+            help='BCC email list',
+            default=[],
+        )
+
+        debug_group = parser.add_argument_group(
+            'Debugging',
+            'Flags to debug invoices',
+        )
+        debug_group.add_argument(
+            '--debug-month',
+            dest='month',
+            help='Month (get previous month if no data provided)',
+            default=None,
+        )
+        debug_group.add_argument(
+            '--debug-send-to',
+            action='append',
+            dest='debug_email_list',
+            help='Send email to recipients (overrides existing user settings)',
+            default=[],
+        )
 
     def get_change_rate(self, currency, date):
         if currency not in self.change_rates:
@@ -119,7 +154,7 @@ class Command(NoArgsCommand):
         else:
             self.stdout.write("ERROR: sending failed")
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         # The script prefix needs to be set here because the generated URLs need
         # to be aware of that and they are cached. Ideally Django should take
         # care of setting this up, but it's only available starting from
@@ -311,7 +346,15 @@ class Command(NoArgsCommand):
             codecs.open(html_filename, 'w', 'utf-8').write(html)
             self.html2pdf(html_filename, pdf_filename)
 
-            if send_emails and 'accounting-email' in user_conf:
+            if send_emails:
+                if 'accounting-email' not in user_conf:
+                    logger.warning(
+                        '`accounting_email` not found in configuration for '
+                        'user %s. Sending email will be skipped for this user.',
+                        username,
+                    )
+                    continue
+
                 ctx['bcc_email_list'] = bcc_email_list
                 ctx['accounting'] = True
                 ctx['to_email_list'] = user_conf['accounting-email'].split(',')
