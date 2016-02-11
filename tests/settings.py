@@ -104,3 +104,36 @@ try:
         INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
 except NameError:
     INSTALLED_APPS = ["pootle_fs"]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'action': {
+            'format': '[%(asctime)s]\t%(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S',
+        },
+    },
+    'handlers': {
+        'log_action': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': os.path.join('%POOTLE_LOG_DIRECTORY%',
+                                     'pootle-activity.log'),
+            'formatter': 'action',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'action': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        '': {
+            'level': 'INFO',
+        },
+    },
+}
