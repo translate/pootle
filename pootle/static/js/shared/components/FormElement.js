@@ -39,7 +39,7 @@ const FormElement = React.createClass({
 
   render() {
     const { attribute } = this.props;
-    const fieldId = ['id', attribute].join('_');
+    const fieldId = `id_${attribute}`;
     const hint = this.props.help;
 
     const errors = (_.size(this.props.errors) > 0 &&
