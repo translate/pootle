@@ -63,59 +63,74 @@ export const UserProfileForm = React.createClass({
                                    true);
 
     return (
-      <form method="post"
-            id="item-form"
-            autoComplete="off"
-            onSubmit={this.handleFormSubmit}>
+      <form
+        method="post"
+        id="item-form"
+        autoComplete="off"
+        onSubmit={this.handleFormSubmit}
+      >
         <div className="fields">
-          <FormElement attribute="full_name"
-                       label={gettext('Full Name')}
-                       placeholder={gettext('Your Full Name')}
-                       autoFocus
-                       handleChange={this.handleChange}
-                       formData={formData}
-                       errors={errors} />
+          <FormElement
+            attribute="full_name"
+            label={gettext('Full Name')}
+            placeholder={gettext('Your Full Name')}
+            autoFocus
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors}
+          />
           <p>
             <label>{gettext('Avatar')}</label>
             <Avatar email={model.get('email')} size={48} />
-            <span className="helptext"
-                  dangerouslySetInnerHTML={linkify(avatarHelp)} />
+            <span
+              className="helptext"
+              dangerouslySetInnerHTML={linkify(avatarHelp)}
+            />
           </p>
           <p className="divider" />
-          <FormElement attribute="twitter"
-                       label={gettext('Twitter')}
-                       handleChange={this.handleChange}
-                       placeholder={gettext('Your Twitter username')}
-                       formData={formData}
-                       errors={errors}
-                       maxLength="15" />
-          <FormElement attribute="linkedin"
-                       label={gettext('LinkedIn')}
-                       handleChange={this.handleChange}
-                       placeholder={gettext('Your LinkedIn profile URL')}
-                       formData={formData}
-                       errors={errors} />
-          <FormElement attribute="website"
-                       label={gettext('Website')}
-                       handleChange={this.handleChange}
-                       placeholder={gettext('Your Personal website/blog URL')}
-                       formData={formData}
-                       errors={errors} />
-          <FormElement type="textarea"
-                       attribute="bio"
-                       label={gettext('Short Bio')}
-                       handleChange={this.handleChange}
-                       placeholder={gettext(
-                         'Why are you part of our translation project? ' +
-                         'Describe yourself, inspire others!')}
-                       formData={formData}
-                       errors={errors} />
+          <FormElement
+            attribute="twitter"
+            label={gettext('Twitter')}
+            handleChange={this.handleChange}
+            placeholder={gettext('Your Twitter username')}
+            formData={formData}
+            errors={errors}
+            maxLength="15"
+          />
+          <FormElement
+            attribute="linkedin"
+            label={gettext('LinkedIn')}
+            handleChange={this.handleChange}
+            placeholder={gettext('Your LinkedIn profile URL')}
+            formData={formData}
+            errors={errors}
+          />
+          <FormElement
+            attribute="website"
+            label={gettext('Website')}
+            handleChange={this.handleChange}
+            placeholder={gettext('Your Personal website/blog URL')}
+            formData={formData}
+            errors={errors}
+          />
+          <FormElement
+            type="textarea"
+            attribute="bio"
+            label={gettext('Short Bio')}
+            handleChange={this.handleChange}
+            placeholder={gettext('Why are you part of our translation project? ' +
+                                 'Describe yourself, inspire others!')}
+            formData={formData}
+            errors={errors}
+          />
         </div>
         <p className="buttons">
-          <input type="submit"
-                 className="btn btn-primary"
-                 disabled={!this.state.isDirty}
-                 value={gettext('Save')} />
+          <input
+            type="submit"
+            className="btn btn-primary"
+            disabled={!this.state.isDirty}
+            value={gettext('Save')}
+          />
         </p>
       </form>
     );

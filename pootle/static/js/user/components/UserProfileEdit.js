@@ -88,8 +88,10 @@ const UserProfileEdit = React.createClass({
     return (
       <div>
         <div className="edit-profile-btn">
-          <button className="btn btn-primary"
-                  onClick={this.handleEdit}>
+          <button
+            className="btn btn-primary"
+            onClick={this.handleEdit}
+          >
             {gettext('Edit My Public Profile')}
           </button>
         </div>
@@ -97,11 +99,14 @@ const UserProfileEdit = React.createClass({
         <Modal
           className="user-edit"
           onClose={this.handleClose}
-          title={gettext('My Public Profile')}>
+          title={gettext('My Public Profile')}
+        >
           <div id="user-edit">
-            <UserProfileForm model={this.props.user}
-                             onDirty={this.handleDirtyFlag}
-                             onSuccess={this.handleSave} />
+            <UserProfileForm
+              model={this.props.user}
+              onDirty={this.handleDirtyFlag}
+              onSuccess={this.handleSave}
+            />
           </div>
         </Modal>}
       {this.state.confirmClose &&
@@ -111,7 +116,8 @@ const UserProfileEdit = React.createClass({
           onClose={this.handleDlgCancel}
           title={gettext('Discard changes.')}
           okLabel={gettext('Yes')}
-          cancelLabel={gettext('No')}>
+          cancelLabel={gettext('No')}
+        >
           {gettext('There are unsaved changes. Do you want to discard them?')}
         </Dialog>}
       </div>
