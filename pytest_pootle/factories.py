@@ -114,6 +114,7 @@ class ProjectFactory(factory.django.DjangoModelFactory):
         return 'Project %s' % Project.objects.count()
 
     pootle_path = factory.LazyAttribute(lambda p: "/projects/%s" % p.code)
+    checkstyle = "standard"
 
 
 class StoreFactory(factory.django.DjangoModelFactory):
@@ -170,20 +171,27 @@ class UnitFactory(factory.django.DjangoModelFactory):
     @factory.lazy_attribute
     def source_f(self):
         return (
-            "%s Source %s %s"
+            "%s Source %s %s%s"
             % (pootle_store.util.get_state_name(self.state).capitalize(),
                self.store.pootle_path,
-               self.index))
+               self.index, "%s."))
 
     @factory.lazy_attribute
     def target_f(self):
         state_name = pootle_store.util.get_state_name(self.state)
+        endings = [" ", "", "%d", "\t"]
         if state_name in ["translated", "fuzzy", "obsolete"]:
+            # make half fail checks
+            if not self.index % 2:
+                ending = endings[self.index % 4]
+            else:
+                ending = "%s."
             return (
-                "%s Target %s %s"
+                "%s Target %s %s%s"
                 % (state_name.capitalize(),
                    self.store.pootle_path,
-                   self.index))
+                   self.index,
+                   ending))
         return ""
 
 

@@ -408,7 +408,7 @@ class PootleTestEnv(object):
 
         # add suggestion at first_modified
         suggestion, _ = unit.add_suggestion(
-            "Suggestion for %s" % unit.source,
+            "Suggestion for %s" % (unit.target or unit.source),
             user=member,
             touch=False)
         self._update_submission_times(first_modified, created)
@@ -428,7 +428,7 @@ class PootleTestEnv(object):
 
         # add another suggestion as different user 7 days later
         suggestion2, _ = unit.add_suggestion(
-            "Suggestion 2 for %s" % unit.source,
+            "Suggestion 2 for %s" % (unit.target or unit.source),
             user=member2,
             touch=False)
         self._update_submission_times(
