@@ -8,15 +8,21 @@
 # AUTHORS file for copyright and authorship information.
 
 from collections import OrderedDict
+from datetime import datetime, timedelta
 import json
+import urllib
 
 import pytest
 
 from django.core.urlresolvers import reverse
 
 from pytest_pootle.env import TEST_USERS
-from pytest_pootle.utils import create_store
+from pytest_pootle.utils import create_store, get_translated_uid
 
+
+DAY_AGO = (datetime.now() - timedelta(days=1))
+MONTH_AGO = (datetime.now() - timedelta(days=30))
+TWO_MONTHS_AGO = (datetime.now() - timedelta(days=60))
 
 BAD_VIEW_TESTS = OrderedDict(
     (("/foo/bar", dict(code=301, location="/foo/bar/")),
@@ -63,6 +69,83 @@ BAD_VIEW_TESTS = OrderedDict(
      ("/xhr/units?filter=translated&path=/&initial=True&uids=75000",
       dict(ajax=True))))
 
+GET_UNITS_TESTS = OrderedDict(
+    (("default_path", {}),
+     ("state_translated",
+      {"filter": "translated"}),
+     ("state_untranslated",
+      {"filter": "untranslated"}),
+     ("state_incomplete",
+      {"filter": "incomplete"}),
+     ("state_fuzzy",
+      {"filter": "fuzzy"}),
+     ("sort_units_oldest",
+      {"sort_by_param": "oldest"}),
+     ("filter_translated_from_uid",
+      {"uids": get_translated_uid,
+       "filter": "translated",
+       "initial": True}),
+     ("filter_translated_from_uid_sort_priority",
+      {"uids": get_translated_uid,
+       "filter": "translated",
+       "sort": "priority"}),
+     ("translated_by_member",
+      {"filter": "translated",
+       "user": "member"}),
+     ("translated_by_member_FOO",
+      {"filter": "translated",
+       "user": "member_FOO"}),
+     ("modified_last_month",
+      {"filter": "translated",
+       "modified-since": MONTH_AGO.isoformat()}),
+     ("modified_last_calendar_month",
+      {"filter": "translated",
+       "month": MONTH_AGO.strftime("%Y-%m")}),
+     ("modified_last_two_months",
+      {"modified_since": TWO_MONTHS_AGO.isoformat()}),
+     ("modified_last_day",
+      {"modified_since": DAY_AGO.isoformat()}),
+     ("path_vfolder",
+      {"path": "/language0/project0/virtualfolder0/"}),
+     ("filter_suggestions",
+      {"filter": "suggestions"}),
+     ("filter_user_suggestions",
+      {"filter": "user-suggestions"}),
+     ("filter_user_suggestions_accepted",
+      {"filter": "user-suggestions-accepted"}),
+     ("filter_user_suggestions_rejected",
+      {"filter": "user-suggestions-rejected"}),
+     ("filter_user_submissions",
+      {"filter": "user-submissions"}),
+     ("filter_user_submissions_overwritten",
+      {"filter": "user-submissions-overwritten"}),
+     ("filter_search_empty",
+      {"search": "FOO",
+       "sfields": "source"}),
+     ("filter_search_untranslated",
+      {"search": "untranslated",
+       "sfields": "source"}),
+     ("filter_search_sfields_multi",
+      {"search": "FOO",
+       "sfields": "source,target"}),
+     ("sort_user_suggestion_newest",
+      {"sort": "newest",
+       "filter": "user-suggestions"}),
+     ("sort_user_suggestion_oldest",
+      {"sort": "oldest",
+       "filter": "user-suggestions"}),
+     ("checks_foo",
+      {"filter": "checks",
+       "checks": "foo"}),
+     ("checks_endpunc",
+      {"filter": "checks",
+       "checks": ["endpunc"]}),
+     ("checks_category_critical",
+      {"filter": "checks",
+       "category": "critical"}),
+     ("checks_category_critical",
+      {"filter": "checks",
+       "category": "critical"})))
 
 LANGUAGE_VIEW_TESTS = OrderedDict(
     (("browse", {}),
@@ -122,6 +205,37 @@ TP_VIEW_TESTS = OrderedDict(
      ("export_directory_store",
       {"dir_path": "subdir0/",
        "filename": "store3.po"})))
+
+
+@pytest.fixture(params=GET_UNITS_TESTS.keys())
+def get_units_views(request, client, request_users):
+    from pootle.core.dateparse import parse_datetime
+
+    params = GET_UNITS_TESTS[request.param].copy()
+    params["path"] = params.get("path", "/")
+    params["initial"] = params.get("initial", True)
+
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    if "uids" in params and callable(params["uids"]):
+        params["uids"] = [params["uids"]()]
+
+    url_params = urllib.urlencode(params, True)
+    response = client.get(
+        "%s?%s"
+        % (reverse("pootle-xhr-units"),
+           url_params),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+    params["pootle_path"] = params["path"]
+    if params.get("modified_since"):
+        params["modified_since"] = parse_datetime(
+            params["modified_since"])
+    return user, params, url_params, response
 
 
 @pytest.fixture(params=PROJECT_VIEW_TESTS.keys())
