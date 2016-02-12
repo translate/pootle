@@ -8,8 +8,14 @@
 
 import pytest
 
-from pootle_store.models import Unit
-from pootle_store.unit.filters import UnitTextSearch
+from pootle_project.models import Project
+from pootle_statistics.models import SubmissionTypes
+from pootle_store.models import (
+    FUZZY, TRANSLATED, UNTRANSLATED,
+    SuggestionStates, Unit)
+from pootle_store.unit.filters import (
+    FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitStateFilter,
+    UnitTextSearch)
 
 
 def _expected_text_search_words(text, exact):
@@ -44,6 +50,76 @@ def _expected_text_search_fields(sfields):
     return search_fields
 
 
+def _test_units_checks_filter(qs, check_type, check_data):
+    result = UnitChecksFilter(qs, **{check_type: check_data}).filter("checks")
+    for item in result:
+        assert item in qs
+    assert result.count() == result.distinct().count()
+
+    if check_type == "checks":
+        for item in result:
+            assert any(
+                qc in item.qualitycheck_set.values_list("name", flat=True)
+                for qc
+                in check_data)
+        assert(
+            list(result)
+            == list(
+                qs.filter(
+                    qualitycheck__false_positive=False,
+                    qualitycheck__name__in=check_data).distinct()))
+    else:
+        for item in result:
+            item.qualitycheck_set.values_list("category", flat=True)
+        assert(
+            list(result)
+            == list(
+                qs.filter(
+                    qualitycheck__false_positive=False,
+                    qualitycheck__category=check_data).distinct()))
+
+
+def _test_units_contribution_filter(qs, user, unit_filter):
+    result = UnitContributionFilter(qs, user=user).filter(unit_filter)
+    for item in result:
+        assert item in qs
+    assert result.count() == result.distinct().count()
+    user_subs_overwritten = [
+        "my_submissions_overwritten",
+        "user_submissions_overwritten"]
+    if unit_filter == "suggestions":
+        assert (
+            result.count()
+            == qs.filter(
+                suggestion__state=SuggestionStates.PENDING).distinct().count())
+        return
+    elif not user:
+        assert result.count() == 0
+        return
+    elif unit_filter in ["my_suggestions", "user_suggestions"]:
+        expected = qs.filter(
+            suggestion__state=SuggestionStates.PENDING,
+            suggestion__user=user).distinct()
+    elif unit_filter == "user_suggestions_accepted":
+        expected = qs.filter(
+            suggestion__state=SuggestionStates.ACCEPTED,
+            suggestion__user=user).distinct()
+    elif unit_filter == "user_suggestions_rejected":
+        expected = qs.filter(
+            suggestion__state=SuggestionStates.REJECTED,
+            suggestion__user=user).distinct()
+    elif unit_filter in ["my_submissions", "user_submissions"]:
+        expected = qs.filter(
+            submission__submitter=user,
+            submission__type__in=SubmissionTypes.EDIT_TYPES).distinct()
+    elif unit_filter in user_subs_overwritten:
+        expected = qs.filter(
+            submission__submitter=user,
+            submission__type__in=SubmissionTypes.EDIT_TYPES)
+        expected = expected.exclude(submitted_by=user).distinct()
+    assert list(expected) == list(result)
+
+
 def _test_unit_text_search(qs, text, sfields, exact, empty=True):
 
     unit_search = UnitTextSearch(qs)
@@ -76,6 +152,31 @@ def _test_unit_text_search(qs, text, sfields, exact, empty=True):
             assert searchword_found
 
 
+def _test_units_state_filter(qs, unit_filter):
+    result = UnitStateFilter(qs).filter(unit_filter)
+    for item in result:
+        assert item in qs
+    assert result.count() == result.distinct().count()
+    if unit_filter == "all":
+        assert list(result) == list(qs)
+        return
+    elif unit_filter == "translated":
+        states = [TRANSLATED]
+    elif unit_filter == "untranslated":
+        states = [UNTRANSLATED]
+    elif unit_filter == "fuzzy":
+        states = [FUZZY]
+    elif unit_filter == "incomplete":
+        states = [UNTRANSLATED, FUZZY]
+    assert all(
+        state in states
+        for state
+        in result.values_list("state", flat=True))
+    assert (
+        qs.filter(state__in=states).count()
+        == result.count())
+
+
 @pytest.mark.django_db
 def test_get_units_text_search(units_text_searches):
     search = units_text_searches
@@ -105,3 +206,60 @@ def test_get_units_text_search(units_text_searches):
         # run tests against different qs
         _test_unit_text_search(
             qs, search["text"], search["sfields"], search["exact"])
+
+
+@pytest.mark.django_db
+def test_units_contribution_filter(units_contributor_searches):
+    unit_filter, user = units_contributor_searches
+
+    qs = Unit.objects.all()
+    if not hasattr(UnitContributionFilter, "filter_%s" % unit_filter):
+        with pytest.raises(FilterNotFound):
+            UnitContributionFilter(qs, user=user).filter(unit_filter)
+        return
+    test_qs = [
+        qs,
+        qs.none(),
+        qs.filter(
+            store__translation_project__project=Project.objects.first())]
+    for _qs in test_qs:
+        _test_units_contribution_filter(_qs, user, unit_filter)
+
+
+@pytest.mark.django_db
+def test_units_state_filter(units_state_searches):
+    unit_filter = units_state_searches
+    qs = Unit.objects.all()
+    if not hasattr(UnitStateFilter, "filter_%s" % unit_filter):
+        with pytest.raises(FilterNotFound):
+            UnitStateFilter(qs).filter(unit_filter)
+        return
+    test_qs = [
+        qs,
+        qs.none(),
+        qs.filter(
+            store__translation_project__project=Project.objects.first())]
+    for _qs in test_qs:
+        _test_units_state_filter(_qs, unit_filter)
+
+
+@pytest.mark.django_db
+def test_units_checks_filter(units_checks_searches):
+    check_type, check_data = units_checks_searches
+    qs = Unit.objects.all()
+    test_qs = [
+        qs,
+        qs.none(),
+        qs.filter(
+            store__translation_project__project=Project.objects.first())]
+    for _qs in test_qs:
+        _test_units_checks_filter(_qs, check_type, check_data)
+
+
+@pytest.mark.django_db
+def test_units_checks_filter_bad():
+    qs = Unit.objects.all()
+    with pytest.raises(FilterNotFound):
+        UnitChecksFilter(qs).filter("BAD")
+    # if you dont supply check/category you get empty qs
+    assert not UnitChecksFilter(qs).filter("checks").count()
