@@ -13,7 +13,6 @@ import UserEvent from 'components/UserEvent';
 import { User } from 'models/user';
 
 import UserProfileEdit from './components/UserProfileEdit';
-import UserProfileRouter from './routers';
 
 
 window.PTL = window.PTL || {};
@@ -27,7 +26,6 @@ PTL.user = {
 
       const user = new User(opts.userData, { urlRoot: l('/xhr/users/') });
       const props = {
-        router: new UserProfileRouter(),
         appRoot: opts.appRoot,
         user: user,
       };

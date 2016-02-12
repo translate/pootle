@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import Backbone from 'backbone';
 import React from 'react';
 
 import Dialog from 'components/Dialog';
@@ -19,7 +18,6 @@ const UserProfileEdit = React.createClass({
 
   propTypes: {
     appRoot: React.PropTypes.string.isRequired,
-    router: React.PropTypes.object.isRequired,
     user: React.PropTypes.object.isRequired,
   },
 
@@ -27,31 +25,15 @@ const UserProfileEdit = React.createClass({
 
   getInitialState() {
     return {
-      editing: false,
+      editing: /\/edit\/?$/.test(window.location),
       confirmClose: false,
       isDirty: false,
     };
   },
 
-  componentWillMount() {
-    this.setupRoutes(this.props.router);
-    Backbone.history.start({ pushState: true, root: this.props.appRoot });
-  },
-
   componentWillUpdate(nextProps, nextState) {
     this.handleURL(nextState);
   },
-
-  setupRoutes(router) {
-    router.on('route:main', () => {
-      this.setState({ editing: false });
-    });
-
-    router.on('route:edit', () => {
-      this.setState({ editing: true });
-    });
-  },
-
 
   /* State-changing handlers */
 
@@ -94,8 +76,9 @@ const UserProfileEdit = React.createClass({
   /* Handlers */
 
   handleURL(newState) {
-    const newURL = newState.editing ? '/edit/' : '/';
-    this.props.router.navigate(newURL);
+    const { appRoot } = this.props;
+    const newURL = newState.editing ? `${appRoot}edit/` : appRoot;
+    window.history.pushState({}, '', newURL);
   },
 
 
