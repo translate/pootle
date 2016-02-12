@@ -45,7 +45,7 @@ const FormElement = React.createClass({
     const errors = (_.size(this.props.errors) > 0 &&
                     this.props.errors[attribute]);
 
-    const inputClass = {
+    const InputComponent = {
       text: FormValueInput,
       email: FormValueInput,
       password: FormValueInput,
@@ -73,13 +73,10 @@ const FormElement = React.createClass({
       newProps.searchPromptText = gettext('Type to search');
     }
 
-    const inputProps = _.extend({}, this.props, newProps);
-    const formInput = React.createFactory(inputClass)(inputProps);
-
     return (
       <div className="field-wrapper">
         <label htmlFor={fieldId}>{this.props.label}</label>
-        {formInput}
+        <InputComponent {...this.props} {...newProps} />
       {errors &&
         <ul className="errorlist">{errors.map((msg, i) => {
           return <li key={i}>{msg}</li>;
