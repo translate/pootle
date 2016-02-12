@@ -38,8 +38,8 @@ def test_test_checks_unit(capfd):
     """Check a --unit"""
 
     units = Unit.objects.filter(
-        store__pootle_path="/language0/project0/store0.po",
-        state=TRANSLATED)
+        state=TRANSLATED,
+        target_f__endswith="%s.")
     call_command('test_checks', '--unit=%s' % units.first().id)
     out, err = capfd.readouterr()
     assert 'No errors found' in out
