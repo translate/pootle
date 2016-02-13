@@ -9,6 +9,18 @@
 
 import pytest
 
+from pytest_pootle.env import TEST_USERS
+
+
+@pytest.fixture(scope="session", params=TEST_USERS.keys())
+def site_users(request):
+    from django.contrib.auth import get_user_model
+
+    info = TEST_USERS[request.param]
+    info['user'] = get_user_model().objects.get(
+        username=request.param)
+    return info
+
 
 def _require_user(username, fullname, password=None,
                   is_superuser=False, email=None):
