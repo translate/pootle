@@ -138,10 +138,7 @@ def get_step_query(request, units_queryset):
                     checks = request.GET['checks'].split(',')
                 elif 'category' in request.GET:
                     category_name = request.GET['category']
-                    try:
-                        category = get_category_id(category_name)
-                    except KeyError:
-                        raise Http404
+                    category = get_category_id(category_name)
             elif unit_filter in ["my-suggestions", "user-suggestions"]:
                 sort_on = "suggestions"
             elif unit_filter in ["my-submissions", "user-submissions"]:
