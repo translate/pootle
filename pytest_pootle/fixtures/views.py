@@ -192,9 +192,13 @@ def language_views(request, client):
 def bad_views(request, client):
     test = dict(code=404)
     test.update(BAD_VIEW_TESTS[request.param])
+    if test.get("ajax"):
+        response = client.get(request.param, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    else:
+        response = client.get(request.param, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     return (
         request.param,
-        client.get(request.param),
+        response,
         test)
 
 
