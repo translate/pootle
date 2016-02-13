@@ -28,6 +28,19 @@ UNITS_TEXT_SEARCH_TESTS["suggestion for translated (source)"] = {
     "text": "suggestion for translated",
     "sfields": ["source"],
     "empty": True}
+UNITS_TEXT_SEARCH_TESTS["exact:Translated (source_f/target_f)"] = {
+    "text": "Translated",
+    "sfields": ["source_f", "target_f"]}
+UNITS_TEXT_SEARCH_TESTS["Suggestion for Translated (target_f)"] = {
+    "text": "suggestion for translated",
+    "sfields": ["target_f"]}
+UNITS_TEXT_SEARCH_TESTS["suggestion for TRANSLATED (target_f)"] = {
+    "text": "suggestion for TRANSLATED",
+    "sfields": ["target_f"]}
+UNITS_TEXT_SEARCH_TESTS["suggestion for translated (source_f)"] = {
+    "text": "suggestion for translated",
+    "sfields": ["source_f"],
+    "empty": True}
 UNITS_TEXT_SEARCH_TESTS["suggestion for translated (source/target)"] = {
     "text": "suggestion for translated",
     "sfields": ["target", "source"]}
@@ -43,6 +56,10 @@ UNITS_TEXT_SEARCH_TESTS["suggestion translated for (target)"] = {
 UNITS_TEXT_SEARCH_TESTS["exact: suggestion translated for (target)"] = {
     "text": "suggestion translated for",
     "sfields": ["target"],
+    "empty": True}
+UNITS_TEXT_SEARCH_TESTS["FOO (notes)"] = {
+    "text": "FOO",
+    "sfields": ["notes"],
     "empty": True}
 UNITS_TEXT_SEARCH_TESTS["FOO BAR"] = {
     "sfields": ["target", "source"],
