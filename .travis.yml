@@ -39,6 +39,9 @@ notifications:
     on_success: change
     on_failure: always
     on_start: never
+before_cache:
+  # Force rebuilds by removing cache for 'master' builds
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then rm -rf pootle/static/js/node_modules/* pootle/assets/*; fi
 services:
   - redis-server
   - elasticsearch
