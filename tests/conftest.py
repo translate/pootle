@@ -12,6 +12,10 @@ import os
 from django import setup
 from django.conf import settings
 
+import logging
+
+logging.getLogger("factory").setLevel(logging.WARN)
+
 
 def pytest_configure():
     if not settings.configured:
