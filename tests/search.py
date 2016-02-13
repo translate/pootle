@@ -209,8 +209,28 @@ def test_get_units_text_search(units_text_searches):
 
 
 @pytest.mark.django_db
-def test_units_contribution_filter(units_contributor_searches):
-    unit_filter, user = units_contributor_searches
+def test_units_contribution_filter_none(units_contributor_searches):
+    unit_filter = units_contributor_searches
+    user = None
+
+    qs = Unit.objects.all()
+    if not hasattr(UnitContributionFilter, "filter_%s" % unit_filter):
+        with pytest.raises(FilterNotFound):
+            UnitContributionFilter(qs, user=user).filter(unit_filter)
+        return
+    test_qs = [
+        qs,
+        qs.none(),
+        qs.filter(
+            store__translation_project__project=Project.objects.first())]
+    for _qs in test_qs:
+        _test_units_contribution_filter(_qs, user, unit_filter)
+
+
+@pytest.mark.django_db
+def test_units_contribution_filter(units_contributor_searches, site_users):
+    unit_filter = units_contributor_searches
+    user = site_users["user"]
 
     qs = Unit.objects.all()
     if not hasattr(UnitContributionFilter, "filter_%s" % unit_filter):

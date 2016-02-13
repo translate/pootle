@@ -73,21 +73,13 @@ UNITS_TEXT_SEARCH_TESTS["suggestion for translated FOO (target)"] = {
 UNITS_CONTRIB_SEARCH_TESTS = [
     "suggestions",
     "FOO",
-    "member:my_suggestions",
     "my_suggestions",
-    "member:user_suggestions",
     "user_suggestions",
-    "member:user_suggestions_accepted",
     "user_suggestions_accepted",
-    "member:user_suggestions_rejected",
     "user_suggestions_rejected",
-    "member:my_submissions",
     "my_submissions",
-    "member:user_submissions",
     "user_submissions",
-    "member:my_submissions_overwritten",
     "my_submissions_overwritten",
-    "member:user_submissions_overwritten",
     "user_submissions_overwritten"]
 
 UNITS_STATE_SEARCH_TESTS = [
@@ -124,16 +116,7 @@ def units_checks_searches(request):
 
 @pytest.fixture(params=UNITS_CONTRIB_SEARCH_TESTS)
 def units_contributor_searches(request):
-    from django.contrib.auth import get_user_model
-
-    User = get_user_model()
-    if ":" in request.param:
-        username, unit_filter = request.param.split(":")
-        user = User.objects.get(username=username)
-    else:
-        user = None
-        unit_filter = request.param
-    return unit_filter, user
+    return request.param
 
 
 @pytest.fixture(params=UNITS_TEXT_SEARCH_TESTS.keys())
