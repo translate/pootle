@@ -41,7 +41,7 @@ def test_verify_user_unknownuser(capfd):
 def test_verify_user_noemail(capfd, member):
     call_command('verify_user', 'member')
     out, err = capfd.readouterr()
-    assert "You cannot verify an account with no email set" in out
+    assert "You cannot verify an account with no email set" in err
 
 
 @pytest.mark.cmd

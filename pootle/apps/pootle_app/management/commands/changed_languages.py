@@ -64,4 +64,4 @@ class Command(BaseCommand):
                                   flat=True)
 
         # list languages separated by comma for easy parsing
-        print ','.join(languages)
+        self.stdout.write(','.join(languages))

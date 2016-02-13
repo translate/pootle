@@ -41,14 +41,14 @@ class Command(UserCommand):
             for user in get_user_model().objects.hide_meta():
                 try:
                     utils.verify_user(user)
-                    print("Verified user '%s'" % user.username)
+                    self.stdout.write("Verified user '%s'" % user.username)
                 except (ValueError, ValidationError) as e:
-                    print(e)
+                    self.stderr.write(e.message)
 
         if options['user']:
             for user in options['user']:
                 try:
                     utils.verify_user(self.get_user(user))
-                    print("User '%s' has been verified" % user)
+                    self.stdout.write("User '%s' has been verified" % user)
                 except (ValueError, ValidationError) as e:
-                    print(e)
+                    self.stderr.write(e.message)
