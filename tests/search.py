@@ -14,8 +14,8 @@ from pootle_store.models import (
     FUZZY, TRANSLATED, UNTRANSLATED,
     SuggestionStates, Unit)
 from pootle_store.unit.filters import (
-    FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitStateFilter,
-    UnitTextSearch)
+    FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitSearchFilter,
+    UnitStateFilter, UnitTextSearch)
 
 
 def _expected_text_search_words(text, exact):
@@ -283,3 +283,9 @@ def test_units_checks_filter_bad():
         UnitChecksFilter(qs).filter("BAD")
     # if you dont supply check/category you get empty qs
     assert not UnitChecksFilter(qs).filter("checks").count()
+
+
+@pytest.mark.django_db
+def test_units_filters():
+    qs = Unit.objects.all()
+    assert UnitSearchFilter().filter(qs, "FOO").count() == 0
