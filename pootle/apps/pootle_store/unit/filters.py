@@ -163,7 +163,7 @@ class UnitTextSearch(object):
         for field in sfields:
             if field in self.search_mappings:
                 search_fields.update(self.search_mappings[field])
-            elif field in search_fields:
+            elif field in self.search_fields:
                 search_fields.add(field)
         return search_fields
 
