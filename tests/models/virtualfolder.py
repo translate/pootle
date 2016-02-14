@@ -262,3 +262,19 @@ def test_vfolder_unit_priorities():
         for priority
         in Unit.objects.filter(vfolders__isnull=True)
                        .values_list("priority", flat=True))
+
+
+@pytest.mark.django_db
+def test_virtualfolder_repr():
+    vf = VirtualFolder.objects.first()
+    assert (
+        "<VirtualFolder: %s: %s>" % (vf.name, vf.location)
+        == repr(vf))
+
+
+@pytest.mark.django_db
+def test_virtualfoldertreeitem_repr():
+    vfti = VirtualFolderTreeItem.objects.first()
+    assert (
+        "<VirtualFolderTreeItem: %s>" % vfti.pootle_path
+        == repr(vfti))

@@ -502,3 +502,9 @@ def test_store_diff(store_diff_tests):
         diff.updated_db_units
         == list(store.units.filter(revision__gt=store_revision)
                            .values_list("source_f", flat=True)))
+
+
+@pytest.mark.django_db
+def test_store_repr():
+    store = Store.objects.first()
+    assert repr(store) == u"<Store: %s>" % store.pootle_path
