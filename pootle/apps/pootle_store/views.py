@@ -168,7 +168,8 @@ def get_step_query(request, units_queryset):
             sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
             if sort_by is not None:
                 if sort_on in SIMPLY_SORTED:
-                    match_queryset = match_queryset.order_by(sort_by)
+                    match_queryset = match_queryset.order_by(
+                        sort_by, "store__pootle_path", "index")
                 else:
                     # Omit leading `-` sign
                     if sort_by[0] == '-':
@@ -183,7 +184,7 @@ def get_step_query(request, units_queryset):
                     # (unless PostreSQL is used and `distinct(field_name)`)
                     match_queryset = match_queryset \
                         .annotate(sort_by_field=Max(max_field)) \
-                        .order_by(sort_order)
+                        .order_by(sort_order, "store__pootle_path", "index")
 
             units_queryset = match_queryset
 
@@ -377,7 +378,7 @@ def get_units(request):
 
     if is_initial_request:
         sort_by_field = None
-        if len(step_queryset.query.order_by) == 1:
+        if len(step_queryset.query.order_by) > 2:
             sort_by_field = step_queryset.query.order_by[0]
 
         sort_on = None
@@ -390,8 +391,7 @@ def get_units(request):
             # Since `extra()` has been used before, it's necessary to
             # explicitly request the `store__pootle_path` field. This is a
             # subtetly in Django's ORM.
-            uid_list = [u['id'] for u
-                        in step_queryset.values('id', 'store__pootle_path')]
+            uid_list = list(step_queryset.values_list('id', flat=True))
         else:
             # Not using `values_list()` here because it doesn't know about all
             # existing relations when `extra()` has been used before in the
@@ -403,9 +403,7 @@ def get_units(request):
             # Django looks for `sort_by_field` field in the initial table.
             # https://code.djangoproject.com/ticket/19434
             uid_list = [u['id'] for u
-                        in step_queryset.values('id', 'sort_by_field',
-                                                'store__pootle_path')]
-
+                        in step_queryset.values('id', 'sort_by_field')]
         if len(uids) == 1:
             try:
                 uid = uids[0]
@@ -413,6 +411,7 @@ def get_units(request):
                 begin = max(index - chunk_size, 0)
                 end = min(index + chunk_size + 1, len(uid_list))
                 uids = uid_list[begin:end]
+                units = step_queryset[begin:end]
             except ValueError:
                 raise Http404  # `uid` not found in `uid_list`
         else:
