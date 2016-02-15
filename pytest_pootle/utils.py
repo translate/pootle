@@ -73,6 +73,17 @@ def formset_dict(data):
     return new_data
 
 
+def get_translated_uid():
+    """Returns the uid of a translated unit from ~middle of
+    translated units dataset
+    """
+    from pootle_store.models import Unit
+    from pootle_store.util import TRANSLATED
+
+    units = Unit.objects.filter(state=TRANSLATED)
+    return units[units.count() / 2].id
+
+
 def items_equal(left, right):
     """Returns `True` if items in `left` list are equal to items in
     `right` list.
