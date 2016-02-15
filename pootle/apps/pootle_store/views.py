@@ -388,20 +388,8 @@ def get_units(request):
                 break
 
         if sort_by_field is None or sort_on == 'units':
-            # Since `extra()` has been used before, it's necessary to
-            # explicitly request the `store__pootle_path` field. This is a
-            # subtetly in Django's ORM.
             uid_list = list(step_queryset.values_list('id', flat=True))
         else:
-            # Not using `values_list()` here because it doesn't know about all
-            # existing relations when `extra()` has been used before in the
-            # queryset. This affects annotated names such as those ending in
-            # `__max`, where Django thinks we're trying to lookup a field on a
-            # relationship field. That's why `sort_by_field` alias for `__max`
-            # is used here. This alias must be queried in
-            # `values('sort_by_field', 'id')` with `id` otherwise
-            # Django looks for `sort_by_field` field in the initial table.
-            # https://code.djangoproject.com/ticket/19434
             uid_list = [u['id'] for u
                         in step_queryset.values('id', 'sort_by_field')]
         if len(uids) == 1:
