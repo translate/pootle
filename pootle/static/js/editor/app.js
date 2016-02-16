@@ -900,11 +900,10 @@ PTL.editor = {
       return false;
     }
 
-    const hlClasses = [bestMatchCls];
-    if (isExact) {
-      hlClasses.push(exactMatchCls);
-    }
-    $(boxId).addClass(hlClasses.join(' '));
+    $(boxId).addClass(cx({
+      [bestMatchCls]: true,
+      [exactMatchCls]: isExact,
+    }));
   },
 
 
