@@ -1,0 +1,17 @@
+/*
+ * Copyright (C) Pootle contributors.
+ *
+ * This file is a part of the Pootle project. It is distributed under the GPL3
+ * or later license. See the LICENSE file for a copy of the license and the
+ * AUTHORS file for copyright and authorship information.
+ */
+
+/**
+ * Decodes HTML entities
+ * Refs. https://stackoverflow.com/a/1395954/783019
+ */
+export function decodeEntities(encodedString) {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = encodedString;
+  return textarea.textContent;
+}

@@ -6,22 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-
-/* Normalizes language codes in order to use them in MT services */
-export function normalizeCode(locale) {
-  if (!locale) {
-    return locale;
-  }
-
-  const atIndex = locale.indexOf('@');
-  let clean = locale.replace('_', '-');
-  if (atIndex !== -1) {
-    clean = clean.slice(0, atIndex);
-  }
-  return clean;
-}
-
-
 /*
  * Escape unsafe regular expression symbols:
  * ! $ & ( ) * + - . : < = > ? [ \ ] ^ { | }
@@ -52,15 +36,4 @@ export function makeRegexForMultipleWords(s) {
   return [
     '(', escapeUnsafeRegexSymbols(s).trim().replace(/ +/g, '|'), ')',
   ].join('');
-}
-
-
-/**
- * Decodes HTML entities
- * Refs. https://stackoverflow.com/a/1395954/783019
- */
-export function decodeEntities(encodedString) {
-  const textarea = document.createElement('textarea');
-  textarea.innerHTML = encodedString;
-  return textarea.textContent;
 }
