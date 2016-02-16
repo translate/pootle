@@ -1506,44 +1506,6 @@ a.editor-specialchar:hover
 
 /* HIGHLIGHT */
 
-.non-printable
-{
-    display: inline-block;
-    position: relative;
-    top: -0.2em;
-
-    font-size: 60%;
-    padding: 0.2em;
-    margin: 0 0.1em;
-    min-width:3em;
-    text-align: center;
-    border-radius: 0.3em;
-    background: #000;
-    color: #eee;
-    line-height: 100%;
-}
-
-.non-printable.tab::before
-{
-    content: 'TAB';
-}
-
-.non-printable.newline::before
-{
-    content: 'LF';
-}
-
-.highlight-whitespace
-{
-    color: rgba(153, 102, 0, 0.7);
-    line-height: 100%;
-}
-
-.highlight-whitespace::before
-{
-    content: '\2423'; /* U+2423 = "Open box" symbol */
-}
-
 .highlight-escape
 {
     color: purple;

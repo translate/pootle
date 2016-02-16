@@ -11,7 +11,7 @@ import $ from 'jquery';
 import 'jquery-select2';
 
 import {
-  highlightPunctuation, highlightEscapes, highlightWhitespace, highlightHtml
+  applyFontFilter, highlightPunctuation, highlightEscapes, highlightHtml, nl2br,
 } from './editor/utils';
 
 
@@ -99,11 +99,13 @@ export function strCmp(a, b) {
 
 export function fancyHl(text) {
   return (
-    highlightPunctuation(
-      highlightEscapes(
-        highlightWhitespace(
+    nl2br(
+      highlightPunctuation(
+        highlightEscapes(
           highlightHtml(
-            text
+            applyFontFilter(
+              text
+            )
           )
         )
       )

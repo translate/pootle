@@ -22,23 +22,12 @@ export function highlightPunctuation(text) {
 }
 
 
-const nonPrintable = '<span class="non-printable js-editor-copytext %1$s" ' +
-                     'data-string="%2$s"></span>';
-const newLineHl = nonPrintable.replace('%1$s', 'newline')
-                              .replace('%2$s', '&#10;') + '<br/>';
-const tabHl = nonPrintable.replace('%1$s', 'tab').replace('%2$s', '&#9;');
 const escapeHl = '<span class="highlight-escape js-editor-copytext">%s</span>';
-
-const ESCAPE_RE = /\r\n|[\r\n\t]|\\r|\\n|\\t/gm;
-
+const ESCAPE_RE = /\\r|\\n|\\t/gm;
 
 export function highlightEscapes(text) {
   function replace(match) {
     const submap = {
-      '\r\n': newLineHl,
-      '\r': newLineHl,
-      '\n': newLineHl,
-      '\t': tabHl,
       '\\r': escapeHl.replace(/%s/, '\\r'),
       '\\n': escapeHl.replace(/%s/, '\\n'),
       '\\t': escapeHl.replace(/%s/, '\\t'),
@@ -51,17 +40,10 @@ export function highlightEscapes(text) {
 }
 
 
-const spaceHl = '<span class="highlight-whitespace js-editor-copytext" data-string="%s"></span>';
-const WHITESPACE_RE = /^([ \u{00a0}]+)|([ \u{00a0}]+)$|[ \u{00a0}]{2,}/gmu;
+const NL_RE = /\r\n|[\r\n]/gm;
 
-export function highlightWhitespace(text) {
-  function replace(match) {
-    return (
-      Array(match.length + 1)
-        .join(spaceHl.replace('%s', `&#${match.charCodeAt()};`))
-    );
-  }
-  return text.replace(WHITESPACE_RE, replace);
+export function nl2br(text) {
+  return text.replace(NL_RE, '$&<br/>');
 }
 
 

@@ -6,9 +6,10 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+export { applyFontFilter, unapplyFontFilter } from './font';
 export { decodeEntities } from './html';
 export {
-  highlightPunctuation, highlightEscapes, highlightWhitespace, highlightHtml
+  highlightPunctuation, highlightEscapes, highlightHtml, nl2br,
 } from './highlight';
 export { normalizeCode } from './language';
 export { escapeUnsafeRegexSymbols, makeRegexForMultipleWords } from './search';
