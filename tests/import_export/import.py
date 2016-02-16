@@ -15,7 +15,10 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 
 from import_export.exceptions import UnsupportedFiletypeError
 from import_export.utils import import_file
+from pootle_app.models.permissions import check_user_permission
 from pootle_store.models import NEW, PARSED, Store
+from pootle_store.models import OBSOLETE, TRANSLATED, Unit
+from pytest_pootle.utils import create_store
 
 
 TEST_PO_DIR = "tests/data/po/tutorial/en"
@@ -54,3 +57,73 @@ def test_import_unsupported(en_tutorial_ts, ts_directory, member):
                      file_dir=os.path.join(ts_directory, "tutorial/en"),
                      content_type="text/vnd.trolltech.linguist",
                      user=member)
+
+
+@pytest.mark.django_db
+def test_import_new_file(import_tps, site_users):
+    tp = import_tps
+    user = site_users["user"]
+    store_pootle_path = tp.pootle_path + "import_new_file.po"
+    filestore = create_store(store_pootle_path, "0",
+                             [("Unit Source", "Unit Target")])
+
+    # New store can't be created via current import command. This test will
+    # need to be adjusted if we allow to create new stores via import command.
+    from import_export.exceptions import FileImportError
+    with pytest.raises(FileImportError):
+        import_file(SimpleUploadedFile("import_new_file.po",
+                                       str(filestore),
+                                       "text/x-gettext-translation"), user)
+
+
+@pytest.mark.django_db
+def test_import_to_empty(import_tps, site_users):
+    from pytest_pootle.factories import StoreFactory
+
+    tp = import_tps
+    user = site_users["user"]
+    store = StoreFactory(translation_project=tp, name="import_to_empty.po")
+    filestore = create_store(store.pootle_path, "0",
+                             [("Unit Source", "Unit Target")])
+    import_file(SimpleUploadedFile(store.name,
+                                   str(filestore),
+                                   "text/x-gettext-translation"), user)
+
+    allow_add_and_obsolete = ((tp.project.checkstyle == 'terminology'
+                               or tp.is_template_project)
+                              and check_user_permission(user,
+                                                        'administrate',
+                                                        tp.directory))
+    if allow_add_and_obsolete:
+        assert tp.stores.get(pootle_path=store.pootle_path).units.count() == 1
+    else:
+        assert tp.stores.get(pootle_path=store.pootle_path).units.count() == 0
+
+
+@pytest.mark.django_db
+def test_import_add_and_obsolete_units(import_tps, site_users):
+    from pytest_pootle.factories import StoreFactory, UnitFactory
+
+    tp = import_tps
+    user = site_users["user"]
+    store = StoreFactory(translation_project=tp)
+    unit = UnitFactory(store=store, state=TRANSLATED)
+    filestore = create_store(
+        store.pootle_path,
+        "0",
+        [(unit.source_f + " REPLACED", unit.target_f + " REPLACED")])
+    import_file(SimpleUploadedFile("import_add_and_obsolete.po",
+                                   str(filestore),
+                                   "text/x-gettext-translation"), user)
+
+    allow_add_and_obsolete = ((tp.project.checkstyle == 'terminology'
+                               or tp.is_template_project)
+                              and check_user_permission(user,
+                                                        'administrate',
+                                                        tp.directory))
+    if allow_add_and_obsolete:
+        assert Unit.objects.filter(store=store, state=OBSOLETE).count() == 1
+        assert store.units.filter(state=TRANSLATED).count() == 1
+        assert Unit.objects.filter(store=store).count() == 2
+    else:
+        assert store.units.all().count() == 1

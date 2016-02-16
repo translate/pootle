@@ -73,3 +73,18 @@ def en_tutorial_ts(settings, english_tutorial, ts_directory):
     return store._require_store(english_tutorial,
                                 ts_directory,
                                 'tutorial.ts')
+
+
+@pytest.fixture(
+    params=[
+        "language0_project0", "templates_project0", "en_terminology"])
+def import_tps(request):
+    """List of required translation projects for import tests."""
+    from pootle_translationproject.models import TranslationProject
+
+    language_code, project_code = request.param.split('_')
+    try:
+        return TranslationProject.objects.get(language__code=language_code,
+                                              project__code=project_code)
+    except TranslationProject.DoesNotExist:
+        return request.getfuncargvalue(request.param)

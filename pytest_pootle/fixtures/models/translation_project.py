@@ -98,3 +98,20 @@ def tp_checker_tests(request, english, checkers):
     request.addfinalizer(_remove_project_directory)
 
     return (checker_name, project)
+
+
+@pytest.fixture
+def templates_project0(request, templates):
+    """Require the templates/project0/ translation project."""
+    from pootle_project.models import Project
+    from pytest_pootle.factories import TranslationProjectFactory
+
+    project0 = Project.objects.get(code="project0")
+    tp = TranslationProjectFactory(language=templates, project=project0)
+
+    def _cleanup():
+        shutil.rmtree(tp.abs_real_path)
+
+    request.addfinalizer(_cleanup)
+
+    return tp
