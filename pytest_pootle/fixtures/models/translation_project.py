@@ -7,6 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import shutil
+
 import pytest
 
 
@@ -79,3 +81,25 @@ def afrikaans_vfolder_test(afrikaans, vfolder_test):
 def templates_tutorial(templates, tutorial):
     """Require Template Tutorial."""
     return _require_tp(templates, tutorial)
+
+
+def get_project_checkers():
+    from translate.filters import checks
+
+    return ['standard'] + list(checks.projectcheckers.keys())
+
+
+@pytest.fixture(params=get_project_checkers())
+def tp_checker_tests(request, english):
+    from pytest_pootle.factories import ProjectFactory
+
+    checker_name = request.param
+    project = ProjectFactory(
+        checkstyle=checker_name,
+        source_language=english)
+
+    def _remove_project_directory():
+        shutil.rmtree(project.get_real_path())
+    request.addfinalizer(_remove_project_directory)
+
+    return (checker_name, project)

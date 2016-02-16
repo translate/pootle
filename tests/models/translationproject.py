@@ -116,3 +116,18 @@ def test_tp_stats_created_from_template(tutorial, fish, templates):
     assert stats['fuzzy'] == 0
     assert stats['suggestions'] == 0
     assert stats['critical'] == 0
+
+
+@pytest.mark.django_db
+def test_tp_checker(tp_checker_tests):
+    from translate.filters import checks
+
+    language = Language.objects.get(code="language0")
+    checker_name, project = tp_checker_tests
+    tp = TranslationProject.objects.create(project=project, language=language)
+
+    checkerclasses = [
+        checks.projectcheckers.get(tp.project.checkstyle,
+                                   checks.StandardChecker)
+    ]
+    assert [x.__class__ for x in tp.checker.checkers] == checkerclasses
