@@ -21,12 +21,13 @@ def test_get_units(get_units_views):
     assert "unitGroups" in result
     assert isinstance(result["unitGroups"], list)
     if result["unitGroups"]:
-        assert "uIds" in result
-
         expected_uids, expected_units = calculate_search_results(
             search_params, user)
 
-        assert list(result["uIds"]) == list(expected_uids)
+        if search_params.get("initial"):
+            assert list(result["uIds"]) == list(expected_uids)
+        else:
+            assert "uIds" not in result
 
         for i, group in enumerate(expected_units):
             result_group = result["unitGroups"][i]
