@@ -204,9 +204,8 @@ def unit_form_factory(language, snplurals=None, request=None):
     class UnitForm(forms.ModelForm):
         class Meta(object):
             model = Unit
-            fields = ('id', 'index', 'target_f', 'state',)
+            fields = ('target_f', 'state',)
 
-        id = forms.IntegerField(required=False)
         target_f = MultiStringFormField(
             nplurals=tnplurals,
             required=False,
