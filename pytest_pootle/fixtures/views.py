@@ -9,6 +9,7 @@
 
 from collections import OrderedDict
 from datetime import datetime, timedelta
+import functools
 import json
 import urllib
 
@@ -73,6 +74,10 @@ GET_UNITS_TESTS = OrderedDict(
     (("default_path", {}),
      ("state_translated",
       {"filter": "translated"}),
+     ("state_translated_continued",
+      {"filter": "translated",
+       "uids": functools.partial(get_translated_uids, count=9),
+       "initial": False}),
      ("state_untranslated",
       {"filter": "untranslated"}),
      ("state_incomplete",
