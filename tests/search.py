@@ -117,7 +117,9 @@ def _test_units_contribution_filter(qs, user, unit_filter):
             submission__submitter=user,
             submission__type__in=SubmissionTypes.EDIT_TYPES)
         expected = expected.exclude(submitted_by=user).distinct()
-    assert list(expected) == list(result)
+    assert (
+        list(expected.order_by("pk"))
+        == list(result.order_by("pk")))
 
 
 def _test_unit_text_search(qs, text, sfields, exact, empty=True):
