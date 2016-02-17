@@ -321,7 +321,20 @@ def get_units(request):
         When the `initial` GET parameter is present, a sorted list of
         the result set ids will be returned too.
     """
-    pootle_path = request.GET.get('path', None)
+    category = request.GET.get('category')
+    checks = request.GET.get('checks')
+    chunk_size = request.GET.get('count')
+    is_initial_request = request.GET.get('initial', False)
+    modified_since = request.GET.get('modified-since')
+    month = request.GET.get('month')
+    pootle_path = request.GET.get('path')
+    search = request.GET.get('search')
+    sfields = request.GET.get('sfields')
+    sort_by_param = request.GET.get('sort')
+    unit_filter = request.GET.get('filter')
+    uids_param = filter(None, request.GET.get('uids', '').split(u','))
+    username = request.GET.get('user')
+
     if pootle_path is None:
         raise Http400(_('Arguments missing.'))
     elif len(pootle_path) > 2048:
@@ -330,10 +343,10 @@ def get_units(request):
     if request.user.is_anonymous():
         # override the anon user
         request.user = get_user_model().objects.get_nobody_user()
-
-    limit = request.user.get_unit_rows()
-
+    if chunk_size is None:
+        chunk_size = request.user.get_unit_rows()
     vfolder = None
+    sort_on = 'units'
 
     if 'virtualfolder' in settings.INSTALLED_APPS:
         from virtualfolder.helpers import extract_vfolder_from_path
@@ -365,11 +378,80 @@ def get_units(request):
         'store__translation_project__project',
         'store__translation_project__language',
     )
-    step_queryset = get_step_query(request, units_qs)
 
-    is_initial_request = request.GET.get('initial', False)
-    chunk_size = request.GET.get('count', limit)
-    uids_param = filter(None, request.GET.get('uids', '').split(u','))
+    if unit_filter:
+        user = request.user
+        if username is not None:
+            User = get_user_model()
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                pass
+
+        if unit_filter == "checks":
+            if checks is not None:
+                checks = checks.split(",")
+            elif category is not None:
+                category = get_category_id(category)
+        elif unit_filter in ["my-suggestions", "user-suggestions"]:
+            sort_on = "suggestions"
+        elif unit_filter in ["my-submissions", "user-submissions"]:
+            sort_on = "submissions"
+
+        units_qs = UnitSearchFilter().filter(
+            units_qs, unit_filter,
+            user=user, checks=checks, category=category)
+
+        if modified_since is not None:
+            datetime_obj = parse_datetime(modified_since)
+            if datetime_obj is not None:
+                units_qs = units_qs.filter(
+                    submitted_on__gt=datetime_obj).distinct()
+
+        if month is not None:
+            [start, end] = get_date_interval(month)
+            units_qs = units_qs.filter(
+                submitted_on__gte=start,
+                submitted_on__lte=end).distinct()
+
+        sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
+        if sort_by is not None:
+            if sort_on in SIMPLY_SORTED:
+                units_qs = units_qs.order_by(
+                    sort_by, "store__pootle_path", "index")
+            else:
+                # Omit leading `-` sign
+                if sort_by[0] == '-':
+                    max_field = sort_by[1:]
+                    sort_order = '-sort_by_field'
+                else:
+                    max_field = sort_by
+                    sort_order = 'sort_by_field'
+
+                # It's necessary to use `Max()` here because we can't
+                # use `distinct()` and `order_by()` at the same time
+                units_qs = (
+                    units_qs.annotate(sort_by_field=Max(max_field))
+                            .order_by(sort_order,
+                                      "store__pootle_path",
+                                      "index"))
+
+    if all(x is not None for x in [search, sfields]):
+        # Accept `sfields` to be a comma-separated string of fields (#46)
+        GET = request.GET.copy()
+        if isinstance(sfields, unicode) and u',' in sfields:
+            GET.setlist('sfields', sfields.split(u','))
+
+        # use the search form for validation only
+        search_form = make_search_form(GET)
+
+        if search_form.is_valid():
+            exact = 'exact' in search_form.cleaned_data['soptions']
+            text = search_form.cleaned_data['search']
+            sfields = GET.getlist("sfields")
+            units_qs = UnitTextSearch(
+                units_qs).search(text, sfields, exact=exact)
+
     uids = filter(None, map(to_int, uids_param))
 
     units = []
@@ -378,8 +460,8 @@ def get_units(request):
 
     if is_initial_request:
         sort_by_field = None
-        if len(step_queryset.query.order_by) > 2:
-            sort_by_field = step_queryset.query.order_by[0]
+        if len(units_qs.query.order_by) > 2:
+            sort_by_field = units_qs.query.order_by[0]
 
         sort_on = None
         for key, item in ALLOWED_SORTS.items():
@@ -388,10 +470,10 @@ def get_units(request):
                 break
 
         if sort_by_field is None or sort_on == 'units':
-            uid_list = list(step_queryset.values_list('id', flat=True))
+            uid_list = list(units_qs.values_list('id', flat=True))
         else:
             uid_list = [u['id'] for u
-                        in step_queryset.values('id', 'sort_by_field')]
+                        in units_qs.values('id', 'sort_by_field')]
         if len(uids) == 1:
             try:
                 uid = uids[0]
@@ -399,7 +481,7 @@ def get_units(request):
                 begin = max(index - chunk_size, 0)
                 end = min(index + chunk_size + 1, len(uid_list))
                 uids = uid_list[begin:end]
-                units = step_queryset[begin:end]
+                units = units_qs[begin:end]
             except ValueError:
                 raise Http404  # `uid` not found in `uid_list`
         else:
@@ -407,7 +489,7 @@ def get_units(request):
             uids = uid_list[:count]
 
     if not units and uids:
-        units = step_queryset.filter(id__in=uids)
+        units = units_qs.filter(id__in=uids)
 
     units_by_path = groupby(units, lambda x: x.store.pootle_path)
     for pootle_path, units in units_by_path:
