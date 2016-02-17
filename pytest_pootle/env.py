@@ -234,7 +234,8 @@ class PootleTestEnv(object):
         from .fixtures.models.user import _require_user
 
         for username, user_params in TEST_USERS.items():
-            _require_user(username=username, **user_params)
+            user = _require_user(username=username, **user_params)
+            TEST_USERS[username]["user"] = user
 
     def setup_site_permissions(self):
         from django.contrib.auth import get_user_model

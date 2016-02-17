@@ -18,22 +18,12 @@ from pytest_pootle.env import TEST_USERS
     scope="session",
     params=["nobody", "admin", "member", "member2"])
 def request_users(request):
-    from django.contrib.auth import get_user_model
-
-    info = copy.deepcopy(TEST_USERS[request.param])
-    info['user'] = get_user_model().objects.get(
-        username=request.param)
-    return info
+    return copy.deepcopy(TEST_USERS[request.param])
 
 
 @pytest.fixture(scope="session", params=TEST_USERS.keys())
 def site_users(request):
-    from django.contrib.auth import get_user_model
-
-    info = TEST_USERS[request.param]
-    info['user'] = get_user_model().objects.get(
-        username=request.param)
-    return info
+    return copy.deepcopy(TEST_USERS[request.param])
 
 
 def _require_user(username, fullname, password=None,
