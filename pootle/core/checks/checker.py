@@ -14,6 +14,7 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
+from pootle.core.mixins.treeitem import CachedMethods
 from pootle_misc.checks import run_given_filters
 from pootle_misc.util import import_func
 from pootle_store.models import QualityCheck, Store, Unit
@@ -269,6 +270,7 @@ class QualityCheckUpdater(object):
         """After completing QualityCheck updates expire caches for affected Stores.
         """
         for store in Store.objects.filter(pk__in=stores):
+            store.mark_dirty(CachedMethods.CHECKS, CachedMethods.MTIME)
             store.update_dirty_cache()
 
     def update_translated_unit(self, unit, checker=None):
