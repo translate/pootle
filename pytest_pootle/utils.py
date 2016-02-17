@@ -57,22 +57,6 @@ def create_store(pootle_path=None, store_revision=None, units=None):
     return getclass(io_store)(io_store.read())
 
 
-def formset_dict(data):
-    """Convert human readable POST dictionary into brain dead django
-    formset dictionary.
-    """
-    new_data = {
-        'form-TOTAL_FORMS': len(data),
-        'form-INITIAL_FORMS': 0,
-    }
-
-    for i in range(len(data)):
-        for key, value in data[i].iteritems():
-            new_data["form-%d-%s" % (i, key)] = value
-
-    return new_data
-
-
 def get_translated_uids(offset=0, count=1):
     """Returns a list translated unit uids from ~middle of
     translated units dataset
