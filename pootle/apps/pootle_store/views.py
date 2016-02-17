@@ -122,7 +122,7 @@ def get_step_query(request, units_queryset):
         sort_by_param = request.GET.get('sort', None)
         sort_on = 'units'
 
-        user = request.profile
+        user = request.user
         if username is not None:
             User = get_user_model()
             try:
@@ -327,9 +327,12 @@ def get_units(request):
     elif len(pootle_path) > 2048:
         raise Http400(_('Path too long.'))
 
-    User = get_user_model()
-    request.profile = User.get(request.user)
-    limit = request.profile.get_unit_rows()
+    if request.user.is_anonymous():
+        # override the anon user
+        request.user = get_user_model().objects.get_nobody_user()
+
+    limit = request.user.get_unit_rows()
+
     vfolder = None
 
     if 'virtualfolder' in settings.INSTALLED_APPS:
@@ -351,7 +354,7 @@ def get_units(request):
         raise Http404('Unrecognised path')
 
     units_qs = Unit.objects.get_translatable(
-        user=request.profile,
+        user=request.user,
         **path_kwargs)
     units_qs = units_qs.order_by("store", "index")
 
