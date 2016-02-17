@@ -6,11 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import os
-import shutil
 from datetime import datetime, timedelta
-
-from django.utils.functional import cached_property
 
 
 TEST_USERS = {
@@ -47,24 +43,10 @@ class PootleTestEnv(object):
     def __init__(self, request):
         self.request = request
 
-    @cached_property
-    def dirs(self):
-        from pootle_app.models import Directory
-
-        dirs = Directory.objects
-
-        # create root and projects directories, first clear the class cache
-        if "root" in dirs.__dict__:
-            del dirs.__dict__['root']
-        if "projects" in dirs.__dict__:
-            del dirs.__dict__['projects']
-        return dirs
-
     def setup(self):
         [getattr(self, "setup_%s" % method)()
          for method
          in self.methods]
-        self.request.addfinalizer(self.teardown)
 
     def setup_announcements(self):
         from pytest_pootle.factories import AnnouncementFactory
@@ -317,20 +299,6 @@ class PootleTestEnv(object):
 
         for unit in Unit.objects.all():
             self._add_submissions(unit, year_ago)
-
-    def teardown(self):
-        from django.conf import settings
-
-        if "root" in self.dirs.__dict__:
-            del self.dirs.__dict__['root']
-        if "projects" in self.dirs.__dict__:
-            del self.dirs.__dict__['projects']
-        # required to get clean slate 8/
-        for trans_dir in os.listdir(settings.POOTLE_TRANSLATION_DIRECTORY):
-            if trans_dir.startswith("project"):
-                shutil.rmtree(
-                    os.path.join(
-                        settings.POOTLE_TRANSLATION_DIRECTORY, trans_dir))
 
     def setup_tps(self):
         from pootle_project.models import Project
