@@ -14,6 +14,7 @@ from django.db.models import Max
 
 from pootle_misc.checks import get_category_id
 
+from pootle.core.dateparse import parse_datetime
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitTextSearch, UnitSearchFilter
 from pootle_store.views import (
@@ -29,13 +30,16 @@ def calculate_search_results(kwargs, user):
     category = kwargs.get("category")
     checks = kwargs.get("checks")
     limit = kwargs.get("count", 9)
-    modified_since = kwargs.get("modified_since")
+    modified_since = kwargs.get("modified-since")
     search = kwargs.get("search")
     sfields = kwargs.get("sfields")
     soptions = kwargs.get("soptions", [])
     sort = kwargs.get("sort", None)
     uids = kwargs.get("uids")
     unit_filter = kwargs.get("filter")
+
+    if modified_since:
+        modified_since = parse_datetime(modified_since)
 
     vfolder = None
     if 'virtualfolder' in settings.INSTALLED_APPS:

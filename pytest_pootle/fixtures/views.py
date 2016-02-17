@@ -209,8 +209,6 @@ TP_VIEW_TESTS = OrderedDict(
 
 @pytest.fixture(params=GET_UNITS_TESTS.keys())
 def get_units_views(request, client, request_users):
-    from pootle.core.dateparse import parse_datetime
-
     params = GET_UNITS_TESTS[request.param].copy()
     params["path"] = params.get("path", "/")
     params["initial"] = params.get("initial", True)
@@ -232,9 +230,6 @@ def get_units_views(request, client, request_users):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     params["pootle_path"] = params["path"]
-    if params.get("modified_since"):
-        params["modified_since"] = parse_datetime(
-            params["modified_since"])
     return user, params, url_params, response
 
 
