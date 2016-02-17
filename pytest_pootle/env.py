@@ -392,6 +392,7 @@ class PootleTestEnv(object):
         submissions.update(creation_time=update_time)
 
     def _add_submissions(self, unit, created):
+        from pootle_statistics.models import SubmissionTypes
         from pootle_store.models import UNTRANSLATED, FUZZY, OBSOLETE, Unit
 
         from django.contrib.auth import get_user_model
@@ -440,5 +441,19 @@ class PootleTestEnv(object):
             unit.markfuzzy()
 
         # mark OBSOLETE
-        if original_state == OBSOLETE:
+        elif original_state == OBSOLETE:
             unit.makeobsolete()
+
+        elif unit.target:
+            # Re-edit units with translations, adding some submissions
+            # of SubmissionTypes.EDIT_TYPES
+            old_target = unit.target
+            old_state = unit.state
+            current_time = datetime.now() - timedelta(days=14)
+
+            unit.target_f = "Updated %s" % old_target
+            unit._target_updated = True
+            unit.store.record_submissions(
+                unit, old_target, old_state,
+                current_time, member, SubmissionTypes.NORMAL)
+            unit.save()
