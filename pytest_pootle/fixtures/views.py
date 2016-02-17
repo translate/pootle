@@ -17,7 +17,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from pytest_pootle.env import TEST_USERS
-from pytest_pootle.utils import create_store, get_translated_uid
+from pytest_pootle.utils import create_store, get_translated_uids
 
 
 DAY_AGO = (datetime.now() - timedelta(days=1))
@@ -82,11 +82,10 @@ GET_UNITS_TESTS = OrderedDict(
      ("sort_units_oldest",
       {"sort_by_param": "oldest"}),
      ("filter_translated_from_uid",
-      {"uids": get_translated_uid,
-       "filter": "translated",
-       "initial": True}),
+      {"uids": get_translated_uids,
+       "filter": "translated"}),
      ("filter_translated_from_uid_sort_priority",
-      {"uids": get_translated_uid,
+      {"uids": get_translated_uids,
        "filter": "translated",
        "sort": "priority"}),
      ("translated_by_member",
@@ -211,7 +210,11 @@ TP_VIEW_TESTS = OrderedDict(
 def get_units_views(request, client, request_users):
     params = GET_UNITS_TESTS[request.param].copy()
     params["path"] = params.get("path", "/")
-    params["initial"] = params.get("initial", True)
+
+    if "initial" in params and not params["initial"]:
+        del params["initial"]
+    else:
+        params["initial"] = "true"
 
     user = request_users["user"]
     if user.username != "nobody":
@@ -220,7 +223,7 @@ def get_units_views(request, client, request_users):
             password=request_users["password"])
 
     if "uids" in params and callable(params["uids"]):
-        params["uids"] = [params["uids"]()]
+        params["uids"] = ",".join(str(uid) for uid in params["uids"]())
 
     url_params = urllib.urlencode(params, True)
     response = client.get(

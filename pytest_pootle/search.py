@@ -24,18 +24,22 @@ from virtualfolder.models import VirtualFolderTreeItem
 
 
 def calculate_search_results(kwargs, user):
-    initial = kwargs["initial"]
     pootle_path = kwargs["pootle_path"]
 
     category = kwargs.get("category")
     checks = kwargs.get("checks")
+    initial = kwargs.get("initial", False)
     limit = kwargs.get("count", 9)
     modified_since = kwargs.get("modified-since")
     search = kwargs.get("search")
     sfields = kwargs.get("sfields")
     soptions = kwargs.get("soptions", [])
     sort = kwargs.get("sort", None)
-    uids = kwargs.get("uids")
+    uids = [
+        int(x)
+        for x
+        in kwargs.get("uids", "").split(",")
+        if x]
     unit_filter = kwargs.get("filter")
 
     if modified_since:
@@ -103,6 +107,8 @@ def calculate_search_results(kwargs, user):
             index = uid_list.index(uids[0])
             begin = max(index - limit, 0)
             end = min(index + limit + 1, len(uid_list))
+    elif uids:
+        qs = qs.filter(id__in=uids)
     if end is None:
         end = 2 * limit
     unit_groups = []

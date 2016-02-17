@@ -73,15 +73,16 @@ def formset_dict(data):
     return new_data
 
 
-def get_translated_uid():
-    """Returns the uid of a translated unit from ~middle of
+def get_translated_uids(offset=0, count=1):
+    """Returns a list translated unit uids from ~middle of
     translated units dataset
     """
     from pootle_store.models import Unit
     from pootle_store.util import TRANSLATED
 
     units = Unit.objects.filter(state=TRANSLATED)
-    return units[units.count() / 2].id
+    begin = (units.count() / 2) + offset
+    return list(units[begin: begin + count].values_list("pk", flat=True))
 
 
 def items_equal(left, right):
