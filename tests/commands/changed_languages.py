@@ -9,6 +9,7 @@
 import pytest
 
 from django.core.management import call_command
+from django.db.models import Min
 
 from pootle.core.models import Revision
 
@@ -34,10 +35,14 @@ def test_changed_languages_since_revision(capfd, afrikaans_tutorial,
                                           french_tutorial):
     """Changed languages since a given revision"""
     # Everything
-    call_command('changed_languages', '--after-revision=0')
+    rev = afrikaans_tutorial.stores.aggregate(
+        rev=Min('last_sync_revision'))['rev'] - 1
+    call_command('changed_languages', '--after-revision=%s' % rev)
     out, err = capfd.readouterr()
     assert "af,fr" in out
     # End revisions
-    call_command('changed_languages', '--after-revision=4')
+    rev = french_tutorial.stores.aggregate(
+        rev=Min('last_sync_revision'))['rev'] - 1
+    call_command('changed_languages', '--after-revision=%s' % rev)
     out, err = capfd.readouterr()
     assert "fr" in out
