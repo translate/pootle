@@ -366,18 +366,16 @@ def get_units(request):
     except Resolver404:
         raise Http404('Unrecognised path')
 
-    units_qs = Unit.objects.get_translatable(
-        user=request.user,
-        **path_kwargs)
-    units_qs = units_qs.order_by("store", "index")
+    related_selects = (
+        'store__translation_project__project',
+        'store__translation_project__language')
+    units_qs = (
+        Unit.objects.get_translatable(user=request.user, **path_kwargs)
+                    .order_by("store", "index")
+                    .select_related(*related_selects))
 
     if vfolder is not None:
         units_qs = units_qs.filter(vfolders=vfolder)
-
-    units_qs = units_qs.select_related(
-        'store__translation_project__project',
-        'store__translation_project__language',
-    )
 
     if unit_filter:
         user = request.user
