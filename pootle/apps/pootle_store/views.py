@@ -459,21 +459,7 @@ def get_units(request):
     uid_list = []
 
     if is_initial_request:
-        sort_by_field = None
-        if len(units_qs.query.order_by) > 2:
-            sort_by_field = units_qs.query.order_by[0]
-
-        sort_on = None
-        for key, item in ALLOWED_SORTS.items():
-            if sort_by_field in item.values():
-                sort_on = key
-                break
-
-        if sort_by_field is None or sort_on == 'units':
-            uid_list = list(units_qs.values_list('id', flat=True))
-        else:
-            uid_list = [u['id'] for u
-                        in units_qs.values('id', 'sort_by_field')]
+        uid_list = list(units_qs.values_list('id', flat=True))
         if len(uids) == 1:
             try:
                 uid = uids[0]
