@@ -35,17 +35,6 @@ def test_tp_create_fail(tutorial, english):
         TranslationProject.objects.create(project=tutorial, language=english)
 
 
-def _test_tp_stores_match(tp1, tp2):
-    # For testing tp creation from templates
-    assert tp1.stores.count() == tp2.stores.count()
-    tp1_stores = tp1.stores.all()
-    tp2_stores = tp2.stores.all()
-
-    for i, store1 in enumerate(tp1_stores):
-        store2 = tp2_stores[i]
-        assert store1.units == store2.units
-
-
 @pytest.mark.django_db
 def test_tp_create_templates(tutorial, klingon_vpw, templates):
     # As there is a tutorial template it will automatically create stores for
