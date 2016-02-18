@@ -1,4 +1,4 @@
-{% load i18n common_tags store_tags cleanhtml cache locale %}
+{% load core i18n common_tags store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.POOTLE_CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs user.id LANGUAGE_CODE unit.get_terminology %}
@@ -188,12 +188,18 @@
             {% endif %}
 
             {% block target_field %}
-            <div
-              class="editor-area-wrapper js-editor-area-wrapper
-              {% if form.target_f.field.widget.attrs.disabled %} is-disabled{% endif %}"
-            >
-              {{ form.target_f }}
-            </div>
+            <div class="js-mount-editor"></div>
+
+            <script type="text/javascript">
+              PTL.reactEditor.init({
+                initialValues: {{ unit_values|to_js }},
+                isDisabled: {{ form.target_f.field.widget.attrs.disabled|yesno:'true,false' }},
+                locale: '{{ language.code }}',
+                localeDir: '{{ language.direction }}',
+                sourceString: {{ unit.source_f|to_js }},
+                targetNplurals: {{ target_nplurals }},
+              });
+            </script>
             {% endblock %}
 
             <div class="extras-bar">

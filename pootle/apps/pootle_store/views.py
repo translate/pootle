@@ -378,11 +378,26 @@ class UnitEditJSON(PootleUnitJSON):
         return self.get_edit_template().render(
             RequestContext(self.request, context))
 
-    def get_unit_edit_form(self):
-        snplurals = None
+    def get_source_nplurals(self):
         if self.object.hasplural():
-            snplurals = len(self.object.source.strings)
-        form_class = unit_form_factory(self.language, snplurals, self.request)
+            return len(self.object.source.strings)
+        return None
+
+    def get_target_nplurals(self):
+        source_nplurals = self.get_source_nplurals()
+        return self.language.nplurals if source_nplurals is not None else 1
+
+    def get_unit_values(self):
+        target_nplurals = self.get_target_nplurals()
+        unit_values = [value for value in self.object.target_f.strings]
+        if len(unit_values) < target_nplurals:
+            return unit_values + ((target_nplurals - len(unit_values)) * [''])
+        return unit_values
+
+    def get_unit_edit_form(self):
+        form_class = unit_form_factory(self.language,
+                                       self.get_source_nplurals(),
+                                       self.request)
         return form_class(instance=self.object, request=self.request)
 
     def get_unit_comment_form(self):
@@ -444,7 +459,10 @@ class UnitEditJSON(PootleUnitJSON):
             'has_admin_access': check_user_permission(self.request.user,
                                                       'administrate',
                                                       self.directory),
-            'altsrcs': self.get_alt_srcs()}
+            'altsrcs': self.get_alt_srcs(),
+            'unit_values': self.get_unit_values(),
+            'target_nplurals': self.get_target_nplurals(),
+        }
 
     def get_response_data(self, context):
         return {

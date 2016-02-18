@@ -52,6 +52,12 @@ import {
   decodeEntities, escapeUnsafeRegexSymbols, makeRegexForMultipleWords,
 } from './utils';
 
+import ReactEditor from './index';
+
+// Make the react-based editor available to templates. Long term, `index` would
+// be the actual entry point, entirely superseding the `app` module.
+PTL.reactEditor = ReactEditor;
+
 
 const CTX_STEP = 1;
 
@@ -421,7 +427,6 @@ PTL.editor = {
       if (this.selectedSuggestionId !== undefined) {
         this.closeSuggestion({ checkIfCanNavigate: false });
       }
-      ReactRenderer.unmountComponents();
 
       // Walk through known filtering criterias and apply them to the editor object
 
@@ -1249,6 +1254,25 @@ PTL.editor = {
     return reqData;
   },
 
+  getValueStateData() {
+    const data = {};
+    const valueState = ReactEditor.state.values;
+    for (let i = 0; i < valueState.length; i++) {
+      data[`id_target_f_${i}`] = valueState[i];
+    }
+    return data;
+  },
+
+  getCheckedStateData() {
+    const checkbox = document.querySelector('#id_state');
+    if (!checkbox.checked) {
+      return {};
+    }
+    return {
+      [checkbox.name]: checkbox.value,
+    };
+  },
+
 
   /*
    * Unit navigation, display, submission
@@ -1586,8 +1610,6 @@ PTL.editor = {
       efn: 'PTL.editor.error',
     };
 
-    const body = $('#translate').serializeObject();
-
     this.updateUnitDefaultProperties();
 
     // Check if the string being submitted is already in the set of
@@ -1615,7 +1637,9 @@ PTL.editor = {
       this.checkSimilarTranslations();
     }
 
-    assign(body, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
+    const body = assign({}, this.getCheckedStateData(), this.getValueStateData(),
+                        this.getReqData(), this.getSimilarityData(),
+                        captchaCallbacks);
 
     el.disabled = true;
 
@@ -1670,15 +1694,10 @@ PTL.editor = {
       efn: 'PTL.editor.error',
     };
 
-    const body = $('#translate').serializeObject();
-
     this.updateUnitDefaultProperties();
 
-    // in suggest mode, do not send the fuzzy state flag
-    // even if it is set in the form internally
-    delete body.state;
-
-    assign(body, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
+    const body = assign({}, this.getValueStateData(), this.getReqData(),
+                        this.getSimilarityData(), captchaCallbacks);
 
     UnitAPI.addSuggestion(this.units.getCurrent().id, body)
       .then(
