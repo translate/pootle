@@ -414,27 +414,21 @@ def get_units(request):
                 submitted_on__gte=start,
                 submitted_on__lte=end).distinct()
 
-        sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
+        sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param)
         if sort_by is not None:
-            if sort_on in SIMPLY_SORTED:
-                units_qs = units_qs.order_by(
-                    sort_by, "store__pootle_path", "index")
-            else:
+            if sort_on not in SIMPLY_SORTED:
                 # Omit leading `-` sign
                 if sort_by[0] == '-':
                     max_field = sort_by[1:]
-                    sort_order = '-sort_by_field'
+                    sort_by = '-sort_by_field'
                 else:
                     max_field = sort_by
-                    sort_order = 'sort_by_field'
-
+                    sort_by = 'sort_by_field'
                 # It's necessary to use `Max()` here because we can't
                 # use `distinct()` and `order_by()` at the same time
-                units_qs = (
-                    units_qs.annotate(sort_by_field=Max(max_field))
-                            .order_by(sort_order,
-                                      "store__pootle_path",
-                                      "index"))
+                units_qs = units_qs.annotate(sort_by_field=Max(max_field))
+            units_qs = units_qs.order_by(
+                sort_by, "store__pootle_path", "index")
 
     if all(x is not None for x in [search, sfields]):
         # Accept `sfields` to be a comma-separated string of fields (#46)
