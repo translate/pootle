@@ -8,8 +8,6 @@
 
 from json import loads
 
-from django.core.urlresolvers import reverse
-
 
 def view_context_test(ctx, **assertions):
     for k, v in assertions.items():
@@ -26,12 +24,3 @@ def view_context_test(ctx, **assertions):
             assert list(ctx[k]["items"]) == list(v["items"])
         else:
             assert ctx[k] == v
-
-
-def view_urls_test(ctx, url_name, kwargs):
-    for url_type in ["browse", "translate", "export"]:
-        assert (
-            ctx["%s_url" % url_type]
-            == reverse(
-                "%s-%s" % (url_name, url_type),
-                kwargs=kwargs))
