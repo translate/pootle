@@ -45,4 +45,5 @@ def test_changed_languages_since_revision(capfd, afrikaans_tutorial,
         rev=Min('last_sync_revision'))['rev'] - 1
     call_command('changed_languages', '--after-revision=%s' % rev)
     out, err = capfd.readouterr()
+    assert "af" not in out
     assert "fr" in out
