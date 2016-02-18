@@ -454,10 +454,10 @@ def get_units(request):
 
     uids = filter(None, map(to_int, uids_param))
 
-    units = []
     unit_groups = []
-    uid_list = []
-
+    uid_list = None
+    begin = 0
+    end = 2 * chunk_size
     if is_initial_request:
         uid_list = list(units_qs.values_list('id', flat=True))
         if len(uids) == 1:
@@ -466,16 +466,12 @@ def get_units(request):
             index = uid_list.index(uids[0])
             begin = max(index - chunk_size, 0)
             end = min(index + chunk_size + 1, len(uid_list))
-            uids = uid_list[begin:end]
-            units = units_qs[begin:end]
-        else:
-            count = 2 * chunk_size
-            uids = uid_list[:count]
+    elif uids:
+        units_qs = units_qs.filter(id__in=uids)
 
-    if not units and uids:
-        units = units_qs.filter(id__in=uids)
-
-    units_by_path = groupby(units, lambda x: x.store.pootle_path)
+    units_by_path = groupby(
+        units_qs[begin:end],
+        lambda x: x.store.pootle_path)
     for pootle_path, units in units_by_path:
         unit_groups.append(_path_units_with_meta(pootle_path, units))
 
