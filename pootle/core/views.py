@@ -74,9 +74,11 @@ def set_permissions(f):
     @functools.wraps(f)
     def method_wrapper(self, request, *args, **kwargs):
         User = get_user_model()
-        request.profile = User.get(self.request.user)
+        if request.user.is_anonymous():
+            request.user = User.get(request.user)
+        request.profile = request.user
         request.permissions = get_matching_permissions(
-            request.profile,
+            request.user,
             self.permission_context) or []
         return f(self, request, *args, **kwargs)
     return method_wrapper
