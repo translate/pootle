@@ -77,12 +77,6 @@ def afrikaans_vfolder_test(afrikaans, vfolder_test):
     return _require_tp(afrikaans, vfolder_test)
 
 
-@pytest.fixture
-def templates_tutorial(templates, tutorial):
-    """Require Template Tutorial."""
-    return _require_tp(templates, tutorial)
-
-
 def get_project_checkers():
     from translate.filters import checks
 
