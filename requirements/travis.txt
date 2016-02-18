@@ -10,3 +10,4 @@ pep8<1.6
 pep257
 flake8<2.5.2
 isort
+codecov
