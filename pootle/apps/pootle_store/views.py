@@ -461,15 +461,13 @@ def get_units(request):
     if is_initial_request:
         uid_list = list(units_qs.values_list('id', flat=True))
         if len(uids) == 1:
-            try:
-                uid = uids[0]
-                index = uid_list.index(uid)
-                begin = max(index - chunk_size, 0)
-                end = min(index + chunk_size + 1, len(uid_list))
-                uids = uid_list[begin:end]
-                units = units_qs[begin:end]
-            except ValueError:
-                raise Http404  # `uid` not found in `uid_list`
+            if uids[0] not in uid_list:
+                raise Http404
+            index = uid_list.index(uids[0])
+            begin = max(index - chunk_size, 0)
+            end = min(index + chunk_size + 1, len(uid_list))
+            uids = uid_list[begin:end]
+            units = units_qs[begin:end]
         else:
             count = 2 * chunk_size
             uids = uid_list[:count]
