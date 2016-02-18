@@ -13,27 +13,27 @@ from django.core.management import call_command
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_noargs(capfd, en_tutorial_po_member_updated):
+def test_export_noargs(capfd):
     """Export whole site"""
     call_command('export')
     out, err = capfd.readouterr()
-    assert 'Created tutorial-en.zip' in out
+    assert 'Created project0-language0.zip' in out
 
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_project(capfd, afrikaans_tutorial, french_tutorial):
+def test_export_project(capfd):
     """Export a project"""
-    call_command('export', '--project=tutorial')
+    call_command('export', '--project=project0')
     out, err = capfd.readouterr()
-    assert 'tutorial.zip' in out
+    assert 'project0.zip' in out
 
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_language(capfd, afrikaans_tutorial, french_tutorial):
+def test_export_language(capfd):
     """Export a language"""
-    call_command('export', '--language=af')
+    call_command('export', '--language=language0')
     out, err = capfd.readouterr()
-    assert 'af.zip' in out
-    assert 'fr.zip' not in out
+    assert 'language0.zip' in out
+    assert 'language1.zip' not in out
