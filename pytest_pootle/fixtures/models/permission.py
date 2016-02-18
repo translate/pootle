@@ -51,27 +51,6 @@ def hide(pootle_content_type):
 
 
 @pytest.fixture(scope="session")
-def suggest(pootle_content_type):
-    """Require the `suggest` permission."""
-    return _require_permission('suggest', 'Can make a suggestion',
-                               pootle_content_type)
-
-
-@pytest.fixture(scope="session")
-def translate(pootle_content_type):
-    """Require the `translate` permission."""
-    return _require_permission('translate', 'Can submit translations',
-                               pootle_content_type)
-
-
-@pytest.fixture(scope="session")
-def review(pootle_content_type):
-    """Require the `review` permission."""
-    return _require_permission('review', 'Can review translations',
-                               pootle_content_type)
-
-
-@pytest.fixture(scope="session")
 def administrate(pootle_content_type):
     """Require the `suggest` permission."""
     return _require_permission('administrate', 'Can administrate a TP',
