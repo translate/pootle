@@ -81,7 +81,7 @@ class Command(PootleCommand):
         stores = Store.objects.live().filter(
             translation_project__project=project)
         if not stores:
-            raise CommandError("No matches for project %r" % (project))
+            raise CommandError("No matches for project '%s'" % (project))
         self._create_zip(stores, prefix=project.code)
 
     def handle_language(self, language, **options):
@@ -92,14 +92,14 @@ class Command(PootleCommand):
     def handle_path(self, path, **options):
         stores = Store.objects.live().filter(pootle_path__startswith=path)
         if not stores:
-            raise CommandError("Could not find store matching %r" % (path))
+            raise CommandError("Could not find store matching '%s'" % (path))
 
         if stores.count() == 1:
             store = stores.get()
             with open(os.path.basename(store.pootle_path), "wb") as f:
                 f.write(store.serialize())
 
-            self.stdout.write("Created %r" % (f.name))
+            self.stdout.write("Created '%s'" % (f.name))
             return
 
         prefix = path.strip("/").replace("/", "-")
