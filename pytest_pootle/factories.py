@@ -83,14 +83,14 @@ class LanguageFactory(factory.django.DjangoModelFactory):
         from pootle_language.models import Language
 
         # returns an incrementing index relative to the tp
-        return 'language%s' % Language.objects.count()
+        return 'language%s' % (Language.objects.count() - 1)
 
     @factory.lazy_attribute
     def fullname(self):
         from pootle_language.models import Language
 
         # returns an incrementing index relative to the tp
-        return 'Language %s' % Language.objects.count()
+        return 'Language %s' % (Language.objects.count() - 1)
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):

@@ -37,8 +37,9 @@ class PootleTestEnv(object):
 
     methods = (
         "redis", "case_sensitive_schema", "content_type", "site_root",
-        "system_users", "permissions", "site_permissions", "tps", "languages",
-        "vfolders", "subdirs", "submissions", "announcements")
+        "languages", "site_matrix", "system_users", "permissions",
+        "site_permissions", "tps", "vfolders", "subdirs", "submissions",
+        "announcements")
 
     def __init__(self, request):
         self.request = request
@@ -266,20 +267,25 @@ class PootleTestEnv(object):
         permission_set.save()
 
     def setup_site_root(self):
-
-        from pytest_pootle.factories import (
-            ProjectFactory, DirectoryFactory, LanguageFactory)
+        from pytest_pootle.factories import DirectoryFactory
 
         DirectoryFactory(
             name="projects",
             parent=DirectoryFactory(parent=None, name=""))
 
-        # add 2 languages
-        languages = [LanguageFactory() for i in range(0, 2)]
+    def setup_site_matrix(self):
+        from pytest_pootle.factories import ProjectFactory, LanguageFactory
 
+        from pootle_language.models import Language
+
+        # add 2 languages
+        for i in range(0, 2):
+            LanguageFactory()
+
+        source_language = Language.objects.get(code="en")
         for i in range(0, 2):
             # add 2 projects
-            ProjectFactory(source_language=languages[0])
+            ProjectFactory(source_language=source_language)
 
     def setup_subdirs(self):
         from pytest_pootle.factories import DirectoryFactory
@@ -307,7 +313,7 @@ class PootleTestEnv(object):
         from pytest_pootle.factories import TranslationProjectFactory
 
         for project in Project.objects.all():
-            for language in Language.objects.all():
+            for language in Language.objects.exclude(code="en"):
                 # add a TP to the project for each language
                 tp = TranslationProjectFactory(project=project, language=language)
                 # As there are no files on the FS we have to currently unobsolete

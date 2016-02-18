@@ -76,8 +76,8 @@ def test_tp_empty_stats():
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
 
-    project = Project.objects.first()
-    language = Language.objects.first()
+    project = Project.objects.get(code="project0")
+    language = Language.objects.get(code="en")
 
     tp, created = TranslationProject.objects.get_or_create(language=language,
                                                            project=project)
