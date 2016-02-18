@@ -16,11 +16,3 @@ def root():
     from pootle_app.models import Directory
 
     return Directory.objects.root
-
-
-@pytest.fixture(scope="session")
-def projects():
-    """Require the projects directory."""
-    from pootle_app.models import Directory
-
-    return Directory.objects.projects
