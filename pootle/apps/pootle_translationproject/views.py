@@ -384,8 +384,7 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
         vfolder = self.extracted_path[0]
         if vfolder:
             return False
-        return VirtualFolderTreeItem.objects.filter(
-            pootle_path__startswith=self.object.pootle_path).exists()
+        return self.object.has_vfolders
 
     @property
     def resource_path(self):
