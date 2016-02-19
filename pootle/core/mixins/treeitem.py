@@ -48,8 +48,8 @@ def statslog(function):
         start = datetime.now()
         result = function(instance, *args, **kwargs)
         end = datetime.now()
-        logger.info("%s(%s)\t%s\t%s", function.__name__, ', '.join(args),
-                    end - start, instance.get_cachekey())
+        logger.debug("%s(%s)\t%s\t%s", function.__name__, ', '.join(args),
+                     end - start, instance.get_cachekey())
         return result
     return _statslog
 
