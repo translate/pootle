@@ -39,7 +39,7 @@ class PootleTestEnv(object):
         "redis", "case_sensitive_schema", "content_type", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
         "site_permissions", "tps", "vfolders", "subdirs", "submissions",
-        "announcements")
+        "announcements", "terminology")
 
     def __init__(self, request):
         self.request = request
@@ -286,6 +286,19 @@ class PootleTestEnv(object):
         for i in range(0, 2):
             # add 2 projects
             ProjectFactory(source_language=source_language)
+
+    def setup_terminology(self):
+        from pytest_pootle.factories import (ProjectFactory,
+                                             TranslationProjectFactory)
+        from pootle_language.models import Language
+
+        source_language = Language.objects.get(code="en")
+        terminology = ProjectFactory(code="terminology",
+                                     checkstyle="terminology",
+                                     fullname="Terminology",
+                                     source_language=source_language)
+        for language in Language.objects.all():
+            TranslationProjectFactory(project=terminology, language=language)
 
     def setup_subdirs(self):
         from pytest_pootle.factories import DirectoryFactory
