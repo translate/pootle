@@ -9,6 +9,7 @@
 
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
+from django.utils.lru_cache import lru_cache
 
 from . import utils
 
@@ -57,12 +58,15 @@ class UserManager(BaseUserManager):
         return self._create_user(username, email, password, True,
                                  **extra_fields)
 
+    @lru_cache()
     def get_default_user(self):
         return super(UserManager, self).get_queryset().get(username='default')
 
+    @lru_cache()
     def get_nobody_user(self):
         return super(UserManager, self).get_queryset().get(username='nobody')
 
+    @lru_cache()
     def get_system_user(self):
         return super(UserManager, self).get_queryset().get(username='system')
 
