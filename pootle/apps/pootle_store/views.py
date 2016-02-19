@@ -11,10 +11,11 @@ from itertools import groupby
 
 from translate.lang import data
 
+from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
-from django.core.urlresolvers import resolve, reverse, Resolver404
+from django.core.urlresolvers import reverse
 from django.db.models import Max, Q
 from django.http import Http404
 from django.shortcuts import redirect
@@ -36,15 +37,15 @@ from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
 from pootle_misc.checks import check_names, get_category_id
 from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, get_date_interval, to_int
+from pootle_misc.util import ajax_required, get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from virtualfolder.models import VirtualFolderTreeItem
 
 from .decorators import get_unit_context
 from .fields import to_python
-from .forms import (highlight_whitespace, unit_comment_form_factory,
-                    unit_form_factory)
+from .forms import (
+    highlight_whitespace, unit_comment_form_factory,
+    unit_form_factory, UnitSearchForm)
 from .models import Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
@@ -321,56 +322,50 @@ def get_units(request):
         When the `initial` GET parameter is present, a sorted list of
         the result set ids will be returned too.
     """
-    category = request.GET.get('category')
-    checks = request.GET.get('checks')
-    chunk_size = request.GET.get('count')
-    is_initial_request = request.GET.get('initial', False)
-    modified_since = request.GET.get('modified-since')
-    month = request.GET.get('month')
-    pootle_path = request.GET.get('path')
-    search = request.GET.get('search')
-    sfields = request.GET.get('sfields')
-    sort_by_param = request.GET.get('sort')
-    unit_filter = request.GET.get('filter')
-    uids_param = filter(None, request.GET.get('uids', '').split(u','))
-    username = request.GET.get('user')
+    search_form = UnitSearchForm(request.GET, user=request.user)
 
-    if pootle_path is None:
-        raise Http400(_('Arguments missing.'))
-    elif len(pootle_path) > 2048:
-        raise Http400(_('Path too long.'))
+    if not search_form.is_valid():
+        errors = search_form.errors.as_data()
+        if "path" in errors:
+            for error in errors["path"]:
+                if error.code == "max_length":
+                    raise Http400(_('Path too long.'))
+                elif error.code == "required":
+                    raise Http400(_('Arguments missing.'))
+        raise Http404(forms.ValidationError(search_form.errors).messages)
 
-    if request.user.is_anonymous():
-        # override the anon user
-        request.user = get_user_model().objects.get_nobody_user()
-    if chunk_size is None:
-        chunk_size = request.user.get_unit_rows()
-    vfolder = None
-    sort_on = 'units'
+    category = search_form.cleaned_data["category"]
+    checks = search_form.cleaned_data["checks"]
+    chunk_size = search_form.cleaned_data["count"]
+    exact = "exact" in search_form.cleaned_data["soptions"]
+    is_initial_request = search_form.cleaned_data["initial"]
+    modified_since = search_form.cleaned_data["modified-since"]
+    month = search_form.cleaned_data["month"]
+    pootle_path = search_form.cleaned_data["pootle_path"]
+    unit_filter = search_form.cleaned_data["filter"]
+    search = search_form.cleaned_data["search"]
+    sfields = search_form.cleaned_data["sfields"]
+    sort_by = search_form.cleaned_data["sort_by"]
+    sort_on = search_form.cleaned_data["sort_on"]
+    uids = search_form.cleaned_data["uids"]
+    user = search_form.cleaned_data["user"]
+    vfolder = search_form.cleaned_data["vfolder"]
 
-    if 'virtualfolder' in settings.INSTALLED_APPS:
-        from virtualfolder.helpers import extract_vfolder_from_path
-
-        vfolder, pootle_path = extract_vfolder_from_path(
-            pootle_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
-
-    path_keys = [
-        "project_code", "language_code", "dir_path", "filename"]
-    try:
-        path_kwargs = {
-            k: v
-            for k, v in resolve(pootle_path).kwargs.items()
-            if k in path_keys}
-    except Resolver404:
-        raise Http404('Unrecognised path')
+    # none of these are necessarily set
+    dir_path = search_form.cleaned_data.get("dir_path")
+    filename = search_form.cleaned_data.get("filename")
+    language_code = search_form.cleaned_data.get("language_code")
+    project_code = search_form.cleaned_data.get("project_code")
 
     related_selects = (
         'store__translation_project__project',
         'store__translation_project__language')
     units_qs = (
-        Unit.objects.get_translatable(user=request.user, **path_kwargs)
+        Unit.objects.get_translatable(user=request.user,
+                                      project_code=project_code,
+                                      language_code=language_code,
+                                      dir_path=dir_path,
+                                      filename=filename)
                     .order_by("store", "index")
                     .select_related(*related_selects))
 
@@ -378,41 +373,19 @@ def get_units(request):
         units_qs = units_qs.filter(vfolders=vfolder)
 
     if unit_filter:
-        user = request.user
-        if username is not None:
-            User = get_user_model()
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                pass
-
-        if unit_filter == "checks":
-            if checks is not None:
-                checks = checks.split(",")
-            elif category is not None:
-                category = get_category_id(category)
-        elif unit_filter in ["my-suggestions", "user-suggestions"]:
-            sort_on = "suggestions"
-        elif unit_filter in ["my-submissions", "user-submissions"]:
-            sort_on = "submissions"
-
         units_qs = UnitSearchFilter().filter(
             units_qs, unit_filter,
             user=user, checks=checks, category=category)
 
         if modified_since is not None:
-            datetime_obj = parse_datetime(modified_since)
-            if datetime_obj is not None:
-                units_qs = units_qs.filter(
-                    submitted_on__gt=datetime_obj).distinct()
+            units_qs = units_qs.filter(
+                submitted_on__gt=modified_since).distinct()
 
         if month is not None:
-            [start, end] = get_date_interval(month)
             units_qs = units_qs.filter(
-                submitted_on__gte=start,
-                submitted_on__lte=end).distinct()
+                submitted_on__gte=month[0],
+                submitted_on__lte=month[1]).distinct()
 
-        sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param)
         if sort_by is not None:
             if sort_on not in SIMPLY_SORTED:
                 # Omit leading `-` sign
@@ -428,23 +401,9 @@ def get_units(request):
             units_qs = units_qs.order_by(
                 sort_by, "store__pootle_path", "index")
 
-    if all(x is not None for x in [search, sfields]):
-        # Accept `sfields` to be a comma-separated string of fields (#46)
-        GET = request.GET.copy()
-        if isinstance(sfields, unicode) and u',' in sfields:
-            GET.setlist('sfields', sfields.split(u','))
-
-        # use the search form for validation only
-        search_form = make_search_form(GET)
-
-        if search_form.is_valid():
-            exact = 'exact' in search_form.cleaned_data['soptions']
-            text = search_form.cleaned_data['search']
-            sfields = GET.getlist("sfields")
-            units_qs = UnitTextSearch(
-                units_qs).search(text, sfields, exact=exact)
-
-    uids = filter(None, map(to_int, uids_param))
+    if sfields and search:
+        units_qs = UnitTextSearch(
+            units_qs).search(search, sfields, exact=exact)
 
     unit_groups = []
     uid_list = None
