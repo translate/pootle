@@ -14,6 +14,9 @@ import re
 from translate.misc.multistring import multistring
 
 from django import forms
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.core.urlresolvers import resolve, Resolver404
 from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
@@ -21,13 +24,44 @@ from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
 from pootle_app.models.permissions import check_permission
+from pootle_misc.checks import CATEGORY_CODES, check_names
+from pootle_misc.util import get_date_interval
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from virtualfolder.helpers import extract_vfolder_from_path
+from virtualfolder.models import VirtualFolderTreeItem
 
 from .fields import to_db
+from .form_fields import (
+    CategoryChoiceField, ISODateTimeField, MultipleArgsField,
+    CommaSeparatedCheckboxSelectMultiple)
 from .models import Unit
 from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
+
+UNIT_SEARCH_FILTER_CHOICES = (
+    ("all", "all"),
+    ("translated", "translated"),
+    ("untranslated", "untranslated"),
+    ("fuzzy", "fuzzy"),
+    ("incomplete", "incomplete"),
+    ("suggestions", "suggestions"),
+    ("my-suggestions", "my-suggestions"),
+    ("user-suggestions", "user-suggestions"),
+    ("user-suggestions-accepted", "user-suggestions-accepted"),
+    ("user-suggestions-rejected", "user-suggestions-rejected"),
+    ("my-submissions", "my-submissions"),
+    ("user-submissions", "user-submissions"),
+    ("my-submissions-overwritten", "my-submissions-overwritten"),
+    ("user-submissions-overwritten", "user-submissions-overwritten"),
+    ("checks", "checks"))
+
+UNIT_SEARCH_SORT_CHOICES = (
+    ('priority', 'priority'),
+    ('oldest', 'oldest'),
+    ('newest', 'newest'))
+
+# # # # # # #  text cleanup and highlighting # # # # # # # # # # # # #
 
 FORM_RE = re.compile('\r\n|\r|\n|\t|\\\\')
 
@@ -373,3 +407,110 @@ def unit_comment_form_factory(language):
             super(UnitCommentForm, self).save(**kwargs)
 
     return UnitCommentForm
+
+
+class UnitSearchForm(forms.Form):
+
+    initial = forms.BooleanField(required=False)
+    count = forms.IntegerField(required=False)
+    path = forms.CharField(
+        max_length=2048,
+        required=True)
+    uids = MultipleArgsField(
+        field=forms.IntegerField(),
+        required=False)
+    filter = forms.ChoiceField(
+        required=False,
+        choices=UNIT_SEARCH_FILTER_CHOICES)
+    checks = forms.MultipleChoiceField(
+        required=False,
+        widget=CommaSeparatedCheckboxSelectMultiple,
+        choices=check_names.items())
+    category = CategoryChoiceField(
+        required=False,
+        choices=CATEGORY_CODES.items())
+    month = forms.DateField(
+        required=False,
+        input_formats=['%Y-%m'])
+    sort = forms.ChoiceField(
+        required=False,
+        choices=UNIT_SEARCH_SORT_CHOICES)
+
+    user = forms.ModelChoiceField(
+        queryset=get_user_model().objects.all(),
+        required=False,
+        to_field_name="username")
+
+    search = forms.CharField(required=False)
+
+    soptions = forms.MultipleChoiceField(
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=(
+            ('exact', _('Exact Match')), ))
+
+    sfields = forms.MultipleChoiceField(
+        required=False,
+        widget=CommaSeparatedCheckboxSelectMultiple,
+        choices=(
+            ('source', _('Source Text')),
+            ('target', _('Target Text')),
+            ('notes', _('Comments')),
+            ('locations', _('Locations'))),
+        initial=['source', 'target'])
+
+    def __init__(self, *la, **kwa):
+        self.request_user = kwa.pop("user")
+        super(UnitSearchForm, self).__init__(*la, **kwa)
+        self.fields["modified-since"] = ISODateTimeField(required=False)
+
+    def clean(self):
+        from .views import ALLOWED_SORTS
+
+        if "checks" in self.errors:
+            del self.errors["checks"]
+            self.cleaned_data["checks"] = None
+        if "user" in self.errors:
+            del self.errors["user"]
+            self.cleaned_data["user"] = self.request_user
+        if self.errors:
+            return
+        if self.cleaned_data['count'] is None:
+            self.cleaned_data["count"] = (
+                self.cleaned_data["user"].get_unit_rows())
+        self.cleaned_data["vfolder"] = None
+        pootle_path = self.cleaned_data.get("path")
+        if 'virtualfolder' in settings.INSTALLED_APPS:
+            vfolder, pootle_path = extract_vfolder_from_path(
+                pootle_path,
+                vfti=VirtualFolderTreeItem.objects.select_related(
+                    "directory", "vfolder"))
+            self.cleaned_data["vfolder"] = vfolder
+            self.cleaned_data["pootle_path"] = pootle_path
+        path_keys = [
+            "project_code", "language_code", "dir_path", "filename"]
+        try:
+            path_kwargs = {
+                k: v
+                for k, v in resolve(pootle_path).kwargs.items()
+                if k in path_keys}
+        except Resolver404:
+            raise forms.ValidationError('Unrecognised path')
+        self.cleaned_data.update(path_kwargs)
+        sort_on = "units"
+        if "filter" in self.cleaned_data:
+            unit_filter = self.cleaned_data["filter"]
+            if unit_filter in ('suggestions', 'user-suggestions'):
+                sort_on = 'suggestions'
+            elif unit_filter in ('user-submissions', ):
+                sort_on = 'submissions'
+        sort_by_param = self.cleaned_data["sort"]
+        self.cleaned_data["sort_by"] = ALLOWED_SORTS[sort_on].get(sort_by_param)
+        self.cleaned_data["sort_on"] = sort_on
+
+    def clean_month(self):
+        if self.cleaned_data["month"]:
+            return get_date_interval(self.cleaned_data["month"].strftime("%Y-%m"))
+
+    def clean_user(self):
+        return self.cleaned_data["user"] or self.request_user
