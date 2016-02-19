@@ -161,19 +161,6 @@ class User(AbstractBaseUser):
             return None
 
     @classmethod
-    def get(cls, user):
-        """Return the expected user instance.
-
-        This function is only necessary if `user` could be anonymous,
-        because we want to work with the instance of the special `nobody`
-        user instead of Django's own `AnonymousUser`.
-        """
-        if user.is_authenticated():
-            return user
-
-        return cls.objects.get_nobody_user()
-
-    @classmethod
     def top_scorers(cls, days=30, language=None, project=None, limit=5):
         """Returns users with the top scores.
 

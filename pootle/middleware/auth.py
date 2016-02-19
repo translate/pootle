@@ -22,8 +22,9 @@ from django.utils.functional import SimpleLazyObject
 
 def get_user(request):
     if not hasattr(request, '_cached_user'):
-        current_user = auth.get_user(request)
-        request._cached_user = auth.get_user_model().get(current_user)
+        user = auth.get_user(request)
+        request._cached_user = (user if user.is_authenticated() else
+                                auth.get_user_model().objects.get_nobody_user())
     return request._cached_user
 
 
