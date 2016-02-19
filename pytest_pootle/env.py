@@ -336,6 +336,9 @@ class PootleTestEnv(object):
             location='/{LANG}/project0/',
             is_public=False,
             filter_rules="store1.po")
+        VirtualFolderFactory(
+            location='/language0/project0/',
+            filter_rules="subdir0/store4.po")
 
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreFactory, UnitFactory
