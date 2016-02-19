@@ -776,10 +776,10 @@ PTL.editor = {
     // Store dirty state for the current unit
     this.isUnitDirty = areaChanged || stateChanged || commentChanged;
 
-    if (submit !== undefined) {
+    if (submit !== null) {
       submit.disabled = !(stateChanged || areaChanged) || needsReview;
     }
-    if (suggest !== undefined) {
+    if (suggest !== null) {
       suggest.disabled = !areaChanged || suggestionExists;
     }
   },
