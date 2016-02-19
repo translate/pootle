@@ -83,7 +83,6 @@ def _test_translate_view(language, request, response, kwargs, settings):
             pootle_path=language.directory.pootle_path,
             resource_path="",
             resource_path_parts=[],
-            profile=request.profile,
             editor_extends="languages/base.html",
             check_categories=get_qualitycheck_schema(),
             previous_url=get_previous_url(request),
@@ -102,8 +101,7 @@ def _test_export_view(language, request, response, kwargs):
     # TODO: export views should be parsed in a form
     ctx = response.context
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_translatable(
-        request.profile, **kwargs)
+    units_qs = Unit.objects.get_translatable(request.user, **kwargs)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [

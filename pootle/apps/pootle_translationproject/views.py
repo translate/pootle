@@ -10,7 +10,6 @@
 import functools
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.urlresolvers import resolve, reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
@@ -58,11 +57,9 @@ def redirect_to_tp_on_404(f):
 
     @functools.wraps(f)
     def method_wrapper(self, request, *args, **kwargs):
-        User = get_user_model()
-        request.profile = User.get(self.request.user)
         try:
             request.permissions = get_matching_permissions(
-                request.profile,
+                request.user,
                 self.permission_context) or []
         except Http404 as e:
             # Test if lang code is not canonical but valid
@@ -143,7 +140,7 @@ class TPMixin(object):
 
     @cached_property
     def project(self):
-        if self.tp.project.disabled and not self.request.profile.is_superuser:
+        if self.tp.project.disabled and not self.request.user.is_superuser:
             raise Http404
         return self.tp.project
 

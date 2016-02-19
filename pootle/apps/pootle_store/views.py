@@ -298,7 +298,7 @@ def _get_critical_checks_snippet(request, unit):
     if not unit.has_critical_checks():
         return None
 
-    can_review = check_user_permission(request.profile, 'review',
+    can_review = check_user_permission(request.user, 'review',
                                        unit.store.parent)
     ctx = {
         'canreview': can_review,
@@ -633,7 +633,7 @@ def save_comment(request, unit):
              An error message is returned otherwise.
     """
     # Update current unit instance's attributes
-    unit.commented_by = request.profile
+    unit.commented_by = request.user
     unit.commented_on = timezone.now().replace(microsecond=0)
 
     language = request.translation_project.language
@@ -689,7 +689,7 @@ def get_edit_unit(request, unit):
 
     store = unit.store
     directory = store.parent
-    user = request.profile
+    user = request.user
     project = translation_project.project
 
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
@@ -732,8 +732,7 @@ def get_edit_unit(request, unit):
         'priority': priority,
         'store': store,
         'directory': directory,
-        'profile': user,
-        'user': request.user,
+        'user': user,
         'project': project,
         'language': language,
         'source_language': source_language,
@@ -823,7 +822,7 @@ def submit(request, unit):
                 sub = Submission(
                     creation_time=current_time,
                     translation_project=translation_project,
-                    submitter=request.profile,
+                    submitter=request.user,
                     unit=unit,
                     store=unit.store,
                     field=field,
@@ -839,18 +838,18 @@ def submit(request, unit):
             # important to set these attributes after saving Submission
             # because we need to access the unit's state before it was saved
             if SubmissionFields.TARGET in (f[0] for f in form.updated_fields):
-                form.instance.submitted_by = request.profile
+                form.instance.submitted_by = request.user
                 form.instance.submitted_on = current_time
                 form.instance.reviewed_by = None
                 form.instance.reviewed_on = None
 
-            form.instance._log_user = request.profile
+            form.instance._log_user = request.user
 
             form.save()
 
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
-        json['user_score'] = request.profile.public_score
+        json['user_score'] = request.user.public_score
 
         return JsonResponse(json)
 
@@ -886,12 +885,12 @@ def suggest(request, unit):
             unit = Unit.objects.get(id=unit.id)
             unit.add_suggestion(
                 form.cleaned_data['target_f'],
-                user=request.profile,
+                user=request.user,
                 similarity=form.cleaned_data['similarity'],
                 mt_similarity=form.cleaned_data['mt_similarity'],
             )
 
-            json['user_score'] = request.profile.public_score
+            json['user_score'] = request.user.public_score
 
         return JsonResponse(json)
 
@@ -927,10 +926,9 @@ def reject_suggestion(request, unit, suggid):
         (request.user.is_anonymous() or request.user != sugg.user)):
         raise PermissionDenied(_('Insufficient rights to access review mode.'))
 
-    unit.reject_suggestion(sugg, request.translation_project,
-                           request.profile)
+    unit.reject_suggestion(sugg, request.translation_project, request.user)
 
-    json['user_score'] = request.profile.public_score
+    json['user_score'] = request.user.public_score
 
     return JsonResponse(json)
 
@@ -947,10 +945,9 @@ def accept_suggestion(request, unit, suggid):
     except ObjectDoesNotExist:
         raise Http404
 
-    unit.accept_suggestion(suggestion, request.translation_project,
-                           request.profile)
+    unit.accept_suggestion(suggestion, request.translation_project, request.user)
 
-    json['user_score'] = request.profile.public_score
+    json['user_score'] = request.user.public_score
     json['newtargets'] = [highlight_whitespace(target)
                           for target in unit.target.strings]
     json['newdiffs'] = {}
@@ -969,7 +966,7 @@ def accept_suggestion(request, unit, suggid):
 def toggle_qualitycheck(request, unit, check_id):
     try:
         unit.toggle_qualitycheck(check_id, bool(request.POST.get('mute')),
-                                 request.profile)
+                                 request.user)
     except ObjectDoesNotExist:
         raise Http404
 

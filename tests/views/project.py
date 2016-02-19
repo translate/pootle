@@ -38,7 +38,6 @@ from virtualfolder.models import VirtualFolderTreeItem
 
 def _test_translate_view(project, request, response, kwargs, settings):
     ctx = response.context
-    user = request.profile
     kwargs["project_code"] = project.code
     ctx_path = (
         "/projects/%(project_code)s/" % kwargs)
@@ -52,7 +51,6 @@ def _test_translate_view(project, request, response, kwargs, settings):
             is_admin=False,
             language=None,
             project=project,
-            profile=user,
             pootle_path=pootle_path,
             ctx_path=ctx_path,
             resource_path=resource_path,
@@ -105,7 +103,8 @@ def _test_browse_view(project, request, response, kwargs):
     items = [
         item_func(item)
         for item
-        in ob.get_children_for_user(request.profile)]
+        in ob.get_children_for_user(request.user)
+    ]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
     table_fields = ['name', 'progress', 'total', 'need-translation',
@@ -142,8 +141,7 @@ def _test_export_view(project, request, response, kwargs):
     ctx = response.context
     kwargs["project_code"] = project.code
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_translatable(
-        request.profile, **kwargs)
+    units_qs = Unit.objects.get_translatable(request.user, **kwargs)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [
@@ -224,7 +222,6 @@ def test_view_projects_translate(client, settings):
         is_admin=False,
         language=None,
         project=None,
-        profile=request.profile,
         pootle_path="/projects/",
         ctx_path="/projects/",
         resource_path="",
@@ -249,8 +246,7 @@ def test_view_projects_export(client):
     ctx = response.context
     request = response.wsgi_request
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_translatable(
-        request.profile)
+    units_qs = Unit.objects.get_translatable(request.user)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [

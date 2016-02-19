@@ -32,8 +32,7 @@ class UserDetailView(NoDefaultUserMixin, UserObjectMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
-        user = User.get(self.request.user)
-        context['user_is_manager'] = user.has_manager_permissions()
+        context['user_is_manager'] = self.request.user.has_manager_permissions()
         return context
 
 

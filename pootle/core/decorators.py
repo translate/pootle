@@ -9,7 +9,6 @@
 
 from functools import wraps
 
-from django.contrib.auth import get_user_model
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db import connection
@@ -313,9 +312,7 @@ def permission_required(permission_code):
                                      'path_obj')
             setattr(request, attr_name, path_obj)
 
-            User = get_user_model()
-            request.profile = User.get(request.user)
-            request.permissions = get_matching_permissions(request.profile,
+            request.permissions = get_matching_permissions(request.user,
                                                            directory)
 
             if not permission_code:

@@ -52,7 +52,7 @@ class ProjectMixin(object):
         project = get_object_or_404(
             Project.objects.select_related("directory"),
             code=self.kwargs["project_code"])
-        if project.disabled and not self.request.profile.is_superuser:
+        if project.disabled and not self.request.user.is_superuser:
             raise Http404
         return project
 
@@ -144,8 +144,8 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
         items = [
             item_func(item)
             for item
-            in self.object.get_children_for_user(
-                self.request.profile)]
+            in self.object.get_children_for_user(self.request.user)
+        ]
 
         items.sort(
             lambda x, y: locale.strcoll(x['title'], y['title']))

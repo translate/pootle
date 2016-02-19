@@ -73,10 +73,8 @@ def set_permissions(f):
 
     @functools.wraps(f)
     def method_wrapper(self, request, *args, **kwargs):
-        User = get_user_model()
-        request.profile = User.get(self.request.user)
         request.permissions = get_matching_permissions(
-            request.profile,
+            request.user,
             self.permission_context) or []
         return f(self, request, *args, **kwargs)
     return method_wrapper
@@ -613,7 +611,6 @@ class PootleTranslateView(PootleDetailView):
         ctx.update(
             {'page': 'translate',
              'current_vfolder_pk': self.vfolder_pk,
-             'profile': self.request.profile,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,
              'check_categories': get_qualitycheck_schema(),
@@ -640,7 +637,7 @@ class PootleExportView(PootleDetailView):
         filter_name, filter_extra = get_filter_name(self.request.GET)
 
         units_qs = Unit.objects.get_translatable(
-            self.request.profile,
+            self.request.user,
             **self.kwargs)
 
         units_qs = get_step_query(self.request, units_qs)

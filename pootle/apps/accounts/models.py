@@ -167,9 +167,6 @@ class User(AbstractBaseUser):
         This function is only necessary if `user` could be anonymous,
         because we want to work with the instance of the special `nobody`
         user instead of Django's own `AnonymousUser`.
-
-        If you know for certain that a user is logged in, then use it
-        straight away.
         """
         if user.is_authenticated():
             return user
@@ -266,12 +263,12 @@ class User(AbstractBaseUser):
         return jsonify(model_to_dict(self, exclude=['password']))
 
     def is_anonymous(self):
-        """Returns `True` if this is an anonymous user.
-
-        Since we treat the `nobody` user as special anonymous-like user,
-        we can't rely on `auth.User` model's `is_authenticated()` method.
-        """
+        """Returns `True` if this is an anonymous user."""
         return self.username == 'nobody'
+
+    def is_authenticated(self):
+        """Returns `True` if this is an authenticated user."""
+        return self.username != 'nobody'
 
     def is_system(self):
         """Returns `True` if this is the special `system` user."""

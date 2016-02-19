@@ -7,8 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.contrib.auth import get_user_model
-
 import pytest
 
 from pootle_app.models.permissions import get_matching_permissions
@@ -21,13 +19,9 @@ def _create_post_request(rf, directory, user, url='/', data=None):
     if data is None:
         data = {}
 
-    User = get_user_model()
-
     request = rf.post(url, data=data)
     request.user = user
-    request.profile = User.get(user)
-    request.permissions = get_matching_permissions(request.profile,
-                                                   directory)
+    request.permissions = get_matching_permissions(request.user, directory)
     return request
 
 

@@ -176,7 +176,6 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         language=tp.language,
         project=tp.project,
         is_admin=check_permission('administrate', request),
-        profile=request.profile,
         ctx_path=tp.pootle_path,
         pootle_path=request_path,
         resource_path=resource_path,
@@ -198,8 +197,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
 def _test_export_view(tp, request, response, kwargs):
     ctx = response.context
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_translatable(
-        request.profile, **kwargs)
+    units_qs = Unit.objects.get_translatable(request.user, **kwargs)
     units_qs = get_step_query(request, units_qs)
     units_qs = units_qs.select_related('store')
     unit_groups = [

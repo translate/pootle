@@ -2,7 +2,7 @@
 {% load i18n store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% cache settings.POOTLE_CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs profile.id LANGUAGE_CODE %}
+{% cache settings.POOTLE_CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview report_target altsrcs user.id LANGUAGE_CODE %}
 
 {% block suggestion_comment %}
 {% if sugg.translator_comment %}
