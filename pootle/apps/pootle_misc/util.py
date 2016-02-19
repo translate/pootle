@@ -60,16 +60,6 @@ def ajax_required(f):
     return wrapper
 
 
-def to_int(value):
-    """Converts `value` to `int` and returns `None` if the conversion is
-    not possible.
-    """
-    try:
-        return int(value)
-    except ValueError:
-        return None
-
-
 def get_max_month_datetime(dt):
     next_month = dt.replace(day=1) + timedelta(days=31)
     if settings.USE_TZ:
