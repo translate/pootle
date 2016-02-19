@@ -50,7 +50,7 @@ from .models import Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .unit.filters import UnitSearchFilter, UnitTextSearch
-from .util import STATES_MAP, find_altsrcs
+from .util import STATES_MAP, find_altsrcs, get_search_backend
 
 
 #: Mapping of allowed sorting criteria.
@@ -334,104 +334,24 @@ def get_units(request):
                     raise Http400(_('Arguments missing.'))
         raise Http404(forms.ValidationError(search_form.errors).messages)
 
-    category = search_form.cleaned_data["category"]
-    checks = search_form.cleaned_data["checks"]
-    chunk_size = search_form.cleaned_data["count"]
-    exact = "exact" in search_form.cleaned_data["soptions"]
-    is_initial_request = search_form.cleaned_data["initial"]
-    modified_since = search_form.cleaned_data["modified-since"]
-    month = search_form.cleaned_data["month"]
-    pootle_path = search_form.cleaned_data["pootle_path"]
-    unit_filter = search_form.cleaned_data["filter"]
-    search = search_form.cleaned_data["search"]
-    sfields = search_form.cleaned_data["sfields"]
-    sort_by = search_form.cleaned_data["sort_by"]
-    sort_on = search_form.cleaned_data["sort_on"]
-    uids = search_form.cleaned_data["uids"]
-    user = search_form.cleaned_data["user"]
-    vfolder = search_form.cleaned_data["vfolder"]
+    uid_list, units_qs = get_search_backend()(
+        request.user, **search_form.cleaned_data).search()
 
-    # none of these are necessarily set
-    dir_path = search_form.cleaned_data.get("dir_path")
-    filename = search_form.cleaned_data.get("filename")
-    language_code = search_form.cleaned_data.get("language_code")
-    project_code = search_form.cleaned_data.get("project_code")
-
-    related_selects = (
-        'store__translation_project__project',
-        'store__translation_project__language')
-    units_qs = (
-        Unit.objects.get_translatable(user=request.user,
-                                      project_code=project_code,
-                                      language_code=language_code,
-                                      dir_path=dir_path,
-                                      filename=filename)
-                    .order_by("store", "index")
-                    .select_related(*related_selects))
-
-    if vfolder is not None:
-        units_qs = units_qs.filter(vfolders=vfolder)
-
-    if unit_filter:
-        units_qs = UnitSearchFilter().filter(
-            units_qs, unit_filter,
-            user=user, checks=checks, category=category)
-
-        if modified_since is not None:
-            units_qs = units_qs.filter(
-                submitted_on__gt=modified_since).distinct()
-
-        if month is not None:
-            units_qs = units_qs.filter(
-                submitted_on__gte=month[0],
-                submitted_on__lte=month[1]).distinct()
-
-        if sort_by is not None:
-            if sort_on not in SIMPLY_SORTED:
-                # Omit leading `-` sign
-                if sort_by[0] == '-':
-                    max_field = sort_by[1:]
-                    sort_by = '-sort_by_field'
-                else:
-                    max_field = sort_by
-                    sort_by = 'sort_by_field'
-                # It's necessary to use `Max()` here because we can't
-                # use `distinct()` and `order_by()` at the same time
-                units_qs = units_qs.annotate(sort_by_field=Max(max_field))
-            units_qs = units_qs.order_by(
-                sort_by, "store__pootle_path", "index")
-
-    if sfields and search:
-        units_qs = UnitTextSearch(
-            units_qs).search(search, sfields, exact=exact)
+    bad_uid = (
+        len(search_form.cleaned_data["uids"]) == 1
+        and search_form.cleaned_data["uids"][0] not in uid_list)
+    if bad_uid:
+        raise Http404
 
     unit_groups = []
-    uid_list = None
-    begin = 0
-    end = 2 * chunk_size
-    if is_initial_request:
-        uid_list = list(units_qs.values_list('id', flat=True))
-        if len(uids) == 1:
-            if uids[0] not in uid_list:
-                raise Http404
-            index = uid_list.index(uids[0])
-            begin = max(index - chunk_size, 0)
-            end = min(index + chunk_size + 1, len(uid_list))
-    elif uids:
-        units_qs = units_qs.filter(id__in=uids)
-
     units_by_path = groupby(
-        units_qs[begin:end],
+        units_qs,
         lambda x: x.store.pootle_path)
     for pootle_path, units in units_by_path:
         unit_groups.append(_path_units_with_meta(pootle_path, units))
-
-    response = {
-        'unitGroups': unit_groups,
-    }
+    response = {'unitGroups': unit_groups}
     if uid_list:
         response['uIds'] = uid_list
-
     return JsonResponse(response)
 
 
