@@ -36,7 +36,6 @@ from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
 from pootle_store.util import get_search_backend
-from virtualfolder.models import VirtualFolderTreeItem
 
 from .browser import get_table_headings
 from .helpers import (SIDEBAR_COOKIE_NAME,
@@ -601,10 +600,7 @@ class PootleTranslateView(PootleDetailView):
 
     @property
     def display_vfolder_priority(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return False
-        return VirtualFolderTreeItem.objects.filter(
-            pootle_path__startswith=self.object.pootle_path).exists()
+        return False
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(

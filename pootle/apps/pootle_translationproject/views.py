@@ -356,13 +356,6 @@ class TPTranslateBaseView(PootleTranslateView):
     def pootle_path(self):
         return "%s%s" % (self.ctx_path, self.resource_path)
 
-    @property
-    def display_vfolder_priority(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return False
-        return VirtualFolderTreeItem.objects.filter(
-            pootle_path__startswith=self.object.pootle_path).exists()
-
 
 class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
 
