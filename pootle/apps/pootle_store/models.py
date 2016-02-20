@@ -1065,65 +1065,6 @@ class Unit(models.Model, base.TranslationUnit):
             return bool(filter(None, self.target_f.strings))
         return self.state >= TRANSLATED
 
-    @classmethod
-    def buildfromunit(cls, unit):
-        newunit = cls()
-        newunit.update(unit)
-        return newunit
-
-    def fuzzy_translate(self, matcher):
-        candidates = matcher.matches(self.source)
-        if candidates:
-            match_unit = candidates[0]
-            changed = self.merge(match_unit, authoritative=True)
-            if changed:
-                return match_unit
-
-    def merge(self, merge_unit, overwrite=False, comments=True,
-              authoritative=False):
-        """Merges :param:`merge_unit` with the current unit.
-
-        :param merge_unit: The unit that will be merged into the current unit.
-        :param comments: Whether to merge translator comments or not.
-        :param authoritative: Not used. Kept for Toolkit API consistenty.
-        :return: True if the current unit has been changed.
-        """
-        changed = False
-
-        if comments:
-            notes = merge_unit.getnotes(origin="translator")
-
-            if notes and self.translator_comment != notes:
-                self.translator_comment = notes
-                changed = True
-
-        # No translation in merge_unit: bail out
-        if not bool(merge_unit.target):
-            return changed
-
-        # Won't replace existing translation unless overwrite is True
-        if bool(self.target) and not overwrite:
-            return changed
-
-        # Current translation more trusted
-        if self.istranslated() and not merge_unit.istranslated():
-            return changed
-
-        if self.target != merge_unit.target:
-            self.target = merge_unit.target
-
-            if self.source != merge_unit.source:
-                self.markfuzzy()
-            else:
-                self.markfuzzy(merge_unit.isfuzzy())
-
-            changed = True
-        elif self.isfuzzy() != merge_unit.isfuzzy():
-            self.markfuzzy(merge_unit.isfuzzy())
-            changed = True
-
-        return changed
-
 # # # # # # # # # # # Suggestions # # # # # # # # # # # # # # # # #
     def get_suggestions(self):
         return self.suggestion_set.pending().select_related('user').all()
