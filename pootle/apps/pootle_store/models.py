@@ -71,8 +71,6 @@ def get_tm_broker():
 # Store States
 #
 
-# Store being modified
-LOCKED = -1
 # Store just created, not parsed yet
 NEW = 0
 # Store just parsed, units added but no quality checks were run
@@ -1470,33 +1468,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             for unit in units.iterator():
                 yield unit
 
-    def clean_stale_lock(self):
-        if self.state != LOCKED:
-            return
-
-        mtime = max_column(self.unit_set.all(), 'mtime', None)
-        if mtime is None:
-            # FIXME: we can't tell stale locks if store has no units at all
-            return
-
-        delta = timezone.now() - mtime
-        if delta.days or delta.seconds > 2 * 60 * 60:
-            logging.warning("Found stale lock in %s, something went wrong "
-                            "with a previous operation on the store",
-                            self.pootle_path)
-
-            # lock been around for too long, assume it is stale
-            if QualityCheck.objects.filter(unit__store=self).exists():
-                # there are quality checks, assume we are checked
-                self.state = CHECKED
-            else:
-                # there are units assumed we are parsed
-                self.state = PARSED
-
-            return True
-
-        return False
-
     def get_file_mtime(self):
         disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
         # set microsecond to 0 for comparing with a time value without
@@ -1672,21 +1643,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         :param user: User to attribute updates to.
         :param submission_type: Submission type of saved updates.
         """
-        self.clean_stale_lock()
 
-        if self.state == LOCKED:
-            # File currently being updated
-            # FIXME: Shall we idle wait for lock to be released first?
-            # What about stale locks?
-            logging.info(u"Attempted to update %s while locked",
-                         self.pootle_path)
-            return
-
-        # Lock store
         logging.debug(u"Updating %s", self.pootle_path)
         old_state = self.state
-        self.state = LOCKED
-        self.save(update_cache=False)
 
         if user is None:
             User = get_user_model()
@@ -1704,7 +1663,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                                 user, submission_type,
                                                 resolve_conflict)
         finally:
-            # Unlock store
             if old_state < PARSED:
                 self.state = PARSED
             else:
