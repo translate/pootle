@@ -13,8 +13,6 @@ from importlib import import_module
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from pootle_misc.aggregate import sum_column
-
 
 # Unit States
 #: Unit is no longer part of the store
@@ -63,35 +61,6 @@ def absolute_real_path(p):
         return os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, p)
     else:
         return p
-
-
-def calc_total_wordcount(units):
-    total = sum_column(units,
-                       ['source_wordcount'], count=False)
-
-    return total['source_wordcount'] or 0
-
-
-def calc_untranslated_wordcount(units):
-    untranslated = sum_column(units.filter(state=UNTRANSLATED),
-                              ['source_wordcount'], count=False)
-
-    return untranslated['source_wordcount'] or 0
-
-
-def calc_fuzzy_wordcount(units):
-    fuzzy = sum_column(units.filter(state=FUZZY),
-                       ['source_wordcount'], count=False)
-
-    return fuzzy['source_wordcount'] or 0
-
-
-def calc_translated_wordcount(units):
-    translated = sum_column(units.filter(state=TRANSLATED),
-                            ['source_wordcount'],
-                            count=False)
-
-    return translated['source_wordcount'] or 0
 
 
 def find_altsrcs(unit, alt_src_langs, store=None, project=None):
