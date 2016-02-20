@@ -507,4 +507,5 @@ def test_store_diff(store_diff_tests):
 @pytest.mark.django_db
 def test_store_repr():
     store = Store.objects.first()
+    assert str(store) == str(store.convert(store.get_file_class()))
     assert repr(store) == u"<Store: %s>" % store.pootle_path

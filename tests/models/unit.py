@@ -15,6 +15,7 @@ from django.utils import timezone
 
 from pootle.core.mixins.treeitem import CachedMethods
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.models import Unit
 
 
 User = get_user_model()
@@ -280,3 +281,10 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     assert (
         it_tutorial_po.get_cached(CachedMethods.WORDCOUNT_STATS)['translated']
         == 2)
+
+
+@pytest.mark.django_db
+def test_unit_repr():
+    unit = Unit.objects.first()
+    assert str(unit) == str(unit.convert(unit.get_unit_class()))
+    assert unicode(unit) == unicode(unit.source)
