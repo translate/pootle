@@ -459,9 +459,9 @@ class UnitSearchForm(forms.Form):
             ('locations', _('Locations'))),
         initial=['source', 'target'])
 
-    def __init__(self, *la, **kwa):
-        self.request_user = kwa.pop("user")
-        super(UnitSearchForm, self).__init__(*la, **kwa)
+    def __init__(self, *args, **kwargs):
+        self.request_user = kwargs.pop("user")
+        super(UnitSearchForm, self).__init__(*args, **kwargs)
         self.fields["modified-since"] = ISODateTimeField(required=False)
 
     def clean(self):
