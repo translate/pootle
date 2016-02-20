@@ -207,8 +207,6 @@ PTL.editor = {
     $('#actions').on('change', '#js-filter-checks', () => this.filterChecks());
 
     /* State changes */
-    $('#editor').on('input', '.js-translation-area',
-                   (e) => this.onTextareaChange(e));
     $('#editor').on('change', 'input.fuzzycheck',
                    () => this.onStateChange());
     $('#editor').on('click', 'input.fuzzycheck',
@@ -841,9 +839,8 @@ PTL.editor = {
 
   /* Updates unit textarea and input's `default*` values. */
   updateUnitDefaultProperties() {
-    $('.js-translation-area').each(function setDefaultValue() {
-      this.defaultValue = this.value;
-    });
+    ReactEditor.setProps({ initialValues: ReactEditor.state.values.slice() });
+
     const checkbox = q('#id_state');
     checkbox.defaultChecked = checkbox.checked;
     this.handleTranslationChange();
@@ -863,32 +860,26 @@ PTL.editor = {
 
     const submit = q('.js-submit');
     const suggest = q('.js-suggest');
-    const translations = $('.js-translation-area').get();
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return $(this).data('translation-aid');
     }).get();
     const checkbox = q('#id_state');
     const stateChanged = checkbox.defaultChecked !== checkbox.checked;
 
-    let areaChanged = false;
     let needsReview = false;
     let suggestionExists = false;
-    let area;
 
     // Non-admin users are required to clear the fuzzy checkbox
     if (!this.settings.isAdmin) {
       needsReview = checkbox.checked === true;
     }
 
-    for (let i = 0; i < translations.length && !areaChanged; i++) {
-      area = translations[i];
-      areaChanged = area.defaultValue !== area.value;
-    }
+    const areaChanged = this.isTextareaValueDirty();
 
+    const valueState = ReactEditor.state.values;
     if (suggestions.length) {
-      for (let i = 0; i < translations.length && !suggestionExists; i++) {
-        area = translations[i];
-        suggestionExists = suggestions.indexOf(area.value) !== -1;
+      for (let i = 0; i < valueState.length && !suggestionExists; i++) {
+        suggestionExists = suggestions.indexOf(valueState[i]) !== -1;
       }
     }
 
@@ -914,13 +905,10 @@ PTL.editor = {
     this.keepState = true;
   },
 
-  onTextareaChange(e) {
+  onTextareaChange() {
     this.handleTranslationChange();
 
-    const el = e.target;
-    const hasChanged = el.defaultValue !== el.value;
-
-    if (hasChanged && !this.keepState) {
+    if (this.isTextareaValueDirty() && !this.keepState) {
       this.ungoFuzzy();
     }
 
@@ -929,6 +917,11 @@ PTL.editor = {
       this.checkSimilarTranslations();
       this.similarityTimer = null;  // So we know the code was run
     }, 200);
+  },
+
+  isTextareaValueDirty() {
+    return !_.isEqual(ReactEditor.props.initialValues,
+                      ReactEditor.state.values);
   },
 
 

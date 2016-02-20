@@ -47,6 +47,7 @@ const ReactEditor = {
     // FIXME: this additional layer of state tracking is only kept to allow
     // interaction from the outside world. Remove ASAP.
     this.state.values[index] = value;
+    PTL.editor.onTextareaChange();
   },
 
 };
