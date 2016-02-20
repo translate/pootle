@@ -28,20 +28,6 @@ def get_pootle_permission(codename):
     return Permission.objects.get(content_type=content_type, codename=codename)
 
 
-def get_pootle_permissions(codenames=None):
-    """Gets the available rights and their localized names."""
-    content_type = get_permission_contenttype()
-
-    if codenames is not None:
-        permissions = Permission.objects.filter(content_type=content_type,
-                                                codename__in=codenames)
-    else:
-        permissions = Permission.objects.filter(content_type=content_type)
-
-    return dict((permission.codename, permission)
-                for permission in permissions)
-
-
 def get_permissions_by_username(username, directory):
     pootle_path = directory.pootle_path
     path_parts = filter(None, pootle_path.split('/'))
