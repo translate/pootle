@@ -3,7 +3,7 @@
 
 django-debug-toolbar>=1.4
 django-extensions
-flake8
+flake8!=2.5.3
 glue>=0.2.8.1
 ipython
 isort>=3.5.0,!=4.1.1
