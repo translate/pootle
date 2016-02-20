@@ -10,8 +10,6 @@
 """Utility functions to help deploy Pootle under different url prefixes."""
 
 from django.conf import settings
-from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.utils.http import urlencode
 
 
 def l(path):
@@ -20,16 +18,3 @@ def l(path):
         base_url = getattr(settings, "SCRIPT_NAME", "")
         return base_url + path
     return path
-
-
-def get_next(request):
-    """Return a query string to use as a next URL."""
-    try:
-        next = request.GET.get(REDIRECT_FIELD_NAME, '')
-
-        if not next:
-            next = request.path
-    except AttributeError:
-        next = ''
-
-    return u"?%s" % urlencode({REDIRECT_FIELD_NAME: next})

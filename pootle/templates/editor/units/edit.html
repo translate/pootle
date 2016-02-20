@@ -1,4 +1,4 @@
-{% load i18n baseurl common_tags store_tags cleanhtml cache locale %}
+{% load i18n common_tags store_tags cleanhtml cache locale %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.POOTLE_CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs user.id LANGUAGE_CODE unit.get_terminology %}
