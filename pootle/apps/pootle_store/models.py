@@ -1339,11 +1339,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return self.name.replace('.', '-')
 
     @property
-    def abs_real_path(self):
-        if self.file:
-            return self.file.path
-
-    @property
     def real_path(self):
         return self.file.name
 
