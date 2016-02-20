@@ -7,61 +7,18 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import random
 import re
 
-from lxml.etree import ParserError
 from lxml.html import fromstring, tostring
-from lxml.html.clean import clean_html
 
 from django import template
 from django.template.defaultfilters import stringfilter
-from django.utils.html import escape, simple_email_re as email_re
 from django.utils.safestring import mark_safe
 
 from pootle.core.utils.html import rewrite_links
 
 
 register = template.Library()
-
-
-@register.filter
-@stringfilter
-def clean(text):
-    """Wrapper around lxml's html cleaner that returns SafeStrings for
-    immediate rendering in templates.
-    """
-    try:
-        clean_text = clean_html(text)
-    except ParserError:
-        clean_text = u""
-
-    return mark_safe(clean_text)
-
-
-@register.filter
-@stringfilter
-def obfuscate(text):
-    """Obfuscates the given text in case it is an email address.
-    Based on the implementation used in addons.mozilla.org
-    """
-
-    if not email_re.match(text):
-        return text
-
-    fallback = text[::-1]  # reverse
-    # inject junk somewhere
-    i = random.randint(0, len(text) - 1)
-    fallback = u"%s%s%s" % (escape(fallback[:i]),
-                            u'<span class="i">null</span>',
-                            escape(fallback[i:]))
-    # replace @ and .
-    fallback = fallback.replace('@', '&#x0040;').replace('.', '&#x002E;')
-
-    title = '<span class="email">%s</span>' % fallback
-
-    node = u'%s<span class="email hide">%s</span>' % (title, fallback)
-    return mark_safe(node)
 
 
 @register.filter
