@@ -978,7 +978,7 @@ PTL.editor = {
     }
 
     const currentUnit = this.units.getCurrent();
-    const newTranslation = $('.js-translation-area').val();
+    const newTranslation = ReactEditor.state.values[0];
     let simHuman = { max: 0, boxId: null };
     let simMT = { max: 0, boxId: null };
 
@@ -1591,7 +1591,7 @@ PTL.editor = {
   /* Pushes translation submissions and moves to the next unit */
   handleSubmit(comment = '') {
     const el = q('input.submit');
-    const newTranslation = $('.js-translation-area')[0].value;
+    const newTranslation = ReactEditor.state.values[0];
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return {
         text: this.dataset.translationAid,
@@ -1658,12 +1658,8 @@ PTL.editor = {
       return;
     }
 
-    // FIXME: handle this via events
-    const translations = $('.js-translation-area').map((i, el) => $(el).val())
-                                                  .get();
-
     const unit = this.units.getCurrent();
-    unit.setTranslation(translations);
+    unit.setTranslation(ReactEditor.state.values);
     unit.set('isfuzzy', this.isFuzzy());
 
     const hasCriticalChecks = !!data.checks;
@@ -2380,11 +2376,8 @@ PTL.editor = {
       });
     }
 
-    // FIXME: handle this via events
-    const translations = $('.js-translation-area').map((i, el) => $(el).val())
-                                                  .get();
     const unit = this.units.getCurrent();
-    unit.setTranslation(translations);
+    unit.setTranslation(ReactEditor.state.values);
     unit.set('isfuzzy', false);
 
     highlightSuggestionsDiff(unit);
