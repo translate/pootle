@@ -31,8 +31,8 @@ from allauth.account.utils import sync_user_email_addresses
 from pootle.core.cache import make_method_key
 from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
-from pootle_statistics.models import Submission, SubmissionTypes
-from pootle_store.models import SuggestionStates, Unit
+from pootle_statistics.models import Submission
+from pootle_store.models import Unit
 
 from .managers import UserManager
 from .utils import UserMerger, UserPurger
@@ -348,60 +348,6 @@ class User(AbstractBaseUser):
         created_unit_pks = self.submission_set.get_unit_creates() \
                                               .values_list("unit", flat=True)
         return Unit.objects.filter(pk__in=created_unit_pks)
-
-    def pending_suggestion_count(self, tp):
-        """Returns the number of pending suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggestions.filter(unit__store__translation_project=tp,
-                                       state=SuggestionStates.PENDING).count()
-
-    def accepted_suggestion_count(self, tp):
-        """Returns the number of accepted suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggestions.filter(unit__store__translation_project=tp,
-                                       state=SuggestionStates.ACCEPTED).count()
-
-    def rejected_suggestion_count(self, tp):
-        """Returns the number of rejected suggestions for the user in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return self.suggestions.filter(unit__store__translation_project=tp,
-                                       state=SuggestionStates.REJECTED).count()
-
-    def total_submission_count(self, tp):
-        """Returns the number of submissions the current user has done from the
-        editor in the given translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type__in=SubmissionTypes.CONTRIBUTION_TYPES,
-        ).count()
-
-    def overwritten_submission_count(self, tp):
-        """Returns the number of submissions the current user has done from the
-        editor and have been overwritten by other users in the given
-        translation project.
-
-        :param tp: a :cls:`TranslationProject` object.
-        """
-        return Submission.objects.filter(
-            submitter=self,
-            translation_project=tp,
-            type__in=SubmissionTypes.CONTRIBUTION_TYPES,
-        ).exclude(
-            unit__submitted_by=self,
-        ).count()
 
     def top_language(self, days=30):
         """Returns the top language the user has contributed to and its
