@@ -9,7 +9,6 @@
 
 """Overrides and support functions for arbitrary locale support."""
 
-import locale
 import os
 
 from translate.lang import data
@@ -18,7 +17,7 @@ from django.utils import translation
 from django.utils.functional import lazy
 from django.utils.translation import LANGUAGE_SESSION_KEY, trans_real
 
-from pootle.i18n import bidi, gettext
+from pootle.i18n import gettext
 
 
 def find_languages(locale_path):
@@ -39,27 +38,6 @@ def supported_langs():
     """Returns a list of supported locales."""
     from django.conf import settings
     return settings.LANGUAGES
-
-
-def lang_choices():
-    """Generate locale choices for drop down lists in forms."""
-    choices = []
-    for code, name in supported_langs():
-        name = data.tr_lang(translation.to_locale('en'))(name)
-        tr_name = data.tr_lang(translation.to_locale(code))(name)
-        # We have to use the bidi.insert_embeding() to ensure that brackets in
-        # the English part of the name is rendered correctly in an RTL layout
-        # like Arabic. We can't use markup because this is used inside an
-        # option tag.
-        if tr_name != name:
-            name = u"%s | %s" % (bidi.insert_embeding(tr_name),
-                                 bidi.insert_embeding(name))
-        else:
-            name = bidi.insert_embeding(name)
-        choices.append((code, name))
-
-    choices.sort(cmp=locale.strcoll, key=lambda choice: unicode(choice[1]))
-    return choices
 
 
 def get_lang_from_session(request, supported):
