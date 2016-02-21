@@ -61,7 +61,7 @@ class UnitResult(UnitProxy):
                '#unit=%s' % unicode(self.id)))
 
 
-class GroupedStoreResult(object):
+class StoreResults(object):
 
     def __init__(self, units):
         self.units = units
@@ -94,9 +94,6 @@ class GroupedStoreResult(object):
 
 class GroupedResults(object):
 
-    def __init__(self, units_qs):
-        self.units_qs = units_qs
-
     select_fields = [
         "id",
         "source_f",
@@ -108,6 +105,9 @@ class GroupedResults(object):
         "store__translation_project__project__checkstyle",
         "store__translation_project__language__code"]
 
+    def __init__(self, units_qs):
+        self.units_qs = units_qs
+
     @property
     def data(self):
         unit_groups = []
@@ -115,5 +115,5 @@ class GroupedResults(object):
             self.units_qs.values(*self.select_fields),
             lambda x: x["store__pootle_path"])
         for pootle_path, units in units_by_path:
-            unit_groups.append({pootle_path: GroupedStoreResult(units).data})
+            unit_groups.append({pootle_path: StoreResults(units).data})
         return unit_groups

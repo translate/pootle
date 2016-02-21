@@ -50,6 +50,7 @@ from .models import Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .unit.filters import UnitSearchFilter, UnitTextSearch
+from .unit.results import GroupedResults
 from .util import STATES_MAP, find_altsrcs, get_search_backend
 
 
@@ -343,13 +344,7 @@ def get_units(request):
     if bad_uid:
         raise Http404
 
-    unit_groups = []
-    units_by_path = groupby(
-        units_qs,
-        lambda x: x.store.pootle_path)
-    for pootle_path, units in units_by_path:
-        unit_groups.append(_path_units_with_meta(pootle_path, units))
-    response = {'unitGroups': unit_groups}
+    response = {'unitGroups': GroupedResults(units_qs).data}
     if uid_list:
         response['uIds'] = uid_list
     return JsonResponse(response)
