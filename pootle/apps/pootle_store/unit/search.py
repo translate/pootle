@@ -30,7 +30,7 @@ class DBSearchBackend(object):
     @property
     def chunk_size(self):
         return self.kwargs.get(
-            'chunk_size',
+            'count',
             self.default_chunk_size)
 
     @property
@@ -159,4 +159,8 @@ class DBSearchBackend(object):
                 end = min(index + self.chunk_size + 1, len(uid_list))
         elif self.uids:
             results = self.results.filter(id__in=self.uids)
+        else:
+            # used by export view
+            uid_list = list(self.results.values_list('id', flat=True))
+            results = self.results[:self.chunk_size]
         return uid_list, results[begin:end]
