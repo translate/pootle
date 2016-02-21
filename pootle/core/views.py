@@ -12,6 +12,7 @@ from itertools import groupby
 import json
 import operator
 
+from django.forms import ValidationError
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -33,12 +34,12 @@ from pootle_app.models.permissions import (
 from pootle_misc.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
-from pootle_store.models import Unit
-from pootle_store.views import get_step_query
+from pootle_store.forms import UnitExportForm
+from pootle_store.util import get_search_backend
 from virtualfolder.models import VirtualFolderTreeItem
 
 from .browser import get_table_headings
-from .helpers import (EXPORT_VIEW_QUERY_LIMIT, SIDEBAR_COOKIE_NAME,
+from .helpers import (SIDEBAR_COOKIE_NAME,
                       get_filter_name, get_sidebar_announcements_context)
 from .http import JsonResponse, JsonResponseBadRequest
 from .url_helpers import get_path_parts, get_previous_url
@@ -636,18 +637,25 @@ class PootleExportView(PootleDetailView):
         ctx = {}
         filter_name, filter_extra = get_filter_name(self.request.GET)
 
-        units_qs = Unit.objects.get_translatable(
-            self.request.user,
-            **self.kwargs)
+        form_data = self.request.GET.copy()
+        form_data["path"] = self.path
 
-        units_qs = get_step_query(self.request, units_qs)
-        unit_total_count = units_qs.count()
+        search_form = UnitExportForm(
+            form_data, user=self.request.user)
+
+        if not search_form.is_valid():
+            raise Http404(
+                ValidationError(search_form.errors).messages)
+
+        uid_list, units_qs = get_search_backend()(
+            self.request.user, **search_form.cleaned_data).search()
+
         units_qs = units_qs.select_related('store')
-        if unit_total_count > EXPORT_VIEW_QUERY_LIMIT:
-            units_qs = units_qs[:EXPORT_VIEW_QUERY_LIMIT]
+
+        if len(uid_list) > search_form.cleaned_data["count"]:
             ctx.update(
-                {'unit_total_count': unit_total_count,
-                 'displayed_unit_count': EXPORT_VIEW_QUERY_LIMIT})
+                {'unit_total_count': len(uid_list),
+                 'displayed_unit_count': search_form.cleaned_data["count"]})
 
         unit_groups = [
             (path, list(units))
