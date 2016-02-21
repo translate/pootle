@@ -39,6 +39,8 @@ from .models import Unit
 from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
+EXPORT_VIEW_QUERY_LIMIT = 10000
+
 UNIT_SEARCH_FILTER_CHOICES = (
     ("all", "all"),
     ("translated", "translated"),
@@ -514,3 +516,16 @@ class UnitSearchForm(forms.Form):
 
     def clean_user(self):
         return self.cleaned_data["user"] or self.request_user
+
+
+class UnitExportForm(UnitSearchForm):
+
+    path = forms.CharField(
+        max_length=2048,
+        required=False)
+
+    def clean_path(self):
+        return self.cleaned_data.get("path", "/") or "/"
+
+    def clean_count(self):
+        return EXPORT_VIEW_QUERY_LIMIT
