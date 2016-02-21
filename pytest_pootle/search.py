@@ -17,8 +17,8 @@ from pootle_misc.checks import get_category_id
 from pootle.core.dateparse import parse_datetime
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitTextSearch, UnitSearchFilter
-from pootle_store.views import (
-    ALLOWED_SORTS, SIMPLY_SORTED, _path_units_with_meta)
+from pootle_store.unit.results import GroupedResults, StoreResults
+from pootle_store.views import ALLOWED_SORTS, SIMPLY_SORTED
 from virtualfolder.helpers import extract_vfolder_from_path
 from virtualfolder.models import VirtualFolderTreeItem
 
@@ -113,8 +113,9 @@ def calculate_search_results(kwargs, user):
         end = 2 * limit
     unit_groups = []
     units_by_path = groupby(
-        qs[begin:end],
-        lambda x: x.store.pootle_path)
-    for pootle_path, _units in units_by_path:
-        unit_groups.append(_path_units_with_meta(pootle_path, _units))
+        qs.values(*GroupedResults.select_fields)[begin:end],
+        lambda x: x["store__pootle_path"])
+    for pootle_path, units in units_by_path:
+        unit_groups.append(
+            {pootle_path: StoreResults(units).data})
     return uid_list, unit_groups
