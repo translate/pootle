@@ -27,7 +27,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 
-from pootle.core.dateparse import parse_datetime
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
@@ -35,9 +34,8 @@ from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
-from pootle_misc.checks import check_names, get_category_id
-from pootle_misc.forms import make_search_form
-from pootle_misc.util import ajax_required, get_date_interval
+from pootle_misc.checks import check_names
+from pootle_misc.util import ajax_required
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
@@ -49,7 +47,6 @@ from .forms import (
 from .models import Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
-from .unit.filters import UnitSearchFilter, UnitTextSearch
 from .unit.results import GroupedResults
 from .util import STATES_MAP, find_altsrcs, get_search_backend
 
@@ -112,99 +109,6 @@ def get_alt_src_langs(request, user, translation_project):
                 break
 
     return langs
-
-
-def get_step_query(request, units_queryset):
-    """Narrows down unit query to units matching conditions in GET."""
-    if 'filter' in request.GET:
-        unit_filter = request.GET['filter']
-        username = request.GET.get('user', None)
-        modified_since = request.GET.get('modified-since', None)
-        month = request.GET.get('month', None)
-        sort_by_param = request.GET.get('sort', None)
-        sort_on = 'units'
-
-        user = request.user
-        if username is not None:
-            User = get_user_model()
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                pass
-
-        if unit_filter:
-            checks = None
-            category = None
-            if unit_filter == "checks":
-                if 'checks' in request.GET:
-                    checks = request.GET['checks'].split(',')
-                elif 'category' in request.GET:
-                    category_name = request.GET['category']
-                    category = get_category_id(category_name)
-            elif unit_filter in ["my-suggestions", "user-suggestions"]:
-                sort_on = "suggestions"
-            elif unit_filter in ["my-submissions", "user-submissions"]:
-                sort_on = "submissions"
-
-            match_queryset = UnitSearchFilter().filter(
-                units_queryset, unit_filter,
-                user=user, checks=checks, category=category)
-
-            if modified_since is not None:
-                datetime_obj = parse_datetime(modified_since)
-                if datetime_obj is not None:
-                    match_queryset = match_queryset.filter(
-                        submitted_on__gt=datetime_obj,
-                    ).distinct()
-
-            if month is not None:
-                [start, end] = get_date_interval(month)
-                match_queryset = match_queryset.filter(
-                    submitted_on__gte=start,
-                    submitted_on__lte=end,
-                ).distinct()
-
-            sort_by = ALLOWED_SORTS[sort_on].get(sort_by_param, None)
-            if sort_by is not None:
-                if sort_on in SIMPLY_SORTED:
-                    match_queryset = match_queryset.order_by(
-                        sort_by, "store__pootle_path", "index")
-                else:
-                    # Omit leading `-` sign
-                    if sort_by[0] == '-':
-                        max_field = sort_by[1:]
-                        sort_order = '-sort_by_field'
-                    else:
-                        max_field = sort_by
-                        sort_order = 'sort_by_field'
-
-                    # It's necessary to use `Max()` here because we can't
-                    # use `distinct()` and `order_by()` at the same time
-                    # (unless PostreSQL is used and `distinct(field_name)`)
-                    match_queryset = match_queryset \
-                        .annotate(sort_by_field=Max(max_field)) \
-                        .order_by(sort_order, "store__pootle_path", "index")
-
-            units_queryset = match_queryset
-
-    if 'search' in request.GET and 'sfields' in request.GET:
-        # Accept `sfields` to be a comma-separated string of fields (#46)
-        GET = request.GET.copy()
-        sfields = GET['sfields']
-        if isinstance(sfields, unicode) and u',' in sfields:
-            GET.setlist('sfields', sfields.split(u','))
-
-        # use the search form for validation only
-        search_form = make_search_form(GET)
-
-        if search_form.is_valid():
-            exact = 'exact' in search_form.cleaned_data['soptions']
-            text = search_form.cleaned_data['search']
-            sfields = GET.getlist("sfields")
-            units_queryset = UnitTextSearch(
-                units_queryset).search(text, sfields, exact=exact)
-
-    return units_queryset
 
 
 #
