@@ -304,6 +304,13 @@ class Unit(models.Model, base.TranslationUnit):
     unitid_hash = models.CharField(max_length=32, db_index=True,
                                    editable=False)
 
+    # Denormalized from Store.pootle_path
+    # any changes to the `pootle_path` field may require updating the schema
+    # see migration 0007_case_sensitive_schema.py
+    pootle_path = models.CharField(
+        max_length=255, null=False, unique=False,
+        db_index=True, verbose_name=_("Path"))
+
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
                                    editable=False)
@@ -444,6 +451,8 @@ class Unit(models.Model, base.TranslationUnit):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
         user = kwargs.pop("user", self._log_user)
+
+        self.pootle_path = self.store.pootle_path
 
         if created:
             self._save_action = UNIT_ADDED
