@@ -362,9 +362,10 @@ class Unit(models.Model, base.TranslationUnit):
     simple_objects = models.Manager()
 
     class Meta(object):
-        unique_together = ('store', 'unitid_hash')
+        unique_together = [('store', 'unitid_hash')]
         get_latest_by = 'mtime'
-        index_together = [["store", "index"]]
+        index_together = [["store", "index"], ["pootle_path", "index"]]
+        ordering = ["pootle_path", "index"]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
