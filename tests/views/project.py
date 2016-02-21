@@ -31,8 +31,9 @@ from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
 from pootle_project.models import Project, ProjectResource, ProjectSet
-from pootle_store.models import Store, Unit
-from pootle_store.views import get_step_query
+from pootle_store.forms import UnitExportForm
+from pootle_store.models import Store
+from pootle_store.util import get_search_backend
 from virtualfolder.models import VirtualFolderTreeItem
 
 
@@ -141,8 +142,13 @@ def _test_export_view(project, request, response, kwargs):
     ctx = response.context
     kwargs["project_code"] = project.code
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_translatable(request.user, **kwargs)
-    units_qs = get_step_query(request, units_qs)
+    form_data = request.GET.copy()
+    form_data["path"] = request.path.replace("export-view/", "")
+    search_form = UnitExportForm(
+        form_data, user=request.user)
+    assert search_form.is_valid()
+    uid_list, units_qs = get_search_backend()(
+        request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
     unit_groups = [
         (path, list(units))
@@ -246,8 +252,13 @@ def test_view_projects_export(client):
     ctx = response.context
     request = response.wsgi_request
     filter_name, filter_extra = get_filter_name(request.GET)
-    units_qs = Unit.objects.get_translatable(request.user)
-    units_qs = get_step_query(request, units_qs)
+    form_data = request.GET.copy()
+    form_data["path"] = request.path.replace("export-view/", "")
+    search_form = UnitExportForm(
+        form_data, user=request.user)
+    assert search_form.is_valid()
+    uid_list, units_qs = get_search_backend()(
+        request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
     unit_groups = [
         (path, list(units))
