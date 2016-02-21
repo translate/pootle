@@ -241,38 +241,6 @@ def _prepare_unit(unit):
     }
 
 
-def _path_units_with_meta(path, units):
-    """Constructs a dictionary which contains a list of `units`
-    corresponding to `path` as well as its metadata.
-    """
-    meta = None
-    units_list = []
-
-    for unit in iter(units):
-        if meta is None:
-            # XXX: Watch out for the query count
-            store = unit.store
-            tp = store.translation_project
-            project = tp.project
-            meta = {
-                'source_lang': project.source_language.code,
-                'source_dir': project.source_language.direction,
-                'target_lang': tp.language.code,
-                'target_dir': tp.language.direction,
-                'project_code': project.code,
-                'project_style': project.checkstyle,
-            }
-
-        units_list.append(_prepare_unit(unit))
-
-    return {
-        path: {
-            'meta': meta,
-            'units': units_list,
-        },
-    }
-
-
 def _build_units_list(units, reverse=False):
     """Given a list/queryset of units, builds a list with the unit data
     contained in a dictionary ready to be returned as JSON.
