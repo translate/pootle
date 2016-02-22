@@ -317,6 +317,13 @@ class Unit(models.Model, base.TranslationUnit):
         db_index=True,
         related_name='units')
 
+    language = models.ForeignKey(
+        "pootle_language.Language",
+        null=True,
+        blank=True,
+        db_index=True,
+        related_name='units')
+
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
                                    editable=False)
@@ -461,6 +468,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         self.pootle_path = self.store.pootle_path
         self.project = self.store.translation_project.project
+        self.language = self.store.translation_project.language
 
         if created:
             self._save_action = UNIT_ADDED
