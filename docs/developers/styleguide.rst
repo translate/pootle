@@ -324,11 +324,15 @@ Quoting
         <a href="{% url 'whatever' %}" class="highlight">
 
 
+.. The following are in their own code-block as two of them don't render
+   correctly
+
+    .. code-block:: text
 
         <!-- Bad -->
+        <a href='{% url "whatever" %}' class='highlight'>
         <a href="{% url "whatever" %}" class="highlight">
         <a href='{% url 'whatever' %}' class='highlight'>
-        <a href='{% url "whatever" %}' class='highlight'>
 
 
 CSS
