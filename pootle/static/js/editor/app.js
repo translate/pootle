@@ -247,10 +247,7 @@ PTL.editor = {
 
     /* Copy original translation */
     $('#editor').on('click', '.js-copyoriginal', (e) => {
-      const uId = e.currentTarget.dataset.uid;
-      const sources = qAll(`#js-unit-${uId} .js-translation-text`)
-        .map((el) => el.textContent);
-      this.copyOriginal(sources);
+      this.copyOriginal(e.currentTarget.dataset.languageCode);
     });
 
     /* Editor navigation/submission */
@@ -721,28 +718,17 @@ PTL.editor = {
 
 
   /* Copies source text(s) into the target textarea(s)*/
-  copyOriginal(sources) {
-    const targets = $('.js-translation-area');
-    if (targets.length) {
-      const max = sources.length - 1;
+  copyOriginal(languageCode) {
+    const sources = this.units.getCurrent().get('sources')[languageCode];
+    ReactEditor.setProps({ values: sources.slice() });
 
-      for (let i = 0; i < targets.length; i++) {
-        const newval = sources[i] || sources[max];
-        $(targets.get(i)).val(newval).trigger('input');
-      }
+    this.goFuzzy();
 
-      // Focus on the first textarea
-      const active = $(targets)[0];
-      active.focus();
-      autosize.update(active);
-      // Make this fuzzy
-      this.goFuzzy();
-      // Place cursor at start of target text
-      this.cpRE.exec($(active).val());
-      const i = this.cpRE.lastIndex;
-      $(active).caret(i, i);
-      this.cpRE.lastIndex = 0;
-    }
+    const area = document.querySelector('.js-translation-area');
+    autosize.update(area);
+    this.cpRE.exec(sources[0]);
+    const i = this.cpRE.lastIndex;
+    $(area).caret(i, i);
   },
 
   copyComment(text) {

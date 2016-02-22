@@ -50,8 +50,10 @@ const Editor = React.createClass({
       const extraProps = {
         isDisabled: this.props.isDisabled,
       };
-      if (this.props.values !== undefined) {
-        extraProps.value = this.props.values[i];
+      if (values !== undefined) {
+        extraProps.value = values[i];
+        // XXX: hacky way to denote the value was already passed down
+        values[i] = null;
       }
       editorTextareas.push(
         <EditorTextarea

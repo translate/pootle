@@ -112,7 +112,8 @@
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
                   <span class="js-mt-{{ altunit.store.translation_project.language.code }}"></span>
-                  <a class="icon-copy js-copyoriginal" data-uid="{{ altunit.id }}"
+                  <a class="icon-copy js-copyoriginal"
+                     data-language-code="{{ altunit.store.translation_project.language.code }}"
                      title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                 </div>
                 {% endif %}
@@ -139,7 +140,8 @@
                     </a>
                   </span>
                   <span class="js-mt-{{ source_language.code }}"></span>
-                  <a class="icon-copy js-copyoriginal" data-uid="{{ unit.id }}"
+                  <a class="icon-copy js-copyoriginal"
+                     data-language-code="{{ source_language.code }}"
                      title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                 </div>
                 {% endif %}

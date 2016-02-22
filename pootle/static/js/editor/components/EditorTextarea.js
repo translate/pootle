@@ -38,20 +38,30 @@ const EditorTextarea = React.createClass({
     };
   },
 
+  componentWillReceiveProps(nextProps) {
+    // FIXME: needed to allow interaction from the outside world. Remove ASAP.
+    if (nextProps.value && nextProps.value !== null) {
+      this.updateValue(nextProps.value);
+    }
+  },
+
   getMode() {
     return this.props.isRawMode ? 'raw' : 'regular';
+  },
+
+  updateValue(newValue) {
+    // FIXME: needed to allow interaction from the outside world. Remove ASAP.
+    this.props.onChange(newValue);
+
+    this.setState({
+      value: newValue,
+    });
   },
 
   handleChange(e) {
     const newValue = e.target.value;
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
-
-    // FIXME: needed to allow interaction from the outside world. Remove ASAP.
-    this.props.onChange(newValue);
-
-    this.setState({
-      value: cleanValue,
-    });
+    this.updateValue(cleanValue);
   },
 
   render() {
