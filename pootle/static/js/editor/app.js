@@ -695,15 +695,18 @@ PTL.editor = {
     const text = $el.data('string') || $el.data('translation-aid') || $el.text();
     const $target = $(this.focused);
     let start;
+    let newValues;
 
     if (action === 'overwrite') {
-      $target.val(text).trigger('input');
+      newValues = this.updateFocusedValue(text);
       start = text.length;
     } else {
+      newValues = this.updateFocusedValue(text, { overwrite: false });
+      // FIXME: this should be handled transparently by the Textarea component
       start = $target.caret().start + text.length;
-      $target.val($target.caret().replace(text)).trigger('input');
     }
 
+    ReactEditor.setProps({ values: newValues });
     $target.caret(start, start);
     autosize.update(this.focused);
   },
@@ -743,6 +746,30 @@ PTL.editor = {
 
     commentInput.focus();
     commentInput.value = text;
+  },
+
+  /*
+   * Updates the current value state for the focused element and returns it.
+   *
+   * @param {string} value The new value to be set
+   * @param {boolean} overwrite Whether to overwrite the current value entirely
+   *    or not. If not, it will be appended on the existing caret position
+   *    (if text is selected, overwrites the selection).
+   */
+  updateFocusedValue(value, { overwrite = true } = {}) {
+    const newValues = ReactEditor.state.values.slice();
+    const targetIndex = qAll('.js-translation-area').indexOf(this.focused);
+
+    let newValue = value;
+    if (!overwrite) {
+      const start = this.focused.selectionStart;
+      const end = this.focused.selectionEnd;
+      const currentValue = newValues[targetIndex];
+      newValue = currentValue.slice(0, start) + value
+        + currentValue.slice(end, currentValue.length);
+    }
+    newValues[targetIndex] = newValue;
+    return newValues;
   },
 
 
