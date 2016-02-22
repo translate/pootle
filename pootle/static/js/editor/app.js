@@ -2229,16 +2229,14 @@ PTL.editor = {
 
     // FIXME: move this side-effect elsewhere
     if (results.length > 0 && results[0].source === sourceText) {
-      const $element = $(this.focused);
-      // set only if the textarea is empty
-      if ($element.val() === '') {
+      if (ReactEditor.state.values[0] === '') {
         // save unit editor state to restore it after autofill changes
-        const isUnitDirty = PTL.editor.isUnitDirty;
+        const isUnitDirty = this.isUnitDirty;
         const text = results[0].target;
-        $element.val(text).trigger('input');
-        $element.caret(text.length, text.length);
+        ReactEditor.setProps({ values: this.updateFocusedValue(text) });
+        $(this.focused).caret(text.length, text.length);
         this.goFuzzy();
-        PTL.editor.isUnitDirty = isUnitDirty;
+        this.isUnitDirty = isUnitDirty;
       }
     }
 
@@ -2382,12 +2380,11 @@ PTL.editor = {
   },
 
   processAcceptSuggestion(data, suggId, skipToNext) {
-    // Update target textareas
     if (data.newtargets !== undefined) {
-      $.each(data.newtargets, (i, target) => {
-        $(`#${getAreaId(i)}`).val(target).focus();
-      });
+      ReactEditor.setProps({ values: data.newtargets.slice() });
     }
+    this.focused.focus();
+    this.updateUnitDefaultProperties();
 
     const unit = this.units.getCurrent();
     unit.setTranslation(ReactEditor.state.values);
