@@ -90,7 +90,9 @@ available, we can start creating our virtual environment.
 Replace ``<env-name>`` with a meaningful name that describes the environment
 you are creating. :command:`mkvirtualenv` accepts any options that
 :command:`virtualenv` accepts. We could for example specify to use the Python
-2.6 interpreter by passing the :option:`-p python2.6` option.
+2.6 interpreter by passing the `-p python2.6
+<https://virtualenv.pypa.io/en/latest/reference.html#cmdoption--python>`_
+option.
 
 .. note:: After running :command:`mkvirtualenv`, the newly created environment
    is activated. To deactivate it just run:
