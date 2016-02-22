@@ -6,4 +6,15 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-default_app_config = 'pootle_store.apps.PootleStoreConfig'
+import importlib
+
+from django.apps import AppConfig
+
+
+class PootleStoreConfig(AppConfig):
+
+    name = "pootle_store"
+    verbose_name = "Pootle Store"
+
+    def ready(self):
+        importlib.import_module("pootle_store.receivers")
