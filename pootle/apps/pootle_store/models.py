@@ -311,6 +311,13 @@ class Unit(models.Model, base.TranslationUnit):
         max_length=255, null=False, unique=False,
         db_index=True, verbose_name=_("Path"))
 
+    project = models.ForeignKey(
+        "pootle_project.Project",
+        null=True,
+        blank=True,
+        db_index=True,
+        related_name='units')
+
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
                                    editable=False)
@@ -454,6 +461,7 @@ class Unit(models.Model, base.TranslationUnit):
         user = kwargs.pop("user", self._log_user)
 
         self.pootle_path = self.store.pootle_path
+        self.project = self.store.translation_project.project
 
         if created:
             self._save_action = UNIT_ADDED
