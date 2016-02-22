@@ -422,7 +422,7 @@ update_tmserver
 
 .. versionadded:: 2.7
 
-.. versionchanged:: 2.7.3 Renamed :option:`--overwrite` to :option:`--refresh`.
+.. versionchanged:: 2.7.3 Renamed ``--overwrite`` to :option:`--refresh`.
    Disabled projects' translations are no longer added by default. It is also
    possible to import translations from files.
 
