@@ -29,6 +29,8 @@ These commands will go through all existing projects performing maintenance
 tasks. The tasks are all available through the web interface but on a project
 by project or file by file basis.
 
+.. django-admin-option:: --project, --language
+
 The commands target can be limited in a more flexible way using the
 :option:`--project` :option:`--language` command line options. They can be
 repeated to indicate multiple languages or projects. If you use both options
@@ -52,6 +54,8 @@ project, run:
 Running commands with --no-rq option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. django-admin-option:: --no-rq
+
 .. versionadded:: 2.7.1
 
 Some of the commands work asynchronously and will schedule jobs to RQ workers,
@@ -72,6 +76,8 @@ for the process to terminate:
 It is *not* generally safe to run commands in this mode if you have RQ workers
 active at the same time, as there is a risk that they conflict with other jobs
 dispatched to the workers.
+
+.. django-admin-option:: --noinput
 
 If there are RQ workers running, the command will ask for confirmation before
 proceeding. This can be overridden using the :option:`--noinput` flag, in
@@ -135,6 +141,8 @@ number of units you have in the database. If a user hits a page that needs to
 display stats but they haven't been calculated yet, then a message will be
 displayed indicating that the stats being calculated.
 
+.. django-admin-option:: --check
+
 Use the :option:`--check` option to force calculaton of a specified check.  To
 recalculate only the ``date_format`` quality checks, run:
 
@@ -175,6 +183,8 @@ refresh_scores
 
 Recalculates the scores for all users.
 
+.. django-admin-option:: --reset
+
 When the :option:`--reset` option is used , all score log data is removed and
 `zero` score is set for all users.
 
@@ -206,15 +216,18 @@ updating files, ignoring files that haven't change.
 The default behavior of :djadmin:`sync_stores` can be altered by specifying
 these parameters:
 
-:option:`--force`
+.. django-admin-option:: --force
+
   Synchronizes files even if nothing changed in the database.
 
-:option:`--overwrite`
+.. django-admin-option:: --overwrite
+
   Copies the current state of the DB stores (not only translations, but also
   metadata) regardless if they have been modified since the last sync or
   not. This operation will (over)write existing on-disk files.
 
-:option:`--skip-missing`
+.. django-admin-option:: --skip-missing
+
   Ignores files missing on disk, and no new files will be created.
 
 
@@ -254,11 +267,13 @@ directly on the file system.
 
 :djadmin:`update_stores` accepts several options:
 
-:option:`--force`
+.. django-admin-option:: --force
+
   Updates in-DB translations even if the on-disk file hasn't been changed
   since the last sync operation.
 
-:option:`--overwrite`
+.. django-admin-option:: --overwrite
+
   Mirrors the on-disk contents of the file. If there have been changes in
   the database **since the last sync operation**, these will be
   overwritten.
@@ -275,6 +290,8 @@ list_languages
 Lists all the language codes for languages hosted on the server. This can be
 useful for automation.
 
+.. django-admin-option:: --modified-since
+
 Accepts the :option:`--modified-since` parameter to list only those languages
 modified since the revision given by :djadmin:`revision`.
 
@@ -286,6 +303,8 @@ list_projects
 
 Lists all the project codes on the server. This might can be useful for
 automation.
+
+.. django-admin-option:: --modified-since
 
 Accepts the :option:`--modified-since` parameter to list only those projects
 modified since the revision given by :djadmin:`revision`.
@@ -303,13 +322,15 @@ of contributions they have.
 
 Available options:
 
-:option:`--from-revision`
+.. django-admin-option:: --from-revision
+
   Tells to only take into account contributions newer than the specified
   revision.
 
   Default: ``0``.
 
-:option:`--sort-by`
+.. django-admin-option:: --sort-by
+
   .. versionadded:: 2.7.3
 
   Specifies the sorting to be used. Valid options are ``contributions`` (sort
@@ -332,6 +353,8 @@ The revision is a common system-wide counter for units. It is incremented with
 every translation action made from the browser. Zero length units that have
 been auto-translated also increment the unit revision.
 
+.. django-admin-option:: --restore
+
 The revision counter is stored in the database but also in cache for faster
 retrieval. If for some reason the revision counter was removed or got
 corrupted, passing the :option:`--restore` flag to the command will restore the
@@ -350,6 +373,8 @@ changed_languages
 Produces a comma-separated list of language codes that changed since the last
 sync operation.
 
+.. django-admin-option:: --after-revision
+
 When :option:`--after-revision` is specified with a revision number as an
 argument, it will print the language codes for languages that have changed
 since the specified revision.
@@ -365,12 +390,18 @@ test_checks
 Tests any given string pair or unit against all or certain checks from the
 command line. This is useful for debugging and developing new checks.
 
+.. django-admin-option:: --source, --target
+
 String pairs can be specified by setting the values to be checked in the
 ``--source=<"source_text">`` and ``--target="<target_text>"``
 command-line arguments.
 
+.. django-admin-option:: --unit
+
 Alternatively, ``--unit=<unit_id>`` can be used to reference an existing
 unit from the database.
+
+.. django-admin-option:: --check
 
 By default, :djadmin:`test_checks` tests all existing checks. When
 ``--check=<checkname>`` is set, only specific checks will be tested against.
@@ -386,7 +417,9 @@ dump
 Prints data or stats data (depending on :option:`--data` or :option:`--stats` option)
 in specific format.
 
-*data*::
+.. django-admin-option:: --data
+
+::
 
   object_id:class_name
   8276:Directory	name=android	parent=/uk/	pootle_path=/uk/android/
@@ -394,7 +427,9 @@ in specific format.
   806705:Unit	source=Create Account	target=Створити аккаунт	source_wordcount=2	target_wordcount=2	developer_comment=create_account	translator_commentlocations=File:\nstrings.xml\nID:\ne82a8ea14a0b9f92b1b67ebfde2c16e9	isobsolete=False	isfuzzy=False	istranslated=True
   115654:Suggestion	target_f=Необхідна електронна адреса	user_id=104481
 
-*stats*::
+.. django-admin-option:: --stats
+
+::
 
   pootle_path total,translated,fuzzy,suggestions,criticals,is_dirty,last_action_unit_id,last_updated_unit_id
   /uk/android/strings.xml.po  11126,10597,383,231,0,False,4710214,4735242
@@ -432,16 +467,30 @@ reads translations from the current Pootle install and builds the TM resources
 in the TM server.
 
 If no options are provided, the command will only add new translations to the
-server. Use :option:`--refresh` to also update existing translations that have
-been changed, besides adding any new translation. To completely remove the TM
-and rebuild it adding all existing translations use :option:`--rebuild`.
+server.
+
+.. django-admin-option:: --refresh
+
+Use :option:`--refresh` to also update existing translations that have
+been changed, besides adding any new translation.
+
+.. django-admin-option:: --rebuild
+
+To completely remove the TM and rebuild it adding all existing translations use
+:option:`--rebuild`.
+
+.. django-admin-option:: --tm
 
 If no specific TM server is specified using :option:`--tm`, then the default
 ``local`` TM will be used. If the specified TM server doesn't exist it will
 be automatically created for you.
 
+.. django-admin-option:: --include-disabled-projects
+
 By default translations from disabled projects are not added to the TM, but
 this can be changed by specifying :option:`--include-disabled-projects`.
+
+.. django-admin-option:: --dry-run
 
 To see how many units will be loaded into the server use :option:`--dry-run`,
 no actual data will be loaded or deleted (the TM will be left unchanged):
@@ -457,6 +506,8 @@ This command also allows to read translations from files and build the TM
 resources in the external TM server. In order to do so it is mandatory to
 provide the :option:`--tm` and :option:`--display-name` options, along with
 some files to import.
+
+.. django-admin-option:: --display-name
 
 The display name is a label used to group translations within a TM. A given TM
 can host translations for several display names. The display name can be used
@@ -497,6 +548,8 @@ several files and directories at once:
 
    (env) $ pootle update_tmserver --tm=mozilla --display-name="Foo 1.7" bar.tmx foo.xliff fr/
 
+
+.. django-admin-option:: --target-language
 
 Use :option:`--target-language` to specify the target language ISO code for the
 imported translations in case it is not possible to guess it from the
@@ -585,7 +638,8 @@ are accepted.
 
 Available options:
 
-:option:`--user`
+.. django-admin-option:: --user
+
   .. versionadded:: 2.7.3
 
   Import file(s) as given user. The user with the provided username must exist.
@@ -610,12 +664,13 @@ Create the initial configuration for Pootle.
 
 Available options:
 
-:option:`--config`
+.. django-admin-option:: --config
   The configuration file to write to.
 
   Default: ``~/.pootle/pootle.conf``.
 
-:option:`--db`
+.. django-admin-option:: --db
+
   .. versionadded:: 2.7.1
 
   The database backend that you are using
@@ -623,7 +678,8 @@ Available options:
   Default: ``sqlite``.
   Available options: ``sqlite``, ``mysql``, ``postgresql``.
 
-:option:`--db-name`
+.. django-admin-option:: --db-name
+
   .. versionadded:: 2.7.1
 
   The database name or path to database file if you are using sqlite.
@@ -631,21 +687,24 @@ Available options:
   Default for sqlite: ``dbs/pootle.db``.
   Default for mysql/postgresql: ``pootledb``.
 
-:option:`--db-user`
+.. django-admin-option:: --db-user
+
   .. versionadded:: 2.7.1
 
   Name of the database user. Not used with sqlite.
 
   Default: ``pootle``.
 
-:option:`--db-host`
+.. django-admin-option:: --db-host
+
   .. versionadded:: 2.7.1
 
   Database host to connect to. Not used with sqlite.
 
   Default: ``localhost``.
 
-:option:`--db-port`
+.. django-admin-option:: --db-port
+
   .. versionadded:: 2.7.1
 
   Port to connect to database on. Defaults to database backend's default port.
@@ -669,12 +728,13 @@ the terminology project, and creates the tutorial project among other tasks.
 
 .. versionadded:: 2.7.3
 
-:option:`--no-projects`:
+.. django-admin-option:: --no-projects
+
    Don't create the default ``terminology`` and ``tutorial`` projects.
 
 .. note:: :djadmin:`initdb` will import translations into the database, so
    can be slow to run. You should have an ``rqworker`` running or run with
-   the :option:`--no-rq`.
+   the `--no-rq`.
 
 
 .. _commands#collectstatic:
@@ -711,6 +771,8 @@ The `webpack <http://webpack.github.io/>`_ tool is used under the hood to
 bundle JavaScript scripts, and this management command is a convenient
 wrapper that sets everything up ready for production and makes sure to
 include any 3rd party customizations.
+
+.. django-admin-option:: --dev
 
 When the :option:`--dev` flag is enabled, development builds will be created
 and the process will start a watchdog to track any client-side scripts for
@@ -755,6 +817,8 @@ This command requires 2 mandatory arguments, ``src_username`` and
 ``target_username``, both should be valid usernames for users of your site.
 Submissions from the first are re-assigned to the second. The users' profile
 data is not merged.
+
+.. django-admin-option:: --no-delete
 
 By default ``src_username`` will be deleted after the contributions have been
 merged. You can prevent this by using the :option:`--no-delete` option.
@@ -834,7 +898,8 @@ wish to verify all users of your site.
 
 Available options:
 
-:option:`--all`
+.. django-admin-option:: --all
+
   Verify all users of the site
 
 
