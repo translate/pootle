@@ -314,8 +314,7 @@ class Unit(models.Model, base.TranslationUnit):
     # denormalized TP.language
     language = models.ForeignKey(
         "pootle_language.Language",
-        null=True,
-        blank=True,
+        null=False,
         db_index=True,
         related_name='units')
 
