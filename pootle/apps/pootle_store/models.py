@@ -315,6 +315,13 @@ class Unit(models.Model, base.TranslationUnit):
         null=False,
         db_index=True,
         related_name='units')
+    # denormalized TP.project
+    project = models.ForeignKey(
+        "pootle_project.Project",
+        null=True,
+        blank=True,
+        db_index=True,
+        related_name='units')
 
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
@@ -460,6 +467,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         self.pootle_path = self.store.pootle_path
         self.language = self.store.translation_project.language
+        self.project = self.store.translation_project.project
 
         if created:
             self._save_action = UNIT_ADDED
