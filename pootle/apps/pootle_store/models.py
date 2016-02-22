@@ -313,8 +313,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     project = models.ForeignKey(
         "pootle_project.Project",
-        null=True,
-        blank=True,
+        null=False,
         db_index=True,
         related_name='units')
 
