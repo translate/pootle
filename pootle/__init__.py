@@ -12,3 +12,5 @@ from pootle.core.utils.version import get_version
 VERSION = (2, 7, 3, 'beta', 1)
 
 __version__ = get_version(VERSION)
+
+default_app_config = 'pootle.apps.PootleConfig'
