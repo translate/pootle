@@ -22,6 +22,11 @@ from pootle_store.unit.proxy import UnitProxy
 class UnitResult(UnitProxy):
 
     @property
+    def nplurals(self):
+        return self.unit[
+            "store__translation_project__language__nplurals"] or 0
+
+    @property
     def pootle_path(self):
         return self.unit["store__pootle_path"]
 
@@ -85,8 +90,12 @@ class StoreResults(object):
                 {'id': unit.id,
                  'url': unit.translate_url,
                  'isfuzzy': unit.state == FUZZY,
-                 'source': [source[1] for source in pluralize_source(unit)],
-                 'target': [target[1] for target in pluralize_target(unit)]})
+                 'source': [source[1]
+                            for source
+                            in pluralize_source(unit)],
+                 'target': [target[1]
+                            for target
+                            in pluralize_target(unit, unit.nplurals)]})
         return {
             'meta': meta,
             'units': units_list}
@@ -103,7 +112,8 @@ class GroupedResults(object):
         "store__translation_project__project__code",
         "store__translation_project__project__source_language__code",
         "store__translation_project__project__checkstyle",
-        "store__translation_project__language__code"]
+        "store__translation_project__language__code",
+        "store__translation_project__language__nplurals"]
 
     def __init__(self, units_qs):
         self.units_qs = units_qs
