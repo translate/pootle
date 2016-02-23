@@ -11,8 +11,8 @@ from itertools import groupby
 
 from django.core.urlresolvers import reverse
 
+from pootle.core.site import pootle_site
 from pootle.core.url_helpers import split_pootle_path
-from pootle.i18n.gettext import language_dir
 from pootle_store.models import FUZZY
 from pootle_store.templatetags.store_tags import (
     pluralize_source, pluralize_target)
@@ -22,36 +22,40 @@ from pootle_store.unit.proxy import UnitProxy
 class UnitResult(UnitProxy):
 
     @property
+    def language(self):
+        return pootle_site.get_language(self.unit["language_id"])
+
+    @property
     def nplurals(self):
-        return self.unit[
-            "store__translation_project__language__nplurals"] or 0
+        return self.language["nplurals"] or 0
+
+    @property
+    def project(self):
+        return pootle_site.get_project(self.unit["project_id"])
 
     @property
     def project_code(self):
-        return self.unit["store__translation_project__project__code"]
+        return self.project["code"]
 
     @property
     def project_style(self):
-        return self.unit[
-            "store__translation_project__project__checkstyle"]
+        return self.project["checkstyle"]
 
     @property
     def source_dir(self):
-        return language_dir(self.source_lang)
+        return pootle_site.languages[self.source_lang]["direction"]
 
     @property
     def source_lang(self):
-        return self.unit[
-            "store__translation_project__project__source_language__code"]
+        return pootle_site.get_language(self.project["source_language"])["code"]
 
     @property
     def target_dir(self):
-        return language_dir(self.target_lang)
+        return pootle_site.languages[self.target_lang]["direction"]
 
     @property
     def target_lang(self):
-        return self.unit[
-            "store__translation_project__language__code"]
+        return self.language["code"]
 
     @property
     def translate_url(self):
@@ -105,11 +109,8 @@ class GroupedResults(object):
         "target_f",
         "state",
         "pootle_path",
-        "store__translation_project__project__code",
-        "store__translation_project__project__source_language__code",
-        "store__translation_project__project__checkstyle",
-        "store__translation_project__language__code",
-        "store__translation_project__language__nplurals"]
+        "project_id",
+        "language_id"]
 
     def __init__(self, units_qs):
         self.units_qs = units_qs
