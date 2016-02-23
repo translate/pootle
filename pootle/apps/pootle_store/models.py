@@ -217,9 +217,11 @@ class UnitManager(models.Manager):
 
     def live(self):
         """Filters non-obsolete units."""
-        return self.filter(state__gt=OBSOLETE)
+        return self.filter(
+            state__in=(
+                UNTRANSLATED, TRANSLATED, FUZZY))
 
-    def get_for_user(self, user):
+    def get_for_user(self, user, project_code=None):
         """Filters units for a specific user.
 
         - Admins always get all non-obsolete units
@@ -228,18 +230,55 @@ class UnitManager(models.Manager):
         NOTE: This doesn't do any permission checking.
 
         :param user: The user for whom units need to be retrieved for.
+        :param project_code: Project.code to filter on and check permissions
+          for.
         :return: A filtered queryset with `Unit`s for `user`.
         """
-        if user.is_superuser:
-            return self.live()
+        from pootle.core.site import pootle_site
+        from pootle_project.models import Project
 
-        return self.live() \
-                   .filter(store__translation_project__project__disabled=False)
+        project_id = pootle_site.projects.get(project_code, {}).get("pk")
+        if project_code and not project_id:
+            return self.none()
+
+        if user.is_superuser:
+            if not project_code:
+                return self.live().filter(
+                    project_id__in=pootle_site.active_projects)
+            return self.live().filter(project_id=project_id)
+
+        disabled_projects = [
+            pootle_site.get_project(pid)["code"]
+            for pid
+            in pootle_site.disabled_projects]
+
+        user_projects = [
+            pootle_site.projects[code]["pk"]
+            for code
+            in Project.accessible_by_user(user)
+            if (code in pootle_site.projects
+                and code not in disabled_projects)]
+
+        if project_code:
+            if project_id not in user_projects:
+                return self.none()
+            return self.live().filter(project_id=project_id)
+
+        return self.live().filter(project_id__in=user_projects)
 
     def get_translatable(self, user, project_code=None, language_code=None,
                          dir_path=None, filename=None):
         """Returns translatable units for a `user`, optionally filtered by their
         location within Pootle.
+
+        This method makes use of indexes set up in Units.index_together
+
+        In order for one of the indexes to be used, all of the indexed columns
+        must be used for sort, or in an inclusive filter, and sort columns and
+        filter columns must be ordered correctly.
+
+        http://dev.mysql.com/doc/refman/5.7/en/multiple-column-indexes.html
+
 
         :param user: The user who is accessing the units.
         :param project_code: A string for matching the code of a Project.
@@ -248,51 +287,65 @@ class UnitManager(models.Manager):
            from the TP.
         :param filename: A string for matching the filename of Stores.
         """
-        from pootle_project.models import Project
+        from pootle.core.site import pootle_site
 
-        if not user.is_superuser:
-            user_projects = Project.accessible_by_user(user)
-            if project_code and project_code not in user_projects:
-                return self.none()
-
-        units_qs = self.get_for_user(user)
+        units_qs = self.get_for_user(user, project_code=project_code)
 
         if language_code:
+            if not project_code:
+                units_qs = units_qs.filter(
+                    project_id__in=pootle_site.languages[language_code]["projects"])
             units_qs = units_qs.filter(
-                store__translation_project__language__code=language_code)
+                language_id=pootle_site.languages[language_code]["pk"])
+        elif project_code:
+            units_qs = units_qs.filter(
+                language_id__in=pootle_site.projects[project_code]["languages"])
         else:
-            units_qs = units_qs.exclude(
-                pootle_path__startswith="/templates/")
-
-        if project_code:
             units_qs = units_qs.filter(
-                store__translation_project__project__code=project_code)
-        elif not user.is_superuser:
-            units_qs = units_qs.filter(
-                store__translation_project__project__code__in=user_projects)
-
-        if not (dir_path or filename):
-            return units_qs
+                language_id__in=pootle_site.active_languages)
 
         pootle_path = "/%s/%s/%s%s" % (
             language_code or LANGUAGE_REGEX,
             project_code or PROJECT_REGEX,
             dir_path or "",
             filename or "")
+
         if language_code and project_code:
             if filename:
-                return units_qs.filter(
-                    pootle_path=pootle_path)
+                return units_qs.filter(pootle_path=pootle_path)
             else:
-                return units_qs.filter(
-                    pootle_path__startswith=pootle_path)
-        else:
-            # we need to use a regex in this case as lang or proj are not
-            # set
-            if filename:
-                pootle_path = "%s$" % pootle_path
-            return units_qs.filter(
-                pootle_path__regex=pootle_path)
+                # this is an optimization for mysql as case-insensitive
+                # search is much cheaper
+                return (
+                    units_qs.filter(pootle_path__istartswith=pootle_path)
+                            .filter(pootle_path__startswith=pootle_path))
+
+        if not (language_code or project_code or dir_path or filename):
+            return units_qs
+        # we need to use a regex in this case as lang or proj are not
+        # set
+        if language_code:
+            units_qs = units_qs.filter(
+                pootle_path__istartswith="/%s/" % language_code)
+
+        if not filename:
+            return units_qs.filter(pootle_path__regex=pootle_path)
+
+        # if we know the Store then its cheaper to do the regex search
+        # for the relevant Stores and filter on the store_ids
+        store_path = "/%s%s" % (dir_path, filename)
+        if project_code:
+            store_path = "/%s%s" % (project_code, store_path)
+        stores = (
+            Store.objects.filter(name=filename)
+                         .filter(pootle_path__iendswith=store_path))
+        if language_code:
+            stores = stores.filter(
+                pootle_path__istartswith="/%s" % language_code)
+        stores = list(
+            stores.filter(pootle_path__regex=pootle_path)
+                  .values_list("pk", flat=True).order_by())
+        return units_qs.filter(store_id__in=stores)
 
 
 class Unit(models.Model, base.TranslationUnit):
