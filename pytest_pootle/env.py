@@ -328,17 +328,14 @@ class PootleTestEnv(object):
 
         VirtualFolderFactory(filter_rules="store0.po")
         VirtualFolderFactory(filter_rules="store1.po")
-        vfolder2 = VirtualFolderFactory(
+        VirtualFolderFactory(
             location='/{LANG}/project0/',
+            is_public=False,
             filter_rules="store0.po")
-        vfolder3 = VirtualFolderFactory(
+        VirtualFolderFactory(
             location='/{LANG}/project0/',
+            is_public=False,
             filter_rules="store1.po")
-
-        vfolder2.is_public = False
-        vfolder2.save()
-        vfolder3.is_public = False
-        vfolder3.save()
 
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreFactory, UnitFactory

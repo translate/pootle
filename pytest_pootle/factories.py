@@ -199,7 +199,7 @@ class VirtualFolderFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'virtualfolder.VirtualFolder'
-        django_get_or_create = ("location", "filter_rules")
+        django_get_or_create = ("location", "is_public", "filter_rules")
 
     priority = 2
     is_public = True
