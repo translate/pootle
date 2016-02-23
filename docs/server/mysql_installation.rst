@@ -19,7 +19,7 @@ Setting up the database
 
 Use the :command:`mysql` command to create the user and database:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ mysql -u root -p  # You will be asked for the MySQL root password to log in
 
@@ -41,7 +41,7 @@ installation requirements you will also require the MySQL client
 development headers in order to build the Python bindings, e.g. on a
 Debian-based system:
 
-.. code-block:: bash
+.. code-block:: console
 
   $ sudo apt-get install libmysqlclient-dev
 
@@ -57,7 +57,7 @@ you will need to install the MySQL bindings.
 
 You can do so as follows:
 
-.. code-block:: bash
+.. code-block:: console
 
   (env) $ pip install MySQL-python
 
@@ -71,7 +71,7 @@ When
 :ref:`initializing your configuration <installation#initializing-the-configuration>`
 you can specify params to set up your database, e.g.:
 
-.. code-block:: bash
+.. code-block:: console
 
   (env) $ pootle init --db mysql --db-name pootledb --db-user pootle
 

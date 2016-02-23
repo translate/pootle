@@ -20,7 +20,7 @@ Setting up the database
 
 As the ``postgres`` user you must create a database and database user:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ sudo su postgres  # On Ubuntu, may be different on your system
    postgres@ $ createuser -P pootle  # This will ask you to define the users password.
@@ -38,7 +38,7 @@ installation requirements you will also require the PostgreSQL client
 development headers in order to build the Python bindings, e.g. on Debian
 Jessie:
 
-.. code-block:: bash
+.. code-block:: console
 
   $ sudo apt-get install postgresql-server-dev-9.4
 
@@ -54,7 +54,7 @@ you will need to install the PostgreSQL bindings.
 
 You can do so as follows:
 
-.. code-block:: bash
+.. code-block:: console
 
   (env) $ pip install psycopg2
 
@@ -68,7 +68,7 @@ When
 :ref:`initializing your configuration <installation#initializing-the-configuration>`
 you can specify params to set up your database, e.g.:
 
-.. code-block:: bash
+.. code-block:: console
 
   (env) $ pootle init --db postgresql --db-name pootledb --db-user pootle
 

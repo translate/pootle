@@ -59,7 +59,7 @@ virtualenv -- more specifically virtualenvwrapper, which eases the process of
 managing and switching between multiple virtual environments. Installing
 virtualenwrapper will pull in virtualenv as a dependency.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ sudo pip install virtualenvwrapper
 
@@ -67,7 +67,7 @@ virtualenwrapper will pull in virtualenv as a dependency.
 virtualenvwrapper will need to be configured in order to specify where to store
 the created environments.
 
-.. code-block:: bash
+.. code-block:: console
 
    $ export WORKON_HOME=~/envs
    $ mkdir -p $WORKON_HOME
@@ -82,7 +82,7 @@ the created environments.
 Now that the commands provided by virtualenv and virtualenvwrapper are
 available, we can start creating our virtual environment.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ mkvirtualenv <env-name>
 
@@ -97,14 +97,14 @@ option.
 .. note:: After running :command:`mkvirtualenv`, the newly created environment
    is activated. To deactivate it just run:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       (env-name) $ deactivate
 
 
    To activate a virtual environment again simply run:
 
-   .. code-block:: bash
+   .. code-block:: console
 
       $ workon <env-name>
 
@@ -115,7 +115,7 @@ Time to clone Pootle's source code repository. The main repository lives under
 .. note:: If you have a GitHub account, fork the main ``translate/pootle``
    repository and replace the repository URL with your own fork.
 
-.. code-block:: bash
+.. code-block:: console
 
     (env-name) $ git clone https://github.com/translate/pootle.git
 
@@ -126,7 +126,7 @@ requirements are stored in the :file:`requirements` directory. The
 development.
 
 
-.. code-block:: bash
+.. code-block:: console
 
     (env-name) $ cd pootle
     (env-name) $ pip install -r requirements/dev.txt
@@ -139,7 +139,7 @@ development.
 Install Pootle into your virtualenv.  This makes it easy to run Pootle locally
 and is needed for various development actitivies.
 
-.. code-block:: bash
+.. code-block:: console
 
     (env-name) $ pip install -e .
 
@@ -152,7 +152,7 @@ For that purpose there is a sample configuration file with settings adapted for
 development scenarios, :file:`pootle/settings/90-dev-local.conf.sample`. Copy
 this file and rename it by removing the *.sample* extension:
 
-.. code-block:: bash
+.. code-block:: console
 
     (env-name) $ cp pootle/settings/90-dev-local.conf.sample pootle/settings/90-dev-local.conf
 
@@ -164,7 +164,7 @@ this file and rename it by removing the *.sample* extension:
 Once the configuration is in place, you'll need to setup the database
 schema and add initial data.
 
-.. code-block:: bash
+.. code-block:: console
 
     (env-name) $ python manage.py migrate
     (env-name) $ python manage.py initdb
@@ -175,7 +175,7 @@ Now ensure that you have built the assets by following the instructions for
 
 Finally, run the development server.
 
-.. code-block:: bash
+.. code-block:: console
 
     (env-name) $ python manage.py runserver
 
@@ -196,7 +196,7 @@ Workflow
 Any time you want to fix a bug or work on a new feature, create a new local
 branch:
 
-.. code-block:: bash
+.. code-block:: console
 
   $ git checkout -b <my_new_branch>
 

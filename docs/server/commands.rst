@@ -10,7 +10,7 @@ commands by issuing ``pootle <command> [options]``.
 For example, to get information about all available management commands, you
 will run:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle help
 
@@ -39,14 +39,14 @@ selected.
 
 For example, to *refresh_stats* for the tutorial project only, run:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle refresh_stats --project=tutorial
 
 To only refresh a the Zulu and Basque language files within the tutorial
 project, run:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle refresh_stats --project=tutorial --language=zu --language=eu
 
@@ -69,7 +69,7 @@ asynchronous jobs.
 For example, to run :djadmin:`refresh_stats` in the command process and wait
 for the process to terminate:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle refresh_stats --no-rq
 
@@ -146,13 +146,13 @@ displayed indicating that the stats being calculated.
 Use the :option:`--check` option to force calculaton of a specified check.  To
 recalculate only the ``date_format`` quality checks, run:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle calculate_checks --check=date_format
 
 Multiple checks can be specifed in one run as well:
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle calculate_checks --check=date_format --check=accelerators
 
@@ -495,7 +495,7 @@ this can be changed by specifying :option:`--include-disabled-projects`.
 To see how many units will be loaded into the server use :option:`--dry-run`,
 no actual data will be loaded or deleted (the TM will be left unchanged):
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle update_tmserver --dry-run
     $ pootle update_tmserver --refresh --dry-run
@@ -515,7 +515,7 @@ to specify the name of the project from which the translations originate. The
 display name will be shown on TM matches in the translation editor. To specify
 a name use :option:`--display-name`:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --tm=libreoffice --display-name="LibreOffice 4.3 UI" TM_LibreOffice_4.3.gl.tmx
 
@@ -524,7 +524,7 @@ By default the command will only add new translations to the server. To rebuild
 the server from scratch use :option:`--rebuild` to completely remove the TM and
 rebuild it before importing the translations:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --rebuild --tm=mozilla --display-name="Foo 1.7" foo.po
 
@@ -535,7 +535,7 @@ on disk.
 To see how many units will be loaded into the server use :option:`--dry-run`,
 no actual data will be loaded:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --dry-run --tm=mozilla --display-name="Foo 1.7" foo.po
    175045 translations to index
@@ -544,7 +544,7 @@ no actual data will be loaded:
 This command is capable of importing translations in multiple formats from
 several files and directories at once:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --tm=mozilla --display-name="Foo 1.7" bar.tmx foo.xliff fr/
 
@@ -555,7 +555,7 @@ Use :option:`--target-language` to specify the target language ISO code for the
 imported translations in case it is not possible to guess it from the
 translation files or if the code is incorrect:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --target-language=af --tm=mozilla --display-name="Foo 1.7" foo.po bar.tmx
 
@@ -584,7 +584,7 @@ a virtual folder that fits your needs.
 
 This command requires a mandatory filename argument.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle add_vfolders virtual_folders.json
 
@@ -797,7 +797,7 @@ duplicate emails. This command will find any user accounts that have duplicate
 emails. It also shows the last login time for each affected user and indicates
 if they are superusers of the site.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle find_duplicate_emails
 
@@ -823,7 +823,7 @@ data is not merged.
 By default ``src_username`` will be deleted after the contributions have been
 merged. You can prevent this by using the :option:`--no-delete` option.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle merge_user src_username target_username
 
@@ -845,7 +845,7 @@ username for a user of your site.
 .. versionchanged:: 2.7.3 :djadmin:`purge_user` can accept multiple user
    accounts to purge.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle purge_user username [username ...]
 
@@ -858,7 +858,7 @@ update_user_email
 .. versionadded:: 2.7.1
 
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle update_user_email username email
 
@@ -868,7 +868,7 @@ might be useful if you have users with duplicate email addresses.
 This command requires a mandatory ``username``, which should be a valid
 username for a user of your site, and a mandatory valid ``email`` address.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle update_user_email username email
 
@@ -892,7 +892,7 @@ wish to verify all users of your site.
 .. versionchanged:: 2.7.3 :djadmin:`verify_user` can accept multiple user
    accounts to verify.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ pootle verify_user username [username ...]
 

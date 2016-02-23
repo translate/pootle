@@ -122,7 +122,7 @@ customisations, you will need to install some Node.js libraries.
 Before proceeding please make sure you have :ref:`Node.js and npm installed in
 your system <requirements#customize-static>`.
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ cd $pootle_dir
    (env) $ cd pootle/static/js/
@@ -146,7 +146,7 @@ consumption.
 You will need to activate your virtual environment before running these
 commands.
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle webpack
    (env) $ pootle collectstatic --noinput --clear -i node_modules

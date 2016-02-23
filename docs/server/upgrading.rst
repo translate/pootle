@@ -81,7 +81,7 @@ Update pip
 
 You should now upgrade Pip to the latest version:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pip install --upgrade pip
 
@@ -95,7 +95,7 @@ If you are upgrading from a version older than 2.6 you will need to first
 upgrade to the latest 2.6.x version and then you will be able to upgrade to the
 latest version.
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pip install --upgrade "Pootle>=2.6,<2.7"
    (env) $ pootle setup
@@ -116,7 +116,7 @@ You should remove any stale Python bytecode files before upgrading.
 
 Assuming you are in the root of your virtualenv folder you can run:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pyclean .
 
@@ -128,7 +128,7 @@ Upgrading from version 2.6.x or later
 
 Upgrade to the latest Pootle version:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pip install --upgrade Pootle
 
@@ -145,7 +145,7 @@ settings that have changed. You may want to view the latest
 You can check to see if there are any issues with your configuration
 settings that need to be resolved:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle check
 
@@ -169,7 +169,7 @@ If you have not already done so you should
 
 You can start the worker in the background with the following command:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle rqworker &
 
@@ -187,7 +187,7 @@ Migrate your database schema
 Once you have updated your settings you can perform the database schema and
 data upgrade by running. This needs to be done in a few steps:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle migrate accounts 0002 --fake
    (env) $ pootle migrate pootle_translationproject 0002 --fake
@@ -203,7 +203,7 @@ You must now update the translation checks and populate the Redis cache with
 statistical data. You will need to have an :ref:`RQ worker running 
 <installation#running-rqworker>` to complete this.
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle calculate_checks
    (env) $ pootle refresh_stats
@@ -226,7 +226,7 @@ command.
 
 For example to set the email for user ``admin`` to ``admin@example.com``: 
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_user_email admin admin@example.com
 
@@ -238,7 +238,7 @@ a specific user.
 
 For example to automatically verify the admin user:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle verify_user admin
 

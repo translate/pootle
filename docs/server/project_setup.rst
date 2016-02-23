@@ -108,7 +108,7 @@ Once you are done click on the **Save** button below the form to create the
 project. Creating the project doesn't actually import all the translations to
 Pootle, so you also need to run :djadmin:`update_stores`:
 
-.. code-block:: bash
+.. code-block:: console
 
     pootle update_stores --project=my-project
 
@@ -173,7 +173,7 @@ You must place that file within your project's directory in
 :setting:`POOTLE_TRANSLATION_DIRECTORY`, replacing the file with the same name.
 Then run the following so Pootle picks up the new changes:
 
-.. code-block:: bash
+.. code-block:: console
 
     pootle update_stores --project=my-project --languages=templates
 

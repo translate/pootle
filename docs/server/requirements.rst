@@ -60,7 +60,7 @@ environment. You will also need pip.
 
 Eg. on a Debian-based system:
 
-.. code-block:: bash
+.. code-block:: console
 
   $ sudo apt-get install build-essential libxml2-dev libxslt-dev python-dev python-pip
 
@@ -69,7 +69,7 @@ Pootle and for managing asynchronous workers.
 
 To install and run Redis on a Debian-based system:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ sudo apt-get install redis-server
    $ sudo service redis-server start
@@ -98,13 +98,13 @@ install Node.js and npm.
 
 On a Debian-based system you can install these with:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ sudo apt-get install nodejs npm
 
 On Debian Jessie and perhaps other distributions you also need to link the
 ``nodejs`` command to ``node``:
 
-.. code-block:: bash
+.. code-block:: console
 
    $ sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 99

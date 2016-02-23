@@ -18,7 +18,7 @@ dependencies and run the tests.
 
 However, if you're developing you can simply run
 
-.. code-block:: bash
+.. code-block:: console
 
     $ py.test
 

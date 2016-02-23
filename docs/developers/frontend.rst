@@ -21,7 +21,7 @@ OS <https://nodejs.org/download/>`_.
 
 Once Node.js is available, Pootle dependencies need to be installed.
 
-.. code-block:: bash
+.. code-block:: console
 
     $ cd pootle/static/js
     $ npm install
@@ -36,7 +36,7 @@ Building Scripts
 
 Simply run:
 
-.. code-block:: bash
+.. code-block:: console
 
     (env) $ ./manage.py webpack --dev
 
@@ -47,7 +47,7 @@ in scripts so you don't need to constantly be running this.
 
 For creating a production-ready build, use:
 
-.. code-block:: bash
+.. code-block:: console
 
     (env) $ ./manage.py webpack
 

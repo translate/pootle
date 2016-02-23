@@ -100,7 +100,7 @@ Elasticsearch-based local TM
 To use it, the ``local`` TM must be enabled on :setting:`POOTLE_TM_SERVER` and
 will need to be populated using the :djadmin:`update_tmserver` command:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver
 
@@ -120,7 +120,7 @@ you will need to populate them using the :djadmin:`update_tmserver` command
 specifying the TM to use with :option:`--tm <update_tmserver --tm>` and the
 display name with :option:`--display-name <update_tmserver --display-name>`:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --tm=external --display-name=Pidgin af.po gl.tmx
 
@@ -129,7 +129,7 @@ A display name is a label used to group translations within a TM. A given TM
 can host translations for several labels. Just specify them with
 :option:`--display-name <update_tmserver --display-name>`:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --tm=external --display-name=GNOME pt.tmx eu.po xh.po
 
@@ -163,7 +163,7 @@ To use these additional external TMs you will need to populate them using the
 :djadmin:`update_tmserver` command specifying the TM server with :option:`--tm
 <update_tmserver --tm>`:
 
-.. code-block:: bash
+.. code-block:: console
 
    (env) $ pootle update_tmserver --tm=libreoffice --display-name=LibreOffice af.po gl.tmx
 
