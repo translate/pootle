@@ -31,7 +31,6 @@ from pootle_store.models import Store
 from pootle_store.util import get_search_backend
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
-from virtualfolder.models import VirtualFolderTreeItem
 from virtualfolder.helpers import vftis_for_child_dirs
 
 
@@ -168,9 +167,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         else "")
     display_priority = (
         not current_vfolder_pk
-        and (
-            VirtualFolderTreeItem.objects.filter(
-                pootle_path__startswith=pootle_path).exists()))
+        and not kwargs['filename'] and ctx['object'].has_vfolders)
     assertions = dict(
         page="translate",
         translation_project=tp,
