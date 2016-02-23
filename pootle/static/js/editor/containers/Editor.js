@@ -17,6 +17,7 @@ const Editor = React.createClass({
   propTypes: {
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
+    isRawMode: React.PropTypes.bool,
     locale: React.PropTypes.string,
     localeDir: React.PropTypes.string,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
@@ -54,6 +55,9 @@ const Editor = React.createClass({
         extraProps.value = values[i];
         // XXX: hacky way to denote the value was already passed down
         values[i] = null;
+      }
+      if (this.props.isRawMode !== undefined) {
+        extraProps.isRawMode = this.props.isRawMode;
       }
       editorTextareas.push(
         <EditorTextarea

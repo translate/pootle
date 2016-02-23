@@ -309,7 +309,9 @@ PTL.editor = {
     $('#editor').on('click', '.js-toggle-raw', (e) => {
       e.preventDefault();
       $('.js-translate-translation').toggleClass('raw');
-      $('.js-toggle-raw').toggleClass('selected');
+      const toggle = document.querySelector('.js-toggle-raw');
+      toggle.classList.toggle('selected');
+      ReactEditor.setProps({ isRawMode: toggle.classList.contains('selected') });
       autosize.update(q('.js-translation-area'));
     });
 
