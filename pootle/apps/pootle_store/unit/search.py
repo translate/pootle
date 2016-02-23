@@ -18,10 +18,7 @@ from pootle_store.views import SIMPLY_SORTED
 class DBSearchBackend(object):
 
     default_chunk_size = 9
-    default_order = "store", "index"
-    select_related = (
-        'store__translation_project__project',
-        'store__translation_project__language')
+    default_order = "pootle_path", "index"
 
     def __init__(self, request_user, **kwargs):
         self.kwargs = kwargs
@@ -85,8 +82,7 @@ class DBSearchBackend(object):
     def units_qs(self):
         return (
             Unit.objects.get_translatable(**self.qs_kwargs)
-                        .order_by(*self.default_order)
-                        .select_related(*self.select_related))
+                        .order_by(*self.default_order))
 
     def sort_qs(self, qs):
         if self.unit_filter and self.sort_by is not None:
@@ -103,7 +99,7 @@ class DBSearchBackend(object):
                 # use `distinct()` and `order_by()` at the same time
                 qs = qs.annotate(sort_by_field=Max(max_field))
             return qs.order_by(
-                sort_by, "store__pootle_path", "index")
+                sort_by, "pootle_path", "index")
         return qs
 
     def filter_qs(self, qs):
