@@ -47,7 +47,7 @@ language code. That means that within that project there are no directories,
 just files. This is the simplest layout possible. Below you can see an example
 with two projects using the GNU layout:
 
-.. code-block:: bash
+::
 
     `-- translations
         `-- project1
