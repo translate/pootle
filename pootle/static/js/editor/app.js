@@ -24,7 +24,6 @@ import 'jquery-serializeObject';
 import 'jquery-utils';
 
 // Other plugins
-import autosize from 'autosize';
 import cx from 'classnames';
 import Levenshtein from 'levenshtein';
 import mousetrap from 'mousetrap';
@@ -312,7 +311,6 @@ PTL.editor = {
       const toggle = document.querySelector('.js-toggle-raw');
       toggle.classList.toggle('selected');
       ReactEditor.setProps({ isRawMode: toggle.classList.contains('selected') });
-      autosize.update(q('.js-translation-area'));
     });
 
     /* Confirmation prompt */
@@ -599,8 +597,6 @@ PTL.editor = {
       this.displayObsoleteMsg();
     }
 
-    autosize(q('textarea.expanding:not([disabled="disabled"])'));
-
     utils.fancyHlNodes('.js-translation-text');
     highlightSuggestionsDiff(currentUnit);
 
@@ -710,7 +706,6 @@ PTL.editor = {
 
     ReactEditor.setProps({ values: newValues });
     $target.caret(start, start);
-    autosize.update(this.focused);
   },
 
   copyTMText(e) {
@@ -730,7 +725,6 @@ PTL.editor = {
     this.goFuzzy();
 
     const area = document.querySelector('.js-translation-area');
-    autosize.update(area);
     this.cpRE.exec(sources[0]);
     const i = this.cpRE.lastIndex;
     $(area).caret(i, i);
@@ -1418,9 +1412,6 @@ PTL.editor = {
 
   /* reDraws the translate table rows */
   reDraw(newTbody) {
-    // Remove autosize event listeners for textarea before removing
-    autosize.destroy(qAll('textarea.expanding'));
-
     this.$editorBody.find('tr').remove();
 
     if (newTbody !== undefined) {

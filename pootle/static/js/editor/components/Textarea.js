@@ -7,8 +7,8 @@
  */
 
 import assign from 'object-assign';
-import autosize from 'autosize';
 import React from 'react';
+import AutosizeTextarea from 'react-textarea-autosize';
 
 
 const Textarea = React.createClass({
@@ -24,11 +24,6 @@ const Textarea = React.createClass({
   contextTypes: {
     locale: React.PropTypes.string,
     localeDir: React.PropTypes.string,
-  },
-
-  componentDidMount() {
-    // FIXME: switch to react-textarea-autosize
-    autosize(this.refs.textarea);
   },
 
   componentDidUpdate() {
@@ -47,8 +42,6 @@ const Textarea = React.createClass({
 
     const newIdx = Math.max(0, node.value.length - oldLength + oldIndex);
     node.selectionStart = node.selectionEnd = newIdx;
-
-    autosize(this.refs.textarea);
   },
 
   render() {
@@ -59,7 +52,7 @@ const Textarea = React.createClass({
     }, this.props.style);
 
     return (
-      <textarea
+      <AutosizeTextarea
         {...this.props}
         className="translation focusthis js-translation-area"
         defaultValue={this.props.initialValue}
@@ -67,7 +60,7 @@ const Textarea = React.createClass({
         dir={this.context.localeDir}
         lang={this.context.locale}
         ref="textarea"
-        rows="2"
+        rows={2}
         style={style}
         tabIndex="10"
         value={undefined}
