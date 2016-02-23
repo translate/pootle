@@ -16,7 +16,10 @@ from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
 @pytest.mark.django_db
 def test_extract_vfolder_from_path():
     """Tests that vfolder is correctly extracted from path, if any."""
-    subdir0 = TranslationProject.objects.first().directory.child_dirs.first()
+    subdir0 = TranslationProject.objects.get(
+        language__code="language1",
+        project__code="project1",
+    ).directory.child_dirs.first()
 
     # Check that subdir0 pootle_path matches no vfolder.
     path = subdir0.pootle_path
