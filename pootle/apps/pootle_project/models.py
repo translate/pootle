@@ -41,6 +41,17 @@ from staticpages.models import StaticPage
 
 
 RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
+PROJECT_CHECKERS = {
+    "standard": checks.StandardChecker,
+    "openoffice": checks.OpenOfficeChecker,
+    "libreoffice": checks.LibreOfficeChecker,
+    "mozilla": checks.MozillaChecker,
+    "kde": checks.KdeChecker,
+    "wx": checks.KdeChecker,
+    "gnome": checks.GnomeChecker,
+    "creativecommons": checks.CCLicenseChecker,
+    "drupal": checks.DrupalChecker,
+    "terminology": checks.TermChecker}
 
 
 class ProjectManager(models.Manager):
@@ -146,13 +157,16 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     fullname = models.CharField(max_length=255, null=False,
                                 verbose_name=_("Full Name"))
 
-    checker_choices = [('standard', 'standard')]
-    checkers = list(checks.projectcheckers.keys())
-    checkers.sort()
-    checker_choices.extend([(checker, checker) for checker in checkers])
-    checkstyle = models.CharField(max_length=50, default='standard',
-                                  null=False, choices=checker_choices,
-                                  verbose_name=_('Quality Checks'))
+    checker_choices = [
+        (checker, checker)
+        for checker
+        in sorted(PROJECT_CHECKERS.keys())]
+    checkstyle = models.CharField(
+        max_length=50,
+        default='standard',
+        null=False,
+        choices=checker_choices,
+        verbose_name=_('Quality Checks'))
 
     localfiletype = models.CharField(max_length=50, default="po",
                                      verbose_name=_('File Type'))
