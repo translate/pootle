@@ -12,6 +12,13 @@ import shutil
 import pytest
 
 
+def pytest_generate_tests(metafunc):
+    from pootle_project.models import PROJECT_CHECKERS
+
+    if 'checkers' in metafunc.funcargnames:
+        metafunc.parametrize("checkers", PROJECT_CHECKERS.keys())
+
+
 def _require_tp(language, project):
     """Helper to get/create a new translation project."""
     from pootle_translationproject.models import create_translation_project
@@ -77,17 +84,11 @@ def afrikaans_vfolder_test(afrikaans, vfolder_test):
     return _require_tp(afrikaans, vfolder_test)
 
 
-def get_project_checkers():
-    from translate.filters import checks
-
-    return ['standard'] + list(checks.projectcheckers.keys())
-
-
-@pytest.fixture(params=get_project_checkers())
-def tp_checker_tests(request, english):
+@pytest.fixture
+def tp_checker_tests(request, english, checkers):
     from pytest_pootle.factories import ProjectFactory
 
-    checker_name = request.param
+    checker_name = checkers
     project = ProjectFactory(
         checkstyle=checker_name,
         source_language=english)
