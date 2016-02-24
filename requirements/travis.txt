@@ -5,8 +5,12 @@
 -r _lint.txt
 
 tox>=2.3
+
+# Databases
 MySQL-python
 psycopg2
+
+# Test coverage
+codecov
 coverage
 coveralls
-codecov
