@@ -1,11 +1,11 @@
 -r tests.txt
+-r _docs.txt
 
 tox>=2.3
 MySQL-python
 psycopg2
 coverage
 coveralls
-sphinx
 pep8<1.6
 pep257
 flake8!=2.5.3

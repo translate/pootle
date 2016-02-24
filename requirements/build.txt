@@ -1,3 +1,2 @@
 -r base.txt
-
-sphinx
+-r _docs.txt
