@@ -118,6 +118,13 @@ Command changes and additions
   calculate the stats for disabled projects (old ``refresh_stats_rq`` was
   unable to do it).
 
+  - Errata: the removal of the old :djadmin:`refresh_stats` has removed the
+    following options:
+
+    - ``--calculate-checks`` and ``--check`` -- Use :djadmin:`calculate_checks`
+      instead.
+    - ``--calculate-wordcount``
+
 - Added a :djadmin:`update_user_email` command to update a user's email
   address.
 
