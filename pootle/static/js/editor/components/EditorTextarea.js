@@ -9,13 +9,13 @@
 import cx from 'classnames';
 import React from 'react';
 
-import Textarea from './Textarea';
 import { applyFontFilter, unapplyFontFilter } from '../utils';
 
 
 const EditorTextarea = React.createClass({
 
   propTypes: {
+    textareaComponent: React.PropTypes.func,
     id: React.PropTypes.string,
     initialValue: React.PropTypes.string,
     isDisabled: React.PropTypes.bool,
@@ -72,14 +72,14 @@ const EditorTextarea = React.createClass({
 
     return (
       <div className={editorWrapperClasses}>
-        <Textarea
+        <this.props.textareaComponent
           id={this.props.id}
           initialValue={applyFontFilter(this.props.initialValue, this.getMode())}
-          onChange={(e) => this.handleChange(e)}
+          onChange={this.handleChange}
           style={this.props.style}
           value={transformedValue}
         />
-    </div>
+      </div>
     );
   },
 

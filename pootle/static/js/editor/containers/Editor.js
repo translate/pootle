@@ -9,6 +9,7 @@
 import React from 'react';
 
 import EditorTextarea from '../components/EditorTextarea';
+import Textarea from '../components/Textarea';
 import { getAreaId } from '../utils';
 
 
@@ -25,6 +26,7 @@ const Editor = React.createClass({
     sourceString: React.PropTypes.string.isRequired,
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
+    textareaComponent: React.PropTypes.func,
   },
 
   // FIXME: move context to a higher-order component. It _cannot_ be done now
@@ -34,6 +36,12 @@ const Editor = React.createClass({
   childContextTypes: {
     locale: React.PropTypes.string,
     localeDir: React.PropTypes.string,
+  },
+
+  getDefaultProps() {
+    return {
+      textareaComponent: Textarea,
+    };
   },
 
   getChildContext() {
@@ -61,6 +69,7 @@ const Editor = React.createClass({
       }
       editorTextareas.push(
         <EditorTextarea
+          textareaComponent={this.props.textareaComponent}
           id={getAreaId(i)}
           initialValue={this.props.initialValues[i]}
           key={i}
