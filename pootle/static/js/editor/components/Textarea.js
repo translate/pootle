@@ -17,6 +17,7 @@ const Textarea = React.createClass({
     id: React.PropTypes.string,
     initialValue: React.PropTypes.string,
     onChange: React.PropTypes.func.isRequired,
+    onKeyDown: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
     value: React.PropTypes.string,
   },

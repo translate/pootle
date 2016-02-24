@@ -34,6 +34,9 @@ const REGULAR_MAP_REV = assign({}, _.invert(REGULAR_MAP_COMMON), {
 });
 
 
+const NEWLINE_SYMBOLS = ['\u240A', '\u240D'];
+
+
 const RAW_MAP_COMMON = {
   '\u0020': '\u2420',  // SPACE
 
@@ -108,4 +111,10 @@ export function unapplyFontFilter(value, mode = 'regular') {
 
   // Remove extra spacing symbols added in `applyFontFilter`.
   return newValue.replace(/\u2420/g, '\u0020');
+}
+
+
+/* Helper to determine whether a character refers to our newline symbol */
+export function isNewlineSymbol(char) {
+  return NEWLINE_SYMBOLS.indexOf(char) !== -1;
 }
