@@ -1,0 +1,6 @@
+# Linting tools
+
+flake8!=2.5.3
+pep257
+pep8<1.6
+isort>=3.5.0,!=4.1.1

@@ -1,13 +1,10 @@
 -r tests.txt
 -r _docs.txt
+-r _lint.txt
 
 tox>=2.3
 MySQL-python
 psycopg2
 coverage
 coveralls
-pep8<1.6
-pep257
-flake8!=2.5.3
-isort
 codecov
