@@ -1,6 +1,8 @@
+# Pootle deployment
+
 -r base.txt
 
-# Databases
+# Database
 MySQL-python>=1.2.1p2
 # Uncomment for PostgreSQL
 # psycopg2>=2.4.5
