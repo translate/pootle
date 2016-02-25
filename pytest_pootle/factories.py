@@ -169,6 +169,14 @@ class UnitFactory(factory.django.DjangoModelFactory):
         return md5(self.unitid.encode("utf-8")).hexdigest()
 
     @factory.lazy_attribute
+    def project(self):
+        return self.store.translation_project.project
+
+    @factory.lazy_attribute
+    def language(self):
+        return self.store.translation_project.language
+
+    @factory.lazy_attribute
     def source_f(self):
         return (
             "%s Source %s %s%s"

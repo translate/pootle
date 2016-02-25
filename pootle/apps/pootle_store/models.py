@@ -232,11 +232,13 @@ class UnitManager(models.Manager):
         :param user: The user for whom units need to be retrieved for.
         :return: A filtered queryset with `Unit`s for `user`.
         """
+        from pootle.core.site import pootle_site
+
         if user.is_superuser:
             return self.live()
 
-        return self.live() \
-                   .filter(store__translation_project__project__disabled=False)
+        return self.live().exclude(
+            project_id__in=pootle_site.disabled_projects)
 
     def get_translatable(self, user, project_code=None, language_code=None,
                          dir_path=None, filename=None):
@@ -250,28 +252,31 @@ class UnitManager(models.Manager):
            from the TP.
         :param filename: A string for matching the filename of Stores.
         """
+        from pootle.core.site import pootle_site
         from pootle_project.models import Project
 
         if not user.is_superuser:
             user_projects = Project.accessible_by_user(user)
             if project_code and project_code not in user_projects:
                 return self.none()
+            user_projects = [
+                pootle_site.projects[code]["pk"] for code in user_projects]
 
         units_qs = self.get_for_user(user)
 
         if language_code:
             units_qs = units_qs.filter(
-                store__translation_project__language__code=language_code)
-        else:
+                language_id=pootle_site.languages[language_code]["pk"])
+        elif "templates" in pootle_site.languages:
             units_qs = units_qs.exclude(
-                store__pootle_path__startswith="/templates/")
+                language_id=pootle_site.languages["templates"]["pk"])
 
         if project_code:
             units_qs = units_qs.filter(
-                store__translation_project__project__code=project_code)
+                project_id=pootle_site.projects[project_code]["pk"])
         elif not user.is_superuser:
             units_qs = units_qs.filter(
-                store__translation_project__project__code__in=user_projects)
+                project_id__in=user_projects)
 
         if not (dir_path or filename):
             return units_qs
@@ -284,17 +289,17 @@ class UnitManager(models.Manager):
         if language_code and project_code:
             if filename:
                 return units_qs.filter(
-                    store__pootle_path=pootle_path)
+                    pootle_path=pootle_path)
             else:
                 return units_qs.filter(
-                    store__pootle_path__startswith=pootle_path)
+                    pootle_path__startswith=pootle_path)
         else:
             # we need to use a regex in this case as lang or proj are not
             # set
             if filename:
                 pootle_path = "%s$" % pootle_path
             return units_qs.filter(
-                store__pootle_path__regex=pootle_path)
+                pootle_path__regex=pootle_path)
 
 
 class Unit(models.Model, base.TranslationUnit):
@@ -303,6 +308,25 @@ class Unit(models.Model, base.TranslationUnit):
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True,
                                    editable=False)
+
+    # Denormalized from Store.pootle_path
+    # any changes to the `pootle_path` field may require updating the schema
+    # see migration 0007_case_sensitive_schema.py
+    pootle_path = models.CharField(
+        max_length=255, null=False, unique=False,
+        db_index=True, verbose_name=_("Path"))
+
+    project = models.ForeignKey(
+        "pootle_project.Project",
+        null=False,
+        db_index=True,
+        related_name='units')
+
+    language = models.ForeignKey(
+        "pootle_language.Language",
+        null=False,
+        db_index=True,
+        related_name='units')
 
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
@@ -355,9 +379,10 @@ class Unit(models.Model, base.TranslationUnit):
     simple_objects = models.Manager()
 
     class Meta(object):
-        unique_together = ('store', 'unitid_hash')
+        unique_together = [('store', 'unitid_hash')]
         get_latest_by = 'mtime'
-        index_together = [["store", "index"]]
+        index_together = [["store", "index"], ["pootle_path", "index"]]
+        ordering = ["pootle_path", "index"]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
@@ -444,6 +469,10 @@ class Unit(models.Model, base.TranslationUnit):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
         user = kwargs.pop("user", self._log_user)
+
+        self.pootle_path = self.store.pootle_path
+        self.project = self.store.translation_project.project
+        self.language = self.store.translation_project.language
 
         if created:
             self._save_action = UNIT_ADDED
