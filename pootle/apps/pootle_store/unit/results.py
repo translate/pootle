@@ -27,10 +27,6 @@ class UnitResult(UnitProxy):
             "store__translation_project__language__nplurals"] or 0
 
     @property
-    def pootle_path(self):
-        return self.unit["store__pootle_path"]
-
-    @property
     def project_code(self):
         return self.unit["store__translation_project__project__code"]
 
@@ -108,7 +104,7 @@ class GroupedResults(object):
         "source_f",
         "target_f",
         "state",
-        "store__pootle_path",
+        "pootle_path",
         "store__translation_project__project__code",
         "store__translation_project__project__source_language__code",
         "store__translation_project__project__checkstyle",
@@ -123,7 +119,7 @@ class GroupedResults(object):
         unit_groups = []
         units_by_path = groupby(
             self.units_qs.values(*self.select_fields),
-            lambda x: x["store__pootle_path"])
+            lambda x: x["pootle_path"])
         for pootle_path, units in units_by_path:
             unit_groups.append({pootle_path: StoreResults(units).data})
         return unit_groups
