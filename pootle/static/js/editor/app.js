@@ -44,6 +44,8 @@ import {
 
 const CTX_STEP = 1;
 
+const ALLOWED_SORTS = ['oldest', 'newest', 'default'];
+
 
 const filterSelectOpts = {
   dropdownAutoWidth: true,
@@ -77,6 +79,7 @@ PTL.editor = {
     /* Default settings */
     this.settings = {
       mt: [],
+      displayPriority: false,
     };
 
     if (options) {
@@ -136,6 +139,10 @@ PTL.editor = {
     search.init({
       onSearch: this.onSearch,
     });
+
+    if (options.displayPriority) {
+      ALLOWED_SORTS.push('priority');
+    }
 
     /* Select2 */
     this.$filterStatus.select2(filterSelectOpts);
@@ -376,7 +383,8 @@ PTL.editor = {
           this.category = params.category;
         }
         if ('sort' in params) {
-          this.sortBy = params.sort;
+          const { sort } = params;
+          this.sortBy = ALLOWED_SORTS.indexOf(sort) !== -1 ? sort : 'default';
         }
       }
 

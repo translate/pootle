@@ -23,6 +23,7 @@ $(function() {
     ctxPath: '{{ ctx_path }}',
     resourcePath: '{{ resource_path }}',
     chunkSize: {{ request.user.get_unit_rows }},
+    displayPriority: {{ display_priority|yesno:"true,false" }},
     isAdmin: {{ is_admin|yesno:"true,false" }},
     isAnonymous: {{ request.user.is_anonymous|yesno:"true,false" }},
     userId: {{ request.user.id }},
