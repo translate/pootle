@@ -53,7 +53,7 @@ def calculate_search_results(kwargs, user):
                 "directory", "vfolder"))
     qs = (
         Unit.objects.get_translatable(user=user, **resolve(pootle_path).kwargs)
-                    .filter(store__pootle_path__startswith=pootle_path)
+                    .filter(pootle_path__startswith=pootle_path)
                     .order_by("store", "index"))
     if vfolder is not None:
         qs = qs.filter(vfolders=vfolder)
@@ -80,7 +80,7 @@ def calculate_search_results(kwargs, user):
         if sort_by is not None:
             # filtered sort
             if sort_on in SIMPLY_SORTED:
-                qs = qs.order_by(sort_by, "store__pootle_path", "index")
+                qs = qs.order_by(sort_by, "pootle_path", "index")
             else:
                 if sort_by[0] == '-':
                     max_field = sort_by[1:]
@@ -90,7 +90,7 @@ def calculate_search_results(kwargs, user):
                     sort_order = 'sort_by_field'
                 qs = (
                     qs.annotate(sort_by_field=Max(max_field))
-                      .order_by(sort_order, "store__pootle_path", "index"))
+                      .order_by(sort_order, "pootle_path", "index"))
     # text search
     if search and sfields:
         qs = UnitTextSearch(qs).search(
@@ -114,7 +114,7 @@ def calculate_search_results(kwargs, user):
     unit_groups = []
     units_by_path = groupby(
         qs.values(*GroupedResults.select_fields)[begin:end],
-        lambda x: x["store__pootle_path"])
+        lambda x: x["pootle_path"])
     for pootle_path, units in units_by_path:
         unit_groups.append(
             {pootle_path: StoreResults(units).data})
