@@ -103,7 +103,7 @@ class DBSearchBackend(object):
                 # use `distinct()` and `order_by()` at the same time
                 qs = qs.annotate(sort_by_field=Max(max_field))
             return qs.order_by(
-                sort_by, "store__pootle_path", "index")
+                sort_by, "pootle_path", "index")
         return qs
 
     def filter_qs(self, qs):

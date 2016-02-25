@@ -88,8 +88,9 @@ def vfolder_unit_priority_presave_handler(sender, instance, **kwargs):
     for location in removed_locations:
         # reindex these units without this vfolder
         removed_units = (
-            Unit.objects.filter(store__pootle_path__startswith=location,
-                                vfolders=original))
+            Unit.objects.filter(
+                pootle_path__startswith=location,
+                vfolders=original))
         for unit in removed_units.iterator():
             unit.vfolders.remove(original)
             unit.set_priority()
