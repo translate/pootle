@@ -264,7 +264,7 @@ class UnitManager(models.Manager):
                 store__translation_project__language__code=language_code)
         else:
             units_qs = units_qs.exclude(
-                store__pootle_path__startswith="/templates/")
+                pootle_path__startswith="/templates/")
 
         if project_code:
             units_qs = units_qs.filter(
@@ -284,17 +284,17 @@ class UnitManager(models.Manager):
         if language_code and project_code:
             if filename:
                 return units_qs.filter(
-                    store__pootle_path=pootle_path)
+                    pootle_path=pootle_path)
             else:
                 return units_qs.filter(
-                    store__pootle_path__startswith=pootle_path)
+                    pootle_path__startswith=pootle_path)
         else:
             # we need to use a regex in this case as lang or proj are not
             # set
             if filename:
                 pootle_path = "%s$" % pootle_path
             return units_qs.filter(
-                store__pootle_path__regex=pootle_path)
+                pootle_path__regex=pootle_path)
 
 
 class Unit(models.Model, base.TranslationUnit):
@@ -303,6 +303,13 @@ class Unit(models.Model, base.TranslationUnit):
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True,
                                    editable=False)
+
+    # Denormalized from Store.pootle_path
+    # any changes to the `pootle_path` field may require updating the schema
+    # see migration 0007_case_sensitive_schema.py
+    pootle_path = models.CharField(
+        max_length=255, null=False, unique=False,
+        db_index=True, verbose_name=_("Path"))
 
     source_f = MultiStringField(null=True)
     source_hash = models.CharField(max_length=32, db_index=True,
@@ -357,7 +364,8 @@ class Unit(models.Model, base.TranslationUnit):
     class Meta(object):
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
-        index_together = [["store", "index"]]
+        index_together = ["pootle_path", "index"]
+        ordering = ["pootle_path", "index"]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
@@ -444,6 +452,8 @@ class Unit(models.Model, base.TranslationUnit):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
         user = kwargs.pop("user", self._log_user)
+
+        self.pootle_path = self.store.pootle_path
 
         if created:
             self._save_action = UNIT_ADDED
