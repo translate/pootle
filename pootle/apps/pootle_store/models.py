@@ -375,7 +375,16 @@ class Unit(models.Model, base.TranslationUnit):
     class Meta(object):
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
-        index_together = ["pootle_path", "index"]
+        index_together = [
+            ["pootle_path", "index",
+             "state", "project", "language"],
+            ["submitted_on", "pootle_path", "index",
+             "state", "project", "language"],
+            ["mtime", "pootle_path", "index",
+             "state", "project", "language"],
+            ["priority", "pootle_path", "index",
+             "state", "project", "language"]]
+
         ordering = ["pootle_path", "index"]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
