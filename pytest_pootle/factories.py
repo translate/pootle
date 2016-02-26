@@ -159,10 +159,7 @@ class UnitFactory(factory.django.DjangoModelFactory):
 
     @factory.lazy_attribute
     def unitid(self):
-        return (
-            "%s_unit%s"
-            % (pootle_store.util.get_state_name(self),
-               self.index))
+        return self.source_f
 
     @factory.lazy_attribute
     def unitid_hash(self):
