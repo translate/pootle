@@ -107,3 +107,19 @@ def update_store(store, units=None, store_revision=None, add_headers=False,
                  store_revision=store_revision,
                  user=user, submission_type=submission_type,
                  resolve_conflict=resolve_conflict)
+
+
+def get_translated_storefile(store, pootle_path=None):
+    """Returns file store with added translations for untranslated units."""
+    storeclass = store.get_file_class()
+    filestore = store.convert(storeclass)
+    for i, unit in enumerate(filestore.units):
+        if not unit.istranslated():
+            unit.target = "Translation of %s" % unit.source
+
+    path = pootle_path if pootle_path is not None else store.pootle_path
+    filestore.updateheader(add=True, X_Pootle_Path=path)
+    filestore.updateheader(add=True,
+                           X_Pootle_Revision=store.get_max_unit_revision())
+
+    return filestore

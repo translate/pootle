@@ -13,7 +13,7 @@ import pytest
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-from pootle.core.models import Revision
+from pytest_pootle.utils import get_translated_storefile
 
 
 @pytest.mark.cmd
@@ -34,7 +34,7 @@ def test_import_user_non_existant_file():
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_import_emptyfile(capfd, afrikaans_tutorial, tmpdir):
+def test_import_emptyfile(capfd, tmpdir):
     """Load an empty PO file"""
     p = tmpdir.mkdir("sub").join("empty.po")
     p.write("")
@@ -45,44 +45,43 @@ def test_import_emptyfile(capfd, afrikaans_tutorial, tmpdir):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_import_onefile(capfd, afrikaans_tutorial, tmpdir):
+def test_import_onefile(capfd, tmpdir):
     """Load an one unit PO file"""
-    p = tmpdir.mkdir("sub").join("tutorial.po")
-    p.write("""msgid ""
-msgstr ""
-"X-Pootle-Path: /af/tutorial/tutorial.po\\n"
-"X-Pootle-Revision: %s\\n"
+    from pootle_store.models import Store
 
-msgid "rest"
-msgstr "test"
-           """ % (Revision.get() + 1))
+    p = tmpdir.mkdir("sub").join("store0.po")
+    store = Store.objects.get(pootle_path="/language0/project0/store0.po")
+    p.write(str(get_translated_storefile(store)))
     call_command('import', os.path.join(p.dirname, p.basename))
     out, err = capfd.readouterr()
-    assert "[update]" in err
-    assert "obsoleted 3" in err
-    assert "added 1" in err
-    assert "/af/tutorial/tutorial.po" in err
+    assert "/language0/project0/store0.po" in err
 
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_import_onefile_with_user(capfd, afrikaans_tutorial, tmpdir, member):
+def test_import_onefile_with_user(capfd, tmpdir, site_users):
     """Load an one unit PO file"""
-    p = tmpdir.mkdir("sub").join("tutorial.po")
-    p.write("""msgid ""
-msgstr ""
-"X-Pootle-Path: /af/tutorial/tutorial.po\\n"
-"X-Pootle-Revision: %s\\n"
+    from pootle_store.models import Store
 
-msgid "rest"
-msgstr "test"
-           """ % (Revision.get() + 1))
-    call_command('import', '--user=member', os.path.join(p.dirname, p.basename))
+    user = site_users['user'].username
+    p = tmpdir.mkdir("sub").join("store0.po")
+    store = Store.objects.get(pootle_path="/language0/project0/store0.po")
+    p.write(str(get_translated_storefile(store)))
+    call_command('import', '--user=%s' % user,
+                 os.path.join(p.dirname, p.basename))
     out, err = capfd.readouterr()
-    assert "[update]" in err
-    assert "obsoleted 3" in err
-    assert "added 1" in err
-    assert "/af/tutorial/tutorial.po" in err
+    assert user in out
+    assert "Updating /language0/project0/store0.po" in err
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_import_bad_user(tmpdir):
+    from pootle_store.models import Store
+
+    p = tmpdir.mkdir("sub").join("store0.po")
+    store = Store.objects.get(pootle_path="/language0/project0/store0.po")
+    p.write(str(get_translated_storefile(store)))
     with pytest.raises(CommandError) as e:
         call_command('import', '--user=not_a_user',
                      os.path.join(p.dirname, p.basename))
@@ -91,20 +90,18 @@ msgstr "test"
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_import_bad_pootlepath(afrikaans_tutorial, tmpdir):
+def test_import_bad_pootlepath(tmpdir):
     """Bad X-Pootle-Path
 
-    / missing before af
+    / missing before language0
     """
-    p = tmpdir.mkdir("sub").join("tutorial.po")
-    p.write("""msgid ""
-msgstr ""
-"X-Pootle-Path: af/tutorial/tutorial.po\\n"
-"X-Pootle-Revision: 12\\n"
+    from pootle_store.models import Store
 
-msgid "rest"
-msgstr "test"
-           """)
+    p = tmpdir.join("store0.po")
+    store = Store.objects.get(pootle_path="/language0/project0/store0.po")
+    p.write(str(
+        get_translated_storefile(store,
+                                 pootle_path="language0/project0/store0.po")))
     with pytest.raises(CommandError) as e:
         call_command('import', os.path.join(p.dirname, p.basename))
     assert "Missing Project/Language?" in str(e)
