@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import datetime
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from zipfile import ZipFile, is_zipfile
@@ -40,10 +41,16 @@ class Command(BaseCommand):
             User = get_user_model()
             try:
                 user = User.objects.get(username=options["user"])
+                self.stdout.write(
+                    'User %s will be set as author of the import.'
+                    % user.username)
             except User.DoesNotExist:
                 raise CommandError("Unrecognised user: %s" % options["user"])
 
+        start = datetime.datetime.now()
         for filename in options['file']:
+            self.stdout.write('Importing %s...' % filename)
+
             if not os.path.isfile(filename):
                 raise CommandError("No such file '%s'" % filename)
 
@@ -64,3 +71,6 @@ class Command(BaseCommand):
                         import_file(f, user=user)
                     except Exception as e:
                         raise CommandError(e)
+
+        end = datetime.datetime.now()
+        self.stdout.write('All done in %s.' % (end - start))
