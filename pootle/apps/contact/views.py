@@ -88,7 +88,7 @@ class ReportFormView(ContactFormView):
                             {
                                 'unit': unit,
                                 'language':
-                                    unit.store.translation_project.language.code,
+                                    unit.language.code,
                             }),
                         'body': render_to_string(
                             'contact_form/report_form_body.txt',
@@ -97,7 +97,7 @@ class ReportFormView(ContactFormView):
                                 'unit_absolute_url': unit_absolute_url,
                             }),
                         'report_email':
-                            unit.store.translation_project.project.report_email,
+                            unit.project.report_email,
                     })
             except Unit.DoesNotExist:
                 pass

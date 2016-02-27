@@ -442,7 +442,7 @@ def get_edit_unit(request, unit):
     altsrcs = find_altsrcs(unit, alt_src_langs, store=store, project=project)
     source_language = translation_project.project.source_language
     sources = {
-        unit.store.translation_project.language.code: unit.target_f.strings
+        unit.language.code: unit.target_f.strings
         for unit in altsrcs
     }
     sources[source_language.code] = unit.source_f.strings

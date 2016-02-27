@@ -102,7 +102,7 @@ class ElasticSearchBackend(SearchBackend):
     def search(self, unit):
         counter = {}
         res = []
-        language = unit.store.translation_project.language.code
+        language = unit.language.code
         es_res = self._es_call(
             "search",
             index=self._settings['INDEX_NAME'],
