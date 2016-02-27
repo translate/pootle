@@ -511,8 +511,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
-                   lang=self.store.translation_project.language.code,
-                   unit=self.id, translation='', path=self.store.pootle_path)
+                   lang=self.language.code,
+                   unit=self.id, translation='', path=self.pootle_path)
 
         self.flag_store_before_going_away()
 
@@ -577,9 +577,9 @@ class Unit(models.Model, base.TranslationUnit):
 
         if not created and hasattr(self, '_save_action'):
             action_log(user=self._log_user, action=self._save_action,
-                       lang=self.store.translation_project.language.code,
+                       lang=self.language.code,
                        unit=self.id, translation=self.target_f,
-                       path=self.store.pootle_path)
+                       path=self.pootle_path)
 
         if (self._state_updated and self.state == TRANSLATED and
             self._save_action == TRANSLATION_CHANGED and
@@ -608,9 +608,9 @@ class Unit(models.Model, base.TranslationUnit):
                 self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
             action_log(user=self._log_user, action=self._save_action,
-                       lang=self.store.translation_project.language.code,
+                       lang=self.language.code,
                        unit=self.id, translation=self.target_f,
-                       path=self.store.pootle_path)
+                       path=self.pootle_path)
 
             self.add_initial_submission(user=user)
 
@@ -642,7 +642,7 @@ class Unit(models.Model, base.TranslationUnit):
                '#unit=%s' % unicode(self.id)))
 
     def get_search_locations_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.store.pootle_path)
+        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
 
         return u''.join([
             reverse('pootle-project-translate', args=[proj, dir, fn]),
@@ -650,8 +650,7 @@ class Unit(models.Model, base.TranslationUnit):
         ])
 
     def get_screenshot_url(self):
-        prefix = self.store.translation_project.\
-            project.screenshot_search_prefix
+        prefix = self.project.screenshot_search_prefix
         if prefix:
             return prefix + urlquote(self.source_f)
 
@@ -665,7 +664,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         from pootle_project.models import Project
         user_projects = Project.accessible_by_user(user)
-        return self.store.translation_project.project.code in user_projects
+        return self.project.code in user_projects
 
     def add_initial_submission(self, user=None):
         if self.istranslated() or self.isfuzzy():
@@ -758,7 +757,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         if unit.target != self.target:
             if unit.hasplural():
-                nplurals = self.store.translation_project.language.nplurals
+                nplurals = self.language.nplurals
                 target_plurals = len(self.target.strings)
                 strings = self.target.strings
                 if target_plurals < nplurals:
@@ -1001,8 +1000,8 @@ class Unit(models.Model, base.TranslationUnit):
             'id': self.id,
             # 'revision' must be an integer for statistical queries to work
             'revision': self.revision,
-            'project': self.store.translation_project.project.fullname,
-            'path': self.store.pootle_path,
+            'project': self.project.fullname,
+            'path': self.pootle_path,
             'source': self.source,
             'target': self.target,
             'username': '',
@@ -1023,7 +1022,7 @@ class Unit(models.Model, base.TranslationUnit):
                 'email_md5': md5(self.submitted_by.email).hexdigest(),
             })
 
-        get_tm_broker().update(self.store.translation_project.language.code,
+        get_tm_broker().update(self.language.code,
                                obj)
 
     def get_tm_suggestions(self):
