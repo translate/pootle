@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 
 from pootle.core.decorators import get_path_obj, permission_required
@@ -41,6 +42,15 @@ def manage_store(request, ctx, language, term_store):
 def manage(request, translation_project):
     ctx = {
         'page': 'admin-terminology',
+
+        'browse_url': reverse('pootle-tp-browse', kwargs={
+            'language_code': translation_project.language.code,
+            'project_code': translation_project.project.code,
+        }),
+        'translate_url': reverse('pootle-tp-translate', kwargs={
+            'language_code': translation_project.language.code,
+            'project_code': translation_project.project.code,
+        }),
 
         'translation_project': translation_project,
         'language': translation_project.language,

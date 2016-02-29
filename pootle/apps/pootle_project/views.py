@@ -176,6 +176,17 @@ def project_admin(request, current_project):
     ctx = {
         'page': 'admin-languages',
 
+        'browse_url': reverse('pootle-project-browse', kwargs={
+            'project_code': current_project.code,
+            'dir_path': '',
+            'filename': '',
+        }),
+        'translate_url': reverse('pootle-project-translate', kwargs={
+            'project_code': current_project.code,
+            'dir_path': '',
+            'filename': '',
+        }),
+
         'project': {
             'code': current_project.code,
             'name': current_project.fullname,
@@ -202,6 +213,17 @@ def project_admin(request, current_project):
 def project_admin_permissions(request, project):
     ctx = {
         'page': 'admin-permissions',
+
+        'browse_url': reverse('pootle-project-browse', kwargs={
+            'project_code': project.code,
+            'dir_path': '',
+            'filename': '',
+        }),
+        'translate_url': reverse('pootle-project-translate', kwargs={
+            'project_code': project.code,
+            'dir_path': '',
+            'filename': '',
+        }),
 
         'project': project,
         'directory': project.directory,

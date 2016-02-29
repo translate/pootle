@@ -42,6 +42,15 @@ def admin_permissions(request, translation_project):
     ctx = {
         'page': 'admin-permissions',
 
+        'browse_url': reverse('pootle-tp-browse', kwargs={
+            'language_code': translation_project.language.code,
+            'project_code': translation_project.project.code,
+        }),
+        'translate_url': reverse('pootle-tp-translate', kwargs={
+            'language_code': translation_project.language.code,
+            'project_code': translation_project.project.code,
+        }),
+
         'translation_project': translation_project,
         'project': translation_project.project,
         'language': translation_project.language,
