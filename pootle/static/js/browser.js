@@ -8,7 +8,6 @@
 
 import $ from 'jquery';
 import 'jquery-select2';
-import _ from 'underscore';
 
 import cookie from 'utils/cookie';
 
@@ -210,7 +209,7 @@ function formatProject(path) {
 
 function removeCtxEntries(results, container, query) {
   if (query.term) {
-    return _.filter(results, (result) => {
+    return results.filter((result) => {
       return result.id.slice(0, 4) !== 'ctx-';
     });
   }
