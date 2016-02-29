@@ -34,7 +34,7 @@ function selectAll(e) {
 }
 
 
-const permissions = {
+const formset = {
 
   init() {
     $(document).on('change', 'td.DELETE input[type=checkbox]', setDeleteBg);
@@ -47,4 +47,4 @@ const permissions = {
 };
 
 
-export default permissions;
+export default formset;
