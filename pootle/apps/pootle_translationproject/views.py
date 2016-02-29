@@ -19,10 +19,8 @@ from django.utils.lru_cache import lru_cache
 from import_export.views import handle_upload_form
 from pootle.core.browser import (
     get_parent, get_table_headings, make_directory_item, make_store_item)
-from pootle.core.decorators import (
-    get_path_obj, permission_required)
-from pootle.core.helpers import (
-    get_sidebar_announcements_context)
+from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import (
     PootleBrowseView, PootleTranslateView, PootleExportView)
 from pootle_app.models import Directory
