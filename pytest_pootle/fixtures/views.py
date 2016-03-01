@@ -251,7 +251,7 @@ def project_views(request, client):
     from pootle_project.models import Project
 
     test_type = request.param.split("_")[0]
-    project = Project.objects.all()[0]
+    project = Project.objects.get(code="project0")
     kwargs = {"project_code": project.code, "dir_path": "", "filename": ""}
     kwargs.update(PROJECT_VIEW_TESTS[request.param])
     view_name = "pootle-project-%s" % test_type
