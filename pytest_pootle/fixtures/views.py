@@ -214,6 +214,35 @@ TP_VIEW_TESTS = OrderedDict(
       {"dir_path": "subdir0/",
        "filename": "store3.po"})))
 
+DISABLED_PROJECT_URL_PARAMS = OrderedDict(
+    (("project", {
+        "view_name": "pootle-project",
+        "project_code": "disabled_project0",
+        "dir_path": "",
+        "filename": ""}),
+     ("tp", {
+         "view_name": "pootle-tp",
+         "project_code": "disabled_project0",
+         "language_code": "language0",
+         "dir_path": ""}),
+     ("tp_subdir", {
+         "view_name": "pootle-tp",
+         "project_code": "disabled_project0",
+         "language_code": "language0",
+         "dir_path": "subdir0/"}),
+     ("tp_store", {
+         "view_name": "pootle-tp-store",
+         "project_code": "disabled_project0",
+         "language_code": "language0",
+         "dir_path": "",
+         "filename": "store0.po"}),
+     ("tp_subdir_store", {
+         "view_name": "pootle-tp-store",
+         "project_code": "disabled_project0",
+         "language_code": "language0",
+         "dir_path": "subdir0/",
+         "filename": "store1.po"})))
+
 
 @pytest.fixture(params=GET_UNITS_TESTS.keys())
 def get_units_views(request, client, request_users):
@@ -345,3 +374,19 @@ def tp_uploads(client, member):
             for unit in store.units])})
 
     return tp, response.wsgi_request, response, kwargs
+
+
+@pytest.fixture(params=("browse", "translate", "export"))
+def view_types(request):
+    """List of possible view types."""
+    return request.param
+
+
+@pytest.fixture(params=DISABLED_PROJECT_URL_PARAMS.keys())
+def dp_view_urls(request, view_types):
+    """List of url params required for disabled project tests."""
+    kwargs = DISABLED_PROJECT_URL_PARAMS[request.param].copy()
+    view_name = kwargs.pop("view_name")
+    view_name = "%s-%s" % (view_name, view_types)
+
+    return reverse(view_name, kwargs=kwargs)
