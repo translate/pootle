@@ -38,8 +38,8 @@ class PootleTestEnv(object):
     methods = (
         "redis", "case_sensitive_schema", "content_type", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
-        "site_permissions", "tps", "vfolders", "subdirs", "submissions",
-        "announcements", "terminology")
+        "site_permissions", "tps", "disabled_project", "vfolders",
+        "subdirs", "submissions", "announcements", "terminology")
 
     def __init__(self, request):
         self.request = request
@@ -299,6 +299,28 @@ class PootleTestEnv(object):
                                      source_language=source_language)
         for language in Language.objects.all():
             TranslationProjectFactory(project=terminology, language=language)
+
+    def setup_disabled_project(self):
+        from pytest_pootle.factories import (DirectoryFactory,
+                                             ProjectFactory,
+                                             TranslationProjectFactory)
+
+        from pootle_language.models import Language
+
+        source_language = Language.objects.get(code="en")
+        project = ProjectFactory(code="disabled_project0",
+                                 fullname="Disabled Project 0",
+                                 source_language=source_language)
+        project.disabled = True
+        project.save()
+        language = Language.objects.get(code="language0")
+        tp = TranslationProjectFactory(project=project, language=language)
+        tp_dir = tp.directory
+        tp_dir.obsolete = False
+        tp_dir.save()
+        self._add_stores(tp, n=(1, 1))
+        subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory)
+        self._add_stores(tp, n=(1, 1), parent=subdir0)
 
     def setup_subdirs(self):
         from pytest_pootle.factories import DirectoryFactory
