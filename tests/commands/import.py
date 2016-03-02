@@ -71,7 +71,8 @@ def test_import_onefile_with_user(capfd, tmpdir, site_users):
                  os.path.join(p.dirname, p.basename))
     out, err = capfd.readouterr()
     assert user in out
-    assert "Updating /language0/project0/store0.po" in err
+    assert "[update]" in err
+    assert "units in /language0/project0/store0.po" in err
 
 
 @pytest.mark.cmd
