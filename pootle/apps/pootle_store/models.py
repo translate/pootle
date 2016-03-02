@@ -2135,12 +2135,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             state=SuggestionStates.PENDING
         ).count()
 
-    def refresh_stats(self, include_children=True, cached_methods=None):
-        """This TreeItem method is used on directories, translation projects,
-        languages and projects. For stores do nothing
-        """
-        return
-
     def all_pootle_paths(self):
         """Get cache_key for all parents (to the Language and Project)
         of current TreeItem
