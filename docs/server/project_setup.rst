@@ -115,7 +115,7 @@ Pootle, so you also need to run :djadmin:`update_stores`:
 
 This will import all the translations from disk into Pootle, calculate the
 translation statistics and calculate the quality check failures. This might
-take a while in your project is large.
+take a while if your project is large.
 
 
 .. _project_setup#initialize-new-tp:
