@@ -114,6 +114,9 @@ class DBSearchBackend(object):
         user = kwargs['user']
         vfolder = kwargs["vfolder"]
 
+        if self.sort_by in ["submitted_on", "-submitted_on"]:
+            qs = qs.exclude(submitted_on__isnull=True)
+
         if vfolder is not None:
             qs = qs.filter(vfolders=vfolder)
 
