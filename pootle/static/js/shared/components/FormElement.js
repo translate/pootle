@@ -62,16 +62,6 @@ const FormElement = React.createClass({
       name: attribute,
       value: this.props.formData[attribute],
     };
-    if (this.props.type === 'select') {
-      // FIXME: react-select's issue #25 prevents using non-string values
-      newProps.value = newProps.value.toString();
-
-      newProps.placeholder = gettext('Select...');
-      newProps.noResultsText = gettext('No results found');
-      newProps.clearValueText = gettext('Clear value');
-      newProps.clearAllText = gettext('Clear all');
-      newProps.searchPromptText = gettext('Type to search');
-    }
 
     return (
       <div className="field-wrapper">
