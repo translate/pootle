@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import _ from 'underscore';
 
 import FormCheckedInput from './FormCheckedInput';
 import FormValueInput from './FormValueInput';
@@ -42,7 +41,7 @@ const FormElement = React.createClass({
     const fieldId = `id_${attribute}`;
     const hint = this.props.help;
 
-    const errors = (_.size(this.props.errors) > 0 &&
+    const errors = (Object.keys(this.props.errors).length > 0 &&
                     this.props.errors[attribute]);
 
     const InputComponent = {
