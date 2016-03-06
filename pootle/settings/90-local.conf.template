@@ -203,6 +203,10 @@ POOTLE_MARKUP_FILTER = (None, {})
 # be used in case the service supports using an API key.
 #
 # Available options are:
+# 'CAIGHDEAN_TRANSLATE': Caighdeán Translate service.
+#             Provides translation from Manx Gaelic (gv) and
+#             Scottish Gaelic (gd), into Irish Gaelic (ga-IE)
+#             See more at https://github.com/kscanne/caighdean
 # 'GOOGLE_TRANSLATE': Google Translate service.
 #             For this service you need to set the API key.
 #             Note that Google Translate API is a paid service
@@ -212,6 +216,7 @@ POOTLE_MARKUP_FILTER = (None, {})
 #             See more at https://tech.yandex.com/translate/
 #
 POOTLE_MT_BACKENDS = [
+#        ('CAIGHDEAN_TRANSLATE', ''),
 #        ('GOOGLE_TRANSLATE', ''),
 #        ('YANDEX_TRANSLATE', ''),
 ]
