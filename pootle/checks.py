@@ -176,6 +176,20 @@ def check_settings(app_configs=None, **kwargs):
                 id="pootle.C004",
             ))
 
+    redis_cache_aliases = ("default", "redis", "stats")
+    redis_locations = set()
+    for alias in redis_cache_aliases:
+        if alias in settings.CACHES:
+            redis_locations.add(settings.CACHES.get(alias, {}).get("LOCATION"))
+
+    if len(redis_locations) < len(redis_cache_aliases):
+        errors.append(checks.Critical(
+            _("Distinct django_redis.cache.RedisCache configurations "
+              "are required for `default`, `redis` and `stats`."),
+            hint=_("Double-check your CACHES settings"),
+            id="pootle.C017",
+        ))
+
     if settings.DEBUG:
         errors.append(checks.Warning(
             _("DEBUG mode is on. Do not do this in production!"),
