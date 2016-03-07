@@ -734,9 +734,13 @@ class Unit(models.Model, base.TranslationUnit):
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
 
-            if filter(None, self.target_f.strings) or notempty:
+            if not filter(None, self.target_f.strings):
                 # FIXME: we need to do this cause we discard nplurals for empty
                 # plurals
+                if notempty:
+                    unit.state = UNTRANSLATED
+                    changed = True
+            else:
                 changed = True
 
         notes = unit.getnotes(origin="developer")
