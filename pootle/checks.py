@@ -429,3 +429,24 @@ def check_email_server_is_alive(app_configs=None, **kwargs):
         else:
             connection.close()
     return errors
+
+
+@checks.register()
+def check_revision(app_configs=None, **kwargs):
+    from pootle.core.models import Revision
+    from pootle_store.models import Unit
+
+    errors = []
+    revision = Revision.get()
+    try:
+        max_revision = Unit.max_revision()
+    except (OperationalError, ProgrammingError):
+        return errors
+    if revision is None or revision < max_revision:
+        errors.append(checks.Critical(
+            _("Revision is missing or has an incorrect value."),
+            hint=_("Run `revision --restore` to reset the revision counter."),
+            id="pootle.C016",
+        ))
+
+    return errors
