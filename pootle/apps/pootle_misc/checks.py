@@ -266,7 +266,20 @@ class SkipCheck(Exception):
     pass
 
 
-class ENChecker(checks.TranslationChecker):
+class ENChecker(checks.UnitChecker):
+
+    def run_test(self, test, unit):
+        """Runs the given test on the given unit."""
+        return test(self.source_string, self.target_string)
+
+    def run_filters(self, unit, categorised=False):
+        """Make some optimizations before running individual filters in
+        `run_test`.
+        """
+        self.source_string = data.normalized_unicode(unit.source) or u''
+        self.target_string = data.normalized_unicode(unit.target) or u''
+
+        return super(ENChecker, self).run_filters(unit, categorised)
 
     @critical
     def java_format(self, str1, str2):
