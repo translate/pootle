@@ -270,7 +270,8 @@ class ENChecker(checks.UnitChecker):
 
     def run_test(self, test, unit):
         """Runs the given test on the given unit."""
-        return test(self.source_string, self.target_string)
+        return test(self.source_string, self.target_string,
+                    language_code=self.language_code)
 
     def run_filters(self, unit, categorised=False):
         """Make some optimizations before running individual filters in
@@ -278,6 +279,8 @@ class ENChecker(checks.UnitChecker):
         """
         self.source_string = data.normalized_unicode(unit.source) or u''
         self.target_string = data.normalized_unicode(unit.target) or u''
+
+        self.language_code = unit.store.translation_project.language.code
 
         return super(ENChecker, self).run_filters(unit, categorised)
 
