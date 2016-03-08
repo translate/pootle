@@ -1399,7 +1399,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                    db_index=True, verbose_name=_("Path"))
     # any changes to the `name` field may require updating the schema
     # see migration 0007_case_sensitive_schema.py
-    name = models.CharField(max_length=128, null=False, editable=False)
+    name = models.CharField(
+        max_length=128, null=False, editable=False, db_index=True)
 
     file_mtime = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
