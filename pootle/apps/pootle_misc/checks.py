@@ -115,6 +115,7 @@ check_names = {
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
     'double_quotes_in_tags': _(u"Double quotes in tags"),
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
+    'plurr_format': _(u'Plurr format'),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy',
@@ -960,6 +961,32 @@ class ENChecker(checks.UnitChecker):
                 return True
 
         raise checks.FilterFailure(u"Double quotes in tags mismatch")
+
+    @critical
+    def plurr_format(self, str1, str2, **kwargs):
+        """For plurr-formatted strings, checks the syntax is correct."""
+        # Ignore check for non Plurr-formatted strings
+        if not plurr_format_regex.search(str1):
+            return True
+
+        # Ignore check if library is missing
+        try:
+            from plurr import Plurr
+        except ImportError:
+            return True
+
+        plurr = Plurr()
+
+        try:
+            plurr.format(str2, {}, {
+                'locale': kwargs['language_code'],
+                'strict': False,
+                'callback': lambda x: '',
+            })
+        except SyntaxError as e:
+            raise checks.FilterFailure(e.message)
+
+        return True
 
 
 def run_given_filters(checker, unit, check_names=None):

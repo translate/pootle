@@ -13,6 +13,11 @@ from translate.filters.checks import FilterFailure
 
 from pootle_misc.checks import ENChecker
 
+try:
+    from plurr import Plurr
+except ImportError:
+    Plurr = None
+
 
 checker = ENChecker()
 
@@ -317,3 +322,27 @@ def test_broken_entities(source_string, target_string, should_skip):
 def test_date_format(source_string, target_string, should_skip):
     check = checker.date_format
     assert_check(check, source_string, target_string, should_skip)
+
+
+@pytest.mark.skipif(Plurr is None, reason='Plurr library not installed')
+@pytest.mark.parametrize('source_string, target_string, should_skip', [
+    (u'', u'', True),
+    (u'Foo bar', u'', True),
+    (u'Foo {bar}', u'', True),
+
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:foo}', True),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:foo|{BAR}}', True),
+
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:foo', False),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo BAR_PLURAL:foo}', False),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{BAR|foo}', False),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:BAR}|foo}', False),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{BAR}|foo}}', False),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{BAR}|{foo}', False),
+    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{{{BAR}}|foo}', False),
+])
+def test_plurr_format(source_string, target_string, should_skip):
+    check = checker.plurr_format
+    assert_check(check, source_string, target_string, should_skip,
+                 language_code='ru')
