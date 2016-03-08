@@ -17,7 +17,7 @@ from pootle_misc.checks import ENChecker
 checker = ENChecker()
 
 
-def assert_check(check, source_string, target_string, should_skip):
+def assert_check(check, source_string, target_string, should_skip, **kwargs):
     """Runs `check` and asserts whether it should be skipped or not for the
     given `source_string` and `target_string`.
 
@@ -27,7 +27,7 @@ def assert_check(check, source_string, target_string, should_skip):
     :param should_skip: Whether the check should be skipped.
     """
     try:
-        assert should_skip == check(source_string, target_string)
+        assert should_skip == check(source_string, target_string, **kwargs)
     except FilterFailure:
         assert not should_skip
 
