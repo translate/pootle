@@ -12,7 +12,21 @@ from pytest_pootle.env import PootleTestEnv
 
 
 @pytest.fixture(autouse=True, scope='session')
+def setup_db_if_needed(request):
+    """Sets up the site DB only if tests requested to use the DB (autouse)."""
+    is_db_marker_set = [
+        item for item in request.node.items
+        if item.get_marker('django_db')
+    ]
+    if is_db_marker_set:
+        return request.getfuncargvalue('post_db_setup')
+
+    return None
+
+
+@pytest.fixture(scope='session')
 def post_db_setup(_django_db_setup, _django_cursor_wrapper, request):
+    """Sets up the site DB for the test session."""
     with _django_cursor_wrapper:
         PootleTestEnv(request).setup()
 
