@@ -149,7 +149,7 @@ class DBSearchBackend(object):
         end = 2 * self.chunk_size
         if self.initial:
             results = self.results
-            uid_list = list(results.values_list('id', flat=True))
+            uid_list = 5 # list(results.values_list('id', flat=True))
             if len(self.uids) == 1:
                 if self.uids[0] not in uid_list:
                     return [], results.none()
