@@ -43,6 +43,7 @@ from pootle.core.url_helpers import (
     get_all_pootle_paths, get_editor_filter, split_pootle_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
+from pootle_app.models import Directory
 from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, get_checker, run_given_filters
 from pootle_misc.util import import_func
@@ -309,6 +310,12 @@ class UnitManager(models.Manager):
             project_code or PROJECT_REGEX,
             dir_path or "",
             filename or "")
+
+        if dir_path and not filename:
+            relevant_directory = Directory.objects.filter(
+                pootle_path__regex=pootle_path)
+            if not relevant_directory.exists():
+                return units_qs.none()
 
         if language_code and project_code:
             if filename:
