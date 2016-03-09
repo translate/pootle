@@ -39,7 +39,7 @@ class Command(PootleCommand):
             default="name",
             choices=["name", "contributions"],
             dest="sort_by",
-            help="Sort by specified item. Accepts name and contributions. "
+            help="Sort by specified item. Accepts: %(choices)s. "
                  "Default: %(default)s",
         )
 
