@@ -218,9 +218,7 @@ class UnitManager(models.Manager):
 
     def live(self):
         """Filters non-obsolete units."""
-        return self.filter(
-            state__in=(
-                UNTRANSLATED, TRANSLATED, FUZZY))
+        return self.filter(state__gt=OBSOLETE)
 
     def get_for_user(self, user, project_code=None):
         """Filters units for a specific user.
