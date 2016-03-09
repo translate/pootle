@@ -93,7 +93,8 @@ def init_settings(settings_filepath, template_filename,
 
     with open(settings_filepath, 'w') as settings:
         with open(template_filename) as template:
-            settings.write(template.read() % context)
+            settings.write(
+                (template.read().decode("utf8") % context).encode("utf8"))
 
 
 def init_command(parser, settings_template, args):
