@@ -27,13 +27,23 @@ class Command(PootleCommand):
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
-        parser.add_argument(
+
+        timeframe = parser.add_mutually_exclusive_group(required=False)
+        timeframe.add_argument(
             "--from-revision",
             type=int,
             default=0,
             dest="revision",
             help="Only count contributions newer than this revision",
         )
+        timeframe.add_argument(
+            "--since",
+            action="store",
+            dest="since",
+            help=('ISO 8601 format: 2016-01-24T23:15:22+0000 or '
+                  '"2016-01-24 23:15:22 +0000"'),
+        )
+
         parser.add_argument(
             "--sort-by",
             default="name",
@@ -50,6 +60,35 @@ class Command(PootleCommand):
                  "are excluded.",
         )
 
+    def _get_revision_from_since(self, since):
+        from pootle.core.dateparse import parse_datetime
+        from pootle.core.utils.timezone import make_aware
+        from pootle_statistics.models import Submission
+
+        if " " in since:
+            since = "%sT%s%s" % tuple(since.split(" "))
+
+        since = make_aware(parse_datetime(since))
+
+        submissions_qs = Submission.objects.filter(creation_time__lt=since)
+
+        if self.projects:
+            submissions_qs = submissions_qs.filter(
+                translation_project__project__code__in=self.projects,
+            )
+
+        if self.languages:
+            submissions_qs = submissions_qs.filter(
+                translation_project__language__code__in=self.languages,
+            )
+
+        submission = submissions_qs.last()
+
+        if submission is None:
+            return 0
+
+        return submission.unit.revision
+
     def handle_all(self, **options):
         system_user = User.objects.get_system_user()
         units = Unit.objects.exclude(submitted_by=system_user) \
@@ -61,6 +100,10 @@ class Command(PootleCommand):
 
         if options["revision"]:
             units = units.filter(revision__gte=options["revision"])
+        elif options["since"]:
+            units = units.filter(
+                revision__gte=self._get_revision_from_since(options["since"]),
+            )
 
         if self.projects:
             units = units.filter(
