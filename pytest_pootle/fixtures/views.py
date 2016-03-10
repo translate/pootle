@@ -276,9 +276,14 @@ def get_units_views(request, client, request_users):
 
 
 @pytest.fixture(params=PROJECT_VIEW_TESTS.keys())
-def project_views(request, client):
+def project_views(request, client, request_users):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_project.models import Project
+
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
 
     test_type = request.param.split("_")[0]
     project = Project.objects.get(code="project0")

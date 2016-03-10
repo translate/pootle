@@ -38,6 +38,11 @@ from virtualfolder.models import VirtualFolderTreeItem
 
 
 def _test_translate_view(project, request, response, kwargs, settings):
+
+    if not request.user.is_superuser:
+        assert response.status_code == 403
+        return
+
     ctx = response.context
     kwargs["project_code"] = project.code
     ctx_path = (
@@ -49,7 +54,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
         ctx,
         **dict(
             page="translate",
-            is_admin=False,
+            is_admin=request.user.is_superuser,
             language=None,
             project=project,
             pootle_path=pootle_path,
@@ -116,6 +121,17 @@ def _test_browse_view(project, request, response, kwargs):
         'headings': get_table_headings(table_fields),
         'items': items}
 
+    if request.user.is_superuser or kwargs.get("language_code"):
+        url_action_continue = ob.get_translate_url(state='incomplete')
+        url_action_fixcritical = ob.get_critical_url()
+        url_action_review = ob.get_translate_url(state='suggestions')
+        url_action_view_all = ob.get_translate_url(state='all')
+    else:
+        (url_action_continue,
+         url_action_fixcritical,
+         url_action_review,
+         url_action_view_all) = [None] * 4
+
     assertions = dict(
         page="browse",
         project=project,
@@ -123,10 +139,10 @@ def _test_browse_view(project, request, response, kwargs):
         pootle_path="/projects/%s" % project_path,
         resource_path=resource_path,
         resource_path_parts=get_path_parts(resource_path),
-        url_action_continue=ob.get_translate_url(state='incomplete'),
-        url_action_fixcritical=ob.get_critical_url(),
-        url_action_review=ob.get_translate_url(state='suggestions'),
-        url_action_view_all=ob.get_translate_url(state='all'),
+        url_action_continue=url_action_continue,
+        url_action_fixcritical=url_action_fixcritical,
+        url_action_review=url_action_review,
+        url_action_view_all=url_action_view_all,
         translation_states=get_translation_states(ob),
         check_categories=get_qualitycheck_schema(ob),
         table=table,
@@ -178,7 +194,11 @@ def test_views_project(project_views, settings):
 
 
 @pytest.mark.django_db
-def test_view_projects_browse(client):
+def test_view_projects_browse(client, request_users):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
     response = client.get(reverse("pootle-projects-browse"))
     assert response.cookies["pootle-language"].value == "projects"
     ctx = response.context
@@ -200,6 +220,18 @@ def test_view_projects_browse(client):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items}
+
+    if request.user.is_superuser:
+        url_action_continue = ob.get_translate_url(state='incomplete')
+        url_action_fixcritical = ob.get_critical_url()
+        url_action_review = ob.get_translate_url(state='suggestions')
+        url_action_view_all = ob.get_translate_url(state='all')
+    else:
+        (url_action_continue,
+         url_action_fixcritical,
+         url_action_review,
+         url_action_view_all) = [None] * 4
+
     assertions = dict(
         page="browse",
         pootle_path="/projects/",
@@ -211,16 +243,25 @@ def test_view_projects_browse(client):
         stats=jsonify(ob.get_stats()),
         check_categories=get_qualitycheck_schema(ob),
         translation_states=get_translation_states(ob),
-        url_action_continue=ob.get_translate_url(state='incomplete'),
-        url_action_fixcritical=ob.get_critical_url(),
-        url_action_review=ob.get_translate_url(state='suggestions'),
-        url_action_view_all=ob.get_translate_url(state='all'))
+        url_action_continue=url_action_continue,
+        url_action_fixcritical=url_action_fixcritical,
+        url_action_review=url_action_review,
+        url_action_view_all=url_action_view_all)
     view_context_test(ctx, **assertions)
 
 
 @pytest.mark.django_db
-def test_view_projects_translate(client, settings):
+def test_view_projects_translate(client, settings, request_users):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
     response = client.get(reverse("pootle-projects-translate"))
+
+    if not user.is_superuser:
+        assert response.status_code == 403
+        return
+
     ctx = response.context
     request = response.wsgi_request
     assertions = dict(
