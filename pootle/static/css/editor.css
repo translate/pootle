@@ -1306,6 +1306,7 @@ div.translate-translation
 div.translate-translation.raw textarea.translation
 {
     direction: ltr;
+    unicode-bidi: bidi-override;
     font-family: monospace;
     font-size: 140%;
     line-height: 110%;
