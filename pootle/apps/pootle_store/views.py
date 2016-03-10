@@ -60,8 +60,8 @@ from .util import STATES_MAP, find_altsrcs, get_search_backend
 ALLOWED_SORTS = {
     'units': {
         'priority': '-priority',
-        'oldest': 'submitted_on',
-        'newest': '-submitted_on',
+        'oldest': 'mtime',
+        'newest': '-mtime',
     },
     'suggestions': {
         'oldest': 'suggestion__creation_time',
