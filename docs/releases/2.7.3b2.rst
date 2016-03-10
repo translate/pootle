@@ -20,6 +20,9 @@ Details of changes
   usernames.
 - :djadmin:`refresh_scores` now recalculates user scores and accept
   multiple usernames.
+- :djadmin:`contributors` has two new options
+  :option:`--since <contributors --since>` and
+  :option:`--only-emails <contributors --only-emails>`.
 
 - :setting:`POOTLE_SCORE_COEFFICIENTS` accepts custom settings for user
   scores calculation.
