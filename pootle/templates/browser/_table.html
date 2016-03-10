@@ -42,7 +42,11 @@
 
       {% if 'total' in table.fields %}
       <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
-        <a class="non-zero" href="{{ item.href_all }}"></a>
+        {% if can_translate %}
+        <a class="stats-data non-zero" href="{{ item.href_all }}"></a>
+        {% else %}
+        <span class="stats-data non-zero"></span>
+        {% endif %}
         <span class="zero muted">0</span>
         <span class="not-inited muted">—</span>
       </td>
@@ -56,7 +60,11 @@
 
       {% if 'need-translation' in table.fields %}
       <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation not-inited">
-        <a class="non-zero" href="{{ item.href_todo }}"></a>
+        {% if can_translate %}
+        <a class="stats-data non-zero" href="{{ item.href_todo }}"></a>
+        {% else %}
+        <span class="stats-data non-zero"></span>
+        {% endif %}
         <span class="zero muted">0</span>
         <span class="not-inited muted">—</span>
       </td>
@@ -64,7 +72,11 @@
 
       {% if 'suggestions' in table.fields %}
       <td id="suggestions-{{ item.code|cssid }}" class="stats-number suggestions not-inited">
-        <a class="non-zero" href="{{ item.href_sugg }}"></a>
+        {% if can_translate %}
+        <a class="stats-data non-zero" href="{{ item.href_sugg }}"></a>
+        {% else %}
+        <span class="stats-data non-zero"></span>
+        {% endif %}
         <span class="zero muted">0</span>
         <span class="not-inited muted">—</span>
       </td>
@@ -72,7 +84,11 @@
 
       {% if 'critical' in table.fields %}
       <td id="critical-{{ item.code|cssid }}" class="stats-number critical not-inited">
-        <a class="non-zero" href="{{ item.href_critical }}"></a>
+        {% if can_translate %}
+        <a class="stats-data non-zero" href="{{ item.href_critical }}"></a>
+        {% else %}
+        <span class="stats-data non-zero"></span>
+        {% endif %}
         <span class="zero muted">0</span>
         <span class="not-inited muted">—</span>
       </td>

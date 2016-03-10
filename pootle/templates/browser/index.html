@@ -23,7 +23,13 @@
           {% for item in translation_states %}
           <tr id="stats-{{ item.state }}">
             <td id="stats-name">{{ item.title }}</td>
-            <td class="stats-number"><a href="{{ item.url }}"></a></td>
+            <td class="stats-number">
+              {% if can_translate_stats %}
+              <a href="{{ item.url }}" class="stats-data"></a>
+              {% else %}
+              <span class="stats-data"></span>
+              {% endif %}
+            </td>
             <td class="stats-percentage"><span></span>%</td>
           </tr>
           {% endfor %}
@@ -52,8 +58,13 @@
           <h4 class="clear">{{ item.title }}</h4>
           {% for check in item.checks %}
           <div class="check js-check" data-code="{{ check.code }}">
-            <div class="check-name"><a href="{{ check.url }}">{{ check.title }}</a></div>
-            <div class="check-count"><a href="{{ check.url }}">0</a></div>
+            {% if can_translate_stats %}
+            <div class="check-name"><a class="check-data" href="{{ check.url }}">{{ check.title }}</a></div>
+            <div class="check-count"><a class="check-data" href="{{ check.url }}">0</a></div>
+            {% else %}
+            <div class="check-name"><span class="check-data">{{ check.title }}</span></div>
+            <div class="check-count"><span class="check-data">0</span></div>
+            {% endif %}
           </div>
           {% endfor %}
         </div>
