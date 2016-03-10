@@ -599,18 +599,30 @@ class PootleBrowseView(PootleDetailView):
 
     def get_context_data(self, *args, **kwargs):
         filters = {}
+        can_translate = False
+        can_translate_stats = False
         if self.has_vfolders:
             filters['sort'] = 'priority'
 
-        url_action_continue = self.object.get_translate_url(
-            state='incomplete',
-            **filters)
-        url_action_fixcritical = self.object.get_critical_url(
-            **filters)
-        url_action_review = self.object.get_translate_url(
-            state='suggestions',
-            **filters)
-        url_action_view_all = self.object.get_translate_url(state='all')
+        if self.request.user.is_superuser or self.language:
+            can_translate = True
+            can_translate_stats = True
+            url_action_continue = self.object.get_translate_url(
+                state='incomplete',
+                **filters)
+            url_action_fixcritical = self.object.get_critical_url(
+                **filters)
+            url_action_review = self.object.get_translate_url(
+                state='suggestions',
+                **filters)
+            url_action_view_all = self.object.get_translate_url(state='all')
+        else:
+            if self.project:
+                can_translate = True
+            url_action_continue = None
+            url_action_fixcritical = None
+            url_action_review = None
+            url_action_view_all = None
         ctx, cookie_data = self.sidebar_announcements
         ctx.update(
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
@@ -619,6 +631,8 @@ class PootleBrowseView(PootleDetailView):
              'stats': jsonify(self.stats),
              'translation_states': get_translation_states(self.object),
              'check_categories': get_qualitycheck_schema(self.object),
+             'can_translate': can_translate,
+             'can_translate_stats': can_translate_stats,
              'url_action_continue': url_action_continue,
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,

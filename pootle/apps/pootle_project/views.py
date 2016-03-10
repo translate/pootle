@@ -26,7 +26,8 @@ from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
-    PootleBrowseView, PootleExportView, PootleTranslateView, PootleAdminView)
+    PootleAdminView, PootleDetailView, PootleBrowseView, PootleExportView,
+    PootleTranslateView, set_permissions, requires_permission)
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
@@ -160,6 +161,11 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
 
 
 class ProjectTranslateView(ProjectMixin, PootleTranslateView):
+
+    @set_permissions
+    @requires_permission("administrate")
+    def dispatch(self, request, *args, **kwargs):
+        return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
 
     @property
     def pootle_path(self):
@@ -370,7 +376,11 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
 
 
 class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):
-    pass
+
+    @set_permissions
+    @requires_permission("administrate")
+    def dispatch(self, request, *args, **kwargs):
+        return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class ProjectsExportView(ProjectsMixin, PootleExportView):
