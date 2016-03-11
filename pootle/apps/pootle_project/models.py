@@ -17,7 +17,7 @@ from translate.lang.data import langcode_re
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
@@ -379,12 +379,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         super(Project, self).delete(*args, **kwargs)
 
         directory.delete()
-
-    def clean(self):
-        if self.code in RESERVED_PROJECT_CODES:
-            raise ValidationError(
-                _('"%s" cannot be used as a project code', self.code)
-            )
 
     def directory_exists_on_disk(self):
         """Checks if the actual directory for the project exists on disk."""
