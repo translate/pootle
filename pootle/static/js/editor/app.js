@@ -100,6 +100,7 @@ PTL.editor = {
     this.$navPrev = $('#js-nav-prev');
     this.unitCountEl = document.querySelector('.js-unit-count');
     this.unitIndexEl = document.querySelector('.js-unit-index');
+    this.offsetRequested = 0;
 
     /* Initialize variables */
     this.units = new UnitSet([], {
@@ -120,6 +121,8 @@ PTL.editor = {
 
     this.isLoading = true;
     this.showActivity();
+
+    this.fetchingOffsets = [];
 
     /* Regular expressions */
     this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
@@ -343,6 +346,7 @@ PTL.editor = {
       const params = utils.getParsedHash(hash);
       let isInitial = true;
       let uId = 0;
+      let initialOffset = 0;
 
       // Walk through known filtering criterias and apply them to the editor object
 
@@ -361,6 +365,13 @@ PTL.editor = {
           uId = uIdParam;
           // Don't retrieve initial data if there are existing results
           isInitial = !this.units.length;
+        }
+      }
+
+      if (params.offset) {
+        const offset = parseInt(params.offset, 10);
+        if (offset && !isNaN(offset)) {
+          initialOffset = this.getStartOfChunk(offset);
         }
       }
 
@@ -486,10 +497,20 @@ PTL.editor = {
       this.fetchUnits({
         initial: isInitial,
         uId: uId,
+        initialOffset: initialOffset,
       }).then((hasResults) => {
         if (!hasResults) {
           return;
         }
+        if (this.units.uIds.indexOf(uId) === -1) {
+          if (this.offsetRequested > this.initialOffset && this.offsetRequested <= this.getOffsetOfLastUnit()) {
+            uId = this.units.uIds[this.offsetRequested - this.initialOffset - 1];
+          } else {
+            uId = this.units.uIds[0];
+            $.history.load(utils.updateHashPart('unit', uId));
+          }
+        }
+        this.offsetRequested = 0;
         this.setUnit(uId);
       });
     }, { 'unescape': true });
@@ -1038,6 +1059,43 @@ PTL.editor = {
    * Misc functions
    */
 
+  /* Gets the offset of a unit in the total result set */
+  getOffsetOfUid(uid) {
+    return this.initialOffset + this.units.uIds.indexOf(uid);
+  },
+
+  /* Gets the start offset for the chunk of a given offset */
+  getStartOfChunk(offset) {
+    return offset - (offset % (2 * this.units.chunkSize));
+  },
+
+  /* Sets the offset in the browser location */
+  setOffset(uid) {
+    $.history.load(utils.updateHashPart('offset', this.getStartOfChunk(this.getOffsetOfUid(uid))));
+  },
+
+  /* Gets the offset of the last unit currently held by the client */
+  getOffsetOfLastUnit() {
+    return this.initialOffset + this.units.uIds.length;
+  },
+
+  /* Remembers offsets that are currently being fetched to prevent multiple calls to same URL */
+  markAsFetching(offset) {
+    this.fetchingOffsets.push(offset);
+  },
+
+  /* Removes remembered offsets once the XHR call has completed */
+  markAsFetched(offset) {
+    if (this.fetchingOffsets.indexOf(offset) !== -1) {
+      this.fetchingOffsets = this.fetchingOffsets.splice(this.fetchingOffsets.indexOf(offset), 1);
+    }
+  },
+
+  /* Returns true if client is awaiting a get_units call with given offset */
+  isBeingFetched(offset) {
+    return this.fetchingOffsets.indexOf(offset) !== -1;
+  },
+
   /* Gets common request data */
   getReqData() {
     const reqData = {};
@@ -1241,102 +1299,118 @@ PTL.editor = {
 
   /* Updates the navigation widget */
   updateNavigation() {
-    this.updateNavButton(this.$navPrev, !this.units.hasPrev());
+    this.updateNavButton(this.$navPrev, (this.initialOffset === 0) && !this.units.hasPrev());
     this.updateNavButton(this.$navNext, !this.units.hasNext());
 
     this.unitCountEl.textContent = this.units.total;
 
     const currentUnit = this.units.getCurrent();
     if (currentUnit !== undefined) {
-      this.unitIndexEl.textContent = this.units.uIds.indexOf(currentUnit.id) + 1;
+      if (this.offsetRequested === 0) {
+        this.unitIndexEl.textContent = (this.units.uIds.indexOf(currentUnit.id) + 1) + this.initialOffset;
+      }
     }
   },
 
   /* Fetches more units in case they are needed */
-  fetchUnits({ initial = false, uId = 0 } = {}) {
-    const reqData = {
-      path: this.settings.pootlePath,
-    };
-
+  fetchUnits({ initial = false, uId = 0, initialOffset = 0 } = {}) {
+    let offsetToFetch = -1;
+    let uidToFetch = -1;
+    let previousUids = [];
     if (initial) {
-      reqData.initial = initial;
-
+      this.initialOffset = -1;
+      this.offset = 0;
       if (uId > 0) {
-        reqData.uids = uId;
+        uidToFetch = uId;
       }
-    } else {
-      // Only fetch units limited to an offset, and omit units that have
-      // already been fetched
-      const fetchedIds = this.units.fetchedIds();
-      const offset = this.units.chunkSize;
-      const curUId = uId > 0 ? uId : this.units.getCurrent().id;
-      const uIndex = this.units.uIds.indexOf(curUId);
-
-      let begin = Math.max(uIndex - offset, 0);
-      let end = Math.min(uIndex + offset + 1, this.units.total);
-
-      // Ensure we retrieve chunks of the right size
-      if (uId === 0) {
-        if (fetchedIds.indexOf(this.units.uIds[begin]) === -1) {
-          begin = Math.max(begin - offset, 0);
-        }
-        if (fetchedIds.indexOf(this.units.uIds[end - 1]) === -1) {
-          end = Math.min(end + offset + 1, this.units.total);
-        }
+      if (initialOffset > 0) {
+        offsetToFetch = initialOffset;
+        this.initialOffset = initialOffset;
       }
-
-      let uIds = this.units.uIds.slice(begin, end);
-      uIds = _.difference(uIds, fetchedIds);
-
-      if (!uIds.length) {
-        /* eslint-disable new-cap */
-        return $.Deferred((deferred) => deferred.reject(false));
-        /* eslint-enable new-cap */
+    } else if (this.units.length && this.units.total) {
+      if ((this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1) && (this.units.total > (this.offset + (2 * this.units.chunkSize)))) {
+        /* The unit is in the last 7, try and get the next chunk - also sends the last chunk of uids to allow server to adjust results */
+        previousUids = this.units.uIds.slice(-(2 * this.units.chunkSize));
+        offsetToFetch = this.offset;
+      } else if ((this.units.uIds.slice(0, 7).indexOf(this.units.activeUnit.id) !== -1) && this.initialOffset > 0) {
+        /* The unit is in the first 7, try and get the previous chunk */
+        offsetToFetch = Math.max(this.initialOffset - (2 * this.units.chunkSize), 0);
       }
-
-      reqData.uids = uIds.join(',');
     }
-
-    assign(reqData, this.getReqData());
-
-    return UnitAPI.fetchUnits(reqData)
-      .then(
-        (data) => this.storeUnitData(data),
-        this.error
-      );
+    if (initial || uidToFetch > -1 || (offsetToFetch > -1 && !(this.isBeingFetched(offsetToFetch)))) {
+      const $this = this;
+      const reqData = {
+        path: this.settings.pootlePath,
+      };
+      assign(reqData, this.getReqData());
+      if (offsetToFetch > -1) {
+        this.markAsFetching(offsetToFetch);
+        if (offsetToFetch > 0) {
+          reqData.offset = offsetToFetch;
+        }
+      }
+      if (uidToFetch > -1) {
+        reqData.uids = uidToFetch;
+      }
+      if (previousUids.length > 0) {
+        reqData.previous_uids = previousUids;
+      }
+      return UnitAPI.fetchUnits(reqData)
+        .then(
+          (data) => this.storeUnitData(data),
+          this.error
+        ).always(function fetched() { $this.markAsFetched(offsetToFetch); });
+    }
+    /* eslint-disable new-cap */
+    return $.Deferred((deferred) => deferred.reject(false));
+    /* eslint-enable new-cap */
   },
 
   storeUnitData(data) {
-    if (data.uIds) {
-      // Clear old data and add new results
-      this.units.reset();
+    const { total } = data;
+    const { start } = data;
+    const { end } = data;
+    let { unitGroups } = data;
+    let prependUnits = false;
 
-      this.units.uIds = data.uIds;
-      this.units.total = data.uIds.length;
-    }
-
-    const { unitGroups } = data;
     if (!unitGroups.length) {
       this.noResults();
       return false;
     }
-
+    if (this.offset === 0) {
+      this.units.reset();
+      this.units.uIds = [];
+    }
+    if (this.initialOffset === -1) {
+      this.initialOffset = start;
+    } else if (start < this.initialOffset) {
+      this.initialOffset = start;
+      prependUnits = true;
+      unitGroups = unitGroups.reverse();
+    }
     for (let i = 0; i < unitGroups.length; i++) {
       const unitGroup = unitGroups[i];
       for (const pootlePath in unitGroup) {
         if (!unitGroup.hasOwnProperty(pootlePath)) {
           continue;
         }
-
         const group = unitGroup[pootlePath];
         const store = assign({ pootlePath: pootlePath }, group.meta);
         const units = group.units.map(
           (unit) => assign(unit, { store })  // eslint-disable-line no-loop-func
         );
-        this.units.set(units, { remove: false });
+        if (prependUnits) {
+          this.units.set(units, { remove: false, at: 0 });
+          units.reverse().map((unit) => this.units.uIds.unshift(unit.id)); // eslint-disable-line no-loop-func
+        } else {
+          this.units.set(units, { remove: false, at: this.units.length });
+          units.map((unit) => this.units.uIds.push(unit.id)); // eslint-disable-line no-loop-func
+        }
       }
     }
-
+    this.offset = end;
+    this.units.total = total;
+    this.updateNavigation();
     return true;
   },
 
@@ -1353,24 +1427,21 @@ PTL.editor = {
   /* Sets a new unit as the current one, rendering it as well */
   setUnit(unit) {
     const newUnit = this.units.setCurrent(unit);
-
-    this.updateNavigation();
-
-    this.fetchUnits();
-
     const body = {};
+    const $this = this;
     if (this.settings.vFolder) {
       body.vfolder = this.settings.vFolder;
     }
-
-    UnitAPI.fetchUnit(newUnit.id, body)
-      .then(
-        (data) => {
-          this.setEditUnit(data);
-          this.renderUnit();
-        },
-        this.error
-      );
+    this.fetchUnits().always(function fetchUnit() {
+      $this.updateNavigation();
+      UnitAPI.fetchUnit(newUnit.id, body)
+        .then(
+          (data) => {
+            $this.setEditUnit(data);
+            $this.renderUnit();
+          },
+          $this.error);
+    });
   },
 
   /* Pushes translation submissions and moves to the next unit */
@@ -1489,19 +1560,21 @@ PTL.editor = {
     if (newUnit) {
       const newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
+      this.setOffset(newUnit.id);
     }
   },
+
 
   /* Loads the next unit */
   gotoNext(opts = { isSubmission: true }) {
     if (!this.canNavigate()) {
       return false;
     }
-
     const newUnit = this.units.next();
     if (newUnit) {
       const newHash = utils.updateHashPart('unit', newUnit.id);
       $.history.load(newHash);
+      this.setOffset(newUnit.id);
     } else if (opts.isSubmission) {
       cookie('finished', '1', { path: '/' });
       window.location.href = this.backToBrowserEl.getAttribute('href');
@@ -1544,6 +1617,7 @@ PTL.editor = {
         newHash = `unit=${encodeURIComponent(uid)}`;
       }
       $.history.load(newHash);
+      PTL.editor.setOffset(uid);
     }
   },
 
@@ -1564,13 +1638,19 @@ PTL.editor = {
   gotoIndex(e) {
     if (e.which === 13) { // Enter key
       e.preventDefault();
-      const index = parseInt(this.unitIndexEl.textContent, 10);
-
-      if (index && !isNaN(index) && index > 0 &&
-          index <= this.units.total) {
-        const uId = this.units.uIds[index - 1];
-        const newHash = utils.updateHashPart('unit', uId);
-        $.history.load(newHash);
+      const index = parseInt(this.unitIndexEl.textContent, 10) - 1;
+      if (!isNaN(index)) {
+        // if index is outside of current uids clear units first
+        if (index < this.initialOffset || index >= this.getOffsetOfLastUnit()) {
+          this.initialOffset = -1;
+          this.offset = 0;
+          this.offsetRequested = index + 1;
+          $.history.load(utils.updateHashPart('offset', this.getStartOfChunk(index), ['unit']));
+        } else if (index >= 0 && index <= this.units.total) {
+          const uId = this.units.uIds[(index - this.initialOffset)];
+          const newHash = utils.updateHashPart('unit', uId);
+          $.history.load(newHash);
+        }
       }
     }
   },
