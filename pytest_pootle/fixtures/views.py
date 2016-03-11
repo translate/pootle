@@ -18,7 +18,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from pytest_pootle.env import TEST_USERS
-from pytest_pootle.utils import create_store, get_translated_uids
+from pytest_pootle.utils import create_store, get_test_uids
 
 
 DAY_AGO = (datetime.now() - timedelta(days=1))
@@ -67,9 +67,8 @@ BAD_VIEW_TESTS = OrderedDict(
 
      ("/xhr/units/1/edit/", dict(code=400)),
      ("/xhr/units/?path=/%s" % ("BAD" * 800),
-      dict(ajax=True, code=400)),
-     ("/xhr/units?filter=translated&path=/&initial=True&uids=75000",
-      dict(ajax=True))))
+      dict(ajax=True, code=400))))
+
 
 GET_UNITS_TESTS = OrderedDict(
     (("default_path", {}),
@@ -77,22 +76,28 @@ GET_UNITS_TESTS = OrderedDict(
       {"filter": "translated"}),
      ("state_translated_continued",
       {"filter": "translated",
-       "uids": functools.partial(get_translated_uids, count=9),
-       "initial": False}),
+       "uids": functools.partial(get_test_uids, count=9),
+       "offset": 10}),
      ("state_untranslated",
       {"filter": "untranslated"}),
+     ("state_untranslated",
+      {"filter": "untranslated",
+       "offset": 100000}),
      ("state_incomplete",
       {"filter": "incomplete"}),
      ("state_fuzzy",
       {"filter": "fuzzy"}),
      ("sort_units_oldest",
       {"sort_by_param": "oldest"}),
-     ("filter_translated_from_uid",
-      {"uids": get_translated_uids,
-       "filter": "translated"}),
-     ("filter_translated_from_uid_sort_priority",
-      {"uids": get_translated_uids,
-       "filter": "translated",
+     ("filter_from_uid",
+      {"path": "/language0/project0/store0.po",
+       "uids": functools.partial(get_test_uids,
+                                 pootle_path="/language0/project0/store0.po"),
+       "filter": "all"}),
+     ("filter_from_uid_sort_priority",
+      {"uids": functools.partial(get_test_uids,
+                                 pootle_path="/language0/project0/store0.po"),
+       "filter": "all",
        "sort": "priority"}),
      ("translated_by_member",
       {"filter": "translated",
@@ -248,12 +253,7 @@ DISABLED_PROJECT_URL_PARAMS = OrderedDict(
 @pytest.fixture(params=GET_UNITS_TESTS.keys())
 def get_units_views(request, client, request_users):
     params = GET_UNITS_TESTS[request.param].copy()
-    params["path"] = params.get("path", "/")
-
-    if "initial" in params and not params["initial"]:
-        del params["initial"]
-    else:
-        params["initial"] = "true"
+    params["path"] = params.get("path", "/language0/project0/")
 
     user = request_users["user"]
     if user.username != "nobody":

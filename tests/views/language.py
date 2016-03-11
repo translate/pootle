@@ -106,7 +106,7 @@ def _test_export_view(language, request, response, kwargs):
     search_form = UnitExportForm(
         form_data, user=request.user)
     assert search_form.is_valid()
-    uid_list, units_qs = get_search_backend()(
+    total, start, end, units_qs = get_search_backend()(
         request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
     unit_groups = [
