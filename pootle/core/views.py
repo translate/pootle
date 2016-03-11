@@ -685,14 +685,14 @@ class PootleExportView(PootleDetailView):
             raise Http404(
                 ValidationError(search_form.errors).messages)
 
-        uid_list, units_qs = get_search_backend()(
+        total, start, end, units_qs = get_search_backend()(
             self.request.user, **search_form.cleaned_data).search()
 
         units_qs = units_qs.select_related('store')
 
-        if len(uid_list) > search_form.cleaned_data["count"]:
+        if total > search_form.cleaned_data["count"]:
             ctx.update(
-                {'unit_total_count': len(uid_list),
+                {'unit_total_count': total,
                  'displayed_unit_count': search_form.cleaned_data["count"]})
 
         unit_groups = [
