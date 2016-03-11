@@ -210,20 +210,13 @@ def get_units(request):
                     raise Http400(_('Arguments missing.'))
         raise Http404(forms.ValidationError(search_form.errors).messages)
 
-    uid_list, units_qs = get_search_backend()(
+    total, start, end, units_qs = get_search_backend()(
         request.user, **search_form.cleaned_data).search()
-
-    bad_uid = (
-        search_form.cleaned_data["initial"]
-        and len(search_form.cleaned_data["uids"]) == 1
-        and search_form.cleaned_data["uids"][0] not in uid_list)
-    if bad_uid:
-        raise Http404
-
-    response = {'unitGroups': GroupedResults(units_qs).data}
-    if uid_list:
-        response['uIds'] = uid_list
-    return JsonResponse(response)
+    return JsonResponse(
+        {'start': start,
+         'end': end,
+         'total': total,
+         'unitGroups': GroupedResults(units_qs).data})
 
 
 @ajax_required
