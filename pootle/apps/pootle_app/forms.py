@@ -49,8 +49,8 @@ class ProjectForm(forms.ModelForm):
     class Meta(object):
         model = Project
         fields = ('id', 'code', 'fullname', 'checkstyle', 'localfiletype',
-                  'treestyle', 'source_language', 'report_email',
-                  'screenshot_search_prefix', 'disabled',)
+                  'treestyle', 'source_language', 'ignoredfiles',
+                  'report_email', 'screenshot_search_prefix', 'disabled',)
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)

@@ -21,7 +21,7 @@ export const Project = Backbone.Model.extend({
     'localfiletype': 'po',
     'treestyle': 'auto',
     'source_language': '',
-    'ignored_files': '',
+    'ignoredfiles': '',
     'screenshot_search_prefix': '',
     'disabled': false,
   },

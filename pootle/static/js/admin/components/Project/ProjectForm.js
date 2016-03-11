@@ -25,8 +25,8 @@ const ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
 
   fields: ['code', 'fullname', 'checkstyle', 'localfiletype', 'treestyle',
-           'source_language', 'report_email', 'screenshot_search_prefix',
-           'disabled'],
+           'source_language', 'ignoredfiles', 'report_email',
+           'screenshot_search_prefix', 'disabled'],
 
 
   /* Handlers */
