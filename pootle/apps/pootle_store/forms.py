@@ -413,11 +413,14 @@ def unit_comment_form_factory(language):
 
 class UnitSearchForm(forms.Form):
 
-    initial = forms.BooleanField(required=False)
     count = forms.IntegerField(required=False)
+    offset = forms.IntegerField(required=False)
     path = forms.CharField(
         max_length=2048,
         required=True)
+    previous_uids = MultipleArgsField(
+        field=forms.IntegerField(),
+        required=False)
     uids = MultipleArgsField(
         field=forms.IntegerField(),
         required=False)
