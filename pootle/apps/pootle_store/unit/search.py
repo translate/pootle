@@ -34,10 +34,6 @@ class DBSearchBackend(object):
             self.default_chunk_size)
 
     @property
-    def initial(self):
-        return self.kwargs.get('initial', True)
-
-    @property
     def project_code(self):
         return self.kwargs.get("project_code")
 
@@ -56,6 +52,14 @@ class DBSearchBackend(object):
     @property
     def unit_filter(self):
         return self.kwargs.get("filter")
+
+    @property
+    def offset(self):
+        return self.kwargs.get("offset", None)
+
+    @property
+    def previous_uids(self):
+        return self.kwargs.get("previous_uids", []) or []
 
     @property
     def sort_by(self):
@@ -145,22 +149,39 @@ class DBSearchBackend(object):
         return self.sort_qs(self.filter_qs(self.units_qs))
 
     def search(self):
-        uid_list = []
-        begin = 0
-        end = 2 * self.chunk_size
-        if self.initial:
-            results = self.results
-            uid_list = list(results.values_list('id', flat=True))
-            if len(self.uids) == 1:
-                if self.uids[0] not in uid_list:
-                    return [], results.none()
-                index = uid_list.index(self.uids[0])
-                begin = max(index - self.chunk_size, 0)
-                end = min(index + self.chunk_size + 1, len(uid_list))
-        elif self.uids:
-            results = self.results.filter(id__in=self.uids)
-        else:
-            # used by export view
-            uid_list = list(self.results.values_list('id', flat=True))
-            results = self.results[:self.chunk_size]
-        return uid_list, results[begin:end]
+        total = self.results.count()
+        start = self.offset
+
+        if start > total:
+            return total, total, total, self.results.none()
+
+        find_unit = (
+            self.language_code
+            and self.project_code
+            and self.filename
+            and self.uids)
+        find_next_slice = (
+            self.previous_uids
+            and self.offset)
+
+        if find_unit:
+            # find the uid in the Store
+            uid_list = list(self.results.values_list("pk", flat=True))
+            if self.uids[0] in uid_list:
+                unit_index = uid_list.index(self.uids[0])
+                start = (
+                    int(unit_index / (2 * self.chunk_size))
+                    * (2 * self.chunk_size))
+        elif find_next_slice:
+            # if both previous_uids and offset are set then try to ensure
+            # that the results we are returning start from the end of previous
+            # result set
+            _start = start = max(self.offset - len(self.previous_uids), 0)
+            end = max(self.offset + (2 * self.chunk_size), total)
+            uid_list = self.results[start:end].values_list("pk", flat=True)
+            for i, uid in enumerate(uid_list):
+                if uid in self.previous_uids:
+                    start = _start + i + 1
+        start = start or 0
+        end = min(start + (2 * self.chunk_size), total)
+        return total, start, end, self.results[start:end]
