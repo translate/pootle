@@ -65,6 +65,7 @@ BAD_VIEW_TESTS = OrderedDict(
      ("/LANGUAGE0/project0/store0.po",
       dict(code=301, location="/language0/project0/store0.po")),
 
+     ("/xhr/units/1/edit/", dict(code=400)),
      ("/xhr/units/?path=/%s" % ("BAD" * 800),
       dict(ajax=True, code=400)),
      ("/xhr/units?filter=translated&path=/&initial=True&uids=75000",
