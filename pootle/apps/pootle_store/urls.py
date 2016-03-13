@@ -40,7 +40,7 @@ urlpatterns = [
         views.get_more_context,
         name='pootle-xhr-units-context'),
     url(r'^xhr/units/(?P<uid>[0-9]+)/edit/?$',
-        views.get_edit_unit,
+        views.UnitEditJSON.as_view(),
         name='pootle-xhr-units-edit'),
     url(r'^xhr/units/(?P<uid>[0-9]+)/timeline/?$',
         views.timeline,

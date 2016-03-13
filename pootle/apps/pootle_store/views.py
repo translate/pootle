@@ -16,11 +16,13 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.urlresolvers import reverse
-from django.db.models import Max, Q
+from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template import RequestContext, loader
 from django.utils import timezone
+from django.utils.functional import cached_property
+from django.utils.lru_cache import lru_cache
 from django.utils.safestring import mark_safe
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -31,6 +33,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
+from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
@@ -407,102 +410,119 @@ def save_comment(request, unit):
     return JsonResponseBadRequest({'msg': _("Comment submission failed.")})
 
 
-@never_cache
-@ajax_required
-@get_unit_context('view')
-def get_edit_unit(request, unit):
-    """Given a store path ``pootle_path`` and unit id ``uid``, gathers all the
-    necessary information to build the editing widget.
+class UnitEditJSON(PootleJSON):
 
-    :return: A templatised editing widget is returned within the ``editor``
-             variable and paging information is also returned if the page
-             number has changed.
-    """
-    json = {}
+    model = Unit
+    pk_url_kwarg = "uid"
 
-    translation_project = request.translation_project
-    language = translation_project.language
+    @cached_property
+    def permission_context(self):
+        self.object = self.get_object()
+        tp_prefix = "parent__" * (self.pootle_path.count("/") - 3)
+        return Directory.objects.select_related(
+            "%stranslationproject__project"
+            % tp_prefix).get(pk=self.store.parent_id)
 
-    if unit.hasplural():
-        snplurals = len(unit.source.strings)
-    else:
+    @property
+    def pootle_path(self):
+        return self.store.pootle_path
+
+    @cached_property
+    def tp(self):
+        return self.store.translation_project
+
+    @cached_property
+    def store(self):
+        return self.object.store
+
+    @cached_property
+    def source_language(self):
+        return self.project.source_language
+
+    @cached_property
+    def directory(self):
+        return self.store.parent
+
+    def get_edit_template(self):
+        if self.project.is_terminology or self.store.is_terminology:
+            return loader.get_template('editor/units/term_edit.html')
+        return loader.get_template('editor/units/edit.html')
+
+    def render_edit_template(self, context):
+        return self.get_edit_template().render(
+            RequestContext(self.request, context))
+
+    def get_unit_edit_form(self):
         snplurals = None
+        if self.object.hasplural():
+            snplurals = len(self.object.source.strings)
+        form_class = unit_form_factory(self.language, snplurals, self.request)
+        return form_class(instance=self.object, request=self.request)
 
-    form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(instance=unit, request=request)
-    comment_form_class = unit_comment_form_factory(language)
-    comment_form = comment_form_class({}, instance=unit, request=request)
+    def get_unit_comment_form(self):
+        comment_form_class = unit_comment_form_factory(self.language)
+        return comment_form_class({}, instance=self.object, request=self.request)
 
-    store = unit.store
-    directory = store.parent
-    user = request.user
-    project = translation_project.project
+    @lru_cache()
+    def get_alt_srcs(self):
+        return find_altsrcs(
+            self.object,
+            get_alt_src_langs(self.request, self.request.user, self.tp),
+            store=self.store,
+            project=self.project)
 
-    alt_src_langs = get_alt_src_langs(request, user, translation_project)
-    altsrcs = find_altsrcs(unit, alt_src_langs, store=store, project=project)
-    source_language = translation_project.project.source_language
-    sources = {
-        unit.store.translation_project.language.code: unit.target_f.strings
-        for unit in altsrcs
-    }
-    sources[source_language.code] = unit.source_f.strings
+    @lru_cache()
+    def get_object(self):
+        return super(UnitEditJSON, self).get_object()
 
-    priority = None
+    def get_queryset(self):
+        return Unit.objects.get_translatable(self.request.user).select_related(
+            "store",
+            "store__parent",
+            "store__translation_project",
+            "store__translation_project__project",
+            "store__translation_project__project__source_language",
+            "store__translation_project__language")
 
-    if 'virtualfolder' in settings.INSTALLED_APPS:
-        vfolder_pk = request.GET.get('vfolder', '')
+    def get_sources(self):
+        sources = {
+            unit.store.translation_project.language.code: unit.target_f.strings
+            for unit in self.get_alt_srcs()}
+        sources[self.source_language.code] = self.object.source_f.strings
+        return sources
 
-        if vfolder_pk:
-            from virtualfolder.models import VirtualFolder
+    def get_context_data(self, *args, **kwargs):
+        return {
+            'unit': self.object,
+            'form': self.get_unit_edit_form(),
+            'comment_form': self.get_unit_comment_form(),
+            'priority': self.object.priority,
+            'store': self.store,
+            'directory': self.directory,
+            'user': self.request.user,
+            'project': self.project,
+            'language': self.language,
+            'source_language': self.source_language,
+            'cantranslate': check_user_permission(self.request.user,
+                                                  "translate",
+                                                  self.directory),
+            'cansuggest': check_user_permission(self.request.user,
+                                                "suggest",
+                                                self.directory),
+            'canreview': check_user_permission(self.request.user,
+                                               "review",
+                                               self.directory),
+            'is_admin': check_user_permission(self.request.user,
+                                              'administrate',
+                                              self.directory),
+            'altsrcs': self.get_alt_srcs()}
 
-            try:
-                # If we are translating a virtual folder, then display its
-                # priority.
-                # Note that the passed virtual folder pk might be invalid.
-                priority = VirtualFolder.objects.get(pk=vfolder_pk).priority
-            except VirtualFolder.DoesNotExist:
-                pass
-
-        if priority is None:
-            # Retrieve the unit top priority, if any. This can happen if we are
-            # not in a virtual folder or if the passed virtual folder pk is
-            # invalid.
-            priority = unit.vfolders.aggregate(
-                priority=Max('priority')
-            )['priority']
-
-    template_vars = {
-        'unit': unit,
-        'form': form,
-        'comment_form': comment_form,
-        'priority': priority,
-        'store': store,
-        'directory': directory,
-        'user': user,
-        'project': project,
-        'language': language,
-        'source_language': source_language,
-        'cantranslate': check_user_permission(user, "translate", directory),
-        'cansuggest': check_user_permission(user, "suggest", directory),
-        'canreview': check_user_permission(user, "review", directory),
-        'is_admin': check_user_permission(user, 'administrate', directory),
-        'altsrcs': altsrcs,
-    }
-
-    if translation_project.project.is_terminology or store.is_terminology:
-        t = loader.get_template('editor/units/term_edit.html')
-    else:
-        t = loader.get_template('editor/units/edit.html')
-    c = RequestContext(request, template_vars)
-
-    json.update({
-        'editor': t.render(c),
-        'tm_suggestions': unit.get_tm_suggestions(),
-        'is_obsolete': unit.isobsolete(),
-        'sources': sources,
-    })
-
-    return JsonResponse(json)
+    def get_response_data(self, context):
+        return {
+            'editor': self.render_edit_template(context),
+            'tm_suggestions': self.object.get_tm_suggestions(),
+            'is_obsolete': self.object.isobsolete(),
+            'sources': self.get_sources()}
 
 
 @get_unit_context('view')
