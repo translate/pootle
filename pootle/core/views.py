@@ -20,10 +20,11 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db.models import ObjectDoesNotExist, ProtectedError, Q
 from django.forms.models import modelform_factory
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseBadRequest
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
+from django.views.decorators.cache import never_cache
 from django.views.defaults import (permission_denied as django_403,
                                    page_not_found as django_404,
                                    server_error as django_500)
@@ -509,6 +510,34 @@ class PootleDetailView(DetailView):
             'translate_url': self.translate_url,
             'export_url': self.export_url,
             'browse_url': self.browse_url}
+
+
+class PootleJSON(PootleDetailView):
+
+    response_class = JsonResponse
+
+    @never_cache
+    @set_permissions
+    @requires_permission("view")
+    def dispatch(self, request, *args, **kwargs):
+        if not settings.DEBUG and not request.is_ajax():
+            return HttpResponseBadRequest("This must be an AJAX request.")
+        return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
+
+    def get_response_data(self, context):
+        """Override this method if you need to render a template with the context object
+        but wish to include the rendered output within a JSON response
+        """
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        """Overriden to call `get_response_data` with output from
+        `get_context_data`
+        """
+        response_kwargs.setdefault('content_type', self.content_type)
+        return self.response_class(
+            self.get_response_data(context),
+            **response_kwargs)
 
 
 class PootleBrowseView(PootleDetailView):
