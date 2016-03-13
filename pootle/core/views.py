@@ -464,7 +464,8 @@ class PootleDetailView(DetailView):
 
     @property
     def language(self):
-        return None
+        if self.tp:
+            return self.tp.language
 
     @property
     def permission_context(self):
@@ -476,7 +477,8 @@ class PootleDetailView(DetailView):
 
     @property
     def project(self):
-        return None
+        if self.tp:
+            return self.tp.project
 
     @property
     def tp(self):
