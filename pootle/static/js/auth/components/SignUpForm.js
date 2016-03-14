@@ -80,34 +80,34 @@ const SignUpForm = React.createClass({
         <div className="fields">
           <FormElement
             autoFocus
-            attribute="username"
             label={gettext('Username')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="username"
+            errors={errors.username}
+            value={formData.username}
           />
           <FormElement
-            attribute="email"
             label={gettext('Email')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="email"
+            errors={errors.email}
+            value={formData.email}
           />
           <FormElement
             type="password"
-            attribute="password1"
             label={gettext('Password')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="password1"
+            errors={errors.password1}
+            value={formData.password1}
           />
           <FormElement
             type="password"
-            attribute="password2"
             label={gettext('Repeat Password')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="password2"
+            errors={errors.password2}
+            value={formData.password2}
           />
         </div>
         {this.renderAllFormErrors()}

@@ -92,19 +92,19 @@ const SignInForm = React.createClass({
         <div className="fields">
           <FormElement
             autoFocus
-            attribute="login"
             label={gettext('Username')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="login"
+            errors={errors.login}
+            value={formData.login}
           />
           <FormElement
             type="password"
-            attribute="password"
             label={gettext('Password')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="password"
+            errors={errors.password}
+            value={formData.password}
           />
           <div className="actions password-forgotten">
             <a href="#" onClick={this.handleRequestPasswordReset}>

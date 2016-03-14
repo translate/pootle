@@ -111,19 +111,19 @@ const PasswordResetForm = React.createClass({
             <FormElement
               autoFocus
               type="password"
-              attribute="password1"
               label={gettext('Password')}
               handleChange={this.handleChange}
-              formData={formData}
-              errors={errors}
+              name="password1"
+              errors={errors.password1}
+              value={formData.password1}
             />
             <FormElement
               type="password"
-              attribute="password2"
               label={gettext('Repeat Password')}
               handleChange={this.handleChange}
-              formData={formData}
-              errors={errors}
+              name="password2"
+              errors={errors.password2}
+              value={formData.password2}
             />
           </div>
           {this.renderAllFormErrors()}

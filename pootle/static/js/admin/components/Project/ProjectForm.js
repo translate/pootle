@@ -50,80 +50,90 @@ const ProjectForm = React.createClass({
         <div className="fields">
           <FormElement
             autoFocus
-            attribute="code"
             disabled={model.hasOwnProperty('id')}
             label={gettext('Code')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="code"
+            errors={errors.code}
+            value={formData.code}
+          />
           <FormElement
-            attribute="fullname"
             label={gettext('Full Name')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="fullname"
+            errors={errors.fullname}
+            value={formData.fullname}
+          />
           <FormElement
             type="select"
             clearable={false}
-            attribute="checkstyle"
             options={model.getFieldChoices('checkstyle')}
             label={gettext('Quality Checks')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="checkstyle"
+            errors={errors.checkstyle}
+            value={formData.checkstyle}
+          />
           <FormElement
             type="select"
             clearable={false}
-            attribute="localfiletype"
             options={model.getFieldChoices('localfiletype')}
             label={gettext('File Type')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="localfiletype"
+            errors={errors.localfiletype}
+            value={formData.localfiletype}
+          />
           <FormElement
             type="select"
             clearable={false}
-            attribute="treestyle"
             options={model.getFieldChoices('treestyle')}
             label={gettext('Project Tree Style')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="treestyle"
+            errors={errors.treestyle}
+            value={formData.treestyle}
+          />
           <FormElement
             type="select"
             clearable={false}
-            attribute="source_language"
             options={model.getFieldChoices('source_language')}
             label={gettext('Source Language')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="source_language"
+            errors={errors.source_language}
+            value={formData.source_language}
+          />
           <FormElement
-            attribute="ignoredfiles"
             label={gettext('Ignore Files')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="ignoredfiles"
+            errors={errors.ignoredfiles}
+            value={formData.ignoredfiles}
+          />
           <FormElement
             type="email"
-            attribute="report_email"
             label={gettext('String Errors Contact')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="report_email"
+            errors={errors.report_email}
+            value={formData.report_email}
+          />
           <FormElement
-            attribute="screenshot_search_prefix"
             label={gettext('Screenshot Search Prefix')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="screenshot_search_prefix"
+            errors={errors.screenshot_search_prefix}
+            value={formData.screenshot_search_prefix}
+          />
           <FormElement
             type="checkbox"
-            attribute="disabled"
             label={gettext('Disabled')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors} />
+            name="disabled"
+            errors={errors.disabled}
+            value={formData.disabled}
+          />
         </div>
         <div className="buttons">
           <input type="submit" className="btn btn-primary"

@@ -71,13 +71,13 @@ export const UserProfileForm = React.createClass({
       >
         <div className="fields">
           <FormElement
-            attribute="full_name"
             label={gettext('Full Name')}
             placeholder={gettext('Your Full Name')}
             autoFocus
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="full_name"
+            errors={errors.full_name}
+            value={formData.full_name}
           />
           <p>
             <label>{gettext('Avatar')}</label>
@@ -89,39 +89,39 @@ export const UserProfileForm = React.createClass({
           </p>
           <p className="divider" />
           <FormElement
-            attribute="twitter"
             label={gettext('Twitter')}
             handleChange={this.handleChange}
             placeholder={gettext('Your Twitter username')}
-            formData={formData}
-            errors={errors}
             maxLength="15"
+            name="twitter"
+            errors={errors.twitter}
+            value={formData.twitter}
           />
           <FormElement
-            attribute="linkedin"
             label={gettext('LinkedIn')}
             handleChange={this.handleChange}
             placeholder={gettext('Your LinkedIn profile URL')}
-            formData={formData}
-            errors={errors}
+            name="linkedin"
+            errors={errors.linkedin}
+            value={formData.linkedin}
           />
           <FormElement
-            attribute="website"
             label={gettext('Website')}
             handleChange={this.handleChange}
             placeholder={gettext('Your Personal website/blog URL')}
-            formData={formData}
-            errors={errors}
+            name="website"
+            errors={errors.website}
+            value={formData.website}
           />
           <FormElement
             type="textarea"
-            attribute="bio"
             label={gettext('Short Bio')}
             handleChange={this.handleChange}
             placeholder={gettext('Why are you part of our translation project? ' +
                                  'Describe yourself, inspire others!')}
-            formData={formData}
-            errors={errors}
+            name="bio"
+            errors={errors.bio}
+            value={formData.bio}
           />
         </div>
         <p className="buttons">

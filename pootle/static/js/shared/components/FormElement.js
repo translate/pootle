@@ -17,12 +17,15 @@ const FormElement = React.createClass({
 
   propTypes: {
     type: React.PropTypes.string,
-    attribute: React.PropTypes.string.isRequired,
     label: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
     handleChange: React.PropTypes.func.isRequired,
-    formData: React.PropTypes.object.isRequired,
+    value: React.PropTypes.oneOfType([
+      React.PropTypes.number,
+      React.PropTypes.string,
+    ]).isRequired,
     help: React.PropTypes.string,
-    errors: React.PropTypes.object,
+    errors: React.PropTypes.array,
   },
 
   /* Lifecycle */
@@ -37,12 +40,9 @@ const FormElement = React.createClass({
   /* Layout */
 
   render() {
-    const { attribute } = this.props;
-    const fieldId = `id_${attribute}`;
+    const { errors } = this.props;
+    const fieldId = `id_${this.props.name}`;
     const hint = this.props.help;
-
-    const errors = (Object.keys(this.props.errors).length > 0 &&
-                    this.props.errors[attribute]);
 
     const InputComponent = {
       text: FormValueInput,
@@ -56,16 +56,10 @@ const FormElement = React.createClass({
       select: FormSelectInput,
     }[this.props.type];
 
-    const newProps = {
-      id: fieldId,
-      name: attribute,
-      value: this.props.formData[attribute],
-    };
-
     return (
       <div className="field-wrapper">
         <label htmlFor={fieldId}>{this.props.label}</label>
-        <InputComponent {...this.props} {...newProps} />
+        <InputComponent id={fieldId} {...this.props} />
       {errors &&
         <ul className="errorlist">{errors.map((msg, i) => {
           return <li key={i}>{msg}</li>;

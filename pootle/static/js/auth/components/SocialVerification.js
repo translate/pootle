@@ -91,11 +91,11 @@ const SocialVerification = React.createClass({
             <div className="fields">
               <FormElement
                 type="password"
-                attribute="password"
                 label={gettext('Password')}
                 handleChange={this.handleChange}
-                formData={formData}
-                errors={errors}
+                name="password"
+                errors={errors.password}
+                value={formData.password}
               />
               <div className="actions password-forgotten">
                 <a href="#" onClick={this.handleRequestPasswordReset}>

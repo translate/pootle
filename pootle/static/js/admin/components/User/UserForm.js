@@ -56,91 +56,91 @@ const UserForm = React.createClass({
           <FormElement
             autoFocus={!model.isMeta()}
             readOnly={model.isMeta()}
-            attribute="username"
             label={gettext('Username')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="username"
+            errors={errors.username}
+            value={formData.username}
           />
         {!model.isMeta() &&
           <div className="no-meta">
             <FormElement
               type="checkbox"
-              attribute="is_active"
               label={gettext('Active')}
               handleChange={this.handleChange}
-              formData={formData}
-              errors={errors}
+              name="is_active"
+              errors={errors.is_active}
+              value={formData.is_active}
             />
             <FormElement
               type="password"
-              attribute="password"
               label={gettext('Password')}
               placeholder={gettext('Set a new password')}
               handleChange={this.handleChange}
-              formData={formData}
-              errors={errors}
+              name="password"
+              errors={errors.password}
+              value={formData.password}
             />
           </div>}
           <FormElement
             autoFocus={model.isMeta()}
-            attribute="full_name"
             label={gettext('Full Name')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="full_name"
+            errors={errors.full_name}
+            value={formData.full_name}
           />
           <FormElement
-            attribute="email"
             label={gettext('Email')}
             handleChange={this.handleChange}
-            formData={formData}
-            errors={errors}
+            name="email"
+            errors={errors.email}
+            value={formData.email}
           />
         {!model.isMeta() &&
           <div className="no-meta">
             <FormElement
               type="checkbox"
-              attribute="is_superuser"
               label={gettext('Administrator')}
               handleChange={this.handleChange}
-              formData={formData}
-              errors={errors}
+              name="is_superuser"
+              errors={errors.is_superuser}
+              value={formData.is_superuser}
             />
             <p className="divider" />
             <FormElement
-              attribute="twitter"
               label={gettext('Twitter')}
               handleChange={this.handleChange}
               placeholder={gettext('Twitter username')}
-              formData={formData}
-              errors={errors}
               maxLength="15"
+              name="twitter"
+              errors={errors.twitter}
+              value={formData.twitter}
             />
             <FormElement
-              attribute="linkedin"
               label={gettext('LinkedIn')}
               handleChange={this.handleChange}
               placeholder={gettext('LinkedIn profile URL')}
-              formData={formData}
-              errors={errors}
+              name="linkedin"
+              errors={errors.linkedin}
+              value={formData.linkedin}
             />
             <FormElement
-              attribute="website"
               label={gettext('Website')}
               handleChange={this.handleChange}
               placeholder={gettext('Personal website URL')}
-              formData={formData}
-              errors={errors}
+              name="website"
+              errors={errors.website}
+              value={formData.website}
             />
             <FormElement
               type="textarea"
-              attribute="bio"
               label={gettext('Short Bio')}
               handleChange={this.handleChange}
               placeholder={gettext('Personal description')}
-              formData={formData}
-              errors={errors}
+              name="bio"
+              errors={errors.bio}
+              value={formData.bio}
             />
           </div>}
         </div>
