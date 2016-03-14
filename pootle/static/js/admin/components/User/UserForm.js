@@ -46,96 +46,111 @@ const UserForm = React.createClass({
     const deleteHelpText = gettext('Note: when deleting a user their contributions to the site, e.g. comments, suggestions and translations, are attributed to the anonymous user (nobody).');
 
     return (
-      <form method="post"
-            id="item-form"
-            autoComplete="off"
-            onSubmit={this.handleFormSubmit}>
+      <form
+        method="post"
+        id="item-form"
+        autoComplete="off"
+        onSubmit={this.handleFormSubmit}
+      >
         <div className="fields">
           <FormElement
-              autoFocus={!model.isMeta()}
-              readOnly={model.isMeta()}
-              attribute="username"
-              label={gettext('Username')}
-              handleChange={this.handleChange}
-              formData={formData}
-              errors={errors} />
+            autoFocus={!model.isMeta()}
+            readOnly={model.isMeta()}
+            attribute="username"
+            label={gettext('Username')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors}
+          />
         {!model.isMeta() &&
           <div className="no-meta">
             <FormElement
-                type="checkbox"
-                attribute="is_active"
-                label={gettext('Active')}
-                handleChange={this.handleChange}
-                formData={formData}
-                errors={errors} />
+              type="checkbox"
+              attribute="is_active"
+              label={gettext('Active')}
+              handleChange={this.handleChange}
+              formData={formData}
+              errors={errors}
+            />
             <FormElement
-                type="password"
-                attribute="password"
-                label={gettext('Password')}
-                placeholder={gettext('Set a new password')}
-                handleChange={this.handleChange}
-                formData={formData}
-                errors={errors} />
+              type="password"
+              attribute="password"
+              label={gettext('Password')}
+              placeholder={gettext('Set a new password')}
+              handleChange={this.handleChange}
+              formData={formData}
+              errors={errors}
+            />
           </div>}
           <FormElement
-              autoFocus={model.isMeta()}
-              attribute="full_name"
-              label={gettext('Full Name')}
-              handleChange={this.handleChange}
-              formData={formData}
-              errors={errors} />
+            autoFocus={model.isMeta()}
+            attribute="full_name"
+            label={gettext('Full Name')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors}
+          />
           <FormElement
-              attribute="email"
-              label={gettext('Email')}
-              handleChange={this.handleChange}
-              formData={formData}
-              errors={errors} />
+            attribute="email"
+            label={gettext('Email')}
+            handleChange={this.handleChange}
+            formData={formData}
+            errors={errors}
+          />
         {!model.isMeta() &&
           <div className="no-meta">
             <FormElement
-                type="checkbox"
-                attribute="is_superuser"
-                label={gettext('Administrator')}
-                handleChange={this.handleChange}
-                formData={formData}
-                errors={errors} />
+              type="checkbox"
+              attribute="is_superuser"
+              label={gettext('Administrator')}
+              handleChange={this.handleChange}
+              formData={formData}
+              errors={errors}
+            />
             <p className="divider" />
             <FormElement
-                attribute="twitter"
-                label={gettext('Twitter')}
-                handleChange={this.handleChange}
-                placeholder={gettext('Twitter username')}
-                formData={formData}
-                errors={errors}
-                maxLength="15" />
+              attribute="twitter"
+              label={gettext('Twitter')}
+              handleChange={this.handleChange}
+              placeholder={gettext('Twitter username')}
+              formData={formData}
+              errors={errors}
+              maxLength="15"
+            />
             <FormElement
-                attribute="linkedin"
-                label={gettext('LinkedIn')}
-                handleChange={this.handleChange}
-                placeholder={gettext('LinkedIn profile URL')}
-                formData={formData}
-                errors={errors} />
+              attribute="linkedin"
+              label={gettext('LinkedIn')}
+              handleChange={this.handleChange}
+              placeholder={gettext('LinkedIn profile URL')}
+              formData={formData}
+              errors={errors}
+            />
             <FormElement
-                attribute="website"
-                label={gettext('Website')}
-                handleChange={this.handleChange}
-                placeholder={gettext('Personal website URL')}
-                formData={formData}
-                errors={errors} />
+              attribute="website"
+              label={gettext('Website')}
+              handleChange={this.handleChange}
+              placeholder={gettext('Personal website URL')}
+              formData={formData}
+              errors={errors}
+            />
             <FormElement
-                type="textarea"
-                attribute="bio"
-                label={gettext('Short Bio')}
-                handleChange={this.handleChange}
-                placeholder={gettext('Personal description')}
-                formData={formData}
-                errors={errors} />
+              type="textarea"
+              attribute="bio"
+              label={gettext('Short Bio')}
+              handleChange={this.handleChange}
+              placeholder={gettext('Personal description')}
+              formData={formData}
+              errors={errors}
+            />
           </div>}
         </div>
         <div className="buttons">
-          <input type="submit" className="btn btn-primary"
-                 disabled={!this.state.isDirty}
-                 value={gettext('Save')} />
+          <input
+            type="submit"
+            className="btn btn-primary"
+            disabled={!this.state.isDirty}
+            value={gettext('Save')}
+          />
         {model.id &&
           <ul className="action-links">
             <li><a href={model.getProfileUrl()}>{gettext('Public Profile')}</a></li>
