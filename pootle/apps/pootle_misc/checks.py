@@ -965,8 +965,9 @@ class ENChecker(checks.UnitChecker):
     @critical
     def plurr_format(self, str1, str2, **kwargs):
         """For plurr-formatted strings, checks the syntax is correct."""
-        # Ignore check for non Plurr-formatted strings
-        if not plurr_format_regex.search(str1):
+        # Ignore check for empty target strings or non Plurr-formatted
+        # source strings
+        if str2 == u'' or not plurr_format_regex.search(str1):
             return True
 
         # Ignore check if library is missing
