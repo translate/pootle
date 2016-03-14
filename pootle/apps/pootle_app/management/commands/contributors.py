@@ -107,12 +107,12 @@ class Command(PootleCommand):
 
         if self.projects:
             units = units.filter(
-                store__translation_project__project__code__in=self.projects,
+                project__code__in=self.projects,
             )
 
         if self.languages:
             units = units.filter(
-                store__translation_project__language__code__in=self.languages,
+                language__code__in=self.languages,
             )
 
         contribs = Counter()

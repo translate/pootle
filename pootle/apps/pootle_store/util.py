@@ -71,11 +71,11 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
 
     altsrcs = Unit.objects.filter(
         unitid_hash=unit.unitid_hash,
-        store__translation_project__project=project,
-        store__translation_project__language__in=alt_src_langs,
-        state=TRANSLATED).select_related(
-            'store', 'store__translation_project',
-            'store__translation_project__language')
+        project_id=project.id,
+        language__in=alt_src_langs,
+        state=TRANSLATED).select_related('store',
+                                         'store__translation_project',
+                                         'language')
 
     if project.get_treestyle() == 'nongnu':
         altsrcs = filter(lambda x: x.store.path == store.path, altsrcs)

@@ -656,7 +656,7 @@ class PootleExportView(PootleDetailView):
         unit_groups = [
             (path, list(units))
             for path, units
-            in groupby(units_qs, lambda x: x.store.pootle_path)]
+            in groupby(units_qs, lambda x: x.pootle_path)]
 
         ctx.update(
             {'unit_groups': unit_groups,

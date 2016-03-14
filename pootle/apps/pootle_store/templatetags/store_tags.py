@@ -174,7 +174,7 @@ def pluralize_target(unit, nplurals=None):
 
     if nplurals is None:
         try:
-            nplurals = unit.store.translation_project.language.nplurals
+            nplurals = unit.language.nplurals
         except ObjectDoesNotExist:
             pass
     forms = []

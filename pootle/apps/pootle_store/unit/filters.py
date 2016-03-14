@@ -6,11 +6,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models import Q
-
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import SuggestionStates
-from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
 class FilterNotFound(Exception):
@@ -53,20 +51,19 @@ class UnitStateFilter(BaseUnitFilter):
     """Filter a Unit qs based on unit state"""
 
     def filter_all(self):
-        return self.qs.all()
+        return self.qs
 
     def filter_translated(self):
-        return self.qs.filter(state=TRANSLATED)
+        return self.qs.filter(state__gt=FUZZY)
 
     def filter_untranslated(self):
-        return self.qs.filter(state=UNTRANSLATED)
+        return self.qs.filter(state__gt=OBSOLETE, state__lt=FUZZY)
 
     def filter_fuzzy(self):
-        return self.qs.filter(state=FUZZY)
+        return self.qs.filter(state__gt=UNTRANSLATED, state__lt=TRANSLATED)
 
     def filter_incomplete(self):
-        return self.qs.filter(
-            Q(state=UNTRANSLATED) | Q(state=FUZZY))
+        return self.qs.filter(state__gt=OBSOLETE, state__lt=TRANSLATED)
 
 
 class UnitContributionFilter(BaseUnitFilter):

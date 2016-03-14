@@ -101,10 +101,10 @@
             {% for altunit in altsrcs %}
             <div class="source-language alternative">
               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-                <div class="language-name">{{ altunit.store.translation_project.language.name }}</div>
+                <div class="language-name">{{ altunit.language.name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
-                  <span class="js-mt-{{ altunit.store.translation_project.language.code }}"></span>
+                  <span class="js-mt-{{ altunit.language.code }}"></span>
                   <a class="icon-copy js-copyoriginal" data-uid="{{ altunit.id }}"
                      title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                 </div>
@@ -113,7 +113,7 @@
               <div id="js-unit-{{ altunit.id }}"
                    class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
                 {% for i, target, title in altunit|pluralize_target %}
-                <div class="translation-text js-translation-text" lang="{{ altunit.store.translation_project.language.code }}" dir="{{ altunit.store.translation_project.language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
+                <div class="translation-text js-translation-text" lang="{{ altunit.language.code }}" dir="{{ altunit.language.direction }}"{% if title %} title="{{ title }}"{% endif %}>{{ target|fancy_highlight }}</div>
                 {% endfor %}
                 <div class="placeholder"></div>
               </div>
