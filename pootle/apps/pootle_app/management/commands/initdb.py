@@ -30,6 +30,18 @@ class Command(BaseCommand):
                  "projects.",
         )
 
+    def check(self, app_configs=None, tags=None, display_num_errors=False,
+              include_deployment_checks=False):
+        from django.core.checks.registry import registry
+
+        tags = registry.tags_available()
+        tags.remove('data')
+        super(Command, self).check(
+            app_configs=app_configs,
+            tags=tags,
+            display_num_errors=display_num_errors,
+            include_deployment_checks=include_deployment_checks)
+
     def handle(self, **options):
         self.stdout.write('Populating the database.')
         InitDB().init_db(options["create_projects"])

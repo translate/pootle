@@ -52,7 +52,7 @@ def _version_to_string(version, significance=None):
     return '.'.join(str(n) for n in version)
 
 
-@checks.register()
+@checks.register('data')
 def check_duplicate_emails(app_configs=None, **kwargs):
     from accounts.utils import get_duplicate_emails
     errors = []
@@ -367,7 +367,7 @@ def check_settings(app_configs=None, **kwargs):
     return errors
 
 
-@checks.register()
+@checks.register('data')
 def check_users(app_configs=None, **kwargs):
     from django.contrib.auth import get_user_model
     from django.db import ProgrammingError
@@ -431,7 +431,7 @@ def check_email_server_is_alive(app_configs=None, **kwargs):
     return errors
 
 
-@checks.register()
+@checks.register('data')
 def check_revision(app_configs=None, **kwargs):
     from pootle.core.models import Revision
     from pootle_store.models import Unit
