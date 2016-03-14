@@ -42,6 +42,10 @@ class CheckableUnit(UnitProxy):
     def tp(self):
         return self.store__translation_project__id
 
+    @property
+    def language_code(self):
+        return self.store__translation_project__language__code
+
 
 class UnitQualityCheck(object):
 
@@ -293,7 +297,9 @@ class QualityCheckUpdater(object):
         """Update checks for translated Units
         """
         unit_fields = [
-            "id", "source_f", "target_f", "locations", "store__id"]
+            "id", "source_f", "target_f", "locations", "store__id",
+            "store__translation_project__language__code",
+        ]
 
         tp_key = "store__translation_project__id"
         if self.translation_project is None:

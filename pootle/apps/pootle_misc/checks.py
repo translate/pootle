@@ -271,15 +271,14 @@ class ENChecker(checks.UnitChecker):
 
     def run_test(self, test, unit):
         """Runs the given test on the given unit."""
-        return test(self.source_string, self.target_string,
-                    language_code=self.language_code)
+        return test(self.str1, self.str2, language_code=self.language_code)
 
     def run_filters(self, unit, categorised=False):
         """Make some optimizations before running individual filters in
         `run_test`.
         """
-        self.source_string = data.normalized_unicode(unit.source) or u''
-        self.target_string = data.normalized_unicode(unit.target) or u''
+        self.str1 = data.normalized_unicode(unit.source) or u''
+        self.str2 = data.normalized_unicode(unit.target) or u''
 
         self.language_code = unit.store.translation_project.language.code
 
@@ -1009,6 +1008,7 @@ def run_given_filters(checker, unit, check_names=None):
 
     checker.str1 = data.normalized_unicode(unit.source) or u""
     checker.str2 = data.normalized_unicode(unit.target) or u""
+    checker.language_code = unit.language_code  # XXX: comes from `CheckableUnit`
     checker.hasplural = unit.hasplural()
     checker.locations = unit.getlocations()
 
