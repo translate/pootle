@@ -143,7 +143,7 @@ displayed indicating that the stats being calculated.
 
 .. django-admin-option:: --check
 
-Use the :option:`--check` option to force calculaton of a specified check.  To
+Use the :option:`--check` option to force calculation of a specified check.  To
 recalculate only the ``date_format`` quality checks, run:
 
 .. code-block:: console

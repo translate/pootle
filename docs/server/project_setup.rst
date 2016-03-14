@@ -180,9 +180,9 @@ Then run the following so Pootle picks up the new changes:
 
 .. note:: Note that doing this won't automatically update the other languages
    in the project. We recommend you to update them on disk using
-   :ref:`pot2po <toolkit:pot2po>`, and run
-   :command:`update_stores --project=my-project` for Pootle to get the
-   languages updated.
+   :ref:`pot2po <toolkit:pot2po>` (which can handle other formats besides
+   Gettext PO), and run :command:`update_stores --project=my-project` for
+   Pootle to get the languages updated.
 
    It is advisable to first save to disk the translations in Pootle database by
    running :command:`sync_stores --project=my-project`.
