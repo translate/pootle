@@ -44,7 +44,7 @@ from pootle.core.url_helpers import (
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
-from pootle_misc.checks import check_names, get_checker, run_given_filters
+from pootle_misc.checks import check_names, get_checker
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -804,34 +804,25 @@ class Unit(models.Model, base.TranslationUnit):
                 self.state = FUZZY
                 self._auto_translated = True
 
-    def update_qualitychecks(self, keep_false_positives=False,
-                             check_names=None, existing=None):
+    def update_qualitychecks(self, keep_false_positives=False):
         """Run quality checks and store result in the database.
 
         :param keep_false_positives: when set to `False`, it will activate
             (unmute) any existing false positive checks.
-        :param check_names: list of quality check names to update, use
-            `None` to update all quality checks.
-        :param existing: if existing checks were calculated before, they
-            can be passed `None` to calculate existing checks during
-            updating.
         :return: `True` if quality checks were updated or `False` if they
             left unchanged.
         """
         unmute_list = []
         result = False
 
-        if existing is None:
-            checks = self.qualitycheck_set.all()
-            if check_names:
-                checks = checks.filter(name__in=check_names)
+        checks = self.qualitycheck_set.all()
 
-            existing = {}
-            for check in checks.values('name', 'false_positive', 'id'):
-                existing[check['name']] = {
-                    'false_positive': check['false_positive'],
-                    'id': check['id'],
-                }
+        existing = {}
+        for check in checks.values('name', 'false_positive', 'id'):
+            existing[check['name']] = {
+                'false_positive': check['false_positive'],
+                'id': check['id'],
+            }
 
         # no checks if unit is untranslated
         if not self.target:
@@ -843,10 +834,7 @@ class Unit(models.Model, base.TranslationUnit):
             return False
 
         checker = get_checker(self)
-        if check_names is None:
-            qc_failures = checker.run_filters(self, categorised=True)
-        else:
-            qc_failures = run_given_filters(checker, self, check_names)
+        qc_failures = checker.run_filters(self, categorised=True)
 
         for name in qc_failures.iterkeys():
             if name in existing:
