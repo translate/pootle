@@ -127,11 +127,12 @@ def scan_translation_projects(languages=None, projects=None, **kwargs):
                 logging.info(u"Add background job for (%s, %s) processing",
                              language, project)
                 lang_codes.append(language.code)
-                create_rq_job(language,
-                              project,
-                              update_translation_project,
-                              only_newer=not force,
-                              overwrite=overwrite)
+                create_rq_job_wrapper(
+                    language,
+                    project,
+                    update_translation_project,
+                    force=force,
+                    overwrite=overwrite)
 
     if wait:
         wait_for_free_translation_projects(lang_codes, prj_codes)
@@ -162,14 +163,13 @@ def sync_translation_projects(languages=None, projects=None, **kwargs):
                          language, project)
 
             lang_codes.append(language.code)
-            create_rq_job(
+            create_rq_job_wrapper(
                 language,
                 project,
                 sync_translation_project,
                 conservative=not overwrite,
                 skip_missing=skip_missing,
-                only_newer=not force,
-            )
+                only_newer=not force)
 
     if wait:
         wait_for_free_translation_projects(lang_codes, prj_codes)
@@ -676,8 +676,15 @@ class JobWrapper(object):
         return job
 
 
-def create_rq_job(language, project, job_func, **options):
+def create_rq_job_wrapper(language, project, job_func, **options):
     queue = get_queue('default')
+    if queue._async:
+        create_rq_job(queue, language, project, job_func, **options)
+    else:
+        job_func(language, project, **options)
+
+
+def create_rq_job(queue, language, project, job_func, **options):
     queue.connection.sadd(queue.redis_queues_keys, queue.key)
 
     job_wrapper = JobWrapper.create(job_func,
