@@ -7,11 +7,15 @@
 # AUTHORS file for copyright and authorship information.
 
 import json
+from urlparse import parse_qs
 
 import pytest
 
 from pytest_pootle.search import calculate_search_results
 
+from pootle_app.models import Directory
+from pootle_app.models.permissions import check_user_permission
+from pootle_project.models import Project
 from pootle_store.models import Unit
 
 
@@ -19,6 +23,29 @@ from pootle_store.models import Unit
 def test_get_units(get_units_views):
     (user, search_params, url_params, response) = get_units_views
     result = json.loads(response.content)
+
+    path = parse_qs(url_params)["path"][0]
+
+    permission_context = None
+    if path.strip("/") in ["", "projects"]:
+        permission_context = Directory.objects.get(pootle_path="/projects/")
+    elif path.startswith("/projects/"):
+        try:
+            permission_context = Project.objects.get(
+                code=path[10:].split("/")[0]).directory
+        except Project.DoesNotExist:
+            assert response.status_code == 404
+            assert "unitGroups" not in result
+            return
+
+    user_cannot_view = (
+        permission_context
+        and not check_user_permission(
+            user, "administrate", permission_context))
+    if user_cannot_view:
+        assert response.status_code == 404
+        assert "unitGroups" not in result
+        return
 
     assert "unitGroups" in result
     assert isinstance(result["unitGroups"], list)
@@ -45,14 +72,24 @@ def test_get_units(get_units_views):
 
 
 @pytest.mark.django_db
-def test_get_previous_slice(client):
+def test_get_previous_slice(client, request_users):
     import json
+
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
     resp = client.get(
         "/xhr/units/?filter=all&count=5&path=/&offset=60",
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
-    result = json.loads(resp.content)
+    if not request_users.get("is_superuser", False):
+        assert resp.status_code == 404
+        return
 
+    result = json.loads(resp.content)
     qs = Unit.objects.get_translatable(
         user=resp.wsgi_request.user).order_by("store__pootle_path", "index")
 
@@ -124,11 +161,22 @@ def test_get_previous_slice(client):
 
 
 @pytest.mark.django_db
-def test_get_next_slice(client):
+def test_get_next_slice(client, request_users):
     import json
+
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
     resp = client.get(
         "/xhr/units/?filter=all&count=5&path=/",
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+    if not request_users.get("is_superuser", False):
+        assert resp.status_code == 404
+        return
 
     result = json.loads(resp.content)
 
