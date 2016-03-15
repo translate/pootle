@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 <div id="contact" class="popup-form" dir="{% locale_dir %}">
   <div id="js-contact">
-    <h1>{% trans "Contact Us" %}</h1>
+    <h1>{{ contact_form_title }}</h1>
     {% block contact_preamble %}
     <p>
       {% blocktrans trimmed %}

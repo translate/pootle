@@ -9,6 +9,7 @@
 
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView
 
 from contact_form.views import ContactFormView as OriginalContactFormView
@@ -31,6 +32,7 @@ class ContactFormView(AjaxResponseMixin, OriginalContactFormView):
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
         ctx.update({
+            'contact_form_title': _('Contact Us'),
             'contact_form_url': reverse('pootle-contact-xhr'),
         })
         return ctx
@@ -61,6 +63,7 @@ class ReportFormView(ContactFormView):
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
         ctx.update({
+            'contact_form_title': _('Report problem with string'),
             'contact_form_url': reverse('pootle-contact-report-error'),
         })
         return ctx
