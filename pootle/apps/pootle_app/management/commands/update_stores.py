@@ -48,10 +48,10 @@ class Command(PootleCommand):
             translation_project.scan_files()
             return True
 
-        # Skip if project directory ceased to exist on disk.
         if translation_project.project.directory_exists_on_disk():
             translation_project.directory.makeobsolete()
         else:
+            # Skip if project directory ceased to exist on disk.
             logging.warning(u"Missing project directory for %s. Skipping %s.",
                             translation_project.project, translation_project)
 
