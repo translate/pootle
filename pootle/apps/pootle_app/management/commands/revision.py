@@ -14,10 +14,12 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import BaseCommand
 
 from pootle.core.models import Revision
+from . import SkipChecksMixin
 
 
-class Command(BaseCommand):
+class Command(SkipChecksMixin, BaseCommand):
     help = "Print Pootle's current revision."
+    skip_system_check_tags = ('data', )
 
     def add_arguments(self, parser):
         parser.add_argument(
