@@ -23,9 +23,12 @@ from django.utils.translation import get_language, ugettext as _
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
-from pootle_app.models.permissions import check_permission
+from pootle.core.url_helpers import split_pootle_path
+from pootle_app.models import Directory
+from pootle_app.models.permissions import check_permission, check_user_permission
 from pootle_misc.checks import CATEGORY_CODES, check_names
 from pootle_misc.util import get_date_interval
+from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 from virtualfolder.helpers import extract_vfolder_from_path
@@ -519,6 +522,28 @@ class UnitSearchForm(forms.Form):
 
     def clean_user(self):
         return self.cleaned_data["user"] or self.request_user
+
+    def clean_path(self):
+        language_code, project_code = split_pootle_path(
+            self.cleaned_data["path"])[:2]
+        if not (language_code or project_code):
+            permission_context = Directory.objects.projects
+        elif project_code and not language_code:
+            try:
+                permission_context = Project.objects.select_related(
+                    "directory").get(code=project_code).directory
+            except Project.DoesNotExist:
+                raise forms.ValidationError("Unrecognized path")
+        else:
+            # no permission checking on lang translate views
+            return self.cleaned_data["path"]
+        if self.request_user.is_superuser:
+            return self.cleaned_data["path"]
+        can_view_path = check_user_permission(
+            self.request_user, "administrate", permission_context)
+        if can_view_path:
+            return self.cleaned_data["path"]
+        raise forms.ValidationError("Unrecognized path")
 
 
 class UnitExportForm(UnitSearchForm):
