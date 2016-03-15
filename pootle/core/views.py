@@ -20,7 +20,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db.models import ObjectDoesNotExist, ProtectedError, Q
 from django.forms.models import modelform_factory
-from django.http import Http404, HttpResponse, HttpResponseBadRequest
+from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
@@ -35,6 +35,7 @@ from pootle_app.models.permissions import (
 from pootle_misc.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
+from pootle_misc.util import ajax_required
 from pootle_store.forms import UnitExportForm
 from pootle_store.util import get_search_backend
 
@@ -517,11 +518,10 @@ class PootleJSON(PootleDetailView):
     response_class = JsonResponse
 
     @never_cache
+    @method_decorator(ajax_required)
     @set_permissions
     @requires_permission("view")
     def dispatch(self, request, *args, **kwargs):
-        if not settings.DEBUG and not request.is_ajax():
-            return HttpResponseBadRequest("This must be an AJAX request.")
         return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_response_data(self, context):
