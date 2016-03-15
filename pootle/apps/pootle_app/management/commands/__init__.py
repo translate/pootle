@@ -17,6 +17,21 @@ from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
 
+class SkipChecksMixin(object):
+    def check(self, app_configs=None, tags=None, display_num_errors=False,
+              include_deployment_checks=False):
+        skip_tags = getattr(self, 'skip_system_check_tags', None)
+        if skip_tags is not None:
+            from django.core.checks.registry import registry
+            tags = registry.tags_available() - set(skip_tags)
+
+        super(SkipChecksMixin, self).check(
+            app_configs=app_configs,
+            tags=tags,
+            display_num_errors=display_num_errors,
+            include_deployment_checks=include_deployment_checks)
+
+
 class PootleCommand(BaseCommand):
     """Base class for handling recursive pootle store management commands."""
 
