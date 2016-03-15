@@ -175,7 +175,7 @@ Then run the following so Pootle picks up the new changes:
 
 .. code-block:: console
 
-    pootle update_stores --project=my-project --languages=templates
+    pootle update_stores --project=my-project --language=templates
 
 
 .. note:: Note that doing this won't automatically update the other languages
