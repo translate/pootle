@@ -10,7 +10,7 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build clean sprite test pot mo mo-all help docs assets pep8
+.PHONY: all build clean sprite test pot mo mo-all help docs assets
 
 all: help
 
@@ -89,9 +89,6 @@ jslint:
 	cd ${JS_DIR} \
 	&& npm run lint
 
-pep8:
-	@./pootle/tools/pep8.sh travis
-
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
@@ -106,7 +103,6 @@ help:
 	@echo "  sprite - create CSS sprite"
 	@echo "  clean - remove any temporal files"
 	@echo "  test - run test suite"
-	@echo "  pep8 - run pep8 checks"
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
