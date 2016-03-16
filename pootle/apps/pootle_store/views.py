@@ -492,11 +492,15 @@ class UnitEditJSON(PootleJSON):
         return sources
 
     def get_context_data(self, *args, **kwargs):
+        priority = (
+            self.object.priority if 'virtualfolder' in settings.INSTALLED_APPS
+            else None
+        )
         return {
             'unit': self.object,
             'form': self.get_unit_edit_form(),
             'comment_form': self.get_unit_comment_form(),
-            'priority': self.object.priority,
+            'priority': priority,
             'store': self.store,
             'directory': self.directory,
             'user': self.request.user,
