@@ -72,21 +72,28 @@ def test_tp_create_with_files(tutorial, klingon, settings):
 
 @pytest.mark.django_db
 def test_tp_empty_stats():
+    """Tests if empty stats is initialized when translation project (new language)
+    is added for a project with existing but empty template translation project.
+    """
     from pootle_project.models import Project
     from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
+    from pytest_pootle.factories import LanguageFactory, TranslationProjectFactory
 
+    # Create an empty template translation project for project0.
     project = Project.objects.get(code="project0")
-    language = Language.objects.get(code="en")
+    english = Language.objects.get(code="en")
+    TranslationProjectFactory(project=project, language=english)
 
+    # Create a new language to test.
+    language = LanguageFactory()
     tp, created = TranslationProject.objects.get_or_create(language=language,
                                                            project=project)
 
-    # There are no files on disk so TP was not automagically created and there
-    # are no templates loaded
+    # There are no files on disk so TP was not automagically filled.
     assert list(tp.stores.all()) == []
 
-    # Check if zero stats is calculated and available
+    # Check if zero stats is calculated and available.
     stats = tp.get_stats()
     assert stats['total'] == 0
     assert stats['translated'] == 0
