@@ -13,6 +13,8 @@ import pytest
 
 from django.db import IntegrityError
 
+from pytest_pootle.factories import LanguageFactory
+
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
@@ -117,6 +119,21 @@ def test_tp_stats_created_from_template(tutorial, templates):
     assert stats['fuzzy'] == 0
     assert stats['suggestions'] == 0
     assert stats['critical'] == 0
+
+
+@pytest.mark.django_db
+def test_can_be_inited_from_templates(tutorial, templates):
+    language = LanguageFactory()
+    tp = TranslationProject(project=tutorial, language=language)
+    assert tp.can_be_inited_from_templates()
+
+
+@pytest.mark.django_db
+def test_cannot_be_inited_from_templates():
+    language = LanguageFactory()
+    project = Project.objects.get(code='project0')
+    tp = TranslationProject(project=project, language=language)
+    assert not tp.can_be_inited_from_templates()
 
 
 @pytest.mark.django_db
