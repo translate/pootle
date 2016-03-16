@@ -132,6 +132,8 @@ class Command(PootleCommand):
         for id, count in contributions:
             user = User.objects.get(id=id)
             name = user.display_name
+            if only_emails:
+                name = name.replace(",", "")
             if user.email:
                 name += " <%s>" % (user.email)
             elif only_emails:
