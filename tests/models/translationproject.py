@@ -103,8 +103,13 @@ def test_tp_empty_stats():
 
 
 @pytest.mark.django_db
-def test_tp_stats_created_from_template(tutorial, fish, templates):
-    tp = TranslationProject.objects.create(project=tutorial, language=fish)
+def test_tp_stats_created_from_template(tutorial, templates):
+    from pytest_pootle.factories import LanguageFactory
+
+    language = LanguageFactory()
+    tp = TranslationProject.objects.create(project=tutorial, language=language)
+    tp.init_from_templates()
+
     assert tp.stores.all().count() == 1
     stats = tp.get_stats()
     assert stats['total'] == 2  # there are 2 words in test template

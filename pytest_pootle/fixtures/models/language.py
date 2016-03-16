@@ -82,12 +82,6 @@ def russian(english):
     return _require_language('ru', 'Russian')
 
 
-@pytest.fixture
-def fish(english):
-    u"""Require the Fish language ><(((º>"""
-    return _require_language(code='fish', fullname='Fish')
-
-
 # due to issues with tests not having a clean slate ie:
 # (https://github.com/translate/pootle/issues/3898)
 # please do not use the klingon fixtures 8)
