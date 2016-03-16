@@ -10,10 +10,17 @@
 from django import forms
 from django.utils.translation import ugettext as _
 
+from django_rq.queues import get_queue
+
 from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
+
+
+def init_tp_from_templates(tp):
+    """Wraps translation project method to allow it to be running as RQ job"""
+    tp.init_from_templates()
 
 
 class TranslationProjectForm(forms.ModelForm):
@@ -47,3 +54,16 @@ class TranslationProjectForm(forms.ModelForm):
                     translationproject__project_id=project_id))
         self.fields["project"].queryset = self.fields[
             "project"].queryset.filter(pk=project_id)
+
+    def save(self, commit=True):
+        tp = self.instance
+        initialize_from_templates = False
+        if tp.id is None:
+            initialize_from_templates = tp.can_be_inited_from_templates()
+
+        tp = super(TranslationProjectForm, self).save(commit)
+        if initialize_from_templates:
+            queue = get_queue('default')
+            queue.enqueue(init_tp_from_templates, tp)
+
+        return tp

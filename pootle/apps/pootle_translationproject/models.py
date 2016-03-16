@@ -303,15 +303,18 @@ class TranslationProject(models.Model, CachedTreeItem):
         saved yet and can be initialized from templates.
         """
 
-        if self.id is None:
-            from pootle_app.project_tree import translation_project_dir_exists
+        from pootle_app.project_tree import translation_project_dir_exists
 
-            template_tp = self.project.get_template_translationproject()
-            return (
-                not self.is_template_project
-                and template_tp is not None
-                and not translation_project_dir_exists(self.language,
-                                                       self.project))
+        # This method checks if the current translation project directory
+        # doesn't exist. So it won't work if the translation project is already
+        # saved the database because the translation project directory is
+        # auto-created in `save()` method.
+        template_tp = self.project.get_template_translationproject()
+        return (
+            not self.is_template_project
+            and template_tp is not None
+            and not translation_project_dir_exists(self.language,
+                                                   self.project))
 
         return False
 
