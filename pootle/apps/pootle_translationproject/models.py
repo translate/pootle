@@ -251,18 +251,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         super(TranslationProject, self).__init__(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        created = self.id is None
-
-        if created:
-            from pootle_app.project_tree import translation_project_dir_exists
-
-            template_tp = self.project.get_template_translationproject()
-            initialize_from_templates = (
-                not self.is_template_project
-                and template_tp is not None
-                and not translation_project_dir_exists(self.language,
-                                                       self.project))
-
         self.directory = self.language.directory \
                                       .get_or_make_subdir(self.project.code)
         self.pootle_path = self.directory.pootle_path
@@ -274,19 +262,6 @@ class TranslationProject(models.Model, CachedTreeItem):
             self.directory.obsolete)
 
         super(TranslationProject, self).save(*args, **kwargs)
-
-        if created:
-            if initialize_from_templates:
-                # We are adding a new TP and there are no files to import from
-                # disk, so initialize the TP files using the templates TP ones.
-                from pootle_app.project_tree import init_store_from_template
-
-                template_stores = template_tp.stores.live().exclude(file="")
-
-                for template_store in template_stores.iterator():
-                    init_store_from_template(self, template_store)
-
-                self.update_from_disk()
 
     def delete(self, *args, **kwargs):
         directory = self.directory
@@ -322,6 +297,38 @@ class TranslationProject(models.Model, CachedTreeItem):
             return True
 
         return self.project.code in Project.accessible_by_user(user)
+
+    def can_be_inited_from_templates(self):
+        """Returns `True` if the current translation project hasn't been
+        saved yet and can be initialized from templates.
+        """
+
+        if self.id is None:
+            from pootle_app.project_tree import translation_project_dir_exists
+
+            template_tp = self.project.get_template_translationproject()
+            return (
+                not self.is_template_project
+                and template_tp is not None
+                and not translation_project_dir_exists(self.language,
+                                                       self.project))
+
+        return False
+
+    def init_from_templates(self):
+        """Initializes the current translation project files using
+        the templates TP ones.
+        """
+
+        from pootle_app.project_tree import init_store_from_template
+
+        template_tp = self.project.get_template_translationproject()
+        template_stores = template_tp.stores.live().exclude(file="")
+
+        for template_store in template_stores.iterator():
+            init_store_from_template(self, template_store)
+
+        self.update_from_disk()
 
     def update_from_disk(self, force=False, overwrite=False):
         """Update all stores to reflect state on disk."""
