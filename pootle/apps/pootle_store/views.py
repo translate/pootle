@@ -214,7 +214,8 @@ def get_units(request):
         request.user, **search_form.cleaned_data).search()
 
     bad_uid = (
-        len(search_form.cleaned_data["uids"]) == 1
+        search_form.cleaned_data["initial"]
+        and len(search_form.cleaned_data["uids"]) == 1
         and search_form.cleaned_data["uids"][0] not in uid_list)
     if bad_uid:
         raise Http404
