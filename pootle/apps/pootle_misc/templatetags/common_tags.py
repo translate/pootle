@@ -19,6 +19,7 @@ register = template.Library()
 @register.inclusion_tag('browser/_table.html', takes_context=True)
 def display_table(context, table):
     return {
+        'can_translate': context["can_translate"],
         'table': table,
     }
 
