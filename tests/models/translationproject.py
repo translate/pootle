@@ -16,6 +16,7 @@ from django.db import IntegrityError
 from pytest_pootle.factories import LanguageFactory
 
 from pootle_language.models import Language
+from pootle_project.forms import TranslationProjectForm
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
@@ -23,14 +24,14 @@ from pootle_translationproject.models import TranslationProject
 @pytest.mark.django_db
 def test_tp_create_fail(tutorial, english):
 
-    # Trying to create a TP with no Project raises a RelatedObjectDoesNotExist
-    # which can be caught with Project.DoesNotExist
-    with pytest.raises(Project.DoesNotExist):
+    # Trying to create a TP with no Language raises a RelatedObjectDoesNotExist
+    # which can be caught with Language.DoesNotExist
+    with pytest.raises(Language.DoesNotExist):
         TranslationProject.objects.create()
 
-    # TP needs a lang set too...
-    with pytest.raises(Language.DoesNotExist):
-        TranslationProject.objects.create(project=tutorial)
+    # TP needs a project set too...
+    with pytest.raises(Project.DoesNotExist):
+        TranslationProject.objects.create(language=english)
 
     # There is already an english tutorial was automagically set up
     with pytest.raises(IntegrityError):
@@ -43,8 +44,10 @@ def test_tp_create_templates(tutorial, klingon_vpw, templates):
     # our new TP
     template_tp = TranslationProject.objects.get(
         language=templates, project=tutorial)
+
     tp = TranslationProject.objects.create(
         project=tutorial, language=klingon_vpw)
+    tp.init_from_templates()
     assert tp.stores.count() == template_tp.stores.count()
     assert (
         [(s, t)
@@ -69,8 +72,6 @@ def test_tp_create_with_files(tutorial, klingon, settings):
 
     TranslationProject.objects.create(project=tutorial, language=klingon)
 
-    shutil.rmtree(os.path.join(trans_dir, "tutorial/kl"))
-
 
 @pytest.mark.django_db
 def test_tp_empty_stats():
@@ -79,7 +80,6 @@ def test_tp_empty_stats():
     """
     from pootle_project.models import Project
     from pootle_language.models import Language
-    from pootle_translationproject.models import TranslationProject
     from pytest_pootle.factories import LanguageFactory, TranslationProjectFactory
 
     # Create an empty template translation project for project0.
@@ -89,8 +89,11 @@ def test_tp_empty_stats():
 
     # Create a new language to test.
     language = LanguageFactory()
-    tp, created = TranslationProject.objects.get_or_create(language=language,
-                                                           project=project)
+    tp_form = TranslationProjectForm(
+        data={'language': language.id, 'project': project.id},
+        initial={'project': project.id})
+    assert tp_form.is_valid()
+    tp = tp_form.save()
 
     # There are no files on disk so TP was not automagically filled.
     assert list(tp.stores.all()) == []
@@ -109,8 +112,11 @@ def test_tp_stats_created_from_template(tutorial, templates):
     from pytest_pootle.factories import LanguageFactory
 
     language = LanguageFactory()
-    tp = TranslationProject.objects.create(project=tutorial, language=language)
-    tp.init_from_templates()
+    tp_form = TranslationProjectForm(
+        data={'language': language.id, 'project': tutorial.id},
+        initial={'project': tutorial.id})
+    assert tp_form.is_valid()
+    tp = tp_form.save()
 
     assert tp.stores.all().count() == 1
     stats = tp.get_stats()
