@@ -159,7 +159,7 @@ class Command(BaseCommand):
         # care of setting this up, but it's only available starting from
         # Django 1.10: https://code.djangoproject.com/ticket/16734
         script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
-                            else force_unicode(settings.FORCE_SCRIPT_NAME))
+                       else force_unicode(settings.FORCE_SCRIPT_NAME))
         set_script_prefix(script_name)
 
         if not hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
