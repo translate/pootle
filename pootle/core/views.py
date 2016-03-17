@@ -15,7 +15,7 @@ import operator
 from django.forms import ValidationError
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db.models import ObjectDoesNotExist, ProtectedError, Q
@@ -440,6 +440,17 @@ def page_not_found(request):
 
 def server_error(request):
     return django_500(request, template_name='errors/500.html')
+
+
+class PootleAdminView(DetailView):
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(
+            PootleAdminView, self).dispatch(request, *args, **kwargs)
+
+    def post(self, *args, **kwargs):
+        return self.get(*args, **kwargs)
 
 
 class PootleDetailView(DetailView):
