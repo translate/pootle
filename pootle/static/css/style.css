@@ -1147,13 +1147,13 @@ table.stats td.last-updated
     text-align: right;
 }
 
-td.stats-number.need-translation a,
-td.stats-number.suggestions a,
-td.stats-number.critical a
+
+td.stats-number.need-translation .stats-data,
+td.stats-number.suggestions .stats-data,
+td.stats-number.critical .stats-data
 {
     text-decoration: none;
     display: inline-block;
-    background: #0489b7;
     color: #fff;
     padding: 0 0.5em;
     margin-right: -0.5em;
@@ -1161,21 +1161,41 @@ td.stats-number.critical a
     border-radius: 1em;
 }
 
+td.stats-number.need-translation .stats-data
+{
+    background: #85a9b5;
+}
+
+td.stats-number.need-translation a.stats-data
+{
+    background: #0489b7;
+}
+
+td.stats-number.suggestions .stats-data
+{
+    background: #aba786;
+}
+
+td.stats-number.suggestions a.stats-data
+{
+    background: #bbaa66;
+}
+
+td.stats-number.critical .stats-data
+{
+    background: #a08d88;
+}
+
+td.stats-number.critical a.stats-data
+{
+    background: #c30;
+}
+
 td.stats-number.need-translation a:hover,
 td.stats-number.suggestions a:hover,
 td.stats-number.critical a:hover
 {
     background: #000 !important;
-}
-
-td.stats-number.suggestions a
-{
-    background: #bbaa66;
-}
-
-td.stats-number.critical a
-{
-    background: #c30;
 }
 
 td.stats-name .user-nobody
@@ -1228,7 +1248,9 @@ html[dir="rtl"] td.stats-name,
 }
 
 #check-critical a,
-.checks-critical a
+.checks-critical a,
+#check-critical .check-data,
+.checks-critical .check-data
 {
     color: #c00;
 }
