@@ -133,11 +133,11 @@ class Command(BaseCommand):
         if hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
             html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                        '../../', 'html2pdf.js')
-            self.stdout.write("Saving PDF to '{f}'".format(f=pdf_filename))
+            self.stdout.write("Saving PDF to '%s'" % pdf_filename)
             result = call([settings.POOTLE_INVOICES_PHANTOMJS_BIN,
                            html2pdf_js, html_filename, pdf_filename])
             if result:
-                self.stdout.write('Script returned result: {r}'.format(r=result))
+                self.stdout.write('Script returned result: %s' % result)
 
     def send_invoice(self, subject, to, cc, bcc, html, pdf_file):
         # set non-empty body according
@@ -247,7 +247,7 @@ class Command(BaseCommand):
                 usernames += user_conf['subcontractors']
 
             for username in usernames:
-                self.stdout.write("Getting data for {u}".format(u=username))
+                self.stdout.write('Getting data for %s' % username)
                 user = user_dict[username]
                 if main_username == username:
                     main_user = user
@@ -340,7 +340,7 @@ class Command(BaseCommand):
             html_filename = filename + '.html'
             pdf_filename = filename + '.pdf'
 
-            self.stdout.write("Saving HTML to '{f}'".format(f=html_filename))
+            self.stdout.write("Saving HTML to '%s'" % html_filename)
             html = render_to_string('invoices/invoice.html', ctx)
             codecs.open(html_filename, 'w', 'utf-8').write(html)
             self.html2pdf(html_filename, pdf_filename)
