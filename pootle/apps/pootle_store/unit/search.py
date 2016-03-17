@@ -145,7 +145,7 @@ class DBSearchBackend(object):
         return self.sort_qs(self.filter_qs(self.units_qs))
 
     def search(self):
-        uid_list = None
+        uid_list = []
         begin = 0
         end = 2 * self.chunk_size
         if self.initial:
