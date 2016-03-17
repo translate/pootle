@@ -250,6 +250,102 @@ Configuration settings for applications used by Pootle.
   - ``label`` specifying the text that will be displayed next to the mark.
 
 
+.. setting:: POOTLE_INVOICES_PHANTOMJS_BIN
+
+``POOTLE_INVOICES_PHANTOMJS_BIN``
+  Default: ``None`` (unset)
+
+  .. versionadded:: 2.7.3
+
+  Absolute path to the `PhantomJS binary <http://phantomjs.org/>`_. This is
+  needed in order to optionally generate PDF invoices out of user activity.
+
+
+.. setting:: POOTLE_INVOICES_DIRECTORY
+
+``POOTLE_INVOICES_DIRECTORY``
+  Default: ``working_path('invoices')``
+
+  .. versionadded:: 2.7.3
+
+  Base directory where the invoices will be created. Invoices will be generated
+  in subdirectories for each year and month combination, i.e.
+  ``$POOTLE_INVOICES_DIRECTORY/<YYYY-MM>/``.
+
+
+.. setting:: POOTLE_INVOICES_COMPANY
+
+``POOTLE_INVOICES_COMPANY``
+  Default: ``'ACME'``
+
+  .. versionadded:: 2.7.3
+
+  Name of your company as displayed in the invoice. Check the templates at
+  *templates/invoices/* for further details and customizations.
+
+
+.. setting:: POOTLE_INVOICES_DEPARTMENT
+
+``POOTLE_INVOICES_DEPARTMENT``
+  Default: ``'ACME Department'``
+
+  .. versionadded:: 2.7.3
+
+  Name of your company deparment as displayed in the invoices. Check the
+  templates at *templates/invoices/* for further details and customizations.
+
+
+.. setting:: POOTLE_INVOICES_RECIPIENTS
+
+``POOTLE_INVOICES_RECIPIENTS``
+  Default: ``{}`` (empty dictionary)
+
+  .. versionadded:: 2.7.3
+
+  The list of usernames for whom invoices will be generated and send to.
+
+  The setting holds a dictionary where the keys are actual usernames of the
+  running Pootle instance and the values are dictionaries of key-value pairs
+  which will be used to construct individual invoices. Check the example below
+  for the available fields.
+
+  .. code-block:: python
+
+    POOTLE_INVOICES_RECIPIENTS = {
+        'johndoe': {
+            # Full name as displayed in the invoice
+            # (REQUIRED)
+            'name': 'John Doe',
+            # Recipient's email address
+            'email': 'johndoe@example.com',
+            # (REQUIRED for sending via e-mail)
+            # Accounting department's email
+            'accounting-email': 'acc@example.com',
+            'accounting-email-cc': 'other.accountant@example.com',
+            # (REQUIRED)
+            'invoice_prefix': '-',
+            'language': 'ru',
+            'minimal_payment': 50, # USD
+            'extra_add': 30, # +30 USD wire transfer reimbursement
+            # (REQUIRED)
+            'paid_by': 'Evernote Corp.',
+            # (REQUIRED)
+            'wire_info': u"""
+                Name on Account: John Doe
+                Bank: TEST BANK
+                SWIFT: SWIFT number
+                Agency: Agency number
+                Current Account: Acc. number
+                CPF: C.P.F. number
+                """,
+            # (OPTIONAL)
+            'subcontractors': (
+                '<username>', # Usernames of subcontractors
+            ),
+        },
+    }
+
+
 .. setting:: POOTLE_SCORE_COEFFICIENTS
 
 ``POOTLE_SCORE_COEFFICIENTS``
