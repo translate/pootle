@@ -132,7 +132,7 @@ const stats = {
   },
 
   updateTranslationStats($tr, total, value, noTotalDefault) {
-    $tr.find('.stats-number a').html(value);
+    $tr.find('.stats-number .stats-data').html(value);
     $tr.find('.stats-percentage span').html(
       nicePercentage(value, total, noTotalDefault)
     );
@@ -149,9 +149,9 @@ const stats = {
       $td.removeClass('zero');
       $td.removeClass('not-inited');
       $td.addClass('non-zero');
-      $td.find('a').html(count);
+      $td.find('.stats-data').html(count);
     } else if (count === 0) {
-      $td.find('a').html('');
+      $td.find('.stats-data').html('');
       $td.addClass('zero');
       $td.removeClass('not-inited');
       $td.removeClass('non-zero');
@@ -435,7 +435,7 @@ const stats = {
           if (code in data) {
             empty = false;
             $check.show();
-            $check.find('.check-count a').html(data[code]);
+            $check.find('.check-count .check-data').html(data[code]);
           } else {
             $check.hide();
           }
