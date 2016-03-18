@@ -120,9 +120,14 @@ def test_admin_view_projects(client, request_users):
     response = _admin_view_get(client, project)
 
     if not user.is_superuser:
-        assert response.status_code == 403
+        assert response.status_code == 302
+        request = response.wsgi_request
+        redirect = (
+            "http://testserver%s?next=%s"
+            % (reverse("account_login"),
+               request.get_full_path()))
+        assert response.get("location") == redirect
         return
-
     _test_admin_view(response, project)
 
 
@@ -139,7 +144,13 @@ def test_admin_view_projects_post(client, request_users):
     if user.is_superuser:
         return
     response = _admin_view_post(client, project)
-    assert response.status_code == 403
+    request = response.wsgi_request
+    assert response.status_code == 302
+    redirect = (
+        "http://testserver%s?next=%s"
+        % (reverse("account_login"),
+           request.get_full_path()))
+    assert response.get("location") == redirect
 
 
 @pytest.mark.django_db
