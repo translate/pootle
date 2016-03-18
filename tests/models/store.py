@@ -13,6 +13,7 @@ import time
 
 import pytest
 
+import pytest_pootle
 from pytest_pootle.utils import update_store
 
 from translate.storage.factory import getclass
@@ -100,12 +101,13 @@ def test_sync(fr_tutorial_remove_sync_po):
 
 @pytest.mark.django_db
 def test_update_from_ts(en_tutorial_po):
-    from django.conf import settings
     from translate.storage.factory import getclass
 
     # Parse store
     en_tutorial_po.update_from_disk()
-    ts_dir = os.path.join(settings.ROOT_DIR, 'tests', 'data', 'ts')
+    ts_dir = os.path.join(
+        os.path.dirname(pytest_pootle.__file__),
+        'data', 'ts')
     tp = en_tutorial_po.translation_project
     store_filepath = os.path.join(ts_dir, tp.real_path, 'tutorial.ts')
     with open(store_filepath) as storefile:
@@ -326,7 +328,7 @@ def test_update_upload_old_revision_unit_conflict(en_tutorial_po):
 
 @pytest.mark.django_db
 def test_update_upload_new_revision_new_unit(en_tutorial_po):
-    file_name = "tests/data/po/tutorial/en/tutorial_update_new_unit.po"
+    file_name = "pytest_pootle/data/po/tutorial/en/tutorial_update_new_unit.po"
     _update_from_upload_file(en_tutorial_po, file_name)
 
     # the new unit has been added
@@ -338,10 +340,10 @@ def test_update_upload_old_revision_new_unit(en_tutorial_po):
 
     # load initial update
     _update_from_upload_file(en_tutorial_po,
-                             "tests/data/po/tutorial/en/tutorial_update.po")
+                             "pytest_pootle/data/po/tutorial/en/tutorial_update.po")
 
     # load old revision with new unit
-    file_name = "tests/data/po/tutorial/en/tutorial_update_old_unit.po"
+    file_name = "pytest_pootle/data/po/tutorial/en/tutorial_update_old_unit.po"
     _update_from_upload_file(en_tutorial_po, file_name)
 
     # the unit has been added because its not already obsoleted

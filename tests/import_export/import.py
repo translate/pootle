@@ -13,22 +13,28 @@ import pytest
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+import pytest_pootle
+from pytest_pootle.utils import create_store
+
 from import_export.exceptions import UnsupportedFiletypeError
 from import_export.utils import import_file
 from pootle_app.models.permissions import check_user_permission
 from pootle_store.models import NEW, PARSED, Store
 from pootle_store.models import OBSOLETE, TRANSLATED, Unit
-from pytest_pootle.utils import create_store
 
 
-TEST_PO_DIR = "tests/data/po/tutorial/en"
 IMPORT_SUCCESS = "headers_correct.po"
 IMPORT_UNSUPP_FILE = "tutorial.ts"
 
 
-def _import_file(file_name, file_dir=TEST_PO_DIR,
+def _import_file(file_name, file_dir=None,
                  content_type="text/x-gettext-translation",
                  user=None):
+    if not file_dir:
+        file_dir = os.path.join(
+            os.path.dirname(pytest_pootle.__file__),
+            "data/po/tutorial/en")
+
     with open(os.path.join(file_dir, file_name), "r") as f:
         import_file(
             SimpleUploadedFile(file_name, f.read(), content_type),
