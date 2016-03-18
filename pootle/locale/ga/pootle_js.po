@@ -257,13 +257,11 @@ msgstr ""
 "eagar."
 
 #: static/js/admin/components/User/UserForm.js:50
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Nóta: má scriosann tú an t-úsáideoir, cuirfear a c(h)uid moltaí agus "
-"aistriúchán i leith úsáideora gan ainm (nobody)."
+"Nóta: má scriosann tú úsáideoir, cuirfear a c(h)uid gníomhaíochtaí ar an suíomh, m.sh. nótaí tráchta, moltaí agus aistriúchán, i leith úsáideora gan ainm (nobody)."
 
 #: static/js/admin/components/User/UserForm.js:62
 #: static/js/auth/components/SignInForm.js:94
@@ -348,7 +346,7 @@ msgstr "Tuairiscí"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Taispeánfar an réamhamharc anseo."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
@@ -542,7 +540,7 @@ msgstr "Deimhniú Sóisialta"
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
-msgstr ""
+msgstr "Athruithe gan sábháil sa teaghrán seo. Má imíonn tú anois, caillfidh tú na hathruithe sin."
 
 #: static/js/editor/app.js:301
 msgid ""
@@ -611,9 +609,8 @@ msgid "Unknown error"
 msgstr "Earráid anaithnid"
 
 #: static/js/editor/app.js:1045
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Níl an t-aonad seo ann a thuilleadh."
+msgstr "Níl an teaghrán seo ann a thuilleadh."
 
 #: static/js/editor/app.js:1046
 msgid "Go back to browsing"
@@ -729,26 +726,25 @@ msgstr "Cúpla soicind ó shin"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:94
 msgid "Email Address"
-msgstr ""
+msgstr "Seoladh Ríomhphoist"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
-msgstr ""
+msgstr "Cuir isteach do sheoladh ríomhphoist agus seolfaimid teachtaireacht chugat le nasc speisialta chun d'fhocal faire a athshocrú."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
-msgstr ""
+msgstr "Níl, go raibh maith agat"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:113
-#, fuzzy
 msgid "Send Email"
-msgstr "Seol an Ríomhphost Arís"
+msgstr "Seol Ríomhphost"
 
 #: static/js/auth/components/SignInForm.js:84
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Níl cead agat cuntais nua a chruthú."
 
 #: static/js/auth/components/SocialVerification.js:78
 #, python-format
@@ -756,7 +752,7 @@ msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
-msgstr ""
+msgstr "D'aimsíomar úsáideoir inár gcóras leis an seoladh ríomhphoist <span>%s</span>. Tabhair an focal faire leis an bpróiseas logála isteach a chur i gcrích. Ní dhéanfaidh tú é seo ach uair amháin, agus bunóidh sé nasc idir do chuntais Pootle agus %s."
 
 #: static/js/browser.js:164
 msgid "All Languages"
@@ -780,7 +776,7 @@ msgstr "duine éigin"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "comhad uaslódáilte"
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
@@ -979,13 +975,13 @@ msgid "Show"
 msgstr "Taispeáin"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo;"
+"%(project)s</span>&rdquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format
@@ -995,11 +991,3 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#, fuzzy
-#~ msgid "accepted suggestion for ${sourceString}"
-#~ msgstr "Moltaí glactha ó %s"
-
-#, fuzzy
-#~ msgid "rejected suggestion for ${sourceString}"
-#~ msgstr "Moltaí diúltaithe ó %s"
