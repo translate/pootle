@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import tempfile
+
 import pytest
 
 from pytest_pootle.env import PootleTestEnv
@@ -25,7 +27,8 @@ def setup_db_if_needed(request):
 
 
 @pytest.fixture(scope='session')
-def post_db_setup(_django_db_setup, _django_cursor_wrapper, request):
+def post_db_setup(translations_directory, _django_db_setup,
+                  _django_cursor_wrapper, request):
     """Sets up the site DB for the test session."""
     with _django_cursor_wrapper:
         PootleTestEnv(request).setup()
@@ -74,3 +77,10 @@ def no_extra_users():
     User = get_user_model()
     User.objects.exclude(
         username__in=["system", "default", "nobody"]).delete()
+
+
+@pytest.fixture(autouse=True, scope="session")
+def translations_directory(request):
+    """used by PootleEnv"""
+    from django.conf import settings
+    settings.POOTLE_TRANSLATION_DIRECTORY = tempfile.mkdtemp()
