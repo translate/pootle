@@ -16,7 +16,7 @@ SECRET_KEY = "test_secret_key"
 
 
 ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
-POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'tests', 'data', 'po')
+POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'pytest_pootle', 'data', 'po')
 
 
 # Dummy caching
