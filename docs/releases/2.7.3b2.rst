@@ -18,7 +18,7 @@ Details of changes
 - :djadmin:`start` has been removed, use :djadmin:`runserver` instead.
 - :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
   usernames.
-- :djadmin:`refresh_scores` now recalculates user scores and accept
+- :djadmin:`refresh_scores` now recalculates user scores and accepts
   multiple usernames.
 - :djadmin:`contributors` has two new options
   :option:`--since <contributors --since>` and
