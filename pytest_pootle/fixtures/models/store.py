@@ -8,8 +8,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-import shutil
-import tempfile
 from collections import OrderedDict
 
 import pytest
@@ -273,35 +271,6 @@ def _make_member_updates(store, member):
     _create_submission_and_suggestion(store, member)
     _create_comment_on_unit(store.units[0], member, "NICE COMMENT")
     _mark_unit_fuzzy(store.units[0], member)
-
-
-@pytest.fixture(scope='session')
-def po_directory(request):
-    """Sets up a tmp directory with test PO files."""
-    from django.conf import settings
-    from pootle_store.models import fs
-
-    test_base_dir = tempfile.mkdtemp()
-
-    projects = [dirname for dirname
-                in os.listdir(settings.POOTLE_TRANSLATION_DIRECTORY)
-                if dirname != '.tmp']
-
-    for project in projects:
-        src_dir = os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, project)
-
-        # Copy files over the temporal dir
-        shutil.copytree(src_dir, os.path.join(test_base_dir, project))
-
-    # Adjust locations
-    settings.POOTLE_TRANSLATION_DIRECTORY = test_base_dir
-    fs.location = test_base_dir
-
-    def _cleanup():
-        shutil.rmtree(test_base_dir)
-    request.addfinalizer(_cleanup)
-
-    return test_base_dir
 
 
 @pytest.fixture
