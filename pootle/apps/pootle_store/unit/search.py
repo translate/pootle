@@ -17,7 +17,7 @@ from pootle_store.views import SIMPLY_SORTED
 
 class DBSearchBackend(object):
 
-    default_chunk_size = 9
+    default_chunk_size = 10
     default_order = "store__pootle_path", "index"
     select_related = (
         'store__translation_project__project',
