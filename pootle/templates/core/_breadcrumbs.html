@@ -2,15 +2,17 @@
 {% if nav %}
 <li class="navigation">
   <select id="js-select-navigation" data-initial-code="{{ page }}"
-    style="visibility: hidden;">
+	  style="visibility: hidden;">
     {% include nav %}
   </select>
 </li>
 {% endif %}
 <li>
   <select id="js-select-language" data-initial-code="{{ language.code }}"
-    style="visibility: hidden;">
+	  style="visibility: hidden;">
+    {% if is_admin or page != "translate" %}
     <option value=""></option>
+    {% endif %}
     {% for lang_code, lang_name in ALL_LANGUAGES.items %}
     <option value="{{ lang_code }}">{{ lang_name }}</option>
     {% endfor %}
