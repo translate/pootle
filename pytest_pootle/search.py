@@ -26,7 +26,6 @@ from virtualfolder.models import VirtualFolderTreeItem
 
 def calculate_search_results(kwargs, user):
     pootle_path = kwargs["pootle_path"]
-
     category = kwargs.get("category")
     checks = kwargs.get("checks")
     offset = kwargs.get("offset", 0)
@@ -56,7 +55,6 @@ def calculate_search_results(kwargs, user):
                 "directory", "vfolder"))
     qs = (
         Unit.objects.get_translatable(user=user, **resolve(pootle_path).kwargs)
-                    .filter(store__pootle_path__startswith=pootle_path)
                     .order_by("store", "index"))
     if vfolder is not None:
         qs = qs.filter(vfolders=vfolder)
