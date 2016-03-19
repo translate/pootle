@@ -480,9 +480,9 @@ class UnitSearchForm(forms.Form):
             self.cleaned_data["user"] = self.request_user
         if self.errors:
             return
-        if self.cleaned_data['count'] is None:
-            self.cleaned_data["count"] = (
-                self.cleaned_data["user"].get_unit_rows())
+        self.cleaned_data['count'] = min(
+            self.cleaned_data.get("count", 10) or 10,
+            self.cleaned_data["user"].get_unit_rows() or 10)
         self.cleaned_data["vfolder"] = None
         pootle_path = self.cleaned_data.get("path")
         if 'virtualfolder' in settings.INSTALLED_APPS:
