@@ -57,15 +57,14 @@ def create_store(pootle_path=None, store_revision=None, units=None):
     return getclass(io_store)(io_store.read())
 
 
-def get_test_uids(offset=0, count=1, pootle_path=None):
+def get_test_uids(offset=0, count=1, pootle_path="^/language0/"):
     """Returns a list translated unit uids from ~middle of
     translated units dataset
     """
-    from pootle_store.models import Unit
+    from pootle_store.models import TRANSLATED, Unit
 
-    units = Unit.objects.all()
-    if pootle_path:
-        units = units.filter(store__pootle_path=pootle_path)
+    units = Unit.objects.filter(
+        store__pootle_path__regex=pootle_path).filter(state=TRANSLATED)
     begin = (units.count() / 2) + offset
     return list(units[begin: begin + count].values_list("pk", flat=True))
 

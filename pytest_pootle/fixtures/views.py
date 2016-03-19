@@ -67,11 +67,17 @@ BAD_VIEW_TESTS = OrderedDict(
 
      ("/xhr/units/1/edit/", dict(code=400)),
      ("/xhr/units/?path=/%s" % ("BAD" * 800),
-      dict(ajax=True, code=400))))
-
+      dict(ajax=True, code=400)),
+     ("/xhr/units?filter=translated&"
+      "path=/",
+      dict(ajax=True))))
 
 GET_UNITS_TESTS = OrderedDict(
     (("default_path", {}),
+     ("root_path", dict(path="/")),
+     ("projects_path", dict(path="/projects/")),
+     ("project_path", dict(path="/projects/project0/")),
+     ("bad_project_path", dict(path="/projects/FOO/")),
      ("state_translated",
       {"filter": "translated"}),
      ("state_translated_continued",
@@ -253,7 +259,7 @@ DISABLED_PROJECT_URL_PARAMS = OrderedDict(
 @pytest.fixture(params=GET_UNITS_TESTS.keys())
 def get_units_views(request, client, request_users):
     params = GET_UNITS_TESTS[request.param].copy()
-    params["path"] = params.get("path", "/language0/project0/")
+    params["path"] = params.get("path", "/language0/")
 
     user = request_users["user"]
     if user.username != "nobody":
