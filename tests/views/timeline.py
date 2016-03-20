@@ -179,7 +179,8 @@ def _timeline_test(client, request_user, unit):
         client.login(
             username=user.username,
             password=request_user["password"])
-    response = client.get(url)
+    response = client.get(
+        url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     no_permission = (
         not user.is_superuser
