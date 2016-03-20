@@ -78,7 +78,9 @@ function navigateTo(languageCode, projectCode, resource) {
 
   const PTL = window.PTL || {};
   if (PTL.hasOwnProperty('editor')) {
-    const hash = utils.getHash().replace(/&?unit=\d+/, '');
+    const hash = utils.getHash()
+          .replace(/&?unit=\d+/, '')
+          .replace(/&?offset=\d+/, '');
     if (hash !== '') {
       newUrl = [newUrl, hash].join('#');
     }
