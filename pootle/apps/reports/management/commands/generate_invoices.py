@@ -130,14 +130,16 @@ class Command(BaseCommand):
         return self.change_rates[currency]
 
     def html2pdf(self, html_filename, pdf_filename):
-        if hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
-            html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                                       '../../', 'html2pdf.js')
-            self.stdout.write("Saving PDF to '%s'" % pdf_filename)
-            result = call([settings.POOTLE_INVOICES_PHANTOMJS_BIN,
-                           html2pdf_js, html_filename, pdf_filename])
-            if result:
-                self.stdout.write('Script returned result: %s' % result)
+        phantomjs_bin = settings.POOTLE_INVOICES_PHANTOMJS_BIN
+        if phantomjs_bin is None:
+            return None
+
+        html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                                   '../../', 'html2pdf.js')
+        self.stdout.write("Saving PDF to '%s'" % pdf_filename)
+        result = call([phantomjs_bin, html2pdf_js, html_filename, pdf_filename])
+        if result:
+            self.stdout.write('Script returned result: %s' % result)
 
     def send_invoice(self, subject, to, cc, bcc, html, pdf_file):
         # set non-empty body according
