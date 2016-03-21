@@ -22,10 +22,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import EmailMultiAlternatives
 from django.core.management.base import BaseCommand, CommandError
-from django.core.urlresolvers import set_script_prefix
 from django.template.loader import render_to_string
 from django.utils import timezone
-from django.utils.encoding import force_unicode
 from django.utils.html import strip_tags
 
 from pootle_misc.util import get_date_interval
@@ -137,14 +135,6 @@ class Command(BaseCommand):
             self.stdout.write("ERROR: sending failed")
 
     def handle(self, **options):
-        # The script prefix needs to be set here because the generated URLs need
-        # to be aware of that and they are cached. Ideally Django should take
-        # care of setting this up, but it's only available starting from
-        # Django 1.10: https://code.djangoproject.com/ticket/16734
-        script_name = (u'/' if settings.FORCE_SCRIPT_NAME is None
-                       else force_unicode(settings.FORCE_SCRIPT_NAME))
-        set_script_prefix(script_name)
-
         can_generate_pdfs = self.is_pdf_renderer_configured()
         if not can_generate_pdfs:
             logger.warn(
