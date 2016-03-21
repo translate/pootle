@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-06-26 07:39+0000\n"
+"PO-Revision-Date: 2016-02-08 10:09+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1435304394.000000\n"
+"X-POOTLE-MTIME: 1454926196.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -47,16 +47,17 @@ msgstr "Cancel·la"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s llengua coincideix amb la consulta."
+msgstr[1] "%(count)s llengües coincideixen amb la consulta."
 
 #: static/js/admin/components/Language/LanguageController.js:54
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Hi ha %(count)s llengua."
 msgstr[1] ""
+"hi ha %(count)s llengües. A sota es mostren les afegides recentment."
 
 #: static/js/admin/components/Language/LanguageController.js:70
 msgid "Search Languages"
@@ -74,6 +75,8 @@ msgstr "Edita la llengua"
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Useu el formulari de cerca per a troba la llengua, aleshores feu clic a la "
+"llegua per a editar-la."
 
 #: static/js/admin/components/Language/LanguageForm.js:56
 #: static/js/admin/components/Project/ProjectForm.js:59
@@ -123,16 +126,16 @@ msgstr "Afegeix un projecte"
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s projecte coincideix amb la consulta."
+msgstr[1] "%(count)s projectes coincideixen amb la consulta."
 
 #: static/js/admin/components/Project/ProjectController.js:54
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hi ha %(count)s projecte."
+msgstr[1] "Hi ha %(count)s projectes. A sota es mostre els afegits recentment."
 
 #: static/js/admin/components/Project/ProjectController.js:70
 msgid "Search Projects"
@@ -150,6 +153,8 @@ msgstr "Edita el projecte"
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Usa el formulari de cerca per a trobar el projectes, aleshores feu clic al "
+"projecte per a editar-lo."
 
 #: static/js/admin/components/Project/ProjectForm.js:74
 msgid "Quality Checks"
@@ -173,11 +178,11 @@ msgstr "Ignora els fitxers"
 
 #: static/js/admin/components/Project/ProjectForm.js:114
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Contacte per als errors de les cadenes"
 
 #: static/js/admin/components/Project/ProjectForm.js:120
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Prefix de cerca de captures de pantalla"
 
 #: static/js/admin/components/Project/ProjectForm.js:127
 msgid "Disabled"
@@ -204,16 +209,16 @@ msgstr "Afegeix un usuari"
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s usuari coincideix amb la consulta."
+msgstr[1] "%(count)s usuaris coincideixen amb la consulta."
 
 #: static/js/admin/components/User/UserController.js:54
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hi ha %(count)s usuari."
+msgstr[1] "Hi ha %(count)s usuaris. A sota es mostra les afegits recentment."
 
 #: static/js/admin/components/User/UserController.js:70
 msgid "Search Users"
@@ -230,12 +235,17 @@ msgstr "Edita l'usuari"
 #: static/js/admin/components/User/UserEdit.js:36
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Usue el formulari de cerca per a trobar l'usuari, aleshores feu clic a "
+"l'usuari per a editar-lo."
 
 #: static/js/admin/components/User/UserForm.js:50
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
+"Nota: si suprimiu un usuari un usuari, les seves aportacions al lloc, p. e. "
+"comentaris, suggeriments i traduccions, s'atribueixen a l'usuari anònim "
+"(«nobody»)."
 
 #: static/js/admin/components/User/UserForm.js:62
 #: static/js/auth/components/SignInForm.js:94
@@ -318,11 +328,11 @@ msgstr "Informes"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "La vista preliminar es mostrarà aquí."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
 "Us hem enviat un correu electrònic amb l'enllaç especial a <span>%s</span>."
@@ -337,11 +347,11 @@ msgstr ""
 
 #: static/js/auth/components/AccountActivation.js:40
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Cal que activeu el compte."
 
 #: static/js/auth/components/AccountActivation.js:41
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Visiteu l'enllaç per a continuar la creació del compte."
 
 #: static/js/auth/components/AccountActivation.js:55
 #: static/js/auth/components/AccountInactive.js:34
@@ -352,6 +362,7 @@ msgstr "Tanca"
 #: static/js/auth/components/AccountInactive.js:28
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr ""
+"El vostre compte està desactivat perquè un administrador l'ha desactivat."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
@@ -360,6 +371,7 @@ msgstr "Contacteu amb nosaltres"
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
 msgstr ""
+"Aquest enllaç de confirmació d'adreça electrònica ha caducat o no és vàlid."
 
 #: static/js/auth/components/PasswordResetForm.js:79
 msgid ""
@@ -385,20 +397,21 @@ msgstr "Repetiu la contrasenya"
 
 #: static/js/auth/components/PasswordResetForm.js:134
 msgid "Set New Password"
-msgstr ""
+msgstr "Estableix una contrasenya nova"
 
 #: static/js/auth/components/PasswordResetForm.js:138
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Després de canviar la contrasenya iniciareu sessió automàticament."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:23
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "S'està enviant un correu electrònic a %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:46
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Visiteu aquest enllaç per a continuar amb el procés de canvi de contrasenya."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid ""
@@ -413,7 +426,7 @@ msgstr "Torna a enviar el correu"
 #: static/js/auth/components/SignInForm.js:82
 #: static/js/auth/components/RequestPasswordResetForm.js:119
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Enregistra'm com a un usuari nou"
 
 #: static/js/auth/components/SignInForm.js:110
 #: static/js/auth/components/SocialVerification.js:100
@@ -429,7 +442,7 @@ msgstr "Inicia la sessió"
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:71
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "S'ha iniciat la sessió. S'està redirigint..."
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
@@ -437,7 +450,7 @@ msgstr "Serveis socials"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
-msgstr ""
+msgstr "Usuari i contrasenya"
 
 #: static/js/auth/components/SignUpForm.js:120
 #: static/js/auth/containers/Auth.js:95
@@ -459,12 +472,12 @@ msgstr ""
 
 #: static/js/auth/components/SocialAuthError.js:49
 msgid "Try again"
-msgstr ""
+msgstr "Torneu-hi"
 
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Inicia sessió amb %s"
 
 #: static/js/auth/components/SocialSignInForm.js:44
 msgid ""
@@ -569,9 +582,8 @@ msgid "Unknown error"
 msgstr "S'ha produït un error desconegut"
 
 #: static/js/editor/app.js:1045
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Aquesta unitat ja no existeix."
+msgstr "Aquesta cadena ja no existeix."
 
 #: static/js/editor/app.js:1046
 msgid "Go back to browsing"
@@ -590,11 +602,11 @@ msgid "disabled"
 msgstr "inhabilitat"
 
 #: static/js/stats.js:354
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
-msgstr[0] "%s segons"
-msgstr[1] ""
+msgstr[0] "%s segon"
+msgstr[1] "%s segons"
 
 #: static/js/stats.js:389
 msgid "Collapse details"
@@ -626,7 +638,7 @@ msgstr "No"
 
 #: static/js/user/components/UserProfileEdit.js:128
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Hi ha canvis sense desar. Voleu descartar-los?"
 
 #: static/js/utils.js:151
 #, javascript-format
@@ -669,7 +681,7 @@ msgstr "Fa uns quants segons"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:94
 msgid "Email Address"
-msgstr ""
+msgstr "Adreça electrònica"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid ""
@@ -679,12 +691,11 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
-msgstr ""
+msgstr "No, gràcies"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:113
-#, fuzzy
 msgid "Send Email"
-msgstr "Torna a enviar el correu"
+msgstr "Envia el correu"
 
 #: static/js/auth/components/SignInForm.js:84
 msgid "Creating new user accounts is prohibited."
@@ -720,11 +731,11 @@ msgstr "algú"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "ha pujat un fitxer"
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr "Selecciona..."
+msgstr "Seleccioneu..."
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
@@ -740,7 +751,7 @@ msgstr "Neteja-ho tot"
 
 #: static/js/shared/components/forms.jsx:73
 msgid "Type to search"
-msgstr ""
+msgstr "Escriviu per a cercar"
 
 #: static/js/user/forms.jsx:63
 #, python-format
@@ -751,11 +762,11 @@ msgstr ""
 
 #: static/js/user/forms.jsx:76
 msgid "Your Full Name"
-msgstr ""
+msgstr "Nom complet"
 
 #: static/js/user/forms.jsx:82
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: static/js/user/forms.jsx:91
 msgid "Your Twitter username"
@@ -767,7 +778,7 @@ msgstr "L'URL del vostre perfil del LinkedIn"
 
 #: static/js/user/forms.jsx:104
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "L'URL al vostre bloc o lloc web personal"
 
 #: static/js/user/forms.jsx:112
 msgid ""
@@ -781,7 +792,7 @@ msgstr "Projecte / Llengua"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Suggerit"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
@@ -793,7 +804,7 @@ msgstr "Revisat"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "Canvi de puntuació"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -803,11 +814,11 @@ msgstr ""
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "paraula"
-msgstr[1] "paraules"
+msgstr[0] "%s paraula"
+msgstr[1] "%s paraules"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -887,7 +898,7 @@ msgstr "(tasques registrades)"
 #: templates/admin/xhr_summary_report.html:44
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Total (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -906,13 +917,13 @@ msgid "Show"
 msgstr "Mostra"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
-"Traduït per %(fullname)s al projecte &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo;"
+"Traduït per %(fullname)s al projecte «<span title=\"%(path)s\">%(project)s</"
+"span>»"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format
@@ -920,8 +931,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-"Traduït per %(fullname)s al projecte &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo;"
+"Traduït per %(fullname)s al projecte «<span title=\"%(path)s\">%(project)s</"
+"span>»"
 
 #, fuzzy
 #~ msgid "accepted suggestion for ${sourceString}"

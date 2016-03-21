@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-09-27 07:24+0000\n"
+"PO-Revision-Date: 2016-01-21 07:41+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1443338697.000000\n"
+"X-POOTLE-MTIME: 1453362101.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -198,9 +198,9 @@ msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "ينقصه الملفّ '%s' ترويسة X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:40
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "الملفّ %r إمّا أنّه ينقصه ترويسة X-Pootle-Revision أو أنّها غير صالحة\n"
+msgstr "الملفّ '%s' إمّا أنّه ينقصه ترويسة X-Pootle-Revision أو أنّها غير صالحة\n"
 
 #: apps/import_export/utils.py:48
 #, python-format
@@ -208,9 +208,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "تعذّر إنشاء '%s'. لربّما المشروع أو اللغة ناقصة؟ (%s)"
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "يسمح له برفع ملفات ترجمة بديلة"
+msgstr "حدث خطأ في رفع ملفّك"
 
 #: apps/pootle_app/forms.py:38
 msgid "Language code does not follow the ISO convention"
@@ -1070,9 +1069,8 @@ msgstr ""
 "‏projects/<project_code>‎ أو <language_code> أو <language_code>/<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "المعطيات ناقصة."
+msgstr "النّصّ ناقص"
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1080,11 +1078,10 @@ msgstr "المكان"
 
 #: apps/virtualfolder/models.py:37
 msgid "Root path where this virtual folder is applied."
-msgstr ""
+msgstr "المسار الجذر حيث يُطبّق عليه المجلّد الوهميّ"
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filter"
 msgstr "رشِّح"
 
@@ -1110,18 +1107,18 @@ msgid "Whether this virtual folder is public or not."
 msgstr "فيما إذا كان المجلّد الوهميّ هذا عامًّا أم لا."
 
 #: apps/virtualfolder/models.py:60
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
-msgstr ""
-"وصفٌ لهذا الهدف. يفيد في إعطاء المزيد من المعلومات أو التعليمات. الرقْم "
-"المسموح به: %s"
+msgstr "استخدم هذا لإعطاء معلومات أو تعليمات أخرى. الرقْم المسموح به: %s"
 
 #: checks.py:56
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"توجد حسابات لمستخدمين حيث عناوين بريدهم الإلكترونيّ متكرّرة. لن يُسمح بهذا في "
+"بوتل 2.8."
 
 #: checks.py:58
 msgid ""
@@ -1129,6 +1126,9 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"جرّب استخدام 'pootle find_duplicate_emails'، وثم حدّث عناوين البريد للمستخدمين "
+"ب‍'pootle update_user_email username email'. قد ترغب أيضا بأخذ استخدام أمريّ "
+"بوتل merge_user أو purge_user بعين الاعتبار"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1170,9 +1170,9 @@ msgid "Your version of Redis is too old."
 msgstr "إصدارتك من Redis قديمة جدًّا."
 
 #: checks.py:128
-#, fuzzy, python-format
+#, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "حدّث حزمة خادوم Redis لنظامك"
+msgstr "حدّث حزمة خادوم Redis لنظامك إلى الإصدارة %s على الأقل"
 
 #: checks.py:138
 msgid "No RQ Worker running."
@@ -1400,11 +1400,11 @@ msgstr ""
 
 #: checks.py:387
 msgid "Email server is not available."
-msgstr ""
+msgstr "خادوم البريد الإلكترونيّ غير متوفّر."
 
 #: checks.py:388
 msgid "Review your email settings and make sure your email server is working."
-msgstr ""
+msgstr "راجع إعدادات البريد الإلكترونيّ وتأكّد من عمل الخادوم."
 
 #: core/browser.py:27
 msgid "Project"
@@ -2580,6 +2580,7 @@ msgstr ""
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
 #: templates/translation_projects/terminology/manage.html:62
+#, fuzzy
 msgid ""
 "In order to use the terminology feature, make sure to add a terminology file "
 "to your translation project. The terminology file must be named 'pootle-"
@@ -2587,6 +2588,10 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"لاستخدام ميزة المصطلحات، تأكد من إضافة ملفّ مصطلحات إلى مشروع التّرجمة. يجب أن "
+"يكون الملفّ باسم 'pootle-terminology' كما ويستخدم نفس امتداد (نسق) الملّف في "
+"بقية ملفّات المشروع.  المصطلحات هذه ستُستخدم إضافة إلى أية اقتراحات مصطلحات "
+"يوفّرها مشروع 'المصطلحات'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

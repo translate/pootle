@@ -26,8 +26,6 @@ msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
-"Tharla earráid nuair a rinneamar iarracht an ríomhphost deimhnithe a "
-"sheoladh. Bain triail eile as ar ball."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -144,8 +142,6 @@ msgstr "Tá an seoladh ríomhphoist seo ann cheana."
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
-"Tharla earráid le linn logáil isteach. Téigh i dteagmháil le riarthóir do "
-"chórais"
 
 #: apps/contact/forms.py:26
 msgid "Summary"
@@ -216,8 +212,9 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Níorbh fhéidir '%s' a chruthú. Tionscadal/Teanga ar iarraidh? (%s)"
 
 #: apps/import_export/utils.py:57
+#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Tharla earráid agus do chomhad á uaslódáil"
+msgstr "Is féidir aistriúcháin a fhorscríobh le comhaid uasluchtaithe"
 
 #: apps/pootle_app/forms.py:38
 msgid "Language code does not follow the ISO convention"
@@ -397,7 +394,7 @@ msgstr "Admhálacha aistritheoirí"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr "Méideanna dialóg"
+msgstr ""
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -1045,9 +1042,11 @@ msgid "Redirect to URL"
 msgstr "Atreorú chuig URL"
 
 #: apps/staticpages/models.py:54
+#, fuzzy
 msgid "If set, this page will redirect to this URL"
 msgstr ""
-"Leis an rogha seo, cuirfear an leathanach seo ar aghaidh go dtí an URL seo"
+"Leis an rogha seo, cuirfear aon tagairt don leathanach seo ar aghaidh chuig "
+"an URL seo"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1078,8 +1077,9 @@ msgstr ""
 "projects/<project_code> nó <language_code> nó <language_code>/<project_code>"
 
 #: apps/staticpages/views.py:231
+#, fuzzy
 msgid "Text is missing"
-msgstr "Téacs ar iarraidh"
+msgstr "Argóintí ar iarraidh."
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1130,8 +1130,6 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
-"Níos mó ná cuntas amháin leis an seoladh ríomhphoist céanna. Ní cheadófar é "
-"seo i bPootle 2.8."
 
 #: checks.py:58
 msgid ""
@@ -1139,9 +1137,6 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
-"Bain triail as 'pootle find_duplicate_emails', ansin nuashonraigh na seoltaí "
-"ríomhphoist le 'pootle update_user_email username email'. Seans go mbeadh na "
-"horduithe merge_user agus purge_user úsáideach freisin"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1183,11 +1178,9 @@ msgid "Your version of Redis is too old."
 msgstr "Tá leagan róshean de Redis agat."
 
 #: checks.py:128
-#, python-format
+#, fuzzy, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr ""
-"Ba chóir duit an pacáiste Redis ar do chóras a nuashonrú go dtí leagan %s ar "
-"a laghad"
+msgstr "Nuashonraigh an pacáiste Redis ar do chóras"
 
 #: checks.py:138
 msgid "No RQ Worker running."
@@ -1332,75 +1325,72 @@ msgstr "Suiteáil an pacáiste nó athraigh POOTLE_MARKUP_FILTER."
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr "Níl aon INDEX_NAME ag POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr "Roghnaigh INDEX_NAME le haghaidh POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr "INDEX_NAME dúblach '%s' in POOTLE_TM_SERVER."
+msgstr ""
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
-"Roghnaigh INDEX_NAME éagsúil i gcomhair gach freastalaí in POOTLE_TM_SERVER."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr "Níl aon ENGINE ag POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr "Roghnaigh ENGINE le haghaidh POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr "Níl aon HOST ag POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr "Roghnaigh HOST le haghaidh POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr "Níl aon PORT ag POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr "Roghnaigh PORT le haghaidh POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr "Níl aon MIN_SCORE ag POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr "Roghnaigh MIN_SCORE le haghaidh POOTLE_TM_SERVER['%s']."
+msgstr ""
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr "Tá WEIGHT ar POOTLE_TM_SERVER['%s'] níos lú ná 0.0 nó níos mó ná 1.0"
+msgstr ""
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
-"Roghnaigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) le haghaidh "
-"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1424,13 +1414,11 @@ msgstr ""
 
 #: checks.py:387
 msgid "Email server is not available."
-msgstr "Níl an freastalaí ríomhphoist ar fáil."
+msgstr ""
 
 #: checks.py:388
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
-"Féach ar shocruithe do ríomhphoist agus deimhnigh go bhfuil do fhreastalaí "
-"ríomhphoist i bhfeidhm."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1807,19 +1795,20 @@ msgstr "Focail"
 msgid "Subtotal"
 msgstr "Fo-iomlán"
 
-# aistriúchán uathoibríoch?
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr "AU"
+msgstr ""
 
 #: templates/admin/detailed_reports.html:218
+#, fuzzy
 msgid "Subactions"
-msgstr "Foghníomhartha"
+msgstr "Feidhmeanna"
 
 #: templates/admin/detailed_reports.html:219
+#, fuzzy
 msgid "Raw Translation"
-msgstr "Aistriúchán Amh"
+msgstr "Aistriúchán"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2412,14 +2401,14 @@ msgid "Last comment removed"
 msgstr "Baineadh an nóta tráchta is déanaí"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, python-format
+#, fuzzy, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Balbhaíodh deimhniú <a href=\"%(check_url)s\">%(check_name)s</a>"
+msgstr "athbhreithnithe ag <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, python-format
+#, fuzzy, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Díbhalbhaíodh deimhniú <a href=\"%(check_url)s\">%(check_name)s</a>"
+msgstr "athbhreithnithe ag <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2643,11 +2632,6 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
-"Chun téarmaíocht a úsáid, caithfidh tú comhad téarmaíochta a chur le do "
-"thionscadal aistriúcháin darb ainm 'pootle-terminology', leis an iarmhír "
-"(formáid) chéanna agus na comhaid eile sa tionscadal. Bainfear úsáid as an "
-"téarmaíocht seo mar aon le haon mholtaí a thagann ón tionscadal "
-"'Terminology'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

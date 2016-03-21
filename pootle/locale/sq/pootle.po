@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2014-06-02 18:29+0000\n"
-"Last-Translator: dushku <nandidushku@yahoo.com>\n"
+"PO-Revision-Date: 2016-01-07 14:24+0000\n"
+"Last-Translator: trinomxp <trinomxp@gmail.com>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1401733756.000000\n"
+"X-POOTLE-MTIME: 1452176679.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -38,11 +38,11 @@ msgstr "Emri i përdoruesit"
 #: apps/accounts/models.py:62
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
+msgstr "Kërkohet.30 karaktere ose më pak. Gërmat,numrst dhe @/./+/-/_karaktere"
 
 #: apps/accounts/models.py:66
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Fut një përdorues të vlefshëm"
 
 #: apps/accounts/models.py:70
 msgid "Email Address"
@@ -77,7 +77,7 @@ msgstr ""
 
 #: apps/accounts/models.py:80
 msgid "date joined"
-msgstr ""
+msgstr "Të dhënat të bashkuara"
 
 #: apps/accounts/models.py:84
 msgid "Number of Rows"
@@ -89,69 +89,70 @@ msgstr "Gjuha alternative e burimit"
 
 #: apps/accounts/models.py:90 templates/admin/detailed_reports.html:156
 msgid "Rate"
-msgstr ""
+msgstr "Shkallë"
 
 #: apps/accounts/models.py:91 apps/reports/forms.py:32
 msgid "Review Rate"
-msgstr ""
+msgstr "Shkallë Shqyrtimi"
 
 #: apps/accounts/models.py:92 apps/reports/forms.py:37
 msgid "Hourly Rate"
-msgstr ""
+msgstr "Shkallë Orare"
 
 #: apps/accounts/models.py:93
 msgid "Score"
-msgstr ""
+msgstr "Rezultati"
 
 #: apps/accounts/models.py:94 apps/reports/forms.py:21
 msgid "Currency"
-msgstr ""
+msgstr "Monedha"
 
 #: apps/accounts/models.py:96
 msgid "Is employee?"
-msgstr ""
+msgstr "Është i punësuar?"
 
 #: apps/accounts/models.py:97
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:99
 msgid "Website"
-msgstr ""
+msgstr "Website-e"
 
 #: apps/accounts/models.py:100
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:101
 msgid "Short Bio"
-msgstr ""
+msgstr "Bio i Shkurtër"
 
 #: apps/accounts/models.py:308
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Këto terma ekzistojnë në këtë skedar."
+msgstr "Kz email tashmë ekziston."
 
 #: apps/accounts/views.py:37
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Një gabim u shfaq duke loguar. Ju lutem kontakto administratorin tuaj të "
+"sistemit"
 
 #: apps/contact/forms.py:26
 msgid "Summary"
-msgstr ""
+msgstr "Përmbledhje"
 
 #: apps/contact/forms.py:28
 msgid "Please enter your message summary"
-msgstr ""
+msgstr "Ju lutem fusni mesazhin tuaj në përmbajtje"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:32 core/browser.py:17
 msgid "Name"
-msgstr "Emër"
+msgstr "Emri"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr ""
+msgstr "Ju lutem shkruani emrin tuaj!"
 
 #: apps/contact/forms.py:39
 #, fuzzy
@@ -160,39 +161,40 @@ msgstr "Adresa email"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Ju lutem shkruani adresën tuaj email!"
 
 #: apps/contact/forms.py:43
 msgid "Message"
-msgstr "Mesazhë"
+msgstr "Mesazh"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr ""
+msgstr "Ju lutem shkruani mesazhin tuaj"
 
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
-msgstr ""
+msgstr "Shkarko skedarin e përkthimit për përkthim jashtë linje"
 
 #: apps/import_export/templates/browser/index.html:11
 #, fuzzy
 msgid "Download for offline translation"
-msgstr "Kopjo në transmetim"
+msgstr "Shkarko për përkthim jashtë linje"
 
 #: apps/import_export/templates/browser/index.html:19
 #, fuzzy
 msgid "Upload translation files or archives in .zip format"
-msgstr "Të gjitha përkthimet janë importuar tani."
+msgstr "Ngarko skedarë përkthimi ose arkivi në .zip format"
 
 #: apps/import_export/templates/browser/index.html:20
 #, fuzzy
 msgid "Upload translations"
-msgstr "Kopjo në transmetim"
+msgstr "Ngarko përkthimin"
 
 #: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Tipe të papërmbajtshme , vetëm skedar PO janë të suportuar në këtë kohë"
 
 #: apps/import_export/utils.py:35
 #, python-format
@@ -233,7 +235,7 @@ msgstr "Fjalëkalimi"
 
 #: apps/pootle_app/forms.py:139 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Ju lutem futni një URL përdorues LinkedIn-i të vlefshëm "
 
 #: apps/pootle_app/views/admin/dashboard.py:80
 msgid "Files"
@@ -270,7 +272,7 @@ msgstr[1] ""
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
 msgid "Stopped"
-msgstr ""
+msgstr "I ndaluar"
 
 #: apps/pootle_app/views/admin/permissions.py:67
 msgid "All Users"
@@ -288,7 +290,7 @@ msgstr "Përzgjidh një ose më shumë leje"
 
 #: apps/pootle_app/views/admin/permissions.py:104
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Rivoko Lejet"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -358,7 +360,7 @@ msgstr "Ekstraktim"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Other"
-msgstr ""
+msgstr "të tjerë"
 
 #: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
 msgid "Accelerators"
@@ -386,7 +388,7 @@ msgstr "Të dhëna mbi përkthyesin"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Madhësi Dialogu"
 
 #: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
 msgid "Double quotes"
@@ -479,7 +481,7 @@ msgstr "Shenjat e sakta të pikësimit"
 #: apps/pootle_misc/checks.py:70
 #, fuzzy
 msgid "Python brace placeholders"
-msgstr "Vendmbajtëset"
+msgstr "Vendmbajtëset e kllapave të Phytonit"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
@@ -542,7 +544,7 @@ msgstr "Vendmbajtëset"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
-msgstr ""
+msgstr "XML i vlefshëm"
 
 #: apps/pootle_misc/checks.py:87
 msgid "XML tags"
@@ -550,43 +552,43 @@ msgstr "XML tags"
 
 #: apps/pootle_misc/checks.py:89
 msgid "Broken HTML Entities"
-msgstr ""
+msgstr "Njësi të shkëputura të HTML"
 
 #: apps/pootle_misc/checks.py:90
 msgid "Java format"
-msgstr ""
+msgstr "Formati Java"
 
 #: apps/pootle_misc/checks.py:91
 msgid "Template format"
-msgstr ""
+msgstr "Format Modeli"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "Vendmbajtje Mustaqesh"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "çiftim Vendmbajtje të MUstaqeve"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "çiftim si Vendndodhje Mustaqesh"
 
 #: apps/pootle_misc/checks.py:95
 msgid "C format placeholders"
-msgstr ""
+msgstr "Vendmbajtje e formatit C"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Non printable"
-msgstr ""
+msgstr "I paprintueshëm"
 
 #: apps/pootle_misc/checks.py:97
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Mbërthzes tagu i pabalancuar"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
-msgstr ""
+msgstr "Atributet e ndryshuara"
 
 #: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
@@ -598,15 +600,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
-msgstr ""
+msgstr "Hapsirat e bardha"
 
 #: apps/pootle_misc/checks.py:102
 msgid "Date format"
-msgstr ""
+msgstr "Formati i datës"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Uppercase placeholders"
-msgstr ""
+msgstr "Vendmbajtja e GermaKapitALE"
 
 #: apps/pootle_misc/checks.py:104
 msgid "Percent sign placeholders"
@@ -614,7 +616,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:105
 msgid "Percent sign closure placeholders"
-msgstr ""
+msgstr "Vendndodhja në përqindje të mbylljes"
 
 #: apps/pootle_misc/checks.py:106
 #, fuzzy
@@ -623,11 +625,11 @@ msgstr "Vendmbajtëset"
 
 #: apps/pootle_misc/checks.py:107
 msgid "$ closure placeholders"
-msgstr ""
+msgstr "Vendmbajtësja e Mbyllëses"
 
 #: apps/pootle_misc/checks.py:108
 msgid "Java-encoded unicode"
-msgstr ""
+msgstr "Java-kodim unikodim"
 
 #: apps/pootle_misc/checks.py:109
 msgid "Objective-C format"
@@ -635,28 +637,27 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:110
 msgid "Android format"
-msgstr ""
+msgstr "Format Android"
 
 #: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
-msgstr ""
+msgstr "Ndryshim Tagu"
 
 #: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
-msgstr ""
+msgstr "Kllapa gjarpërushe"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
-msgstr ""
+msgstr "Vendmbajtje e padëshiruar potenciale"
 
 #: apps/pootle_misc/checks.py:116
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "Dy pika në tag"
 
 #: apps/pootle_misc/checks.py:117
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "Vendmbajtëset"
+msgstr "Vendmbajtëset në përqindje"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:67
@@ -762,7 +763,7 @@ msgstr "Mos e merr parasysh skedarin"
 
 #: apps/pootle_project/models.py:181
 msgid "Errors Report Email"
-msgstr ""
+msgstr "Gabim Raportim Emaili"
 
 #: apps/pootle_project/models.py:182
 #, fuzzy
@@ -772,7 +773,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:186
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Kërko prefiks Fotoekrani"
 
 #: apps/pootle_project/models.py:191
 msgid "Disabled"
@@ -832,11 +833,11 @@ msgstr "Gettext PO"
 #: apps/pootle_store/filetypes.py:24
 #, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "File XLIFF"
+msgstr "XLIFF (.xlf) "
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF(.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -883,7 +884,7 @@ msgstr ""
 
 #: apps/pootle_store/forms.py:295
 msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "Vlerat e njëjta duhet të jenë ndermjet raangut [0..1]"
 
 #: apps/pootle_store/forms.py:305
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
@@ -929,7 +930,7 @@ msgstr "Argumentet mungojnë."
 
 #: apps/pootle_store/views.py:700
 msgid "Failed to remove comment."
-msgstr ""
+msgstr "Dështim heqje komenti."
 
 #: apps/pootle_store/views.py:734
 msgid "Comment submission failed."
@@ -949,11 +950,11 @@ msgstr "Këto terma ekzistojnë në këtë skedar."
 
 #: apps/reports/forms.py:27
 msgid "Translation Rate"
-msgstr ""
+msgstr "Shkallë përkthimi"
 
 #: apps/reports/forms.py:42
 msgid "Effective from"
-msgstr ""
+msgstr "Form efektive"
 
 #: apps/reports/models.py:31 apps/reports/models.py:43
 #: templates/editor/export_view.html:106
@@ -1010,7 +1011,7 @@ msgstr ""
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr ""
+msgstr "i kam lexuar dhe pranoj : "
 
 #: apps/staticpages/models.py:34
 msgid "Whether this page is active or not."
@@ -1018,7 +1019,7 @@ msgstr "Nese kjo faqe eshte aktive ose jo"
 
 #: apps/staticpages/models.py:37 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
-msgstr ""
+msgstr "Shteg virtual"
 
 #: apps/staticpages/models.py:44
 msgid "Title"
@@ -1027,7 +1028,7 @@ msgstr "Titulli"
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "Shfaq Përmbajtje"
 
 #: apps/staticpages/models.py:49
 #, python-format
@@ -1036,7 +1037,7 @@ msgstr "Lejojet te shenuarat :%s"
 
 #: apps/staticpages/models.py:52 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Ridrejto për në URL"
 
 #: apps/staticpages/models.py:54
 #, fuzzy
@@ -1065,7 +1066,7 @@ msgstr "Ndrysho faqen ligjore"
 
 #: apps/staticpages/views.py:119 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
-msgstr ""
+msgstr "Titulli i faqes"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:136

@@ -1,24 +1,23 @@
 # Copyright (C) Pootle contributors.
-#
 # This file is a part of the Pootle project. It is distributed under the GPL3
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
-#
+# Cédric VALMARY <cvalmary@yahoo.fr>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-05-12 19:25+0000\n"
-"Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-02-19 10:21+0200\n"
+"Last-Translator: Cédric VALMARY <cvalmary@yahoo.fr>\n"
+"Language-Team: Tot en òc (totenoc.eu)\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1431458705.000000\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-POOTLE-MTIME: 1450877203.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -34,7 +33,7 @@ msgstr ""
 # 87%
 #: apps/accounts/models.py:61 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
-msgstr "nom d'utilizaire"
+msgstr "Nom d'utilizaire"
 
 #: apps/accounts/models.py:62
 msgid ""
@@ -67,9 +66,8 @@ msgid ""
 msgstr ""
 
 #: apps/accounts/models.py:76
-#, fuzzy
 msgid "Superuser Status"
-msgstr "estatut d'administrator"
+msgstr "Estatut d'administrator"
 
 #: apps/accounts/models.py:77
 msgid ""
@@ -103,36 +101,35 @@ msgstr ""
 
 #: apps/accounts/models.py:93
 msgid "Score"
-msgstr ""
+msgstr "Marca"
 
 #: apps/accounts/models.py:94 apps/reports/forms.py:21
 msgid "Currency"
-msgstr ""
+msgstr "Devisa"
 
 #: apps/accounts/models.py:96
 msgid "Is employee?"
-msgstr ""
+msgstr "Es emplegat ?"
 
 #: apps/accounts/models.py:97
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:99
 msgid "Website"
-msgstr ""
+msgstr "Site web"
 
 #: apps/accounts/models.py:100
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:101
 msgid "Short Bio"
-msgstr ""
+msgstr "Biografia resumida"
 
 #: apps/accounts/models.py:308
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Aqueste tèrme existís ja dins lo fichièr."
+msgstr "Aqueste adreça electronica existís ja."
 
 #: apps/accounts/views.py:37
 msgid ""
@@ -172,21 +169,18 @@ msgid "Please enter your message"
 msgstr ""
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Telecargar lo fichièr XLIFF per traduccion fòra linha"
+msgstr "Telecargar lo fichièr per traduccion fòra linha"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Telecargar lo fichièr XLIFF per traduccion fòra linha"
+msgstr "Telecargar per traduccion fòra linha"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr "Mandar de fichièrs de traduccion o d'archius al format .zip"
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
 msgstr "Exportar las traduccions"
 
@@ -211,9 +205,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr ""
 
 #: apps/import_export/utils.py:57
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Pòt remplaçar de traduccions per mandadís de fichièrs"
+msgstr "Une error s'es producha pendent lo mandadís del fichièr"
 
 #: apps/pootle_app/forms.py:38
 msgid "Language code does not follow the ISO convention"
@@ -363,7 +356,7 @@ msgstr "Extraire"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Other"
-msgstr ""
+msgstr "Autre"
 
 #: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
 msgid "Accelerators"
@@ -482,9 +475,8 @@ msgid "Pure punctuation"
 msgstr "Puntuacion pura"
 
 #: apps/pootle_misc/checks.py:70
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Substituents"
+msgstr ""
 
 #: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
@@ -622,9 +614,8 @@ msgid "Percent sign closure placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:106
-#, fuzzy
 msgid "$ placeholders"
-msgstr "Substituents"
+msgstr ""
 
 #: apps/pootle_misc/checks.py:107
 msgid "$ closure placeholders"
@@ -659,9 +650,8 @@ msgid "Double quotes in tags"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:117
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "Substituents"
+msgstr ""
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:67
@@ -772,10 +762,8 @@ msgid "Errors Report Email"
 msgstr ""
 
 #: apps/pootle_project/models.py:182
-#, fuzzy
 msgid "An email address where issues with the source text can be reported."
-msgstr ""
-"Un URL o una adreça electronica per senhalar de problèmas amb lo tèxte font."
+msgstr "Una adreça electronica per senhalar de problèmas amb lo tèxte font."
 
 #: apps/pootle_project/models.py:186
 msgid "Screenshot Search Prefix"
@@ -802,38 +790,34 @@ msgid "Comment"
 msgstr "Comentari"
 
 #: apps/pootle_statistics/models.py:351
-#, fuzzy
 msgid "Added suggestion"
-msgstr "Acceptar la suggestion"
+msgstr "Apondre la suggestion"
 
 #: apps/pootle_statistics/models.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Acceptar la suggestion"
+msgstr "Acceptar la suggestion de %s"
 
 #: apps/pootle_statistics/models.py:353
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Regetar la suggestion"
+msgstr "Regetar la suggestion de %s"
 
 #: apps/pootle_store/decorators.py:27
-#, fuzzy
 msgid "Insufficient rights to access this directory."
-msgstr "Avètz pas los dreches sufisents per accedir a aquesta pagina."
+msgstr "Avètz pas los dreches sufisents per accedir a aquesta repertòri."
 
 #: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access suggestion mode."
 msgstr ""
 
 #: apps/pootle_store/decorators.py:31
-#, fuzzy
 msgid "Insufficient rights to access translation mode."
-msgstr "Permissions insufisentas per aqueste projècte de traduccion."
+msgstr "Permissions insufisentas per accedir a aqueste mòde de traduccion."
 
 #: apps/pootle_store/decorators.py:32 apps/pootle_store/views.py:1001
-#, fuzzy
 msgid "Insufficient rights to access review mode."
-msgstr "Avètz pas los dreches sufisents per accedir a aquesta pagina."
+msgstr "Avètz pas los dreches sufisents per accedir al mòde de relectura."
 
 #: apps/pootle_store/filetypes.py:20
 msgid "Gettext PO"
@@ -977,9 +961,8 @@ msgid "Review"
 msgstr "Examinar"
 
 #: apps/reports/models.py:33
-#, fuzzy
 msgid "Suggestion"
-msgstr "Suggestions"
+msgstr "Suggestion"
 
 #: apps/reports/models.py:45
 msgid "Hourly Work"
@@ -1049,10 +1032,8 @@ msgid "Redirect to URL"
 msgstr ""
 
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr ""
-"Se definit, tota referéncia a aquesta pagina redirigirà cap a aquesta URL"
+msgstr "Se definit, aquesta pagina redirigirà cap a aquesta URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1082,14 +1063,12 @@ msgid ""
 msgstr ""
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Arguments mancants."
+msgstr "Tèxte mancant"
 
 #: apps/virtualfolder/models.py:34
-#, fuzzy
 msgid "Location"
-msgstr "Emplaçaments"
+msgstr "Emplaçament"
 
 #: apps/virtualfolder/models.py:37
 msgid "Root path where this virtual folder is applied."
@@ -1097,9 +1076,8 @@ msgstr ""
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filter"
-msgstr "Filtre"
+msgstr "Filtrar"
 
 #: apps/virtualfolder/models.py:43
 msgid "Filtering rules that tell which stores this virtual folder comprises."
@@ -1119,17 +1097,14 @@ msgid "Is public?"
 msgstr ""
 
 #: apps/virtualfolder/models.py:55
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Indica se aquesta pagina es activa."
+msgstr ""
 
 #: apps/virtualfolder/models.py:60
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
-"Una descripcion del projècte. Util per balhar mai d'informacions o "
-"d'instruccions. Balisas autorizadas : %s"
 
 #: checks.py:56
 msgid ""
@@ -1180,9 +1155,8 @@ msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr ""
 
 #: checks.py:127
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "La version %s de Django es installada."
+msgstr "Vòstra version de Redis es tròp vièlha."
 
 #: checks.py:128
 #, python-format
@@ -1280,9 +1254,8 @@ msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
 #: checks.py:231
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "Manca MARKUP_FILTER. S'utilizarà HTML."
+msgstr "Manca POOTLE_MARKUP_FILTER."
 
 #: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
@@ -1438,9 +1411,8 @@ msgid "Last Activity"
 msgstr "Darrièra activitat"
 
 #: core/browser.py:128
-#, fuzzy
 msgid "Back to language"
-msgstr "Lengas activas"
+msgstr "Retorn a la lenga"
 
 #: core/browser.py:130
 msgid "Back to parent folder"
@@ -1520,9 +1492,8 @@ msgstr "Pòt prepausar una traduccion"
 
 # 83%
 #: core/initdb.py:124
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Veire las suggestions"
+msgstr "Pòt repassar las suggestions"
 
 #: core/initdb.py:128
 msgid "Can administrate a translation project"
@@ -1537,9 +1508,8 @@ msgid "Getting Started"
 msgstr ""
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Licéncia"
+msgstr "Tèrmes de la licéncia"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:113
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1554,13 +1524,13 @@ msgstr ""
 "%(errormsg)s"
 
 #: middleware/errorpages.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Vos cal vos <a href=\"%(login_link)s\">connectar</a> per accedir a aquesta "
-"pagina."
+"Vos cal vos <a class=\"js-login\" href=\"%(login_link)s\">connectar</a> per "
+"accedir a aquesta pagina."
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1597,7 +1567,6 @@ msgid "About"
 msgstr "A prepaus"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "A prepaus d'aqueste servidor Pootle"
 
@@ -1616,11 +1585,13 @@ msgstr ""
 "projècte</a>."
 
 #: templates/about.html:26
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
-msgstr "Pootle %(pootle_ver)s utiliza lo « Translate Toolkit » %(toolkit_ver)s"
+msgstr ""
+"Pootle %(pootle_version)s utiliza lo « Translate Toolkit » "
+"%(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
@@ -1642,16 +1613,14 @@ msgstr ""
 "messatge."
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Inscripcion sus Pootle"
+msgstr "Confirmacion d'e-mail sus Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "perfil d'enregistrament"
+msgstr "Enregistrament activat"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
@@ -1697,12 +1666,12 @@ msgstr "Autorizacions"
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
-msgstr ""
+msgstr "Paginas estaticas"
 
 #: templates/admin/_tabs.html:36 templates/admin/reports.html:45
 #: templates/admin/reports.html.py:48
 msgid "Reports"
-msgstr ""
+msgstr "Rapòrts"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
@@ -1726,7 +1695,7 @@ msgstr ""
 
 #: templates/admin/dashboard.html:43
 msgid "Status"
-msgstr ""
+msgstr "Estatut"
 
 #: templates/admin/dashboard.html:50
 msgid "Pending jobs"
@@ -1737,9 +1706,8 @@ msgid "Failed jobs"
 msgstr ""
 
 #: templates/admin/dashboard.html:64
-#, fuzzy
 msgid "System Checks"
-msgstr "Contraròtles"
+msgstr "Sistèma de contraròtles"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
@@ -1758,12 +1726,12 @@ msgstr ""
 #: templates/admin/detailed_reports.html:140
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "Mes precedent"
 
 #: templates/admin/detailed_reports.html:142
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "Mes seguent"
 
 #: templates/admin/detailed_reports.html:149
 msgid "Local server time"
@@ -1774,14 +1742,12 @@ msgid "Unit"
 msgstr ""
 
 #: templates/admin/detailed_reports.html:151
-#, fuzzy
 msgid "Action"
-msgstr "Accions"
+msgstr "Accion"
 
 #: templates/admin/detailed_reports.html:152
-#, fuzzy
 msgid "Source words"
-msgstr "Tèxte font"
+msgstr "Mots fonts"
 
 #: templates/admin/detailed_reports.html:153
 msgid "Similarity"
@@ -1789,26 +1755,24 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:154
 msgid "Words"
-msgstr ""
+msgstr "Mots"
 
 #: templates/admin/detailed_reports.html:157
 msgid "Subtotal"
-msgstr ""
+msgstr "Sostotal"
 
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "MT"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Foncions"
+msgstr "Sosaccions"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Traduccion"
+msgstr "Linha de traduccion"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -1820,9 +1784,8 @@ msgid "No activity recorded in a given period"
 msgstr ""
 
 #: templates/admin/detailed_reports.html:269
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "Suggestions"
+msgstr "Suggestions (sostotal)"
 
 #: templates/admin/detailed_reports.html:279
 msgid "Translation (subtotal)"
@@ -1861,16 +1824,15 @@ msgstr ""
 
 #: templates/admin/reports.html:58 templates/user/stats.html:60
 msgid "Daily activity"
-msgstr ""
+msgstr "Activitat quotidiana"
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Utilizaires"
+msgstr "Utilizaire"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
-msgstr ""
+msgstr "Rapòrt detalhat"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Statistics"
@@ -1878,19 +1840,19 @@ msgstr ""
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
-msgstr ""
+msgstr "Apondre un prètafach"
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "mots"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "oras"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
-msgstr ""
+msgstr "Apondre un enregistrament"
 
 #: templates/admin/reports/user_rates_form.html:4
 msgid "Set Rates"
@@ -1909,7 +1871,7 @@ msgstr "Suprimir"
 
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -1930,21 +1892,20 @@ msgstr ""
 
 #: templates/admin/staticpages/_table.html:16
 msgid "Yes"
-msgstr ""
+msgstr "Òc"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: templates/admin/staticpages/_table.html:19
 #: templates/staticpages/_body.html:16
-#, fuzzy
 msgid "edit"
-msgstr "Editar"
+msgstr "Modificar"
 
 #: templates/admin/staticpages/_table.html:24
 msgid "view"
-msgstr ""
+msgstr "veire"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
@@ -1972,20 +1933,18 @@ msgstr "Apondre una pagina normala"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Anóncias"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Apondre una anóncia"
 
 #: templates/browser/_actions.html:5
-#, fuzzy
 msgid "Continue translation"
-msgstr "Copiar dins la traduccion"
+msgstr "Contunhar la traduccion"
 
 # 83%
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Review suggestions"
 msgstr "Veire las suggestions"
 
@@ -1995,7 +1954,7 @@ msgstr ""
 
 #: templates/browser/_actions.html:23
 msgid "View all"
-msgstr ""
+msgstr "Veire tot"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
@@ -2056,11 +2015,11 @@ msgstr ""
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
-msgstr ""
+msgstr "Mandar un messatge"
 
 #: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
-msgstr ""
+msgstr "Mercé !"
 
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
@@ -2069,7 +2028,7 @@ msgstr ""
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
-msgstr ""
+msgstr "marca"
 
 #: templates/core/_top_scorers.html:14
 #, python-format
@@ -2135,7 +2094,6 @@ msgid "Go to the previous string (Ctrl+Up)"
 msgstr ""
 
 #: templates/editor/_toolbar.html:20
-#, fuzzy
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
@@ -2192,9 +2150,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "Prioritat"
+msgstr "Prioritat :"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2229,7 +2186,6 @@ msgid "Copy into translation"
 msgstr "Copiar dins la traduccion"
 
 #: templates/editor/units/edit.html:133
-#, fuzzy
 msgid "Report a problem with this string"
 msgstr "Senhalar un problèma amb la cadena font"
 
@@ -2344,26 +2300,22 @@ msgid "Comment: "
 msgstr "Comentaris :"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
 msgstr "Problèmas possibles amb la traduccion"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Critic"
+msgstr "Errors critica :"
 
 #: templates/editor/units/xhr_checks.html:12
 #: templates/editor/units/xhr_checks.html:32
-#, fuzzy
 msgid "Mute quality check"
-msgstr "Suprimir los contraròtles de qualitat"
+msgstr "Contraròtles de qualitat desactivat"
 
 #: templates/editor/units/xhr_checks.html:13
 #: templates/editor/units/xhr_checks.html:33
-#, fuzzy
 msgid "Unmute quality check"
-msgstr "Suprimir los contraròtles de qualitat"
+msgstr "Contraròtle de qualitat activat"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Possible issues with the translation"
@@ -2375,11 +2327,11 @@ msgstr ""
 
 #: templates/editor/units/xhr_comment.html:14
 msgid "Remove comment"
-msgstr ""
+msgstr "Suprimir lo comentari"
 
 #: templates/editor/units/xhr_comment.html:17
 msgid "Last comment:"
-msgstr ""
+msgstr "Darrièr comentari :"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
@@ -2387,7 +2339,7 @@ msgstr "Cronologia"
 
 #: templates/editor/units/xhr_timeline.html:32
 msgid "Last comment removed"
-msgstr ""
+msgstr "Darrièr comentari suprimit"
 
 #: templates/editor/units/xhr_timeline.html:38
 #, fuzzy, python-format
@@ -2409,7 +2361,7 @@ msgstr ""
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Error 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
@@ -2420,9 +2372,8 @@ msgid "Permission Denied"
 msgstr "Permission refusada"
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
-msgstr "Avètz pas l'autorizacion d'accedir a aquela pagina."
+msgstr "Sembla qu'avètz pas l'autorizacion d'accedir a aquela pagina."
 
 #: templates/errors/404.html:4 templates/errors/404.html.py:8
 msgid "Page Not Found"
@@ -2437,7 +2388,6 @@ msgid "Server Error"
 msgstr "Error del servidor"
 
 #: templates/errors/500.html:10
-#, fuzzy
 msgid "A server error has occurred. Thank you for your patience."
 msgstr "Una error s'es producha. Pacientatz."
 
@@ -2517,9 +2467,8 @@ msgid "Admin"
 msgstr "Gestion"
 
 #: templates/layout.html:119
-#, fuzzy
 msgid "Sign out"
-msgstr "Se desconnectar"
+msgstr "Desconnexion"
 
 #: templates/layout.html:123
 msgid "Sign In"
@@ -2559,7 +2508,7 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
-msgstr ""
+msgstr "Non mercé. Se desconnectar"
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
@@ -2632,7 +2581,6 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Podètz crear o modificar vòstre imatge avatar sus www.gravatar.com"
 
 #: templates/user/profile.html:16
-#, fuzzy
 msgid "Anonymous User"
 msgstr "Utilizaire anonim"
 
@@ -2647,7 +2595,7 @@ msgstr ""
 
 #: templates/user/profile.html:31 templates/user/profile.html.py:43
 msgid "Tweet this!"
-msgstr ""
+msgstr "Tweetatz aquò !"
 
 #: templates/user/profile.html:40
 msgid "No contributions in the last month"
@@ -2722,9 +2670,8 @@ msgid "Hourly Rate:"
 msgstr ""
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Mon compte"
+msgstr "Compte d'utilizaire"
 
 #: templates/user/settings.html:14
 msgid ""
@@ -2742,14 +2689,13 @@ msgstr "Benvenguda"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Benvenguda dins Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
 msgstr ""
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
 msgstr "Connexion"
 

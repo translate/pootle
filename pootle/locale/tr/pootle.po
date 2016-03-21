@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-09-30 17:17+0000\n"
+"PO-Revision-Date: 2015-11-21 21:07+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1443633423.000000\n"
+"X-POOTLE-MTIME: 1448140049.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -1039,11 +1039,8 @@ msgid "Redirect to URL"
 msgstr "URL'ye Yeniden Yönlendir"
 
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr ""
-"Eğer ayarlanırsa, bu sayfa için herhangi bir kaynak bu URL'ye yeniden "
-"yönlendirilecek"
+msgstr "Eğer ayarlanırsa, bu sayfa bu URL'ye yeniden yönlendirilecek"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1075,9 +1072,8 @@ msgstr ""
 "<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Bağımsız değişkenler eksik."
+msgstr "Metin eksik"
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1334,72 +1330,76 @@ msgstr "Paketi yükleyin ya da POOTLE_MARKUP_FILTER parametresini değiştirin."
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'], INDEX_NAME'e sahip değil."
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] için bir INDEX_NAME ayarlayın."
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "POOTLE_TM_SERVER içinde '%s' INDEX_NAME'i çoğaltın."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
+"POOTLE_TM_SERVER içindeki tüm sunucular için farklı INDEX_NAME ayarlayın."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'], ENGINE'e sahip değil."
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] için bir ENGINE ayarlayın."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'], HOST'a sahip değil."
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] için bir HOST ayarlayın."
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'], PORT'a sahip değil."
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] için bir PORT ayarlayın."
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'], MIN_SCORE'a sahip değil."
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] için bir MIN_SCORE ayarlayın."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
+"POOTLE_TM_SERVER['%s'], 0.0'dan az veya 1.0'dan büyük bir WEIGHT'e sahip"
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"POOTLE_TM_SERVER['%s'] için 0.0 ve 1.0 (ikiside dahil) arasında bir WEIGHT "
+"ayarlayın."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1811,17 +1811,15 @@ msgstr "Alt toplam"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "MT"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "İşlevler"
+msgstr "Alt eylemler"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Çeviri"
+msgstr "Ham Çeviri"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2398,14 +2396,15 @@ msgid "Last comment removed"
 msgstr "Son yorum kaldırıldı"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d kelime</a>"
+msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> kontrolü sessizleştirildi"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d kelime</a>"
+msgstr ""
+"<a href=\"%(check_url)s\">%(check_name)s</a> kontrolü sessizliği kaldırıldı"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"

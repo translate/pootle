@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-09-16 06:48+0000\n"
-"Last-Translator: stephane <stephane@simple-different.com>\n"
+"PO-Revision-Date: 2016-02-01 10:53+0000\n"
+"Last-Translator: ladyman <dchansel@free.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1442386125.000000\n"
+"X-POOTLE-MTIME: 1454324031.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -245,13 +245,13 @@ msgstr ""
 "sur un utilisateur afin de l'éditer."
 
 #: static/js/admin/components/User/UserForm.js:50
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Notez : supprimer l'utilisateur fera que ses suggestions et ses traductions "
-"deviendront attribuées à un utilisateur anonyme (personne)."
+"Note : La suppression d'un utilisateur attribue l'ensemble de ses "
+"contributions (commentaires, suggestions et traductions) à l'utilisateur "
+"anonyme."
 
 #: static/js/admin/components/User/UserForm.js:62
 #: static/js/auth/components/SignInForm.js:94
@@ -273,7 +273,7 @@ msgstr "Mot de passe"
 
 #: static/js/admin/components/User/UserForm.js:79
 msgid "Set a new password"
-msgstr ""
+msgstr "Définissez un nouveau mot de passe"
 
 #: static/js/admin/components/User/UserForm.js:93
 #: static/js/auth/components/SignUpForm.js:91
@@ -282,7 +282,7 @@ msgstr "Courriel"
 
 #: static/js/admin/components/User/UserForm.js:102
 msgid "Administrator"
-msgstr ""
+msgstr "Administrateur"
 
 #: static/js/admin/components/User/UserForm.js:109 static/js/user/forms.jsx:89
 msgid "Twitter"
@@ -302,7 +302,7 @@ msgstr "URL de profil LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
-msgstr ""
+msgstr "Site Web"
 
 #: static/js/admin/components/User/UserForm.js:126
 #, fuzzy
@@ -323,7 +323,7 @@ msgstr "Profil public"
 
 #: static/js/admin/components/User/UserForm.js:146
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: static/js/admin/components/User/UserForm.js:147
 msgid "Statistics"
@@ -335,56 +335,63 @@ msgstr "Rapports"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "L'aperçu s'affichera ici."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
+"Nous avons envoyé un courrier électronique contenant le lien spécial à <span>"
+"%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:36
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"Nous avons envoyé un courrier électronique contenant le lien spécial à "
+"l'adresse email utilisée pour enregistrer ce compte."
 
 #: static/js/auth/components/AccountActivation.js:40
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Votre compte doit être activé."
 
 #: static/js/auth/components/AccountActivation.js:41
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Merci de suivre ce lien pour poursuivre la création du compte."
 
 #: static/js/auth/components/AccountActivation.js:55
 #: static/js/auth/components/AccountInactive.js:34
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: static/js/auth/components/AccountInactive.js:28
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Votre compte est inactif car un administrateur a désactivé celui-ci."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "Contactez-nous"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "Ce lien de confirmation d'email a expiré ou n'est pas valide."
 
 #: static/js/auth/components/PasswordResetForm.js:79
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Le lien de réinitialisation du mot de passe n'était pas correct, peut-être a-"
+"t-il déjà été utilisé ? Veuillez demander une nouvelle réinitialisation de "
+"votre mot de passe."
 
 #: static/js/auth/components/PasswordResetForm.js:85
 #, fuzzy
 msgid "Reset Password"
-msgstr "Mot de passe"
+msgstr "Réinitialiser le mot de passe"
 
 #: static/js/auth/components/PasswordResetForm.js:97
 msgid "Password changed, signing in..."
@@ -438,7 +445,7 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:111
 #: static/js/auth/containers/Auth.js:81
 msgid "Sign In"
-msgstr ""
+msgstr "Se connecter"
 
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:71
@@ -453,29 +460,31 @@ msgstr "Caractères spéciaux"
 #: static/js/auth/components/SignInPanel.js:63
 #, fuzzy
 msgid "Login / Password"
-msgstr "Mot de passe"
+msgstr "Identifiant / Mot de passe"
 
 #: static/js/auth/components/SignUpForm.js:120
 #: static/js/auth/containers/Auth.js:95
 msgid "Sign Up"
-msgstr ""
+msgstr "S’inscrire"
 
 #: static/js/auth/components/SignUpForm.js:125
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "S'identifier en tant qu'utilisateur existant"
 
 #: static/js/auth/components/SocialAuthError.js:29
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Une erreur est survenue lors de la connexion depuis %s."
 
 #: static/js/auth/components/SocialAuthError.js:33
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Une erreur est survenue lors de la connexion depuis votre compte social."
 
+# Différences entre "à nouveau" et "de nouveau", voir http://www.francaisfacile.com/exercices/exercice-francais-2/exercice-francais-8389.php
 #: static/js/auth/components/SocialAuthError.js:49
 msgid "Try again"
-msgstr ""
+msgstr "Essayez à nouveau"
 
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
@@ -511,7 +520,7 @@ msgstr ""
 
 #: static/js/auth/containers/Auth.js:137
 msgid "Oops..."
-msgstr ""
+msgstr "Oups..."
 
 #: static/js/auth/containers/Auth.js:144
 msgid "Social Verification"

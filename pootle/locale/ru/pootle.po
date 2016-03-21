@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-10-03 17:46+0000\n"
+"PO-Revision-Date: 2016-02-10 17:49+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1443894367.000000\n"
+"X-POOTLE-MTIME: 1455126574.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -35,7 +35,7 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 "Похоже, что ваша учетная запись исчезла. Пожалуйста, сообщите об этом "
-"администратору сайта. "
+"администратору сайта."
 
 #: apps/accounts/models.py:61 apps/pootle_app/views/admin/permissions.py:86
 msgid "Username"
@@ -1043,10 +1043,9 @@ msgid "Redirect to URL"
 msgstr "Перенаправление на адрес"
 
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
 msgstr ""
-"Если задан, любые ссылки на эту страницу будут перенаправляться по этому "
+"Если задано, любые ссылки на эту страницу будут перенаправляться по этому "
 "адресу"
 
 #. Translators: 'URL' and 'content' refer to form fields.
@@ -1079,9 +1078,8 @@ msgstr ""
 "<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Параметры пропущены."
+msgstr "Текст пропущен"
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1108,7 +1106,7 @@ msgstr "Приоритет"
 #: apps/virtualfolder/models.py:49
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
-msgstr "Число обозначает важность. Чем больше приоритет, тем выше важность. "
+msgstr "Число обозначает важность. Чем больше приоритет, тем выше важность."
 
 #: apps/virtualfolder/models.py:53
 msgid "Is public?"
@@ -1312,7 +1310,7 @@ msgstr "Некорректная разметка в POOTLE_MARKUP_FILTER."
 
 #: checks.py:253
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr "Установите корректную разметку для  POOTLE_MARKUP_FILTER. "
+msgstr "Установите корректную разметку для  POOTLE_MARKUP_FILTER."
 
 #: checks.py:258
 #, python-format
@@ -1330,72 +1328,74 @@ msgstr "Установите пакет или измените значение
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "У POOTLE_TM_SERVER['%s'] отсутствует INDEX_NAME."
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Задайте INDEX_NAME для POOTLE_TM_SERVER['%s']."
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Повторяющийся '%s' INDEX_NAME в POOTLE_TM_SERVER."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Задайте разные INDEX_NAME для всех серверов в POOTLE_TM_SERVER."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "У POOTLE_TM_SERVER['%s'] отсутствует ENGINE."
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Задайте ENGINE для POOTLE_TM_SERVER['%s']."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "У POOTLE_TM_SERVER['%s'] отсутствует HOST."
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Задайте HOST для POOTLE_TM_SERVER['%s']."
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "У POOTLE_TM_SERVER['%s'] отсутствует PORT."
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Задайте PORT для POOTLE_TM_SERVER['%s']."
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
+msgstr "У POOTLE_TM_SERVER['%s'] отсутствует MIN_SCORE."
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Задайте MIN_SCORE для POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] имеет WEIGHT, который меньше 0.0 или больше 1.0"
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Задайте WEIGHT в диапазоне от 0.0 до 1.0 (включительно) для "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1805,17 +1805,15 @@ msgstr "Промежуточный итог"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "MT"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Функции"
+msgstr "Поддействия"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Перевод"
+msgstr "Сырой перевод"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2404,14 +2402,14 @@ msgid "Last comment removed"
 msgstr "Последний комментарий удален"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d слово</a>"
+msgstr "Проверка <a href=\"%(check_url)s\">%(check_name)s</a> подавлена"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "подтверждено <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "Проверка <a href=\"%(check_url)s\">%(check_name)s</a> вновь активна"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2567,7 +2565,7 @@ msgid ""
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
 "Эта статическая страница неактивна и видна только администраторам. Вы можете "
-"активировать ее в <a href=\"%(edit_url)s\">свойствах страницы</a> "
+"активировать ее в <a href=\"%(edit_url)s\">свойствах страницы</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2676,7 +2674,7 @@ msgstr "Твитни это!"
 
 #: templates/user/profile.html:40
 msgid "No contributions in the last month"
-msgstr "Нет вклада в последнем месяце "
+msgstr "Нет вклада в последнем месяце"
 
 #: templates/user/profile.html:43
 #, python-format

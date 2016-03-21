@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-10-27 17:28+0000\n"
+"PO-Revision-Date: 2016-02-11 08:51+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1445966912.000000\n"
+"X-POOTLE-MTIME: 1455180713.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -703,7 +703,7 @@ msgstr "Total"
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32 core/helpers.py:62
 #: templates/editor/_filters.html:7
 msgid "Translated"
-msgstr "Traducido"
+msgstr "Traducidas"
 
 #: apps/pootle_misc/templatetags/render_pager.py:22
 msgid "First"
@@ -1042,11 +1042,8 @@ msgid "Redirect to URL"
 msgstr "Reenviar ao URL"
 
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr ""
-"Se está marcado, calquera referencia a esta páxina de información legal "
-"reenviarase a este URL"
+msgstr "Se está marcado, esta páxina redirixirá a este URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1078,9 +1075,8 @@ msgstr ""
 "<código_proxecto>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Faltan argumentos."
+msgstr "Falta texto"
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1335,72 +1331,74 @@ msgstr "Instale o paquete ou cambie POOTLE_MARKUP_FILTER."
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] non ten INDEX_NAME."
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Defina INDEX_NAME para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "INDEX_NAME '%s' duplicado en POOTLE_TM_SERVER."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Defina un INDEX_NAME para todos os servidores en POOTLE_TM_SERVER."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] non ten ENGINE."
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Defina ENGINE para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] non ten HOST."
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Defina HOST para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] non ten PORT."
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Defina PORT para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] non ten MIN_SCORE."
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Defina MIN_SCORE para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] ten WEIGHT menor que 0.0 ou maior que 1.0"
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Defina WEIGHT entre 0.0 e 1.0 (ámbolos dous incluídos) para "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1810,17 +1808,15 @@ msgstr "Subtotal"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "Tradución automática"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Funcións"
+msgstr "Subaccións"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Tradución"
+msgstr "Tradución bruta"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -1866,7 +1862,7 @@ msgid ""
 "them."
 msgstr ""
 "O usuario “nobody” refírese a calquera usuario que non iniciase unha sesión "
-"(un usuaurio sen identificar, un anónimo). O usuario “predeterminado” "
+"(un usuario sen identificar, un anónimo). O usuario “predeterminado” "
 "refírese aos dereitos que todo usuario con sesión iniciada teña de modo "
 "predeterminado, non sendo que lle asignasen outros dereitos específicos."
 
@@ -2401,14 +2397,18 @@ msgid "Last comment removed"
 msgstr "Retirouse o último comentario"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d palabras</a>"
+msgstr ""
+"Desactivou a comprobación de calidade <a href=\"%(check_url)s\">"
+"%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d palabras</a>"
+msgstr ""
+"Reactivou a comprobación de calidade <a href=\"%(check_url)s\">"
+"%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2525,7 +2525,7 @@ msgstr "Estatísticas"
 
 #: templates/layout.html:116
 msgid "Admin"
-msgstr "Administrador"
+msgstr "Administración"
 
 #: templates/layout.html:119
 msgid "Sign out"
@@ -2622,6 +2622,11 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"Para empregar a terminoloxía engada un ficheiro de terminoloxía ao seu "
+"proxecto de tradución. O ficheiro de terminoloxía debe chamarse «pootle-"
+"terminology» e ten que usar a mesma extensión (formato) que o resto dos "
+"ficheiros do proxecto. Esta terminoloxía personalizada usarase xunto con "
+"calquera outra suxestión terminolóxica fornecida polo proxecto «Terminology»."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-03-26 20:31+0000\n"
+"PO-Revision-Date: 2016-02-19 09:27+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: oc\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1427401878.000000\n"
+"X-POOTLE-MTIME: 1455874044.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
-msgstr ""
+msgstr "Enregistrat amb succès."
 
 #: static/js/admin/components/AdminController.js:105
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Suprtimit amb succès."
 
 #: static/js/admin/components/ItemDelete.js:49
 msgid "Delete"
-msgstr ""
+msgstr "Suprimir"
 
 #: static/js/admin/components/Language/LanguageAdd.js:25
 #: static/js/admin/components/Language/LanguageEdit.js:31
@@ -41,7 +41,7 @@ msgstr "Apondre una lenga"
 #: static/js/admin/components/Project/ProjectAdd.js:30
 #: static/js/admin/components/User/UserAdd.js:30
 msgid "Cancel"
-msgstr ""
+msgstr "Anullar"
 
 #: static/js/admin/components/Language/LanguageController.js:50
 #, python-format
@@ -78,17 +78,17 @@ msgstr ""
 #: static/js/admin/components/Language/LanguageForm.js:56
 #: static/js/admin/components/Project/ProjectForm.js:59
 msgid "Code"
-msgstr ""
+msgstr "Còde"
 
 #: static/js/admin/components/Language/LanguageForm.js:62
 #: static/js/admin/components/Project/ProjectForm.js:65
 #: static/js/admin/components/User/UserForm.js:87 static/js/user/forms.jsx:75
 msgid "Full Name"
-msgstr ""
+msgstr "Nom complet"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr ""
+msgstr "Caractèrs especials"
 
 #: static/js/admin/components/Language/LanguageForm.js:77
 msgid "Number of Plurals"
@@ -102,7 +102,7 @@ msgstr ""
 #: static/js/admin/components/Project/ProjectForm.js:135
 #: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
-msgstr ""
+msgstr "Enregistrar"
 
 #: static/js/admin/components/Language/LanguageForm.js:96
 #: static/js/admin/components/Project/ProjectForm.js:138
@@ -112,7 +112,7 @@ msgstr ""
 #: static/js/admin/components/Language/LanguageForm.js:97
 #: static/js/admin/components/Project/ProjectForm.js:140
 msgid "Permissions"
-msgstr ""
+msgstr "Permissions"
 
 #: static/js/admin/components/Project/ProjectAdd.js:25
 #: static/js/admin/components/Project/ProjectEdit.js:31
@@ -157,16 +157,15 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:83
 msgid "File Type"
-msgstr ""
+msgstr "Tipe de fichièr"
 
 #: static/js/admin/components/Project/ProjectForm.js:92
 msgid "Project Tree Style"
 msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:101
-#, fuzzy
 msgid "Source Language"
-msgstr "Apondre una lenga"
+msgstr "Font de la lenga"
 
 #: static/js/admin/components/Project/ProjectForm.js:107
 msgid "Ignore Files"
@@ -186,7 +185,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:139
 msgid "Languages"
-msgstr ""
+msgstr "Lengas"
 
 #: static/js/admin/components/Search.js:64
 msgid "Load More"
@@ -199,7 +198,7 @@ msgstr ""
 #: static/js/admin/components/User/UserAdd.js:25
 #: static/js/admin/components/User/UserEdit.js:31
 msgid "Add User"
-msgstr ""
+msgstr "Apondre un utilizaire"
 
 #: static/js/admin/components/User/UserController.js:50
 #, python-format
@@ -263,15 +262,15 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:93
 #: static/js/auth/components/SignUpForm.js:91
 msgid "Email"
-msgstr ""
+msgstr "Corrièr electronic"
 
 #: static/js/admin/components/User/UserForm.js:102
 msgid "Administrator"
-msgstr ""
+msgstr "Administrator"
 
 #: static/js/admin/components/User/UserForm.js:109 static/js/user/forms.jsx:89
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:111
 msgid "Twitter username"
@@ -279,7 +278,7 @@ msgstr ""
 
 #: static/js/admin/components/User/UserForm.js:117 static/js/user/forms.jsx:96
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:119
 msgid "LinkedIn profile URL"
@@ -287,7 +286,7 @@ msgstr ""
 
 #: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
-msgstr ""
+msgstr "Site Web"
 
 #: static/js/admin/components/User/UserForm.js:126
 msgid "Personal website URL"
@@ -307,7 +306,7 @@ msgstr ""
 
 #: static/js/admin/components/User/UserForm.js:146
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: static/js/admin/components/User/UserForm.js:147
 msgid "Statistics"
@@ -623,39 +622,39 @@ msgid "There are unsaved changes. Do you want to discard them?"
 msgstr ""
 
 #: static/js/utils.js:151
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "1 an i a"
-msgstr[1] "%s ans i a"
+msgstr[0] "Fa un an"
+msgstr[1] "Fa %s ans"
 
 #: static/js/utils.js:154
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Una setmana i a"
-msgstr[1] "%s setmanas i a"
+msgstr[0] "Fa una setmana"
+msgstr[1] "Fa %s setmanas"
 
 #: static/js/utils.js:157
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ièr"
-msgstr[1] "%s jorns i a"
+msgstr[1] "Fa %s jorns"
 
 #: static/js/utils.js:160
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Una ora i a"
+msgstr[0] "Fa una ora"
 msgstr[1] "%s ora i a"
 
 #: static/js/utils.js:163
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "1 minuta i a"
-msgstr[1] "%s minutas i a"
+msgstr[0] "Fa una minuta"
+msgstr[1] "Fa %s minutas"
 
 #: static/js/utils.js:171
 msgid "A few seconds ago"
@@ -663,7 +662,7 @@ msgstr "I a qualques segondas"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:94
 msgid "Email Address"
-msgstr ""
+msgstr "Adreça de corrièr electronic"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid ""
@@ -673,7 +672,7 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
-msgstr ""
+msgstr "Non, mercé"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:113
 msgid "Send Email"

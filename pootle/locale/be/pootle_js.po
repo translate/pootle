@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2014-01-08 13:46+0000\n"
-"Last-Translator: Viktar Siarheichyk <viksia@gmail.com>\n"
+"PO-Revision-Date: 2016-02-10 17:42+0000\n"
+"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1389188816.000000\n"
+"X-POOTLE-MTIME: 1455126130.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -35,9 +35,8 @@ msgstr ""
 
 #: static/js/admin/components/Language/LanguageAdd.js:25
 #: static/js/admin/components/Language/LanguageEdit.js:31
-#, fuzzy
 msgid "Add Language"
-msgstr "Усе мовы"
+msgstr "Дадаць мову"
 
 #: static/js/admin/components/Language/LanguageAdd.js:30
 #: static/js/admin/components/Project/ProjectAdd.js:30
@@ -106,7 +105,7 @@ msgstr ""
 #: static/js/admin/components/Project/ProjectForm.js:135
 #: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
-msgstr ""
+msgstr "Захаваць"
 
 #: static/js/admin/components/Language/LanguageForm.js:96
 #: static/js/admin/components/Project/ProjectForm.js:138
@@ -120,9 +119,8 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:25
 #: static/js/admin/components/Project/ProjectEdit.js:31
-#, fuzzy
 msgid "Add Project"
-msgstr "Усе праекты"
+msgstr "Дадаць праект"
 
 #: static/js/admin/components/Project/ProjectController.js:50
 #, python-format
@@ -263,7 +261,7 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:93
 #: static/js/auth/components/PasswordResetForm.js:112
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: static/js/admin/components/User/UserForm.js:79
 msgid "Set a new password"
@@ -354,7 +352,7 @@ msgstr ""
 #: static/js/auth/components/AccountInactive.js:34
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "Закрыць"
 
 #: static/js/auth/components/AccountInactive.js:28
 msgid "Your account is inactive because an administrator deactivated it."
@@ -562,7 +560,7 @@ msgstr ""
 
 #: static/js/editor/app.js:1028
 msgid "Server error"
-msgstr ""
+msgstr "Памылка сервера"
 
 #: static/js/editor/app.js:1030
 msgid "The server seems down. Try again later."
@@ -688,7 +686,7 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
-msgstr ""
+msgstr "Не, дзякуй"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:113
 msgid "Send Email"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-11-10 04:00+0000\n"
-"Last-Translator: Wei <contact@huwei.name>\n"
+"PO-Revision-Date: 2016-02-17 09:31+0000\n"
+"Last-Translator: popcorner <memoword@163.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1447128007.000000\n"
+"X-POOTLE-MTIME: 1455701483.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -189,14 +189,14 @@ msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr "不支持的文件类型'%s'，暂时只支持PO文件\n"
 
 #: apps/import_export/utils.py:35
-#, python-format
+#, fuzzy, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "文件'%s' 缺少 X-Pootle-Path header\n"
 
 #: apps/import_export/utils.py:40
-#, python-format
+#, fuzzy, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr ""
+msgstr "文件'%s' 缺少或使用了一个无效的X-Pootle-Revision header\n"
 
 #: apps/import_export/utils.py:48
 #, fuzzy, python-format
@@ -254,10 +254,10 @@ msgstr "活动的用户"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:106
-#, python-format
+#, fuzzy, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
+msgstr[0] "进行中 (%d个工作人员)进行中 (%d个工作人员)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:110
@@ -378,7 +378,6 @@ msgid "Translator credits"
 msgstr "翻译者致谢"
 
 #: apps/pootle_misc/checks.py:47
-#, fuzzy
 msgid "Dialog sizes"
 msgstr "对话框大小"
 
@@ -473,7 +472,7 @@ msgstr "单纯标点"
 #: apps/pootle_misc/checks.py:70
 #, fuzzy
 msgid "Python brace placeholders"
-msgstr "Mustache 占位符"
+msgstr "Python支撑占位符"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
@@ -793,9 +792,9 @@ msgid "Accepted suggestion from %s"
 msgstr "接受了来自于%s的建议"
 
 #: apps/pootle_statistics/models.py:353
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "拒绝建议"
+msgstr "拒绝%s的建议"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -820,11 +819,11 @@ msgstr "Gettext PO 格式"
 #: apps/pootle_store/filetypes.py:24
 #, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "XLIFF文件"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -1126,7 +1125,7 @@ msgstr "您的Django版本太旧。"
 #: checks.py:83
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
-msgstr ""
+msgstr "尝试pip install --upgrade 'Django==%s'"
 
 #: checks.py:90
 msgid "Your version of lxml is too old."
@@ -1134,7 +1133,7 @@ msgstr "您的lxml版本太旧。"
 
 #: checks.py:91
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "尝试 pip install --upgrade lxml"
 
 #: checks.py:97
 msgid "Your version of Translate Toolkit is too old."
@@ -1142,7 +1141,7 @@ msgstr "您的Translate Toolkit版本太旧。"
 
 #: checks.py:98
 msgid "Try pip install --upgrade translate-toolkit"
-msgstr ""
+msgstr "尝试 pip install --upgrade translate-toolkit"
 
 #: checks.py:117
 #, python-format
@@ -1166,7 +1165,7 @@ msgstr "请将你系统上的Redis server package升级到%s版或以上"
 #: checks.py:138
 #, fuzzy
 msgid "No RQ Worker running."
-msgstr "没有 RQ worker 正在运行。"
+msgstr "没有运行中的 RQ worker。"
 
 #: checks.py:139
 msgid "Run new workers with manage.py rqworker"
@@ -1174,22 +1173,24 @@ msgstr ""
 
 #: checks.py:154
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "没有对redis设置缓存后端"
 
 #: checks.py:155
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"对django_redis.cache.RedisCache设置缓存后端\n"
+"当前设置: %r"
 
 #: checks.py:164
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "无法启动Redis的缓存连接"
 
 #: checks.py:165
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "仔细检查你的缓存设置"
 
 #: checks.py:171
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1200,23 +1201,26 @@ msgid "Set DEBUG = False in Pootle settings"
 msgstr "在Pootle设置中设置DEBUG = False"
 
 #: checks.py:178
+#, fuzzy
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "不支持SQLite数据库后端"
 
 #: checks.py:179
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
-msgstr ""
+msgstr "把你的默认数据库引擎设置为postgresql_psycopg2或者mysql"
 
 #: checks.py:185
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "不将cached_db作为会话引擎使用"
 
 #: checks.py:186
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"将缓存引擎设置为 django.contrib.sessions.backend.cached_db\n"
+"当前设置: %r"
 
 #: checks.py:193
 msgid "POOTLE_CONTACT_EMAIL is not set."
@@ -1259,7 +1263,7 @@ msgstr "DEFAULT_FROM_EMAIL正在使用如下的默认设置%r。"
 
 #: checks.py:231
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER 找不到了。"
 
 #: checks.py:232
 msgid "Set POOTLE_MARKUP_FILTER."
@@ -1271,15 +1275,15 @@ msgstr "POOTLE_MARKUP_FILTER中的值无效。"
 
 #: checks.py:238
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "请为POOTLE_MARKUP_FILTER设置一个有效的值。"
 
 #: checks.py:252
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER中的标记无效。"
 
 #: checks.py:253
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "为POOTLE_MARKUP_FILTER设置有效的标记。"
 
 #: checks.py:258
 #, python-format
@@ -1300,7 +1304,7 @@ msgstr ""
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "为POOTLE_TM_SERVER['%s']设置一个INDEX_NAME。"
 
 #: checks.py:278
 #, python-format
@@ -1329,12 +1333,12 @@ msgstr ""
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "为POOTLE_TM_SERVER['%s']设置一个HOST。"
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s']没有端口。"
 
 #: checks.py:306
 #, python-format
@@ -1361,14 +1365,15 @@ msgstr ""
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"为POOTLE_TM_SERVER['%s']设置一个在0.0到1.0之间（包括它们本身）的WEIGHT值。"
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "默认的 'admin' 用户仍然包含一个 'admin' 的密码。"
 
 #: checks.py:351
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "移除'admin'用户或者更改其密码。"
 
 #: checks.py:366
 msgid "Database connection does not implement on_commit."
@@ -1381,13 +1386,12 @@ msgid ""
 msgstr ""
 
 #: checks.py:387
-#, fuzzy
 msgid "Email server is not available."
-msgstr "Redis 服务器未在 %(host)s:%(port)s 上可用。"
+msgstr "电子邮件服务器不可用。"
 
 #: checks.py:388
 msgid "Review your email settings and make sure your email server is working."
-msgstr ""
+msgstr "检查您的电子邮件设置，并确保您的电子邮件服务器正常工作。"
 
 #: core/browser.py:27
 msgid "Project"
@@ -1418,7 +1422,7 @@ msgstr "最后操作"
 #: core/browser.py:128
 #, fuzzy
 msgid "Back to language"
-msgstr "回到主页"
+msgstr "回到语言页面"
 
 #: core/browser.py:130
 msgid "Back to parent folder"
@@ -1511,12 +1515,11 @@ msgstr "您不能访问此页面。"
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "入门教程"
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "许可"
+msgstr "许可证条款"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:113
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
@@ -1529,11 +1532,12 @@ msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "访问 %(filename)s 出错，文件系统返回错误：%(errormsg)s"
 
 #: middleware/errorpages.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
-msgstr "您需要<a href=\"%(login_link)s\">登录</a>以访问本页。"
+msgstr ""
+"您需要<a class=\"js-login\" href=\"%(login_link)s\">登录</a>才能访问本页。"
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1613,14 +1617,14 @@ msgstr ""
 #: templates/account/email/email_confirmation_subject.txt:2
 #, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Pootle 注册"
+msgstr "Pootle电子邮箱确认"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
 #, fuzzy
 msgid "Registration Disabled"
-msgstr "注册个人信息"
+msgstr "目前禁止新用户注册"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
@@ -1712,7 +1716,7 @@ msgstr "显示检查"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "没有检测到问题。一切正常！"
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1768,14 +1772,13 @@ msgid "MT"
 msgstr ""
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "功能"
+msgstr ""
 
 #: templates/admin/detailed_reports.html:219
 #, fuzzy
 msgid "Raw Translation"
-msgstr "译文"
+msgstr "原始翻译"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -1787,9 +1790,8 @@ msgid "No activity recorded in a given period"
 msgstr "指定的周期内没有活动记录"
 
 #: templates/admin/detailed_reports.html:269
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "翻译 (小计)"
+msgstr "翻译建议 (小计)"
 
 #: templates/admin/detailed_reports.html:279
 msgid "Translation (subtotal)"
@@ -1836,11 +1838,11 @@ msgstr "详细的报告"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "详细统计数据"
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
-msgstr ""
+msgstr "添加任务"
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
@@ -1855,8 +1857,9 @@ msgid "Add record"
 msgstr "添加记录"
 
 #: templates/admin/reports/user_rates_form.html:4
+#, fuzzy
 msgid "Set Rates"
-msgstr ""
+msgstr "设置比率"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
@@ -1958,17 +1961,17 @@ msgstr "查看所有"
 #: templates/browser/_progressbar.html:3
 #, fuzzy, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% 已翻译"
+msgstr "<span class=\"value translated\">0</span>%%  已翻译"
 
 #: templates/browser/_progressbar.html:4
 #, fuzzy, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% 模糊翻译"
+msgstr "<span class=\"value fuzzy\">0</span>%% 需要工作"
 
 #: templates/browser/_progressbar.html:5
 #, fuzzy, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% 未翻译"
+msgstr "<span class=\"value untranslated\">0</span>%% 未翻译"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -1995,6 +1998,7 @@ msgid ""
 "Some data on this page is currently being calculated, and the page will be "
 "refreshed automatically in <strong>30 seconds</strong>."
 msgstr ""
+"该页面中的一些数据正在计算中，本页会自动在<strong>30秒</strong>内刷新。"
 
 #: templates/browser/index.html:107
 msgid "Refresh now"
@@ -2010,7 +2014,7 @@ msgstr "联系我们"
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "请填入全部字段。"
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -2023,7 +2027,7 @@ msgstr "感谢！"
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
 "We have received your message and will try to respond as soon as possible."
-msgstr ""
+msgstr "我们已经收到您的消息，并会尝试尽快作出回应。"
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
@@ -2036,7 +2040,7 @@ msgstr ""
 
 #: templates/core/_top_scorers.html:30
 msgid "No user contributions yet."
-msgstr ""
+msgstr "尚未有用户贡献。"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2058,7 +2062,6 @@ msgid "Confirm"
 msgstr "确认"
 
 #: templates/editor/_actions.html:5
-#, fuzzy
 msgid "Go back to browsing"
 msgstr "返回概览"
 
@@ -2068,23 +2071,23 @@ msgstr "我的建议"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
-msgstr ""
+msgstr "选择类型"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "默认排序"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "重要的优先"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
-msgstr ""
+msgstr "最新的优先"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "最旧的优先"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
@@ -2146,9 +2149,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">字符串 %(id)s</a>"
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "优先级"
+msgstr "优先级："
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2172,11 +2174,11 @@ msgstr "注释："
 
 #: templates/editor/units/edit.html:72
 msgid "Click to open the image in a popup"
-msgstr ""
+msgstr "点击在新窗口中打开图片"
 
 #: templates/editor/units/edit.html:86
 msgid "Screenshots..."
-msgstr ""
+msgstr "截图..."
 
 #: templates/editor/units/edit.html:111 templates/editor/units/edit.html:138
 msgid "Copy into translation"
@@ -2297,14 +2299,12 @@ msgid "Comment: "
 msgstr "注释："
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "翻译中潜在的问题"
+msgstr "翻译中关键的问题"
 
 #: templates/editor/units/xhr_checks.html:5
-#, fuzzy
 msgid "Critical errors:"
-msgstr "修复关键错误"
+msgstr "关键错误："
 
 #: templates/editor/units/xhr_checks.html:12
 #: templates/editor/units/xhr_checks.html:32
@@ -2322,7 +2322,7 @@ msgstr "翻译中潜在的问题"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "需要注意："
 
 #: templates/editor/units/xhr_comment.html:14
 msgid "Remove comment"
@@ -2341,14 +2341,14 @@ msgid "Last comment removed"
 msgstr "最后注释已移除"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d 个词</a>"
+msgstr ""
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "经 <a href=\"%(profile_url)s\">%(reviewer)s</a> 审核"
+msgstr ""
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"

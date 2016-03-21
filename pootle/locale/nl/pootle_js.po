@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-10-20 15:13+0000\n"
+"PO-Revision-Date: 2016-03-04 22:44+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1445353983.000000\n"
+"X-POOTLE-MTIME: 1457131464.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -330,7 +330,7 @@ msgstr "Rapporten"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Hier wordt een voorbeeld weergegeven."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
@@ -412,8 +412,8 @@ msgstr "E-mailbericht verzenden naar %s..."
 #: static/js/auth/components/RequestPasswordResetSent.js:46
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
-"Volg die koppeling om de procedure voor opnieuw instellen van uw wachtwoord "
-"te vervolgen."
+"Klik op die koppeling om de procedure voor het opnieuw instellen van uw "
+"wachtwoord te vervolgen."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid ""
@@ -940,13 +940,13 @@ msgid "Show"
 msgstr "Tonen"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "Vertaald door %(fullname)s in project &lsquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rsquo;"
+"%(project)s</span>&rsquo;, %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format

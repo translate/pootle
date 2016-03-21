@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-06-16 04:09+0000\n"
-"Last-Translator: pfennig59 <kt.at.pootle@sk-lab.de>\n"
+"PO-Revision-Date: 2016-01-16 18:12+0000\n"
+"Last-Translator: killertomatoketchup <mumpitzmanfred@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1434427747.000000\n"
+"X-POOTLE-MTIME: 1452967934.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -57,7 +57,7 @@ msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
 msgstr[0] "Es gibt %(count)s Sprache."
 msgstr[1] ""
-"Es gibt %(count)s Sprachen. Unten stehen die kürzlich hinzu gekommenen."
+"Es gibt %(count)s Sprachen. Unten stehen die kürzlich hinzugekommenen."
 
 #: static/js/admin/components/Language/LanguageController.js:70
 msgid "Search Languages"
@@ -505,7 +505,7 @@ msgstr "Konten-Aktivierung"
 
 #: static/js/auth/containers/Auth.js:109
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Email-Bestätigung"
 
 #: static/js/auth/containers/Auth.js:116 static/js/auth/containers/Auth.js:123
 #: static/js/auth/containers/Auth.js:130

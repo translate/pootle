@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-06-28 15:41+0000\n"
+"PO-Revision-Date: 2016-02-06 18:26+0000\n"
 "Last-Translator: AbhyudayaChatterjee <chatterjeeabhyudaya@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_IN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1435506103.000000\n"
+"X-POOTLE-MTIME: 1454783191.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -35,28 +35,28 @@ msgstr "ডিলিট"
 #: static/js/admin/components/Language/LanguageAdd.js:25
 #: static/js/admin/components/Language/LanguageEdit.js:31
 msgid "Add Language"
-msgstr ""
+msgstr "ভাষা যোগ করুন"
 
 #: static/js/admin/components/Language/LanguageAdd.js:30
 #: static/js/admin/components/Project/ProjectAdd.js:30
 #: static/js/admin/components/User/UserAdd.js:30
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল"
 
 #: static/js/admin/components/Language/LanguageController.js:50
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s গুলি ভাষা আপনার অনুসন্ধানের সঙ্গে মিলেছে।"
+msgstr[1] "%(count)s গুলি ভাষা আপনার অনুসন্ধানের সঙ্গে মিলছে।"
 
 #: static/js/admin/components/Language/LanguageController.js:54
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s গুলি ভাষা আছে।"
+msgstr[1] "%(count)s গুলি ভাষা আছে। নিম্নলিখিত ভাশাগুলি নতুন যুক্ত হয়েছে।"
 
 #: static/js/admin/components/Language/LanguageController.js:70
 msgid "Search Languages"
@@ -64,16 +64,17 @@ msgstr ""
 
 #: static/js/admin/components/Language/LanguageController.js:71
 msgid "Find language by name, code"
-msgstr ""
+msgstr "নাম, কোড দিয়ে ভাষা খুঁজুন"
 
 #: static/js/admin/components/Language/LanguageEdit.js:26
 msgid "Edit Language"
-msgstr ""
+msgstr "ভাষা সম্পাদন করুন"
 
 #: static/js/admin/components/Language/LanguageEdit.js:36
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"ভাষাটি খুঁজতে অনুসন্ধান ফর্মটি ব্যাবহার করুন, তারপর ভাষাটিতে ক্লিক করে সম্পাদন করুন।"
 
 #: static/js/admin/components/Language/LanguageForm.js:56
 #: static/js/admin/components/Project/ProjectForm.js:59
@@ -92,11 +93,11 @@ msgstr "বিশেষ অক্ষরগুলি"
 
 #: static/js/admin/components/Language/LanguageForm.js:77
 msgid "Number of Plurals"
-msgstr ""
+msgstr "বহুবচনের সংখ্যা"
 
 #: static/js/admin/components/Language/LanguageForm.js:83
 msgid "Plural Equation"
-msgstr ""
+msgstr "বহুবছনের সমীকরণ"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
@@ -117,7 +118,7 @@ msgstr "অনুমতি"
 #: static/js/admin/components/Project/ProjectAdd.js:25
 #: static/js/admin/components/Project/ProjectEdit.js:31
 msgid "Add Project"
-msgstr ""
+msgstr "প্রোজেক্ট যোগ করুন"
 
 #: static/js/admin/components/Project/ProjectController.js:50
 #, python-format

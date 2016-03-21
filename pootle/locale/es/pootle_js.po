@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-09-11 18:03+0000\n"
+"PO-Revision-Date: 2015-11-26 23:18+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1441994608.000000\n"
+"X-POOTLE-MTIME: 1448579899.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -127,16 +127,17 @@ msgstr "Añadir un proyecto"
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La búsqueda encontró %(count)s proyecto."
+msgstr[1] "La búsqueda encontró %(count)s proyectos."
 
 #: static/js/admin/components/Project/ProjectController.js:54
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Hay %(count)s proyecto."
 msgstr[1] ""
+"Hay %(count)s proyectos. Debajo se muestran los añadidos más recientemente."
 
 #: static/js/admin/components/Project/ProjectController.js:70
 msgid "Search Projects"
@@ -242,13 +243,12 @@ msgstr ""
 "pulse en esta para editarla."
 
 #: static/js/admin/components/User/UserForm.js:50
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Nota: al eliminar una cuenta de usuario, las contribuciones de la persona, "
-"como comentarios, sugerencias y traducciones, se atribuirán al usuario "
+"Nota: al eliminar una cuenta de usuario, las contribuciones de la persona —"
+"p. ej., comentarios, sugerencias y traducciones— se atribuirán al usuario "
 "anónimo («nobody»)."
 
 #: static/js/admin/components/User/UserForm.js:62
@@ -332,7 +332,7 @@ msgstr "Informes"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "La previsualización aparecerá aquí."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
@@ -525,13 +525,12 @@ msgid "Social Verification"
 msgstr "Verificación social"
 
 #: static/js/editor/app.js:275 static/js/editor/app.js:549
-#, fuzzy
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
-"Tiene cambios no guardados en esta unidad. Si continúa con la navegación se "
-"descartarán los cambios."
+"Hay cambios sin guardar en esta cadena. Si continúa la navegación se "
+"perderán esos cambios."
 
 #: static/js/editor/app.js:301
 msgid ""
@@ -572,7 +571,7 @@ msgstr "Envíos de %s"
 #: static/js/editor/app.js:422
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
-msgstr "Envíos sobreescritos de %s"
+msgstr "Envíos sobrescritos de %s"
 
 #: static/js/editor/app.js:541 static/js/editor/app.js:1658
 msgid "No results."
@@ -600,9 +599,8 @@ msgid "Unknown error"
 msgstr "Error desconocido"
 
 #: static/js/editor/app.js:1045
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Esta unidad ya no existe."
+msgstr "Esta cadena ya no existe."
 
 #: static/js/editor/app.js:1046
 msgid "Go back to browsing"
@@ -700,26 +698,27 @@ msgstr "Hace algunos segundos"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:94
 msgid "Email Address"
-msgstr ""
+msgstr "Dirección de correo electrónico"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Escriba su dirección electrónica y le enviaremos un mensaje con el enlace "
+"especial que le permitirá restablecer su contraseña."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
-msgstr ""
+msgstr "No, gracias"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:113
-#, fuzzy
 msgid "Send Email"
-msgstr "Enviar el mensaje de nuevo"
+msgstr "Enviar el mensaje"
 
 #: static/js/auth/components/SignInForm.js:84
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Se ha prohibido la creación de cuentas de usuario nuevas."
 
 #: static/js/auth/components/SocialVerification.js:78
 #, python-format
@@ -728,6 +727,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Encontramos en nuestro sistema una cuenta con la dirección <span>%s</span>. "
+"Proporcione la contraseña para completar el proceso de acceso. Este proceso, "
+"que se realiza solo una vez, enlazará sus cuentas de Pootle y %s."
 
 #: static/js/browser.js:164
 msgid "All Languages"
@@ -738,9 +740,8 @@ msgid "All Projects"
 msgstr "Todos los proyectos"
 
 #: static/js/browser.js:171
-#, fuzzy
 msgid "Entire Project"
-msgstr "Editar el proyecto"
+msgstr "Todo el proyecto"
 
 #: static/js/editor/app.js:1971
 msgid "some anonymous user"
@@ -752,7 +753,7 @@ msgstr "alguien"
 
 #: static/js/shared/components/UserEvent.js:77
 msgid "uploaded file"
-msgstr ""
+msgstr "cargó un archivo"
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
@@ -793,41 +794,43 @@ msgstr "Avatar"
 
 #: static/js/user/forms.jsx:91
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Su nombre de usuario de Twitter"
 
 #: static/js/user/forms.jsx:98
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "El URL de su perfil de LinkedIn"
 
 #: static/js/user/forms.jsx:104
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "El URL de su sitio web o blog personal"
 
 #: static/js/user/forms.jsx:112
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"¿Por qué se ha unido a nuestro proyecto de traducción? ¡Descríbase e inspire "
+"a los demás!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Proyecto / idioma"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Sugirió"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr ""
+msgstr "Tradujo"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr ""
+msgstr "Revisó"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "Cambio en la puntuación"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -837,51 +840,51 @@ msgstr ""
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "Contraseña"
-msgstr[1] "Contraseña"
+msgstr[0] "%s palabra"
+msgstr[1] "%s palabras"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "No se registró actividad en un período determinado"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Seleccione una cuenta de usuario válida."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Tareas registradas"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Fecha y hora"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Acción"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Cantidad"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Tarifa"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
@@ -940,13 +943,13 @@ msgid "Show"
 msgstr "Mostrar"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "Traducido por %(fullname)s en el proyecto &laquo;<span title=\"%(path)s\">"
-"%(project)s</span>&raquo;"
+"%(project)s</span>&raquo; &(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format

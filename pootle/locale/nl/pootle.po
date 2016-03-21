@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-11-11 16:55+0000\n"
+"PO-Revision-Date: 2016-03-04 22:52+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1447260908.000000\n"
+"X-POOTLE-MTIME: 1457131945.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -780,7 +780,6 @@ msgid "An email address where issues with the source text can be reported."
 msgstr "Een e-mailadres waar problemen met de brontekst kunnen worden gemeld."
 
 #: apps/pootle_project/models.py:186
-#, fuzzy
 msgid "Screenshot Search Prefix"
 msgstr "Zoekprefix voor schermafbeeldingen"
 
@@ -1049,11 +1048,8 @@ msgstr "Omleiden naar URL"
 
 # ‘Indien’ vermijden
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr ""
-"Als dit is ingesteld, worden verwijzingen naar deze pagina naar deze URL "
-"omgeleid"
+msgstr "Wanneer ingesteld, wordt deze pagina naar deze URL omgeleid"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1084,9 +1080,8 @@ msgstr ""
 "projects/<project_code> of <language_code> of <language_code>/<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Argumenten ontbreken."
+msgstr "Tekst ontbreekt"
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1322,7 +1317,7 @@ msgstr "Stel een geldige opmaak in voor POOTLE_MARKUP_FILTER."
 
 # that provides _what_? (it, i.e. the markup?)
 #: checks.py:258
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
@@ -1337,72 +1332,75 @@ msgstr "Installeer het pakket of wijzig POOTLE_MARKUP_FILTER."
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] heeft geen INDEX_NAME."
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Stel een INDEX_NAME in voor POOTLE_TM_SERVER['%s']."
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Dubbele '%s'-INDEX_NAME in POOTLE_TM_SERVER."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Stel een andere INDEX_NAME in voor alle servers in POOTLE_TM_SERVER."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] geeft geen ENGINE."
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Stel een ENGINE in voor POOTLE_TM_SERVER['%s']."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] heeft geen HOST."
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Stel een HOST in voor POOTLE_TM_SERVER['%s']."
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] heeft geen PORT."
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Stel een PORT in voor POOTLE_TM_SERVER['%s']."
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] heeft geen MIN_SCORE."
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Stel een MIN_SCORE in voor POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
+"POOTLE_TM_SERVER['%s'] heeft geen WEIGHT kleiner dan 0,0 of groter dan 1,0"
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Stel een WEIGHT in tussen 0,0 en 1,0 (beide inbegrepen) voor "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1649,7 +1647,7 @@ msgstr "Er is een Pootle-account voor u aangemaakt met dit e-mailadres."
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "Volg deze koppeling om uw account te activeren:"
+msgstr "Klik op deze koppeling om uw account te activeren:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
@@ -1811,17 +1809,15 @@ msgstr "Subtotaal"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "MT"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Functies"
+msgstr "Subacties"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Vertaling"
+msgstr "Groffe vertaling"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2108,7 +2104,7 @@ msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
-"Om de server tegen aanvallen te beschermen moeten we verifiëren dat "
+"Om de server tegen aanvallen te beschermen, moeten we verifiëren dat "
 "bijdragen door menselijke gebruikers worden geleverd."
 
 #: templates/core/xhr_captcha.html:10
@@ -2404,14 +2400,16 @@ msgid "Last comment removed"
 msgstr "Laatste opmerking verwijderd"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d woorden</a>"
+msgstr "Controle voor <a href=\"%(check_url)s\">%(check_name)s</a> gedempt"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d woorden</a>"
+msgstr ""
+"Dempen van controle voor <a href=\"%(check_url)s\">%(check_name)s</a> "
+"opgeheven"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"

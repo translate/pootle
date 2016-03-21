@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-08-30 13:04+0000\n"
+"PO-Revision-Date: 2016-02-10 17:47+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: be\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1440939896.000000\n"
+"X-POOTLE-MTIME: 1455126465.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -171,19 +171,16 @@ msgid "Please enter your message"
 msgstr ""
 
 #: apps/import_export/templates/browser/index.html:10
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Сцягнуць XLIFF-файл для перакладу не ў сеціве"
+msgstr "Спампаваць файлы перекладу для працы па-за сецівам"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Сцягнуць XLIFF-файл для перакладу не ў сеціве"
+msgstr "Спампаваць для перакладу па-за сецівам"
 
 #: apps/import_export/templates/browser/index.html:19
-#, fuzzy
 msgid "Upload translation files or archives in .zip format"
-msgstr "Усе пераклады імпартаваныя."
+msgstr "Запампаваць файлы перакладу або архівы ў фармаце .zip"
 
 #: apps/import_export/templates/browser/index.html:20
 #, fuzzy
@@ -474,7 +471,7 @@ msgstr "Неабавязкова"
 
 #: apps/pootle_misc/checks.py:67
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:68
 msgid "Punctuation spacing"
@@ -804,14 +801,14 @@ msgid "Added suggestion"
 msgstr "Прыняць прапанову"
 
 #: apps/pootle_statistics/models.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Прыняць прапанову"
+msgstr "Прынята прапанова ад %s"
 
 #: apps/pootle_statistics/models.py:353
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Адкінуць прапанову"
+msgstr "Адхілена прапанова ад %s"
 
 #: apps/pootle_store/decorators.py:27
 msgid "Insufficient rights to access this directory."
@@ -835,11 +832,11 @@ msgstr "Gettext PO"
 
 #: apps/pootle_store/filetypes.py:24
 msgid "XLIFF (.xlf)"
-msgstr ""
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
@@ -859,11 +856,11 @@ msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:55
 msgid "Excel CSV"
-msgstr ""
+msgstr "Excel CSV"
 
 #: apps/pootle_store/filetypes.py:61
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "Mozilla .lang"
 
 #: apps/pootle_store/forms.py:93
 #: apps/pootle_store/templatetags/store_tags.py:151
@@ -1166,9 +1163,8 @@ msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr ""
 
 #: checks.py:127
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "Усталяваны Django %s."
+msgstr "Усталяваная версія Redis занадта старая."
 
 #: checks.py:128
 #, python-format
@@ -1458,7 +1454,7 @@ msgstr ""
 #. Translators: This refers to "All strings"
 #: core/helpers.py:61 templates/editor/_filters.html:6
 msgid "All"
-msgstr ""
+msgstr "Усе"
 
 #: core/helpers.py:65 templates/editor/_filters.html:8
 msgid "Incomplete"
@@ -1534,17 +1530,16 @@ msgstr "Настройкі"
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
-"Памылка доступу да %(filename)s. Файлавая сістэма даслала памылку: "
-"%(errormsg)s"
+"Памылка доступу да %(filename)s, Памылка файлавай сістэмы: %(errormsg)s"
 
 #: middleware/errorpages.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Каб даступіцца да гэтай старонкі, трэба <a href=\"%(login_link)s\">ўвайсці</"
-"a> на сайт."
+"Каб даступіцца да гэтай старонкі, трэба <a class=\"js-login\" href="
+"\"%(login_link)s\">ўвайсці</a> на сайт."
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:35
@@ -1581,12 +1576,10 @@ msgid "About"
 msgstr "Аб серверы"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Аб гэтым серверы Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1598,16 +1591,17 @@ msgstr ""
 "перакладчыкам і іх суполкам разам працаваць над адным праектам. Гэты "
 "праграмны комплекс свабодны, і таму любы чалавек ці суполка могуць ім "
 "карыстацца, а таксама ўдзельнічаць у працы над Pootle. Больш інфармацыі пра "
-"гэта можна прачытаць <a href=\"http://translate.sourceforge.net/\">на сайце "
-"праекта</a>."
+"гэта можна прачытаць <a href=\"http://pootle.translatehouse.org/\"><i class="
+"\"icon-external-link\"></i> на сайце праекта</a>."
 
 #: templates/about.html:26
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
-"Pootle %(pootle_ver)s працуе з камплектам Translate Toolkit %(toolkit_ver)s"
+"Pootle %(pootle_version)s выкарыстоўвае Translate Toolkit "
+"%(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
@@ -1770,7 +1764,7 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:154
 msgid "Words"
-msgstr ""
+msgstr "Слоў"
 
 #: templates/admin/detailed_reports.html:157
 msgid "Subtotal"
@@ -1835,8 +1829,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Карыстальнік \"nobody\" прадстаўляе любую асобу, якая не ўвайшла ў сістэму "
-"(ананімнага, невядомага карыстальніка). Карыстальнік \"default\" прадстаўляе "
+"Карыстальнік ”nobody” прадстаўляе любую асобу, якая не ўвайшла ў сістэму "
+"(ананімнага, невядомага карыстальніка). Карыстальнік ”default” прадстаўляе "
 "прадвызначаныя правы для ўсіх карыстальнікаў, якія можна замяніць."
 
 #: templates/admin/reports.html:58 templates/user/stats.html:60
@@ -1918,14 +1912,12 @@ msgstr ""
 
 #: templates/admin/staticpages/_table.html:19
 #: templates/staticpages/_body.html:16
-#, fuzzy
 msgid "edit"
-msgstr "Рэдагаваньне"
+msgstr "рэдагаваць"
 
 #: templates/admin/staticpages/_table.html:24
-#, fuzzy
 msgid "view"
-msgstr "Выгляд"
+msgstr "праглядзець"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
@@ -2086,9 +2078,8 @@ msgid "Go back to browsing"
 msgstr ""
 
 #: templates/editor/_filters.html:12
-#, fuzzy
 msgid "My suggestions"
-msgstr "%d прапанова"
+msgstr "Мае прапановы"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
@@ -2135,14 +2126,12 @@ msgid "Export View"
 msgstr ""
 
 #: templates/editor/export_view.html:7 templates/editor/export_view.html:98
-#, fuzzy
 msgid "All Projects"
-msgstr "Мае праекты"
+msgstr "Усе праекты"
 
 #: templates/editor/export_view.html:8 templates/editor/export_view.html:99
-#, fuzzy
 msgid "All Languages"
-msgstr "Мае мовы"
+msgstr "Усе мовы"
 
 #: templates/editor/export_view.html:143
 msgid "No strings."
@@ -2180,23 +2169,20 @@ msgid "Context:"
 msgstr ""
 
 #: templates/editor/units/edit.html:36
-#, fuzzy
 msgid "Locations:"
-msgstr "Месцы"
+msgstr "Размяшчэнне:"
 
 #: templates/editor/units/edit.html:46
-#, fuzzy
 msgid "Terminology:"
-msgstr "Тэрміналогія"
+msgstr "Тэрміналогія:"
 
 #: templates/editor/units/edit.html:49
 msgid "Insert the translated term into the editor"
 msgstr ""
 
 #: templates/editor/units/edit.html:62
-#, fuzzy
 msgid "Comments:"
-msgstr "Каментарыі"
+msgstr "Каментарыі:"
 
 #: templates/editor/units/edit.html:72
 msgid "Click to open the image in a popup"
@@ -2322,9 +2308,8 @@ msgid "A long time ago"
 msgstr ""
 
 #: templates/editor/units/term_edit.html:9
-#, fuzzy
 msgid "Comment: "
-msgstr "Каментарыі"
+msgstr "Каментарый: "
 
 #: templates/editor/units/xhr_checks.html:5
 #, fuzzy
@@ -2639,9 +2624,8 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:60
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Апошняя дзейнасць"
+msgstr "Апошняя дзейнасць:"
 
 #: templates/user/profile.html:72
 msgid "My Website"
@@ -2675,7 +2659,7 @@ msgstr ""
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"
-msgstr ""
+msgstr "Валюта:"
 
 #: templates/user/reports/user_rates_widget.html:18
 msgid "Translation Rate:"

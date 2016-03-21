@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-11-13 00:09+0000\n"
+"PO-Revision-Date: 2015-11-25 15:57+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1447373356.000000\n"
+"X-POOTLE-MTIME: 1448467044.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -34,45 +34,46 @@ msgstr "ئۆچۈر"
 
 #: static/js/admin/components/Language/LanguageAdd.js:25
 #: static/js/admin/components/Language/LanguageEdit.js:31
-#, fuzzy
 msgid "Add Language"
-msgstr "بارلىق تىللار"
+msgstr "تىل قوش"
 
 #: static/js/admin/components/Language/LanguageAdd.js:30
 #: static/js/admin/components/Project/ProjectAdd.js:30
 #: static/js/admin/components/User/UserAdd.js:30
 msgid "Cancel"
-msgstr ""
+msgstr "ۋاز كەچ"
 
 #: static/js/admin/components/Language/LanguageController.js:50
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
+msgstr[0] "%(count)s تىل سۈرۈشتۈرۈشىڭىزگە ماس كېلىدۇ."
 
 #: static/js/admin/components/Language/LanguageController.js:54
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)s تىل بار. تۆۋەندىكىلىرى يېقىندا قوشۇلغانلىرى."
 
 #: static/js/admin/components/Language/LanguageController.js:70
 msgid "Search Languages"
-msgstr ""
+msgstr "تىل ئىزدە"
 
 #: static/js/admin/components/Language/LanguageController.js:71
 msgid "Find language by name, code"
-msgstr ""
+msgstr "تىلنى ئىسمى ياكى كودى بويىچە ئىزدە"
 
 #: static/js/admin/components/Language/LanguageEdit.js:26
 msgid "Edit Language"
-msgstr ""
+msgstr "تىل تەھرىر"
 
 #: static/js/admin/components/Language/LanguageEdit.js:36
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"تىل ئىزدەش ئۈچۈن ئىزدەش جەدۋىلىنى ئىشلىتىڭ، ئاندىن تەھرىرلەيدىغان تىلدىن "
+"بىرنى تاللاڭ."
 
 #: static/js/admin/components/Language/LanguageForm.js:56
 #: static/js/admin/components/Project/ProjectForm.js:59
@@ -115,15 +116,14 @@ msgstr "ھوقۇقلار"
 
 #: static/js/admin/components/Project/ProjectAdd.js:25
 #: static/js/admin/components/Project/ProjectEdit.js:31
-#, fuzzy
 msgid "Add Project"
-msgstr "ھەممە قۇرۇلۇشلار"
+msgstr "قۇرۇلۇش قوش"
 
 #: static/js/admin/components/Project/ProjectController.js:50
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
+msgstr[0] "سۈرۈشتۈرۈشىڭىزگە %(count)s قۇرۇلۇش ماس كېلىدۇ."
 
 #: static/js/admin/components/Project/ProjectController.js:54
 #, python-format
@@ -131,23 +131,26 @@ msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
 msgstr[0] ""
+"%(count)s قۇرۇلۇش بار. ئاستىدىكى بىردىن كۆپ بولغانلىرى يېقىندا قوشۇلغانلىرى."
 
 #: static/js/admin/components/Project/ProjectController.js:70
 msgid "Search Projects"
-msgstr ""
+msgstr "قۇرۇلۇش ئىزدە"
 
 #: static/js/admin/components/Project/ProjectController.js:71
 msgid "Find project by name, code"
-msgstr ""
+msgstr "قۇرۇلۇشنى ئىسمى، كودى بويىچە ئىزدە"
 
 #: static/js/admin/components/Project/ProjectEdit.js:26
 msgid "Edit Project"
-msgstr ""
+msgstr "قۇرۇلۇش تەھرىر"
 
 #: static/js/admin/components/Project/ProjectEdit.js:36
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"قۇرۇلۇشنى ئىزدەش ئۈچۈن ئىزدەش جەدۋىلىنى ئىشلىتىڭ، ئاندىن تەھرىرلەيدىغان "
+"قۇرۇلۇشنى بىرنى چېكىڭ."
 
 #: static/js/admin/components/Project/ProjectForm.js:74
 msgid "Quality Checks"
@@ -196,13 +199,13 @@ msgstr "يۈكلەۋاتىدۇ…"
 #: static/js/admin/components/User/UserAdd.js:25
 #: static/js/admin/components/User/UserEdit.js:31
 msgid "Add User"
-msgstr ""
+msgstr "ئىشلەتكۈچى قوش"
 
 #: static/js/admin/components/User/UserController.js:50
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
+msgstr[0] "سۈرۈشتۈرۈشىڭىزگە %(count)s ئىشلەتكۈچى ماس كېلىدۇ."
 
 #: static/js/admin/components/User/UserController.js:54
 #, python-format
@@ -210,22 +213,26 @@ msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
 msgstr[0] ""
+"%(count)s ئىشلەتكۈچى بار. تۆۋەندە كۆرۈنگىنى يېقىندا تىزىملاتقان "
+"ئىشلەتكۈچىلەر."
 
 #: static/js/admin/components/User/UserController.js:70
 msgid "Search Users"
-msgstr ""
+msgstr "ئىشلەتكۈچى ئىزدە"
 
 #: static/js/admin/components/User/UserController.js:71
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "ئىشلەتكۈچىنى ئىسمى، تورخەت، خاسلىق بويىچە ئىزدە"
 
 #: static/js/admin/components/User/UserEdit.js:26
 msgid "Edit User"
-msgstr ""
+msgstr "ئىشلەتكۈچى تەھرىر"
 
 #: static/js/admin/components/User/UserEdit.js:36
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"ئىشلەتكۈچى ئىزدەش ئۈچۈن ئىزدەش جەدۋىلىنى ئىشلىتىڭ، ئاندىن تەھرىرلەيدىغان "
+"ئىشلەتكۈچىدىن بىرنى چېكىڭ."
 
 #: static/js/admin/components/User/UserForm.js:50
 msgid ""
@@ -316,7 +323,7 @@ msgstr "دوكلات"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "ئالدىن كۆزىتىش بۇ جايدا كۆرسىتىلىدۇ."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
@@ -712,9 +719,8 @@ msgid "All Projects"
 msgstr "ھەممە قۇرۇلۇشلار"
 
 #: static/js/browser.js:171
-#, fuzzy
 msgid "Entire Project"
-msgstr "ھەممە قۇرۇلۇشلار"
+msgstr "پۈتكۈل قۇرۇلۇش"
 
 #: static/js/editor/app.js:1971
 msgid "some anonymous user"
@@ -730,23 +736,23 @@ msgstr "يۈكلەنگەن ھۆججەت"
 
 #: static/js/shared/components/forms.jsx:69
 msgid "Select..."
-msgstr ""
+msgstr "تاللا…"
 
 #: static/js/shared/components/forms.jsx:70
 msgid "No results found"
-msgstr ""
+msgstr "نەتىجە تېپىلمىدى"
 
 #: static/js/shared/components/forms.jsx:71
 msgid "Clear value"
-msgstr ""
+msgstr "قىممىتىنى تازىلا"
 
 #: static/js/shared/components/forms.jsx:72
 msgid "Clear all"
-msgstr ""
+msgstr "ھەممىنى تازىلا"
 
 #: static/js/shared/components/forms.jsx:73
 msgid "Type to search"
-msgstr ""
+msgstr "ئىزدەيدىغاننى كىرگۈزۈڭ"
 
 #: static/js/user/forms.jsx:63
 #, python-format
@@ -754,52 +760,56 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"تورخەت ئادرېسىڭىز (%(email)s) نىڭ باش سۈرىتىڭىزنى تەڭشەش ياكى ئۆزگەرتىشتە، "
+"gravatar.com نى زىيارەت قىلىڭ."
 
 #: static/js/user/forms.jsx:76
 msgid "Your Full Name"
-msgstr ""
+msgstr "تولۇق ئىسمىڭىز"
 
 #: static/js/user/forms.jsx:82
 msgid "Avatar"
-msgstr ""
+msgstr "باش سۈرەت"
 
 #: static/js/user/forms.jsx:91
 msgid "Your Twitter username"
-msgstr ""
+msgstr "سىزنىڭ Twitter ئىسمىڭىز"
 
 #: static/js/user/forms.jsx:98
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "سىزنىڭ LinkedIn شەخسىي ئۇچۇر تور ئادرېسىڭىز"
 
 #: static/js/user/forms.jsx:104
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "شەخسىي تورتۇرا/بىلوگ تور ئادرېسىڭىز"
 
 #: static/js/user/forms.jsx:112
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"سىز نېمە ئۈچۈن تەرجىمە قۇرۇلۇشىمىزنىڭ بىر ئەزاسى بولدىڭىز؟ ئۆزىڭىزنى "
+"تونۇشتۇرۇڭ، باشقىلارنى رىغبەتلەندۈرۈڭ!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "قۇرۇلۇش/تىل"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "تەۋسىيە قىلىنغان"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr ""
+msgstr "تەرجىمە قىلىنغان"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr ""
+msgstr "تەكشۈرۈلگەن"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "نەتىجە ئۆزگىرىشى"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -812,85 +822,85 @@ msgstr ""
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] ""
+msgstr[0] "%s سۆز"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "بېرىلگەن مەزگىلدە ئاكتىپ خاتىرە يوق"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr ""
+msgstr "ئىناۋەتلىك ئىشلەتكۈچىدىن بىرنى تاللاڭ."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "خەتلەتكەن ۋەزىپەلەر"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "چېسلا ۋە ۋاقىت"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "ئىزاھات"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "مەشغۇلات"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "مىقدارى"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "نىسبىتى"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "تۈرگە ئايرىپ خۇلاسىلا"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
+msgstr[0] "سائەت"
 
 #: templates/admin/xhr_paid_tasks_report.html:24
 #: templates/admin/xhr_summary_report.html:18
 #: templates/admin/xhr_summary_report.html:31
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
+msgstr[0] "سۆز"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "ۋەزىپىنى چىقىرىۋەت"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "ئۇنىڭغا ئىزاھات ياز"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "ئۇزۇندە"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "قەرەلى"
 
 #: templates/admin/xhr_summary_report.html:36
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(خەتلەتكەن ۋەزىپەلەر)"
 
 #: templates/admin/xhr_summary_report.html:44
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "جەمئىي (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -914,6 +924,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
+"&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; قۇرۇلۇشىدا "
+"%(time_ago)s دە %(fullname)s  تەرجىمە قىلدى"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format
@@ -921,6 +933,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; قۇرۇلۇشىدا "
+"%(fullname)s تەرجىمە قىلدى"
 
 #~ msgid "removed translation for ${sourceString}"
 #~ msgstr "${sourceString} نىڭ تەرجىمىسىنى چىقىرىۋەتتى"

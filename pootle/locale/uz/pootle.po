@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-10-23 16:21+0000\n"
+"PO-Revision-Date: 2015-12-26 16:02+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1445617316.000000\n"
+"X-POOTLE-MTIME: 1451145774.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -148,11 +148,11 @@ msgstr ""
 
 #: apps/contact/forms.py:26
 msgid "Summary"
-msgstr "Hisobot"
+msgstr "Mavzusi"
 
 #: apps/contact/forms.py:28
 msgid "Please enter your message summary"
-msgstr "Xabar hisobotini kiriting"
+msgstr "Xabar mavzusini kiriting"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:32 core/browser.py:17
 msgid "Name"
@@ -192,7 +192,7 @@ msgstr "Tarjima fayllarini yoki arxivlarni (.zip formatda) yuklash"
 
 #: apps/import_export/templates/browser/index.html:20
 msgid "Upload translations"
-msgstr "Tarjimalarni yuklash"
+msgstr "Kompyuterdan tarjimalarni yuklash"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -1046,10 +1046,8 @@ msgid "Redirect to URL"
 msgstr "URL’ga yo‘naltirish"
 
 #: apps/staticpages/models.py:54
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr ""
-"Agar o‘rnatilsa, ushbu sahifaga bog‘langanlar ushbu URL’ga yo‘naltiriladi"
+msgstr "Agar o‘rnatilsa, ushbu sahifa bu URL manzilga yo‘naltiriladi"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1081,9 +1079,8 @@ msgstr ""
 "<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Argumentlar yo‘q."
+msgstr "Matn kiritilmagan"
 
 #: apps/virtualfolder/models.py:34
 msgid "Location"
@@ -1336,72 +1333,78 @@ msgstr "Paketni o‘rnating yoki POOTLE_MARKUP_FILTER’ni o‘zgartiring."
 #: checks.py:271
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serverida INDEX_NAME yo‘q."
 
 #: checks.py:272
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] uchun INDEX_NAME nomini o‘rnating."
 
 #: checks.py:278
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "POOTLE_TM_SERVER serveridagi '%s' INDEX_NAME nomini nusxalang."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
+"POOTLE_TM_SERVER serveridagi barcha serverlar uchun boshqa INDEX_NAME nomini "
+"o‘rnating."
 
 #: checks.py:289
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serverida ENGINE yo‘q."
 
 #: checks.py:290
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serveri uchun ENGINE o‘rnating."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serverida HOST yo‘q."
 
 #: checks.py:298
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serveri uchun HOST o‘rnating."
 
 #: checks.py:305
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serverida PORT yo‘q."
 
 #: checks.py:306
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] uchun port o‘rnating."
 
 #: checks.py:313
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serverida MIN_SCORE yo‘q."
 
 #: checks.py:314
 #, python-format
 msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] serveri uchun MIN_SCORE tezligini o‘rnating."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
+"POOTLE_TM_SERVER['%s'] serverida WEIGHT qiymati 0.0 dan kamroq yoki 1.0 dan "
+"kattaroq"
 
 #: checks.py:325
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"POOTLE_TM_SERVER['%s'] serveri uchun WEIGHT qiymatini 0.0 va 1.0 (ikkalasini "
+"ham ko‘rsating) oralig‘ida ko‘rsating."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1611,11 +1614,11 @@ msgstr "Xizmat shartlari"
 
 #: templates/about.html:7 templates/layout.html:169
 msgid "About"
-msgstr "Haqida"
+msgstr "Pootle haqida"
 
 #: templates/about.html:13
 msgid "About This Pootle Server"
-msgstr "Ushbu Pootle serveri haqida"
+msgstr "Pootle serveri haqida"
 
 #: templates/about.html:16
 msgid ""
@@ -1812,7 +1815,7 @@ msgstr "O‘rtacha natija"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "MT"
 
 #: templates/admin/detailed_reports.html:218
 #, fuzzy
@@ -1820,9 +1823,8 @@ msgid "Subactions"
 msgstr "Funksiya"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Tarjima"
+msgstr "Qator tarjimasi"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2040,7 +2042,7 @@ msgstr "So‘nggi faoliyat"
 
 #: templates/browser/index.html:48
 msgid "Failing Checks"
-msgstr "Tekshiruv xatolari"
+msgstr "Xatolarni tekshirish"
 
 #: templates/browser/index.html:98
 msgid "This project is disabled and visible to administrators only."
@@ -2133,7 +2135,7 @@ msgstr "Turini tanlash"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr "Asosiy tartib"
+msgstr "Standart tartib bo‘yicha"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
@@ -2246,7 +2248,7 @@ msgstr "Tarjima ichiga nusxa ko‘chirish"
 
 #: templates/editor/units/edit.html:133
 msgid "Report a problem with this string"
-msgstr "Ushbu qaotoridagi muammo haqida xabar berish"
+msgstr "Ushbu qatordagi muammo haqida xabar berish"
 
 #: templates/editor/units/edit.html:156 templates/editor/units/edit.html:167
 #: templates/editor/units/edit.html:259
@@ -2323,10 +2325,10 @@ msgstr ""
 "Tahrirlagichga RLO (Right-To-Left – o‘ngdan chapga ustidan yozish)ni kiritish"
 
 #: templates/editor/units/edit.html:227
-#, fuzzy
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr ""
-"Tahrirlagichga LRM (Left-To-Right Mark - o‘ngdan chapga belgisi)ni kiritish"
+"Tahrirlagichga LRO (Left-To-Right Override - chapgdan o‘ngga belgisi)ni "
+"kiritish"
 
 #: templates/editor/units/edit.html:230
 msgid "Insert PDF (Pop Directional Format ) into the editor"
@@ -2411,16 +2413,17 @@ msgid "Last comment removed"
 msgstr "So‘nggi fikr olib tashlandi"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">%(num)d ta so‘z</a>"
+msgstr ""
+"<a href=\"%(check_url)s\">%(check_name)s</a> ta tekshirish ovozi o‘chirib "
+"qo‘yildi"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
-"<a href=\"%(profile_url)s\">%(qayta ko‘rib chiquvchi)</a> tomonidan ko‘rib "
-"chiqilgan"
+"<a href=\"%(check_url)s\">%(check_name)s</a> ta tekshirish o‘chirib qo‘yildi"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2443,7 +2446,6 @@ msgid "Permission Denied"
 msgstr "Ruxsat rad etildi"
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
 msgstr "Ushbu sahifaga kirish  uchun sizda yetarlicha huquq yo‘q."
 
@@ -2566,20 +2568,20 @@ msgstr ""
 "qo‘shish o‘chirib qo‘yilgan."
 
 #: templates/projects/admin/permissions.html:11
-#, fuzzy
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Pastda tilga huquqlar qo‘shishingiz, tahrirlashingiz va ularni "
+"Pastda ushbu loyiha uchun ruxsalar qo‘shishingiz, tahrirlashingiz va ularni "
 "o‘chirishingiz mumkin."
 
 #: templates/staticpages/_body.html:6
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
-"Ushbu sahifa faol emas va faqat tarjimonlarga ko‘rinadi. Siz uni <a href=\"%s"
-"\">uning xossalarini tahrirlash</a> bilan faollashtirishingiz mumkin."
+"Ushbu statistika sahifasi faol emas va faqat administratorlarga ko‘rinadi. "
+"Siz uni <a href=\"%s\">uning xossalarini tahrirlash</a> bilan "
+"faollashtirishingiz mumkin"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2592,7 +2594,6 @@ msgstr ""
 "bo‘lishingiz kerak."
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
 msgstr "Yo‘q, rahmat. Chiqaman"
 
@@ -2613,9 +2614,8 @@ msgstr ""
 "o‘chirishingiz mumkin."
 
 #: templates/translation_projects/terminology/_term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "Ta’rifi"
+msgstr "Ta’rifi..."
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
@@ -2703,21 +2703,21 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
-"Men shu oyda %(lang_name)s tili uchun %(server_title)s ishlarida #%(pos)s-"
+"Men shu oyda %(lang_name)s tili uchun %(server_title)s ishlarida %(pos)s-"
 "o‘rindagi hissa qo‘shuvchiman! "
 
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
 msgstr ""
-"%(lang_name)s tili uchun shu oydagi #%(pos)s-o‘rindagi hissa qo‘shuvchiman"
+"%(lang_name)s tili uchun shu oydagi %(pos)s-o‘rindagi hissa qo‘shuvchiman"
 
 #: templates/user/profile.html:49
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
-"<a href=\"%(url)s\">%(lang_name)s</a> tili uchun shu oydagi #%(pos)s-"
+"<a href=\"%(url)s\">%(lang_name)s</a> tili uchun shu oydagi %(pos)s-"
 "o‘rindagi hissa qo‘shuvchi"
 
 #: templates/user/profile.html:60
@@ -2802,7 +2802,7 @@ msgstr "Pootle xizmatiga xush kelibsiz"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr "Keling va bizga qo‘shiling!"
+msgstr "Bizga qo‘shiling!"
 
 #: templates/welcome.html:19
 msgid "Sign in"

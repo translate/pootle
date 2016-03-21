@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2015-11-20 13:21+0000\n"
-"PO-Revision-Date: 2015-09-23 18:47+0000\n"
+"PO-Revision-Date: 2015-11-21 17:48+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1443034033.000000\n"
+"X-POOTLE-MTIME: 1448128089.000000\n"
 
 #: static/js/admin/components/AdminController.js:97
 msgid "Saved successfully."
@@ -324,7 +324,7 @@ msgstr "Raporlar"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Önizleme burada görüntülenecektir."
 
 #: static/js/auth/components/AccountActivation.js:31
 #: static/js/auth/components/RequestPasswordResetSent.js:43
@@ -921,13 +921,13 @@ msgid "Show"
 msgstr "Göster"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
-"%(fullname)s tarafından çevrilmiş"
+"%(time_ago)s %(fullname)s tarafından çevrilmiş"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format
