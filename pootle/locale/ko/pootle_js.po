@@ -100,8 +100,7 @@ msgstr "복수 식"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "저장"
 
@@ -288,8 +287,7 @@ msgstr "링크드인"
 msgid "LinkedIn profile URL"
 msgstr "링크드인 프로파일 URL"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "웹사이트"
 
@@ -297,8 +295,7 @@ msgstr "웹사이트"
 msgid "Personal website URL"
 msgstr "개인 웹사이트 URL"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "짧은 경력"
 

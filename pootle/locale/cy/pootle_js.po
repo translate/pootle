@@ -102,8 +102,7 @@ msgstr "Hafaliad Lluosog"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Cadw"
 
@@ -295,8 +294,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "URL proffil LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "Gwefan"
 
@@ -304,8 +302,7 @@ msgstr "Gwefan"
 msgid "Personal website URL"
 msgstr "URL gwefan bersonol"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Hanes byr"
 

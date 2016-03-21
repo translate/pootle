@@ -104,8 +104,7 @@ msgstr "Podmínky použití forem plurálu"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Uložit"
 
@@ -299,8 +298,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "Adresa profilu LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "Webová stránka"
 
@@ -308,8 +306,7 @@ msgstr "Webová stránka"
 msgid "Personal website URL"
 msgstr "Adresa osobní webové stránky"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Stručný životopis"
 

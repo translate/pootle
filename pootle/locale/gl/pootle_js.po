@@ -102,8 +102,7 @@ msgstr "Ecuación dos plurais"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Gardar"
 
@@ -293,8 +292,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "URL do perfil de LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "Sitio web"
 
@@ -302,8 +300,7 @@ msgstr "Sitio web"
 msgid "Personal website URL"
 msgstr "URL do sitio web persoal"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Breve biografía"
 

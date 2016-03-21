@@ -99,8 +99,7 @@ msgstr "كۆپلۈك ئىپادىسى"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "ساقلا"
 
@@ -283,8 +282,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "‫LinkedIn سەپلىمە ھۆججەت تور ئادرېسى"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "تورتۇرا"
 
@@ -292,8 +290,7 @@ msgstr "تورتۇرا"
 msgid "Personal website URL"
 msgstr "شەخسىي تورتۇرا ئادرېسى"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "قىسقىچە تونۇشتۇرۇش"
 

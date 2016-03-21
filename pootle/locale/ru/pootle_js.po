@@ -105,8 +105,7 @@ msgstr "Уравнение множественного числа"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Сохранить"
 
@@ -300,8 +299,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "Профиль в LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "Веб-сайт"
 
@@ -309,8 +307,7 @@ msgstr "Веб-сайт"
 msgid "Personal website URL"
 msgstr "Адрес персонального веб-сайта"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Короткая биография"
 
