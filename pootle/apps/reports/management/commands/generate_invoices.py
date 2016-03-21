@@ -28,9 +28,11 @@ from django.utils import timezone
 from django.utils.encoding import force_unicode
 from django.utils.html import strip_tags
 
+from pootle_misc.util import get_date_interval
+
 from ...models import PaidTaskTypes, PaidTask
-from ...views import (get_date_interval, get_grouped_word_stats, get_rates,
-                      get_tasks, get_scores, SCORE_TRANSLATION_PROJECT)
+from ...views import (get_grouped_word_stats, get_rates, get_tasks, get_scores,
+                      SCORE_TRANSLATION_PROJECT)
 
 
 logger = logging.getLogger(__name__)
