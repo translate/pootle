@@ -171,7 +171,7 @@ class Command(BaseCommand):
 
         can_generate_pdfs = self.is_pdf_renderer_configured()
         if not can_generate_pdfs:
-            self.stdout.write(
+            logger.warn(
                 'NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_BIN not defined or'
                 'nothing found in the specified path. PDFs will not be generated.'
             )
