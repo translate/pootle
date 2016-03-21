@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-11-20 13:21+0000\n"
+"POT-Creation-Date: 2016-03-21 21:54+0000\n"
 "PO-Revision-Date: 2015-12-06 16:36+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1449419773.000000\n"
 
-#: static/js/admin/components/AdminController.js:97
+#: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
 msgstr "Muvaffaqiyatli ravishda saqlandi."
 
-#: static/js/admin/components/AdminController.js:105
+#: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
 msgstr "Muvaffaqiyatli ravishda o‘chirildi."
 
@@ -32,24 +32,24 @@ msgstr "Muvaffaqiyatli ravishda o‘chirildi."
 msgid "Delete"
 msgstr "O‘chirish"
 
-#: static/js/admin/components/Language/LanguageAdd.js:25
-#: static/js/admin/components/Language/LanguageEdit.js:31
+#: static/js/admin/components/Language/LanguageAdd.js:28
+#: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
 msgstr "Til qo‘shish"
 
-#: static/js/admin/components/Language/LanguageAdd.js:30
-#: static/js/admin/components/Project/ProjectAdd.js:30
-#: static/js/admin/components/User/UserAdd.js:30
+#: static/js/admin/components/Language/LanguageAdd.js:33
+#: static/js/admin/components/Project/ProjectAdd.js:33
+#: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
 msgstr "Bekor qilish"
 
-#: static/js/admin/components/Language/LanguageController.js:50
+#: static/js/admin/components/Language/LanguageController.js:53
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] "So‘rovingiz bo‘yicha %(count)s ta til topildi"
 
-#: static/js/admin/components/Language/LanguageController.js:54
+#: static/js/admin/components/Language/LanguageController.js:57
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
@@ -58,41 +58,42 @@ msgstr[0] ""
 "%(count)s ta til topildi.%(count)s ta til topildi. Quyida eng so‘nggi "
 "qo‘shilganlar keltirilgan."
 
-#: static/js/admin/components/Language/LanguageController.js:70
+#: static/js/admin/components/Language/LanguageController.js:73
 msgid "Search Languages"
 msgstr "Tillarni izlash"
 
-#: static/js/admin/components/Language/LanguageController.js:71
+#: static/js/admin/components/Language/LanguageController.js:74
 msgid "Find language by name, code"
 msgstr "Tilni nomi, kodi bo‘yicha toping"
 
-#: static/js/admin/components/Language/LanguageEdit.js:26
+#: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
 msgstr "Tilni tahrirlash"
 
-#: static/js/admin/components/Language/LanguageEdit.js:36
+#: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
 "Tilni topish uchun izlash shaklidan foydalaning. So‘ngra tahrirlash uchun "
 "til ustiga bosing."
 
-#: static/js/admin/components/Language/LanguageForm.js:56
-#: static/js/admin/components/Project/ProjectForm.js:59
+#: static/js/admin/components/Language/LanguageForm.js:52
+#: static/js/admin/components/Project/ProjectForm.js:54
 msgid "Code"
 msgstr "Kod"
 
-#: static/js/admin/components/Language/LanguageForm.js:62
-#: static/js/admin/components/Project/ProjectForm.js:65
-#: static/js/admin/components/User/UserForm.js:87 static/js/user/forms.jsx:75
+#: static/js/admin/components/Language/LanguageForm.js:59
+#: static/js/admin/components/Project/ProjectForm.js:61
+#: static/js/admin/components/User/UserForm.js:87
+#: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
 msgstr "To‘liq ismi"
 
-#: static/js/admin/components/Language/LanguageForm.js:68
+#: static/js/admin/components/Language/LanguageForm.js:66
 msgid "Special Characters"
 msgstr "Maxsus belgilar"
 
-#: static/js/admin/components/Language/LanguageForm.js:77
+#: static/js/admin/components/Language/LanguageForm.js:76
 msgid "Number of Plurals"
 msgstr "Ko‘plik soni"
 
@@ -100,34 +101,35 @@ msgstr "Ko‘plik soni"
 msgid "Plural Equation"
 msgstr "Ko‘plik ifodasi"
 
-#: static/js/admin/components/Language/LanguageForm.js:93
-#: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
+#: static/js/admin/components/Language/LanguageForm.js:95
+#: static/js/admin/components/Project/ProjectForm.js:141
+#: static/js/admin/components/User/UserForm.js:152
+#: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Saqlash"
 
-#: static/js/admin/components/Language/LanguageForm.js:96
-#: static/js/admin/components/Project/ProjectForm.js:138
+#: static/js/admin/components/Language/LanguageForm.js:98
+#: static/js/admin/components/Project/ProjectForm.js:144
 msgid "Overview"
 msgstr "Umumiy ko‘rinishi"
 
-#: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:140
+#: static/js/admin/components/Language/LanguageForm.js:99
+#: static/js/admin/components/Project/ProjectForm.js:146
 msgid "Permissions"
 msgstr "Huquqlar"
 
-#: static/js/admin/components/Project/ProjectAdd.js:25
-#: static/js/admin/components/Project/ProjectEdit.js:31
+#: static/js/admin/components/Project/ProjectAdd.js:28
+#: static/js/admin/components/Project/ProjectEdit.js:33
 msgid "Add Project"
 msgstr "Loyiha qo‘shish"
 
-#: static/js/admin/components/Project/ProjectController.js:50
+#: static/js/admin/components/Project/ProjectController.js:53
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
 msgstr[0] "So‘rovingiz bo‘yicha %(count)s ta natija topildi."
 
-#: static/js/admin/components/Project/ProjectController.js:54
+#: static/js/admin/components/Project/ProjectController.js:57
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
@@ -135,34 +137,34 @@ msgid_plural ""
 msgstr[0] ""
 "%(count)s ta loyiha mavjud. So‘nggi qo‘shilganlari quyida keltirilgan."
 
-#: static/js/admin/components/Project/ProjectController.js:70
+#: static/js/admin/components/Project/ProjectController.js:73
 msgid "Search Projects"
 msgstr "Loyihalarni izlash"
 
-#: static/js/admin/components/Project/ProjectController.js:71
+#: static/js/admin/components/Project/ProjectController.js:74
 msgid "Find project by name, code"
 msgstr "Loyihani nomi va kodi bo‘yicha topish"
 
-#: static/js/admin/components/Project/ProjectEdit.js:26
+#: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
 msgstr "Loyihani tahrirlash"
 
-#: static/js/admin/components/Project/ProjectEdit.js:36
+#: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
 "Loyihani topish uchun izlash shaklidan foydalaning. So‘ngra tahrirlash uchun "
 "loyiha ustiga bosing."
 
-#: static/js/admin/components/Project/ProjectForm.js:74
+#: static/js/admin/components/Project/ProjectForm.js:71
 msgid "Quality Checks"
 msgstr "Sifatini tekshirish"
 
-#: static/js/admin/components/Project/ProjectForm.js:83
+#: static/js/admin/components/Project/ProjectForm.js:81
 msgid "File Type"
 msgstr "Fayl turi"
 
-#: static/js/admin/components/Project/ProjectForm.js:92
+#: static/js/admin/components/Project/ProjectForm.js:91
 msgid "Project Tree Style"
 msgstr "Loyiha daraxt uslubi"
 
@@ -170,46 +172,46 @@ msgstr "Loyiha daraxt uslubi"
 msgid "Source Language"
 msgstr "Manba til"
 
-#: static/js/admin/components/Project/ProjectForm.js:107
+#: static/js/admin/components/Project/ProjectForm.js:108
 msgid "Ignore Files"
 msgstr "Fayllarni e’tiborsiz qoldirish"
 
-#: static/js/admin/components/Project/ProjectForm.js:114
+#: static/js/admin/components/Project/ProjectForm.js:116
 msgid "String Errors Contact"
 msgstr "Kontakt xatoliklari qatori"
 
-#: static/js/admin/components/Project/ProjectForm.js:120
+#: static/js/admin/components/Project/ProjectForm.js:123
 msgid "Screenshot Search Prefix"
 msgstr "Ekran rasmi qidiruvi old qo‘shimchasi"
 
-#: static/js/admin/components/Project/ProjectForm.js:127
+#: static/js/admin/components/Project/ProjectForm.js:131
 msgid "Disabled"
 msgstr "O‘chirilgan"
 
-#: static/js/admin/components/Project/ProjectForm.js:139
+#: static/js/admin/components/Project/ProjectForm.js:145
 msgid "Languages"
 msgstr "Tillar"
 
-#: static/js/admin/components/Search.js:64
+#: static/js/admin/components/Search.js:68
 msgid "Load More"
 msgstr "Ko‘proq yuklash"
 
-#: static/js/admin/components/Search.js:87
+#: static/js/admin/components/Search.js:92
 msgid "Loading..."
 msgstr "Yuklanmoqda..."
 
-#: static/js/admin/components/User/UserAdd.js:25
-#: static/js/admin/components/User/UserEdit.js:31
+#: static/js/admin/components/User/UserAdd.js:28
+#: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
 msgstr "Foydalanuvchi qo‘shish"
 
-#: static/js/admin/components/User/UserController.js:50
+#: static/js/admin/components/User/UserController.js:53
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
 msgstr[0] "So‘rovingiz bo‘yicha %(count)s ta natija topildi."
 
-#: static/js/admin/components/User/UserController.js:54
+#: static/js/admin/components/User/UserController.js:57
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
@@ -218,25 +220,25 @@ msgstr[0] ""
 "%(count)s ta foydalanuvchi mavjud. Quyida eng so‘nggi qo‘shilganlari "
 "keltirilgan."
 
-#: static/js/admin/components/User/UserController.js:70
+#: static/js/admin/components/User/UserController.js:73
 msgid "Search Users"
 msgstr "Foydalanuvchilarni izlash"
 
-#: static/js/admin/components/User/UserController.js:71
+#: static/js/admin/components/User/UserController.js:74
 msgid "Find user by name, email, properties"
 msgstr "Foydalanuvchini nomi, e-pochta manzili va xossalari bo‘yicha topish"
 
-#: static/js/admin/components/User/UserEdit.js:26
+#: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
 msgstr "Foydalanuvchini tahrirlash"
 
-#: static/js/admin/components/User/UserEdit.js:36
+#: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
 "Foydalanuvchini topish uchun izlash shaklidan foydalaning, so‘ngra "
 "tahrirlash uchun foydalanuvchi nomining ustiga bosing."
 
-#: static/js/admin/components/User/UserForm.js:50
+#: static/js/admin/components/User/UserForm.js:46
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -245,82 +247,86 @@ msgstr ""
 "masalan, mulohazalari, tavsiyalari va tarjimalari noma’lum foydalanuvchiga "
 "(hech kimga) tegishli deb ko‘rsatiladi."
 
-#: static/js/admin/components/User/UserForm.js:62
-#: static/js/auth/components/SignInForm.js:94
+#: static/js/admin/components/User/UserForm.js:59
+#: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:83
 msgid "Username"
 msgstr "Foydalanuvchi"
 
-#: static/js/admin/components/User/UserForm.js:71
+#: static/js/admin/components/User/UserForm.js:69
 msgid "Active"
 msgstr "Faol"
 
-#: static/js/admin/components/User/UserForm.js:78
+#: static/js/admin/components/User/UserForm.js:77
 #: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
-#: static/js/auth/components/SocialVerification.js:93
-#: static/js/auth/components/PasswordResetForm.js:112
+#: static/js/auth/components/SignUpForm.js:98
+#: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/PasswordResetForm.js:114
 msgid "Password"
 msgstr "Parol"
 
-#: static/js/admin/components/User/UserForm.js:79
+#: static/js/admin/components/User/UserForm.js:78
 msgid "Set a new password"
 msgstr "Yangi parol o‘rnatish"
 
-#: static/js/admin/components/User/UserForm.js:93
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/admin/components/User/UserForm.js:94
+#: static/js/auth/components/SignUpForm.js:90
 msgid "Email"
 msgstr "E-pochta"
 
-#: static/js/admin/components/User/UserForm.js:102
+#: static/js/admin/components/User/UserForm.js:104
 msgid "Administrator"
 msgstr "Administrator"
 
-#: static/js/admin/components/User/UserForm.js:109 static/js/user/forms.jsx:89
+#: static/js/admin/components/User/UserForm.js:112
+#: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
 msgstr "Twitter"
 
-#: static/js/admin/components/User/UserForm.js:111
+#: static/js/admin/components/User/UserForm.js:114
 msgid "Twitter username"
 msgstr "Twitter tarmog‘idagi nomi"
 
-#: static/js/admin/components/User/UserForm.js:117 static/js/user/forms.jsx:96
+#: static/js/admin/components/User/UserForm.js:121
+#: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:119
+#: static/js/admin/components/User/UserForm.js:123
 msgid "LinkedIn profile URL"
 msgstr "LinkedIn profil URL manzili"
 
-#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:129
+#: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
 msgstr "Veb sayt"
 
-#: static/js/admin/components/User/UserForm.js:126
+#: static/js/admin/components/User/UserForm.js:131
 msgid "Personal website URL"
 msgstr "Shaxsiy veb sayt URL manzili"
 
-#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:138
+#: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
 msgstr "Qisqacha biografiya"
 
-#: static/js/admin/components/User/UserForm.js:134
+#: static/js/admin/components/User/UserForm.js:140
 msgid "Personal description"
 msgstr "Shaxsiy ta’rifi"
 
-#: static/js/admin/components/User/UserForm.js:145
+#: static/js/admin/components/User/UserForm.js:156
 msgid "Public Profile"
 msgstr "Hammaga ko‘rinadigan profil"
 
-#: static/js/admin/components/User/UserForm.js:146
+#: static/js/admin/components/User/UserForm.js:157
 msgid "Settings"
 msgstr "Moslamalar"
 
-#: static/js/admin/components/User/UserForm.js:147
+#: static/js/admin/components/User/UserForm.js:158
 msgid "Statistics"
 msgstr "Statistika"
 
-#: static/js/admin/components/User/UserForm.js:148
+#: static/js/admin/components/User/UserForm.js:159
 msgid "Reports"
 msgstr "Hisobotlar"
 
@@ -328,13 +334,13 @@ msgstr "Hisobotlar"
 msgid "Preview will be displayed here."
 msgstr "Umumiy ko‘rinishi shu yerda ko‘rinadi."
 
-#: static/js/auth/components/AccountActivation.js:31
-#: static/js/auth/components/RequestPasswordResetSent.js:43
+#: static/js/auth/components/AccountActivation.js:32
+#: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr "Biz<span>%s</span>ga maxsus havola berilgan xatni sizga jo‘natdik"
 
-#: static/js/auth/components/AccountActivation.js:36
+#: static/js/auth/components/AccountActivation.js:37
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
@@ -342,21 +348,21 @@ msgstr ""
 "Ushbu hisobni ro‘yxatdan o‘tazish uchun manzilga maxsus havolasi bor xatni "
 "sizga jo‘natdik."
 
-#: static/js/auth/components/AccountActivation.js:40
+#: static/js/auth/components/AccountActivation.js:41
 msgid "Your account needs activation."
 msgstr "Hisobingizni faollashtirishingiz kerak."
 
-#: static/js/auth/components/AccountActivation.js:41
+#: static/js/auth/components/AccountActivation.js:42
 msgid "Please follow that link to continue the account creation."
 msgstr "Hisob yaratishda davom etish uchun ushbu havolaga o‘ting."
 
-#: static/js/auth/components/AccountActivation.js:55
-#: static/js/auth/components/AccountInactive.js:34
+#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
 msgstr "Yopish"
 
-#: static/js/auth/components/AccountInactive.js:28
+#: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr ""
 "Hisobingiz to‘xtatib qo‘yilgan, chunki administrator buni amalga oshirgan."
@@ -369,7 +375,7 @@ msgstr "Biz bilan bog‘laning"
 msgid "This email confirmation link expired or is invalid."
 msgstr "Ushbu e-pochtani tasdiqlash havolasi eskirgan yoki noto‘g‘ri."
 
-#: static/js/auth/components/PasswordResetForm.js:79
+#: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -377,38 +383,38 @@ msgstr ""
 "Parolni tiklash havolasi noto‘g‘ri, undan oldin foydalanilgan bo‘lishi "
 "mumkin. Qaytadan yangi parolni tiklash so‘rovini amalga oshiring."
 
-#: static/js/auth/components/PasswordResetForm.js:85
+#: static/js/auth/components/PasswordResetForm.js:87
 msgid "Reset Password"
 msgstr "Parolni tiklash"
 
-#: static/js/auth/components/PasswordResetForm.js:97
+#: static/js/auth/components/PasswordResetForm.js:99
 msgid "Password changed, signing in..."
 msgstr "Parol o‘zgartirildi, tizimga kirilmoqda..."
 
-#: static/js/auth/components/PasswordResetForm.js:121
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/PasswordResetForm.js:122
+#: static/js/auth/components/SignUpForm.js:106
 msgid "Repeat Password"
 msgstr "Parolni qayta kiriting"
 
-#: static/js/auth/components/PasswordResetForm.js:134
+#: static/js/auth/components/PasswordResetForm.js:136
 msgid "Set New Password"
 msgstr "Yangi parolni o‘rnatish"
 
-#: static/js/auth/components/PasswordResetForm.js:138
+#: static/js/auth/components/PasswordResetForm.js:140
 msgid "After changing your password you will sign in automatically."
 msgstr "Parolni o‘zgartirganingizdan so‘ng avtomatik tarzda tizimga kirasiz."
 
-#: static/js/auth/components/RequestPasswordResetProgress.js:23
+#: static/js/auth/components/RequestPasswordResetProgress.js:24
 #, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "%s’ga xat jo‘natilmoqda..."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:46
+#: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
 "Parolni tiklash jarayonini davom ettirish uchun quyidagi havolaga o‘ting."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:47
+#: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
@@ -416,28 +422,28 @@ msgstr ""
 "Xat olmadingizmi? Uni spam jildidan izlab ko‘ring yoki xatning boshqa "
 "nusxasini so‘rab ko‘ring."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:61
+#: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
 msgstr "Xatni qayta jo‘natish"
 
-#: static/js/auth/components/SignInForm.js:82
-#: static/js/auth/components/RequestPasswordResetForm.js:119
+#: static/js/auth/components/SignInForm.js:83
+#: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
 msgstr "Yangi foydalanuvchi sifatida ro‘yxatdan o‘tish"
 
-#: static/js/auth/components/SignInForm.js:110
-#: static/js/auth/components/SocialVerification.js:100
+#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SocialVerification.js:102
 msgid "I forgot my password"
 msgstr "Parolimni unutdim"
 
-#: static/js/auth/components/SignInForm.js:121
-#: static/js/auth/components/SocialVerification.js:111
-#: static/js/auth/containers/Auth.js:81
+#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SocialVerification.js:113
+#: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
 msgstr "Kirish"
 
 #: static/js/auth/components/SignInPanel.js:47
-#: static/js/auth/components/SocialVerification.js:71
+#: static/js/auth/components/SocialVerification.js:73
 msgid "Signed in. Redirecting..."
 msgstr "Kirildi. Qayta yo‘naltirilmoqda..."
 
@@ -484,36 +490,36 @@ msgstr ""
 "Tashqi xizmatlardan birinchi marta kirganingizda, avtomatik tarzda siz uchun "
 "hisob yaratiladi."
 
-#: static/js/auth/containers/Auth.js:81
+#: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
 msgstr "Ushbu yordamida kirish..."
 
-#: static/js/auth/containers/Auth.js:88
+#: static/js/auth/containers/Auth.js:89
 msgid "Account Inactive"
 msgstr "Hisob to‘xtatib qo‘yilgan"
 
-#: static/js/auth/containers/Auth.js:102
+#: static/js/auth/containers/Auth.js:101
 msgid "Account Activation"
 msgstr "Hisobni faollashtirish"
 
-#: static/js/auth/containers/Auth.js:109
+#: static/js/auth/containers/Auth.js:107
 msgid "Email Confirmation"
 msgstr "E-pochtani tasdiqlash"
 
-#: static/js/auth/containers/Auth.js:116 static/js/auth/containers/Auth.js:123
-#: static/js/auth/containers/Auth.js:130
+#: static/js/auth/containers/Auth.js:113 static/js/auth/containers/Auth.js:119
+#: static/js/auth/containers/Auth.js:125
 msgid "Reset Your Password"
 msgstr "Parolni tiklash"
 
-#: static/js/auth/containers/Auth.js:137
+#: static/js/auth/containers/Auth.js:131
 msgid "Oops..."
 msgstr "Obbo..."
 
-#: static/js/auth/containers/Auth.js:144
+#: static/js/auth/containers/Auth.js:137
 msgid "Social Verification"
 msgstr "Ijtimoiy tasdiqlash"
 
-#: static/js/editor/app.js:275 static/js/editor/app.js:549
+#: static/js/editor/app.js:276 static/js/editor/app.js:554
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -521,7 +527,7 @@ msgstr ""
 "Ushbu qatorda siz kiritgan, lekin saqlanmagan o‘zgarishlar bor. Keyingi yoki "
 "oldinga tarjimaga o‘tsangiz, ushbu o‘zgartirishlar saqlanmaydi."
 
-#: static/js/editor/app.js:301
+#: static/js/editor/app.js:302
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -530,7 +536,7 @@ msgstr ""
 ">Keyingi sahifaga: Ctrl+Shift+.<br/>So‘nggi sahifaga: Ctrl+Shift+End "
 "tugmalari bilan o‘tish mumkin"
 
-#: static/js/editor/app.js:305
+#: static/js/editor/app.js:306
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -539,155 +545,213 @@ msgstr ""
 "br>Oldingi sahifaga: Ctrl+Shift+,<br/>Birinchi sahifaga: Ctrl+Shift+Home "
 "tugmalari bilan o‘tish mumkin."
 
-#: static/js/editor/app.js:409
+#: static/js/editor/app.js:411
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s's tavsiyalar jo‘natmoqda"
 
-#: static/js/editor/app.js:412
+#: static/js/editor/app.js:414
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s's tavsiyalarni qabul qildi"
 
-#: static/js/editor/app.js:415
+#: static/js/editor/app.js:417
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s's tavsiyalarni rad qildi"
 
-#: static/js/editor/app.js:418
+#: static/js/editor/app.js:420
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s's tarjimalari"
 
-#: static/js/editor/app.js:422
+#: static/js/editor/app.js:424
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s'ning almashtirilgan tarjimalari"
 
-#: static/js/editor/app.js:541 static/js/editor/app.js:1658
+#: static/js/editor/app.js:546 static/js/editor/app.js:1647
 msgid "No results."
 msgstr "Natijalarsiz."
 
-#: static/js/editor/app.js:1022
+#: static/js/editor/app.js:1003
 msgid "Error while connecting to the server"
 msgstr "Server bilan bog'lanishda xatolik"
 
-#: static/js/editor/app.js:1026
+#: static/js/editor/app.js:1007
 msgid "Not found"
 msgstr "Topilmadi"
 
-#: static/js/editor/app.js:1028
+#: static/js/editor/app.js:1009
 msgid "Server error"
 msgstr "Server xatoligi"
 
-#: static/js/editor/app.js:1030
+#: static/js/editor/app.js:1011
 msgid "The server seems down. Try again later."
 msgstr "Server ishlamayapti. Keyinroq harakat qilib ko'ring."
 
-#: static/js/editor/app.js:1037
-msgid "Unknown error"
-msgstr "Nomaʼlum xato"
-
-#: static/js/editor/app.js:1045
+#: static/js/editor/app.js:1020
 msgid "This string no longer exists."
 msgstr "Ushbu qator mavjud emas."
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1021
 msgid "Go back to browsing"
 msgstr "Ko‘rish uchun orqaga qayting"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1023
 msgid "Reload page"
 msgstr "Sahifani qayta yuklash"
 
-#: static/js/editor/app.js:2039 static/js/editor/app.js:1991
+#: static/js/editor/app.js:2033 static/js/editor/app.js:1986
 msgid "Similar translations"
 msgstr "Bir xil tarjimalar"
 
-#: static/js/shared/models/project.js:59
+#: static/js/shared/components/FormSelectInput.js:32
+msgid "Select..."
+msgstr "Tanlash..."
+
+#: static/js/shared/components/FormSelectInput.js:33
+msgid "No results found"
+msgstr "Hech qanday natija topilmadi"
+
+#: static/js/shared/components/FormSelectInput.js:34
+msgid "Clear value"
+msgstr "Qiymatni tozalash"
+
+#: static/js/shared/components/FormSelectInput.js:35
+msgid "Clear all"
+msgstr "Barchasini tozalash"
+
+#: static/js/shared/components/FormSelectInput.js:36
+msgid "Type to search"
+msgstr "Izlash uchun yozing"
+
+#: static/js/shared/models/project.js:57
 msgid "disabled"
 msgstr "o‘chirib qo‘yilgan"
 
-#: static/js/stats.js:354
+#: static/js/stats.js:58
+#, fuzzy
+msgid "Congratulations! You have completed this task!"
+msgstr "Tabriklaymiz, siz ohirgi qatorga yetdingiz."
+
+#: static/js/stats.js:379
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s soniya"
 msgstr[1] "%s soniya"
 
-#: static/js/stats.js:389
+#: static/js/stats.js:416
 msgid "Collapse details"
 msgstr "Tafsilotlarni yigʻish"
 
-#: static/js/stats.js:389
+#: static/js/stats.js:416
 msgid "Expand details"
 msgstr "Tafsilotlarni yoyish"
 
-#: static/js/user/components/UserProfileEdit.js:106
+#: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
 msgstr "Ommaviy profilni tahrirlash"
 
-#: static/js/user/components/UserProfileEdit.js:113
+#: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
 msgstr "Ommaviy profilim"
 
-#: static/js/user/components/UserProfileEdit.js:125
+#: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
 msgstr "O‘zgarishlardan voz kechish"
 
-#: static/js/user/components/UserProfileEdit.js:126
+#: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
 msgstr "Ha"
 
-#: static/js/user/components/UserProfileEdit.js:127
+#: static/js/user/components/UserProfileEdit.js:119
 msgid "No"
 msgstr "Yo‘q"
 
-#: static/js/user/components/UserProfileEdit.js:128
+#: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
 msgstr "Saqlanmagan o‘zgartirishlar bor. Ularni rad qilishni xohlaysizmi?"
 
-#: static/js/utils.js:151
+#: static/js/user/components/UserProfileForm.js:59
+#, python-format
+msgid ""
+"To set or change your avatar for your email address (%(email)s), please go "
+"to gravatar.com."
+msgstr ""
+"E-pochta manzilingiz (%(email)s) uchun avatar o‘rnatish yoki o‘zgartirish "
+"uchun gravatar.com saytiga tashrif buyuring."
+
+#: static/js/user/components/UserProfileForm.js:75
+msgid "Your Full Name"
+msgstr "To‘liq ismingiz"
+
+#: static/js/user/components/UserProfileForm.js:83
+msgid "Avatar"
+msgstr "Avatar"
+
+#: static/js/user/components/UserProfileForm.js:94
+msgid "Your Twitter username"
+msgstr "Twitter tarmog‘idagi nomingiz"
+
+#: static/js/user/components/UserProfileForm.js:103
+msgid "Your LinkedIn profile URL"
+msgstr "LinkedIn tarmog‘idagi profilingiz URL manzili"
+
+#: static/js/user/components/UserProfileForm.js:111
+msgid "Your Personal website/blog URL"
+msgstr "Shaxsiy veb sahifanigz/blogingiz URL manzili"
+
+#: static/js/user/components/UserProfileForm.js:120
+msgid ""
+"Why are you part of our translation project? Describe yourself, inspire "
+"others!"
+msgstr ""
+"Siz nega tarjima loyihamizning ishtirokchisiga aylandingiz? Bu haqida "
+"batafsil ma’lumot bering va boshqalarni ham ruhlantiring!"
+
+#: static/js/utils.js:165
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Bir yil oldin"
 msgstr[1] "%s yil oldin"
 
-#: static/js/utils.js:154
+#: static/js/utils.js:168
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Bir hafta oldin"
 msgstr[1] "%s hafta oldin"
 
-#: static/js/utils.js:157
+#: static/js/utils.js:171
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Kecha%s kun oldin"
 
-#: static/js/utils.js:160
+#: static/js/utils.js:174
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Bir soat oldin%s soat oldin"
 
-#: static/js/utils.js:163
+#: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Bir daqiqa oldin%s daqiqa oldin"
 
-#: static/js/utils.js:171
+#: static/js/utils.js:185
 msgid "A few seconds ago"
 msgstr "Bir necha soniya oldin"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:94
+#: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
 msgstr "E-pochta manzili"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:95
+#: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
@@ -695,19 +759,19 @@ msgstr ""
 "E-pochta manzilingizni kiriting. Biz esa sizga parolingizni tiklash uchun "
 "maxsus havola berilgan xatni jo‘natamiz."
 
-#: static/js/auth/components/RequestPasswordResetForm.js:105
+#: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
 msgstr "Yo‘q, rahmat, kerak emas"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:113
+#: static/js/auth/components/RequestPasswordResetForm.js:114
 msgid "Send Email"
 msgstr "Xat jo‘natish"
 
-#: static/js/auth/components/SignInForm.js:84
+#: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "Yangi hisob yaratish taqiqlangan."
 
-#: static/js/auth/components/SocialVerification.js:78
+#: static/js/auth/components/SocialVerification.js:80
 #, python-format
 msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
@@ -718,86 +782,29 @@ msgstr ""
 "topdik. Kirish jarayonini tugatish uchun parolingizni kiriting. Bu Pootle va "
 "%s nomli hisoblaringiz o‘rtasida aloqa o‘rnatadigan bir martalik jarayondir."
 
-#: static/js/browser.js:164
+#: static/js/browser.js:229
 msgid "All Languages"
 msgstr "Barcha tillar"
 
-#: static/js/browser.js:167
+#: static/js/browser.js:232
 msgid "All Projects"
 msgstr "Barcha loyihalar"
 
-#: static/js/browser.js:171
+#: static/js/browser.js:236
 msgid "Entire Project"
 msgstr "Butun loyiha"
 
-#: static/js/editor/app.js:1971
+#: static/js/editor/app.js:1967
 msgid "some anonymous user"
 msgstr "anonim foydalanuvchi"
 
-#: static/js/editor/app.js:1973
+#: static/js/editor/app.js:1970
 msgid "someone"
 msgstr "kimdir"
 
-#: static/js/shared/components/UserEvent.js:77
+#: static/js/shared/components/UserEvent.js:78
 msgid "uploaded file"
 msgstr "fayl yuklab qo‘yildi"
-
-#: static/js/shared/components/forms.jsx:69
-msgid "Select..."
-msgstr "Tanlash..."
-
-#: static/js/shared/components/forms.jsx:70
-msgid "No results found"
-msgstr "Hech qanday natija topilmadi"
-
-#: static/js/shared/components/forms.jsx:71
-msgid "Clear value"
-msgstr "Qiymatni tozalash"
-
-#: static/js/shared/components/forms.jsx:72
-msgid "Clear all"
-msgstr "Barchasini tozalash"
-
-#: static/js/shared/components/forms.jsx:73
-msgid "Type to search"
-msgstr "Izlash uchun yozing"
-
-#: static/js/user/forms.jsx:63
-#, python-format
-msgid ""
-"To set or change your avatar for your email address (%(email)s), please go "
-"to gravatar.com."
-msgstr ""
-"E-pochta manzilingiz (%(email)s) uchun avatar o‘rnatish yoki o‘zgartirish "
-"uchun gravatar.com saytiga tashrif buyuring."
-
-#: static/js/user/forms.jsx:76
-msgid "Your Full Name"
-msgstr "To‘liq ismingiz"
-
-#: static/js/user/forms.jsx:82
-msgid "Avatar"
-msgstr "Avatar"
-
-#: static/js/user/forms.jsx:91
-msgid "Your Twitter username"
-msgstr "Twitter tarmog‘idagi nomingiz"
-
-#: static/js/user/forms.jsx:98
-msgid "Your LinkedIn profile URL"
-msgstr "LinkedIn tarmog‘idagi profilingiz URL manzili"
-
-#: static/js/user/forms.jsx:104
-msgid "Your Personal website/blog URL"
-msgstr "Shaxsiy veb sahifanigz/blogingiz URL manzili"
-
-#: static/js/user/forms.jsx:112
-msgid ""
-"Why are you part of our translation project? Describe yourself, inspire "
-"others!"
-msgstr ""
-"Siz nega tarjima loyihamizning ishtirokchisiga aylandingiz? Bu haqida "
-"batafsil ma’lumot bering va boshqalarni ham ruhlantiring!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -944,6 +951,9 @@ msgstr ""
 "Tarjimon: %(fullname)s – &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 
+#~ msgid "Unknown error"
+#~ msgstr "Nomaʼlum xato"
+
 #~ msgid "removed translation for ${sourceString}"
 #~ msgstr "${sourceString} uchun tarjima olib tashlandi"
 
@@ -1018,6 +1028,3 @@ msgstr ""
 
 #~ msgid "<a href=\"%s\">String %s</a>"
 #~ msgstr "<a href=\"%s\">Yozuv %s</a>"
-
-#~ msgid "Congratulations, you walked through all strings."
-#~ msgstr "Tabriklaymiz, siz ohirgi qatorga yetdingiz."

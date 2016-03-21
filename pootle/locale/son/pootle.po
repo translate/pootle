@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-11-20 13:21+0000\n"
+"POT-Creation-Date: 2016-03-21 21:54+0000\n"
 "PO-Revision-Date: 2014-09-01 09:41+0000\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1409564501.000000\n"
 
-#: apps/accounts/adapter.py:64
+#: apps/accounts/adapter.py:65
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -31,103 +31,103 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 
-#: apps/accounts/models.py:61 apps/pootle_app/views/admin/permissions.py:86
+#: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:84
 msgid "Username"
 msgstr "Goykaw maa"
 
-#: apps/accounts/models.py:62
+#: apps/accounts/models.py:64
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 
-#: apps/accounts/models.py:66
+#: apps/accounts/models.py:68
 msgid "Enter a valid username."
 msgstr ""
 
-#: apps/accounts/models.py:70
+#: apps/accounts/models.py:72
 msgid "Email Address"
 msgstr "Bataga aderesu"
 
-#: apps/accounts/models.py:71 apps/pootle_language/models.py:81
-#: apps/pootle_project/models.py:150
+#: apps/accounts/models.py:73 apps/pootle_language/models.py:75
+#: apps/pootle_project/models.py:158
 msgid "Full Name"
 msgstr "Maa timmante"
 
-#: apps/accounts/models.py:73 apps/staticpages/models.py:32
+#: apps/accounts/models.py:76 apps/staticpages/models.py:32
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Dirante"
 
-#: apps/accounts/models.py:74
+#: apps/accounts/models.py:77
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:80
 #, fuzzy
 msgid "Superuser Status"
 msgstr "beene juwalkaw assariya"
 
-#: apps/accounts/models.py:77
+#: apps/accounts/models.py:81
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:84
 msgid "date joined"
 msgstr ""
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:88
 msgid "Number of Rows"
 msgstr "Sorrawey hinnaa"
 
-#: apps/accounts/models.py:87
+#: apps/accounts/models.py:92
 msgid "Alternative Source Languages"
 msgstr "Aššil šenni waani-waaney"
 
-#: apps/accounts/models.py:90 templates/admin/detailed_reports.html:156
+#: apps/accounts/models.py:95 templates/admin/detailed_reports.html:156
 msgid "Rate"
 msgstr ""
 
-#: apps/accounts/models.py:91 apps/reports/forms.py:32
+#: apps/accounts/models.py:96 apps/reports/forms.py:32
 msgid "Review Rate"
 msgstr ""
 
-#: apps/accounts/models.py:92 apps/reports/forms.py:37
+#: apps/accounts/models.py:97 apps/reports/forms.py:37
 msgid "Hourly Rate"
 msgstr ""
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:98
 msgid "Score"
 msgstr ""
 
-#: apps/accounts/models.py:94 apps/reports/forms.py:21
+#: apps/accounts/models.py:99 apps/reports/forms.py:21
 msgid "Currency"
 msgstr ""
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:101
 msgid "Is employee?"
 msgstr ""
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:102
 msgid "Twitter"
 msgstr ""
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:104
 msgid "Website"
 msgstr ""
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:105
 msgid "LinkedIn"
 msgstr ""
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:106
 msgid "Short Bio"
 msgstr ""
 
-#: apps/accounts/models.py:308
+#: apps/accounts/models.py:311
 #, fuzzy
 msgid "This email address already exists."
 msgstr "Kalimaa woo ga bara tukoo ra ka ben."
@@ -145,7 +145,7 @@ msgstr "Surkumandiyan"
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:35 apps/virtualfolder/models.py:32 core/browser.py:17
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:33 core/browser.py:17
 msgid "Name"
 msgstr "Maa"
 
@@ -169,6 +169,15 @@ msgstr "Alhabaryu"
 msgid "Please enter your message"
 msgstr ""
 
+#: apps/contact/views.py:35 templates/layout.html:102
+msgid "Contact Us"
+msgstr "Hantum ir se"
+
+#: apps/contact/views.py:66
+#, fuzzy
+msgid "Report problem with string"
+msgstr "Šenday foo bayrandi nd'aššil tenjiri"
+
 #: apps/import_export/templates/browser/index.html:10
 #, fuzzy
 msgid "Download translation files for offline translation"
@@ -188,27 +197,27 @@ msgstr "Berandiyan tukey wala jiširey zijandi .zip takari ra"
 msgid "Upload translations"
 msgstr "Berandiyaney fattandi"
 
-#: apps/import_export/utils.py:29
+#: apps/import_export/utils.py:30
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 
-#: apps/import_export/utils.py:35
+#: apps/import_export/utils.py:36
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:40
+#: apps/import_export/utils.py:41
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:48
+#: apps/import_export/utils.py:49
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr ""
 
-#: apps/import_export/utils.py:57
+#: apps/import_export/utils.py:66
 #, fuzzy
 msgid "There was an error uploading your file"
 msgstr "Ga hin ka berandiyaney hantum zijandiyan tukey boŋ"
@@ -217,74 +226,74 @@ msgstr "Ga hin ka berandiyaney hantum zijandiyan tukey boŋ"
 msgid "Language code does not follow the ISO convention"
 msgstr "Šenni ašariya ši hanga ISO alaadaa bande"
 
-#: apps/pootle_app/forms.py:46 apps/pootle_project/models.py:173
+#: apps/pootle_app/forms.py:46 apps/pootle_project/models.py:186
 msgid "Source Language"
 msgstr "Aššil šenni"
 
-#: apps/pootle_app/forms.py:97 apps/pootle_project/models.py:392
+#: apps/pootle_app/forms.py:95
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" ši hin ka tee sanda porože ašariya"
 
-#: apps/pootle_app/forms.py:104 custom/templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:102 custom/templates/profiles/_tabs.html:5
 msgid "Password"
 msgstr "Šennikufal"
 
-#: apps/pootle_app/forms.py:139 apps/pootle_profile/forms.py:28
+#: apps/pootle_app/forms.py:137 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
-#: apps/pootle_app/views/admin/dashboard.py:80
+#: apps/pootle_app/views/admin/dashboard.py:86
 msgid "Files"
 msgstr "Tukey"
 
-#: apps/pootle_app/views/admin/dashboard.py:81
+#: apps/pootle_app/views/admin/dashboard.py:87
 msgid "Active projects"
 msgstr "Porože goyantey"
 
-#: apps/pootle_app/views/admin/dashboard.py:82
+#: apps/pootle_app/views/admin/dashboard.py:88
 msgid "Active languages"
 msgstr "Šenni goyantey"
 
-#: apps/pootle_app/views/admin/dashboard.py:83
+#: apps/pootle_app/views/admin/dashboard.py:89
 msgid "Translated strings"
 msgstr "Tenjiri berantey"
 
-#: apps/pootle_app/views/admin/dashboard.py:84
+#: apps/pootle_app/views/admin/dashboard.py:90
 msgid "Translated words"
 msgstr "Kalima berantey"
 
-#: apps/pootle_app/views/admin/dashboard.py:85
+#: apps/pootle_app/views/admin/dashboard.py:91
 msgid "Active users"
 msgstr "Sohõda goykey"
 
 #. Translators: this refers to the status of the background job worker
-#: apps/pootle_app/views/admin/dashboard.py:106
+#: apps/pootle_app/views/admin/dashboard.py:112
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
 msgstr[0] ""
 
 #. Translators: this refers to the status of the background job worker
-#: apps/pootle_app/views/admin/dashboard.py:110
+#: apps/pootle_app/views/admin/dashboard.py:116
 msgid "Stopped"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:67
+#: apps/pootle_app/views/admin/permissions.py:66
 msgid "All Users"
 msgstr "Goykey kul"
 
-#: apps/pootle_app/views/admin/permissions.py:95
+#: apps/pootle_app/views/admin/permissions.py:93
 #, fuzzy
 msgid "Add Permissions"
 msgstr "Goykaw duɲeyaney"
 
-#: apps/pootle_app/views/admin/permissions.py:100
-#: apps/pootle_app/views/admin/permissions.py:109
+#: apps/pootle_app/views/admin/permissions.py:98
+#: apps/pootle_app/views/admin/permissions.py:107
 msgid "Select one or more permissions"
 msgstr "duɲeyan foo wala ibooboyaŋ suuba"
 
-#: apps/pootle_app/views/admin/permissions.py:104
+#: apps/pootle_app/views/admin/permissions.py:102
 msgid "Revoke Permissions"
 msgstr ""
 
@@ -292,11 +301,15 @@ msgstr ""
 msgid "No files in this project."
 msgstr "Tukuyaŋ kul ši porožewoo woo ra."
 
-#: apps/pootle_app/views/admin/util.py:159
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:179
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Firkayaŋ ga bara takaroo ra. Taare ne ganda šendawey guna boryo."
 
-#: apps/pootle_language/models.py:74
+#: apps/pootle_language/models.py:68 apps/pootle_project/models.py:154
+msgid "Code"
+msgstr "Ašariya"
+
+#: apps/pootle_language/models.py:69
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -306,345 +319,341 @@ msgstr ""
 "bande, nda ISO 3166 laama ašariya. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Alhabar tontoni</a>"
 
-#: apps/pootle_language/models.py:79 apps/pootle_project/models.py:147
-msgid "Code"
-msgstr "Ašariya"
-
-#: apps/pootle_language/models.py:83
-msgid "Enter any special characters that users might find difficult to type"
-msgstr "Harfu cerantey kul dam kaŋyaŋ hantumoo ga hin ka šendi goykey se"
-
-#: apps/pootle_language/models.py:86 templates/languages/_nav.html:31
+#: apps/pootle_language/models.py:78 templates/languages/_nav.html:31
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Harfu cerantey"
 
-#: apps/pootle_language/models.py:89
+#: apps/pootle_language/models.py:79
+msgid "Enter any special characters that users might find difficult to type"
+msgstr "Harfu cerantey kul dam kaŋyaŋ hantumoo ga hin ka šendi goykey se"
+
+#: apps/pootle_language/models.py:83
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
 
-#: apps/pootle_language/models.py:94
+#: apps/pootle_language/models.py:89
 msgid "Unknown"
 msgstr "Šibayante"
 
-#: apps/pootle_language/models.py:97
+#: apps/pootle_language/models.py:93
 msgid "Number of Plurals"
 msgstr "Booboray hinna"
 
-#: apps/pootle_language/models.py:99
+#: apps/pootle_language/models.py:96
 msgid "Plural Equation"
 msgstr "Booboray himari"
 
-#: apps/pootle_misc/checks.py:33 core/browser.py:66
+#: apps/pootle_misc/checks.py:34 core/browser.py:66
 msgid "Critical"
 msgstr "Šuggula"
 
-#: apps/pootle_misc/checks.py:34
+#: apps/pootle_misc/checks.py:35
 msgid "Cosmetic"
 msgstr "Taalam"
 
-#: apps/pootle_misc/checks.py:35
+#: apps/pootle_misc/checks.py:36
 msgid "Functional"
 msgstr "Goyante"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:37
 msgid "Extraction"
 msgstr "Soolomyan"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:38
 msgid "Other"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:41 apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:42
 msgid "Accelerators"
 msgstr "Cahãndikey"
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:43
 msgid "Acronyms"
 msgstr "Maa-harfey"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:44
 msgid "Blank"
 msgstr "Koonu"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:45
 msgid "Brackets"
 msgstr "Holgey"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:46
 msgid "Compendium conflict"
 msgstr "Margari kakaw"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:47
 msgid "Translator credits"
 msgstr "Berandikaw alhakey"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:48
 msgid "Dialog sizes"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:48 apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:49
 msgid "Double quotes"
 msgstr "Filla šilbay hinkante"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Double spaces"
 msgstr "Faaru hinkantey"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "Repeated word"
 msgstr "Kalima fillante"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "E-mail"
 msgstr "Bataga"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "Ending punctuation"
 msgstr "Benandi tonbi"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Ending whitespace"
 msgstr "Benandi farrukaaray"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "Escapes"
 msgstr "Sarey"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "File paths"
 msgstr "Tuku fondey"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "Functions"
 msgstr "Goyminn"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:58
 msgid "GConf values"
 msgstr "GConf hinnawey"
 
-#: apps/pootle_misc/checks.py:58 apps/pootle_misc/stats.py:26
+#: apps/pootle_misc/checks.py:59 apps/pootle_misc/stats.py:26
 msgid "Fuzzy"
 msgstr "Manti alhakiikante"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:60
 msgid "Old KDE comment"
 msgstr "KDE žeena daara "
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Long"
 msgstr "Kuuyan"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Must translate words"
 msgstr "Ga hima ka berandi"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Newlines"
 msgstr "Žeeri saryaney"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Number of plurals"
 msgstr "Booboray hinna"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Don't translate words"
 msgstr "Ma ši kalimawey berandi"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Numbers"
 msgstr "Hinnawey"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "Options"
 msgstr "Suubarey"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "Punctuation spacing"
 msgstr "Hunanzam tammaasa hibiyan"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 msgid "Pure punctuation"
 msgstr "Hunanzam tammaasa cimi"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 #, fuzzy
 msgid "Python brace placeholders"
 msgstr "Doodiikey"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Number of sentences"
 msgstr "Kalimaɲaa zuu hinna"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Short"
 msgstr "Duurayan"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Simple capitalization"
 msgstr "Harfu beerandi damyan"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Simple plural(s)"
 msgstr "Booboyan faalantey"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Single quotes"
 msgstr "Filla šilbay fowantey"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Starting capitalization"
 msgstr "Harfu beerandiyan šintin"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting punctuation"
 msgstr "Hunanzam tammaasa šintin"
 
-#: apps/pootle_misc/checks.py:78
+#: apps/pootle_misc/checks.py:79
 msgid "Starting whitespace"
 msgstr "Gam kaaray šintin"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:81
 msgid "Tabs"
 msgstr "Nor lokey"
 
-#: apps/pootle_misc/checks.py:81
+#: apps/pootle_misc/checks.py:82
 msgid "Unchanged"
 msgstr "Mana barmay"
 
-#: apps/pootle_misc/checks.py:82 apps/pootle_misc/stats.py:27
-#: apps/pootle_store/util.py:30 core/helpers.py:63
+#: apps/pootle_misc/checks.py:83 apps/pootle_misc/stats.py:27
+#: apps/pootle_store/util.py:30 core/helpers.py:49
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Manti berante"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:84
 msgid "URLs"
 msgstr "URL"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "Valid characters"
 msgstr "Harfu boryey"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Placeholders"
 msgstr "Doodiikey"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "Valid XML"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:87
+#: apps/pootle_misc/checks.py:88
 msgid "XML tags"
 msgstr "XML kanjey"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:90
 msgid "Broken HTML Entities"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Java format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Template format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholder pairs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "Mustache like placeholder pairs"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "C format placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "Non printable"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Unbalanced tag braces"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Changed attributes"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Unescaped ampersands"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Incorrectly escaped ampersands"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Whitespaces"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Date format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Uppercase placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Percent sign placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:107
 msgid "Percent sign closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:108
 #, fuzzy
 msgid "$ placeholders"
 msgstr "Doodiikey"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:109
 msgid "$ closure placeholders"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:110
 msgid "Java-encoded unicode"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:111
 msgid "Objective-C format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:112
 msgid "Android format"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Tags differ"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Curly braces"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:115
 msgid "Potential unwanted placeholders"
 msgstr ""
 
@@ -657,32 +666,37 @@ msgstr ""
 msgid "Percent brace placeholders"
 msgstr "Doodiikey"
 
+#: apps/pootle_misc/checks.py:118
+#, fuzzy
+msgid "Plurr format"
+msgstr "%d"
+
 #. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:90 core/helpers.py:67
+#: apps/pootle_misc/forms.py:91 core/helpers.py:53
 msgid "Search"
 msgstr "Ceeci"
 
-#: apps/pootle_misc/forms.py:91
+#: apps/pootle_misc/forms.py:92
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Ceeci (Ctrl+Shift+S)<br/> Hantum nda Dam butoŋ naagu ka guna"
 
-#: apps/pootle_misc/forms.py:99
+#: apps/pootle_misc/forms.py:100 apps/pootle_store/forms.py:452
 msgid "Exact Match"
 msgstr "Tenjandi alhakiika"
 
-#: apps/pootle_misc/forms.py:106
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:458
 msgid "Source Text"
 msgstr "Aššil kalimaɲaa kuru"
 
-#: apps/pootle_misc/forms.py:107
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:459
 msgid "Target Text"
 msgstr "Toodoo kalimaɲaa kuru"
 
-#: apps/pootle_misc/forms.py:108
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:460
 msgid "Comments"
 msgstr "Daarawey"
 
-#: apps/pootle_misc/forms.py:109
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:461
 msgid "Locations"
 msgstr "Gorodogey"
 
@@ -693,24 +707,24 @@ msgstr "Gorodogey"
 msgid "Total"
 msgstr "Dimma"
 
-#: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32 core/helpers.py:62
+#: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32 core/helpers.py:48
 #: templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Berante"
 
-#: apps/pootle_misc/templatetags/render_pager.py:22
+#: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Jina"
 
-#: apps/pootle_misc/templatetags/render_pager.py:24
+#: apps/pootle_misc/templatetags/render_pager.py:25
 msgid "Previous"
 msgstr "Bisante"
 
-#: apps/pootle_misc/templatetags/render_pager.py:40
+#: apps/pootle_misc/templatetags/render_pager.py:42
 msgid "Next"
 msgstr "Jine"
 
-#: apps/pootle_misc/templatetags/render_pager.py:42
+#: apps/pootle_misc/templatetags/render_pager.py:44
 #, python-format
 msgid "Last (%d)"
 msgstr "(%d) korawey"
@@ -719,11 +733,11 @@ msgstr "(%d) korawey"
 msgid "Select one or more languages"
 msgstr "Šenni foo wal'ibooboyaŋ suuba"
 
-#: apps/pootle_project/forms.py:29 core/browser.py:32
+#: apps/pootle_project/forms.py:22 core/browser.py:32
 msgid "Language"
 msgstr "Šenni"
 
-#: apps/pootle_project/models.py:144
+#: apps/pootle_project/models.py:148
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -731,96 +745,96 @@ msgstr ""
 "Ašariya duurya porožewoo se. Woo ga hima ka bara nda ASCII harfey, hinnawey "
 "nda ganda-žeeri (_) harfu."
 
-#: apps/pootle_project/models.py:158
+#: apps/pootle_project/models.py:169
 msgid "Quality Checks"
 msgstr "Hennari korošiyaney"
 
-#: apps/pootle_project/models.py:161
+#: apps/pootle_project/models.py:172
 msgid "File Type"
 msgstr "Tuku dumi"
 
-#: apps/pootle_project/models.py:165
+#: apps/pootle_project/models.py:176
 msgid "Automatic detection (slower)"
 msgstr "Boŋ-maateyan (cee-yayna)"
 
-#: apps/pootle_project/models.py:166
+#: apps/pootle_project/models.py:177
 msgid "GNU style: files named by language code"
 msgstr "GNU fasal: tukey maaɲey šenni ašariya bande"
 
-#: apps/pootle_project/models.py:167
+#: apps/pootle_project/models.py:178
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Manti-GNU: šenni foo kul nga boŋ fooloɲaŋoo ra"
 
-#: apps/pootle_project/models.py:170
+#: apps/pootle_project/models.py:182
 msgid "Project Tree Style"
 msgstr "Porože tuuri fasal"
 
-#: apps/pootle_project/models.py:176
+#: apps/pootle_project/models.py:190
 msgid "Ignore Files"
 msgstr "Tukey muray"
 
-#: apps/pootle_project/models.py:181
+#: apps/pootle_project/models.py:195
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:182
+#: apps/pootle_project/models.py:196
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "URL wala bataga aderesu kaŋ nda šenday aššil hantum here ga hin ka bayrandi."
 
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:200
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:191
+#: apps/pootle_project/models.py:205
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:71 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:66 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Aššil"
 
-#: apps/pootle_statistics/models.py:72
+#: apps/pootle_statistics/models.py:67
 msgid "Target"
 msgstr "Toodoo"
 
-#: apps/pootle_statistics/models.py:73
+#: apps/pootle_statistics/models.py:68
 msgid "State"
 msgstr "Alhaali"
 
-#: apps/pootle_statistics/models.py:74
+#: apps/pootle_statistics/models.py:69
 msgid "Comment"
 msgstr "Daara"
 
-#: apps/pootle_statistics/models.py:351
+#: apps/pootle_statistics/models.py:341
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Honnandiyan %d"
 
-#: apps/pootle_statistics/models.py:352
+#: apps/pootle_statistics/models.py:342
 #, fuzzy, python-format
 msgid "Accepted suggestion from %s"
 msgstr "Yadda honnandiyan ga"
 
-#: apps/pootle_statistics/models.py:353
+#: apps/pootle_statistics/models.py:344
 #, fuzzy, python-format
 msgid "Rejected suggestion from %s"
 msgstr "Mongu honnandiyan ga"
 
-#: apps/pootle_store/decorators.py:27
+#: apps/pootle_store/decorators.py:26
 msgid "Insufficient rights to access this directory."
 msgstr "Fondo ši wasa ha huru fooloɲaŋoo woo ra."
 
-#: apps/pootle_store/decorators.py:30
+#: apps/pootle_store/decorators.py:29
 msgid "Insufficient rights to access suggestion mode."
 msgstr ""
 
-#: apps/pootle_store/decorators.py:31
+#: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access translation mode."
 msgstr ""
 
-#: apps/pootle_store/decorators.py:32 apps/pootle_store/views.py:1001
+#: apps/pootle_store/decorators.py:31 apps/pootle_store/views.py:698
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Fondo ši wasa ka huru moɲoo woo ra."
@@ -853,68 +867,67 @@ msgstr "TBX"
 msgid "Haiku catkeys"
 msgstr "Haiku catkeys"
 
-#: apps/pootle_store/filetypes.py:55
+#: apps/pootle_store/filetypes.py:56
 msgid "Excel CSV"
 msgstr "Excel CSV"
 
-#: apps/pootle_store/filetypes.py:61
+#: apps/pootle_store/filetypes.py:62
 msgid "Mozilla .lang"
 msgstr "Mozilla .lang"
 
-#: apps/pootle_store/forms.py:93
-#: apps/pootle_store/templatetags/store_tags.py:151
-#: apps/pootle_store/templatetags/store_tags.py:168
-#: apps/pootle_store/templatetags/store_tags.py:175
-#: apps/pootle_store/templatetags/store_tags.py:189
-#: apps/pootle_store/templatetags/store_tags.py:191
+#: apps/pootle_store/forms.py:130
+#: apps/pootle_store/templatetags/store_tags.py:166
+#: apps/pootle_store/templatetags/store_tags.py:183
+#: apps/pootle_store/templatetags/store_tags.py:190
+#: apps/pootle_store/templatetags/store_tags.py:212
 #, python-format
 msgid "Plural Form %d"
 msgstr "%d"
 
-#: apps/pootle_store/forms.py:216 apps/pootle_store/util.py:31
-#: core/helpers.py:64 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:252 apps/pootle_store/util.py:31
+#: core/helpers.py:50 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Ga boona goy"
 
-#: apps/pootle_store/forms.py:252
+#: apps/pootle_store/forms.py:288
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:295
+#: apps/pootle_store/forms.py:334
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:305
+#: apps/pootle_store/forms.py:344
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:330
+#: apps/pootle_store/forms.py:368
 msgid "Translator comment"
 msgstr "Berandikaw daara"
 
-#: apps/pootle_store/models.py:156
+#: apps/pootle_store/models.py:145
 msgid "Pending"
 msgstr "Goo ma batu"
 
-#: apps/pootle_store/models.py:157
+#: apps/pootle_store/models.py:146
 msgid "Accepted"
 msgstr "Yaddante"
 
-#: apps/pootle_store/models.py:158
+#: apps/pootle_store/models.py:147
 msgid "Rejected"
 msgstr "Mongante"
 
-#: apps/pootle_store/models.py:1366
+#: apps/pootle_store/models.py:1301
 msgid "Path"
 msgstr "Fondo"
 
-#: apps/pootle_store/templatetags/store_tags.py:144
-#: apps/pootle_store/templatetags/store_tags.py:147
+#: apps/pootle_store/templatetags/store_tags.py:157
+#: apps/pootle_store/templatetags/store_tags.py:161
 msgid "Singular"
 msgstr "Footaray"
 
-#: apps/pootle_store/templatetags/store_tags.py:144
-#: apps/pootle_store/templatetags/store_tags.py:147
+#: apps/pootle_store/templatetags/store_tags.py:158
+#: apps/pootle_store/templatetags/store_tags.py:162
 msgid "Plural"
 msgstr "Boobotaray"
 
@@ -922,23 +935,27 @@ msgstr "Boobotaray"
 msgid "Obsolete"
 msgstr "A žen."
 
-#: apps/pootle_store/views.py:462 core/decorators.py:46
+#: apps/pootle_store/views.py:208
+msgid "Path too long."
+msgstr ""
+
+#: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
 msgstr "Šennigoy ga kuma."
 
-#: apps/pootle_store/views.py:700
+#: apps/pootle_store/views.py:376
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:734
+#: apps/pootle_store/views.py:411
 msgid "Comment submission failed."
 msgstr "Daara sanbayanoo dunbu."
 
-#: apps/pootle_store/views.py:930
+#: apps/pootle_store/views.py:627
 msgid "Failed to process submission."
 msgstr "Sanbaroo mana hin ka koy."
 
-#: apps/pootle_store/views.py:971
+#: apps/pootle_store/views.py:668
 msgid "Failed to process suggestion."
 msgstr "Honnandiyanoo mana hin ka koy."
 
@@ -954,53 +971,53 @@ msgstr ""
 msgid "Effective from"
 msgstr ""
 
-#: apps/reports/models.py:31 apps/reports/models.py:43
+#: apps/reports/models.py:32 apps/reports/models.py:45
 #: templates/editor/export_view.html:106
 #: templates/translation_projects/terminology/manage.html:35
 #: templates/user/settings.html:28
 msgid "Translation"
 msgstr "Berandiyan"
 
-#: apps/reports/models.py:32 apps/reports/models.py:44
+#: apps/reports/models.py:33 apps/reports/models.py:46
 #: templates/admin/detailed_reports.html:232
 msgid "Review"
 msgstr "Guna boryo"
 
-#: apps/reports/models.py:33
+#: apps/reports/models.py:34
 #, fuzzy
 msgid "Suggestion"
 msgstr "Honnandiyaney"
 
-#: apps/reports/models.py:45
+#: apps/reports/models.py:47
 msgid "Hourly Work"
 msgstr ""
 
-#: apps/reports/models.py:46
+#: apps/reports/models.py:48
 msgid "Correction"
 msgstr ""
 
-#: apps/reports/models.py:49
+#: apps/reports/models.py:52
 msgid "Type"
 msgstr ""
 
-#: apps/reports/models.py:52
+#: apps/reports/models.py:54
 msgid "Amount"
 msgstr ""
 
-#: apps/reports/models.py:54
+#: apps/reports/models.py:56
 msgid "Date"
 msgstr ""
 
-#: apps/reports/models.py:55 apps/virtualfolder/models.py:58
+#: apps/reports/models.py:57 apps/virtualfolder/models.py:62
 msgid "Description"
 msgstr "Šilbayyan"
 
-#: apps/reports/views.py:331
+#: apps/reports/views.py:314
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:408
+#: apps/reports/views.py:391
 msgid "Invalid request method"
 msgstr ""
 
@@ -1049,71 +1066,71 @@ msgstr "Nd'a tabati, moɲoo woo fillawey kul ka bisandi URL woo here"
 msgid "URL or content must be provided."
 msgstr "URL wala gundekuna ga hima ka huru."
 
-#: apps/staticpages/models.py:107
+#: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
 msgstr "Fondo himantaa goo goy ra."
 
-#: apps/staticpages/models.py:116
+#: apps/staticpages/models.py:114
 msgid "Legal Page"
 msgstr "Alhukum moo"
 
-#: apps/staticpages/models.py:127
+#: apps/staticpages/models.py:125
 msgid "Regular Page"
 msgstr "Hankul moo"
 
-#: apps/staticpages/views.py:119 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:120 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Moo maa"
 
 #. Translators: 'projects' must not be translated.
-#: apps/staticpages/views.py:136
+#: apps/staticpages/views.py:137
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
 
-#: apps/staticpages/views.py:231
+#: apps/staticpages/views.py:232
 #, fuzzy
 msgid "Text is missing"
 msgstr "Šennigoy ga kuma."
 
-#: apps/virtualfolder/models.py:34
+#: apps/virtualfolder/models.py:38
 #, fuzzy
 msgid "Location"
 msgstr "Gorodogey"
 
-#: apps/virtualfolder/models.py:37
+#: apps/virtualfolder/models.py:41
 msgid "Root path where this virtual folder is applied."
 msgstr ""
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:41
+#: apps/virtualfolder/models.py:45
 #, fuzzy
 msgid "Filter"
 msgstr "Fay jinay"
 
-#: apps/virtualfolder/models.py:43
+#: apps/virtualfolder/models.py:47
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
 
-#: apps/virtualfolder/models.py:47 core/browser.py:22
+#: apps/virtualfolder/models.py:51 core/browser.py:22
 msgid "Priority"
 msgstr "Cerecere"
 
-#: apps/virtualfolder/models.py:49
+#: apps/virtualfolder/models.py:53
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 
-#: apps/virtualfolder/models.py:53
+#: apps/virtualfolder/models.py:57
 msgid "Is public?"
 msgstr ""
 
-#: apps/virtualfolder/models.py:55
+#: apps/virtualfolder/models.py:59
 #, fuzzy
 msgid "Whether this virtual folder is public or not."
 msgstr "Wala moɲoo woo ga dira wal'a šii."
 
-#: apps/virtualfolder/models.py:60
+#: apps/virtualfolder/models.py:64
 #, fuzzy, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1121,285 +1138,309 @@ msgstr ""
 "Toodogoo woo šilbaa. Woo ga boori k'alhabar wala fahami tontoni noo. "
 "Kalimaɲaa kunahaw: %s"
 
-#: checks.py:56
+#: checks.py:63
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
 
-#: checks.py:58
+#: checks.py:65
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
 
-#: checks.py:82
+#: checks.py:89
 msgid "Your version of Django is too old."
 msgstr ""
 
-#: checks.py:83
+#: checks.py:90
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr ""
 
-#: checks.py:90
+#: checks.py:97
 msgid "Your version of lxml is too old."
 msgstr ""
 
-#: checks.py:91
+#: checks.py:98
 msgid "Try pip install --upgrade lxml"
 msgstr ""
 
-#: checks.py:97
+#: checks.py:104
 msgid "Your version of Translate Toolkit is too old."
 msgstr ""
 
-#: checks.py:98
+#: checks.py:105
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr ""
 
-#: checks.py:117
+#: checks.py:125
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr ""
 
-#: checks.py:118
+#: checks.py:126
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr ""
 
-#: checks.py:127
+#: checks.py:136
 #, fuzzy
 msgid "Your version of Redis is too old."
 msgstr "Django dumi %s jisandi."
 
-#: checks.py:128
+#: checks.py:137
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
 
-#: checks.py:138
+#: checks.py:147
 msgid "No RQ Worker running."
 msgstr ""
 
-#: checks.py:139
+#: checks.py:148
 msgid "Run new workers with manage.py rqworker"
 msgstr ""
 
-#: checks.py:154
+#: checks.py:163
 msgid "Cache backend is not set to Redis."
 msgstr ""
 
-#: checks.py:155
+#: checks.py:164
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:164
+#: checks.py:174
 msgid "Could not initiate a Redis cache connection"
 msgstr ""
 
-#: checks.py:165
+#: checks.py:175 checks.py:189
 msgid "Double-check your CACHES settings"
 msgstr ""
 
-#: checks.py:171
+#: checks.py:187
+msgid ""
+"Distinct django_redis.cache.RedisCache configurations are required for "
+"`default`, `redis` and `stats`."
+msgstr ""
+
+#: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 
-#: checks.py:172
+#: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
 msgstr ""
 
-#: checks.py:178
+#: checks.py:202
 msgid "The sqlite database backend is unsupported"
 msgstr ""
 
-#: checks.py:179
+#: checks.py:203
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
 msgstr ""
 
-#: checks.py:185
+#: checks.py:210
 msgid "Not using cached_db as session engine"
 msgstr ""
 
-#: checks.py:186
+#: checks.py:211
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:193
+#: checks.py:219
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr ""
 
-#: checks.py:194
+#: checks.py:220
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
 
-#: checks.py:202
+#: checks.py:228
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:204
+#: checks.py:230
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
 
-#: checks.py:211
+#: checks.py:237
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr ""
 
-#: checks.py:212 checks.py:222
+#: checks.py:238 checks.py:248
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
 
-#: checks.py:220
+#: checks.py:246
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:231
+#: checks.py:257
 #, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "MARKUP_FILTER ga kuma. Ga willi HTML ga."
 
-#: checks.py:232
+#: checks.py:258
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:237
+#: checks.py:263
 #, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Hinna laala '%s' MARKUP_FILTER ra. Ga willi HTML ga."
 
-#: checks.py:238
+#: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:252
+#: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:253
+#: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:258
+#: checks.py:284
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
 
-#: checks.py:260
+#: checks.py:286
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
-
-#: checks.py:271
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
-
-#: checks.py:272
-#, python-format
-msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:278
-#, python-format
-msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
-
-#: checks.py:280
-msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
-
-#: checks.py:289
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
-
-#: checks.py:290
-#, python-format
-msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
 #: checks.py:297
 #, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no HOST."
+msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr ""
 
 #: checks.py:298
 #, python-format
+msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:304
+#, python-format
+msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
+msgstr ""
+
+#: checks.py:306
+msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
+msgstr ""
+
+#: checks.py:316
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
+msgstr ""
+
+#: checks.py:317
+#, python-format
+msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:324
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no HOST."
+msgstr ""
+
+#: checks.py:325
+#, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:305
+#: checks.py:332
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr ""
 
-#: checks.py:306
+#: checks.py:333
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:313
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no MIN_SCORE."
-msgstr ""
-
-#: checks.py:314
-#, python-format
-msgid "Set a MIN_SCORE for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:323
+#: checks.py:342
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 
-#: checks.py:325
+#: checks.py:344
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:349
+#: checks.py:352
+#, python-format
+msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
+msgstr ""
+
+#: checks.py:353
+#, python-format
+msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr ""
+
+#: checks.py:360
+#, fuzzy, python-format
+msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Hinna laala '%s' MARKUP_FILTER ra. Ga willi HTML ga."
+
+#: checks.py:362
+#, fuzzy, python-format
+msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Hinna laala '%s' MARKUP_FILTER ra. Ga willi HTML ga."
+
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 
-#: checks.py:351
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr ""
 
-#: checks.py:366
+#: checks.py:403
 msgid "Database connection does not implement on_commit."
 msgstr ""
 
-#: checks.py:367
+#: checks.py:404
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
 
-#: checks.py:387
+#: checks.py:424
 msgid "Email server is not available."
 msgstr ""
 
-#: checks.py:388
+#: checks.py:425
 msgid "Review your email settings and make sure your email server is working."
+msgstr ""
+
+#: checks.py:447
+msgid "Revision is missing or has an incorrect value."
+msgstr ""
+
+#: checks.py:448
+msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
 #: core/browser.py:27
@@ -1429,97 +1470,97 @@ msgstr "Honnandiyaney"
 msgid "Last Activity"
 msgstr "Goy koraw"
 
-#: core/browser.py:128
+#: core/browser.py:122
 #, fuzzy
 msgid "Back to language"
 msgstr "Šenni goyantey"
 
-#: core/browser.py:130
+#: core/browser.py:124
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:323
+#: core/decorators.py:323 core/views.py:95
 msgid "Insufficient rights to access this page."
 msgstr "Fondo ši wasa ka huru moɲoo woo ra."
 
-#: core/decorators.py:336 core/views.py:34
+#: core/decorators.py:336 core/views.py:106
 msgid "You do not have rights to administer Pootle."
 msgstr "War ši nda fondo ka Pootle juwal."
 
-#: core/forms.py:114
+#: core/forms.py:116
 msgid "Time to answer has expired"
 msgstr "Zaabiyan waatoo ben"
 
-#: core/forms.py:133
+#: core/forms.py:135
 msgid "Enter a number"
 msgstr "Hinna foo dam"
 
-#: core/forms.py:148
+#: core/forms.py:150
 msgid "Incorrect"
 msgstr "Leybante"
 
-#: core/helpers.py:49
+#: core/helpers.py:35
 msgid "User missing"
 msgstr "Goykaw ga kuma"
 
 #. Translators: This refers to "All strings"
-#: core/helpers.py:61 templates/editor/_filters.html:6
+#: core/helpers.py:47 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Ikul"
 
-#: core/helpers.py:65 templates/editor/_filters.html:8
+#: core/helpers.py:51 templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Ši timme"
 
-#: core/helpers.py:68 templates/editor/_filters.html:18
+#: core/helpers.py:54 templates/editor/_filters.html:18
 msgid "Checks"
 msgstr "Gunarey"
 
-#: core/helpers.py:69 templates/editor/_filters.html:13
+#: core/helpers.py:55 templates/editor/_filters.html:13
 msgid "My submissions"
 msgstr "Ay sanbarey"
 
-#: core/helpers.py:70 templates/admin/dashboard.html:13
+#: core/helpers.py:56 templates/admin/dashboard.html:13
 msgid "Submissions"
 msgstr "Sanbarey"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
-#: core/helpers.py:71 templates/editor/_filters.html:17
+#: core/helpers.py:57 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
 msgstr "Ay sanbarey kaŋ boŋ i hantum"
 
-#: core/helpers.py:72
+#: core/helpers.py:58
 msgid "Overwritten submissions"
 msgstr "Sanbari kaŋ boŋ i hantum"
 
-#: core/initdb.py:108
+#: core/initdb.py:130
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:112
+#: core/initdb.py:134
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:116
+#: core/initdb.py:138
 msgid "Can make a suggestion for a translation"
 msgstr "Ga hin ka honnandiyan tee berandiyan se"
 
-#: core/initdb.py:120
+#: core/initdb.py:142
 msgid "Can submit a translation"
 msgstr "Ga hin berandiyan sanba"
 
-#: core/initdb.py:124
+#: core/initdb.py:146
 #, fuzzy
 msgid "Can review suggestions"
 msgstr "Guna boryo honnandiyaney"
 
-#: core/initdb.py:128
+#: core/initdb.py:150
 msgid "Can administrate a translation project"
 msgstr "Ga hin ka berandiyan porože foo juwal"
 
-#: core/views.py:66
+#: core/views.py:150
 msgid "You cannot access this page."
 msgstr ""
 
@@ -1532,7 +1573,7 @@ msgstr ""
 msgid "License Terms"
 msgstr "Duɲe kaddasu"
 
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:113
+#: custom/templates/profiles/_tabs.html:4 templates/layout.html:114
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Kayandiyaney"
@@ -1552,36 +1593,36 @@ msgstr ""
 "woo."
 
 #. Translators: Label that refers to the site's privacy policy
-#: strings.py:35
+#: strings.py:39
 msgid "Privacy Policy"
 msgstr "Sutura laada"
 
 #. Translators: Label that refers to the site's legal requirements
-#: strings.py:37
+#: strings.py:41
 msgid "Legal"
 msgstr "Alhukum"
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:39
+#: strings.py:43
 msgid "License"
 msgstr "Duɲe kaddasu"
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:41
+#: strings.py:45
 msgid "Contributor License"
 msgstr "Kanbuzaakaw duɲe kaddasu"
 
 #. Translators: Label that refers to the site's terms of use
-#: strings.py:43
+#: strings.py:47
 msgid "Terms of Use"
 msgstr "Goyyan kalima-izey"
 
 #. Translators: Label that refers to the site's terms of service
-#: strings.py:45
+#: strings.py:49
 msgid "Terms of Service"
 msgstr "Goymee kalima-izey"
 
-#: templates/about.html:7 templates/layout.html:169
+#: templates/about.html:7 templates/layout.html:170
 msgid "About"
 msgstr "Ga"
 
@@ -2029,14 +2070,6 @@ msgstr ""
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/index.html:144
-msgid "Congratulations! You have completed this task!"
-msgstr ""
-
-#: templates/contact_form/xhr_contact_form.html:5 templates/layout.html:101
-msgid "Contact Us"
-msgstr "Hantum ir se"
-
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
 msgstr ""
@@ -2208,41 +2241,41 @@ msgstr ""
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:111 templates/editor/units/edit.html:138
+#: templates/editor/units/edit.html:109 templates/editor/units/edit.html:136
 msgid "Copy into translation"
 msgstr "Bere berandiyanoo ra"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:131
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "Šenday foo bayrandi nd'aššil tenjiri"
 
-#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:167
-#: templates/editor/units/edit.html:259
+#: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:261
 msgid "Submit"
 msgstr "Sanba"
 
-#: templates/editor/units/edit.html:157
+#: templates/editor/units/edit.html:155
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Berandiyan sanba nda koy jinehere tenjiroo do (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162 templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
 msgid "Suggest"
 msgstr "Honnandi"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Berandiyan honnandi nda koy jinehere tenjiroo do (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:167
+#: templates/editor/units/edit.html:165
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Bere berandiyan alhaali ga (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:166
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Bere honnandiyan alhaali ga (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:171
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Tenjiroo woo šilbay kaŋ a ga baa goy koyne (Ctrl+Space)"
 
@@ -2303,23 +2336,23 @@ msgstr "ZWNJ dam (Ši-margakaw bila nda gam) fasalkaa ra"
 msgid "Insert this symbol into the editor"
 msgstr "Tammaasaa woo dam fasalkaa ra"
 
-#: templates/editor/units/edit.html:279
+#: templates/editor/units/edit.html:281
 msgid "User suggestions"
 msgstr "Goyakaw honnandiyaney"
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:300
 msgid "Accept suggestion"
 msgstr "Yadda honnandiyan ga"
 
-#: templates/editor/units/edit.html:303
+#: templates/editor/units/edit.html:305
 msgid "Reject suggestion"
 msgstr "Mongu honnandiyan ga"
 
-#: templates/editor/units/edit.html:309
+#: templates/editor/units/edit.html:311
 msgid "Remove suggestion"
 msgstr "Honnandiyanoo kaa"
 
-#: templates/editor/units/edit.html:323
+#: templates/editor/units/edit.html:325
 msgid "A long time ago"
 msgstr ""
 
@@ -2357,11 +2390,11 @@ msgstr "Šendayyaŋ ka hin ka bara berandiyanoo se."
 msgid "Watch out for:"
 msgstr ""
 
-#: templates/editor/units/xhr_comment.html:14
+#: templates/editor/units/xhr_comment.html:13
 msgid "Remove comment"
 msgstr ""
 
-#: templates/editor/units/xhr_comment.html:17
+#: templates/editor/units/xhr_comment.html:16
 msgid "Last comment:"
 msgstr ""
 
@@ -2478,37 +2511,37 @@ msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 "Ne ganda war ga hin ka duɲeyaney tonton, fasal nd'i tuusu šennoo woo se."
 
-#: templates/layout.html:81
+#: templates/layout.html:82
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:82
+#: templates/layout.html:83
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr "JavaScript tunandi war ceecikaw ibaayey ra nda moɲoo dam taaga."
 
-#: templates/layout.html:91
+#: templates/layout.html:92
 msgid "skip to navigation"
 msgstr "sar naaruyan do"
 
-#: templates/layout.html:112
+#: templates/layout.html:113
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:114 templates/user/stats.html:46
-#: templates/user/stats.html.py:50
+#: templates/layout.html:115 templates/user/profile.html:67
+#: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:116
+#: templates/layout.html:117
 msgid "Admin"
 msgstr "Juwal"
 
-#: templates/layout.html:119
+#: templates/layout.html:120
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:123
+#: templates/layout.html:124
 msgid "Sign In"
 msgstr ""
 
@@ -2662,27 +2695,27 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "Goy koraw"
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:76
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:82
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:87
+#: templates/user/profile.html:91
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:97
+#: templates/user/profile.html:101
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:99
+#: templates/user/profile.html:103
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."

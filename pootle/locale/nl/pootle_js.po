@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2015-11-20 13:21+0000\n"
+"POT-Creation-Date: 2016-03-21 21:54+0000\n"
 "PO-Revision-Date: 2016-03-04 22:44+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1457131464.000000\n"
 
-#: static/js/admin/components/AdminController.js:97
+#: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
 msgstr "Opgeslagen."
 
-#: static/js/admin/components/AdminController.js:105
+#: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
 msgstr "Verwijderd."
 
@@ -32,25 +32,25 @@ msgstr "Verwijderd."
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: static/js/admin/components/Language/LanguageAdd.js:25
-#: static/js/admin/components/Language/LanguageEdit.js:31
+#: static/js/admin/components/Language/LanguageAdd.js:28
+#: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
 msgstr "Taal toevoegen"
 
-#: static/js/admin/components/Language/LanguageAdd.js:30
-#: static/js/admin/components/Project/ProjectAdd.js:30
-#: static/js/admin/components/User/UserAdd.js:30
+#: static/js/admin/components/Language/LanguageAdd.js:33
+#: static/js/admin/components/Project/ProjectAdd.js:33
+#: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: static/js/admin/components/Language/LanguageController.js:50
+#: static/js/admin/components/Language/LanguageController.js:53
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] "%(count)s taal voldoet aan uw query."
 msgstr[1] "%(count)s talen voldoen aan uw query."
 
-#: static/js/admin/components/Language/LanguageController.js:54
+#: static/js/admin/components/Language/LanguageController.js:57
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
@@ -59,41 +59,42 @@ msgstr[0] "Er is %(count)s taal."
 msgstr[1] ""
 "Er zijn %(count)s talen. De meest recent toegevoegde staan hieronder."
 
-#: static/js/admin/components/Language/LanguageController.js:70
+#: static/js/admin/components/Language/LanguageController.js:73
 msgid "Search Languages"
 msgstr "Talen zoeken"
 
-#: static/js/admin/components/Language/LanguageController.js:71
+#: static/js/admin/components/Language/LanguageController.js:74
 msgid "Find language by name, code"
 msgstr "Taal zoeken op naam, code"
 
-#: static/js/admin/components/Language/LanguageEdit.js:26
+#: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
 msgstr "Taal bewerken"
 
-#: static/js/admin/components/Language/LanguageEdit.js:36
+#: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
 "Gebruik het zoekformulier om de taal te vinden en klik daarna op een taal om "
 "deze te bewerken."
 
-#: static/js/admin/components/Language/LanguageForm.js:56
-#: static/js/admin/components/Project/ProjectForm.js:59
+#: static/js/admin/components/Language/LanguageForm.js:52
+#: static/js/admin/components/Project/ProjectForm.js:54
 msgid "Code"
 msgstr "Code"
 
-#: static/js/admin/components/Language/LanguageForm.js:62
-#: static/js/admin/components/Project/ProjectForm.js:65
-#: static/js/admin/components/User/UserForm.js:87 static/js/user/forms.jsx:75
+#: static/js/admin/components/Language/LanguageForm.js:59
+#: static/js/admin/components/Project/ProjectForm.js:61
+#: static/js/admin/components/User/UserForm.js:87
+#: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
 msgstr "Volledige naam"
 
-#: static/js/admin/components/Language/LanguageForm.js:68
+#: static/js/admin/components/Language/LanguageForm.js:66
 msgid "Special Characters"
 msgstr "Speciale tekens"
 
-#: static/js/admin/components/Language/LanguageForm.js:77
+#: static/js/admin/components/Language/LanguageForm.js:76
 msgid "Number of Plurals"
 msgstr "Aantal meervouden"
 
@@ -101,35 +102,36 @@ msgstr "Aantal meervouden"
 msgid "Plural Equation"
 msgstr "Meervoudsvergelijking"
 
-#: static/js/admin/components/Language/LanguageForm.js:93
-#: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
+#: static/js/admin/components/Language/LanguageForm.js:95
+#: static/js/admin/components/Project/ProjectForm.js:141
+#: static/js/admin/components/User/UserForm.js:152
+#: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Opslaan"
 
-#: static/js/admin/components/Language/LanguageForm.js:96
-#: static/js/admin/components/Project/ProjectForm.js:138
+#: static/js/admin/components/Language/LanguageForm.js:98
+#: static/js/admin/components/Project/ProjectForm.js:144
 msgid "Overview"
 msgstr "Overzicht"
 
-#: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:140
+#: static/js/admin/components/Language/LanguageForm.js:99
+#: static/js/admin/components/Project/ProjectForm.js:146
 msgid "Permissions"
 msgstr "Rechten"
 
-#: static/js/admin/components/Project/ProjectAdd.js:25
-#: static/js/admin/components/Project/ProjectEdit.js:31
+#: static/js/admin/components/Project/ProjectAdd.js:28
+#: static/js/admin/components/Project/ProjectEdit.js:33
 msgid "Add Project"
 msgstr "Project toevoegen"
 
-#: static/js/admin/components/Project/ProjectController.js:50
+#: static/js/admin/components/Project/ProjectController.js:53
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
 msgstr[0] "%(count)s project voldoet aan uw query."
 msgstr[1] "%(count)s projecten voldoen aan uw query."
 
-#: static/js/admin/components/Project/ProjectController.js:54
+#: static/js/admin/components/Project/ProjectController.js:57
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
@@ -138,34 +140,34 @@ msgstr[0] "Er is %(count)s project."
 msgstr[1] ""
 "Er zijn %(count)s projecten. De meest recent toegevoegde staan hieronder."
 
-#: static/js/admin/components/Project/ProjectController.js:70
+#: static/js/admin/components/Project/ProjectController.js:73
 msgid "Search Projects"
 msgstr "Projecten zoeken"
 
-#: static/js/admin/components/Project/ProjectController.js:71
+#: static/js/admin/components/Project/ProjectController.js:74
 msgid "Find project by name, code"
 msgstr "Project zoeken op naam, code"
 
-#: static/js/admin/components/Project/ProjectEdit.js:26
+#: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
 msgstr "Project bewerken"
 
-#: static/js/admin/components/Project/ProjectEdit.js:36
+#: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
 "Gebruik het zoekformulier om het project te vinden en klik daarna op een "
 "project om dit te bewerken."
 
-#: static/js/admin/components/Project/ProjectForm.js:74
+#: static/js/admin/components/Project/ProjectForm.js:71
 msgid "Quality Checks"
 msgstr "Kwaliteitscontroles"
 
-#: static/js/admin/components/Project/ProjectForm.js:83
+#: static/js/admin/components/Project/ProjectForm.js:81
 msgid "File Type"
 msgstr "Bestandstype"
 
-#: static/js/admin/components/Project/ProjectForm.js:92
+#: static/js/admin/components/Project/ProjectForm.js:91
 msgid "Project Tree Style"
 msgstr "Stijl van projectstructuur"
 
@@ -173,47 +175,47 @@ msgstr "Stijl van projectstructuur"
 msgid "Source Language"
 msgstr "Brontaal"
 
-#: static/js/admin/components/Project/ProjectForm.js:107
+#: static/js/admin/components/Project/ProjectForm.js:108
 msgid "Ignore Files"
 msgstr "Bestanden negeren"
 
-#: static/js/admin/components/Project/ProjectForm.js:114
+#: static/js/admin/components/Project/ProjectForm.js:116
 msgid "String Errors Contact"
 msgstr "Contact bij tekenreeksfouten"
 
-#: static/js/admin/components/Project/ProjectForm.js:120
+#: static/js/admin/components/Project/ProjectForm.js:123
 msgid "Screenshot Search Prefix"
 msgstr "Zoekprefix voor schermafbeeldingen"
 
-#: static/js/admin/components/Project/ProjectForm.js:127
+#: static/js/admin/components/Project/ProjectForm.js:131
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
-#: static/js/admin/components/Project/ProjectForm.js:139
+#: static/js/admin/components/Project/ProjectForm.js:145
 msgid "Languages"
 msgstr "Talen"
 
-#: static/js/admin/components/Search.js:64
+#: static/js/admin/components/Search.js:68
 msgid "Load More"
 msgstr "Meer laden"
 
-#: static/js/admin/components/Search.js:87
+#: static/js/admin/components/Search.js:92
 msgid "Loading..."
 msgstr "Laden..."
 
-#: static/js/admin/components/User/UserAdd.js:25
-#: static/js/admin/components/User/UserEdit.js:31
+#: static/js/admin/components/User/UserAdd.js:28
+#: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
 msgstr "Gebruiker toevoegen"
 
-#: static/js/admin/components/User/UserController.js:50
+#: static/js/admin/components/User/UserController.js:53
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
 msgstr[0] "%(count)s gebruiker voldoet aan uw query."
 msgstr[1] "%(count)s gebruikers voldoen aan uw query."
 
-#: static/js/admin/components/User/UserController.js:54
+#: static/js/admin/components/User/UserController.js:57
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
@@ -222,25 +224,25 @@ msgstr[0] "Er is %(count)s gebruiker."
 msgstr[1] ""
 "Er zijn %(count)s gebruikers. De meest recent toegevoegde staan hieronder."
 
-#: static/js/admin/components/User/UserController.js:70
+#: static/js/admin/components/User/UserController.js:73
 msgid "Search Users"
 msgstr "Gebruikers zoeken"
 
-#: static/js/admin/components/User/UserController.js:71
+#: static/js/admin/components/User/UserController.js:74
 msgid "Find user by name, email, properties"
 msgstr "Gebruiker zoeken op naam, e-mailadres, eigenschappen"
 
-#: static/js/admin/components/User/UserEdit.js:26
+#: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
 msgstr "Gebruiker bewerken"
 
-#: static/js/admin/components/User/UserEdit.js:36
+#: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
 "Gebruik het zoekformulier om de gebruiker te vinden en klik daarna op een "
 "gebruiker om deze te bewerken."
 
-#: static/js/admin/components/User/UserForm.js:50
+#: static/js/admin/components/User/UserForm.js:46
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -249,82 +251,86 @@ msgstr ""
 "website, zoals opmerkingen, suggesties en vertalingen, aan de anonieme "
 "gebruiker (nobody) toegekend."
 
-#: static/js/admin/components/User/UserForm.js:62
-#: static/js/auth/components/SignInForm.js:94
+#: static/js/admin/components/User/UserForm.js:59
+#: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:83
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: static/js/admin/components/User/UserForm.js:71
+#: static/js/admin/components/User/UserForm.js:69
 msgid "Active"
 msgstr "Actief"
 
-#: static/js/admin/components/User/UserForm.js:78
+#: static/js/admin/components/User/UserForm.js:77
 #: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
-#: static/js/auth/components/SocialVerification.js:93
-#: static/js/auth/components/PasswordResetForm.js:112
+#: static/js/auth/components/SignUpForm.js:98
+#: static/js/auth/components/SocialVerification.js:94
+#: static/js/auth/components/PasswordResetForm.js:114
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: static/js/admin/components/User/UserForm.js:79
+#: static/js/admin/components/User/UserForm.js:78
 msgid "Set a new password"
 msgstr "Nieuw wachtwoord: instellen"
 
-#: static/js/admin/components/User/UserForm.js:93
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/admin/components/User/UserForm.js:94
+#: static/js/auth/components/SignUpForm.js:90
 msgid "Email"
 msgstr "E-mailadres"
 
-#: static/js/admin/components/User/UserForm.js:102
+#: static/js/admin/components/User/UserForm.js:104
 msgid "Administrator"
 msgstr "Beheerder"
 
-#: static/js/admin/components/User/UserForm.js:109 static/js/user/forms.jsx:89
+#: static/js/admin/components/User/UserForm.js:112
+#: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
 msgstr "Twitter"
 
-#: static/js/admin/components/User/UserForm.js:111
+#: static/js/admin/components/User/UserForm.js:114
 msgid "Twitter username"
 msgstr "Twitter-gebruikersnaam"
 
-#: static/js/admin/components/User/UserForm.js:117 static/js/user/forms.jsx:96
+#: static/js/admin/components/User/UserForm.js:121
+#: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:119
+#: static/js/admin/components/User/UserForm.js:123
 msgid "LinkedIn profile URL"
 msgstr "URL van LinkedIn-profiel"
 
-#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:129
+#: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
 msgstr "Website"
 
-#: static/js/admin/components/User/UserForm.js:126
+#: static/js/admin/components/User/UserForm.js:131
 msgid "Personal website URL"
 msgstr "URL van persoonlijke website"
 
-#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:138
+#: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
 msgstr "Korte biografie"
 
-#: static/js/admin/components/User/UserForm.js:134
+#: static/js/admin/components/User/UserForm.js:140
 msgid "Personal description"
 msgstr "Persoonlijke beschrijving"
 
-#: static/js/admin/components/User/UserForm.js:145
+#: static/js/admin/components/User/UserForm.js:156
 msgid "Public Profile"
 msgstr "Openbaar profiel"
 
-#: static/js/admin/components/User/UserForm.js:146
+#: static/js/admin/components/User/UserForm.js:157
 msgid "Settings"
 msgstr "Instellingen"
 
-#: static/js/admin/components/User/UserForm.js:147
+#: static/js/admin/components/User/UserForm.js:158
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: static/js/admin/components/User/UserForm.js:148
+#: static/js/admin/components/User/UserForm.js:159
 msgid "Reports"
 msgstr "Rapporten"
 
@@ -332,15 +338,15 @@ msgstr "Rapporten"
 msgid "Preview will be displayed here."
 msgstr "Hier wordt een voorbeeld weergegeven."
 
-#: static/js/auth/components/AccountActivation.js:31
-#: static/js/auth/components/RequestPasswordResetSent.js:43
+#: static/js/auth/components/AccountActivation.js:32
+#: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
 "We hebben een e-mailbericht dat de speciale koppeling bevat naar <span>%s</"
 "span> verzonden."
 
-#: static/js/auth/components/AccountActivation.js:36
+#: static/js/auth/components/AccountActivation.js:37
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
@@ -348,21 +354,21 @@ msgstr ""
 "We hebben een e-mailbericht dat de speciale koppeling bevat verzonden naar "
 "het adres dat voor registratie van deze account is gebruikt."
 
-#: static/js/auth/components/AccountActivation.js:40
+#: static/js/auth/components/AccountActivation.js:41
 msgid "Your account needs activation."
 msgstr "Uw account heeft activering nodig."
 
-#: static/js/auth/components/AccountActivation.js:41
+#: static/js/auth/components/AccountActivation.js:42
 msgid "Please follow that link to continue the account creation."
 msgstr "Klik op die koppeling om het aanmaken van uw account te vervolgen."
 
-#: static/js/auth/components/AccountActivation.js:55
-#: static/js/auth/components/AccountInactive.js:34
+#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
 msgstr "Sluiten"
 
-#: static/js/auth/components/AccountInactive.js:28
+#: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
 msgstr "Uw account is inactief, omdat een beheerder deze heeft gedeactiveerd."
 
@@ -374,7 +380,7 @@ msgstr "Contact opnemen"
 msgid "This email confirmation link expired or is invalid."
 msgstr "Deze koppeling voor e-mailbevestiging is ongeldig."
 
-#: static/js/auth/components/PasswordResetForm.js:79
+#: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -383,39 +389,39 @@ msgstr ""
 "mogelijk omdat deze al is gebruikt. Dien opnieuw een aanvraag voor het "
 "instellen van een nieuw wachtwoord in."
 
-#: static/js/auth/components/PasswordResetForm.js:85
+#: static/js/auth/components/PasswordResetForm.js:87
 msgid "Reset Password"
 msgstr "Wachtwoord opnieuw instellen"
 
-#: static/js/auth/components/PasswordResetForm.js:97
+#: static/js/auth/components/PasswordResetForm.js:99
 msgid "Password changed, signing in..."
 msgstr "Wachtwoord gewijzigd, aanmelden..."
 
-#: static/js/auth/components/PasswordResetForm.js:121
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/PasswordResetForm.js:122
+#: static/js/auth/components/SignUpForm.js:106
 msgid "Repeat Password"
 msgstr "Herhaal wachtwoord"
 
-#: static/js/auth/components/PasswordResetForm.js:134
+#: static/js/auth/components/PasswordResetForm.js:136
 msgid "Set New Password"
 msgstr "Nieuw wachtwoord: instellen"
 
-#: static/js/auth/components/PasswordResetForm.js:138
+#: static/js/auth/components/PasswordResetForm.js:140
 msgid "After changing your password you will sign in automatically."
 msgstr "Nadat uw wachtwoord is gewijzigd, wordt u automatisch aangemeld."
 
-#: static/js/auth/components/RequestPasswordResetProgress.js:23
+#: static/js/auth/components/RequestPasswordResetProgress.js:24
 #, python-format, javascript-format
 msgid "Sending email to %s..."
 msgstr "E-mailbericht verzenden naar %s..."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:46
+#: static/js/auth/components/RequestPasswordResetSent.js:47
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
 "Klik op die koppeling om de procedure voor het opnieuw instellen van uw "
 "wachtwoord te vervolgen."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:47
+#: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
@@ -423,28 +429,28 @@ msgstr ""
 "Geen e-mailbericht ontvangen? Controleer of het per ongeluk is uitgefilterd "
 "als spam, of probeer een ander exemplaar van het e-mailbericht op te vragen."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:61
+#: static/js/auth/components/RequestPasswordResetSent.js:62
 msgid "Resend Email"
 msgstr "E-mailbericht opnieuw verzenden"
 
-#: static/js/auth/components/SignInForm.js:82
-#: static/js/auth/components/RequestPasswordResetForm.js:119
+#: static/js/auth/components/SignInForm.js:83
+#: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
 msgstr "Registreren als nieuwe gebruiker"
 
-#: static/js/auth/components/SignInForm.js:110
-#: static/js/auth/components/SocialVerification.js:100
+#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SocialVerification.js:102
 msgid "I forgot my password"
 msgstr "Ik ben mijn wachtwoord vergeten"
 
-#: static/js/auth/components/SignInForm.js:121
-#: static/js/auth/components/SocialVerification.js:111
-#: static/js/auth/containers/Auth.js:81
+#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SocialVerification.js:113
+#: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
 msgstr "Aanmelden"
 
 #: static/js/auth/components/SignInPanel.js:47
-#: static/js/auth/components/SocialVerification.js:71
+#: static/js/auth/components/SocialVerification.js:73
 msgid "Signed in. Redirecting..."
 msgstr "Aangemeld. Omleiden..."
 
@@ -492,36 +498,36 @@ msgstr ""
 "Het voor de eerste keer aanmelden met een externe service zal automatisch "
 "een account voor u aanmaken."
 
-#: static/js/auth/containers/Auth.js:81
+#: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
 msgstr "Aanmelden met..."
 
-#: static/js/auth/containers/Auth.js:88
+#: static/js/auth/containers/Auth.js:89
 msgid "Account Inactive"
 msgstr "Account inactief"
 
-#: static/js/auth/containers/Auth.js:102
+#: static/js/auth/containers/Auth.js:101
 msgid "Account Activation"
 msgstr "Accountactivering"
 
-#: static/js/auth/containers/Auth.js:109
+#: static/js/auth/containers/Auth.js:107
 msgid "Email Confirmation"
 msgstr "E-mailbevestiging"
 
-#: static/js/auth/containers/Auth.js:116 static/js/auth/containers/Auth.js:123
-#: static/js/auth/containers/Auth.js:130
+#: static/js/auth/containers/Auth.js:113 static/js/auth/containers/Auth.js:119
+#: static/js/auth/containers/Auth.js:125
 msgid "Reset Your Password"
 msgstr "Uw wachtwoord opnieuw instellen"
 
-#: static/js/auth/containers/Auth.js:137
+#: static/js/auth/containers/Auth.js:131
 msgid "Oops..."
 msgstr "Oeps..."
 
-#: static/js/auth/containers/Auth.js:144
+#: static/js/auth/containers/Auth.js:137
 msgid "Social Verification"
 msgstr "Sociale verificatie"
 
-#: static/js/editor/app.js:275 static/js/editor/app.js:549
+#: static/js/editor/app.js:276 static/js/editor/app.js:554
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -529,7 +535,7 @@ msgstr ""
 "Er zijn niet-opgeslagen wijzigingen in deze tekenreeks. Verder browsen zal "
 "deze wijzigingen verwerpen."
 
-#: static/js/editor/app.js:301
+#: static/js/editor/app.js:302
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -537,7 +543,7 @@ msgstr ""
 "Naar de volgende tekenreeks (Ctrl+.)<br/><br/>Ook:<br/>Volgende pagina: Ctrl"
 "+Shift+.<br/>Vorige pagina: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:305
+#: static/js/editor/app.js:306
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -545,158 +551,216 @@ msgstr ""
 "Naar de vorige tekenreeks (Ctrl+,)<br/><br/>Ook:</br>Vorige pagina: Ctrl"
 "+Shift+,<br/>Eerste pagina: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:409
+#: static/js/editor/app.js:411
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Openstaande suggesties van %s"
 
-#: static/js/editor/app.js:412
+#: static/js/editor/app.js:414
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Geaccepteerde suggesties van %s"
 
-#: static/js/editor/app.js:415
+#: static/js/editor/app.js:417
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Afgewezen suggesties van %s"
 
-#: static/js/editor/app.js:418
+#: static/js/editor/app.js:420
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Bijdragen van %s"
 
-#: static/js/editor/app.js:422
+#: static/js/editor/app.js:424
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Overschreven bijdragen van %s"
 
-#: static/js/editor/app.js:541 static/js/editor/app.js:1658
+#: static/js/editor/app.js:546 static/js/editor/app.js:1647
 msgid "No results."
 msgstr "Geen resultaten."
 
-#: static/js/editor/app.js:1022
+#: static/js/editor/app.js:1003
 msgid "Error while connecting to the server"
 msgstr "Fout tijdens verbinden met de server"
 
-#: static/js/editor/app.js:1026
+#: static/js/editor/app.js:1007
 msgid "Not found"
 msgstr "Niet gevonden"
 
-#: static/js/editor/app.js:1028
+#: static/js/editor/app.js:1009
 msgid "Server error"
 msgstr "Serverfout"
 
-#: static/js/editor/app.js:1030
+#: static/js/editor/app.js:1011
 msgid "The server seems down. Try again later."
 msgstr "De server lijkt niet beschikbaar. Probeer het later nog eens."
 
-#: static/js/editor/app.js:1037
-msgid "Unknown error"
-msgstr "Onbekende fout"
-
-#: static/js/editor/app.js:1045
+#: static/js/editor/app.js:1020
 msgid "This string no longer exists."
 msgstr "Deze tekenreeks bestaat niet meer."
 
-#: static/js/editor/app.js:1046
+#: static/js/editor/app.js:1021
 msgid "Go back to browsing"
 msgstr "Terug naar bladeren"
 
-#: static/js/editor/app.js:1048
+#: static/js/editor/app.js:1023
 msgid "Reload page"
 msgstr "Pagina herladen"
 
-#: static/js/editor/app.js:2039 static/js/editor/app.js:1991
+#: static/js/editor/app.js:2033 static/js/editor/app.js:1986
 msgid "Similar translations"
 msgstr "Soortgelijke vertalingen"
 
-#: static/js/shared/models/project.js:59
+#: static/js/shared/components/FormSelectInput.js:32
+msgid "Select..."
+msgstr "Selecteren..."
+
+#: static/js/shared/components/FormSelectInput.js:33
+msgid "No results found"
+msgstr "Geen resultaten gevonden"
+
+#: static/js/shared/components/FormSelectInput.js:34
+msgid "Clear value"
+msgstr "Waarde wissen"
+
+#: static/js/shared/components/FormSelectInput.js:35
+msgid "Clear all"
+msgstr "Alles wissen"
+
+#: static/js/shared/components/FormSelectInput.js:36
+msgid "Type to search"
+msgstr "Typ om te zoeken"
+
+#: static/js/shared/models/project.js:57
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: static/js/stats.js:354
+#: static/js/stats.js:58
+#, fuzzy
+msgid "Congratulations! You have completed this task!"
+msgstr "Gefeliciteerd, u heeft alle items bezocht"
+
+#: static/js/stats.js:379
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s seconde"
 msgstr[1] "%s seconden"
 
-#: static/js/stats.js:389
+#: static/js/stats.js:416
 msgid "Collapse details"
 msgstr "Details samenvouwen"
 
-#: static/js/stats.js:389
+#: static/js/stats.js:416
 msgid "Expand details"
 msgstr "Details uitvouwen"
 
-#: static/js/user/components/UserProfileEdit.js:106
+#: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
 msgstr "Mijn openbare profiel bewerken"
 
-#: static/js/user/components/UserProfileEdit.js:113
+#: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
 msgstr "Mijn openbare profiel"
 
-#: static/js/user/components/UserProfileEdit.js:125
+#: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
 msgstr "Wijzigingen verwerpen"
 
-#: static/js/user/components/UserProfileEdit.js:126
+#: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
 msgstr "Ja"
 
-#: static/js/user/components/UserProfileEdit.js:127
+#: static/js/user/components/UserProfileEdit.js:119
 msgid "No"
 msgstr "Nee"
 
-#: static/js/user/components/UserProfileEdit.js:128
+#: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
 msgstr "Er zijn niet-opgeslagen wijzigingen. Wilt u deze verwerpen?"
 
-#: static/js/utils.js:151
+#: static/js/user/components/UserProfileForm.js:59
+#, python-format
+msgid ""
+"To set or change your avatar for your email address (%(email)s), please go "
+"to gravatar.com."
+msgstr ""
+"Ga voor het instellen of wijzigen van de avatar voor uw e-mailadres "
+"(%(email)s) naar gravatar.com."
+
+#: static/js/user/components/UserProfileForm.js:75
+msgid "Your Full Name"
+msgstr "Uw volledige naam"
+
+#: static/js/user/components/UserProfileForm.js:83
+msgid "Avatar"
+msgstr "Avatar"
+
+#: static/js/user/components/UserProfileForm.js:94
+msgid "Your Twitter username"
+msgstr "Uw Twitter-gebruikersnaam"
+
+#: static/js/user/components/UserProfileForm.js:103
+msgid "Your LinkedIn profile URL"
+msgstr "URL van uw LinkedIn-profiel"
+
+#: static/js/user/components/UserProfileForm.js:111
+msgid "Your Personal website/blog URL"
+msgstr "URL van uw persoonlijke website/blog"
+
+#: static/js/user/components/UserProfileForm.js:120
+msgid ""
+"Why are you part of our translation project? Describe yourself, inspire "
+"others!"
+msgstr ""
+"Waarom bent u onderdeel van ons vertaalproject? Beschrijf uzelf, inspireer "
+"anderen!"
+
+#: static/js/utils.js:165
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Een jaar geleden"
 msgstr[1] "%s jaar geleden"
 
-#: static/js/utils.js:154
+#: static/js/utils.js:168
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Een week geleden"
 msgstr[1] "%s weken geleden"
 
-#: static/js/utils.js:157
+#: static/js/utils.js:171
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Gisteren"
 msgstr[1] "%s dagen geleden"
 
-#: static/js/utils.js:160
+#: static/js/utils.js:174
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Een uur geleden"
 msgstr[1] "%s uur geleden"
 
-#: static/js/utils.js:163
+#: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Een minuut geleden"
 msgstr[1] "%s minuten geleden"
 
-#: static/js/utils.js:171
+#: static/js/utils.js:185
 msgid "A few seconds ago"
 msgstr "Enkele seconden geleden"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:94
+#: static/js/auth/components/RequestPasswordResetForm.js:95
 msgid "Email Address"
 msgstr "E-mailadres"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:95
+#: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
@@ -704,19 +768,19 @@ msgstr ""
 "Voer uw e-mailadres in, en we sturen u een bericht met de speciale koppeling "
 "om uw wachtwoord opnieuw in te stellen."
 
-#: static/js/auth/components/RequestPasswordResetForm.js:105
+#: static/js/auth/components/RequestPasswordResetForm.js:106
 msgid "No, thanks"
 msgstr "Nee, bedankt"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:113
+#: static/js/auth/components/RequestPasswordResetForm.js:114
 msgid "Send Email"
 msgstr "E-mailbericht verzenden"
 
-#: static/js/auth/components/SignInForm.js:84
+#: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "Aanmaken van nieuwe gebruikersaccounts is niet toegestaan."
 
-#: static/js/auth/components/SocialVerification.js:78
+#: static/js/auth/components/SocialVerification.js:80
 #, python-format
 msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
@@ -728,86 +792,29 @@ msgstr ""
 "Dit is een eenmalige procedure, die een koppeling tussen uw Pootle- en %s-"
 "accounts tot stand brengt."
 
-#: static/js/browser.js:164
+#: static/js/browser.js:229
 msgid "All Languages"
 msgstr "Alle talen"
 
-#: static/js/browser.js:167
+#: static/js/browser.js:232
 msgid "All Projects"
 msgstr "Alle projecten"
 
-#: static/js/browser.js:171
+#: static/js/browser.js:236
 msgid "Entire Project"
 msgstr "Hele project"
 
-#: static/js/editor/app.js:1971
+#: static/js/editor/app.js:1967
 msgid "some anonymous user"
 msgstr "een anonieme server"
 
-#: static/js/editor/app.js:1973
+#: static/js/editor/app.js:1970
 msgid "someone"
 msgstr "iemand"
 
-#: static/js/shared/components/UserEvent.js:77
+#: static/js/shared/components/UserEvent.js:78
 msgid "uploaded file"
 msgstr "heeft bestand geüpload"
-
-#: static/js/shared/components/forms.jsx:69
-msgid "Select..."
-msgstr "Selecteren..."
-
-#: static/js/shared/components/forms.jsx:70
-msgid "No results found"
-msgstr "Geen resultaten gevonden"
-
-#: static/js/shared/components/forms.jsx:71
-msgid "Clear value"
-msgstr "Waarde wissen"
-
-#: static/js/shared/components/forms.jsx:72
-msgid "Clear all"
-msgstr "Alles wissen"
-
-#: static/js/shared/components/forms.jsx:73
-msgid "Type to search"
-msgstr "Typ om te zoeken"
-
-#: static/js/user/forms.jsx:63
-#, python-format
-msgid ""
-"To set or change your avatar for your email address (%(email)s), please go "
-"to gravatar.com."
-msgstr ""
-"Ga voor het instellen of wijzigen van de avatar voor uw e-mailadres "
-"(%(email)s) naar gravatar.com."
-
-#: static/js/user/forms.jsx:76
-msgid "Your Full Name"
-msgstr "Uw volledige naam"
-
-#: static/js/user/forms.jsx:82
-msgid "Avatar"
-msgstr "Avatar"
-
-#: static/js/user/forms.jsx:91
-msgid "Your Twitter username"
-msgstr "Uw Twitter-gebruikersnaam"
-
-#: static/js/user/forms.jsx:98
-msgid "Your LinkedIn profile URL"
-msgstr "URL van uw LinkedIn-profiel"
-
-#: static/js/user/forms.jsx:104
-msgid "Your Personal website/blog URL"
-msgstr "URL van uw persoonlijke website/blog"
-
-#: static/js/user/forms.jsx:112
-msgid ""
-"Why are you part of our translation project? Describe yourself, inspire "
-"others!"
-msgstr ""
-"Waarom bent u onderdeel van ons vertaalproject? Beschrijf uzelf, inspireer "
-"anderen!"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -957,6 +964,9 @@ msgstr ""
 "Vertaald door %(fullname)s in project &lsquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rsquo;"
 
+#~ msgid "Unknown error"
+#~ msgstr "Onbekende fout"
+
 #~ msgid "removed translation for ${sourceString}"
 #~ msgstr "heeft vertaling voor ${sourceString} verwijderd"
 
@@ -1041,9 +1051,6 @@ msgstr ""
 
 #~ msgid "<a href=\"%s\">Unit %s</a>"
 #~ msgstr "<a href=\"%s\">Eenheid %s</a>"
-
-#~ msgid "Congratulations, you walked through all items"
-#~ msgstr "Gefeliciteerd, u heeft alle items bezocht"
 
 #~ msgid "You reached the end of the list"
 #~ msgstr "U heeft het einde van de lijst bereikt"
