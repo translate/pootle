@@ -130,16 +130,19 @@ class Command(BaseCommand):
         return self.change_rates[currency]
 
     def html2pdf(self, html_filename, pdf_filename):
-        phantomjs_bin = settings.POOTLE_INVOICES_PHANTOMJS_BIN
-        if phantomjs_bin is None or not os.path.exists(phantomjs_bin):
-            return None
-
         html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                                    '../../', 'html2pdf.js')
         self.stdout.write("Saving PDF to '%s'" % pdf_filename)
-        result = call([phantomjs_bin, html2pdf_js, html_filename, pdf_filename])
+        result = call([settings.POOTLE_INVOICES_PHANTOMJS_BIN, html2pdf_js,
+                       html_filename, pdf_filename])
         if result:
             self.stdout.write('Script returned result: %s' % result)
+
+    def is_pdf_renderer_configured(self):
+        phantomjs_bin = settings.POOTLE_INVOICES_PHANTOMJS_BIN
+        if phantomjs_bin is None or not os.path.exists(phantomjs_bin):
+            return False
+        return True
 
     def send_invoice(self, subject, to, cc, bcc, html, pdf_file):
         # set non-empty body according
@@ -166,10 +169,11 @@ class Command(BaseCommand):
                        else force_unicode(settings.FORCE_SCRIPT_NAME))
         set_script_prefix(script_name)
 
-        if not hasattr(settings, 'POOTLE_INVOICES_PHANTOMJS_BIN'):
+        can_generate_pdfs = self.is_pdf_renderer_configured()
+        if not can_generate_pdfs:
             self.stdout.write(
-                'NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_BIN not defined; '
-                'PDFs will not be generated'
+                'NOTICE: settings.POOTLE_INVOICES_PHANTOMJS_BIN not defined or'
+                'nothing found in the specified path. PDFs will not be generated.'
             )
 
         month = options.get('month', None)
@@ -347,7 +351,8 @@ class Command(BaseCommand):
             self.stdout.write("Saving HTML to '%s'" % html_filename)
             html = render_to_string('invoices/invoice.html', ctx)
             codecs.open(html_filename, 'w', 'utf-8').write(html)
-            self.html2pdf(html_filename, pdf_filename)
+            if can_generate_pdfs:
+                self.html2pdf(html_filename, pdf_filename)
 
             if send_emails:
                 if 'accounting-email' not in user_conf:
