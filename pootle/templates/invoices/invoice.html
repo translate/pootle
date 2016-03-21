@@ -2,12 +2,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Invoice - {{ name }} - {{ id }}</title>
   <style>
-    body {
+    body
+    {
       font-family: sans-serif;
       background: #eee;
     }
 
-    div.border {
+    div.border
+    {
       background: #fff;
       display: table;
       border: 1px solid rgba(0, 0, 0, 0.15);
@@ -17,11 +19,13 @@
     }
 
     @media print {
-      body {
+      body
+      {
         background: none;
       }
 
-      div.border {
+      div.border
+      {
         background: none;
         border: none;
         box-shadow: none;
@@ -30,7 +34,8 @@
       }
     }
 
-    table {
+    table
+    {
       border-spacing: 0;
       border-collapse: collapse;
       width: 40em;
@@ -38,53 +43,62 @@
     }
 
     th,
-    td {
-      /*border: 1px solid #ccc; /* DEBUG */
+    td
+    {
       padding: 0.6em;
     }
 
-    td.logo {
+    td.logo
+    {
       width: 35%;
       vertical-align: top;
       position: relative;
       top: -10pt;
     }
 
-    table.header td.label {
+    table.header td.label
+    {
       width: 30%;
       white-space: nowrap;
     }
 
-    table.header td.value {
+    table.header td.value
+    {
       font-weight: bold;
     }
 
     table.body th,
-    table.body td {
+    table.body td
+    {
       border: 1px solid black;
     }
 
-    table.body th {
+    table.body th
+    {
       font-size: 80%;
       font-weight: normal;
       background: #ddd;
     }
 
-    table.body tr.total td {
+    table.body tr.total td
+    {
       font-weight: bold;
       text-align: right;
     }
 
-    table.body .label {
+    table.body .label
+    {
       text-align: left;
     }
 
-    table.body .number {
+    table.body .number
+    {
       text-align: right;
       width: 20%;
     }
 
-    table.footer th {
+    table.footer th
+    {
       font-size: 80%;
       font-weight: normal;
       color: #666;
@@ -93,21 +107,23 @@
     }
 
     table.footer th,
-    table.footer td {
+    table.footer td
+    {
       vertical-align: top;
       padding-left: 0;
       padding-right: 2em;
     }
 
     table.footer th:last-child,
-    table.footer td:last-child {
+    table.footer td:last-child
+    {
       padding-right: 0;
     }
 
-    td.wire-info {
+    td.wire-info
+    {
       width: 100%;
     }
-
   </style>
   <body>
     <div class="border">
