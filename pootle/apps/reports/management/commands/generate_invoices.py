@@ -131,7 +131,7 @@ class Command(BaseCommand):
 
     def html2pdf(self, html_filename, pdf_filename):
         phantomjs_bin = settings.POOTLE_INVOICES_PHANTOMJS_BIN
-        if phantomjs_bin is None:
+        if phantomjs_bin is None or not os.path.exists(phantomjs_bin):
             return None
 
         html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
