@@ -144,14 +144,14 @@ class Command(BaseCommand):
             return False
         return True
 
-    def send_invoice(self, subject, to, cc, bcc, html, pdf_file):
+    def send_invoice(self, subject, to, cc, bcc, html, pdf_filepath):
         # set non-empty body according
         # http://stackoverflow.com/questions/14580176/confusion-with-sending-email-in-django
         mail = EmailMultiAlternatives(subject=subject, body=strip_tags(html),
                                       to=to, cc=cc, bcc=bcc)
         mail.attach_alternative(html, 'text/html')
-        if pdf_file is not None:
-            mail.attach_file(pdf_file, 'application/pdf')
+        if pdf_filepath is not None:
+            mail.attach_file(pdf_filepath, 'application/pdf')
         self.stdout.write("Sending email to %s" % to)
         # FIXME: reuse connections to the mail server
         # (http://stackoverflow.com/a/10215091/783019)
