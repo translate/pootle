@@ -31,40 +31,35 @@ def file_import_failure(request):
 
 
 @pytest.fixture
-def ts_directory(request, tmpdir):
-    """Sets up a tmp directory with test ts files."""
+def ts_directory(po_directory, request, tmpdir, settings):
+    """Sets up a tmp directory for TS files. Although it doesnt use the
+    po_directory fixture it calls it first to ensure FS is true to the DB
+    when fixture is run
+    """
 
-    from django.conf import settings
+    import pytest_pootle
+
     from pootle_store.models import fs
 
-    test_base_dir = str(tmpdir)
-
-    ts_translation_dir = os.path.join(settings.ROOT_DIR,
-                                      'tests', 'data', 'ts')
-
-    projects = [dirname for dirname
-                in os.listdir(ts_translation_dir)
-                if dirname != '.tmp']
-    for project in projects:
-        src_dir = os.path.join(ts_translation_dir, project)
-
-        # Copy files over the temporal dir
-        shutil.copytree(src_dir, os.path.join(test_base_dir, project))
-
-    pootle_dir = settings.POOTLE_TRANSLATION_DIRECTORY
+    ts_dir = str(tmpdir.mkdir("ts"))
 
     # Adjust locations
-    settings.POOTLE_TRANSLATION_DIRECTORY = test_base_dir
-    fs.location = test_base_dir
+    settings.POOTLE_TRANSLATION_DIRECTORY = ts_dir
+    fs.location = ts_dir
+
+    shutil.copytree(
+        os.path.join(
+            os.path.dirname(pytest_pootle.__file__),
+            "data", "ts", "tutorial"),
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            "tutorial"))
 
     def _cleanup():
-        shutil.rmtree(test_base_dir)
-        settings.POOTLE_TRANSLATION_DIRECTORY = pootle_dir
-        fs.location = pootle_dir
-
+        for f in tmpdir.listdir():
+            f.remove()
     request.addfinalizer(_cleanup)
-
-    return test_base_dir
+    return settings.POOTLE_TRANSLATION_DIRECTORY
 
 
 @pytest.fixture

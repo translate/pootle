@@ -7,6 +7,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
+import shutil
+
 import pytest
 
 
@@ -29,8 +32,18 @@ def _require_project(code, name, source_language, **kwargs):
 
 
 @pytest.fixture
-def tutorial(english):
+def tutorial(english, settings):
     """Require `tutorial` test project."""
+    import pytest_pootle
+
+    shutil.copytree(
+        os.path.join(
+            os.path.dirname(pytest_pootle.__file__),
+            "data", "po", "tutorial"),
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            "tutorial"))
+
     return _require_project('tutorial', 'Tutorial', english)
 
 
@@ -54,6 +67,16 @@ def project_bar(english):
 
 
 @pytest.fixture
-def vfolder_test(english):
+def vfolder_project(english, settings):
     """Require `vfolder_test` test project."""
+    import pytest_pootle
+
+    shutil.copytree(
+        os.path.join(
+            os.path.dirname(pytest_pootle.__file__),
+            "data", "po", "vfolder_test"),
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            "vfolder_test"))
+
     return _require_project('vfolder_test', 'Virtual Folder Test', english)
