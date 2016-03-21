@@ -11,8 +11,6 @@
 import codecs
 import logging
 import os
-import re
-import urllib2
 
 from datetime import timedelta
 from subprocess import call
@@ -47,8 +45,6 @@ def get_previous_month():
 
 class Command(BaseCommand):
     help = "Generate invoices and send them via e-mail."
-
-    change_rates = {}
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -95,39 +91,6 @@ class Command(BaseCommand):
             help='Send email to recipients (overrides existing user settings)',
             default=[],
         )
-
-    def get_change_rate(self, currency, date):
-        if currency not in self.change_rates:
-            url = 'http://www.x-rates.com/average/?from=%s&to=USD&year=%s' % \
-                  (currency, date.year)
-            self.stdout.write(
-                'Loading USD/%s exchange rate from external service'
-                % currency
-            )
-
-            try:
-                html = urllib2.urlopen(url).read()
-                regex = re.compile(r"'monthlyCanvas',\[(.*?)\]", re.DOTALL)
-                match = regex.search(html)
-                if match is None:
-                    raise
-
-                monthly_avg = re.split(",", match.group(1))
-                self.change_rates[currency] = round(
-                    float(monthly_avg[date.month - 1]),
-                    3,
-                )
-
-            except Exception:
-                # set change rate to zero to invalidate summary
-                # if we couldn't get a proper value
-                self.stdout.write(
-                    'ERROR: Failed to get %s/USD change rate.'
-                    % currency
-                )
-                exit(1)
-
-        return self.change_rates[currency]
 
     def html2pdf(self, html_filename, pdf_filename):
         html2pdf_js = os.path.join(os.path.abspath(os.path.dirname(__file__)),
@@ -222,7 +185,6 @@ class Command(BaseCommand):
 
         for username, user_conf in users:
             usernames = (username, )
-            main_username = username
             if 'subcontractors' in user_conf:
                 usernames += user_conf['subcontractors']
 
@@ -236,10 +198,6 @@ class Command(BaseCommand):
                 except User.DoesNotExist:
                     self.stdout.write('ERROR: User %s not found.' % username)
                     exit(1)
-
-            user = user_dict[main_username]
-            if user.currency != 'USD':
-                self.get_change_rate(user.currency, start)
 
         for username, user_conf in users:
             ctx = {
