@@ -150,6 +150,8 @@ class Command(BaseCommand):
         if pdf_file is not None:
             mail.attach_file(pdf_file, 'application/pdf')
         self.stdout.write("Sending email to %s" % to)
+        # FIXME: reuse connections to the mail server
+        # (http://stackoverflow.com/a/10215091/783019)
         if mail.send() > 0:
             self.stdout.write("Email sent")
         else:
