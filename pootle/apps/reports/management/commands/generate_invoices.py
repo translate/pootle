@@ -12,7 +12,7 @@ import codecs
 import logging
 import os
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from subprocess import call
 
 # This must be run before importing Django.
@@ -21,7 +21,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.mail import EmailMultiAlternatives
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.core.urlresolvers import set_script_prefix
 from django.template.loader import render_to_string
 from django.utils import timezone
@@ -43,6 +43,17 @@ def get_previous_month():
     previous_month = now.replace(day=1) - timedelta(days=1)
 
     return previous_month.strftime('%Y-%m')
+
+
+def is_valid_month(month_string):
+    """Returns `True` if `month_string` conforms with the supported format,
+    returns `False` otherwise.
+    """
+    try:
+        datetime.strptime(month_string, '%Y-%m')
+        return True
+    except ValueError:
+        return False
 
 
 class Command(BaseCommand):
@@ -158,17 +169,15 @@ class Command(BaseCommand):
         for item in options.get('user_list', []):
             user_list += item.split(',')
 
-        now = timezone.now()
-        try:
-            [start, end] = get_date_interval(month)
-        except ValueError:
-            self.stdout.write(
+        if not is_valid_month(month):
+            raise CommandError(
                 '--month parameter has an invalid format: "%s", '
                 'while it should be in "YYYY-MM" format'
                 % month
             )
-            exit(1)
 
+        now = timezone.now()
+        [start, end] = get_date_interval(month)
         date = end if now > end else now
         month_dir = os.path.join(settings.POOTLE_INVOICES_DIRECTORY, month)
         if not os.path.exists(month_dir):
