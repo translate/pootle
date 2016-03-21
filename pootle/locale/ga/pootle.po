@@ -25,7 +25,9 @@ msgstr ""
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
-msgstr "Tharla earráid nuair a rinneamar iarracht an ríomhphost deimhnithe a sheoladh. Bain triail eile as ar ball."
+msgstr ""
+"Tharla earráid nuair a rinneamar iarracht an ríomhphost deimhnithe a "
+"sheoladh. Bain triail eile as ar ball."
 
 #: apps/accounts/forms.py:43
 msgid ""
@@ -141,7 +143,9 @@ msgstr "Tá an seoladh ríomhphoist seo ann cheana."
 #: apps/accounts/views.py:37
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr "Tharla earráid le linn logáil isteach. Téigh i dteagmháil le riarthóir do chórais"
+msgstr ""
+"Tharla earráid le linn logáil isteach. Téigh i dteagmháil le riarthóir do "
+"chórais"
 
 #: apps/contact/forms.py:26
 msgid "Summary"
@@ -698,8 +702,8 @@ msgstr "Suíomhanna"
 msgid "Total"
 msgstr "Iomlán"
 
-#: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32
-#: core/helpers.py:62 templates/editor/_filters.html:7
+#: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32 core/helpers.py:62
+#: templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Aistrithe"
 
@@ -1042,7 +1046,8 @@ msgstr "Atreorú chuig URL"
 
 #: apps/staticpages/models.py:54
 msgid "If set, this page will redirect to this URL"
-msgstr "Leis an rogha seo, cuirfear an leathanach seo ar aghaidh go dtí an URL seo"
+msgstr ""
+"Leis an rogha seo, cuirfear an leathanach seo ar aghaidh go dtí an URL seo"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
@@ -1124,14 +1129,19 @@ msgstr ""
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
-msgstr "Níos mó ná cuntas amháin leis an seoladh ríomhphoist céanna. Ní cheadófar é seo i bPootle 2.8."
+msgstr ""
+"Níos mó ná cuntas amháin leis an seoladh ríomhphoist céanna. Ní cheadófar é "
+"seo i bPootle 2.8."
 
 #: checks.py:58
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
-msgstr "Bain triail as 'pootle find_duplicate_emails', ansin nuashonraigh na seoltaí ríomhphoist le 'pootle update_user_email username email'. Seans go mbeadh na horduithe merge_user agus purge_user úsáideach freisin"
+msgstr ""
+"Bain triail as 'pootle find_duplicate_emails', ansin nuashonraigh na seoltaí "
+"ríomhphoist le 'pootle update_user_email username email'. Seans go mbeadh na "
+"horduithe merge_user agus purge_user úsáideach freisin"
 
 #: checks.py:82
 msgid "Your version of Django is too old."
@@ -1175,7 +1185,9 @@ msgstr "Tá leagan róshean de Redis agat."
 #: checks.py:128
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "Ba chóir duit an pacáiste Redis ar do chóras a nuashonrú go dtí leagan %s ar a laghad"
+msgstr ""
+"Ba chóir duit an pacáiste Redis ar do chóras a nuashonrú go dtí leagan %s ar "
+"a laghad"
 
 #: checks.py:138
 msgid "No RQ Worker running."
@@ -1334,7 +1346,8 @@ msgstr "INDEX_NAME dúblach '%s' in POOTLE_TM_SERVER."
 
 #: checks.py:280
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr "Roghnaigh INDEX_NAME éagsúil i gcomhair gach freastalaí in POOTLE_TM_SERVER."
+msgstr ""
+"Roghnaigh INDEX_NAME éagsúil i gcomhair gach freastalaí in POOTLE_TM_SERVER."
 
 #: checks.py:289
 #, python-format
@@ -1385,7 +1398,9 @@ msgstr "Tá WEIGHT ar POOTLE_TM_SERVER['%s'] níos lú ná 0.0 nó níos mó ná
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
-msgstr "Roghnaigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) le haghaidh POOTLE_TM_SERVER['%s']."
+msgstr ""
+"Roghnaigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) le haghaidh "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:349
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1413,7 +1428,9 @@ msgstr "Níl an freastalaí ríomhphoist ar fáil."
 
 #: checks.py:388
 msgid "Review your email settings and make sure your email server is working."
-msgstr "Féach ar shocruithe do ríomhphoist agus deimhnigh go bhfuil do fhreastalaí ríomhphoist i bhfeidhm."
+msgstr ""
+"Féach ar shocruithe do ríomhphoist agus deimhnigh go bhfuil do fhreastalaí "
+"ríomhphoist i bhfeidhm."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1684,8 +1701,8 @@ msgstr "Tionscadail"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5
-#: templates/projects/_nav.html:31 templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:31
+#: templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:31
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1890,8 +1907,7 @@ msgstr "Socraigh Rátaí"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20
-#: templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
 msgid "Save"
 msgstr "Sábháil"
 
@@ -2626,7 +2642,12 @@ msgid ""
 "terminology' and use the same file extension (format) as the rest of the "
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
-msgstr "Chun téarmaíocht a úsáid, caithfidh tú comhad téarmaíochta a chur le do thionscadal aistriúcháin darb ainm 'pootle-terminology', leis an iarmhír (formáid) chéanna agus na comhaid eile sa tionscadal. Bainfear úsáid as an téarmaíocht seo mar aon le haon mholtaí a thagann ón tionscadal 'Terminology'."
+msgstr ""
+"Chun téarmaíocht a úsáid, caithfidh tú comhad téarmaíochta a chur le do "
+"thionscadal aistriúcháin darb ainm 'pootle-terminology', leis an iarmhír "
+"(formáid) chéanna agus na comhaid eile sa tionscadal. Bainfear úsáid as an "
+"téarmaíocht seo mar aon le haon mholtaí a thagann ón tionscadal "
+"'Terminology'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

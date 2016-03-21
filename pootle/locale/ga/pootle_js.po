@@ -108,8 +108,7 @@ msgstr "Cothromóid Iolrach"
 
 #: static/js/admin/components/Language/LanguageForm.js:93
 #: static/js/admin/components/Project/ProjectForm.js:135
-#: static/js/admin/components/User/UserForm.js:142
-#: static/js/user/forms.jsx:121
+#: static/js/admin/components/User/UserForm.js:142 static/js/user/forms.jsx:121
 msgid "Save"
 msgstr "Sábháil"
 
@@ -261,7 +260,9 @@ msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Nóta: má scriosann tú úsáideoir, cuirfear a c(h)uid gníomhaíochtaí ar an suíomh, m.sh. nótaí tráchta, moltaí agus aistriúchán, i leith úsáideora gan ainm (nobody)."
+"Nóta: má scriosann tú úsáideoir, cuirfear a c(h)uid gníomhaíochtaí ar an "
+"suíomh, m.sh. nótaí tráchta, moltaí agus aistriúchán, i leith úsáideora gan "
+"ainm (nobody)."
 
 #: static/js/admin/components/User/UserForm.js:62
 #: static/js/auth/components/SignInForm.js:94
@@ -310,8 +311,7 @@ msgstr "LinkedIn"
 msgid "LinkedIn profile URL"
 msgstr "URL próifíl LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:124
-#: static/js/user/forms.jsx:102
+#: static/js/admin/components/User/UserForm.js:124 static/js/user/forms.jsx:102
 msgid "Website"
 msgstr "Suíomh Gréasáin"
 
@@ -319,8 +319,7 @@ msgstr "Suíomh Gréasáin"
 msgid "Personal website URL"
 msgstr "URL suímh phearsanta"
 
-#: static/js/admin/components/User/UserForm.js:132
-#: static/js/user/forms.jsx:109
+#: static/js/admin/components/User/UserForm.js:132 static/js/user/forms.jsx:109
 msgid "Short Bio"
 msgstr "Beathaisnéisín"
 
@@ -540,7 +539,9 @@ msgstr "Deimhniú Sóisialta"
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
-msgstr "Athruithe gan sábháil sa teaghrán seo. Má imíonn tú anois, caillfidh tú na hathruithe sin."
+msgstr ""
+"Athruithe gan sábháil sa teaghrán seo. Má imíonn tú anois, caillfidh tú na "
+"hathruithe sin."
 
 #: static/js/editor/app.js:301
 msgid ""
@@ -732,7 +733,9 @@ msgstr "Seoladh Ríomhphoist"
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
-msgstr "Cuir isteach do sheoladh ríomhphoist agus seolfaimid teachtaireacht chugat le nasc speisialta chun d'fhocal faire a athshocrú."
+msgstr ""
+"Cuir isteach do sheoladh ríomhphoist agus seolfaimid teachtaireacht chugat "
+"le nasc speisialta chun d'fhocal faire a athshocrú."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:105
 msgid "No, thanks"
@@ -752,7 +755,11 @@ msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
-msgstr "D'aimsíomar úsáideoir inár gcóras leis an seoladh ríomhphoist <span>%s</span>. Tabhair an focal faire leis an bpróiseas logála isteach a chur i gcrích. Ní dhéanfaidh tú é seo ach uair amháin, agus bunóidh sé nasc idir do chuntais Pootle agus %s."
+msgstr ""
+"D'aimsíomar úsáideoir inár gcóras leis an seoladh ríomhphoist <span>%s</"
+"span>. Tabhair an focal faire leis an bpróiseas logála isteach a chur i "
+"gcrích. Ní dhéanfaidh tú é seo ach uair amháin, agus bunóidh sé nasc idir do "
+"chuntais Pootle agus %s."
 
 #: static/js/browser.js:164
 msgid "All Languages"
