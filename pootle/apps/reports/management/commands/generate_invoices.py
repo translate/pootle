@@ -323,57 +323,59 @@ class Command(BaseCommand):
             if can_generate_pdfs:
                 self.html2pdf(html_filename, pdf_filename)
 
-            if send_emails:
-                if 'accounting-email' not in user_conf:
-                    logger.warning(
-                        '`accounting_email` not found in configuration for '
-                        'user %s. Sending email will be skipped for this user.',
-                        username,
-                    )
-                    continue
+            if not send_emails:
+                continue
 
-                ctx['bcc_email_list'] = bcc_email_list
-                ctx['accounting'] = True
-                ctx['to_email_list'] = user_conf['accounting-email'].split(',')
-                ctx['cc_email_list'] = None
-                if 'accounting-email-cc' in user_conf:
-                    ctx['cc_email_list'] = (
-                        user_conf['accounting-email-cc'].split(',')
-                    )
+            if 'accounting-email' not in user_conf:
+                logger.warning(
+                    '`accounting_email` not found in configuration for '
+                    'user %s. Sending email will be skipped for this user.',
+                    username,
+                )
+                continue
 
-                if ctx['total'] > 0:
-                    subject = (
-                        u'For payment: Invoice %s, %s'
-                        % (ctx['id'], ctx['name'])
-                    )
-                    to = debug_email_list or ctx['to_email_list']
-                    cc = ctx['cc_email_list']
-                    if debug_email_list:
-                        cc = None
-                    html = render_to_string('invoices/invoice_message.html', ctx)
-                    self.send_invoice(subject, to, cc, bcc_email_list,
-                                      html, pdf_filename)
+            ctx['bcc_email_list'] = bcc_email_list
+            ctx['accounting'] = True
+            ctx['to_email_list'] = user_conf['accounting-email'].split(',')
+            ctx['cc_email_list'] = None
+            if 'accounting-email-cc' in user_conf:
+                ctx['cc_email_list'] = (
+                    user_conf['accounting-email-cc'].split(',')
+                )
 
-                ctx['accounting'] = False
-                ctx['to_email_list'] = user_conf['email'].split(',')
-                ctx['cc_email_list'] = None
-
-                if ctx['total'] > 0:
-                    html = render_to_string('invoices/invoice_message.html', ctx)
-                    subject = (
-                        u'Sent for payment: Invoice %s, %s'
-                        % (ctx['id'], ctx['name'])
-                    )
-                else:
-                    subject = (
-                        u'Notice: No payment will be sent this month to %s'
-                        % ctx['name']
-                    )
-                    html = render_to_string('invoices/no_invoice_message.html', ctx)
-                    pdf_filename = None
-                    if ctx['correction_added']:
-                        subject += u"; unpaid balance carried over to next month"
-
+            if ctx['total'] > 0:
+                subject = (
+                    u'For payment: Invoice %s, %s'
+                    % (ctx['id'], ctx['name'])
+                )
                 to = debug_email_list or ctx['to_email_list']
-                self.send_invoice(subject, to, None,
-                                  bcc_email_list, html, pdf_filename)
+                cc = ctx['cc_email_list']
+                if debug_email_list:
+                    cc = None
+                html = render_to_string('invoices/invoice_message.html', ctx)
+                self.send_invoice(subject, to, cc, bcc_email_list, html,
+                                  pdf_filename)
+
+            ctx['accounting'] = False
+            ctx['to_email_list'] = user_conf['email'].split(',')
+            ctx['cc_email_list'] = None
+
+            if ctx['total'] > 0:
+                html = render_to_string('invoices/invoice_message.html', ctx)
+                subject = (
+                    u'Sent for payment: Invoice %s, %s'
+                    % (ctx['id'], ctx['name'])
+                )
+            else:
+                subject = (
+                    u'Notice: No payment will be sent this month to %s'
+                    % ctx['name']
+                )
+                html = render_to_string('invoices/no_invoice_message.html', ctx)
+                pdf_filename = None
+                if ctx['correction_added']:
+                    subject += u"; unpaid balance carried over to next month"
+
+            to = debug_email_list or ctx['to_email_list']
+            self.send_invoice(subject, to, None, bcc_email_list, html,
+                              pdf_filename)
