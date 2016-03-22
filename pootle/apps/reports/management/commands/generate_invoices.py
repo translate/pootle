@@ -165,11 +165,9 @@ class Command(BaseCommand):
         if not os.path.exists(month_dir):
             os.makedirs(month_dir)
 
-        user_list = options['user_list']
-
         users = settings.POOTLE_INVOICES_RECIPIENTS.items()
-        if user_list:
-            users = filter(lambda x: x[0] in user_list, users)
+        if options['user_list']:
+            users = filter(lambda x: x[0] in options['user_list'], users)
 
         user_dict = {}
 
