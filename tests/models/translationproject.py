@@ -11,9 +11,11 @@ import shutil
 
 import pytest
 
+from translate.filters import checks
+
 from django.db import IntegrityError
 
-from pytest_pootle.factories import LanguageFactory
+from pytest_pootle.factories import LanguageFactory, TranslationProjectFactory
 
 from pootle_language.models import Language
 from pootle_project.forms import TranslationProjectForm
@@ -78,9 +80,6 @@ def test_tp_empty_stats():
     """Tests if empty stats is initialized when translation project (new language)
     is added for a project with existing but empty template translation project.
     """
-    from pootle_project.models import Project
-    from pootle_language.models import Language
-    from pytest_pootle.factories import LanguageFactory, TranslationProjectFactory
 
     # Create an empty template translation project for project0.
     project = Project.objects.get(code="project0")
@@ -109,8 +108,6 @@ def test_tp_empty_stats():
 
 @pytest.mark.django_db
 def test_tp_stats_created_from_template(tutorial, templates):
-    from pytest_pootle.factories import LanguageFactory
-
     language = LanguageFactory()
     tp_form = TranslationProjectForm(
         data={'language': language.id, 'project': tutorial.id},
@@ -144,8 +141,6 @@ def test_cannot_be_inited_from_templates():
 
 @pytest.mark.django_db
 def test_tp_checker(tp_checker_tests):
-    from translate.filters import checks
-
     language = Language.objects.get(code="language0")
     checker_name, project = tp_checker_tests
     tp = TranslationProject.objects.create(project=project, language=language)
