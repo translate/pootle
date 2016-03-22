@@ -293,8 +293,6 @@ class Command(BaseCommand):
             ctx['hourly_rate'] = hourly_rate
             ctx['debug_emails'] = debug_email_list
 
-            # add extra_amount after marketing / product translations relation
-            # was calculated
             ctx['total'] += ctx['extra_amount']
 
             user_conf['wire_info'] = user_conf['wire_info'].lstrip()
