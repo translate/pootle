@@ -150,11 +150,6 @@ class Command(BaseCommand):
             month = get_previous_month()
             add_correction = True
 
-        send_emails = options['send_emails']
-        debug_email_list = options['debug_email_list']
-        bcc_email_list = options['bcc_email_list']
-        user_list = options['user_list']
-
         if not is_valid_month(month):
             raise CommandError(
                 '--month parameter has an invalid format: "%s", '
@@ -169,6 +164,8 @@ class Command(BaseCommand):
         month_dir = os.path.join(settings.POOTLE_INVOICES_DIRECTORY, month)
         if not os.path.exists(month_dir):
             os.makedirs(month_dir)
+
+        user_list = options['user_list']
 
         users = settings.POOTLE_INVOICES_RECIPIENTS.items()
         if user_list:
@@ -290,7 +287,6 @@ class Command(BaseCommand):
                 'review_rate': review_rate,
                 'hourly_rate': hourly_rate,
 
-                'debug_emails': debug_email_list,
                 'correction_added': correction_added,
                 'balance': balance,
             }
@@ -316,7 +312,7 @@ class Command(BaseCommand):
             if can_generate_pdfs:
                 self.html2pdf(html_filename, pdf_filename)
 
-            if not send_emails:
+            if not options['send_emails']:
                 continue
 
             if 'accounting-email' not in user_conf:
@@ -326,6 +322,13 @@ class Command(BaseCommand):
                     username,
                 )
                 continue
+
+            debug_email_list = options['debug_email_list']
+            bcc_email_list = options['bcc_email_list']
+            ctx.update({
+                'debug_emails': debug_email_list,
+                'bcc_email_list': bcc_email_list,
+            })
 
             to_email_list = user_conf['accounting-email'].split(',')
             cc_email_list = None
@@ -341,7 +344,6 @@ class Command(BaseCommand):
                     'accounting': True,
                     'to_email_list': to_email_list,
                     'cc_email_list': cc_email_list,
-                    'bcc_email_list': bcc_email_list,
                 })
                 html = render_to_string('invoices/invoice_message.html', ctx)
                 self.send_invoice(subject, to, cc, bcc_email_list, html,
@@ -362,7 +364,6 @@ class Command(BaseCommand):
                     'accounting': False,
                     'to_email_list': to_email_list,
                     'cc_email_list': cc_email_list,
-                    'bcc_email_list': bcc_email_list,
                 })
                 html = render_to_string('invoices/no_invoice_message.html', ctx)
                 pdf_filename = None
