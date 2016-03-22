@@ -22,7 +22,9 @@ from django.utils.functional import cached_property
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.project_tree import does_not_exist
+from pootle_app.project_tree import (does_not_exist,
+                                     init_store_from_template,
+                                     translation_project_dir_exists)
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
@@ -53,8 +55,7 @@ def create_or_resurrect_translation_project(language, project):
 
 
 def create_translation_project(language, project):
-    from pootle_app import project_tree
-    if project_tree.translation_project_dir_exists(language, project):
+    if translation_project_dir_exists(language, project):
         try:
             translation_project, created = TranslationProject.objects.all() \
                 .get_or_create(language=language, project=project)
@@ -303,8 +304,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         saved yet and can be initialized from templates.
         """
 
-        from pootle_app.project_tree import translation_project_dir_exists
-
         # This method checks if the current translation project directory
         # doesn't exist. So it won't work if the translation project is already
         # saved the database because the translation project directory is
@@ -322,8 +321,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         """Initializes the current translation project files using
         the templates TP ones.
         """
-
-        from pootle_app.project_tree import init_store_from_template
 
         template_tp = self.project.get_template_translationproject()
         template_stores = template_tp.stores.live().exclude(file="")
