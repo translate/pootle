@@ -170,11 +170,6 @@ class Command(BaseCommand):
         if not os.path.exists(month_dir):
             os.makedirs(month_dir)
 
-        subcontractors = ()
-        for username, user_conf in settings.POOTLE_INVOICES_RECIPIENTS.items():
-            if 'subcontractors' in user_conf:
-                subcontractors += user_conf['subcontractors']
-
         users = settings.POOTLE_INVOICES_RECIPIENTS.items()
         if user_list:
             users = filter(lambda x: x[0] in user_list, users)
