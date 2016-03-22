@@ -301,9 +301,11 @@ class Command(BaseCommand):
             ctx.update(user_conf)
 
             fullname = user_conf['name']
-            name = u'Invoice - %s - %s' % (fullname, ctx['id'])
 
-            filename = os.path.join(month_dir, name)
+            filename = os.path.join(
+                month_dir,
+                u'Invoice - %s - %s' % (fullname, id),
+            )
 
             html_filename = filename + '.html'
             pdf_filename = filename + '.pdf'
