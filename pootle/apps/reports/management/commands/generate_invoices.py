@@ -62,9 +62,9 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             '--user-list',
-            action='append',
             dest='user_list',
             help='Limit list of users for generating invoices',
+            nargs='*',
             default=[],
         )
 
@@ -81,9 +81,9 @@ class Command(BaseCommand):
         )
         email_group.add_argument(
             '--bcc-send-to',
-            action='append',
             dest='bcc_email_list',
             help='BCC email list',
+            nargs='*',
             default=[],
         )
 
@@ -99,9 +99,9 @@ class Command(BaseCommand):
         )
         debug_group.add_argument(
             '--debug-send-to',
-            action='append',
             dest='debug_email_list',
             help='Send email to recipients (overrides existing user settings)',
+            nargs='*',
             default=[],
         )
 
@@ -150,16 +150,10 @@ class Command(BaseCommand):
             month = get_previous_month()
             add_correction = True
 
-        send_emails = options.get('send_emails', False)
-        debug_email_list = []
-        for item in options.get('debug_email_list', []):
-            debug_email_list += item.split(',')
-        bcc_email_list = []
-        for item in options.get('bcc_email_list', []):
-            bcc_email_list += item.split(',')
-        user_list = []
-        for item in options.get('user_list', []):
-            user_list += item.split(',')
+        send_emails = options['send_emails']
+        debug_email_list = options['debug_email_list']
+        bcc_email_list = options['bcc_email_list']
+        user_list = options['user_list']
 
         if not is_valid_month(month):
             raise CommandError(
