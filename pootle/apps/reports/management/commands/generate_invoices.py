@@ -144,7 +144,7 @@ class Command(BaseCommand):
                 'nothing found in the specified path. PDFs will not be generated.'
             )
 
-        month = options.get('month', None)
+        month = options['month']
         add_correction = False
         if month is None:
             month = get_previous_month()
