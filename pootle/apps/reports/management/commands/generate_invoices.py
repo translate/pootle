@@ -35,6 +35,8 @@ from ...views import (get_grouped_word_stats, get_rates, get_tasks, get_scores,
 
 logger = logging.getLogger(__name__)
 
+User = get_user_model()
+
 
 def get_previous_month():
     now = timezone.now()
@@ -194,7 +196,6 @@ class Command(BaseCommand):
                     continue
 
                 try:
-                    User = get_user_model()
                     user_dict[username] = User.objects.get(username=username)
                 except User.DoesNotExist:
                     self.stdout.write('ERROR: User %s not found.' % username)
