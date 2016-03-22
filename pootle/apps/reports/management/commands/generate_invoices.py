@@ -352,9 +352,7 @@ class Command(BaseCommand):
             if total > 0:
                 subject = u'For payment: Invoice %s, %s' % (id, fullname)
                 to = debug_email_list or to_email_list
-                cc = cc_email_list
-                if debug_email_list:
-                    cc = None
+                cc = None if debug_email_list else cc_email_list
 
                 ctx.update({
                     'accounting': True,
