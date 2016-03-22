@@ -171,6 +171,7 @@ class Command(BaseCommand):
         now = timezone.now()
         [start, end] = get_date_interval(month)
         date = end if now > end else now
+
         month_dir = os.path.join(settings.POOTLE_INVOICES_DIRECTORY, month)
         if not os.path.exists(month_dir):
             os.makedirs(month_dir)
@@ -202,12 +203,10 @@ class Command(BaseCommand):
                     exit(1)
 
         for username, user_conf in users:
-            ctx = {
-                'translated_words': 0,
-                'reviewed_words': 0,
-                'hours': 0,
-                'correction': 0,
-            }
+            translated_words = 0
+            reviewed_words = 0
+            hours = 0
+            correction = 0
 
             usernames = (username, )
             main_username = username
@@ -225,41 +224,41 @@ class Command(BaseCommand):
                 scores = get_scores(user, start, end)
                 scores = scores.order_by(SCORE_TRANSLATION_PROJECT)
                 for row in get_grouped_word_stats(scores):
-                    ctx['translated_words'] += row['translated']
-                    ctx['reviewed_words'] += row['reviewed']
+                    translated_words += row['translated']
+                    reviewed_words += row['reviewed']
 
                 tasks = get_tasks(user, start, end)
                 for task in tasks:
                     if task.task_type == PaidTaskTypes.TRANSLATION:
-                        ctx['translated_words'] += task.amount
+                        translated_words += task.amount
                     elif task.task_type == PaidTaskTypes.REVIEW:
-                        ctx['reviewed_words'] += task.amount
+                        reviewed_words += task.amount
                     elif task.task_type == PaidTaskTypes.HOURLY_WORK:
-                        ctx['hours'] += task.amount
+                        hours += task.amount
                     elif task.task_type == PaidTaskTypes.CORRECTION:
-                        ctx['correction'] += task.amount
+                        correction += task.amount
 
-            ctx['translated_words'] = int(round(ctx['translated_words']))
-            ctx['reviewed_words'] = int(round(ctx['reviewed_words']))
+            translated_words = int(round(translated_words))
+            reviewed_words = int(round(reviewed_words))
 
-            ctx['translation_amount'] = round(ctx['translated_words'] * rate, 2)
-            ctx['review_amount'] = round(ctx['reviewed_words'] * review_rate, 2)
-            ctx['hours_amount'] = round(ctx['hours'] * hourly_rate, 2)
+            translation_amount = round(translated_words * rate, 2)
+            review_amount = round(reviewed_words * review_rate, 2)
+            hours_amount = round(hours * hourly_rate, 2)
 
-            ctx['total'] = ctx['translation_amount'] + ctx['review_amount'] + \
-                ctx['hours_amount'] + ctx['correction']
+            balance = None
+            total = translation_amount + review_amount + hours_amount + correction
 
-            ctx['minimal_payment'] = user_conf.get('minimal_payment', 0)
-            ctx['correction_added'] = False
+            minimal_payment = user_conf.get('minimal_payment', 0)
+            correction_added = False
 
             if add_correction:
                 tz = timezone.get_default_timezone()
-                if ctx['total'] > 0 and ctx['total'] < ctx['minimal_payment']:
+                if total > 0 and total < minimal_payment:
                     first_moment = now.replace(day=1, hour=0, minute=0,
                                                second=0, tzinfo=tz)
                     PaidTask.objects.create(
                         task_type=PaidTaskTypes.CORRECTION,
-                        amount=(-1) * ctx['total'],
+                        amount=(-1) * total,
                         rate=1,
                         datetime=end,
                         description='Carryover to the next month',
@@ -267,37 +266,56 @@ class Command(BaseCommand):
                     )
                     PaidTask.objects.create(
                         task_type=PaidTaskTypes.CORRECTION,
-                        amount=ctx['total'],
+                        amount=total,
                         rate=1,
                         datetime=first_moment,
                         description='Carryover from the previous month',
                         user=user,
                     )
-                    ctx['correction_added'] = True
-                    ctx['balance'] = ctx['total']
-                    ctx['total'] = 0
+                    correction_added = True
+                    balance = total
+                    total = 0
 
-            ctx['extra_amount'] = 0
-            if 'extra_add' in user_conf and ctx['total'] > 0:
-                ctx['extra_amount'] += user_conf['extra_add']
+            extra_amount = 0
+            if 'extra_add' in user_conf and total > 0:
+                extra_amount += user_conf['extra_add']
             if 'extra_multiply' in user_conf:
-                ctx['extra_amount'] += \
-                    ctx['total'] * (user_conf['extra_multiply'] - 1)
+                extra_amount += total * (user_conf['extra_multiply'] - 1)
 
-            ctx['user'] = main_user
-            ctx['id'] = user_conf['invoice_prefix'] + month
-            ctx['date'] = date
-            ctx['month'] = start
-            ctx['rate'] = rate
-            ctx['review_rate'] = review_rate
-            ctx['hourly_rate'] = hourly_rate
-            ctx['debug_emails'] = debug_email_list
+            id = user_conf['invoice_prefix'] + month
 
-            ctx['total'] += ctx['extra_amount']
+            total += extra_amount
 
-            user_conf['wire_info'] = user_conf['wire_info'].lstrip()
-            user_conf['paid_by'] = user_conf['paid_by'].lstrip()
+            ctx = {
+                'total': total,
+                'extra_amount': extra_amount,
+
+                'translated_words': translated_words,
+                'reviewed_words': reviewed_words,
+                'hours_count': hours,
+                'correction': correction,
+
+                'translation_amount': translation_amount,
+                'review_amount': review_amount,
+                'hours_amount': hours_amount,
+
+                'id': id,
+                'user': main_user,
+                'date': date,
+                'month': start,
+                'rate': rate,
+                'review_rate': review_rate,
+                'hourly_rate': hourly_rate,
+
+                'debug_emails': debug_email_list,
+                'correction_added': correction_added,
+                'balance': balance,
+            }
             ctx.update(user_conf)
+            ctx.update({
+                'wire_info': user_conf['wire_info'].lstrip(),
+                'paid_by': user_conf['paid_by'].lstrip(),
+            })
 
             fullname = user_conf['name']
 
@@ -326,42 +344,50 @@ class Command(BaseCommand):
                 )
                 continue
 
-            ctx['bcc_email_list'] = bcc_email_list
-            ctx['accounting'] = True
-            ctx['to_email_list'] = user_conf['accounting-email'].split(',')
-            ctx['cc_email_list'] = None
+            to_email_list = user_conf['accounting-email'].split(',')
+            cc_email_list = None
             if 'accounting-email-cc' in user_conf:
-                ctx['cc_email_list'] = (
-                    user_conf['accounting-email-cc'].split(',')
-                )
+                cc_email_list = user_conf['accounting-email-cc'].split(',')
 
-            if ctx['total'] > 0:
-                subject = u'For payment: Invoice %s, %s' % (ctx['id'], fullname)
-                to = debug_email_list or ctx['to_email_list']
-                cc = ctx['cc_email_list']
+            if total > 0:
+                subject = u'For payment: Invoice %s, %s' % (id, fullname)
+                to = debug_email_list or to_email_list
+                cc = cc_email_list
                 if debug_email_list:
                     cc = None
+
+                ctx.update({
+                    'accounting': True,
+                    'to_email_list': to_email_list,
+                    'cc_email_list': cc_email_list,
+                    'bcc_email_list': bcc_email_list,
+                })
                 html = render_to_string('invoices/invoice_message.html', ctx)
                 self.send_invoice(subject, to, cc, bcc_email_list, html,
                                   pdf_filename)
 
-            ctx['accounting'] = False
-            ctx['to_email_list'] = user_conf['email'].split(',')
-            ctx['cc_email_list'] = None
+            to_email_list = user_conf['email'].split(',')
+            cc_email_list = None
 
-            if ctx['total'] > 0:
+            if total > 0:
                 html = render_to_string('invoices/invoice_message.html', ctx)
-                subject = u'Sent for payment: Invoice %s, %s' % (ctx['id'], fullname)
+                subject = u'Sent for payment: Invoice %s, %s' % (id, fullname)
             else:
                 subject = (
                     u'Notice: No payment will be sent this month to %s'
                     % fullname
                 )
+                ctx.update({
+                    'accounting': False,
+                    'to_email_list': to_email_list,
+                    'cc_email_list': cc_email_list,
+                    'bcc_email_list': bcc_email_list,
+                })
                 html = render_to_string('invoices/no_invoice_message.html', ctx)
                 pdf_filename = None
-                if ctx['correction_added']:
+                if correction_added:
                     subject += u"; unpaid balance carried over to next month"
 
-            to = debug_email_list or ctx['to_email_list']
+            to = debug_email_list or to_email_list
             self.send_invoice(subject, to, None, bcc_email_list, html,
                               pdf_filename)
