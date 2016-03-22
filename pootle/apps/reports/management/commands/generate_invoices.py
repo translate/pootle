@@ -188,9 +188,7 @@ class Command(BaseCommand):
         user_dict = {}
 
         for username, user_conf in users:
-            usernames = (username, )
-            if 'subcontractors' in user_conf:
-                usernames += user_conf['subcontractors']
+            usernames = (username, ) + user_conf.get('subcontractors', ())
 
             for username in usernames:
                 if username in user_dict:
@@ -208,10 +206,8 @@ class Command(BaseCommand):
             hours = 0
             correction = 0
 
-            usernames = (username, )
+            usernames = (username, ) + user_conf.get('subcontractors', ())
             main_username = username
-            if 'subcontractors' in user_conf:
-                usernames += user_conf['subcontractors']
 
             for username in usernames:
                 self.stdout.write('Getting data for %s' % username)
