@@ -300,7 +300,8 @@ class Command(BaseCommand):
             user_conf['paid_by'] = user_conf['paid_by'].lstrip()
             ctx.update(user_conf)
 
-            name = 'Invoice - %s - %s' % (ctx['name'], ctx['id'])
+            fullname = user_conf['name']
+            name = u'Invoice - %s - %s' % (fullname, ctx['id'])
 
             filename = os.path.join(month_dir, name)
 
@@ -334,10 +335,7 @@ class Command(BaseCommand):
                 )
 
             if ctx['total'] > 0:
-                subject = (
-                    u'For payment: Invoice %s, %s'
-                    % (ctx['id'], ctx['name'])
-                )
+                subject = u'For payment: Invoice %s, %s' % (ctx['id'], fullname)
                 to = debug_email_list or ctx['to_email_list']
                 cc = ctx['cc_email_list']
                 if debug_email_list:
@@ -352,14 +350,11 @@ class Command(BaseCommand):
 
             if ctx['total'] > 0:
                 html = render_to_string('invoices/invoice_message.html', ctx)
-                subject = (
-                    u'Sent for payment: Invoice %s, %s'
-                    % (ctx['id'], ctx['name'])
-                )
+                subject = u'Sent for payment: Invoice %s, %s' % (ctx['id'], fullname)
             else:
                 subject = (
                     u'Notice: No payment will be sent this month to %s'
-                    % ctx['name']
+                    % fullname
                 )
                 html = render_to_string('invoices/no_invoice_message.html', ctx)
                 pdf_filename = None
