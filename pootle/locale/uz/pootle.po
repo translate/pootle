@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-12-26 16:02+0000\n"
+"PO-Revision-Date: 2016-03-22 10:18+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1451145774.000000\n"
+"X-POOTLE-MTIME: 1458641897.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -183,9 +183,8 @@ msgid "Contact Us"
 msgstr "Biz bilan bog‘lanish"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
-msgstr "Ushbu qatordagi muammo haqida xabar berish"
+msgstr "Qatordagi muammo haqida xabar berish"
 
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
@@ -520,7 +519,7 @@ msgstr "Yakka qo‘shtirnoqlar"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Starting capitalization"
-msgstr "Bosh harf bilan boshlanmoqda"
+msgstr "Bosh harf bilan boshlangan"
 
 #: apps/pootle_misc/checks.py:78
 msgid "Starting punctuation"
@@ -674,9 +673,8 @@ msgid "Percent brace placeholders"
 msgstr "Qavs o‘zgaruvchilar foizi"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr format"
-msgstr "Android formati"
+msgstr "Plurr formati"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:91 core/helpers.py:53
@@ -944,7 +942,7 @@ msgstr "Mutlaqo"
 
 #: apps/pootle_store/views.py:208
 msgid "Path too long."
-msgstr ""
+msgstr "Yo‘l juda uzun."
 
 #: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
@@ -1240,6 +1238,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
 msgstr ""
+"Distinct django_redis.cache.RedisCache konfiguratsiyalari `default`, `redis` "
+"and `stats` uchun talab qilinadi."
 
 #: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1422,22 +1422,22 @@ msgstr ""
 #: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS’da %s yo‘q."
 
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS ichiga %S qiymatini o‘rnating."
 
 #: checks.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_MARKUP_FILTER qiymatida noto‘g‘ri qiymat."
+msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
 
 #: checks.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_MARKUP_FILTER uchun to‘g‘ri qiymatni o‘rnating."
+msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
 
 #: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1472,11 +1472,13 @@ msgstr ""
 
 #: checks.py:447
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Qayta ko‘rilmagan yoki qiymati noto‘g‘ri."
 
 #: checks.py:448
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
+"Qayta ko‘rishni hisoblagichni tiklash uchun `revision --restore` buyrug‘ini "
+"bajaring."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1670,11 +1672,11 @@ msgid ""
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
 "Ushbu sayt tarjima qilish va tarjimalarni boshqarish uchun guruhlarni "
-"ruhlantiruvchi kuchli veb dastur - Pootle &mdash;dan foydalanmoqda. Ushbu "
-"jamoaviy asbob erkin dasturiy ta’minot va undan har guruh foydalanishi "
-"mumkin hamda Pootle jamiyatiga hissa qo‘shishi mumkin. Ko‘proq ma’lumotlarni "
-"<a href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link"
-"\"></i> loyiha vebsahifasi</a>dan olishingiz mumkin."
+"ruhlantiruvchi kuchli veb dastur – Pootledan foydalanmoqda. Ushbu jamoaviy "
+"asbob erkin dasturiy ta’minot hisoblanadi va undan har qanday jamoa "
+"foydalanishi hamda Pootle jamiyatiga hissa qo‘shishi mumkin. Ko‘proq "
+"ma’lumotlarni <a href=\"http://pootle.translatehouse.org/\"><i class=\"icon-"
+"external-link\"></i> loyiha vebsahifasi</a>dan olishingiz mumkin."
 
 #: templates/about.html:26
 #, python-format
@@ -1859,9 +1861,8 @@ msgid "MT"
 msgstr "MT"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Funksiya"
+msgstr "Faoliyatlar"
 
 #: templates/admin/detailed_reports.html:219
 msgid "Raw Translation"
@@ -2427,7 +2428,7 @@ msgstr "Tarjima bilan mavjud muammolar"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr "Ushbu uchun ko‘rish:"
+msgstr "Xatolar:"
 
 #: templates/editor/units/xhr_comment.html:13
 msgid "Remove comment"
@@ -2811,7 +2812,7 @@ msgstr "Bir soat ishlash narxi:"
 
 #: templates/user/settings.html:12
 msgid "User Account"
-msgstr "Mening hisobi"
+msgstr "Foydalanuvchining hisobi"
 
 #: templates/user/settings.html:14
 msgid ""
@@ -2819,7 +2820,7 @@ msgid ""
 "will initiate the process of setting a new password."
 msgstr ""
 "Parolingizni o‘zgartirishni xohlaysizmi? Yangi parolni o‘rnatish jarayonini "
-"ishga tushiradigan 'Parolni tiklash' tugmasini bosing."
+"ishga tushiradigan \"Parolni tiklash\" tugmasini bosing."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"

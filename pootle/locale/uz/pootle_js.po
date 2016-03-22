@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-12-06 16:36+0000\n"
+"PO-Revision-Date: 2016-03-22 09:09+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1449419773.000000\n"
+"X-POOTLE-MTIME: 1458637775.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -631,9 +631,8 @@ msgid "disabled"
 msgstr "o‘chirib qo‘yilgan"
 
 #: static/js/stats.js:58
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Tabriklaymiz, siz ohirgi qatorga yetdingiz."
+msgstr "Tabriklaymiz! Siz bu vazifani bajarib bo‘ldingiz!"
 
 #: static/js/stats.js:379
 #, python-format, javascript-format
@@ -729,7 +728,8 @@ msgstr[1] "%s hafta oldin"
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Kecha%s kun oldin"
+msgstr[0] "Kecha"
+msgstr[1] "%s kun oldin"
 
 #: static/js/utils.js:174
 #, javascript-format
