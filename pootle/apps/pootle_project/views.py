@@ -9,6 +9,7 @@
 
 import locale
 
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.forms.models import modelformset_factory
 from django.http import Http404
@@ -253,8 +254,21 @@ class ProjectAdminView(PootleAdminView):
         formset = self.get_formset(self.request.POST)
         if formset.is_valid():
             formset.save()
+            for tp in formset.new_objects:
+                messages.add_message(
+                    self.request,
+                    messages.INFO,
+                    _("Translation project (%s) has been created. We are "
+                      "now updating its stores from file templates." % tp))
+
+            for tp in formset.deleted_objects:
+                messages.add_message(
+                    self.request,
+                    messages.INFO,
+                    _("Translation project (%s) has been deleted" % tp))
         else:
-            self.msg = self.msg_form_error
+            messages.add_message(self.request, messages.ERROR,
+                                 self.msg_form_error)
 
     def render_formset(self, formset):
 

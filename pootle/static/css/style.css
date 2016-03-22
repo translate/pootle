@@ -2042,3 +2042,16 @@ span.email .i
 {
     display: none;
 }
+
+
+/*
+ * Django messages placeholder
+ */
+.messages
+{
+    background: #fe9;
+    margin: 0 -1em;
+    padding: 0.7em 1.5em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

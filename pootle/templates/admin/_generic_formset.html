@@ -7,6 +7,13 @@
   {% if error_msg %}
       <div class="error">{% trans error_msg %}</div>
   {% endif %}
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+{% endif %}
   {{ formset.management_form }}
   <table class="sortable">
     {{ formset_text }}
