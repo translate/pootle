@@ -251,30 +251,28 @@ class Command(BaseCommand):
             minimal_payment = user_conf.get('minimal_payment', 0)
             correction_added = False
 
-            if add_correction:
-                tz = timezone.get_default_timezone()
-                if total > 0 and total < minimal_payment:
-                    first_moment = now.replace(day=1, hour=0, minute=0,
-                                               second=0, tzinfo=tz)
-                    PaidTask.objects.create(
-                        task_type=PaidTaskTypes.CORRECTION,
-                        amount=(-1) * total,
-                        rate=1,
-                        datetime=end,
-                        description='Carryover to the next month',
-                        user=user,
-                    )
-                    PaidTask.objects.create(
-                        task_type=PaidTaskTypes.CORRECTION,
-                        amount=total,
-                        rate=1,
-                        datetime=first_moment,
-                        description='Carryover from the previous month',
-                        user=user,
-                    )
-                    correction_added = True
-                    balance = total
-                    total = 0
+            if add_correction and total > 0 and total < minimal_payment:
+                first_moment = now.replace(day=1, hour=0, minute=0, second=0,
+                                           tzinfo=timezone.get_default_timezone())
+                PaidTask.objects.create(
+                    task_type=PaidTaskTypes.CORRECTION,
+                    amount=(-1) * total,
+                    rate=1,
+                    datetime=end,
+                    description='Carryover to the next month',
+                    user=user,
+                )
+                PaidTask.objects.create(
+                    task_type=PaidTaskTypes.CORRECTION,
+                    amount=total,
+                    rate=1,
+                    datetime=first_moment,
+                    description='Carryover from the previous month',
+                    user=user,
+                )
+                correction_added = True
+                balance = total
+                total = 0
 
             extra_amount = 0
             if 'extra_add' in user_conf and total > 0:
