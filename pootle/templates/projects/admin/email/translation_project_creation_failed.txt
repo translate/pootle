@@ -1,0 +1,2 @@
+{% load i18n %}
+{% filter wordwrap:70 %}{% blocktrans with tp=tp %}An error occurred creating Translation project ({{tp}}). Please contact your system administrator.{% endblocktrans %}{% endfilter %}

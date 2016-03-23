@@ -16,11 +16,18 @@ from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
+from pootle_translationproject.signals import (tp_inited_async,
+                                               tp_init_failed_async)
 
 
 def init_tp_from_templates(tp):
     """Wraps translation project method to allow it to be running as RQ job"""
-    tp.init_from_templates()
+    try:
+        tp.init_from_templates()
+    except Exception as e:
+        tp_init_failed_async.send(sender=tp.__class__, instance=tp)
+        raise e
+    tp_inited_async.send(sender=tp.__class__, instance=tp)
 
 
 class TranslationProjectForm(forms.ModelForm):
