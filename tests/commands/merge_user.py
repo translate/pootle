@@ -14,7 +14,7 @@ from django.core.management.base import CommandError
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_purge_user_nousers():
+def test_merge_user_nousers():
     with pytest.raises(CommandError) as e:
         call_command('merge_user')
     assert "too few arguments" in str(e)
@@ -22,7 +22,7 @@ def test_purge_user_nousers():
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_purge_user_only_one_user(member):
+def test_merge_user_only_one_user(member):
     with pytest.raises(CommandError) as e:
         call_command('merge_user', 'member')
     assert "too few arguments" in str(e)
