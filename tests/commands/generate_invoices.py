@@ -31,22 +31,3 @@ def test_generate_invoices_nonexistant_user(settings):
     with pytest.raises(CommandError) as e:
         call_command('generate_invoices')
     assert 'User bogus_member not found.' in str(e)
-
-
-@pytest.mark.cmd
-@pytest.mark.django_db
-def test_generate_invoices_no_accounting_email(settings, capfd):
-    settings.POOTLE_INVOICES_RECIPIENTS = {
-        'member': {
-            'name': 'test',
-            'invoice_prefix': '-',
-            'wire_info': '',
-            'paid_by': '',
-        },
-    }
-    call_command('generate_invoices', '--send-emails')
-    out, err = capfd.readouterr()
-    assert (
-        '`accounting_email` not found in configuration for user member.'
-        in err
-    )

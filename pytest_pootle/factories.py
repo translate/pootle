@@ -221,3 +221,9 @@ class SuggestionFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_store.Suggestion'
+
+
+class PaidTaskFactory(factory.django.DjangoModelFactory):
+
+    class Meta(object):
+        model = 'reports.PaidTask'
