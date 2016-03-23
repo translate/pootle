@@ -34,8 +34,14 @@
       <!-- Location comments -->
       <div class="comments sidebar">
         <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</span>
+	{% if cantranslatexlang %}
         <a lang="en" dir="ltr" class="translate-locations" title="{{ unit.locations }}"
-            href="{{ unit.get_search_locations_url }}">{{ unit.locations|truncatewords:4 }}</a>
+           href="{{ unit.get_search_locations_url }}">{{ unit.locations|truncatewords:4 }}</a>
+	{% else %}
+	<span lang="en"
+	      dir="ltr"
+	      class="translate-locations">{{ unit.locations|truncatewords:4 }}</span>
+	{% endif %}
       </div>
       {% endif %}
 
