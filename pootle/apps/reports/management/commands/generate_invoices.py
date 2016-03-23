@@ -181,7 +181,7 @@ class Command(BaseCommand):
                 try:
                     user_dict[username] = User.objects.get(username=username)
                 except User.DoesNotExist:
-                    raise CommandError('ERROR: User %s not found.' % username)
+                    raise CommandError('User %s not found.' % username)
 
         for username, user_conf in users:
             translated_words = 0
