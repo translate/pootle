@@ -14,6 +14,8 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.url_helpers import urljoin
+
 from .models import TranslationProject
 from .signals import tp_init_failed_async, tp_inited_async
 
@@ -27,8 +29,9 @@ def get_recipients(project):
 
 
 @receiver(tp_inited_async, sender=TranslationProject)
-def tp_inited_async(instance, **kwargs):
-    ctx = {"tp": instance}
+def tp_inited_async(instance, response_url, **kwargs):
+    ctx = {"tp": instance,
+           "url": urljoin(response_url, instance.get_absolute_url())}
     message = render_to_string(
         'projects/admin/email/translation_project_created.txt', ctx)
     subject = _(u"Translation project (%s) created" % instance)

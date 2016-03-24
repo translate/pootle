@@ -34,6 +34,7 @@ from pootle_project.forms import TranslationProjectForm
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .forms import TranslationProjectFormSet
 from .models import Project, ProjectSet, ProjectResource
 
 
@@ -188,6 +189,7 @@ class ProjectAdminView(PootleAdminView):
     def formset_class(self):
         return modelformset_factory(
             self.model_formset_class,
+            formset=TranslationProjectFormSet,
             form=self.form_class,
             **dict(
                 can_delete=True,
@@ -212,6 +214,10 @@ class ProjectAdminView(PootleAdminView):
     def qs(self):
         return self.model_formset_class.objects.filter(
             project=self.object).order_by('pootle_path')
+
+    @property
+    def response_url(self):
+        return self.request.build_absolute_uri('/')
 
     @property
     def url_kwargs(self):
@@ -248,7 +254,8 @@ class ProjectAdminView(PootleAdminView):
         return self.formset_class(
             post,
             initial=self.form_initial,
-            queryset=self.page.object_list)
+            queryset=self.page.object_list,
+            response_url=self.response_url)
 
     def process_formset(self):
         formset = self.get_formset(self.request.POST)

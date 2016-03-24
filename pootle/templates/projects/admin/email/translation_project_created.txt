@@ -1,2 +1,2 @@
 {% load i18n %}
-{% filter wordwrap:70 %}{% blocktrans with tp=tp url=tp.get_absolute_url %}A Translation project ({{tp}}) has been created at {{url}}, and has updated successfully.{% endblocktrans %}{% endfilter %}
+{% filter wordwrap:70 %}{% blocktrans with tp=tp url=url %}A Translation project ({{tp}}) has been created at {{url}}, and has updated successfully.{% endblocktrans %}{% endfilter %}
