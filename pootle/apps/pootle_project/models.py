@@ -62,14 +62,18 @@ class ProjectManager(models.Manager):
         :param user: The user for whom projects need to be retrieved for.
         :return: A list of project tuples including (code, fullname)
         """
-        cache_key = make_method_key('Project', 'cached_dict',
-                                    {'is_admin': user.is_superuser})
+        if not user.is_superuser:
+            cache_params = {'username': user.username}
+        else:
+            cache_params = {'is_admin': user.is_superuser}
+        cache_key = make_method_key('Project', 'cached_dict', cache_params)
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
-            projects_dict = self.for_user(user).order_by('fullname') \
-                                               .values('code', 'fullname',
-                                                       'disabled')
+            projects_dict = self.for_user(user).filter(
+                code__in=Project.accessible_by_user(user)
+            ).order_by('fullname').values('code', 'fullname', 'disabled')
+
             projects = OrderedDict(
                 (project.pop('code'), project) for project in projects_dict
             )
