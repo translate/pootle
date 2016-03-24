@@ -8,7 +8,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from django import forms
+from django.conf import settings
+from django.core.urlresolvers import set_script_prefix
 from django.db import connection
+from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext as _
 
 from django_rq.queues import get_queue
@@ -26,6 +29,11 @@ def update_translation_project(tp, initialize_from_templates):
     """Wraps translation project initializing to allow it to be running
     as RQ job.
     """
+    script_name = (u'/'
+                   if settings.FORCE_SCRIPT_NAME is None
+                   else force_unicode(settings.FORCE_SCRIPT_NAME))
+    set_script_prefix(script_name)
+
     try:
         with useable_connection():
             if initialize_from_templates:
