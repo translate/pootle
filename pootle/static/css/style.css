@@ -1693,6 +1693,12 @@ html[dir="rtl"] #tabs li
     color: #000;
 }
 
+#search-form input[type="text"].search-widget-disabled
+{
+    background: #eee;
+    font-style; italics;
+}
+
 .btn-search
 {
     padding: 0;
