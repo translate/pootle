@@ -6,6 +6,17 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from contextlib import contextmanager
+
+from django.db import connection
+
+
+@contextmanager
+def useable_connection():
+    connection.close_if_unusable_or_obsolete()
+    yield
+    connection.close_if_unusable_or_obsolete()
+
 
 def set_mysql_collation_for_column(apps, cursor, model, column, collation, schema):
     """Set the collation for a mysql column if it is not set already

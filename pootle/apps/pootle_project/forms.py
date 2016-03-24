@@ -8,10 +8,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from django import forms
+from django.db import connection
 from django.utils.translation import ugettext as _
 
 from django_rq.queues import get_queue
 
+from pootle.core.utils.db import useable_connection
 from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
@@ -25,10 +27,11 @@ def update_translation_project(tp, initialize_from_templates):
     as RQ job.
     """
     try:
-        if initialize_from_templates:
-            tp.init_from_templates()
-        else:
-            tp.update_from_disk()
+        with useable_connection():
+            if initialize_from_templates:
+                tp.init_from_templates()
+            else:
+                tp.update_from_disk()
     except Exception as e:
         tp_init_failed_async.send(sender=tp.__class__, instance=tp)
         raise e
