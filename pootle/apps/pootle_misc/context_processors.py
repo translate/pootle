@@ -56,7 +56,7 @@ def pootle_context(request):
         },
         'custom': settings.POOTLE_CUSTOM_TEMPLATE_CONTEXT,
         'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language()),
-        'ALL_PROJECTS': Project.objects.cached_dict(request.user),
+        'ALL_PROJECTS': Project.accessible_by_user(request.user),
         'SOCIAL_AUTH_PROVIDERS': jsonify(_get_social_auth_providers(request)),
         'display_agreement': _agreement_context(request),
     }
