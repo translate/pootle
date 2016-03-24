@@ -18,7 +18,6 @@ from django.db import IntegrityError
 from pytest_pootle.factories import LanguageFactory, TranslationProjectFactory
 
 from pootle_language.models import Language
-from pootle_project.forms import TranslationProjectForm
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
@@ -88,11 +87,8 @@ def test_tp_empty_stats():
 
     # Create a new language to test.
     language = LanguageFactory()
-    tp_form = TranslationProjectForm(
-        data={'language': language.id, 'project': project.id},
-        initial={'project': project.id})
-    assert tp_form.is_valid()
-    tp = tp_form.save()
+    tp = TranslationProject.objects.create(language=language, project=project)
+    tp.init_from_templates()
 
     # There are no files on disk so TP was not automagically filled.
     assert list(tp.stores.all()) == []
@@ -109,11 +105,8 @@ def test_tp_empty_stats():
 @pytest.mark.django_db
 def test_tp_stats_created_from_template(tutorial, templates):
     language = LanguageFactory()
-    tp_form = TranslationProjectForm(
-        data={'language': language.id, 'project': tutorial.id},
-        initial={'project': tutorial.id})
-    assert tp_form.is_valid()
-    tp = tp_form.save()
+    tp = TranslationProject.objects.create(language=language, project=tutorial)
+    tp.init_from_templates()
 
     assert tp.stores.all().count() == 1
     stats = tp.get_stats()
