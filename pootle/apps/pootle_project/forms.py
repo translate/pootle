@@ -76,8 +76,10 @@ class TranslationProjectForm(forms.ModelForm):
         if tp.id is None:
             initialize_from_templates = tp.can_be_inited_from_templates()
         tp = super(TranslationProjectForm, self).save(commit)
-        queue = get_queue('default')
-        queue.enqueue(update_translation_project,
-                      tp, initialize_from_templates)
 
+        def _enqueue_job():
+            queue = get_queue('default')
+            queue.enqueue(update_translation_project,
+                          tp, initialize_from_templates)
+        connection.on_commit(_enqueue_job)
         return tp
