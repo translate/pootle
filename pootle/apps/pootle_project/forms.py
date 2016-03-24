@@ -20,10 +20,15 @@ from pootle_translationproject.signals import (tp_inited_async,
                                                tp_init_failed_async)
 
 
-def init_tp_from_templates(tp):
-    """Wraps translation project method to allow it to be running as RQ job"""
+def update_translation_project(tp, initialize_from_templates):
+    """Wraps translation project initializing to allow it to be running
+    as RQ job.
+    """
     try:
-        tp.init_from_templates()
+        if initialize_from_templates:
+            tp.init_from_templates()
+        else:
+            tp.update_from_disk()
     except Exception as e:
         tp_init_failed_async.send(sender=tp.__class__, instance=tp)
         raise e
@@ -67,10 +72,9 @@ class TranslationProjectForm(forms.ModelForm):
         initialize_from_templates = False
         if tp.id is None:
             initialize_from_templates = tp.can_be_inited_from_templates()
-
         tp = super(TranslationProjectForm, self).save(commit)
-        if initialize_from_templates:
-            queue = get_queue('default')
-            queue.enqueue(init_tp_from_templates, tp)
+        queue = get_queue('default')
+        queue.enqueue(update_translation_project,
+                      tp, initialize_from_templates)
 
         return tp
