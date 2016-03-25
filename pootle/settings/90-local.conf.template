@@ -220,10 +220,10 @@ POOTLE_MARKUP_FILTER = (None, {})
 #             See more at https://tech.yandex.com/translate/
 #
 POOTLE_MT_BACKENDS = [
-#        ('CAIGHDEAN_TRANSLATE', ''),
-#        ('GOOGLE_TRANSLATE', ''),
-#        ('WELSH_TRANSLATE', ''),
-#        ('YANDEX_TRANSLATE', ''),
+#    ('CAIGHDEAN_TRANSLATE', ''),
+#    ('GOOGLE_TRANSLATE', ''),
+#    ('WELSH_TRANSLATE', ''),
+#    ('YANDEX_TRANSLATE', ''),
 ]
 
 
