@@ -523,7 +523,7 @@ PTL.editor = {
       this.displayObsoleteMsg();
     }
 
-    autosize(document.querySelector('textarea.expanding'));
+    autosize(document.querySelector('textarea.expanding:not([disabled="disabled"])'));
 
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();
@@ -1288,6 +1288,9 @@ PTL.editor = {
   /* reDraws the translate table rows */
   reDraw(newTbody) {
     const $oldRows = this.$editorBody.find('tr');
+
+    // Remove autosize event listeners for textarea before removing
+    autosize.destroy(document.querySelectorAll('textarea.expanding'));
 
     $oldRows.remove();
 
