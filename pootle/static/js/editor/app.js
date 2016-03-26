@@ -1069,6 +1069,25 @@ PTL.editor = {
     return offset - (offset % (2 * this.units.chunkSize));
   },
 
+  /* Checks whether editor needs the next batch of units */
+  needsNextUnitBatch() {
+    return (
+      (this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1)
+        && (this.getOffsetOfLastUnit() < this.units.total));
+  },
+
+  /* Checks whether editor needs the previous batch of units */
+  needsPreviousUnitBatch() {
+    return (
+      (this.units.uIds.slice(0, 7).indexOf(this.units.activeUnit.id) !== -1)
+        && this.initialOffset > 0);
+  },
+
+  /* Returns the uids of the last batch of units currently stored */
+  getPreviousUids() {
+    return this.units.uIds.slice(-(2 * this.units.chunkSize));
+  },
+
   /* Sets the offset in the browser location */
   setOffset(uid) {
     $.history.load(utils.updateHashPart('offset', this.getStartOfChunk(this.getOffsetOfUid(uid))));
@@ -1328,11 +1347,11 @@ PTL.editor = {
         this.initialOffset = initialOffset;
       }
     } else if (this.units.length && this.units.total) {
-      if ((this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1) && (this.getOffsetOfLastUnit() < this.units.total)) {
+      if (this.needsNextUnitBatch()) {
         /* The unit is in the last 7, try and get the next chunk - also sends the last chunk of uids to allow server to adjust results */
-        previousUids = this.units.uIds.slice(-(2 * this.units.chunkSize));
+        previousUids = this.getPreviousUids();
         offsetToFetch = this.offset;
-      } else if ((this.units.uIds.slice(0, 7).indexOf(this.units.activeUnit.id) !== -1) && this.initialOffset > 0) {
+      } else if (this.needsPreviousUnitBatch()) {
         /* The unit is in the first 7, try and get the previous chunk */
         offsetToFetch = Math.max(this.initialOffset - (2 * this.units.chunkSize), 0);
       }
