@@ -1328,7 +1328,7 @@ PTL.editor = {
         this.initialOffset = initialOffset;
       }
     } else if (this.units.length && this.units.total) {
-      if ((this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1) && (this.units.total > (this.offset + (2 * this.units.chunkSize)))) {
+      if ((this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1) && (this.getOffsetOfLastUnit() < this.units.total)) {
         /* The unit is in the last 7, try and get the next chunk - also sends the last chunk of uids to allow server to adjust results */
         previousUids = this.units.uIds.slice(-(2 * this.units.chunkSize));
         offsetToFetch = this.offset;
