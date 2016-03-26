@@ -378,9 +378,6 @@ PTL.editor = {
       });
     });
 
-    // Update relative dates every minute
-    setInterval(helpers.updateRelativeDates, 6e4);
-
     /* History support */
     $.history.init((hash) => {
       const params = utils.getParsedHash(hash);
