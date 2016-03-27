@@ -121,10 +121,13 @@ class DBSearchBackend(object):
         search = kwargs['search']
         sfields = kwargs['sfields']
         user = kwargs['user']
-        vfolder = kwargs["vfolder"]
 
-        if vfolder is not None:
-            qs = qs.filter(vfolders=vfolder)
+        # plugin filtering
+        qs = qs.filter(
+            **search_filters.gather(
+                sender=self.__class__,
+                search_backend=self,
+                filter_kwargs=kwargs))
 
         # plugin filtering
         qs = qs.filter(
