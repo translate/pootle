@@ -24,6 +24,7 @@ from django_rq.queues import get_connection, get_queue
 
 from pootle.core.cache import get_cache
 from pootle.core.log import log
+from pootle.core.signals import cache_cleared
 from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle.core.utils.timezone import datetime_min
 from pootle_misc.util import dictsum
@@ -502,6 +503,8 @@ class CachedTreeItem(TreeItem):
         """
         self.mark_all_dirty()
         self.update_dirty_cache()
+
+        cache_cleared.send(self.__class__, instance=self)
 
     def _update_cache_job(self, keys, decrement):
         """Update dirty cached stats of current TreeItem and add RQ job for
