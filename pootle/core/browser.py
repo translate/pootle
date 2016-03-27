@@ -81,6 +81,7 @@ def get_table_headings(choices):
 def make_generic_item(path_obj, **kwargs):
     """Template variables for each row in the table."""
     return {
+        'pk': path_obj.pk,
         'href': path_obj.get_absolute_url(),
         'href_all': path_obj.get_translate_url(),
         'href_todo': path_obj.get_translate_url(state='incomplete', **kwargs),
