@@ -24,7 +24,6 @@ from pootle_language.models import Language
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
-from virtualfolder.helpers import extract_vfolder_from_path
 
 from .exceptions import Http400
 from .url_helpers import split_pootle_path
@@ -138,7 +137,10 @@ def set_resource(request, path_obj, dir_path, filename):
     # A clean pootle path is a pootle path without any virtual folder name on
     # it. For example /af/test_vfolders/browser/chrome/ is the corresponding
     # clean pootle path for /af/test_vfolders/browser/vfolder8/chrome/
-    vfolder, clean_pootle_path = extract_vfolder_from_path(pootle_path)
+    clean_pootle_path = pootle_path
+    extracted = extracted_path.get(str.__class__, instance=pootle_path)
+    if extracted:
+        clean_pootle_path = extracted[0]
 
     extracted = extracted_path.get(str.__class__, instance=clean_pootle_path)
     if extracted:
@@ -183,7 +185,6 @@ def set_resource(request, path_obj, dir_path, filename):
     request.store = store
     request.directory = directory
     request.pootle_path = pootle_path
-    request.current_vfolder = getattr(vfolder, 'pk', '')
 
     request.resource_obj = store or (directory if dir_path else path_obj)
     request.resource_path = resource_path
