@@ -20,7 +20,7 @@ urlpatterns = [
 
     # XHR
     url(r'^xhr/stats/checks/?$',
-        views.get_qualitycheck_stats,
+        views.QualityCheckStatsJSON.as_view(),
         name='pootle-xhr-stats-checks'),
     url(r'^xhr/stats/?$',
         views.get_stats,
