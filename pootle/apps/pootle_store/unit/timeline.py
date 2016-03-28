@@ -321,6 +321,8 @@ class Timeline(object):
                         item["submitter__email"])
                 if "datetime" not in entry_group:
                     entry_group['datetime'] = item['creation_time']
+                via_upload = item["type"] == SubmissionTypes.UPLOAD
+                entry_group["via_upload"] = via_upload
                 entry_group['entries'].append(self.get_entry(item))
             grouped_entries.append(entry_group)
         return grouped_entries

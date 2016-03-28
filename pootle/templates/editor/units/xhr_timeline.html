@@ -55,10 +55,17 @@
           {% endif %}
         </div>
       </div>
-      {% if entry_group.datetime %}
-      <time class="extra-item-meta js-relative-date"
-        title="{{ entry_group.datetime|dateformat }}"
-        datetime="{{ entry_group.datetime.isoformat }}">&nbsp;</time>
+      {% if entry_group.datetime or entry_group.via_upload %}
+      <div class="extra-item-meta">
+        {% if entry_group.datetime %}
+          <time class="js-relative-date"
+            title="{{ entry_group.datetime|dateformat }}"
+            datetime="{{ entry_group.datetime.isoformat }}">&nbsp;</time>
+        {% endif %}
+        {% if entry_group.via_upload %}
+          <div class="item-source">{% trans "via file upload" %}</div>
+        {% endif %}
+      </div>
       {% endif %}
     </div>
   </div>
