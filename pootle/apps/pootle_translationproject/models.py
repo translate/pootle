@@ -22,8 +22,7 @@ from django.utils.functional import cached_property
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.project_tree import (does_not_exist,
-                                     init_store_from_template,
+from pootle_app.project_tree import (does_not_exist, init_store_from_template,
                                      translation_project_dir_exists)
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters

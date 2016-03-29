@@ -12,12 +12,11 @@ from django.conf import settings
 from django.core.urlresolvers import resolve
 from django.db.models import Max
 
-from pootle_misc.checks import get_category_id
-
 from pootle.core.dateparse import parse_datetime
 from pootle.core.url_helpers import split_pootle_path
+from pootle_misc.checks import get_category_id
 from pootle_store.models import Unit
-from pootle_store.unit.filters import UnitTextSearch, UnitSearchFilter
+from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
 from pootle_store.unit.results import GroupedResults, StoreResults
 from pootle_store.views import ALLOWED_SORTS, SIMPLY_SORTED
 from virtualfolder.helpers import extract_vfolder_from_path

@@ -7,8 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.utils.functional import cached_property
 from django.db.models import Max
+from django.utils.functional import cached_property
 
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch

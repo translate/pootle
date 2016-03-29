@@ -22,8 +22,8 @@ from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
-from pootle_translationproject.signals import (tp_inited_async,
-                                               tp_init_failed_async)
+from pootle_translationproject.signals import (tp_init_failed_async,
+                                               tp_inited_async)
 
 
 def update_translation_project(tp, initialize_from_templates, response_url):
