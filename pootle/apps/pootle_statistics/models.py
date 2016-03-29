@@ -388,6 +388,22 @@ class TranslationActionCodes(object):
     }
 
 
+class ScoreLogManager(models.Manager):
+
+    def for_user_in_range(self, user, start, end):
+        """Returns all logged scores for `user` in the [`start`, `end`] date
+        range.
+        """
+        return ScoreLog.objects.select_related(
+            'submission__translation_project__project',
+            'submission__translation_project__language',
+        ).filter(
+            user=user,
+            creation_time__gte=start,
+            creation_time__lte=end,
+        )
+
+
 class ScoreLog(models.Model):
     creation_time = models.DateTimeField(db_index=True, null=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False)
@@ -403,6 +419,8 @@ class ScoreLog(models.Model):
     score_delta = models.FloatField(null=False)
     action_code = models.IntegerField(null=False)
     submission = models.ForeignKey(Submission, null=False)
+
+    objects = ScoreLogManager()
 
     class Meta(object):
         unique_together = ('submission', 'action_code')

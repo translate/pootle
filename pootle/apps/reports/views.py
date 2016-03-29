@@ -391,15 +391,6 @@ def remove_paid_task(request, task_id=None):
     return JsonResponseBadRequest({'error': _('Invalid request method')})
 
 
-def get_scores(user, start, end):
-    return ScoreLog.objects \
-        .select_related('submission__translation_project__project',
-                        'submission__translation_project__language',) \
-        .filter(user=user,
-                creation_time__gte=start,
-                creation_time__lte=end)
-
-
 def get_activity_data(request, user, month):
     [start, end] = get_date_interval(month)
 
@@ -428,7 +419,7 @@ def get_activity_data(request, user, month):
     }
 
     if user != '':
-        scores = get_scores(user, start, end)
+        scores = ScoreLog.objects.for_user_in_range(user, start, end)
         scores = list(scores.order_by(SCORE_TRANSLATION_PROJECT))
         json['grouped'] = get_grouped_word_stats(scores, user, month)
         scores.sort(key=lambda x: x.creation_time)
@@ -553,8 +544,7 @@ def get_rates(user, start, end):
         ``hourly_rate`` is the rate for hourly work that can be added as
         PaidTask.
     """
-
-    scores = get_scores(user, start, end)
+    scores = ScoreLog.objects.for_user_in_range(user, start, end)
     rate, review_rate, hourly_rate = 0, 0, 0
     rates = scores.values('rate', 'review_rate').distinct()
     if len(rates) > 1:
