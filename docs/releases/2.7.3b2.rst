@@ -24,8 +24,9 @@ Details of changes
   :option:`--since <contributors --since>` and
   :option:`--only-emails <contributors --only-emails>`.
 - :djadmin:`flush_cache` flushes `default`, `redis`, `stats` caches,
-  accepts :option:`--rqdata`, :option:`--stats`, :option:`--django-cache`
-  options.
+  accepts :option:`--rqdata <flush_cache --rqdata>`,
+  :option:`--stats <flush_cache --stats>`,
+  :option:`--django-cache <flush_cache --django-cache>` options.
 
 - :setting:`POOTLE_SCORE_COEFFICIENTS` accepts custom settings for user
   scores calculation.
