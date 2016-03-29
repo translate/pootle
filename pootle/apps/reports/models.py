@@ -35,6 +35,17 @@ class ReportActionTypes(object):
     }
 
 
+class PaidTaskManager(models.Manager):
+
+    def for_user_in_range(self, user, start, end):
+        """Returns all tasks for `user` in the [`start`, `end`] date range."""
+        return self.get_queryset().filter(
+            user=user,
+            datetime__gte=start,
+            datetime__lte=end,
+        ).order_by('pk')
+
+
 class PaidTask(models.Model):
     """The Paid Task.
 
@@ -56,6 +67,8 @@ class PaidTask(models.Model):
     datetime = models.DateTimeField(_('Date'), null=False, db_index=True)
     description = models.TextField(_('Description'), null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    objects = PaidTaskManager()
 
     @classmethod
     def get_task_type_title(cls, task_type):

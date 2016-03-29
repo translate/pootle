@@ -540,14 +540,6 @@ def get_daily_activity(user, scores, start, end):
     return result
 
 
-def get_tasks(user, start, end):
-    return PaidTask.objects \
-                   .filter(user=user,
-                           datetime__gte=start,
-                           datetime__lte=end) \
-                   .order_by('pk')
-
-
 def get_rates(user, start, end):
     """Get user rates that were set for the user during a period
     from start to end. Raise an exception if the user has multiple rates
@@ -571,7 +563,7 @@ def get_rates(user, start, end):
         rate = rates[0]['rate']
         review_rate = rates[0]['review_rate']
 
-    tasks = get_tasks(user, start, end)
+    tasks = PaidTask.objects.for_user_in_range(user, start, end)
     task_rates = tasks.values('task_type', 'rate').distinct()
     for task_rate in task_rates:
         if (task_rate['task_type'] == PaidTaskTypes.TRANSLATION and
@@ -598,7 +590,7 @@ def get_rates(user, start, end):
 def get_paid_tasks(user, start, end):
     result = []
 
-    tasks = get_tasks(user, start, end)
+    tasks = PaidTask.objects.for_user_in_range(user, start, end)
 
     for task in tasks:
         result.append({
