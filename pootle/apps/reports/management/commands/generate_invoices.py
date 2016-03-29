@@ -27,10 +27,10 @@ from django.utils import timezone
 from django.utils.html import strip_tags
 
 from pootle_misc.util import get_date_interval
+from pootle_statistics.models import ScoreLog
 
 from ...models import PaidTaskTypes, PaidTask
-from ...views import (get_grouped_word_stats, get_rates, get_scores,
-                      SCORE_TRANSLATION_PROJECT)
+from ...views import get_grouped_word_stats, get_rates, SCORE_TRANSLATION_PROJECT
 
 
 logger = logging.getLogger(__name__)
@@ -200,7 +200,7 @@ class Command(BaseCommand):
                     rate, review_rate, hourly_rate = \
                         get_rates(main_user, start, end)
 
-                scores = get_scores(user, start, end)
+                scores = ScoreLog.objects.for_user_in_range(user, start, end)
                 scores = scores.order_by(SCORE_TRANSLATION_PROJECT)
                 for row in get_grouped_word_stats(scores):
                     translated_words += row['translated']
