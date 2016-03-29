@@ -30,7 +30,8 @@ from pootle_misc.util import get_date_interval
 from pootle_statistics.models import ScoreLog
 
 from ...models import PaidTaskTypes, PaidTask
-from ...views import get_grouped_word_stats, SCORE_TRANSLATION_PROJECT
+from ...utils import get_grouped_word_stats
+from ...views import SCORE_TRANSLATION_PROJECT
 
 
 logger = logging.getLogger(__name__)
