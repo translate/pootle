@@ -29,7 +29,7 @@ from django.utils.html import strip_tags
 from pootle_misc.util import get_date_interval
 
 from ...models import PaidTaskTypes, PaidTask
-from ...views import (get_grouped_word_stats, get_rates, get_tasks, get_scores,
+from ...views import (get_grouped_word_stats, get_rates, get_scores,
                       SCORE_TRANSLATION_PROJECT)
 
 
@@ -206,7 +206,7 @@ class Command(BaseCommand):
                     translated_words += row['translated']
                     reviewed_words += row['reviewed']
 
-                tasks = get_tasks(user, start, end)
+                tasks = PaidTask.objects.for_user_in_range(user, start, end)
                 for task in tasks:
                     if task.task_type == PaidTaskTypes.TRANSLATION:
                         translated_words += task.amount
