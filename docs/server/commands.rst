@@ -174,6 +174,39 @@ to checks or wordcount calculations.  While it should be fine to run
 scratch.
 
 
+.. django-admin:: flush_cache
+
+flush_cache
+^^^^^^^^^^^
+
+.. versionadded:: 2.8.0
+
+Flush cache.
+
+.. warning:: You must first **stop the workers** if you flush `stats`
+   or `redis` cache.
+
+.. django-admin-option:: --django-cache
+
+Use the :option:`--django-cache` to flush `default` cache which keeps Django
+templates, project permissions etc.).
+
+.. django-admin-option:: --rqdata
+
+Use the :option:`--rqdata` to flush all data contained in `redis` cache:
+pending jobs, dirty flags, revision (which will be automatically restored),
+all data from queues.
+
+.. django-admin-option:: --stats
+
+Use the :option:`--stats` to flush all stats data only (it works faster than
+:djadmin:`clear_stats` but it requires stopping the worker).
+
+.. django-admin-option:: --all
+
+Use the :option:`--all` to flush all caches (`default`, `redis`, `stats`) data.
+
+
 .. django-admin:: refresh_scores
 
 refresh_scores
