@@ -31,7 +31,7 @@ from allauth.account.utils import sync_user_email_addresses
 from pootle.core.cache import make_method_key
 from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
-from pootle_statistics.models import Submission
+from pootle_statistics.models import Submission, ScoreLog
 from pootle_store.models import Unit
 
 from .managers import UserManager
@@ -186,29 +186,45 @@ class User(AbstractBaseUser):
         past = now + datetime.timedelta(-days)
 
         lookup_kwargs = {
-            'scorelog__creation_time__range': [past, now],
+            'creation_time__range': [past, now],
         }
 
         if language is not None:
             lookup_kwargs.update({
-                'scorelog__submission__translation_project__language__code':
+                'submission__translation_project__language__code':
                     language,
             })
 
         if project is not None:
             lookup_kwargs.update({
-                'scorelog__submission__translation_project__project__code':
+                'submission__translation_project__project__code':
                     project,
             })
 
-        top_scorers = cls.objects.hide_meta().filter(
+        meta_user_ids = cls.objects.meta_users().values_list('id', flat=True)
+        top_scores = ScoreLog.objects.values("user").filter(
             **lookup_kwargs
+        ).exclude(
+            user__pk__in=meta_user_ids,
         ).annotate(
-            total_score=Sum('scorelog__score_delta'),
+            total_score=Sum('score_delta'),
         ).order_by('-total_score')
 
         if isinstance(limit, (int, long)) and limit > 0:
-            top_scorers = top_scorers[:limit]
+            top_scores = top_scores[:limit]
+
+        users = dict(
+            (user.id, user)
+            for user in cls.objects.filter(
+                pk__in=[item['user'] for item in top_scores]
+            )
+        )
+
+        top_scorers = []
+        for item in top_scores:
+            user = users[item['user']]
+            user.total_score = item['total_score']
+            top_scorers.append(user)
 
         cache.set(cache_key, list(top_scorers), 60)
         return top_scorers
