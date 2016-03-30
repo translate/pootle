@@ -8,12 +8,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib.auth import get_user_model
-from django.core.mail import send_mail
 from django.db.models import Q
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.mail import send_mail
 from pootle.core.url_helpers import urljoin
 
 from .models import TranslationProject
@@ -37,7 +37,7 @@ def tp_inited_async(instance, response_url, **kwargs):
     subject = _(u"Translation project (%s) created" % instance)
     recipients = get_recipients(instance.project)
     send_mail(subject, message, from_email=None,
-              recipient_list=recipients, fail_silently=True)
+              recipient_list=[], fail_silently=True, bcc=recipients)
 
 
 @receiver(tp_init_failed_async, sender=TranslationProject)
@@ -48,4 +48,4 @@ def tp_init_failed_async(instance, **kwargs):
     subject = _(u"Translation project (%s) creation failed" % instance)
     recipients = get_recipients(instance.project)
     send_mail(subject, message, from_email=None,
-              recipient_list=recipients, fail_silently=True)
+              recipient_list=[], fail_silently=True, bcc=recipients)
