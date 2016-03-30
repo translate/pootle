@@ -46,6 +46,7 @@ Administrative features
 .. toctree::
    :maxdepth: 2
 
+   invoices
    staticpages
    captcha
    permissions

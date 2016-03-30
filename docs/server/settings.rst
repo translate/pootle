@@ -306,30 +306,86 @@ Configuration settings for applications used by Pootle.
 
   The setting holds a dictionary where the keys are actual usernames of the
   running Pootle instance and the values are dictionaries of key-value pairs
-  which will be used to construct individual invoices. Check the example below
-  for the available fields.
+  which will hold the user-specific configuration used to construct individual
+  invoices.
+
+  The user configuration accepts the following keys:
+
+  ``name`` (required)
+    Full name as displayed in the invoice. The official "full" person name can
+    be different from the public *shortened* version available in the Pootle
+    profile, hence this name is used instead as it's dealing with financial
+    documents.
+
+  ``wire_info`` (required)
+    Wire information which includes payment details. This can be a multi-line
+    string and it will be rendered as such in the invoice, with leading
+    whitespace removed.
+
+  ``paid_by`` (required)
+    Official name of the company/person paying the invoice.
+
+  ``invoice_prefix`` (required)
+    Prefix used to generate invoice IDs. This will be prepended to the current
+    month in `YYYY-MM` format as a string.
+
+    A recommended approach for prefixing invoices is the *"Language-Initials"*
+    format. For example, if there's a translator named *"John Doe"* translating
+    into Spanish (ES), the prefix might look like ``'ES-JD-'`` and the invoices
+    generated for this person will be consequently named like *'ES-JD-2016-06'*,
+    *'ES-JD-2016-07'* and so on. If there is a need for these IDs to be globally
+    unique, one needs to specify a unique prefix for each of the paid
+    translators.
+
+  ``minimal_payment``
+    Minimal payment threshold value to be reached for the payment to be
+    initiated during the monthly pay cycle. If the summed up amount is lower
+    than ``minimal_payment``, the amount for the month will be carried over to
+    the next month.
+
+    The amount is in the currency set along the rate for the user in the
+    reporting UI.
+
+  ``extra_add``
+    Fixed amount to be added on top of the total accrued amounts. Use this e.g.
+    to reimburse transaction fees.
+
+    The amount is in the currency set along the rate for the user in the
+    reporting UI.
+
+  ``subcontractors``
+    A list of usernames which will be considered as subcontractors of the main
+    user. This way, subcontractors' work is consolidated in a single invoice.
+
+  When sending emails with ``--send-emails``, the following keys are available
+  as well:
+
+  ``email`` (required)
+    E-mail address of the translator where the invoice will be sent to. It can
+    contain multiple addresses separated by spaces.
+    This is not read from the user profile to have a way to set it explicitly
+    and avoid potential conflicts when people are using different addresses for
+    different purposes.
+
+  ``accounting-email`` (required)
+    E-mail address of the company's accountants. At this address they will
+    receive the request to pay the invoice, along with a copy of it.
+    It can contain multiple addresses separated by spaces.
+
+  ``accounting-email-cc``
+    E-mail address of the company's accountants which will be added in the copy
+    of the request for payment.
+    It can contain multiple addresses separated by spaces.
+
+  Check a full example below.
 
   .. code-block:: python
 
     POOTLE_INVOICES_RECIPIENTS = {
         'johndoe': {
-            # Full name as displayed in the invoice
-            # (REQUIRED)
-            'name': 'John Doe',
-            # Recipient's email address
-            'email': 'johndoe@example.com',
-            # (REQUIRED for sending via e-mail)
-            # Accounting department's email
-            'accounting-email': 'acc@example.com',
-            'accounting-email-cc': 'other.accountant@example.com',
-            # (REQUIRED)
-            'invoice_prefix': '-',
-            'language': 'ru',
-            'minimal_payment': 50, # USD
-            'extra_add': 30, # +30 USD wire transfer reimbursement
-            # (REQUIRED)
-            'paid_by': 'Evernote Corp.',
-            # (REQUIRED)
+            'name': 'John Benjamin Doe',
+            'invoice_prefix': 'JD-',
+            'paid_by': 'ACME Corp.',
             'wire_info': u"""
                 Name on Account: John Doe
                 Bank: TEST BANK
@@ -338,10 +394,16 @@ Configuration settings for applications used by Pootle.
                 Current Account: Acc. number
                 CPF: C.P.F. number
                 """,
-            # (OPTIONAL)
+
+            'minimal_payment': 50,
+            'extra_add': 30,
             'subcontractors': (
-                '<username>', # Usernames of subcontractors
+                '<username1>', '<username2>',
             ),
+
+            'email': 'johndoe@example.com',
+            'accounting-email': 'accountant@example.com',
+            'accounting-email-cc': 'other.accountant@example.com',
         },
     }
 

@@ -1052,6 +1052,42 @@ Available options:
   Verify all users of the site
 
 
+.. _commands#reports:
+
+Reports and Invoicing
+---------------------
+
+
+.. django-admin:: generate_invoices
+
+generate_invoices
+^^^^^^^^^^^^^^^^^
+
+.. versionadded:: 2.8.1
+
+Generates invoices out of user activity. Before using it, please check the
+:ref:`documentation on invoices <invoices>` to learn more about how it works and
+how to configure it.
+
+Running ``generate_invoices`` without any arguments will generate invoices for
+the previous month. A specific month can be specified by passing the
+``--debug-month=<YYYY-MM>`` argument. Invoices will be generated under the
+``$POOTLE_INVOICES_DIRECTORY/<YYYY-MM>/`` folder.
+
+The list of users for whom invoices will be generated can be limited to a subset
+of the configured users by passing the ``--user-list <user1 user2... userN>``
+argument. Note all users defined in the configuration need to exist, otherwise
+the command will complain and create no invoices at all.
+
+Invoices will also be sent by email if the ``--send-emails`` flag is set. There
+are a couple more options to control how email will be sent:
+
+  * ``--bcc-send-to``: allows manually specifying BCC recipients.
+  * ``--debug-send-to``: manually overrides who the invoice will be sent to. It omits
+    sending copies to anyone. This can be useful for debugging.
+
+
+
 .. _commands#running:
 
 Running WSGI servers
