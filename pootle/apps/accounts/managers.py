@@ -79,3 +79,8 @@ class UserManager(BaseUserManager):
         return super(UserManager, self).get_queryset().exclude(
             username__in=self.META_USERS
         )
+
+    def meta_users(self):
+        return super(UserManager, self).get_queryset().filter(
+            username__in=self.META_USERS
+        )
