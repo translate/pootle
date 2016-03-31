@@ -303,8 +303,6 @@ class Command(BaseCommand):
             extra_amount = 0
             if 'extra_add' in user_conf and total > 0:
                 extra_amount += user_conf['extra_add']
-            if 'extra_multiply' in user_conf:
-                extra_amount += total * (user_conf['extra_multiply'] - 1)
 
             id = user_conf['invoice_prefix'] + month
 
