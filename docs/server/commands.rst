@@ -188,8 +188,8 @@ Flush cache.
 
 .. django-admin-option:: --django-cache
 
-Use the :option:`--django-cache` to flush ``default`` cache which keeps Django
-templates, project permissions etc.).
+Use the :option:`--django-cache` to flush the ``default`` cache which keeps
+Django templates, project permissions etc.
 
 .. django-admin-option:: --rqdata
 
