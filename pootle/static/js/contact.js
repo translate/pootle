@@ -145,7 +145,7 @@ const contact = {
   /* Injects a form validation error next to the input it failed to
    * validate */
   validationError(fieldName, msgs) {
-    const $field = $('#id_' + fieldName);
+    const $field = $(`#id_${fieldName}`);
     const errorList = ['<ul class="errorlist">'];
     for (let i = 0; i < msgs.length; i++) {
       errorList.push(['<li>', msgs[i], '</li>'].join(''));

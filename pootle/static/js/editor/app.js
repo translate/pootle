@@ -333,6 +333,8 @@ PTL.editor = {
         const moduleName = provider.name.split('_').map(
           (x) => x[0] + x.slice(1).toLowerCase()
         ).join('');
+        // Webpack doesn't like template strings for now...
+        // eslint-disable-next-line prefer-template
         const Module = require('./mt/providers/' + moduleName).default;
         mtProviders.push(new Module(provider.key));
       });
@@ -440,11 +442,11 @@ PTL.editor = {
             continue;
           }
 
-          newOpts.push(
-            `<option value="${key}" data-user="${user}" class="js-user-filter">` +
-              values[key] +
-            '</option>'
-          );
+          newOpts.push(`
+            <option value="${key}" data-user="${user}" class="js-user-filter">
+              ${values[key]}
+            </option>
+          `);
         }
         $('.js-user-filter').remove();
         this.$filterStatus.append(newOpts.join(''));
@@ -1158,11 +1160,11 @@ PTL.editor = {
 
   /* Renders a single row */
   renderRow(unit) {
-    return (
-      `<tr id="row${unit.id}" class="view-row">` +
-        this.tmpl.vUnit({ unit: unit.toJSON() }) +
-      '</tr>'
-    );
+    return (`
+      <tr id="row${unit.id}" class="view-row">
+        ${this.tmpl.vUnit({ unit: unit.toJSON() })}
+      </tr>
+    `);
   },
 
   renderEditorRow(unit) {
@@ -1173,13 +1175,13 @@ PTL.editor = {
 
     const [ctxRowBefore, ctxRowAfter] = this.renderCtxControls({ hasData: false });
 
-    return (
-      (this.filter !== 'all' ? ctxRowBefore : '') +
-      `<tr id="row${unit.id}" class="${eClass}">` +
-        this.editorRow +
-      '</tr>' +
-      (this.filter !== 'all' ? ctxRowAfter : '')
-    );
+    return (`
+      ${this.filter !== 'all' ? ctxRowBefore : ''}
+      <tr id="row${unit.id}" class="${eClass}">
+        ${this.editorRow}
+      </tr>
+      ${this.filter !== 'all' ? ctxRowAfter : ''}
+    `);
   },
 
   /* Renders the editor rows */
@@ -1732,7 +1734,7 @@ PTL.editor = {
 
           if (value in checks) {
             empty = false;
-            $opt.text($opt.data('title') + '(' + checks[value] + ')');
+            $opt.text(`${$opt.data('title')}(${checks[value]})`);
           } else {
             $opt.remove();
           }
@@ -1936,7 +1938,7 @@ PTL.editor = {
 
     if (searchText) {
       const queryString = this.buildSearchQuery();
-      newHash = 'search=' + queryString;
+      newHash = `search=${queryString}`;
     } else {
       newHash = utils.updateHashPart('filter', 'all', ['search', 'sfields', 'soptions']);
     }
@@ -2115,7 +2117,7 @@ PTL.editor = {
     }
 
     if (pStyle.length && pStyle !== 'standard') {
-      tmUrl += '&style=' + pStyle;
+      tmUrl += `&style=${pStyle}`;
     }
 
     fetch({ url: tmUrl, crossDomain: true })

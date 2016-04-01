@@ -34,7 +34,7 @@ class CaighdeanTranslate extends MTProvider {
     for (let i = 0; i < response.length; i++) {
       let token = response[i][1];
       if (!token.match(trimmed) && text !== '') {
-        token = ' ' + token;
+        token = ` ${token}`;
       }
       text = text + token;
     }

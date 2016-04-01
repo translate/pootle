@@ -163,7 +163,7 @@ PTL.common = {
                  '-source_language'];
 
     $.each(ids, (i, id) => {
-      const $selects = $('select[id$="' + id + '"]');
+      const $selects = $(`select[id$="${id}"]`);
 
       $.each($selects, (j, select) => {
         const $select = $(select);

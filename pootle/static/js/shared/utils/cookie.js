@@ -14,7 +14,7 @@ function getCookie(name) {
     for (let i = 0; i < cookies.length; i++) {
       const cookieData = cookies[i].trim();
       // Does this cookie string begin with the name we want?
-      if (cookieData.substring(0, name.length + 1) === (name + '=')) {
+      if (cookieData.substring(0, name.length + 1) === `${name}=`) {
         value = decodeURIComponent(cookieData.substring(name.length + 1));
         break;
       }

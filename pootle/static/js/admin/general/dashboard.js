@@ -21,8 +21,8 @@ function slideTable(event) {
     success(data) {
       let newstats = '';
       data.forEach((values) => {
-        newstats += '<tr><th scope="row">' + values[0] + '</th>'
-                    + '<td class="stats-number">' + values[1] + '</td></tr>';
+        newstats += `<tr><th scope="row">${values[0]}</th>`
+                    + `<td class="stats-number">${values[1]}</td></tr>`;
       });
       $node.append(newstats);
       $node.slideDown('fast');

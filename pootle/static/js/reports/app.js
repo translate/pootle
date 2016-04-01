@@ -93,7 +93,7 @@ PTL.reports = {
       }
 
       PTL.reports.loadedHashParams = params;
-      $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + utils.getHash());
+      $('#detailed a').attr('href', `${PTL.reports.detailedUrl}?${utils.getHash()}`);
     }, { unescape: true });
   },
 
@@ -206,7 +206,7 @@ PTL.reports = {
 
   refreshAmountMeasureUnits(taskType) {
     $('#paid-task-form .units').hide();
-    $('#paid-task-form .units.task-' + taskType).show();
+    $(`#paid-task-form .units.task-${taskType}`).show();
   },
 
   getRateByTaskType(taskType) {
@@ -471,7 +471,7 @@ PTL.reports = {
           $('#user-rates-form .currency').text($('#id_currency').val());
 
           if ('task' in PTL.reports.params) {
-            const task = document.querySelector('.task' + PTL.reports.params.task);
+            const task = document.querySelector(`.task${PTL.reports.params.task}`);
             if (!!task) {
               task.classList.add('highlight');
               setTimeout(() => {
@@ -538,13 +538,13 @@ PTL.reports = {
   updateMonthSelector() {
     $('.js-month').each(function setLink() {
       const $el = $(this);
-      let link = PTL.reports.adminReport ? '#username=' + PTL.reports.userName + '&' : '#';
+      let link = PTL.reports.adminReport ? `#username=${PTL.reports.userName}&` : '#';
 
       if ($el.hasClass('js-previous')) {
-        link += 'month=' + PTL.reports.month.clone().subtract({ M: 1 }).format('YYYY-MM');
+        link += `month=${PTL.reports.month.clone().subtract({ M: 1 }).format('YYYY-MM')}`;
       }
       if ($el.hasClass('js-next')) {
-        link += 'month=' + PTL.reports.month.clone().add({ M: 1 }).format('YYYY-MM');
+        link += `month=${PTL.reports.month.clone().add({ M: 1 }).format('YYYY-MM')}`;
       }
       $el.attr('href', link);
     });

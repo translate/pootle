@@ -56,10 +56,10 @@ const Tabs = React.createClass({
       const elementType = child.type.displayName || child.type;
       // FIXME: validate via custom propTypes
       if (elementType !== 'Tab') {
-        throw new Error(
-          'Invalid children for component `Tabs`. Expected: `Tab`. ' +
-          'Found: `' + elementType + '`'
-        );
+        throw new Error(`
+          Invalid children for component 'Tabs'. Expected: 'Tab'.
+          Found: '${elementType}'
+        `);
       }
 
       const isActive = this.state.selectedTab === index;

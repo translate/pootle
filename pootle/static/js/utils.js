@@ -106,9 +106,9 @@ export function fancyEscape(text) {
     const escapeHl = '<span class="highlight-escape">%s</span>';
     const htmlHl = '<span class="highlight-html">&lt;%s&gt;</span>';
     const submap = {
-      '\r\n': escapeHl.replace(/%s/, '\\r\\n') + '<br/>\n',
-      '\r': escapeHl.replace(/%s/, '\\r') + '<br/>\n',
-      '\n': escapeHl.replace(/%s/, '\\n') + '<br/>\n',
+      '\r\n': `${escapeHl.replace(/%s/, '\\r\\n')}<br/>\n`,
+      '\r': `${escapeHl.replace(/%s/, '\\r')}<br/>\n`,
+      '\n': `${escapeHl.replace(/%s/, '\\n')}<br/>\n`,
       '\t': escapeHl.replace(/%s/, '\\t'),
       '&': '&amp;',
       '<': '&lt;',

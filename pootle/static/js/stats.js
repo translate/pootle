@@ -45,7 +45,7 @@ function setTdWidth($td, w) {
   if (w === 0) {
     $td.hide();
   } else {
-    $td.css('width', w + '%').show();
+    $td.css('width', `${w}%`).show();
   }
 }
 
@@ -348,7 +348,7 @@ const stats = {
       // Sort columns based on previously-made selections
       const columnSort = sorttable.getSortCookie($table.data('sort-cookie'));
       if (columnSort !== null) {
-        const $th = $('#' + columnSort.columnId);
+        const $th = $(`#${columnSort.columnId}`);
         $th.removeClass('sorttable_sorted sorttable_sorted_reverse');
         setTimeout(() => {
           $th.click();

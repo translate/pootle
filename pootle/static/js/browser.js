@@ -180,7 +180,7 @@ function formatResource(path, container, query) {
     return '';
   }
 
-  let t = '/' + path.text.trim();
+  let t = `/${path.text.trim()}`;
 
   if (query.term !== '') {
     const escapedTerm = query.term.replace(
