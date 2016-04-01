@@ -32,17 +32,23 @@ const ProjectController = React.createClass({
 
   render() {
     const viewsMap = {
-      add: <ProjectAdd
-              model={this.props.model}
-              collection={this.props.items}
-              onSuccess={this.props.onSuccess}
-              onCancel={this.props.onCancel} />,
-      edit: <ProjectEdit
-              model={this.props.selectedItem}
-              collection={this.props.items}
-              onAdd={this.props.onAdd}
-              onSuccess={this.props.onSuccess}
-              onDelete={this.props.onDelete} />,
+      add: (
+        <ProjectAdd
+          model={this.props.model}
+          collection={this.props.items}
+          onSuccess={this.props.onSuccess}
+          onCancel={this.props.onCancel}
+        />
+      ),
+      edit: (
+        <ProjectEdit
+          model={this.props.selectedItem}
+          collection={this.props.items}
+          onAdd={this.props.onAdd}
+          onSuccess={this.props.onSuccess}
+          onDelete={this.props.onDelete}
+        />
+      ),
     };
     const args = {
       count: this.props.items.count,

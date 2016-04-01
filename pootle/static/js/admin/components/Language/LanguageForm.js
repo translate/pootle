@@ -42,9 +42,11 @@ const LanguageForm = React.createClass({
     const { formData } = this.state;
 
     return (
-      <form method="post"
-            id="item-form"
-            onSubmit={this.handleFormSubmit}>
+      <form
+        method="post"
+        id="item-form"
+        onSubmit={this.handleFormSubmit}
+      >
         <div className="fields">
           <FormElement
             autoFocus

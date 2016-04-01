@@ -32,17 +32,23 @@ const LanguageController = React.createClass({
 
   render() {
     const viewsMap = {
-      add: <LanguageAdd
-              model={this.props.model}
-              collection={this.props.items}
-              onSuccess={this.props.onSuccess}
-              onCancel={this.props.onCancel} />,
-      edit: <LanguageEdit
-              model={this.props.selectedItem}
-              collection={this.props.items}
-              onAdd={this.props.onAdd}
-              onSuccess={this.props.onSuccess}
-              onDelete={this.props.onDelete} />,
+      add: (
+        <LanguageAdd
+          model={this.props.model}
+          collection={this.props.items}
+          onSuccess={this.props.onSuccess}
+          onCancel={this.props.onCancel}
+        />
+      ),
+      edit: (
+        <LanguageEdit
+          model={this.props.selectedItem}
+          collection={this.props.items}
+          onAdd={this.props.onAdd}
+          onSuccess={this.props.onSuccess}
+          onDelete={this.props.onDelete}
+        />
+      ),
     };
     const args = {
       count: this.props.items.count,

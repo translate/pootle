@@ -44,9 +44,11 @@ const ProjectForm = React.createClass({
     const { formData } = this.state;
 
     return (
-      <form method="post"
-            id="item-form"
-            onSubmit={this.handleFormSubmit}>
+      <form
+        method="post"
+        id="item-form"
+        onSubmit={this.handleFormSubmit}
+      >
         <div className="fields">
           <FormElement
             autoFocus
@@ -137,8 +139,8 @@ const ProjectForm = React.createClass({
         </div>
         <div className="buttons">
           <input type="submit" className="btn btn-primary"
-                 disabled={!this.state.isDirty}
-                 value={gettext('Save')} />
+            disabled={!this.state.isDirty}
+            value={gettext('Save')} />
         {model.id &&
           <ul className="action-links">
             <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>

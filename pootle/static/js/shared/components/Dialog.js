@@ -39,13 +39,17 @@ const Dialog = React.createClass({
   renderFooter() {
     return (
       <ModalFooter>
-        <button className="btn btn-primary"
-                onClick={this.props.onAccept}>
+        <button
+          className="btn btn-primary"
+          onClick={this.props.onAccept}
+        >
           {this.props.okLabel}
         </button>
-        <button className="btn"
-                autoFocus
-                onClick={this.props.onCancel}>
+        <button
+          className="btn"
+          autoFocus
+          onClick={this.props.onCancel}
+        >
           {this.props.cancelLabel}
         </button>
       </ModalFooter>

@@ -41,12 +41,16 @@ const ItemDelete = React.createClass({
   render() {
     return (
       <div className="item-delete">
-        <input type="checkbox"
-               checked={!this.state.buttonDisabled}
-               onChange={this.toggleButton} />
-        <button className="btn btn-danger"
-                disabled={this.state.buttonDisabled}
-                onClick={this.handleClick}>{gettext('Delete')}</button>
+        <input
+          type="checkbox"
+          checked={!this.state.buttonDisabled}
+          onChange={this.toggleButton}
+        />
+        <button
+          className="btn btn-danger"
+          disabled={this.state.buttonDisabled}
+          onClick={this.handleClick}
+        >{gettext('Delete')}</button>
       {this.props.helpText &&
         <span className="helptext">{this.props.helpText}</span>}
       </div>

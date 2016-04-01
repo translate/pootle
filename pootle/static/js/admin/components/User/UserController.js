@@ -32,17 +32,23 @@ const UserController = React.createClass({
 
   render() {
     const viewsMap = {
-      add: <UserAdd
-              model={this.props.model}
-              collection={this.props.items}
-              onSuccess={this.props.onSuccess}
-              onCancel={this.props.onCancel} />,
-      edit: <UserEdit
-              model={this.props.selectedItem}
-              collection={this.props.items}
-              onAdd={this.props.onAdd}
-              onSuccess={this.props.onSuccess}
-              onDelete={this.props.onDelete} />,
+      add: (
+        <UserAdd
+          model={this.props.model}
+          collection={this.props.items}
+          onSuccess={this.props.onSuccess}
+          onCancel={this.props.onCancel}
+        />
+      ),
+      edit: (
+        <UserEdit
+          model={this.props.selectedItem}
+          collection={this.props.items}
+          onAdd={this.props.onAdd}
+          onSuccess={this.props.onSuccess}
+          onDelete={this.props.onDelete}
+        />
+      ),
     };
     const args = {
       count: this.props.items.count,
