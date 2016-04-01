@@ -1696,7 +1696,7 @@ html[dir="rtl"] #tabs li
 #search-form input[type="text"].search-widget-disabled
 {
     background: #eee;
-    font-style; italics;
+    font-style: italic;
 }
 
 .btn-search
