@@ -56,12 +56,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, **options):
-        if (options['flush_stats'] or options['flush_rqdata']
-            or options['flush_django_cache'] or options['flush_all']):
-            self.stdout.write('Flushing cache...')
-        else:
+        if (not options['flush_stats'] and not options['flush_rqdata'] and
+            not options['flush_django_cache'] and not options['flush_all']):
             raise CommandError("No options were provided. Use one of "
                                "--django-cache, --rqdata, --stats or --all.")
+
+        self.stdout.write('Flushing cache...')
 
         if options['flush_stats'] or options['flush_all']:
             # Delete all stats cache data.
