@@ -176,9 +176,7 @@ PTL.common = {
           }
 
           const opsArray = $.makeArray(options);
-          opsArray.sort((a, b) => {
-            return utils.strCmp($(a).text(), $(b).text());
-          });
+          opsArray.sort((a, b) => utils.strCmp($(a).text(), $(b).text()));
 
           options.remove();
           $select.append($(opsArray));

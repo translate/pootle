@@ -61,9 +61,9 @@ const FormElement = React.createClass({
         <label htmlFor={fieldId}>{this.props.label}</label>
         <InputComponent id={fieldId} {...this.props} />
       {errors &&
-        <ul className="errorlist">{errors.map((msg, i) => {
-          return <li key={i}>{msg}</li>;
-        })}</ul>}
+        <ul className="errorlist">{errors.map((msg, i) => (
+          <li key={i}>{msg}</li>
+        ))}</ul>}
       {hint &&
         <span className="helptext">{hint}</span>}
       </div>

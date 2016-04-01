@@ -66,9 +66,7 @@ function navigateTo(languageCode, projectCode, resource) {
   }
 
   const parts = ['', newLanguageCode, projectCode, action, newResource];
-  const urlParts = parts.filter((p, i) => {
-    return i === 0 || p !== '';
-  });
+  const urlParts = parts.filter((p, i) => i === 0 || p !== '');
 
   if (!newResource) {
     urlParts.push('');
@@ -211,9 +209,7 @@ function formatProject(path) {
 
 function removeCtxEntries(results, container, query) {
   if (query.term) {
-    return results.filter((result) => {
-      return result.id.slice(0, 4) !== 'ctx-';
-    });
+    return results.filter((result) => result.id.slice(0, 4) !== 'ctx-');
   }
   return results;
 }

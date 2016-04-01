@@ -44,10 +44,11 @@ export const Project = Backbone.Model.extend({
 
   getFieldChoices(fieldName) {
     if (this.fieldChoices && this.fieldChoices.hasOwnProperty(fieldName)) {
-      return this.fieldChoices[fieldName].map((field) => {
+      return this.fieldChoices[fieldName].map((field) => ({
         // FIXME: react-select's issue #25 prevents using non-string values
-        return { value: field[0].toString(), label: field[1] };
-      });
+        value: field[0].toString(),
+        label: field[1],
+      }));
     }
     return [];
   },
