@@ -59,7 +59,7 @@ PTL.reports = {
       });
       $(document).on('click', '#user-rates-form input.submit', this.updateRates);
       $(document).on('click', '#reports-paid-tasks .js-remove-task', this.removePaidTask);
-      $('#reports-user').select2({ 'data': PTL.reports.users });
+      $('#reports-user').select2({ data: PTL.reports.users });
     }
 
     $(document).on('click', '#paid-task-form input.submit', this.addPaidTask);
@@ -94,7 +94,7 @@ PTL.reports = {
 
       PTL.reports.loadedHashParams = params;
       $('#detailed a').attr('href', PTL.reports.detailedUrl + '?' + utils.getHash());
-    }, { 'unescape': true });
+    }, { unescape: true });
   },
 
   updateRates() {
@@ -234,8 +234,8 @@ PTL.reports = {
   update() {
     if (PTL.reports.validate()) {
       const newHash = $.param({
-        'username': PTL.reports.userName,
-        'month': PTL.reports.month.format('YYYY-MM'),
+        username: PTL.reports.userName,
+        month: PTL.reports.month.format('YYYY-MM'),
       });
       $.history.load(newHash);
     } else {
@@ -325,11 +325,11 @@ PTL.reports = {
         item.amount += task.amount;
       } else {
         PTL.reports.data.paid_task_summary.push({
-          'period': PTL.reports.month.format('MMMM, YYYY'),
-          'type': task.type,
-          'amount': task.amount,
-          'action': task.action,
-          'rate': task.rate,
+          period: PTL.reports.month.format('MMMM, YYYY'),
+          type: task.type,
+          amount: task.amount,
+          action: task.action,
+          rate: task.rate,
         });
       }
     }

@@ -30,7 +30,7 @@ const DropdownView = Backbone.View.extend({
 
   events() {
     const events = {
-      'keydown': 'onKey',
+      keydown: 'onKey',
     };
     events['click ' + sel.data.toggle] = 'toggle';
 

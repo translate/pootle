@@ -72,7 +72,7 @@ const Search = React.createClass({
 
     const resultsClassNames = cx({
       'search-results': true,
-      'loading': isLoading,
+      loading: isLoading,
     });
 
     return (

@@ -24,8 +24,8 @@ const sel = {
 
 
 const actionMap = {
-  'browse': '',
-  'translate': 'translate',
+  browse: '',
+  translate: 'translate',
   'admin-permissions': 'admin/permissions',
   'admin-characters': 'admin/characters',
   'admin-languages': 'admin/languages',

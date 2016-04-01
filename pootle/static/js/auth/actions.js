@@ -29,7 +29,7 @@ function handleErrors(jsonResponse = {}) {
   }
   if ('msg' in jsonResponse) {
     errors = {
-      '__all__': [jsonResponse.msg],
+      __all__: [jsonResponse.msg],
     };
   }
 

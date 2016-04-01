@@ -513,7 +513,7 @@ PTL.editor = {
         this.offsetRequested = 0;
         this.setUnit(uId);
       });
-    }, { 'unescape': true });
+    }, { unescape: true });
   },
 
   /* Stuff to be done when the editor is ready  */

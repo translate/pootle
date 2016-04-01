@@ -18,16 +18,16 @@ const metaUsers = ['nobody', 'default', 'system'];
 export const User = Backbone.Model.extend({
 
   defaults: {
-    'username': '',
-    'is_active': true,
-    'password': '',
-    'full_name': '',
-    'email': '',
-    'is_superuser': false,
-    'twitter': '',
-    'linkedin': '',
-    'website': '',
-    'bio': '',
+    username: '',
+    is_active: true,
+    password: '',
+    full_name: '',
+    email: '',
+    is_superuser: false,
+    twitter: '',
+    linkedin: '',
+    website: '',
+    bio: '',
   },
 
   initialize(args, opts) {
