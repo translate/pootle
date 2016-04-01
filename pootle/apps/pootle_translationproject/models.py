@@ -114,7 +114,8 @@ class TranslationProjectManager(models.Manager):
         """Filters translation projects for a specific user.
 
         - Admins always get all translation projects.
-        - Regular users only get enabled translation projects.
+        - Regular users only get enabled translation projects
+            accessible to them.
 
         :param user: The user for whom the translation projects need to be
             retrieved for.
@@ -127,7 +128,9 @@ class TranslationProjectManager(models.Manager):
         if user.is_superuser:
             return qs
 
-        return qs.filter(project__disabled=False)
+        return qs.filter(
+            project__disabled=False,
+            project__code__in=Project.accessible_by_user(user))
 
     def get_for_user(self, user, project_code, language_code,
                      select_related=None):
@@ -137,7 +140,7 @@ class TranslationProjectManager(models.Manager):
         - Admins can get the translation project even
             if its project is disabled.
         - Regular users only get a translation project
-            if its project isn't disabled.
+            if its project isn't disabled and it is accessible to them.
 
         :param user: The user for whom the translation project needs
             to be retrieved.

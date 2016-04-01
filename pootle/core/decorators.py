@@ -101,10 +101,7 @@ def get_path_obj(func):
             except Project.DoesNotExist:
                 raise Http404
         else:  # No arguments: all user-accessible projects
-            user_projects = Project.accessible_by_user(request.user)
-            user_projects = Project.objects.for_user(request.user) \
-                                           .filter(code__in=user_projects)
-
+            user_projects = Project.objects.for_user(request.user)
             path_obj = ProjectSet(user_projects)
 
         request.ctx_obj = path_obj

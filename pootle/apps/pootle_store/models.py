@@ -223,18 +223,23 @@ class UnitManager(models.Manager):
         """Filters units for a specific user.
 
         - Admins always get all non-obsolete units
-        - Regular users only get units from enabled projects.
-
-        NOTE: This doesn't do any permission checking.
+        - Regular users only get units from enabled projects accessible
+            to them.
 
         :param user: The user for whom units need to be retrieved for.
         :return: A filtered queryset with `Unit`s for `user`.
         """
+        from pootle_project.models import Project
+
         if user.is_superuser:
             return self.live()
 
-        return self.live() \
-                   .filter(store__translation_project__project__disabled=False)
+        user_projects = Project.accessible_by_user(user)
+        filter_by = {
+            "store__translation_project__project__disabled": False,
+            "store__translation_project__project__code__in": user_projects
+        }
+        return self.live().filter(**filter_by)
 
     def get_translatable(self, user, project_code=None, language_code=None,
                          dir_path=None, filename=None):
@@ -248,12 +253,6 @@ class UnitManager(models.Manager):
            from the TP.
         :param filename: A string for matching the filename of Stores.
         """
-        from pootle_project.models import Project
-
-        if not user.is_superuser:
-            user_projects = Project.accessible_by_user(user)
-            if project_code and project_code not in user_projects:
-                return self.none()
 
         units_qs = self.get_for_user(user)
 
@@ -267,9 +266,6 @@ class UnitManager(models.Manager):
         if project_code:
             units_qs = units_qs.filter(
                 store__translation_project__project__code=project_code)
-        elif not user.is_superuser:
-            units_qs = units_qs.filter(
-                store__translation_project__project__code__in=user_projects)
 
         if not (dir_path or filename):
             return units_qs

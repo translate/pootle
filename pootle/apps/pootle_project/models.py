@@ -70,9 +70,9 @@ class ProjectManager(models.Manager):
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
-            projects_dict = self.for_user(user).filter(
-                code__in=Project.accessible_by_user(user)
-            ).order_by('fullname').values('code', 'fullname', 'disabled')
+            projects_dict = self.for_user(user).order_by('fullname') \
+                                               .values('code', 'fullname',
+                                                       'disabled')
 
             projects = OrderedDict(
                 (project.pop('code'), project) for project in projects_dict
@@ -88,7 +88,8 @@ class ProjectManager(models.Manager):
         """Gets a `project_code` project for a specific `user`.
 
         - Admins can get the project even if it's disabled.
-        - Regular users only get a project if it's not disabled.
+        - Regular users only get a project if it's not disabled and
+            it is accessible to them.
 
         :param project_code: The code of the project to retrieve.
         :param user: The user for whom the project needs to be retrieved.
@@ -97,13 +98,13 @@ class ProjectManager(models.Manager):
         if user.is_superuser:
             return self.get(code=project_code)
 
-        return self.get(code=project_code, disabled=False)
+        return self.for_user(user).get(code=project_code)
 
     def for_user(self, user):
         """Filters projects for a specific user.
 
         - Admins always get all projects.
-        - Regular users only get enabled projects.
+        - Regular users only get enabled projects accessible to them.
 
         :param user: The user for whom the projects need to be retrieved for.
         :return: A filtered queryset with `Project`s for `user`.
@@ -111,7 +112,7 @@ class ProjectManager(models.Manager):
         if user.is_superuser:
             return self.all()
 
-        return self.enabled()
+        return self.enabled().filter(code__in=Project.accessible_by_user(user))
 
 
 class ProjectURLMixin(object):
@@ -244,9 +245,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             allow_usernames = list(set([username, 'default', 'nobody']))
             forbid_usernames = list(set([username, 'default']))
 
-        # FIXME: use `cls.objects.cached_dict().keys()`, but that needs
-        # to use the `LiveProjectManager` first, as it only considers
-        # `enabled()` projects
+        # FIXME: use `cls.objects.cached_dict().keys()`
         ALL_PROJECTS = cls.objects.values_list('code', flat=True)
 
         if user.is_superuser:
