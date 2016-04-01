@@ -188,12 +188,12 @@ Flush cache.
 
 .. django-admin-option:: --django-cache
 
-Use the :option:`--django-cache` to flush `default` cache which keeps Django
+Use the :option:`--django-cache` to flush ``default`` cache which keeps Django
 templates, project permissions etc.).
 
 .. django-admin-option:: --rqdata
 
-Use the :option:`--rqdata` to flush all data contained in `redis` cache:
+Use the :option:`--rqdata` to flush all data contained in ``redis`` cache:
 pending jobs, dirty flags, revision (which will be automatically restored),
 all data from queues.
 
@@ -204,7 +204,8 @@ Use the :option:`--stats` to flush all stats data only (it works faster than
 
 .. django-admin-option:: --all
 
-Use the :option:`--all` to flush all caches (`default`, `redis`, `stats`) data.
+Use the :option:`--all` to flush all caches (``default``, ``redis``, ``stats``)
+data.
 
 
 .. django-admin:: refresh_scores
