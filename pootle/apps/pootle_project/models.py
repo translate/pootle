@@ -229,21 +229,17 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         :param user: The ``User`` instance to get accessible projects for.
         """
-        username = 'nobody' if user.is_anonymous() else user.username
-        key = iri_to_uri('projects:accessible:%s' % username)
+        if user.is_superuser:
+            key = iri_to_uri('projects:all')
+        else:
+            username = 'nobody' if user.is_anonymous() else user.username
+            key = iri_to_uri('projects:accessible:%s' % username)
         user_projects = cache.get(key, None)
 
         if user_projects is not None:
             return user_projects
 
         logging.debug(u'Cache miss for %s', key)
-
-        if user.is_anonymous():
-            allow_usernames = [username]
-            forbid_usernames = [username, 'default']
-        else:
-            allow_usernames = list(set([username, 'default', 'nobody']))
-            forbid_usernames = list(set([username, 'default']))
 
         # FIXME: use `cls.objects.cached_dict().keys()`
         ALL_PROJECTS = cls.objects.values_list('code', flat=True)
@@ -252,6 +248,13 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             user_projects = ALL_PROJECTS
         else:
             ALL_PROJECTS = set(ALL_PROJECTS)
+
+            if user.is_anonymous():
+                allow_usernames = [username]
+                forbid_usernames = [username, 'default']
+            else:
+                allow_usernames = list(set([username, 'default', 'nobody']))
+                forbid_usernames = list(set([username, 'default']))
 
             # Check root for `view` permissions
 
