@@ -140,7 +140,8 @@ const ProjectForm = React.createClass({
         <div className="buttons">
           <input type="submit" className="btn btn-primary"
             disabled={!this.state.isDirty}
-            value={gettext('Save')} />
+            value={gettext('Save')}
+          />
         {model.id &&
           <ul className="action-links">
             <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>

@@ -87,7 +87,8 @@ const SocialVerification = React.createClass({
         <div>
           <form
             method="post"
-            onSubmit={this.handleFormSubmit}>
+            onSubmit={this.handleFormSubmit}
+          >
             <div className="fields">
               <FormElement
                 type="password"

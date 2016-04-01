@@ -76,7 +76,8 @@ const SignUpForm = React.createClass({
     return (
       <form
         method="post"
-        onSubmit={this.handleFormSubmit}>
+        onSubmit={this.handleFormSubmit}
+      >
         <div className="fields">
           <FormElement
             autoFocus

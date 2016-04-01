@@ -85,7 +85,8 @@ const Search = React.createClass({
             <SearchBox
               onSearch={this.props.onSearch}
               placeholder={this.props.searchPlaceholder}
-              searchQuery={this.props.searchQuery} />
+              searchQuery={this.props.searchQuery}
+            />
           </div>
           <div className={resultsClassNames}>
           {isLoading && this.props.items.length === 0 ?
@@ -96,7 +97,8 @@ const Search = React.createClass({
                 items={items}
                 resultsCaption={this.props.resultsCaption}
                 selectedItem={this.props.selectedItem}
-                onSelectItem={this.props.onSelectItem} />
+                onSelectItem={this.props.onSelectItem}
+              />
               {loadMoreBtn}
             </div>
           }

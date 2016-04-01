@@ -106,7 +106,8 @@ const PasswordResetForm = React.createClass({
       <AuthContent>
         <form
           method="post"
-          onSubmit={this.handleFormSubmit}>
+          onSubmit={this.handleFormSubmit}
+        >
           <div className="fields">
             <FormElement
               autoFocus

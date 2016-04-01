@@ -30,7 +30,8 @@ const ItemTable = React.createClass({
           item={item}
           index={index}
           selectedItem={this.props.selectedItem}
-          onSelectItem={this.props.onSelectItem} />
+          onSelectItem={this.props.onSelectItem}
+        />
         );
     }
 
