@@ -39,7 +39,7 @@ const SocialAuthError = React.createClass({
     };
     return (
       <AuthContent style={{ textAlign: 'center' }}>
-        <h2 style={errorFace}>{`{õ_õ}`}</h2>
+        <h2 style={errorFace}>{'{õ_õ}'}</h2>
         <p>{errorMsg}</p>
       {this.props.socialError &&
         <p>{`${this.props.socialError.exception.name}: ${this.props.socialError.exception.msg} `}</p>

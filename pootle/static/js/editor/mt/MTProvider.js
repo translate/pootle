@@ -116,7 +116,7 @@ class MTProvider {
     return (
       `<a class="translate-mt js-${this.name}" data-source-lang="${sourceLang}">` +
         `<i class="icon-${this.name}" title="${hint}">` +
-      `</a>`
+      '</a>'
     );
   }
 
