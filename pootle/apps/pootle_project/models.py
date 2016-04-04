@@ -15,7 +15,6 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -599,13 +598,6 @@ def invalidate_accessible_projects_cache(sender, instance, **kwargs):
         ['Project', 'TranslationProject', 'PermissionSet']):
         return
 
-    # FIXME: use Redis directly to clear these caches effectively
-
-    cache.delete_many([
-        make_method_key('Project', 'cached_dict', {'is_admin': False}),
-        make_method_key('Project', 'cached_dict', {'is_admin': True}),
-    ])
-
-    User = get_user_model()
-    users_list = User.objects.values_list('username', flat=True)
-    cache.delete_many(map(lambda x: 'projects:accessible:%s' % x, users_list))
+    cache.delete_pattern(make_method_key('Project', 'cached_dict', '*'))
+    cache.delete('projects:all')
+    cache.delete_pattern('projects:accessible:*')
