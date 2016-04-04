@@ -1365,7 +1365,6 @@ PTL.editor = {
       }
     }
     if (initial || uidToFetch > -1 || (offsetToFetch > -1 && !(this.isBeingFetched(offsetToFetch)))) {
-      const $this = this;
       const reqData = {
         path: this.settings.pootlePath,
       };
@@ -1386,7 +1385,7 @@ PTL.editor = {
         .then(
           (data) => this.storeUnitData(data),
           this.error
-        ).always(function fetched() { $this.markAsFetched(offsetToFetch); });
+        ).always(() => this.markAsFetched(offsetToFetch));
     }
     /* eslint-disable new-cap */
     return $.Deferred((deferred) => deferred.reject(false));
@@ -1455,19 +1454,19 @@ PTL.editor = {
   setUnit(unit) {
     const newUnit = this.units.setCurrent(unit);
     const body = {};
-    const $this = this;
     if (this.settings.vFolder) {
       body.vfolder = this.settings.vFolder;
     }
-    this.fetchUnits().always(function fetchUnit() {
-      $this.updateNavigation();
+    this.fetchUnits().always(() => {
+      this.updateNavigation();
       UnitAPI.fetchUnit(newUnit.id, body)
         .then(
           (data) => {
-            $this.setEditUnit(data);
-            $this.renderUnit();
+            this.setEditUnit(data);
+            this.renderUnit();
           },
-          $this.error);
+          this.error
+        );
     });
   },
 
