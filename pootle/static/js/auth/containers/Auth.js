@@ -77,12 +77,13 @@ const Auth = React.createClass({
   getScreen(screenName, props) {
     // FIXME: use react-router
     switch (screenName) {
-      case 'signIn':
+      case 'signIn': {
         const hasSocialAuth = props.socialAuthProviders.length !== 0;
         return {
           title: hasSocialAuth ? gettext('Sign In With...') : gettext('Sign In'),
           content: SignInPanel,
         };
+      }
 
       case 'inactive':
         return {

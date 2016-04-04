@@ -14,7 +14,7 @@ function screen(state = 'signIn', action) {
     case 'GOTO_SCREEN':
       return action.screen;
 
-    case 'SIGNIN_SUCCESS':
+    case 'SIGNIN_SUCCESS': {
       const { nextURL } = action;
       // HACKISH: allauth's XHR responses are not very informative, so
       // it's necessary to do some guesswork around URLs in order to know
@@ -25,6 +25,7 @@ function screen(state = 'signIn', action) {
         return 'inactive';
       }
       return state;
+    }
 
     case 'SIGNUP_SUCCESS':
       return 'activation';
@@ -67,13 +68,14 @@ function isLoading(state = false, action) {
 
 function redirectTo(state = null, action) {
   switch (action.type) {
-    case 'SIGNIN_SUCCESS':
+    case 'SIGNIN_SUCCESS': {
       const { nextURL } = action;
       if (nextURL.indexOf('confirm-email') !== -1 ||
             nextURL.indexOf('inactive') !== -1) {
         return state;
       }
       return nextURL;
+    }
 
     case 'PW_RESET_SUCCESS':
         // FIXME: hard-coding redirect path because of django-allauth#735
