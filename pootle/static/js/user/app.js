@@ -45,6 +45,7 @@ PTL.user = {
           window.open(e.currentTarget.href, '_blank',
                       `width=${width},height=${height},left=${left},top=${top}`);
         });
+        return true;
       });
     }
 
