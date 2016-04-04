@@ -1082,15 +1082,17 @@ PTL.editor = {
   /* Checks whether editor needs the next batch of units */
   needsNextUnitBatch() {
     return (
-      (this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1)
-        && (this.getOffsetOfLastUnit() < this.units.total));
+      this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1 &&
+      this.getOffsetOfLastUnit() < this.units.total
+    );
   },
 
   /* Checks whether editor needs the previous batch of units */
   needsPreviousUnitBatch() {
     return (
-      (this.units.uIds.slice(0, 7).indexOf(this.units.activeUnit.id) !== -1)
-        && this.initialOffset > 0);
+      this.units.uIds.slice(0, 7).indexOf(this.units.activeUnit.id) !== -1 &&
+      this.initialOffset > 0
+    );
   },
 
   /* Returns the uids of the last batch of units currently stored */
