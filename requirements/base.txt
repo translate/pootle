@@ -1,6 +1,6 @@
 # Base requirements
 
-Django>=1.8.10,<1.9
+Django>=1.8.12,<1.9
 
 # Django apps
 django-allauth>=0.24.1
