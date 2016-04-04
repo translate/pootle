@@ -11,6 +11,9 @@ import _ from 'underscore';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import TimeSince from 'components/TimeSince';
+import ReactRenderer from 'utils/ReactRenderer';
+
 // jQuery plugins
 import 'jquery-caret';
 import 'jquery-easing';
@@ -33,6 +36,7 @@ import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
 import SuggestionFeedbackForm from './components/SuggestionFeedbackForm';
+import UploadTimeSince from './components/UploadTimeSince';
 
 import captcha from '../captcha';
 import { UnitSet } from '../collections';
@@ -380,6 +384,7 @@ PTL.editor = {
       if (this.selectedSuggestionId !== undefined) {
         this.closeSuggestion({ checkIfCanNavigate: false });
       }
+      ReactRenderer.unmountComponents();
 
       // Walk through known filtering criterias and apply them to the editor object
 
@@ -2094,8 +2099,17 @@ PTL.editor = {
         $(data.timeline).hide().prependTo('#extras-container')
                         .slideDown(1000, 'easeOutQuad');
       }
-
-      helpers.updateRelativeDates();
+      [...document.querySelectorAll('.js-mount-timesince')].forEach((el, i) => {
+        const props = {
+          title: data.entries_group[i].display_datetime,
+          dateTime: data.entries_group[i].iso_datetime,
+        };
+        if (data.entries_group[i].via_upload) {
+          ReactRenderer.render(<UploadTimeSince {...props} />, el);
+        } else {
+          ReactRenderer.render(<TimeSince {...props} />, el);
+        }
+      });
 
       $('.timeline-field-body').filter(':not([dir])').bidi();
       $('#js-show-timeline').addClass('selected');

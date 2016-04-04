@@ -28,6 +28,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
+from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
@@ -369,11 +370,22 @@ class UnitTimelineJSON(PootleUnitJSON):
     def get_response_data(self, context):
         return {
             'uid': self.object.id,
+            'entries_group': self.get_entries_group_data(context),
             'timeline': self.render_timeline(context)}
 
     def render_timeline(self, context):
         return loader.get_template(
             self.template_name).render(context).replace('\n', '')
+
+    def get_entries_group_data(self, context):
+        result = []
+        for entry_group in context['entries_group']:
+            result.append({
+                "display_datetime": dateformat.format(entry_group['datetime']),
+                "iso_datetime": entry_group['datetime'].isoformat(),
+                "via_upload": entry_group.get('via_upload', False),
+            })
+        return result
 
 
 class UnitEditJSON(PootleUnitJSON):
