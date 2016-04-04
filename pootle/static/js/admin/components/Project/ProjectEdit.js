@@ -35,7 +35,8 @@ const ProjectEdit = React.createClass({
         </div>
         <div className="bd">
         {!this.props.model ?
-          <p>{gettext('Use the search form to find the project, then click on a project to edit.')}</p> :
+          <p>{gettext('Use the search form to find the project, ' +
+                      'then click on a project to edit.')}</p> :
           <ProjectForm
             key={this.props.model.id}
             model={this.props.model}

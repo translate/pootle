@@ -78,7 +78,9 @@ const PasswordResetForm = React.createClass({
   renderTokenFailed() {
     return (
       <AuthContent>
-        <p>{gettext('The password reset link was invalid, possibly because it has already been used. Please request a new password reset.')}</p>
+        <p>{gettext('The password reset link was invalid, possibly because ' +
+                    'it has already been used. Please request a new ' +
+                    'password reset.')}</p>
         <div className="actions">
           <button
             className="btn btn-primary"

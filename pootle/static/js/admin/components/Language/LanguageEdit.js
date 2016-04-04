@@ -35,7 +35,8 @@ const LanguageEdit = React.createClass({
         </div>
         <div className="bd">
         {!this.props.model ?
-          <p>{gettext('Use the search form to find the language, then click on a language to edit.')}</p> :
+          <p>{gettext('Use the search form to find the language, ' +
+                      'then click on a language to edit.')}</p> :
           <LanguageForm
             key={this.props.model.id}
             model={this.props.model}

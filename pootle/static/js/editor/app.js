@@ -301,13 +301,17 @@ PTL.editor = {
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
-      this.$navNext
-        .attr('title',
-              gettext('Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/>Last page: Ctrl+Shift+End')
+      this.$navNext.attr('title',
+        gettext(
+          'Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: ' +
+          'Ctrl+Shift+.<br/>Last page: Ctrl+Shift+End'
+        )
       );
-      this.$navPrev
-        .attr('title',
-              gettext('Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl+Shift+,<br/>First page: Ctrl+Shift+Home')
+      this.$navPrev.attr('title',
+        gettext(
+          'Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: ' +
+          'Ctrl+Shift+,<br/>First page: Ctrl+Shift+Home'
+        )
       );
     }
 
@@ -506,7 +510,8 @@ PTL.editor = {
           return;
         }
         if (this.units.uIds.indexOf(uId) === -1) {
-          if (this.offsetRequested > this.initialOffset && this.offsetRequested <= this.getOffsetOfLastUnit()) {
+          if (this.offsetRequested > this.initialOffset &&
+              this.offsetRequested <= this.getOffsetOfLastUnit()) {
             uId = this.units.uIds[this.offsetRequested - this.initialOffset - 1];
           } else {
             uId = this.units.uIds[0];
@@ -1095,7 +1100,9 @@ PTL.editor = {
 
   /* Sets the offset in the browser location */
   setOffset(uid) {
-    $.history.load(utils.updateHashPart('offset', this.getStartOfChunk(this.getOffsetOfUid(uid))));
+    $.history.load(utils.updateHashPart(
+      'offset', this.getStartOfChunk(this.getOffsetOfUid(uid)))
+    );
   },
 
   /* Gets the offset of the last unit currently held by the client */
@@ -1103,7 +1110,9 @@ PTL.editor = {
     return this.initialOffset + this.units.uIds.length;
   },
 
-  /* Remembers offsets that are currently being fetched to prevent multiple calls to same URL */
+  /* Remembers offsets that are currently being fetched to prevent multiple
+   * calls to same URL
+   */
   markAsFetching(offset) {
     this.fetchingOffsets.push(offset);
   },
@@ -1111,7 +1120,9 @@ PTL.editor = {
   /* Removes remembered offsets once the XHR call has completed */
   markAsFetched(offset) {
     if (this.fetchingOffsets.indexOf(offset) !== -1) {
-      this.fetchingOffsets = this.fetchingOffsets.splice(this.fetchingOffsets.indexOf(offset), 1);
+      this.fetchingOffsets = this.fetchingOffsets.splice(
+        this.fetchingOffsets.indexOf(offset), 1
+      );
     }
   },
 
@@ -1326,7 +1337,8 @@ PTL.editor = {
 
   /* Updates the navigation widget */
   updateNavigation() {
-    this.updateNavButton(this.$navPrev, (this.initialOffset === 0) && !this.units.hasPrev());
+    this.updateNavButton(this.$navPrev,
+                         this.initialOffset === 0 && !this.units.hasPrev());
     this.updateNavButton(this.$navNext, !this.units.hasNext());
 
     this.unitCountEl.textContent = this.units.total;
@@ -1334,7 +1346,9 @@ PTL.editor = {
     const currentUnit = this.units.getCurrent();
     if (currentUnit !== undefined) {
       if (this.offsetRequested === 0) {
-        this.unitIndexEl.textContent = (this.units.uIds.indexOf(currentUnit.id) + 1) + this.initialOffset;
+        this.unitIndexEl.textContent = (
+          this.units.uIds.indexOf(currentUnit.id) + 1 + this.initialOffset
+        );
       }
     }
   },
@@ -1356,15 +1370,17 @@ PTL.editor = {
       }
     } else if (this.units.length && this.units.total) {
       if (this.needsNextUnitBatch()) {
-        /* The unit is in the last 7, try and get the next chunk - also sends the last chunk of uids to allow server to adjust results */
+        // The unit is in the last 7, try and get the next chunk - also sends
+        // the last chunk of uids to allow server to adjust results
         previousUids = this.getPreviousUids();
         offsetToFetch = this.offset;
       } else if (this.needsPreviousUnitBatch()) {
-        /* The unit is in the first 7, try and get the previous chunk */
+        // The unit is in the first 7, try and get the previous chunk
         offsetToFetch = Math.max(this.initialOffset - (2 * this.units.chunkSize), 0);
       }
     }
-    if (initial || uidToFetch > -1 || (offsetToFetch > -1 && !(this.isBeingFetched(offsetToFetch)))) {
+    if (initial || uidToFetch > -1 ||
+        (offsetToFetch > -1 && !this.isBeingFetched(offsetToFetch))) {
       const reqData = {
         path: this.settings.pootlePath,
       };
@@ -1427,10 +1443,12 @@ PTL.editor = {
         );
         if (prependUnits) {
           this.units.set(units, { remove: false, at: 0 });
-          units.reverse().map((unit) => this.units.uIds.unshift(unit.id)); // eslint-disable-line no-loop-func
+          // eslint-disable-next-line no-loop-func
+          units.reverse().map((unit) => this.units.uIds.unshift(unit.id));
         } else {
           this.units.set(units, { remove: false, at: this.units.length });
-          units.map((unit) => this.units.uIds.push(unit.id)); // eslint-disable-line no-loop-func
+          // eslint-disable-next-line no-loop-func
+          units.map((unit) => this.units.uIds.push(unit.id));
         }
       }
     }
@@ -1674,7 +1692,9 @@ PTL.editor = {
           this.initialOffset = -1;
           this.offset = 0;
           this.offsetRequested = index + 1;
-          $.history.load(utils.updateHashPart('offset', this.getStartOfChunk(index), ['unit']));
+          $.history.load(utils.updateHashPart(
+            'offset', this.getStartOfChunk(index), ['unit'])
+          );
         } else if (index >= 0 && index <= this.units.total) {
           const uId = this.units.uIds[(index - this.initialOffset)];
           const newHash = utils.updateHashPart('unit', uId);

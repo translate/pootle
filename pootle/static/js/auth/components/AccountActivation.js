@@ -34,12 +34,15 @@ const AccountActivation = React.createClass({
       );
     } else {
       emailLinkMsg = gettext(
-        'We have sent an email containing the special link to the address used to register this account.'
+        'We have sent an email containing the special link to the address ' +
+        'used to register this account.'
       );
     }
 
     const activationWarningMsg = gettext('Your account needs activation.');
-    const instructionsMsg = gettext('Please follow that link to continue the account creation.');
+    const instructionsMsg = gettext(
+      'Please follow that link to continue the account creation.'
+    );
 
     return (
       <AuthContent>

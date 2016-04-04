@@ -8,6 +8,7 @@
 
 const HTML_PAT = /<[\/]?\w+.*?>/g;
 // The printf regex based on http://phpjs.org/functions/sprintf:522
+// eslint-disable-next-line max-len
 const C_PRINTF_PAT = /%%|%(\d+\$)?([-+\'#0 ]*)(\*\d+\$|\*|\d+)?(\.(\*\d+\$|\*|\d+))?([scboxXuidfegEG])/g;
 const C_SHARP_STR_PAT = /{\d+(,\d+)?(:[a-zA-Z ]+)?}/g;
 const PERCENT_NUMBER_PAT = /%\d+/g;

@@ -94,7 +94,8 @@ const RequestPasswordResetForm = React.createClass({
               autoFocus
               type="email"
               label={gettext('Email Address')}
-              help={gettext('Enter your email address, and we will send you a message with the special link to reset your password.')}
+              help={gettext('Enter your email address, and we will send you a ' +
+                            'message with the special link to reset your password.')}
               handleChange={this.handleChange}
               name="email"
               errors={errors.email}

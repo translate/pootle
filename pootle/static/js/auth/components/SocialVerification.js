@@ -77,7 +77,12 @@ const SocialVerification = React.createClass({
     const { formData } = this.state;
 
     const verificationMsg = interpolate(
-      gettext('We found a user with <span>%s</span> email in our system. Please provide the password to finish the sign in procedure. This is a one-off procedure, which will establish a link between your Pootle and %s accounts.'),
+      gettext(
+        'We found a user with <span>%s</span> email in our system. Please ' +
+        'provide the password to finish the sign in procedure. This is a ' +
+        'one-off procedure, which will establish a link between your ' +
+        'Pootle and %s accounts.'
+      ),
       [this.props.email, this.props.providerName]
     );
 

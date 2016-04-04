@@ -43,7 +43,11 @@ const UserForm = React.createClass({
     const model = this.getResource();
     const { errors } = this.state;
     const { formData } = this.state;
-    const deleteHelpText = gettext('Note: when deleting a user their contributions to the site, e.g. comments, suggestions and translations, are attributed to the anonymous user (nobody).');
+    const deleteHelpText = gettext(
+      'Note: when deleting a user their contributions to the site, ' +
+      'e.g. comments, suggestions and translations, are attributed ' +
+      'to the anonymous user (nobody).'
+    );
 
     return (
       <form

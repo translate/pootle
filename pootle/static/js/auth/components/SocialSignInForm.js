@@ -41,7 +41,10 @@ const SocialSignInForm = React.createClass({
   },
 
   render() {
-    const signInWarningMsg = gettext('Signing in with an external service for the first time will automatically create an account for you.');
+    const signInWarningMsg = gettext(
+      'Signing in with an external service for the first time will ' +
+      'automatically create an account for you.'
+    );
 
     return (
       <div className="actions sign-in-social">

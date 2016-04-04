@@ -38,7 +38,8 @@ PTL.reports = {
     _.defaults(this, opts);
 
     /* Compile templates */
-    const showSummary = !PTL.reports.freeUserReport && (PTL.reports.ownReport || PTL.reports.adminReport);
+    const showSummary = (!PTL.reports.freeUserReport &&
+                         (PTL.reports.ownReport || PTL.reports.adminReport));
     this.tmpl = {
       results: _.template($('#language_user_activity').html()),
       summary: showSummary ? _.template($('#summary').html()) : '',
