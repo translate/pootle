@@ -8,6 +8,7 @@
 
 import $ from 'jquery';
 import moment from 'moment';
+import assign from 'object-assign';
 import _ from 'underscore';
 
 import 'jquery-flot';
@@ -302,14 +303,14 @@ PTL.reports = {
     return null;
   },
 
-  setData(data) {
+  processData(origData) {
     let translatedTotal = 0;
     let reviewedTotal = 0;
     let suggestedTotal = 0;
     let scoreDeltaTotal = 0;
     let translatedFloorTotal = 0;
 
-    PTL.reports.data = data;
+    const data = assign({}, origData);
     data.paid_task_summary = [];
 
     for (const index in data.paid_tasks) {
@@ -324,7 +325,7 @@ PTL.reports = {
       if (item !== null) {
         item.amount += task.amount;
       } else {
-        PTL.reports.data.paid_task_summary.push({
+        data.paid_task_summary.push({
           period: PTL.reports.month.format('MMMM, YYYY'),
           type: task.type,
           amount: task.amount,
@@ -380,6 +381,8 @@ PTL.reports = {
         delta--;
       }
     }
+
+    return data;
   },
 
   buildResults() {
@@ -398,7 +401,9 @@ PTL.reports = {
         PTL.reports.now = moment(data.meta.now, 'YYYY-MM-DD HH:mm:ss');
         PTL.reports.month = moment(data.meta.month, 'YYYY-MM');
 
-        PTL.reports.setData(data);
+        const processedData = PTL.reports.processData(data);
+        PTL.reports.data = processedData;
+
         $('#reports-results').empty();
         $('#reports-results').html(PTL.reports.tmpl.results(PTL.reports.data)).show();
         $('#js-breadcrumb-user').text(data.meta.user.formatted_name).show();
@@ -414,14 +419,15 @@ PTL.reports = {
           month: data.meta.month,
           task: '',
         };
-        data.meta.admin_permalink = [data.meta.admin_permalink,
-                                     $.param(permalinkArgs)].join('#');
+        processedData.meta.admin_permalink = [
+          data.meta.admin_permalink, $.param(permalinkArgs),
+        ].join('#');
 
         if (PTL.reports.adminReport || !PTL.reports.freeUserReport &&
             PTL.reports.ownReport) {
           const ctx = {
             paidTaskTypes,
-            data: PTL.reports.data,
+            data: processedData,
           };
           $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(ctx));
           ctx.data.total = 0;

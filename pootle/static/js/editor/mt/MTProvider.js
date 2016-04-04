@@ -79,8 +79,9 @@ class MTProvider {
         if (!('translation' in result)) {
           return result;
         }
-        result.translation = placeholderCleaner.recover(result.translation);
-        return result;
+        const newResult = result.slice();
+        newResult.translation = placeholderCleaner.recover(result.translation);
+        return newResult;
       }
     );
   }

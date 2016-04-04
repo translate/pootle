@@ -275,6 +275,7 @@ PTL.editor = {
     /* Confirmation prompt */
     window.addEventListener('beforeunload', (e) => {
       if (PTL.editor.isUnitDirty) {
+        // eslint-disable-next-line no-param-reassign
         e.returnValue = gettext(
           'You have unsaved changes in this string. Navigating away will discard those changes.'
         );
@@ -2067,15 +2068,16 @@ PTL.editor = {
     }
 
     for (let i = 0; i < results.length && i < 3; i++) {
-      if (results[i].username === 'nobody') {
-        results[i].fullname = gettext('some anonymous user');
-      } else if (!results[i].fullname) {
-        results[i].fullname = (results[i].username ?
-                               results[i].username : gettext('someone'));
+      const result = results[i];
+      let fullname;
+      if (result.username === 'nobody') {
+        fullname = gettext('some anonymous user');
+      } else if (!result.fullname) {
+        fullname = result.username ? result.username : gettext('someone');
       }
-      results[i].fullname = _.escape(results[i].fullname);
+      result.fullname = _.escape(fullname);
 
-      filtered.push(results[i]);
+      filtered.push(result);
     }
 
     return filtered;

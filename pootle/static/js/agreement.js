@@ -33,6 +33,7 @@ const agreement = {
       },
       callbacks: {
         parseAjax(mfpResponse) {
+          // eslint-disable-next-line no-param-reassign
           mfpResponse.data = mfpResponse.data.form;
         },
         ajaxContentAdded() {

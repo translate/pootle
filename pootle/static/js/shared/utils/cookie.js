@@ -25,22 +25,19 @@ function getCookie(name) {
 
 
 function setCookie(name, value, options = {}) {
-  let newValue = value;
-  if (newValue === null) {
-    newValue = '';
-    options.expires = -1;
-  }
+  const newValue = value === null ? '' : value;
+  const expiryDate = value === null ? -1 : options.expires;
 
   let expires = '';
 
-  if (options.expires &&
-      (typeof options.expires === 'number' || options.expires.toUTCString)) {
+  if (expiryDate &&
+      (typeof expiryDate === 'number' || expiryDate.toUTCString)) {
     let date;
-    if (typeof options.expires === 'number') {
+    if (typeof expiryDate === 'number') {
       date = new Date();
-      date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+      date.setTime(date.getTime() + (expiryDate * 24 * 60 * 60 * 1000));
     } else {
-      date = options.expires;
+      date = options.expiryDate;
     }
     // use expires attribute, max-age is not supported by IE
     expires = `; expires=${date.toUTCString()}`;
