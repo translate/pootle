@@ -150,9 +150,9 @@ const search = {
     }
 
     this.setState({
-      searchText: searchText,
-      searchFields: searchFields,
-      searchOptions: searchOptions,
+      searchText,
+      searchFields,
+      searchOptions,
     });
 
     this.settings.onSearch.call(this, this.state.searchText);

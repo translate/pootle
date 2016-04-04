@@ -54,9 +54,9 @@ const contact = {
     const body = $el.data(sel.data.body);
 
     this.open({
-      subjectPrefix: subjectPrefix,
-      subject: subject,
-      body: body,
+      subjectPrefix,
+      subject,
+      body,
     });
   },
 
@@ -110,9 +110,9 @@ const contact = {
   sendMessage(url, data) {
     const that = this;
     $.ajax({
-      url: url,
+      url,
+      data,
       type: 'POST',
-      data: data,
       dataType: 'json',
       success: that.onSuccess.bind(that),
       error: that.onError.bind(that),

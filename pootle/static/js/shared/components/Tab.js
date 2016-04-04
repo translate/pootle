@@ -33,8 +33,8 @@ const Tab = React.createClass({
     };
 
     const props = {
+      style,
       className: classes,
-      style: style,
     };
     if (!this.props.selected) {
       props.onClick = this.props.onClick.bind(null, this.props.tabIndex);

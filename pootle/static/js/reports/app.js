@@ -420,8 +420,8 @@ PTL.reports = {
         if (PTL.reports.adminReport || !PTL.reports.freeUserReport &&
             PTL.reports.ownReport) {
           const ctx = {
+            paidTaskTypes,
             data: PTL.reports.data,
-            paidTaskTypes: paidTaskTypes,
           };
           $('#reports-paid-tasks').html(PTL.reports.tmpl.paid_tasks(ctx));
           ctx.data.total = 0;

@@ -66,7 +66,7 @@ const stats = {
     const isExpanded = (options.isInitiallyExpanded ||
                         window.location.search.indexOf('?details') !== -1);
     this.state = {
-      isExpanded: isExpanded,
+      isExpanded,
       checksData: null,
       data: options.initialData,
     };

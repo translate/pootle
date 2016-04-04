@@ -41,7 +41,7 @@ const CodeMirror = React.createClass({
     const bundledResult = require(`bundle!codemirror/mode/${mode}/${mode}.js`);
     bundledResult(() => {
       this.codemirror = CM.fromTextArea(this.refs.editor, {
-        mode: mode,
+        mode,
         lineWrapping: true,
       });
 

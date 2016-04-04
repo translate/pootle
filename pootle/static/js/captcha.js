@@ -31,7 +31,7 @@ function onSubmit(e) {
   const url = $form.attr('action');
 
   $.ajax({
-    url: url,
+    url,
     type: 'POST',
     data: reqData,
     success() {

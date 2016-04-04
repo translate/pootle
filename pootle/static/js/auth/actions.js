@@ -11,8 +11,8 @@ import AuthAPI from './utils/AuthAPI';
 
 export function gotoScreen(screen) {
   return {
+    screen,
     type: 'GOTO_SCREEN',
-    screen: screen,
   };
 }
 

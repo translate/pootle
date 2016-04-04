@@ -497,9 +497,9 @@ PTL.editor = {
       this.preventNavigation = false;
 
       this.fetchUnits({
+        uId,
+        initialOffset,
         initial: isInitial,
-        uId: uId,
-        initialOffset: initialOffset,
       }).then((hasResults) => {
         if (!hasResults) {
           return;
@@ -873,8 +873,8 @@ PTL.editor = {
     }
 
     return {
+      boxId,
       max: maxSimilarity,
-      boxId: boxId,
     };
   },
 
@@ -1010,7 +1010,7 @@ PTL.editor = {
   /* Displays error messages on top of the toolbar */
   displayError(text) {
     this.hideActivity();
-    msg.show({ text: text, level: 'error' });
+    msg.show({ text, level: 'error' });
   },
 
 
@@ -1227,7 +1227,7 @@ PTL.editor = {
       unit = assign({}, currentUnit.toJSON(), unit);
 
       rows += `<tr id="ctx${unit.id}" class="ctx-row ${extraCls}">`;
-      rows += this.tmpl.vUnit({ unit: unit });
+      rows += this.tmpl.vUnit({ unit });
       rows += '</tr>';
     }
 
@@ -1419,7 +1419,7 @@ PTL.editor = {
           continue;
         }
         const group = unitGroup[pootlePath];
-        const store = assign({ pootlePath: pootlePath }, group.meta);
+        const store = assign({ pootlePath }, group.meta);
         const units = group.units.map(
           (unit) => assign(unit, { store })  // eslint-disable-line no-loop-func
         );
@@ -2091,10 +2091,10 @@ PTL.editor = {
 
     if (filtered.length) {
       return this.tmpl.tm({
+        name,
         store: store.toJSON(),
         unit: unit.toJSON(),
         suggs: filtered,
-        name: name,
       });
     }
 
@@ -2136,10 +2136,10 @@ PTL.editor = {
     const filtered = PTL.editor.filterTMResults(data, sourceText);
     const name = gettext('Similar translations');
     const tm = PTL.editor.tmpl.tm({
+      name,
       store: store.toJSON(),
       unit: unit.toJSON(),
       suggs: filtered,
-      name: name,
     });
 
     $(tm).hide().appendTo('#extras-container')

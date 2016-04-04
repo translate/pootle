@@ -69,7 +69,7 @@ const UserProfileEdit = React.createClass({
   },
 
   handleDirtyFlag(isDirty) {
-    this.setState({ isDirty: isDirty });
+    this.setState({ isDirty });
   },
 
 

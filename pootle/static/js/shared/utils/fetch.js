@@ -24,9 +24,9 @@ function fetch({ url, body, method = 'GET', dataType = 'json', queue = null,
     $.ajax({
       crossDomain,
       method,
+      dataType,
       url: l(url),
       data: body,
-      dataType: dataType,
     })
   );
 
