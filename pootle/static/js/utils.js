@@ -204,8 +204,7 @@ export function makeSelectableInput(selector, options, onChange) {
 }
 
 
-export function executeFunctionByName(functionName, ctx) {
-  const args = Array.prototype.slice.call(arguments).splice(2);
+export function executeFunctionByName(functionName, ctx, ...args) {
   const namespaces = functionName.split('.');
   const func = namespaces.pop();
 
