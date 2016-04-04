@@ -918,6 +918,7 @@ PTL.editor = {
 
     const similarity = (simHuman.max > simMT.max) ? simHuman : simMT;
     this.highlightBox(similarity.boxId, similarity.max === 1);
+    return true;
   },
 
   /* Applies highlight classes to `boxId`. */
@@ -936,6 +937,7 @@ PTL.editor = {
       [bestMatchCls]: true,
       [exactMatchCls]: isExact,
     }));
+    return true;
   },
 
 
@@ -1587,6 +1589,7 @@ PTL.editor = {
       $.history.load(newHash);
       this.setOffset(newUnit.id);
     }
+    return true;
   },
 
 
@@ -1604,6 +1607,7 @@ PTL.editor = {
       cookie('finished', '1', { path: '/' });
       window.location.href = this.backToBrowserEl.getAttribute('href');
     }
+    return true;
   },
 
 
@@ -1644,6 +1648,7 @@ PTL.editor = {
       $.history.load(newHash);
       PTL.editor.setOffset(uid);
     }
+    return true;
   },
 
   /* Selects the element's contents and sets the focus */
@@ -1717,6 +1722,7 @@ PTL.editor = {
 
       $.history.load($.param(newHash));
     }
+    return true;
   },
 
   /* Adds the failing checks to the UI */
@@ -1815,6 +1821,7 @@ PTL.editor = {
         $.history.load($.param(newHash));
       }
     }
+    return true;
   },
 
   /* Generates the edit context rows' UI */
@@ -1856,6 +1863,7 @@ PTL.editor = {
     const editCtxRows = $('tr.edit-ctx');
     editCtxRows.first().after(before);
     editCtxRows.last().before(after);
+    return undefined;
   },
 
   /* Gets more context units */
@@ -1944,6 +1952,7 @@ PTL.editor = {
       newHash = utils.updateHashPart('filter', 'all', ['search', 'sfields', 'soptions']);
     }
     $.history.load(newHash);
+    return true;
   },
 
 
@@ -2146,6 +2155,7 @@ PTL.editor = {
 
     $(tm).hide().appendTo('#extras-container')
                 .slideDown(1000, 'easeOutQuad');
+    return true;
   },
 
 

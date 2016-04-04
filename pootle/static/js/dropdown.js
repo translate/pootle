@@ -81,6 +81,8 @@ const DropdownView = Backbone.View.extend({
 
       $items.eq(index).trigger('focus');
     }
+
+    return true;
   },
 
   isVisible() {

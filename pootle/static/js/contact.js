@@ -90,6 +90,7 @@ const contact = {
       },
       mainClass: 'popup-ajax',
     });
+    return true;
   },
 
   onSubmit(e) {

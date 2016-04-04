@@ -141,6 +141,8 @@ const Auth = React.createClass({
       default:
         break;
     }
+
+    return {};
   },
 
   render() {

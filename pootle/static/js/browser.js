@@ -140,6 +140,7 @@ function makeNavDropdown(selector, opts) {
                                                   .replace('ctx-', '')
                                        : '';
       navigateTo(langCode, projectCode, resource);
+      return true;
     }
   );
 }

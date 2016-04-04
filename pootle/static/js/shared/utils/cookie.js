@@ -58,5 +58,5 @@ export default function cookie(name, value, options) {
   if (value === undefined) {
     return getCookie(name);
   }
-  setCookie(name, value, options);
+  return setCookie(name, value, options);
 }

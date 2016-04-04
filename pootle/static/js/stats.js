@@ -181,6 +181,7 @@ const stats = {
       username: data.username,
     };
     ReactDOM.render(<UserEvent {...props} />, el);
+    return true;
   },
 
   renderLastUpdate(el, data) {
@@ -195,6 +196,7 @@ const stats = {
       unitUrl: data.unit_url,
     };
     ReactDOM.render(<LastUpdate {...props} />, el);
+    return true;
   },
 
   renderLastUpdatedTime(el, data) {
@@ -207,6 +209,7 @@ const stats = {
       dateTime: data.iso_datetime,
     };
     ReactDOM.render(<TimeSince {...props} />, el);
+    return true;
   },
 
   updateLastUpdates(statsData) {
@@ -223,7 +226,7 @@ const stats = {
   processTableItem(item, code, $table, $tdEl, now) {
     let $td = $tdEl;
     if (!$td.length) {
-      return null;
+      return false;
     }
 
     $td.parent().toggleClass('dirty', item.is_dirty);
@@ -261,6 +264,7 @@ const stats = {
       this.renderLastUpdatedTime($td[0], item.lastupdated);
       $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
     }
+    return true;
   },
 
   updateStatsUI() {
