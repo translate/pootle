@@ -33,7 +33,7 @@ const SocialSignInForm = React.createClass({
       <button
         className="btn btn-big"
         key={index}
-        onClick={this.handleClick.bind(null, socialAuth.url)}
+        onClick={() => this.handleClick(socialAuth.url)}
       >
         {interpolate(gettext('Sign In With %s'), [socialAuth.name])}
       </button>
