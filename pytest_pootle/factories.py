@@ -72,7 +72,7 @@ class DirectoryFactory(factory.django.DjangoModelFactory):
     obsolete = False
 
 
-class LanguageFactory(factory.django.DjangoModelFactory):
+class LanguageDBFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_language.Language'
@@ -93,7 +93,7 @@ class LanguageFactory(factory.django.DjangoModelFactory):
         return 'Language %s' % (Language.objects.count() - 1)
 
 
-class ProjectFactory(factory.django.DjangoModelFactory):
+class ProjectDBFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_project.Project'
@@ -117,7 +117,7 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     checkstyle = "standard"
 
 
-class StoreFactory(factory.django.DjangoModelFactory):
+class StoreDBFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_store.Store'
@@ -145,7 +145,7 @@ class TranslationProjectFactory(factory.django.DjangoModelFactory):
         model = 'pootle_translationproject.TranslationProject'
 
 
-class UnitFactory(factory.django.DjangoModelFactory):
+class UnitDBFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_store.Unit'
@@ -192,7 +192,7 @@ class UnitFactory(factory.django.DjangoModelFactory):
         return ""
 
 
-class VirtualFolderFactory(factory.django.DjangoModelFactory):
+class VirtualFolderDBFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'virtualfolder.VirtualFolder'

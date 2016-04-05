@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils.safestring import mark_safe
 
 from pytest_pootle.env import TEST_USERS
-from pytest_pootle.factories import LanguageFactory
+from pytest_pootle.factories import LanguageDBFactory
 
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
@@ -159,7 +159,7 @@ def test_admin_view_projects_add_tp(english, client, admin):
     user = admin
     project = Project.objects.get(code="project0")
 
-    new_language = LanguageFactory()
+    new_language = LanguageDBFactory()
     TranslationProject.objects.create(language=english, project=project)
 
     client.login(

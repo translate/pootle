@@ -15,7 +15,7 @@ from translate.filters import checks
 
 from django.db import IntegrityError
 
-from pytest_pootle.factories import LanguageFactory, TranslationProjectFactory
+from pytest_pootle.factories import LanguageDBFactory, TranslationProjectFactory
 
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -86,7 +86,7 @@ def test_tp_empty_stats():
     TranslationProjectFactory(project=project, language=english)
 
     # Create a new language to test.
-    language = LanguageFactory()
+    language = LanguageDBFactory()
     tp = TranslationProject.objects.create(language=language, project=project)
     tp.init_from_templates()
 
@@ -104,7 +104,7 @@ def test_tp_empty_stats():
 
 @pytest.mark.django_db
 def test_tp_stats_created_from_template(tutorial, templates):
-    language = LanguageFactory()
+    language = LanguageDBFactory()
     tp = TranslationProject.objects.create(language=language, project=tutorial)
     tp.init_from_templates()
 
@@ -119,14 +119,14 @@ def test_tp_stats_created_from_template(tutorial, templates):
 
 @pytest.mark.django_db
 def test_can_be_inited_from_templates(tutorial, templates):
-    language = LanguageFactory()
+    language = LanguageDBFactory()
     tp = TranslationProject(project=tutorial, language=language)
     assert tp.can_be_inited_from_templates()
 
 
 @pytest.mark.django_db
 def test_cannot_be_inited_from_templates():
-    language = LanguageFactory()
+    language = LanguageDBFactory()
     project = Project.objects.get(code='project0')
     tp = TranslationProject(project=project, language=language)
     assert not tp.can_be_inited_from_templates()

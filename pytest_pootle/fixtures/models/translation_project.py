@@ -86,10 +86,10 @@ def afrikaans_vfolder_test(afrikaans, vfolder_project):
 
 @pytest.fixture
 def tp_checker_tests(request, english, checkers):
-    from pytest_pootle.factories import ProjectFactory
+    from pytest_pootle.factories import ProjectDBFactory
 
     checker_name = checkers
-    project = ProjectFactory(
+    project = ProjectDBFactory(
         checkstyle=checker_name,
         source_language=english)
 

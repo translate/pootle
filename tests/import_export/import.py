@@ -84,11 +84,11 @@ def test_import_new_file(import_tps, site_users):
 
 @pytest.mark.django_db
 def test_import_to_empty(import_tps, site_users):
-    from pytest_pootle.factories import StoreFactory
+    from pytest_pootle.factories import StoreDBFactory
 
     tp = import_tps
     user = site_users["user"]
-    store = StoreFactory(translation_project=tp, name="import_to_empty.po")
+    store = StoreDBFactory(translation_project=tp, name="import_to_empty.po")
     filestore = create_store(store.pootle_path, "0",
                              [("Unit Source", "Unit Target")])
     import_file(SimpleUploadedFile(store.name,
@@ -108,12 +108,12 @@ def test_import_to_empty(import_tps, site_users):
 
 @pytest.mark.django_db
 def test_import_add_and_obsolete_units(import_tps, site_users):
-    from pytest_pootle.factories import StoreFactory, UnitFactory
+    from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
 
     tp = import_tps
     user = site_users["user"]
-    store = StoreFactory(translation_project=tp)
-    unit = UnitFactory(store=store, state=TRANSLATED)
+    store = StoreDBFactory(translation_project=tp)
+    unit = UnitDBFactory(store=store, state=TRANSLATED)
     filestore = create_store(
         store.pootle_path,
         "0",

@@ -274,26 +274,26 @@ class PootleTestEnv(object):
             parent=DirectoryFactory(parent=None, name=""))
 
     def setup_site_matrix(self):
-        from pytest_pootle.factories import ProjectFactory, LanguageFactory
+        from pytest_pootle.factories import ProjectDBFactory, LanguageDBFactory
 
         from pootle_language.models import Language
 
         # add 2 languages
         for i in range(0, 2):
-            LanguageFactory()
+            LanguageDBFactory()
 
         source_language = Language.objects.get(code="en")
         for i in range(0, 2):
             # add 2 projects
-            ProjectFactory(source_language=source_language)
+            ProjectDBFactory(source_language=source_language)
 
     def setup_terminology(self):
-        from pytest_pootle.factories import (ProjectFactory,
+        from pytest_pootle.factories import (ProjectDBFactory,
                                              TranslationProjectFactory)
         from pootle_language.models import Language
 
         source_language = Language.objects.get(code="en")
-        terminology = ProjectFactory(code="terminology",
+        terminology = ProjectDBFactory(code="terminology",
                                      checkstyle="terminology",
                                      fullname="Terminology",
                                      source_language=source_language)
@@ -302,13 +302,13 @@ class PootleTestEnv(object):
 
     def setup_disabled_project(self):
         from pytest_pootle.factories import (DirectoryFactory,
-                                             ProjectFactory,
+                                             ProjectDBFactory,
                                              TranslationProjectFactory)
 
         from pootle_language.models import Language
 
         source_language = Language.objects.get(code="en")
-        project = ProjectFactory(code="disabled_project0",
+        project = ProjectDBFactory(code="disabled_project0",
                                  fullname="Disabled Project 0",
                                  source_language=source_language)
         project.disabled = True
@@ -359,38 +359,38 @@ class PootleTestEnv(object):
                 self._add_stores(tp)
 
     def setup_vfolders(self):
-        from pytest_pootle.factories import VirtualFolderFactory
+        from pytest_pootle.factories import VirtualFolderDBFactory
 
-        VirtualFolderFactory(filter_rules="store0.po")
-        VirtualFolderFactory(filter_rules="store1.po")
-        VirtualFolderFactory(
+        VirtualFolderDBFactory(filter_rules="store0.po")
+        VirtualFolderDBFactory(filter_rules="store1.po")
+        VirtualFolderDBFactory(
             location='/{LANG}/project0/',
             is_public=False,
             filter_rules="store0.po")
-        VirtualFolderFactory(
+        VirtualFolderDBFactory(
             location='/{LANG}/project0/',
             is_public=False,
             filter_rules="store1.po")
-        VirtualFolderFactory(
+        VirtualFolderDBFactory(
             location='/language0/project0/',
             filter_rules="subdir0/store4.po")
 
     def _add_stores(self, tp, n=(3, 2), parent=None):
-        from pytest_pootle.factories import StoreFactory, UnitFactory
+        from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
 
         from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
 
         for i in range(0, n[0]):
             # add 3 stores
             if parent is None:
-                store = StoreFactory(translation_project=tp)
+                store = StoreDBFactory(translation_project=tp)
             else:
-                store = StoreFactory(translation_project=tp, parent=parent)
+                store = StoreDBFactory(translation_project=tp, parent=parent)
 
             # add 8 units to each store
             for state in [UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE]:
                 for i in range(0, n[1]):
-                    UnitFactory(store=store, state=state)
+                    UnitDBFactory(store=store, state=state)
 
     def _update_submission_times(self, update_time, last_update=None):
         from pootle_statistics.models import Submission
