@@ -183,7 +183,8 @@ class PootleTestEnv(object):
             'app_label': 'pootle_app',
             'model': 'directory'}
         content_type, created = ContentType.objects.get_or_create(**args)
-        content_type.save()
+        if created:
+            content_type.save()
 
         return content_type
 
@@ -257,14 +258,16 @@ class PootleTestEnv(object):
         criteria = {
             'user': nobody,
             'directory': Directory.objects.root}
-        permission_set = PermissionSet.objects.create(**criteria)
-        permission_set.positive_permissions = [view, suggest]
-        permission_set.save()
+        permission_set, created = PermissionSet.objects.get_or_create(**criteria)
+        if created:
+            permission_set.positive_permissions = [view, suggest]
+            permission_set.save()
 
         criteria['user'] = default
-        permission_set = PermissionSet.objects.create(**criteria)
-        permission_set.positive_permissions = [view, suggest, translate]
-        permission_set.save()
+        permission_set, created = PermissionSet.objects.get_or_create(**criteria)
+        if created:
+            permission_set.positive_permissions = [view, suggest, translate]
+            permission_set.save()
 
     def setup_site_root(self):
         from pytest_pootle.factories import DirectoryFactory
