@@ -294,9 +294,9 @@ class PootleTestEnv(object):
 
         source_language = Language.objects.get(code="en")
         terminology = ProjectDBFactory(code="terminology",
-                                     checkstyle="terminology",
-                                     fullname="Terminology",
-                                     source_language=source_language)
+                                       checkstyle="terminology",
+                                       fullname="Terminology",
+                                       source_language=source_language)
         for language in Language.objects.all():
             TranslationProjectFactory(project=terminology, language=language)
 
@@ -309,8 +309,8 @@ class PootleTestEnv(object):
 
         source_language = Language.objects.get(code="en")
         project = ProjectDBFactory(code="disabled_project0",
-                                 fullname="Disabled Project 0",
-                                 source_language=source_language)
+                                   fullname="Disabled Project 0",
+                                   source_language=source_language)
         project.disabled = True
         project.save()
         language = Language.objects.get(code="language0")
