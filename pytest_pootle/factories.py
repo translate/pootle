@@ -16,20 +16,6 @@ from django.utils import timezone
 import pootle_store
 
 
-class ScoreLogFactory(factory.django.DjangoModelFactory):
-    creation_time = timezone.now()
-
-    class Meta(object):
-        model = 'pootle_statistics.ScoreLog'
-
-
-class SubmissionFactory(factory.django.DjangoModelFactory):
-    creation_time = timezone.now()
-
-    class Meta(object):
-        model = 'pootle_statistics.Submission'
-
-
 class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: 'foo%s' % n)
     email = factory.LazyAttribute(lambda o: '%s@example.org' % o.username)
@@ -94,6 +80,7 @@ class LanguageFactory(factory.django.DjangoModelFactory):
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):
+    source_language = factory.SubFactory(LanguageFactory)
 
     class Meta(object):
         model = 'pootle_project.Project'
@@ -117,7 +104,16 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     checkstyle = "standard"
 
 
+class TranslationProjectFactory(factory.django.DjangoModelFactory):
+    language = factory.SubFactory(LanguageFactory)
+    project = factory.SubFactory(ProjectFactory)
+
+    class Meta(object):
+        model = 'pootle_translationproject.TranslationProject'
+
+
 class StoreFactory(factory.django.DjangoModelFactory):
+    translation_project = factory.SubFactory(TranslationProjectFactory)
 
     class Meta(object):
         model = 'pootle_store.Store'
@@ -139,13 +135,8 @@ class StoreFactory(factory.django.DjangoModelFactory):
         return 'store%s.po' % self.translation_project.stores.count()
 
 
-class TranslationProjectFactory(factory.django.DjangoModelFactory):
-
-    class Meta(object):
-        model = 'pootle_translationproject.TranslationProject'
-
-
 class UnitFactory(factory.django.DjangoModelFactory):
+    store = factory.SubFactory(StoreFactory)
 
     class Meta(object):
         model = 'pootle_store.Unit'
@@ -220,3 +211,20 @@ class SuggestionFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'pootle_store.Suggestion'
+
+
+class SubmissionFactory(factory.django.DjangoModelFactory):
+    creation_time = timezone.now()
+    translation_project = factory.SubFactory(TranslationProjectFactory)
+    unit = factory.SubFactory(UnitFactory)
+
+    class Meta(object):
+        model = 'pootle_statistics.Submission'
+
+
+class ScoreLogFactory(factory.django.DjangoModelFactory):
+    creation_time = timezone.now()
+    submission = factory.SubFactory(SubmissionFactory)
+
+    class Meta(object):
+        model = 'pootle_statistics.ScoreLog'
