@@ -58,10 +58,10 @@
       </td>
       {% endif %}
 
-      {% if 'need-translation' in table.fields %}
-      <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation not-inited">
+      {% if 'critical' in table.fields %}
+      <td id="critical-{{ item.code|cssid }}" class="stats-number critical not-inited">
         {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_todo }}"></a>
+        <a class="stats-data non-zero" href="{{ item.href_critical }}"></a>
         {% else %}
         <span class="stats-data non-zero"></span>
         {% endif %}
@@ -82,10 +82,10 @@
       </td>
       {% endif %}
 
-      {% if 'critical' in table.fields %}
-      <td id="critical-{{ item.code|cssid }}" class="stats-number critical not-inited">
+      {% if 'need-translation' in table.fields %}
+      <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation not-inited">
         {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_critical }}"></a>
+        <a class="stats-data non-zero" href="{{ item.href_todo }}"></a>
         {% else %}
         <span class="stats-data non-zero"></span>
         {% endif %}

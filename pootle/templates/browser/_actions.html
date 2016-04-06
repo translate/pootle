@@ -1,14 +1,14 @@
 {% load i18n %}
 <ul>
-  <li id="js-action-continue">
-    {% if url_action_continue %}
-    <a class="continue-translation" href="{{ url_action_continue }}">
-      <span class="caption">{% trans 'Continue translation' %}</span>
+  <li id="js-action-fix-critical">
+    {% if url_action_fixcritical %}
+    <a class="fix-errors" href="{{ url_action_fixcritical }}">
+      <span class="caption">{% trans 'Fix critical errors' %}</span>
       <span class="counter">0</span>
     </a>
     {% else %}
-    <span class="continue-translation">
-      <span class="caption">{% trans 'Needs translation' %}</span>
+    <span class="fix-errors">
+      <span class="caption">{% trans 'Critical errors' %}</span>
       <span class="counter">0</span>
     </span>
     {% endif %}
@@ -26,15 +26,15 @@
     </span>
     {% endif %}
   </li>
-  <li id="js-action-fix-critical">
-    {% if url_action_fixcritical %}
-    <a class="fix-errors" href="{{ url_action_fixcritical }}">
-      <span class="caption">{% trans 'Fix critical errors' %}</span>
+  <li id="js-action-continue">
+    {% if url_action_continue %}
+    <a class="continue-translation" href="{{ url_action_continue }}">
+      <span class="caption">{% trans 'Continue translation' %}</span>
       <span class="counter">0</span>
     </a>
     {% else %}
-    <span class="fix-errors">
-      <span class="caption">{% trans 'Critical errors' %}</span>
+    <span class="continue-translation">
+      <span class="caption">{% trans 'Needs translation' %}</span>
       <span class="counter">0</span>
     </span>
     {% endif %}
