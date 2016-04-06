@@ -56,10 +56,14 @@ PROJECT_CHECKERS = {
 class ProjectManager(models.Manager):
 
     def cached_dict(self, user):
-        """Return a cached list of projects tuples for `user`.
+        """Return a cached ordered dictionary of projects tuples for `user`.
+
+        - Admins always get all projects.
+        - Regular users only get enabled projects accessible to them.
 
         :param user: The user for whom projects need to be retrieved for.
-        :return: A list of project tuples including (code, fullname)
+        :return: An ordered dictionary of project tuples including
+          (`fullname`, `disabled`) and `code` is a key in the dictionary.
         """
         if not user.is_superuser:
             cache_params = {'username': user.username}
