@@ -22,7 +22,6 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_delete, post_save, pre_delete
 from django.dispatch import receiver
-from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
@@ -73,10 +72,15 @@ class ProjectManager(models.Manager):
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
-            projects_dict = self.for_user(user).order_by('fullname') \
-                                               .values('code', 'fullname',
-                                                       'disabled')
+            if user.is_superuser:
+                qs = self.all()
+            else:
+                qs = self.enabled().filter(
+                    code__in=Project.get_codes_accessible_by_user(user)
+                )
 
+            projects_dict = qs.order_by('fullname').values('code', 'fullname',
+                                                           'disabled')
             projects = OrderedDict(
                 (project.pop('code'), project) for project in projects_dict
             )
@@ -220,6 +224,12 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     @classmethod
     def accessible_by_user(cls, user):
+        """Returns a cached list of project codes accessible by `user`.
+        """
+        return cls.objects.cached_dict(user).keys()
+
+    @classmethod
+    def get_codes_accessible_by_user(cls, user):
         """Returns a list of project codes accessible by `user`.
 
         Checks for explicit `view` permissions for `user`, and extends
@@ -232,17 +242,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         :param user: The ``User`` instance to get accessible projects for.
         """
-        if user.is_superuser:
-            key = iri_to_uri('projects:all')
-        else:
-            username = user.username
-            key = iri_to_uri('projects:accessible:%s' % username)
-        user_projects = cache.get(key, None)
-
-        if user_projects is not None:
-            return user_projects
-
-        logging.debug(u'Cache miss for %s', key)
 
         # FIXME: use `cls.objects.cached_dict().keys()`
         ALL_PROJECTS = cls.objects.values_list('code', flat=True)
@@ -251,6 +250,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             user_projects = ALL_PROJECTS
         else:
             ALL_PROJECTS = set(ALL_PROJECTS)
+            username = user.username
 
             if user.is_anonymous():
                 allow_usernames = [username]
@@ -288,10 +288,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             user_projects = (user_projects.union(
                 allow_projects)).difference(forbid_projects)
 
-        user_projects = list(user_projects)
-        cache.set(key, user_projects, settings.POOTLE_CACHE_TIMEOUT)
-
-        return user_projects
+        return list(user_projects)
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
