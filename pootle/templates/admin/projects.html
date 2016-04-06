@@ -12,7 +12,7 @@
 $(function () {
   PTL.admin.init({itemType: 'project',
                   appRoot: '{% url "pootle-admin-projects" %}',
-                  formChoices: {{ form_choices|safe }}});
+                  formChoices: JSON.parse('{{ form_choices|escapejs }}')});
 });
 </script>
 {% endblock %}

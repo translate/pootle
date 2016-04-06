@@ -13,7 +13,7 @@
       <tbody>
       <% _.each(grouped, function (row) { %>
         <tr class="item">
-          <td><a href="<%= row.tp_browse_url %>"><%= row.translation_project %></a></td>
+          <td><a href="<%= row.tp_browse_url %>"><%- row.translation_project %></a></td>
           <td class="number<% if (row.suggested == 0) { %> zero<% } %>">
             <% if (row.suggested > 0) { %>
               <a href="<%= row.tp_suggestions_translate_url %>">

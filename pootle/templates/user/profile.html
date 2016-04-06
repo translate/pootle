@@ -116,10 +116,10 @@
 $(function() {
   PTL.user.init({
     {% if user == object %}
-    userData: {{ user.as_json|safe }},
+    userData: JSON.parse('{{ user.as_json|escapejs }}'),
     appRoot: '{{ user.get_absolute_url }}',
     {% endif %}
-    lastEvent: {{ object.last_event.as_json|safe }}
+    lastEvent: JSON.parse('{{ object.last_event.as_json|escapejs }}'),
   });
 });
 </script>

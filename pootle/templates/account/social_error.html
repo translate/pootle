@@ -5,7 +5,7 @@
   $(function () {
     PTL.auth.open({
       initialScreen: 'socialAuthError',
-      socialError: {{ social_error|safe }},
+      socialError: JSON.parse('{{ social_error|escapejs }}'),
     });
   });
 </script>

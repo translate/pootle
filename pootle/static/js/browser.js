@@ -126,17 +126,16 @@ var formatResource = function (path, container, query) {
 
   return [
     '<span class="', $el.data('icon'), '">',
-      '<i class="icon-', $el.data('icon'), '"></i>',
-      '<span class="text">', t, '</span>',
-    '</span>'
+    '<i class="icon-', $el.data('icon'), '"></i>',
+    '<span class="text">', _.escape(t), '</span>',
+    '</span>',
   ].join('');
 };
 
 
 function formatProject(path, container, query) {
   const state = path.element[0].dataset.state;
-
-  return `<span class="text project-${state}">${path.text}</span>`;
+  return `<span class="text project-${state}">${_.escape(path.text)}</span>`;
 };
 
 

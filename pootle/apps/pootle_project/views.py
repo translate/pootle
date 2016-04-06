@@ -11,6 +11,7 @@ import locale
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
+from django.utils.html import escape
 
 from pootle.core.browser import (get_table_headings, make_language_item,
                                  make_project_list_item, make_xlanguage_item)
@@ -123,7 +124,7 @@ def project_admin(request, current_project):
     def generate_link(tp):
         path_args = split_pootle_path(tp.pootle_path)[:2]
         perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
-        return u'<a href="%s">%s</a>' % (perms_url, tp.language)
+        return u'<a href="%s">%s</a>' % (perms_url, escape(tp.language))
 
     extra = (1 if current_project.get_template_translationproject() is not None
                else 0)
