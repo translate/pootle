@@ -14,6 +14,7 @@ from django.forms.models import modelformset_factory
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils.functional import cached_property
+from django.utils.html import escape
 from django.utils.lru_cache import lru_cache
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
@@ -287,7 +288,7 @@ class ProjectAdminView(PootleAdminView):
         def generate_link(tp):
             path_args = split_pootle_path(tp.pootle_path)[:2]
             perms_url = reverse('pootle-tp-admin-permissions', args=path_args)
-            return u'<a href="%s">%s</a>' % (perms_url, tp.language)
+            return u'<a href="%s">%s</a>' % (perms_url, escape(tp.language))
         return mark_safe(
             util.form_set_as_table(
                 formset,

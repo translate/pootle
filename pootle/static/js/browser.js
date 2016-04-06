@@ -8,6 +8,7 @@
 
 import $ from 'jquery';
 import 'jquery-select2';
+import _ from 'underscore';
 
 import cookie from 'utils/cookie';
 
@@ -195,7 +196,7 @@ function formatResource(path, container, query) {
   return [
     '<span class="', $el.data('icon'), '">',
     '<i class="icon-', $el.data('icon'), '"></i>',
-    '<span class="text">', t, '</span>',
+    '<span class="text">', _.escape(t), '</span>',
     '</span>',
   ].join('');
 }
@@ -204,7 +205,7 @@ function formatResource(path, container, query) {
 function formatProject(path) {
   const state = path.element[0].dataset.state;
 
-  return `<span class="text project-${state}">${path.text}</span>`;
+  return `<span class="text project-${state}">${_.escape(path.text)}</span>`;
 }
 
 

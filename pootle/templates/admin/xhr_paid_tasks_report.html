@@ -25,9 +25,9 @@
         }
       %>
       <tr class="item task<%= row.id %>">
-        <td><%= row.datetime %></td>
-        <td><%= row.description %></td>
-        <td><%= row.action %></td>
+        <td><%- row.datetime %></td>
+        <td><%- row.description %></td>
+        <td><%- row.action %></td>
         <td class="number"><%= amount %></td>
         <td class="number"><%= row.rate %> <%= data.meta.user.currency %></td>
         <td class="number"><%= (row.rate * row.amount).toFixed(2) %> <%= data.meta.user.currency %></td>

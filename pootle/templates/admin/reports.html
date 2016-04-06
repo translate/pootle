@@ -28,7 +28,7 @@
 <script type="text/javascript">
   $(function () {
     PTL.reports.init({
-      users: {{ users|safe }},
+      users: JSON.parse('{{ users|escapejs }}'),
       updateUserRatesUrl: "{% url 'pootle-reports-update-user-rates' %}",
       addPaidTaskUrl: "{% url 'pootle-reports-add-paid-task' %}",
       removePaidTaskUrl: "{% url 'pootle-reports-remove-paid-task' %}",
