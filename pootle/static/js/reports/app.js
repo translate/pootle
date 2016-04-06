@@ -291,13 +291,14 @@ PTL.reports = {
     );
   },
 
-  getPaidTaskSummaryItem(type, rate) {
-    if (PTL.reports.data.paid_task_summary) {
-      const summary = PTL.reports.data.paid_task_summary;
-      for (const index in summary) {
-        if (summary[index].rate === rate && summary[index].type === type) {
-          return summary[index];
-        }
+  getPaidTaskSummaryItem(type, rate, summary) {
+    if (!summary) {
+      return null;
+    }
+
+    for (const index in summary) {
+      if (summary[index].rate === rate && summary[index].type === type) {
+        return summary[index];
       }
     }
 
@@ -320,7 +321,8 @@ PTL.reports = {
       }
 
       const task = data.paid_tasks[index];
-      const item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate);
+      const item = PTL.reports.getPaidTaskSummaryItem(task.type, task.rate,
+                                                      origData.paid_task_summary);
 
       task.datetime = moment(task.datetime, 'YYYY-MM-DD hh:mm:ss').format('MMMM D, HH:mm');
       if (item !== null) {
