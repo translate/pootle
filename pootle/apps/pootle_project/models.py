@@ -235,7 +235,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         if user.is_superuser:
             key = iri_to_uri('projects:all')
         else:
-            username = 'nobody' if user.is_anonymous() else user.username
+            username = user.username
             key = iri_to_uri('projects:accessible:%s' % username)
         user_projects = cache.get(key, None)
 
