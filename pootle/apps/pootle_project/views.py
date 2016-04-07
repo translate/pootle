@@ -329,10 +329,8 @@ class ProjectsMixin(object):
 
     @lru_cache()
     def get_object(self):
-        user_projects = Project.accessible_by_user(self.request.user)
         user_projects = (
             Project.objects.for_user(self.request.user)
-                           .filter(code__in=user_projects)
                            .select_related("directory__pootle_path"))
         return ProjectSet(user_projects)
 

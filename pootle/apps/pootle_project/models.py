@@ -15,7 +15,6 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -23,7 +22,6 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_delete, post_save, pre_delete
 from django.dispatch import receiver
-from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
@@ -57,19 +55,32 @@ PROJECT_CHECKERS = {
 class ProjectManager(models.Manager):
 
     def cached_dict(self, user):
-        """Return a cached list of projects tuples for `user`.
+        """Return a cached ordered dictionary of projects tuples for `user`.
+
+        - Admins always get all projects.
+        - Regular users only get enabled projects accessible to them.
 
         :param user: The user for whom projects need to be retrieved for.
-        :return: A list of project tuples including (code, fullname)
+        :return: An ordered dictionary of project tuples including
+          (`fullname`, `disabled`) and `code` is a key in the dictionary.
         """
-        cache_key = make_method_key('Project', 'cached_dict',
-                                    {'is_admin': user.is_superuser})
+        if not user.is_superuser:
+            cache_params = {'username': user.username}
+        else:
+            cache_params = {'is_admin': user.is_superuser}
+        cache_key = make_method_key('Project', 'cached_dict', cache_params)
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
-            projects_dict = self.for_user(user).order_by('fullname') \
-                                               .values('code', 'fullname',
-                                                       'disabled')
+            if user.is_superuser:
+                qs = self.all()
+            else:
+                qs = self.enabled().filter(
+                    code__in=Project.get_codes_accessible_by_user(user)
+                )
+
+            projects_dict = qs.order_by('fullname').values('code', 'fullname',
+                                                           'disabled')
             projects = OrderedDict(
                 (project.pop('code'), project) for project in projects_dict
             )
@@ -84,7 +95,8 @@ class ProjectManager(models.Manager):
         """Gets a `project_code` project for a specific `user`.
 
         - Admins can get the project even if it's disabled.
-        - Regular users only get a project if it's not disabled.
+        - Regular users only get a project if it's not disabled and
+        it is accessible to them.
 
         :param project_code: The code of the project to retrieve.
         :param user: The user for whom the project needs to be retrieved.
@@ -93,13 +105,13 @@ class ProjectManager(models.Manager):
         if user.is_superuser:
             return self.get(code=project_code)
 
-        return self.get(code=project_code, disabled=False)
+        return self.for_user(user).get(code=project_code)
 
     def for_user(self, user):
         """Filters projects for a specific user.
 
         - Admins always get all projects.
-        - Regular users only get enabled projects.
+        - Regular users only get enabled projects accessible to them.
 
         :param user: The user for whom the projects need to be retrieved for.
         :return: A filtered queryset with `Project`s for `user`.
@@ -107,7 +119,7 @@ class ProjectManager(models.Manager):
         if user.is_superuser:
             return self.all()
 
-        return self.enabled()
+        return self.enabled().filter(code__in=Project.accessible_by_user(user))
 
 
 class ProjectURLMixin(object):
@@ -212,6 +224,12 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     @classmethod
     def accessible_by_user(cls, user):
+        """Returns a cached list of project codes accessible by `user`.
+        """
+        return cls.objects.cached_dict(user).keys()
+
+    @classmethod
+    def get_codes_accessible_by_user(cls, user):
         """Returns a list of project codes accessible by `user`.
 
         Checks for explicit `view` permissions for `user`, and extends
@@ -224,31 +242,22 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         :param user: The ``User`` instance to get accessible projects for.
         """
-        username = 'nobody' if user.is_anonymous() else user.username
-        key = iri_to_uri('projects:accessible:%s' % username)
-        user_projects = cache.get(key, None)
 
-        if user_projects is not None:
-            return user_projects
-
-        logging.debug(u'Cache miss for %s', key)
-
-        if user.is_anonymous():
-            allow_usernames = [username]
-            forbid_usernames = [username, 'default']
-        else:
-            allow_usernames = list(set([username, 'default', 'nobody']))
-            forbid_usernames = list(set([username, 'default']))
-
-        # FIXME: use `cls.objects.cached_dict().keys()`, but that needs
-        # to use the `LiveProjectManager` first, as it only considers
-        # `enabled()` projects
+        # FIXME: use `cls.objects.cached_dict().keys()`
         ALL_PROJECTS = cls.objects.values_list('code', flat=True)
 
         if user.is_superuser:
             user_projects = ALL_PROJECTS
         else:
             ALL_PROJECTS = set(ALL_PROJECTS)
+            username = user.username
+
+            if user.is_anonymous():
+                allow_usernames = [username]
+                forbid_usernames = [username, 'default']
+            else:
+                allow_usernames = list(set([username, 'default', 'nobody']))
+                forbid_usernames = list(set([username, 'default']))
 
             # Check root for `view` permissions
 
@@ -279,10 +288,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             user_projects = (user_projects.union(
                 allow_projects)).difference(forbid_projects)
 
-        user_projects = list(user_projects)
-        cache.set(key, user_projects, settings.POOTLE_CACHE_TIMEOUT)
-
-        return user_projects
+        return list(user_projects)
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
@@ -593,13 +599,6 @@ def invalidate_accessible_projects_cache(sender, instance, **kwargs):
         ['Project', 'TranslationProject', 'PermissionSet']):
         return
 
-    # FIXME: use Redis directly to clear these caches effectively
-
-    cache.delete_many([
-        make_method_key('Project', 'cached_dict', {'is_admin': False}),
-        make_method_key('Project', 'cached_dict', {'is_admin': True}),
-    ])
-
-    User = get_user_model()
-    users_list = User.objects.values_list('username', flat=True)
-    cache.delete_many(map(lambda x: 'projects:accessible:%s' % x, users_list))
+    cache.delete_pattern(make_method_key('Project', 'cached_dict', '*'))
+    cache.delete('projects:all')
+    cache.delete_pattern('projects:accessible:*')

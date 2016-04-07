@@ -19,14 +19,15 @@ ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'pytest_pootle', 'data', 'po')
 
 
-# Dummy caching
+# Using the only Redis DB for testing
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'pootle-tests'
-    },
     # Must set up entries for persistent stores here because we have a check in
     # place that will abort everything otherwise
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/15',
+        'TIMEOUT': None,
+    },
     'redis': {
         'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': 'redis://127.0.0.1:6379/15',
