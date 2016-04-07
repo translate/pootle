@@ -647,7 +647,7 @@ class ScoreLog(models.Model):
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
             TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
             TranslationActionCodes.SUGG_REVIEWED_REJECTED: lambda: analyzeCost,
-        }.get(self.action_code, 0)()
+        }.get(self.action_code, lambda: 0)()
 
     def get_similarity(self):
         return self.similarity \
