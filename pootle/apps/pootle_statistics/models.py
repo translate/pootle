@@ -703,9 +703,8 @@ class ScoreLog(models.Model):
         def get_sugg_accepted():
             suggester = self.submission.suggestion.user.pk
             reviewer = self.submission.submitter.pk
-            if suggester != reviewer:
-                if self.submission.old_value == '':
-                    return translated_words, None
+            if suggester != reviewer and self.submission.old_value == '':
+                return translated_words, None
 
             return None, None
 
