@@ -146,6 +146,9 @@ PTL.editor = {
     if (options.displayPriority) {
       ALLOWED_SORTS.push('priority');
     }
+    if (options.suggestOnly) {
+      ALLOWED_SORTS.push('suggestion_count');
+    }
 
     /* Select2 */
     this.$filterStatus.select2(filterSelectOpts);

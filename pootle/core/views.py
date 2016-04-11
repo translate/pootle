@@ -668,15 +668,20 @@ class PootleTranslateView(PootleDetailView):
     def get_context_data(self, *args, **kwargs):
         ctx = super(
             PootleTranslateView, self).get_context_data(*args, **kwargs)
+        can_translate = check_permission("translate", self.request)
+        can_suggest = check_permission("suggest", self.request)
+        can_review = check_permission("review", self.request)
+        can_suggest_only = can_suggest and not can_translate and not can_review
         ctx.update(
             {'page': 'translate',
              'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,
              'check_categories': get_qualitycheck_schema(),
-             'cantranslate': check_permission("translate", self.request),
-             'cansuggest': check_permission("suggest", self.request),
-             'canreview': check_permission("review", self.request),
+             'cantranslate': can_translate,
+             'cansuggest': can_suggest,
+             'canreview': can_review,
+             'can_suggest_only': can_suggest_only,
              'search_form': make_search_form(request=self.request),
              'previous_url': get_previous_url(self.request),
              'POOTLE_MT_BACKENDS': settings.POOTLE_MT_BACKENDS,

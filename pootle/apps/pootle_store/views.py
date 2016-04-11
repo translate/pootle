@@ -66,6 +66,7 @@ ALLOWED_SORTS = {
     'suggestions': {
         'oldest': 'suggestion__creation_time',
         'newest': '-suggestion__creation_time',
+        'suggestion_count': 'suggestion__id',
     },
     'submissions': {
         'oldest': 'submission__creation_time',

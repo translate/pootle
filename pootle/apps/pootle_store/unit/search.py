@@ -7,7 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models import Max
+from django.db.models import Count, Max
 from django.utils.functional import cached_property
 
 from pootle_store.models import Unit
@@ -98,14 +98,17 @@ class DBSearchBackend(object):
             if self.sort_on not in SIMPLY_SORTED:
                 # Omit leading `-` sign
                 if self.sort_by[0] == '-':
-                    max_field = self.sort_by[1:]
+                    annotate_field = self.sort_by[1:]
                     sort_by = '-sort_by_field'
                 else:
-                    max_field = self.sort_by
+                    annotate_field = self.sort_by
                     sort_by = 'sort_by_field'
-                # It's necessary to use `Max()` here because we can't
-                # use `distinct()` and `order_by()` at the same time
-                qs = qs.annotate(sort_by_field=Max(max_field))
+                if annotate_field == 'suggestion__id':
+                    qs = qs.annotate(sort_by_field=Count(annotate_field))
+                else:
+                    # It's necessary to use `Max()` here because we can't
+                    # use `distinct()` and `order_by()` at the same time
+                    qs = qs.annotate(sort_by_field=Max(annotate_field))
             return qs.order_by(
                 sort_by, "store__pootle_path", "index")
         return qs

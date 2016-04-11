@@ -64,7 +64,8 @@ UNIT_SEARCH_FILTER_CHOICES = (
 UNIT_SEARCH_SORT_CHOICES = (
     ('priority', 'priority'),
     ('oldest', 'oldest'),
-    ('newest', 'newest'))
+    ('newest', 'newest'),
+    ('suggestion_count', 'suggestion_count'))
 
 # # # # # # #  text cleanup and highlighting # # # # # # # # # # # # #
 
@@ -513,6 +514,8 @@ class UnitSearchForm(forms.Form):
             elif unit_filter in ('user-submissions', ):
                 sort_on = 'submissions'
         sort_by_param = self.cleaned_data["sort"]
+        if sort_by_param == "suggestion_count":
+            sort_on = 'suggestions'
         self.cleaned_data["sort_by"] = ALLOWED_SORTS[sort_on].get(sort_by_param)
         self.cleaned_data["sort_on"] = sort_on
 
