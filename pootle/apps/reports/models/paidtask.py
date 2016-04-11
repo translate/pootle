@@ -12,9 +12,6 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
-__all__ = ('PaidTask', )
-
-
 class PaidTaskTypes(object):
     TRANSLATION = 0
     REVIEW = 1
