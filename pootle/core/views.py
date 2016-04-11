@@ -626,6 +626,11 @@ class PootleBrowseView(PootleDetailView):
         ctx, cookie_data = self.sidebar_announcements
         ctx.update(
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
+
+        can_translate = check_permission("translate", self.request)
+        can_suggest = check_permission("suggest", self.request)
+        can_review = check_permission("review", self.request)
+        can_suggest_only = can_suggest and not can_translate and not can_review
         ctx.update(
             {'page': 'browse',
              'stats': jsonify(self.stats),
@@ -633,6 +638,8 @@ class PootleBrowseView(PootleDetailView):
              'check_categories': get_qualitycheck_schema(self.object),
              'translate_accessible': translate_accessible,
              'translate_stats_accessible': translate_stats_accessible,
+             'can_suggest_only': can_suggest_only,
+             'can_review': can_review,
              'url_action_continue': url_action_continue,
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,
