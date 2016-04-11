@@ -42,7 +42,7 @@
 
       {% if 'total' in table.fields %}
       <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
-        {% if can_translate %}
+        {% if translate_accessible %}
         <a class="stats-data non-zero" href="{{ item.href_all }}"></a>
         {% else %}
         <span class="stats-data non-zero"></span>
@@ -60,7 +60,7 @@
 
       {% if 'critical' in table.fields %}
       <td id="critical-{{ item.code|cssid }}" class="stats-number critical not-inited">
-        {% if can_translate %}
+        {% if translate_accessible %}
         <a class="stats-data non-zero" href="{{ item.href_critical }}"></a>
         {% else %}
         <span class="stats-data non-zero"></span>
@@ -72,7 +72,7 @@
 
       {% if 'suggestions' in table.fields %}
       <td id="suggestions-{{ item.code|cssid }}" class="stats-number suggestions not-inited">
-        {% if can_translate %}
+        {% if translate_accessible %}
         <a class="stats-data non-zero" href="{{ item.href_sugg }}"></a>
         {% else %}
         <span class="stats-data non-zero"></span>
@@ -84,7 +84,7 @@
 
       {% if 'need-translation' in table.fields %}
       <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation not-inited">
-        {% if can_translate %}
+        {% if translate_accessible %}
         <a class="stats-data non-zero" href="{{ item.href_todo }}"></a>
         {% else %}
         <span class="stats-data non-zero"></span>

@@ -24,7 +24,7 @@
           <tr id="stats-{{ item.state }}">
             <td id="stats-name">{{ item.title }}</td>
             <td class="stats-number">
-              {% if can_translate_stats %}
+              {% if translate_stats_accessible %}
               <a href="{{ item.url }}" class="stats-data"></a>
               {% else %}
               <span class="stats-data"></span>
@@ -58,7 +58,7 @@
           <h4 class="clear">{{ item.title }}</h4>
           {% for check in item.checks %}
           <div class="check js-check" data-code="{{ check.code }}">
-            {% if can_translate_stats %}
+            {% if translate_stats_accessible %}
             <div class="check-name"><a class="check-data" href="{{ check.url }}">{{ check.title }}</a></div>
             <div class="check-count"><a class="check-data" href="{{ check.url }}">0</a></div>
             {% else %}

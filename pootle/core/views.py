@@ -599,14 +599,14 @@ class PootleBrowseView(PootleDetailView):
 
     def get_context_data(self, *args, **kwargs):
         filters = {}
-        can_translate = False
-        can_translate_stats = False
+        translate_accessible = False
+        translate_stats_accessible = False
         if self.has_vfolders:
             filters['sort'] = 'priority'
 
         if self.request.user.is_superuser or self.language:
-            can_translate = True
-            can_translate_stats = True
+            translate_accessible = True
+            translate_stats_accessible = True
             url_action_continue = self.object.get_translate_url(
                 state='incomplete',
                 **filters)
@@ -618,7 +618,7 @@ class PootleBrowseView(PootleDetailView):
             url_action_view_all = self.object.get_translate_url(state='all')
         else:
             if self.project:
-                can_translate = True
+                translate_accessible = True
             url_action_continue = None
             url_action_fixcritical = None
             url_action_review = None
@@ -631,8 +631,8 @@ class PootleBrowseView(PootleDetailView):
              'stats': jsonify(self.stats),
              'translation_states': get_translation_states(self.object),
              'check_categories': get_qualitycheck_schema(self.object),
-             'can_translate': can_translate,
-             'can_translate_stats': can_translate_stats,
+             'translate_accessible': translate_accessible,
+             'translate_stats_accessible': translate_stats_accessible,
              'url_action_continue': url_action_continue,
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,
