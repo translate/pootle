@@ -12,8 +12,9 @@ page.zoomFactor = 1.3;
 page.open(infile, function (status) {
   if (status !== 'success') {
     console.log('Failed to load the file');
-  } else {
-    page.render(outfile);
+    phantom.exit(1);
   }
+
+  page.render(outfile);
   phantom.exit();
 });
