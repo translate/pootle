@@ -61,6 +61,7 @@ class CommentForm(DjCommentForm):
 class UnsecuredCommentForm(CommentForm):
 
     def __init__(self, target_object, data=None, *args, **kwargs):
-        super(UnsecuredCommentForm, self).__init__(target_object, data, *args, **kwargs)
+        super(UnsecuredCommentForm, self).__init__(
+            target_object, data, *args, **kwargs)
         if data:
             data.update(self.generate_security_data())
