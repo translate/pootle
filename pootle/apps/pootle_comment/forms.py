@@ -1,0 +1,66 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) Pootle contributors.
+#
+# This file is a part of the Pootle project. It is distributed under the GPL3
+# or later license. See the LICENSE file for a copy of the license and the
+# AUTHORS file for copyright and authorship information.
+
+from datetime import datetime
+
+from django import forms
+from django.contrib.auth import get_user_model
+from django.utils.functional import cached_property
+
+from django_comments.forms import CommentForm as DjCommentForm
+
+from .exceptions import CommentNotSaved
+from .delegate import comment_should_not_be_saved
+from .signals import comment_was_saved
+
+User = get_user_model()
+
+
+class CommentForm(DjCommentForm):
+    user = forms.ModelChoiceField(queryset=User.objects.all())
+
+    def __init__(self, target_object, data=None, *args, **kwargs):
+        if data:
+            data["object_pk"] = str(target_object.pk)
+            data["content_type"] = str(target_object._meta)
+            if data.get("user"):
+                data["name"] = data["user"].display_name
+                data["email"] = data["user"].email
+                data["user"] = str(data["user"].pk)
+        super(CommentForm, self).__init__(
+            target_object, data, *args, **kwargs)
+
+    @cached_property
+    def comment(self):
+        return self.get_comment_object()
+
+    def clean(self):
+        super(CommentForm, self).clean()
+        should_not_save = comment_should_not_be_saved.get(
+            self.target_object.__class__,
+            instance=self.target_object,
+            comment=self.comment)
+        if should_not_save:
+            raise CommentNotSaved(dict(comment=should_not_save))
+
+    def save(self, *la, **kwa):
+        ob = self.comment
+        ob.user = self.cleaned_data["user"]
+        ob.submit_date = datetime.now()
+        ob.save()
+        comment_was_saved.send(
+            sender=ob.__class__,
+            comment=ob)
+
+
+class UnsecuredCommentForm(CommentForm):
+
+    def __init__(self, target_object, data=None, *args, **kwargs):
+        super(UnsecuredCommentForm, self).__init__(target_object, data, *args, **kwargs)
+        if data:
+            data.update(self.generate_security_data())
