@@ -17,6 +17,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ImproperlyConfigured
 from django.core.management.base import BaseCommand, CommandError
 
 from ...models import Invoice
@@ -84,6 +85,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, **options):
+        send_emails = options['send_emails']
         month = options['month']
         if month is not None and not is_valid_month(month):
             raise CommandError(
@@ -96,9 +98,12 @@ class Command(BaseCommand):
         if options['user_list']:
             users = filter(lambda x: x[0] in options['user_list'], users)
 
-        # Abort if a user defined in the configuration does not exist
+        # Abort if a user defined in the configuration does not exist or its
+        # configuration is missing required fields
         user_dict = {}
         for username, user_conf in users:
+            Invoice.check_config_for(user_conf, username,
+                                     require_email_fields=send_emails)
             usernames = (username, ) + user_conf.get('subcontractors', ())
 
             for username in usernames:
@@ -108,7 +113,7 @@ class Command(BaseCommand):
                 try:
                     user_dict[username] = User.objects.get(username=username)
                 except User.DoesNotExist:
-                    raise CommandError('User %s not found.' % username)
+                    raise ImproperlyConfigured('User %s not found.' % username)
 
         for username, user_conf in users:
             subcontractors = [
@@ -124,7 +129,7 @@ class Command(BaseCommand):
             self.stdout.write('Generating invoices for %s...' % fullname)
             invoice.generate()
 
-            if not options['send_emails']:
+            if not send_emails:
                 continue
 
             self.stdout.write('Sending email to %s...' % fullname)

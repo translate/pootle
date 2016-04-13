@@ -44,13 +44,14 @@ def get_previous_month():
 class Invoice(object):
 
     required_config_fields = (
-        'name', 'paid_by', 'wire_info',
+        ('name', 'paid_by', 'wire_info'),  # Core fields
+        ('email', 'accounting_email'),  # Email-related fields
     )
 
     def __init__(self, user, config, month=None, subcontractors=None,
                  add_correction=False):
         self.user = user
-        self.conf = self.validate_config(config)
+        self.conf = config
         self.subcontractors = [] if subcontractors is None else subcontractors
         self.add_correction = add_correction
 
@@ -68,17 +69,20 @@ class Invoice(object):
     def __repr__(self):
         return u'<Invoice %s:%s>' % (self.user.username, self.month_string)
 
-    @property
-    def id(self):
-        return self.conf.get('invoice_prefix', '') + self.month_string
+    @classmethod
+    def check_config_for(cls, config_dict, username, require_email_fields=False):
+        """Ensures the invoice configuration dictionary `config_dict` contains
+        the required fields.
 
-    @property
-    def month_string(self):
-        return self.month.strftime(MONTH_FORMAT)
-
-    def validate_config(self, config_dict):
+        :param username: Username owning the configuration.
+        :param validate_email: Whether to also require email-related fields.
+        """
+        required_fields = (
+            list(sum(cls.required_config_fields, ())) if require_email_fields else
+            cls.required_config_fields[0]
+        )
         missing_required_fields = [
-            field for field in self.required_config_fields
+            field for field in required_fields
             if field not in config_dict
         ]
         if len(missing_required_fields) > 0:
@@ -86,11 +90,18 @@ class Invoice(object):
                 'The configuration for user %s is missing the following required '
                 'fields: %s.\n'
                 'Please double-check your configuration.'
-                % (self.user.username, u', '.join(missing_required_fields))
+                % (username, u', '.join(missing_required_fields))
             )
 
-        # XXX: Extra validation?
         return config_dict
+
+    @property
+    def id(self):
+        return self.conf.get('invoice_prefix', '') + self.month_string
+
+    @property
+    def month_string(self):
+        return self.month.strftime(MONTH_FORMAT)
 
     @lru_cache()
     def get_rates(self):
@@ -331,14 +342,6 @@ class Invoice(object):
 
         :return: The number of successfully delivered messages
         """
-        if 'accounting_email' not in self.conf:
-            logger.warning(
-                '`accounting_email` not found in configuration for '
-                'user %s. Sending email will be skipped.',
-                self.user.username,
-            )
-            return 0
-
         ctx = self.get_context_data()
 
         amounts = self.get_total_amounts()

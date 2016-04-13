@@ -6,10 +6,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import logging
-
 import pytest
 
+from django.core.exceptions import ImproperlyConfigured
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
@@ -24,10 +23,32 @@ def test_generate_invoices_invalid_month(month):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_generate_invoices_nonexistant_user(settings):
-    settings.POOTLE_INVOICES_RECIPIENTS = {
-        'bogus_member': {},
-    }
-    with pytest.raises(CommandError) as e:
-        call_command('generate_invoices')
-    assert 'User bogus_member not found.' in str(e)
+@pytest.mark.parametrize('recipients, args', [
+    ({
+        'bogus_member': {
+            'name': 'foo',
+            'paid_by': 'foo',
+            'wire_info': 'foo',
+        },
+    }, None),
+    ({
+        'member': {
+            'paid_by': 'foo',
+            'wire_info': 'foo',
+        },
+    }, None),
+    ({
+        'member': {
+            'name': 'foo',
+            'paid_by': 'foo',
+            'wire_info': 'foo',
+        },
+    }, '--send-emails'),
+])
+def test_generate_invoices_incomplete_config(settings, recipients, args):
+    settings.POOTLE_INVOICES_RECIPIENTS = recipients
+    with pytest.raises(ImproperlyConfigured):
+        if args is None:
+            call_command('generate_invoices')
+        else:
+            call_command('generate_invoices', args)

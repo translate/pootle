@@ -53,21 +53,38 @@ def test_invoice_repr(month):
     )
 
 
-@pytest.mark.parametrize('config', [
-    {},
-    {
+@pytest.mark.parametrize('config, require_email_fields', [
+    ({}, False),
+    ({
         'foo': None,
         'bar': False,
-    },
-    {
+    }, False),
+    ({
         'name': None,
         'paid_by': None,
-    },
+    }, False),
+    ({
+        'name': None,
+        'paid_by': None,
+        'wire_info': None,
+    }, True),
+    ({
+        'name': None,
+        'paid_by': None,
+        'wire_info': None,
+        'email': None,
+    }, True),
+    ({
+        'name': None,
+        'paid_by': None,
+        'wire_info': None,
+        'accounting_email': None,
+    }, True),
 ])
-def test_invoice_init_incomplete_config(config):
-    user = UserFactory.build()
+def test_invoice_check_config_for(config, require_email_fields):
     with pytest.raises(ImproperlyConfigured):
-        Invoice(user, config)
+        Invoice.check_config_for(config, 'fake_username',
+                                 require_email_fields=require_email_fields)
 
 
 @pytest.mark.django_db
