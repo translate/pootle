@@ -1082,7 +1082,7 @@ the command will complain and create no invoices at all.
 Invoices will also be sent by email if the ``--send-emails`` flag is set. There
 are a couple more options to control how email will be sent:
 
-  * ``--bcc-send-to``: allows manually specifying BCC recipients.
+  * ``--bcc``: allows manually specifying BCC recipients.
   * ``--debug-send-to``: manually overrides who the invoice will be sent to. It omits
     sending copies to anyone. This can be useful for debugging.
 

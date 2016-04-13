@@ -60,9 +60,9 @@ class Command(BaseCommand):
             default=False,
         )
         email_group.add_argument(
-            '--bcc-send-to',
+            '--bcc',
             dest='bcc_email_list',
-            help='BCC email list',
+            help='Send email to the specified recipients as BCC',
             nargs='*',
             default=[],
         )
