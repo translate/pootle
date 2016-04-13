@@ -13,7 +13,7 @@ import 'jquery-serializeObject';
 import utils from './utils';
 
 
-export function onError(xhr, errorFn) {
+function onError(xhr, errorFn) {
   if (xhr.status === 402) {
     display(xhr.responseText);  // eslint-disable-line no-use-before-define
   } else {
@@ -56,3 +56,8 @@ function display(html) {
     focus: '#id_captcha_answer',
   });
 }
+
+
+export default {
+  onError,
+};
