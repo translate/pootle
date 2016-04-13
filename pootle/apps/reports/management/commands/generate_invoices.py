@@ -47,6 +47,15 @@ class Command(BaseCommand):
             nargs='*',
             default=[],
         )
+        parser.add_argument(
+            '--month',
+            dest='month',
+            help=(
+                'Process invoices for the given month (YYYY-MM). By default '
+                'the previous month will be used.'
+            ),
+            default=None,
+        )
 
         email_group = parser.add_argument_group(
             'E-mail',
@@ -72,17 +81,6 @@ class Command(BaseCommand):
             help='Send email to recipients (overrides existing user settings)',
             nargs='*',
             default=[],
-        )
-
-        debug_group = parser.add_argument_group(
-            'Debugging',
-            'Flags to debug invoices',
-        )
-        debug_group.add_argument(
-            '--debug-month',
-            dest='month',
-            help='Month (get previous month if no data provided)',
-            default=None,
         )
 
     def handle(self, **options):
