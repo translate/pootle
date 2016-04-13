@@ -1083,9 +1083,9 @@ Invoices will also be sent by email if the ``--send-emails`` flag is set. There
 are a couple more options to control how email will be sent:
 
   * ``--bcc``: allows manually specifying BCC recipients.
-  * ``--debug-send-to``: manually overrides who the invoice will be sent to. It omits
-    sending copies to anyone. This can be useful for debugging.
-
+  * ``--override-to``: manually overrides who the invoice will be sent to. This
+    is a debugging feature, and it omits sending copies to anyone plus enables
+    extra output in email messages when using the default templates.
 
 
 .. _commands#running:

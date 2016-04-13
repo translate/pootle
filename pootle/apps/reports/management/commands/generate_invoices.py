@@ -66,6 +66,13 @@ class Command(BaseCommand):
             nargs='*',
             default=[],
         )
+        email_group.add_argument(
+            '--override-to',
+            dest='to_email_list',
+            help='Send email to recipients (overrides existing user settings)',
+            nargs='*',
+            default=[],
+        )
 
         debug_group = parser.add_argument_group(
             'Debugging',
@@ -76,13 +83,6 @@ class Command(BaseCommand):
             dest='month',
             help='Month (get previous month if no data provided)',
             default=None,
-        )
-        debug_group.add_argument(
-            '--debug-send-to',
-            dest='debug_email_list',
-            help='Send email to recipients (overrides existing user settings)',
-            nargs='*',
-            default=[],
         )
 
     def handle(self, **options):
@@ -132,7 +132,7 @@ class Command(BaseCommand):
             self.stdout.write('Sending email to %s...' % fullname)
             # FIXME: reuse connections to the mail server
             # (http://stackoverflow.com/a/10215091/783019)
-            if invoice.send_by_email(override_to=options['debug_email_list'],
+            if invoice.send_by_email(override_to=options['to_email_list'],
                                      override_bcc=options['bcc_email_list']) > 0:
                 self.stdout.write('Email sent')
             else:
