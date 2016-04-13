@@ -367,12 +367,12 @@ Configuration settings for applications used by Pootle.
     and avoid potential conflicts when people are using different addresses for
     different purposes.
 
-  ``accounting-email`` (required)
+  ``accounting_email`` (required)
     E-mail address of the company's accountants. At this address they will
     receive the request to pay the invoice, along with a copy of it.
     It can contain multiple addresses separated by spaces.
 
-  ``accounting-email-cc``
+  ``accounting_email_cc``
     E-mail address of the company's accountants which will be added in the copy
     of the request for payment.
     It can contain multiple addresses separated by spaces.
@@ -402,8 +402,8 @@ Configuration settings for applications used by Pootle.
             ),
 
             'email': 'johndoe@example.com',
-            'accounting-email': 'accountant@example.com',
-            'accounting-email-cc': 'other.accountant@example.com',
+            'accounting_email': 'accountant@example.com',
+            'accounting_email_cc': 'other.accountant@example.com',
         },
     }
 

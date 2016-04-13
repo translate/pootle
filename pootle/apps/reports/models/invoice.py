@@ -331,9 +331,9 @@ class Invoice(object):
 
         :return: The number of successfully delivered messages
         """
-        if 'accounting-email' not in self.conf:
+        if 'accounting_email' not in self.conf:
             logger.warning(
-                '`accounting-email` not found in configuration for '
+                '`accounting_email` not found in configuration for '
                 'user %s. Sending email will be skipped.',
                 self.user.username,
             )

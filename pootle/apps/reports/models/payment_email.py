@@ -79,13 +79,13 @@ class BasePaymentEmail(object):
 class AccountingPaymentEmail(BasePaymentEmail):
 
     def get_recipient_list(self):
-        return self.override_to or self.conf['accounting-email'].split()
+        return self.override_to or self.conf['accounting_email'].split()
 
     def get_cc_list(self):
         if self.override_to is not None:
             return []
-        if 'accounting-email-cc' in self.conf:
-            return self.conf['accounting-email-cc'].split()
+        if 'accounting_email_cc' in self.conf:
+            return self.conf['accounting_email_cc'].split()
         return []
 
     def get_subject(self):
