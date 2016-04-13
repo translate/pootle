@@ -22,7 +22,6 @@ from reports.models.paidtask import PaidTask, PaidTaskTypes
 
 FAKE_CONFIG = {
     'name': 'Foo',
-    'invoice_prefix': 'blah',
     'paid_by': 'Bar',
     'wire_info': 'Baz 01234',
 }
@@ -62,7 +61,6 @@ def test_invoice_repr(month):
     },
     {
         'name': None,
-        'invoice_prefix': None,
         'paid_by': None,
     },
 ])

@@ -44,7 +44,7 @@ def get_previous_month():
 class Invoice(object):
 
     required_config_fields = (
-        'name', 'invoice_prefix', 'paid_by', 'wire_info',
+        'name', 'paid_by', 'wire_info',
     )
 
     def __init__(self, user, config, month=None, subcontractors=None,
@@ -70,7 +70,7 @@ class Invoice(object):
 
     @property
     def id(self):
-        return self.conf['invoice_prefix'] + self.month_string
+        return self.conf.get('invoice_prefix', '') + self.month_string
 
     @property
     def month_string(self):

@@ -325,7 +325,7 @@ Configuration settings for applications used by Pootle.
   ``paid_by`` (required)
     Official name of the company/person paying the invoice.
 
-  ``invoice_prefix`` (required)
+  ``invoice_prefix``
     Prefix used to generate invoice IDs. This will be prepended to the current
     month in `YYYY-MM` format as a string.
 
