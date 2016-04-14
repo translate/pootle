@@ -586,7 +586,7 @@ class Unit(models.Model, base.TranslationUnit):
                 store=self.store,
                 type=SubmissionTypes.UNIT_CREATE,
                 field=SubmissionFields.TARGET,
-                new_value=self.target,
+                new_value=str(self.target),
             )
 
     def convert(self, unitclass):
@@ -1138,7 +1138,10 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.save()
 
         create_subs = {}
-        create_subs[SubmissionFields.TARGET] = [old_target, self.target]
+        create_subs[SubmissionFields.TARGET] = [
+            str(old_target),
+            str(self.target)
+        ]
         if old_state != self.state:
             create_subs[SubmissionFields.STATE] = [old_state, self.state]
             self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
@@ -1580,8 +1583,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         # FIXME: extreme implicit hazard
         if unit._target_updated:
             create_subs[SubmissionFields.TARGET] = [
-                old_target,
-                unit.target_f,
+                str(old_target),
+                str(unit.target_f),
             ]
 
         # FIXME: extreme implicit hazard
