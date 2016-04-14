@@ -61,7 +61,8 @@ class Invoice(object):
         self.month_end = month_end
         self.now = timezone.now()
 
-        self.attachments = []
+        # Holds a list of tuples with generated file paths and their media types
+        self.files = []
         self.generators = (
             Mod() for Mod in GENERATOR_MODULES if Mod.is_configured()
         )
@@ -315,24 +316,35 @@ class Invoice(object):
 
         return os.path.join(month_dir, u'.'.join([self.get_filename(), extension]))
 
-    def generate(self):
-        """Calculates invoices' amounts and generates the invoices on disk.
+    def _write_to_disk(self):
+        """Write the invoice to disk using all available generators.
 
-        * Side-effect: this method writes a correction if the total amount is
-            below the minimum stipulated.
-        * Side-effect: this method populates the object's `attachment` member.
+        :return: a list of two-tuples which contain the absolute path to the
+            generated file, and their media type.
         """
-        amounts = self.get_total_amounts()
-        if self.should_add_correction(amounts['subtotal']):
-            self._add_correction(amounts['subtotal'])
-
+        generated_files = []
         ctx = self.get_context_data()
         for generator in self.generators:
             filepath = self.get_filepath(generator.extension)
             logger.info('Generating %s at "%s"...' % (generator.name, filepath))
             success = generator.generate(filepath, ctx)
-            if success and generator.is_attachment:
-                self.attachments.append((filepath, generator.media_type))
+            if success:
+                generated_files.append((filepath, generator.media_type))
+
+        return generated_files
+
+    def generate(self):
+        """Calculates invoices' amounts and generates the invoices on disk.
+
+        * Side-effect: this method writes a correction if the total amount is
+            below the minimum stipulated.
+        * Side-effect: this method populates the object's `files` member.
+        """
+        amounts = self.get_total_amounts()
+        if self.should_add_correction(amounts['subtotal']):
+            self._add_correction(amounts['subtotal'])
+
+        self.files = self._write_to_disk()
 
     def send_by_email(self, override_to=None, override_bcc=None):
         """Sends the invoice by email.
@@ -350,13 +362,14 @@ class Invoice(object):
                                       override_to=override_to,
                                       override_bcc=override_bcc).send()
 
+        attachments = [file[0] for file in self.files if 'html' not in file[1]]
         count = 0
         count += UserPaymentEmail(self.id, self.conf, ctx,
                                   override_to=override_to,
                                   override_bcc=override_bcc,
-                                  attachments=self.attachments).send()
+                                  attachments=attachments).send()
         count += AccountingPaymentEmail(self.id, self.conf, ctx,
                                         override_to=override_to,
                                         override_bcc=override_bcc,
-                                        attachments=self.attachments).send()
+                                        attachments=attachments).send()
         return count

@@ -23,7 +23,6 @@ class HTMLGenerator(object):
     extension = 'html'
     media_type = 'text/html'
     name = 'HTML'
-    is_attachment = False
     template_name = 'invoices/invoice.html'
 
     @staticmethod
@@ -45,7 +44,6 @@ class PDFGenerator(object):
     extension = 'pdf'
     media_type = 'application/pdf'
     name = 'PDF'
-    is_attachment = True
 
     @staticmethod
     def is_configured():
