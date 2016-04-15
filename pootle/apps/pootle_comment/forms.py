@@ -29,11 +29,14 @@ class CommentForm(DjCommentForm):
             data["object_pk"] = str(target_object.pk)
             data["content_type"] = str(target_object._meta)
             if data.get("user"):
-                data["name"] = data["user"].display_name
-                data["email"] = data["user"].email
                 data["user"] = str(data["user"].pk)
+
         super(CommentForm, self).__init__(
             target_object, data, *args, **kwargs)
+
+        if data and data.get("user"):
+            self.fields["name"].required = False
+            self.fields["email"].required = False
 
     @cached_property
     def comment(self):
