@@ -1075,7 +1075,7 @@ the previous month. A specific month can be specified by passing the
 ``$POOTLE_INVOICES_DIRECTORY/<YYYY-MM>/`` folder.
 
 The list of users for whom invoices will be generated can be limited to a subset
-of the configured users by passing the ``--user-list <user1 user2... userN>``
+of the configured users by passing the ``--users <user1 user2... userN>``
 argument. Note all users defined in the configuration need to exist, otherwise
 the command will complain and create no invoices at all.
 

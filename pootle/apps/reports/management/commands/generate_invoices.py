@@ -41,9 +41,9 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--user-list',
+            '--users',
             dest='user_list',
-            help='Limit list of users for generating invoices',
+            help='Limit generating invoices to these users',
             nargs='*',
             default=[],
         )
