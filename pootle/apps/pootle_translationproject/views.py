@@ -18,7 +18,7 @@ from django.utils.lru_cache import lru_cache
 
 from import_export.views import handle_upload_form
 from pootle.core.browser import (
-    get_parent, get_table_headings, make_directory_item, make_store_item)
+    get_parent, make_directory_item, make_store_item)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import (
@@ -29,9 +29,6 @@ from pootle_app.models.permissions import (
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_language.models import Language
 from pootle_store.models import Store
-from virtualfolder.helpers import (
-    extract_vfolder_from_path, make_vfolder_treeitem_dict, vftis_for_child_dirs)
-from virtualfolder.models import VirtualFolderTreeItem
 
 from .models import TranslationProject
 
@@ -266,84 +263,15 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def items(self):
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            dirs_with_vfolders = set(
-                vftis_for_child_dirs(self.object).values_list(
-                    "directory__pk", flat=True))
-        else:
-            dirs_with_vfolders = []
         directories = [
-            make_directory_item(
-                child,
-                **(dict(sort="priority")
-                   if child.pk in dirs_with_vfolders
-                   else {}))
-            for child in self.object.children
+            make_directory_item(child)
+            for child in self.children
             if isinstance(child, Directory)]
         stores = [
             make_store_item(child)
-            for child in self.object.children
+            for child in self.children
             if isinstance(child, Store)]
         return directories + stores
-
-    @cached_property
-    def has_vfolders(self):
-        return self.object.has_vfolders
-
-    @cached_property
-    def vfolders(self):
-        vftis = self.object.vf_treeitems
-        if not self.is_admin:
-            vftis = vftis.filter(vfolder__is_public=True)
-        return [
-            make_vfolder_treeitem_dict(vfolder_treeitem)
-            for vfolder_treeitem
-            in vftis.order_by('-vfolder__priority').select_related("vfolder")
-            if (self.is_admin
-                or vfolder_treeitem.is_visible)]
-
-    @cached_property
-    def vfolder_data(self):
-        ctx = {}
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return {}
-        if len(self.vfolders) > 0:
-            table_fields = [
-                'name', 'priority', 'progress', 'total',
-                'need-translation', 'suggestions', 'critical',
-                'last-updated', 'activity']
-            ctx.update({
-                'vfolders': {
-                    'id': 'vfolders',
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'items': self.vfolders}})
-        return ctx
-
-    @cached_property
-    def vfolder_stats(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return {}
-        stats = {"vfolders": {}}
-        for vfolder_treeitem in self.vfolders or []:
-            stats['vfolders'][
-                vfolder_treeitem['code']] = vfolder_treeitem["stats"]
-            del vfolder_treeitem["stats"]
-        return stats
-
-    @cached_property
-    def stats(self):
-        stats = self.vfolder_stats
-        if stats and stats["vfolders"]:
-            stats.update(self.object.get_stats())
-        else:
-            stats = self.object.get_stats()
-        return stats
-
-    def get_context_data(self, *args, **kwargs):
-        ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
-        ctx.update(self.vfolder_data)
-        return ctx
 
 
 class TPTranslateBaseView(PootleTranslateView):
@@ -353,53 +281,26 @@ class TPTranslateBaseView(PootleTranslateView):
     template_extends = 'translation_projects/base.html'
 
     @property
-    def pootle_path(self):
-        return "%s%s" % (self.ctx_path, self.resource_path)
+    def request_path(self):
+        return "/%(language_code)s/%(project_code)s/%(dir_path)s" % self.kwargs
 
 
 class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
 
     @property
-    def request_path(self):
-        return "/%(language_code)s/%(project_code)s/%(dir_path)s" % self.kwargs
-
-    @cached_property
-    def extracted_path(self):
-        return extract_vfolder_from_path(
-            self.request_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
-
-    @property
-    def display_vfolder_priority(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return False
-        vfolder = self.extracted_path[0]
-        if vfolder:
-            return False
-        return self.object.has_vfolders
+    def path(self):
+        return self.extracted_path[0]
 
     @property
     def resource_path(self):
-        vfolder = self.extracted_path[0]
-        path = ""
-        if vfolder:
-            path = "%s/" % vfolder.name
+        return self.request_path[len(self.ctx_path):]
+
+    @property
+    def pootle_path(self):
         return (
             "%s%s"
-            % (path,
-               self.object.pootle_path.replace(self.ctx_path, "")))
-
-    @property
-    def path(self):
-        return self.extracted_path[1]
-
-    @property
-    def vfolder_pk(self):
-        vfolder = self.extracted_path[0]
-        if vfolder:
-            return vfolder.pk
-        return ""
+            % (self.ctx_path,
+               self.resource_path))
 
 
 class TPTranslateStoreView(TPStoreMixin, TPTranslateBaseView):

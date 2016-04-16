@@ -12,7 +12,6 @@ from itertools import groupby
 from translate.lang import data
 
 from django import forms
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.core.urlresolvers import reverse
@@ -487,15 +486,10 @@ class UnitEditJSON(PootleJSON):
         return sources
 
     def get_context_data(self, *args, **kwargs):
-        priority = (
-            self.object.priority if 'virtualfolder' in settings.INSTALLED_APPS
-            else None
-        )
         return {
             'unit': self.object,
             'form': self.get_unit_edit_form(),
             'comment_form': self.get_unit_comment_form(),
-            'priority': priority,
             'store': self.store,
             'directory': self.directory,
             'user': self.request.user,
@@ -547,15 +541,6 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 @get_resource
 def get_stats(request, *args, **kwargs):
     stats = request.resource_obj.get_stats()
-
-    if (isinstance(request.resource_obj, Directory) and
-        'virtualfolder' in settings.INSTALLED_APPS):
-        stats['vfolders'] = {}
-
-        for vfolder_treeitem in request.resource_obj.vf_treeitems.iterator():
-            if request.user.is_superuser or vfolder_treeitem.is_visible:
-                stats['vfolders'][vfolder_treeitem.code] = \
-                    vfolder_treeitem.get_stats(include_children=False)
 
     # stats delegation
     stats.update(

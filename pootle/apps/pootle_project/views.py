@@ -171,6 +171,10 @@ class ProjectTranslateView(ProjectMixin, PootleTranslateView):
     def pootle_path(self):
         return self.object.pootle_path
 
+    @property
+    def request_path(self):
+        return "/projects/%(project_code)s/%(dir_path)s" % self.kwargs
+
 
 class ProjectExportView(ProjectMixin, PootleExportView):
     source_language = "en"
@@ -379,6 +383,14 @@ class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):
     @requires_permission("administrate")
     def dispatch(self, request, *args, **kwargs):
         return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
+
+    @property
+    def request_path(self):
+        return "/projects/"
+
+    @property
+    def ctx_path(self):
+        return "/projects/"
 
 
 class ProjectsExportView(ProjectsMixin, PootleExportView):
