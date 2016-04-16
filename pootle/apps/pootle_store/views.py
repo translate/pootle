@@ -31,6 +31,7 @@ from django.views.decorators.http import require_http_methods
 
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
+from pootle.core.delegate import object_stats
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.views import PootleJSON
@@ -556,6 +557,13 @@ def get_stats(request, *args, **kwargs):
                 stats['vfolders'][vfolder_treeitem.code] = \
                     vfolder_treeitem.get_stats(include_children=False)
 
+    # stats delegation
+    stats.update(
+        object_stats.gather(
+            request.resource_obj.__class__,
+            stats=stats,
+            user=request.user,
+            instance=request.resource_obj))
     return JsonResponse(stats)
 
 
