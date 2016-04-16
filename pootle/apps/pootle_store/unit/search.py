@@ -10,6 +10,7 @@
 from django.db.models import Max
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import search_filters
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
 from pootle_store.views import SIMPLY_SORTED
@@ -124,6 +125,13 @@ class DBSearchBackend(object):
 
         if vfolder is not None:
             qs = qs.filter(vfolders=vfolder)
+
+        # plugin filtering
+        qs = qs.filter(
+            **search_filters.gather(
+                sender=self.__class__,
+                search_backend=self,
+                filter_kwargs=kwargs))
 
         if self.unit_filter:
             qs = UnitSearchFilter().filter(
