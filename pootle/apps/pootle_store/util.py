@@ -8,7 +8,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-from importlib import import_module
 
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -113,11 +112,3 @@ def get_state_name(code, default="untranslated"):
 
 def vfolders_installed():
     return "virtualfolder" in settings.INSTALLED_APPS
-
-
-def get_search_backend():
-    search_backend_module = import_module(
-        ".".join(settings.POOTLE_SEARCH_BACKEND.split(".")[:-1]))
-    return getattr(
-        search_backend_module,
-        settings.POOTLE_SEARCH_BACKEND.split(".")[-1])
