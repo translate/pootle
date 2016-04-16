@@ -30,7 +30,7 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.delegate import unit_priority
+from pootle.core.delegate import object_parents, unit_priority
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -2058,6 +2058,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         if 'virtualfolder' in settings.INSTALLED_APPS:
             parents.extend(self.parent_vf_treeitems.all())
+
+        parents.extend(
+            object_parents.gather(
+                self.__class__,
+                instance=self,
+                parents=parents))
 
         return parents
 
