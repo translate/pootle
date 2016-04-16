@@ -705,10 +705,11 @@ class PootleExportView(PootleDetailView):
 
         units_qs = units_qs.select_related('store')
 
-        if total > search_form.cleaned_data["count"]:
+        if total > settings.POOTLE_EXPORT_VIEW_LIMIT:
+            units_qs = units_qs[:settings.POOTLE_EXPORT_VIEW_LIMIT]
             ctx.update(
                 {'unit_total_count': total,
-                 'displayed_unit_count': search_form.cleaned_data["count"]})
+                 'displayed_unit_count': settings.POOTLE_EXPORT_VIEW_LIMIT})
 
         unit_groups = [
             (path, list(units))
