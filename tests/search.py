@@ -8,14 +8,18 @@
 
 import pytest
 
+from pootle.core.delegate import search_backend
+from pootle.core.plugin import getter
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.getters import get_search_backend
 from pootle_store.models import (
     FUZZY, TRANSLATED, UNTRANSLATED,
     SuggestionStates, Unit)
 from pootle_store.unit.filters import (
     FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitSearchFilter,
     UnitStateFilter, UnitTextSearch)
+from pootle_store.unit.search import DBSearchBackend
 
 
 def _expected_text_search_words(text, exact):
@@ -291,3 +295,31 @@ def test_units_checks_filter_bad():
 def test_units_filters():
     qs = Unit.objects.all()
     assert UnitSearchFilter().filter(qs, "FOO").count() == 0
+
+
+@pytest.mark.django_db
+def test_unit_search_backend():
+    assert search_backend.get() is None
+    assert search_backend.get(Unit) is DBSearchBackend
+
+
+@pytest.mark.django_db
+def test_unit_search_backend_custom():
+
+    class CustomSearchBackend(DBSearchBackend):
+        pass
+
+    # add a custom getter, simulating adding before pootle_store
+    # in INSTALLED_APPS
+
+    # disconnect the default search_backend
+    search_backend.disconnect(get_search_backend, sender=Unit)
+
+    @getter(search_backend, sender=Unit)
+    def custom_get_search_backend(**kwargs):
+        return CustomSearchBackend
+
+    # reconnect the default search_backend
+    search_backend.connect(get_search_backend, sender=Unit)
+
+    assert search_backend.get(Unit) is CustomSearchBackend
