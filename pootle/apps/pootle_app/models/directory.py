@@ -12,6 +12,7 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from pootle.core.mixins import CachedTreeItem
+from pootle.core.signals import object_obsoleted
 from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
                                      to_tp_relative_path)
 from pootle_misc.baseurl import l
@@ -293,3 +294,5 @@ class Directory(models.Model, CachedTreeItem):
         # Clear stats cache for sibling VirtualFolderTreeItems as well.
         for vfolder_treeitem in self.vfolder_treeitems:
             vfolder_treeitem.clear_all_cache(parents=False, children=False)
+
+        object_obsoleted.send(self.__class__, instance=self)
