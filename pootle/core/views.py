@@ -30,6 +30,7 @@ from django.views.defaults import (permission_denied as django_403,
                                    server_error as django_500)
 from django.views.generic import View, DetailView
 
+from pootle.core.delegate import context_data
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_misc.stats import get_translation_states
@@ -523,6 +524,18 @@ class PootleDetailView(DetailView):
             'export_url': self.export_url,
             'browse_url': self.browse_url}
 
+    def gather_context_data(self, context):
+        context.update(
+            context_data.gather(
+                sender=self.__class__,
+                context=context, view=self))
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        return super(PootleDetailView, self).render_to_response(
+            self.gather_context_data(context),
+            **response_kwargs)
+
 
 class PootleJSON(PootleDetailView):
 
@@ -547,7 +560,7 @@ class PootleJSON(PootleDetailView):
         """
         response_kwargs.setdefault('content_type', self.content_type)
         return self.response_class(
-            self.get_response_data(context),
+            self.get_response_data(self.gather_context_data(context)),
             **response_kwargs)
 
 
