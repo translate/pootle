@@ -27,6 +27,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
+from pootle.core.delegate import object_resources
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
@@ -342,14 +343,19 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                 pootle_path__regex=r"^/[^/]*/%s/" % self.code)
             if 'virtualfolder' in settings.INSTALLED_APPS
             else [])
+
+        all_paths = (
+            (set(stores.values_list("pootle_path", flat=True))
+             | set(dirs.values_list("pootle_path", flat=True))
+             | object_resources.gather(sender=self.__class__, instance=self)
+             | set(vftis.values_list("pootle_path", flat=True)
+                   if vftis
+                   else [])))
+
         resources = sorted(
             {to_tp_relative_path(pootle_path)
              for pootle_path
-             in (set(stores.values_list("pootle_path", flat=True))
-                 | set(dirs.values_list("pootle_path", flat=True))
-                 | set(vftis.values_list("pootle_path", flat=True)
-                       if vftis
-                       else []))},
+             in all_paths},
             key=get_path_sortkey)
         cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
         return resources
