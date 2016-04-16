@@ -18,6 +18,7 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
     get_parent, get_table_headings, make_directory_item, make_store_item)
+from pootle.core.delegate import search_backend
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
@@ -27,8 +28,7 @@ from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
 from pootle_store.forms import UnitExportForm
-from pootle_store.models import Store
-from pootle_store.util import get_search_backend
+from pootle_store.models import Store, Unit
 from virtualfolder.helpers import (
     extract_vfolder_from_path, make_vfolder_treeitem_dict)
 from virtualfolder.helpers import vftis_for_child_dirs
@@ -200,7 +200,7 @@ def _test_export_view(tp, request, response, kwargs):
     search_form = UnitExportForm(
         form_data, user=request.user)
     assert search_form.is_valid()
-    total, start, end, units_qs = get_search_backend()(
+    total, start, end, units_qs = search_backend.get(Unit)(
         request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
     unit_groups = [

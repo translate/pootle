@@ -16,6 +16,7 @@ from pytest_pootle.suite import view_context_test
 
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import make_project_item, get_table_headings
+from pootle.core.delegate import search_backend
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
@@ -25,7 +26,7 @@ from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.stats import get_translation_states
 from pootle_store.forms import UnitExportForm
-from pootle_store.util import get_search_backend
+from pootle_store.models import Unit
 
 
 def _test_browse_view(language, request, response, kwargs):
@@ -106,7 +107,7 @@ def _test_export_view(language, request, response, kwargs):
     search_form = UnitExportForm(
         form_data, user=request.user)
     assert search_form.is_valid()
-    total, start, end, units_qs = get_search_backend()(
+    total, start, end, units_qs = search_backend.get(Unit)(
         request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
     unit_groups = [
