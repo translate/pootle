@@ -19,6 +19,7 @@ from django.core.urlresolvers import resolve, Resolver404
 from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
+from pootle.core.delegate import extracted_path
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
@@ -513,6 +514,11 @@ class UnitSearchForm(forms.Form):
             self.cleaned_data['count'] = min(count, user_count)
         self.cleaned_data["vfolder"] = None
         pootle_path = self.cleaned_data.get("path")
+        extracted = extracted_path.get(str, instance=pootle_path)
+        if extracted:
+            pootle_path = self.cleaned_data["pootle_path"] = extracted[0]
+            self.cleaned_data["path_extra"] = extracted[2]
+
         if 'virtualfolder' in settings.INSTALLED_APPS:
             vfolder, pootle_path = extract_vfolder_from_path(
                 pootle_path,
@@ -520,6 +526,7 @@ class UnitSearchForm(forms.Form):
                     "directory", "vfolder"))
             self.cleaned_data["vfolder"] = vfolder
             self.cleaned_data["pootle_path"] = pootle_path
+
         path_keys = [
             "project_code", "language_code", "dir_path", "filename"]
         try:
