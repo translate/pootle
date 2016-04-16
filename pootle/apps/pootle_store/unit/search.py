@@ -17,7 +17,7 @@ from pootle_store.views import SIMPLY_SORTED
 
 class DBSearchBackend(object):
 
-    default_chunk_size = 10
+    default_chunk_size = None
     default_order = "store__pootle_path", "index"
     select_related = (
         'store__translation_project__project',
@@ -167,7 +167,7 @@ class DBSearchBackend(object):
         if find_unit:
             # find the uid in the Store
             uid_list = list(self.results.values_list("pk", flat=True))
-            if self.uids[0] in uid_list:
+            if self.chunk_size and self.uids[0] in uid_list:
                 unit_index = uid_list.index(self.uids[0])
                 start = (
                     int(unit_index / (2 * self.chunk_size))
@@ -182,6 +182,8 @@ class DBSearchBackend(object):
             for i, uid in enumerate(uid_list):
                 if uid in self.previous_uids:
                     start = _start + i + 1
+        if self.chunk_size is None:
+            return total, 0, total, self.results
         start = start or 0
         end = min(start + (2 * self.chunk_size), total)
         return total, start, end, self.results[start:end]
