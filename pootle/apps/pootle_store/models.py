@@ -30,7 +30,9 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.delegate import object_parents, unit_priority
+from pootle.core.delegate import (
+    object_parents, pootle_paths as pootle_paths_providers,
+    unit_priority)
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -2176,6 +2178,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     [p for p
                      in get_all_pootle_paths(pootle_path)
                      if p.count('/') > location.count('/')])
+        pootle_paths.extend(
+            pootle_paths_providers.gather(
+                self.__class__,
+                instance=self,
+                pootle_paths=pootle_paths))
         return pootle_paths
 
     # # # /TreeItem
