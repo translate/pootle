@@ -30,6 +30,7 @@ from django.views.defaults import (permission_denied as django_403,
                                    server_error as django_500)
 from django.views.generic import View, DetailView
 
+from pootle.core.delegate import search_backend
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_misc.stats import get_translation_states
@@ -37,7 +38,7 @@ from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required
 from pootle_store.forms import UnitExportForm
-from pootle_store.util import get_search_backend
+from pootle_store.models import Unit
 
 from .browser import get_table_headings
 from .helpers import (SIDEBAR_COOKIE_NAME,
@@ -699,7 +700,7 @@ class PootleExportView(PootleDetailView):
             raise Http404(
                 ValidationError(search_form.errors).messages)
 
-        total, start, end, units_qs = get_search_backend()(
+        total, start, end, units_qs = search_backend.get(Unit)(
             self.request.user, **search_form.cleaned_data).search()
 
         units_qs = units_qs.select_related('store')

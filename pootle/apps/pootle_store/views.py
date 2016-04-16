@@ -24,6 +24,7 @@ from django.views.decorators.http import require_http_methods
 
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
+from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.views import PootleJSON
@@ -43,7 +44,7 @@ from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .unit.results import GroupedResults
 from .unit.timeline import Timeline
-from .util import find_altsrcs, get_search_backend
+from .util import find_altsrcs
 
 
 #: Mapping of allowed sorting criteria.
@@ -202,7 +203,7 @@ def get_units(request):
                     raise Http400(_('Arguments missing.'))
         raise Http404(forms.ValidationError(search_form.errors).messages)
 
-    total, start, end, units_qs = get_search_backend()(
+    total, start, end, units_qs = search_backend.get(Unit)(
         request.user, **search_form.cleaned_data).search()
     return JsonResponse(
         {'start': start,
