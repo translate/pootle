@@ -20,6 +20,7 @@ from django.dispatch import receiver
 from django.utils.functional import cached_property
 
 from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.signals import cache_cleared
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -393,6 +394,11 @@ class TranslationProject(models.Model, CachedTreeItem):
             for vfolder_treeitem in tp_vfolder_treeitems.iterator():
                 vfolder_treeitem.clear_all_cache(children=False, parents=False)
 
+        cache_cleared.send(
+            sender=self.__class__,
+            instance=self,
+            children=children,
+            parents=parents)
     # # # /TreeItem
 
     def directory_exists_on_disk(self):
