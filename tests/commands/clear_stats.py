@@ -13,8 +13,8 @@ from django.core.management import call_command
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_clear_stats(capfd):
+def test_clear_stats(caplog):
     call_command('clear_stats', '--project=project0', '--language=language0',
                  '--verbosity=2')
-    out, err = capfd.readouterr()
-    assert "clear_stats over /language0/project0/" in err
+    infologs = [l.message for l in caplog.records() if l.levelname == "INFO"]
+    assert "clear_stats over /language0/project0/" in "".join(infologs)
