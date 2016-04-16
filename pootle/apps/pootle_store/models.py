@@ -30,6 +30,7 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.delegate import unit_priority
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -650,10 +651,13 @@ class Unit(models.Model, base.TranslationUnit):
         if not vfolders_installed():
             return 1.0
 
-        priority = (
-            self.vfolders.order_by("-priority")
-                         .values_list("priority", flat=True)
-                         .first())
+        priority = unit_priority.get(self.__class__, instance=self)
+
+        if priority is None:
+            priority = (
+                self.vfolders.order_by("-priority")
+                             .values_list("priority", flat=True)
+                             .first())
         if priority is None:
             return 1.0
         return priority
