@@ -11,7 +11,7 @@ from translate.lang import data
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
-from django.http import Http404
+from django.http import Http404, QueryDict
 from django.shortcuts import redirect
 from django.template import RequestContext, loader
 from django.utils import timezone
@@ -30,6 +30,7 @@ from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
+from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.util import ajax_required
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -628,6 +629,15 @@ def reject_suggestion(request, unit, suggid):
         raise PermissionDenied(_('Insufficient rights to access review mode.'))
 
     unit.reject_suggestion(sugg, request.translation_project, request.user)
+    r_data = QueryDict(request.body)
+    if "comment" in r_data and r_data["comment"]:
+        kwargs = dict(
+            comment=r_data["comment"],
+            user=request.user,
+        )
+        comment_form = UnsecuredCommentForm(sugg, kwargs)
+        if comment_form.is_valid():
+            comment_form.save()
 
     json['user_score'] = request.user.public_score
 
@@ -647,6 +657,14 @@ def accept_suggestion(request, unit, suggid):
         raise Http404
 
     unit.accept_suggestion(suggestion, request.translation_project, request.user)
+    if "comment" in request.POST and request.POST["comment"]:
+        kwargs = dict(
+            comment=request.POST["comment"],
+            user=request.user,
+        )
+        comment_form = UnsecuredCommentForm(suggestion, kwargs)
+        if comment_form.is_valid():
+            comment_form.save()
 
     json['user_score'] = request.user.public_score
     json['newtargets'] = [highlight_whitespace(target)

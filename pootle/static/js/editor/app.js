@@ -2184,8 +2184,8 @@ PTL.editor = {
 
 
   /* Rejects a suggestion */
-  rejectSuggestion(suggId) {
-    UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId)
+  rejectSuggestion(suggId, requestData = {}) {
+    UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId, requestData)
       .then(
         (data) => this.processRejectSuggestion(data, suggId),
         this.error
@@ -2209,8 +2209,8 @@ PTL.editor = {
 
 
   /* Accepts a suggestion */
-  acceptSuggestion(suggId, { skipToNext = false } = {}) {
-    UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId)
+  acceptSuggestion(suggId, requestData = {}, { skipToNext = false } = {}) {
+    UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId, requestData)
       .then(
         (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
         this.error

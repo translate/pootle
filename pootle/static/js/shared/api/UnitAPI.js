@@ -74,15 +74,17 @@ const UnitAPI = {
     });
   },
 
-  acceptSuggestion(uId, suggId) {
+  acceptSuggestion(uId, suggId, body) {
     return fetch({
+      body,
       method: 'POST',
       url: `${this.apiRoot}${uId}/suggestions/${suggId}/`,
     });
   },
 
-  rejectSuggestion(uId, suggId) {
+  rejectSuggestion(uId, suggId, body) {
     return fetch({
+      body,
       method: 'DELETE',
       url: `${this.apiRoot}${uId}/suggestions/${suggId}/`,
     });
