@@ -17,6 +17,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
+from pootle_comment import get_model
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
@@ -60,10 +61,11 @@ class DisplayUser(object):
 
 class SuggestionEvent(object):
 
-    def __init__(self, submission_type, username, full_name):
+    def __init__(self, submission_type, username, full_name, comment):
         self.submission_type = submission_type
         self.username = username
         self.full_name = full_name
+        self.comment = comment
 
     @cached_property
     def user(self):
@@ -71,13 +73,34 @@ class SuggestionEvent(object):
 
     @property
     def description(self):
-        author_link = self.user.author_link
+        params = {
+            'author': self.user.author_link
+        }
+        sugg_accepted_desc = _(u'Accepted suggestion from %(author)s', params)
+        sugg_rejected_desc = _(u'Rejected suggestion from %(author)s', params)
+
+        if self.comment:
+            params.update({
+                'comment': format_html(u'<span class="comment">{}</span>',
+                                       self.comment),
+            })
+            sugg_accepted_desc = _(
+                u'Accepted suggestion from %(author)s '
+                u'with comment: %(comment)s',
+                params
+            )
+            sugg_rejected_desc = _(
+                u'Rejected suggestion from %(author)s '
+                u'with comment: %(comment)s',
+                params
+            )
+
         description_dict = {
             SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
-            SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s',
-                                           author_link),
-            SubmissionTypes.SUGG_REJECT: _(u'Rejected suggestion from %s',
-                                           author_link)}
+            SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
+            SubmissionTypes.SUGG_REJECT: sugg_rejected_desc,
+        }
+
         return description_dict.get(self.submission_type, None)
 
 
@@ -126,6 +149,9 @@ class ProxySubmission(object):
     def suggestion_target(self):
         return self.values['suggestion__target_f']
 
+    @property
+    def suggestion_comment(self):
+        return self.values['comment']
 
 class TimelineEntry(object):
 
@@ -165,11 +191,15 @@ class TimelineEntry(object):
 
     def suggestion_entry(self):
         entry = self.entry_dict
+
         suggestion_description = mark_safe(
             SuggestionEvent(
                 self.submission.type,
                 self.submission.suggestion_username,
-                self.submission.suggestion_full_name).description)
+                self.submission.suggestion_full_name,
+                self.submission.suggestion_comment,
+            ).description
+        )
         entry.update(
             {'suggestion_text': self.submission.suggestion_target,
              'suggestion_description': suggestion_description})
@@ -219,6 +249,14 @@ class Timeline(object):
                                        creation_time=self.object.commented_on)
                               .order_by("id"))
 
+    @cached_property
+    def comments(self):
+        return dict(
+            get_model().objects
+                       .filter(suggestions__unit=self.object)
+                       .values_list("suggestions__id", "comment")
+        )
+
     def add_creation_entry(self, grouped_entries):
         User = get_user_model()
         has_creation_entry = (
@@ -257,4 +295,5 @@ class Timeline(object):
         return grouped_entries
 
     def get_entry(self, item):
+        item["comment"] = self.comments.get(item["suggestion_id"])
         return self.entry_class(ProxySubmission(item)).entry

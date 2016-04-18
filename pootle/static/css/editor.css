@@ -929,6 +929,11 @@ html[dir="rtl"] .extra-item-block .suggestion-feedback .buttons button
     margin-bottom: 0.2em;
 }
 
+.timeline-entry .sidetitle .comment
+{
+    color: #444;
+}
+
 .extra-item
 {
     line-height: 140%;
