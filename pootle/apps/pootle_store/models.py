@@ -29,6 +29,9 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.delegate import (
+    object_parents, pootle_paths as pootle_paths_providers,
+    unit_priority)
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -40,7 +43,7 @@ from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
-    get_all_pootle_paths, get_editor_filter, split_pootle_path)
+    get_editor_filter, split_pootle_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.aggregate import max_column
@@ -54,9 +57,7 @@ from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
 from .filetypes import factory_classes
 from .util import (
-    FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED, get_change_str,
-    vfolders_installed)
-
+    FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED, get_change_str)
 
 TM_BROKER = None
 
@@ -640,13 +641,7 @@ class Unit(models.Model, base.TranslationUnit):
         return unit
 
     def calculate_priority(self):
-        if not vfolders_installed():
-            return 1.0
-
-        priority = (
-            self.vfolders.order_by("-priority")
-                         .values_list("priority", flat=True)
-                         .first())
+        priority = unit_priority.get(self.__class__, instance=self)
         if priority is None:
             return 1.0
         return priority
@@ -2018,8 +2013,17 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         else:
             parents = [self.parent]
 
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            parents.extend(self.parent_vf_treeitems.all())
+        parents.extend(
+            object_parents.gather(
+                self.__class__,
+                instance=self,
+                parents=parents))
+
+        parents.extend(
+            object_parents.gather(
+                self.__class__,
+                instance=self,
+                parents=parents))
 
         return parents
 
@@ -2124,16 +2128,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         of current TreeItem
         """
         pootle_paths = super(Store, self).all_pootle_paths()
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            vftis = self.parent_vf_treeitems.values_list(
-                "vfolder__location", "pootle_path")
-            for location, pootle_path in vftis:
-                pootle_paths.extend(
-                    [p for p
-                     in get_all_pootle_paths(pootle_path)
-                     if p.count('/') > location.count('/')])
+        pootle_paths.extend(
+            pootle_paths_providers.gather(
+                self.__class__,
+                instance=self,
+                pootle_paths=pootle_paths))
         return pootle_paths
-
     # # # /TreeItem
 
 

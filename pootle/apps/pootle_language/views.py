@@ -93,6 +93,14 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
 class LanguageTranslateView(LanguageMixin, PootleTranslateView):
     url_pattern_name = "pootle-language-translate"
 
+    @property
+    def request_path(self):
+        return "/%(language_code)s/" % self.kwargs
+
+    @property
+    def ctx_path(self):
+        return self.request_path
+
 
 class LanguageExportView(LanguageMixin, PootleExportView):
     url_pattern_name = "pootle-language-export"

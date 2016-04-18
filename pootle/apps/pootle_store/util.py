@@ -111,10 +111,6 @@ def get_state_name(code, default="untranslated"):
     return STATES_NAMES.get(code, default)
 
 
-def vfolders_installed():
-    return "virtualfolder" in settings.INSTALLED_APPS
-
-
 def get_search_backend():
     search_backend_module = import_module(
         ".".join(settings.POOTLE_SEARCH_BACKEND.split(".")[:-1]))

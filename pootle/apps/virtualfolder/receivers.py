@@ -6,11 +6,18 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models.signals import post_save, pre_save
+from django.core.cache import cache
+from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
+from pootle.core.cache import make_method_key
+from pootle.core.signals import (
+    cache_cleared, object_obsoleted)
+from pootle_app.models import Directory
+from pootle_project.models import Project
 from pootle_store.models import Unit
 from pootle_store.util import OBSOLETE
+from pootle_translationproject.models import TranslationProject
 
 from .models import VirtualFolder, VirtualFolderTreeItem
 from .signals import vfolder_post_save
@@ -157,3 +164,41 @@ def vfolder_unit_postsave_handler(sender, instance, created=False, **kwargs):
     if created:
         add_unit_to_vfolders(instance)
     instance.set_priority()
+
+
+@receiver(object_obsoleted, sender=Directory)
+def make_vfolder_directory_obsolete(sender, **kwargs):
+    # Clear stats cache for sibling VirtualFolderTreeItems as well.
+    for vfolder_treeitem in kwargs["instance"].vf_treeitems.all():
+        vfolder_treeitem.clear_all_cache(parents=False, children=False)
+
+
+@receiver([vfolder_post_save, pre_delete], sender=VirtualFolder)
+def invalidate_resources_cache_for_vfolders(sender, instance, **kwargs):
+    try:
+        # In case this is vfolder_post_save.
+        affected_projects = kwargs['projects']
+    except KeyError:
+        # In case this is pre_delete.
+        projects = Project.objects.filter(
+            translationproject__stores__unit__vfolders=instance)
+        affected_projects = projects.distinct().values_list('code', flat=True)
+
+    cache.delete_many(
+        [make_method_key('Project', 'resources', proj)
+         for proj
+         in affected_projects])
+
+
+@receiver(cache_cleared, sender=TranslationProject)
+def clear_vfolder_tp_cache(sender, **kwargs):
+    tp_vfolder_treeitems = VirtualFolderTreeItem.objects.filter(
+        pootle_path__startswith=kwargs["instance"].pootle_path)
+    for vfolder_treeitem in tp_vfolder_treeitems.iterator():
+        vfolder_treeitem.clear_all_cache(children=False, parents=False)
+
+
+@receiver(cache_cleared, sender=Directory)
+def clear_vfolder_directory_cache(sender, **kwargs):
+    for vfolder_treeitem in kwargs["instance"].vf_treeitems.all():
+        vfolder_treeitem.update_all_cache()

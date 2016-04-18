@@ -14,12 +14,12 @@ import re
 from translate.misc.multistring import multistring
 
 from django import forms
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import resolve, Resolver404
 from django.utils import timezone
 from django.utils.translation import get_language, ugettext as _
 
+from pootle.core.delegate import extracted_path
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED)
 from pootle.core.mixins import CachedMethods
@@ -31,8 +31,6 @@ from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from virtualfolder.helpers import extract_vfolder_from_path
-from virtualfolder.models import VirtualFolderTreeItem
 
 from .fields import to_db
 from .form_fields import (
@@ -486,15 +484,13 @@ class UnitSearchForm(forms.Form):
         self.cleaned_data['count'] = min(
             self.cleaned_data.get("count", 10) or 10,
             self.cleaned_data["user"].get_unit_rows() or 10)
-        self.cleaned_data["vfolder"] = None
+
         pootle_path = self.cleaned_data.get("path")
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            vfolder, pootle_path = extract_vfolder_from_path(
-                pootle_path,
-                vfti=VirtualFolderTreeItem.objects.select_related(
-                    "directory", "vfolder"))
-            self.cleaned_data["vfolder"] = vfolder
-            self.cleaned_data["pootle_path"] = pootle_path
+        extracted = extracted_path.get(str, instance=pootle_path)
+        if extracted:
+            pootle_path = self.cleaned_data["pootle_path"] = extracted[0]
+            self.cleaned_data["path_extra"] = extracted[2]
+
         path_keys = [
             "project_code", "language_code", "dir_path", "filename"]
         try:

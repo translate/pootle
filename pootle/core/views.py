@@ -30,6 +30,7 @@ from django.views.defaults import (permission_denied as django_403,
                                    server_error as django_500)
 from django.views.generic import View, DetailView
 
+from pootle.core.delegate import context_data, extracted_path
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_misc.stats import get_translation_states
@@ -523,6 +524,18 @@ class PootleDetailView(DetailView):
             'export_url': self.export_url,
             'browse_url': self.browse_url}
 
+    def gather_context_data(self, context):
+        context.update(
+            context_data.gather(
+                sender=self.__class__,
+                context=context, view=self))
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        return super(PootleDetailView, self).render_to_response(
+            self.gather_context_data(context),
+            **response_kwargs)
+
 
 class PootleJSON(PootleDetailView):
 
@@ -547,7 +560,7 @@ class PootleJSON(PootleDetailView):
         """
         response_kwargs.setdefault('content_type', self.content_type)
         return self.response_class(
-            self.get_response_data(context),
+            self.get_response_data(self.gather_context_data(context)),
             **response_kwargs)
 
 
@@ -558,6 +571,15 @@ class PootleBrowseView(PootleDetailView):
     items = None
     is_store = False
 
+    @cached_property
+    def children(self):
+        return list(self.object.children)
+
+    def get_child(self, pk):
+        for child in self.children:
+            if pk == child.pk:
+                return child
+
     @property
     def path(self):
         return self.request.path
@@ -565,10 +587,6 @@ class PootleBrowseView(PootleDetailView):
     @property
     def stats(self):
         return self.object.get_stats()
-
-    @property
-    def has_vfolders(self):
-        return False
 
     @cached_property
     def cookie_data(self):
@@ -598,23 +616,17 @@ class PootleBrowseView(PootleDetailView):
         return response
 
     def get_context_data(self, *args, **kwargs):
-        filters = {}
         can_translate = False
         can_translate_stats = False
-        if self.has_vfolders:
-            filters['sort'] = 'priority'
 
         if self.request.user.is_superuser or self.language:
             can_translate = True
             can_translate_stats = True
             url_action_continue = self.object.get_translate_url(
-                state='incomplete',
-                **filters)
-            url_action_fixcritical = self.object.get_critical_url(
-                **filters)
+                state='incomplete')
+            url_action_fixcritical = self.object.get_critical_url()
             url_action_review = self.object.get_translate_url(
-                state='suggestions',
-                **filters)
+                state='suggestions')
             url_action_view_all = self.object.get_translate_url(state='all')
         else:
             if self.project:
@@ -646,26 +658,26 @@ class PootleBrowseView(PootleDetailView):
 class PootleTranslateView(PootleDetailView):
     template_name = "editor/main.html"
 
-    @property
-    def ctx_path(self):
-        return self.pootle_path
+    @cached_property
+    def extracted_path(self):
+        _path = extracted_path.get(self.__class__, view=self)
+        if _path:
+            return _path
+        return self.request_path, "", {}
 
     @property
-    def vfolder_pk(self):
-        return ""
-
-    @property
-    def display_vfolder_priority(self):
-        return False
+    def resource_path(self):
+        return (
+            "%s%s"
+            % (self.extracted_path[1],
+               self.request_path[len(self.ctx_path):]))
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(
             PootleTranslateView, self).get_context_data(*args, **kwargs)
         ctx.update(
             {'page': 'translate',
-             'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
-             'display_priority': self.display_vfolder_priority,
              'check_categories': get_qualitycheck_schema(),
              'cantranslate': check_permission("translate", self.request),
              'cansuggest': check_permission("suggest", self.request),

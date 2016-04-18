@@ -161,13 +161,16 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     resource_path = "%(dir_path)s%(filename)s" % kwargs
     request_path = "%s%s" % (tp.pootle_path, resource_path)
     vfolder, pootle_path = extract_vfolder_from_path(request_path)
+
     current_vfolder_pk = (
         vfolder.pk
         if vfolder
         else "")
     display_priority = (
         not current_vfolder_pk
-        and not kwargs['filename'] and ctx['object'].has_vfolders)
+        and (not kwargs['filename']
+             and ctx['object'].vf_treeitems.count() > 0))
+
     assertions = dict(
         page="translate",
         translation_project=tp,

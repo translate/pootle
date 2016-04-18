@@ -66,3 +66,18 @@ class GatheredList(Gathered):
     def __iter__(self):
         for item in self.results:
             yield item
+
+
+class GatheredSet(Gathered):
+
+    @property
+    def results(self):
+        gathered = set()
+        for func, result in self.__results__:
+            if isinstance(result, (list, tuple)):
+                gathered = gathered | set(result)
+        return gathered
+
+    def __iter__(self):
+        for item in self.results:
+            yield item

@@ -20,13 +20,14 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
-from django.db.models.signals import post_delete, post_save, pre_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
+from pootle.core.delegate import object_resources
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
@@ -325,8 +326,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         :cls:`~pootle_store.models.Store` resource paths available for
         this :cls:`~pootle_project.models.Project` across all languages.
         """
-        from virtualfolder.models import VirtualFolderTreeItem
-
         cache_key = make_method_key(self, 'resources', self.code)
         resources = cache.get(cache_key, None)
         if resources is not None:
@@ -336,20 +335,16 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             translation_project__project__pk=self.pk)
         dirs = Directory.objects.live().order_by().filter(
             pootle_path__regex=r"^/[^/]*/%s/" % self.code)
-        vftis = (
-            VirtualFolderTreeItem.objects.filter(
-                vfolder__is_public=True,
-                pootle_path__regex=r"^/[^/]*/%s/" % self.code)
-            if 'virtualfolder' in settings.INSTALLED_APPS
-            else [])
+
+        all_paths = (
+            (set(stores.values_list("pootle_path", flat=True))
+             | set(dirs.values_list("pootle_path", flat=True))
+             | object_resources.gather(sender=self.__class__, instance=self)))
+
         resources = sorted(
             {to_tp_relative_path(pootle_path)
              for pootle_path
-             in (set(stores.values_list("pootle_path", flat=True))
-                 | set(dirs.values_list("pootle_path", flat=True))
-                 | set(vftis.values_list("pootle_path", flat=True)
-                       if vftis
-                       else []))},
+             in all_paths},
             key=get_path_sortkey)
         cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
         return resources
@@ -557,27 +552,6 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
         return project.code
 
     # # # /TreeItem
-
-
-if 'virtualfolder' in settings.INSTALLED_APPS:
-    from virtualfolder.signals import vfolder_post_save
-
-    @receiver([vfolder_post_save, pre_delete])
-    def invalidate_resources_cache_for_vfolders(sender, instance, **kwargs):
-        if instance.__class__.__name__ == 'VirtualFolder':
-            try:
-                # In case this is vfolder_post_save.
-                affected_projects = kwargs['projects']
-            except KeyError:
-                # In case this is pre_delete.
-                affected_projects = Project.objects.filter(
-                    translationproject__stores__unit__vfolders=instance
-                ).distinct().values_list('code', flat=True)
-
-            cache.delete_many([
-                make_method_key('Project', 'resources', proj)
-                for proj in affected_projects
-            ])
 
 
 @receiver([post_delete, post_save])

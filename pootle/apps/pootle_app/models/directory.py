@@ -7,12 +7,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
 from pootle.core.mixins import CachedTreeItem
+from pootle.core.signals import object_obsoleted
 from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
                                      to_tp_relative_path)
 from pootle_misc.baseurl import l
@@ -64,18 +64,6 @@ class Directory(models.Model, CachedTreeItem):
         from pootle_store.models import Store
         return Store.objects.live() \
                             .filter(pootle_path__startswith=self.pootle_path)
-
-    @property
-    def vfolder_treeitems(self):
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            return self.vf_treeitems.all()
-
-        return []
-
-    @property
-    def has_vfolders(self):
-        return ('virtualfolder' in settings.INSTALLED_APPS and
-                self.vf_treeitems.count() > 0)
 
     @property
     def is_template_project(self):
@@ -291,6 +279,4 @@ class Directory(models.Model, CachedTreeItem):
         self.save()
         self.clear_all_cache(parents=False, children=False)
 
-        # Clear stats cache for sibling VirtualFolderTreeItems as well.
-        for vfolder_treeitem in self.vfolder_treeitems:
-            vfolder_treeitem.clear_all_cache(parents=False, children=False)
+        object_obsoleted.send(self.__class__, instance=self)
