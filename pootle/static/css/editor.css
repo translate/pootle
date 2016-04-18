@@ -767,7 +767,14 @@ a.suggestion-action
     float: right;
 }
 
+.suggestion-actions
+{
+    float: right;
+    margin: 0.5em;
+}
+
 html[dir="rtl"] .comment-action,
+html[dir="rtl"] .suggestion-actions,
 html[dir="rtl"] .suggestion-action
 {
     float: left;
