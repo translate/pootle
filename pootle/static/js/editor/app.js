@@ -240,6 +240,7 @@ PTL.editor = {
       (e) => this.toggleSuggestion(e, { canHide: true }));
     $(document).on('click', '.js-user-suggestion',
       (e) => this.toggleSuggestion(e, { canHide: false }));
+    $(document).on('click', '.js-translate-lightbox', () => this.closeSuggestion());
 
     $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
     $(document).on('click', '.js-toggle-check', (e) => {
@@ -292,6 +293,11 @@ PTL.editor = {
     });
 
     /* Bind hotkeys */
+    shortcut.add('esc', () => {
+      if (this.selectedSuggestionId !== undefined) {
+        this.closeSuggestion();
+      }
+    });
     shortcut.add('ctrl+return', () => {
       if (this.isSuggestMode()) {
         this.handleSuggest();
