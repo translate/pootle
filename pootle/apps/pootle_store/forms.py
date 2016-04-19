@@ -259,6 +259,7 @@ def unit_form_factory(language, snplurals=None, request=None):
         )
         similarity = forms.FloatField(required=False)
         mt_similarity = forms.FloatField(required=False)
+        suggestion_id = forms.IntegerField(required=False)
 
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)

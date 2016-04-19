@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import copy
+
 from translate.lang import data
 
 from django import forms
@@ -506,6 +508,7 @@ def submit(request, unit):
 
     translation_project = request.translation_project
     language = translation_project.language
+    old_unit = copy.copy(unit)
 
     if unit.hasplural():
         snplurals = len(unit.source.strings)
@@ -519,8 +522,29 @@ def submit(request, unit):
     form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
+        suggestion = None
+        suggid = form.cleaned_data['suggestion_id']
+        if suggid is not None:
+            try:
+                suggestion = unit.suggestion_set.get(id=suggid)
+            except ObjectDoesNotExist:
+                raise Http404
+
+            old_unit.accept_suggestion(suggestion,
+                                       request.translation_project, request.user)
+            if "comment" in request.POST and request.POST["comment"]:
+                kwargs = dict(
+                    comment=request.POST["comment"],
+                    user=request.user,
+                )
+                comment_form = UnsecuredCommentForm(suggestion, kwargs)
+                if comment_form.is_valid():
+                    comment_form.save()
+
         if form.updated_fields:
             for field, old_value, new_value in form.updated_fields:
+                if field == SubmissionFields.TARGET and suggestion is not None:
+                    old_value = suggestion.target_f
                 sub = Submission(
                     creation_time=current_time,
                     translation_project=translation_project,
