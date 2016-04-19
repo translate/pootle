@@ -9,7 +9,10 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { applyFontFilter, unapplyFontFilter, isNewlineSymbol } from '../utils';
+import {
+  applyFontFilter, unapplyFontFilter, isNewlineSymbol, countNewlineCharacter,
+  countNewlineSymbol, removeNewlineChar, convertNewlineSymbolToChar,
+} from '../utils';
 
 
 const NO_OVERWRITE_KEYS = [
@@ -136,6 +139,38 @@ const EditorTextarea = React.createClass({
     this.updateValue(cleanValue);
   },
 
+  handleCopyCut(e) {
+    const { selectionStart } = e.target;
+    const { selectionEnd } = e.target;
+    const { value } = e.target;
+    let selectedValue = value.slice(selectionStart, selectionEnd);
+
+    // Special-case: the selected text contains more newline symbols than
+    // actual newline characters
+    if (countNewlineSymbol(selectedValue) > countNewlineCharacter(selectedValue)) {
+      // 1. Remove actual newline characters
+      selectedValue = removeNewlineChar(selectedValue);
+      // 2. Convert symbols into actual characters
+      selectedValue = convertNewlineSymbolToChar(selectedValue);
+    }
+
+    const valueToClipboard = unapplyFontFilter(selectedValue, this.getMode());
+    try {
+      e.clipboardData.setData('text/plain', valueToClipboard);
+    } catch (exception) {
+      // IE11 doesn't understand the `text/plain` content type.
+      e.clipboardData.setData('Text', valueToClipboard);
+    }
+
+    e.preventDefault();
+    if (e.type === 'cut') {
+      const end = isNewlineSymbol(value[selectionEnd - 1])
+        ? selectionEnd + 1
+        : selectionEnd;
+      this.updateValueWithSelection(value, selectionStart, end, 'Delete');
+    }
+  },
+
   render() {
     const transformedValue = applyFontFilter(this.state.value, this.getMode());
     const editorWrapperClasses = cx('editor-area-wrapper js-editor-area-wrapper', {
@@ -148,6 +183,8 @@ const EditorTextarea = React.createClass({
           id={this.props.id}
           initialValue={applyFontFilter(this.props.initialValue, this.getMode())}
           onChange={this.handleChange}
+          onCopy={this.handleCopyCut}
+          onCut={this.handleCopyCut}
           onKeyDown={this.handleKeyDown}
           style={this.props.style}
           value={transformedValue}
