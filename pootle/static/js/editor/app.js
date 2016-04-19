@@ -284,7 +284,9 @@ PTL.editor = {
 
     /* Confirmation prompt */
     window.addEventListener('beforeunload', (e) => {
-      if (PTL.editor.isUnitDirty) {
+      if (PTL.editor.isUnitDirty ||
+          (PTL.editor.suggestionFeedbackForm &&
+           PTL.editor.suggestionFeedbackForm.state.isDirty)) {
         // eslint-disable-next-line no-param-reassign
         e.returnValue = gettext(
           'You have unsaved changes in this string. Navigating away will discard those changes.'
@@ -592,7 +594,9 @@ PTL.editor = {
   },
 
   canNavigate() {
-    if (this.isUnitDirty) {
+    if (this.isUnitDirty ||
+        (this.suggestionFeedbackForm &&
+         this.suggestionFeedbackForm.state.isDirty)) {
       return window.confirm(  // eslint-disable-line no-alert
         gettext(
           'You have unsaved changes in this string. Navigating away will discard those changes.'
