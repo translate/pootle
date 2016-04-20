@@ -761,8 +761,7 @@ html[dir="rtl"] .extras-bar a
     margin-bottom: 0;
 }
 
-a.comment-action,
-a.suggestion-action
+a.comment-action
 {
     float: right;
 }
@@ -773,11 +772,22 @@ a.suggestion-action
     margin: 0.5em;
 }
 
+a.suggestion-action
+{
+    float: right;
+    margin: 0 0 0 0.3em;
+}
+
 html[dir="rtl"] .comment-action,
-html[dir="rtl"] .suggestion-actions,
+html[dir="rtl"] .suggestion-actions
+{
+    float: left;
+}
+
 html[dir="rtl"] .suggestion-action
 {
     float: left;
+    margin: 0 0.3em 0 0;
 }
 
 #tm-results .suggestion-original,
@@ -799,6 +809,124 @@ html[dir="rtl"] .suggestion-action
 .extra-item-block .suggestion-action img:hover
 {
     opacity: 1;
+}
+
+.extra-item-block .suggestion-collapse,
+.extra-item-block.suggestion-expanded .suggestion-expand,
+.extra-item-block.suggestion-expanded a.suggestion-action,
+.extra-item-block.suggestion-expanded .suggestion-translation
+{
+    display: none;
+}
+
+.extra-item-block .suggestion-translation
+{
+    display: block;
+}
+
+.extra-item-block .suggestion-expand,
+.extra-item-block.suggestion-expanded a.suggestion-action .suggestion-collapse,
+.extra-item-block.suggestion-expanded a.suggestion-action.suggestion-toggle
+{
+    display: inline-block;
+}
+
+.extra-item-block.suggestion-expanded .extra-item-content
+{
+    display: none;
+}
+
+.extra-item-block .extra-item-content
+{
+    display: block;
+}
+
+.extra-item-block .suggestion-feedback .field-wrapper label
+{
+    color: #999;
+    font-size: 85%;
+}
+
+.extra-item-block .suggestion-feedback .field-wrapper
+{
+    margin: 5px 5px 0px 0px;
+}
+
+.extra-item-block .suggestion-feedback .field-wrapper label,
+.extra-item-block .suggestion-feedback .field-wrapper textarea
+{
+    display: block;
+}
+
+.extra-item-block .suggestion-feedback .field-wrapper textarea
+{
+    width: 100%;
+    max-width: 100%;
+}
+
+.extra-item-block .suggestion-feedback .buttons button
+{
+    float: right;
+    margin: 15px 0px 5px 15px;
+}
+
+html[dir="rtl"] .extra-item-block .suggestion-feedback .buttons button
+{
+    float: left;
+    margin: 15px 15px 5px 0px;
+}
+
+.extra-item-block .suggestion-feedback .buttons button i
+{
+    margin: 1px 4px 0 -4px;
+}
+
+.extra-item-block .suggestion-feedback form
+{
+    margin: 20px 20px 10px 20px;
+}
+
+.translate-full
+{
+    position: relative;
+}
+
+.translate-full .translate-lightbox
+{
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 2;
+    margin: -5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    left: 10px;
+    right: 10px;
+    top: 5px;
+    bottom: 5px;
+    display: none;
+}
+
+.translate-full.suggestion-expanded .translate-lightbox
+{
+    display: block;
+}
+
+.extra-item-block.suggestion-expanded,
+.extra-item-block.suggestion-expanded:hover
+{
+    box-shadow: 0 0 6px #6daa00;
+    background-color: #f1f7e4;
+    z-index: 3;
+}
+
+.extra-item-block.suggestion-expanded .extra-item-meta
+{
+    margin-top: 0.2em;
+}
+
+#suggestions .extra-item-title
+{
+    margin-bottom: 0.2em;
 }
 
 .extra-item

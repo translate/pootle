@@ -8,6 +8,8 @@
 
 import $ from 'jquery';
 import _ from 'underscore';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // jQuery plugins
 import 'jquery-caret';
@@ -29,6 +31,8 @@ import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
 import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
+
+import SuggestionFeedbackForm from './components/SuggestionFeedbackForm';
 
 import captcha from '../captcha';
 import { UnitSet } from '../collections';
@@ -232,6 +236,11 @@ PTL.editor = {
       e.stopPropagation();
       this.acceptSuggestion(e.currentTarget.dataset.suggId);
     });
+    $(document).on('click', '.js-suggestion-toggle',
+      (e) => this.toggleSuggestion(e, { canHide: true }));
+    $(document).on('click', '.js-user-suggestion',
+      (e) => this.toggleSuggestion(e, { canHide: false }));
+
     $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
     $(document).on('click', '.js-toggle-check', (e) => {
       this.toggleCheck(e.currentTarget.dataset.checkId);
@@ -1491,7 +1500,7 @@ PTL.editor = {
   },
 
   /* Pushes translation submissions and moves to the next unit */
-  handleSubmit() {
+  handleSubmit(comment = '') {
     const el = document.querySelector('input.submit');
     const newTranslation = $('.js-translation-area')[0].value;
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
@@ -1533,6 +1542,14 @@ PTL.editor = {
 
     el.disabled = true;
 
+    // Check if we used a suggestion
+    if (this.selectedSuggestionId !== undefined) {
+      assign(body, {
+        suggestion_id: this.selectedSuggestionId,
+        comment: comment,
+      });
+    }
+
     UnitAPI.addTranslation(this.units.getCurrent().id, body)
       .then(
         (data) => this.processSubmission(data),
@@ -1541,6 +1558,11 @@ PTL.editor = {
   },
 
   processSubmission(data) {
+    if (this.selectedSuggestionId !== undefined) {
+      this.processAcceptSuggestion(data, this.selectedSuggestionId);
+      return;
+    }
+
     // FIXME: handle this via events
     const translations = $('.js-translation-area').map((i, el) => $(el).val())
                                                   .get();
@@ -2198,6 +2220,7 @@ PTL.editor = {
     }
 
     $(`#suggestion-${suggId}`).fadeOut(200, function handleRemove() {
+      PTL.editor.closeSuggestion({ checkIfCanNavigate: false });
       $(this).remove();
 
       // Go to the next unit if there are no more suggestions left
@@ -2219,16 +2242,20 @@ PTL.editor = {
 
   processAcceptSuggestion(data, suggId, skipToNext) {
     // Update target textareas
-    $.each(data.newtargets, (i, target) => {
-      $(`#id_target_f_${i}`).val(target).focus();
-    });
-
-    // Update remaining suggestion's diff
-    $.each(data.newdiffs, (suggestionId, sugg) => {
-      $.each(sugg, (i, target) => {
-        $(`#suggdiff-${suggestionId}-${i}`).html(target);
+    if (data.newtargets !== undefined) {
+      $.each(data.newtargets, (i, target) => {
+        $(`#id_target_f_${i}`).val(target).focus();
       });
-    });
+    }
+
+    if (data.newdiffs !== undefined) {
+      // Update remaining suggestion's diff
+      $.each(data.newdiffs, (suggestionId, sugg) => {
+        $.each(sugg, (i, target) => {
+          $(`#suggdiff-${suggestionId}-${i}`).html(target);
+        });
+      });
+    }
 
     // FIXME: handle this via events
     const translations = $('.js-translation-area').map((i, el) => $(el).val())
@@ -2248,6 +2275,7 @@ PTL.editor = {
     }
 
     $(`#suggestion-${suggId}`).fadeOut(200, function handleRemove() {
+      PTL.editor.closeSuggestion({ checkIfCanNavigate: false });
       $(this).remove();
 
       // Go to the next unit if there are no more suggestions left,
@@ -2315,4 +2343,40 @@ PTL.editor = {
     return true;
   },
 
+  toggleSuggestion(e, { canHide = false } = {}) {
+    e.stopPropagation();
+    const $suggestion = $(e.target).parents('.js-user-suggestion');
+
+    if (this.selectedSuggestionId === undefined) {
+      this.selectedSuggestionId = $suggestion.data('sugg-id');
+      const props = {
+        editor: this,
+        suggId: this.selectedSuggestionId,
+        initialSuggestionText: $suggestion.data('translation-aid'),
+      };
+      const feedbackMountPoint = document.querySelector('.js-mnt-suggestion-feedback');
+      $suggestion.addClass('suggestion-expanded');
+      $('.js-editor-body .translate-full').addClass('suggestion-expanded');
+      this.suggestionFeedbackForm = ReactDOM.render(
+        <SuggestionFeedbackForm {...props} />,
+        feedbackMountPoint
+      );
+      $('#suggestion-editor').focus();
+      autosize($('#suggestion-feedback-form textarea'));
+    } else if (canHide) {
+      this.closeSuggestion();
+    }
+  },
+
+  closeSuggestion({ checkIfCanNavigate = true } = {}) {
+    if (this.selectedSuggestionId !== undefined &&
+        (!checkIfCanNavigate || this.canNavigate())) {
+      const $suggestion = $(`#suggestion-${this.selectedSuggestionId}`);
+      this.selectedSuggestionId = undefined;
+      this.suggestionFeedbackForm = undefined;
+      $('.js-editor-body .translate-full').removeClass('suggestion-expanded');
+      $suggestion.removeClass('suggestion-expanded');
+      $suggestion.find('.js-mnt-suggestion-feedback form').remove();
+    }
+  },
 };

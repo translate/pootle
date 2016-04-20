@@ -3,6 +3,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% cache settings.POOTLE_CACHE_TIMEOUT unit_edit unit.id unit.mtime cantranslate cansuggest canreview altsrcs user.id LANGUAGE_CODE unit.get_terminology %}
 <td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
+  <div class="translate-lightbox js-translate-lightbox"></div>
   <div class="translate-container{% if unit.get_active_critical_qualitychecks.exists %} error{% endif %}">
     <div class="unit-path">
       <ul>
@@ -287,8 +288,8 @@
           <div class="extra-item-title">{% trans 'User suggestions' %}</div>
           {% for sugg in suggestions %}
           <div id="suggestion-{{ sugg.id }}"
-            class="js-user-suggestion js-editor-copytext extra-item-block"
-            data-action="overwrite" data-translation-aid="{{ sugg.target }}"
+            class="js-user-suggestion extra-item-block"
+            data-translation-aid="{{ sugg.target }}"
             data-sugg-id="{{ sugg.id }}"
             data-suggestor-id="{{ sugg.user.id }}">
             {% if sugg.user %}
@@ -298,6 +299,13 @@
             {% endif %}
             <div class="suggestion-actions">
               {% if canreview %}
+                <a accesskey="a" class="suggestion-action suggestion-toggle js-suggestion-toggle"
+                  data-sugg-id="{{ sugg.id }}">
+                  <i class="icon-desc suggestion-expand" dir="{% locale_dir %}"
+                    title="{% trans 'More options' %}"></i>
+                  <i class="icon-asc suggestion-collapse" dir="{% locale_dir %}"
+                    title="{% trans 'Less options' %}"></i>
+                </a>
                 <a accesskey="a" class="suggestion-action js-suggestion-accept"
                   data-sugg-id="{{ sugg.id }}">
                   <i class="icon-accept" dir="{% locale_dir %}"
@@ -325,7 +333,7 @@
               </div>
             </div>
             {% endfor %}
-            <div class="feedback"></div>
+            <div class="suggestion-feedback js-mnt-suggestion-feedback"></div>
             {% block suggestion_comment %}{% endblock %}
             {% if sugg.creation_time %}
             <time class="extra-item-meta js-relative-date"
