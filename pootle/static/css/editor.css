@@ -811,6 +811,16 @@ html[dir="rtl"] .suggestion-action
     opacity: 1;
 }
 
+#suggestions .extra-item-block
+{
+    cursor: pointer;
+}
+
+#suggestions .extra-item-block.suggestion-expanded
+{
+    cursor: inherit;
+}
+
 .extra-item-block .suggestion-collapse,
 .extra-item-block.suggestion-expanded .suggestion-expand,
 .extra-item-block.suggestion-expanded a.suggestion-action,
