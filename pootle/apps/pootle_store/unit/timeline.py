@@ -189,7 +189,7 @@ class TimelineEntry(object):
 class Timeline(object):
 
     entry_class = TimelineEntry
-    timeline_fields = [
+    fields = [
         "type", "old_value", "new_value", "submitter_id", "creation_time",
         "field", "quality_check_id",
         "submitter__username", "submitter__email", "submitter__full_name",
@@ -201,7 +201,7 @@ class Timeline(object):
 
     @property
     def grouped_entries(self):
-        grouped_entries = self.get_grouped_timeline_entries()
+        grouped_entries = self.get_grouped_entries()
         grouped_entries = self.add_creation_entry(grouped_entries)
         grouped_entries.reverse()
         return grouped_entries
@@ -235,10 +235,10 @@ class Timeline(object):
             grouped_entries[:0] = [created]
         return grouped_entries
 
-    def get_grouped_timeline_entries(self):
+    def get_grouped_entries(self):
         grouped_entries = []
         grouped_timeline = groupby(
-            self.submissions.values(*self.timeline_fields),
+            self.submissions.values(*self.fields),
             key=lambda x: ("%d\001%s" % (x['submitter_id'], x['creation_time'])))
         # Group by submitter id and creation_time because
         # different submissions can have same creation time
@@ -252,10 +252,9 @@ class Timeline(object):
                         item["submitter__email"])
                 if "datetime" not in entry_group:
                     entry_group['datetime'] = item['creation_time']
-                entry_group['entries'].append(
-                    self.get_timeline_entry(item))
+                entry_group['entries'].append(self.get_entry(item))
             grouped_entries.append(entry_group)
         return grouped_entries
 
-    def get_timeline_entry(self, item):
+    def get_entry(self, item):
         return self.entry_class(ProxySubmission(item)).entry
