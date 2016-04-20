@@ -44,8 +44,6 @@ class Provider(Signal):
 
 
 def provider(signal, **kwargs):
-    """
-    """
     def _decorator(func):
         if isinstance(signal, (list, tuple)):
             for s in signal:
@@ -71,8 +69,6 @@ class Getter(Signal):
 
 
 def getter(signal, **kwargs):
-    """
-    """
     def _decorator(func):
         if isinstance(signal, (list, tuple)):
             for s in signal:
