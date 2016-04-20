@@ -1,4 +1,4 @@
-/* glue: 0.11.1 hash: 251b284f63 */
+/* glue: 0.11.1 hash: 669bb45f8c */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -36,8 +36,10 @@
 .icon-arrow-down,
 .icon-accept,
 .icon-upload,
+.icon-reject-white,
 .icon-download,
 .icon-back,
+.icon-accept-white,
 .icon-external-link {
             background-image: url('../images/sprite.png');
             background-repeat: no-repeat;
@@ -265,8 +267,14 @@
             height: 14px;
         }
         
-        .icon-download {
+        .icon-reject-white {
             background-position: -80px -96px;
+            width: 14px;
+            height: 14px;
+        }
+        
+        .icon-download {
+            background-position: -94px -96px;
             width: 14px;
             height: 14px;
         }
@@ -277,8 +285,14 @@
             height: 13px;
         }
         
+        .icon-accept-white {
+            background-position: -117px 0;
+            width: 14px;
+            height: 14px;
+        }
+        
         .icon-external-link {
-            background-position: -94px -96px;
+            background-position: -117px -14px;
             width: 12px;
             height: 12px;
         }
@@ -321,13 +335,14 @@
     .icon-arrow-down,
     .icon-accept,
     .icon-upload,
+    .icon-reject-white,
     .icon-download,
     .icon-back,
+    .icon-accept-white,
     .icon-external-link {
                 background-image: url('../images/sprite.png');
-                -webkit-background-size: 117px 112px;
-                -moz-background-size: 117px 112px;
-                background-size: 117px 112px;
+                -webkit-background-size: 131px 112px;
+                -moz-background-size: 131px 112px;
+                background-size: 131px 112px;
             }
         }
-        
