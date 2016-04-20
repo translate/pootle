@@ -7,26 +7,19 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from itertools import groupby
-
 from translate.lang import data
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
-from django.core.urlresolvers import reverse
-from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template import RequestContext, loader
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
-from django.utils.safestring import mark_safe
 from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
-from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_http_methods
 
 from pootle.core.decorators import (get_path_obj, get_resource,
@@ -37,13 +30,11 @@ from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
-from pootle_misc.checks import check_names
 from pootle_misc.util import ajax_required
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .decorators import get_unit_context
-from .fields import to_python
 from .forms import (
     highlight_whitespace, unit_comment_form_factory,
     unit_form_factory, UnitSearchForm)
@@ -51,7 +42,8 @@ from .models import Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .unit.results import GroupedResults
-from .util import STATES_MAP, find_altsrcs, get_search_backend
+from .unit.timeline import Timeline
+from .util import find_altsrcs, get_search_backend
 
 
 #: Mapping of allowed sorting criteria.
@@ -236,110 +228,6 @@ def get_more_context(request, unit):
     return JsonResponse(json)
 
 
-@never_cache
-@get_unit_context('view')
-def timeline(request, unit):
-    """Returns a JSON-encoded string including the changes to the unit
-    rendered in HTML.
-    """
-    timeline = Submission.objects.filter(
-        unit=unit,
-    ).filter(
-        Q(field__in=[
-            SubmissionFields.TARGET, SubmissionFields.STATE,
-            SubmissionFields.COMMENT, SubmissionFields.NONE
-        ]) |
-        Q(type__in=SubmissionTypes.SUGGESTION_TYPES)
-    ).exclude(
-        field=SubmissionFields.COMMENT,
-        creation_time=unit.commented_on
-    ).order_by("id")
-    timeline = timeline.select_related("submitter",
-                                       "translation_project__language")
-
-    User = get_user_model()
-    entries_group = []
-    context = {}
-
-    # Group by submitter id and creation_time because
-    # different submissions can have same creation time
-    for key, values in \
-        groupby(timeline,
-                key=lambda x: "%d\001%s" % (x.submitter.id, x.creation_time)):
-
-        entry_group = {
-            'entries': [],
-        }
-
-        for item in values:
-            # Only add creation_time information for the whole entry group once
-            entry_group['datetime'] = item.creation_time
-
-            # Only add submitter information for the whole entry group once
-            entry_group.setdefault('submitter', item.submitter)
-
-            context.setdefault('language', item.translation_project.language)
-
-            entry = {
-                'field': item.field,
-                'field_name': SubmissionFields.NAMES_MAP.get(item.field, None),
-                'type': item.type,
-            }
-
-            if item.field == SubmissionFields.STATE:
-                entry['old_value'] = STATES_MAP[int(to_python(item.old_value))]
-                entry['new_value'] = STATES_MAP[int(to_python(item.new_value))]
-            elif item.suggestion:
-                entry.update({
-                    'suggestion_text': item.suggestion.target,
-                    'suggestion_description':
-                        mark_safe(item.get_suggestion_description()),
-                })
-            elif item.quality_check:
-                check_name = item.quality_check.name
-                entry.update({
-                    'check_name': check_name,
-                    'check_display_name': check_names[check_name],
-                    'checks_url': u''.join([
-                        reverse('pootle-checks-descriptions'), '#', check_name,
-                    ]),
-                })
-            else:
-                entry['new_value'] = to_python(item.new_value)
-
-            entry_group['entries'].append(entry)
-
-        entries_group.append(entry_group)
-
-    if (len(entries_group) > 0 and
-        entries_group[0]['datetime'] == unit.creation_time):
-        entries_group[0]['created'] = True
-    else:
-        created = {
-            'created': True,
-            'submitter': User.objects.get_system_user(),
-        }
-
-        if unit.creation_time:
-            created['datetime'] = unit.creation_time
-        entries_group[:0] = [created]
-
-    # Let's reverse the chronological order
-    entries_group.reverse()
-
-    context['entries_group'] = entries_group
-
-    # The client will want to confirm that the response is relevant for
-    # the unit on screen at the time of receiving this, so we add the uid.
-    json = {'uid': unit.id}
-
-    t = loader.get_template('editor/units/xhr_timeline.html')
-    c = RequestContext(request, context)
-    json['timeline'] = t.render(c).replace('\n', '')
-
-    return JsonResponse(json)
-
-
 @ajax_required
 @require_http_methods(['POST', 'DELETE'])
 @get_unit_context('translate')
@@ -404,8 +292,7 @@ def save_comment(request, unit):
     return JsonResponseBadRequest({'msg': _("Comment submission failed.")})
 
 
-class UnitEditJSON(PootleJSON):
-
+class PootleUnitJSON(PootleJSON):
     model = Unit
     pk_url_kwarg = "uid"
 
@@ -437,6 +324,57 @@ class UnitEditJSON(PootleJSON):
     def directory(self):
         return self.store.parent
 
+    @lru_cache()
+    def get_object(self):
+        return super(PootleUnitJSON, self).get_object()
+
+
+class UnitTimelineJSON(PootleUnitJSON):
+
+    model = Unit
+    pk_url_kwarg = "uid"
+
+    template_name = 'editor/units/xhr_timeline.html'
+
+    @property
+    def language(self):
+        return self.object.store.translation_project.language
+
+    @cached_property
+    def permission_context(self):
+        self.object = self.get_object()
+        return self.project.directory
+
+    @property
+    def project(self):
+        return self.object.store.translation_project.project
+
+    @property
+    def timeline(self):
+        return Timeline(self.object)
+
+    def get_context_data(self, *args, **kwargs):
+        return dict(
+            entries_group=self.timeline.grouped_entries,
+            language=self.language)
+
+    def get_queryset(self):
+        return Unit.objects.get_translatable(self.request.user).select_related(
+            "store__translation_project__language",
+            "store__translation_project__project__directory")
+
+    def get_response_data(self, context):
+        return {
+            'uid': self.object.id,
+            'timeline': self.render_timeline(context)}
+
+    def render_timeline(self, context):
+        return loader.get_template(
+            self.template_name).render(context).replace('\n', '')
+
+
+class UnitEditJSON(PootleUnitJSON):
+
     def get_edit_template(self):
         if self.project.is_terminology or self.store.is_terminology:
             return loader.get_template('editor/units/term_edit.html')
@@ -464,10 +402,6 @@ class UnitEditJSON(PootleJSON):
             get_alt_src_langs(self.request, self.request.user, self.tp),
             store=self.store,
             project=self.project)
-
-    @lru_cache()
-    def get_object(self):
-        return super(UnitEditJSON, self).get_object()
 
     def get_queryset(self):
         return Unit.objects.get_translatable(self.request.user).select_related(
