@@ -283,16 +283,42 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             return value
 
-        def clean_state(self):
+        def clean_similarity(self):
+            value = self.cleaned_data['similarity']
+
+            if 0 <= value <= 1 or value is None:
+                return value
+
+            raise forms.ValidationError(
+                _('Value of `similarity` should be in in the [0..1] range')
+            )
+
+        def clean_mt_similarity(self):
+            value = self.cleaned_data['mt_similarity']
+
+            if 0 <= value <= 1 or value is None:
+                return value
+
+            raise forms.ValidationError(
+                _('Value of `mt_similarity` should be in in the [0..1] range')
+            )
+
+        def clean(self):
             old_state = self.instance.state  # Integer
             is_fuzzy = self.cleaned_data['state']  # Boolean
             new_target = self.cleaned_data['target_f']
 
+            # If suggestion is provided set `old_state` should be `TRANSLATED`.
+            if self.cleaned_data['suggestion']:
+                old_state = TRANSLATED
+
             if (self.request is not None and
                 not check_permission('administrate', self.request) and
                 is_fuzzy):
-                raise forms.ValidationError(_('Needs work flag must be '
-                                              'cleared'))
+                self.add_error('state',
+                               forms.ValidationError(
+                                   _('Needs work flag must be '
+                                     'cleared')))
 
             if new_target:
                 if old_state == UNTRANSLATED:
@@ -324,31 +350,12 @@ def unit_form_factory(language, snplurals=None, request=None):
                 self.updated_fields.append((SubmissionFields.STATE,
                                             old_state, new_state))
 
-                return new_state
+                self.cleaned_data['state'] = new_state
+            else:
+                self.instance._state_updated = False
+                self.cleaned_data['state'] = old_state
 
-            self.instance._state_updated = False
-
-            return old_state
-
-        def clean_similarity(self):
-            value = self.cleaned_data['similarity']
-
-            if 0 <= value <= 1 or value is None:
-                return value
-
-            raise forms.ValidationError(
-                _('Value of `similarity` should be in in the [0..1] range')
-            )
-
-        def clean_mt_similarity(self):
-            value = self.cleaned_data['mt_similarity']
-
-            if 0 <= value <= 1 or value is None:
-                return value
-
-            raise forms.ValidationError(
-                _('Value of `mt_similarity` should be in in the [0..1] range')
-            )
+            return super(UnitForm, self).clean()
 
     return UnitForm
 
