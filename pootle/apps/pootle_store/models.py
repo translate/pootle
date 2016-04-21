@@ -1241,11 +1241,10 @@ class Unit(models.Model, base.TranslationUnit):
     def get_terminology(self):
         """get terminology suggestions"""
         matcher = self.store.translation_project.gettermmatcher()
-        if matcher is not None:
-            result = matcher.matches(self.source)
-        else:
-            result = []
-        return result
+        if matcher is None:
+            return []
+
+        return matcher.matches(self.source)
 
     def get_last_updated_info(self):
         return {
