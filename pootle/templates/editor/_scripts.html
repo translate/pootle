@@ -27,6 +27,7 @@ $(function() {
     isAdmin: {{ is_admin|yesno:"true,false" }},
     isAnonymous: {{ request.user.is_anonymous|yesno:"true,false" }},
     userId: {{ request.user.id }},
+    localeDir: '{{ language.direction }}',
   };
   {% if cansuggest or cantranslate %}
   options.mt = [

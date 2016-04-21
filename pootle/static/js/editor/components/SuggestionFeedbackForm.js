@@ -18,6 +18,7 @@ export const SuggestionFeedBackForm = React.createClass({
   propTypes: {
     suggId: React.PropTypes.number.isRequired,
     initialSuggestionText: React.PropTypes.string.isRequired,
+    localeDir: React.PropTypes.string.isRequired,
     editor: React.PropTypes.object.isRequired,
   },
 
@@ -75,6 +76,7 @@ export const SuggestionFeedBackForm = React.createClass({
             errors={errors.translation}
             value={formData.translation}
             data-action="overwrite"
+            dir={this.props.editor.settings.localeDir}
           />
           <FormElement
             type="textarea"
