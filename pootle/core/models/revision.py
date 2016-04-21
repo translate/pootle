@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) Pootle contributors.
@@ -7,9 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-
-from .cache import get_cache
-from .mixins import TreeItem
+from ..cache import get_cache
 
 
 cache = get_cache('redis')
@@ -76,37 +73,3 @@ class Revision(object):
             return cache.incr(cls.CACHE_KEY)
         except ValueError:
             raise NoRevision()
-
-
-class VirtualResource(TreeItem):
-    """An object representing a virtual resource.
-
-    A virtual resource doesn't live in the DB and has a unique
-    `pootle_path` of its own. It's a simple collection of actual
-    resources.
-
-    For instance, this can be used in projects to have cross-language
-    references.
-
-    Don't use this object as-is, rather subclass it and adapt the
-    implementation details for each context.
-    """
-
-    def __init__(self, resources, pootle_path, *args, **kwargs):
-        self.resources = resources  #: Collection of underlying resources
-        self.pootle_path = pootle_path
-
-        super(VirtualResource, self).__init__(*args, **kwargs)
-
-    def __unicode__(self):
-        return self.pootle_path
-
-    # # # TreeItem
-
-    def get_children(self):
-        return self.resources
-
-    def get_cachekey(self):
-        return self.pootle_path
-
-    # # # /TreeItem
