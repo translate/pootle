@@ -17,7 +17,6 @@ from translate.storage import base
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.contenttypes.fields import GenericRelation
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
@@ -44,7 +43,6 @@ from pootle.core.url_helpers import (
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
-from pootle_comment import get_model
 from pootle_misc.checks import check_names, get_checker
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -153,8 +151,6 @@ class Suggestion(models.Model, base.TranslationUnit):
     creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
 
-    comments = GenericRelation(get_model(), related_query_name='suggestions',
-                               object_id_field='object_pk')
     objects = SuggestionManager()
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #

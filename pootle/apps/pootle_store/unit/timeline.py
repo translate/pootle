@@ -17,12 +17,13 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from pootle_comment import get_model
+from pootle_comment import get_model as get_comment_model
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 
 from pootle_store.fields import to_python
+from pootle_store.models import Suggestion
 from pootle_store.util import STATES_MAP
 
 
@@ -153,6 +154,7 @@ class ProxySubmission(object):
     def suggestion_comment(self):
         return self.values['comment']
 
+
 class TimelineEntry(object):
 
     def __init__(self, submission):
@@ -250,12 +252,27 @@ class Timeline(object):
                               .order_by("id"))
 
     @cached_property
-    def comments(self):
-        return dict(
-            get_model().objects
-                       .filter(suggestions__unit=self.object)
-                       .values_list("suggestions__id", "comment")
-        )
+    def submissions_values(self):
+        return list(self.submissions.values(*self.fields))
+
+    @property
+    def suggestion_ids(self):
+        return list(set([
+            x["suggestion_id"]
+            for x in self.submissions_values
+            if x["suggestion_id"]
+        ]))
+
+    @cached_property
+    def comment_dict(self):
+        Comment = get_comment_model()
+        return dict([
+            # we need convert `object_pk` because it is TextField
+            (int(x[0]), x[1])
+            for x in Comment.objects.for_model(Suggestion)
+                                    .filter(object_pk__in=self.suggestion_ids)
+                                    .values_list("object_pk", "comment")
+        ])
 
     def add_creation_entry(self, grouped_entries):
         User = get_user_model()
@@ -276,7 +293,7 @@ class Timeline(object):
     def get_grouped_entries(self):
         grouped_entries = []
         grouped_timeline = groupby(
-            self.submissions.values(*self.fields),
+            self.submissions_values,
             key=lambda x: ("%d\001%s" % (x['submitter_id'], x['creation_time'])))
         # Group by submitter id and creation_time because
         # different submissions can have same creation time
@@ -295,5 +312,5 @@ class Timeline(object):
         return grouped_entries
 
     def get_entry(self, item):
-        item["comment"] = self.comments.get(item["suggestion_id"])
+        item["comment"] = self.comment_dict.get(item["suggestion_id"])
         return self.entry_class(ProxySubmission(item)).entry
