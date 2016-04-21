@@ -24,9 +24,9 @@ from pootle.core.helpers import (
     get_filter_name, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.json import jsonify
+from pootle.core.utils.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
-from pootle_misc.stats import get_translation_states
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
 from virtualfolder.helpers import (

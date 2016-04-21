@@ -33,7 +33,6 @@ from django.views.generic import View, DetailView
 from pootle.core.delegate import search_backend
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
-from pootle_misc.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required
@@ -46,6 +45,7 @@ from .helpers import (SIDEBAR_COOKIE_NAME,
 from .http import JsonResponse, JsonResponseBadRequest
 from .url_helpers import get_path_parts, get_previous_url
 from .utils.json import PootleJSONEncoder, jsonify
+from .utils.stats import get_translation_states
 
 
 def check_directory_permission(permission_codename, request, directory):
