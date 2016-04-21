@@ -20,6 +20,8 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
+from pootle_comment import get_model as get_comment_model
+from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
@@ -67,14 +69,43 @@ def _get_suggestion_description(submission):
     display_name = (
         submission["suggestion__user__full_name"].strip()
         if submission["suggestion__user__full_name"].strip()
-        else submission["suggestion__user__username"])
-    author = format_html(u'<a href="{}">{}</a>', user_url, display_name)
+        else submission["suggestion__user__username"].strip())
+    params = {
+        'author': format_html(u'<a href="{}">{}</a>',
+                              user_url,
+                              display_name)
+    }
+    Comment = get_comment_model()
+    try:
+        comment = Comment.objects.for_model(Suggestion).get(
+            object_pk=submission["suggestion_id"],
+        )
+    except Comment.DoesNotExist:
+        comment = None
+    else:
+        params.update({
+            'comment': format_html(u'<span class="comment">{}</span>',
+                                   comment.comment),
+        })
+
+    if comment:
+        sugg_accepted_desc = _(
+            u'Accepted suggestion from %(author)s with comment: %(comment)s',
+            params
+        )
+        sugg_rejected_desc = _(
+            u'Rejected suggestion from %(author)s with comment: %(comment)s',
+            params
+        )
+    else:
+        sugg_accepted_desc = _(u'Accepted suggestion from %(author)s', params)
+        sugg_rejected_desc = _(u'Rejected suggestion from %(author)s', params)
+
     return {
         SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
-        SubmissionTypes.SUGG_ACCEPT: _(u'Accepted suggestion from %s',
-                                       author),
-        SubmissionTypes.SUGG_REJECT: _(u'Rejected suggestion from %s',
-                                       author)}.get(submission['type'], None)
+        SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
+        SubmissionTypes.SUGG_REJECT: sugg_rejected_desc,
+    }.get(submission['type'], None)
 
 
 def _calculate_timeline(request, unit):
@@ -260,6 +291,31 @@ def test_timeline_view_unit_with_qc(client, request_users, system, admin):
     qc = QualityCheck.objects.filter(**qc_filter).first()
     unit = qc.unit
     unit.toggle_qualitycheck(qc.id, True, admin)
+    _timeline_test(
+        client,
+        request_users,
+        unit)
+
+
+@pytest.mark.django_db
+def test_timeline_view_unit_with_suggestion_and_comment(client, request_users,
+                                                        system, admin):
+    # test with "state change" subission - apparently this is what is required
+    # to get one
+    suggestion = Suggestion.objects.filter(
+        state=SuggestionStates.PENDING,
+        unit__state=UNTRANSLATED).first()
+    unit = suggestion.unit
+    unit.state = FUZZY
+    unit.save()
+    unit.accept_suggestion(suggestion, unit.store.translation_project, admin)
+    form = UnsecuredCommentForm(suggestion, dict(
+        comment='This is a comment!',
+        user=admin,
+    ))
+    if form.is_valid():
+        form.save()
+
     _timeline_test(
         client,
         request_users,
