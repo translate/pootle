@@ -222,7 +222,7 @@ class TranslationStoreFieldFile(FieldFile):
         avoid the need for locking.
         """
         import shutil
-        from pootle_misc import ptempfile as tempfile
+        from pootle.core.utils import ptempfile as tempfile
         tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
         os.close(tmpfile)
         self.store.savefile(tmpfilename)
