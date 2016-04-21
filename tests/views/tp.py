@@ -6,8 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from itertools import groupby
 import json
+from itertools import groupby
 from urllib import unquote
 
 import pytest
@@ -192,7 +192,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     view_context_test(ctx, **assertions)
 
 
-def _test_export_view(tp, request, response, kwargs):
+def _test_export_view(tp, request, response, kwargs, settings):
     ctx = response.context
     filter_name, filter_extra = get_filter_name(request.GET)
     form_data = request.GET.copy()
@@ -203,21 +203,26 @@ def _test_export_view(tp, request, response, kwargs):
     total, start, end, units_qs = search_backend.get(Unit)(
         request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
+    assertions = {}
+    if total > settings.POOTLE_EXPORT_VIEW_LIMIT:
+        units_qs = units_qs[:settings.POOTLE_EXPORT_VIEW_LIMIT]
+        assertions.update(
+            {'unit_total_count': total,
+             'displayed_unit_count': settings.POOTLE_EXPORT_VIEW_LIMIT})
     unit_groups = [
         (path, list(units))
         for path, units
         in groupby(
             units_qs,
             lambda x: x.store.pootle_path)]
-    view_context_test(
-        ctx,
-        **dict(
-            project=tp.project,
-            language=tp.language,
-            source_language=tp.project.source_language,
-            filter_name=filter_name,
-            filter_extra=filter_extra,
-            unit_groups=unit_groups))
+    assertions.update(
+        dict(project=tp.project,
+             language=tp.language,
+             source_language=tp.project.source_language,
+             filter_name=filter_name,
+             filter_extra=filter_extra,
+             unit_groups=unit_groups))
+    view_context_test(ctx, **assertions)
 
 
 @pytest.mark.django_db
@@ -228,7 +233,7 @@ def test_views_tp(tp_views, settings):
     elif test_type == "translate":
         _test_translate_view(tp, request, response, kwargs, settings)
     else:
-        _test_export_view(tp, request, response, kwargs)
+        _test_export_view(tp, request, response, kwargs, settings)
 
 
 @pytest.mark.django_db
