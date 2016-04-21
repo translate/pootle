@@ -13,7 +13,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.template import RequestContext, loader
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -39,7 +39,7 @@ from .decorators import get_unit_context
 from .forms import (
     highlight_whitespace, unit_comment_form_factory,
     unit_form_factory, UnitSearchForm)
-from .models import Unit
+from .models import Store, Unit
 from .templatetags.store_tags import (highlight_diffs, pluralize_source,
                                       pluralize_target)
 from .unit.results import GroupedResults
@@ -466,13 +466,37 @@ def permalink_redirect(request, unit):
     return redirect(request.build_absolute_uri(unit.get_translate_url()))
 
 
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def get_qualitycheck_stats(request, *args, **kwargs):
-    failing_checks = request.resource_obj.get_checks()
-    return JsonResponse(failing_checks if failing_checks is not None else {})
+class QualityCheckStatsJSON(PootleJSON):
+
+    def get_object(self):
+        if not self.request.GET.get("path"):
+            raise Http404
+
+        pootle_path = self.request.GET["path"]
+
+        from django.core.urlresolvers import resolve
+        kwargs = resolve(self.request.GET["path"]).kwargs
+
+        if kwargs.get("project_code") and kwargs.get("language_code"):
+            if kwargs.get("filename"):
+                return get_object_or_404(
+                    Store, pootle_path=pootle_path).parent
+            else:
+                return get_object_or_404(
+                    Directory, pootle_path=pootle_path)
+        elif kwargs.get("language_code"):
+            return get_object_or_404(
+                Directory, pootle_path=pootle_path)
+        elif kwargs.get("project_code"):
+            return get_object_or_404(
+                Directory, pootle_path=pootle_path)
+        else:
+            return get_object_or_404(
+                Directory, pootle_path=pootle_path)
+
+    def get_context_data(self, *args, **kwargs):
+        failing_checks = self.object.get_checks()
+        return (failing_checks if failing_checks is not None else {})
 
 
 @ajax_required
