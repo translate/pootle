@@ -154,7 +154,7 @@ def _test_browse_view(project, request, response, kwargs):
     view_context_test(ctx, **assertions)
 
 
-def _test_export_view(project, request, response, kwargs):
+def _test_export_view(project, request, response, kwargs, settings):
     ctx = response.context
     kwargs["project_code"] = project.code
     filter_name, filter_extra = get_filter_name(request.GET)
@@ -166,19 +166,25 @@ def _test_export_view(project, request, response, kwargs):
     total, start, end, units_qs = search_backend.get(Unit)(
         request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
+    assertions = {}
+    if total > settings.POOTLE_EXPORT_VIEW_LIMIT:
+        units_qs = units_qs[:settings.POOTLE_EXPORT_VIEW_LIMIT]
+        assertions.update(
+            {'unit_total_count': total,
+             'displayed_unit_count': settings.POOTLE_EXPORT_VIEW_LIMIT})
     unit_groups = [
         (path, list(units))
         for path, units
         in groupby(
             units_qs,
             lambda x: x.store.pootle_path)]
-    assertions = dict(
-        project=project,
-        language=None,
-        source_language="en",
-        filter_name=filter_name,
-        filter_extra=filter_extra,
-        unit_groups=unit_groups)
+    assertions.update(
+        dict(project=project,
+             language=None,
+             source_language="en",
+             filter_name=filter_name,
+             filter_extra=filter_extra,
+             unit_groups=unit_groups))
     view_context_test(ctx, **assertions)
 
 
@@ -190,7 +196,7 @@ def test_views_project(project_views, settings):
     elif test_type == "translate":
         _test_translate_view(project, request, response, kwargs, settings)
     if test_type == "export":
-        _test_export_view(project, request, response, kwargs)
+        _test_export_view(project, request, response, kwargs, settings)
 
 
 @pytest.mark.django_db
