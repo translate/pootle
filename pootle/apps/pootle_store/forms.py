@@ -37,7 +37,7 @@ from .fields import to_db
 from .form_fields import (
     CategoryChoiceField, ISODateTimeField, MultipleArgsField,
     CommaSeparatedCheckboxSelectMultiple)
-from .models import Unit
+from .models import Unit, Suggestion
 from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
@@ -259,7 +259,10 @@ def unit_form_factory(language, snplurals=None, request=None):
         )
         similarity = forms.FloatField(required=False)
         mt_similarity = forms.FloatField(required=False)
-        suggestion_id = forms.IntegerField(required=False)
+        suggestion = forms.ModelChoiceField(
+            queryset=Suggestion.objects.all(),
+            required=False)
+        comment = forms.CharField(required=False)
 
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)

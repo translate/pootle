@@ -1554,10 +1554,11 @@ PTL.editor = {
 
     // Check if we used a suggestion
     if (this.selectedSuggestionId !== undefined) {
-      assign(body, {
-        suggestion_id: this.selectedSuggestionId,
-        comment: comment,
-      });
+      const suggData = {
+        suggestion: this.selectedSuggestionId,
+        comment,
+      };
+      assign(body, suggData);
     }
 
     UnitAPI.addTranslation(this.units.getCurrent().id, body)
