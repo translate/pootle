@@ -294,7 +294,15 @@ class Timeline(object):
         grouped_entries = []
         grouped_timeline = groupby(
             self.submissions_values,
-            key=lambda x: ("%d\001%s" % (x['submitter_id'], x['creation_time'])))
+            key=lambda item: "\001".join([
+                str(x) for x in
+                [
+                    item['submitter_id'],
+                    item['creation_time'],
+                    item['suggestion_id'],
+                ]
+            ])
+        )
         # Group by submitter id and creation_time because
         # different submissions can have same creation time
         for key, values in grouped_timeline:

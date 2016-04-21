@@ -131,7 +131,15 @@ def _calculate_timeline(request, unit):
 
     grouped_timeline = groupby(
         timeline.values(*timeline_fields),
-        key=lambda x: ("%d\001%s" % (x['submitter_id'], x['creation_time'])))
+        key=lambda item: "\001".join([
+            str(x) for x in
+            [
+                item['submitter_id'],
+                item['creation_time'],
+                item['suggestion_id'],
+            ]
+        ])
+    )
 
     # Group by submitter id and creation_time because
     # different submissions can have same creation time
