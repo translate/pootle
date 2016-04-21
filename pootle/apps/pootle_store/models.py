@@ -42,8 +42,8 @@ from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_all_pootle_paths, get_editor_filter, split_pootle_path)
 from pootle.core.utils import dateformat
+from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
-from pootle_misc.aggregate import max_column
 from pootle_misc.checks import check_names, get_checker
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,

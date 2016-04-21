@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) Pootle contributors.
@@ -14,11 +13,9 @@ from django.db.models import Count, Max, Sum
 
 def max_column(queryset, column, default):
     result = queryset.aggregate(result=Max(column))['result']
-
     if result is None:
         return default
-    else:
-        return result
+    return result
 
 
 def sum_column(queryset, columns, count=False):
