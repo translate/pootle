@@ -457,6 +457,16 @@ Translation environment configuration settings.
      recalculate the associated wordcounts.
 
 
+.. setting:: POOTLE_EXPORT_VIEW_LIMIT
+
+``POOTLE_EXPORT_VIEW_LIMIT``
+  Default: ``10000``
+
+  .. versionadded:: 2.8
+
+  The maximum number of units that will be exported in export views.
+
+
 .. _settings#deprecated:
 
 Deprecated Settings
