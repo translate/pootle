@@ -1,10 +1,10 @@
 =================================
-Welcome to the new Pootle 2.7.3b2
+Welcome to the new Pootle 2.8.0b1
 =================================
 
 *Not yet released*
 
-Bugfix release for 2.7.2.
+Major release.
 
 
 Major Changes
