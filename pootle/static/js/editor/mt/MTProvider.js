@@ -79,7 +79,7 @@ class MTProvider {
         if (!('translation' in result)) {
           return result;
         }
-        const newResult = result.slice();
+        const newResult = assign({}, result);
         newResult.translation = placeholderCleaner.recover(result.translation);
         return newResult;
       }
