@@ -19,6 +19,35 @@ ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'pytest_pootle', 'data', 'po')
 
 
+MIDDLEWARE_CLASSES = [
+    #: Resolves paths
+    'pootle.middleware.baseurl.BaseUrlMiddleware',
+    #: Must be as high as possible (see above)
+    'django.middleware.cache.UpdateCacheMiddleware',
+    #: Avoids caching for authenticated users
+    'pootle.middleware.cache.CacheAnonymousOnly',
+    #: Protect against clickjacking and numerous xss attack techniques
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #: Support for e-tag
+    'django.middleware.http.ConditionalGetMiddleware',
+    #: Protection against cross-site request forgery
+    'django.middleware.csrf.CsrfViewMiddleware',
+    #: Must be before authentication
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    #: Must be before anything user-related
+    'pootle.middleware.auth.AuthenticationMiddleware',
+    #: User-related
+    'django.middleware.locale.LocaleMiddleware',
+    #: Sets Python's locale based on request's locale for sorting, etc.
+    'pootle.middleware.setlocale.SetLocale',
+    #: Nice 500 and 403 pages (must be after locale to have translated versions)
+    'pootle.middleware.errorpages.ErrorPagesMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    #: Must be early in the response cycle (close to bottom)
+    'pootle.middleware.captcha.CaptchaMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+]
+
 # Using the only Redis DB for testing
 CACHES = {
     # Must set up entries for persistent stores here because we have a check in
