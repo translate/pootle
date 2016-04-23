@@ -1110,7 +1110,7 @@ PTL.editor = {
       if (unitGroups.length !== 1) {
         rows.push(
           '<tr class="delimiter-row"><td colspan="2">' +
-            `<div class="hd"><h2>${unitGroup.path}</h2></div>` +
+            `<div class="hd"><h2>${_.escape(unitGroup.path)}</h2></div>` +
           '</td></tr>'
         );
       }
