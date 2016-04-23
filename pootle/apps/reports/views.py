@@ -753,6 +753,8 @@ def get_summary(scores, start, end):
     return result
 
 
+@ajax_required
+@admin_required
 def users(request):
     User = get_user_model()
     data = list(
