@@ -8,6 +8,7 @@
 
 import $ from 'jquery';
 import React from 'react';
+import _ from 'underscore';
 
 import 'jquery-bidi';
 import 'jquery-utils';
@@ -297,7 +298,7 @@ const stats = {
       for (let name in data.children) {
         const item = data.children[name];
         const code = cssId(name);
-        const $td = $table.find(`#total-words-${code}`);
+	const $td = $table.find(`#total-words-${_.escape(code)}`);
 
         this.processTableItem(item, code, $table, $td, now);
       }
@@ -306,7 +307,7 @@ const stats = {
         for (let name in data.vfolders) {
           const item = data.vfolders[name];
           const code = cssId(name);
-          const $td = $vfoldersTable.find(`#total-words-${code}`);
+	  const $td = $vfoldersTable.find(`#total-words-${_.escape(code)}`);
 
           // Display only the virtual folders that must be displayed.
           if (this.isAdmin || item.isVisible) {
