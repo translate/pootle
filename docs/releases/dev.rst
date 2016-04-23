@@ -36,7 +36,7 @@ Details of changes
   filter out results which might be irrelevant. To learn more, check the
   documenation on :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>`.
 - :setting:`POOTLE_EXPORT_VIEW_LIMIT` was added, with a default value of 10000.
-  This restricts how many units are show in export views.
+  This restricts how many units are shown in export views.
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of
 course, loads of bugs were fixed.
