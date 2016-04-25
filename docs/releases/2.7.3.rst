@@ -2,15 +2,26 @@
 Welcome to the new Pootle 2.7.3
 ===============================
 
-*Non yet released*
+*Released on 27 April 2016*
 
-Bugfix release for 2.7.2.
+Bugfix release for 2.7.2. This release is meant as the latest stable release of
+the 2.7 series.
+
+
+2.7.3 vs 2.7.3b1
+================
+
+Changes since 2.7.3b1:
+
+- Several critical security fixes that prevent potential XSS attacks
 
 
 Major Changes
 =============
 
-- MySQL's MyISAM support has been dropped. Use InnoDB instead.
+- Several critical security fixes that prevent potential XSS attacks
+- Pootle no longer supports the MySQL's MyISAM database backend, users are
+  strongly encouraged to convert their database to InnoDB.
 - The editor for static pages now highlights the content's markup and displays
   a live preview.
 - Added support for Elasticsearch-based external Translation Memory servers.
@@ -42,7 +53,7 @@ release notes at the time:
 Details of changes
 ==================
 
-- Pulled latest translations.
+- Several critical security fixes that prevent potential XSS attacks
 - Store update has been refactored which has brought a significant speed up
   when importing files.
 - Static pages and announcements:
@@ -81,7 +92,7 @@ Details of changes
 - Database:
 
   - `InnoDB <https://dev.mysql.com/doc/refman/5.6/en/innodb-storage-engine.html>`_
-    is the only accepted MySQL backend. Deployments using MyISAM must
+    is the supported MySQL backend. Deployments using MyISAM must
     :doc:`migrate to either MySQL (InnoDB) or PostgreSQL </server/database_migration>`.
   - Close a database connection before and after each rqworker job once it.
     exceeds the maximum age to imitate Django's request/response cycle
@@ -119,6 +130,7 @@ Details of changes
 - Added more languages for Yandex machine translation.
 - Fixed :djadmin:`test_checks` errors when being run with no options and
   without the :option:` --checks` option.
+- Pulled latest translations.
 
 
 ...and lots of refactoring, new tests, cleanups, improved documentation and of
@@ -130,7 +142,7 @@ Credits
 
 This release was made possible by the following people:
 
-Julen Ruiz Aizpuru, Leandro Regueiro, Dwayne Bailey, Ryan Northey, Taras
+Julen Ruiz Aizpuru, Leandro Regueiro, Ryan Northey, Dwayne Bailey, Taras
 Semenenko.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
