@@ -2090,10 +2090,13 @@ PTL.editor = {
       const $element = $(this.focused);
       // set only if the textarea is empty
       if ($element.val() === '') {
+        // save unit editor state to restore it after autofill changes
+        const isUnitDirty = PTL.editor.isUnitDirty;
         const text = results[0].target;
         $element.val(text).trigger('input');
         $element.caret(text.length, text.length);
         this.goFuzzy();
+        PTL.editor.isUnitDirty = isUnitDirty;
       }
     }
 
