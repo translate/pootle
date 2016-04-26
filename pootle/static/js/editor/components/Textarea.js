@@ -10,6 +10,8 @@ import assign from 'object-assign';
 import React from 'react';
 import AutosizeTextarea from 'react-textarea-autosize';
 
+import { isNewlineCharacter, isNewlineSymbol } from '../utils/font';
+
 
 const Textarea = React.createClass({
 
@@ -36,13 +38,46 @@ const Textarea = React.createClass({
      * the positioning of the caret.
      */
     const node = this.refs.textarea;
+    const { selectionStart } = node;
+    const { selectionEnd } = node;
+    const { value } = node;
+
     const oldLength = node.value.length;
     const oldIndex = node.selectionStart;
 
     node.value = this.props.value;
 
-    const newIdx = Math.max(0, node.value.length - oldLength + oldIndex);
-    node.selectionStart = node.selectionEnd = newIdx;
+    let delta = 0;
+    if (selectionStart === selectionEnd) {
+      const offset = this.getSymbolOffset(value, selectionStart);
+      delta = node.value.length - oldLength + offset;
+    }
+    node.selectionStart = node.selectionEnd = Math.max(0, delta + oldIndex);
+  },
+
+  /*
+   * Returns the offset to be applied on top of the normally-calculated caret
+   * position.
+   *
+   * This is needed because:
+   *  a) Removing a <LF> symbol actually removes two characters.
+   *  b) Adding a character between the <LF> symbol and the NL character needs
+   *     to place it one position back.
+   */
+  getSymbolOffset(value, selectionStart) {
+    // A NL was removed
+    if (isNewlineSymbol(value[selectionStart - 1]) &&
+        isNewlineCharacter(value[selectionStart])) {
+      return 1;
+    }
+
+    // Something was typed between the NL symbol and the NL character
+    if (isNewlineSymbol(value[selectionStart - 2]) &&
+        isNewlineCharacter(value[selectionStart])) {
+      return -1;
+    }
+
+    return 0;
   },
 
   render() {

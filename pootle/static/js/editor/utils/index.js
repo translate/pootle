@@ -7,8 +7,9 @@
  */
 
 export {
-  applyFontFilter, unapplyFontFilter, isNewlineSymbol, countNewlineCharacter,
-  countNewlineSymbol, removeNewlineChar, convertNewlineSymbolToChar,
+  applyFontFilter, unapplyFontFilter, isNewlineCharacter, isNewlineSymbol,
+  countNewlineCharacter, countNewlineSymbol, removeNewlineChar,
+  convertNewlineSymbolToChar,
 } from './font';
 export { decodeEntities } from './html';
 export {

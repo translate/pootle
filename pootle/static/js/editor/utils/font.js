@@ -116,6 +116,12 @@ export function unapplyFontFilter(value, mode = 'regular') {
 }
 
 
+/* Helper to determine whether a character refers to a newline character */
+export function isNewlineCharacter(char) {
+  return NEWLINE_CHARACTERS.indexOf(char) !== -1;
+}
+
+
 /* Helper to determine whether a character refers to our newline symbol */
 export function isNewlineSymbol(char) {
   return NEWLINE_SYMBOLS.indexOf(char) !== -1;
