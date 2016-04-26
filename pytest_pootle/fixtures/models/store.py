@@ -11,6 +11,8 @@ from collections import OrderedDict
 
 import pytest
 
+from translate.storage.factory import getclass
+
 from django.utils import timezone
 
 from pytest_pootle.utils import create_store, update_store
@@ -389,3 +391,44 @@ def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test,
     return _require_store(afrikaans_vfolder_test,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'browser/defines.po')
+
+
+@pytest.fixture
+def store_po():
+    """An empty Store in the /language0/project0 TP"""
+    from pootle_translationproject.models import TranslationProject
+
+    from pytest_pootle.factories import StoreDBFactory
+
+    tp = TranslationProject.objects.get(
+        project__code="project0",
+        language__code="language0")
+
+    store = StoreDBFactory(
+        parent=tp.directory,
+        translation_project=tp,
+        name="test_store.po")
+    return store
+
+
+@pytest.fixture
+def complex_po(test_fs):
+    """A Store with some complex Units"""
+    from pootle_translationproject.models import TranslationProject
+
+    from pytest_pootle.factories import StoreDBFactory
+
+    tp = TranslationProject.objects.get(
+        project__code="project0",
+        language__code="language0")
+
+    store = StoreDBFactory(
+        parent=tp.directory,
+        translation_project=tp,
+        name="complex_store.po")
+
+    with test_fs.open("complex.po") as f:
+        ttk = getclass(f)(f.read())
+
+    store.update(ttk)
+    return store

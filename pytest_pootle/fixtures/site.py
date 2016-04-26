@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
 import tempfile
 
 import pytest
@@ -96,3 +97,21 @@ def clear_cache(request):
 
     get_redis_connection('default').flushdb()
     caches["exports"].clear()
+
+
+@pytest.fixture
+def test_fs():
+    """A convenience fixture for retrieving data from test files"""
+    import pytest_pootle
+
+    class TestFs(object):
+
+        def path(self, path):
+            return os.path.join(
+                os.path.dirname(pytest_pootle.__file__),
+                path)
+
+        def open(self, path, *args, **kwargs):
+            return open(self.path(path), *args, **kwargs)
+
+    return TestFs()
