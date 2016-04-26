@@ -2391,8 +2391,6 @@ PTL.editor = {
         <SuggestionFeedbackForm {...props} />,
         feedbackMountPoint
       );
-      $('#suggestion-editor').focus();
-      autosize($('#suggestion-feedback-form textarea'));
     } else if (canHide) {
       this.closeSuggestion();
     }

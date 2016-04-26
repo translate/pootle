@@ -79,6 +79,7 @@ export const SuggestionFeedBackForm = React.createClass({
             value={formData.translation}
             data-action="overwrite"
             dir={this.props.localeDir}
+            autoFocus
           />
           <FormElement
             type="textarea"
