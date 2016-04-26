@@ -2378,8 +2378,8 @@ PTL.editor = {
         suggId: this.selectedSuggestionId,
         initialSuggestionText: e.currentTarget.dataset.translationAid,
         localeDir: this.settings.localeDir,
-        acceptSuggestionHandler: this.acceptSuggestion,
-        rejectSuggestionHandler: this.rejectSuggestion,
+        onAcceptSuggestion: this.acceptSuggestion,
+        onRejectSuggestion: this.rejectSuggestion,
       };
       const mountSelector = `.js-mnt-suggestion-feedback-${suggestionId}`;
       const feedbackMountPoint = document.querySelector(mountSelector);

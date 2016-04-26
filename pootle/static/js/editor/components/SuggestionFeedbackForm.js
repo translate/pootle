@@ -17,8 +17,8 @@ export const SuggestionFeedBackForm = React.createClass({
     suggId: React.PropTypes.number.isRequired,
     initialSuggestionText: React.PropTypes.string.isRequired,
     localeDir: React.PropTypes.string.isRequired,
-    acceptSuggestionHandler: React.PropTypes.func.isRequired,
-    rejectSuggestionHandler: React.PropTypes.func.isRequired,
+    onAcceptSuggestion: React.PropTypes.func.isRequired,
+    onRejectSuggestion: React.PropTypes.func.isRequired,
   },
 
   mixins: [FormMixin],
@@ -43,7 +43,7 @@ export const SuggestionFeedBackForm = React.createClass({
       this.state.formData.translation !== this.props.initialSuggestionText
     );
     e.preventDefault();
-    this.props.acceptSuggestionHandler(
+    this.props.onAcceptSuggestion(
       this.props.suggId,
       {
         requestData: this.state.formData,
@@ -54,7 +54,7 @@ export const SuggestionFeedBackForm = React.createClass({
 
   handleReject(e) {
     e.preventDefault();
-    this.props.rejectSuggestionHandler(this.props.suggId, { requestData: this.state.formData });
+    this.props.onRejectSuggestion(this.props.suggId, { requestData: this.state.formData });
   },
 
   /* Layout */
