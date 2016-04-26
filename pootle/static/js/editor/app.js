@@ -2369,20 +2369,24 @@ PTL.editor = {
 
   toggleSuggestion(e, { canHide = false } = {}) {
     e.stopPropagation();
-    const $suggestion = $(e.target).parents('.js-user-suggestion');
+    const suggestionId = parseInt(e.currentTarget.dataset.suggId, 10);
+    const suggestion = document.getElementById(`suggestion-${suggestionId}`);
 
     if (this.selectedSuggestionId === undefined) {
-      this.selectedSuggestionId = $suggestion.data('sugg-id');
+      this.selectedSuggestionId = suggestionId;
       const props = {
         suggId: this.selectedSuggestionId,
-        initialSuggestionText: $suggestion.data('translation-aid'),
+        initialSuggestionText: e.currentTarget.dataset.translationAid,
         localeDir: this.settings.localeDir,
         acceptSuggestionHandler: this.acceptSuggestion,
         rejectSuggestionHandler: this.rejectSuggestion,
       };
-      const feedbackMountPoint = document.querySelector('.js-mnt-suggestion-feedback');
-      $suggestion.addClass('suggestion-expanded');
-      $('.js-editor-body .translate-full').addClass('suggestion-expanded');
+      const mountSelector = `.js-mnt-suggestion-feedback-${suggestionId}`;
+      const feedbackMountPoint = document.querySelector(mountSelector);
+      const editorBody = document.querySelector('.js-editor-body .translate-full');
+      suggestion.classList.add('suggestion-expanded');
+      editorBody.classList.add('suggestion-expanded');
+
       this.suggestionFeedbackForm = ReactDOM.render(
         <SuggestionFeedbackForm {...props} />,
         feedbackMountPoint
@@ -2397,12 +2401,15 @@ PTL.editor = {
   closeSuggestion({ checkIfCanNavigate = true } = {}) {
     if (this.selectedSuggestionId !== undefined &&
         (!checkIfCanNavigate || this.canNavigate())) {
-      const $suggestion = $(`#suggestion-${this.selectedSuggestionId}`);
+      const suggestion = document.querySelector(`#suggestion-${this.selectedSuggestionId}`);
+      const editorBody = document.querySelector('.js-editor-body .translate-full');
+      const mountSelector = `.js-mnt-suggestion-feedback-${this.selectedSuggestionId}`;
+      const feedbackMountPoint = document.querySelector(mountSelector);
+      editorBody.classList.remove('suggestion-expanded');
+      suggestion.classList.remove('suggestion-expanded');
+      feedbackMountPoint.removeChild(feedbackMountPoint.childNodes[0]);
       this.selectedSuggestionId = undefined;
       this.suggestionFeedbackForm = undefined;
-      $('.js-editor-body .translate-full').removeClass('suggestion-expanded');
-      $suggestion.removeClass('suggestion-expanded');
-      $suggestion.find('.js-mnt-suggestion-feedback form').remove();
     }
   },
 };
