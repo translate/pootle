@@ -90,7 +90,9 @@ def translations_directory(request):
 def clear_cache(request):
     """Currently tests only use one cache so this clears all"""
 
+    from django.core.cache import caches
+
     from django_redis import get_redis_connection
 
-    r_con = get_redis_connection('default')
-    r_con.flushdb()
+    get_redis_connection('default').flushdb()
+    caches["exports"].clear()
