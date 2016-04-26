@@ -6,9 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import io
 import os
 import shutil
 import time
+
+import six
 
 import pytest
 
@@ -19,7 +22,12 @@ from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+from pootle.core.delegate import config
 from pootle.core.models import Revision
+from pootle.core.delegate import deserializers, serializers
+from pootle.core.plugin import provider
+from pootle.core.serializers import Serializer, Deserializer
+from pootle_config.exceptions import ConfigurationError
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
 from pootle_store.util import parse_pootle_revision
@@ -510,3 +518,192 @@ def test_store_repr():
     store = Store.objects.first()
     assert str(store) == str(store.convert(store.get_file_class()))
     assert repr(store) == u"<Store: %s>" % store.pootle_path
+
+
+@pytest.mark.django_db
+def test_store_po_deserializer(test_fs, store_po):
+
+    with test_fs.open("data/po/complex.po") as test_file:
+        test_string = test_file.read()
+        ttk_po = getclass(test_file)(test_string)
+
+    store_po.update(store_po.deserialize(test_string))
+    assert len(ttk_po.units) - 1 == store_po.units.count()
+
+
+@pytest.mark.django_db
+def test_store_po_serializer(test_fs, store_po):
+
+    with test_fs.open("data/po/complex.po") as test_file:
+        test_string = test_file.read()
+        ttk_po = getclass(test_file)(test_string)
+
+    store_po.update(store_po.deserialize(test_string))
+    store_io = io.BytesIO(store_po.serialize())
+    store_ttk = getclass(store_io)(store_io.read())
+    assert len(store_ttk.units) == len(ttk_po.units)
+
+
+@pytest.mark.django_db
+def test_store_po_serializer_custom(test_fs, store_po):
+
+    class SerializerCheck(object):
+        serializer_was_called = False
+        input_is_bytes = False
+
+    checker = SerializerCheck()
+
+    class EGSerializer(object):
+
+        def __init__(self, store, data):
+            self.store = store
+            self.original_data = data
+
+        @property
+        def output(self):
+            checker.serializer_was_called = True
+            checker.input_is_bytes = (
+                not isinstance(
+                    self.original_data, six.text_type)
+                and isinstance(
+                    self.original_data, str))
+
+    @provider(serializers)
+    def provide_serializers(**kwargs):
+        return dict(eg_serializer=EGSerializer)
+
+    with test_fs.open("data/po/complex.po") as test_file:
+        test_string = test_file.read()
+        # ttk_po = getclass(test_file)(test_string)
+    store_po.update(store_po.deserialize(test_string))
+
+    # add config to the project
+    project = store_po.translation_project.project
+    config.get(project.__class__, instance=project).set_config(
+        "pootle.core.serializers",
+        ["eg_serializer"])
+
+    store_po.serialize()
+    assert checker.serializer_was_called is True
+    assert checker.input_is_bytes is True
+
+
+@pytest.mark.django_db
+def test_store_po_deserializer_custom(test_fs, store_po):
+
+    class DeserializerCheck(object):
+        deserializer_was_called = False
+        input_is_bytes = False
+
+    checker = DeserializerCheck()
+
+    class EGDeserializer(object):
+
+        def __init__(self, store, data):
+            self.store = store
+            self.original_data = data
+
+        @property
+        def output(self):
+            checker.deserializer_was_called = True
+            checker.input_is_bytes = (
+                not isinstance(
+                    self.original_data, six.text_type)
+                and isinstance(
+                    self.original_data, str))
+            return self.original_data
+
+    @provider(deserializers)
+    def provide_deserializers(**kwargs):
+        return dict(eg_deserializer=EGDeserializer)
+
+    with test_fs.open("data/po/complex.po") as test_file:
+        test_string = test_file.read()
+
+    # add config to the project
+    project = store_po.translation_project.project
+    config.get().set_config(
+        "pootle.core.deserializers",
+        ["eg_deserializer"],
+        project)
+
+    store_po.update(store_po.deserialize(test_string))
+
+    assert checker.deserializer_was_called is True
+    assert checker.input_is_bytes is True
+
+
+@pytest.mark.django_db
+def test_store_base_serializer(store_po):
+    original_data = "SOME DATA"
+    serializer = Serializer(store_po, original_data)
+    assert serializer.context == store_po
+    assert serializer.data == original_data
+
+
+@pytest.mark.django_db
+def test_store_base_deserializer(store_po):
+    original_data = "SOME DATA"
+    deserializer = Deserializer(store_po, original_data)
+    assert deserializer.context == store_po
+    assert deserializer.data == original_data
+
+
+@pytest.mark.django_db
+def test_store_set_bad_deserializers(store_po):
+    project = store_po.translation_project.project
+    with pytest.raises(ConfigurationError):
+        config.get(project.__class__, instance=project).set_config(
+            "pootle.core.deserializers",
+            ["DESERIALIZER_DOES_NOT_EXIST"])
+
+    class EGDeserializer(object):
+        pass
+
+    @provider(deserializers)
+    def provide_deserializers(**kwargs):
+        return dict(eg_deserializer=EGDeserializer)
+
+    # must be list
+    with pytest.raises(ConfigurationError):
+        config.get(project.__class__, instance=project).set_config(
+            "pootle.core.deserializers",
+            "eg_deserializer")
+    with pytest.raises(ConfigurationError):
+        config.get(project.__class__, instance=project).set_config(
+            "pootle.core.deserializers",
+            dict(serializer="eg_deserializer"))
+
+    config.get(project.__class__, instance=project).set_config(
+        "pootle.core.deserializers",
+        ["eg_deserializer"])
+
+
+@pytest.mark.django_db
+def test_store_set_bad_serializers(store_po):
+    project = store_po.translation_project.project
+    with pytest.raises(ConfigurationError):
+        config.get(project.__class__, instance=project).set_config(
+            "pootle.core.serializers",
+            ["SERIALIZER_DOES_NOT_EXIST"])
+
+    class EGSerializer(object):
+        pass
+
+    @provider(serializers)
+    def provide_serializers(**kwargs):
+        return dict(eg_serializer=EGSerializer)
+
+    # must be list
+    with pytest.raises(ConfigurationError):
+        config.get(project.__class__, instance=project).set_config(
+            "pootle.core.serializers",
+            "eg_serializer")
+    with pytest.raises(ConfigurationError):
+        config.get(project.__class__, instance=project).set_config(
+            "pootle.core.serializers",
+            dict(serializer="eg_serializer"))
+
+    config.get(project.__class__, instance=project).set_config(
+        "pootle.core.serializers",
+        ["eg_serializer"])
