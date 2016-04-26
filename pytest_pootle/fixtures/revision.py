@@ -11,8 +11,12 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def revision():
-    """Sets up the revision counter for each test call."""
+def revision(request, clear_cache):
+    """Sets up the cached revision counter for each test call."""
     from pootle.core.models import Revision
+    from pootle_store.models import Unit
 
-    Revision.initialize()
+    if request.node.get_marker("django_db"):
+        Revision.set(Unit.max_revision())
+    else:
+        Revision.initialize()

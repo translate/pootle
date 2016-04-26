@@ -84,3 +84,13 @@ def translations_directory(request):
     """used by PootleEnv"""
     from django.conf import settings
     settings.POOTLE_TRANSLATION_DIRECTORY = tempfile.mkdtemp()
+
+
+@pytest.fixture(autouse=True)
+def clear_cache(request):
+    """Currently tests only use one cache so this clears all"""
+
+    from django_redis import get_redis_connection
+
+    r_con = get_redis_connection('default')
+    r_con.flushdb()
