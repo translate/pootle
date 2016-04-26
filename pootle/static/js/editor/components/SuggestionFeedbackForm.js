@@ -11,15 +11,14 @@ import React from 'react';
 import FormElement from 'components/FormElement';
 import FormMixin from 'mixins/FormMixin';
 
-import { decodeEntities } from '../utils';
-
 export const SuggestionFeedBackForm = React.createClass({
 
   propTypes: {
     suggId: React.PropTypes.number.isRequired,
     initialSuggestionText: React.PropTypes.string.isRequired,
     localeDir: React.PropTypes.string.isRequired,
-    editor: React.PropTypes.object.isRequired,
+    acceptSuggestionHandler: React.PropTypes.func.isRequired,
+    rejectSuggestionHandler: React.PropTypes.func.isRequired,
   },
 
   mixins: [FormMixin],
@@ -40,19 +39,22 @@ export const SuggestionFeedBackForm = React.createClass({
   /* Handlers */
 
   handleAccept(e) {
+    const suggestionChanged = (
+      this.state.formData.translation !== this.props.initialSuggestionText
+    );
     e.preventDefault();
-    if (this.state.formData.translation === this.props.initialSuggestionText) {
-      this.props.editor.acceptSuggestion(this.props.suggId, this.state.formData);
-    } else {
-      const area = document.querySelector('.js-translation-area');
-      area.value = decodeEntities(this.state.formData.translation);
-      this.props.editor.handleSubmit(this.state.formData.comment);
-    }
+    this.props.acceptSuggestionHandler(
+      this.props.suggId,
+      {
+        requestData: this.state.formData,
+        isSuggestionChanged: suggestionChanged,
+      }
+    );
   },
 
   handleReject(e) {
     e.preventDefault();
-    this.props.editor.rejectSuggestion(this.props.suggId, this.state.formData);
+    this.props.rejectSuggestionHandler(this.props.suggId, { requestData: this.state.formData });
   },
 
   /* Layout */
@@ -76,7 +78,7 @@ export const SuggestionFeedBackForm = React.createClass({
             errors={errors.translation}
             value={formData.translation}
             data-action="overwrite"
-            dir={this.props.editor.settings.localeDir}
+            dir={this.props.localeDir}
           />
           <FormElement
             type="textarea"

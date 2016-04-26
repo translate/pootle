@@ -2217,7 +2217,7 @@ PTL.editor = {
 
 
   /* Rejects a suggestion */
-  rejectSuggestion(suggId, requestData = {}) {
+  rejectSuggestion(suggId, { requestData = {} } = {}) {
     UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId, requestData)
       .then(
         (data) => this.processRejectSuggestion(data, suggId),
@@ -2243,12 +2243,21 @@ PTL.editor = {
 
 
   /* Accepts a suggestion */
-  acceptSuggestion(suggId, requestData = {}, { skipToNext = false } = {}) {
-    UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId, requestData)
+  acceptSuggestion(
+    suggId, { requestData = {}, skipToNext = false, isSuggestionChanged = false } = {}
+  ) {
+    if (!isSuggestionChanged) {
+      UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId, requestData)
       .then(
         (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
         this.error
       );
+    } else {
+      const area = document.querySelector('.js-translation-area');
+      area.value = decodeEntities(requestData.translation);
+      this.undoFuzzyBox();
+      this.handleSubmit(requestData.comment);
+    }
   },
 
   processAcceptSuggestion(data, suggId, skipToNext) {
@@ -2361,9 +2370,11 @@ PTL.editor = {
     if (this.selectedSuggestionId === undefined) {
       this.selectedSuggestionId = $suggestion.data('sugg-id');
       const props = {
-        editor: this,
         suggId: this.selectedSuggestionId,
         initialSuggestionText: $suggestion.data('translation-aid'),
+        localeDir: this.settings.localeDir,
+        acceptSuggestionHandler: this.acceptSuggestion,
+        rejectSuggestionHandler: this.rejectSuggestion,
       };
       const feedbackMountPoint = document.querySelector('.js-mnt-suggestion-feedback');
       $suggestion.addClass('suggestion-expanded');
