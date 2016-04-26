@@ -372,6 +372,10 @@ PTL.editor = {
       let uId = 0;
       let initialOffset = 0;
 
+      if (this.selectedSuggestionId !== undefined) {
+        this.closeSuggestion({ checkIfCanNavigate: false });
+      }
+
       // Walk through known filtering criterias and apply them to the editor object
 
       if (params.unit) {
