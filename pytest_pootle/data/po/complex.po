@@ -1,0 +1,128 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-04 10:39+0000\n"
+"PO-Revision-Date: 2015-11-19 15:01+0000\n"
+"Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.7\n"
+
+msgid ""
+"Please sign in again: \\n"
+"%s"
+msgstr ""
+"Please sign in again: \\n"
+"%s"
+
+msgid "\\u0025d MB out of \\u0025.2\\u0066 GB available."
+msgstr "\\u0025.2\\u0066 GB / \\u0025d MB erabilgarri."
+
+msgid "Sync preferences for \"%s\":"
+msgstr "Sinkronizazio hobespenak \"%s\"(r)ako:"
+
+msgid ""
+"Remove \"%s\"? \\n"
+" You'll no longer be able to access this notebook in your list."
+msgstr ""
+"\"%s\" kendu? \\n"
+" Ezingo duzu zerrendako koaderno hau gehiago atzitu."
+
+msgid "Foo \n bar"
+msgstr ""
+"aFoo \n"
+" bar"
+
+msgid "Foo \\n bar"
+msgstr ""
+"Foo \\n"
+" bar"
+
+msgid "Oh\nno"
+msgstr ""
+"Oh\n"
+"no"
+
+msgid "Oh\no"
+msgstr ""
+"Oh\n"
+"o"
+
+msgid "\\no"
+msgstr ""
+"\\n"
+"o"
+
+msgid "\no"
+msgstr ""
+"\n"
+"o"
+
+msgid ""
+"Foo\n"
+"Bar"
+msgstr ""
+"Foo\n"
+"Bar"
+
+msgid "Hello \\ World"
+msgstr "Kaixo \\ Anoeta"
+
+msgid "\tblah"
+msgstr "\tblah"
+
+msgid "\\tbleh"
+msgstr "\\tbleh"
+
+msgid "\nstart, \nmiddle \nand end line\n"
+msgstr ""
+"\n"
+"hasiera, \n"
+"erdia \n"
+"eta bukaera\n"
+
+msgid "end line\n"
+msgstr "bukaerako lerroa\n"
+
+msgid "end tab escaped\\t"
+msgstr "bukaerako tabulazioa ihesita\\t"
+
+msgid "end tab\t"
+msgstr "bukaerako tabulazioa\t"
+
+msgid "Catastrophe \\´o"
+msgstr "aKatastrofea \\´o"
+
+msgid "Save video as…"
+msgstr ""
+
+msgid ""
+"<p><a href=\"#foo\">Save video</a></p> as…\n"
+"<ul>\n"
+"<li>File</li>\n"
+"<li>Audio</li>\n"
+"</ul>"
+msgstr ""
+"<p><a href=\"#foo\">Gorde bideoa</a></p> honela…\n"
+"<ul>\n"
+"<li>Fitxategia</li>\n"
+"<li>Audioa</li>\n"
+"</ul>"
+
+msgid "  aLots of   whitespace      "
+msgstr ""
+
+msgid "aLong text long text long text long text long non-breaking space follows text     long text long text long text long text long text"
+msgstr ""
+
+msgid "About Pootle"
+msgid_plural "plural test"
+msgstr[0] ""
+
+msgid "More whitespace      "
+msgstr ""
