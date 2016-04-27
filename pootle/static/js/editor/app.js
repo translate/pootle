@@ -195,6 +195,10 @@ PTL.editor = {
     /* Write TM results, special chars... into the currently focused element */
     $(document).on('click', '.js-editor-copytext', (e) => this.copyText(e));
 
+    /* Write suggestion test into the currently focused element */
+    $(document).on('click', '.js-user-suggestion.js-editor-copytext',
+      (e) => this.copySuggestionText(e));
+
     /* Copy translator comment */
     $(document).on('click', '.js-editor-copy-comment', (e) => {
       const text = e.currentTarget.dataset.string;
@@ -639,6 +643,13 @@ PTL.editor = {
     autosize.update(this.focused);
   },
 
+  /* Copies suggestion text into the focused textarea and set selected suggestion id */
+  copySuggestionText(e) {
+    const $el = $(e.currentTarget);
+    const suggestionText = $el.data('translation-aid');
+    this.selectedSuggestionId = this.getSuggestionId(suggestionText);
+    this.copyText(e);
+  },
 
   /* Copies source text(s) into the target textarea(s)*/
   copyOriginal(sources) {
@@ -1490,16 +1501,27 @@ PTL.editor = {
     });
   },
 
-  /* Pushes translation submissions and moves to the next unit */
-  handleSubmit() {
-    const el = document.querySelector('input.submit');
-    const newTranslation = $('.js-translation-area')[0].value;
+  getSuggestionId(translation) {
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return {
         text: this.dataset.translationAid,
         id: this.dataset.suggId,
       };
     }).get();
+    // FIXME: this is LAME, I wanna die: we need to use proper models!!
+    const suggestionIds = _.pluck(suggestions, 'id');
+    const suggestionTexts = _.pluck(suggestions, 'text');
+    const suggestionIndex = suggestionTexts.indexOf(translation);
+    if (suggestionIndex !== -1) {
+      return suggestionIds[suggestionIndex];
+    }
+    return undefined;
+  },
+
+  /* Pushes translation submissions and moves to the next unit */
+  handleSubmit() {
+    const el = document.querySelector('input.submit');
+    const newTranslation = $('.js-translation-area')[0].value;
     const captchaCallbacks = {
       sfn: 'PTL.editor.processSubmission',
       efn: 'PTL.editor.error',
@@ -1511,13 +1533,9 @@ PTL.editor = {
 
     // Check if the string being submitted is already in the set of
     // suggestions
-    // FIXME: this is LAME, I wanna die: we need to use proper models!!
-    const suggestionIds = _.pluck(suggestions, 'id');
-    const suggestionTexts = _.pluck(suggestions, 'text');
-    const suggestionIndex = suggestionTexts.indexOf(newTranslation);
-
-    if (suggestionIndex !== -1 && !this.isFuzzy()) {
-      this.acceptSuggestion(suggestionIds[suggestionIndex], { skipToNext: true });
+    const suggestionId = this.getSuggestionId(newTranslation);
+    if (suggestionId !== undefined && !this.isFuzzy()) {
+      this.acceptSuggestion(suggestionId, { skipToNext: true });
       return;
     }
 
@@ -1532,6 +1550,11 @@ PTL.editor = {
     assign(body, this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
     el.disabled = true;
+
+    // Check if we used a suggestion
+    if (this.selectedSuggestionId !== undefined) {
+      assign(body, {suggestion_id: this.selectedSuggestionId});
+    }
 
     UnitAPI.addTranslation(this.units.getCurrent().id, body)
       .then(
@@ -2207,6 +2230,13 @@ PTL.editor = {
     });
   },
 
+  acceptSuggestionWithAlterations(body, { skipToNext = false } = {}) {
+    UnitAPI.acceptSuggestionWithAlterations(this.units.getCurrent().id, body)
+      .then(
+      (data) => this.processAcceptSuggestion(data, skipToNext),
+      this.error
+    );
+  },
 
   /* Accepts a suggestion */
   acceptSuggestion(suggId, { skipToNext = false } = {}) {

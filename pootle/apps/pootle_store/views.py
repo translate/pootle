@@ -519,8 +519,22 @@ def submit(request, unit):
     form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
+        suggestion = None
+        suggid = form.cleaned_data['suggestion_id']
+        if suggid is not None:
+            try:
+                suggestion = unit.suggestion_set.get(id=suggid)
+            except ObjectDoesNotExist:
+                raise Http404
+
+            unit.accept_suggestion(suggestion,
+                                   request.translation_project, request.user)
+
         if form.updated_fields:
             for field, old_value, new_value in form.updated_fields:
+                if field == SubmissionFields.TARGET and suggestion is not None:
+                    old_value = suggestion.target_f
+
                 sub = Submission(
                     creation_time=current_time,
                     translation_project=translation_project,
