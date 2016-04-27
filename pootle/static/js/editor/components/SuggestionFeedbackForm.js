@@ -6,10 +6,11 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+import _ from 'underscore';
+
 import React from 'react';
 
 import FormElement from 'components/FormElement';
-import FormMixin from 'mixins/FormMixin';
 
 export const SuggestionFeedBackForm = React.createClass({
 
@@ -19,9 +20,8 @@ export const SuggestionFeedBackForm = React.createClass({
     localeDir: React.PropTypes.string.isRequired,
     onAcceptSuggestion: React.PropTypes.func.isRequired,
     onRejectSuggestion: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired,
   },
-
-  mixins: [FormMixin],
 
   /* Lifecycle */
 
@@ -57,10 +57,17 @@ export const SuggestionFeedBackForm = React.createClass({
     this.props.onRejectSuggestion(this.props.suggId, { requestData: this.state.formData });
   },
 
+  handleChange(name, value) {
+    const newData = _.extend({}, this.state.formData);
+    newData[name] = value;
+    const isDirty = !_.isEqual(newData, this.initialData);
+    this.setState({ isDirty, formData: newData });
+    this.props.onChange(isDirty);
+  },
+
   /* Layout */
 
   render() {
-    const { errors } = this.state;
     const { formData } = this.state;
 
     return (
@@ -75,7 +82,6 @@ export const SuggestionFeedBackForm = React.createClass({
             placeholder=""
             name="translation"
             handleChange={this.handleChange}
-            errors={errors.translation}
             value={formData.translation}
             data-action="overwrite"
             dir={this.props.localeDir}
@@ -87,7 +93,6 @@ export const SuggestionFeedBackForm = React.createClass({
             placeholder=""
             name="comment"
             handleChange={this.handleChange}
-            errors={errors.comment}
             value={formData.comment}
           />
         </div>
