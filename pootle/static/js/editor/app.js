@@ -2417,7 +2417,7 @@ PTL.editor = {
       const feedbackMountPoint = document.querySelector(mountSelector);
       editorBody.classList.remove('suggestion-expanded');
       suggestion.classList.remove('suggestion-expanded');
-      feedbackMountPoint.removeChild(feedbackMountPoint.childNodes[0]);
+      ReactDOM.unmountComponentAtNode(feedbackMountPoint);
       this.selectedSuggestionId = undefined;
       this.suggestionFeedbackForm = undefined;
       this.isSuggestionFeedbackFormDirty = false;
