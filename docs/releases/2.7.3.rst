@@ -129,7 +129,7 @@ Details of changes
 - Added extra data to reports.
 - Added more languages for Yandex machine translation.
 - Fixed :djadmin:`test_checks` errors when being run with no options and
-  without the :option:` --checks` option.
+  without the :option:` --check` option.
 - Pulled latest translations.
 
 
