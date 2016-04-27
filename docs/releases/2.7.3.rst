@@ -68,9 +68,9 @@ Details of changes
 
   - :djadmin:`update_tmserver`:
 
-    - Renamed ``--overwrite`` to :option:`--refresh`.
+    - Renamed ``--overwrite`` to :option:`--refresh <update_tmserver --refresh>`.
     - Translations from disabled projects must be explicitly included with
-      :option:`--include-disabled-projects`.
+      :option:`--include-disabled-projects <update_tmserver --include-disabled-projects>.
     - Added support for Elasticsearch-based external Translation Memory
       servers, which can be populated from translation files or directories on
       disk. This effectively brings the ability to display TM results from
@@ -106,8 +106,8 @@ Details of changes
 - Import/export and upload/download:
 
   - Fixed running :djadmin:`export` command without options.
-  - Added a new :option:`--user` to :djadmin:`import` to attribute changes to
-    specified user on file import.
+  - Added a new :option:`--user <import --user>` to :djadmin:`import` to
+    attribute changes to specified user on file import.
   - Ignore non project filetypes when uploading zip files :issue:`4124`.
   - Only authenticated users with translate rights can upload translations.
   - Any authenticated user can now download translations.
@@ -115,8 +115,8 @@ Details of changes
 
 - :djadmin:`initdb`:
 
-  - Now has an :option:`--no-projects` option to prevent creating the default
-    projects at set up.
+  - Now has an :option:`--no-projects <initdb --no-projects>` option to prevent
+    creating the default projects at set up.
   - Now loads the translations for the default projects and languages and
     triggers their stats calculation.
   - Doesn't throw errors when accidentally being run more than once.
@@ -129,7 +129,7 @@ Details of changes
 - Added extra data to reports.
 - Added more languages for Yandex machine translation.
 - Fixed :djadmin:`test_checks` errors when being run with no options and
-  without the :option:` --checks` option.
+  without the :option:`--checks <test_checks --checks>` option.
 - Pulled latest translations.
 
 
