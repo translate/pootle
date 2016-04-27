@@ -1324,7 +1324,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return self.file.name
 
     @property
-    def is_terminology(self):
+    def has_terminology(self):
         """is this a project specific terminology store?"""
         # TODO: Consider if this should check if the store belongs to a
         # terminology project. Probably not, in case this might be called over
