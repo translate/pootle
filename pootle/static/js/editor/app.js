@@ -2217,6 +2217,10 @@ PTL.editor = {
 
 
   /* Rejects a suggestion */
+  handleRejectSuggestion(suggId, { requestData = {} } = {}) {
+    PTL.editor.rejectSuggestion(suggId, { requestData });
+  },
+
   rejectSuggestion(suggId, { requestData = {} } = {}) {
     UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId, requestData)
       .then(
@@ -2243,6 +2247,12 @@ PTL.editor = {
 
 
   /* Accepts a suggestion */
+  handleAcceptSuggestion(
+    suggId, { requestData = {}, isSuggestionChanged = false } = {}
+  ) {
+    PTL.editor.acceptSuggestion(suggId, { requestData, isSuggestionChanged });
+  },
+
   acceptSuggestion(
     suggId, { requestData = {}, skipToNext = false, isSuggestionChanged = false } = {}
   ) {
@@ -2374,8 +2384,8 @@ PTL.editor = {
         suggId: this.selectedSuggestionId,
         initialSuggestionText: e.currentTarget.dataset.translationAid,
         localeDir: this.settings.localeDir,
-        onAcceptSuggestion: this.acceptSuggestion,
-        onRejectSuggestion: this.rejectSuggestion,
+        onAcceptSuggestion: this.handleAcceptSuggestion,
+        onRejectSuggestion: this.handleRejectSuggestion,
         onChange: this.handleSuggestionFeedbackChange,
       };
       const mountSelector = `.js-mnt-suggestion-feedback-${suggestionId}`;
