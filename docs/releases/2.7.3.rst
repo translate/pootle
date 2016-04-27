@@ -68,7 +68,7 @@ Details of changes
 
   - :djadmin:`update_tmserver`:
 
-    - Renamed :option:`--overwrite` to :option:`--refresh`.
+    - Renamed ``--overwrite`` to :option:`--refresh`.
     - Translations from disabled projects must be explicitly included with
       :option:`--include-disabled-projects`.
     - Added support for Elasticsearch-based external Translation Memory
