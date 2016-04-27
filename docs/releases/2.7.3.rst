@@ -70,7 +70,7 @@ Details of changes
 
     - Renamed ``--overwrite`` to :option:`--refresh <update_tmserver --refresh>`.
     - Translations from disabled projects must be explicitly included with
-      :option:`--include-disabled-projects <update_tmserver --include-disabled-projects>.
+      :option:`--include-disabled-projects <update_tmserver --include-disabled-projects>`.
     - Added support for Elasticsearch-based external Translation Memory
       servers, which can be populated from translation files or directories on
       disk. This effectively brings the ability to display TM results from
@@ -129,7 +129,7 @@ Details of changes
 - Added extra data to reports.
 - Added more languages for Yandex machine translation.
 - Fixed :djadmin:`test_checks` errors when being run with no options and
-  without the :option:`--checks <test_checks --checks>` option.
+  without the :option:`--check <test_checks --check>` option.
 - Pulled latest translations.
 
 
