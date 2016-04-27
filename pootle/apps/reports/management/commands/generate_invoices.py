@@ -20,6 +20,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ImproperlyConfigured
 from django.core.management.base import BaseCommand, CommandError
 
+from pootle.core.utils.docs import get_docs_url
+
 from ...models import Invoice
 
 
@@ -94,6 +96,12 @@ class Command(BaseCommand):
                 % month
             )
 
+        if not settings.POOTLE_INVOICES_RECIPIENTS:
+            raise CommandError(
+                'No invoicing configuration found, nothing to be done.\n\n'
+                'Please read the docs at %s to learn more about how to '
+                'use this feature.' % (get_docs_url('features/invoices.html'),)
+            )
         users = settings.POOTLE_INVOICES_RECIPIENTS.items()
         if options['user_list']:
             users = filter(lambda x: x[0] in options['user_list'], users)
