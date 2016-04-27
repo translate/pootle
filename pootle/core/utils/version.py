@@ -168,6 +168,16 @@ def get_docs_version(version=None, positions=2):
     return _get_version_string(version[:positions])
 
 
+def get_rtd_version(version=None):
+    """Return the docs version string reported in the RTD site."""
+    version_str = get_docs_version(version=version, positions=3)
+    return (
+        'latest'
+        if version_str == 'dev'
+        else 'stable-%s' % (version_str, )
+    )
+
+
 def _shell_command(command):
     """Return the first result of a shell ``command``"""
     repo_dir = os.path.dirname(os.path.abspath(__file__))
