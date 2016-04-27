@@ -1072,7 +1072,7 @@ how to configure it.
 Running ``generate_invoices`` without any arguments will generate invoices for
 the previous month. A specific month can be specified by passing the
 ``--month=<YYYY-MM>`` argument. Invoices will be generated under the
-``$POOTLE_INVOICES_DIRECTORY/<YYYY-MM>/`` folder.
+``$POOTLE_REPORTS_INVOICES_DIRECTORY/<YYYY-MM>/`` folder.
 
 The list of users for whom invoices will be generated can be limited to a subset
 of the configured users by passing the ``--users <user1 user2... userN>``

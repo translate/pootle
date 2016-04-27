@@ -46,7 +46,7 @@ def test_generate_invoices_invalid_month(month):
     }, '--send-emails'),
 ])
 def test_generate_invoices_incomplete_config(settings, recipients, args):
-    settings.POOTLE_INVOICES_RECIPIENTS = recipients
+    settings.POOTLE_REPORTS_INVOICES_RECIPIENTS = recipients
     with pytest.raises(ImproperlyConfigured):
         if args is None:
             call_command('generate_invoices')

@@ -309,7 +309,7 @@ class Invoice(object):
         """Returns the absolute file path for the invoice, using `extension` as
         a file extension.
         """
-        month_dir = os.path.join(settings.POOTLE_INVOICES_DIRECTORY,
+        month_dir = os.path.join(settings.POOTLE_REPORTS_INVOICES_DIRECTORY,
                                  self.month_string)
         if not os.path.exists(month_dir):
             os.makedirs(month_dir)

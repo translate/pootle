@@ -108,7 +108,7 @@ It's necessary to configure two aspects before proceeding to generate invoices:
   payment details.
 
   This is detailed in the setting description for
-  :setting:`POOTLE_INVOICES_RECIPIENTS`.
+  :setting:`POOTLE_REPORTS_INVOICES_RECIPIENTS`.
 * Set the user-specific **payment rates** (per-word, per-review, per-hour) for a
   given period.
 
@@ -118,7 +118,7 @@ It's necessary to configure two aspects before proceeding to generate invoices:
 
 You may also want to specify the full path to the location where the invoices
 will be generated. This is controlled by the
-:setting:`POOTLE_INVOICES_DIRECTORY` setting.
+:setting:`POOTLE_REPORTS_INVOICES_DIRECTORY` setting.
 
 
 .. _invoices#look:
@@ -131,13 +131,13 @@ invoices look like and adjust the layout and styling to match your company's
 needs.
 
 The default templates provide a good starting point, so initially you should set
-the pre-defined :setting:`POOTLE_INVOICES_COMPANY` and
-:setting:`POOTLE_INVOICES_DEPARTMENT` settings to some sensible values for your
-use-case and see if the result is of your liking.
+the pre-defined :setting:`POOTLE_REPORTS_INVOICES_COMPANY` and
+:setting:`POOTLE_REPORTS_INVOICES_DEPARTMENT` settings to some sensible values
+for your use-case and see if the result is of your liking.
 
 Provided you already configured everything by following the previous steps, you
 can run ``pootle generate_invoices`` and check for the generated output under
-:setting:`POOTLE_INVOICES_DIRECTORY`.
+:setting:`POOTLE_REPORTS_INVOICES_DIRECTORY`.
 
 In case you are not satisfied with the look & feel of invoices or their wording
 (note the default invoices are in English), you can completely customize the
@@ -157,8 +157,8 @@ via e-mail.
 PDF generation is performed using `PhantomJS <http://phantomjs.org/>`_. Check
 its website and documentation for installation instructions. Once it's available
 on your server, you will need to set the absolute path to the ``phantomjs``
-binary in the :setting:`POOTLE_INVOICES_PHANTOMJS_BIN` setting and subsequent
-runs of :djadmin:`generate_invoices` will generate PDFs as well.
+binary in the :setting:`POOTLE_REPORTS_INVOICES_PHANTOMJS_BIN` setting and
+subsequent runs of :djadmin:`generate_invoices` will generate PDFs as well.
 
 
 .. _invoices#learn-more:
@@ -175,8 +175,8 @@ Commands:
 
 Settings:
 
-* :setting:`POOTLE_INVOICES_COMPANY`
-* :setting:`POOTLE_INVOICES_DEPARTMENT`
-* :setting:`POOTLE_INVOICES_DIRECTORY`
-* :setting:`POOTLE_INVOICES_PHANTOMJS_BIN`
-* :setting:`POOTLE_INVOICES_RECIPIENTS`
+* :setting:`POOTLE_REPORTS_INVOICES_COMPANY`
+* :setting:`POOTLE_REPORTS_INVOICES_DEPARTMENT`
+* :setting:`POOTLE_REPORTS_INVOICES_DIRECTORY`
+* :setting:`POOTLE_REPORTS_INVOICES_PHANTOMJS_BIN`
+* :setting:`POOTLE_REPORTS_INVOICES_RECIPIENTS`

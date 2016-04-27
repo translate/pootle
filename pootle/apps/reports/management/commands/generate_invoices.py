@@ -96,13 +96,13 @@ class Command(BaseCommand):
                 % month
             )
 
-        if not settings.POOTLE_INVOICES_RECIPIENTS:
+        if not settings.POOTLE_REPORTS_INVOICES_RECIPIENTS:
             raise CommandError(
                 'No invoicing configuration found, nothing to be done.\n\n'
                 'Please read the docs at %s to learn more about how to '
                 'use this feature.' % (get_docs_url('features/invoices.html'),)
             )
-        users = settings.POOTLE_INVOICES_RECIPIENTS.items()
+        users = settings.POOTLE_REPORTS_INVOICES_RECIPIENTS.items()
         if options['user_list']:
             users = filter(lambda x: x[0] in options['user_list'], users)
 

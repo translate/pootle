@@ -37,7 +37,7 @@ FAKE_EMAIL_CONFIG = dict({
 def invoice_directory(settings, tmpdir):
     """Sets up a tmp invoices directory."""
     invoices_dir = tmpdir.mkdir('invoices')
-    settings.POOTLE_INVOICES_DIRECTORY = str(invoices_dir)
+    settings.POOTLE_REPORTS_INVOICES_DIRECTORY = str(invoices_dir)
     return invoices_dir
 
 

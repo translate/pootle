@@ -250,9 +250,9 @@ Configuration settings for applications used by Pootle.
   - ``label`` specifying the text that will be displayed next to the mark.
 
 
-.. setting:: POOTLE_INVOICES_PHANTOMJS_BIN
+.. setting:: POOTLE_REPORTS_INVOICES_PHANTOMJS_BIN
 
-``POOTLE_INVOICES_PHANTOMJS_BIN``
+``POOTLE_REPORTS_INVOICES_PHANTOMJS_BIN``
   Default: ``None`` (unset)
 
   .. versionadded:: 2.7.3
@@ -261,21 +261,21 @@ Configuration settings for applications used by Pootle.
   needed in order to optionally generate PDF invoices out of user activity.
 
 
-.. setting:: POOTLE_INVOICES_DIRECTORY
+.. setting:: POOTLE_REPORTS_INVOICES_DIRECTORY
 
-``POOTLE_INVOICES_DIRECTORY``
+``POOTLE_REPORTS_INVOICES_DIRECTORY``
   Default: ``working_path('invoices')``
 
   .. versionadded:: 2.7.3
 
   Base directory where the invoices will be created. Invoices will be generated
   in subdirectories for each year and month combination, i.e.
-  ``$POOTLE_INVOICES_DIRECTORY/<YYYY-MM>/``.
+  ``$POOTLE_REPORTS_INVOICES_DIRECTORY/<YYYY-MM>/``.
 
 
-.. setting:: POOTLE_INVOICES_COMPANY
+.. setting:: POOTLE_REPORTS_INVOICES_COMPANY
 
-``POOTLE_INVOICES_COMPANY``
+``POOTLE_REPORTS_INVOICES_COMPANY``
   Default: ``'ACME'``
 
   .. versionadded:: 2.7.3
@@ -284,9 +284,9 @@ Configuration settings for applications used by Pootle.
   *templates/invoices/* for further details and customizations.
 
 
-.. setting:: POOTLE_INVOICES_DEPARTMENT
+.. setting:: POOTLE_REPORTS_INVOICES_DEPARTMENT
 
-``POOTLE_INVOICES_DEPARTMENT``
+``POOTLE_REPORTS_INVOICES_DEPARTMENT``
   Default: ``'ACME Department'``
 
   .. versionadded:: 2.7.3
@@ -295,9 +295,9 @@ Configuration settings for applications used by Pootle.
   templates at *templates/invoices/* for further details and customizations.
 
 
-.. setting:: POOTLE_INVOICES_RECIPIENTS
+.. setting:: POOTLE_REPORTS_INVOICES_RECIPIENTS
 
-``POOTLE_INVOICES_RECIPIENTS``
+``POOTLE_REPORTS_INVOICES_RECIPIENTS``
   Default: ``{}`` (empty dictionary)
 
   .. versionadded:: 2.7.3
@@ -381,7 +381,7 @@ Configuration settings for applications used by Pootle.
 
   .. code-block:: python
 
-    POOTLE_INVOICES_RECIPIENTS = {
+    POOTLE_REPORTS_INVOICES_RECIPIENTS = {
         'johndoe': {
             'name': 'John Benjamin Doe',
             'invoice_prefix': 'JD-',
