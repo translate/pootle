@@ -21,3 +21,4 @@ other way, make sure to read through this part.
    styleguide
    deprecation
    releasing
+   plugins
