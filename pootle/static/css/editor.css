@@ -1561,6 +1561,7 @@ div.translate-translation.raw textarea.translation
     direction: ltr;
     unicode-bidi: bidi-override;
     font-family: 'Raw', monospace;
+    font-feature-settings: "isol" off, "init" off, "medi" off, "fina" off;
     font-size: 140%;
     line-height: 110%;
 }
