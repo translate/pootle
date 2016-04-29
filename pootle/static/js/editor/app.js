@@ -2218,7 +2218,7 @@ PTL.editor = {
 
   /* Rejects a suggestion */
   handleRejectSuggestion(suggId, { requestData = {} } = {}) {
-    PTL.editor.rejectSuggestion(suggId, { requestData });
+    this.rejectSuggestion(suggId, { requestData });
   },
 
   rejectSuggestion(suggId, { requestData = {} } = {}) {
@@ -2250,24 +2250,22 @@ PTL.editor = {
   handleAcceptSuggestion(
     suggId, { requestData = {}, isSuggestionChanged = false } = {}
   ) {
-    PTL.editor.acceptSuggestion(suggId, { requestData, isSuggestionChanged });
-  },
-
-  acceptSuggestion(
-    suggId, { requestData = {}, skipToNext = false, isSuggestionChanged = false } = {}
-  ) {
-    if (!isSuggestionChanged) {
-      UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId, requestData)
-      .then(
-        (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
-        this.error
-      );
-    } else {
+    if (isSuggestionChanged) {
       const area = document.querySelector('.js-translation-area');
       area.value = decodeEntities(requestData.translation);
       this.undoFuzzyBox();
       this.handleSubmit(requestData.comment);
+    } else {
+      this.acceptSuggestion(suggId, { requestData });
     }
+  },
+
+  acceptSuggestion(suggId, { requestData = {}, skipToNext = false } = {}) {
+    UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId, requestData)
+    .then(
+      (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
+      this.error
+    );
   },
 
   processAcceptSuggestion(data, suggId, skipToNext) {
@@ -2384,9 +2382,9 @@ PTL.editor = {
         suggId: this.selectedSuggestionId,
         initialSuggestionText: e.currentTarget.dataset.translationAid,
         localeDir: this.settings.localeDir,
-        onAcceptSuggestion: this.handleAcceptSuggestion,
-        onRejectSuggestion: this.handleRejectSuggestion,
-        onChange: this.handleSuggestionFeedbackChange,
+        onAcceptSuggestion: this.handleAcceptSuggestion.bind(this),
+        onRejectSuggestion: this.handleRejectSuggestion.bind(this),
+        onChange: this.handleSuggestionFeedbackChange.bind(this),
       };
       const mountSelector = `.js-mnt-suggestion-feedback-${suggestionId}`;
       const feedbackMountPoint = document.querySelector(mountSelector);
@@ -2405,7 +2403,7 @@ PTL.editor = {
   },
 
   handleSuggestionFeedbackChange(isDirty) {
-    PTL.editor.isSuggestionFeedbackFormDirty = isDirty;
+    this.isSuggestionFeedbackFormDirty = isDirty;
   },
 
   closeSuggestion({ checkIfCanNavigate = true } = {}) {
