@@ -59,8 +59,10 @@ def tr_lang(language_name):
 def language_dir(language_code):
     """Returns whether the language is right to left"""
     RTL_LANGS = [
-        "ar", "arc", "ckb", "dv", "fa", "he", "ks", "ps", "ug", "ur", "yi",
-        "nqo"
+        # Helpful list of RTL codes:
+        # https://en.wikipedia.org/wiki/Right-to-left#RTL_Wikipedia_languages
+        "ar", "arc", "bcc", "bqi", "ckb", "dv", "fa", "glk", "he", "ks", "lrc",
+        "mzn", "pnb", "ps", "sd", "ug", "ur", "yi", "nqo",
     ]
     shortcode = language_code[:3]
 
