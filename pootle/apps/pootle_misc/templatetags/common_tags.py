@@ -62,7 +62,7 @@ def top_scorers(*args, **kwargs):
     User = get_user_model()
     allowed_kwargs = ('days', 'language', 'project', 'limit')
     lookup_kwargs = dict(
-        (k, v) for (k, v) in kwargs.iteritems() if k in allowed_kwargs
+        (k, v) for (k, v) in kwargs.iteritems() if k in allowed_kwargs and v
     )
 
     return {
