@@ -20,6 +20,7 @@ elasticsearch>=1.0.0,<1.7
 lxml>=2.2.0
 python-levenshtein
 rq>=0.5.0,<=0.5.6
+jsonfield
 
 # Translate Toolkit
 translate-toolkit>=1.13.0
