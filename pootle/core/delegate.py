@@ -10,4 +10,5 @@
 from pootle.core.plugin.delegate import Getter
 
 
+config = Getter(providing_args=["instance"])
 search_backend = Getter(providing_args=["instance"])
