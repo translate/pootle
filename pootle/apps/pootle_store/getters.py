@@ -6,8 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.core.exceptions import ValidationError
 
-from pootle.core.delegate import search_backend
+from pootle_config.delegate import (
+    config_should_not_be_set, config_should_not_be_appended)
+from pootle.core.delegate import (
+    deserializers, search_backend, serializers)
 from pootle.core.plugin import getter
 
 from .models import Unit
@@ -17,3 +21,26 @@ from .unit.search import DBSearchBackend
 @getter(search_backend, sender=Unit)
 def get_search_backend(**kwargs):
     return DBSearchBackend
+
+
+@getter([config_should_not_be_set, config_should_not_be_appended])
+def serializer_should_not_be_saved(**kwargs):
+
+    if kwargs["key"] == "pootle.core.serializers":
+        if not isinstance(kwargs["value"], list):
+            return ValidationError(
+                "pootle.core.serializers must be a list")
+        available_serializers = serializers.gather(kwargs["sender"]).keys()
+        for k in kwargs["value"]:
+            if k not in available_serializers:
+                return ValidationError(
+                    "Unrecognised pootle.core.serializers: '%s'" % k)
+    elif kwargs["key"] == "pootle.core.deserializers":
+        if not isinstance(kwargs["value"], list):
+            return ValidationError(
+                "pootle.core.deserializers must be a list")
+        available_deserializers = deserializers.gather(kwargs["sender"]).keys()
+        for k in kwargs["value"]:
+            if k not in available_deserializers:
+                return ValidationError(
+                    "Unrecognised pootle.core.deserializers: '%s'" % k)
