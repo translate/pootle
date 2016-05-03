@@ -11,7 +11,7 @@ django-redis
 django-rq>=0.8.0
 django-transaction-hooks
 
-django-contrib-comments
+django-contrib-comments>=1.7.1
 
 # Libraries
 cssmin

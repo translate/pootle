@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django_comments.models import CommentAbstractModel
+from django_comments.abstracts import CommentAbstractModel
 
 
 class Comment(CommentAbstractModel):
