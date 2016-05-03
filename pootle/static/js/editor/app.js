@@ -49,6 +49,7 @@ import search from '../search';
 import utils from '../utils';
 import {
   decodeEntities, escapeUnsafeRegexSymbols, getAreaId, makeRegexForMultipleWords,
+  countNewlineSymbol,
 } from './utils';
 
 import ReactEditor from './index';
@@ -758,8 +759,15 @@ PTL.editor = {
 
     let newValue = value;
     if (!overwrite) {
-      const start = this.focused.selectionStart;
-      const end = this.focused.selectionEnd;
+      const { selectionStart } = this.focused;
+      const { selectionEnd } = this.focused;
+      const areaValue = this.focused.value;
+      const start = (
+        selectionStart - countNewlineSymbol(areaValue.slice(0, selectionStart))
+      );
+      const end = (
+        selectionEnd - countNewlineSymbol(areaValue.slice(0, selectionEnd))
+      );
       const currentValue = newValues[targetIndex];
       newValue = currentValue.slice(0, start) + value
         + currentValue.slice(end, currentValue.length);
