@@ -197,7 +197,7 @@ class StoreDiff(object):
         for (insert_at, uids_add, next_index, delta) in self.insert_points:
             for index, uid in enumerate(uids_add):
                 file_unit = self.file_store.findid(uid)
-                if file_unit and file_unit.getid() not in self.db_units:
+                if file_unit and str(file_unit.getid()) not in self.db_units:
                     new_unit_index = insert_at + index + 1 + offset
                     to_add += [(file_unit, new_unit_index)]
             if delta > 0:
