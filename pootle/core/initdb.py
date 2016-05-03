@@ -146,7 +146,7 @@ class InitDB(object):
                 'codename': "review",
             },
             {
-                'name': _("Can administrate a translation project"),
+                'name': _("Can perform administrative tasks"),
                 'codename': "administrate",
             },
         ]
