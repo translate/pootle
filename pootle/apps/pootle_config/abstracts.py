@@ -25,11 +25,11 @@ class AbstractConfig(models.Model):
         blank=True,
         null=True,
         db_index=True,
-        verbose_name=_('content type'),
+        verbose_name='content type',
         related_name="content_type_set_for_%(class)s",
         on_delete=models.CASCADE)
     object_pk = models.CharField(
-        _('object ID'),
+        'object ID',
         max_length=255,
         blank=True,
         null=True)
@@ -37,13 +37,13 @@ class AbstractConfig(models.Model):
         ct_field="content_type",
         fk_field="object_pk")
     key = models.CharField(
-        _("Configuration key"),
+        'Configuration key',
         max_length=255,
         blank=False,
         null=False,
         db_index=True)
     value = JSONField(
-        _("Configuration value"),
+        'Configuration value',
         default="",
         blank=True,
         null=False,
