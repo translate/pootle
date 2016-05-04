@@ -30,13 +30,15 @@ def config_getter(sender=None, instance=None, key=None, **kwargs):
     else:
         conf = Config.objects.site_config()
 
-    if key is not None:
-        if isinstance(key, (list, tuple)):
-            return conf.list_config(key)
-        try:
-            return conf.get_config(key)
-        except Config.DoesNotExist:
-            return None
-        except Config.MultipleObjectsReturned as e:
-            raise ConfigurationError(e)
-    return conf
+    if key is None:
+        return conf
+
+    if isinstance(key, (list, tuple)):
+        return conf.list_config(key)
+
+    try:
+        return conf.get_config(key)
+    except Config.DoesNotExist:
+        return None
+    except Config.MultipleObjectsReturned as e:
+        raise ConfigurationError(e)
