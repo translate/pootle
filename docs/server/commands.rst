@@ -316,6 +316,27 @@ directly on the file system.
    deleted from the database. Handle with care!
 
 
+.. django-admin:: list_serializers
+
+list_serializers
+^^^^^^^^^^^^^^^^
+
+  .. versionadded:: 2.8.0
+
+List the installed serializers and deserializers on your system.
+
+Available options:
+
+.. django-admin-option:: -m, --model
+
+List serializers for specified model. The model should be expressed as a
+contenttype label - eg ``app_name``.``model_name``
+
+.. django-admin-option:: -d, --deserializers
+
+List available deserializers set up for our system.
+
+
 .. django-admin:: list_languages
 
 list_languages
