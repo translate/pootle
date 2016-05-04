@@ -31,7 +31,6 @@ class AbstractConfig(models.Model):
     object_pk = models.CharField(
         _('object ID'),
         max_length=255,
-        db_index=True,
         blank=True,
         null=True)
     content_object = GenericForeignKey(
