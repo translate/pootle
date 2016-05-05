@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-11-20 15:10+0000\n"
+"PO-Revision-Date: 2016-04-21 19:37+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1448032247.000000\n"
+"X-POOTLE-MTIME: 1461267474.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -431,7 +431,7 @@ msgstr "Volver enviar mensaxe de correo electrónico"
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:120
 msgid "Sign up as a new user"
-msgstr "Acceder como un novo usuario"
+msgstr "Crear conta de usuario"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:102
@@ -631,9 +631,8 @@ msgid "disabled"
 msgstr "desactivado"
 
 #: static/js/stats.js:58
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Parabéns, pasou por todos os elementos"
+msgstr "Parabéns! Completou esta tarefa!"
 
 #: static/js/stats.js:379
 #, python-format, javascript-format

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-03-22 09:09+0000\n"
+"PO-Revision-Date: 2016-04-10 12:37+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1458637775.000000\n"
+"X-POOTLE-MTIME: 1460291832.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -596,7 +596,7 @@ msgstr "Ushbu qator mavjud emas."
 
 #: static/js/editor/app.js:1021
 msgid "Go back to browsing"
-msgstr "Ko‘rish uchun orqaga qayting"
+msgstr "Ko‘rish uchun orqaga qaytish"
 
 #: static/js/editor/app.js:1023
 msgid "Reload page"
@@ -735,13 +735,15 @@ msgstr[1] "%s kun oldin"
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Bir soat oldin%s soat oldin"
+msgstr[0] "Bir soat oldin"
+msgstr[1] "%s soat oldin"
 
 #: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Bir daqiqa oldin%s daqiqa oldin"
+msgstr[0] "Bir daqiqa oldin"
+msgstr[1] "%s daqiqa oldin"
 
 #: static/js/utils.js:185
 msgid "A few seconds ago"
@@ -824,7 +826,7 @@ msgstr "Ko‘rib chiqildi"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr "Tezlik o‘zgarishi"
+msgstr "Tarjima o‘zgarishi"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24

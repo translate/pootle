@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-02-11 08:51+0000\n"
+"PO-Revision-Date: 2016-03-23 22:10+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1455180713.000000\n"
+"X-POOTLE-MTIME: 1458771008.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -182,7 +182,6 @@ msgid "Contact Us"
 msgstr "Contacte connosco"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Informar dun problema con esta cadea"
 
@@ -674,9 +673,8 @@ msgid "Percent brace placeholders"
 msgstr "Marcadores de posición porcentaxe"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr format"
-msgstr "Formato Android"
+msgstr "Formato Plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:91 core/helpers.py:53
@@ -942,7 +940,7 @@ msgstr "Obsoleta"
 
 #: apps/pootle_store/views.py:208
 msgid "Path too long."
-msgstr ""
+msgstr "Ruta demasiado longa."
 
 #: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
@@ -1240,6 +1238,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
 msgstr ""
+"Requírense configuracións diferentes de django_redis.cache.RedisCache para "
+"«default», «redis» e «stats»."
 
 #: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1416,22 +1416,22 @@ msgstr ""
 #: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS non ten %s."
 
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Defina %s en POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Valor non válido en POOTLE_MARKUP_FILTER."
+msgstr "Valor non válido para %s en POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Defina un valor válido para POOTLE_MARKUP_FILTER."
+msgstr "Defina un valor válido para %s en POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1466,11 +1466,11 @@ msgstr ""
 
 #: checks.py:447
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Falta a revisión ou ten un valor incorrecto."
 
 #: checks.py:448
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Execute `revision --restore` para restaurar o contador de revisión."
 
 #: core/browser.py:27
 msgid "Project"

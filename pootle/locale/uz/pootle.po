@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-03-22 10:18+0000\n"
+"PO-Revision-Date: 2016-04-10 12:37+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1458641897.000000\n"
+"X-POOTLE-MTIME: 1460291846.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -700,7 +700,7 @@ msgstr "Mo‘ljaldagi matn"
 
 #: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:460
 msgid "Comments"
-msgstr "Mulohazalar"
+msgstr "Izohlar"
 
 #: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:461
 msgid "Locations"
@@ -811,7 +811,7 @@ msgstr "Holati"
 
 #: apps/pootle_statistics/models.py:69
 msgid "Comment"
-msgstr "Mulohaza bildirish"
+msgstr "Izoh qoldirish"
 
 #: apps/pootle_statistics/models.py:341
 msgid "Added suggestion"
@@ -908,7 +908,7 @@ msgstr "`mt_similarity` qiymati [0..1] oralig‘ida bo‘lishi kerak"
 
 #: apps/pootle_store/forms.py:368
 msgid "Translator comment"
-msgstr "Tarjimon mulohazasi"
+msgstr "Tarjimon izohi"
 
 #: apps/pootle_store/models.py:145
 msgid "Pending"
@@ -950,7 +950,7 @@ msgstr "Argumentlar yo‘q."
 
 #: apps/pootle_store/views.py:376
 msgid "Failed to remove comment."
-msgstr "Mulohazani olib tashlab bo‘lmadi."
+msgstr "Izoh olib tashlanmadi."
 
 #: apps/pootle_store/views.py:411
 msgid "Comment submission failed."
@@ -2123,7 +2123,7 @@ msgstr ""
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
-msgstr "tezlik"
+msgstr "tarjimalar soni"
 
 #: templates/core/_top_scorers.html:14
 #, python-format
@@ -2157,7 +2157,7 @@ msgstr "Tasdiqlash"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr "Orqaga ko‘rish uchun qaytish"
+msgstr "Ko‘rish uchun orqaga qaytish"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2266,7 +2266,7 @@ msgstr "Tahrirlagichga tarjima qilingan atamani kiriting"
 
 #: templates/editor/units/edit.html:62
 msgid "Comments:"
-msgstr "Mulohazalar:"
+msgstr "Izohlar:"
 
 #: templates/editor/units/edit.html:72
 msgid "Click to open the image in a popup"
@@ -2320,7 +2320,7 @@ msgstr "Vaqt qatorini ko‘rsatish"
 
 #: templates/editor/units/edit.html:190
 msgid "Add Comment"
-msgstr "Mulohaza qo‘shish"
+msgstr "Izoh qoldirish"
 
 #: templates/editor/units/edit.html:192
 msgid "Raw View"
@@ -2402,7 +2402,7 @@ msgstr "Ancha vaqtlar oldin"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr "Mulohaza:"
+msgstr "Izoh: "
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical issues with the translation"
@@ -2432,7 +2432,7 @@ msgstr "Xatolar:"
 
 #: templates/editor/units/xhr_comment.html:13
 msgid "Remove comment"
-msgstr "Mulohazani olib tashlash"
+msgstr "Izohni olib tashlash"
 
 #: templates/editor/units/xhr_comment.html:16
 msgid "Last comment:"
@@ -2657,7 +2657,7 @@ msgstr "Tafislotlar..."
 
 #: templates/translation_projects/terminology/_term_edit.html:31
 msgid "Translator Comments"
-msgstr "Tarjimon mulohazalari"
+msgstr "Tarjimon izohlari"
 
 #: templates/translation_projects/terminology/base.html:4
 msgid "Manage Terminology"

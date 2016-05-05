@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-11-21 20:01+0000\n"
+"PO-Revision-Date: 2016-03-29 15:15+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1448136088.000000\n"
+"X-POOTLE-MTIME: 1459264525.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -180,7 +180,6 @@ msgid "Contact Us"
 msgstr "Kontaktujte nás"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Nahlásit chybu v řetězci"
 
@@ -675,9 +674,8 @@ msgid "Percent brace placeholders"
 msgstr "Závorkové % zástupné řetězce"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr format"
-msgstr "Android formát"
+msgstr "Formát plurálu"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:91 core/helpers.py:53
@@ -944,7 +942,7 @@ msgstr "Zastaralé"
 
 #: apps/pootle_store/views.py:208
 msgid "Path too long."
-msgstr ""
+msgstr "Cesta je příliš dlouhá."
 
 #: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
@@ -1238,6 +1236,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
 msgstr ""
+"Je vyžadováno samostatné nastavení django_redis.cache.RedisCache pro "
+"`default`, `redis` a `stats`."
 
 #: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1412,22 +1412,22 @@ msgstr "Nastavte WEIGHT mezi 0.0 a 1.0 (včetně) pro POOTLE_TM_SERVER['%s']."
 #: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS nemá nastaveno %s."
 
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Nastavte %s pro POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_MARKUP_FILTER obsahuje neplatnou hodnotu."
+msgstr "POOTLE_SCORE_COEFFICIENTS obsahuje neplatnou hodnotu %s."
 
 #: checks.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Nastavte platnou hodnotu POOTLE_MARKUP_FILTER."
+msgstr "Nastavte platnou hodnotu %s pro POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1461,11 +1461,11 @@ msgstr ""
 
 #: checks.py:447
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Revize chybí nebo je u ní nastavena chybná hodnota."
 
 #: checks.py:448
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Pro obnovení čítače revizí spusťte `revision --restore`."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1971,7 +1971,7 @@ msgid ""
 "a dynamic language code."
 msgstr ""
 "Pro vložení dynamického kódu jazyka v odkazech na stránkách Oznámení "
-"použijte <code><strong>/xx/<strong></code>."
+"použijte <code><strong>/xx/</strong></code>."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -2217,10 +2217,10 @@ msgid_plural ""
 msgstr[0] ""
 "Zobrazena je první položka z(e) %(total_count)s. Upřesněte rozsah hledání."
 msgstr[1] ""
-"Zobrazeny jsou první %(count)s položky z(e) %(total_count)s. Upřesněte "
+"Zobrazeny jsou první %(unit_count)s položky z(e) %(total_count)s. Upřesněte "
 "rozsah hledání."
 msgstr[2] ""
-"Zobrazeno je prvních %(count)s položek z(e) %(total_count)s. Upřesněte "
+"Zobrazeno je prvních %(unit_count)s položek z(e) %(total_count)s. Upřesněte "
 "rozsah hledání."
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:10

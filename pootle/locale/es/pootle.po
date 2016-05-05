@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-01-29 15:12+0000\n"
-"Last-Translator: heady <HeadyMcGee@mailinator.com>\n"
+"PO-Revision-Date: 2016-04-24 03:18+0000\n"
+"Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1454080329.000000\n"
+"X-POOTLE-MTIME: 1461467895.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -185,9 +185,8 @@ msgid "Contact Us"
 msgstr "Contáctenos"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
-msgstr "Informar de un problema con esta cadena"
+msgstr "Informar de un problema con la cadena"
 
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
@@ -678,9 +677,8 @@ msgid "Percent brace placeholders"
 msgstr "Espacios reservados con símb. de porcentaje y llaves"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr format"
-msgstr "Formato de Android"
+msgstr "Formato Plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:91 core/helpers.py:53
@@ -947,7 +945,7 @@ msgstr "Obsoleto"
 
 #: apps/pootle_store/views.py:208
 msgid "Path too long."
-msgstr ""
+msgstr "Ruta demasiado larga."
 
 #: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
@@ -1130,9 +1128,8 @@ msgid "Is public?"
 msgstr "¿Es pública?"
 
 #: apps/virtualfolder/models.py:59
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "Si esta página está activa o no."
+msgstr "Si esta carpeta virtual es pública o no."
 
 #: apps/virtualfolder/models.py:64
 #, fuzzy, python-format
@@ -1308,9 +1305,8 @@ msgid "Set POOTLE_MARKUP_FILTER."
 msgstr ""
 
 #: checks.py:263
-#, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "El valor «%s» en MARKUP_FILTER no es válido. Volviendo a HTML."
+msgstr "El valor de POOTLE_MARKUP_FILTER no es válido."
 
 #: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
@@ -1406,14 +1402,14 @@ msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr ""
 
 #: checks.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "El valor «%s» en MARKUP_FILTER no es válido. Volviendo a HTML."
+msgstr "El valor «%s» de POOTLE_SCORE_COEFFICIENTS no es válido."
 
 #: checks.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "El valor «%s» en MARKUP_FILTER no es válido. Volviendo a HTML."
+msgstr "Establezca un valor válido para «%s» en POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1572,7 +1568,7 @@ msgstr "No puede acceder a esta página."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Primeros pasos"
 
 #: custom/templates/layout.html:15
 msgid "License Terms"
@@ -1653,11 +1649,12 @@ msgstr ""
 "proyecto</a>."
 
 #: templates/about.html:26
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
-msgstr "Pootle %(pootle_ver)s funciona con Translate Toolkit %(toolkit_ver)s"
+msgstr ""
+"Pootle %(pootle_version)s funciona con Translate Toolkit %(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
@@ -1836,18 +1833,17 @@ msgid "Subactions"
 msgstr "Subacciones"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Traducción"
+msgstr "Traducción en bruto"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
 msgid "registered tasks"
-msgstr ""
+msgstr "tareas registradas"
 
 #: templates/admin/detailed_reports.html:260
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "No se registró ninguna actividad en el período especificado"
 
 #: templates/admin/detailed_reports.html:269
 msgid "Suggestion (subtotal)"
@@ -2559,13 +2555,13 @@ msgstr ""
 "proyecto."
 
 #: templates/staticpages/_body.html:6
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
-"Esta página está inactiva y es visible sólo a los administradores.  Puede "
-"activarla por <a href=\"%s\">editar sus propiedades</a>"
+"Esta página está inactiva y solo los administradores pueden verla. Para "
+"activarla, <a href=\"%(edit_url)s\">edite sus propiedades</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2630,6 +2626,12 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"Para utilizar la función de terminología, añada un archivo de terminología a "
+"su proyecto de traducción. Este archivo debe llamarse «pootle-terminology» y "
+"utilizar la misma extensión (formato) de archivo que el resto de los "
+"archivos del proyecto. Esta terminología personalizada se utilizará en "
+"conjunto con cualquier sugerencia terminológica proporcionada por el "
+"proyecto «Terminología»."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -2660,7 +2662,7 @@ msgstr "Puntuación:"
 #: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
-msgstr ""
+msgstr "Mi puntuación actual en %(server_title)s es de %(score)s "
 
 #: templates/user/profile.html:31 templates/user/profile.html.py:43
 msgid "Tweet this!"
@@ -2689,9 +2691,8 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:60
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Última actividad"
+msgstr "Actividades recientes:"
 
 #: templates/user/profile.html:76
 msgid "My Website"
@@ -2712,12 +2713,16 @@ msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Algunas traducciones fueron provistas por voluntarios anónimos. Estas se han "
+"registrado en esta metacuenta especial."
 
 #: templates/user/profile.html:103
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Algunas traducciones se han importado de archivos externos. Estas se han "
+"registrado en esta metacuenta especial."
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"

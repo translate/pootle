@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-11-06 17:20+0000\n"
+"PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1446830417.000000\n"
+"X-POOTLE-MTIME: 1462344778.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -327,7 +327,7 @@ msgstr "보고서"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "미리보기가 여기에 표시될 것입니다."
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
@@ -622,7 +622,7 @@ msgstr "사용 안 함"
 
 #: static/js/stats.js:58
 msgid "Congratulations! You have completed this task!"
-msgstr ""
+msgstr "축하합니다! 이 작업을 완료하셨습니다!"
 
 # ngettext의 첫번째 두번째 파라미터는 첫번쨰는 단수로 표현하기 위한 문장, 두번쨰는 복수로 표현하기 위한 문장이다. 하지만 한글에서 초를 단,복수 구분을 하지 않으니 '%s 초'로 통일한다
 #: static/js/stats.js:379

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-12-30 14:00+0000\n"
+"PO-Revision-Date: 2016-04-11 21:50+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1451484029.000000\n"
+"X-POOTLE-MTIME: 1460411406.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -63,7 +63,7 @@ msgstr "Nome completo"
 #: apps/accounts/models.py:76 apps/staticpages/models.py:32
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
-msgstr "Ativa"
+msgstr "Ativo"
 
 #: apps/accounts/models.py:77
 msgid ""
@@ -195,7 +195,6 @@ msgid "Contact Us"
 msgstr "Contacte-nos"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Comunicar um problema com esta linha"
 
@@ -558,7 +557,7 @@ msgstr "Não alterado"
 #: apps/pootle_store/util.py:30 core/helpers.py:49
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
-msgstr "Não alterado"
+msgstr "Não traduzido"
 
 #: apps/pootle_misc/checks.py:84
 msgid "URLs"
@@ -650,11 +649,11 @@ msgstr "Marcadores de posição de fecho de percentagem"
 
 #: apps/pootle_misc/checks.py:108
 msgid "$ placeholders"
-msgstr "Marcadores $"
+msgstr "Símbolos $"
 
 #: apps/pootle_misc/checks.py:109
 msgid "$ closure placeholders"
-msgstr "Marcadores de fecho $"
+msgstr "Símbolos de fecho $"
 
 #: apps/pootle_misc/checks.py:110
 msgid "Java-encoded unicode"
@@ -689,9 +688,8 @@ msgid "Percent brace placeholders"
 msgstr "Chavetas de percentagem"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr format"
-msgstr "Formato Android"
+msgstr "Formato Plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:91 core/helpers.py:53
@@ -956,7 +954,7 @@ msgstr "Obsoleta"
 
 #: apps/pootle_store/views.py:208
 msgid "Path too long."
-msgstr ""
+msgstr "Caminho muito grande."
 
 #: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
@@ -1080,7 +1078,7 @@ msgstr "Se definida, esta página irá redirecionar para este URL"
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:99
 msgid "URL or content must be provided."
-msgstr "Tem de indicar o URL ou conteúdo."
+msgstr "Tem que indicar o URL ou conteúdo."
 
 #: apps/staticpages/models.py:105
 msgid "Virtual path already in use."
@@ -1251,6 +1249,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
 msgstr ""
+"São precisas configurações django_redis.cache.RedisCache distintas para "
+"`default`, `redis` e `stats`."
 
 #: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1338,7 +1338,7 @@ msgstr "Definir POOTLE_MARKUP_FILTER."
 
 #: checks.py:263
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Valor inválido no POOTLE_MARKUP_FILTER."
+msgstr "Valor inválido em POOTLE_MARKUP_FILTER."
 
 #: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
@@ -1346,11 +1346,11 @@ msgstr "Defina um valor válido para POOTLE_MARKUP_FILTER."
 
 #: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr "Marcação inválida no POOTLE_MARKUP_FILTER."
+msgstr "Marcação inválida em POOTLE_MARKUP_FILTER."
 
 #: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr "Definir uma marcação válida para POOTLE_MARKUP_FILTER."
+msgstr "Defina uma marcação válida para POOTLE_MARKUP_FILTER."
 
 #: checks.py:284
 #, python-format
@@ -1378,12 +1378,12 @@ msgstr "Defina um INDEX_NAME para POOTLE_TM_SERVER['%s']."
 #: checks.py:304
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr "Duplicado '%s' INDEX_NAME in POOTLE_TM_SERVER"
+msgstr "Duplicado %s INDEX_NAME em POOTLE_TM_SERVER"
 
 #: checks.py:306
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
-"Denifa um diferente INDEX_NAME para todos os servidores POOTLE_TM_SERVER."
+"Defina um INDEX_NAME distinto para todos os servidores POOTLE_TM_SERVER."
 
 #: checks.py:316
 #, python-format
@@ -1431,26 +1431,26 @@ msgstr ""
 #: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS não tem %s."
 
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Defina %s em POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:360
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Valor inválido no POOTLE_MARKUP_FILTER."
+msgstr "Valor inválido para %s em POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:362
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Defina um valor válido para POOTLE_MARKUP_FILTER."
+msgstr "Defina um valor válido para %s em POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr "O utilizador 'admin' ainda possui uma palavra-passe para 'admin'."
+msgstr "O utilizador 'admin' ainda possui 'admin' como palavra-passe."
 
 #: checks.py:388
 msgid "Remove the 'admin' user or change its password."
@@ -1458,7 +1458,7 @@ msgstr "Remova o utilizador 'admin' ou altere a palavra-passe."
 
 #: checks.py:403
 msgid "Database connection does not implement on_commit."
-msgstr "Ligação da base de dados não implementa on_commit."
+msgstr "A ligação da base de dados não implementa on_commit."
 
 #: checks.py:404
 msgid ""
@@ -1480,11 +1480,11 @@ msgstr ""
 
 #: checks.py:447
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Revisão inexistente ou com valor incorreto."
 
 #: checks.py:448
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Execute `revision --restore` para restaurar a contagem de revisões."
 
 #: core/browser.py:27
 msgid "Project"
@@ -1817,7 +1817,7 @@ msgstr "Não foram detetados problemas. Está tudo bem!"
 #: templates/admin/detailed_reports.html:6
 #, python-format
 msgid "Report for %(user)s, "
-msgstr "Relatório para %(user)s"
+msgstr "Relatório para %(user)s, "
 
 #: templates/admin/detailed_reports.html:136
 #, python-format
@@ -2079,7 +2079,7 @@ msgstr "<span class=\"value untranslated\">0</span>%% não traduzido"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
-msgstr "Expandir detalhes"
+msgstr "Mostrar detalhes"
 
 #: templates/browser/index.html:19
 msgid "Translation Statistics"
@@ -2175,7 +2175,7 @@ msgstr "Selecione o tipo"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr "Ordenação predefinida"
+msgstr "Ordenação padrão"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
@@ -2217,11 +2217,11 @@ msgstr "Vista de exportação"
 
 #: templates/editor/export_view.html:7 templates/editor/export_view.html:98
 msgid "All Projects"
-msgstr "Todos os Projetos"
+msgstr "Todos os projetos"
 
 #: templates/editor/export_view.html:8 templates/editor/export_view.html:99
 msgid "All Languages"
-msgstr "Todos os Idiomas"
+msgstr "Todos os idiomas"
 
 #: templates/editor/export_view.html:143
 msgid "No strings."
@@ -2645,7 +2645,7 @@ msgstr "Detalhes..."
 
 #: templates/translation_projects/terminology/_term_edit.html:31
 msgid "Translator Comments"
-msgstr "Comentários do Tradutor"
+msgstr "Comentários do tradutor"
 
 #: templates/translation_projects/terminology/base.html:4
 msgid "Manage Terminology"
@@ -2720,20 +2720,21 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
-"Neste mês, eu sou o #%(pos)s colaborador do %(lang_name)s em "
+"Neste mês, eu sou o #%(pos)s colaborador no idioma %(lang_name)s em "
 "%(server_title)s!"
 
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
-msgstr "#%(pos)s colaborador do %(lang_name)s para este mês"
+msgstr "#%(pos)s colaborador no idioma %(lang_name)s para este mês"
 
 #: templates/user/profile.html:49
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
-"#%(pos)s colaborador do <a href=\"%(url)s\">%(lang_name)s</a> para este mês"
+"#%(pos)s colaborador no idioma <a href=\"%(url)s\">%(lang_name)s</a> para "
+"este mês"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

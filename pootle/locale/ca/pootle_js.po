@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-02-08 10:09+0000\n"
+"PO-Revision-Date: 2016-04-25 12:32+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1454926196.000000\n"
+"X-POOTLE-MTIME: 1461587547.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -593,7 +593,7 @@ msgstr ""
 
 #: static/js/editor/app.js:1023
 msgid "Reload page"
-msgstr ""
+msgstr "Torna a carregar la pàgina"
 
 #: static/js/editor/app.js:2033 static/js/editor/app.js:1986
 msgid "Similar translations"
@@ -624,9 +624,8 @@ msgid "disabled"
 msgstr "inhabilitat"
 
 #: static/js/stats.js:58
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Enhorabona! Heu passat per tots els elements"
+msgstr "Enhorabona! Heu passat finalitzat aquesta tasca!"
 
 #: static/js/stats.js:379
 #, python-format, javascript-format
@@ -888,7 +887,7 @@ msgstr "Suprimeix la tasca"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Afegeix un comentari"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"

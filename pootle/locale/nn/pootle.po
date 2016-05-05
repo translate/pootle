@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2010-08-02 07:09+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2016-03-24 02:50+0000\n"
+"Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
+"X-POOTLE-MTIME: 1458787805.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -91,7 +92,7 @@ msgstr "Alternativt kjeldespråk"
 
 #: apps/accounts/models.py:95 templates/admin/detailed_reports.html:156
 msgid "Rate"
-msgstr ""
+msgstr "Fart"
 
 #: apps/accounts/models.py:96 apps/reports/forms.py:32
 msgid "Review Rate"
@@ -102,36 +103,39 @@ msgid "Hourly Rate"
 msgstr ""
 
 #: apps/accounts/models.py:98
+#, fuzzy
 msgid "Score"
-msgstr ""
+msgstr "Poeng"
 
 #: apps/accounts/models.py:99 apps/reports/forms.py:21
+#, fuzzy
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #: apps/accounts/models.py:101
 msgid "Is employee?"
-msgstr ""
+msgstr "Er arbeidstakar?"
 
 #: apps/accounts/models.py:102
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:104
 msgid "Website"
-msgstr ""
+msgstr "Nettstad"
 
 #: apps/accounts/models.py:105
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:106
+#, fuzzy
 msgid "Short Bio"
-msgstr ""
+msgstr "Kort biografi"
 
 #: apps/accounts/models.py:311
 msgid "This email address already exists."
-msgstr ""
+msgstr "Denne e-postadressa finst allereie"
 
 #: apps/accounts/views.py:37
 msgid ""
@@ -140,7 +144,7 @@ msgstr ""
 
 #: apps/contact/forms.py:26
 msgid "Summary"
-msgstr ""
+msgstr "Samandrag"
 
 #: apps/contact/forms.py:28
 msgid "Please enter your message summary"
@@ -152,54 +156,53 @@ msgstr "Namn"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr ""
+msgstr "Skriv inn namn"
 
 #: apps/contact/forms.py:39
-#, fuzzy
 msgid "Email address"
-msgstr "E-posttilskrift"
+msgstr "E-postadresse"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Ver snill og skriv inn e-postadressa di"
 
 #: apps/contact/forms.py:43
 msgid "Message"
-msgstr ""
+msgstr "Melding"
 
 #: apps/contact/forms.py:44
+#, fuzzy
 msgid "Please enter your message"
-msgstr ""
+msgstr "Skriv meldinga di her"
 
 #: apps/contact/views.py:35 templates/layout.html:102
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontakt oss"
 
 #: apps/contact/views.py:66
 msgid "Report problem with string"
-msgstr ""
+msgstr "Rapporter problem med streng"
 
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
-msgstr ""
+msgstr "Last ned omsetjingsfiler for fråkopla-omsetjing"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download for offline translation"
-msgstr ""
+msgstr "Last ned for å omsetje fråkopla"
 
 #: apps/import_export/templates/browser/index.html:19
 msgid "Upload translation files or archives in .zip format"
 msgstr ""
 
 #: apps/import_export/templates/browser/index.html:20
-#, fuzzy
 msgid "Upload translations"
-msgstr "Omsetjing"
+msgstr "Last opp omsetjingar"
 
 #: apps/import_export/utils.py:30
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "Ikkje-støtta filtype '%s', berre PO-filer er for tida støtta\n"
 
 #: apps/import_export/utils.py:36
 #, python-format
@@ -226,12 +229,12 @@ msgstr ""
 
 #: apps/pootle_app/forms.py:46 apps/pootle_project/models.py:186
 msgid "Source Language"
-msgstr ""
+msgstr "Kjeldespråk"
 
 #: apps/pootle_app/forms.py:95
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr ""
+msgstr "\"%s\" kan ikkje nyttast som prosjektkode"
 
 #: apps/pootle_app/forms.py:102 custom/templates/profiles/_tabs.html:5
 msgid "Password"
@@ -243,20 +246,19 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/dashboard.py:86
 msgid "Files"
-msgstr ""
+msgstr "Filer"
 
 #: apps/pootle_app/views/admin/dashboard.py:87
 msgid "Active projects"
-msgstr ""
+msgstr "Aktive prosjekt"
 
 #: apps/pootle_app/views/admin/dashboard.py:88
 msgid "Active languages"
-msgstr ""
+msgstr "Aktive språk"
 
 #: apps/pootle_app/views/admin/dashboard.py:89
-#, fuzzy
 msgid "Translated strings"
-msgstr "Omset strengene mine"
+msgstr "Omsette strengar"
 
 #: apps/pootle_app/views/admin/dashboard.py:90
 msgid "Translated words"
@@ -264,7 +266,7 @@ msgstr "Omsette ord"
 
 #: apps/pootle_app/views/admin/dashboard.py:91
 msgid "Active users"
-msgstr ""
+msgstr "Aktive brukarar"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:112
@@ -277,29 +279,28 @@ msgstr[1] ""
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:116
 msgid "Stopped"
-msgstr ""
+msgstr "Stoppa"
 
 #: apps/pootle_app/views/admin/permissions.py:66
 msgid "All Users"
-msgstr ""
+msgstr "Alle brukarar"
 
 #: apps/pootle_app/views/admin/permissions.py:93
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Brukarløyve"
+msgstr "Legg til løyve"
 
 #: apps/pootle_app/views/admin/permissions.py:98
 #: apps/pootle_app/views/admin/permissions.py:107
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Vel eitt eller fleire løyve"
 
 #: apps/pootle_app/views/admin/permissions.py:102
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Tilbakekall løyve"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
-msgstr ""
+msgstr "Ingen filer i dette prosjektet."
 
 #: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:179
 msgid "There are errors in the form. Please review the problems below."
@@ -307,7 +308,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:68 apps/pootle_project/models.py:154
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: apps/pootle_language/models.py:69
 msgid ""
@@ -320,7 +321,7 @@ msgstr ""
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
-msgstr ""
+msgstr "Spesialteikn"
 
 #: apps/pootle_language/models.py:79
 msgid "Enter any special characters that users might find difficult to type"
@@ -335,7 +336,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:89
 msgid "Unknown"
-msgstr ""
+msgstr "Ukjend"
 
 #: apps/pootle_language/models.py:93
 msgid "Number of Plurals"
@@ -347,24 +348,23 @@ msgstr "Fleirtalslikning"
 
 #: apps/pootle_misc/checks.py:34 core/browser.py:66
 msgid "Critical"
-msgstr ""
+msgstr "Kritisk"
 
 #: apps/pootle_misc/checks.py:35
 msgid "Cosmetic"
-msgstr ""
+msgstr "Kosmetisk"
 
 #: apps/pootle_misc/checks.py:36
-#, fuzzy
 msgid "Functional"
-msgstr "Val"
+msgstr "Funksjonell"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Extraction"
-msgstr ""
+msgstr "Utpakking"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Other"
-msgstr ""
+msgstr "Anna"
 
 #: apps/pootle_misc/checks.py:42
 msgid "Accelerators"
@@ -376,15 +376,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:44
 msgid "Blank"
-msgstr ""
+msgstr "Tom"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Brackets"
-msgstr ""
+msgstr "Parentesar"
 
 #: apps/pootle_misc/checks.py:46
 msgid "Compendium conflict"
-msgstr ""
+msgstr "Kompendiumkonflikt"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Translator credits"
@@ -400,40 +400,39 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:50
 msgid "Double spaces"
-msgstr ""
+msgstr "Doble mellomrom"
 
 #: apps/pootle_misc/checks.py:51
 msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:52
-#, fuzzy
 msgid "E-mail"
 msgstr "E-post"
 
 #: apps/pootle_misc/checks.py:53
 msgid "Ending punctuation"
-msgstr ""
+msgstr "Avsluttande punktteikn"
 
 #: apps/pootle_misc/checks.py:54
 msgid "Ending whitespace"
-msgstr ""
+msgstr "Avsluttande mellomrom"
 
 #: apps/pootle_misc/checks.py:55
 msgid "Escapes"
-msgstr ""
+msgstr "Escape-teikn"
 
 #: apps/pootle_misc/checks.py:56
 msgid "File paths"
-msgstr ""
+msgstr "Filbaner"
 
 #: apps/pootle_misc/checks.py:57
 msgid "Functions"
-msgstr ""
+msgstr "Funksjonar"
 
 #: apps/pootle_misc/checks.py:58
 msgid "GConf values"
-msgstr ""
+msgstr "GConf-verdiar"
 
 #: apps/pootle_misc/checks.py:59 apps/pootle_misc/stats.py:26
 msgid "Fuzzy"
@@ -441,41 +440,39 @@ msgstr "Uklår"
 
 #: apps/pootle_misc/checks.py:60
 msgid "Old KDE comment"
-msgstr ""
+msgstr "Gammal KDE-kommentar"
 
 #: apps/pootle_misc/checks.py:61
 msgid "Long"
-msgstr ""
+msgstr "Lang"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Must translate words"
-msgstr ""
+msgstr "Må omsetje ord"
 
 #: apps/pootle_misc/checks.py:63
 msgid "Newlines"
-msgstr ""
+msgstr "Linjeskift"
 
 #: apps/pootle_misc/checks.py:64
-#, fuzzy
 msgid "Number of plurals"
 msgstr "Tal på fleirtalsformer"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Don't translate words"
-msgstr ""
+msgstr "Ikkje oversett ord"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Numbers"
-msgstr ""
+msgstr "Tal"
 
 #: apps/pootle_misc/checks.py:67
-#, fuzzy
 msgid "Options"
-msgstr "Val"
+msgstr "Innstillingar"
 
 #: apps/pootle_misc/checks.py:68
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_misc/checks.py:69
 msgid "Punctuation spacing"
@@ -495,7 +492,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:73
 msgid "Short"
-msgstr ""
+msgstr "Kort"
 
 #: apps/pootle_misc/checks.py:74
 msgid "Simple capitalization"
@@ -538,23 +535,23 @@ msgstr "Ikkje omset"
 
 #: apps/pootle_misc/checks.py:84
 msgid "URLs"
-msgstr ""
+msgstr "URL-ar"
 
 #: apps/pootle_misc/checks.py:85
 msgid "Valid characters"
-msgstr ""
+msgstr "Gyldige teikn"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Placeholders"
-msgstr ""
+msgstr "Plasshaldarar"
 
 #: apps/pootle_misc/checks.py:87
 msgid "Valid XML"
-msgstr ""
+msgstr "Gyldig XML"
 
 #: apps/pootle_misc/checks.py:88
 msgid "XML tags"
-msgstr ""
+msgstr "XML-taggar"
 
 #: apps/pootle_misc/checks.py:90
 msgid "Broken HTML Entities"
@@ -586,7 +583,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:97
 msgid "Non printable"
-msgstr ""
+msgstr "Kan ikkje skrivast ut"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Unbalanced tag braces"
@@ -606,11 +603,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:102
 msgid "Whitespaces"
-msgstr ""
+msgstr "Blankteikn"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Date format"
-msgstr ""
+msgstr "Datoformat"
 
 #: apps/pootle_misc/checks.py:104
 msgid "Uppercase placeholders"
@@ -712,24 +709,24 @@ msgstr "Omsett"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
-msgstr ""
+msgstr "Fyrste"
 
 #: apps/pootle_misc/templatetags/render_pager.py:25
 msgid "Previous"
-msgstr ""
+msgstr "Førre"
 
 #: apps/pootle_misc/templatetags/render_pager.py:42
 msgid "Next"
-msgstr ""
+msgstr "Neste"
 
 #: apps/pootle_misc/templatetags/render_pager.py:44
 #, python-format
 msgid "Last (%d)"
-msgstr ""
+msgstr "Siste (%d)"
 
 #: apps/pootle_profile/views.py:55
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Vel eitt eller fleire språk"
 
 #: apps/pootle_project/forms.py:22 core/browser.py:32
 msgid "Language"
@@ -743,7 +740,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:169
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kvalitetskontrollar"
 
 #: apps/pootle_project/models.py:172
 msgid "File Type"
@@ -767,7 +764,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:190
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ignorer filer"
 
 #: apps/pootle_project/models.py:195
 msgid "Errors Report Email"
@@ -783,39 +780,38 @@ msgstr ""
 
 #: apps/pootle_project/models.py:205
 msgid "Disabled"
-msgstr ""
+msgstr "Avslått"
 
 #: apps/pootle_statistics/models.py:66 templates/editor/export_view.html:105
 msgid "Source"
-msgstr ""
+msgstr "Kjelde"
 
 #: apps/pootle_statistics/models.py:67
 msgid "Target"
-msgstr ""
+msgstr "Mål"
 
 #: apps/pootle_statistics/models.py:68
 msgid "State"
-msgstr ""
+msgstr "Tilstand"
 
 #: apps/pootle_statistics/models.py:69
-#, fuzzy
 msgid "Comment"
-msgstr "Merknader"
+msgstr "Kommentar"
 
 #: apps/pootle_statistics/models.py:341
 #, fuzzy
 msgid "Added suggestion"
-msgstr "Godkjenn framlegg"
+msgstr "Tillagt forslag"
 
 #: apps/pootle_statistics/models.py:342
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %s"
-msgstr "Godkjenn framlegg"
+msgstr "Godteke forslag frå %s"
 
 #: apps/pootle_statistics/models.py:344
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %s"
-msgstr "Avvis framlegg"
+msgstr "Avvist forslag frå %s"
 
 #: apps/pootle_store/decorators.py:26
 msgid "Insufficient rights to access this directory."
@@ -838,37 +834,36 @@ msgid "Gettext PO"
 msgstr ""
 
 #: apps/pootle_store/filetypes.py:24
-#, fuzzy
 msgid "XLIFF (.xlf)"
-msgstr "XLIFF-fil"
+msgstr "XLIFF (.xlf)"
 
 #: apps/pootle_store/filetypes.py:25
 msgid "XLIFF (.xliff)"
-msgstr ""
+msgstr "XLIFF (.xliff)"
 
 #: apps/pootle_store/filetypes.py:31
 msgid "Qt ts"
-msgstr ""
+msgstr "Qt ts-fil"
 
 #: apps/pootle_store/filetypes.py:37
 msgid "TMX"
-msgstr ""
+msgstr "TMX-fil"
 
 #: apps/pootle_store/filetypes.py:43
 msgid "TBX"
-msgstr ""
+msgstr "TBX-fil"
 
 #: apps/pootle_store/filetypes.py:49
 msgid "Haiku catkeys"
-msgstr ""
+msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:56
 msgid "Excel CSV"
-msgstr ""
+msgstr "Excel CSV"
 
 #: apps/pootle_store/filetypes.py:62
 msgid "Mozilla .lang"
-msgstr ""
+msgstr "Mozilla .lang"
 
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:166
@@ -882,7 +877,7 @@ msgstr "Fleirtalsform %d"
 #: apps/pootle_store/forms.py:252 apps/pootle_store/util.py:31
 #: core/helpers.py:50 templates/editor/_filters.html:10
 msgid "Needs work"
-msgstr ""
+msgstr "Må jobbast eir med"
 
 #: apps/pootle_store/forms.py:288
 msgid "Needs work flag must be cleared"
@@ -903,11 +898,11 @@ msgstr "Merknad frå omsetjar"
 
 #: apps/pootle_store/models.py:145
 msgid "Pending"
-msgstr ""
+msgstr "Avventande"
 
 #: apps/pootle_store/models.py:146
 msgid "Accepted"
-msgstr ""
+msgstr "Godteke"
 
 #: apps/pootle_store/models.py:147
 msgid "Rejected"
@@ -915,7 +910,7 @@ msgstr ""
 
 #: apps/pootle_store/models.py:1301
 msgid "Path"
-msgstr ""
+msgstr "Bane"
 
 #: apps/pootle_store/templatetags/store_tags.py:157
 #: apps/pootle_store/templatetags/store_tags.py:161
@@ -929,23 +924,23 @@ msgstr "Fleirtal"
 
 #: apps/pootle_store/util.py:29
 msgid "Obsolete"
-msgstr ""
+msgstr "Forelda"
 
 #: apps/pootle_store/views.py:208
 msgid "Path too long."
-msgstr ""
+msgstr "Bana er for lang."
 
 #: apps/pootle_store/views.py:210 core/decorators.py:45
 msgid "Arguments missing."
-msgstr ""
+msgstr "Argument manglar."
 
 #: apps/pootle_store/views.py:376
 msgid "Failed to remove comment."
-msgstr ""
+msgstr "Klarte ikkje å fjerne kommentar."
 
 #: apps/pootle_store/views.py:411
 msgid "Comment submission failed."
-msgstr ""
+msgstr "Klarte ikkje å sende inn kommentar."
 
 #: apps/pootle_store/views.py:627
 msgid "Failed to process submission."
@@ -990,19 +985,19 @@ msgstr ""
 
 #: apps/reports/models.py:48
 msgid "Correction"
-msgstr ""
+msgstr "Retting"
 
 #: apps/reports/models.py:52
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: apps/reports/models.py:54
 msgid "Amount"
-msgstr ""
+msgstr "Mengde"
 
 #: apps/reports/models.py:56
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: apps/reports/models.py:57 apps/virtualfolder/models.py:62
 msgid "Description"
@@ -1011,7 +1006,7 @@ msgstr "Skildring"
 #: apps/reports/views.py:314
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "Fann ikkje brukaren %s"
 
 #: apps/reports/views.py:391
 msgid "Invalid request method"
@@ -1039,12 +1034,12 @@ msgstr "Tittel"
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:47
 msgid "Display Content"
-msgstr ""
+msgstr "Vis innhald"
 
 #: apps/staticpages/models.py:49
-#, python-format
+#, fuzzy, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "Tillaten markup: %s"
 
 #: apps/staticpages/models.py:52 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
@@ -1065,15 +1060,15 @@ msgstr ""
 
 #: apps/staticpages/models.py:114
 msgid "Legal Page"
-msgstr ""
+msgstr "Juridisk side"
 
 #: apps/staticpages/models.py:125
 msgid "Regular Page"
-msgstr ""
+msgstr "Vanleg side"
 
 #: apps/staticpages/views.py:120 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
-msgstr ""
+msgstr "Sidetittel"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:137
@@ -1083,12 +1078,11 @@ msgstr ""
 
 #: apps/staticpages/views.py:232
 msgid "Text is missing"
-msgstr ""
+msgstr "Tekst manglar"
 
 #: apps/virtualfolder/models.py:38
-#, fuzzy
 msgid "Location"
-msgstr "Plasseringar"
+msgstr "Plassering"
 
 #: apps/virtualfolder/models.py:41
 msgid "Root path where this virtual folder is applied."
@@ -1097,7 +1091,7 @@ msgstr ""
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:45
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: apps/virtualfolder/models.py:47
 msgid "Filtering rules that tell which stores this virtual folder comprises."
@@ -1105,7 +1099,7 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:51 core/browser.py:22
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #: apps/virtualfolder/models.py:53
 msgid ""
@@ -1429,41 +1423,38 @@ msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
 #: core/browser.py:27
-#, fuzzy
 msgid "Project"
 msgstr "Prosjekt"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:38
 msgid "Progress"
-msgstr ""
+msgstr "Framdrift"
 
 #: core/browser.py:50 templates/browser/index.html:37
 msgid "Last updated"
-msgstr ""
+msgstr "Sist oppdatert"
 
 #: core/browser.py:55
 msgid "Need Translation"
-msgstr ""
+msgstr "Treng omsetjing"
 
 #. Translators: The number of suggestions pending review
 #: core/browser.py:61 templates/editor/_filters.html:11
-#, fuzzy
 msgid "Suggestions"
-msgstr "Framlegg:"
+msgstr "Forslag"
 
 #: core/browser.py:71
 msgid "Last Activity"
-msgstr ""
+msgstr "Siste aktivitet"
 
 #: core/browser.py:122
-#, fuzzy
 msgid "Back to language"
 msgstr "Attende til hovudsida"
 
 #: core/browser.py:124
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Tilbake til foreldermappe"
 
 #: core/decorators.py:323 core/views.py:95
 msgid "Insufficient rights to access this page."
@@ -1480,24 +1471,24 @@ msgstr ""
 
 #: core/forms.py:135
 msgid "Enter a number"
-msgstr ""
+msgstr "Skriv inn eit tal"
 
 #: core/forms.py:150
 msgid "Incorrect"
-msgstr ""
+msgstr "Feil"
 
 #: core/helpers.py:35
 msgid "User missing"
-msgstr ""
+msgstr "Brukar manglar"
 
 #. Translators: This refers to "All strings"
 #: core/helpers.py:47 templates/editor/_filters.html:6
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: core/helpers.py:51 templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr ""
+msgstr "Ufullstendig"
 
 #: core/helpers.py:54 templates/editor/_filters.html:18
 msgid "Checks"
@@ -1505,65 +1496,63 @@ msgstr ""
 
 #: core/helpers.py:55 templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr ""
+msgstr "Mine bidrag"
 
 #: core/helpers.py:56 templates/admin/dashboard.html:13
 msgid "Submissions"
-msgstr ""
+msgstr "Bidrag"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: core/helpers.py:57 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Mine overskrivne bidrag"
 
 #: core/helpers.py:58
 msgid "Overwritten submissions"
-msgstr ""
+msgstr "Overskrivne bidrag"
 
 #: core/initdb.py:130
 msgid "Can access a project"
-msgstr ""
+msgstr "Har tilgang til eit prosjekt"
 
 #: core/initdb.py:134
 msgid "Cannot access a project"
-msgstr ""
+msgstr "Har ikkje tilgang til eit prosjekt"
 
 #: core/initdb.py:138
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Kan føreslå ei omsetjing"
 
 #: core/initdb.py:142
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Kan sende inn ei omsetjing"
 
 #: core/initdb.py:146
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Sjå over framlegg"
+msgstr "Kan vurdere forslag"
 
 #: core/initdb.py:150
 msgid "Can administrate a translation project"
-msgstr ""
+msgstr "Kan administrere eit omsetjingsprosjekt"
 
 #: core/views.py:150
 msgid "You cannot access this page."
-msgstr ""
+msgstr "Du har ikkje tilgang til denne sida."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Kome i gang"
 
 #: custom/templates/layout.html:15
-#, fuzzy
 msgid "License Terms"
-msgstr "Kjeldetekst"
+msgstr "Lisensvilkår"
 
 #: custom/templates/profiles/_tabs.html:4 templates/layout.html:114
 #: templates/user/settings.html:4 templates/user/settings.html.py:7
 msgid "Settings"
-msgstr ""
+msgstr "Innstillingar"
 
 #: middleware/errorpages.py:82
 #, python-format
@@ -1576,43 +1565,44 @@ msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
+"Du må <a class=\"js-login\" href=\"%(login_link)s\">logge inn</a> for å få "
+"tilgang til denne sida."
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:39
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Personvernpraksis"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:41
 msgid "Legal"
-msgstr ""
+msgstr "Juridisk"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:43
 msgid "License"
-msgstr ""
+msgstr "Lisens"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:45
 msgid "Contributor License"
-msgstr ""
+msgstr "Bidragsytarlisens"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:47
 msgid "Terms of Use"
-msgstr ""
+msgstr "Brukarvilkår"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:49
 msgid "Terms of Service"
-msgstr ""
+msgstr "Tenestevilkår"
 
 #: templates/about.html:7 templates/layout.html:170
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Om denne Pootle-tenaren"
 
@@ -1653,16 +1643,14 @@ msgstr ""
 "sjå vekk frå meldinga.\n"
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Pootle-registrering"
+msgstr "Pootle e-poststadfesting"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "registreringsprofil"
+msgstr "Registrering avslått"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
@@ -1670,13 +1658,12 @@ msgstr ""
 
 #: templates/admin/_generic_formset.html:15
 #: templates/translation_projects/terminology/manage.html:49
-#, fuzzy
 msgid "Save Changes"
 msgstr "Lagre endringar"
 
 #: templates/admin/_tabs.html:6
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
 #: templates/admin/users.html:4 templates/admin/users.html.py:7
@@ -1704,55 +1691,53 @@ msgstr "Prosjekt"
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
-msgstr ""
+msgstr "Løyve"
 
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
-msgstr ""
+msgstr "Statiske sider"
 
 #: templates/admin/_tabs.html:36 templates/admin/reports.html:45
 #: templates/admin/reports.html.py:48
 msgid "Reports"
-msgstr ""
+msgstr "Rapportar"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
-#, fuzzy
 msgid "Administration"
-msgstr "Administrer"
+msgstr "Administrasjon"
 
 #: templates/admin/dashboard.html:7
 msgid "Server Statistics"
-msgstr ""
+msgstr "Tenarstatistikk"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Avventande forslag"
 
 #: templates/admin/dashboard.html:29
 msgid "More..."
-msgstr ""
+msgstr "Meir …"
 
 #: templates/admin/dashboard.html:37
 msgid "Background Jobs"
-msgstr ""
+msgstr "Bakgrunnsjobbar"
 
 #: templates/admin/dashboard.html:43
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: templates/admin/dashboard.html:50
 msgid "Pending jobs"
-msgstr ""
+msgstr "Ventande oppgåver"
 
 #: templates/admin/dashboard.html:54
 msgid "Failed jobs"
 msgstr ""
 
 #: templates/admin/dashboard.html:64
-#, fuzzy
 msgid "System Checks"
-msgstr "Vis feilsjekking"
+msgstr "Systemkontrollar"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
@@ -1771,24 +1756,24 @@ msgstr ""
 #: templates/admin/detailed_reports.html:140
 #: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "Førre månad"
 
 #: templates/admin/detailed_reports.html:142
 #: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "Neste månad"
 
 #: templates/admin/detailed_reports.html:149
 msgid "Local server time"
-msgstr ""
+msgstr "Lokal tenartid"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Unit"
-msgstr ""
+msgstr "Eining"
 
 #: templates/admin/detailed_reports.html:151
 msgid "Action"
-msgstr ""
+msgstr "Handling"
 
 #: templates/admin/detailed_reports.html:152
 msgid "Source words"
@@ -1796,11 +1781,11 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:153
 msgid "Similarity"
-msgstr ""
+msgstr "Likskap"
 
 #: templates/admin/detailed_reports.html:154
 msgid "Words"
-msgstr ""
+msgstr "Ord"
 
 #: templates/admin/detailed_reports.html:157
 msgid "Subtotal"
@@ -1819,12 +1804,12 @@ msgstr "Framlegg:"
 #: templates/admin/detailed_reports.html:219
 #, fuzzy
 msgid "Raw Translation"
-msgstr "Omsetjing"
+msgstr "Grovomsetjing"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
 msgid "registered tasks"
-msgstr ""
+msgstr "registrerte oppgåver"
 
 #: templates/admin/detailed_reports.html:260
 msgid "No activity recorded in a given period"
@@ -1866,40 +1851,40 @@ msgstr ""
 
 #: templates/admin/reports.html:58 templates/user/stats.html:60
 msgid "Daily activity"
-msgstr ""
+msgstr "Dagleg aktivitet"
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Brukarar"
+msgstr "Brukar"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
-msgstr ""
+msgstr "Detaljert rapport"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "Detaljert statistikk"
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
-msgstr ""
+msgstr "Legg til oppgåve"
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "ord"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "timar"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
 msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:4
+#, fuzzy
 msgid "Set Rates"
-msgstr ""
+msgstr "Vel verdiar"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
@@ -1910,11 +1895,11 @@ msgstr "Lagre"
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:36
 msgid "Delete"
-msgstr ""
+msgstr "Slett"
 
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
-msgstr ""
+msgstr "eller"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -1931,30 +1916,29 @@ msgstr ""
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
-msgstr ""
+msgstr "Sist redigert"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: templates/admin/staticpages/_table.html:19
 #: templates/staticpages/_body.html:16
-#, fuzzy
 msgid "edit"
-msgstr "Endre"
+msgstr "rediger"
 
 #: templates/admin/staticpages/_table.html:24
 #, fuzzy
 msgid "view"
-msgstr "Vis"
+msgstr "vis"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
-msgstr ""
+msgstr "Ingen sider enno."
 
 #: templates/admin/staticpages/page_create.html:4
 msgid "Add"
@@ -1962,71 +1946,71 @@ msgstr "Legg til"
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
-msgstr ""
+msgstr "Juridiske sider"
 
 #: templates/admin/staticpages/page_list.html:11
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Leegg til juridiskside"
 
 #: templates/admin/staticpages/page_list.html:14
 msgid "Regular Pages"
-msgstr ""
+msgstr "Vanlege sider"
 
 #: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Legg til ei vanleg side"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Kunngjeringar"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Legg til kunngjering"
 
 #: templates/browser/_actions.html:5
 msgid "Continue translation"
-msgstr ""
+msgstr "Hald fram med omsetjinga"
 
 #: templates/browser/_actions.html:11
 #, fuzzy
 msgid "Review suggestions"
-msgstr "Sjå over framlegg"
+msgstr "Vurder forslag"
 
 #: templates/browser/_actions.html:17
 msgid "Fix critical errors"
-msgstr ""
+msgstr "Rett kritiske feil"
 
 #: templates/browser/_actions.html:23
 msgid "View all"
-msgstr ""
+msgstr "Vis alt"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr ""
+msgstr "<span class=\"value translated\">0</span>%% omsett"
 
 #: templates/browser/_progressbar.html:4
-#, python-format
+#, fuzzy, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr ""
+msgstr "<span class=\"value fuzzy\">0</span>%% treng meir arbeid"
 
 #: templates/browser/_progressbar.html:5
 #, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr ""
+msgstr "<span class=\"value untranslated\">0</span>%% ikkje omsett"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
-msgstr ""
+msgstr "Vis detaljar"
 
 #: templates/browser/index.html:19
 msgid "Translation Statistics"
-msgstr ""
+msgstr "Omsetjingsstatistikk"
 
 #: templates/browser/index.html:41
 msgid "Last action"
-msgstr ""
+msgstr "Siste handling"
 
 #: templates/browser/index.html:48
 msgid "Failing Checks"
@@ -2044,19 +2028,19 @@ msgstr ""
 
 #: templates/browser/index.html:107
 msgid "Refresh now"
-msgstr ""
+msgstr "Oppdater no"
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Ver snill og fyll inn alle felta."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
-msgstr ""
+msgstr "Send melding"
 
 #: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
-msgstr ""
+msgstr "Tusen takk!"
 
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
@@ -2065,7 +2049,7 @@ msgstr ""
 
 #: templates/core/_top_scorers.html:8
 msgid "score"
-msgstr ""
+msgstr "poeng"
 
 #: templates/core/_top_scorers.html:14
 #, python-format
@@ -2093,7 +2077,7 @@ msgstr ""
 
 #: templates/core/xhr_captcha.html:13
 msgid "Confirm"
-msgstr ""
+msgstr "Stadfest"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
@@ -2101,31 +2085,31 @@ msgstr ""
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
-msgstr ""
+msgstr "Mine forslag"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
-msgstr ""
+msgstr "Vel type"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Standard rekkjefylgje"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Viktige fyrst"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
-msgstr ""
+msgstr "Nyaste fyrst"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "Eldste fyrst"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Gå til føregåande streng (Ctrl+Pil op)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
@@ -2135,31 +2119,29 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
-msgstr ""
+msgstr "Strengar totalt"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Gå til neste streng (Ctrl+Pil ned)"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:18 templates/projects/all/_nav.html:18
 #: templates/translation_projects/_nav.html:18
 msgid "Export View"
-msgstr ""
+msgstr "Eksportvising"
 
 #: templates/editor/export_view.html:7 templates/editor/export_view.html:98
-#, fuzzy
 msgid "All Projects"
-msgstr "Prosjekt"
+msgstr "Alle prosjekt"
 
 #: templates/editor/export_view.html:8 templates/editor/export_view.html:99
-#, fuzzy
 msgid "All Languages"
-msgstr "Språk"
+msgstr "Alle språk"
 
 #: templates/editor/export_view.html:143
 msgid "No strings."
-msgstr ""
+msgstr "Ingen strengar."
 
 #: templates/editor/export_view.html:149
 #, python-format
@@ -2181,33 +2163,31 @@ msgstr "Omset"
 #: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Eining #%(id)s</a>"
 
 #: templates/editor/units/edit.html:19
 msgid "Priority:"
-msgstr ""
+msgstr "Prioritet:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
-msgstr ""
+msgstr "Kontekst:"
 
 #: templates/editor/units/edit.html:36
-#, fuzzy
 msgid "Locations:"
-msgstr "Plasseringar"
+msgstr "Plasseringar:"
 
 #: templates/editor/units/edit.html:46
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminologi:"
 
 #: templates/editor/units/edit.html:49
 msgid "Insert the translated term into the editor"
 msgstr ""
 
 #: templates/editor/units/edit.html:62
-#, fuzzy
 msgid "Comments:"
-msgstr "Merknader"
+msgstr "Kommentarar:"
 
 #: templates/editor/units/edit.html:72
 msgid "Click to open the image in a popup"
@@ -2215,15 +2195,15 @@ msgstr ""
 
 #: templates/editor/units/edit.html:86
 msgid "Screenshots..."
-msgstr ""
+msgstr "Skjermenbilde …"
 
 #: templates/editor/units/edit.html:109 templates/editor/units/edit.html:136
 msgid "Copy into translation"
-msgstr ""
+msgstr "Kopier inn i omsetjinga"
 
 #: templates/editor/units/edit.html:131
 msgid "Report a problem with this string"
-msgstr ""
+msgstr "Rapporter eit problem med denne strengen"
 
 #: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
 #: templates/editor/units/edit.html:261
@@ -2236,7 +2216,7 @@ msgstr ""
 
 #: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
 msgid "Suggest"
-msgstr "Gje framlegg"
+msgstr "Føreslå"
 
 #: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
@@ -2256,11 +2236,11 @@ msgstr ""
 
 #: templates/editor/units/edit.html:188
 msgid "Show Timeline"
-msgstr ""
+msgstr "Vis tidslinje"
 
 #: templates/editor/units/edit.html:190
 msgid "Add Comment"
-msgstr ""
+msgstr "Legg til kommentar"
 
 #: templates/editor/units/edit.html:192
 msgid "Raw View"
@@ -2312,31 +2292,28 @@ msgid "Insert this symbol into the editor"
 msgstr ""
 
 #: templates/editor/units/edit.html:281
-#, fuzzy
 msgid "User suggestions"
-msgstr "Vis framlegg"
+msgstr "Brukarforslag"
 
 #: templates/editor/units/edit.html:300
 msgid "Accept suggestion"
-msgstr "Godkjenn framlegg"
+msgstr "Godkjenn forslaget"
 
 #: templates/editor/units/edit.html:305
 msgid "Reject suggestion"
-msgstr "Avvis framlegg"
+msgstr "Avvis forslaget"
 
 #: templates/editor/units/edit.html:311
-#, fuzzy
 msgid "Remove suggestion"
-msgstr "Avvis framlegg"
+msgstr "Fjern forslaget"
 
 #: templates/editor/units/edit.html:325
 msgid "A long time ago"
-msgstr ""
+msgstr "For lenge sidan"
 
 #: templates/editor/units/term_edit.html:9
-#, fuzzy
 msgid "Comment: "
-msgstr "Merknader"
+msgstr "Kommentar:"
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical issues with the translation"
@@ -2344,7 +2321,7 @@ msgstr ""
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical errors:"
-msgstr ""
+msgstr "Kritiske feil:"
 
 #: templates/editor/units/xhr_checks.html:12
 #: templates/editor/units/xhr_checks.html:32
@@ -2366,19 +2343,19 @@ msgstr ""
 
 #: templates/editor/units/xhr_comment.html:13
 msgid "Remove comment"
-msgstr ""
+msgstr "Fjern kommentar"
 
 #: templates/editor/units/xhr_comment.html:16
 msgid "Last comment:"
-msgstr ""
+msgstr "Siste kommentar:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "Tidslinje"
 
 #: templates/editor/units/xhr_timeline.html:32
 msgid "Last comment removed"
-msgstr ""
+msgstr "Siste kommentar fjerna"
 
 #: templates/editor/units/xhr_timeline.html:38
 #, python-format
@@ -2392,23 +2369,23 @@ msgstr ""
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
-msgstr ""
+msgstr "Eining oppretta"
 
 #: templates/errors/400.html:4 templates/errors/400.html.py:11
 msgid "Bad Request"
-msgstr ""
+msgstr "Ugyldig førespurnad"
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Feil 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
-msgstr ""
+msgstr "Ulovleg operasjon."
 
 #: templates/errors/403.html:4 templates/errors/403.html.py:8
 msgid "Permission Denied"
-msgstr ""
+msgstr "Løyve nekta."
 
 #: templates/errors/403.html:13
 msgid "You don't seem to have permissions to access this page."
@@ -2424,7 +2401,7 @@ msgstr ""
 
 #: templates/errors/500.html:4 templates/errors/500.html.py:8
 msgid "Server Error"
-msgstr ""
+msgstr "Tenarfeil"
 
 #: templates/errors/500.html:10
 msgid "A server error has occurred. Thank you for your patience."
@@ -2432,7 +2409,7 @@ msgstr ""
 
 #: templates/errors/500.html:16
 msgid "Exception:"
-msgstr ""
+msgstr "Unnatak:"
 
 #: templates/errors/500.html:21
 #, python-format
@@ -2488,24 +2465,24 @@ msgstr ""
 
 #: templates/layout.html:113
 msgid "Public Profile"
-msgstr ""
+msgstr "Offentleg profil"
 
 #: templates/layout.html:115 templates/user/profile.html:67
 #: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
-msgstr ""
+msgstr "Statistikk"
 
 #: templates/layout.html:117
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 #: templates/layout.html:120
 msgid "Sign out"
-msgstr ""
+msgstr "Logg ut"
 
 #: templates/layout.html:124
 msgid "Sign In"
-msgstr ""
+msgstr "Logg inn"
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2530,23 +2507,23 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
-msgstr ""
+msgstr "Krev handling"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Før du held fram må du lese og godkjenne følgjande dokument."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
-msgstr ""
+msgstr "Nei takk. Logg ut"
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "Hald fram"
 
 #: templates/translation_projects/_nav.html:26
 msgid "Terminology"
-msgstr ""
+msgstr "Terminologi"
 
 #: templates/translation_projects/admin/permissions.html:9
 msgid ""
@@ -2555,26 +2532,24 @@ msgid ""
 msgstr ""
 
 #: templates/translation_projects/terminology/_term_edit.html:11
-#, fuzzy
 msgid "Description..."
-msgstr "Skildring"
+msgstr "Skildring …"
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
-msgstr ""
+msgstr "Detaljar …"
 
 #: templates/translation_projects/terminology/_term_edit.html:31
-#, fuzzy
 msgid "Translator Comments"
-msgstr "Merknad frå omsetjar"
+msgstr "Omsetjarmerknadar"
 
 #: templates/translation_projects/terminology/base.html:4
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Handsam terminologien"
 
 #: templates/translation_projects/terminology/manage.html:34
 msgid "Term"
-msgstr ""
+msgstr "Uttrykk"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
@@ -2597,7 +2572,7 @@ msgstr ""
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"
-msgstr ""
+msgstr "Fil"
 
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
@@ -2609,24 +2584,25 @@ msgstr ""
 
 #: templates/user/profile.html:16
 msgid "Anonymous User"
-msgstr ""
+msgstr "Anonym brukar"
 
 #: templates/user/profile.html:28
 msgid "Score:"
-msgstr ""
+msgstr "Poeng:"
 
 #: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
-msgstr ""
+msgstr "Mine poeng til no på %(server_title)s is %(score)s "
 
 #: templates/user/profile.html:31 templates/user/profile.html.py:43
+#, fuzzy
 msgid "Tweet this!"
-msgstr ""
+msgstr "Tweet dette!"
 
 #: templates/user/profile.html:40
 msgid "No contributions in the last month"
-msgstr ""
+msgstr "Ingen bidrag den siste månaden"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -2648,15 +2624,15 @@ msgstr ""
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"
-msgstr ""
+msgstr "Siste aktivitet:"
 
 #: templates/user/profile.html:76
 msgid "My Website"
-msgstr ""
+msgstr "Nettstaden min"
 
 #: templates/user/profile.html:82
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "LinkedIn-profilen min"
 
 #: templates/user/profile.html:91
 msgid ""
@@ -2717,20 +2693,19 @@ msgstr ""
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Velkomen til Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
 msgstr ""
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
-msgstr "Tildel handling"
+msgstr "Logg inn"
 
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
-msgstr ""
+msgstr "Største bidragsytarar denne månaden"
 
 #, fuzzy
 #~ msgid "Source Terms"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2015-04-10 08:02+0000\n"
-"Last-Translator: Phuchit <qoopooh@gmail.com>\n"
+"PO-Revision-Date: 2016-04-16 20:10+0000\n"
+"Last-Translator: teerapat.top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1428652956.000000\n"
+"X-POOTLE-MTIME: 1460837438.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -30,19 +30,18 @@ msgstr ""
 
 #: static/js/admin/components/ItemDelete.js:49
 msgid "Delete"
-msgstr ""
+msgstr "ลบ"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
-#, fuzzy
 msgid "Add Language"
-msgstr "ภาษาทั้งหมด"
+msgstr "เพิ่มภาษา"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr ""
+msgstr "ยกเลิก"
 
 #: static/js/admin/components/Language/LanguageController.js:53
 #, python-format
@@ -59,7 +58,7 @@ msgstr[0] ""
 
 #: static/js/admin/components/Language/LanguageController.js:73
 msgid "Search Languages"
-msgstr ""
+msgstr "ค้นหาภาษา"
 
 #: static/js/admin/components/Language/LanguageController.js:74
 msgid "Find language by name, code"
@@ -67,7 +66,7 @@ msgstr ""
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "แก้ไขภาษา"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
@@ -103,12 +102,12 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:152
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
-msgstr ""
+msgstr "บันทึก"
 
 #: static/js/admin/components/Language/LanguageForm.js:98
 #: static/js/admin/components/Project/ProjectForm.js:144
 msgid "Overview"
-msgstr ""
+msgstr "ภาพรวม"
 
 #: static/js/admin/components/Language/LanguageForm.js:99
 #: static/js/admin/components/Project/ProjectForm.js:146
@@ -117,9 +116,8 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
-#, fuzzy
 msgid "Add Project"
-msgstr "โครงการทั้งหมด"
+msgstr "เพิ่มโครงการ"
 
 #: static/js/admin/components/Project/ProjectController.js:53
 #, python-format
@@ -186,20 +184,20 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:145
 msgid "Languages"
-msgstr ""
+msgstr "ภาษา"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
-msgstr ""
+msgstr "โหลดเพิ่มเติม"
 
 #: static/js/admin/components/Search.js:92
 msgid "Loading..."
-msgstr ""
+msgstr "กำลังโหลด..."
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr ""
+msgstr "เพิ่มผู้ใช้"
 
 #: static/js/admin/components/User/UserController.js:53
 #, python-format
@@ -216,7 +214,7 @@ msgstr[0] ""
 
 #: static/js/admin/components/User/UserController.js:73
 msgid "Search Users"
-msgstr ""
+msgstr "ค้นหาผู้ใช้"
 
 #: static/js/admin/components/User/UserController.js:74
 msgid "Find user by name, email, properties"
@@ -224,7 +222,7 @@ msgstr ""
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr ""
+msgstr "แก้ไขผู้ใช้"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
@@ -240,7 +238,7 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:83
 msgid "Username"
-msgstr ""
+msgstr "ชื่อผู้ใช้"
 
 #: static/js/admin/components/User/UserForm.js:69
 msgid "Active"
@@ -252,16 +250,16 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:94
 #: static/js/auth/components/PasswordResetForm.js:114
 msgid "Password"
-msgstr ""
+msgstr "รหัสผ่าน"
 
 #: static/js/admin/components/User/UserForm.js:78
 msgid "Set a new password"
-msgstr ""
+msgstr "ตั้งรหัสผ่านใหม่"
 
 #: static/js/admin/components/User/UserForm.js:94
 #: static/js/auth/components/SignUpForm.js:90
 msgid "Email"
-msgstr ""
+msgstr "อีเมล"
 
 #: static/js/admin/components/User/UserForm.js:104
 msgid "Administrator"
@@ -305,15 +303,15 @@ msgstr ""
 
 #: static/js/admin/components/User/UserForm.js:156
 msgid "Public Profile"
-msgstr ""
+msgstr "ข้อมูลส่วนตัวสาธารณะ"
 
 #: static/js/admin/components/User/UserForm.js:157
 msgid "Settings"
-msgstr ""
+msgstr "การตั้งค่า"
 
 #: static/js/admin/components/User/UserForm.js:158
 msgid "Statistics"
-msgstr ""
+msgstr "สถิติ"
 
 #: static/js/admin/components/User/UserForm.js:159
 msgid "Reports"
@@ -625,11 +623,11 @@ msgstr "ขยายรายละเอียด"
 
 #: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "แก้ไขข้อมูลส่วนตัวสาธารณะของฉัน"
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr ""
+msgstr "ข้อมูลส่วนตัวสาธารณะของฉัน"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
@@ -684,7 +682,7 @@ msgstr ""
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "ปีที่แล้ว%s ปีที่แล้ว"
+msgstr[0] ""
 
 #: static/js/utils.js:168
 #, javascript-format
