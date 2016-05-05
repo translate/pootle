@@ -15,7 +15,6 @@ import six
 
 import pytest
 
-import pytest_pootle
 from pytest_pootle.utils import update_store
 
 from translate.storage.factory import getclass
@@ -107,22 +106,41 @@ def test_sync(fr_tutorial_remove_sync_po):
 
 
 @pytest.mark.django_db
-def test_update_from_ts(en_tutorial_po):
-    from translate.storage.factory import getclass
-
+def test_update_from_ts(en_tutorial_po, test_fs):
     # Parse store
     en_tutorial_po.update_from_disk()
-    ts_dir = os.path.join(
-        os.path.dirname(pytest_pootle.__file__),
-        'data', 'ts')
     tp = en_tutorial_po.translation_project
-    store_filepath = os.path.join(ts_dir, tp.real_path, 'tutorial.ts')
-    with open(store_filepath) as storefile:
-        store = getclass(storefile)(storefile.read())
+    with test_fs.open(['data', 'ts', tp.real_path, 'tutorial.ts']) as f:
+        store = getclass(f)(f.read())
     en_tutorial_po.update(store)
 
     assert(not en_tutorial_po.units[1].hasplural())
     assert(en_tutorial_po.units[2].hasplural())
+
+
+@pytest.mark.django_db
+def test_update_ts_plurals(store_po, test_fs):
+    with test_fs.open(['data', 'ts', 'add_plurals.ts']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store)
+    assert store_po.units[0].hasplural()
+
+    with test_fs.open(['data', 'ts', 'update_plurals.ts']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store)
+    assert store_po.units[0].hasplural()
+
+
+@pytest.mark.django_db
+def test_update_with_non_acii(en_tutorial_po, test_fs):
+    # Parse store
+    en_tutorial_po.update_from_disk()
+    tp = en_tutorial_po.translation_project
+    with test_fs.open(['data', 'po', tp.real_path,
+                       'tutorial_non_ascii.po']) as f:
+        store = getclass(f)(f.read())
+    en_tutorial_po.update(store)
+    assert en_tutorial_po.units[0].target == "Hèllö, wôrld"
 
 
 @pytest.mark.django_db
