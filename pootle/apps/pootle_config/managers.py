@@ -51,7 +51,12 @@ class ConfigQuerySet(models.QuerySet):
         return self.base_qs.filter(**self.get_model_kwargs(model))
 
     def get_config(self, key, model=None):
-        return self.get_config_queryset(model).get(key=key).value
+        conf = self.get_config_queryset(model)
+        try:
+            key = conf.get(key=key)
+        except self.model.DoesNotExist:
+            return None
+        return key.value
 
     def get_config_queryset(self, model):
         if model:
