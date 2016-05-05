@@ -560,22 +560,19 @@ def test_cmd_config_clear(capfd):
     config.get().append_config("foo", "bar")
     call_command("config", "-c", "foo")
 
-    with pytest.raises(config.get().model.DoesNotExist):
-        config.get().get_config("foo")
+    assert config.get().get_config("foo") is None
 
     # lets add 2 config and clear them
     config.get().append_config("foo", "bar")
     config.get().append_config("foo", "bar")
     call_command("config", "-c", "foo")
-    with pytest.raises(config.get().model.DoesNotExist):
-        config.get().get_config("foo")
+    assert config.get().get_config("foo") is None
 
     # lets add 2 config with diff v and clear them
     config.get().append_config("foo", "bar")
     config.get().append_config("foo", "bar2")
     call_command("config", "-c", "foo")
-    with pytest.raises(config.get().model.DoesNotExist):
-        config.get().get_config("foo")
+    assert config.get().get_config("foo") is None
 
     # lets add 2 config with diff k and clear one
     config.get().set_config("foo", "bar")
@@ -608,8 +605,7 @@ def test_cmd_config_clear_model(capfd):
         "pootle_project.project",
         "-c", "foo")
 
-    with pytest.raises(config.get(Project).model.DoesNotExist):
-        config.get(Project).get_config("foo")
+    assert config.get(Project).get_config("foo") is None
 
     # lets add 2 config and clear them
     config.get(Project).append_config("foo", "bar")
@@ -618,8 +614,8 @@ def test_cmd_config_clear_model(capfd):
         "config",
         "pootle_project.project",
         "-c", "foo")
-    with pytest.raises(config.get(Project).model.DoesNotExist):
-        config.get(Project).get_config("foo")
+
+    assert config.get(Project).get_config("foo") is None
 
     # lets add 2 config with diff v and clear them
     config.get(Project).append_config("foo", "bar")
@@ -628,8 +624,8 @@ def test_cmd_config_clear_model(capfd):
         "config",
         "pootle_project.project",
         "-c", "foo")
-    with pytest.raises(config.get(Project).model.DoesNotExist):
-        config.get(Project).get_config("foo")
+
+    assert config.get(Project).get_config("foo") is None
 
     # lets add 2 config with diff k and clear one
     config.get(Project).set_config("foo", "bar")
@@ -645,7 +641,7 @@ def test_cmd_config_clear_model(capfd):
 @pytest.mark.django_db
 def test_cmd_config_clear_instance(capfd):
     project = Project.objects.get(code="project0")
-    config_model = config.get(Project, instance=project).model
+
     # -c requires a key
     with pytest.raises(CommandError):
         call_command(
@@ -669,8 +665,7 @@ def test_cmd_config_clear_instance(capfd):
         str(project.pk),
         "-c", "foo")
 
-    with pytest.raises(config_model.DoesNotExist):
-        config.get(Project, instance=project).get_config("foo")
+    assert config.get(Project, instance=project).get_config("foo") is None
 
     # lets add 2 config and clear them
     config.get(Project, instance=project).append_config("foo", "bar")
@@ -680,8 +675,7 @@ def test_cmd_config_clear_instance(capfd):
         "pootle_project.project",
         str(project.pk),
         "-c", "foo")
-    with pytest.raises(config_model.DoesNotExist):
-        config.get(Project, instance=project).get_config("foo")
+    assert config.get(Project, instance=project).get_config("foo") is None
 
     # lets add 2 config with diff v and clear them
     config.get(Project, instance=project).append_config("foo", "bar")
@@ -691,8 +685,7 @@ def test_cmd_config_clear_instance(capfd):
         "pootle_project.project",
         str(project.pk),
         "-c", "foo")
-    with pytest.raises(config_model.DoesNotExist):
-        config.get(Project, instance=project).get_config("foo")
+    assert config.get(Project, instance=project).get_config("foo") is None
 
     # lets add 2 config with diff k and clear one
     config.get(Project, instance=project).set_config("foo", "bar")
