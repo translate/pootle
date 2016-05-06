@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 import pytest
 
 from django.contrib.contenttypes.models import ContentType
@@ -17,6 +19,8 @@ from pootle_config.delegate import (
     config_should_not_be_set, config_should_not_be_appended)
 from pootle_config.exceptions import ConfigurationError
 from pootle_config.models import Config
+from pootle_config.utils import (
+    ConfigDict, ModelConfig, ObjectConfig, SiteConfig)
 from pootle_project.models import Project
 
 
@@ -491,3 +495,118 @@ def test_config_no_append():
     with pytest.raises(ConfigurationError):
         config.get(Project).append_config("foo2", "bar")
     config.get(Project).append_config("foo3", "bar")
+
+
+@pytest.mark.django_db
+def test_config_site_util():
+    conf = SiteConfig()
+    assert conf.items() == conf.values() == conf.keys() == []
+    # keys are returned order by key
+    other_dict = OrderedDict()
+    other_dict["foo.a"] = "bar"
+    other_dict["foo.b"] = dict(bar=23)
+    other_dict["foo.c"] = [1, 2, 3]
+    conf["foo.a"] = "bar"
+    conf["foo.b"] = dict(bar=23)
+    conf["foo.c"] = [1, 2, 3]
+    assert conf.items() == other_dict.items()
+    assert conf.values() == other_dict.values()
+    assert conf.keys() == other_dict.keys()
+    assert [x for x in conf] == other_dict.keys()
+    assert all(x in conf for x in other_dict)
+    assert all(conf[k] == v for k, v in other_dict.items())
+    assert all(conf.get(k) == v for k, v in other_dict.items())
+    assert conf.get("DOESNOTEXIST") is None
+    assert conf.get("DOESNOTEXIST", "foo") == "foo"
+    with pytest.raises(KeyError):
+        conf["DOESNOTEXIST"]
+    assert SiteConfig().items() == other_dict.items()
+    assert SiteConfig().values() == other_dict.values()
+    assert SiteConfig().keys() == other_dict.keys()
+    assert [x for x in SiteConfig()] == other_dict.keys()
+    assert all(x in SiteConfig() for x in other_dict)
+    assert all(SiteConfig()[k] == v for k, v in other_dict.items())
+    assert all(SiteConfig().get(k) == v for k, v in other_dict.items())
+    assert SiteConfig().get("DOESNOTEXIST") is None
+    assert SiteConfig().get("DOESNOTEXIST", "foo") == "foo"
+    with pytest.raises(KeyError):
+        SiteConfig()["DOESNOTEXIST"]
+
+
+@pytest.mark.django_db
+def test_config_model_util():
+    conf = ModelConfig(Project)
+    assert conf.items() == conf.values() == conf.keys() == []
+    # keys are returned order by key
+    other_dict = OrderedDict()
+    other_dict["foo.a"] = "bar"
+    other_dict["foo.b"] = dict(bar=23)
+    other_dict["foo.c"] = [1, 2, 3]
+    conf["foo.a"] = "bar"
+    conf["foo.b"] = dict(bar=23)
+    conf["foo.c"] = [1, 2, 3]
+    assert conf.items() == other_dict.items()
+    assert conf.values() == other_dict.values()
+    assert conf.keys() == other_dict.keys()
+    assert [x for x in conf] == other_dict.keys()
+    assert all(x in conf for x in other_dict)
+    assert all(conf[k] == v for k, v in other_dict.items())
+    assert all(conf.get(k) == v for k, v in other_dict.items())
+    assert conf.get("DOESNOTEXIST") is None
+    assert conf.get("DOESNOTEXIST", "foo") == "foo"
+    with pytest.raises(KeyError):
+        conf["DOESNOTEXIST"]
+    assert ModelConfig(Project).items() == other_dict.items()
+    assert ModelConfig(Project).values() == other_dict.values()
+    assert ModelConfig(Project).keys() == other_dict.keys()
+    assert [x for x in ModelConfig(Project)] == other_dict.keys()
+    assert all(x in ModelConfig(Project) for x in other_dict)
+    assert all(ModelConfig(Project)[k] == v for k, v in other_dict.items())
+    assert all(ModelConfig(Project).get(k) == v for k, v in other_dict.items())
+    assert ModelConfig(Project).get("DOESNOTEXIST") is None
+    assert ModelConfig(Project).get("DOESNOTEXIST", "foo") == "foo"
+    with pytest.raises(KeyError):
+        ModelConfig(Project)["DOESNOTEXIST"]
+
+
+@pytest.mark.django_db
+def test_config_object_util():
+    project = Project.objects.first()
+    conf = ObjectConfig(project)
+    assert conf.items() == conf.values() == conf.keys() == []
+    # keys are returned order by key
+    other_dict = OrderedDict()
+    other_dict["foo.a"] = "bar"
+    other_dict["foo.b"] = dict(bar=23)
+    other_dict["foo.c"] = [1, 2, 3]
+    conf["foo.a"] = "bar"
+    conf["foo.b"] = dict(bar=23)
+    conf["foo.c"] = [1, 2, 3]
+    assert conf.items() == other_dict.items()
+    assert conf.values() == other_dict.values()
+    assert conf.keys() == other_dict.keys()
+    assert [x for x in conf] == other_dict.keys()
+    assert all(x in conf for x in other_dict)
+    assert all(conf[k] == v for k, v in other_dict.items())
+    assert all(conf.get(k) == v for k, v in other_dict.items())
+    assert conf.get("DOESNOTEXIST") is None
+    assert conf.get("DOESNOTEXIST", "foo") == "foo"
+    with pytest.raises(KeyError):
+        conf["DOESNOTEXIST"]
+    assert ObjectConfig(project).items() == other_dict.items()
+    assert ObjectConfig(project).values() == other_dict.values()
+    assert ObjectConfig(project).keys() == other_dict.keys()
+    assert [x for x in ObjectConfig(project)] == other_dict.keys()
+    assert all(x in ObjectConfig(project) for x in other_dict)
+    assert all(ObjectConfig(project)[k] == v for k, v in other_dict.items())
+    assert all(ObjectConfig(project).get(k) == v for k, v in other_dict.items())
+    assert ObjectConfig(project).get("DOESNOTEXIST") is None
+    assert ObjectConfig(project).get("DOESNOTEXIST", "foo") == "foo"
+    with pytest.raises(KeyError):
+        ObjectConfig(project)["DOESNOTEXIST"]
+
+
+@pytest.mark.django_db
+def test_config_util_dict():
+    with pytest.raises(NotImplementedError):
+        ConfigDict("foo")["bar"]
