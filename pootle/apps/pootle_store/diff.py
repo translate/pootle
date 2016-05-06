@@ -20,7 +20,7 @@ class UnitDiffProxy(UnitProxy):
     """Wraps File/DB Unit dicts used by StoreDiff for equality comparison"""
 
     match_attrs = ["context", "developer_comment", "locations",
-                   "source", "target", "translator_comment"]
+                   "source", "state", "target", "translator_comment"]
 
     def __eq__(self, other):
         return all(getattr(self, k) == getattr(other, k)
