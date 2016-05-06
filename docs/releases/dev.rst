@@ -21,6 +21,8 @@ Details of changes
 - :djadmin:`refresh_scores` now recalculates user scores and accepts
   multiple usernames.
 - :djadmin:`contributors` has two new options
+- :djadmin:`list_serializers` has been added to view serializers and
+  deserializers installed on your system.
   :option:`--since <contributors --since>` and
   :option:`--only-emails <contributors --only-emails>`.
 - :djadmin:`flush_cache` flushes ``default``, ``redis``, ``stats`` caches,
