@@ -287,3 +287,12 @@ def test_unit_repr():
     unit = Unit.objects.first()
     assert str(unit) == str(unit.convert(unit.get_unit_class()))
     assert unicode(unit) == unicode(unit.source)
+
+
+@pytest.mark.django_db
+def test_unit_get_terminology():
+    unit_filters = dict(
+        store__pootle_path__startswith="/language0/project0/",
+        state=TRANSLATED)
+    unit = Unit.objects.filter(**unit_filters).first()
+    unit.get_terminology()
