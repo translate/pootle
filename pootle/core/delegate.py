@@ -12,6 +12,7 @@ from pootle.core.plugin.delegate import Getter, Provider
 
 config = Getter(providing_args=["instance"])
 search_backend = Getter(providing_args=["instance"])
+lang_mapper = Getter(providing_args=["instance"])
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
