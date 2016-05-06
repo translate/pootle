@@ -185,8 +185,6 @@ class Command(BaseCommand):
     def handle_get_config(self, conf, **kwargs):
         try:
             v = conf.get_config(kwargs["get"])
-        except conf.model.DoesNotExist as e:
-            return None
         except conf.model.MultipleObjectsReturned as e:
             raise CommandError(e)
         if kwargs["json"]:

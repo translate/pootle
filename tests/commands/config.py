@@ -30,14 +30,11 @@ def _repr_value(value):
 def _test_config_get(out, key, model=None, instance=None, as_repr=False):
     expected = ""
     conf = config.get(model, instance=instance)
-    try:
-        expected = conf.get_config(key)
-        expected_class = type(expected).__name__
-        expected = json.dumps(expected)
-        if not as_repr:
-            expected = "%s(%s)" % (expected_class, expected)
-    except (conf.model.DoesNotExist, conf.model.MultipleObjectsReturned):
-        pass
+    expected = conf.get_config(key)
+    expected_class = type(expected).__name__
+    expected = json.dumps(expected)
+    if not as_repr:
+        expected = "%s(%s)" % (expected_class, expected)
     assert expected == out
 
 

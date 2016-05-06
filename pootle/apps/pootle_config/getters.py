@@ -38,7 +38,5 @@ def config_getter(sender=None, instance=None, key=None, **kwargs):
 
     try:
         return conf.get_config(key)
-    except Config.DoesNotExist:
-        return None
     except Config.MultipleObjectsReturned as e:
         raise ConfigurationError(e)
