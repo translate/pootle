@@ -93,7 +93,7 @@ class ConfigQuerySet(models.QuerySet):
                 conf = conf.filter(key__in=key)
         elif key is not None:
             conf = conf.filter(key=key)
-        for item in conf:
+        for item in conf.order_by("key", "pk"):
             # dont use values_list to trigger to_python
             conf_list.append((item.key, item.value))
         return conf_list
