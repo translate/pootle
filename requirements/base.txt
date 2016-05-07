@@ -15,6 +15,7 @@ django-transaction-hooks
 # Libraries
 cssmin
 diff-match-patch>=20121119
+dirsync
 elasticsearch>=1.0.0,<1.7
 jsonfield
 lxml>=2.2.0
