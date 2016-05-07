@@ -9,3 +9,15 @@
 
 class Http400(Exception):
     pass
+
+
+class MissingPluginError(KeyError):
+    pass
+
+
+class NotConfiguredError(KeyError):
+    pass
+
+
+class MissingHandlerError(KeyError):
+    pass
