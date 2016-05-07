@@ -13,7 +13,7 @@ from django.utils.functional import cached_property
 
 from .fields import to_python as multistring_to_python
 from .unit import UnitProxy
-from .util import OBSOLETE
+from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
 class UnitDiffProxy(UnitProxy):
@@ -31,7 +31,6 @@ class UnitDiffProxy(UnitProxy):
 
 
 class DBUnit(UnitDiffProxy):
-
     pass
 
 
@@ -80,13 +79,20 @@ class StoreDiff(object):
         for unit in self.file_store.units:
             if unit.isheader():
                 continue
+            state = UNTRANSLATED
+            if unit.isobsolete():
+                state = OBSOLETE
+            elif unit.istranslated():
+                state = TRANSLATED
+            elif unit.isfuzzy():
+                state = FUZZY
             file_units[unit.getid()] = {
                 "unitid": unit.getid(),
                 "context": unit.getcontext(),
                 "locations": unit.getlocations(),
                 "source": unit.source,
                 "target": unit.target,
-                "state": unit.get_state_n(),
+                "state": state,
                 "developer_comment": unit.getnotes(origin="developer"),
                 "translator_comment": unit.getnotes(origin="translator")}
         return file_units
