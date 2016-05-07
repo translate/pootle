@@ -300,7 +300,7 @@
             <div class="suggestion-actions">
               {% if canreview %}
                 <a accesskey="a" class="suggestion-action suggestion-toggle js-suggestion-toggle"
-                  data-sugg-id="{{ sugg.id }}">
+                  data-sugg-id="{{ sugg.id }}" data-translation-aid="{{ sugg.target }}">
                   <i class="icon-desc suggestion-expand" dir="{% locale_dir %}"
                     title="{% trans 'More options' %}"></i>
                   <i class="icon-asc suggestion-collapse" dir="{% locale_dir %}"
