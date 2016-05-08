@@ -427,7 +427,7 @@ def complex_po(test_fs):
         translation_project=tp,
         name="complex_store.po")
 
-    with test_fs.open("complex.po") as f:
+    with test_fs.open(("data", "po", "complex.po")) as f:
         ttk = getclass(f)(f.read())
 
     store.update(ttk)
