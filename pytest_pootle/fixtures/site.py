@@ -111,7 +111,9 @@ def test_fs():
                 os.path.dirname(pytest_pootle.__file__),
                 path)
 
-        def open(self, path, *args, **kwargs):
-            return open(self.path(path), *args, **kwargs)
+        def open(self, paths, *args, **kwargs):
+            if isinstance(paths, (list, tuple)):
+                paths = os.path.join(*paths)
+            return open(self.path(paths), *args, **kwargs)
 
     return TestFs()
