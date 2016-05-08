@@ -29,6 +29,10 @@ class ConfigDict(object):
     def conf(self):
         return OrderedDict(self.__config__.list_config())
 
+    def reload(self):
+        if "conf" in self.__dict__:
+            del self.__dict__["conf"]
+
     def __contains__(self, k):
         return self.conf.__contains__(k)
 
@@ -40,8 +44,7 @@ class ConfigDict(object):
 
     def __setitem__(self, k, v):
         self.__config__.set_config(k, v)
-        if "conf" in self.__dict__:
-            del self.__dict__["conf"]
+        self.reload()
 
     def get(self, k, default=None):
         return self.conf.get(k, default)
