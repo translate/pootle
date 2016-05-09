@@ -20,8 +20,8 @@ class ConfigQuerySet(models.QuerySet):
         super(ConfigQuerySet, self).__init__(*args, **kwargs)
         self.query_model = None
 
-    def _clone(self, klass=None, setup=None, **kwargs):
-        clone = super(ConfigQuerySet, self)._clone(klass, setup, **kwargs)
+    def _clone(self, **kwargs):
+        clone = super(ConfigQuerySet, self)._clone(**kwargs)
         clone.query_model = self.query_model
         return clone
 
