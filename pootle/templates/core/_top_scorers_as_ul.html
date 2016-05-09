@@ -1,0 +1,19 @@
+{% load i18n humanize profile_tags %}
+{% if top_scorers %}
+<label>{% trans 'Top contributors:' %}</label>
+<ul class="top-scorers">
+  {% for user in top_scorers|slice:":3" %}
+    <li class="top-scorer">
+      <div class="place">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</div>
+      <div class="user">
+        <a href="{{ user.get_absolute_url }}">
+          <img src="{{ user|gravatar:20 }}" class="avatar" />
+          <span class="user-name">{{ user.display_name }}</span>
+        </a>
+      </div>
+      <div class="number">{% if user.public_total_score > 0 %}+{% endif %}{{ user.public_total_score|floatformat:0|intcomma }}</div>
+    </li>
+  {% endfor %}
+</ul>
+<div class="clear"></div>
+{% endif %}

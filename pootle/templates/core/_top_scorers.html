@@ -1,4 +1,5 @@
 {% load i18n humanize profile_tags %}
+
 {% if top_scorers %}
 <table id="top-scorers">
   <thead>
@@ -20,7 +21,7 @@
           <li class="name"><a href="{{ user.get_absolute_url }}">{{ user.display_name }}</a></li>
         </ul>
       </td>
-      <td class="number">{{ user.public_total_score|intcomma }}</td>
+      <td class="number">{{ user.public_total_score|floatformat|intcomma }}</td>
     </tr>
   {% endfor %}
   </tbody>
