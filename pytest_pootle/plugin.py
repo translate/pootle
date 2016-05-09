@@ -15,6 +15,7 @@ import pytest
 from . import fixtures
 from .fixtures import models as fixtures_models
 from .fixtures.core import utils as fixtures_core_utils
+from .fixtures import pootle_fs as fixtures_fs
 
 
 def _load_fixtures(*modules):
@@ -57,5 +58,5 @@ def po_directory(request, tmpdir, settings):
 
 
 pytest_plugins = tuple(
-    _load_fixtures(fixtures, fixtures_core_utils, fixtures_models),
+    _load_fixtures(fixtures, fixtures_core_utils, fixtures_models, fixtures_fs),
 )
