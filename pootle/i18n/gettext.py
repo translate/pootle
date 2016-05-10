@@ -61,8 +61,16 @@ def language_dir(language_code):
     RTL_LANGS = [
         # Helpful list of RTL codes:
         # https://en.wikipedia.org/wiki/Right-to-left#RTL_Wikipedia_languages
-        "ar", "arc", "bcc", "bqi", "ckb", "dv", "fa", "glk", "he", "ks", "lrc",
-        "mzn", "pnb", "ps", "sd", "ug", "ur", "yi", "nqo",
+        'ar', 'arc', 'bcc', 'bqi', 'ckb', 'dv', 'fa', 'glk', 'he', 'ks', 'lrc',
+        'mzn', 'pnb', 'ps', 'sd', 'ug', 'ur', 'yi', 'nqo',
+        # and
+        # https://github.com/i18next/i18next/blob/ee3afd8e5d958e8d703a208194e59fa5228165fd/src/i18next.js#L257-L262
+        'shu', 'sqr', 'ssh', 'xaa', 'yhd', 'yud', 'aao', 'abh', 'abv', 'acm',
+        'acq', 'acw', 'acx', 'acy', 'adf', 'ads', 'aeb', 'aec', 'afb', 'ajp',
+        'apc', 'apd', 'arb', 'arq', 'ars', 'ary', 'arz', 'auz', 'avl', 'ayh',
+        'ayl', 'ayn', 'ayp', 'bbz', 'pga', 'iw', 'pbt', 'pbu', 'pst', 'prp',
+        'prd', 'ydd', 'yds', 'yih', 'ji', 'hbo', 'men', 'xmn', 'jpr', 'peo',
+        'pes', 'prs', 'sam',
     ]
     shortcode = language_code[:3]
 
