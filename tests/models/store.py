@@ -132,7 +132,7 @@ def test_update_ts_plurals(store_po, test_fs):
 
 
 @pytest.mark.django_db
-def test_update_with_non_acii(en_tutorial_po, test_fs):
+def test_update_with_non_ascii(en_tutorial_po, test_fs):
     # Parse store
     en_tutorial_po.update_from_disk()
     tp = en_tutorial_po.translation_project
