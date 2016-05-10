@@ -37,6 +37,7 @@ by adding ``Provider`` functions, which are decorated with the
 will gather data from all plugins configured to provide for a given
 ``Provider`` function.
 
+
 .. _plugins#basic-file-structure:
 
 Application file structure
@@ -97,7 +98,8 @@ configuration activates all of them for the "custom" application.
 Setting up a provider
 ---------------------
 
-The following is an example of providing custom context_data to the Pootle ``LanguageView``
+The following is an example of providing custom ``context_data`` to the Pootle
+``LanguageView``.
 
 Add a file called :file:`providers.py` with the following:
 
@@ -123,7 +125,7 @@ Setting up a getter
 -------------------
 
 The following is an example of customizing the ``Unit`` ``search_backend`` for an
-application
+application.
 
 Add a file called :file:`getters.py` with the following:
 
@@ -156,9 +158,9 @@ Pootle uses the `django.core.signals
 module to handle events.
 
 The following is an example of a ``receiver`` that emits a log warning whenever
-a ``Store`` cache is expired
+a ``Store`` cache is expired.
 
-Add a file called :file:`receivers.py` with the following code
+Add a file called :file:`receivers.py` with the following code:
 
 .. code-block:: python
 
