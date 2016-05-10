@@ -24,10 +24,10 @@ Signals, providers and getters
 
 Pootle emits ``Signals`` when key events happen. You can listen to these
 signals using a ``receiver`` to trigger custom behaviour. Pootle uses
-Django's Signals framework for handlingthese types of events.
+Django's Signals framework for handling these types of events.
 
 Pootle allows plugins to override the default behaviour using a ``Getter``
-function, whichare decorated with the ``pootle.core.plugin.getter`` decorator.
+function, which are decorated with the ``pootle.core.plugin.getter`` decorator.
 Once Pootle has received a response from a plugin for a ``Getter`` function
 it stops processing any further configured functions.
 
