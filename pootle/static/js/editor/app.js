@@ -2142,6 +2142,8 @@ PTL.editor = {
         fullname = result.username ? result.username : gettext('someone');
       }
       result.fullname = _.escape(fullname);
+      result.project = _.escape(result.project);
+      result.path = _.escape(result.path);
 
       filtered.push(result);
     }
