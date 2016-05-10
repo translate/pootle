@@ -58,8 +58,8 @@ Creating a plugin application
 Your application requires a `Django application configuration
 <https://docs.djangoproject.com/es/1.9/ref/applications/#for-application-authors>`_
 
-For an application named ``pootle_custom`` you need to add lines similar to the following
-in the :file:`__init__.py`:
+For an application named ``pootle_custom`` you need to add lines similar to the
+following in the :file:`__init__.py`:
 
 
 .. code-block:: python
@@ -69,11 +69,11 @@ in the :file:`__init__.py`:
 
 With the above configuration you should add an :file:`apps.py`.
 
-At a minimum this should define the ``PootleCustomConfig`` class with its ``name`` and
-``verbose_name``.
+At a minimum this should define the ``PootleCustomConfig`` class with its
+``name`` and ``verbose_name``.
 
-It can also be used to activate receivers, providers and getters. The following application
-configuration activates all of them for the "custom" application.
+It can also be used to activate receivers, providers and getters. The following
+application configuration activates all of them for the "custom" application.
 
 .. code-block:: python
 
