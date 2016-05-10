@@ -811,7 +811,7 @@ html[dir="rtl"] .suggestion-action
     opacity: 1;
 }
 
-#suggestions .extra-item-block
+#suggestions .extra-item-block.can-review
 {
     cursor: pointer;
 }
@@ -921,8 +921,8 @@ html[dir="rtl"] .extra-item-block .suggestion-feedback .buttons button
     display: block;
 }
 
-.extra-item-block.suggestion-expanded,
-.extra-item-block.suggestion-expanded:hover
+#suggestions .extra-item-block.suggestion-expanded.can-review,
+#suggestions .extra-item-block.suggestion-expanded.can-review:hover
 {
     box-shadow: 0 0 6px #6daa00;
     background-color: #f1f7e4;
@@ -950,9 +950,15 @@ html[dir="rtl"] .extra-item-block .suggestion-feedback .buttons button
     padding: 0.5em;
 }
 
-.extra-item-block:hover
+.extra-item-block:hover,
+#suggestions .extra-item-block.can-review:hover
 {
     background-color: #fff;
+}
+
+#suggestions .extra-item-block:hover
+{
+    background-color: #f1f7e4;
 }
 
 #translator-comment .extra-item-block

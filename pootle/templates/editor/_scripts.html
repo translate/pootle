@@ -28,6 +28,7 @@ $(function() {
     isAnonymous: {{ request.user.is_anonymous|yesno:"true,false" }},
     userId: {{ request.user.id }},
     localeDir: '{{ language.direction }}',
+    canReview: {{ canreview|yesno:"true,false" }},
   };
   {% if cansuggest or cantranslate %}
   options.mt = [

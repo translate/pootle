@@ -288,7 +288,7 @@
           <div class="extra-item-title">{% trans 'User suggestions' %}</div>
           {% for sugg in suggestions %}
           <div id="suggestion-{{ sugg.id }}"
-            class="js-user-suggestion extra-item-block"
+            class="js-user-suggestion extra-item-block{% if canreview %} can-review{% endif %}"
             data-translation-aid="{{ sugg.target }}"
             data-sugg-id="{{ sugg.id }}"
             data-suggestor-id="{{ sugg.user.id }}">

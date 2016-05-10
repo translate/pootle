@@ -238,8 +238,12 @@ PTL.editor = {
     });
     $(document).on('click', '.js-suggestion-toggle',
       (e) => this.toggleSuggestion(e, { canHide: true }));
-    $(document).on('click', '.js-user-suggestion',
-      (e) => this.toggleSuggestion(e, { canHide: false }));
+
+    if (this.settings.canReview) {
+      $(document).on('click', '.js-user-suggestion',
+        (e) => this.toggleSuggestion(e, { canHide: false }));
+    }
+
     $(document).on('click', '.js-translate-lightbox', () => this.closeSuggestion());
 
     $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
