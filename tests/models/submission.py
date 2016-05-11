@@ -11,9 +11,12 @@ import pytest
 from django.utils import timezone
 
 from pytest_pootle.factories import SubmissionFactory
+from pytest_pootle.utils import create_store
 
+from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from pootle_store.models import Suggestion, Unit
 from pootle_store.util import TRANSLATED, UNTRANSLATED
 
 
@@ -121,3 +124,79 @@ def test_needs_scorelog():
         new_value=u'',
     )
     assert submission.needs_scorelog()
+
+
+@pytest.mark.django_db
+def test_update_submission_ordering():
+    unit = Unit.objects.filter(state=UNTRANSLATED).first()
+    unit.markfuzzy()
+    unit.target = "Fuzzy Translation for " + unit.source_f
+    unit.save()
+
+    store = create_store(
+        unit.store.pootle_path,
+        "0",
+        [(unit.source_f, "Translation for " + unit.source_f)]
+    )
+    unit.store.update(store)
+    submission_field = Submission.objects.filter(unit=unit).latest().field
+    assert submission_field == SubmissionFields.TARGET
+
+
+@pytest.mark.django_db
+def test_new_translation_submission_ordering(client, request_users, settings):
+    unit = Unit.objects.filter(state=UNTRANSLATED).first()
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    url = '/xhr/units/%d/' % unit.id
+
+    response = client.post(
+        url,
+        {
+            'state': False,
+            'target_f_0': "Translation for " + unit.source_f,
+        },
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+    )
+
+    if check_permission('translate', response.wsgi_request):
+        assert response.status_code == 200
+        submission_field = Submission.objects.filter(unit=unit).latest().field
+        assert submission_field == SubmissionFields.TARGET
+    else:
+        assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_accept_sugg_submission_ordering(client, request_users, settings):
+    """Tests suggestion can be accepted with a comment."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    unit = Unit.objects.filter(suggestion__state='pending',
+                               state=UNTRANSLATED)[0]
+    unit.markfuzzy()
+    unit.target = "Fuzzy Translation for " + unit.source_f
+    unit.save()
+    sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    url = '/xhr/units/%d/suggestions/%d/' % (unit.id, sugg.id)
+    response = client.post(
+        url,
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+    )
+
+    if check_permission('review', response.wsgi_request):
+        assert response.status_code == 200
+        submission_field = Submission.objects.filter(unit=unit).latest().field
+        assert submission_field == SubmissionFields.TARGET
+    else:
+        assert response.status_code == 403
