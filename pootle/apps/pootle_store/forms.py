@@ -267,17 +267,25 @@ def unit_form_factory(language, snplurals=None, request=None):
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)
             super(UnitForm, self).__init__(*args, **kwargs)
-            self.updated_fields = []
+            self._updated_fields = []
 
             self.fields['target_f'].widget.attrs['data-translation-aid'] = \
                 self['target_f'].value()
+
+        @property
+        def updated_fields(self):
+            order_dict = {
+                SubmissionFields.STATE: 0,
+                SubmissionFields.TARGET: 1,
+            }
+            return sorted(self._updated_fields, key=lambda x: order_dict[x[0]])
 
         def clean_target_f(self):
             value = self.cleaned_data['target_f']
 
             if self.instance.target.strings != multistring(value or [u'']):
                 self.instance._target_updated = True
-                self.updated_fields.append((SubmissionFields.TARGET,
+                self._updated_fields.append((SubmissionFields.TARGET,
                                             to_db(self.instance.target),
                                             to_db(value)))
 
@@ -347,7 +355,7 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if old_state not in [new_state, OBSOLETE]:
                 self.instance._state_updated = True
-                self.updated_fields.append((SubmissionFields.STATE,
+                self._updated_fields.append((SubmissionFields.STATE,
                                             old_state, new_state))
 
                 self.cleaned_data['state'] = new_state

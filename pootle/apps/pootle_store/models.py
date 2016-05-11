@@ -12,6 +12,8 @@ import operator
 import os
 from hashlib import md5
 
+from collections import OrderedDict
+
 from translate.filters.decorators import Category
 from translate.storage import base
 
@@ -1138,11 +1140,11 @@ class Unit(models.Model, base.TranslationUnit):
         suggestion.review_time = current_time
         suggestion.save()
 
-        create_subs = {}
-        create_subs[SubmissionFields.TARGET] = [old_target, self.target]
+        create_subs = OrderedDict()
         if old_state != self.state:
             create_subs[SubmissionFields.STATE] = [old_state, self.state]
             self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
+        create_subs[SubmissionFields.TARGET] = [old_target, self.target]
 
         for field in create_subs:
             kwargs = {
@@ -1576,20 +1578,20 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         being available in `unit`. Let's look into replacing such members with
         something saner (#3895).
         """
-        create_subs = {}
-
-        # FIXME: extreme implicit hazard
-        if unit._target_updated:
-            create_subs[SubmissionFields.TARGET] = [
-                old_target,
-                unit.target_f,
-            ]
+        create_subs = OrderedDict()
 
         # FIXME: extreme implicit hazard
         if unit._state_updated:
             create_subs[SubmissionFields.STATE] = [
                 old_state,
                 unit.state,
+            ]
+
+        # FIXME: extreme implicit hazard
+        if unit._target_updated:
+            create_subs[SubmissionFields.TARGET] = [
+                old_target,
+                unit.target_f,
             ]
 
         # FIXME: extreme implicit hazard
