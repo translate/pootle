@@ -428,28 +428,30 @@ const stats = {
   updateChecksUI() {
     const data = this.state.checksData;
 
-    if (data !== null && Object.keys(data).length) {
-      this.$extraDetails.find('.js-checks').each(function updateChecksCategory() {
-        const $cat = $(this);
-        let empty = true;
+    if (data === null || !Object.keys(data).length) {
+      return;
+    }
 
-        $cat.find('.js-check').each(function updateCheck() {
-          const $check = $(this);
-          const code = $(this).data('code');
-          if (code in data) {
-            empty = false;
-            $check.show();
-            $check.find('.check-count .check-data').html(data[code]);
-          } else {
-            $check.hide();
-          }
-        });
+    this.$extraDetails.find('.js-checks').each(function updateChecksCategory() {
+      const $cat = $(this);
+      let empty = true;
 
-        $cat.toggle(!empty);
+      $cat.find('.js-check').each(function updateCheck() {
+        const $check = $(this);
+        const code = $(this).data('code');
+        if (code in data) {
+          empty = false;
+          $check.show();
+          $check.find('.check-count .check-data').html(data[code]);
+        } else {
+          $check.hide();
+        }
       });
 
-      $('#js-stats-checks').show();
-    }
+      $cat.toggle(!empty);
+    });
+
+    $('#js-stats-checks').show();
   },
 
   updateUI() {
