@@ -39,7 +39,7 @@ class StoreSerialization(object):
     @cached_property
     def serializers(self):
         available_serializers = serializers.gather(
-            self.store.__class__, instance=self.store)
+            self.store.translation_project.project.__class__)
         found_serializers = []
         for serializer in self.project_serializers:
             found_serializers.append(available_serializers[serializer])
@@ -59,7 +59,7 @@ class StoreSerialization(object):
         if not self.serializers:
             return data
         for serializer in self.serializers:
-            data = serializer(self, data).output
+            data = serializer(self.store, data).output
         return data
 
     def serialize(self):

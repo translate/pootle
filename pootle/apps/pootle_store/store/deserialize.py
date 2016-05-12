@@ -34,7 +34,7 @@ class StoreDeserialization(object):
     @cached_property
     def deserializers(self):
         available_deserializers = deserializers.gather(
-            self.store.__class__, instance=self.store)
+            self.store.translation_project.project.__class__)
         found_deserializers = []
         for deserializer in self.project_deserializers:
             found_deserializers.append(available_deserializers[deserializer])
@@ -44,7 +44,7 @@ class StoreDeserialization(object):
         if not self.deserializers:
             return data
         for deserializer in self.deserializers:
-            data = deserializer(self, data).output
+            data = deserializer(self.store, data).output
         return data
 
     def fromstring(self, data):
