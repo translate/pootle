@@ -7,6 +7,9 @@
       {% if display_priority %}
       <option value="priority">{% trans "Important first" %}</option>
       {% endif %}
+      {% if can_suggest_only %}
+      <option value="suggestion_count">{% trans "Without suggestions first" %}</option>
+      {% endif %}
       <option value="newest">{% trans "Newest first" %}</option>
       <option value="oldest">{% trans "Oldest first" %}</option>
     </select>

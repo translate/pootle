@@ -599,14 +599,14 @@ class PootleBrowseView(PootleDetailView):
 
     def get_context_data(self, *args, **kwargs):
         filters = {}
-        can_translate = False
-        can_translate_stats = False
+        translate_accessible = False
+        translate_stats_accessible = False
         if self.has_vfolders:
             filters['sort'] = 'priority'
 
         if self.request.user.is_superuser or self.language:
-            can_translate = True
-            can_translate_stats = True
+            translate_accessible = True
+            translate_stats_accessible = True
             url_action_continue = self.object.get_translate_url(
                 state='incomplete',
                 **filters)
@@ -618,7 +618,7 @@ class PootleBrowseView(PootleDetailView):
             url_action_view_all = self.object.get_translate_url(state='all')
         else:
             if self.project:
-                can_translate = True
+                translate_accessible = True
             url_action_continue = None
             url_action_fixcritical = None
             url_action_review = None
@@ -626,13 +626,20 @@ class PootleBrowseView(PootleDetailView):
         ctx, cookie_data = self.sidebar_announcements
         ctx.update(
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
+
+        can_translate = check_permission("translate", self.request)
+        can_suggest = check_permission("suggest", self.request)
+        can_review = check_permission("review", self.request)
+        can_suggest_only = can_suggest and not can_translate and not can_review
         ctx.update(
             {'page': 'browse',
              'stats': jsonify(self.stats),
              'translation_states': get_translation_states(self.object),
              'check_categories': get_qualitycheck_schema(self.object),
-             'can_translate': can_translate,
-             'can_translate_stats': can_translate_stats,
+             'translate_accessible': translate_accessible,
+             'translate_stats_accessible': translate_stats_accessible,
+             'can_suggest_only': can_suggest_only,
+             'can_review': can_review,
              'url_action_continue': url_action_continue,
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,
@@ -661,15 +668,20 @@ class PootleTranslateView(PootleDetailView):
     def get_context_data(self, *args, **kwargs):
         ctx = super(
             PootleTranslateView, self).get_context_data(*args, **kwargs)
+        can_translate = check_permission("translate", self.request)
+        can_suggest = check_permission("suggest", self.request)
+        can_review = check_permission("review", self.request)
+        can_suggest_only = can_suggest and not can_translate and not can_review
         ctx.update(
             {'page': 'translate',
              'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,
              'check_categories': get_qualitycheck_schema(),
-             'cantranslate': check_permission("translate", self.request),
-             'cansuggest': check_permission("suggest", self.request),
-             'canreview': check_permission("review", self.request),
+             'cantranslate': can_translate,
+             'cansuggest': can_suggest,
+             'canreview': can_review,
+             'can_suggest_only': can_suggest_only,
              'search_form': make_search_form(request=self.request),
              'previous_url': get_previous_url(self.request),
              'POOTLE_MT_BACKENDS': settings.POOTLE_MT_BACKENDS,

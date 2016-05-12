@@ -1,5 +1,6 @@
 {% load i18n %}
 <ul>
+  {% if not can_suggest_only %}
   <li id="js-action-fix-critical">
     {% if url_action_fixcritical %}
     <a class="fix-errors" href="{{ url_action_fixcritical }}">
@@ -13,6 +14,8 @@
     </span>
     {% endif %}
   </li>
+  {% endif %}
+  {% if can_review %}
   <li id="js-action-review">
     {% if url_action_review %}
     <a class="review-suggestions" href="{{ url_action_review }}">
@@ -26,10 +29,15 @@
     </span>
     {% endif %}
   </li>
+  {% endif %}
   <li id="js-action-continue">
     {% if url_action_continue %}
     <a class="continue-translation" href="{{ url_action_continue }}">
+      {% if can_suggest_only %}
+      <span class="caption">{% trans 'Continue suggesting' %}</span>
+      {% else %}
       <span class="caption">{% trans 'Continue translation' %}</span>
+      {% endif %}
       <span class="counter">0</span>
     </a>
     {% else %}
