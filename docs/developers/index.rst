@@ -22,3 +22,4 @@ other way, make sure to read through this part.
    deprecation
    releasing
    plugins
+   components/index
