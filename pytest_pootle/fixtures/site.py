@@ -36,6 +36,17 @@ def post_db_setup(translations_directory, _django_db_setup,
 
 
 @pytest.fixture
+def db_doctest(request, post_db_setup, _django_cursor_wrapper):
+    from django.test import TestCase as django_case
+
+    _django_cursor_wrapper.enable()
+    request.addfinalizer(_django_cursor_wrapper.disable)
+    case = django_case(methodName='__init__')
+    case._pre_setup()
+    request.addfinalizer(case._post_teardown)
+
+
+@pytest.fixture
 def no_projects():
     from pootle_project.models import Project
 
