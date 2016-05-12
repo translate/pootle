@@ -353,7 +353,7 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
 
-    @property
+    @cached_property
     def items(self):
         items = [
             make_project_list_item(project)

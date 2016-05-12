@@ -759,8 +759,18 @@ button.close
 
 /* table row colors, see 'Table Row Colors.psd' */
 
+tr.item
+{
+   display: none;
+}
+
+tr.item.is-visible
+{
+   display: table-row;
+}
+
 tr.view-row:nth-child(odd),
-tr.item:nth-child(odd)
+.item.odd
 {
     background: #f5fbfd;
 }

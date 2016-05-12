@@ -582,13 +582,19 @@ class PootleBrowseView(PootleDetailView):
             (self.object, ))
 
     @property
+    def disabled_items(self):
+        return filter(lambda item: item['is_disabled'], self.items)
+
+    @property
     def table(self):
         if self.table_id and self.table_fields and self.items:
             return {
                 'id': self.table_id,
                 'fields': self.table_fields,
                 'headings': get_table_headings(self.table_fields),
-                'items': self.items}
+                'items': self.items,
+                'disabled_items': self.disabled_items,
+            }
 
     def get(self, *args, **kwargs):
         response = super(PootleBrowseView, self).get(*args, **kwargs)

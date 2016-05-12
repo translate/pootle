@@ -21,6 +21,7 @@ import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
 import cookie from 'utils/cookie';
 
+import VisibilityToggle from './browser/components/VisibilityToggle';
 import msg from './msg';
 
 
@@ -94,6 +95,11 @@ const stats = {
         this.setState({ isExpanded: state.isExpanded });
       }
     });
+
+    if (this.isAdmin && options.hasDisabledItems) {
+      ReactDOM.render(<VisibilityToggle uiLocaleDir={options.uiLocaleDir} />,
+                      document.querySelector('.js-mnt-visibility-toggle'));
+    }
 
     // Retrieve async data if needed
     if (isExpanded) {

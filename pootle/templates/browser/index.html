@@ -3,6 +3,7 @@
 {% load assets cleanhtml i18n locale common_tags profile_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block header_content_block %}
 <div id="top-stats" class="header">
@@ -145,9 +146,11 @@ $(function () {
   PTL.search.init();
   PTL.stats.init({
     pootlePath: "{{ pootle_path }}",
+    hasDisabledItems: {{ table.disabled_items|yesno:"true,false" }},
     isAdmin: {{ has_admin_access|yesno:"true,false" }},
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
     initialData: JSON.parse('{{ stats|escapejs }}'),
+    uiLocaleDir: '{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}',
   });
 });
 </script>
