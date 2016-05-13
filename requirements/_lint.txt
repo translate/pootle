@@ -1,6 +1,6 @@
 # Linting tools
 
 flake8!=2.5.3
+isort>=4.2.3
 pep257
 pep8<1.6
-isort>=4.2.3

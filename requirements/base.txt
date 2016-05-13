@@ -6,21 +6,20 @@ Django>=1.8.12,<1.9
 django-allauth>=0.25.2
 django-assets>=0.11
 django-contact-form==1.0
+django-contrib-comments>=1.7.1
 django-overextends>=0.4.1
 django-redis
 django-rq>=0.8.0
 django-transaction-hooks
 
-django-contrib-comments>=1.7.1
-
 # Libraries
 cssmin
 diff-match-patch>=20121119
 elasticsearch>=1.0.0,<1.7
+jsonfield
 lxml>=2.2.0
 python-levenshtein
 rq>=0.5.0,<=0.5.6
-jsonfield
 scandir
 
 # Translate Toolkit
