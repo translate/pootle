@@ -40,6 +40,22 @@ msgstr "%(target)s"
 """
 
 
+def setup_store(pootle_path):
+    from pootle.core.url_helpers import split_pootle_path
+    from pootle_translationproject.models import TranslationProject
+
+    from .factories import StoreDBFactory
+
+    (lang_code, proj_code,
+     dir_path, filename) = split_pootle_path(pootle_path)
+    tp = TranslationProject.objects.get(
+        language__code=lang_code, project__code=proj_code)
+    directory = tp.directory.get_relative(dir_path)
+
+    return StoreDBFactory(
+        translation_project=tp, parent=directory, name=filename)
+
+
 def create_store(pootle_path=None, store_revision=None, units=None):
     _units = []
     for src, target in units or []:
