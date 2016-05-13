@@ -272,7 +272,7 @@ def test_view_projects_translate(client, settings, request_users):
     request = response.wsgi_request
     assertions = dict(
         page="translate",
-        is_admin=False,
+        is_admin=user.is_superuser,
         language=None,
         project=None,
         pootle_path="/projects/",
