@@ -36,9 +36,11 @@ def _test_config_bad_create(create_func):
             key="foo4", value="bar", object_pk="23").save()
 
 
-def _test_config_ob(conf, **kwargs):
-    conf.save()
-    conf = Config.objects.get(id=conf.id)
+def _test_config_ob(**kwargs):
+    conf = Config.objects.get(
+        content_type=kwargs["content_type"],
+        object_pk=kwargs["object_pk"])
+
     for k, v in kwargs.items():
         if isinstance(v, tuple):
             v = list(v)
@@ -48,8 +50,8 @@ def _test_config_ob(conf, **kwargs):
 def _test_config_create(create_func):
 
     # Create a site config
+    create_func(key="foo")
     _test_config_ob(
-        create_func(key="foo"),
         key=u"foo",
         value="",
         content_object=None,
@@ -61,11 +63,11 @@ def _test_config_create(create_func):
     project_ct = ContentType.objects.get_for_model(project)
 
     # Create config for all projects
+    create_func(
+        key="foo",
+        value="bar",
+        content_type=project_ct)
     _test_config_ob(
-        create_func(
-            key="foo",
-            value="bar",
-            content_type=project_ct),
         key=u"foo",
         value=u"bar",
         content_object=None,
@@ -73,11 +75,11 @@ def _test_config_create(create_func):
         object_pk=None)
 
     # Create config for a project
+    create_func(
+        key="foo",
+        value="bar",
+        content_object=project)
     _test_config_ob(
-        create_func(
-            key="foo",
-            value="bar",
-            content_object=project),
         key=u"foo",
         value=u"bar",
         content_object=project,
@@ -86,7 +88,12 @@ def _test_config_create(create_func):
 
 
 def _test_config_clear(**kwargs):
-    conf = Config.objects.set_config(**kwargs)
+    Config.objects.set_config(**kwargs)
+    if kwargs.get("model"):
+        conf = Config.objects.config_for(
+            kwargs["model"]).get(key=kwargs["key"])
+    else:
+        conf = Config.objects.site_config().get(key=kwargs["key"])
     assert conf.pk in Config.objects.values_list("pk", flat=True)
     Config.objects.clear_config(**kwargs)
     assert conf.pk not in Config.objects.values_list("pk", flat=True)
@@ -117,14 +124,14 @@ def test_config_bad_getter():
 def test_config_set():
 
     # set site-wide config
+    Config.objects.set_config("foo")
     _test_config_ob(
-        Config.objects.set_config("foo"),
         key=u"foo",
         value="",
         content_type=None,
         object_pk=None)
+    Config.objects.set_config("foo", "bar")
     _test_config_ob(
-        Config.objects.set_config("foo", "bar"),
         key=u"foo",
         value="bar",
         content_type=None,
@@ -135,15 +142,15 @@ def test_config_set():
     project_ct = ContentType.objects.get_for_model(project)
 
     # set config for all projects
+    Config.objects.set_config(key="foo", model=Project)
     _test_config_ob(
-        Config.objects.set_config(key="foo", model=Project),
         key="foo",
         value="",
         content_type=project_ct,
         object_pk=None,
         content_object=None)
+    Config.objects.set_config(key="foo", value="bar", model=Project)
     _test_config_ob(
-        Config.objects.set_config(key="foo", value="bar", model=Project),
         key="foo",
         value="bar",
         content_type=project_ct,
@@ -151,16 +158,16 @@ def test_config_set():
         content_object=None)
 
     # set config for project
+    Config.objects.set_config(key="foo", model=project)
     _test_config_ob(
-        Config.objects.set_config(key="foo", model=project),
         key="foo",
         value="",
         content_type=project_ct,
         object_pk=str(project_pk),
         content_object=project)
     # reset config for project
+    Config.objects.set_config(key="foo", value="bar", model=project)
     _test_config_ob(
-        Config.objects.set_config(key="foo", value="bar", model=project),
         key="foo",
         value="bar",
         content_type=project_ct,
@@ -421,8 +428,8 @@ def test_config_setter():
 def test_config_set_json(json_objects):
 
     # set site-wide config
+    Config.objects.set_config("foo", json_objects)
     _test_config_ob(
-        Config.objects.set_config("foo", json_objects),
         key=u"foo",
         value=json_objects,
         content_type=None,
@@ -433,8 +440,8 @@ def test_config_set_json(json_objects):
     project_ct = ContentType.objects.get_for_model(project)
 
     # set config for all projects
+    Config.objects.set_config("foo", json_objects, model=Project)
     _test_config_ob(
-        Config.objects.set_config("foo", json_objects, model=Project),
         key="foo",
         value=json_objects,
         content_type=project_ct,
@@ -442,8 +449,8 @@ def test_config_set_json(json_objects):
         content_object=None)
 
     # set config for project
+    Config.objects.set_config("foo", json_objects, model=project)
     _test_config_ob(
-        Config.objects.set_config("foo", json_objects, model=project),
         key="foo",
         value=json_objects,
         content_type=project_ct,
@@ -610,3 +617,18 @@ def test_config_object_util():
 def test_config_util_dict():
     with pytest.raises(NotImplementedError):
         ConfigDict("foo")["bar"]
+
+
+@pytest.mark.django_db
+def test_config_qs_chaining():
+
+    config.get().set_config("foo", "bar")
+    assert config.get().none().get_config("foo") == "bar"
+
+    config.get(Project).set_config("foo", "bar2")
+    assert config.get(Project).none().get_config("foo") == "bar2"
+
+    project = Project.objects.get(code="project0")
+    config.get(Project, instance=project).set_config("foo", "bar3")
+    assert config.get(
+        Project, instance=project).none().get_config("foo") == "bar3"
