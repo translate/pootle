@@ -340,7 +340,7 @@ class ProjectsMixin(object):
 
     @property
     def is_admin(self):
-        return False
+        return self.request.user.is_superuser
 
     @property
     def url_kwargs(self):
