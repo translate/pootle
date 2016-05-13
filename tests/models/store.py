@@ -27,6 +27,7 @@ from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
 from pootle.core.serializers import Serializer, Deserializer
 from pootle_config.exceptions import ConfigurationError
+from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
 from pootle_store.util import parse_pootle_revision
@@ -47,6 +48,18 @@ def _update_from_upload_file(store, update_file,
     store_revision = parse_pootle_revision(test_store)
     store.update(test_store, store_revision=store_revision,
                  user=user, submission_type=submission_type)
+
+
+def _store_as_string(store):
+    ttk = store.convert(store.get_file_class())
+    if hasattr(ttk, "updateheader"):
+        # FIXME We need those headers on import
+        # However some formats just don't support setting metadata
+        ttk.updateheader(
+            add=True, X_Pootle_Path=store.pootle_path)
+        ttk.updateheader(
+            add=True, X_Pootle_Revision=store.get_max_unit_revision())
+    return str(ttk)
 
 
 @pytest.mark.django_db
@@ -566,27 +579,19 @@ def test_store_po_serializer(test_fs, store_po):
 def test_store_po_serializer_custom(test_fs, store_po):
 
     class SerializerCheck(object):
-        serializer_was_called = False
-        input_is_bytes = False
+        original_data = None
+        context = None
 
     checker = SerializerCheck()
 
-    class EGSerializer(object):
-
-        def __init__(self, store, data):
-            self.store = store
-            self.original_data = data
+    class EGSerializer(Serializer):
 
         @property
         def output(self):
-            checker.serializer_was_called = True
-            checker.input_is_bytes = (
-                not isinstance(
-                    self.original_data, six.text_type)
-                and isinstance(
-                    self.original_data, str))
+            checker.original_data = self.original_data
+            checker.context = self.context
 
-    @provider(serializers)
+    @provider(serializers, sender=Project)
     def provide_serializers(**kwargs):
         return dict(eg_serializer=EGSerializer)
 
@@ -602,36 +607,31 @@ def test_store_po_serializer_custom(test_fs, store_po):
         ["eg_serializer"])
 
     store_po.serialize()
-    assert checker.serializer_was_called is True
-    assert checker.input_is_bytes is True
+    assert checker.context == store_po
+    assert (
+        not isinstance(checker.original_data, six.text_type)
+        and isinstance(checker.original_data, str))
+    assert checker.original_data == _store_as_string(store_po)
 
 
 @pytest.mark.django_db
 def test_store_po_deserializer_custom(test_fs, store_po):
 
     class DeserializerCheck(object):
-        deserializer_was_called = False
-        input_is_bytes = False
+        original_data = None
+        context = None
 
     checker = DeserializerCheck()
 
-    class EGDeserializer(object):
-
-        def __init__(self, store, data):
-            self.store = store
-            self.original_data = data
+    class EGDeserializer(Deserializer):
 
         @property
         def output(self):
-            checker.deserializer_was_called = True
-            checker.input_is_bytes = (
-                not isinstance(
-                    self.original_data, six.text_type)
-                and isinstance(
-                    self.original_data, str))
+            checker.context = self.context
+            checker.original_data = self.original_data
             return self.original_data
 
-    @provider(deserializers)
+    @provider(deserializers, sender=Project)
     def provide_deserializers(**kwargs):
         return dict(eg_deserializer=EGDeserializer)
 
@@ -644,11 +644,9 @@ def test_store_po_deserializer_custom(test_fs, store_po):
         "pootle.core.deserializers",
         ["eg_deserializer"],
         project)
-
-    store_po.update(store_po.deserialize(test_string))
-
-    assert checker.deserializer_was_called is True
-    assert checker.input_is_bytes is True
+    store_po.deserialize(test_string)
+    assert checker.original_data == test_string
+    assert checker.context == store_po
 
 
 @pytest.mark.django_db
@@ -705,7 +703,7 @@ def test_store_set_bad_serializers(store_po):
             "pootle.core.serializers",
             ["SERIALIZER_DOES_NOT_EXIST"])
 
-    class EGSerializer(object):
+    class EGSerializer(Serializer):
         pass
 
     @provider(serializers)
