@@ -35,7 +35,7 @@ class ConfigQuerySet(models.QuerySet):
     def append_config(self, key, value="", model=None):
         model = self.get_query_model(model)
         self.should_append_config(key, value, model)
-        return self.create(
+        self.create(
             key=key, value=value,
             **self.get_model_kwargs(model))
 
@@ -59,12 +59,11 @@ class ConfigQuerySet(models.QuerySet):
         return key.value
 
     def get_config_queryset(self, model):
+        model = self.get_query_model(model)
         if model:
             if isinstance(model, models.Model):
                 return self.config_for(model)
             return self.config_for(model).filter(object_pk__isnull=True)
-        if self.query_model:
-            return self
         return self.site_config()
 
     def get_model_kwargs(self, model):
@@ -100,19 +99,18 @@ class ConfigQuerySet(models.QuerySet):
 
     def set_config(self, key, value="", model=None):
         model = self.get_query_model(model)
-        conf = self.get_config_queryset(model)
+        model_conf = self.get_config_queryset(model)
         self.should_set_config(key, value, model)
         try:
-            conf = conf.get(key=key)
-        except conf.model.DoesNotExist:
-            return self.create(
+            conf = model_conf.get(key=key)
+        except model_conf.model.DoesNotExist:
+            conf = self.create(
                 key=key,
                 value=value,
                 **self.get_model_kwargs(model))
         if conf.value != value:
             conf.value = value
             conf.save()
-        return conf
 
     def should_append_config(self, key, value, model=None):
         sender = model
