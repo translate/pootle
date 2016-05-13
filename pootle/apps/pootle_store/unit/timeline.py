@@ -303,10 +303,16 @@ class Timeline(object):
                 ]
             ])
         )
+
+        # Target field timeline entry should go first
+        def target_field_should_be_first(x):
+            return 0 if x["field"] == SubmissionFields.TARGET else 1
+
         # Group by submitter id and creation_time because
         # different submissions can have same creation time
         for key, values in grouped_timeline:
             entry_group = {'entries': []}
+            values = sorted(values, key=target_field_should_be_first)
             for item in values:
                 if "submitter" not in entry_group:
                     entry_group['submitter'] = DisplayUser(
