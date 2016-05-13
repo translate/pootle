@@ -10,7 +10,7 @@
 <li>
   <select id="js-select-language" data-initial-code="{{ language.code }}"
     style="visibility: hidden;">
-    {% if is_admin or page != "translate" %}
+    {% if has_admin_access or page != "translate" %}
     <option value=""></option>
     {% endif %}
     {% for lang_code, lang_name in ALL_LANGUAGES.items %}

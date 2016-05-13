@@ -60,13 +60,13 @@ def _test_browse_view(tp, request, response, kwargs):
             pootle_path=pootle_path)
     if not kwargs.get("filename"):
         vftis = ob.vf_treeitems.select_related("vfolder")
-        if not ctx["is_admin"]:
+        if not ctx["has_admin_access"]:
             vftis = vftis.filter(vfolder__is_public=True)
         vfolders = [
             make_vfolder_treeitem_dict(vfolder_treeitem)
             for vfolder_treeitem
             in vftis.order_by('-vfolder__priority')
-            if (ctx["is_admin"]
+            if (ctx["has_admin_access"]
                 or vfolder_treeitem.is_visible)]
         stats = {"vfolders": {}}
         for vfolder_treeitem in vfolders or []:
@@ -119,7 +119,7 @@ def _test_browse_view(tp, request, response, kwargs):
         translation_project=tp,
         language=tp.language,
         project=tp.project,
-        is_admin=check_permission('administrate', request),
+        has_admin_access=check_permission('administrate', request),
         is_store=(kwargs.get("filename") and True or False),
         browser_extends="translation_projects/base.html",
         pootle_path=pootle_path,
@@ -144,7 +144,7 @@ def _test_browse_view(tp, request, response, kwargs):
     view_context_test(ctx, **assertions)
     if vfolders:
         for vfolder in ctx["vfolders"]["items"]:
-            assert (vfolder["is_grayed"] and not ctx["is_admin"]) is False
+            assert (vfolder["is_grayed"] and not ctx["has_admin_access"]) is False
         assert (
             ctx["vfolders"]["items"]
             == vfolders)
@@ -173,7 +173,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         translation_project=tp,
         language=tp.language,
         project=tp.project,
-        is_admin=check_permission('administrate', request),
+        has_admin_access=check_permission('administrate', request),
         ctx_path=tp.pootle_path,
         pootle_path=request_path,
         resource_path=resource_path,

@@ -339,7 +339,7 @@ class ProjectsMixin(object):
         return self.get_object().directory
 
     @property
-    def is_admin(self):
+    def has_admin_access(self):
         return self.request.user.is_superuser
 
     @property

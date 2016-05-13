@@ -60,5 +60,5 @@ def test_get_edit_unit(client, request_users, settings):
         user, "suggest", directory)
     assert response.context["canreview"] == check_user_permission(
         user, "review", directory)
-    assert response.context["is_admin"] == check_user_permission(
+    assert response.context["has_admin_access"] == check_user_permission(
         user, "administrate", directory)

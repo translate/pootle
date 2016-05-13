@@ -4,7 +4,7 @@
   data-href="{{ browse_url }}">
   {% trans "Browse" %}
 </option>
-{% if is_admin %}
+{% if has_admin_access %}
 <option
   value="translate"
   data-href="{{ translate_url }}">

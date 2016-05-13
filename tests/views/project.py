@@ -54,7 +54,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
         ctx,
         **dict(
             page="translate",
-            is_admin=request.user.is_superuser,
+            has_admin_access=request.user.is_superuser,
             language=None,
             project=project,
             pootle_path=pootle_path,
@@ -272,7 +272,7 @@ def test_view_projects_translate(client, settings, request_users):
     request = response.wsgi_request
     assertions = dict(
         page="translate",
-        is_admin=user.is_superuser,
+        has_admin_access=user.is_superuser,
         language=None,
         project=None,
         pootle_path="/projects/",

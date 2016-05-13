@@ -472,7 +472,7 @@ class PootleDetailView(DetailView):
             kwargs=self.url_kwargs)
 
     @cached_property
-    def is_admin(self):
+    def has_admin_access(self):
         return check_permission('administrate', self.request)
 
     @property
@@ -516,7 +516,7 @@ class PootleDetailView(DetailView):
             'project': self.project,
             'language': self.language,
             'translation_project': self.tp,
-            'is_admin': self.is_admin,
+            'has_admin_access': self.has_admin_access,
             'resource_path': self.resource_path,
             'resource_path_parts': get_path_parts(self.resource_path),
             'translate_url': self.translate_url,

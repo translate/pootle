@@ -292,13 +292,13 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     @cached_property
     def vfolders(self):
         vftis = self.object.vf_treeitems
-        if not self.is_admin:
+        if not self.has_admin_access:
             vftis = vftis.filter(vfolder__is_public=True)
         return [
             make_vfolder_treeitem_dict(vfolder_treeitem)
             for vfolder_treeitem
             in vftis.order_by('-vfolder__priority').select_related("vfolder")
-            if (self.is_admin
+            if (self.has_admin_access
                 or vfolder_treeitem.is_visible)]
 
     @cached_property

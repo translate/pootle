@@ -450,9 +450,9 @@ class UnitEditJSON(PootleUnitJSON):
             'canreview': check_user_permission(self.request.user,
                                                "review",
                                                self.directory),
-            'is_admin': check_user_permission(self.request.user,
-                                              'administrate',
-                                              self.directory),
+            'has_admin_access': check_user_permission(self.request.user,
+                                                      'administrate',
+                                                      self.directory),
             'altsrcs': self.get_alt_srcs()}
 
     def get_response_data(self, context):

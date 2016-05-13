@@ -88,7 +88,7 @@ def _test_translate_view(language, request, response, kwargs, settings):
             check_categories=get_qualitycheck_schema(),
             previous_url=get_previous_url(request),
             display_priority=False,
-            is_admin=check_permission('administrate', request),
+            has_admin_access=check_permission('administrate', request),
             cantranslate=check_permission("translate", request),
             cansuggest=check_permission("suggest", request),
             canreview=check_permission("review", request),
