@@ -98,3 +98,8 @@ SILENCED_SYSTEM_CHECKS = [
     'pootle.W005',  # DEBUG = True
     'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
 ]
+
+try:
+    INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
+except NameError:
+    INSTALLED_APPS = ["pootle_fs"]
