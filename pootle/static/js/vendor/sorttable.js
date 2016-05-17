@@ -505,6 +505,15 @@ fixEvent.stopPropagation = function() {
   License: http://www.opensource.org/licenses/mit-license.php
 */
 
+// array-like enumeration
+if (!Array.forEach) { // mozilla already supports this
+  Array.forEach = function(array, block, context) {
+    for (var i = 0; i < array.length; i++) {
+      block.call(context, array[i], i, array);
+    }
+  };
+}
+
 // generic enumeration
 Function.prototype.forEach = function(object, block, context) {
   for (var key in object) {
