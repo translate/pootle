@@ -1229,51 +1229,49 @@ html[dir="rtl"] td.stats-name,
 
 /* Expanded checks */
 
-.checks
+.stats-checks table
 {
-    height: 100%;
     width: 100%;
 }
 
-.checks a
+.check a
 {
     color: #444;
 }
 
-#check-critical a,
+.category-critical.check a,
 .checks-critical a,
-#check-critical .check-data,
+.category-critical.check .check-data,
 .checks-critical .check-data
 {
     color: #c00;
 }
 
-.checks h4
+.stats-checks a.toggle-more-checks
 {
-    padding: 1em 0 0.5em;
-    font-weight: normal;
-}
-
-.check
-{
-    float: left;
+    color: #0b8696;
 }
 
 .check-name
 {
-    width: 12em;
-    display: inline-block;
-    height: 4em;
+    width: 100%;
 }
 
 .check-count
 {
     text-align: right;
-    width: 3em;
-    padding-right: 6em;
-    display: inline-block;
-    vertical-align: top;
- }
+}
+
+.toggle-more-checks.collapsed .hide-more,
+.toggle-more-checks .show-more
+{
+    display: none;
+}
+
+.toggle-more-checks.collapsed .show-more
+{
+    display: inherit;
+}
 
 html[dir="rtl"] .check-count
 {

@@ -46,22 +46,29 @@
         <div id="js-stats-checks" class="hide stats-checks">
           <h3>{% trans "Failing Checks" %}</h3>
           <div class="bd">
-          {% for item in check_categories %}
-            <div id="check-{{ item.name }}" class="checks js-checks">
-              <h4 class="clear">{{ item.title }}</h4>
-              {% for check in item.checks %}
-              <div class="check js-check" data-code="{{ check.code }}">
+            <table>
+            {% for check in checks %}
+              <tr class="{% if check.is_critical %}category-critical{% endif %} check js-check" data-code="{{ check.code }}">
                 {% if can_translate_stats %}
-                <div class="check-name"><a class="check-data" href="{{ check.url }}">{{ check.title }}</a></div>
-                <div class="check-count"><a class="check-data" href="{{ check.url }}">0</a></div>
+                <td class="check-name">
+                  <a class="check-data" href="{{ check.url }}">{{ check.title }}</a>
+                </td>
+                <td class="check-count"><a class="check-data" href="{{ check.url }}">0</a></td>
                 {% else %}
-                <div class="check-name"><span class="check-data">{{ check.title }}</span></div>
-                <div class="check-count"><span class="check-data">0</span></div>
+                <td class="check-name"><span class="check-data">{{ check.title }}</span></td>
+                <td class="check-count"><span class="check-data">0</span></td>
                 {% endif %}
-              </div>
-              {% endfor %}
-            </div>
-          {% endfor %}
+              </tr>
+            {% endfor %}
+            <tr class="js-more-checks">
+              <td colspan="2">
+                <a class="js-toggle-more-checks toggle-more-checks collapsed">
+                  <span class="show-more">{% trans "more..." %}</span>
+                  <span class="hide-more">{% trans "less..." %}</span>
+                </a>
+              </td>
+            </tr>
+            </table>
           </div>
         </div>
       </div>

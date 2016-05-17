@@ -84,6 +84,22 @@ const stats = {
       e.preventDefault();
       this.toggleChecks();
     });
+    $(document).on('click', '.js-toggle-more-checks', (e) => {
+      let count = 0;
+      const data = this.state.checksData;
+      e.preventDefault();
+      $('.js-check').each(function () {
+        const $check = $(this);
+        const code = $check.data('code');
+        if (code in data) {
+          if (count >= 4) {
+            $check.toggle();
+          }
+          count++;
+        }
+      });
+      $(e.target).parent().toggleClass('collapsed');
+    });
     $(document).on('click', '.js-stats-refresh', (e) => {
       e.preventDefault();
       this.refreshStats();
@@ -433,30 +449,25 @@ const stats = {
 
   updateChecksUI() {
     const data = this.state.checksData;
+    let count = 0;
 
     if (data === null || !Object.keys(data).length) {
       return;
     }
 
-    this.$extraDetails.find('.js-checks').each(function updateChecksCategory() {
-      const $cat = $(this);
-      let empty = true;
-
-      $cat.find('.js-check').each(function updateCheck() {
-        const $check = $(this);
-        const code = $(this).data('code');
-        if (code in data) {
-          empty = false;
-          $check.show();
-          $check.find('.check-count .check-data').html(data[code]);
-        } else {
-          $check.hide();
-        }
-      });
-
-      $cat.toggle(!empty);
+    this.$extraDetails.find('.js-check').each(function updateCheck() {
+      const $check = $(this);
+      const code = $(this).data('code');
+      if (code in data) {
+        count++;
+        $check.toggle(count < 5);
+        $check.find('.check-count .check-data').html(data[code]);
+      } else {
+        $check.hide();
+      }
     });
 
+    $('.js-more-checks').addClass('collapsed').toggle(count >= 5);
     $('#js-stats-checks').show();
   },
 
