@@ -828,11 +828,28 @@ html[dir="rtl"] .last-action
     margin-right: 1em;
 }
 
+.last-action
+{
+    margin-top: 1px;
+}
+
 .last-action img
 {
     vertical-align: text-bottom;
     width: 20px;
     height: 20px;
+    position: absolute;
+    top: -2px;
+}
+
+.last-action a
+{
+    position: relative;
+}
+
+.last-action .user-name
+{
+    margin-left: 24px;
 }
 
 .last-action .extra-item-meta
@@ -1912,6 +1929,7 @@ html[dir="rtl"] #tabs li
 {
     display: inline-block;
     overflow: hidden;
+    border-radius: 50%;
 }
 
 a.collapse,
