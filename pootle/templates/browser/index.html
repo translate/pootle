@@ -22,7 +22,7 @@
       {% include 'core/_top_scorers_as_ul.html' %}
     </div>
     <div class="path-summary-expanded">
-      <div class="summary-col">
+      <div class="summary-1-col">
         <h3 class="top">{% trans "Translation Statistics" %}</h3>
         <div class="bd">
           <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
@@ -73,14 +73,14 @@
         </div>
       </div>
       {% if top_scorers %}
-        <div class="summary-col">
+        <div class="summary-2-col">
           <h3 class="top">{% trans "Top contributors Last 30 days" %}</h3>
           <div class="bd">
             {% include 'core/_top_scorers_as_table.html' %}
           </div>
         </div>
       {% endif %}
-      <div class="summary-col third">
+      <div class="summary-3-col">
         <h3 class="top">{% trans "Updates" %}</h3>
         <div class="bd">
           <div class="graph"></div>

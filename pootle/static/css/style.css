@@ -1603,32 +1603,51 @@ html[dir="rtl"] ul.pager li:last-child > *
     height: 1.8em;
 }
 
-.summary-col
+.summary-1-col,
+.summary-2-col
 {
-    width: 25%;
+    width: 18.75%;
     float: left;
 }
 
-.summary-col.third
+.summary-3-col
 {
-    width: 50%;
+    float: left;
 }
+
+.path-summary-more .summary-3-col
+{
+    width: 43.75%;
+    margin: 0 0 0 6.25%;
+}
+
+.path-summary-more .summary-1-col
+{
+    margin: 0 6.25% 0 0;
+}
+
+.path-summary-more .summary-2-col
+{
+    margin: 0 3.125% 0 3.125%;
+}
+
 
 @media screen and (max-width: 1440px)
 {
-    .summary-col
+    .path-summary-more .summary-1-col,
+    .path-summary-more .summary-2-col
     {
-        width: 50%;
+        width: 43.75%;
         display: table-cell;
     }
 
-    .summary-col.third
+    .path-summary-more .summary-3-col
     {
         width: 100%;
-        float: left;
+        margin: 0;
     }
 
-    #top-stats .path-summary-more .summary-col.third h3.top
+    #top-stats .path-summary-more .summary-3-col h3.top
     {
         margin: 1em 0 0 0;
     }
@@ -1637,7 +1656,28 @@ html[dir="rtl"] ul.pager li:last-child > *
     {
         margin: 2.5em 0 1em 0;
     }
+
+    .path-summary-more .summary-2-col
+    {
+        margin: 0 0 0 6.25%;
+    }
+
+    .path-summary-more .summary-1-col
+    {
+        margin: 0 6.25% 0 0;
+    }
 }
+
+.path-summary-more .bd
+{
+    margin: 1em 0 1em 0;
+}
+
+.path-summary-more .summary-3-col .bd
+{
+    margin: 1em 0 1em 0;
+}
+
 
 #top-stats .path-summary-more h3
 {
@@ -1645,7 +1685,7 @@ html[dir="rtl"] ul.pager li:last-child > *
     margin: 2em 0 0 0;
 }
 
-#top-stats .path-summary-more .summary-col h3.top
+#top-stats .path-summary-more h3.top
 {
     margin: 0;
 }
@@ -1653,25 +1693,6 @@ html[dir="rtl"] ul.pager li:last-child > *
 .path-summary-more table.stats
 {
     width: 100%;
-}
-
-.path-summary-more .bd
-{
-    margin: 1em 25% 1em 0;
-}
-
-.path-summary-more .summary-col.third .bd
-{
-    margin: 1em 1em 1em 0;
-}
-.path-summary-more table.last
-{
-    width: 100%;
-}
-
-.path-summary-more table.last td:first-child
-{
-    min-width: 5em;
 }
 
 .path-summary-more td.stats-number
