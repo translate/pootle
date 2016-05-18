@@ -1535,17 +1535,3 @@ td.translate-delete-terminology input
 {
     float: right;
 }
-
-/* HISTORY */
-
-table.history,
-table.history td
-{
-    width: 100%;
-    border: 1px solid black;
-}
-
-table.history td
-{
-    padding: 5px;
-}
