@@ -14,8 +14,8 @@ const ReactRenderer = {
   nodes: [],
 
   render(component, node) {
-    ReactDOM.render(component, node);
     this.nodes.push(node);
+    return ReactDOM.render(component, node);
   },
 
   unmountComponents() {
