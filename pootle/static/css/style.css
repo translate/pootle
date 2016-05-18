@@ -712,17 +712,6 @@ button.close
     -webkit-appearance: none;
 }
 
-.fade
-{
-  opacity: 0;
-  transition: opacity 0.15s linear;
-}
-
-.fade.in
-{
-  opacity: 1;
-}
-
 /*
  * PAGE AUTOREFRESH NOTICE
  */
@@ -855,11 +844,6 @@ html[dir="rtl"] .last-action
     margin: 1em;
 }
 
-.nomargin
-{
-    margin: 0;
-}
-
 .bd h2,
 {
     margin-bottom: 0.5em;
@@ -930,25 +914,6 @@ html[dir="rtl"] .form
 html[dir="rtl"] .form .buttons
 {
     text-align: left;
-}
-
-.formlink
-{
-    margin: 0 auto 1em;
-    font-size: 137%;
-    text-align: center;
-}
-
-.form-horizontal.form-actions input
-{
-    display: inline-block;
-    margin-right: 1em;
-}
-
-html[dir="rtl"] .form-horizontal.form-actions input
-{
-    margin-right: inherit;
-    margin-left: 1em;
 }
 
 /* Form messages */
@@ -1823,30 +1788,9 @@ a.slide
     cursor: pointer;
 }
 
-.collapsethis,
-.slidethis
+.collapsethis
 {
     display: none;
-}
-
-.pull-left
-{
-    float: left;
-}
-
-html[dir="rtl"] .pull-left
-{
-    float: right;
-}
-
-.pull-right
-{
-    float: right;
-}
-
-html[dir="rtl"] .pull-right
-{
-    float: left;
 }
 
 .hr
@@ -2039,27 +1983,6 @@ h2:lang(ko) a,
 h2:lang(zh) a
 {
     font-size: 100%;
-}
-
-
-/*
- * Obfuscated email addresses
- */
-
-span.email
-{
-    direction: rtl;
-    unicode-bidi: bidi-override;
-}
-
-html[dir="rtl"] span.email
-{
-    direction: ltr;
-}
-
-span.email .i
-{
-    display: none;
 }
 
 
