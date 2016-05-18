@@ -4,7 +4,7 @@
     <% _.each(unit.source, function (source, i) { %>
     <div lang="<%= unit.store.source_lang %>" dir="<%= unit.store.source_dir %>"
       class="translation-text">
-      <%= PTL.utils.fancyHl(source) %>
+      <%= PTL.utils.highlightRO(source) %>
     </div>
     <% }); %>
   </div>
@@ -17,7 +17,7 @@
     <% _.each(unit.target, function (target, i) { %>
     <div lang="<%= unit.store.target_lang %>" class="translation-text"
       dir="<%= unit.store.target_dir %>">
-      <%= PTL.utils.fancyHl(target) %>
+      <%= PTL.utils.highlightRO(target) %>
     </div>
     <% }); %>
   </div>

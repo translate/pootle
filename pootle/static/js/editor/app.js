@@ -598,7 +598,7 @@ PTL.editor = {
       this.displayObsoleteMsg();
     }
 
-    utils.fancyHlNodes('.js-translation-text');
+    utils.highlightRWNodes('.js-translation-text');
     highlightSuggestionsDiff(currentUnit);
 
     // set direction of the comment body
@@ -2198,7 +2198,7 @@ PTL.editor = {
         }
       });
 
-      utils.fancyHlNodes('.js-unit-highlight');
+      utils.highlightRONodes('.js-unit-highlight');
 
       $('.timeline-field-body').filter(':not([dir])').bidi();
       $('#js-show-timeline').addClass('selected');
