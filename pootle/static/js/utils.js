@@ -38,7 +38,7 @@ export function getParsedHash(hash) {
 
   let h = hash;
   if (h === undefined) {
-    h = this.getHash();
+    h = getHash();
   }
 
   let e = r.exec(h);
