@@ -13,19 +13,19 @@ const PUNCTUATION_RE = /[™©®]|[℃℉°]|[±πθ×÷−√∞∆Σ′″]|[�
 // U2026 horizontal ellipsis + U2014 em dash + U2013 en dash +
 // U202F narrow no-break space
 
-export function highlightPunctuation(text) {
+export function highlightPunctuation(text, className = '') {
   function replace(match) {
-    return `<span class="highlight-punctuation js-editor-copytext">${match}</span>`;
+    return `<span class="highlight-punctuation ${className}">${match}</span>`;
   }
 
   return text.replace(PUNCTUATION_RE, replace);
 }
 
 
-const escapeHl = '<span class="highlight-escape js-editor-copytext">%s</span>';
 const ESCAPE_RE = /\\r|\\n|\\t/gm;
 
-export function highlightEscapes(text) {
+export function highlightEscapes(text, className = '') {
+  const escapeHl = `<span class="highlight-escape ${className}">%s</span>`;
   function replace(match) {
     const submap = {
       '\\r': escapeHl.replace(/%s/, '\\r'),
@@ -47,10 +47,10 @@ export function nl2br(text) {
 }
 
 
-const htmlHl = '<span class="highlight-html js-editor-copytext">&lt;%s&gt;</span>';
 const HTML_RE = /<[^>]+>|[&<>]/gm;
 
-export function highlightHtml(text) {
+export function highlightHtml(text, className = '') {
+  const htmlHl = `<span class="highlight-html ${className}">&lt;%s&gt;</span>`;
   function replace(match) {
     const submap = {
       '&': '&amp;',
