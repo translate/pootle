@@ -6,12 +6,15 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import cx from 'classnames';
+import assign from 'object-assign';
 import React from 'react';
+import ReactDOM from 'react-dom';
+import AutosizeTextarea from 'react-textarea-autosize';
 
 import {
-  applyFontFilter, unapplyFontFilter, isNewlineSymbol, countNewlineCharacter,
-  countNewlineSymbol, removeNewlineChar, convertNewlineSymbolToChar,
+  applyFontFilter, unapplyFontFilter, isNewlineCharacter, isNewlineSymbol,
+  countNewlineCharacter, countNewlineSymbol, removeNewlineChar,
+  convertNewlineSymbolToChar,
 } from '../utils';
 
 
@@ -33,18 +36,21 @@ function shouldEventOverwriteSelection(e) {
 }
 
 
-const EditorTextarea = React.createClass({
+const RawFontTextarea = React.createClass({
 
   propTypes: {
-    textareaComponent: React.PropTypes.func,
     id: React.PropTypes.string,
     initialValue: React.PropTypes.string,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
-    // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
-    value: React.PropTypes.string,
     style: React.PropTypes.object,
+    value: React.PropTypes.string.isRequired,
+  },
+
+  contextTypes: {
+    locale: React.PropTypes.string,
+    localeDir: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -53,36 +59,66 @@ const EditorTextarea = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      value: this.props.initialValue,
-    };
+  componentDidUpdate() {
+    /*
+     * Because we need to modify the value being input by the user, we cannot
+     * handle the interaction via a controlled component, because the caret
+     * would always jump to the end of the text.
+     * Therefore we need to use an uncontrolled component and manually handle
+     * the positioning of the caret.
+     */
+
+    const node = ReactDOM.findDOMNode(this.refs.textarea);
+    const { selectionStart } = node;
+    const { selectionEnd } = node;
+    const { value } = node;
+
+    const oldLength = node.value.length;
+    const oldIndex = node.selectionStart;
+
+    node.value = applyFontFilter(this.props.value, this.getMode());
+
+    let delta = 0;
+    if (selectionStart === selectionEnd) {
+      const offset = this.getSymbolOffset(value, selectionStart);
+      delta = node.value.length - oldLength + offset;
+    }
+    node.selectionStart = node.selectionEnd = Math.max(0, delta + oldIndex);
   },
 
-  componentWillReceiveProps(nextProps) {
-    // FIXME: needed to allow interaction from the outside world. Remove ASAP.
-    if (nextProps.value && nextProps.value !== null) {
-      this.updateValue(nextProps.value);
+  /*
+   * Returns the offset to be applied on top of the normally-calculated caret
+   * position.
+   *
+   * This is needed because:
+   *  a) Removing a <LF> symbol actually removes two characters.
+   *  b) Adding a character between the <LF> symbol and the NL character needs
+   *     to place it one position back.
+   */
+  getSymbolOffset(value, selectionStart) {
+    // A NL was removed
+    if (isNewlineSymbol(value[selectionStart - 1]) &&
+        isNewlineCharacter(value[selectionStart])) {
+      return 1;
     }
+
+    // Something was typed between the NL symbol and the NL character
+    if (isNewlineSymbol(value[selectionStart - 2]) &&
+        isNewlineCharacter(value[selectionStart])) {
+      return -1;
+    }
+
+    return 0;
   },
 
   getMode() {
     return this.props.isRawMode ? 'raw' : 'regular';
   },
 
-  updateValue(newValue) {
-    // FIXME: needed to allow interaction from the outside world. Remove ASAP.
-    this.props.onChange(newValue);
-
-    this.setState({
-      value: newValue,
-    });
-  },
-
   handleChange(e) {
     const newValue = e.target.value;
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
-    this.updateValue(cleanValue);
+    this.props.onChange(cleanValue);
   },
 
   handleKeyDown(e) {
@@ -136,7 +172,7 @@ const EditorTextarea = React.createClass({
     const newValue = (value.slice(0, start) + replacementChar +
                       value.slice(end, value.length));
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
-    this.updateValue(cleanValue);
+    this.props.onChange(cleanValue);
   },
 
   handleCopyCut(e) {
@@ -172,28 +208,32 @@ const EditorTextarea = React.createClass({
   },
 
   render() {
-    const transformedValue = applyFontFilter(this.state.value, this.getMode());
-    const editorWrapperClasses = cx('editor-area-wrapper js-editor-area-wrapper', {
-      'is-disabled': this.props.isDisabled,
-    });
+    const style = assign({}, {
+      boxSizing: 'border-box',
+      margin: '0 0 0.5em 0',
+      padding: '0.3em',
+    }, this.props.style);
 
     return (
-      <div className={editorWrapperClasses}>
-        <this.props.textareaComponent
-          id={this.props.id}
-          initialValue={applyFontFilter(this.props.initialValue, this.getMode())}
-          onChange={this.handleChange}
-          onCopy={this.handleCopyCut}
-          onCut={this.handleCopyCut}
-          onKeyDown={this.handleKeyDown}
-          style={this.props.style}
-          value={transformedValue}
-        />
-      </div>
+      <AutosizeTextarea
+        className="translation focusthis js-translation-area"
+        defaultValue={applyFontFilter(this.props.initialValue, this.getMode())}
+        dir={this.context.localeDir}
+        disabled={this.props.isDisabled}
+        id={this.props.id}
+        lang={this.context.locale}
+        onChange={this.handleChange}
+        onCopy={this.handleCopyCut}
+        onCut={this.handleCopyCut}
+        onKeyDown={this.handleKeyDown}
+        ref="textarea"
+        style={style}
+        value={undefined}
+      />
     );
   },
 
 });
 
 
-export default EditorTextarea;
+export default RawFontTextarea;

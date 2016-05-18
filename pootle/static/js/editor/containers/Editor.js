@@ -8,8 +8,8 @@
 
 import React from 'react';
 
-import EditorTextarea from '../components/EditorTextarea';
-import Textarea from '../components/Textarea';
+import EditingArea from '../components/EditingArea';
+import RawFontTextarea from '../components/RawFontTextarea';
 import { getAreaId } from '../utils';
 
 
@@ -23,6 +23,7 @@ const Editor = React.createClass({
     localeDir: React.PropTypes.string,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
+    overrideValues: React.PropTypes.array,
     sourceString: React.PropTypes.string.isRequired,
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
@@ -40,7 +41,15 @@ const Editor = React.createClass({
 
   getDefaultProps() {
     return {
-      textareaComponent: Textarea,
+      initialValues: [],
+      overrideValues: null,
+      textareaComponent: RawFontTextarea,
+    };
+  },
+
+  getInitialState() {
+    return {
+      values: this.props.initialValues,
     };
   },
 
@@ -51,36 +60,56 @@ const Editor = React.createClass({
     };
   },
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.overrideValues) {
+      // FIXME: Using the second argument callback to `setState` to ensure the
+      // callback is run after re-rendering happened, so that the DOM-based
+      // editor can perform any operations safely. This is needed to allow
+      // interaction from the outside world. Remove ASAP.
+      this.setState({
+        values: nextProps.overrideValues,
+      }, this.props.onChange);
+    }
+  },
+
+  handleChange(i, value) {
+    const newValues = this.state.values.slice();
+    newValues[i] = value;
+
+    // FIXME: Using the second argument callback to `setState` to ensure the
+    // callback is run after re-rendering happened, so that the DOM-based
+    // editor can perform any operations safely. This is needed to allow
+    // interaction from the outside world. Remove ASAP.
+    this.setState({
+      values: newValues,
+    }, this.props.onChange);
+  },
+
   render() {
-    const editorTextareas = [];
-    const { values } = this.props;
+    const editingAreas = [];
 
     for (let i = 0; i < this.props.targetNplurals; i++) {
       const extraProps = {
         isDisabled: this.props.isDisabled,
+        textareaComponent: this.props.textareaComponent,
       };
-      if (values !== undefined) {
-        extraProps.value = values[i];
-        // XXX: hacky way to denote the value was already passed down
-        values[i] = null;
-      }
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
       }
-      editorTextareas.push(
-        <EditorTextarea
-          textareaComponent={this.props.textareaComponent}
+      editingAreas.push(
+        <EditingArea
           id={getAreaId(i)}
           initialValue={this.props.initialValues[i]}
           key={i}
-          onChange={(value) => this.props.onChange(i, value)}
+          onChange={(value) => this.handleChange(i, value)}
+          value={this.state.values[i]}
           {...extraProps}
         />
       );
     }
     return (
       <div>
-        {editorTextareas}
+        {editingAreas}
       </div>
     );
   },

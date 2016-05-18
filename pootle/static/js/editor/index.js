@@ -20,33 +20,35 @@ const ReactEditor = {
     this.node = document.querySelector('.js-mount-editor');
     this.props = {};
 
-    // FIXME: this additional layer of state tracking is only kept to allow
-    // interaction from the outside world. Remove ASAP.
-    this.state = {
-      values: props.initialValues.slice(),
-    };
-
     ReactRenderer.unmountComponents();
 
     this.setProps(props);
   },
 
   setProps(props) {
-    this.props = assign(this.props, props);
+    // Overriding values is a one-time thing: take it into account only if it
+    // was passed explicitly.
+    const overrideProps = (
+      props.hasOwnProperty('overrideValues') ? {} : { overrideValues: null }
+    );
+    this.props = assign(this.props, props, overrideProps);
 
-    ReactRenderer.render(
+    this.editorInstance = ReactRenderer.render(
       <Editor
-        onChange={(name, value) => this.handleValueChange(name, value)}
+        onChange={this.handleChange}
         {...this.props}
       />,
       this.node
     );
   },
 
-  handleValueChange(index, value) {
-    // FIXME: this additional layer of state tracking is only kept to allow
-    // interaction from the outside world. Remove ASAP.
-    this.state.values[index] = value;
+  // FIXME: this additional layer of state tracking is only kept to allow
+  // interaction from the outside world. Remove ASAP.
+  get state() {
+    return this.editorInstance.state;
+  },
+
+  handleChange() {
     PTL.editor.onTextareaChange();
   },
 
