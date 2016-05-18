@@ -16,8 +16,6 @@ from django.core import management
 
 import syspath_override  # noqa
 
-from .core.utils.redis_rq import rq_workers_are_running
-
 
 #: Length for the generated :setting:`SECRET_KEY`
 KEY_LENGTH = 50
@@ -159,6 +157,8 @@ def init_command(parser, settings_template, args):
 def set_sync_mode(noinput=False):
     """Sets ASYNC = False on all redis worker queues
     """
+    from .core.utils.redis_rq import rq_workers_are_running
+
     if rq_workers_are_running():
         redis_warning = ("\nYou currently have RQ workers running.\n\n"
                          "Running in synchronous mode may conflict with jobs "
