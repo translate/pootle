@@ -220,11 +220,11 @@ const stats = {
 
   updateLastUpdates(statsData) {
     if (statsData.lastupdated) {
-      const lastUpdated = document.querySelector('#js-last-updated .last-updated');
+      const lastUpdated = document.querySelector('#js-last-updated');
       this.renderLastUpdate(lastUpdated, statsData.lastupdated);
     }
     if (statsData.lastaction) {
-      const lastAction = document.querySelector('#js-last-action .last-action');
+      const lastAction = document.querySelector('#js-last-action');
       this.renderLastEvent(lastAction, statsData.lastaction);
     }
   },

@@ -77,26 +77,18 @@
         <h3 class="top">{% trans "Updates" %}</h3>
         <div class="bd">
           <div class="graph"></div>
-          <table class="last">
-            <tbody>
-              <tr id="js-last-updated">
-                <td>{% trans "Last action:" %}</td>
-                <td class="last-updated"></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="action-wrapper">
+            <label>{% trans "Last action:" %}</label>
+            <div id="js-last-updated" class="last-updated"></div>
+          </div>
         </div>
         <h3>{% trans "Translations" %}</h3>
         <div class="bd">
           <div class="graph"></div>
-          <table class="last">
-            <tbody>
-              <tr id="js-last-action">
-                <td>{% trans "Last action:" %}</td>
-                <td class="last-action"></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="action-wrapper">
+            <label>{% trans "Last action:" %}</label>
+            <div id="js-last-action" class="last-action"></div>
+          </div>
         </div>
       </div>
       <div class="clear"></div>
