@@ -67,3 +67,73 @@
     opacity: 0.8;
     text-decoration: none;
 }
+
+.path-summary-more .path-summary-collapsed .number
+{
+    color: #999;
+}
+
+.path-summary-more .top-scorers .top-scorer,
+.path-summary-more .top-scorers .user,
+.path-summary-more .top-scorers .number,
+.path-summary-more .top-scorers .place,
+.path-summary-more .path-summary-collapsed label
+{
+    padding-right: 3px;
+    float: left;
+}
+
+.path-summary-more .top-scorer .user-name
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1em;
+    white-space: nowrap;
+    display: block;
+}
+
+.path-summary-more .path-summary-collapsed .top-scorer .user-name
+{
+    max-width: 10em;
+}
+
+.path-summary-more .top-scorers .top-scorer
+{
+    padding-left: 1em;
+}
+
+.path-summary-more .top-scorers-table
+{
+    font-size: 1em;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.path-summary-more .top-scorers-table tr td.number:last-child
+{
+    width: 20%;
+    text-align: right;
+}
+
+.path-summary-more .top-scorers-table tr td.number:first-child
+{
+    text-align: left;
+    width: 2em;
+}
+
+.top-scorer a
+{
+    position: relative;
+    vertical-align: bottom;
+}
+
+.top-scorer .user-name
+{
+    margin-left: 24px;
+}
+
+.top-scorer img.avatar
+{
+    position: absolute;
+    top: -3px;
+}

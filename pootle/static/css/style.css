@@ -820,10 +820,6 @@ html[dir="rtl"] .hd h2
         display: none;
     }
 
-    table.last .last-updated .action-text
-    {
-        display: none;
-    }
 }
 
 html[dir="rtl"] .last-action
@@ -1518,7 +1514,6 @@ html[dir="rtl"] ul.pager li:last-child > *
 
 #progressbar
 {
-    margin-left: 10px;
     position: relative;
 }
 
@@ -1526,26 +1521,142 @@ html[dir="rtl"] ul.pager li:last-child > *
 {
     width: 100%;
     position: absolute;
+    height: 12px;
+}
+
+.expand-stats
+{
+    float: right;
+    position: relative;
+    width: 0;
+    height: 0;
+}
+
+.expand-stats .icon-expand-stats,
+.expand-stats .icon-collapse-stats
+{
+    position: relative;
+    top: 20px;
+    left: 0px;
 }
 
 .path-summary-more
 {
     padding: 0 2em;
-    display: none;
     border: 1px solid #d9d9d9;
     background: #f4f4f4;
-
     border-radius: 0 0 5px 5px;
+}
+
+.path-summary-more .path-summary-expanded,
+.path-summary-more.expand .path-summary-collapsed
+{
+    display: none;
+}
+
+.path-summary-more .path-summary-collapsed
+{
+    display: block;
+    margin-top: 11px;
+}
+
+.path-summary-more.expand .path-summary-expanded
+{
+    display: block;
+    margin-top: 2.5em;
+}
+
+.path-summary-more .path-summary-collapsed
+{
+    margin-left: -10px;
+    padding: 10px 0 10px 0;
+    height: 15px;
+}
+
+.path-summary-more .path-summary-collapsed label
+{
+    color: #999;
+}
+
+.path-summary-more table tr:hover
+{
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.path-summary-more td
+{
+    height: 1.8em;
+}
+
+.summary-col
+{
+    width: 25%;
+    float: left;
+}
+
+.summary-col.third
+{
+    width: 50%;
+}
+
+@media screen and (max-width: 1440px)
+{
+    .summary-col
+    {
+        width: 50%;
+        display: table-cell;
+    }
+
+    .summary-col.third
+    {
+        width: 100%;
+        float: left;
+    }
+
+    #top-stats .path-summary-more .summary-col.third h3.top
+    {
+        margin: 1em 0 0 0;
+    }
+
+    .path-summary-more.expand .path-summary-expanded
+    {
+        margin: 2.5em 0 1em 0;
+    }
+}
+
+#top-stats .path-summary-more h3
+{
+    border: 0;
+    margin: 2em 0 0 0;
+}
+
+#top-stats .path-summary-more .summary-col h3.top
+{
+    margin: 0;
 }
 
 .path-summary-more table.stats
 {
-    width: 40em;
+    width: 100%;
 }
 
+.path-summary-more .bd
+{
+    margin: 1em 25% 1em 0;
+}
+
+.path-summary-more .summary-col.third .bd
+{
+    margin: 1em 1em 1em 0;
+}
 .path-summary-more table.last
 {
-    width: 90em;
+    width: 100%;
+}
+
+.path-summary-more table.last td:first-child
+{
+    min-width: 5em;
 }
 
 .path-summary-more td.stats-number
@@ -1553,6 +1664,22 @@ html[dir="rtl"] ul.pager li:last-child > *
     padding-right: 3em !important;
 }
 
+.path-summary-more .graph
+{
+    height: 8em;
+    background-color: #ccc;
+    width: 100%;
+    margin-bottom: 1em;
+    /* hide graph areas while we don't render anything there */
+    display: none;
+}
+
+.path-summary-more .action-wrapper label,
+.path-summary-more .action-wrapper .last-action,
+.path-summary-more .action-wrapper .last-updated
+{
+    display: inline-block;
+}
 
 /* Tabs */
 

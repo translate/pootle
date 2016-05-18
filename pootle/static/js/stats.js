@@ -428,7 +428,7 @@ const stats = {
     this.$expandIcon.attr('class', `icon-${newClass}-stats`);
     this.$expandIcon.attr('title', newText);
 
-    this.$extraDetails.toggle(isExpanded);
+    this.$extraDetails.toggleClass('expand', isExpanded);
   },
 
   updateChecksUI() {

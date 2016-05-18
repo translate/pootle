@@ -10,68 +10,96 @@
   {% block header_content %}
   <a id="js-path-summary" href="#">
     <div id="progressbar">
-      <i id="js-expand-icon" class="icon-expand-stats"
-         title="{% trans 'Expand details' %}"></i>
       {% include "browser/_progressbar.html" %}
     </div>
   </a>
-
   <div class="path-summary-more" id="js-path-summary-more">
-    <h3>{% trans "Translation Statistics" %}</h3>
-    <div class="bd">
-      <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-        <tbody>
-          {% for item in translation_states %}
-          <tr id="stats-{{ item.state }}">
-            <td id="stats-name">{{ item.title }}</td>
-            <td class="stats-number">
-              {% if can_translate_stats %}
-              <a href="{{ item.url }}" class="stats-data"></a>
-              {% else %}
-              <span class="stats-data"></span>
-              {% endif %}
-            </td>
-            <td class="stats-percentage"><span></span>%</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+    <a id="js-path-summary" class="expand-stats" href="#">
+      <i id="js-expand-icon" class="icon-expand-stats"
+         title="{% trans 'Expand details' %}"></i>
+    </a>
+    <div class="path-summary-collapsed">
+      {% include 'core/_top_scorers_as_ul.html' %}
     </div>
-    <div class="bd">
-      <table class="last">
-        <tbody>
-          <tr id="js-last-updated">
-            <td>{% trans "Last updated" %}</td>
-            <td class="last-updated"></td>
-          </tr>
-          <tr id="js-last-action">
-            <td>{% trans "Last action" %}</td>
-            <td class="last-action"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="js-stats-checks" class="hide stats-checks">
-      <h3>{% trans "Failing Checks" %}</h3>
-      <div class="bd">
-      {% for item in check_categories %}
-        <div id="check-{{ item.name }}" class="checks js-checks">
-          <h4 class="clear">{{ item.title }}</h4>
-          {% for check in item.checks %}
-          <div class="check js-check" data-code="{{ check.code }}">
-            {% if can_translate_stats %}
-            <div class="check-name"><a class="check-data" href="{{ check.url }}">{{ check.title }}</a></div>
-            <div class="check-count"><a class="check-data" href="{{ check.url }}">0</a></div>
-            {% else %}
-            <div class="check-name"><span class="check-data">{{ check.title }}</span></div>
-            <div class="check-count"><span class="check-data">0</span></div>
-            {% endif %}
-          </div>
-          {% endfor %}
+    <div class="path-summary-expanded">
+      <div class="summary-col">
+        <h3 class="top">{% trans "Translation Statistics" %}</h3>
+        <div class="bd">
+          <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
+            <tbody>
+              {% for item in translation_states %}
+              <tr id="stats-{{ item.state }}">
+                <td id="stats-name">{{ item.title }}</td>
+                <td class="stats-number">
+                  {% if can_translate_stats %}
+                  <a href="{{ item.url }}" class="stats-data"></a>
+                  {% else %}
+                  <span class="stats-data"></span>
+                  {% endif %}
+                </td>
+                <td class="stats-percentage"><span></span>%</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
-      {% endfor %}
-      <div class="clear"></div>
+        <div id="js-stats-checks" class="hide stats-checks">
+          <h3>{% trans "Failing Checks" %}</h3>
+          <div class="bd">
+          {% for item in check_categories %}
+            <div id="check-{{ item.name }}" class="checks js-checks">
+              <h4 class="clear">{{ item.title }}</h4>
+              {% for check in item.checks %}
+              <div class="check js-check" data-code="{{ check.code }}">
+                {% if can_translate_stats %}
+                <div class="check-name"><a class="check-data" href="{{ check.url }}">{{ check.title }}</a></div>
+                <div class="check-count"><a class="check-data" href="{{ check.url }}">0</a></div>
+                {% else %}
+                <div class="check-name"><span class="check-data">{{ check.title }}</span></div>
+                <div class="check-count"><span class="check-data">0</span></div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          </div>
+        </div>
       </div>
+      {% if top_scorers %}
+        <div class="summary-col">
+          <h3 class="top">{% trans "Top contributors Last 30 days" %}</h3>
+          <div class="bd">
+            {% include 'core/_top_scorers_as_table.html' %}
+          </div>
+        </div>
+      {% endif %}
+      <div class="summary-col third">
+        <h3 class="top">{% trans "Updates" %}</h3>
+        <div class="bd">
+          <div class="graph"></div>
+          <table class="last">
+            <tbody>
+              <tr id="js-last-updated">
+                <td>{% trans "Last action:" %}</td>
+                <td class="last-updated"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>{% trans "Translations" %}</h3>
+        <div class="bd">
+          <div class="graph"></div>
+          <table class="last">
+            <tbody>
+              <tr id="js-last-action">
+                <td>{% trans "Last action:" %}</td>
+                <td class="last-action"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="clear"></div>
     </div>
   </div>
   {% endblock %}
