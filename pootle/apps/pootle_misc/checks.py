@@ -1080,8 +1080,6 @@ def get_qualitychecks():
 
 
 def get_qualitycheck_schema(path_obj=None):
-    # TODO: add tests
-
     d = {}
     checks = get_qualitychecks()
 
@@ -1102,6 +1100,31 @@ def get_qualitycheck_schema(path_obj=None):
     result = sorted([item for code, item in d.items()],
                     key=lambda x: x['code'],
                     reverse=True)
+
+    return result
+
+
+def get_qualitycheck_list(path_obj):
+    """
+    Returns list of checks sorted in alphabetical order
+    but having critical checks first.
+    """
+    result = []
+    checks = get_qualitychecks()
+
+    for check, cat in checks.items():
+        result.append({
+            'code': check,
+            'is_critical': cat == Category.CRITICAL,
+            'title': u"%s" % check_names.get(check, check),
+            'url': path_obj.get_translate_url(check=check)
+        })
+
+    def alphabetical_critical_first(item):
+        critical_first = 0 if item['is_critical'] else 1
+        return critical_first, item['title'].lower()
+
+    result = sorted(result, key=alphabetical_critical_first)
 
     return result
 
