@@ -17,16 +17,8 @@ Changes since 2.7.3:
 - Requirements use ranges to prevent installing broken versions (:issue:`4737`)
 
 
-Below we provide much more detail. These are by no means exhaustive, view the
-`git log <https://github.com/translate/pootle/compare/2.7.3...2.7.4>`_ for
-complete information.
-
-
-Details of changes
-==================
-
-- Updated some requirements to prevent failures on rebuilding assets.
-- Requirements use ranges to prevent installing broken versions (:issue:`4737`)
+View the `git log <https://github.com/translate/pootle/compare/2.7.3...2.7.4>`_
+for complete information.
 
 
 Credits
