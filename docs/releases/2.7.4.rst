@@ -1,0 +1,31 @@
+===============================
+Welcome to the new Pootle 2.7.4
+===============================
+
+*Released on 19 May 2016*
+
+Bugfix release for 2.7.3. This release is meant as the latest stable release of
+the 2.7 series.
+
+
+2.7.4 vs 2.7.3
+==============
+
+Changes since 2.7.3:
+
+- Updated some requirements to prevent failures on rebuilding assets.
+- Requirements use ranges to prevent installing broken versions (:issue:`4737`)
+
+
+View the `git log <https://github.com/translate/pootle/compare/2.7.3...2.7.4>`_
+for complete information.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Leandro Regueiro, Taras Semenenko, Mikhail Paulyshka, Dwayne Bailey.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
