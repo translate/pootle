@@ -30,6 +30,7 @@ from django.views.defaults import (permission_denied as django_403,
 from django.views.generic import View, DetailView
 
 from pootle.core.delegate import search_backend
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_misc.checks import get_qualitycheck_schema
@@ -607,6 +608,7 @@ class PootleBrowseView(PootleDetailView):
         filters = {}
         can_translate = False
         can_translate_stats = False
+        User = get_user_model()
         if self.has_vfolders:
             filters['sort'] = 'priority'
 
@@ -632,6 +634,9 @@ class PootleBrowseView(PootleDetailView):
         ctx, cookie_data = self.sidebar_announcements
         ctx.update(
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
+
+        language_code, project_code = split_pootle_path(self.pootle_path)[:2]
+
         ctx.update(
             {'page': 'browse',
              'stats': jsonify(self.stats),
@@ -645,6 +650,9 @@ class PootleBrowseView(PootleDetailView):
              'url_action_view_all': url_action_view_all,
              'table': self.table,
              'is_store': self.is_store,
+             'top_scorers': User.top_scorers(project=project_code,
+                                             language=language_code,
+                                             limit=10),
              'browser_extends': self.template_extends})
         return ctx
 

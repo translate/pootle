@@ -14,6 +14,8 @@ import pytest
 
 from pytest_pootle.suite import view_context_test
 
+from django.contrib.auth import get_user_model
+
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
@@ -113,6 +115,7 @@ def _test_browse_view(tp, request, response, kwargs):
     else:
         table = None
 
+    User = get_user_model()
     assertions = dict(
         page="browse",
         object=ob,
@@ -127,6 +130,8 @@ def _test_browse_view(tp, request, response, kwargs):
         resource_path_parts=get_path_parts(resource_path),
         translation_states=get_translation_states(ob),
         check_categories=get_qualitycheck_schema(ob),
+        top_scorers=User.top_scorers(language=tp.language.code,
+                                     project=tp.project.code, limit=10),
         url_action_continue=ob.get_translate_url(
             state='incomplete', **filters),
         url_action_fixcritical=ob.get_critical_url(**filters),

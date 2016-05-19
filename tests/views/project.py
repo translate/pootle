@@ -13,6 +13,7 @@ from urllib import unquote
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 
 from pytest_pootle.suite import view_context_test
@@ -132,6 +133,7 @@ def _test_browse_view(project, request, response, kwargs):
          url_action_review,
          url_action_view_all) = [None] * 4
 
+    User = get_user_model()
     assertions = dict(
         page="browse",
         project=project,
@@ -146,6 +148,7 @@ def _test_browse_view(project, request, response, kwargs):
         translation_states=get_translation_states(ob),
         check_categories=get_qualitycheck_schema(ob),
         table=table,
+        top_scorers=User.top_scorers(project=project.code, limit=10),
         stats=jsonify(ob.get_stats()))
     sidebar = get_sidebar_announcements_context(
         request, (project, ))
@@ -238,6 +241,7 @@ def test_view_projects_browse(client, request_users):
          url_action_review,
          url_action_view_all) = [None] * 4
 
+    User = get_user_model()
     assertions = dict(
         page="browse",
         pootle_path="/projects/",
@@ -248,6 +252,7 @@ def test_view_projects_browse(client, request_users):
         browser_extends="projects/all/base.html",
         stats=jsonify(ob.get_stats()),
         check_categories=get_qualitycheck_schema(ob),
+        top_scorers=User.top_scorers(limit=10),
         translation_states=get_translation_states(ob),
         url_action_continue=url_action_continue,
         url_action_fixcritical=url_action_fixcritical,

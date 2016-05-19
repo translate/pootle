@@ -14,6 +14,8 @@ import pytest
 
 from pytest_pootle.suite import view_context_test
 
+from django.contrib.auth import get_user_model
+
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import make_project_item, get_table_headings
 from pootle.core.delegate import search_backend
@@ -64,6 +66,7 @@ def _test_browse_view(language, request, response, kwargs):
         # check_categories=get_qualitycheck_schema(language),
         table=table,
         translation_states=get_translation_states(language),
+        top_scorers=get_user_model().top_scorers(language=language.code, limit=10),
         stats=jsonify(language.get_stats_for_user(request.user)))
     sidebar = get_sidebar_announcements_context(
         request, (language, ))
