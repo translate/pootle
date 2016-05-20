@@ -14,7 +14,7 @@ cache:
     - $HOME/virtualenv/python2.7.9/lib
     - $HOME/virtualenv/python2.7/bin
 install:
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then upgrade="--upgrade"; fi;
+  - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then upgrade="--upgrade"; fi;
       pip install $upgrade
       -r requirements/base.txt
       -r requirements/travis.txt
@@ -41,8 +41,8 @@ notifications:
     on_failure: always
     on_start: never
 before_cache:
-  # Force rebuilds by removing cache for 'master' builds
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then rm -rf pootle/static/js/node_modules/* pootle/assets/* pootle/assets/.webassets-cache;  fi
+  # Force rebuilds by removing cache for 'master' and 'stable/*' builds
+  - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then rm -rf pootle/static/js/node_modules/* pootle/assets/* pootle/assets/.webassets-cache;  fi
 services:
   - redis-server
   - elasticsearch
