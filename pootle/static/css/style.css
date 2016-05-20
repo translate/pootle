@@ -366,6 +366,11 @@ td.stats-name a:hover > i + span,
 
 /* End hack */
 
+.browsing-table-wrapper
+{
+    position: relative;
+}
+
 
 /*
  * MAIN DIVs

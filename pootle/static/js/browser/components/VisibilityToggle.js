@@ -42,7 +42,6 @@ const VisibilityToggle = React.createClass({
     const style = {
       position: 'absolute',
       [this.props.uiLocaleDir === 'ltr' ? 'right' : 'left']: '2em',
-      top: '1.2em',
       color: '#c30',
     };
 
