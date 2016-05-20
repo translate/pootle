@@ -1,0 +1,31 @@
+===============================
+Welcome to the new Pootle 2.7.5
+===============================
+
+*Released on 21 May 2016*
+
+Bugfix release for 2.7.4. This release is meant as the latest stable release of
+the 2.7 series.
+
+
+2.7.5 vs 2.7.4
+==============
+
+Changes since 2.7.4:
+
+- Fixed build process
+- Expanded list or RTL languages
+
+
+View the `git log <https://github.com/translate/pootle/compare/2.7.4...2.7.5>`_
+for complete information.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Leandro Regueiro, Dwayne Bailey, Ryan Northey, Jason P. Pickering.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
