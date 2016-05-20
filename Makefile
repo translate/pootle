@@ -21,6 +21,7 @@ assets:
 	cd ${JS_DIR} && \
 	npm install && \
 	cd ${CWD}
+	npm --version
 	python manage.py webpack --extra=--display-error-details
 	mkdir -p ${ASSETS_DIR}
 	python manage.py collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}
