@@ -255,6 +255,17 @@ When in development we use 'alpha' with ``extra`` of 0.  The first release of a
 never just ``2.6``.
 
 
+Install nvm
+-----------
+
+Most likely your system will provide a nodejs version older than the one that
+is required. nvm is a tool that allows to quickly install and switch nodejs
+versions.
+
+Follow the `nvm installation instructions
+<https://github.com/creationix/nvm#installation>`_.
+
+
 Build the package
 -----------------
 
@@ -264,6 +275,7 @@ checkout run:
 .. code-block:: console
 
     $ mkvirtualenv build-pootle-release
+    (build-pootle-release)$ nvm install 0.12  # Use nodejs 0.12
     (build-pootle-release)$ pip install --upgrade pip
     (build-pootle-release)$ pip install -r requirements/build.txt
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
