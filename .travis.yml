@@ -20,6 +20,7 @@ install:
   - pip install "Django>=$DJANGO_VERSION,<"$(echo $(echo $DJANGO_VERSION | cut -d"." -f1).$(( $(echo $DJANGO_VERSION | cut -d"." -f2) + 1 )) )
   - pip install .
   - pip freeze  # Print all installed versions for reference.
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install 0.12
 before_script:
   - if [[ $DATABASE_BACKEND == 'postgres' ]]; then psql -c 'create database pootle;' -U postgres; fi
   - if [[ $DATABASE_BACKEND == 'mysql_innodb' ]]; then mysql -e 'create database pootle CHARACTER SET utf8 COLLATE utf8_general_ci;'; fi
