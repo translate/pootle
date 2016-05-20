@@ -18,6 +18,8 @@ build: docs mo assets
 	python setup.py sdist ${FORMATS} ${TAIL}
 
 assets:
+	npm --version
+	node --version
 	cd ${JS_DIR} && \
 	npm install && \
 	cd ${CWD}
