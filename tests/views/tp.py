@@ -27,7 +27,7 @@ from pootle.core.helpers import (
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.json import jsonify
 from pootle.core.utils.stats import get_translation_states
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
@@ -129,7 +129,7 @@ def _test_browse_view(tp, request, response, kwargs):
         resource_path=resource_path,
         resource_path_parts=get_path_parts(resource_path),
         translation_states=get_translation_states(ob),
-        check_categories=get_qualitycheck_schema(ob),
+        checks=get_qualitycheck_list(ob),
         top_scorers=User.top_scorers(language=tp.language.code,
                                      project=tp.project.code, limit=10),
         url_action_continue=ob.get_translate_url(

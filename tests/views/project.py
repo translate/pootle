@@ -30,7 +30,7 @@ from pootle.core.helpers import (
 from pootle.core.utils.json import jsonify
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import get_translation_states
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.forms import UnitExportForm
@@ -146,7 +146,7 @@ def _test_browse_view(project, request, response, kwargs):
         url_action_review=url_action_review,
         url_action_view_all=url_action_view_all,
         translation_states=get_translation_states(ob),
-        check_categories=get_qualitycheck_schema(ob),
+        checks=get_qualitycheck_list(ob),
         table=table,
         top_scorers=User.top_scorers(project=project.code, limit=10),
         stats=jsonify(ob.get_stats()))
@@ -251,7 +251,7 @@ def test_view_projects_browse(client, request_users):
         table=table,
         browser_extends="projects/all/base.html",
         stats=jsonify(ob.get_stats()),
-        check_categories=get_qualitycheck_schema(ob),
+        checks=get_qualitycheck_list(ob),
         top_scorers=User.top_scorers(limit=10),
         translation_states=get_translation_states(ob),
         url_action_continue=url_action_continue,

@@ -33,7 +33,7 @@ from pootle.core.delegate import search_backend
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_misc.util import ajax_required
 from pootle_store.forms import UnitExportForm
@@ -641,7 +641,7 @@ class PootleBrowseView(PootleDetailView):
             {'page': 'browse',
              'stats': jsonify(self.stats),
              'translation_states': get_translation_states(self.object),
-             'check_categories': get_qualitycheck_schema(self.object),
+             'checks': get_qualitycheck_list(self.object),
              'can_translate': can_translate,
              'can_translate_stats': can_translate_stats,
              'url_action_continue': url_action_continue,
