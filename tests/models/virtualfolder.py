@@ -265,14 +265,14 @@ def test_vfolder_unit_priorities():
 
 @pytest.mark.django_db
 def test_virtualfolder_repr():
-    vf = VirtualFolder.objects.first()
+    vf = VirtualFolderDBFactory(filter_rules="store0.po")
     assert (
         "<VirtualFolder: %s: %s>" % (vf.name, vf.location)
         == repr(vf))
 
 
 @pytest.mark.django_db
-def test_virtualfoldertreeitem_repr():
+def test_virtualfoldertreeitem_repr(vfolders):
     vfti = VirtualFolderTreeItem.objects.first()
     assert (
         "<VirtualFolderTreeItem: %s>" % vfti.pootle_path

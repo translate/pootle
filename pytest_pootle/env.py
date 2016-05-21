@@ -38,7 +38,7 @@ class PootleTestEnv(object):
     methods = (
         "redis", "case_sensitive_schema", "content_type", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
-        "site_permissions", "tps", "disabled_project", "vfolders",
+        "site_permissions", "tps", "disabled_project",
         "subdirs", "submissions", "announcements", "terminology")
 
     def __init__(self, request):
@@ -148,31 +148,6 @@ class PootleTestEnv(object):
             cursor,
             "pootle_store.Store",
             "name",
-            "utf8_bin",
-            "varchar(255)")
-
-        # VirtualFolderTreeItem
-        set_mysql_collation_for_column(
-            apps,
-            cursor,
-            "virtualfolder.VirtualFolderTreeItem",
-            "pootle_path",
-            "utf8_bin",
-            "varchar(255)")
-
-        # VirtualFolder
-        set_mysql_collation_for_column(
-            apps,
-            cursor,
-            "virtualfolder.VirtualFolder",
-            "name",
-            "utf8_bin",
-            "varchar(70)")
-        set_mysql_collation_for_column(
-            apps,
-            cursor,
-            "virtualfolder.VirtualFolder",
-            "location",
             "utf8_bin",
             "varchar(255)")
 
@@ -360,23 +335,6 @@ class PootleTestEnv(object):
                 tp_dir.obsolete = False
                 tp_dir.save()
                 self._add_stores(tp)
-
-    def setup_vfolders(self):
-        from pytest_pootle.factories import VirtualFolderDBFactory
-
-        VirtualFolderDBFactory(filter_rules="store0.po")
-        VirtualFolderDBFactory(filter_rules="store1.po")
-        VirtualFolderDBFactory(
-            location='/{LANG}/project0/',
-            is_public=False,
-            filter_rules="store0.po")
-        VirtualFolderDBFactory(
-            location='/{LANG}/project0/',
-            is_public=False,
-            filter_rules="store1.po")
-        VirtualFolderDBFactory(
-            location='/language0/project0/',
-            filter_rules="subdir0/store4.po")
 
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
