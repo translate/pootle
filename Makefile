@@ -31,6 +31,8 @@ assets:
 	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 
 travis-assets:
+	npm --version
+	node --version
 	if [ -d "${ASSETS_DIR}.webassets-cache/" ]; then \
 		echo "eating cache - yum!"; \
 	else \
