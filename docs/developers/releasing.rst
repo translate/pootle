@@ -284,7 +284,6 @@ checkout run:
     (build-pootle-release)$ make build
     (build-pootle-release)$ deactivate
     $ unset POOTLE_SETTINGS
-    $ rmvirtualenv build-pootle-release
 
 
 This will create a tarball in :file:`dist/` which you can use for further
@@ -484,7 +483,14 @@ Run the following to publish the package on PyPI:
 
 .. code-block:: console
 
-    $ make publish-pypi
+    $ workon build-pootle-release
+    (build-pootle-release)$ nvm install 0.12  # Use nodejs 0.12
+    (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
+    (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
+    (build-pootle-release)$ make publish-pypi
+    (build-pootle-release)$ deactivate
+    $ unset POOTLE_SETTINGS
+    $ rmvirtualenv build-pootle-release
 
 
 .. _releasing#create-github-release:
