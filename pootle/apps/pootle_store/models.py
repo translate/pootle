@@ -45,6 +45,7 @@ from pootle.core.url_helpers import (
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
+from pootle_app.models import Directory
 from pootle_misc.checks import check_names, get_checker
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -1272,6 +1273,52 @@ class StoreManager(models.Manager):
     def live(self):
         """Filters non-obsolete stores."""
         return self.filter(obsolete=False)
+
+    def create_by_path(self, pootle_path, project=None,
+                       create_tp=True, create_directory=True):
+        from pootle_language.models import Language
+        from pootle_project.models import Project
+
+        (lang_code, proj_code,
+         dir_path, filename) = split_pootle_path(pootle_path)
+
+        ext = filename.split(".")[-1]
+
+        if project is None:
+            project = Project.objects.get(code=proj_code)
+        elif project.code != proj_code:
+            raise ValueError(
+                "Project must match pootle_path when provided")
+        valid_ext = [
+            project.localfiletype,
+            project.get_template_filetype()]
+        if ext not in valid_ext:
+            raise ValueError(
+                "'%s' is not a valid extension for this Project"
+                % ext)
+        if create_tp:
+            tp, created = (
+                project.translationproject_set.get_or_create(
+                    language=Language.objects.get(code=lang_code)))
+        else:
+            tp = project.translationproject_set.get(
+                language__code=lang_code)
+        if dir_path:
+            if not create_directory:
+                parent = Directory.objects.get(
+                    pootle_path="/".join(
+                        ["", lang_code, proj_code, dir_path]))
+            else:
+                parent = tp.directory
+                for child in dir_path.strip("/").split("/"):
+                    parent, created = Directory.objects.get_or_create(
+                        name=child, parent=parent)
+        else:
+            parent = tp.directory
+
+        store, created = self.get_or_create(
+            name=filename, parent=parent, translation_project=tp)
+        return store
 
 
 class Store(models.Model, CachedTreeItem, base.TranslationStore):
