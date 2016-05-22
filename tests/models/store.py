@@ -15,6 +15,7 @@ import six
 
 import pytest
 
+from pytest_pootle.factories import LanguageDBFactory
 from pytest_pootle.utils import update_store
 
 from translate.storage.factory import getclass
@@ -26,11 +27,14 @@ from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
 from pootle.core.serializers import Serializer, Deserializer
+from pootle_app.models import Directory
 from pootle_config.exceptions import ConfigurationError
+from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
 from pootle_store.util import parse_pootle_revision
+from pootle_translationproject.models import TranslationProject
 
 from .unit import _update_translation
 
@@ -723,3 +727,101 @@ def test_store_set_bad_serializers(store_po):
     config.get(project.__class__, instance=project).set_config(
         "pootle.core.serializers",
         ["eg_serializer"])
+
+
+@pytest.mark.django_db
+def test_store_create_by_bad_path():
+    project0 = Project.objects.get(code="project0")
+
+    # bad project name
+    with pytest.raises(Project.DoesNotExist):
+        Store.objects.create_by_path(
+            "/language0/does/not/exist.po")
+
+    # bad language code
+    with pytest.raises(Language.DoesNotExist):
+        Store.objects.create_by_path(
+            "/does/project0/not/exist.po")
+
+    # project and project code dont match
+    with pytest.raises(ValueError):
+        Store.objects.create_by_path(
+            "/language0/project1/store.po",
+            project=project0)
+
+    # bad store.ext
+    with pytest.raises(ValueError):
+        Store.objects.create_by_path(
+            "/language0/project0/store_by_path.foo")
+
+    # subdir doesnt exist
+    path = '/language0/project0/path/to/subdir.po'
+    with pytest.raises(Directory.DoesNotExist):
+        Store.objects.create_by_path(
+            path, create_directory=False)
+
+    path = '/%s/project0/notp.po' % LanguageDBFactory().code
+    with pytest.raises(TranslationProject.DoesNotExist):
+        Store.objects.create_by_path(
+            path, create_tp=False)
+
+
+@pytest.mark.django_db
+def test_store_create_by_path():
+
+    # create in tp
+    path = '/language0/project0/path.po'
+    store = Store.objects.create_by_path(path)
+    assert store.pootle_path == path
+
+    # "create" in tp again - get existing store
+    store = Store.objects.create_by_path(path)
+    assert store.pootle_path == path
+
+    # create in existing subdir
+    path = '/language0/project0/subdir0/exists.po'
+    store = Store.objects.create_by_path(path)
+    assert store.pootle_path == path
+
+    # create in new subdir
+    path = '/language0/project0/path/to/subdir.po'
+    store = Store.objects.create_by_path(path)
+    assert store.pootle_path == path
+
+
+@pytest.mark.django_db
+def test_store_create_by_path_with_project():
+    project0 = Project.objects.get(code="project0")
+
+    # create in tp with project
+    path = '/language0/project0/path2.po'
+    store = Store.objects.create_by_path(
+        path, project=project0)
+    assert store.pootle_path == path
+
+    # create in existing subdir with project
+    path = '/language0/project0/subdir0/exists2.po'
+    store = Store.objects.create_by_path(
+        path, project=project0)
+    assert store.pootle_path == path
+
+    # create in new subdir with project
+    path = '/language0/project0/path/to/subdir2.po'
+    store = Store.objects.create_by_path(
+        path, project=project0)
+    assert store.pootle_path == path
+
+
+@pytest.mark.django_db
+def test_store_create_by_new_tp_path():
+    language = LanguageDBFactory()
+    path = '/%s/project0/tp.po' % language.code
+    store = Store.objects.create_by_path(path)
+    assert store.pootle_path == path
+    assert store.translation_project.language == language
+
+    language = LanguageDBFactory()
+    path = '/%s/project0/with/subdir/tp.po' % language.code
+    store = Store.objects.create_by_path(path)
+    assert store.pootle_path == path
+    assert store.translation_project.language == language
