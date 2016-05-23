@@ -81,11 +81,6 @@ Directory contents
 
       https://github.com/HubSpot/odometer
 
-    - shortcut.js :
-      Small library to ease adding keyboard shortcuts.
-
-      http://www.openjs.com/scripts/events/keyboard_shortcuts/
-
     - sorttable.js :
       Sorts tables according to its values. Used in the homepage as well as on the
       languages and projects listings. It has some customisations to support
