@@ -181,10 +181,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     treestyle_choices = (
         # TODO: check that the None is stored and handled correctly
-        ('auto', _('Automatic detection (slower)')),
+        ('auto', _('Automatic detection of gnu/non-gnu file layouts (slower)')),
         ('gnu', _('GNU style: files named by language code')),
         ('nongnu', _('Non-GNU: Each language in its own directory')),
-    )
+        ('none', _('Allow pootle_fs to manage filesystems')))
     treestyle = models.CharField(max_length=20, default='auto',
                                  choices=treestyle_choices,
                                  verbose_name=_('Project Tree Style'))
@@ -364,8 +364,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         return self.fullname
 
     def save(self, *args, **kwargs):
-        # Create file system directory if needed
-        if not self.directory_exists_on_disk() and not self.disabled:
+        requires_translation_directory = (
+            not self.treestyle == "none"
+            and not self.disabled
+            and not self.directory_exists_on_disk())
+        if requires_translation_directory:
             os.makedirs(self.get_real_path())
 
         from pootle_app.models.directory import Directory
