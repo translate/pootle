@@ -31,6 +31,7 @@
     "diff-match-patch": "^1.0.0",
     "imports-loader": "^0.6.3",
     "md5": "^2.0.0",
+    "mousetrap": "^1.5.3",
     "object-assign": "^2.0.0",
     "react": "^0.14.6",
     "react-addons-pure-render-mixin": "^0.14.6",

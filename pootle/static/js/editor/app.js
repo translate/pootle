@@ -23,8 +23,8 @@ import 'jquery-utils';
 import autosize from 'autosize';
 import cx from 'classnames';
 import Levenshtein from 'levenshtein';
+import Mousetrap from 'mousetrap';
 import assign from 'object-assign';
-import 'shortcut';
 
 import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
@@ -297,26 +297,29 @@ PTL.editor = {
     });
 
     /* Bind hotkeys */
-    shortcut.add('esc', () => {
+    const mousetrap = Mousetrap(document.body);
+
+    // FIXME: move binding to `SuggestionFeedbackForm` component
+    mousetrap.bind('esc', () => {
       if (this.selectedSuggestionId !== undefined) {
         this.closeSuggestion();
       }
     });
-    shortcut.add('ctrl+return', () => {
+    mousetrap.bind('ctrl+return', () => {
       if (this.isSuggestMode()) {
         this.handleSuggest();
       } else {
         this.handleSubmit();
       }
     });
-    shortcut.add('ctrl+space', () => this.toggleState());
-    shortcut.add('ctrl+shift+space', (e) => this.toggleSuggestMode(e));
+    mousetrap.bind('ctrl+space', () => this.toggleState());
+    mousetrap.bind('ctrl+shift+space', (e) => this.toggleSuggestMode(e));
 
-    shortcut.add('ctrl+up', () => this.gotoPrev());
-    shortcut.add('ctrl+,', () => this.gotoPrev());
+    mousetrap.bind('ctrl+up', () => this.gotoPrev());
+    mousetrap.bind('ctrl+,', () => this.gotoPrev());
 
-    shortcut.add('ctrl+down', () => this.gotoNext({ isSubmission: false }));
-    shortcut.add('ctrl+.', () => this.gotoNext({ isSubmission: false }));
+    mousetrap.bind('ctrl+down', () => this.gotoNext({ isSubmission: false }));
+    mousetrap.bind('ctrl+.', () => this.gotoNext({ isSubmission: false }));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -334,7 +337,7 @@ PTL.editor = {
       );
     }
 
-    shortcut.add('ctrl+shift+n', (e) => this.unitIndex(e));
+    Mousetrap.bind('ctrl+shift+n', (e) => this.unitIndex(e));
 
     /* XHR activity indicator */
     $(document).ajaxStart(() => {

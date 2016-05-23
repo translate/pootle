@@ -60,7 +60,6 @@ var resolve = {
     levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
     moment: __dirname + '/vendor/moment.js', // FIXME: use npm module
     odometer: __dirname + '/vendor/odometer.js', // FIXME: use npm module
-    shortcut: __dirname + '/vendor/shortcut.js',
     sorttable: __dirname + '/vendor/sorttable.js',
     spin: __dirname + '/vendor/spin.js', // FIXME: use npm module
   }
