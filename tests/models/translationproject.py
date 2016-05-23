@@ -143,3 +143,31 @@ def test_tp_checker(tp_checker_tests):
                                    checks.StandardChecker)
     ]
     assert [x.__class__ for x in tp.checker.checkers] == checkerclasses
+
+
+@pytest.mark.django_db
+def test_tp_create_with_none_treestyle(english, templates, settings):
+    from pytest_pootle.factories import ProjectDBFactory
+
+    project = ProjectDBFactory(
+        source_language=english,
+        treestyle="none")
+    language = LanguageDBFactory()
+    TranslationProjectFactory(
+        language=templates, project=project)
+
+    tp = TranslationProject.objects.create(
+        project=project, language=language)
+
+    assert not tp.abs_real_path
+    assert not os.path.exists(
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            project.code))
+
+    tp.save()
+    assert not tp.abs_real_path
+    assert not os.path.exists(
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            project.code))
