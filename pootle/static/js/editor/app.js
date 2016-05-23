@@ -2139,7 +2139,7 @@ PTL.editor = {
 
     for (let i = 0; i < results.length && i < 3; i++) {
       const result = results[i];
-      let fullname;
+      let fullname = result.fullname;
       if (result.username === 'nobody') {
         fullname = gettext('some anonymous user');
       } else if (!result.fullname) {
