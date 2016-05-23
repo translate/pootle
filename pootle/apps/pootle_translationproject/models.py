@@ -158,7 +158,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     language = models.ForeignKey(Language, db_index=True)
     project = models.ForeignKey(Project, db_index=True)
-    real_path = models.FilePathField(editable=False)
+    real_path = models.FilePathField(editable=False, null=True, blank=True)
     directory = models.OneToOneField(Directory, db_index=True, editable=False)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
                                    db_index=True, editable=False)
@@ -191,11 +191,15 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     @property
     def abs_real_path(self):
-        return absolute_real_path(self.real_path)
+        if self.real_path is not None:
+            return absolute_real_path(self.real_path)
 
     @abs_real_path.setter
     def abs_real_path(self, value):
-        self.real_path = relative_real_path(value)
+        if value is not None:
+            self.real_path = relative_real_path(value)
+        else:
+            self.real_path = None
 
     @property
     def file_style(self):
@@ -257,12 +261,14 @@ class TranslationProject(models.Model, CachedTreeItem):
                                       .get_or_make_subdir(self.project.code)
         self.pootle_path = self.directory.pootle_path
 
-        project_dir = self.project.get_real_path()
-        from pootle_app.project_tree import get_translation_project_dir
-        self.abs_real_path = get_translation_project_dir(
-            self.language, project_dir, self.file_style, make_dirs=not
-            self.directory.obsolete)
-
+        if self.project.treestyle != "none":
+            project_dir = self.project.get_real_path()
+            from pootle_app.project_tree import get_translation_project_dir
+            self.abs_real_path = get_translation_project_dir(
+                self.language, project_dir, self.file_style, make_dirs=not
+                self.directory.obsolete)
+        else:
+            self.abs_real_path = None
         super(TranslationProject, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
