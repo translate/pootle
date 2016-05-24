@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-02-19 10:21+0200\n"
-"Last-Translator: Cédric VALMARY <cvalmary@yahoo.fr>\n"
+"PO-Revision-Date: 2016-05-06 19:33+0000\n"
+"Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: Tot en òc (totenoc.eu)\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
-"X-POOTLE-MTIME: 1450877203.000000\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1462563226.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -42,7 +42,7 @@ msgstr ""
 
 #: apps/accounts/models.py:68
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Entratz un nom d'utilizaire valid."
 
 # 92%
 #: apps/accounts/models.py:72
@@ -142,7 +142,7 @@ msgstr "Resumit"
 
 #: apps/contact/forms.py:28
 msgid "Please enter your message summary"
-msgstr ""
+msgstr "Entratz lo resumit de vòstre messatge"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:33 core/browser.py:17
 msgid "Name"
@@ -150,7 +150,7 @@ msgstr "Nom"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr ""
+msgstr "Entratz vòstre nom"
 
 #: apps/contact/forms.py:39
 msgid "Email address"
@@ -158,7 +158,7 @@ msgstr "Adreça electronica"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Entratz vòstra adreça electronica"
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -166,14 +166,13 @@ msgstr "Messatge"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr ""
+msgstr "Entratz vòstre messatge"
 
 #: apps/contact/views.py:35 templates/layout.html:102
 msgid "Contact Us"
 msgstr "Nos contactar"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Senhalar un problèma amb la cadena font"
 
@@ -215,7 +214,7 @@ msgstr ""
 
 #: apps/import_export/utils.py:66
 msgid "There was an error uploading your file"
-msgstr "Une error s'es producha pendent lo mandadís del fichièr"
+msgstr "Une error s'es produita pendent lo mandadís del fichièr"
 
 #: apps/pootle_app/forms.py:38
 msgid "Language code does not follow the ISO convention"
@@ -252,11 +251,11 @@ msgstr "Lengas activas"
 
 #: apps/pootle_app/views/admin/dashboard.py:89
 msgid "Translated strings"
-msgstr "Cadenas traduchas"
+msgstr "Cadenas traduitas"
 
 #: apps/pootle_app/views/admin/dashboard.py:90
 msgid "Translated words"
-msgstr "Mots traduches"
+msgstr "Mots traduits"
 
 #: apps/pootle_app/views/admin/dashboard.py:91
 msgid "Active users"
@@ -273,7 +272,7 @@ msgstr[1] ""
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:116
 msgid "Stopped"
-msgstr ""
+msgstr "Arrestat"
 
 #: apps/pootle_app/views/admin/permissions.py:66
 msgid "All Users"
@@ -281,7 +280,7 @@ msgstr "Totes los utilizaires"
 
 #: apps/pootle_app/views/admin/permissions.py:93
 msgid "Add Permissions"
-msgstr ""
+msgstr "Apondre de dreits"
 
 #: apps/pootle_app/views/admin/permissions.py:98
 #: apps/pootle_app/views/admin/permissions.py:107
@@ -532,7 +531,7 @@ msgstr "Pas cambiats"
 #: apps/pootle_store/util.py:30 core/helpers.py:49
 #: templates/editor/_filters.html:9
 msgid "Untranslated"
-msgstr "Pas traduch"
+msgstr "Pas traduit"
 
 #: apps/pootle_misc/checks.py:84
 msgid "URLs"
@@ -663,9 +662,8 @@ msgid "Percent brace placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr format"
-msgstr "Forma plurala %d"
+msgstr "Forma plurala"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:91 core/helpers.py:53
@@ -708,7 +706,7 @@ msgstr "Total"
 #: apps/pootle_misc/stats.py:25 apps/pootle_store/util.py:32 core/helpers.py:48
 #: templates/editor/_filters.html:7
 msgid "Translated"
-msgstr "Traduch"
+msgstr "Traduit"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
@@ -1457,7 +1455,7 @@ msgstr "Retorn a la lenga"
 
 #: core/browser.py:124
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Retorn al dorsièr parent"
 
 #: core/decorators.py:323 core/views.py:95
 msgid "Insufficient rights to access this page."
@@ -1881,7 +1879,7 @@ msgstr ""
 
 #: templates/admin/reports/paid_task_form.html:5
 msgid "Add Task"
-msgstr "Apondre un prètafach"
+msgstr "Apondre un prètzfait"
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
@@ -2200,7 +2198,7 @@ msgstr "Terminologia :"
 
 #: templates/editor/units/edit.html:49
 msgid "Insert the translated term into the editor"
-msgstr "Inserir lo tèrme traduch dins l'editor"
+msgstr "Inserir lo tèrme traduit dins l'editor"
 
 #: templates/editor/units/edit.html:62
 msgid "Comments:"
@@ -2422,7 +2420,7 @@ msgstr "Error del servidor"
 
 #: templates/errors/500.html:10
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "Una error s'es producha. Pacientatz."
+msgstr "Una error s'es produita. Pacientatz."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
@@ -2734,7 +2732,7 @@ msgstr "Connexion"
 
 #: templates/welcome.html:32
 msgid "Top Contributors This Month"
-msgstr ""
+msgstr "Melhor contributir del mes"
 
 #~ msgid "Source Terms"
 #~ msgstr "Tèxte font"

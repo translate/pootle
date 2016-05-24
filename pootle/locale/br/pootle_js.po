@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-01-29 07:39+0000\n"
+"PO-Revision-Date: 2016-05-18 09:40+0000\n"
 "Last-Translator: Tornoz <tornoz@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: br\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1454053171.000000\n"
+"X-POOTLE-MTIME: 1463564431.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -47,99 +47,102 @@ msgstr "Nullañ"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s yezh a genglot gant hoc'h azgoulenn."
+msgstr[1] "%(count)s yezh a genglot gant hoc'h azgoulenn."
 
 #: static/js/admin/components/Language/LanguageController.js:57
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)s yezh a zo."
 msgstr[1] ""
+"%(count)s yezh a zo. Amañ dindan eo skrammet ar re ouzhpennet nevez 'zo."
 
 #: static/js/admin/components/Language/LanguageController.js:73
 msgid "Search Languages"
-msgstr ""
+msgstr "Klask yezhoù"
 
 #: static/js/admin/components/Language/LanguageController.js:74
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Yezh ar restr dre anv, boneg"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "Embann ar yezh"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Arverit ar furmskrid evit kavout ar yezh, ha klikit war ur yezh evit hec'h "
+"embann."
 
 #: static/js/admin/components/Language/LanguageForm.js:52
 #: static/js/admin/components/Project/ProjectForm.js:54
 msgid "Code"
-msgstr ""
+msgstr "Boneg"
 
 #: static/js/admin/components/Language/LanguageForm.js:59
 #: static/js/admin/components/Project/ProjectForm.js:61
 #: static/js/admin/components/User/UserForm.js:87
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr ""
+msgstr "Anv klok"
 
 #: static/js/admin/components/Language/LanguageForm.js:66
 msgid "Special Characters"
-msgstr ""
+msgstr "Arouezennoù arbennik"
 
 #: static/js/admin/components/Language/LanguageForm.js:76
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Niver a liesterioù"
 
 #: static/js/admin/components/Language/LanguageForm.js:83
 msgid "Plural Equation"
-msgstr ""
+msgstr "Atalad liester"
 
 #: static/js/admin/components/Language/LanguageForm.js:95
 #: static/js/admin/components/Project/ProjectForm.js:141
 #: static/js/admin/components/User/UserForm.js:152
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
-msgstr ""
+msgstr "Enrollañ"
 
 #: static/js/admin/components/Language/LanguageForm.js:98
 #: static/js/admin/components/Project/ProjectForm.js:144
 msgid "Overview"
-msgstr ""
+msgstr "Sell hollek"
 
 #: static/js/admin/components/Language/LanguageForm.js:99
 #: static/js/admin/components/Project/ProjectForm.js:146
 msgid "Permissions"
-msgstr ""
+msgstr "Aotreoù"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
-#, fuzzy
 msgid "Add Project"
-msgstr "An holl raktresoù"
+msgstr "Ouzhpennañ ur raktres"
 
 #: static/js/admin/components/Project/ProjectController.js:53
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s raktres a glot gant hoc'h azgoulenn."
+msgstr[1] "%(count)s raktres a glot gant hoc'h azgoulenn."
 
 #: static/js/admin/components/Project/ProjectController.js:57
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)s raktres a zo."
 msgstr[1] ""
+"%(count)s raktres a zo. Amañ dindan eo kinniget ar re ouzhpennet nevez 'zo."
 
 #: static/js/admin/components/Project/ProjectController.js:73
 msgid "Search Projects"
-msgstr ""
+msgstr "Klask raktresoù"
 
 #: static/js/admin/components/Project/ProjectController.js:74
 msgid "Find project by name, code"
@@ -185,47 +188,47 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:131
 msgid "Disabled"
-msgstr ""
+msgstr "Diweredekaet"
 
 #: static/js/admin/components/Project/ProjectForm.js:145
 msgid "Languages"
-msgstr ""
+msgstr "Yezhoù"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
-msgstr ""
+msgstr "Kargañ muioc'h"
 
 #: static/js/admin/components/Search.js:92
 msgid "Loading..."
-msgstr ""
+msgstr "O kargañ..."
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr ""
+msgstr "Ouzhpennañ un arveriad"
 
 #: static/js/admin/components/User/UserController.js:53
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s arveriad a glot gant hoc'h azgoulenn."
+msgstr[1] "%(count)s arveriad a glot gant hoc'h azgoulenn."
 
 #: static/js/admin/components/User/UserController.js:57
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s arveriad a zo."
+msgstr[1] "%(count)s arveriad a zo. Amañ dindan eo ar re ouzhpennet nevez 'zo."
 
 #: static/js/admin/components/User/UserController.js:73
 msgid "Search Users"
-msgstr ""
+msgstr "Klask arveriaded"
 
 #: static/js/admin/components/User/UserController.js:74
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Kavout un arveriad gant e anv, postel, perzhioù"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
@@ -275,42 +278,42 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:112
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:114
 msgid "Twitter username"
-msgstr ""
+msgstr "Anv arveriad Twitter"
 
 #: static/js/admin/components/User/UserForm.js:121
 #: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:123
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "URL aelad LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:129
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "Lec'hienn web"
 
 #: static/js/admin/components/User/UserForm.js:131
 msgid "Personal website URL"
-msgstr ""
+msgstr "URL lec'hienn web personel"
 
 #: static/js/admin/components/User/UserForm.js:138
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr ""
+msgstr "Buhezskrid berr"
 
 #: static/js/admin/components/User/UserForm.js:140
 msgid "Personal description"
-msgstr ""
+msgstr "Deskrivadur personel"
 
 #: static/js/admin/components/User/UserForm.js:156
 msgid "Public Profile"
-msgstr ""
+msgstr "Aelad foran"
 
 #: static/js/admin/components/User/UserForm.js:157
 msgid "Settings"
@@ -356,15 +359,15 @@ msgstr ""
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Diweredekaet eo bet ho kont gant un ardead."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "Kit e darempred ganeomp"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "Diamzeret eo an ere kadarnaat dre bostel pe didalvoudek eo."
 
 #: static/js/auth/components/PasswordResetForm.js:81
 msgid ""

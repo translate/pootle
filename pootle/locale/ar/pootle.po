@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-01-21 07:41+0000\n"
-"Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
+"PO-Revision-Date: 2016-05-10 03:15+0000\n"
+"Last-Translator: Haytham A. <haytham.hammam@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1453362101.000000\n"
+"X-POOTLE-MTIME: 1462850142.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -112,7 +112,7 @@ msgstr "العملة"
 
 #: apps/accounts/models.py:101
 msgid "Is employee?"
-msgstr ""
+msgstr "موظف؟"
 
 #: apps/accounts/models.py:102
 msgid "Twitter"
@@ -137,7 +137,7 @@ msgstr "عنوان البريد الإلكترونيّ هذا موجود بال�
 #: apps/accounts/views.py:37
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr ""
+msgstr "حدث عُطل أثناء ولوجك. رجاء تواصل مع مدير النظام"
 
 #: apps/contact/forms.py:26
 msgid "Summary"
@@ -176,7 +176,6 @@ msgid "Contact Us"
 msgstr "اتّصل بنا"
 
 #: apps/contact/views.py:66
-#, fuzzy
 msgid "Report problem with string"
 msgstr "أبلغ عن مشكلة بهذا المقطع"
 
@@ -371,7 +370,7 @@ msgstr "استخلاص"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Other"
-msgstr ""
+msgstr "أخرى"
 
 #: apps/pootle_misc/checks.py:42
 msgid "Accelerators"
@@ -383,7 +382,7 @@ msgstr "الاختصارات"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Blank"
-msgstr "الفراغ"
+msgstr "فارغ"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Brackets"
@@ -399,7 +398,7 @@ msgstr "إشادات المترجمين"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Dialog sizes"
-msgstr ""
+msgstr "أحجام المربعات الحوارية"
 
 #: apps/pootle_misc/checks.py:49
 msgid "Double quotes"
@@ -553,9 +552,8 @@ msgid "Placeholders"
 msgstr "حافظات المكان"
 
 #: apps/pootle_misc/checks.py:87
-#, fuzzy
 msgid "Valid XML"
-msgstr "XML غير صالح"
+msgstr "XML صالح"
 
 #: apps/pootle_misc/checks.py:88
 msgid "XML tags"
@@ -591,7 +589,7 @@ msgstr "حافظات مكان نسق سي"
 
 #: apps/pootle_misc/checks.py:97
 msgid "Non printable"
-msgstr ""
+msgstr "محارف لا تطبع"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Unbalanced tag braces"
@@ -603,11 +601,11 @@ msgstr "الخاصيّات المغيّرة"
 
 #: apps/pootle_misc/checks.py:100
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "علامة & غير متخلصة"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "علامة & متخلص منها خطأ"
 
 #: apps/pootle_misc/checks.py:102
 msgid "Whitespaces"
@@ -655,7 +653,7 @@ msgstr "اختلاف الوسوم"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Curly braces"
-msgstr ""
+msgstr "أقواس مجعدة"
 
 #: apps/pootle_misc/checks.py:115
 msgid "Potential unwanted placeholders"
@@ -786,7 +784,7 @@ msgstr "عنوان بريد إلكترنيّ حيث الأخطاء في النّ
 
 #: apps/pootle_project/models.py:200
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "سابقة البحث عن لقطات الشاشة"
 
 #: apps/pootle_project/models.py:205
 msgid "Disabled"
@@ -1821,7 +1819,7 @@ msgstr "المجموع الفرعيّ"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "ترجمة آلية"
 
 #: templates/admin/detailed_reports.html:218
 #, fuzzy
@@ -2016,19 +2014,19 @@ msgid "View all"
 msgstr "اعرض الكلّ"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% مترجمة"
+msgstr "<span class=\"value translated\">0</span>%% مترجمة"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% مبهمة"
+msgstr "<span class=\"value fuzzy\">0</span>%% مبهمة"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% غير مترجمة"
+msgstr "<span class=\"value untranslated\">0</span>%% غير مترجمة"
 
 #: templates/browser/index.html:13
 msgid "Expand details"
@@ -2613,7 +2611,6 @@ msgstr ""
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
 #: templates/translation_projects/terminology/manage.html:62
-#, fuzzy
 msgid ""
 "In order to use the terminology feature, make sure to add a terminology file "
 "to your translation project. The terminology file must be named 'pootle-"
@@ -2623,7 +2620,7 @@ msgid ""
 msgstr ""
 "لاستخدام ميزة المصطلحات، تأكد من إضافة ملفّ مصطلحات إلى مشروع التّرجمة. يجب أن "
 "يكون الملفّ باسم 'pootle-terminology' كما ويستخدم نفس امتداد (نسق) الملّف في "
-"بقية ملفّات المشروع.  المصطلحات هذه ستُستخدم إضافة إلى أية اقتراحات مصطلحات "
+"بقية ملفّات المشروع.   المصطلحات هذه ستُستخدم إضافة إلى أية اقتراحات مصطلحات "
 "يوفّرها مشروع 'المصطلحات'."
 
 #: templates/translation_projects/terminology/stores.html:7

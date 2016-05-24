@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-03-21 21:54+0000\n"
-"PO-Revision-Date: 2016-02-19 09:27+0000\n"
+"PO-Revision-Date: 2016-05-06 18:09+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: oc\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1455874044.000000\n"
+"X-POOTLE-MTIME: 1462558156.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -60,7 +60,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/Language/LanguageController.js:73
 msgid "Search Languages"
-msgstr ""
+msgstr "Cercar de lengas"
 
 #: static/js/admin/components/Language/LanguageController.js:74
 msgid "Find language by name, code"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "Editar la lenga"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
@@ -93,11 +93,11 @@ msgstr "Caractèrs especials"
 
 #: static/js/admin/components/Language/LanguageForm.js:76
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Nombre de plurals"
 
 #: static/js/admin/components/Language/LanguageForm.js:83
 msgid "Plural Equation"
-msgstr ""
+msgstr "Eqüacion del plural"
 
 #: static/js/admin/components/Language/LanguageForm.js:95
 #: static/js/admin/components/Project/ProjectForm.js:141
@@ -109,7 +109,7 @@ msgstr "Enregistrar"
 #: static/js/admin/components/Language/LanguageForm.js:98
 #: static/js/admin/components/Project/ProjectForm.js:144
 msgid "Overview"
-msgstr ""
+msgstr "Vista generala"
 
 #: static/js/admin/components/Language/LanguageForm.js:99
 #: static/js/admin/components/Project/ProjectForm.js:146
@@ -138,7 +138,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/Project/ProjectController.js:73
 msgid "Search Projects"
-msgstr ""
+msgstr "Cercar de projèctes"
 
 #: static/js/admin/components/Project/ProjectController.js:74
 msgid "Find project by name, code"
@@ -155,7 +155,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:71
 msgid "Quality Checks"
-msgstr ""
+msgstr "Verificacions de la qualitat"
 
 #: static/js/admin/components/Project/ProjectForm.js:81
 msgid "File Type"
