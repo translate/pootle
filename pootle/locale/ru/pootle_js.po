@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-03-21 21:54+0000\n"
+"POT-Creation-Date: 2016-05-24 11:00+0100\n"
 "PO-Revision-Date: 2016-03-22 00:02+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "Сохранение выполнено успешно."
 msgid "Deleted successfully."
 msgstr "Удаление выполнено успешно."
 
-#: static/js/admin/components/ItemDelete.js:49
+#: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
 msgstr "Удалить"
 
@@ -44,7 +44,7 @@ msgstr "Добавить язык"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: static/js/admin/components/Language/LanguageController.js:53
+#: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
@@ -52,7 +52,7 @@ msgstr[0] "%(count)s язык отвечают вашему запросу."
 msgstr[1] "%(count)s языка отвечают вашему запросу."
 msgstr[2] "%(count)s языков отвечают вашему запросу."
 
-#: static/js/admin/components/Language/LanguageController.js:57
+#: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
@@ -61,11 +61,11 @@ msgstr[0] "Всего %(count)s язык."
 msgstr[1] "Всего %(count)s языка. Внизу отображены самые последние."
 msgstr[2] "Всего %(count)s языков. Внизу отображены самые последние."
 
-#: static/js/admin/components/Language/LanguageController.js:73
+#: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
 msgstr "Искать языки"
 
-#: static/js/admin/components/Language/LanguageController.js:74
+#: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
 msgstr "Найти язык по названию, коду"
 
@@ -80,44 +80,44 @@ msgstr ""
 "Используйте форму поиска, чтобы найти язык, затем кликнете по нему, чтобы "
 "отредактировать его."
 
-#: static/js/admin/components/Language/LanguageForm.js:52
-#: static/js/admin/components/Project/ProjectForm.js:54
+#: static/js/admin/components/Language/LanguageForm.js:54
+#: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
 msgstr "Код"
 
-#: static/js/admin/components/Language/LanguageForm.js:59
-#: static/js/admin/components/Project/ProjectForm.js:61
-#: static/js/admin/components/User/UserForm.js:87
+#: static/js/admin/components/Language/LanguageForm.js:61
+#: static/js/admin/components/Project/ProjectForm.js:63
+#: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
 msgstr "Полное имя"
 
-#: static/js/admin/components/Language/LanguageForm.js:66
+#: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
 msgstr "Специальные символы"
 
-#: static/js/admin/components/Language/LanguageForm.js:76
+#: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
 msgstr "Номер множественного числа"
 
-#: static/js/admin/components/Language/LanguageForm.js:83
+#: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
 msgstr "Уравнение множественного числа"
 
-#: static/js/admin/components/Language/LanguageForm.js:95
-#: static/js/admin/components/Project/ProjectForm.js:141
-#: static/js/admin/components/User/UserForm.js:152
+#: static/js/admin/components/Language/LanguageForm.js:97
+#: static/js/admin/components/Project/ProjectForm.js:143
+#: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Сохранить"
 
-#: static/js/admin/components/Language/LanguageForm.js:98
-#: static/js/admin/components/Project/ProjectForm.js:144
+#: static/js/admin/components/Language/LanguageForm.js:101
+#: static/js/admin/components/Project/ProjectForm.js:147
 msgid "Overview"
 msgstr "Общая информация"
 
-#: static/js/admin/components/Language/LanguageForm.js:99
-#: static/js/admin/components/Project/ProjectForm.js:146
+#: static/js/admin/components/Language/LanguageForm.js:102
+#: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Permissions"
 msgstr "Права доступа"
 
@@ -126,7 +126,7 @@ msgstr "Права доступа"
 msgid "Add Project"
 msgstr "Добавить проект"
 
-#: static/js/admin/components/Project/ProjectController.js:53
+#: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
@@ -134,7 +134,7 @@ msgstr[0] "%(count)s проект отвечают вашему запросу."
 msgstr[1] "%(count)s проекта отвечают вашему запросу."
 msgstr[2] "%(count)s проектов отвечают вашему запросу."
 
-#: static/js/admin/components/Project/ProjectController.js:57
+#: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
@@ -143,11 +143,11 @@ msgstr[0] "Всего %(count)s проект."
 msgstr[1] "Всего %(count)s проекта. Внизу отображены самые последние."
 msgstr[2] "Всего %(count)s проектов. Внизу отображены самые последние."
 
-#: static/js/admin/components/Project/ProjectController.js:73
+#: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
 msgstr "Искать проекты"
 
-#: static/js/admin/components/Project/ProjectController.js:74
+#: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
 msgstr "Найти проект по названию, коду"
 
@@ -162,39 +162,39 @@ msgstr ""
 "Используйте форму поиска, чтобы найти проекта, затем кликнете по нему, чтобы "
 "отредактировать его."
 
-#: static/js/admin/components/Project/ProjectForm.js:71
+#: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
 msgstr "Проверки качества"
 
-#: static/js/admin/components/Project/ProjectForm.js:81
+#: static/js/admin/components/Project/ProjectForm.js:83
 msgid "File Type"
 msgstr "Тип файла"
 
-#: static/js/admin/components/Project/ProjectForm.js:91
+#: static/js/admin/components/Project/ProjectForm.js:93
 msgid "Project Tree Style"
 msgstr "Структура каталогов проекта"
 
-#: static/js/admin/components/Project/ProjectForm.js:101
+#: static/js/admin/components/Project/ProjectForm.js:103
 msgid "Source Language"
 msgstr "Исходный язык"
 
-#: static/js/admin/components/Project/ProjectForm.js:108
+#: static/js/admin/components/Project/ProjectForm.js:110
 msgid "Ignore Files"
 msgstr "Игнорировать файлы"
 
-#: static/js/admin/components/Project/ProjectForm.js:116
+#: static/js/admin/components/Project/ProjectForm.js:118
 msgid "String Errors Contact"
 msgstr "Контакт для ошибок в строках"
 
-#: static/js/admin/components/Project/ProjectForm.js:123
+#: static/js/admin/components/Project/ProjectForm.js:125
 msgid "Screenshot Search Prefix"
 msgstr "Префикс для поиска снимков экрана"
 
-#: static/js/admin/components/Project/ProjectForm.js:131
+#: static/js/admin/components/Project/ProjectForm.js:133
 msgid "Disabled"
 msgstr "Выключено"
 
-#: static/js/admin/components/Project/ProjectForm.js:145
+#: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Languages"
 msgstr "Языки"
 
@@ -202,7 +202,7 @@ msgstr "Языки"
 msgid "Load More"
 msgstr "Загрузить ещё"
 
-#: static/js/admin/components/Search.js:92
+#: static/js/admin/components/Search.js:93
 msgid "Loading..."
 msgstr "Загрузка…"
 
@@ -211,7 +211,7 @@ msgstr "Загрузка…"
 msgid "Add User"
 msgstr "Добавить пользователя"
 
-#: static/js/admin/components/User/UserController.js:53
+#: static/js/admin/components/User/UserController.js:59
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
@@ -219,7 +219,7 @@ msgstr[0] "%(count)s пользователь отвечает вашему за
 msgstr[1] "%(count)s пользователя отвечают вашему запросу."
 msgstr[2] "%(count)s пользователей отвечают вашему запросу."
 
-#: static/js/admin/components/User/UserController.js:57
+#: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
@@ -228,11 +228,11 @@ msgstr[0] "Всего %(count)s пользователь."
 msgstr[1] "Всего %(count)s пользователя. Внизу отображены самые последние."
 msgstr[2] "Всего %(count)s пользователей. Внизу отображены самые последние."
 
-#: static/js/admin/components/User/UserController.js:73
+#: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
 msgstr "Искать пользователей"
 
-#: static/js/admin/components/User/UserController.js:74
+#: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
 msgstr "Найти пользователя по имени, email, свойствам"
 
@@ -246,7 +246,7 @@ msgstr ""
 "Используйте форму поиска, чтобы найти пользователя, затем кликнете по нему, "
 "чтобы отредактировать его."
 
-#: static/js/admin/components/User/UserForm.js:46
+#: static/js/admin/components/User/UserForm.js:47
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -254,86 +254,86 @@ msgstr ""
 "Замечание: удаление пользователя присвоит все его правки, такие как "
 "комментарии, предложения и переводы, анонимному пользователю (nobody)."
 
-#: static/js/admin/components/User/UserForm.js:59
+#: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
-#: static/js/auth/components/SignUpForm.js:83
+#: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: static/js/admin/components/User/UserForm.js:69
+#: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
 msgstr "Активно"
 
-#: static/js/admin/components/User/UserForm.js:77
+#: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:98
-#: static/js/auth/components/SocialVerification.js:94
-#: static/js/auth/components/PasswordResetForm.js:114
+#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SocialVerification.js:100
+#: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
 msgstr "Пароль"
 
-#: static/js/admin/components/User/UserForm.js:78
+#: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
 msgstr "Установить новый пароль"
 
-#: static/js/admin/components/User/UserForm.js:94
-#: static/js/auth/components/SignUpForm.js:90
+#: static/js/admin/components/User/UserForm.js:98
+#: static/js/auth/components/SignUpForm.js:91
 msgid "Email"
 msgstr "Электронная почта"
 
-#: static/js/admin/components/User/UserForm.js:104
+#: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
 msgstr "Администратор"
 
-#: static/js/admin/components/User/UserForm.js:112
+#: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
 msgstr "Twitter"
 
-#: static/js/admin/components/User/UserForm.js:114
+#: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
 msgstr "Имя пользователя в Twitter"
 
-#: static/js/admin/components/User/UserForm.js:121
+#: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:123
+#: static/js/admin/components/User/UserForm.js:127
 msgid "LinkedIn profile URL"
 msgstr "Профиль в LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:129
+#: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
 msgstr "Веб-сайт"
 
-#: static/js/admin/components/User/UserForm.js:131
+#: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
 msgstr "Адрес персонального веб-сайта"
 
-#: static/js/admin/components/User/UserForm.js:138
+#: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
 msgstr "Короткая биография"
 
-#: static/js/admin/components/User/UserForm.js:140
+#: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
 msgstr "Персональное описание"
 
-#: static/js/admin/components/User/UserForm.js:156
+#: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
 msgstr "Публичный профиль"
 
-#: static/js/admin/components/User/UserForm.js:157
+#: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
 msgstr "Настройки"
 
-#: static/js/admin/components/User/UserForm.js:158
+#: static/js/admin/components/User/UserForm.js:162
 msgid "Statistics"
 msgstr "Статистика"
 
-#: static/js/admin/components/User/UserForm.js:159
+#: static/js/admin/components/User/UserForm.js:163
 msgid "Reports"
 msgstr "Отчеты"
 
@@ -355,15 +355,15 @@ msgstr ""
 "Мы отправили письмо, содержащее специальную ссылку, на адрес, который "
 "использовался при регистрации учетной записи."
 
-#: static/js/auth/components/AccountActivation.js:41
+#: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
 msgstr "Ваша учетная запись требует активации."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:44
 msgid "Please follow that link to continue the account creation."
 msgstr "Пожалуйста, проследуйте по этой ссылке для создания учетной записи."
 
-#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountActivation.js:59
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -391,24 +391,24 @@ msgstr ""
 "Неправильная ссылка сброса пароля, возможно из-за того, что ее уже "
 "использовали. Запросите повторный сброс пароля."
 
-#: static/js/auth/components/PasswordResetForm.js:87
+#: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
-#: static/js/auth/components/PasswordResetForm.js:99
+#: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
 msgstr "Пароль изменился, входим..."
 
-#: static/js/auth/components/PasswordResetForm.js:122
-#: static/js/auth/components/SignUpForm.js:106
+#: static/js/auth/components/PasswordResetForm.js:125
+#: static/js/auth/components/SignUpForm.js:107
 msgid "Repeat Password"
 msgstr "Повторите пароль"
 
-#: static/js/auth/components/PasswordResetForm.js:136
+#: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
 msgstr "Установить новый пароль"
 
-#: static/js/auth/components/PasswordResetForm.js:140
+#: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
 msgstr "После смены пароля, вход будет произведен автоматически."
 
@@ -417,12 +417,12 @@ msgstr "После смены пароля, вход будет произвед
 msgid "Sending email to %s..."
 msgstr "Отправка Email на %s..."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:47
+#: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
 "Пожалуйста, проследуйте по ссылке для продолжения процедуры сброса пароля."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:48
+#: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
@@ -430,22 +430,22 @@ msgstr ""
 "Не получили письмо? Проверьте, вдруг оно попало в спам, или попробуйте "
 "запросить еще одно письмо."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:62
+#: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
 msgstr "Отправить Email снова"
 
 #: static/js/auth/components/SignInForm.js:83
-#: static/js/auth/components/RequestPasswordResetForm.js:120
+#: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
 msgstr "Зарегистрироваться как новый пользователь"
 
 #: static/js/auth/components/SignInForm.js:111
-#: static/js/auth/components/SocialVerification.js:102
+#: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "Я забыл свой пароль"
 
 #: static/js/auth/components/SignInForm.js:122
-#: static/js/auth/components/SocialVerification.js:113
+#: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
 msgstr "Войти"
@@ -463,25 +463,25 @@ msgstr "Социальные сервисы"
 msgid "Login / Password"
 msgstr "Логин / Пароль"
 
-#: static/js/auth/components/SignUpForm.js:120
-#: static/js/auth/containers/Auth.js:95
+#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "Зарегистрироваться"
 
-#: static/js/auth/components/SignUpForm.js:125
+#: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
 msgstr "Войти как существующий пользователь"
 
-#: static/js/auth/components/SocialAuthError.js:29
+#: static/js/auth/components/SocialAuthError.js:30
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "Произошла ошибка при входе через %s"
 
-#: static/js/auth/components/SocialAuthError.js:33
+#: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr "Произошла ошибка при входе через учетную запись социального сервиса."
 
-#: static/js/auth/components/SocialAuthError.js:49
+#: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
 msgstr "Попытаться снова"
 
@@ -490,7 +490,7 @@ msgstr "Попытаться снова"
 msgid "Sign In With %s"
 msgstr "Войти с помощью %s"
 
-#: static/js/auth/components/SocialSignInForm.js:44
+#: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
@@ -502,32 +502,42 @@ msgstr ""
 msgid "Sign In With..."
 msgstr "Войти с помощью..."
 
-#: static/js/auth/containers/Auth.js:89
+#: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
 msgstr "Учетная запись неактивна"
 
-#: static/js/auth/containers/Auth.js:101
+#: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
 msgstr "Активация учётной записи"
 
-#: static/js/auth/containers/Auth.js:107
+#: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
 msgstr "Подтверждение по Email"
 
-#: static/js/auth/containers/Auth.js:113 static/js/auth/containers/Auth.js:119
-#: static/js/auth/containers/Auth.js:125
+#: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
+#: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
 msgstr "Сбросить пароль"
 
-#: static/js/auth/containers/Auth.js:131
+#: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
 msgstr "Ой..."
 
-#: static/js/auth/containers/Auth.js:137
+#: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
 msgstr "Социальная верификация"
 
-#: static/js/editor/app.js:276 static/js/editor/app.js:554
+#: static/js/browser/components/VisibilityToggle.js:51
+#, fuzzy
+msgid "Show disabled"
+msgstr "выключено"
+
+#: static/js/browser/components/VisibilityToggle.js:52
+#, fuzzy
+msgid "Hide disabled"
+msgstr "выключено"
+
+#: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -535,7 +545,7 @@ msgstr ""
 "У вас есть несохраненные изменения в этой строке. Если вы перейдете в любое "
 "другое место, то все ваши изменения будут отменены."
 
-#: static/js/editor/app.js:302
+#: static/js/editor/app.js:325
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -543,7 +553,7 @@ msgstr ""
 "Перейти к следующей строке (Ctrl+.)<br/><br/>Также:<br/>Следующая страница: "
 "Ctrl+Shift+.<br/>Последняя страница: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:306
+#: static/js/editor/app.js:331
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -551,66 +561,82 @@ msgstr ""
 "Перейти к предыдущей строке (Ctrl+,)<br/><br/>Также:</br>Предыдущая "
 "страница: Ctrl+Shift+,<br/>Первая страница: Ctrl+Shift+Home"
 
-#: static/js/editor/app.js:411
+#: static/js/editor/app.js:452
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s предложений ожидают подтверждения"
 
-#: static/js/editor/app.js:414
+#: static/js/editor/app.js:455
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s подтвержденных предложений"
 
-#: static/js/editor/app.js:417
+#: static/js/editor/app.js:458
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s отклоненных предложений"
 
-#: static/js/editor/app.js:420
+#: static/js/editor/app.js:461
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Предложения %s"
 
-#: static/js/editor/app.js:424
+#: static/js/editor/app.js:465
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Измененные предложения %s"
 
-#: static/js/editor/app.js:546 static/js/editor/app.js:1647
-msgid "No results."
-msgstr "Нет результатов."
-
-#: static/js/editor/app.js:1003
+#: static/js/editor/app.js:1057
 msgid "Error while connecting to the server"
 msgstr "Ошибка при соединении с сервером"
 
-#: static/js/editor/app.js:1007
+#: static/js/editor/app.js:1061
 msgid "Not found"
 msgstr "Не найдено"
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1063
 msgid "Server error"
 msgstr "Ошибка сервера"
 
-#: static/js/editor/app.js:1011
+#: static/js/editor/app.js:1065
 msgid "The server seems down. Try again later."
 msgstr "Кажется, сервер не работает. Попробуйте повторить позже."
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1074
 msgid "This string no longer exists."
 msgstr "Эта строка больше не существует."
 
-#: static/js/editor/app.js:1021
+#: static/js/editor/app.js:1075
 msgid "Go back to browsing"
 msgstr "Вернуться к просмотру"
 
-#: static/js/editor/app.js:1023
+#: static/js/editor/app.js:1077
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
-#: static/js/editor/app.js:2033 static/js/editor/app.js:1986
+#: static/js/editor/app.js:1816 static/js/editor/app.js:598
+msgid "No results."
+msgstr "Нет результатов."
+
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "Похожие переводы"
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:81
+msgid "Edit the suggestion before accepting, if necessary"
+msgstr ""
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:92
+msgid "Provide optional comment (will be publicly visible)"
+msgstr ""
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:103
+msgid "Accept"
+msgstr ""
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:107
+msgid "Reject"
+msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -632,15 +658,15 @@ msgstr "Очистить всё"
 msgid "Type to search"
 msgstr "Введите поисковый запрос"
 
-#: static/js/shared/models/project.js:57
+#: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "выключено"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 msgid "Congratulations! You have completed this task!"
 msgstr "Поздравляем! Вы выполнили это задание!"
 
-#: static/js/stats.js:379
+#: static/js/stats.js:405
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
@@ -648,11 +674,11 @@ msgstr[0] "%s секунда"
 msgstr[1] "%s секунды"
 msgstr[2] "%s секунд"
 
-#: static/js/stats.js:416
+#: static/js/stats.js:442
 msgid "Collapse details"
 msgstr "Свернуть подробности"
 
-#: static/js/stats.js:416
+#: static/js/stats.js:442
 msgid "Expand details"
 msgstr "Показать подробности"
 
@@ -761,11 +787,11 @@ msgstr[2] "%s минут назад"
 msgid "A few seconds ago"
 msgstr "Несколько секунд назад"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:95
+#: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr "Адрес эл. почты"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:96
+#: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
@@ -773,11 +799,11 @@ msgstr ""
 "Введите свой адрес электронной почты, и мы отправим вам письмо со ссылкой "
 "для сброса пароля."
 
-#: static/js/auth/components/RequestPasswordResetForm.js:106
+#: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
 msgstr "Нет, спасибо"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:114
+#: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
 msgstr "Отправить Email"
 
@@ -785,7 +811,7 @@ msgstr "Отправить Email"
 msgid "Creating new user accounts is prohibited."
 msgstr "Создание новых учетных записей отключено."
 
-#: static/js/auth/components/SocialVerification.js:80
+#: static/js/auth/components/SocialVerification.js:81
 #, python-format
 msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
@@ -808,11 +834,11 @@ msgstr "Все проекты"
 msgid "Entire Project"
 msgstr "Весь проект"
 
-#: static/js/editor/app.js:1967
+#: static/js/editor/app.js:2144
 msgid "some anonymous user"
 msgstr "анонимный пользователь"
 
-#: static/js/editor/app.js:1970
+#: static/js/editor/app.js:2146
 msgid "someone"
 msgstr "кто-то"
 

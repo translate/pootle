@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-03-21 21:54+0000\n"
+"POT-Creation-Date: 2016-05-24 11:00+0100\n"
 "PO-Revision-Date: 2016-01-07 14:12+0000\n"
 "Last-Translator: trinomxp <trinomxp@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Ruajtju u krye me sukses"
 msgid "Deleted successfully."
 msgstr "Fshirja u krye me sukses"
 
-#: static/js/admin/components/ItemDelete.js:49
+#: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
 msgstr "Fshije"
 
@@ -43,14 +43,14 @@ msgstr "Shto gjuhë"
 msgid "Cancel"
 msgstr "Anullo"
 
-#: static/js/admin/components/Language/LanguageController.js:53
+#: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/Language/LanguageController.js:57
+#: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
@@ -58,11 +58,11 @@ msgid_plural ""
 msgstr[0] "Ka %(numër)im gjuhësh"
 msgstr[1] "Ka %(numër)im gjuhësh. Poshtë janë më të fundit të shtuar."
 
-#: static/js/admin/components/Language/LanguageController.js:73
+#: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
 msgstr "Kërko Gjuhët"
 
-#: static/js/admin/components/Language/LanguageController.js:74
+#: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
 msgstr "Gjej Gjuhën nga emri,kodi"
 
@@ -77,44 +77,44 @@ msgstr ""
 "Përdor formën e kërkimit për të gjet gjuhën, pastaj kliko në editimin e "
 "gjuhës."
 
-#: static/js/admin/components/Language/LanguageForm.js:52
-#: static/js/admin/components/Project/ProjectForm.js:54
+#: static/js/admin/components/Language/LanguageForm.js:54
+#: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
 msgstr "Kodi"
 
-#: static/js/admin/components/Language/LanguageForm.js:59
-#: static/js/admin/components/Project/ProjectForm.js:61
-#: static/js/admin/components/User/UserForm.js:87
+#: static/js/admin/components/Language/LanguageForm.js:61
+#: static/js/admin/components/Project/ProjectForm.js:63
+#: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
 msgstr "Emri i Plotë"
 
-#: static/js/admin/components/Language/LanguageForm.js:66
+#: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
 msgstr "Karakter Speciale"
 
-#: static/js/admin/components/Language/LanguageForm.js:76
+#: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
 msgstr "Numri ne shumes"
 
-#: static/js/admin/components/Language/LanguageForm.js:83
+#: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
 msgstr " Ekuacioni i Shumes"
 
-#: static/js/admin/components/Language/LanguageForm.js:95
-#: static/js/admin/components/Project/ProjectForm.js:141
-#: static/js/admin/components/User/UserForm.js:152
+#: static/js/admin/components/Language/LanguageForm.js:97
+#: static/js/admin/components/Project/ProjectForm.js:143
+#: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Ruaj"
 
-#: static/js/admin/components/Language/LanguageForm.js:98
-#: static/js/admin/components/Project/ProjectForm.js:144
+#: static/js/admin/components/Language/LanguageForm.js:101
+#: static/js/admin/components/Project/ProjectForm.js:147
 msgid "Overview"
 msgstr "Përshkrimi"
 
-#: static/js/admin/components/Language/LanguageForm.js:99
-#: static/js/admin/components/Project/ProjectForm.js:146
+#: static/js/admin/components/Language/LanguageForm.js:102
+#: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Permissions"
 msgstr "Lejet"
 
@@ -124,14 +124,14 @@ msgstr "Lejet"
 msgid "Add Project"
 msgstr "Shto projekt"
 
-#: static/js/admin/components/Project/ProjectController.js:53
+#: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/Project/ProjectController.js:57
+#: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
@@ -139,11 +139,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/Project/ProjectController.js:73
+#: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
 msgstr "Kërko projektet"
 
-#: static/js/admin/components/Project/ProjectController.js:74
+#: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
 msgstr "Gjej profektin nga emri,kodi"
 
@@ -158,39 +158,39 @@ msgstr ""
 "Përdor formën e kërkimit për të gjetur projektin, pastaj kliko në projekt "
 "për ta redaktuar."
 
-#: static/js/admin/components/Project/ProjectForm.js:71
+#: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
 msgstr "Kontrollet e Cilesis"
 
-#: static/js/admin/components/Project/ProjectForm.js:81
+#: static/js/admin/components/Project/ProjectForm.js:83
 msgid "File Type"
 msgstr "Lloji i Skedarit"
 
-#: static/js/admin/components/Project/ProjectForm.js:91
+#: static/js/admin/components/Project/ProjectForm.js:93
 msgid "Project Tree Style"
 msgstr "Stili i Pemes se Projektit"
 
-#: static/js/admin/components/Project/ProjectForm.js:101
+#: static/js/admin/components/Project/ProjectForm.js:103
 msgid "Source Language"
 msgstr "Gjuha Burim"
 
-#: static/js/admin/components/Project/ProjectForm.js:108
+#: static/js/admin/components/Project/ProjectForm.js:110
 msgid "Ignore Files"
 msgstr "Injoro Skedarin"
 
-#: static/js/admin/components/Project/ProjectForm.js:116
+#: static/js/admin/components/Project/ProjectForm.js:118
 msgid "String Errors Contact"
 msgstr "Gabim ne gjetjen e Stringës"
 
-#: static/js/admin/components/Project/ProjectForm.js:123
+#: static/js/admin/components/Project/ProjectForm.js:125
 msgid "Screenshot Search Prefix"
 msgstr "Kërko prefixin pamjes se Ekranit"
 
-#: static/js/admin/components/Project/ProjectForm.js:131
+#: static/js/admin/components/Project/ProjectForm.js:133
 msgid "Disabled"
 msgstr "Çaktivizuar"
 
-#: static/js/admin/components/Project/ProjectForm.js:145
+#: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Languages"
 msgstr "Gjuhët"
 
@@ -198,7 +198,7 @@ msgstr "Gjuhët"
 msgid "Load More"
 msgstr "Ngarko Me shume"
 
-#: static/js/admin/components/Search.js:92
+#: static/js/admin/components/Search.js:93
 msgid "Loading..."
 msgstr "Duke ngarkuar..."
 
@@ -207,14 +207,14 @@ msgstr "Duke ngarkuar..."
 msgid "Add User"
 msgstr "Shto Përdorues"
 
-#: static/js/admin/components/User/UserController.js:53
+#: static/js/admin/components/User/UserController.js:59
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/User/UserController.js:57
+#: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
@@ -222,11 +222,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/admin/components/User/UserController.js:73
+#: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
 msgstr "Kërko Përdorues"
 
-#: static/js/admin/components/User/UserController.js:74
+#: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
 msgstr "Gjej përdorues nga emri,emaili,pronësitë"
 
@@ -240,7 +240,7 @@ msgstr ""
 "Përdor formë kërkimin për të gjrtur përdorues,,pastaj kliko në një përdorues "
 "për editim"
 
-#: static/js/admin/components/User/UserForm.js:46
+#: static/js/admin/components/User/UserForm.js:47
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
@@ -248,86 +248,86 @@ msgstr ""
 "Shenim: Kur Përdoruesi fshin Kontributin e tyre ne site p.sh. komentet, "
 "sygjerimet, perkthimet, jane pronesi e  nje përdoruesi anonimi (asnjerit)"
 
-#: static/js/admin/components/User/UserForm.js:59
+#: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
-#: static/js/auth/components/SignUpForm.js:83
+#: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
 msgstr "Emri i Përdoruesit"
 
-#: static/js/admin/components/User/UserForm.js:69
+#: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
 msgstr "Aktiv"
 
-#: static/js/admin/components/User/UserForm.js:77
+#: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:98
-#: static/js/auth/components/SocialVerification.js:94
-#: static/js/auth/components/PasswordResetForm.js:114
+#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SocialVerification.js:100
+#: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
 msgstr "Fjalëkalimi"
 
-#: static/js/admin/components/User/UserForm.js:78
+#: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
 msgstr "Vendosni një fjalëkalim të ri"
 
-#: static/js/admin/components/User/UserForm.js:94
-#: static/js/auth/components/SignUpForm.js:90
+#: static/js/admin/components/User/UserForm.js:98
+#: static/js/auth/components/SignUpForm.js:91
 msgid "Email"
 msgstr "Email"
 
-#: static/js/admin/components/User/UserForm.js:104
+#: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
 msgstr "Administratori"
 
-#: static/js/admin/components/User/UserForm.js:112
+#: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
 msgstr "Twitter"
 
-#: static/js/admin/components/User/UserForm.js:114
+#: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
 msgstr "Twitter Përdoruesi"
 
-#: static/js/admin/components/User/UserForm.js:121
+#: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: static/js/admin/components/User/UserForm.js:123
+#: static/js/admin/components/User/UserForm.js:127
 msgid "LinkedIn profile URL"
 msgstr "LinkedIn profil URL"
 
-#: static/js/admin/components/User/UserForm.js:129
+#: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
 msgstr "\"Website\""
 
-#: static/js/admin/components/User/UserForm.js:131
+#: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
 msgstr "Personal website URL"
 
-#: static/js/admin/components/User/UserForm.js:138
+#: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
 msgstr "Shkurt Bio"
 
-#: static/js/admin/components/User/UserForm.js:140
+#: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
 msgstr "Përshkrimi i Personal"
 
-#: static/js/admin/components/User/UserForm.js:156
+#: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
 msgstr "Profili Publik"
 
-#: static/js/admin/components/User/UserForm.js:157
+#: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
 msgstr "Parametrat"
 
-#: static/js/admin/components/User/UserForm.js:158
+#: static/js/admin/components/User/UserForm.js:162
 msgid "Statistics"
 msgstr "Statistikat"
 
-#: static/js/admin/components/User/UserForm.js:159
+#: static/js/admin/components/User/UserForm.js:163
 msgid "Reports"
 msgstr "Raportet"
 
@@ -349,15 +349,15 @@ msgstr ""
 "Ne ju kemi dërguar një email që përmban një lidhje speciale në një adresë që "
 "përdoret për të rregjistruar një llogari."
 
-#: static/js/auth/components/AccountActivation.js:41
+#: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
 msgstr "Llogaria juaj ka nevojë të aktivizohet."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:44
 msgid "Please follow that link to continue the account creation."
 msgstr "Ju lutemi ndiqni atë lidhje për të vazhduar krijimin e llogarisë."
 
-#: static/js/auth/components/AccountActivation.js:56
+#: static/js/auth/components/AccountActivation.js:59
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -383,24 +383,24 @@ msgstr ""
 "Lidhja e rivendosjes se fjalëkalimit ishte e pamundur sepse tashme ështe e "
 "perdorur. Ju lutemi kërkoni një rivendosje te re të fjalëkalimit."
 
-#: static/js/auth/components/PasswordResetForm.js:87
+#: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
 msgstr "Ripërcakto Fjalëkalim"
 
-#: static/js/auth/components/PasswordResetForm.js:99
+#: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
 msgstr "Fjalëkalimi u  ndryshua, duke u rregjistruar..."
 
-#: static/js/auth/components/PasswordResetForm.js:122
-#: static/js/auth/components/SignUpForm.js:106
+#: static/js/auth/components/PasswordResetForm.js:125
+#: static/js/auth/components/SignUpForm.js:107
 msgid "Repeat Password"
 msgstr "Përsërit fjalëkalimin:"
 
-#: static/js/auth/components/PasswordResetForm.js:136
+#: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
 msgstr "Caktoni Fjalëkalim të RI"
 
-#: static/js/auth/components/PasswordResetForm.js:140
+#: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
 msgstr ""
 
@@ -409,13 +409,13 @@ msgstr ""
 msgid "Sending email to %s..."
 msgstr "Duke dërguar e-mail drejt..."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:47
+#: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
 "Ju lutemi ndiqni atë lidhje për të vazduar me rivendosjen e procedurës së "
 "fjalëkalimit."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:48
+#: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
@@ -423,22 +423,22 @@ msgstr ""
 "NUk morët një email? Kontrollo nëse ishte filtruar aksidentalisht si Spam , "
 "ose provo të kërkosh një kopje të emailit."
 
-#: static/js/auth/components/RequestPasswordResetSent.js:62
+#: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
 msgstr "Ridërgo email"
 
 #: static/js/auth/components/SignInForm.js:83
-#: static/js/auth/components/RequestPasswordResetForm.js:120
+#: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
 msgstr "Rregjistrohu si përdorues i ri"
 
 #: static/js/auth/components/SignInForm.js:111
-#: static/js/auth/components/SocialVerification.js:102
+#: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "Harrova fjalëkalimin tim"
 
 #: static/js/auth/components/SignInForm.js:122
-#: static/js/auth/components/SocialVerification.js:113
+#: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
 msgstr ""
@@ -456,27 +456,27 @@ msgstr "Shërbimet Sociale"
 msgid "Login / Password"
 msgstr ""
 
-#: static/js/auth/components/SignUpForm.js:120
-#: static/js/auth/containers/Auth.js:95
+#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr ""
 
-#: static/js/auth/components/SignUpForm.js:125
+#: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
 msgstr "Rregjistrohu si përdorues ekzistues"
 
-#: static/js/auth/components/SocialAuthError.js:29
+#: static/js/auth/components/SocialAuthError.js:30
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
 msgstr "Ndodhi një gabim ndërsa përpiqej to rregjistrojmë nëpërmjet %s."
 
-#: static/js/auth/components/SocialAuthError.js:33
+#: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
 "Ndodhi një gabim ndërsa përpiqej to rregjistrojmë nëpërmjet llogarisë tuaj "
 "sociale."
 
-#: static/js/auth/components/SocialAuthError.js:49
+#: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
 msgstr "Provo përsëri"
 
@@ -485,7 +485,7 @@ msgstr "Provo përsëri"
 msgid "Sign In With %s"
 msgstr "Rregjistrohu me %t"
 
-#: static/js/auth/components/SocialSignInForm.js:44
+#: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
@@ -497,32 +497,42 @@ msgstr ""
 msgid "Sign In With..."
 msgstr "Rregjistrohu me..."
 
-#: static/js/auth/containers/Auth.js:89
+#: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
 msgstr "Llogaria Joaktive"
 
-#: static/js/auth/containers/Auth.js:101
+#: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
 msgstr "Llogaria Aktivizuar"
 
-#: static/js/auth/containers/Auth.js:107
+#: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
 msgstr "Konfirmim Emaili"
 
-#: static/js/auth/containers/Auth.js:113 static/js/auth/containers/Auth.js:119
-#: static/js/auth/containers/Auth.js:125
+#: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
+#: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
 msgstr "Rivendos Fjalëkalimin tënd"
 
-#: static/js/auth/containers/Auth.js:131
+#: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
 msgstr "Uups..."
 
-#: static/js/auth/containers/Auth.js:137
+#: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
 msgstr "Verifikim Social"
 
-#: static/js/editor/app.js:276 static/js/editor/app.js:554
+#: static/js/browser/components/VisibilityToggle.js:51
+#, fuzzy
+msgid "Show disabled"
+msgstr "Çaktivizuar"
+
+#: static/js/browser/components/VisibilityToggle.js:52
+#, fuzzy
+msgid "Hide disabled"
+msgstr "Çaktivizuar"
+
+#: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -530,78 +540,94 @@ msgstr ""
 "Ju nuk i keni ruajtur ndrzshimet ne string. navigimi përtej do të flakë këto "
 "ndryshime."
 
-#: static/js/editor/app.js:302
+#: static/js/editor/app.js:325
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:306
+#: static/js/editor/app.js:331
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
-#: static/js/editor/app.js:411
+#: static/js/editor/app.js:452
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s është një sygjerim i lënë pezull"
 
-#: static/js/editor/app.js:414
+#: static/js/editor/app.js:455
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s është një sygjerim i pranuar"
 
-#: static/js/editor/app.js:417
+#: static/js/editor/app.js:458
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s është një sygjerim i refuzuar"
 
-#: static/js/editor/app.js:420
+#: static/js/editor/app.js:461
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s është i aplikuar"
 
-#: static/js/editor/app.js:424
+#: static/js/editor/app.js:465
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s është aplikim i mbishkruar"
 
-#: static/js/editor/app.js:546 static/js/editor/app.js:1647
-msgid "No results."
-msgstr "Asnjë rezultat."
-
-#: static/js/editor/app.js:1003
+#: static/js/editor/app.js:1057
 msgid "Error while connecting to the server"
 msgstr "Error gjatë lidhjes me serverin"
 
-#: static/js/editor/app.js:1007
+#: static/js/editor/app.js:1061
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1009
+#: static/js/editor/app.js:1063
 msgid "Server error"
 msgstr "Server Error"
 
-#: static/js/editor/app.js:1011
+#: static/js/editor/app.js:1065
 msgid "The server seems down. Try again later."
 msgstr "Ky server duket i fikur. Provo më vonë."
 
-#: static/js/editor/app.js:1020
+#: static/js/editor/app.js:1074
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1021
+#: static/js/editor/app.js:1075
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1023
+#: static/js/editor/app.js:1077
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:2033 static/js/editor/app.js:1986
+#: static/js/editor/app.js:1816 static/js/editor/app.js:598
+msgid "No results."
+msgstr "Asnjë rezultat."
+
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2164
 msgid "Similar translations"
 msgstr "Përkthim i ngjashëm"
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:81
+msgid "Edit the suggestion before accepting, if necessary"
+msgstr ""
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:92
+msgid "Provide optional comment (will be publicly visible)"
+msgstr ""
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:103
+msgid "Accept"
+msgstr ""
+
+#: static/js/editor/components/SuggestionFeedbackForm.js:107
+msgid "Reject"
+msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -623,27 +649,27 @@ msgstr "Pastro gjithçka"
 msgid "Type to search"
 msgstr "Shtyp për të kërkuar."
 
-#: static/js/shared/models/project.js:57
+#: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr ""
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "Pergezime, ju kaluat te gjithe stringat."
 
-#: static/js/stats.js:379
+#: static/js/stats.js:405
 #, python-format, javascript-format
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats.js:416
+#: static/js/stats.js:442
 msgid "Collapse details"
 msgstr "Përmblidh detajet"
 
-#: static/js/stats.js:416
+#: static/js/stats.js:442
 msgid "Expand details"
 msgstr "Trego detajet"
 
@@ -747,11 +773,11 @@ msgstr[1] "%s minutë më parë"
 msgid "A few seconds ago"
 msgstr "Disa sekonda më parë"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:95
+#: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr "Adresë Email"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:96
+#: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
@@ -759,11 +785,11 @@ msgstr ""
 "Fut adresë emailin tuaj , dhe ne do të ju dërgojmë ju nnjë mesazh me një "
 "lidhje të veçantë për rivendosje të fjalëkalimit tuaj."
 
-#: static/js/auth/components/RequestPasswordResetForm.js:106
+#: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
 msgstr "Jo,Faleminderit"
 
-#: static/js/auth/components/RequestPasswordResetForm.js:114
+#: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
 msgstr "Dërgo Email"
 
@@ -771,7 +797,7 @@ msgstr "Dërgo Email"
 msgid "Creating new user accounts is prohibited."
 msgstr "Krijimi i një llogari përdoruesi është i ndaluar. "
 
-#: static/js/auth/components/SocialVerification.js:80
+#: static/js/auth/components/SocialVerification.js:81
 #, python-format
 msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
@@ -792,11 +818,11 @@ msgstr "Të gjitha projektet"
 msgid "Entire Project"
 msgstr "Të gjitha projektet"
 
-#: static/js/editor/app.js:1967
+#: static/js/editor/app.js:2144
 msgid "some anonymous user"
 msgstr "një përdorues anonim"
 
-#: static/js/editor/app.js:1970
+#: static/js/editor/app.js:2146
 msgid "someone"
 msgstr "dikush"
 
