@@ -41,7 +41,7 @@ django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js -e py,txt,
 # makemessages is rubbish at this so use xgettext directly
 # Until xgettext properly supports JavaScript extraction we use Python, but
 # first we extract using JavaScript just to get the ones that do actually work.
-find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xgettext --output=$DJANGO_JS_POT --language=JavaScript --from-code=utf-8
+find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xgettext --keyword=t --output=$DJANGO_JS_POT --language=JavaScript --from-code=utf-8
 sed -i"" -e "s/charset=CHARSET/charset=UTF-8/" $DJANGO_JS_POT
 find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8
 
