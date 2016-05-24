@@ -21,12 +21,11 @@ def config_getter(sender=None, instance=None, key=None, **kwargs):
     if sender:
         if instance is not None and not isinstance(instance, sender):
             raise ConfigurationError(
-                _("'instance' must be an instance of 'sender', when specified")
-            )
+                "'instance' must be an instance of 'sender', when specified")
         conf = Config.objects.get_config_queryset(instance or sender)
     elif instance:
         raise ConfigurationError(
-            _("'sender' must be defined when 'instance' is specified"))
+            "'sender' must be defined when 'instance' is specified")
     else:
         conf = Config.objects.site_config()
 
