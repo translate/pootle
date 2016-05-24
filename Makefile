@@ -21,7 +21,6 @@ assets:
 	npm --version
 	node --version
 	cd ${JS_DIR} && \
-	npm cache clear && \
 	npm install && \
 	cd ${CWD}
 	python manage.py webpack --extra=--display-error-details
@@ -61,6 +60,7 @@ sprite:
 	optipng -o7 ${IMAGES_DIR}/sprite.png
 
 clean:
+	npm cache clear
 	rm -rf ${TEST_ENV_NAME}
 
 test: clean assets

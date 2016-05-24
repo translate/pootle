@@ -281,6 +281,7 @@ checkout run:
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
     (build-pootle-release)$ make mo-all  # If we are shipping an RC
+    (build-pootle-release)$ make clean
     (build-pootle-release)$ make build
     (build-pootle-release)$ deactivate
     $ unset POOTLE_SETTINGS
