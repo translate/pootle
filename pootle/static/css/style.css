@@ -753,18 +753,19 @@ button.close
 
 /* table row colors, see 'Table Row Colors.psd' */
 
-tr.item
+.stats tr.item
 {
    display: none;
 }
 
-tr.item.is-visible
+.stats tr.item.is-visible
 {
    display: table-row;
 }
 
 tr.view-row:nth-child(odd),
-.item.odd
+.permissions tr.item:nth-child(odd),
+.stats .item.odd
 {
     background: #f5fbfd;
 }
