@@ -4,20 +4,6 @@ Keyboard shortcuts
 ******************
 
 
-.. _shortcuts#global:
-
-Global
-------
-
-===================== =======================
-Action                 Shortcut
-===================== =======================
-Content Zoom Out       :kbd:`Ctrl+Shift+-`
-Reset Content Zoom     :kbd:`Ctrl+Shift+0`
-Content Zoom In        :kbd:`Ctrl+Shift+"+"`
-===================== =======================
-
-
 .. _shortcuts#editing:
 
 Editing
