@@ -780,7 +780,7 @@ PTL.editor = {
   toggleState() {
     // `blur()` prevents a double-click effect if the checkbox was
     // previously clicked using the mouse
-    $('input.fuzzycheck').blur().click();
+    $('input.fuzzycheck:visible').blur().click();
   },
 
   /* Updates unit textarea and input's `default*` values. */
