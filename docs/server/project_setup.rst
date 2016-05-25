@@ -110,7 +110,7 @@ Pootle, so you also need to run :djadmin:`update_stores`:
 
 .. code-block:: console
 
-    pootle update_stores --project=my-project
+    $ pootle update_stores --project=my-project
 
 
 This will import all the translations from disk into Pootle, calculate the
@@ -162,27 +162,61 @@ translation files on disk and initialize the translations from the
    following the instructions above.
 
 
-.. _project_setup#add-new-strings:
+.. _project_setup#update-strings:
 
-Adding new strings to existing project
---------------------------------------
+Update strings for existing project
+-----------------------------------
 
-Whenever you update your software and thus you have more strings for
-translators to translate, you will be generating a new :file:`templates.pot`.
-You must place that file within your project's directory in
+Whenever you update your software you might introduce new strings that require
+translation, or remove or change some of the previously existing strings.
+Independently of what happened, you will be generating a new
+:file:`templates.pot` if there is any string change.
+
+If that is the case you must place that file within your project's directory in
 :setting:`POOTLE_TRANSLATION_DIRECTORY`, replacing the file with the same name.
-Then run the following so Pootle picks up the new changes:
+Then run the following so Pootle picks up the new template changes:
 
 .. code-block:: console
 
-    pootle update_stores --project=my-project --language=templates
+    $ pootle update_stores --project=my-project --language=templates
 
 
-.. note:: Note that doing this won't automatically update the other languages
-   in the project. We recommend you to update them on disk using
-   :ref:`pot2po <toolkit:pot2po>` (which can handle other formats besides
-   Gettext PO), and run :command:`update_stores --project=my-project` for
-   Pootle to get the languages updated.
+This far you only got the updated templates with all the new changes into
+Pootle, where the removed strings are now gone, new strings have being added
+and changed strings have been pulled too.
 
-   It is advisable to first save to disk the translations in Pootle database by
-   running :command:`sync_stores --project=my-project`.
+Now you need to update the other languages in the project. The first step is to
+save to disk all the translations for the project that currently are in Pootle
+database:
+
+.. code-block:: console
+
+    $ pootle sync_stores --project=my-project
+
+
+Next step is to update all those translations against the newer templates. We
+recommend you to update them on disk using the :ref:`pot2po <toolkit:pot2po>`
+command line tool, which can handle other formats besides Gettext PO.
+
+.. code-block:: console
+
+    $ cd POOTLE_TRANSLATION_DIRECTORY  # Use the actual path!
+    $ cd my-project
+    $ pot2po -t af.po -i templates.pot -o af.po  # Repeat for each language, changing the language code!
+
+
+.. note:: Please note that for updating against templates the previous
+   translations file for the language must be passed to ``-t`` and the newer
+   templates file must be passed to ``-i``.
+
+
+Once that all the languages in the project are synchronized with the newer
+templates you can push them back to Pootle:
+
+.. code-block:: console
+
+    $ pootle update_stores --project=my-project
+
+
+.. note:: If your languages have a lot of translations you might want do the
+   update against newer templates language by language.
