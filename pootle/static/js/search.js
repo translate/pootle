@@ -7,7 +7,7 @@
  */
 
 import $ from 'jquery';
-import Mousetrap from 'mousetrap';
+import mousetrap from 'mousetrap';
 import assign from 'object-assign';
 
 import cookie from 'utils/cookie';
@@ -40,10 +40,10 @@ const search = {
 
     /* Shortcuts */
 
-    Mousetrap(document.body).bind('mod+shift+s', () => {
+    mousetrap(document.body).bind('mod+shift+s', () => {
       this.$input.focus();
     });
-    Mousetrap(this.$form[0]).bind('esc', (e) => {
+    mousetrap(this.$form[0]).bind('esc', (e) => {
       if (this.$form.hasClass('focused')) {
         this.$input.blur();
         this.toggleFields(e);

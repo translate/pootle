@@ -23,7 +23,7 @@ import 'jquery-utils';
 import autosize from 'autosize';
 import cx from 'classnames';
 import Levenshtein from 'levenshtein';
-import Mousetrap from 'mousetrap';
+import mousetrap from 'mousetrap';
 import assign from 'object-assign';
 
 import StatsAPI from 'api/StatsAPI';
@@ -297,29 +297,29 @@ PTL.editor = {
     });
 
     /* Bind hotkeys */
-    const mousetrap = Mousetrap(document.body);
+    const hotkeys = mousetrap(document.body);
 
     // FIXME: move binding to `SuggestionFeedbackForm` component
-    mousetrap.bind('esc', () => {
+    hotkeys.bind('esc', () => {
       if (this.selectedSuggestionId !== undefined) {
         this.closeSuggestion();
       }
     });
-    mousetrap.bind('ctrl+return', () => {
+    hotkeys.bind('ctrl+return', () => {
       if (this.isSuggestMode()) {
         this.handleSuggest();
       } else {
         this.handleSubmit();
       }
     });
-    mousetrap.bind('ctrl+space', () => this.toggleState());
-    mousetrap.bind('ctrl+shift+space', (e) => this.toggleSuggestMode(e));
+    hotkeys.bind('ctrl+space', () => this.toggleState());
+    hotkeys.bind('ctrl+shift+space', (e) => this.toggleSuggestMode(e));
 
-    mousetrap.bind('ctrl+up', () => this.gotoPrev());
-    mousetrap.bind('ctrl+,', () => this.gotoPrev());
+    hotkeys.bind('ctrl+up', () => this.gotoPrev());
+    hotkeys.bind('ctrl+,', () => this.gotoPrev());
 
-    mousetrap.bind('ctrl+down', () => this.gotoNext({ isSubmission: false }));
-    mousetrap.bind('ctrl+.', () => this.gotoNext({ isSubmission: false }));
+    hotkeys.bind('ctrl+down', () => this.gotoNext({ isSubmission: false }));
+    hotkeys.bind('ctrl+.', () => this.gotoNext({ isSubmission: false }));
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -337,7 +337,7 @@ PTL.editor = {
       );
     }
 
-    Mousetrap.bind('ctrl+shift+n', (e) => this.unitIndex(e));
+    mousetrap.bind('ctrl+shift+n', (e) => this.unitIndex(e));
 
     /* XHR activity indicator */
     $(document).ajaxStart(() => {
