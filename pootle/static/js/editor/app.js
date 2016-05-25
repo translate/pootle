@@ -337,7 +337,7 @@ PTL.editor = {
       );
     }
 
-    mousetrap.bind('ctrl+shift+n', (e) => this.unitIndex(e));
+    hotkeys.bind('ctrl+shift+n', (e) => this.unitIndex(e));
 
     /* XHR activity indicator */
     $(document).ajaxStart(() => {
