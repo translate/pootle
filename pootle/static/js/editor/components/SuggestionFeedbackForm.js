@@ -12,7 +12,8 @@ import React from 'react';
 
 import FormElement from 'components/FormElement';
 
-export const SuggestionFeedBackForm = React.createClass({
+
+const SuggestionFeedBackForm = React.createClass({
 
   propTypes: {
     suggId: React.PropTypes.number.isRequired,
