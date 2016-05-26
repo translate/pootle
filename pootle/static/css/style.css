@@ -34,6 +34,14 @@
  *  @turquoise: #76b0bf
  */
 
+
+@font-face
+{
+    font-family: 'Raw';
+    src: url('../fonts/raw.woff') format('woff');
+}
+
+
 /*
  * BASIC ELEMENT STYLING
  */
@@ -2218,30 +2226,30 @@ table.stats .item.dirty .last-updated
 
 :lang(ak)
 {
-    font-family: Lucida, "DejaVu Sans", inherit;
+    font-family: "Raw", Lucida, "DejaVu Sans", inherit;
 }
 
 :lang(ar)
 {
-    font-family: sans-serif;
+    font-family: "Raw", sans-serif;
     font-size: 1em;
 }
 
 :lang(bn)
 {
-    font-family: FreeSans, MuktiNarrow, Vrinda, inherit;
+    font-family: "Raw", FreeSans, MuktiNarrow, Vrinda, inherit;
     font-size: medium;
     line-height: 110%;
 }
 
 :lang(el)
 {
-    font-family: "DejaVu Sans", inherit;
+    font-family: "Raw", "DejaVu Sans", inherit;
 }
 
 :lang(fa)
 {
-    font-family: Terafik, Traffic, Roya, Nazli, Nazanin, inherit;
+    font-family: "Raw", Terafik, Traffic, Roya, Nazli, Nazanin, inherit;
     font-size: large;
 }
 
@@ -2258,13 +2266,13 @@ table.stats .item.dirty .last-updated
 
 :lang(km)
 {
-    font-family: "Khmer OS System", "Khmer OS", "Khmer Kampongtrach", "CDT Khmer", inherit;
+    font-family: "Raw", "Khmer OS System", "Khmer OS", "Khmer Kampongtrach", "CDT Khmer", inherit;
     line-height: 170%;
 }
 
 :lang(vi)
 {
-    font-family: "Lucida Grande", "Vu Phu Tho", "DejaVu Sans", inherit;
+    font-family: "Raw", "Lucida Grande", "Vu Phu Tho", "DejaVu Sans", inherit;
 }
 
 :lang(vi) a:hover[href]

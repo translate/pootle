@@ -6,6 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+
 /*
  * TRANSLATE PAGE
  */
@@ -137,12 +138,14 @@ html[dir="rtl"] #toolbar > div:last-child
 
 /* for the translation content, use regular sans-serif to ensure the maximum
 Unicode ranges is supported, and that they all look the same */
+textarea.translation,
+.timeline-entry,
 .translation-text,
-#tm-results .suggestion-original,
-#tm-results .suggestion-translation,
+.suggestion-original,
+.suggestion-translation,
 #id_search
 {
-    font-family: sans-serif;
+    font-family: 'Raw', sans-serif;
 }
 
 #editor
@@ -1595,7 +1598,7 @@ div.translate-translation.raw textarea.translation
 {
     direction: ltr;
     unicode-bidi: bidi-override;
-    font-family: monospace;
+    font-family: 'Raw', monospace;
     font-size: 140%;
     line-height: 110%;
 }
