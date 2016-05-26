@@ -7,5 +7,8 @@
  */
 
 export { decodeEntities } from './html';
+export {
+  highlightPunctuation, highlightEscapes, highlightWhitespace, highlightHtml
+} from './highlight';
 export { normalizeCode } from './language';
 export { escapeUnsafeRegexSymbols, makeRegexForMultipleWords } from './search';
