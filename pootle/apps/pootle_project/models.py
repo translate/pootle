@@ -301,6 +301,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         return ObjectConfig(self)
 
     @property
+    def local_fs_path(self):
+        return os.path.join(
+            settings.POOTLE_FS_PATH, self.code)
+
+    @property
     def name(self):
         return self.fullname
 
