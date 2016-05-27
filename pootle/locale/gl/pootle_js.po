@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-04-21 19:37+0000\n"
+"PO-Revision-Date: 2016-05-24 12:10+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1461267474.000000\n"
+"X-POOTLE-MTIME: 1464091837.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -522,14 +522,12 @@ msgid "Social Verification"
 msgstr "Verificación social"
 
 #: static/js/browser/components/VisibilityToggle.js:51
-#, fuzzy
 msgid "Show disabled"
-msgstr "desactivado"
+msgstr "Mostrar os desactivados"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Hide disabled"
-msgstr "desactivado"
+msgstr "Ocultar os desactivados"
 
 #: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""
@@ -618,19 +616,19 @@ msgstr "Traducións semellantes"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:81
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Editar a suxestión antes de aceptala, se for necesario"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:92
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Prover un comentario opcional (será visíbel e público)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:103
 msgid "Accept"
-msgstr ""
+msgstr "Aceptar"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Reject"
-msgstr ""
+msgstr "Rexeitar"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."

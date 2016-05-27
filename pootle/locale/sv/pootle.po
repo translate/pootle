@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-05 07:15+0000\n"
+"PO-Revision-Date: 2016-05-24 16:07+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1462432545.000000\n"
+"X-POOTLE-MTIME: 1464106048.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -720,7 +720,7 @@ msgstr "Sista (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Sökning är inte tillgänglig"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -783,16 +783,17 @@ msgid "Disabled"
 msgstr "Inaktiverad"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Översättningsprojektet har uppdaterats med information från mallarna."
+msgstr ""
+"Översättningsprojekt (%s) har skapats. Vi uppdaterar nu filer från mallar."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Filerna i översättningsprojektet har sökts igenom."
+msgstr "Översättningsprojekt (%s) har tagits bort"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -919,24 +920,24 @@ msgid "Plural"
 msgstr "Plural"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Godkände förslag från %s"
+msgstr "Godkända förslag från %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Avvisade förslag från %s"
+msgstr "Avvisade förslag från %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "Godkände förslag från %s"
+msgstr "Godkände förslag från %(author)s med kommentar: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "Avvisade förslag från %s"
+msgstr "Avvisade förslag från %(author)s med kommentar: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -980,14 +981,14 @@ msgid "This term already exists in this file."
 msgstr "Termen finns redan i filen."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Översättningsprojektets huvudsida"
+msgstr "Översättningsprojekt (%s) skapades"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Översättningsprojektets huvudsida"
+msgstr "Översättningsprojekt (%s) gick inte att skapa"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1610,9 +1611,8 @@ msgid "Can review suggestions"
 msgstr "Kan granska förslag"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Django administration"
+msgstr "Kan utföra administrativa uppgifter"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -2060,9 +2060,8 @@ msgid "Fix critical errors"
 msgstr "Fixa kritiska fel"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Kritiska fel:"
+msgstr "Kritiska fel"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2073,7 +2072,6 @@ msgid "Continue translation"
 msgstr "Fortsätt översätta"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Behöver översättas"
 
@@ -2109,33 +2107,28 @@ msgid "Failing Checks"
 msgstr "Fel har upptäckts"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Mer..."
+msgstr "mer..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "mindre..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Bästa översättare"
+msgstr "Bästa bidragsgivare senaste 30 dagarna"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Uppdatera"
+msgstr "Uppdateringar"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Senaste åtgärd"
+msgstr "Senaste åtgärd:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Översättning"
+msgstr "Översättningar"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2188,9 +2181,8 @@ msgid "No user contributions yet."
 msgstr "Inga användarbidrag än."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Bästa översättare"
+msgstr "Bästa bidragsgivare:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2434,14 +2426,12 @@ msgid "User suggestions"
 msgstr "Visa förslag"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Ändra alternativ"
+msgstr "Fler alternativ"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Ändra alternativ"
+msgstr "Färre alternativ"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2642,18 +2632,21 @@ msgid "Sign In"
 msgstr "Logga in"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Översättningsprojektet har uppdaterats med information från mallarna."
+msgstr ""
+"Ett översättningsprojekt (%(tp)s) har skapats på %(url)s och har uppdaterats."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr "Ett fel uppstod när du skulle logga in. Kontakta systemadministratören"
+msgstr ""
+"Ett fel uppstod när översättningsprojekt (%(tp)s) skapades. Kontakta "
+"systemadministratören."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

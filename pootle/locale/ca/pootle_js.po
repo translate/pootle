@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-04-25 12:32+0000\n"
+"PO-Revision-Date: 2016-05-24 12:00+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1461587547.000000\n"
+"X-POOTLE-MTIME: 1464091211.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -424,6 +424,8 @@ msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"No heu rebut cap correu? Comproveu que no s'hagi classificat com a correu "
+"brossa, o proveu a sol·licitar una altra còpia del correu."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
@@ -465,16 +467,18 @@ msgstr "Registre"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Inici de sessió com a un usuari existent"
 
 #: static/js/auth/components/SocialAuthError.js:30
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "S'ha produït un error en intentar iniciar sessió via %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"S'ha produït un error en intentar iniciar sessió via el compte de xarxa "
+"social."
 
 #: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
@@ -490,6 +494,8 @@ msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"En iniciar sessió per primera vegada amb un servei extern se us crearà un "
+"compte automàticament."
 
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
@@ -505,7 +511,7 @@ msgstr "Activació del compte"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Confirmació de l'adreça electrònica"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
@@ -521,32 +527,36 @@ msgid "Social Verification"
 msgstr "Verificació social"
 
 #: static/js/browser/components/VisibilityToggle.js:51
-#, fuzzy
 msgid "Show disabled"
-msgstr "inhabilitat"
+msgstr "Mostra els inhabilitats"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Hide disabled"
-msgstr "inhabilitat"
+msgstr "Amaga els inhabilitats"
 
 #: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"Teniu canvis sense desar en aquesta cadena Si abandoneu la navegació es "
+"descartaran tots els canvis."
 
 #: static/js/editor/app.js:325
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Va a la cadena següent (Ctrl+.))<br/><br/>També:<br/>Pàgina següent: Ctrl+Maj"
+"+.<br/>Última pàgina: Ctrl+Maj+Final"
 
 #: static/js/editor/app.js:331
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Va la cadena anterior (Ctrl+,)<br/><br/>També:</br>Pàgina anterior: Ctrl+Maj"
+"+,<br/>Primera pàgina: Ctrl+Maj+Inici"
 
 #: static/js/editor/app.js:452
 #, python-format, javascript-format
@@ -595,7 +605,7 @@ msgstr "Aquesta cadena ja no existeix."
 
 #: static/js/editor/app.js:1075
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Torna enrere a la navegació"
 
 #: static/js/editor/app.js:1077
 msgid "Reload page"
@@ -611,19 +621,19 @@ msgstr "Traduccions semblants"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:81
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Si cal, editeu el suggeriment abans d'acceptar-lo."
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:92
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Proporcioneu un comentari opcional (serà visible públicament)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:103
 msgid "Accept"
-msgstr ""
+msgstr "Accepta"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Reject"
-msgstr ""
+msgstr "Rebutja"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -698,6 +708,8 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"Per a definir o canviar el vostre avatar per l'adreça de correu (%(email)s), "
+"aneu a gravatar.com"
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
@@ -724,6 +736,8 @@ msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Per què sou part del nostre projecte de traducció? Descriviu-vos i inspireu "
+"a altres usuaris!"
 
 #: static/js/utils.js:165
 #, javascript-format
@@ -773,6 +787,8 @@ msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Introduïu la vostra adreça electrònica de correu i us enviarem un missatge "
+"amb l'enllaç especial que us permetrà canviar la contrasenya."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
@@ -784,7 +800,7 @@ msgstr "Envia el correu"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "S'ha prohibit la creació de comptes d'usuari."
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -793,6 +809,10 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Hem trobat un usuari al nostre sistema amb l'adreça de correu <span>%s</"
+"span>. Indiqueu la contrasenya per a finalitzar el procès d'inici de sessió. "
+"Aquest procediment només es realitza un cop, i enllaçarà els vostres comptes "
+"de Pootle i %s."
 
 #: static/js/browser.js:229
 msgid "All Languages"
@@ -854,11 +874,11 @@ msgstr[1] "%s paraules"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "No s'ha enregistrat cap activitat en el període determinat"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Seleccioneu un usuari vàlid."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
@@ -885,7 +905,7 @@ msgstr "Quantitat"
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Tarifa"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10

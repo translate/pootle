@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-04-25 12:39+0000\n"
+"PO-Revision-Date: 2016-05-26 07:43+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1461587974.000000\n"
+"X-POOTLE-MTIME: 1464248629.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -271,13 +271,13 @@ msgstr "Usuaris actius"
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "En execució (%d procés)"
+msgstr[1] "En execució (%d processos)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:115
 msgid "Stopped"
-msgstr ""
+msgstr "Aturat"
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
@@ -336,6 +336,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
+"Per a més informació, visiteu la <a href=\"http://docs.translatehouse.org/"
+"projects/localization-guide/en/latest/l10n/pluralforms.html\">pàgina</a> "
+"sobre les formes del plural."
 
 #: apps/pootle_language/models.py:88
 msgid "Unknown"
@@ -633,7 +636,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:109
 msgid "Java-encoded unicode"
-msgstr ""
+msgstr "Unicode en codificació Java"
 
 #: apps/pootle_misc/checks.py:110
 msgid "Objective-C format"
@@ -645,19 +648,19 @@ msgstr "Format de l'Android"
 
 #: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
-msgstr ""
+msgstr "Les etiquetes són diferents"
 
 #: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
-msgstr ""
+msgstr "Claus"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
-msgstr ""
+msgstr "Espais reservats potencialment no desitjats"
 
 #: apps/pootle_misc/checks.py:115
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "Cometes dobles en etiquetes"
 
 #: apps/pootle_misc/checks.py:116
 msgid "Percent brace placeholders"
@@ -715,7 +718,7 @@ msgstr "Darrer (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "La cerca no és disponible"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -763,7 +766,7 @@ msgstr "Ignora els fitxers"
 
 #: apps/pootle_project/models.py:203
 msgid "Errors Report Email"
-msgstr ""
+msgstr "Adreça electrònica per a informar d'errors"
 
 #: apps/pootle_project/models.py:204
 msgid "An email address where issues with the source text can be reported."
@@ -773,25 +776,25 @@ msgstr ""
 
 #: apps/pootle_project/models.py:208
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Prefix de cerca de captura de pantalles"
 
 #: apps/pootle_project/models.py:213
 msgid "Disabled"
 msgstr "Inhabilitat"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
-"El projectes de traducció s'ha actualitzat a partir de les últimes "
-"plantilles."
+"S'ha creat el projecte de traducció (%s). Se n'estan actualitzant els "
+"magatzems a partir dels fitxers de plantilles."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Els fitxers del projecte de traducció s'han tornat a escanejar."
+msgstr "S'ha suprimit el projecte de traducció (%s)"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -877,11 +880,11 @@ msgstr "Cal revisar"
 
 #: apps/pootle_store/forms.py:301
 msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "El valor de «similarity» hauria de ser entre l'interval [0..1]"
 
 #: apps/pootle_store/forms.py:311
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "l valor de «mt_similarity» hauria de ser entre l'interval [0..1] "
 
 #: apps/pootle_store/forms.py:328
 msgid "Needs work flag must be cleared"
@@ -918,24 +921,24 @@ msgid "Plural"
 msgstr "Plural"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Ha acceptat un suggeriment de %s"
+msgstr "Ha acceptat un suggeriment de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Ha rebutjat un suggeriment de %s"
+msgstr "Ha rebutjat un suggeriment de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "Ha acceptat un suggeriment de %s"
+msgstr "Ha acceptat un suggeriment de %(author)s amb comentari: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "Ha rebutjat un suggeriment de %s"
+msgstr "Ha rebutjat un suggeriment de %(author)s amb comentari: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -979,14 +982,14 @@ msgid "This term already exists in this file."
 msgstr "El terme ja existeix al fitxer."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Pàgina principal del projecte de traducció"
+msgstr "S'ha creat el projecte de traducció (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Pàgina principal del projecte de traducció"
+msgstr "No s'ha pogut crear el projecte de traducció (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -994,7 +997,7 @@ msgstr "Tarifa de traducció"
 
 #: apps/reports/forms.py:41
 msgid "Effective from"
-msgstr ""
+msgstr "Efectiu des de"
 
 #: apps/reports/models.py:31 apps/reports/models.py:55
 #: templates/editor/export_view.html:106
@@ -1014,7 +1017,7 @@ msgstr "Suggeriment"
 
 #: apps/reports/models.py:57
 msgid "Hourly Work"
-msgstr ""
+msgstr "Feina per hora"
 
 #: apps/reports/models.py:58
 msgid "Correction"
@@ -1121,7 +1124,7 @@ msgstr "Ubicació"
 
 #: apps/virtualfolder/models.py:40
 msgid "Root path where this virtual folder is applied."
-msgstr ""
+msgstr "Camí arrel on s'aplica la carpeta virtual."
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:44
@@ -1322,7 +1325,7 @@ msgstr ""
 
 #: checks.py:262
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "El valor «%s» de POOTLE_MARKUP_FILTER no és vàlid."
+msgstr "El valor de POOTLE_MARKUP_FILTER no és vàlid."
 
 #: checks.py:263
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
@@ -1399,7 +1402,7 @@ msgstr ""
 #: checks.py:341
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] té un WEIGHT menor que 0.0 o major que 1.0"
 
 #: checks.py:343
 #, python-format
@@ -1460,6 +1463,7 @@ msgstr ""
 #: checks.py:447
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
+"Executeu «revision --restore» per a reinicialitzar el comptador de revisions."
 
 #: core/browser.py:26
 msgid "Project"
@@ -1581,13 +1585,12 @@ msgid "Can review suggestions"
 msgstr "Pot repassar els suggeriments"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Administració del Django"
+msgstr "Pot fer tasques administratives"
 
 #: core/views.py:151
 msgid "You cannot access this page."
-msgstr ""
+msgstr "No podeu accedir a aquesta pàgina."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
@@ -1678,7 +1681,7 @@ msgid ""
 "%(toolkit_version)s."
 msgstr ""
 "El Pootle %(pootle_version)s funciona gràcies al Translate Toolkit "
-"%(toolkit_ver)s."
+"%(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
@@ -1797,7 +1800,7 @@ msgstr "Comprovacions del sistema"
 
 #: templates/admin/dashboard.html:74
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "No s'ha detectat cap problema. Tot és correcte!"
 
 #: templates/admin/detailed_reports.html:6
 #, python-format
@@ -1850,7 +1853,7 @@ msgstr "Subtotal"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "Traducció automàtica"
 
 #: templates/admin/detailed_reports.html:218
 msgid "Subactions"
@@ -1965,6 +1968,10 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
+"Useu el codi <code>&lt;a href=\"<strong>#/identificador-pàgina</strong>\"&gt;"
+"Text de l'enllaçt&lt;/a&gt;</code> per a proporcionar enllaços entre pàgines "
+"estàtiques. Aquests enllaços se sobreescriuran amb la ruta completa a les "
+"pàgines estàtiques."
 
 #: templates/admin/staticpages/_form.html:44
 msgid ""
@@ -2019,20 +2026,19 @@ msgstr "Afegir pàgina normal"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Anuncis"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Afegeix un anunci"
 
 #: templates/browser/_actions.html:6
 msgid "Fix critical errors"
 msgstr "Corregeix errors crítics"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Errors crítics:"
+msgstr "Errors crítics"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2043,7 +2049,6 @@ msgid "Continue translation"
 msgstr "Continua amb la traducció"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Cal traduir"
 
@@ -2059,12 +2064,12 @@ msgstr "<span class=\"value translated\">0</span>%% traduït"
 #: templates/browser/_progressbar.html:4
 #, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr ""
+msgstr "<span class=\"value fuzzy\">0</span>%% cal revisar"
 
 #: templates/browser/_progressbar.html:5
 #, python-format
 msgid "<span class=\"value untranslated\">0</span>%% untranslated"
-msgstr ""
+msgstr "<span class=\"value untranslated\">0</span>%% sense traduir"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2079,37 +2084,33 @@ msgid "Failing Checks"
 msgstr "Comprovacions que han fallat"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Més..."
+msgstr "més..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "menys..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Col·laboradors més actius"
+msgstr "Col·laboradors més actius els últims 30 dies"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Actualitza"
+msgstr "Actualitzacions"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Última acció"
+msgstr "Última acció:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Traducció"
+msgstr "Traduccions"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
+"Aquest projecte està inhabilitat i només és visible als administradors."
 
 #: templates/browser/index.html:142
 msgid ""
@@ -2137,6 +2138,8 @@ msgstr "Gràcies!"
 msgid ""
 "We have received your message and will try to respond as soon as possible."
 msgstr ""
+"Hem rebut el vostre missatge i intentarem respondre tan aviat com sigui "
+"possible."
 
 #: templates/core/_top_scorers.html:9
 msgid "score"
@@ -2151,12 +2154,11 @@ msgstr ""
 
 #: templates/core/_top_scorers.html:31
 msgid "No user contributions yet."
-msgstr ""
+msgstr "Encara no hi ha cap contribució de l'usuari"
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Col·laboradors més actius"
+msgstr "Col·laboradors més actius:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2181,7 +2183,7 @@ msgstr "Confirmeu"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Torna a la navegació"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2197,7 +2199,7 @@ msgstr "Ordre predeterminat"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Primer les més importants"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
@@ -2293,7 +2295,7 @@ msgstr "Comentaris:"
 
 #: templates/editor/units/edit.html:79
 msgid "Click to open the image in a popup"
-msgstr ""
+msgstr "Feu clic per a obrir la imatge en una finestra emergent"
 
 #: templates/editor/units/edit.html:93
 msgid "Screenshots..."
@@ -2398,14 +2400,12 @@ msgid "User suggestions"
 msgstr "Suggeriments de l'usuari"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Canvia les preferències"
+msgstr "Més opcions"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Canvia les preferències"
+msgstr "Menys opcions"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2451,7 +2451,7 @@ msgstr "Possibles problemes amb la traducció"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Pareu atenció en:"
 
 #: templates/editor/units/xhr_comment.html:13
 msgid "Remove comment"
@@ -2467,13 +2467,13 @@ msgstr "Línia temporal"
 
 #: templates/editor/units/xhr_timeline.html:32
 msgid "Last comment removed"
-msgstr ""
+msgstr "S'ha suprimit l'últim comentari"
 
 #: templates/editor/units/xhr_timeline.html:38
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
-"Heu silenciat la comprovació <a href=\"%(check_name)s\">%(check_name)s</a>"
+"Heu silenciat la comprovació <a href=\"%(check_url)s\">%(check_url)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
 #, python-format
@@ -2483,7 +2483,7 @@ msgstr ""
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
-msgstr ""
+msgstr "S'ha creat la unitat"
 
 #: templates/errors/400.html:4 templates/errors/400.html.py:11
 msgid "Bad Request"
@@ -2609,22 +2609,22 @@ msgid "Sign In"
 msgstr "Inicia la sessió"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
-"El projectes de traducció s'ha actualitzat a partir de les últimes "
-"plantilles."
+"S'ha creat un projecte de traducció (%(tp)s) a %(url)s i s'ha actualitzat "
+"correctament."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
-"S'ha produït un error en iniciar sessió. Contacteu amb l'administrador de "
-"sistemes"
+"S'ha produït un error en crear el projecte de traducció (%(tp)s). Contacteu "
+"amb l'administrador de sistemes."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

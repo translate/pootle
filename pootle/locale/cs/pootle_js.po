@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-03-23 21:18+0000\n"
+"PO-Revision-Date: 2016-05-25 17:15+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1458767939.000000\n"
+"X-POOTLE-MTIME: 1464196547.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -527,14 +527,12 @@ msgid "Social Verification"
 msgstr "Sociální ověření"
 
 #: static/js/browser/components/VisibilityToggle.js:51
-#, fuzzy
 msgid "Show disabled"
-msgstr "zakázáno"
+msgstr "Zobrazit vypnuté"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Hide disabled"
-msgstr "zakázáno"
+msgstr "Skrýt vypnuté"
 
 #: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""
@@ -623,19 +621,19 @@ msgstr "Obdobné překlady"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:81
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Pokud je to třeba, návrh před jeho přijetím upravte"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:92
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Zadejte nepovinný komentář (bude veřejně viditelný)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:103
 msgid "Accept"
-msgstr ""
+msgstr "Přijmout"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Reject"
-msgstr ""
+msgstr "Zamítnout"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."

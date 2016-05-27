@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-03-28 06:16+0000\n"
+"PO-Revision-Date: 2016-05-25 09:00+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1459145817.000000\n"
+"X-POOTLE-MTIME: 1464166808.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -720,7 +720,7 @@ msgstr "Son (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Hizmet kullanılamaz"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -783,16 +783,18 @@ msgid "Disabled"
 msgstr "Etkisizleştirildi"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Çeviri projesi en son şablonlara karşı güncellendi."
+msgstr ""
+"Çeviri projesi (%s) oluşturuldu. Şimdi dosya şablonlarından depolarını "
+"güncelliyoruz."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Çeviri projesi dosyaları yeniden tarandı."
+msgstr "Çeviri projesi (%s) silindi"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -919,24 +921,24 @@ msgid "Plural"
 msgstr "Çoğul"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "%s kullanıcısından gelen öneriyi kabul et"
+msgstr "%(author)s kullanıcısından gelen öneri kabul edildi"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "%s kullanıcısından gelen öneriyi reddet"
+msgstr "%(author)s kullanıcısından gelen öneri reddedildi"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "%(source_string)s için kabul edilen öneri"
+msgstr "%(author)s kullanıcısından gelen öneri kabul edildi: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "%(source_string)s için reddedilen öneri"
+msgstr "%(author)s kullanıcısından gelen öneri reddedildi: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -980,14 +982,14 @@ msgid "This term already exists in this file."
 msgstr "Bu terim zaten bu dosyada mevcut."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Çeviri projesi ana sayfası"
+msgstr "Çeviri projesi (%s) oluşturuldu"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Çeviri projesi ana sayfası"
+msgstr "Çeviri projesi (%s) oluşturma başarısız oldu"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1612,20 +1614,19 @@ msgstr "Projeye erişemez"
 
 #: core/initdb.py:137
 msgid "Can make a suggestion for a translation"
-msgstr "Çeviri için öneri yapılabilir"
+msgstr "Çeviri için bir öneri yapabilir"
 
 #: core/initdb.py:141
 msgid "Can submit a translation"
-msgstr "Çeviri gönderilebilir"
+msgstr "Çeviri gönderebilir"
 
 #: core/initdb.py:145
 msgid "Can review suggestions"
 msgstr "Önerileri inceleyebilir"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Django yönetimi"
+msgstr "Yönetimsel görevler yapabilir"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -2077,9 +2078,8 @@ msgid "Fix critical errors"
 msgstr "Önemli hataları düzelt"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Önemli hatalar:"
+msgstr "Önemli hatalar"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2090,9 +2090,8 @@ msgid "Continue translation"
 msgstr "Çeviriye devam et"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
-msgstr "Çeviri Gerekli"
+msgstr "Çeviri gerekli"
 
 #: templates/browser/_actions.html:45
 msgid "View all"
@@ -2126,33 +2125,28 @@ msgid "Failing Checks"
 msgstr "Başarısız Kontrolleri"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Daha fazla..."
+msgstr "daha fazla..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "daha az..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "En Çok Katkıda Bulunanlar"
+msgstr "Son 30 günün en çok katkıda bulunanları"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Güncelle"
+msgstr "Güncellemeler"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Son eylem"
+msgstr "Son eylem:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Çeviri"
+msgstr "Çeviriler"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2203,9 +2197,8 @@ msgid "No user contributions yet."
 msgstr "Henüz kullanıcı katılımları yok."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "En Çok Katkıda Bulunanlar"
+msgstr "En çok katkıda bulunanlar:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2449,14 +2442,12 @@ msgid "User suggestions"
 msgstr "Kullanıcı önerileri"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Seçenekleri Değiştir"
+msgstr "Daha fazla seçenek"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Seçenekleri Değiştir"
+msgstr "Daha az seçenek"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2659,20 +2650,22 @@ msgid "Sign In"
 msgstr "Giriş Yap"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Çeviri projesi en son şablonlara karşı güncellendi."
+msgstr ""
+"Çeviri projesi (%(tp)s) %(url)s sitesinde oluşturuldu ve başarılı olarak "
+"güncellendi."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
-"Oturum açarken bir hata meydana geldi. Lütfen sistem yöneticinizle irtibata "
-"geçin"
+"Çeviri projesi (%(tp)s) oluşturulurken bir hata meydana geldi. Lütfen sistem "
+"yöneticinizle irtibata geçin."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

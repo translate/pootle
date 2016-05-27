@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-03-29 15:15+0000\n"
+"PO-Revision-Date: 2016-05-25 17:28+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1459264525.000000\n"
+"X-POOTLE-MTIME: 1464197290.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -726,7 +726,7 @@ msgstr "Poslední (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Hledání není k dispozici"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -789,16 +789,18 @@ msgid "Disabled"
 msgstr "Zakázáno"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Překladový projekt byl aktualizován z aktuálních šablon."
+msgstr ""
+"Byl vytvořen překladový projekt (%s). Nyní probíhá aktualizace jeho úložiště "
+"ze souborů šablon."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Soubory překladového projektu byly znovu analyzovány."
+msgstr "Překladový projekt (%s) byl smazán"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -926,24 +928,24 @@ msgid "Plural"
 msgstr "Plurál"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Přijal návrh uživatele %s"
+msgstr "Přijal návrh uživatele %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Zamítl návrh uživatele %s"
+msgstr "Zamítl návrh uživatele %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "přijal návrh pro %(source_string)s"
+msgstr "Přijal návrh uživatele %(author)s s komentářem: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "odmítl návrh pro %(source_string)s"
+msgstr "Zamítl návrh uživatele %(author)s s komentářem: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -987,14 +989,14 @@ msgid "This term already exists in this file."
 msgstr "Tento výraz již v aktuálním souboru existuje."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Hlavní stránka překladu"
+msgstr "Překladový projekt (%s) byl vytvořen"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Hlavní stránka překladu"
+msgstr "Vytvoření překladového projektu (%s) se nezdařilo"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1615,9 +1617,8 @@ msgid "Can review suggestions"
 msgstr "Může kontrolovat návrhy"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Správa Django"
+msgstr "Může provádět administrativní úlohy"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -2069,9 +2070,8 @@ msgid "Fix critical errors"
 msgstr "Opravit kritické chyby"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Kritické chyby:"
+msgstr "Kritické chyby"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2082,7 +2082,6 @@ msgid "Continue translation"
 msgstr "Pokračovat v překladu"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Potřebuje přeložit"
 
@@ -2118,33 +2117,28 @@ msgid "Failing Checks"
 msgstr "Selhavší kontroly"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Více..."
+msgstr "podrobnosti..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "sbalit..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Hlavní přispěvatelé"
+msgstr "Hlavní přispěvatelé za posledních 30 dní"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Aktualizovat"
+msgstr "Aktualizace"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Poslední akce"
+msgstr "Poslední akce:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Překlad"
+msgstr "Překlady"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2195,9 +2189,8 @@ msgid "No user contributions yet."
 msgstr "Dosud nijak nepřispěl."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Hlavní přispěvatelé"
+msgstr "Hlavní přispěvatelé:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2445,14 +2438,12 @@ msgid "User suggestions"
 msgstr "Uživatelské návrhy"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Změnit možnosti"
+msgstr "Další možnosti"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Změnit možnosti"
+msgstr "Méně možností"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2652,18 +2643,22 @@ msgid "Sign In"
 msgstr "Přihlásit se"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Překladový projekt byl aktualizován z aktuálních šablon."
+msgstr ""
+"Na adrese %(url)s byl vytvořen překladový projekt (%(tp)s) a byl úspěšně "
+"aktualizován."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr "Při přihlašování došlo k chybě. Kontaktujte prosím správce systému"
+msgstr ""
+"Při vytváření překladového projektu (%(tp)s) došlo k chybě. Kontaktujte "
+"svého správce."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
