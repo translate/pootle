@@ -249,6 +249,26 @@ def test_wrap_store_fs_pull_merge_pootle_wins(store_fs_file):
 
 
 @pytest.mark.django_db
+def test_wrap_store_fs_pull_merge_pootle_wins_again(store_fs_file):
+    fs_file = store_fs_file
+    fs_file.pull()
+    unit = fs_file.store.units[0]
+    unit.target = "FOO"
+    unit.save()
+    with open(fs_file.file_path, "r+") as target:
+        ttk = getclass(target)(target.read())
+        target.seek(0)
+        ttk.units[1].target = "BAR"
+        target.write(str(ttk))
+        target.truncate()
+    assert fs_file.fs_changed is True
+    assert fs_file.pootle_changed is True
+    fs_file.pull(merge=True, pootle_wins=True)
+    assert fs_file.store.units[0].target == "FOO"
+    assert fs_file.store.units[0].get_suggestions()[0].target == "BAR"
+
+
+@pytest.mark.django_db
 def test_wrap_store_fs_pull_merge_fs_wins(store_fs_file):
     fs_file = store_fs_file
     fs_file.pull()
@@ -266,6 +286,26 @@ def test_wrap_store_fs_pull_merge_fs_wins(store_fs_file):
     # this ensures FILE_WINS
     fs_file.fetch()
     fs_file.pull(merge=True)
+    assert fs_file.store.units[0].target == "BAR"
+    assert fs_file.store.units[0].get_suggestions()[0].target == "FOO"
+
+
+@pytest.mark.django_db
+def test_wrap_store_fs_pull_merge_fs_wins_again(store_fs_file):
+    fs_file = store_fs_file
+    fs_file.pull()
+    unit = fs_file.store.units[0]
+    unit.target = "FOO"
+    unit.save()
+    with open(fs_file.file_path, "r+") as target:
+        ttk = getclass(target)(target.read())
+        target.seek(0)
+        ttk.units[1].target = "BAR"
+        target.write(str(ttk))
+        target.truncate()
+    assert fs_file.fs_changed is True
+    assert fs_file.pootle_changed is True
+    fs_file.pull(merge=True, pootle_wins=False)
     assert fs_file.store.units[0].target == "BAR"
     assert fs_file.store.units[0].get_suggestions()[0].target == "FOO"
 
