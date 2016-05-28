@@ -42,6 +42,8 @@ class Command(PootleCommand):
         """
         :return: flag if child stores should be updated
         """
+        if translation_project.project.treestyle == "none":
+            return
         if translation_project.directory_exists_on_disk():
             translation_project.update_from_disk(
                 force=options['force'], overwrite=options['overwrite'])
