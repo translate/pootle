@@ -144,7 +144,7 @@ class FSFile(object):
         self.store_fs.save()
         logger.debug("File synced: %s" % self.path)
 
-    def pull(self, user=None, merge=False):
+    def pull(self, user=None, merge=False, pootle_wins=None):
         """
         Pull FS file into Pootle
         """
@@ -153,7 +153,7 @@ class FSFile(object):
         logger.debug("Pulling file: %s" % self.path)
         if not self.store_exists:
             self.create_store()
-        self._sync_to_pootle(user=user, merge=merge)
+        self._sync_to_pootle(user=user, merge=merge, pootle_wins=pootle_wins)
 
     def push(self, user=None):
         """
@@ -205,13 +205,18 @@ class FSFile(object):
             f.write(self.serialize())
         logger.debug("Pushed file: %s" % self.path)
 
-    def _sync_to_pootle(self, merge=False, user=None):
+    def _sync_to_pootle(self, merge=False, user=None, pootle_wins=None):
         """
         Update Pootle ``Store`` with the parsed FS file.
         """
         User = get_user_model()
-        resolve_conflict = (
-            self.store_fs.resolve_conflict or FILE_WINS)
+        if pootle_wins is None:
+            resolve_conflict = (
+                self.store_fs.resolve_conflict or FILE_WINS)
+        elif pootle_wins:
+            resolve_conflict = POOTLE_WINS
+        else:
+            resolve_conflict = FILE_WINS
         if merge:
             revision = self.store_fs.last_sync_revision or 0
         else:
