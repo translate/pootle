@@ -10,6 +10,8 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle_project.models import Project
+
 
 @pytest.mark.cmd
 @pytest.mark.django_db
@@ -28,3 +30,15 @@ def test_update_stores_noargs(capfd, en_tutorial_po_member_updated):
     out, err = capfd.readouterr()
     assert 'system\tSO' not in err
     assert 'system\tUO' not in err
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_update_stores_project_tree_none(capfd):
+    project = Project.objects.get(code="project0")
+    project.treestyle = "none"
+    project.save()
+    call_command("update_stores", "--project", project.code)
+    out, err = capfd.readouterr()
+    assert not out
+    assert not err
