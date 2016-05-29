@@ -7,11 +7,14 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
+from django.utils.functional import cached_property
 
+from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 from pootle_project.models import Project
 from pootle_store.models import FILE_WINS, POOTLE_WINS, Store
 
 from .managers import StoreFSManager, validate_store_fs
+from .utils import FSPlugin
 
 
 class AbstractStoreFS(models.Model):
@@ -38,6 +41,18 @@ class AbstractStoreFS(models.Model):
 
     class Meta(object):
         abstract = True
+
+    @cached_property
+    def plugin(self):
+        try:
+            return FSPlugin(self.project)
+        except (NotConfiguredError, MissingPluginError):
+            return None
+
+    @cached_property
+    def file(self):
+        if self.plugin:
+            return self.plugin.file_class(self)
 
     def save(self, *args, **kwargs):
         validated = validate_store_fs(
