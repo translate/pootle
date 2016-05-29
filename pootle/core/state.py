@@ -104,9 +104,14 @@ class State(object):
         logger.debug("Checking state")
 
         for k in self.states:
-            state_func = getattr(
+            state_attr = getattr(
                 self, "%s_%s" % (self.prefix, k), None)
-            for v in state_func(**self.kwargs):
-                self.add(
-                    k, self.item_state_class(self, k, **v))
+            if callable(state_attr):
+                for v in state_attr(**self.kwargs):
+                    self.add(
+                        k, self.item_state_class(self, k, **v))
+            else:
+                for v in state_attr:
+                    self.add(
+                        k, self.item_state_class(self, k, **v))
         return self
