@@ -9,8 +9,6 @@
 
 import pytest
 
-from pootle_fs.models import StoreFS
-
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 
@@ -20,6 +18,10 @@ from pytest_pootle.factories import (
 from pytest_pootle.utils import setup_store
 
 from pootle.core.delegate import config
+from pootle.core.plugin import provider
+from pootle_fs.delegate import fs_plugins
+from pootle_fs.files import FSFile
+from pootle_fs.models import StoreFS
 from pootle_project.models import Project
 
 
@@ -228,3 +230,47 @@ def test_save_store_fs_bad_project(tp0_store_fs):
     tp0_store_fs.pootle_path = "/en/project0_BAD/example.po"
     with pytest.raises(ValidationError):
         tp0_store_fs.save()
+
+
+@pytest.mark.django_db
+def test_store_fs_plugin(tp0_store_fs):
+    store_fs = tp0_store_fs
+
+    class DummyPlugin(object):
+
+        file_class = FSFile
+
+        def __init__(self, project):
+            self.project = project
+
+        def foo(self):
+            return "bar"
+
+    @provider(fs_plugins)
+    def provide_plugin(**kwargs):
+        return dict(dummyfs=DummyPlugin)
+
+    project = store_fs.project
+    project.config["pootle_fs.fs_type"] = "dummyfs"
+    project.config["pootle_fs.fs_url"] = "/foo/bar"
+    assert store_fs.plugin.project == project
+    assert store_fs.plugin.foo() == "bar"
+    assert isinstance(store_fs.file, FSFile)
+
+
+@pytest.mark.django_db
+def test_store_fs_plugin_bad(tp0_store_fs):
+    store_fs = tp0_store_fs
+    project = store_fs.project
+    project.config["pootle_fs.fs_type"] = None
+    project.config["pootle_fs.fs_url"] = None
+    # no plugin hooked up
+    assert store_fs.plugin is None
+    assert store_fs.file is None
+    # plugin not recognised
+    project.config["pootle_fs.fs_type"] = "PLUGIN_DOES_NOT_EXIST"
+    project.config["pootle_fs.fs_url"] = "/foo/bar"
+    del store_fs.__dict__["plugin"]
+    del store_fs.__dict__["file"]
+    assert store_fs.plugin is None
+    assert store_fs.file is None
