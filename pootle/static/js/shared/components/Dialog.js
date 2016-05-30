@@ -8,8 +8,7 @@
 
 import React from 'react';
 
-import Modal from './Modal';
-import ModalFooter from './ModalFooter';
+import Modal, { ModalFooter } from './Modal';
 
 
 const Dialog = React.createClass({
