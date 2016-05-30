@@ -7,9 +7,63 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from fnmatch import translate
+
+from django.utils.functional import cached_property
+
 from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 
 from .delegate import fs_plugins
+
+
+class PathFilter(object):
+
+    def path_regex(self, path):
+        return translate(path).replace("\Z(?ms)", "$")
+
+
+class StorePathFilter(PathFilter):
+    """Filters Stores (only pootle_path)
+    pootle_path should be file a glob
+    the glob is converted to a regex and used to filter a qs
+    """
+
+    def __init__(self, pootle_path=None):
+        self.pootle_path = pootle_path
+
+    @cached_property
+    def pootle_regex(self):
+        if not self.pootle_path:
+            return
+        return self.path_regex(self.pootle_path)
+
+    def filtered(self, qs):
+        if not self.pootle_regex:
+            return qs
+        return qs.filter(pootle_path__regex=self.pootle_regex)
+
+
+class StoreFSPathFilter(StorePathFilter):
+    """Filters StoreFS
+    pootle_path and fs_path should be file globs
+    these are converted to regexes and used to filter a qs
+    """
+
+    def __init__(self, pootle_path=None, fs_path=None):
+        super(StoreFSPathFilter, self).__init__(pootle_path=pootle_path)
+        self.fs_path = fs_path
+
+    @cached_property
+    def fs_regex(self):
+        if not self.fs_path:
+            return
+        return self.path_regex(self.fs_path)
+
+    def filtered(self, qs):
+        qs = super(StoreFSPathFilter, self).filtered(qs)
+        if not self.fs_regex:
+            return qs
+        return qs.filter(path__regex=self.fs_regex)
 
 
 class FSPlugin(object):
