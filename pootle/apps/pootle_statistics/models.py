@@ -391,6 +391,7 @@ class ScoreLog(models.Model):
     score_delta = models.FloatField(null=False)
     action_code = models.IntegerField(null=False)
     submission = models.ForeignKey(Submission, null=False)
+    translated_wordcount = models.PositiveIntegerField(null=True)
 
     objects = ScoreLogManager()
 
@@ -490,6 +491,8 @@ class ScoreLog(models.Model):
         self.rate = self.user.rate
         self.review_rate = self.user.review_rate
         self.score_delta = self.get_score_delta()
+        translated, reviewed = self.get_paid_wordcounts()
+        self.translated_wordcount = translated
 
         super(ScoreLog, self).save(*args, **kwargs)
 
