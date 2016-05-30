@@ -2199,13 +2199,14 @@ PTL.editor = {
     const src = store.get('source_lang');
     const tgt = store.get('target_lang');
     const sText = unit.get('source')[0];
-    const pStyle = store.get('project_style');
-    let tmUrl = `${this.settings.tmUrl}${src}/${tgt}/unit/` +
-      `?source=${encodeURIComponent(sText)}`;
 
     if (!sText.length || src === tgt) {
       return;
     }
+
+    const pStyle = store.get('project_style');
+    let tmUrl = `${this.settings.tmUrl}${src}/${tgt}/unit/` +
+      `?source=${encodeURIComponent(sText)}`;
 
     if (pStyle.length && pStyle !== 'standard') {
       tmUrl += `&style=${pStyle}`;
