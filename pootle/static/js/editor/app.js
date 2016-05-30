@@ -2203,7 +2203,7 @@ PTL.editor = {
     let tmUrl = `${this.settings.tmUrl}${src}/${tgt}/unit/` +
       `?source=${encodeURIComponent(sText)}`;
 
-    if (!sText.length) {
+    if (!sText.length || src === tgt) {
       return;
     }
 
