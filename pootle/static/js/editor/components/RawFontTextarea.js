@@ -7,9 +7,12 @@
  */
 
 import assign from 'object-assign';
+import Mousetrap from 'mousetrap';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AutosizeTextarea from 'react-textarea-autosize';
+
+import Undoable from 'components/Undoable';
 
 import {
   applyFontFilter, unapplyFontFilter, isNewlineCharacter, isNewlineSymbol,
@@ -17,6 +20,9 @@ import {
   convertNewlineSymbolToChar,
 } from '../utils';
 
+
+const UNDO_SHORTCUT = 'mod+z';
+const REDO_SHORTCUT = 'mod+shift+z';
 
 const NO_OVERWRITE_KEYS = [
   'Tab', 'PageUp', 'PageDown', 'Home', 'End', 'Insert', 'Escape',
@@ -44,6 +50,8 @@ const RawFontTextarea = React.createClass({
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
     onChange: React.PropTypes.func.isRequired,
+    onUndo: React.PropTypes.func.isRequired,
+    onRedo: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
     value: React.PropTypes.string.isRequired,
   },
@@ -57,6 +65,17 @@ const RawFontTextarea = React.createClass({
     return {
       initialValue: '',
     };
+  },
+
+  componentDidMount() {
+    this.mousetrap = new Mousetrap(ReactDOM.findDOMNode(this.refs.textarea));
+    this.mousetrap.bind(UNDO_SHORTCUT, this.handleUndo);
+    this.mousetrap.bind(REDO_SHORTCUT, this.props.onRedo);
+  },
+
+  shouldComponentUpdate(nextProps) {
+    // Avoid unnecessary re-renders when the undo stack saves snapshots
+    return this.props.value !== nextProps.value;
   },
 
   componentDidUpdate() {
@@ -84,6 +103,11 @@ const RawFontTextarea = React.createClass({
       delta = node.value.length - oldLength + offset;
     }
     node.selectionStart = node.selectionEnd = Math.max(0, delta + oldIndex);
+  },
+
+  componentWillUnmount() {
+    this.mousetrap.unbind(UNDO_SHORTCUT);
+    this.mousetrap.unbind(REDO_SHORTCUT);
   },
 
   /*
@@ -119,6 +143,16 @@ const RawFontTextarea = React.createClass({
     const newValue = e.target.value;
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
     this.props.onChange(cleanValue);
+  },
+
+  handleUndo(e) {
+    e.preventDefault();
+    this.props.onUndo();
+  },
+
+  handleRedo(e) {
+    e.preventDefault();
+    this.props.onRedo();
   },
 
   handleKeyDown(e) {
@@ -236,4 +270,4 @@ const RawFontTextarea = React.createClass({
 });
 
 
-export default RawFontTextarea;
+export default new Undoable(RawFontTextarea);
