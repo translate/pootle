@@ -2215,7 +2215,7 @@ PTL.editor = {
     fetch({ url: tmUrl, crossDomain: true })
       .then(
         (data) => this.handleTmResults(data, store, unit),
-        this.error
+        (xhr, s) => console.error(`HTTP ${xhr.status} (${s}): ${tmUrl}`)
       );
   },
 
