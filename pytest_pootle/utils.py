@@ -10,6 +10,7 @@
 
 import io
 import json
+from uuid import uuid4
 
 from translate.storage.factory import getclass
 
@@ -138,3 +139,17 @@ def get_translated_storefile(store, pootle_path=None):
                            X_Pootle_Revision=store.get_max_unit_revision())
 
     return filestore
+
+
+def add_store_fs(store, fs_path, synced=False):
+    from pootle_fs.models import StoreFS
+
+    if synced:
+        return StoreFS.objects.create(
+            store=store,
+            path=fs_path,
+            last_sync_hash=uuid4().hex,
+            last_sync_revision=store.get_max_unit_revision())
+    return StoreFS.objects.create(
+        store=store,
+        path=fs_path)

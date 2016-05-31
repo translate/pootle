@@ -8,9 +8,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from fnmatch import fnmatch
-from uuid import uuid4
 
 import pytest
+
+from pytest_pootle.utils import add_store_fs
 
 from django.utils.functional import cached_property
 
@@ -147,18 +148,6 @@ def test_fs_state_resources(project0_fs_resources):
     assert state_resources.resources is plugin.resources
 
 
-def _add_store_fs(store, fs_path, synced=False):
-    if synced:
-        return StoreFS.objects.create(
-            store=store,
-            path=fs_path,
-            last_sync_hash=uuid4().hex,
-            last_sync_revision=store.get_max_unit_revision())
-    return StoreFS.objects.create(
-        store=store,
-        path=fs_path)
-
-
 @pytest.mark.django_db
 def test_fs_state_trackable(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
@@ -203,7 +192,7 @@ def test_fs_state_trackable_tracked(project0_dummy_plugin):
     stores = Store.objects.filter(translation_project__project=project)
     store = stores[0]
     # the Store is not trackable if its got a StoreFS
-    _add_store_fs(
+    add_store_fs(
         store,
         plugin.get_fs_path(store.pootle_path))
     trackable = FSProjectStateResources(plugin).trackable_stores
@@ -219,7 +208,7 @@ def test_fs_state_synced(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(plugin)
     for trackable in resources.trackable_stores:
-        _add_store_fs(*trackable, synced=True)
+        add_store_fs(*trackable, synced=True)
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -238,7 +227,7 @@ def test_fs_state_synced(fs_path_queries):
 def test_fs_state_synced_staged(project0_dummy_plugin):
     plugin = project0_dummy_plugin
     resources = FSProjectStateResources(plugin)
-    store_fs = _add_store_fs(*resources.trackable_stores[0], synced=True)
+    store_fs = add_store_fs(*resources.trackable_stores[0], synced=True)
     assert resources.synced.count() == 1
     # synced does not include any that are staged rm/merge
     store_fs.staged_for_merge = True
@@ -258,7 +247,7 @@ def test_fs_state_unsynced(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(plugin)
     for trackable in resources.trackable_stores:
-        _add_store_fs(*trackable)
+        add_store_fs(*trackable)
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -277,7 +266,7 @@ def test_fs_state_unsynced(fs_path_queries):
 def test_fs_state_unsynced_staged(project0_dummy_plugin):
     plugin = project0_dummy_plugin
     resources = FSProjectStateResources(plugin)
-    store_fs = _add_store_fs(*resources.trackable_stores[0])
+    store_fs = add_store_fs(*resources.trackable_stores[0])
     assert resources.unsynced.count() == 1
     # unsynced does not include any that are staged rm/merge
     store_fs.staged_for_merge = True
@@ -297,7 +286,7 @@ def test_fs_state_tracked(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(plugin)
     for trackable in resources.trackable_stores:
-        _add_store_fs(*trackable)
+        add_store_fs(*trackable)
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -317,7 +306,7 @@ def test_fs_state_tracked_paths(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(plugin)
     for trackable in resources.trackable_stores:
-        _add_store_fs(*trackable)
+        add_store_fs(*trackable)
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -334,7 +323,7 @@ def test_fs_state_pootle_changed(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(plugin)
     for trackable in resources.trackable_stores:
-        _add_store_fs(*trackable, synced=True)
+        add_store_fs(*trackable, synced=True)
     assert list(
         FSProjectStateResources(
             plugin,
