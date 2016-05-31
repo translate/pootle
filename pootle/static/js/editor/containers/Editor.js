@@ -60,15 +60,27 @@ const Editor = React.createClass({
     };
   },
 
+  componentWillMount() {
+    this.shouldOverride = false;
+  },
+
+  componentDidMount() {
+    this.shouldOverride = false;
+  },
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.overrideValues) {
       // FIXME: Using the second argument callback to `setState` to ensure the
       // callback is run after re-rendering happened, so that the DOM-based
       // editor can perform any operations safely. This is needed to allow
       // interaction from the outside world. Remove ASAP.
+      this.shouldOverride = true;
       this.setState({
         values: nextProps.overrideValues,
-      }, this.props.onChange);
+      }, () => {
+        this.shouldOverride = false;
+        this.props.onChange();
+      });
     }
   },
 
@@ -95,6 +107,13 @@ const Editor = React.createClass({
       };
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
+      }
+      // FIXME: this is a hack to let the underlying component with undo
+      // capabilities that it should take the provided value into account to
+      // keep it track in its internal history. This shouldn't be needed when
+      // we remove the outside world interaction.
+      if (this.shouldOverride) {
+        extraProps.overrideValue = this.props.overrideValues[i];
       }
       editingAreas.push(
         <EditingArea

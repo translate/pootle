@@ -15,6 +15,7 @@ const Undoable = (Component) => React.createClass({
 
   propTypes: {
     initialValue: React.PropTypes.any.isRequired,
+    overrideValue: React.PropTypes.any,
     onChange: React.PropTypes.func.isRequired,
   },
 
@@ -28,6 +29,16 @@ const Undoable = (Component) => React.createClass({
 
   componentWillMount() {
     this.saveSnapshot = _.debounce(this.saveSnapshot, 300);
+  },
+
+  componentWillReceiveProps(nextProps) {
+    // FIXME: this is a hack to support external components adding items right
+    // away to the history of changes. It should be removed in the future, once
+    // `Editor` is free of outside world interactions.
+    if (nextProps.overrideValue &&
+        this.props.overrideValue !== nextProps.overrideValue) {
+      this.saveSnapshot(nextProps.overrideValue);
+    }
   },
 
   saveSnapshot(value) {
