@@ -34,7 +34,7 @@ const TimeSince = React.createClass({
     }
   },
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     this.cleanup();
   },
 
