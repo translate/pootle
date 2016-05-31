@@ -15,6 +15,7 @@ from django.db.models import Max
 from pootle.core.dateparse import parse_datetime
 from pootle.core.url_helpers import split_pootle_path
 from pootle_misc.checks import get_category_id
+from pootle_misc.util import get_date_interval
 from pootle_store.constants import ALLOWED_SORTS, SIMPLY_SORTED
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
@@ -30,6 +31,7 @@ def calculate_search_results(kwargs, user):
     offset = kwargs.get("offset", 0)
     limit = kwargs.get("count", 9)
     modified_since = kwargs.get("modified-since")
+    month = kwargs.get("month")
     search = kwargs.get("search")
     sfields = kwargs.get("sfields")
     soptions = kwargs.get("soptions", [])
@@ -45,6 +47,8 @@ def calculate_search_results(kwargs, user):
 
     if modified_since:
         modified_since = parse_datetime(modified_since)
+    if month:
+        month = get_date_interval(month)
 
     vfolder = None
     if 'virtualfolder' in settings.INSTALLED_APPS:
@@ -69,6 +73,10 @@ def calculate_search_results(kwargs, user):
         # filter by modified
         if modified_since:
             qs = qs.filter(submitted_on__gt=modified_since).distinct()
+        if month is not None:
+            qs = qs.filter(
+                submitted_on__gte=month[0],
+                submitted_on__lte=month[1]).distinct()
         # sort results
         if unit_filter in ["my-suggestions", "user-suggestions"]:
             sort_on = "suggestions"
