@@ -13,6 +13,7 @@ from collections import OrderedDict
 from datetime import datetime, timedelta
 
 import pytest
+from dateutil.relativedelta import relativedelta
 
 from django.core.urlresolvers import reverse
 
@@ -21,8 +22,8 @@ from pytest_pootle.utils import create_store, get_test_uids
 
 
 DAY_AGO = (datetime.now() - timedelta(days=1))
-MONTH_AGO = (datetime.now() - timedelta(days=30))
-TWO_MONTHS_AGO = (datetime.now() - timedelta(days=60))
+MONTH_AGO = (datetime.now() - relativedelta(months=1))
+TWO_MONTHS_AGO = (datetime.now() - relativedelta(months=2))
 
 BAD_VIEW_TESTS = OrderedDict(
     (("/foo/bar", dict(code=301, location="/foo/bar/")),
