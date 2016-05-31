@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from collections import OrderedDict
+from fnmatch import fnmatch
 
 import pytest
 
@@ -36,11 +37,13 @@ class DummyPlugin(object):
         self.project = project
 
     def find_translations(self, fs_path=None, pootle_path=None):
-        return [
-            (pp, hash("%s::%s::/fs%s" % (fs_path, pootle_path, pp)))
-            for pp
-            in self.resources.stores.values_list(
-                "pootle_path", flat=True)]
+        for pp in self.resources.stores.values_list("pootle_path", flat=True):
+            if pootle_path and not fnmatch(pp, pootle_path):
+                continue
+            fp = self.get_fs_path(pp)
+            if fs_path and not fnmatch(fp, fs_path):
+                continue
+            yield pp, fp
 
     @cached_property
     def resources(self):

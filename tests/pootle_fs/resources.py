@@ -7,6 +7,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from fnmatch import fnmatch
 from uuid import uuid4
 
 import pytest
@@ -364,10 +365,15 @@ def test_fs_state_found_file_paths(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(
         plugin, pootle_path=pootle_path, fs_path=fs_path)
+    stores = resources.resources.stores
+    found_files = []
+    for pp in stores.values_list("pootle_path", flat=True):
+        fp = plugin.get_fs_path(pp)
+        if fs_path and not fnmatch(fp, fs_path):
+            continue
+        if pootle_path and not fnmatch(pp, pootle_path):
+            continue
+        found_files.append((pp, fp))
     assert (
-        resources.found_file_paths
-        == sorted(
-            (pp, hash("%s::%s::/fs%s" % (fs_path, pootle_path, pp)))
-            for pp
-            in resources.resources.stores.values_list(
-                "pootle_path", flat=True)))
+        sorted(resources.found_file_paths)
+        == sorted(found_files))
