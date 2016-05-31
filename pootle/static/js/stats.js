@@ -88,7 +88,7 @@ const stats = {
       let count = 0;
       const data = this.state.checksData;
       e.preventDefault();
-      $('.js-check').each(function () {
+      $('.js-check').each(function toggleCheck() {
         const $check = $(this);
         const code = $check.data('code');
         if (code in data) {
