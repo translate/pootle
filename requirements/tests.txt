@@ -5,3 +5,5 @@ pytest
 pytest-catchlog
 pytest-cov
 pytest-django>=2.8,<2.9
+
+python-dateutil
