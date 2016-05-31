@@ -50,7 +50,8 @@ PROJECT_CHECKERS = {
     "gnome": checks.GnomeChecker,
     "creativecommons": checks.CCLicenseChecker,
     "drupal": checks.DrupalChecker,
-    "terminology": checks.TermChecker}
+    "terminology": checks.TermChecker,
+}
 
 
 class ProjectManager(models.Manager):
