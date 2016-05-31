@@ -476,18 +476,17 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                 if filter(self.file_belongs_to_project, filenames):
                     # Translation files found, assume gnu
                     return "gnu"
-            else:
-                # There are subdirectories
-                if filter(lambda dirname: dirname == 'templates' or
-                          langcode_re.match(dirname), dirnames):
-                    # Found language dirs assume nongnu
-                    return "nongnu"
-                else:
-                    # No language subdirs found, look for any translation file
-                    for dirpath, dirnames, filenames in \
-                            os.walk(self.get_real_path()):
-                        if filter(self.file_belongs_to_project, filenames):
-                            return "gnu"
+
+            # There are subdirectories
+            if filter(lambda dirname: dirname == 'templates' or
+                      langcode_re.match(dirname), dirnames):
+                # Found language dirs assume nongnu
+                return "nongnu"
+
+            # No language subdirs found, look for any translation file
+            for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
+                if filter(self.file_belongs_to_project, filenames):
+                    return "gnu"
         except:
             pass
 
@@ -504,11 +503,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         """
         if self.treestyle != "auto":
             return self.treestyle
-        else:
-            detected = self._detect_treestyle()
 
-            if detected is not None:
-                return detected
+        detected = self._detect_treestyle()
+
+        if detected is not None:
+            return detected
 
         # When unsure return nongnu
         return "nongnu"
