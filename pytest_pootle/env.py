@@ -9,6 +9,8 @@
 import os
 from datetime import timedelta
 
+from dateutil.relativedelta import relativedelta
+
 
 class PootleTestEnv(object):
 
@@ -325,7 +327,7 @@ class PootleTestEnv(object):
         from pootle_store.models import Unit
         from django.utils import timezone
 
-        year_ago = timezone.now() - timedelta(days=365)
+        year_ago = timezone.now() - relativedelta(years=1)
         Unit.objects.update(creation_time=year_ago)
 
         for unit in Unit.objects.all():
@@ -389,7 +391,7 @@ class PootleTestEnv(object):
         member = User.objects.get(username="member")
         member2 = User.objects.get(username="member2")
 
-        first_modified = created + timedelta(days=((30 * unit.index) + 10))
+        first_modified = created + relativedelta(months=unit.index, days=10)
 
         # add suggestion at first_modified
         suggestion, created_ = unit.add_suggestion(
