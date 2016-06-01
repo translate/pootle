@@ -350,7 +350,7 @@ def test_fs_state_pootle_changed(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_found_file_paths(fs_path_queries):
+def test_fs_state_found_file_matches(fs_path_queries):
     plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
     resources = FSProjectStateResources(
         plugin, pootle_path=pootle_path, fs_path=fs_path)
@@ -364,5 +364,8 @@ def test_fs_state_found_file_paths(fs_path_queries):
             continue
         found_files.append((pp, fp))
     assert (
-        sorted(resources.found_file_paths)
+        sorted(resources.found_file_matches)
         == sorted(found_files))
+    assert (
+        resources.found_file_paths
+        == [x[1] for x in resources.found_file_matches])

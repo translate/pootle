@@ -77,9 +77,13 @@ class FSProjectStateResources(object):
               .exclude(staged_for_merge=True))
 
     @cached_property
-    def found_file_paths(self):
+    def found_file_matches(self):
         return sorted(self.context.find_translations(
             fs_path=self.fs_path, pootle_path=self.pootle_path))
+
+    @cached_property
+    def found_file_paths(self):
+        return [x[1] for x in self.found_file_matches]
 
     @cached_property
     def resources(self):
