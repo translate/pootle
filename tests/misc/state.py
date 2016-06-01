@@ -126,6 +126,59 @@ def test_state_all_states():
 
 
 @pytest.mark.django_db
+def test_state_properties():
+
+    class ContextualState(State):
+
+        @property
+        def state_foo(self):
+            for x in self.kwargs["baz"]:
+                yield {"foo%s" % x: x}
+
+        @property
+        def state_bar(self):
+            for x in self.kwargs["baz"]:
+                yield {"bar%s" % x: x}
+
+    context = DummyContext()
+    state = ContextualState(context, baz=[1, 2])
+    assert state["foo"][0].kwargs.items() == [("foo1", 1)]
+    assert state["foo"][1].kwargs.items() == [("foo2", 2)]
+    assert state["bar"][0].kwargs.items() == [("bar1", 1)]
+    assert state["bar"][1].kwargs.items() == [("bar2", 2)]
+
+
+@pytest.mark.django_db
+def test_state_item_kwargs():
+
+    class ContextualState(State):
+
+        @property
+        def state_foo(self):
+            for x in self.kwargs["baz"]:
+                yield {"foo%s" % x: x}
+
+        def state_bar(self, **kwargs):
+            for x in self.kwargs["baz"]:
+                yield {"bar%s" % x: x}
+
+    context = DummyContext()
+    state = ContextualState(context, baz=[1, 2])
+    assert state["foo"][0].kwargs.items() == [("foo1", 1)]
+    assert state["foo"][0].foo1 == 1
+    assert not hasattr(state["foo"][0], "foo2")
+    assert state["foo"][1].kwargs.items() == [("foo2", 2)]
+    assert state["foo"][1].foo2 == 2
+    assert not hasattr(state["foo"][1], "foo3")
+    assert state["bar"][0].kwargs.items() == [("bar1", 1)]
+    assert state["bar"][0].bar1 == 1
+    assert not hasattr(state["bar"][0], "bar2")
+    assert state["bar"][1].kwargs.items() == [("bar2", 2)]
+    assert state["bar"][1].bar2 == 2
+    assert not hasattr(state["bar"][1], "bar3")
+
+
+@pytest.mark.django_db
 def test_state_bad():
     # requires a context
     with pytest.raises(TypeError):
@@ -139,12 +192,12 @@ def test_state_bad():
     with pytest.raises(TypeError):
         ContextualState(DummyContext())
 
-    class ContextualState(object):
+    class ContextualState(State):
 
-        def state_foo(self):
-            return []
+        def state_foo(self, **kwargs):
+            yield []
 
-    # context.state_* methods should return dict-like ob
+    # context.state_* methods should yield dict-like ob
     with pytest.raises(TypeError):
         ContextualState(DummyContext())
 
