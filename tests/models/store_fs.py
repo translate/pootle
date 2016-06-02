@@ -17,8 +17,8 @@ from pytest_pootle.factories import (
 from pytest_pootle.utils import setup_store
 
 from pootle.core.delegate import config
-from pootle.core.plugin import provider
-from pootle_fs.delegate import fs_plugins
+from pootle.core.plugin import getter, provider
+from pootle_fs.delegate import fs_file, fs_plugins
 from pootle_fs.files import FSFile
 from pootle_fs.models import StoreFS
 from pootle_project.models import Project
@@ -229,7 +229,7 @@ def test_save_store_fs_bad_project(tp0_store_fs):
 
 
 @pytest.mark.django_db
-def test_store_fs_plugin(tp0_store_fs):
+def test_store_fs_plugin(tp0_store_fs, no_fs_plugins, no_fs_files):
     store_fs = tp0_store_fs
 
     class DummyPlugin(object):
@@ -242,9 +242,13 @@ def test_store_fs_plugin(tp0_store_fs):
         def foo(self):
             return "bar"
 
-    @provider(fs_plugins)
+    @provider(fs_plugins, weak=False, sender=Project)
     def provide_plugin(**kwargs):
         return dict(dummyfs=DummyPlugin)
+
+    @getter(fs_file, weak=False, sender=DummyPlugin)
+    def fs_files_getter(**kwargs):
+        return FSFile
 
     project = store_fs.project
     project.config["pootle_fs.fs_type"] = "dummyfs"
