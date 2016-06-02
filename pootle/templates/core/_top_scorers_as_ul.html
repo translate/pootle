@@ -2,7 +2,8 @@
 {% if top_scorers %}
 <label>{% trans 'Top contributors:' %}</label>
 <ul class="top-scorers">
-  {% for user in top_scorers|slice:":3" %}
+  {% for item in top_scorers|slice:":3" %}
+    {% with user=item.user %}
     <li class="top-scorer">
       <div class="place">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</div>
       <div class="user">
@@ -11,8 +12,9 @@
           <span class="user-name">{{ user.display_name }}</span>
         </a>
       </div>
-      <div class="number">{% if user.public_total_score > 0 %}+{% endif %}{{ user.public_total_score|floatformat:0|intcomma }}</div>
+      <div class="number">{% if item.public_total_score > 0 %}+{% endif %}{{ item.public_total_score|floatformat:0|intcomma }}</div>
     </li>
+    {% endwith %}
   {% endfor %}
 </ul>
 <div class="clear"></div>

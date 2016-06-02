@@ -2,7 +2,8 @@
 <table class="top-scorers-table">
   {% if top_scorers %}
     <tbody>
-    {% for user in top_scorers %}
+    {% for item in top_scorers %}
+      {% with user=item.user %}
       <tr>
         <td class="number">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</td>
         <td class="user top-scorer">
@@ -11,8 +12,16 @@
             <span class="user-name">{{ user.display_name }}</span>
           </a>
         </td>
-        <td class="number">{% if user.public_total_score > 0 %}+{% endif %}{{ user.public_total_score|intcomma }}</td>
+        <td class="number">
+          <span original-title='
+              <span class="value untranslated">{{ item.suggested }}</span> suggested<br/>
+              <span class="value translated">{{ item.translated }}</span> translated<br/>
+              <span class="value fuzzy">{{ item.reviewed }}</span> reviewed<br/>'>
+            {% if item.public_total_score > 0 %}+{% endif %}{{ item.public_total_score|intcomma }}
+          </span>
+        </td>
       </tr>
+      {% endwith %}
     {% endfor %}
     </tbody>
   {% endif %}

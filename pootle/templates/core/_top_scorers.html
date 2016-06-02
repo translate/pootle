@@ -10,7 +10,8 @@
     </tr>
   </thead>
   <tbody>
-  {% for user in top_scorers %}
+  {% for item in top_scorers %}
+    {% with user=item.user %}
     <tr>
       <td class="number">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</td>
       <td class="user">
@@ -21,8 +22,9 @@
           <li class="name"><a href="{{ user.get_absolute_url }}">{{ user.display_name }}</a></li>
         </ul>
       </td>
-      <td class="number">{{ user.public_total_score|floatformat|intcomma }}</td>
+      <td class="number">{{ item.public_total_score|floatformat|intcomma }}</td>
     </tr>
+    {% endwith %}
   {% endfor %}
   </tbody>
 </table>

@@ -18,7 +18,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import ProtectedError, Q, Sum
+from django.db.models import ProtectedError, Q, Sum, Case, When
 from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -29,7 +29,8 @@ from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
 from pootle_language.models import Language
-from pootle_statistics.models import Submission, ScoreLog
+from pootle_statistics.models import (Submission, ScoreLog,
+                                      TranslationActionCodes)
 from pootle_store.models import Unit
 
 from .managers import UserManager
@@ -128,15 +129,6 @@ class User(AbstractBaseUser):
         return _humanize_score(self.score)
 
     @property
-    def public_total_score(self):
-        """Total score for a specific period.
-
-        Since `total_score` is not an attribute of the `User` model, this
-        should be used with user objects retrieved via `User.top_scorers()`.
-        """
-        return _humanize_score(getattr(self, 'total_score', self.score))
-
-    @property
     def has_contact_details(self):
         """Returns ``True`` if any contact details have been set."""
         return bool(self.website or self.twitter or self.linkedin)
@@ -206,6 +198,41 @@ class User(AbstractBaseUser):
             user__pk__in=meta_user_ids,
         ).annotate(
             total_score=Sum('score_delta'),
+            suggested=Sum(
+                Case(
+                    When(
+                        action_code=TranslationActionCodes.SUGG_ADDED,
+                        then='wordcount'
+                    ),
+                    default=0,
+                    output_field=models.IntegerField()
+                )
+            ),
+            translated=Sum(
+                Case(
+                    When(
+                        translated_wordcount__isnull=False,
+                        then='translated_wordcount'
+                    ),
+                    default=0,
+                    output_field=models.IntegerField()
+                )
+            ),
+            reviewed=Sum(
+                Case(
+                    When(
+                        action_code__in=[
+                            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED,
+                            TranslationActionCodes.REVIEWED,
+                            TranslationActionCodes.EDITED,
+                        ],
+                        translated_wordcount__isnull=True,
+                        then='wordcount',
+                    ),
+                    default=0,
+                    output_field=models.IntegerField()
+                )
+            ),
         ).order_by('-total_score')
 
         if isinstance(limit, (int, long)) and limit > 0:
@@ -220,11 +247,11 @@ class User(AbstractBaseUser):
 
         top_scorers = []
         for item in top_scores:
-            user = users[item['user']]
-            user.total_score = item['total_score']
-            top_scorers.append(user)
+            item['user'] = users[item['user']]
+            item['public_total_score'] = _humanize_score(item['total_score'])
+            top_scorers.append(item)
 
-        cache.set(cache_key, list(top_scorers), 60)
+        cache.set(cache_key, top_scorers, 60)
         return top_scorers
 
     def __unicode__(self):
