@@ -144,6 +144,7 @@ def project0_dummy_plugin_no_stores(settings, request,
     from pootle_project.models import Project
     from pootle_store.models import Store
 
+    settings.POOTLE_FS_PATH = "/tmp/foo/"
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.fs_type"] = "dummyfs"
     project.config["pootle_fs.fs_url"] = "/foo/bar"
@@ -200,6 +201,8 @@ def project0_dummy_plugin_no_files(settings, request,
     from pootle_fs.files import FSFile
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
+
+    settings.POOTLE_FS_PATH = "/tmp/foo/"
 
     class NoFilesDummyPlugin(DummyPlugin):
 
