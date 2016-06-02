@@ -21,6 +21,11 @@
     margin-bottom: 2em !important;
 }
 
+#reports-results table.stats tr.item
+{
+    display: table-row;
+}
+
 table.stats td
 {
     padding: 5px;
