@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-03-22 00:01+0000\n"
+"PO-Revision-Date: 2016-05-28 14:57+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1458604906.000000\n"
+"X-POOTLE-MTIME: 1464447464.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -724,7 +724,7 @@ msgstr "Последняя (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Поиск недоступен"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -793,11 +793,13 @@ msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
+"Проект (%s) был создан. Сейчас происходит обновление хранилища проекта из "
+"шаблона."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Файлы проекта перевода перечитаны."
+msgstr "Проект (%s) был удален"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -924,24 +926,24 @@ msgid "Plural"
 msgstr "Множественное число"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Принято предложение от %s"
+msgstr "Принято предложение от %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Отклонено предложение от %s"
+msgstr "Отклонено предложение от %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "принял предложение для %(source_string)s"
+msgstr "Принято предложение от %(author)s с комментарием: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "отклонил предложение для %(source_string)s"
+msgstr "Отклонено предложение от %(author)s с комментарием: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -985,14 +987,14 @@ msgid "This term already exists in this file."
 msgstr "Этот термин уже имеется в файле."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Главная страница проекта"
+msgstr "Создан проект (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Главная страница проекта"
+msgstr "Не удалось создать проект (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1616,9 +1618,8 @@ msgid "Can review suggestions"
 msgstr "Может рассмотривать предложения"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Администрирование Django"
+msgstr "Может выполнять административные задачи"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -2071,9 +2072,8 @@ msgid "Fix critical errors"
 msgstr "Исправить критические ошибки"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Критические ошибки:"
+msgstr "Критические ошибки"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2084,7 +2084,6 @@ msgid "Continue translation"
 msgstr "Продолжить перевод"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Требует перевода"
 
@@ -2120,33 +2119,28 @@ msgid "Failing Checks"
 msgstr "Проверки с ошибками"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Больше..."
+msgstr "больше..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "меньше..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Топ переводчиков"
+msgstr "Топ переводчиков за последние 30 дней"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Обновить"
+msgstr "Обновления"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Последнее действие"
+msgstr "Последнее действие:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Перевод"
+msgstr "Переводы"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2198,9 +2192,8 @@ msgid "No user contributions yet."
 msgstr "Нет вклада."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Топ переводчиков"
+msgstr "Топ участников:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2453,14 +2446,12 @@ msgid "User suggestions"
 msgstr "Просмотреть предложения"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Изменить настройки"
+msgstr "Больше опций"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Изменить настройки"
+msgstr "Меньше опций"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2667,14 +2658,16 @@ msgstr "Войти"
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr ""
+msgstr "Проект (%(tp)s) был создан по адресу %(url)s, и успешно обновлен."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr "Произошла ошибка при входе. Пожалуйста, свяжитесь с администратором"
+msgstr ""
+"Произошла ошибка при создании проекта (%(tp)s). Свяжитесь с системным "
+"администратором."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

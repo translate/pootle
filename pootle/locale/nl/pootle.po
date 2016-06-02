@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-03-04 22:52+0000\n"
+"PO-Revision-Date: 2016-05-30 18:02+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1457131945.000000\n"
+"X-POOTLE-MTIME: 1464631355.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -183,9 +183,8 @@ msgid "Contact Us"
 msgstr "Contact"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
-msgstr "Een probleem met deze tekenreeks melden"
+msgstr "Probleem met tekenreeks melden"
 
 #: apps/import_export/templates/browser/index.html:10
 msgid "Download translation files for offline translation"
@@ -240,7 +239,7 @@ msgstr "Brontaal"
 #: apps/pootle_app/forms.py:94
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr "'%s' kan niet als een projectcode worden gebruikt"
+msgstr "'%s' kan niet als projectcode worden gebruikt"
 
 #: apps/pootle_app/forms.py:101 custom/templates/profiles/_tabs.html:5
 msgid "Password"
@@ -678,9 +677,8 @@ msgid "Percent brace placeholders"
 msgstr "Procent-haakje-plaatshouders"
 
 #: apps/pootle_misc/checks.py:117
-#, fuzzy
 msgid "Plurr format"
-msgstr "Android-indeling"
+msgstr "Plurr-indeling"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -730,7 +728,7 @@ msgstr "Laatste (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Zoeken niet beschikbaar"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -793,16 +791,18 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Vertaalproject is bijgewerkt naar de nieuwste sjablonen."
+msgstr ""
+"Vertaalproject (%s) is aangemaakt. We werken nu de opslagplaatsen ervan bij "
+"vanaf bestandssjablonen."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Bestanden van het vertaalproject zijn opnieuw gescand."
+msgstr "Vertaalproject (%s) is verwijderd"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -929,24 +929,24 @@ msgid "Plural"
 msgstr "Meervoud"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Geaccepteerde suggestie van %s"
+msgstr "Geaccepteerde suggestie van %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Geweigerde suggestie van %s"
+msgstr "Afgewezen suggestie van %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "heeft suggestie voor %(source_string)s geaccepteerd"
+msgstr "Geaccepteerde suggestie van %(author)s met opmerking: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "heeft suggestie voor %(source_string)s afgewezen"
+msgstr "Afgewezen suggestie van %(author)s met opmerking: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -963,7 +963,7 @@ msgstr "Vertaald"
 
 #: apps/pootle_store/views.py:203
 msgid "Path too long."
-msgstr ""
+msgstr "Pad te lang."
 
 #: apps/pootle_store/views.py:205 core/decorators.py:44
 msgid "Arguments missing."
@@ -990,14 +990,14 @@ msgid "This term already exists in this file."
 msgstr "Deze term bestaat al in dit bestand."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Vertaalproject-startpagina"
+msgstr "Vertaalproject (%s) aangemaakt"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Vertaalproject-startpagina"
+msgstr "Aanmaken van vertaalproject (%s) mislukt"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1270,6 +1270,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
 msgstr ""
+"Er zijn verschillende django_redis.cache.RedisCache-configuraties vereist "
+"voor 'default', 'redis' en 'stats'."
 
 #: checks.py:194
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1446,22 +1448,22 @@ msgstr ""
 #: checks.py:351
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS heeft geen %s."
 
 #: checks.py:352
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "%s ingesteld in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:359
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Ongeldige waarde in POOTLE_MARKUP_FILTER."
+msgstr "Ongeldige waarde voor %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:361
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Stel een geldige waarde in voor POOTLE_MARKUP_FILTER."
+msgstr "Stel een geldige waarde in voor %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:385
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1495,11 +1497,11 @@ msgstr ""
 
 #: checks.py:446
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Revisie ontbreekt of heeft een onjuiste waarde."
 
 #: checks.py:447
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Voer 'revision --restore' uit om de revisieteller terug te zetten."
 
 #: core/browser.py:26
 msgid "Project"
@@ -1621,9 +1623,8 @@ msgid "Can review suggestions"
 msgstr "Kan suggesties nakijken"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Django beheer"
+msgstr "Kan beheerderstaken uitvoeren"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -2075,9 +2076,8 @@ msgid "Fix critical errors"
 msgstr "Kritieke fouten herstellen"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Kritieke fouten:"
+msgstr "Kritieke fouten"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2088,7 +2088,6 @@ msgid "Continue translation"
 msgstr "Doorgaan met vertaling"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Vertaling nodig"
 
@@ -2124,33 +2123,28 @@ msgid "Failing Checks"
 msgstr "Mislukte controles"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Meer..."
+msgstr "meer..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "minder..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Meest actieve medewerkers"
+msgstr "Meest actieve medewerkers, afgelopen 30 dagen"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Bijwerken"
+msgstr "Updates"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Laatste actie"
+msgstr "Laatste actie:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Vertaling"
+msgstr "Vertalingen"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2203,9 +2197,8 @@ msgid "No user contributions yet."
 msgstr "Nog geen gebruikersbijdragen."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Meest actieve medewerkers"
+msgstr "Meest actieve medewerkers:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2451,14 +2444,12 @@ msgid "User suggestions"
 msgstr "Suggesties van gebruiker"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Opties veranderen"
+msgstr "Meer opties"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Opties veranderen"
+msgstr "Minder opties"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2664,20 +2655,22 @@ msgid "Sign In"
 msgstr "Aanmelden"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Vertaalproject is bijgewerkt naar de nieuwste sjablonen."
+msgstr ""
+"Er is een vertaalproject (%(tp)s) aangemaakt op %(url)s, dat met succes is "
+"bijgewerkt."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
-"Er is een probleem opgetreden bij uw aanmelding. Neem contact op met uw "
-"systeembeheerder"
+"Er is een probleem opgetreden bij het aanmaken van vertaalproject (%(tp)s). "
+"Neem contact op met uw systeembeheerder."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-04-10 12:37+0000\n"
+"PO-Revision-Date: 2016-05-29 06:50+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1460291832.000000\n"
+"X-POOTLE-MTIME: 1464504641.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -520,14 +520,12 @@ msgid "Social Verification"
 msgstr "Ijtimoiy tasdiqlash"
 
 #: static/js/browser/components/VisibilityToggle.js:51
-#, fuzzy
 msgid "Show disabled"
-msgstr "o‘chirib qo‘yilgan"
+msgstr "Ko‘rsatish o‘chirib qo‘yilgan"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Hide disabled"
-msgstr "o‘chirib qo‘yilgan"
+msgstr "Yashirish o‘chirib qo‘yilgan"
 
 #: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""

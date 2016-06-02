@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-04-10 12:37+0000\n"
+"PO-Revision-Date: 2016-05-28 17:55+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1460291846.000000\n"
+"X-POOTLE-MTIME: 1464458154.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -724,7 +724,7 @@ msgstr "So‘nggi (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Izlab bo‘lmaydi"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"

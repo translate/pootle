@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2015-09-27 07:23+0000\n"
+"PO-Revision-Date: 2016-06-01 06:59+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1443338589.000000\n"
+"X-POOTLE-MTIME: 1464764391.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -351,7 +351,7 @@ msgstr "التّقارير"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "ستُعرض المعاينة هنا."
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
@@ -628,19 +628,19 @@ msgstr "التّرجمات المشابهة"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:81
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "حرّر الاقتراح قبل قبوله، إن احتجت ذلك"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:92
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "وفّر تعليقا اختياريا (سيظهر للعلن)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:103
 msgid "Accept"
-msgstr ""
+msgstr "اقبل"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Reject"
-msgstr ""
+msgstr "ارفض"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -667,9 +667,8 @@ msgid "disabled"
 msgstr "معطّل"
 
 #: static/js/stats.js:59
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "تهانينا، انتهيت من كل المقاطع."
+msgstr "تهانينا! لقد أنهيت المهمة!"
 
 #: static/js/stats.js:405
 #, python-format, javascript-format
@@ -1006,13 +1005,13 @@ msgid "Show"
 msgstr "أظهر"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo;"
+"span>&rdquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format

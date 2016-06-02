@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-01-27 19:28+0100\n"
-"Last-Translator: Rhoslyn Prys <post@meddal.com>\n"
+"PO-Revision-Date: 2016-05-31 15:26+0000\n"
+"Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
-"X-Generator: Virtaal 0.7.1\n"
-"X-POOTLE-MTIME: 1442839083.000000\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1464708394.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -177,7 +177,6 @@ msgid "Contact Us"
 msgstr "Cysylltu â Ni"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Adrodd ar anhawster gyda'r llinyn hwn"
 
@@ -221,7 +220,7 @@ msgstr "Heb lwyddo i greu '%s'. Project/Iaith goll? (%s)"
 
 #: apps/import_export/utils.py:65
 msgid "There was an error uploading your file"
-msgstr "Bu gwall wrth lwytho eich ffeil i fyny."
+msgstr "Bu gwall wrth lwytho eich ffeil i fyny"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -668,9 +667,8 @@ msgid "Percent brace placeholders"
 msgstr "Dalfannau angor canrannol"
 
 #: apps/pootle_misc/checks.py:117
-#, fuzzy
 msgid "Plurr format"
-msgstr "Fformat Android"
+msgstr "Fformat Plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -720,7 +718,7 @@ msgstr "(%d) olaf"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Nid yw chwilio ar gael"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -785,16 +783,18 @@ msgid "Disabled"
 msgstr "Analluogwyd"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Mae'r project cyfieithu wedi ei ddiweddaru o'r templedi diweddaraf."
+msgstr ""
+"Mae project cyfieithu (%s) wedi ei greu. Rydym wrthi'n diweddaru ei storfa o "
+"dempledi ffeiliau."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Mae ffeiliau project cyfieithu wedi eu hailsganio."
+msgstr "Mae project cyfieithu (%s) wedi ei ddileu"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -921,24 +921,24 @@ msgid "Plural"
 msgstr "Lluosog"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Derbyn yr awgrym gan %s"
+msgstr "Derbyn yr awgrym gan %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Gwrthod yr awgrym gan %s"
+msgstr "Gwrthod yr awgrym gan %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "awgrymiadau derbyniwyd ar gyfer %(source_string)s"
+msgstr "Derbyn awgrym gan %(author)s a sylw: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "awgrymiadau gwrthodwyd ar gyfer %(source_string)s"
+msgstr "Gwrthod awgrym gan %(author)s a sylw: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -955,7 +955,7 @@ msgstr "Cyfieithu"
 
 #: apps/pootle_store/views.py:203
 msgid "Path too long."
-msgstr ""
+msgstr "Llwybr yn rhy hir."
 
 #: apps/pootle_store/views.py:205 core/decorators.py:44
 msgid "Arguments missing."
@@ -982,14 +982,14 @@ msgid "This term already exists in this file."
 msgstr "Mae'r term yn bodoli eisoes yn y ffeil."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Prif dudalen y project cyfieithu"
+msgstr "Crëwyd project cyfieithu (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Prif dudalen y project cyfieithu"
+msgstr "Methwyd creu project cyfieithu (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1118,7 +1118,7 @@ msgstr ""
 
 #: apps/staticpages/views.py:231
 msgid "Text is missing"
-msgstr "Testun ar goll."
+msgstr "Testun ar goll"
 
 #: apps/virtualfolder/models.py:37
 msgid "Location"
@@ -1180,7 +1180,7 @@ msgid ""
 "using pootle merge_user or purge_user commands"
 msgstr ""
 "Ceisiwch ddefnyddio 'find_duplicate_emails pootle', ac yna diweddaru "
-"negeseuon e-bost y defnyddiwr gyda ''pootle update_user_email username "
+"negeseuon e-bost y defnyddiwr gyda 'pootle update_user_email username "
 "email'. Efallai y byddwch hefyd am ystyried defnyddio gorchmynion merge_user "
 "pootle neu purge_user"
 
@@ -1262,6 +1262,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
 msgstr ""
+"Mae angen ffurfweddiad unigryw i django_redis.cache.RedisCache ar gyfer "
+"`default`, `redis` a `stats`."
 
 #: checks.py:194
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1440,22 +1442,22 @@ msgstr ""
 #: checks.py:351
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "Nid oes gan POOTLE_SCORE_COEFFICIENTS %s."
 
 #: checks.py:352
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Gosodwch %s yn POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:359
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Gwerth annilys yn POOTLE_MARKUP_FILTER."
+msgstr "Gwerth annilys %s yn POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:361
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Gosod gwerth dilys ar gyfer POOTLE_MARKUP_FILTER."
+msgstr "Gosodwch werth dilys ar gyfer %s yn POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:385
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1479,7 +1481,7 @@ msgstr ""
 
 #: checks.py:423
 msgid "Email server is not available."
-msgstr "Nid yw'r gweinydd e-bost ar gael"
+msgstr "Nid yw'r gweinydd e-bost ar gael."
 
 #: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
@@ -1489,11 +1491,11 @@ msgstr ""
 
 #: checks.py:446
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Mae'r adolygiad ar goll neu mae ganddo werth annilys."
 
 #: checks.py:447
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Rhedwch `revision --restore` i ailosod y cyfrif adolygu."
 
 #: core/browser.py:26
 msgid "Project"
@@ -1616,7 +1618,7 @@ msgstr "Gallu adolygu cyfieithiadau"
 
 #: core/initdb.py:149
 msgid "Can perform administrative tasks"
-msgstr ""
+msgstr "Gall gyflawni tasgau gweinyddol"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -1687,7 +1689,7 @@ msgstr "Ynghylch"
 
 #: templates/about.html:13
 msgid "About This Pootle Server"
-msgstr "Ynghylch y Gweinydd Pootle Yma"
+msgstr "Y Gweinydd Pootle Yma"
 
 #: templates/about.html:16
 msgid ""
@@ -1698,7 +1700,7 @@ msgid ""
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
 "Mae'r wefan hon yn rhedeg Pootle &mdash; meddalwedd gwe bwerus sy'n ymrymuso "
-"timau i gyfieithu a rheoli cyfieithu. Mae'r offeryn cymunedol yma yn "
+"timau i gyfieithu a rheoli cyfieithiadau. Mae'r offeryn cymunedol yma yn "
 "Feddalwedd Rhydd a gall unrhyw dîm ei defnyddio a chyfrannu tuag at gymuned "
 "Pootle. Mae rhagor i'w weld ar <a href=\"http://pootle.translatehouse.org/"
 "\"><i class=\"icon-external-link\"></i> wefan y project</a>."
@@ -1709,7 +1711,7 @@ msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
-"Mae Pootle %(pootle_version)s yn cael ei yrru gan Translate Toolkit "
+"Mae Pootle %(pootle_version)s yn cael ei rymuso gan Translate Toolkit "
 "%(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
@@ -1720,7 +1722,7 @@ msgstr ""
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "I ysgogi eich cyfrif, dilynwch y ddolen:"
+msgstr "I agor eich cyfrif, dilynwch y ddolen:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
@@ -1728,11 +1730,11 @@ msgid ""
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
 "Mae'r neges hon wedi ei hanfon i ddilysu fod y cyfeiriad e-bost yn gywir. Os "
-"nad ydych am gofrestru cyfrif, gallwch anwybyddu'r neges."
+"nad ydych am gofrestru cyfrif, gallwch anwybyddu'r neges hon."
 
 #: templates/account/email/email_confirmation_subject.txt:2
 msgid "Pootle e-mail confirmation"
-msgstr "Cofrestriad e-bost Pootle"
+msgstr "E-bost cadarnhau Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -1753,7 +1755,7 @@ msgstr "Cadw Newidiadau"
 
 #: templates/admin/_tabs.html:6
 msgid "Info"
-msgstr "Gwybodaeth"
+msgstr "Manylion"
 
 #: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
 #: templates/admin/users.html:4 templates/admin/users.html.py:7
@@ -1811,7 +1813,7 @@ msgstr "Rhagor..."
 
 #: templates/admin/dashboard.html:37
 msgid "Background Jobs"
-msgstr "Gwaith Cefndirol"
+msgstr "Tasgau yn y Cefndir"
 
 #: templates/admin/dashboard.html:43
 msgid "Status"
@@ -1924,7 +1926,7 @@ msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
-"Yma gallwch ychwanegu, golygu a dileu'r caniatâd rhagosodedig yn y gweinydd "
+"Yma gallwch ychwanegu, golygu a dileu caniatâd rhagosodedig y gweinydd "
 "Pootle yma."
 
 #: templates/admin/permissions.html:14
@@ -1948,7 +1950,7 @@ msgstr "Gweithgaredd dyddiol"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
-msgstr "Defnyddwyr"
+msgstr "Defnyddiwr"
 
 #: templates/admin/reports/header.html:22
 msgid "Detailed Report"
@@ -2069,9 +2071,8 @@ msgid "Fix critical errors"
 msgstr "Trwsio gwallau critigol"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Gwallau critigol:"
+msgstr "Gwallau critigol"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2082,13 +2083,12 @@ msgid "Continue translation"
 msgstr "Parhau i gyfieithu"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
-msgstr "Angen Cyfieithu"
+msgstr "Angen cyfieithu"
 
 #: templates/browser/_actions.html:45
 msgid "View all"
-msgstr "Gweld y cyfan"
+msgstr "Gweld popeth"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
@@ -2118,33 +2118,28 @@ msgid "Failing Checks"
 msgstr "Gwiriadau'n Methu"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Rhagor..."
+msgstr "rhagor..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "llai..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Prif Gyfrannwr y Mis"
+msgstr "Prif gyfrannwyr y 30 diwrnod diwethaf"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Cyfraddau"
+msgstr "Diweddariadau"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Gweithred ddiwethaf"
+msgstr "Gweithred ddiwethaf:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Cyfieithu"
+msgstr "Cyfieithiadau"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2198,9 +2193,8 @@ msgid "No user contributions yet."
 msgstr "Dim cyfraniadau gan ddefnyddiwr eto."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Cyfranwyr"
+msgstr "Prif gyfranwyr:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2225,7 +2219,7 @@ msgstr "Cadarnhau"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr "Nôl i bori"
+msgstr "Mynd nôl i bori"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2446,14 +2440,12 @@ msgid "User suggestions"
 msgstr "Awgrymiadau gan ddefnyddwyr"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Cywiriad"
+msgstr "Rhagor o ddewisiadau"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Lleoliadau"
+msgstr "Llai o ddewisiadau"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2520,12 +2512,12 @@ msgstr "Sylw diwethaf wedi ei dynnu"
 #: templates/editor/units/xhr_timeline.html:38
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Mudwyd <a href=\"%(check_url)s\">%(check_name)s</a>gwiriad"
+msgstr "Mudwyd gwiriad <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Dad-fudo<a href=\"%(check_url)s\">%(check_name)s</a>gwiriad"
+msgstr "Dad-fudwyd gwiriad <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2654,19 +2646,22 @@ msgid "Sign In"
 msgstr "Mewngofnodi"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Mae'r project cyfieithu wedi ei ddiweddaru o'r templedi diweddaraf."
+msgstr ""
+"Mae project cyfieithu (%(tp)s) wedi ei greu yn %(url)s, ac mae wedi ei "
+"ddiweddaru'n llwyddiannus."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
-"Digwyddodd gwall wrth eich mewngofnodi. Cysylltwch â gweinyddwr eich system"
+"Digwyddodd gwall wrth greu project Cyfieithu (%(tp)s). Cysylltwch â "
+"gweinyddwr eich system."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

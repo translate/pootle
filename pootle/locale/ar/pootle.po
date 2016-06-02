@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-10 03:15+0000\n"
-"Last-Translator: Haytham A. <haytham.hammam@gmail.com>\n"
+"PO-Revision-Date: 2016-06-01 06:55+0000\n"
+"Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1462850142.000000\n"
+"X-POOTLE-MTIME: 1464764158.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -782,16 +782,16 @@ msgid "Disabled"
 msgstr "معطّل"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "تم تحديث مشروع الترجمة من أحدث قوالب."
+msgstr "أُنشئ مشروع الترجمة (%s). نعمل على تحديث مخازنه من قوالب الملفات."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "تم إعادة مسح ملفات مشروع الترجمة."
+msgstr "حُذف مشروع الترجمة (%s)"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -918,24 +918,24 @@ msgid "Plural"
 msgstr "الجمع"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "قبل اقتراح %s"
+msgstr "قبل اقتراح %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "رفض اقتراح %s"
+msgstr "رفض اقتراح %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "قبل اقتراح لـِ %(source_string)s"
+msgstr "قبل اقتراح %(author)s قائلا: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "رفض اقتراح لِـ %(source_string)s"
+msgstr "رفض اقتراح %(author)s قائلا: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -952,7 +952,7 @@ msgstr "مُتَرجَمة"
 
 #: apps/pootle_store/views.py:203
 msgid "Path too long."
-msgstr ""
+msgstr "المسار طويل جدا."
 
 #: apps/pootle_store/views.py:205 core/decorators.py:44
 msgid "Arguments missing."
@@ -979,14 +979,14 @@ msgid "This term already exists in this file."
 msgstr "هذا المصطلح موجود في هذا الملفّ بالفعل."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "الصفحة الرئيسية لمشروع الترجمة"
+msgstr "أُنشئ مشروع الترجمة (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "الصفحة الرئيسية لمشروع الترجمة"
+msgstr "فشل إنشاء مشروع الترجمة (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -2040,9 +2040,8 @@ msgid "Fix critical errors"
 msgstr "أصلح الأخطاء الحرجة"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "الأخطاء الحرجة:"
+msgstr "الأخطاء الحرجة"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2053,9 +2052,8 @@ msgid "Continue translation"
 msgstr "تابع التّرجمة"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
-msgstr "تحتاج للتّرجمة"
+msgstr "تحتاج ترجمة"
 
 #: templates/browser/_actions.html:45
 msgid "View all"
@@ -2089,31 +2087,26 @@ msgid "Failing Checks"
 msgstr "فحوص بها مشاكل"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "المزيد..."
+msgstr "أكثر..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "أقل..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "الأكثر مساهمة"
+msgstr "أعلى المساهمين خلال الثلاثين يوما الماضية"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "حدّث"
+msgstr "التحديثات"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "آخر إجراء"
+msgstr "آخر إجراء:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
 msgstr "الترجمة"
 
@@ -2166,9 +2159,8 @@ msgid "No user contributions yet."
 msgstr "لا مساهمات بعد."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "الأكثر مساهمة"
+msgstr "أعلى المساهمين:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2420,14 +2412,12 @@ msgid "User suggestions"
 msgstr "اقتراحات المستخدم"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "تغيير الخيارات"
+msgstr "خيارات أخرى"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "تغيير الخيارات"
+msgstr "خيارات أقل"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2492,14 +2482,14 @@ msgid "Last comment removed"
 msgstr "أزيل آخر تعليق"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(url)s\">لا كلمات</a>"
+msgstr "كتم فحص <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "راجعها <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "أطلق فحص <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2626,18 +2616,18 @@ msgid "Sign In"
 msgstr "لِج"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "تم تحديث مشروع الترجمة من أحدث قوالب."
+msgstr "أُنشئ مشروع الترجمة (%(tp)s) في %(url)s، وقد حُدّث بنجاح."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr "حدث عُطل أثناء ولوجك. رجاء تواصل مع مدير النظام"
+msgstr "حدث خطب أثناء إنشاء مشروع الترجمة (%(tp)s). فضلا تواصل مع مدير النظام."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
