@@ -13,6 +13,7 @@ from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 from pootle_project.models import Project
 from pootle_store.models import FILE_WINS, POOTLE_WINS, Store
 
+from .delegate import fs_file
 from .managers import StoreFSManager, validate_store_fs
 from .utils import FSPlugin
 
@@ -52,7 +53,8 @@ class AbstractStoreFS(models.Model):
     @cached_property
     def file(self):
         if self.plugin:
-            return self.plugin.file_class(self)
+            return fs_file.get(
+                self.plugin.__class__)(self)
 
     def save(self, *args, **kwargs):
         validated = validate_store_fs(
