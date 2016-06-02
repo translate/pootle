@@ -65,9 +65,10 @@ class DummyPlugin(object):
 
 
 @pytest.fixture
-def project0_dummy_plugin(settings, request):
-    from pootle.core.plugin import provider
-    from pootle_fs.delegate import fs_plugins
+def project0_dummy_plugin(settings, request, no_fs_plugins, no_fs_files):
+    from pootle.core.plugin import getter, provider
+    from pootle_fs.delegate import fs_file, fs_plugins
+    from pootle_fs.files import FSFile
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
 
@@ -75,13 +76,14 @@ def project0_dummy_plugin(settings, request):
     def plugin_provider(**kwargs):
         return dict(dummyfs=DummyPlugin)
 
+    @getter(fs_file, weak=False, sender=DummyPlugin)
+    def fs_files_getter(**kwargs):
+        return FSFile
+
     project = Project.objects.get(code="project0")
     settings.POOTLE_FS_PATH = "/tmp/foo/"
     project.config["pootle_fs.fs_type"] = "dummyfs"
     project.config["pootle_fs.fs_url"] = "/foo/bar"
-
-    request.addfinalizer(
-        lambda: fs_plugins.disconnect(plugin_provider))
     return FSPlugin(project)
 
 
@@ -91,14 +93,15 @@ def fs_path_queries(project0_dummy_plugin, request):
 
 
 @pytest.fixture(params=FS_PATH_QS.keys())
-def fs_path_qs(project0_dummy_plugin, request):
+def fs_path_qs(request):
     return FS_PATH_QS[request.param]
 
 
 @pytest.fixture
-def project0_dummy_plugin_fs_changed(settings, request):
-    from pootle.core.plugin import provider
-    from pootle_fs.delegate import fs_plugins
+def project0_dummy_plugin_fs_changed(settings, request,
+                                     no_fs_plugins, no_fs_files):
+    from pootle.core.plugin import getter, provider
+    from pootle_fs.delegate import fs_file, fs_plugins
     from pootle_fs.files import FSFile
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
@@ -111,35 +114,39 @@ def project0_dummy_plugin_fs_changed(settings, request):
 
     class PootleConflictDummyPlugin(DummyPlugin):
 
-        @property
-        def file_class(self):
-            return FSChangedFile
+        pass
 
     @provider(fs_plugins, weak=False, sender=Project)
     def plugin_provider(**kwargs):
         return dict(dummyfs=PootleConflictDummyPlugin)
+
+    @getter(fs_file, weak=False, sender=PootleConflictDummyPlugin)
+    def fs_files_getter(**kwargs):
+        return FSChangedFile
 
     project = Project.objects.get(code="project0")
     settings.POOTLE_FS_PATH = "/tmp/foo/"
     project.config["pootle_fs.fs_type"] = "dummyfs"
     project.config["pootle_fs.fs_url"] = "/foo/bar"
 
-    request.addfinalizer(
-        lambda: fs_plugins.disconnect(plugin_provider))
     return FSPlugin(project)
 
 
 @pytest.fixture
-def project0_dummy_plugin_no_stores(settings, request):
+def project0_dummy_plugin_no_stores(settings, request,
+                                    no_fs_plugins, no_fs_files):
     from pytest_pootle.utils import add_store_fs
 
-    from pootle.core.plugin import provider
-    from pootle_fs.delegate import fs_plugins
+    from pootle.core.plugin import getter, provider
+    from pootle_fs.delegate import fs_file, fs_plugins
+    from pootle_fs.files import FSFile
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
     from pootle_store.models import Store
 
     project = Project.objects.get(code="project0")
+    project.config["pootle_fs.fs_type"] = "dummyfs"
+    project.config["pootle_fs.fs_url"] = "/foo/bar"
     stores = Store.objects.filter(
         translation_project__project=project)
     pootle_paths = list(stores.values_list("pootle_path", flat=True))
@@ -159,14 +166,16 @@ def project0_dummy_plugin_no_stores(settings, request):
     def plugin_provider(**kwargs):
         return dict(dummyfs=NoStoresDummyPlugin)
 
+    @getter(fs_file, weak=False, sender=NoStoresDummyPlugin)
+    def fs_files_getter(**kwargs):
+        return FSFile
+
     plugin = FSPlugin(project)
     for store in stores:
         add_store_fs(
             store=store,
             fs_path=plugin.get_fs_path(store.pootle_path),
             synced=True)
-    request.addfinalizer(
-        lambda: fs_plugins.disconnect(plugin_provider))
     return plugin
 
 
@@ -184,9 +193,11 @@ def project0_dummy_plugin_obs_stores(project0_dummy_plugin_no_stores):
 
 
 @pytest.fixture
-def project0_dummy_plugin_no_files(settings, request):
-    from pootle.core.plugin import provider
-    from pootle_fs.delegate import fs_plugins
+def project0_dummy_plugin_no_files(settings, request,
+                                   no_fs_plugins, no_fs_files):
+    from pootle.core.plugin import getter, provider
+    from pootle_fs.delegate import fs_file, fs_plugins
+    from pootle_fs.files import FSFile
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
 
@@ -199,7 +210,12 @@ def project0_dummy_plugin_no_files(settings, request):
     def plugin_provider(**kwargs):
         return dict(dummyfs=NoFilesDummyPlugin)
 
+    @getter(fs_file, weak=False, sender=NoFilesDummyPlugin)
+    def fs_files_getter(**kwargs):
+        return FSFile
+
     project = Project.objects.get(code="project0")
-    request.addfinalizer(
-        lambda: fs_plugins.disconnect(plugin_provider))
+    project.config["pootle_fs.fs_type"] = "dummyfs"
+    project.config["pootle_fs.fs_url"] = "/foo/bar"
+
     return FSPlugin(project)
