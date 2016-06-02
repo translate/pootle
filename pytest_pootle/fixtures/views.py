@@ -25,6 +25,7 @@ from pytest_pootle.utils import create_store, get_test_uids
 DAY_AGO = (datetime.now() - timedelta(days=1))
 MONTH_AGO = (datetime.now() - relativedelta(months=1))
 TWO_MONTHS_AGO = (datetime.now() - relativedelta(months=2))
+SEVEN_MONTHS_AGO = (datetime.now() - relativedelta(months=7))
 
 BAD_VIEW_TESTS = OrderedDict(
     (("/foo/bar", dict(code=301, location="/foo/bar/")),
@@ -118,6 +119,9 @@ GET_UNITS_TESTS = OrderedDict(
      ("modified_last_calendar_month",
       {"filter": "translated",
        "month": MONTH_AGO.strftime("%Y-%m")}),
+     ("modified_calendar_month_7_month_ago",
+      {"filter": "translated",
+       "month": SEVEN_MONTHS_AGO.strftime("%Y-%m")}),
      ("modified_last_two_months",
       {"modified_since": TWO_MONTHS_AGO.isoformat()}),
      ("modified_last_day",
