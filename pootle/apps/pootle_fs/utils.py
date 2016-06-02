@@ -82,6 +82,10 @@ class FSPlugin(object):
             raise MissingPluginError(
                 "No such plugin: %s" % fs_type)
 
+    @property
+    def __class__(self):
+        return self.plugin.__class__
+
     def __getattr__(self, k):
         return getattr(self.plugin, k)
 
