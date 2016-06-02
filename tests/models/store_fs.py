@@ -10,7 +10,6 @@
 import pytest
 
 from django.core.exceptions import ValidationError
-from django.db import IntegrityError
 
 from pytest_pootle.factories import (
     LanguageDBFactory, ProjectDBFactory, StoreDBFactory,
@@ -163,13 +162,10 @@ def test_add_store_bad_path(english):
         parent=tp.directory,
         name="example_store.po")
     with pytest.raises(ValidationError):
-        try:
-            StoreFS.objects.create(
-                store=store,
-                pootle_path="/some/other/path.po",
-                path=fs_path)
-        except IntegrityError:
-            raise ValidationError
+        StoreFS.objects.create(
+            store=store,
+            pootle_path="/some/other/path.po",
+            path=fs_path)
 
 
 @pytest.mark.django_db
