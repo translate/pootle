@@ -33,6 +33,12 @@ const REGULAR_MAP_REV = assign({}, _.invert(REGULAR_MAP_COMMON), {
   '\u240D': '',  // CR
 });
 
+// Only for highlight purposes
+export const REGULAR_MAP_REV_HL = assign({}, _.invert(REGULAR_MAP_COMMON), {
+  '\u240A': '\u000A',  // LF
+  '\u240D': '\u000D',  // CR
+});
+
 
 const NEWLINE_CHARACTERS = ['\u000A', '\u000D'];
 
@@ -72,7 +78,7 @@ function makeCodePointRegex(codePointList) {
 
 
 const REGULAR_MODE_PATTERN = makeCodePointRegex(Object.keys(REGULAR_MAP));
-const REGULAR_MODE_PATTERN_REV = makeCodePointRegex(Object.keys(REGULAR_MAP_REV));
+export const REGULAR_MODE_PATTERN_REV = makeCodePointRegex(Object.keys(REGULAR_MAP_REV));
 
 const RAW_MODE_PATTERN = makeCodePointRegex(Object.keys(RAW_MAP));
 const RAW_MODE_PATTERN_REV = makeCodePointRegex(Object.keys(RAW_MAP_REV));

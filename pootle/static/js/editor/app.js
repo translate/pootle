@@ -691,7 +691,12 @@ PTL.editor = {
   copyText(e) {
     const $el = $(e.currentTarget);
     const action = $el.data('action');
-    const text = $el.data('string') || $el.data('translation-aid') || $el.text();
+    const text = (
+      $el.data('codepoint') && JSON.parse(`"${$el.data('codepoint')}"`) ||
+      $el.data('string') ||
+      $el.data('translation-aid') ||
+      $el.text()
+    );
     const $target = $(this.focused);
     let start;
     let newValues;

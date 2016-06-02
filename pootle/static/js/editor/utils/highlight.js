@@ -6,6 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+import { REGULAR_MAP_REV_HL, REGULAR_MODE_PATTERN_REV } from './font';
+
+
 /* eslint-disable no-irregular-whitespace */
 const PUNCTUATION_RE = /[™©®]|[℃℉°]|[±πθ×÷−√∞∆Σ′″]|[‘’ʼ‚‛“”„‟]|[«»]|[£¥€]|…|—|–|[ ]/g;
 /* eslint-enable no-irregular-whitespace */
@@ -71,4 +74,18 @@ export function highlightHtml(text, className = '') {
   }
 
   return text.replace(HTML_RE, replace);
+}
+
+
+export function highlightSymbols(text, className = '') {
+  function replace(match) {
+    const charCode = REGULAR_MAP_REV_HL[match].charCodeAt().toString(16);
+    const zeros = '0'.repeat(4 - charCode.length);
+    const codePoint = `\\u${zeros}${charCode.toUpperCase()}`;
+    return (
+      `<span class="${className}" data-codepoint="${codePoint}">${match}</span>`
+    );
+  }
+
+  return text.replace(REGULAR_MODE_PATTERN_REV, replace);
 }

@@ -13,7 +13,7 @@ export {
 } from './font';
 export { decodeEntities } from './html';
 export {
-  highlightPunctuation, highlightEscapes, highlightHtml, nl2br,
+  highlightPunctuation, highlightEscapes, highlightHtml, highlightSymbols, nl2br,
 } from './highlight';
 export { normalizeCode } from './language';
 export { escapeUnsafeRegexSymbols, makeRegexForMultipleWords } from './search';
