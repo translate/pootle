@@ -11,6 +11,7 @@ from pootle.core.plugin.delegate import Getter, Provider
 
 fs_file = Getter()
 fs_finder = Getter()
+fs_matcher = Getter()
 fs_resources = Getter()
 
 # File system plugins such as git/mercurial/localfs
