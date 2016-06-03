@@ -23,6 +23,11 @@ from pootle_store.models import Store
 
 class DummyFSPlugin(object):
 
+    def __eq__(self, other):
+        return (
+            isinstance(other, self.__class__)
+            and self.project == other.project)
+
     def __str__(self):
         return (
             "<%s(%s)>"

@@ -89,9 +89,7 @@ class FSPlugin(object):
         return getattr(self.plugin, k)
 
     def __eq__(self, other):
-        return (
-            isinstance(other, self.__class__)
-            and self.project == other.project)
+        return self.plugin.__eq__(other)
 
     def __str__(self):
         return str(self.plugin)
