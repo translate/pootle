@@ -37,17 +37,17 @@
     <h3 class="user-position">
     {% with pos=object.top_language.0 lang=object.top_language.1 %}
     {% if pos == -1 %}
-      {% trans 'No contributions in the last month' %}
+      {% trans 'No contributions in the last 30 days' %}
     {% else %}
       {% if user == object %}
-        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE lang_name=lang.name url=lang.get_absolute_url %}I am #{{ pos }} contributor in {{ lang_name }} for this month at {{ server_title }}! {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">
+        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE lang_name=lang.name url=lang.get_absolute_url %}I am #{{ pos }} contributor in {{ lang_name }} in the last 30 days at {{ server_title }}! {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">
           {% blocktrans with lang_name=lang.name trimmed %}
-          #{{ pos }} contributor in {{ lang_name }} for this month
+          #{{ pos }} contributor in {{ lang_name }} in the last 30 days
           {% endblocktrans %}
         </a>
       {% else %}
         {% blocktrans with lang_name=lang.name url=lang.get_absolute_url trimmed %}
-        #{{ pos }} contributor in <a href="{{ url }}">{{ lang_name }}</a> for this month
+        #{{ pos }} contributor in <a href="{{ url }}">{{ lang_name }}</a> in the last 30 days
         {% endblocktrans %}
       {% endif %}
     {% endif %}
