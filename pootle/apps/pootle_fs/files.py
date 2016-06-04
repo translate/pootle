@@ -133,6 +133,14 @@ class FSFile(object):
         self.store_fs.resolve_conflict = FILE_WINS
         self.store_fs.save()
 
+    def merge(self, pootle_wins):
+        if pootle_wins:
+            self.store_fs.resolve_conflict = POOTLE_WINS
+        else:
+            self.store_fs.resolve_conflict = FILE_WINS
+        self.store_fs.staged_for_merge = True
+        self.store_fs.save()
+
     def on_sync(self):
         """
         Called after FS and Pootle have been synced
