@@ -136,6 +136,22 @@ def test_wrap_store_fs_add(store_fs_file_store):
 
 
 @pytest.mark.django_db
+def test_wrap_store_fs_merge_pootle(store_fs_file_store):
+    fs_file = store_fs_file_store
+    fs_file.merge(pootle_wins=True)
+    assert fs_file.store_fs.resolve_conflict == POOTLE_WINS
+    assert fs_file.store_fs.staged_for_merge is True
+
+
+@pytest.mark.django_db
+def test_wrap_store_fs_merge_fs(store_fs_file_store):
+    fs_file = store_fs_file_store
+    fs_file.merge(pootle_wins=False)
+    assert fs_file.store_fs.resolve_conflict == FILE_WINS
+    assert fs_file.store_fs.staged_for_merge is True
+
+
+@pytest.mark.django_db
 def test_wrap_store_fs_push_no_store(store_fs_file):
     fs_file = store_fs_file
     assert fs_file.store_fs.last_sync_revision is None
