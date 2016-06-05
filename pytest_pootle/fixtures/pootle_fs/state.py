@@ -33,12 +33,6 @@ FS_PATH_QS = OrderedDict((
 
 class DummyPlugin(object):
 
-    @property
-    def file_class(self):
-        from pootle_fs.files import FSFile
-
-        return FSFile
-
     def __str__(self):
         return "<DummyPlugin(%s)>" % self.project
 
