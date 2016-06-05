@@ -23,7 +23,7 @@ FS_PATH_QS = OrderedDict((
          "/language0/*", None))),
     ("fs/language1", (
         (Q(pootle_path__startswith="/language1"),
-         None, "/fs/language1/*"))),
+         None, "*language1/*"))),
     ("store0.po", (
         (Q(pootle_path__endswith="store0.po"),
          "*/store0.po", "*/store0.po"))),
