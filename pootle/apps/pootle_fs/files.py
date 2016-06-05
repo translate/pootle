@@ -189,6 +189,10 @@ class FSFile(object):
         if self.file_exists:
             os.unlink(self.file_path)
 
+    def rm(self):
+        self.store_fs.staged_for_removal = True
+        self.store_fs.save()
+
     def deserialize(self):
         if not self.file_exists:
             return
