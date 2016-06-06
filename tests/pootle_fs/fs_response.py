@@ -65,8 +65,8 @@ class DummyFSState(State):
 
     item_state_class = DummyFSItemState
 
-    def state_fs_added(self, **kwargs):
-        for store_fs in kwargs.get("fs_added", []):
+    def state_fs_staged(self, **kwargs):
+        for store_fs in kwargs.get("fs_staged", []):
             yield dict(store_fs=store_fs)
 
     def state_fs_ahead(self, **kwargs):
@@ -192,15 +192,15 @@ def test_fs_response_store_fs_no_store_items(settings, tmpdir):
     pootle_fs_path = os.path.join(str(tmpdir), "fs_response_test")
     settings.POOTLE_FS_PATH = pootle_fs_path
     project = Project.objects.get(code="project0")
-    fs_added = []
+    fs_staged = []
     for i in range(0, 2):
-        pootle_path = "/language0/%s/fs_added_%s.po" % (project.code, i)
-        fs_path = "/some/fs/fs_added_%s.po" % i
-        fs_added.append(
+        pootle_path = "/language0/%s/fs_staged_%s.po" % (project.code, i)
+        fs_path = "/some/fs/fs_staged_%s.po" % i
+        fs_staged.append(
             StoreFS.objects.create(
                 pootle_path=pootle_path,
                 path=fs_path))
     _test_fs_response(
-        fs_added=fs_added,
+        fs_staged=fs_staged,
         action_type="pulled_to_pootle",
-        state_type="fs_added")
+        state_type="fs_staged")
