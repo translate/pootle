@@ -59,27 +59,21 @@ class UserManager(BaseUserManager):
 
     @lru_cache()
     def get_default_user(self):
-        return super(UserManager, self).get_queryset().get(username='default')
+        return self.get_queryset().get(username='default')
 
     @lru_cache()
     def get_nobody_user(self):
-        return super(UserManager, self).get_queryset().get(username='nobody')
+        return self.get_queryset().get(username='nobody')
 
     @lru_cache()
     def get_system_user(self):
-        return super(UserManager, self).get_queryset().get(username='system')
+        return self.get_queryset().get(username='system')
 
     def hide_permission_users(self):
-        return super(UserManager, self).get_queryset().exclude(
-            username__in=self.PERMISSION_USERS
-        )
+        return self.get_queryset().exclude(username__in=self.PERMISSION_USERS)
 
     def hide_meta(self):
-        return super(UserManager, self).get_queryset().exclude(
-            username__in=self.META_USERS
-        )
+        return self.get_queryset().exclude(username__in=self.META_USERS)
 
     def meta_users(self):
-        return super(UserManager, self).get_queryset().filter(
-            username__in=self.META_USERS
-        )
+        return self.get_queryset().filter(username__in=self.META_USERS)
