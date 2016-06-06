@@ -125,6 +125,7 @@ class StoreDBFactory(factory.django.DjangoModelFactory):
 
     parent = factory.LazyAttribute(
         lambda s: s.translation_project.directory)
+    obsolete = False
 
     @factory.lazy_attribute
     def pootle_path(self):
