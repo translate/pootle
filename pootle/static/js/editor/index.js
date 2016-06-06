@@ -44,8 +44,8 @@ const ReactEditor = {
 
   // FIXME: this additional layer of state tracking is only kept to allow
   // interaction from the outside world. Remove ASAP.
-  get state() {
-    return this.editorInstance.state;
+  get stateValues() {
+    return this.editorInstance.state.values;
   },
 
   handleChange() {

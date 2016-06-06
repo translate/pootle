@@ -759,7 +759,7 @@ PTL.editor = {
    *    (if text is selected, overwrites the selection).
    */
   updateFocusedValue(value, { overwrite = true } = {}) {
-    const newValues = ReactEditor.state.values.slice();
+    const newValues = ReactEditor.stateValues.slice();
     const targetIndex = qAll('.js-translation-area').indexOf(this.focused);
 
     let newValue = value;
@@ -861,7 +861,7 @@ PTL.editor = {
 
   /* Updates unit textarea and input's `default*` values. */
   updateUnitDefaultProperties() {
-    ReactEditor.setProps({ initialValues: ReactEditor.state.values.slice() });
+    ReactEditor.setProps({ initialValues: ReactEditor.stateValues.slice() });
 
     const checkbox = q('#id_state');
     checkbox.defaultChecked = checkbox.checked;
@@ -898,7 +898,7 @@ PTL.editor = {
 
     const areaChanged = this.isTextareaValueDirty();
 
-    const valueState = ReactEditor.state.values;
+    const valueState = ReactEditor.stateValues;
     if (suggestions.length) {
       for (let i = 0; i < valueState.length && !suggestionExists; i++) {
         suggestionExists = suggestions.indexOf(valueState[i]) !== -1;
@@ -943,7 +943,7 @@ PTL.editor = {
 
   isTextareaValueDirty() {
     return !_.isEqual(ReactEditor.props.initialValues,
-                      ReactEditor.state.values);
+                      ReactEditor.stateValues);
   },
 
 
@@ -1000,7 +1000,7 @@ PTL.editor = {
     }
 
     const currentUnit = this.units.getCurrent();
-    const newTranslation = ReactEditor.state.values[0];
+    const newTranslation = ReactEditor.stateValues[0];
     let simHuman = { max: 0, boxId: null };
     let simMT = { max: 0, boxId: null };
 
@@ -1271,7 +1271,7 @@ PTL.editor = {
 
   getValueStateData() {
     const data = {};
-    const valueState = ReactEditor.state.values;
+    const valueState = ReactEditor.stateValues;
     for (let i = 0; i < valueState.length; i++) {
       data[getAreaId(i)] = valueState[i];
     }
@@ -1610,7 +1610,7 @@ PTL.editor = {
   /* Pushes translation submissions and moves to the next unit */
   handleSubmit(comment = '') {
     const el = q('input.submit');
-    const newTranslation = ReactEditor.state.values[0];
+    const newTranslation = ReactEditor.stateValues[0];
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return {
         text: this.dataset.translationAid,
@@ -1678,7 +1678,7 @@ PTL.editor = {
     }
 
     const unit = this.units.getCurrent();
-    unit.setTranslation(ReactEditor.state.values);
+    unit.setTranslation(ReactEditor.stateValues);
     unit.set('isfuzzy', this.isFuzzy());
 
     const hasCriticalChecks = !!data.checks;
@@ -2235,7 +2235,7 @@ PTL.editor = {
 
     // FIXME: move this side-effect elsewhere
     if (results.length > 0 && results[0].source === sourceText) {
-      if (ReactEditor.state.values[0] === '') {
+      if (ReactEditor.stateValues[0] === '') {
         // save unit editor state to restore it after autofill changes
         const isUnitDirty = this.isUnitDirty;
         const text = results[0].target;
@@ -2393,7 +2393,7 @@ PTL.editor = {
     this.updateUnitDefaultProperties();
 
     const unit = this.units.getCurrent();
-    unit.setTranslation(ReactEditor.state.values);
+    unit.setTranslation(ReactEditor.stateValues);
     unit.set('isfuzzy', false);
 
     highlightSuggestionsDiff(unit);
