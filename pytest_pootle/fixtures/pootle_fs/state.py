@@ -59,7 +59,7 @@ class DummyPlugin(object):
 
 
 @pytest.fixture
-def project0_dummy_plugin(settings, request, no_fs_plugins, no_fs_files):
+def project0_dummy_plugin(settings, no_fs_plugins, no_fs_files):
     from pootle.core.plugin import getter, provider
     from pootle_fs.delegate import fs_file, fs_plugins
     from pootle_fs.files import FSFile
@@ -92,8 +92,7 @@ def fs_path_qs(request):
 
 
 @pytest.fixture
-def project0_dummy_plugin_fs_changed(settings, request,
-                                     no_fs_plugins, no_fs_files):
+def project0_dummy_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
     from pootle.core.plugin import getter, provider
     from pootle_fs.delegate import fs_file, fs_plugins
     from pootle_fs.files import FSFile
@@ -127,8 +126,7 @@ def project0_dummy_plugin_fs_changed(settings, request,
 
 
 @pytest.fixture
-def project0_dummy_plugin_no_stores(settings, request,
-                                    no_fs_plugins, no_fs_files):
+def project0_dummy_plugin_no_stores(settings, no_fs_plugins, no_fs_files):
     from pytest_pootle.utils import add_store_fs
 
     from pootle.core.plugin import getter, provider
@@ -188,8 +186,7 @@ def project0_dummy_plugin_obs_stores(project0_dummy_plugin_no_stores):
 
 
 @pytest.fixture
-def project0_dummy_plugin_no_files(settings, request,
-                                   no_fs_plugins, no_fs_files):
+def project0_dummy_plugin_no_files(settings, no_fs_plugins, no_fs_files):
     from pootle.core.plugin import getter, provider
     from pootle_fs.delegate import fs_file, fs_plugins
     from pootle_fs.files import FSFile

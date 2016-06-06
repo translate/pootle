@@ -26,7 +26,7 @@ _plugin_fetch_base = {
 
 
 @pytest.fixture
-def localfs(settings, request, tmpdir, project_fs):
+def localfs(settings, project_fs):
     plugin = project_fs
     project = project_fs.project
     project.treestyle = "none"
@@ -62,7 +62,7 @@ def project0_dummy_finder(no_fs_finder, localfs):
                         continue
                 matched = dict()
                 (matched['language_code'],
-                 project_code,
+                 __,
                  matched['dir_path'],
                  matched['filename']) = split_pootle_path(pootle_path)
                 matched["ext"] = "po"
@@ -98,7 +98,7 @@ def project_empty_dummy_finder(no_fs_finder, localfs, project_fs_empty):
                         continue
                 matched = dict()
                 (matched['language_code'],
-                 project_code,
+                 __,
                  matched['dir_path'],
                  matched['filename']) = split_pootle_path(pootle_path)
                 matched["ext"] = "po"
@@ -185,8 +185,7 @@ def project0_dummy_storefs_file(no_fs_files, localfs):
 
 
 @pytest.fixture
-def localfs_pootle_untracked(settings, request, tmpdir,
-                             project0_dummy_storefs_file):
+def localfs_pootle_untracked(settings, tmpdir, project0_dummy_storefs_file):
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
 
@@ -202,8 +201,7 @@ def localfs_pootle_untracked(settings, request, tmpdir,
 
 
 @pytest.fixture
-def localfs_fs_removed(settings, request, tmpdir,
-                       project0_dummy_storefs_file):
+def localfs_fs_removed(settings, tmpdir, project0_dummy_storefs_file):
     from pytest_pootle.utils import add_store_fs
 
     from pootle_fs.utils import FSPlugin
@@ -229,10 +227,8 @@ def localfs_fs_removed(settings, request, tmpdir,
 
 
 @pytest.fixture
-def localfs_conflict(localfs, request,
-                     project0_dummy_finder,
+def localfs_conflict(localfs, project0_dummy_finder,
                      project0_dummy_storefs_file):
-
     from pytest_pootle.utils import add_store_fs
 
     from pootle_store.models import Store
@@ -252,8 +248,7 @@ def localfs_conflict(localfs, request,
 
 
 @pytest.fixture
-def project0_fs_conflict_untracked(localfs, request,
-                                   project0_dummy_finder,
+def project0_fs_conflict_untracked(localfs, project0_dummy_finder,
                                    project0_dummy_storefs_file):
     from pootle_store.models import Store
 
@@ -265,8 +260,7 @@ def project0_fs_conflict_untracked(localfs, request,
 
 
 @pytest.fixture
-def localfs_pootle_removed(project_fs, request,
-                           project_fs_empty,
+def localfs_pootle_removed(project_fs, project_fs_empty,
                            project_empty_dummy_finder,
                            project0_dummy_storefs_file):
     from pootle.core.models import Revision
@@ -309,8 +303,7 @@ def localfs_fs_untracked(project0_dummy_finder,
 
 
 @pytest.fixture
-def localfs_merge_pootle_wins(localfs, request,
-                              project0_dummy_finder,
+def localfs_merge_pootle_wins(localfs, project0_dummy_finder,
                               project0_dummy_storefs_file):
 
     from pytest_pootle.utils import add_store_fs
@@ -334,8 +327,7 @@ def localfs_merge_pootle_wins(localfs, request,
 
 
 @pytest.fixture
-def localfs_merge_fs_wins(localfs, request,
-                          project0_dummy_finder,
+def localfs_merge_fs_wins(localfs, project0_dummy_finder,
                           project0_dummy_storefs_file):
 
     from pytest_pootle.utils import add_store_fs
