@@ -378,7 +378,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         if requires_translation_directory:
             os.makedirs(self.get_real_path())
 
-        from pootle_app.models.directory import Directory
         self.directory = Directory.objects.projects \
                                           .get_or_make_subdir(self.code)
 
