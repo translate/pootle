@@ -98,6 +98,8 @@ class PootleBuildMo(DistutilsBuild):
         import gettext
         from translate.storage import factory
 
+        error_occured = False
+
         for lang in self._langs:
             lang = lang.rstrip()
 
@@ -121,9 +123,11 @@ class PootleBuildMo(DistutilsBuild):
 
                 log.info("compiling %s", lang)
                 try:
-                    subprocess.call([
+                    subprocess.check_call([
                         'msgfmt', '--strict', '-o', mo_filename, po_filename],
                         stderr=subprocess.STDOUT)
+                except subprocess.CalledProcessError as e:
+                    error_occured = True
                 except Exception as e:
                     log.warn("%s: skipping, running msgfmt failed: %s",
                              lang, e)
@@ -134,6 +138,9 @@ class PootleBuildMo(DistutilsBuild):
                 except Exception:
                     log.warn("%s: invalid plural header in %s",
                              lang, po_filename)
+
+        if error_occured:
+            sys.exit(1)
 
     def run(self):
         self.build_mo()
