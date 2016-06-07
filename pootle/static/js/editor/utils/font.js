@@ -109,9 +109,15 @@ export function applyFontFilter(value, mode = 'regular') {
 
 /* Reverts the mapping table for `mode` mode from `value. */
 export function unapplyFontFilter(value, mode = 'regular') {
-  // Unmap characters from mode
+  // Unmap characters from mode.
+  // There's a special case here: since browsers normalize textarea values to
+  // `\n`, any `\r` will always be reported as `\n`, hence we need to detect if
+  // there's an explicit [CR] symbol followed by a `\n`, in which we need to
+  // convert the `\n` back to `\r`. Sigh.
   const pattern = mode !== 'raw' ? REGULAR_MODE_PATTERN_REV : RAW_MODE_PATTERN_REV;
-  const newValue = value.replace(pattern, (match) => RAW_MAP_REV[match]);
+  const newValue = value
+    .replace(/\u240D\u000A/g, '\u240D\u000D')
+    .replace(pattern, (match) => RAW_MAP_REV[match]);
 
   if (mode === 'raw') {
     return newValue;

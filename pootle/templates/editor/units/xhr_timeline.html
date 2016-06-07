@@ -14,7 +14,10 @@
           {% for entry in entry_group.entries %}
           {% if entry.suggestion_text %}
           <div class="timeline-type-{{ entry.type }}">
-            <div class="timeline-field-body js-unit-highlight">{{ entry.suggestion_text }}</div>
+            <div
+              class="timeline-field-body js-unit-highlight"
+              data-string="{{ entry.suggestion_text|escapejs }}"
+            ></div>
             <div class="sidetitle">{{ entry.suggestion_description }}</div>
           </div>
           {% elif entry.field > -1 %}

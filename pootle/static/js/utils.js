@@ -106,7 +106,11 @@ export function highlightRO(text) {
       highlightEscapes(
         highlightHtml(
           applyFontFilter(
-            text
+            // FIXME: CRLF => LF replacement happens here because highlighting
+            // currently happens via many DOM sources, and this ensures the less
+            // error-prone behavior. This won't be needed when the entire editor
+            // is managed as a component.
+            text.replace(/\r\n/g, '\n')
           )
         )
       )
@@ -123,7 +127,11 @@ export function highlightRW(text) {
           highlightEscapes(
             highlightHtml(
               applyFontFilter(
-                text
+                // FIXME: CRLF => LF replacement happens here because highlighting
+                // currently happens via many DOM sources, and this ensures the less
+                // error-prone behavior. This won't be needed when the entire editor
+                // is managed as a component.
+                text.replace(/\r\n/g, '\n')
               )
             , 'js-editor-copytext')
           , 'js-editor-copytext')
@@ -137,8 +145,13 @@ export function highlightRW(text) {
 function highlightNodes(selector, highlightFn) {
   qAll(selector).forEach(
     (translationTextNode) => {
+      const dataString = translationTextNode.dataset.string;
+      const textValue = (
+        dataString ? JSON.parse(`"${dataString}"`) :
+        translationTextNode.textContent
+      );
       // eslint-disable-next-line no-param-reassign
-      translationTextNode.innerHTML = highlightFn(translationTextNode.textContent);
+      translationTextNode.innerHTML = highlightFn(textValue);
     }
   );
 }

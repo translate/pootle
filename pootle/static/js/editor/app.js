@@ -767,12 +767,16 @@ PTL.editor = {
       const { selectionStart } = this.focused;
       const { selectionEnd } = this.focused;
       const areaValue = this.focused.value;
-      const start = (
-        selectionStart - countNewlineSymbol(areaValue.slice(0, selectionStart))
-      );
-      const end = (
-        selectionEnd - countNewlineSymbol(areaValue.slice(0, selectionEnd))
-      );
+
+      // FIXME: the conditional logic is needed to support CRLF line endings.
+      // Please do remove once Pootle provides normalized LF endings.
+      let start = selectionStart;
+      let end = selectionEnd;
+      if (!ReactEditor.hasCRLF) {
+        start = start - countNewlineSymbol(areaValue.slice(0, selectionStart));
+        end = end - countNewlineSymbol(areaValue.slice(0, selectionEnd));
+      }
+
       const currentValue = newValues[targetIndex];
       newValue = currentValue.slice(0, start) + value
         + currentValue.slice(end, currentValue.length);
