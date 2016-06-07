@@ -10,7 +10,6 @@ from django.conf import settings
 from django.utils import translation
 
 from pootle.core.markup import get_markup_filter_name
-from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import LegalPage
@@ -56,6 +55,6 @@ def pootle_context(request):
         'custom': settings.POOTLE_CUSTOM_TEMPLATE_CONTEXT,
         'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language()),
         'ALL_PROJECTS': Project.objects.cached_dict(request.user),
-        'SOCIAL_AUTH_PROVIDERS': jsonify(_get_social_auth_providers(request)),
+        'SOCIAL_AUTH_PROVIDERS': _get_social_auth_providers(request),
         'display_agreement': _agreement_context(request),
     }

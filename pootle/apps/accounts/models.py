@@ -28,7 +28,6 @@ from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
-from pootle.core.utils.json import jsonify
 from pootle_language.models import Language
 from pootle_statistics.models import Submission, ScoreLog
 from pootle_store.models import Unit
@@ -260,9 +259,9 @@ class User(AbstractBaseUser):
     def get_absolute_url(self):
         return reverse('pootle-user-profile', args=[self.username])
 
-    def as_json(self):
-        """Returns the user's field-values as a JSON-encoded string."""
-        return jsonify(model_to_dict(self, exclude=['password']))
+    def field_values(self):
+        """Returns the user's field-values (can be encoded as e.g. JSON)."""
+        return model_to_dict(self, exclude=['password'])
 
     def is_anonymous(self):
         """Returns `True` if this is an anonymous user."""

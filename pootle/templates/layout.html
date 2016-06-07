@@ -1,4 +1,4 @@
-{% load i18n assets locale profile_tags humanize staticfiles %}
+{% load core i18n assets locale profile_tags humanize staticfiles %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}pootle-base{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
@@ -29,7 +29,7 @@
       CONTACT_ENABLED: {{ settings.POOTLE_CONTACT_ENABLED|yesno:'true, false' }},
       SIGNUP_ENABLED: {{ settings.POOTLE_SIGNUP_ENABLED|yesno:'true, false' }},
       MARKUP_FILTER: '{{ settings.POOTLE_MARKUP_FILTER }}',
-      SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|safe }},
+      SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|to_js }},
     };
     </script>
 

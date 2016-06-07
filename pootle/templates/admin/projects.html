@@ -1,5 +1,5 @@
 {% extends "admin/base_app.html" %}
-{% load i18n %}
+{% load core i18n %}
 
 {% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
 
@@ -12,7 +12,7 @@
 $(function () {
   PTL.admin.init({itemType: 'project',
                   appRoot: '{% url "pootle-admin-projects" %}',
-                  formChoices: JSON.parse('{{ form_choices|escapejs }}')});
+                  formChoices: {{ form_choices|to_js }}});
 });
 </script>
 {% endblock %}

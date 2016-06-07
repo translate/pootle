@@ -44,7 +44,7 @@ from .helpers import (SIDEBAR_COOKIE_NAME,
                       get_filter_name, get_sidebar_announcements_context)
 from .http import JsonResponse, JsonResponseBadRequest
 from .url_helpers import get_path_parts, get_previous_url
-from .utils.json import PootleJSONEncoder, jsonify
+from .utils.json import PootleJSONEncoder
 from .utils.stats import get_translation_states
 
 
@@ -639,7 +639,7 @@ class PootleBrowseView(PootleDetailView):
 
         ctx.update(
             {'page': 'browse',
-             'stats': jsonify(self.stats),
+             'stats': self.stats,
              'translation_states': get_translation_states(self.object),
              'checks': get_qualitycheck_list(self.object),
              'can_translate': can_translate,

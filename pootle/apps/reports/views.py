@@ -26,7 +26,6 @@ from pootle.core.decorators import admin_required
 from pootle.core.http import (JsonResponse, JsonResponseBadRequest,
                               JsonResponseNotFound)
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
-from pootle.core.utils.json import jsonify
 from pootle.core.utils.timezone import make_aware, make_naive
 from pootle.core.views import AjaxResponseMixin, UserObjectMixin
 from pootle_misc.util import (ajax_required, get_date_interval,
@@ -128,10 +127,10 @@ def reports(request):
 
     ctx = {
         'page': 'admin-reports',
-        'users': jsonify(map(
+        'users': map(
             lambda x: {'id': x.username, 'text': x.formatted_name},
             User.objects.hide_meta()
-        )),
+        ),
         'user_rates_form': UserRatesForm(),
         'paid_task_form': PaidTaskForm(),
         'now': now.strftime('%Y-%m-%d %H:%M:%S'),

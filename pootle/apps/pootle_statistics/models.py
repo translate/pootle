@@ -17,7 +17,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.log import SCORE_CHANGED, log
 from pootle.core.utils import dateformat
-from pootle.core.utils.json import jsonify
 from pootle_misc.checks import check_names
 from pootle_store.fields import to_python
 from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
@@ -222,10 +221,6 @@ class Submission(models.Model):
             return False
 
         return True
-
-    def as_json(self):
-        """Returns a json describing the submission."""
-        return jsonify(self.get_submission_info())
 
     def get_submission_info(self):
         """Returns a dictionary describing the submission.

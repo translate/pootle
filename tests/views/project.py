@@ -27,7 +27,6 @@ from pootle.core.delegate import search_backend
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
-from pootle.core.utils.json import jsonify
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
@@ -149,7 +148,8 @@ def _test_browse_view(project, request, response, kwargs):
         checks=get_qualitycheck_list(ob),
         table=table,
         top_scorers=User.top_scorers(project=project.code, limit=10),
-        stats=jsonify(ob.get_stats()))
+        stats=ob.get_stats(),
+    )
     sidebar = get_sidebar_announcements_context(
         request, (project, ))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:
@@ -250,7 +250,7 @@ def test_view_projects_browse(client, request_users):
         object=ob,
         table=table,
         browser_extends="projects/all/base.html",
-        stats=jsonify(ob.get_stats()),
+        stats=ob.get_stats(),
         checks=get_qualitycheck_list(ob),
         top_scorers=User.top_scorers(limit=10),
         translation_states=get_translation_states(ob),

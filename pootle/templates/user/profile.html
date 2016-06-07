@@ -1,5 +1,5 @@
 {% extends 'user/base.html'  %}
-{% load humanize i18n profile_tags assets %}
+{% load core humanize i18n profile_tags assets %}
 
 {% block body_id %}profile-page{% endblock %}
 
@@ -120,10 +120,10 @@
 $(function() {
   PTL.user.init({
     {% if user == object %}
-    userData: JSON.parse('{{ user.as_json|escapejs }}'),
+    userData: {{ user.field_values|to_js }},
     appRoot: '{{ user.get_absolute_url }}',
     {% endif %}
-    lastEvent: JSON.parse('{{ object.last_event.as_json|escapejs }}'),
+    lastEvent: {{ object.last_event.get_submission_info|to_js }},
   });
 });
 </script>

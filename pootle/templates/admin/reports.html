@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% load i18n assets store_tags %}
+{% load core i18n assets store_tags %}
 
 {% block css %}
 {{ block.super }}
@@ -28,7 +28,7 @@
 <script type="text/javascript">
   $(function () {
     PTL.reports.init({
-      users: JSON.parse('{{ users|escapejs }}'),
+      users: {{ users|to_js }},
       updateUserRatesUrl: "{% url 'pootle-reports-update-user-rates' %}",
       addPaidTaskUrl: "{% url 'pootle-reports-add-paid-task' %}",
       removePaidTaskUrl: "{% url 'pootle-reports-remove-paid-task' %}",

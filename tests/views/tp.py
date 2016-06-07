@@ -25,7 +25,6 @@ from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
-from pootle.core.utils.json import jsonify
 from pootle.core.utils.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
@@ -79,9 +78,8 @@ def _test_browse_view(tp, request, response, kwargs):
             stats.update(ob.get_stats())
         else:
             stats = ob.get_stats()
-        stats = jsonify(stats)
     else:
-        stats = jsonify(ob.get_stats())
+        stats = ob.get_stats()
         vfolders = None
 
     filters = {}

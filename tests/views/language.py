@@ -23,7 +23,6 @@ from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url
-from pootle.core.utils.json import jsonify
 from pootle.core.utils.stats import get_translation_states
 from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
@@ -67,7 +66,8 @@ def _test_browse_view(language, request, response, kwargs):
         table=table,
         translation_states=get_translation_states(language),
         top_scorers=get_user_model().top_scorers(language=language.code, limit=10),
-        stats=jsonify(language.get_stats_for_user(request.user)))
+        stats=language.get_stats_for_user(request.user),
+    )
     sidebar = get_sidebar_announcements_context(
         request, (language, ))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:

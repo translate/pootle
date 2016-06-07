@@ -1,11 +1,12 @@
 {% extends 'welcome.html' %}
+{% load core %}
 
 {% block scripts_extra %}
 <script type="text/javascript">
   $(function () {
     PTL.auth.open({
       initialScreen: 'socialAuthError',
-      socialError: JSON.parse('{{ social_error|escapejs }}'),
+      socialError: {{ social_error|to_js }},
     });
   });
 </script>
