@@ -18,3 +18,4 @@ response = Getter()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
+subcommands = Provider()
