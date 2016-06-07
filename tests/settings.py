@@ -100,6 +100,7 @@ SILENCED_SYSTEM_CHECKS = [
 ]
 
 try:
-    INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
+    if "pootle_fs" not in INSTALLED_APPS:
+        INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
 except NameError:
     INSTALLED_APPS = ["pootle_fs"]
