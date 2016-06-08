@@ -10,11 +10,11 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
-.PHONY: all build clean sprite test pot mo mo-all help docs assets
+.PHONY: all build clean sprite test pot help docs assets
 
 all: help
 
-build: docs mo assets
+build: docs assets
 	python setup.py sdist ${FORMATS} ${TAIL}
 
 assets:
@@ -84,12 +84,6 @@ put-translations:
 linguas:
 	@${SRC_DIR}/tools/make-LINGUAS.sh 80 > ${SRC_DIR}/locale/LINGUAS
 
-mo:
-	python setup.py build_mo ${TAIL}
-
-mo-all:
-	python setup.py build_mo --all
-
 jslint:
 	cd ${JS_DIR} \
 	&& npm run lint
@@ -111,6 +105,4 @@ help:
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
-	@echo "  mo - build MO files for languages listed in 'pootle/locale/LINGUAS'"
-	@echo "  mo-all - build MO files for all languages (only use for testing)"
 	@echo "  publish-pypi - publish on PyPI"
