@@ -180,7 +180,8 @@ Update the translations from the `Pootle server
 
    .. code-block:: console
 
-       $ make mo  # Build all LINGUAS enabled languages
+       $ ./setup.py build_mo          # Build all LINGUAS enabled languages
+       $ ./setup.py build_mo --check  # Not all of these are errors
 
 
 Create release notes
@@ -280,7 +281,7 @@ checkout run:
     (build-pootle-release)$ pip install -r requirements/build.txt
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
-    (build-pootle-release)$ make mo-all  # If we are shipping an RC
+    (build-pootle-release)$ ./setup.py build_mo --all  # If we are shipping an RC
     (build-pootle-release)$ make clean
     (build-pootle-release)$ make build
     (build-pootle-release)$ deactivate
