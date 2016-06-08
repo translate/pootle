@@ -110,7 +110,7 @@ class FSPathMatcher(object):
                 % (", ".join(sorted(missing_langs))))
 
     def reverse_match(self, pootle_path):
-        pc, lang_code, dir_path, filename = split_pootle_path(pootle_path)
+        lang_code, __, dir_path, filename = split_pootle_path(pootle_path)
         lang_code = self.lang_mapper.get_upstream_code(lang_code)
         fileparts = os.path.splitext(filename)
         fs_path = self.get_finder().reverse_match(
