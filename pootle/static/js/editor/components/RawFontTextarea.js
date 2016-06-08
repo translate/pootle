@@ -103,6 +103,7 @@ const RawFontTextarea = React.createClass({
       delta = node.value.length - oldLength + offset;
     }
     node.selectionStart = node.selectionEnd = Math.max(0, delta + oldIndex);
+    node.focus();
   },
 
   componentWillUnmount() {

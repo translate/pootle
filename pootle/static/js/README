@@ -141,14 +141,6 @@ Directory contents
 
         http://plugins.jquery.com/project/bidi
 
-      - jquery.caret.js :
-        jQuery plugin to write text on top of the selected text or just after
-        the caret position.
-
-        Using patched version to remove `$.browser` calls.
-
-        http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin
-
       - jquery.easing.js :
         jQuery plugin that provides dfferent easing (animation) formulas.
 

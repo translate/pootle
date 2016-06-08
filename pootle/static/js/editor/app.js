@@ -16,7 +16,6 @@ import ReactRenderer from 'utils/ReactRenderer';
 
 // jQuery plugins
 import 'jquery-bidi';
-import 'jquery-caret';
 import 'jquery-easing';
 import 'jquery-highlightRegex';
 import 'jquery-history';
@@ -151,9 +150,6 @@ PTL.editor = {
     this.showActivity();
 
     this.fetchingOffsets = [];
-
-    /* Regular expressions */
-    this.cpRE = /^(<[^>]+>|\[n\|t]|\W$^\n)*(\b|$)/gm;
 
     /* Levenshtein word comparer */
     this.wordComparer = new Levenshtein({ compare: 'words' });
@@ -697,21 +693,15 @@ PTL.editor = {
       $el.data('translation-aid') ||
       $el.text()
     );
-    const $target = $(this.focused);
-    let start;
-    let newValues;
 
+    let newValues;
     if (action === 'overwrite') {
       newValues = this.updateFocusedValue(text);
-      start = text.length;
     } else {
       newValues = this.updateFocusedValue(text, { overwrite: false });
-      // FIXME: this should be handled transparently by the Textarea component
-      start = $target.caret().start + text.length;
     }
 
     ReactEditor.setProps({ overrideValues: newValues });
-    $target.caret(start, start);
   },
 
   copyTMText(e) {
@@ -729,11 +719,6 @@ PTL.editor = {
     ReactEditor.setProps({ overrideValues: sources.slice() });
 
     this.goFuzzy();
-
-    const area = document.querySelector('.js-translation-area');
-    this.cpRE.exec(sources[0]);
-    const i = this.cpRE.lastIndex;
-    $(area).caret(i, i);
   },
 
   copyComment(text) {
@@ -2244,7 +2229,6 @@ PTL.editor = {
         const isUnitDirty = this.isUnitDirty;
         const text = results[0].target;
         ReactEditor.setProps({ values: this.updateFocusedValue(text) });
-        $(this.focused).caret(text.length, text.length);
         this.goFuzzy();
         this.isUnitDirty = isUnitDirty;
       }
@@ -2393,7 +2377,6 @@ PTL.editor = {
     if (data.newtargets !== undefined) {
       ReactEditor.setProps({ overrideValues: data.newtargets.slice() });
     }
-    this.focused.focus();
     this.updateUnitDefaultProperties();
 
     const unit = this.units.getCurrent();
@@ -2468,12 +2451,9 @@ PTL.editor = {
       overrideValues: this.updateFocusedValue(decodeEntities(translation)),
     });
 
-    const area = this.focused;
-
     // Save a copy of the resulting text in the DOM for further
     // similarity comparisons
-    area.dataset.translationAidMt = translation;
-    area.focus();
+    this.focused.dataset.translationAidMt = translation;
 
     this.goFuzzy();
 

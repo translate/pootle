@@ -42,7 +42,6 @@ var resolve = {
     'backbone-relational': __dirname + '/vendor/backbone/backbone-relational.js',
 
     'jquery-bidi': __dirname + '/vendor/jquery/jquery.bidi.js',
-    'jquery-caret': __dirname + '/vendor/jquery/jquery.caret.js',
     'jquery-easing': __dirname + '/vendor/jquery/jquery.easing.js',
     'jquery-flot': __dirname + '/vendor/jquery/jquery.flot.js',
     'jquery-flot-stack': __dirname + '/vendor/jquery/jquery.flot.stack.js',
