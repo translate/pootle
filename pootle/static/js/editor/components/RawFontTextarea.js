@@ -45,6 +45,7 @@ function shouldEventOverwriteSelection(e) {
 const RawFontTextarea = React.createClass({
 
   propTypes: {
+    autoFocus: React.PropTypes.bool,
     id: React.PropTypes.string,
     initialValue: React.PropTypes.string,
     isDisabled: React.PropTypes.bool,
@@ -251,6 +252,7 @@ const RawFontTextarea = React.createClass({
 
     return (
       <AutosizeTextarea
+        autoFocus={this.props.autoFocus}
         className="translation focusthis js-translation-area"
         defaultValue={applyFontFilter(this.props.initialValue, this.getMode())}
         dir={this.context.localeDir}

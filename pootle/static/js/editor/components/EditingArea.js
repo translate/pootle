@@ -25,6 +25,7 @@ const EditingArea = (props) => {
 };
 
 EditingArea.propTypes = {
+  autoFocus: React.PropTypes.bool,
   id: React.PropTypes.string,
   initialValue: React.PropTypes.string,
   isDisabled: React.PropTypes.bool,

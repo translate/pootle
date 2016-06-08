@@ -602,12 +602,6 @@ PTL.editor = {
     // set direction of the suggestion body
     $('.suggestion-translation').filter(':not([dir])').bidi();
 
-    // Focus on the first textarea, if any
-    const firstArea = $('.focusthis')[0];
-    if (firstArea) {
-      firstArea.focus();
-    }
-
     const $devComments = $('.js-developer-comments');
     $devComments.html(linkHashtags($devComments.html()));
 
