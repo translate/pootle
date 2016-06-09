@@ -87,7 +87,7 @@ class DummyContext(object):
 @pytest.mark.django_db
 def test_matcher_instance(settings):
     settings.POOTLE_FS_PATH = "/path/to"
-    translation_path = "/path/to/<language_code>/<dir_path>/<filename>.<ext>"
+    translation_path = "<language_code>/<dir_path>/<filename>.<ext>"
     project = Project.objects.get(code="project0")
     project.config[
         "pootle_fs.translation_paths"] = dict(default=translation_path)
@@ -95,7 +95,8 @@ def test_matcher_instance(settings):
     matcher = FSPathMatcher(context)
     assert matcher.project == project
     assert matcher.root_directory == project.local_fs_path
-    assert matcher.translation_path == translation_path
+    assert matcher.translation_path == os.path.join(
+        project.local_fs_path, translation_path.lstrip("/"))
 
 
 @pytest.mark.django_db
@@ -103,7 +104,7 @@ def test_matcher_finder(settings):
     settings.POOTLE_FS_PATH = "/path/to"
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_paths"] = dict(
-        default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
+        default="/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
     finder = matcher.get_finder()
     assert isinstance(finder, DummyFinder)
@@ -252,9 +253,7 @@ def test_matcher_matches(settings):
     settings.POOTLE_FS_PATH = "/path/to"
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_paths"] = dict(
-        default=(
-            "/path/to/%s/<language_code>/<dir_path>/<filename>.<ext>"
-            % project.code))
+        default="/some/other/path/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
     finder = matcher.get_finder()
     matches = []
@@ -272,9 +271,7 @@ def test_matcher_matches_missing_langs(settings, caplog):
     settings.POOTLE_FS_PATH = "/path/to"
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_paths"] = dict(
-        default=(
-            "/path/to/%s/<language_code>/<dir_path>/<filename>.<ext>"
-            % project.code))
+        default="/some/other/path/<language_code>/<dir_path>/<filename>.<ext>")
     project.config["pootle.core.lang_mapping"] = {
         "language0": "language0-DOES_NOT_EXIST",
         "language1": "language1-DOES_NOT_EXIST"}
@@ -291,21 +288,19 @@ def test_matcher_reverse_match(settings):
     settings.POOTLE_FS_PATH = "/path/to"
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_paths"] = dict(
-        default=(
-            "/path/to/%s/<language_code>/<dir_path>/<filename>.<ext>"
-            % project.code))
+        default="/<language_code>/<dir_path>/<filename>.<ext>")
     project.config["pootle.core.lang_mapping"] = {
         "upstream-foo": "foo"}
     matcher = FSPathMatcher(DummyContext(project))
     assert (
-        matcher.reverse_match("/%s/foo/bar.po" % project.code)
+        matcher.reverse_match("/foo/%s/bar.po" % project.code)
         == "/upstream-foo/bar.po")
     assert (
-        matcher.reverse_match("/%s/foo/some/path/bar.po" % project.code)
+        matcher.reverse_match("/foo/%s/some/path/bar.po" % project.code)
         == "/upstream-foo/some/path/bar.po")
 
     with pytest.raises(ValueError):
-        matcher.reverse_match("/%s/foo/bar.not" % project.code)
+        matcher.reverse_match("/foo/%s/bar.not" % project.code)
 
 
 @pytest.mark.django_db
