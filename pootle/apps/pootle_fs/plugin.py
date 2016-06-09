@@ -376,7 +376,7 @@ class Plugin(object):
         self.push(response)
         sync_types = [
             "pushed_to_fs", "pulled_to_pootle",
-            "merge_from_pootle", "merge_from_fs"]
+            "merged_from_pootle", "merged_from_fs"]
         for sync_type in sync_types:
             if sync_type in response:
                 for response_item in response.completed(sync_type):
