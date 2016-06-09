@@ -1374,7 +1374,7 @@ PTL.editor = {
                          this.initialOffset === 0 && !this.units.hasPrev());
     this.updateNavButton(this.$navNext, !this.units.hasNext());
 
-    this.unitCountEl.textContent = this.units.total;
+    this.unitCountEl.textContent = this.units.frozenTotal;
 
     const currentUnit = this.units.getCurrent();
     if (currentUnit !== undefined) {
@@ -1455,9 +1455,11 @@ PTL.editor = {
     if (this.offset === 0) {
       this.units.reset();
       this.units.uIds = [];
+      this.units.frozenTotal = total;
     }
     if (this.initialOffset === -1) {
       this.initialOffset = start;
+      this.units.frozenTotal = total;
     } else if (start < this.initialOffset) {
       this.initialOffset = start;
       prependUnits = true;

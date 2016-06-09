@@ -22,6 +22,7 @@ export const UnitSet = Backbone.Collection.extend({
     this.chunkSize = opts.chunkSize;
     this.uIds = [];
     this.total = 0;
+    this.frozenTotal = 0;
   },
 
   comparator(unit) {
