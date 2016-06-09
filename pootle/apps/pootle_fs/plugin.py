@@ -274,10 +274,11 @@ class Plugin(object):
         if force:
             removed = (
                 removed
+                + state["conflict_untracked"]
                 + state["fs_untracked"]
                 + state["pootle_untracked"])
         for fs_state in removed:
-            if fs_state.state_type in ["fs_untracked", "pootle_untracked"]:
+            if fs_state.state_type.endswith("_untracked"):
                 fs_state.kwargs["store_fs"] = self.create_store_fs(
                     pootle_path=fs_state.pootle_path,
                     fs_path=fs_state.fs_path)
