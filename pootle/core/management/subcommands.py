@@ -233,16 +233,6 @@ class CommandWithSubcommands(BaseCommand):
 
     def execute(self, *args, **options):
         sub = options.pop("subcommand", None)
-        if not sub:
-            return super(CommandWithSubcommands, self).execute(*args, **options)
-        subcommand = self.subcommands[sub]()
-        parser = subcommand.create_parser('', sub)
-        opt_mapping = {
-            sorted(o.option_strings)[0].lstrip('-').replace('-', '_'): o.dest
-            for o in parser._actions if o.option_strings}
-        arg_options = {
-            opt_mapping.get(key, key): value for key, value in options.items()}
-        defaults = parser.parse_args(args=args)
-        defaults = dict(defaults._get_kwargs(), **arg_options)
-        args = defaults.pop('args', ())
-        return subcommand.execute(*args, **defaults)
+        if sub:
+            return self.subcommands[sub]().execute(*args, **options)
+        return super(CommandWithSubcommands, self).execute(*args, **options)
