@@ -17,7 +17,7 @@ class CaighdeanTranslate extends MTProvider {
       name: 'caighdean-translate',
       displayName: 'Caighdeán Translate',
       url: 'https://borel.slu.edu/cgi-bin/seirbhis3.cgi',
-      supportedLanguages: ['gd', 'gv', 'ga_IE', 'ga-IE'],
+      supportedLanguages: ['gd', 'gv', 'ga', 'ga_IE', 'ga-IE'],
     });
   }
 
