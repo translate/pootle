@@ -1732,24 +1732,29 @@ PTL.editor = {
 
   /* Loads the editor on a index */
   gotoIndex(e) {
-    if (e.which === 13) { // Enter key
-      e.preventDefault();
-      const index = parseInt(this.unitIndexEl.textContent, 10) - 1;
-      if (!isNaN(index)) {
-        // if index is outside of current uids clear units first
-        if (index < this.initialOffset || index >= this.getOffsetOfLastUnit()) {
-          this.initialOffset = -1;
-          this.offset = 0;
-          this.offsetRequested = index + 1;
-          $.history.load(utils.updateHashPart(
-            'offset', this.getStartOfChunk(index), ['unit'])
-          );
-        } else if (index >= 0 && index <= this.units.total) {
-          const uId = this.units.uIds[(index - this.initialOffset)];
-          const newHash = utils.updateHashPart('unit', uId);
-          $.history.load(newHash);
-        }
-      }
+    if (e.which !== 13) { // Enter key
+      return;
+    }
+
+    e.preventDefault();
+    const index = parseInt(this.unitIndexEl.textContent, 10) - 1;
+    if (isNaN(index)) {
+      return;
+    }
+
+    // if index is outside of current uids clear units first
+    if (index < this.initialOffset || index >= this.getOffsetOfLastUnit()) {
+      this.initialOffset = -1;
+      this.offset = 0;
+      this.offsetRequested = index + 1;
+      const newHash = utils.updateHashPart('offset',
+                                           this.getStartOfChunk(index),
+                                           ['unit']);
+      $.history.load(newHash);
+    } else if (index >= 0 && index <= this.units.total) {
+      const uId = this.units.uIds[(index - this.initialOffset)];
+      const newHash = utils.updateHashPart('unit', uId);
+      $.history.load(newHash);
     }
   },
 
