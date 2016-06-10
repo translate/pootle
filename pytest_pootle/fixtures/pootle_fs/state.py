@@ -31,6 +31,17 @@ FS_PATH_QS = OrderedDict((
         (False, "/language0/*", "/fs/language1/*")))))
 
 
+def pytest_generate_tests(metafunc):
+    from pootle_fs.response import FS_RESPONSE
+    from pootle_fs.state import FS_STATE
+
+    if 'fs_responses' in metafunc.fixturenames:
+        metafunc.parametrize("fs_responses", FS_RESPONSE)
+
+    if 'fs_states' in metafunc.fixturenames:
+        metafunc.parametrize("fs_states", FS_STATE)
+
+
 class DummyPlugin(object):
 
     def __str__(self):
