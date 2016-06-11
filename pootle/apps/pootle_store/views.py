@@ -380,11 +380,16 @@ class UnitTimelineJSON(PootleUnitJSON):
     def get_entries_group_data(self, context):
         result = []
         for entry_group in context['entries_group']:
+            display_dt = entry_group['datetime']
+            if display_dt is not None:
+                display_dt = dateformat.format(display_dt)
+                iso_dt = entry_group['datetime'].isoformat()
+            else:
+                iso_dt = None
             result.append({
-                "display_datetime": dateformat.format(entry_group['datetime']),
-                "iso_datetime": entry_group['datetime'].isoformat(),
-                "via_upload": entry_group.get('via_upload', False),
-            })
+                "display_datetime": display_dt,
+                "iso_datetime": iso_dt,
+                "via_upload": entry_group.get('via_upload', False)})
         return result
 
 

@@ -285,8 +285,7 @@ class Timeline(object):
             created = {
                 'created': True,
                 'submitter': User.objects.get_system_user()}
-            if self.object.creation_time:
-                created['datetime'] = self.object.creation_time
+            created['datetime'] = self.object.creation_time
             grouped_entries[:0] = [created]
         return grouped_entries
 
