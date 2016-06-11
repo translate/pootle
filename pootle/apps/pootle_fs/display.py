@@ -65,6 +65,18 @@ class ResponseItemDisplay(FSItemDisplay):
                      in ["fs_untracked", "pootle_removed"])))
 
     @property
+    def fs_added(self):
+        return (
+            self.action_type == "fetched_from_fs"
+            and self.state_type not in ["conflict", "conflict_untracked"])
+
+    @property
+    def pootle_added(self):
+        return (
+            self.action_type == "added_from_pootle"
+            and self.state_type not in ["conflict", "conflict_untracked"])
+
+    @property
     def state_item(self):
         return self.item.fs_state
 
