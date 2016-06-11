@@ -11,7 +11,7 @@ import pytest
 from pootle.core.views import PootleJSON
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_view_pootle_json():
     json_test = PootleJSON()
     ctx = dict(foo="bar")

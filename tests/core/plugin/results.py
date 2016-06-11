@@ -14,7 +14,7 @@ from pootle.core.plugin.delegate import Provider
 from pootle.core.plugin.results import GatheredDict, GatheredList
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_gathered_dict():
 
     provider_test = Provider()
@@ -37,7 +37,7 @@ def test_gathered_dict():
     assert all((k in gd) for k in memberdict.keys())
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_gathered_dict_update():
 
     provider_test = Provider()
@@ -58,7 +58,7 @@ def test_gathered_dict_update():
     assert len(newdict) == len(memberdict)
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_gathered_list():
 
     provider_test = Provider()

@@ -12,7 +12,7 @@ from pootle.core.plugin import getter
 from pootle.core.plugin.delegate import Getter
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter():
 
     get_test = Getter(providing_args=["foo"])
@@ -24,7 +24,7 @@ def test_getter():
     assert get_test.get() == 2
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_no_getter():
 
     get_test = Getter(providing_args=["foo"])
@@ -32,7 +32,7 @@ def test_no_getter():
     assert get_test.get() is None
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_with_arg():
 
     get_test = Getter(providing_args=["foo"])
@@ -44,7 +44,7 @@ def test_getter_with_arg():
     assert get_test.get(foo=3) == 3
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_with_with_sender():
 
     get_test = Getter(providing_args=["foo"])
@@ -56,7 +56,7 @@ def test_getter_with_with_sender():
     assert get_test.get(str, foo="BOOM") == "BOOM"
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_with_with_sender_int():
 
     get_test = Getter(providing_args=["foo"])
@@ -68,7 +68,7 @@ def test_getter_with_with_sender_int():
     assert get_test.get(int, foo=3) == 21
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_with_with_sender_multi():
 
     get_test = Getter(providing_args=["foo"])
@@ -83,7 +83,7 @@ def test_getter_with_with_sender_multi():
     assert get_test.get(int, foo=3) == 21
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_handle_multi():
 
     get_test = Getter(providing_args=["foo"])
@@ -97,7 +97,7 @@ def test_getter_handle_multi():
     assert get_test_2.get(str, foo="test 2") == "test 2"
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_handle_order():
 
     get_test = Getter(providing_args=["foo"])
@@ -113,7 +113,7 @@ def test_getter_handle_order():
     assert get_test.get(str, foo="bar") == 2
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_handle_order_2():
 
     get_test = Getter(providing_args=["foo"])
@@ -129,7 +129,7 @@ def test_getter_handle_order_2():
     assert get_test.get(str, foo="bar") == 1
 
 
-@pytest.mark.django_db
+@pytest.mark.django
 def test_getter_handle_order_3():
 
     get_test = Getter(providing_args=["foo"])
