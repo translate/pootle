@@ -14,6 +14,7 @@ class CaighdeanTranslate extends MTProvider {
   constructor(apiKey) {
     super({
       apiKey,
+      method: 'POST',
       name: 'caighdean-translate',
       displayName: 'Caighdeán Translate',
       url: 'https://borel.slu.edu/cgi-bin/seirbhis3.cgi',
