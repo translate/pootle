@@ -146,6 +146,7 @@ def project0_dummy_storefs_file(no_fs_files, localfs):
         _pushed = False
         _removed = False
         _synced = False
+        _unstaged = False
 
         on_sync = lambda self: setattr(self, "_synced", True)
 
@@ -178,6 +179,9 @@ def project0_dummy_storefs_file(no_fs_files, localfs):
 
         def rm(self):
             self._removed = True
+
+        def unstage(self):
+            self._unstaged = True
 
     @getter(fs_file, sender=plugin.__class__, weak=False)
     def get_fs_file(**kwargs):
@@ -476,4 +480,48 @@ def localfs_pootle_staged_real(localfs):
 
     assert plugin.state()["pootle_staged"]
     assert len(plugin.state()["pootle_staged"]) == len(stores)
+    return plugin
+
+
+@pytest.fixture
+def localfs_force_added(localfs, project0_dummy_finder,
+                        project0_dummy_storefs_file):
+    from pytest_pootle.utils import add_store_fs
+
+    from pootle_store.models import POOTLE_WINS, Store
+
+    plugin = localfs
+    stores = Store.objects.filter(translation_project__project=plugin.project)
+
+    for store in stores:
+        store_fs = add_store_fs(
+            store=store,
+            fs_path=plugin.get_fs_path(store.pootle_path))
+        store_fs.last_sync_revision = store.get_max_unit_revision() - 1
+        store_fs.last_sync_hash = uuid4().hex
+        store_fs.resolve_conflict = POOTLE_WINS
+        store_fs.save()
+    assert len(plugin.state()["pootle_ahead"]) == stores.count()
+    return plugin
+
+
+@pytest.fixture
+def localfs_force_fetched(localfs, project0_dummy_finder,
+                          project0_dummy_storefs_file):
+    from pytest_pootle.utils import add_store_fs
+
+    from pootle_store.models import FILE_WINS, Store
+
+    plugin = localfs
+    stores = Store.objects.filter(translation_project__project=plugin.project)
+
+    for store in stores:
+        store_fs = add_store_fs(
+            store=store,
+            fs_path=plugin.get_fs_path(store.pootle_path))
+        store_fs.last_sync_revision = store.get_max_unit_revision() - 1
+        store_fs.last_sync_hash = uuid4().hex
+        store_fs.resolve_conflict = FILE_WINS
+        store_fs.save()
+    assert len(plugin.state()["fs_ahead"]) == stores.count()
     return plugin
