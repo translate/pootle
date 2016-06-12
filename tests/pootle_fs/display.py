@@ -140,9 +140,17 @@ def test_fs_response_display_item_existence(fs_responses, fs_states):
         or (fs_responses == "staged_for_removal"
             and (fs_states
                  in ["pootle_untracked", "fs_removed"])))
+    fs_added = (
+        fs_responses == "fetched_from_fs"
+        and fs_states not in ["conflict", "conflict_untracked"])
+    pootle_added = (
+        fs_responses == "added_from_pootle"
+        and fs_states not in ["conflict", "conflict_untracked"])
     item_display = ResponseItemDisplayTestable({}, DummyResponseItem())
     assert item_display.file_exists == file_exists
     assert item_display.store_exists == store_exists
+    assert item_display.fs_added == fs_added
+    assert item_display.pootle_added == pootle_added
 
 
 @pytest.mark.django_db
