@@ -424,6 +424,24 @@ def test_fs_plugin_rm_fs_untracked(fs_path_qs,
         _removed=True)
 
 
+@pytest.mark.django_db
+def test_fs_plugin_rm_conflict_untracked(fs_path_qs,
+                                         project0_fs_conflict_untracked):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = project0_fs_conflict_untracked
+    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    assert len(stores) == len(state["conflict_untracked"])
+    response = plugin.rm(pootle_path=pootle_path, fs_path=fs_path)
+    assert len(response["staged_for_removal"]) == 0
+    _test_dummy_response(
+        plugin.rm(
+            pootle_path=pootle_path,
+            fs_path=fs_path,
+            force=True)["staged_for_removal"],
+        stores=stores,
+        _removed=True)
+
+
 #######################
 # MERGE RESOURCES TESTS
 #######################
@@ -623,3 +641,37 @@ def test_fs_plugin_localfs_push(localfs_pootle_staged_real):
         with open(src_file) as target:
             with open(target_file) as src:
                 assert src.read() == target.read()
+
+
+@pytest.mark.django_db
+def test_fs_plugin_synced_fs_ahead(localfs_fs_ahead):
+    plugin = localfs_fs_ahead
+    response = plugin.sync()
+    for response_item in response["pulled_to_pootle"]:
+        assert response_item.fs_state.store_fs.file._synced
+
+
+@pytest.mark.django_db
+def test_fs_plugin_synced_pootle_ahead(localfs_pootle_ahead):
+    plugin = localfs_pootle_ahead
+    response = plugin.sync()
+    for response_item in response["pushed_to_fs"]:
+        assert response_item.fs_state.store_fs.file._synced
+
+
+@pytest.mark.django_db
+def test_fs_plugin_synced_merge_fs_wins(localfs_merge_fs_wins):
+    plugin = localfs_merge_fs_wins
+    response = plugin.sync()
+    assert response["merged_from_fs"]
+    for response_item in response["merged_from_fs"]:
+        assert response_item.fs_state.store_fs.file._synced
+
+
+@pytest.mark.django_db
+def test_fs_plugin_synced_merge_pootle_wins(localfs_merge_pootle_wins):
+    plugin = localfs_merge_pootle_wins
+    response = plugin.sync()
+    assert response["merged_from_pootle"]
+    for response_item in response["merged_from_pootle"]:
+        assert response_item.fs_state.store_fs.file._synced
