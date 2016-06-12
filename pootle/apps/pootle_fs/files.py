@@ -193,6 +193,18 @@ class FSFile(object):
         self.store_fs.staged_for_removal = True
         self.store_fs.save()
 
+    def unstage(self):
+        should_remove = (
+            not self.store_fs.last_sync_revision
+            and not self.store_fs.last_sync_hash)
+        self.store_fs.resolve_conflict = None
+        self.store_fs.staged_for_merge = False
+        self.store_fs.staged_for_removal = False
+        if should_remove:
+            self.store_fs.delete()
+        else:
+            self.store_fs.save()
+
     def deserialize(self):
         if not self.file_exists:
             return
