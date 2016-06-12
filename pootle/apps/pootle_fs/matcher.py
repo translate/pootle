@@ -39,9 +39,7 @@ class FSPathMatcher(object):
         if fs_path:
             path_filters.append(fs_path)
         return self.context.finder_class(
-            os.path.join(
-                self.project.local_fs_path,
-                self.translation_path),
+            self.translation_path,
             extensions=[ext, template_ext],
             path_filters=path_filters)
 
@@ -55,8 +53,10 @@ class FSPathMatcher(object):
 
     @property
     def translation_path(self):
-        return self.context.project.config[
-            "pootle_fs.translation_paths"]["default"]
+        return os.path.join(
+            self.project.local_fs_path,
+            self.context.project.config[
+                "pootle_fs.translation_paths"]["default"].lstrip("/"))
 
     def make_pootle_path(self, **matched):
         language_code = matched.get("language_code")
