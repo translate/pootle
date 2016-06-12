@@ -16,7 +16,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
     config, response as pootle_response, state as pootle_state)
-from pootle_store.models import Store
+from pootle_store.models import FILE_WINS, POOTLE_WINS, Store
 from pootle_project.models import Project
 
 from .decorators import emits_state, responds_to_state
@@ -284,6 +284,28 @@ class Plugin(object):
                     fs_path=fs_state.fs_path)
             fs_state.store_fs.file.rm()
             response.add("staged_for_removal", fs_state=fs_state)
+        return response
+
+    @responds_to_state
+    def unstage(self, state, response, fs_path=None, pootle_path=None):
+        """
+        Unstage files staged for addition, merge or removal
+        """
+        to_unstage = (
+            state["remove"]
+            + state["merge_pootle_wins"]
+            + state["merge_fs_wins"]
+            + state["pootle_ahead"]
+            + state["fs_ahead"]
+            + state["pootle_staged"]
+            + state["fs_staged"])
+        for fs_state in to_unstage:
+            staged = (
+                fs_state.state_type not in ["fs_ahead", "pootle_ahead"]
+                or fs_state.store_fs.resolve_conflict in [FILE_WINS, POOTLE_WINS])
+            if staged:
+                fs_state.store_fs.file.unstage()
+                response.add("unstaged", fs_state=fs_state)
         return response
 
     @responds_to_state
