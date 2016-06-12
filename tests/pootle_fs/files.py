@@ -374,3 +374,66 @@ def test_wrap_store_fs_pull_submission_type(store_fs_file_store):
     assert (
         fs_file.store.units[0].submission_set.latest().type
         == SubmissionTypes.SYSTEM)
+
+
+@pytest.mark.django_db
+def test_wrap_store_fs_unstage_pootle_staged(store_fs_file_store):
+    fs_file = store_fs_file_store
+    assert fs_file.store_fs.pk
+    fs_file.unstage()
+    assert fs_file.store_fs.pk is None
+
+
+@pytest.mark.django_db
+def test_wrap_store_fs_unstage_fs_staged(store_fs_file):
+    fs_file = store_fs_file
+    assert fs_file.store_fs.pk
+    fs_file.unstage()
+    assert fs_file.store_fs.pk is None
+
+
+@pytest.mark.django_db
+def test_wrap_store_fs_unstage_merge_conflict_untracked(store_fs_file_store):
+    fs_file = store_fs_file_store
+    fs_file.push()
+    fs_file.merge(pootle_wins=True)
+
+    # this is basically `staged_for_merge_pootle`, from `conflict_untracked`
+    assert fs_file.store_fs.last_sync_hash is None
+    assert fs_file.store_fs.last_sync_revision is None
+    assert fs_file.store_fs.resolve_conflict == POOTLE_WINS
+    assert fs_file.store_fs.staged_for_merge is True
+    fs_file.unstage()
+    assert fs_file.store_fs.last_sync_hash is None
+    assert fs_file.store_fs.last_sync_revision is None
+    assert fs_file.store_fs.resolve_conflict is None
+    assert fs_file.store_fs.staged_for_merge is False
+    # because the store_fs was `conflict_untracked` the store_fs is deleted
+    # and the file/store are again `conflict_untracked`
+    assert fs_file.store_fs.pk is None
+
+
+@pytest.mark.django_db
+def test_wrap_store_fs_unstage_merge_pootle(store_fs_file_store):
+    fs_file = store_fs_file_store
+    fs_file.push()
+    fs_file.on_sync()
+    with open(fs_file.file_path, "r") as f:
+        ttk = getclass(f)(f.read())
+    ttk.units[1].target = "NEW TARGET"
+    with open(fs_file.file_path, "w") as f:
+        f.write(str(ttk))
+    unit = fs_file.store.units[0]
+    unit.target = "CONFLICTING TARGET"
+    unit.save()
+    fs_file.merge(pootle_wins=True)
+    assert fs_file.store_fs.last_sync_hash
+    assert fs_file.store_fs.last_sync_revision
+    assert fs_file.store_fs.resolve_conflict == POOTLE_WINS
+    assert fs_file.store_fs.staged_for_merge is True
+    fs_file.unstage()
+    assert fs_file.store_fs.last_sync_hash
+    assert fs_file.store_fs.last_sync_revision
+    assert fs_file.store_fs.resolve_conflict is None
+    assert fs_file.store_fs.staged_for_merge is False
+    assert fs_file.store_fs.pk is not None
