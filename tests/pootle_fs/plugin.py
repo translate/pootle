@@ -33,7 +33,7 @@ def _test_dummy_response(responses, **kwargs):
     expected_keys = [
         "_added", "_fetched", "_pulled",
         "_synced", "_pushed", "_merged",
-        "_removed"]
+        "_removed", "_unstaged"]
     for response in responses:
         if stores:
             assert response.store_fs.store in stores
@@ -440,6 +440,129 @@ def test_fs_plugin_rm_conflict_untracked(fs_path_qs,
             force=True)["staged_for_removal"],
         stores=stores,
         _removed=True)
+
+
+###############
+# UNSTAGE TESTS
+###############
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_pootle_staged(fs_path_qs,
+                                         localfs_pootle_staged):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_pootle_staged
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["pootle_staged"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
+
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_fs_staged(fs_path_qs, localfs_fs_staged):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_fs_staged
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["fs_staged"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
+
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_merge_fs(fs_path_qs,
+                                    localfs_merge_fs_wins):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_merge_fs_wins
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["merge_fs_wins"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
+
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_merge_pootle(fs_path_qs,
+                                        localfs_merge_pootle_wins):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_merge_pootle_wins
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["merge_pootle_wins"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
+
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_force_added(fs_path_qs,
+                                       localfs_force_added):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_force_added
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["pootle_ahead"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
+
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_force_fetched(fs_path_qs,
+                                         localfs_force_fetched):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_force_fetched
+
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["fs_ahead"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
+
+
+@pytest.mark.django_db
+def test_fs_plugin_unstage_remove(fs_path_qs,
+                                  localfs_remove):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = localfs_remove
+    state = plugin.state(fs_path=fs_path, pootle_path=pootle_path)
+    stores_fs = state.resources.storefs_filter.filtered(
+        plugin.project.store_fs.all())
+    assert len(stores_fs) == len(state["remove"])
+    _test_dummy_response(
+        plugin.unstage(
+            pootle_path=pootle_path,
+            fs_path=fs_path)["unstaged"],
+        stores_fs=stores_fs,
+        _unstaged=True)
 
 
 #######################
