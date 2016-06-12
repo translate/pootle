@@ -63,6 +63,11 @@ FS_RESPONSE["merged_from_pootle"] = {
     "title": "Merged from pootle",
     "description":
         ("Merged - Pootle won where unit updates conflicted")}
+FS_RESPONSE["unstaged"] = {
+    "title": "Unstaged",
+    "description":
+        ("Files or Stores that were previously staged for addition, "
+         "merge or removal were unstaged")}
 
 
 class ProjectFSItemResponse(ItemResponse):
