@@ -198,9 +198,8 @@ def project0_dummy_plugin_obs_stores(project0_dummy_plugin_no_stores):
 
 @pytest.fixture
 def project0_dummy_plugin_no_files(settings, no_fs_plugins, no_fs_files):
-    from pootle.core.plugin import getter, provider
-    from pootle_fs.delegate import fs_file, fs_plugins
-    from pootle_fs.files import FSFile
+    from pootle.core.plugin import provider
+    from pootle_fs.delegate import fs_plugins
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
 
@@ -214,10 +213,6 @@ def project0_dummy_plugin_no_files(settings, no_fs_plugins, no_fs_files):
     @provider(fs_plugins, weak=False, sender=Project)
     def plugin_provider(**kwargs):
         return dict(dummyfs=NoFilesDummyPlugin)
-
-    @getter(fs_file, weak=False, sender=NoFilesDummyPlugin)
-    def fs_files_getter(**kwargs):
-        return FSFile
 
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.fs_type"] = "dummyfs"
