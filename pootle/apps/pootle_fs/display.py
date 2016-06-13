@@ -130,6 +130,10 @@ class StateItemDisplay(FSItemDisplay):
             or (self.state_type == "remove"
                 and self.file.store_exists))
 
+    @property
+    def tracked(self):
+        return self.item.store_fs and True or False
+
 
 class StateTypeDisplay(SectionDisplay):
     item_class = StateItemDisplay
