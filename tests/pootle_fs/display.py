@@ -190,11 +190,17 @@ def test_fs_display_state_item_instance(localfs_pootle_untracked):
     assert item_display.file is None
     assert item_display.file_exists is False
     assert item_display.store_exists is True
+    assert item_display.tracked is False
 
 
 @pytest.mark.django_db
 def test_fs_display_state_item_instance_file(localfs_pootle_untracked):
     plugin = localfs_pootle_untracked
+    state_item = plugin.state()["pootle_untracked"][0]
+    item_display = StateItemDisplay(None, state_item)
+    assert item_display.item.store_fs is None
+    assert item_display.tracked is False
+    assert item_display.file is None
     plugin.add()
     state_item = plugin.state()["pootle_staged"][0]
     item_display = StateItemDisplay(None, state_item)
@@ -211,6 +217,7 @@ def test_fs_display_state_item_instance_fs_untracked(localfs_fs_untracked):
     assert item_display.file is None
     assert item_display.file_exists is True
     assert item_display.store_exists is False
+    assert item_display.tracked is False
 
 
 @pytest.mark.django
