@@ -7,9 +7,10 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-from fnmatch import fnmatch
 
 import pytest
+
+from pytest_pootle.fs.utils import filtered_fs_matches, filtered_fs_stores
 
 from pootle.core.response import Response
 from pootle.core.state import State
@@ -17,7 +18,6 @@ from pootle_fs.matcher import FSPathMatcher
 from pootle_fs.plugin import Plugin
 from pootle_fs.utils import FSPlugin
 from pootle_project.models import Project
-from pootle_store.models import Store
 
 
 def _test_dummy_response(responses, **kwargs):
@@ -46,31 +46,6 @@ def _test_dummy_response(responses, **kwargs):
         for k in kwargs:
             if k not in expected_keys:
                 assert getattr(response.store_fs.file, k) == kwargs[k]
-
-
-def _filtered_stores(plugin, fs_path, pootle_path):
-    state = plugin.state(pootle_path=pootle_path, fs_path=fs_path)
-    stores = state.resources.store_filter.filtered(
-        Store.objects.filter(translation_project__project=plugin.project))
-    if fs_path:
-        return state, [
-            store for store
-            in stores
-            if fnmatch(plugin.get_fs_path(store.pootle_path), fs_path)]
-    else:
-        return state, list(stores)
-
-
-def _filtered_matches(plugin, fs_path, pootle_path):
-    state = plugin.state(pootle_path=pootle_path, fs_path=fs_path)
-    matches = []
-    for pootle_match, fs_match in plugin.find_translations():
-        if pootle_path and not fnmatch(pootle_match, pootle_path):
-            continue
-        if fs_path and not fnmatch(fs_match, fs_path):
-            continue
-        matches.append((pootle_match, fs_match))
-    return state, matches
 
 
 @pytest.mark.django_db
@@ -137,7 +112,7 @@ def test_fs_plugin_add(fs_path_qs, localfs_pootle_untracked):
     """tests `add` against `pootle_untracked`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_pootle_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["pootle_untracked"])
     _test_dummy_response(
         plugin.add(
@@ -152,7 +127,7 @@ def test_fs_plugin_add_fs_removed(fs_path_qs, localfs_fs_removed):
     """tests `add` against `fs_removed`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_fs_removed
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["fs_removed"])
     response = plugin.add(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["added_from_pootle"]) == 0
@@ -170,7 +145,7 @@ def test_fs_plugin_add_conflict(fs_path_qs, localfs_conflict):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_conflict
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict"])
     response = plugin.add(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["added_from_pootle"]) == 0
@@ -187,11 +162,11 @@ def test_fs_plugin_add_conflict(fs_path_qs, localfs_conflict):
 
 @pytest.mark.django_db
 def test_fs_plugin_add_conflict_untracked(fs_path_qs,
-                                          project0_fs_conflict_untracked):
+                                          localfs_conflict_untracked):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    plugin = project0_fs_conflict_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    plugin = localfs_conflict_untracked
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     response = plugin.add(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["added_from_pootle"]) == 0
     _test_dummy_response(
@@ -211,7 +186,7 @@ def test_fs_plugin_add_conflict_untracked(fs_path_qs,
 def test_fs_plugin_fetch(fs_path_qs, localfs_fs_untracked):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_fs_untracked
-    state, matches = _filtered_matches(plugin, fs_path, pootle_path)
+    state, matches = filtered_fs_matches(plugin, fs_path, pootle_path)
     assert len(matches) == len(state["fs_untracked"])
     _test_dummy_response(
         plugin.fetch(
@@ -225,7 +200,7 @@ def test_fs_plugin_fetch(fs_path_qs, localfs_fs_untracked):
 def test_fs_plugin_fetch_conflict(fs_path_qs, localfs_conflict):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_conflict
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict"])
     response = plugin.fetch(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["fetched_from_fs"]) == 0
@@ -260,11 +235,11 @@ def test_fs_plugin_fetch_pootle_removed(fs_path_qs,
 
 @pytest.mark.django_db
 def test_fs_plugin_fetch_conflict_untracked(fs_path_qs,
-                                            project0_fs_conflict_untracked):
+                                            localfs_conflict_untracked):
     """tests `fetch` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    plugin = project0_fs_conflict_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    plugin = localfs_conflict_untracked
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict_untracked"])
     response = plugin.fetch(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["fetched_from_fs"]) == 0
@@ -283,11 +258,11 @@ def test_fs_plugin_fetch_conflict_untracked(fs_path_qs,
 
 @pytest.mark.django_db
 def test_fs_plugin_merge_conflict_untr(fs_path_qs,
-                                       project0_fs_conflict_untracked):
+                                       localfs_conflict_untracked):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    plugin = project0_fs_conflict_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    plugin = localfs_conflict_untracked
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict_untracked"])
     _test_dummy_response(
         plugin.merge(
@@ -300,11 +275,11 @@ def test_fs_plugin_merge_conflict_untr(fs_path_qs,
 
 @pytest.mark.django_db
 def test_fs_plugin_merge_conflict_untr_pootle(fs_path_qs,
-                                              project0_fs_conflict_untracked):
+                                              localfs_conflict_untracked):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    plugin = project0_fs_conflict_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    plugin = localfs_conflict_untracked
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict_untracked"])
     _test_dummy_response(
         plugin.merge(
@@ -322,7 +297,7 @@ def test_fs_plugin_merge_conflict(fs_path_qs,
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_conflict
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict"])
     _test_dummy_response(
         plugin.merge(
@@ -339,7 +314,7 @@ def test_fs_plugin_merge_conflict_pootle(fs_path_qs,
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_conflict
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict"])
     _test_dummy_response(
         plugin.merge(
@@ -394,7 +369,7 @@ def test_fs_plugin_rm_pootle_untracked(fs_path_qs,
                                        localfs_pootle_untracked):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_pootle_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["pootle_untracked"])
     response = plugin.rm(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["staged_for_removal"]) == 0
@@ -412,7 +387,7 @@ def test_fs_plugin_rm_fs_untracked(fs_path_qs,
                                    localfs_fs_untracked):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_fs_untracked
-    state, matches = _filtered_matches(plugin, fs_path, pootle_path)
+    state, matches = filtered_fs_matches(plugin, fs_path, pootle_path)
     assert len(matches) == len(state["fs_untracked"])
     response = plugin.rm(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["staged_for_removal"]) == 0
@@ -426,10 +401,10 @@ def test_fs_plugin_rm_fs_untracked(fs_path_qs,
 
 @pytest.mark.django_db
 def test_fs_plugin_rm_conflict_untracked(fs_path_qs,
-                                         project0_fs_conflict_untracked):
+                                         localfs_conflict_untracked):
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    plugin = project0_fs_conflict_untracked
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    plugin = localfs_conflict_untracked
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["conflict_untracked"])
     response = plugin.rm(pootle_path=pootle_path, fs_path=fs_path)
     assert len(response["staged_for_removal"]) == 0
@@ -574,7 +549,7 @@ def test_fs_plugin_merge_pootle(fs_path_qs, localfs_merge_pootle_wins):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_merge_pootle_wins
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["merge_pootle_wins"])
     _test_dummy_response(
         plugin.sync_merge(
@@ -591,7 +566,7 @@ def test_fs_plugin_merge_fs(fs_path_qs, localfs_merge_fs_wins):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_merge_fs_wins
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["merge_fs_wins"])
     _test_dummy_response(
         plugin.sync_merge(
@@ -612,7 +587,7 @@ def test_fs_plugin_sync_pull_fs_ahead(fs_path_qs, localfs_fs_ahead):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_fs_ahead
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["fs_ahead"])
     _test_dummy_response(
         plugin.sync_pull(
@@ -627,7 +602,7 @@ def test_fs_plugin_sync_pull_fs_staged(fs_path_qs, localfs_fs_staged):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_fs_staged
-    state, matches = _filtered_matches(plugin, fs_path, pootle_path)
+    state, matches = filtered_fs_matches(plugin, fs_path, pootle_path)
     assert len(matches) == len(state["fs_staged"])
     _test_dummy_response(
         plugin.sync_pull(
@@ -646,7 +621,7 @@ def test_fs_plugin_sync_rm(fs_path_qs, localfs_remove):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_remove
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["remove"])
     _test_dummy_response(
         plugin.sync_rm(
@@ -664,7 +639,7 @@ def test_fs_plugin_sync_push_pootle_ahead(fs_path_qs, localfs_pootle_ahead):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_pootle_ahead
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["pootle_ahead"])
     _test_dummy_response(
         plugin.sync_push(
@@ -679,7 +654,7 @@ def test_fs_plugin_sync_push_pootle_staged(fs_path_qs, localfs_pootle_staged):
     """tests `add` against `conflict`"""
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = localfs_pootle_staged
-    state, stores = _filtered_stores(plugin, fs_path, pootle_path)
+    state, stores = filtered_fs_stores(plugin, fs_path, pootle_path)
     assert len(stores) == len(state["pootle_staged"])
     _test_dummy_response(
         plugin.sync_push(
