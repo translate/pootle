@@ -129,7 +129,7 @@ def project0_dummy_finder_empty(no_fs_finder, localfs):
 
 
 @pytest.fixture
-def project0_dummy_storefs_file(no_fs_files, localfs):
+def localfs_dummy_file(no_fs_files, localfs):
     from pootle.core.plugin import getter
     from pootle_fs.delegate import fs_file
     from pootle_fs.files import FSFile
@@ -189,9 +189,10 @@ def project0_dummy_storefs_file(no_fs_files, localfs):
 
 
 @pytest.fixture
-def localfs_pootle_untracked(settings, tmpdir, project0_dummy_storefs_file):
+def localfs_pootle_untracked(settings, tmpdir, localfs_dummy_file):
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
+    from pootle_store.models import Store
 
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.fs_type"] = "localfs"
@@ -201,11 +202,16 @@ def localfs_pootle_untracked(settings, tmpdir, project0_dummy_storefs_file):
     plugin.project.config["pootle_fs.translation_paths"] = {
         "default": "/<language_code>/<dir_path>/<filename>.<ext>"}
     settings.POOTLE_FS_PATH = str(tmpdir)
+    stores = Store.objects.filter(
+        translation_project__project=plugin.project)
+    state = plugin.state()
+    assert len(state["pootle_untracked"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
-def localfs_fs_removed(settings, tmpdir, project0_dummy_storefs_file):
+def localfs_fs_removed(settings, tmpdir, localfs_dummy_file):
     from pytest_pootle.utils import add_store_fs
 
     from pootle_fs.utils import FSPlugin
@@ -227,12 +233,15 @@ def localfs_fs_removed(settings, tmpdir, project0_dummy_storefs_file):
             store=store,
             fs_path=plugin.get_fs_path(store.pootle_path),
             synced=True)
+    state = plugin.state()
+    assert len(state["fs_removed"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_conflict(localfs, project0_dummy_finder,
-                     project0_dummy_storefs_file):
+                     localfs_dummy_file):
     from pytest_pootle.utils import add_store_fs
 
     from pootle_store.models import Store
@@ -247,26 +256,30 @@ def localfs_conflict(localfs, project0_dummy_finder,
         store_fs.last_sync_revision = store.get_max_unit_revision() - 1
         store_fs.last_sync_hash = uuid4().hex
         store_fs.save()
-    assert len(plugin.state()["conflict"]) == stores.count()
+    state = plugin.state()
+    assert len(state["conflict"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
-def project0_fs_conflict_untracked(localfs, project0_dummy_finder,
-                                   project0_dummy_storefs_file):
+def localfs_conflict_untracked(localfs, project0_dummy_finder,
+                               localfs_dummy_file):
     from pootle_store.models import Store
 
     plugin = localfs
     stores = Store.objects.filter(translation_project__project=plugin.project)
     pootle_paths = list(stores.values_list("pootle_path", flat=True))
-    assert len(plugin.state()["conflict_untracked"]) == len(pootle_paths)
+    state = plugin.state()
+    assert len(state["conflict_untracked"]) == len(pootle_paths)
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_pootle_removed(project_fs, project_fs_empty,
                            project_empty_dummy_finder,
-                           project0_dummy_storefs_file):
+                           localfs_dummy_file):
     from pootle.core.models import Revision
     from pootle_fs.models import StoreFS
     from pootle_store.models import Store
@@ -287,28 +300,28 @@ def localfs_pootle_removed(project_fs, project_fs_empty,
             last_sync_revision=max_revision)
         store_fs.last_sync_hash = store_fs.file.latest_hash
         store_fs.save()
-    assert plugin.state()["pootle_removed"]
-    assert len(plugin.state()["pootle_removed"]) == stores.count()
+    state = plugin.state()
+    assert len(state["pootle_removed"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_fs_untracked(project0_dummy_finder,
-                         project0_dummy_storefs_file,
+                         localfs_dummy_file,
                          project_fs_empty):
     plugin = project_fs_empty
     plugin.project.config["pootle_fs.translation_paths"] = {
         "default": "/<language_code>/<dir_path>/<filename>.<ext>"}
-    assert plugin.state()["fs_untracked"]
-    assert (
-        len(plugin.state()["fs_untracked"])
-        == len(list(plugin.find_translations())))
+    state = plugin.state()
+    assert len(state["fs_untracked"]) == len(list(plugin.find_translations()))
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_merge_pootle_wins(localfs, project0_dummy_finder,
-                              project0_dummy_storefs_file):
+                              localfs_dummy_file):
 
     from pytest_pootle.utils import add_store_fs
 
@@ -325,14 +338,15 @@ def localfs_merge_pootle_wins(localfs, project0_dummy_finder,
         store_fs.resolve_conflict = POOTLE_WINS
         store_fs.staged_for_merge = True
         store_fs.save()
-    assert plugin.state()["merge_pootle_wins"]
-    assert len(plugin.state()["merge_pootle_wins"]) == stores.count()
+    state = plugin.state()
+    assert len(state["merge_pootle_wins"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_merge_fs_wins(localfs, project0_dummy_finder,
-                          project0_dummy_storefs_file):
+                          localfs_dummy_file):
 
     from pytest_pootle.utils import add_store_fs
 
@@ -349,15 +363,16 @@ def localfs_merge_fs_wins(localfs, project0_dummy_finder,
         store_fs.resolve_conflict = FILE_WINS
         store_fs.staged_for_merge = True
         store_fs.save()
-    assert plugin.state()["merge_fs_wins"]
-    assert len(plugin.state()["merge_fs_wins"]) == stores.count()
+    state = plugin.state()
+    assert len(state["merge_fs_wins"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_fs_ahead(localfs, request,
                      project0_dummy_finder,
-                     project0_dummy_storefs_file):
+                     localfs_dummy_file):
 
     from pytest_pootle.utils import add_store_fs
 
@@ -373,14 +388,15 @@ def localfs_fs_ahead(localfs, request,
         store_fs.last_sync_revision = store.get_max_unit_revision()
         store_fs.last_sync_hash = uuid4().hex
         store_fs.save()
-    assert plugin.state()["fs_ahead"]
-    assert len(plugin.state()["fs_ahead"]) == stores.count()
+    state = plugin.state()
+    assert len(state["fs_ahead"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_fs_staged(project0_dummy_finder,
-                      project0_dummy_storefs_file,
+                      localfs_dummy_file,
                       project_fs_empty):
     from pootle_fs.models import StoreFS
 
@@ -390,15 +406,16 @@ def localfs_fs_staged(project0_dummy_finder,
     matches = list(plugin.find_translations())
     for pootle_path, fs_path in matches:
         StoreFS.objects.create(path=fs_path, pootle_path=pootle_path)
-    assert plugin.state()["fs_staged"]
-    assert len(plugin.state()["fs_staged"]) == len(matches)
+    state = plugin.state()
+    assert len(state["fs_staged"]) == len(matches)
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_pootle_ahead(localfs,
                          project0_dummy_finder,
-                         project0_dummy_storefs_file):
+                         localfs_dummy_file):
 
     from pytest_pootle.utils import add_store_fs
 
@@ -417,14 +434,15 @@ def localfs_pootle_ahead(localfs,
         unit = store.units.first()
         unit.target = "%sFOO" % store.name
         unit.save()
-    assert plugin.state()["pootle_ahead"]
-    assert len(plugin.state()["pootle_ahead"]) == stores.count()
+    state = plugin.state()
+    assert len(state["pootle_ahead"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_pootle_staged(project0_dummy_finder_empty,
-                          project0_dummy_storefs_file,
+                          localfs_dummy_file,
                           localfs):
     from pytest_pootle.utils import add_store_fs
 
@@ -438,14 +456,15 @@ def localfs_pootle_staged(project0_dummy_finder_empty,
             store=store,
             fs_path=plugin.get_fs_path(store.pootle_path))
 
-    assert plugin.state()["pootle_staged"]
-    assert len(plugin.state()["pootle_staged"]) == len(stores)
+    state = plugin.state()
+    assert len(state["pootle_staged"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_remove(project0_dummy_finder_empty,
-                   project0_dummy_storefs_file,
+                   localfs_dummy_file,
                    localfs):
     from pytest_pootle.utils import add_store_fs
 
@@ -459,8 +478,10 @@ def localfs_remove(project0_dummy_finder_empty,
             fs_path=plugin.get_fs_path(store.pootle_path))
         store_fs.staged_for_removal = True
         store_fs.save()
-    assert plugin.state()["remove"]
-    assert len(plugin.state()["remove"]) == len(stores)
+
+    state = plugin.state()
+    assert len(state["remove"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
@@ -478,14 +499,15 @@ def localfs_pootle_staged_real(localfs):
             store=store,
             fs_path=plugin.get_fs_path(store.pootle_path))
 
-    assert plugin.state()["pootle_staged"]
-    assert len(plugin.state()["pootle_staged"]) == len(stores)
+    state = plugin.state()
+    assert len(state["pootle_staged"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_force_added(localfs, project0_dummy_finder,
-                        project0_dummy_storefs_file):
+                        localfs_dummy_file):
     from pytest_pootle.utils import add_store_fs
 
     from pootle_store.models import POOTLE_WINS, Store
@@ -501,13 +523,15 @@ def localfs_force_added(localfs, project0_dummy_finder,
         store_fs.last_sync_hash = uuid4().hex
         store_fs.resolve_conflict = POOTLE_WINS
         store_fs.save()
-    assert len(plugin.state()["pootle_ahead"]) == stores.count()
+    state = plugin.state()
+    assert len(state["pootle_ahead"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
 
 
 @pytest.fixture
 def localfs_force_fetched(localfs, project0_dummy_finder,
-                          project0_dummy_storefs_file):
+                          localfs_dummy_file):
     from pytest_pootle.utils import add_store_fs
 
     from pootle_store.models import FILE_WINS, Store
@@ -523,5 +547,7 @@ def localfs_force_fetched(localfs, project0_dummy_finder,
         store_fs.last_sync_hash = uuid4().hex
         store_fs.resolve_conflict = FILE_WINS
         store_fs.save()
-    assert len(plugin.state()["fs_ahead"]) == stores.count()
+    state = plugin.state()
+    assert len(state["fs_ahead"]) == stores.count()
+    assert len([x for x in state]) == 1
     return plugin
