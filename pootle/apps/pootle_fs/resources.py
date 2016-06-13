@@ -156,8 +156,10 @@ class FSProjectStateResources(object):
         since it was last synced.
         """
         return (
-            self.synced.annotate(max_revision=Max("store__unit__revision"))
-                .exclude(last_sync_revision=F("max_revision")))
+            self.synced.exclude(store_id__isnull=True)
+                       .exclude(store__obsolete=True)
+                       .annotate(max_revision=Max("store__unit__revision"))
+                       .exclude(last_sync_revision=F("max_revision")))
 
     def reload(self):
         """Uncache cached_properties"""
