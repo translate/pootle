@@ -13,6 +13,8 @@ from uuid import uuid4
 
 import pytest
 
+from pytest_pootle.fs.utils import parse_fs_action_args
+
 
 _plugin_fetch_base = {
     'conflict': 1,
@@ -23,6 +25,89 @@ _plugin_fetch_base = {
     'pootle_ahead': 1,
     'pootle_removed': 1,
     'pootle_untracked': 1}
+
+RESPONSE_MAP = {
+    "conflict": dict(
+        add_force=("added_from_pootle", "pootle_staged"),
+        fetch_force=("fetched_from_fs", "fs_staged"),
+        merge_fs=("staged_for_merge_fs", "merge_fs_wins"),
+        merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins")),
+    "conflict_untracked": dict(
+        add_force=("added_from_pootle", "pootle_staged"),
+        fetch_force=("fetched_from_fs", "fs_staged"),
+        merge_fs=("staged_for_merge_fs", "merge_fs_wins"),
+        merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
+        rm_force=("staged_for_removal", "remove")),
+    "fs_ahead": dict(
+        sync=("pulled_to_pootle", None)),
+    "fs_removed": dict(
+        add_force=("added_from_pootle", "pootle_staged"),
+        rm=("staged_for_removal", "remove")),
+    "fs_staged": dict(
+        sync=("pulled_to_pootle", None)),
+    "fs_untracked": dict(
+        fetch=("fetched_from_fs", "fs_staged"),
+        rm_force=("staged_for_removal", "remove")),
+    "merge_fs_wins": dict(
+        sync=("merged_from_fs", None)),
+    "merge_pootle_wins": dict(
+        sync=("merged_from_pootle", None)),
+    "pootle_ahead": dict(
+        sync=("pushed_to_fs", None)),
+    "pootle_removed": dict(
+        fetch_force=("fetched_from_fs", "fs_staged"),
+        rm=("staged_for_removal", "remove"),
+        rm_force=("staged_for_removal", "remove")),
+    "pootle_staged": dict(
+        sync=("pushed_to_fs", None)),
+    "pootle_untracked": dict(
+        add=("added_from_pootle", "pootle_staged"),
+        add_force=("added_from_pootle", "pootle_staged"),
+        rm_force=("staged_for_removal", "remove")),
+    "remove": dict(
+        sync=("removed", None))}
+
+
+def _possible_actions():
+    actions = set()
+    for state in RESPONSE_MAP:
+        actions.update(RESPONSE_MAP[state].keys())
+    return actions
+
+
+def pytest_generate_tests(metafunc):
+
+    if 'localfs_envs' in metafunc.fixturenames:
+
+        from pootle_fs.state import FS_STATE
+        env_names = [e for e in FS_STATE.keys() if e not in ["both_removed"]]
+        metafunc.parametrize("localfs_env_names", env_names)
+
+
+@pytest.fixture
+def fs_response_map():
+    return RESPONSE_MAP
+
+
+@pytest.fixture(params=_possible_actions())
+def possible_actions(request):
+    return (request.param, ) + parse_fs_action_args(request.param)
+
+
+@pytest.fixture
+def localfs_envs(request, localfs_env_names):
+    return (
+        localfs_env_names,
+        request.getfuncargvalue(
+            "localfs_%s" % localfs_env_names))
+
+
+@pytest.fixture(params=["force_added", "force_fetched"])
+def localfs_staged_envs(request):
+    return (
+        request.param,
+        request.getfuncargvalue(
+            "localfs_%s" % request.param))
 
 
 @pytest.fixture
