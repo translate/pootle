@@ -208,7 +208,10 @@ class ProjectFSState(State):
 
     @property
     def state_fs_ahead(self):
-        for store_fs in self.resources.synced.iterator():
+        fs_changed = (
+            self.resources.synced
+                          .filter(path__in=self.resources.found_file_paths))
+        for store_fs in fs_changed.iterator():
             store_fs.project = self.project
             pootle_changed, fs_changed = self._get_changes(store_fs.file)
             fs_ahead = (
@@ -225,7 +228,8 @@ class ProjectFSState(State):
             self.resources.synced
                           .exclude(path__in=self.resources.found_file_paths)
                           .exclude(resolve_conflict=POOTLE_WINS)
-                          .exclude(store_id__isnull=True))
+                          .exclude(store_id__isnull=True)
+                          .exclude(store__obsolete=True))
         for store_fs in removed.iterator():
             store_fs.project = self.project
             yield dict(store_fs=store_fs)
