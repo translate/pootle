@@ -19,6 +19,7 @@ def project0_fs_resources():
     stores = Store.objects.filter(
         translation_project__project=project)
     batch = int(stores.count() / 4)
+    StoreFS.objects.all().delete()
     for store in stores[0:batch]:
         store.makeobsolete()
     for store in stores[batch:batch * 2]:
