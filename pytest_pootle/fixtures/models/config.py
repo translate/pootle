@@ -37,3 +37,9 @@ BAD_CONFIG_FLAGS = OrderedDict(
 @pytest.fixture(params=BAD_CONFIG_FLAGS.keys())
 def bad_config_flags(request):
     return BAD_CONFIG_FLAGS[request.param]
+
+
+@pytest.fixture
+def no_config_env():
+    from pootle_config.models import Config
+    Config.objects.all().delete()
