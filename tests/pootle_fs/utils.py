@@ -11,6 +11,8 @@ from fnmatch import translate
 
 import pytest
 
+from pytest_pootle.factories import ProjectDBFactory
+
 from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins
@@ -153,12 +155,12 @@ def test_project_fs_instance():
 
 
 @pytest.mark.django_db
-def test_project_fs_instance_bad():
+def test_project_fs_instance_bad(english):
 
     # needs a Project
     with pytest.raises(TypeError):
         FSPlugin()
-    project = Project.objects.get(code="project0")
+    project = ProjectDBFactory(source_language=english)
     # project is not configured
     with pytest.raises(NotConfiguredError):
         FSPlugin(project)
