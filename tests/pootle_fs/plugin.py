@@ -10,12 +10,9 @@ import os
 
 import pytest
 
-from pytest_pootle.fs.utils import filtered_fs_stores
-
 from pootle.core.response import Response
 from pootle.core.state import State
 from pootle_fs.matcher import FSPathMatcher
-from pootle_fs.models import StoreFS
 from pootle_fs.plugin import Plugin
 from pootle_fs.utils import FSPlugin
 from pootle_project.models import Project
@@ -75,51 +72,70 @@ def test_fs_plugin_unstage_staged_response(capsys, localfs_staged_envs):
 
 
 @pytest.mark.django_db
+def test_fs_plugin_paths(project_fs_empty, possible_actions):
+    __, cmd, __, cmd_args = possible_actions
+    pootle_path, fs_path = "FOO", "BAR"
+    response = getattr(project_fs_empty, cmd)(
+        pootle_path=pootle_path, fs_path=fs_path, **cmd_args)
+    assert response.context.pootle_path == pootle_path
+    assert response.context.fs_path == fs_path
+    new_response = getattr(project_fs_empty, cmd)(
+        response=response, pootle_path=pootle_path, fs_path=fs_path, **cmd_args)
+    assert response.context.pootle_path == pootle_path
+    assert response.context.fs_path == fs_path
+    assert new_response is response
+    state = response.context
+    new_response = getattr(project_fs_empty, cmd)(
+        state=state, pootle_path=pootle_path, fs_path=fs_path, **cmd_args)
+    assert response.context.pootle_path == pootle_path
+    assert response.context.fs_path == fs_path
+    assert new_response.context is state
+
+
+@pytest.mark.django_db
 def test_fs_plugin_response(localfs_envs, possible_actions, fs_response_map):
     state_type, plugin = localfs_envs
     action_name, action, command_args, plugin_kwargs = possible_actions
-    original_state, stores = filtered_fs_stores(plugin, None, None)
     stores_fs = None
     expected = fs_response_map[state_type].get(action_name)
     if not expected and action_name.endswith("_force"):
         expected = fs_response_map[state_type].get(action_name[:-6])
-
-    plugin_response = getattr(plugin, action)(
-        state=original_state, **plugin_kwargs)
+    plugin_response = getattr(plugin, action)(**plugin_kwargs)
     changes = []
-    if expected:
-        if not stores:
-            stores_fs = StoreFS.objects.filter(project=plugin.project)
-        if expected[0] in ["merged_from_pootle", "merged_from_fs"]:
-            changes = ["_pulled", "_pushed", "_synced"]
-        elif expected[0] in ["added_from_pootle"]:
-            changes = ["_added"]
-        elif expected[0] in ["fetched_from_fs"]:
-            changes = ["_fetched"]
-        elif expected[0] in ["pushed_to_fs"]:
-            changes = ["_pushed", "_synced"]
-        elif expected[0] in ["pulled_to_pootle"]:
-            changes = ["_pulled", "_synced"]
-        elif expected[0] in ["staged_for_merge_fs"]:
-            changes = ["_merged", "_merge_fs"]
-        elif expected[0] in ["staged_for_merge_pootle"]:
-            changes = ["_merged", "_merge_pootle"]
-        elif expected[1] and not changes:
-            changes = ["_%sd" % expected[1]]
-        if changes:
-            kwargs = {
-                change: True
-                for change in changes}
-        else:
-            kwargs = {}
-        kwargs.update(
-            dict(stores=stores,
-                 stores_fs=stores_fs))
-        _test_dummy_response(
-            plugin_response[expected[0]],
-            **kwargs)
-    else:
+    if not expected:
         assert plugin_response.made_changes is False
+        return
+    stores = plugin.resources.stores
+    if not stores:
+        stores_fs = plugin.resources.tracked
+    if expected[0] in ["merged_from_pootle", "merged_from_fs"]:
+        changes = ["_pulled", "_pushed", "_synced"]
+    elif expected[0] == "added_from_pootle":
+        changes = ["_added"]
+    elif expected[0] == "fetched_from_fs":
+        changes = ["_fetched"]
+    elif expected[0] == "pushed_to_fs":
+        changes = ["_pushed", "_synced"]
+    elif expected[0] == "pulled_to_pootle":
+        changes = ["_pulled", "_synced"]
+    elif expected[0] == "staged_for_merge_fs":
+        changes = ["_merged", "_merge_fs"]
+    elif expected[0] == "staged_for_merge_pootle":
+        changes = ["_merged", "_merge_pootle"]
+    elif expected[0] == "staged_for_removal":
+        changes = ["_removed"]
+    if changes:
+        kwargs = {
+            change: True
+            for change in changes}
+    else:
+        kwargs = {}
+    kwargs.update(
+        dict(stores=stores,
+             stores_fs=stores_fs))
+    _test_dummy_response(
+        plugin_response[expected[0]],
+        **kwargs)
 
 
 @pytest.mark.django_db
