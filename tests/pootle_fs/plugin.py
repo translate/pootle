@@ -75,8 +75,7 @@ def test_fs_plugin_unstage_staged_response(capsys, localfs_staged_envs):
 
 
 @pytest.mark.django_db
-def test_fs_plugin_response(capsys, possible_actions,
-                            localfs_envs, fs_response_map):
+def test_fs_plugin_response(localfs_envs, possible_actions, fs_response_map):
     state_type, plugin = localfs_envs
     action_name, action, command_args, plugin_kwargs = possible_actions
     original_state, stores = filtered_fs_stores(plugin, None, None)
