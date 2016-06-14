@@ -100,19 +100,19 @@ def _test_config_clear(**kwargs):
 
 
 @pytest.mark.django_db
-def test_config_create():
+def test_config_create(no_config_env):
     _test_config_create(Config.objects.create)
     _test_config_create(Config)
 
 
 @pytest.mark.django_db
-def test_config_bad_create():
+def test_config_bad_create(no_config_env):
     _test_config_bad_create(Config.objects.create)
     _test_config_bad_create(Config)
 
 
 @pytest.mark.django_db
-def test_config_bad_getter():
+def test_config_bad_getter(no_config_env):
     project = Project.objects.get(code="project0")
     with pytest.raises(ConfigurationError):
         config.get(instance=project)
@@ -121,7 +121,7 @@ def test_config_bad_getter():
 
 
 @pytest.mark.django_db
-def test_config_set():
+def test_config_set(no_config_env):
 
     # set site-wide config
     Config.objects.set_config("foo")
@@ -176,7 +176,7 @@ def test_config_set():
 
 
 @pytest.mark.django_db
-def test_config_clear():
+def test_config_clear(no_config_env):
     _test_config_clear(**dict(key="foo"))
     _test_config_clear(**dict(key="foo", model=Project))
     project = Project.objects.get(code="project0")
@@ -184,7 +184,7 @@ def test_config_clear():
 
 
 @pytest.mark.django_db
-def test_config_get():
+def test_config_get(no_config_env):
     Config.objects.set_config("foo", ["bar"])
     assert Config.objects.get_config("foo") == ["bar"]
 
@@ -201,7 +201,7 @@ def test_config_get():
 
 
 @pytest.mark.django_db
-def test_config_list():
+def test_config_list(no_config_env):
     Config.objects.set_config("foo", ["bar"])
     assert Config.objects.list_config("foo") == [("foo", ["bar"])]
 
@@ -217,7 +217,7 @@ def test_config_list():
 
 
 @pytest.mark.django_db
-def test_config_append():
+def test_config_append(no_config_env):
     Config.objects.append_config("foo", ["bar"])
     assert Config.objects.list_config("foo") == [("foo", ["bar"])]
     Config.objects.append_config("foo", ["bar"])
@@ -253,7 +253,7 @@ def test_config_append():
 
 
 @pytest.mark.django_db
-def test_config_getter():
+def test_config_getter(no_config_env):
     # getting a non-existent key returns None
     assert config.get(key="DOESNT_EXIST") is None
 
@@ -294,7 +294,7 @@ def test_config_getter():
 
 
 @pytest.mark.django_db
-def test_config_getter_list():
+def test_config_getter_list(no_config_env):
     assert config.get(key=[]) == []
 
     config.get().set_config("foo", ["bar0"])
@@ -412,7 +412,7 @@ def test_config_getter_list():
 
 
 @pytest.mark.django_db
-def test_config_setter():
+def test_config_setter(no_config_env):
     config.get().set_config("foo", ["bar"])
     assert config.get(key="foo") == ["bar"]
 
@@ -425,7 +425,7 @@ def test_config_setter():
 
 
 @pytest.mark.django_db
-def test_config_set_json(json_objects):
+def test_config_set_json(no_config_env, json_objects):
 
     # set site-wide config
     Config.objects.set_config("foo", json_objects)
@@ -459,7 +459,7 @@ def test_config_set_json(json_objects):
 
 
 @pytest.mark.django_db
-def test_config_no_set():
+def test_config_no_set(no_config_env):
 
     @getter(config_should_not_be_set)
     def config_should_be_set_checker(**kwargs):
@@ -482,7 +482,7 @@ def test_config_no_set():
 
 
 @pytest.mark.django_db
-def test_config_no_append():
+def test_config_no_append(no_config_env):
 
     @getter(config_should_not_be_appended)
     def config_should_be_appended_checker(**kwargs):
@@ -505,7 +505,7 @@ def test_config_no_append():
 
 
 @pytest.mark.django_db
-def test_config_site_util():
+def test_config_site_util(no_config_env):
     conf = SiteConfig()
     assert conf.items() == conf.values() == conf.keys() == []
     # keys are returned order by key
@@ -541,7 +541,7 @@ def test_config_site_util():
 
 
 @pytest.mark.django_db
-def test_config_model_util():
+def test_config_model_util(no_config_env):
     conf = ModelConfig(Project)
     assert conf.items() == conf.values() == conf.keys() == []
     # keys are returned order by key
@@ -577,7 +577,7 @@ def test_config_model_util():
 
 
 @pytest.mark.django_db
-def test_config_object_util():
+def test_config_object_util(no_config_env):
     project = Project.objects.first()
     conf = ObjectConfig(project)
     assert conf.items() == conf.values() == conf.keys() == []
@@ -614,13 +614,13 @@ def test_config_object_util():
 
 
 @pytest.mark.django_db
-def test_config_util_dict():
+def test_config_util_dict(no_config_env):
     with pytest.raises(NotImplementedError):
         ConfigDict("foo")["bar"]
 
 
 @pytest.mark.django_db
-def test_config_qs_chaining():
+def test_config_qs_chaining(no_config_env):
 
     config.get().set_config("foo", "bar")
     assert config.get().none().get_config("foo") == "bar"

@@ -127,7 +127,7 @@ def test_cmd_config_list_model(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_cmd_config_list_instance(capfd):
+def test_cmd_config_list_instance(no_config_env, capfd):
     project = Project.objects.get(code="project0")
 
     # no config set for anything
@@ -153,7 +153,7 @@ def test_cmd_config_list_instance(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_cmd_config_list_instance_object_field(capfd):
+def test_cmd_config_list_instance_object_field(no_config_env, capfd):
     project = Project.objects.get(code="project0")
 
     # no config set for anything
@@ -810,7 +810,7 @@ def test_cmd_config_bad_flags(capfd, bad_config_flags):
 
 
 @pytest.mark.django_db
-def test_cmd_config_long_instance_name(capfd):
+def test_cmd_config_long_instance_name(no_config_env, capfd):
     project = Project.objects.get(code="project0")
     project.code = "foobar" * 10
     project.save()
@@ -826,7 +826,7 @@ def test_cmd_config_long_instance_name(capfd):
 
 
 @pytest.mark.django_db
-def test_cmd_config_long_key_name(capfd):
+def test_cmd_config_long_key_name(no_config_env, capfd):
     project = Project.objects.get(code="project0")
     config.get(Project, instance=project).append_config("foobar" * 10, "bar")
     call_command(
