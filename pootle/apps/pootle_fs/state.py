@@ -118,11 +118,11 @@ class ProjectFSState(State):
 
     item_state_class = FSItemState
 
-    def __init__(self, project, fs_path=None, pootle_path=None):
+    def __init__(self, context, fs_path=None, pootle_path=None):
         self.fs_path = fs_path
         self.pootle_path = pootle_path
         super(ProjectFSState, self).__init__(
-            project, fs_path=fs_path, pootle_path=pootle_path)
+            context, fs_path=fs_path, pootle_path=pootle_path)
 
     @property
     def project(self):
