@@ -66,7 +66,14 @@ class DummyPlugin(object):
         return FSProjectResources(self.project)
 
     def get_fs_path(self, pootle_path):
-        return "/fs%s" % pootle_path
+        from pootle.core.url_helpers import split_pootle_path
+
+        lang_code, proj_code, dir_path, fn = split_pootle_path(pootle_path)
+        parts = ["", lang_code]
+        if dir_path:
+            parts.append(dir_path.rstrip("/"))
+        parts.append(fn)
+        return "/".join(parts)
 
 
 @pytest.fixture
@@ -89,7 +96,9 @@ def project0_dummy_plugin(settings, no_fs_plugins, no_fs_files):
     settings.POOTLE_FS_PATH = "/tmp/foo/"
     project.config["pootle_fs.fs_type"] = "dummyfs"
     project.config["pootle_fs.fs_url"] = "/foo/bar"
-    return FSPlugin(project)
+    plugin = FSPlugin(project)
+    plugin.resources.tracked.delete()
+    return plugin
 
 
 @pytest.fixture(params=FS_PATH_QS.keys())
@@ -138,8 +147,6 @@ def project0_dummy_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
 
 @pytest.fixture
 def project0_dummy_plugin_no_stores(settings, no_fs_plugins, no_fs_files):
-    from pytest_pootle.utils import add_store_fs
-
     from pootle.core.plugin import getter, provider
     from pootle_fs.delegate import fs_file, fs_plugins
     from pootle_fs.files import FSFile
@@ -175,11 +182,6 @@ def project0_dummy_plugin_no_stores(settings, no_fs_plugins, no_fs_files):
         return FSFile
 
     plugin = FSPlugin(project)
-    for store in stores:
-        add_store_fs(
-            store=store,
-            fs_path=plugin.get_fs_path(store.pootle_path),
-            synced=True)
     return plugin
 
 
@@ -217,5 +219,6 @@ def project0_dummy_plugin_no_files(settings, no_fs_plugins, no_fs_files):
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.fs_type"] = "dummyfs"
     project.config["pootle_fs.fs_url"] = "/foo/bar"
-
-    return FSPlugin(project)
+    plugin = FSPlugin(project)
+    plugin.resources.tracked.delete()
+    return plugin
