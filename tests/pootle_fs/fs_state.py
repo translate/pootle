@@ -253,7 +253,7 @@ def test_fs_state_both_removed(fs_path_qs, project0_dummy_plugin_no_files):
 
 
 @pytest.mark.django_db
-def test_fs_state_pootle_removed(fs_path_qs, project0_dummy_plugin_del_stores):
+def test_fs_state_pootle_removed(project0_dummy_plugin_del_stores, fs_path_qs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = project0_dummy_plugin_del_stores
     state = ProjectFSState(plugin, pootle_path=pootle_path, fs_path=fs_path)
