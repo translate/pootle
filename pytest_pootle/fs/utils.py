@@ -9,21 +9,6 @@
 from fnmatch import fnmatch
 
 
-def filtered_fs_stores(plugin, fs_path, pootle_path):
-    from pootle_store.models import Store
-
-    state = plugin.state(pootle_path=pootle_path, fs_path=fs_path)
-    stores = state.resources.store_filter.filtered(
-        Store.objects.filter(translation_project__project=plugin.project))
-    if fs_path:
-        return state, [
-            store for store
-            in stores
-            if fnmatch(plugin.get_fs_path(store.pootle_path), fs_path)]
-    else:
-        return state, list(stores)
-
-
 def parse_fs_action_args(action):
     command_args = []
     plugin_kwargs = {}
