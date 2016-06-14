@@ -11,8 +11,6 @@ from fnmatch import fnmatch
 
 import pytest
 
-from pytest_pootle.utils import add_store_fs
-
 from django.utils.functional import cached_property
 
 from pootle_fs.models import StoreFS
@@ -149,8 +147,9 @@ def test_fs_state_resources(project0_fs_resources):
 
 
 @pytest.mark.django_db
-def test_fs_state_trackable(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
+def test_fs_state_trackable(fs_path_qs, dummyfs_untracked):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs_untracked
     qs = Store.objects.filter(
         translation_project__project=plugin.project)
     if qfilter is False:
@@ -168,8 +167,9 @@ def test_fs_state_trackable(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_trackable_store_paths(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
+def test_fs_state_trackable_store_paths(fs_path_qs, dummyfs_untracked):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs_untracked
     qs = Store.objects.filter(
         translation_project__project=plugin.project)
     if qfilter is False:
@@ -186,29 +186,26 @@ def test_fs_state_trackable_store_paths(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_trackable_tracked(project0_dummy_plugin):
-    plugin = project0_dummy_plugin
-    project = plugin.project
-    stores = Store.objects.filter(translation_project__project=project)
-    store = stores[0]
-    # the Store is not trackable if its got a StoreFS
-    add_store_fs(
-        store,
-        plugin.get_fs_path(store.pootle_path))
-    trackable = FSProjectStateResources(plugin).trackable_stores
-    qs = stores.exclude(pootle_path=store.pootle_path)
+def test_fs_state_trackable_tracked(dummyfs):
+    plugin = dummyfs
+    resources = FSProjectStateResources(plugin)
+    store_fs = resources.tracked[0]
+    store = store_fs.store
+    store_fs.delete()
+    trackable = resources.trackable_stores
+    store = plugin.resources.stores.get(
+        pootle_path=store.pootle_path)
+    assert len(trackable) == 1
+    assert trackable[0][0] == store
     assert (
-        sorted(trackable, key=lambda item: item[0].pk)
-        == [(s, plugin.get_fs_path(s.pootle_path))
-            for s in list(qs.order_by("pk"))])
+        trackable[0][1]
+        == plugin.get_fs_path(store.pootle_path))
 
 
 @pytest.mark.django_db
-def test_fs_state_synced(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
-    resources = FSProjectStateResources(plugin)
-    for trackable in resources.trackable_stores:
-        add_store_fs(*trackable, synced=True)
+def test_fs_state_synced(fs_path_qs, dummyfs):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -224,10 +221,13 @@ def test_fs_state_synced(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_synced_staged(project0_dummy_plugin):
-    plugin = project0_dummy_plugin
+def test_fs_state_synced_staged(dummyfs):
+    plugin = dummyfs
     resources = FSProjectStateResources(plugin)
-    store_fs = add_store_fs(*resources.trackable_stores[0], synced=True)
+    store_fs = resources.tracked[0]
+    resources.tracked.exclude(pk=store_fs.pk).update(
+        last_sync_hash=None,
+        last_sync_revision=None)
     assert resources.synced.count() == 1
     # synced does not include any that are staged rm/merge
     store_fs.staged_for_merge = True
@@ -243,11 +243,13 @@ def test_fs_state_synced_staged(project0_dummy_plugin):
 
 
 @pytest.mark.django_db
-def test_fs_state_unsynced(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
+def test_fs_state_unsynced(fs_path_qs, dummyfs):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs
     resources = FSProjectStateResources(plugin)
-    for trackable in resources.trackable_stores:
-        add_store_fs(*trackable)
+    resources.tracked.update(
+        last_sync_hash=None,
+        last_sync_revision=None)
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -263,10 +265,13 @@ def test_fs_state_unsynced(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_unsynced_staged(project0_dummy_plugin):
-    plugin = project0_dummy_plugin
+def test_fs_state_unsynced_staged(dummyfs):
+    plugin = dummyfs
     resources = FSProjectStateResources(plugin)
-    store_fs = add_store_fs(*resources.trackable_stores[0])
+    store_fs = resources.tracked[0]
+    store_fs.last_sync_hash = None
+    store_fs.last_sync_revision = None
+    store_fs.save()
     assert resources.unsynced.count() == 1
     # unsynced does not include any that are staged rm/merge
     store_fs.staged_for_merge = True
@@ -282,11 +287,9 @@ def test_fs_state_unsynced_staged(project0_dummy_plugin):
 
 
 @pytest.mark.django_db
-def test_fs_state_tracked(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
-    resources = FSProjectStateResources(plugin)
-    for trackable in resources.trackable_stores:
-        add_store_fs(*trackable)
+def test_fs_state_tracked(fs_path_qs, dummyfs):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -302,11 +305,13 @@ def test_fs_state_tracked(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_tracked_paths(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
+def test_fs_state_tracked_paths(fs_path_qs, dummyfs):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs
     resources = FSProjectStateResources(plugin)
-    for trackable in resources.trackable_stores:
-        add_store_fs(*trackable)
+    resources.tracked.update(
+        last_sync_hash=None,
+        last_sync_revision=None)
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -319,22 +324,18 @@ def test_fs_state_tracked_paths(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_pootle_changed(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
+def test_fs_state_pootle_changed(fs_path_qs, dummyfs):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs
     resources = FSProjectStateResources(plugin)
-    for trackable in resources.trackable_stores:
-        add_store_fs(*trackable, synced=True)
     assert list(
         FSProjectStateResources(
             plugin,
             pootle_path=pootle_path,
             fs_path=fs_path).pootle_changed) == []
-    stores = Store.objects.filter(
-        translation_project__project=plugin.project)
-    for store in stores.all():
-        unit = store.units.first()
-        unit.target = "%s FOO!" % store.name
-        unit.save()
+    for store_fs in plugin.resources.tracked:
+        store_fs.last_sync_revision = store_fs.last_sync_revision - 1
+        store_fs.save()
     qs = StoreFS.objects.filter(project=plugin.project)
     if qfilter is False:
         qs = qs.none()
@@ -350,8 +351,9 @@ def test_fs_state_pootle_changed(fs_path_queries):
 
 
 @pytest.mark.django_db
-def test_fs_state_found_file_matches(fs_path_queries):
-    plugin, (qfilter, pootle_path, fs_path) = fs_path_queries
+def test_fs_state_found_file_matches(fs_path_qs, dummyfs):
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    plugin = dummyfs
     resources = FSProjectStateResources(
         plugin, pootle_path=pootle_path, fs_path=fs_path)
     stores = resources.resources.stores
