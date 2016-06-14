@@ -19,9 +19,6 @@ def project_fs(tmpdir, settings):
     project = Project.objects.get(code="project0")
     new_url = os.path.join(str(tmpdir), "__src__")
     project.config["pootle_fs.fs_url"] = new_url
-    project.config["pootle_fs.fs_type"] = "localfs"
-    project.config["pootle_fs.translation_paths"] = {
-        "default": "/<language_code>/<dir_path>/<filename>.<ext>"}
     plugin = FSPlugin(project)
     os.makedirs(new_url)
     settings.POOTLE_FS_PATH = str(tmpdir)
