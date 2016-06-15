@@ -8,7 +8,6 @@
 
 import os
 import shutil
-from fnmatch import fnmatch
 
 import pytest
 
@@ -146,10 +145,6 @@ def localfs_dummy_finder(no_fs_finder, localfs_env):
 
         def find(self):
             for pootle_path in pootle_paths:
-                fs_path = plugin.get_fs_path(pootle_path)
-                if self.path_filters:
-                    if not fnmatch(fs_path, self.path_filters[0]):
-                        continue
                 matched = dict()
                 (matched['language_code'],
                  __,
