@@ -861,7 +861,7 @@ msgstr "TMX"
 msgid "TBX"
 msgstr "TBX"
 
-# Formatet hedder "catkeys" og skal derfor ikke oversættes (http://translate-toolkit.readthedocs.org/en/latest/formats/catkeys.html)
+# Formatet hedder "catkeys" og skal derfor ikke oversættes (https://translate-toolkit.readthedocs.io/en/latest/formats/catkeys.html)
 #: apps/pootle_store/filetypes.py:48
 msgid "Haiku catkeys"
 msgstr "Haiku catkeys"
