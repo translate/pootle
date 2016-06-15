@@ -4,14 +4,14 @@ User Authentication and Authorization
 =====================================
 
 Pootle's backend for authenticating and authorizing users is provided by
-`django-allauth <http://django-allauth.readthedocs.org/>`_, and it comes
+`django-allauth <https://django-allauth.readthedocs.io/>`_, and it comes
 with a heavily-customized client-side user interface.
 
 Note that while Allauth supports local and social sign-in flows, not all
 of them have been equally-tested on Pootle, so your mileage might vary.
 
 At the same time, Allauth also provides `tons of settings
-<http://django-allauth.readthedocs.org/en/latest/configuration.html>`_
+<https://django-allauth.readthedocs.io/en/latest/configuration.html>`_
 which deployments can configure to their needs, although some of them
 clash directly with how our workflow has been designed. For instance,
 leaving ``UNIQUE_EMAIL = True`` becomes a hard requirement.
