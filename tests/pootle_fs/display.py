@@ -70,7 +70,7 @@ def test_fs_response_display_type_instance(localfs_pootle_untracked):
         % (section.title, "-" * len(section.title), section.description))
     for item in section.data:
         result += str(section.item_class(section, item))
-    assert str(section) == result
+    assert str(section) == "%s\n" % result
 
 
 @pytest.mark.django_db

@@ -84,7 +84,7 @@ def test_display_section_instance():
            "-" * len(section.title)))
     for item in section:
         result += str(item)
-    assert str(section) == result
+    assert str(section) == "%s\n" % result
 
 
 @pytest.mark.django
@@ -111,7 +111,7 @@ def test_display_section_info():
            section.description))
     for item in section:
         result += str(item)
-    assert str(section) == result
+    assert str(section) == "%s\n" % result
 
 
 @pytest.mark.django
@@ -137,7 +137,7 @@ def test_display_section_no_info():
            "-" * len(section.title)))
     for item in section:
         result += str(item)
-    assert str(section) == result
+    assert str(section) == "%s\n" % result
 
 
 @pytest.mark.django
