@@ -30,15 +30,15 @@ class SectionDisplay(object):
     def __str__(self):
         description = ""
         if self.description:
-            description = "\n%s" % self.description
+            description = "%s\n" % self.description
         result = (
-            "%s\n%s%s\n\n"
+            "%s\n%s\n%s\n"
             % (self.title,
                "-" * len(self.title),
                description))
         for item in self:
             result += str(item)
-        return result
+        return "%s\n" % result
 
     @property
     def data(self):
