@@ -175,37 +175,47 @@ function fixDropdowns() {
 }
 
 
+function formatResult(text, term) {
+  const match = text.toUpperCase().indexOf(term.toUpperCase());
+  if (match < 0) {
+    return _.escape(text);
+  }
+
+  const tl = term.length;
+  return [
+    _.escape(text.substring(0, match)),
+    '<span class="select2-match">',
+    _.escape(text.substring(match, match + tl)),
+    '</span>',
+    _.escape(text.substring(match + tl, text.length)),
+  ].join('');
+}
+
 function formatResource(path, container, query) {
   const $el = $(path.element);
-
   if ($el.prop('disabled')) {
     return '';
   }
 
-  let t = `/${path.text.trim()}`;
-
-  if (query.term !== '') {
-    const escapedTerm = query.term.replace(
-          /[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g,
-          '\\$&'
-        );
-    const regex = new RegExp(escapedTerm, 'gi');
-    t = t.replace(regex, '<span class="select2-match">$&</span>');
-  }
-
+  const t = `/${path.text.trim()}`;
   return [
     '<span class="', $el.data('icon'), '">',
     '<i class="icon-', $el.data('icon'), '"></i>',
-    '<span class="text">', _.escape(t), '</span>',
+    '<span class="text">', formatResult(t, query.term), '</span>',
     '</span>',
   ].join('');
 }
 
 
-function formatProject(path) {
+function formatProject(path, container, query) {
   const state = path.element[0].dataset.state;
 
-  return `<span class="text project-${state}">${_.escape(path.text)}</span>`;
+  return `<span class="text project-${state}">${formatResult(path.text, query.term)}</span>`;
+}
+
+
+function formatLanguage(path, container, query) {
+  return formatResult(path.text, query.term);
 }
 
 
@@ -227,6 +237,7 @@ const browser = {
     });
     makeNavDropdown(sel.language, {
       placeholder: gettext('All Languages'),
+      formatResult: formatLanguage,
     });
     makeNavDropdown(sel.project, {
       placeholder: gettext('All Projects'),
