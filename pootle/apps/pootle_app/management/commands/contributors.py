@@ -8,20 +8,15 @@
 
 import os
 from argparse import ArgumentTypeError
-from collections import Counter
 from dateutil.parser import parse as parse_datetime
+from email.utils import formataddr
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
 
-from django.contrib.auth import get_user_model
-
+from pootle.core.delegate import contributors
 from pootle.core.utils.timezone import make_aware
-from pootle_store.models import Unit
 
 from . import PootleCommand
-
-
-User = get_user_model()
 
 
 def get_aware_datetime(dt_string):
@@ -54,96 +49,51 @@ class Command(PootleCommand):
         )
         parser.add_argument(
             "--sort-by",
-            default="name",
-            choices=["name", "contributions"],
+            default="username",
+            choices=["username", "contributions"],
             dest="sort_by",
             help="Sort by specified item. Accepts: %(choices)s. "
                  "Default: %(default)s",
         )
-        parser.add_argument(
-            "--only-emails",
+        anon_or_mailmerge = parser.add_mutually_exclusive_group(required=False)
+        anon_or_mailmerge.add_argument(
+            "--include-anonymous",
             action="store_true",
-            dest="only_emails",
+            dest="include_anon",
+            help="Include anonymous contributions.",
+        )
+        anon_or_mailmerge.add_argument(
+            "--mailmerge",
+            action="store_true",
+            dest="mailmerge",
             help="Output only names and email addresses. Contribution counts "
                  "are excluded.",
         )
 
-    def _get_revision_from_since(self, since):
-        from pootle_statistics.models import Submission
+    @property
+    def contributors(self):
+        return contributors.get()
 
-        submissions_qs = Submission.objects.filter(creation_time__lt=since)
+    def contrib_kwargs(self, **options):
+        kwargs = {
+            k: v
+            for k, v
+            in options.items()
+            if k in ["projects", "languages", "include_anon",
+                     "since", "sort_by"]}
+        kwargs["project_codes"] = kwargs.pop("projects", None)
+        kwargs["language_codes"] = kwargs.pop("languages", None)
+        return kwargs
 
-        if self.projects:
-            submissions_qs = submissions_qs.filter(
-                translation_project__project__code__in=self.projects,
-            )
+    def handle(self, **options):
+        contributors = self.contributors(**self.contrib_kwargs(**options))
+        for username, user in contributors.items():
+            name = user["full_name"].strip() or username
 
-        if self.languages:
-            submissions_qs = submissions_qs.filter(
-                translation_project__language__code__in=self.languages,
-            )
-
-        submission = submissions_qs.last()
-
-        if submission is None:
-            return 0
-
-        return submission.unit.revision
-
-    def handle_all(self, **options):
-        system_user = User.objects.get_system_user()
-        units = Unit.objects.exclude(submitted_by=system_user) \
-                            .exclude(submitted_by=None)
-
-        if options["only_emails"]:
-            nobody_user = User.objects.get_nobody_user()
-            units = units.exclude(submitted_by=nobody_user)
-
-        if options["since"]:
-            units = units.filter(
-                revision__gte=self._get_revision_from_since(options["since"]),
-            )
-
-        if self.projects:
-            units = units.filter(
-                store__translation_project__project__code__in=self.projects,
-            )
-
-        if self.languages:
-            units = units.filter(
-                store__translation_project__language__code__in=self.languages,
-            )
-
-        contribs = Counter()
-        for v in units.values("submitted_by"):
-            contribs.update((v["submitted_by"], ))
-
-        self.list_contributions(contribs, options["sort_by"],
-                                options["only_emails"])
-
-    def list_contributions(self, contribs, sort_by, only_emails):
-        if sort_by == "name":
-            contributions = contribs.items()
-        else:
-            contributions = contribs.most_common()
-
-        out = []
-        for id, count in contributions:
-            user = User.objects.get(id=id)
-            name = user.display_name
-            if only_emails:
-                name = name.replace(",", "")
-            if user.email:
-                name += " <%s>" % (user.email)
-            elif only_emails:
-                continue
-            if not only_emails:
-                name = "%s (%i contributions)" % (name, count)
-            out.append(name)
-
-        if sort_by == "name":
-            # Sort users alphabetically
-            out = sorted(out)
-
-        for line in out:
-            self.stdout.write(line)
+            if options["mailmerge"]:
+                email = user["email"].strip()
+                if email:
+                    self.stdout.write(formataddr((name, email)))
+            else:
+                self.stdout.write("%s (%s contributions)" %
+                                  (name, user["contributions"]))
