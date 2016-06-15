@@ -19,5 +19,5 @@ class FetchCommand(FSAPISubCommand):
             '--force',
             action='store_true',
             dest='force',
-            help=("Stage conflicting files and stores to be updated with "
-                  "an exact copy of the file in the filesystem"))
+            help=("Stage conflicting stores in Pootle to be overwritten with "
+                  "the filesystem file"))

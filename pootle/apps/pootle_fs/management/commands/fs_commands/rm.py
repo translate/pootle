@@ -19,4 +19,5 @@ class RmCommand(FSAPISubCommand):
             "--force",
             action="store_true",
             dest="force",
-            help=("Stage files and stores that are conflicting for removal"))
+            help=("Stage for removal conflicting/untracked files and/or "
+                  "stores"))

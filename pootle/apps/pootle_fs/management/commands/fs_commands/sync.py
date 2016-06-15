@@ -10,5 +10,5 @@ from pootle_fs.management.commands import FSAPISubCommand
 
 
 class SyncCommand(FSAPISubCommand):
-    help = "Sync translations into Pootle from FS."
+    help = "Sync translations from FS into Pootle."
     api_method = "sync"

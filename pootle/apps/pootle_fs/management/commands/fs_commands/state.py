@@ -27,9 +27,8 @@ STATE_COLORMAP = {
 
 
 class StateCommand(FSAPISubCommand):
-    help = (
-        "Show state of tracked and untracked files and Stores for "
-        "specified project")
+    help = ("Show state of tracked and untracked files and Stores for the "
+            "specified project")
     api_method = "state"
 
     def add_arguments(self, parser):

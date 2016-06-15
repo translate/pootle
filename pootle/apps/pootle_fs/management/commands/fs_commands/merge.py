@@ -19,6 +19,6 @@ class MergeCommand(FSAPISubCommand):
             "--pootle-wins",
             action="store_true",
             dest="pootle_wins",
-            help=(
-                "In the event of conflicting units save the unit in Pootle "
-                "and make the unit in the file into a Pootle suggestion"))
+            help=("In the event of conflict, translation in Pootle is kept "
+                  "and translation on disk is converted into a new suggestion "
+                  "in Pootle"))

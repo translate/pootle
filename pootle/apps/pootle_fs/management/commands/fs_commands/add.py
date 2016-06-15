@@ -19,5 +19,5 @@ class AddCommand(FSAPISubCommand):
             "--force",
             action="store_true",
             dest="force",
-            help=("Stage conflicting files and stores to be updated with "
-                  "an exact copy of the Pootle store"))
+            help=("Stage conflicting files on the filesystem to be "
+                  "overwritten with the Pootle store"))
