@@ -111,7 +111,6 @@ def test_fs_response_display_item_fs_untracked(localfs_fs_untracked):
     assert str(item_display) == result
 
 
-@pytest.mark.django
 def test_fs_response_display_item_existence(fs_responses, fs_states):
 
     class DummyResponseItem(object):
@@ -220,7 +219,6 @@ def test_fs_display_state_item_instance_fs_untracked(localfs_fs_untracked):
     assert item_display.tracked is False
 
 
-@pytest.mark.django
 def test_fs_display_state_item_existence(fs_states):
 
     class DummyStateItem(object):

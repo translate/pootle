@@ -18,7 +18,6 @@ class DummyContext(object):
         return "<DummyContext object>"
 
 
-@pytest.mark.django
 def test_state_instance():
 
     context = DummyContext()
@@ -36,7 +35,6 @@ def test_state_instance():
         "<State(<DummyContext object>): Nothing to report>")
 
 
-@pytest.mark.django
 def test_state_states():
     """By default the State class will automagically find any
     methods that start with `state_` and create a list of states
@@ -91,7 +89,6 @@ def test_state_states():
     assert state["foo"][0].state_type == "foo"
 
 
-@pytest.mark.django
 def test_state_all_states():
 
     class ContextualState(State):
@@ -125,7 +122,6 @@ def test_state_all_states():
     assert len(state["baz"]) == 3
 
 
-@pytest.mark.django
 def test_state_properties():
 
     class ContextualState(State):
@@ -148,7 +144,6 @@ def test_state_properties():
     assert state["bar"][1].kwargs.items() == [("bar2", 2)]
 
 
-@pytest.mark.django
 def test_state_item_kwargs():
 
     class ContextualState(State):
@@ -178,7 +173,6 @@ def test_state_item_kwargs():
     assert not hasattr(state["bar"][1], "bar3")
 
 
-@pytest.mark.django
 def test_state_bad():
     # requires a context
     with pytest.raises(TypeError):
@@ -202,7 +196,6 @@ def test_state_bad():
         ContextualState(DummyContext())
 
 
-@pytest.mark.django
 def test_state_item_instance():
 
     class DummyContext(object):
@@ -220,7 +213,6 @@ def test_state_item_instance():
     assert item == ItemState(state, "foo")
 
 
-@pytest.mark.django
 def test_state_kwargs():
 
     class ContextualState(State):
@@ -236,7 +228,6 @@ def test_state_kwargs():
     state["foo"][0].kwarg2 == "kw2"
 
 
-@pytest.mark.django
 def test_state_item_bad():
 
     class ContextualState(State):
@@ -256,7 +247,6 @@ def test_state_item_bad():
     assert ItemState(ContextualState(DummyContext()), "foo")
 
 
-@pytest.mark.django
 def test_state_reload():
 
     class ContextualState(State):

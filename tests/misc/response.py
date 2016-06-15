@@ -18,7 +18,6 @@ class DummyContext(object):
         return "<DummyContext object>"
 
 
-@pytest.mark.django
 def test_response_instance():
     context = DummyContext()
     resp = Response(context)
@@ -34,7 +33,6 @@ def test_response_instance():
         resp["DOES_NOT_EXIST"]
 
 
-@pytest.mark.django
 def test_response_completed():
     resp = Response(DummyContext())
     resp.add("foo_response", completed=True)
@@ -73,7 +71,6 @@ def test_response_completed():
     assert "FAIL" not in str(resp)
 
 
-@pytest.mark.django
 def test_response_failed():
     resp = Response(DummyContext())
     resp.add("foo_response", complete=False)
@@ -113,7 +110,6 @@ def test_response_failed():
     assert resp.__responses__["other_response"] == []
 
 
-@pytest.mark.django
 def test_response_kwargs():
     resp = Response(DummyContext())
     resp.add("foo_response", foo="foo1", bar="bar1")
@@ -134,7 +130,6 @@ def test_response_kwargs():
     assert "'bar': 'bar1'" in str(resp["foo_response"][0])
 
 
-@pytest.mark.django
 def test_response_msg():
     resp = Response(DummyContext())
     resp.add("foo_response", msg="Response message")

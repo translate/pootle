@@ -6,15 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import pytest
-
 from pootle.core.plugin import provider
 from pootle.core.plugin.delegate import Provider
 from pootle.core.plugin.exceptions import StopProviding
 from pootle.core.plugin.results import GatheredDict, GatheredList
 
 
-@pytest.mark.django
 def test_provider():
 
     provider_test = Provider(providing_args=["foo"])
@@ -28,7 +25,6 @@ def test_provider():
     assert results["result"] == 2
 
 
-@pytest.mark.django
 def test_no_providers():
 
     provider_test = Provider(providing_args=["foo"])
@@ -38,7 +34,6 @@ def test_no_providers():
     assert results.keys() == []
 
 
-@pytest.mark.django
 def test_provider_with_arg():
 
     provider_test = Provider(providing_args=["foo"])
@@ -52,7 +47,6 @@ def test_provider_with_arg():
     assert results["result"] == 3
 
 
-@pytest.mark.django
 def test_provider_with_sender():
 
     provider_test = Provider(providing_args=["foo"])
@@ -66,7 +60,6 @@ def test_provider_with_sender():
     assert results["result"] == "BOOM"
 
 
-@pytest.mark.django
 def test_provider_with_sender_int():
 
     provider_test = Provider(providing_args=["foo"])
@@ -80,7 +73,6 @@ def test_provider_with_sender_int():
     assert results["result"] == 21
 
 
-@pytest.mark.django
 def test_provider_with_sender_multi():
 
     provider_test = Provider(providing_args=["foo"])
@@ -100,7 +92,6 @@ def test_provider_with_sender_multi():
     assert results["result"] == 21
 
 
-@pytest.mark.django
 def test_provider_handle_multi_decorators():
 
     provider_test = Provider(providing_args=["foo"])
@@ -119,7 +110,6 @@ def test_provider_handle_multi_decorators():
     assert results["result"] == "BOOM: 2"
 
 
-@pytest.mark.django
 def test_provider_handle_multi_providers():
 
     provider_test = Provider()
@@ -138,7 +128,6 @@ def test_provider_handle_multi_providers():
     assert results["result2"] == 2
 
 
-@pytest.mark.django
 def test_provider_handle_null_provider():
 
     provider_test = Provider()
@@ -162,7 +151,6 @@ def test_provider_handle_null_provider():
     assert results["result3"] == 3
 
 
-@pytest.mark.django
 def test_provider_handle_bad_providers():
 
     provider_test = Provider()
@@ -191,7 +179,6 @@ def test_provider_handle_bad_providers():
     assert results["result4"] == 4
 
 
-@pytest.mark.django
 def test_provider_handle_stop_providing():
 
     provider_test = Provider()
@@ -215,7 +202,6 @@ def test_provider_handle_stop_providing():
     assert "result3" not in results
 
 
-@pytest.mark.django
 def test_provider_list_results():
 
     provider_test = Provider(result_class=GatheredList)

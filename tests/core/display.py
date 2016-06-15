@@ -31,7 +31,6 @@ class DummyDisplayContext(object):
         return self.data[k]
 
 
-@pytest.mark.django
 def test_display_instance():
     context = DummyDisplayContext()
     display = Display(context)
@@ -50,7 +49,6 @@ def test_display_instance():
     assert str(display) == "%s\n" % result
 
 
-@pytest.mark.django
 def test_display_no_results():
 
     class DisplayNoResults(Display):
@@ -61,7 +59,6 @@ def test_display_no_results():
     assert str(display) == "%s\n" % DisplayNoResults.no_results_msg
 
 
-@pytest.mark.django
 def test_display_section_instance():
     context = DummyDisplayContext()
     display = Display(context)
@@ -87,7 +84,6 @@ def test_display_section_instance():
     assert str(section) == "%s\n" % result
 
 
-@pytest.mark.django
 def test_display_section_info():
     context = DummyDisplayContext()
 
@@ -114,7 +110,6 @@ def test_display_section_info():
     assert str(section) == "%s\n" % result
 
 
-@pytest.mark.django
 def test_display_section_no_info():
     context = DummyDisplayContext()
 
@@ -140,7 +135,6 @@ def test_display_section_no_info():
     assert str(section) == "%s\n" % result
 
 
-@pytest.mark.django
 def test_display_section_bad_items_none():
     display = Display(DummyDisplayContext())
     section = SectionDisplay(display, "section2")
@@ -151,7 +145,6 @@ def test_display_section_bad_items_none():
         assert section.items
 
 
-@pytest.mark.django
 def test_display_section_bad_items_str():
     display = Display(dict(section1="FOO"))
     section = SectionDisplay(display, "section1")
@@ -160,7 +153,6 @@ def test_display_section_bad_items_str():
         assert section.items
 
 
-@pytest.mark.django
 def test_display_item_instance():
     display = Display(DummyDisplayContext())
     section = SectionDisplay(display, "section1")

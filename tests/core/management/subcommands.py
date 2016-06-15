@@ -37,7 +37,6 @@ def test_command_with_subcommands_instance(capsys, command_caller):
     assert out == u'Did a foo\n'
 
 
-@pytest.mark.django
 def test_command_with_subcommands_help(capsys, command_calls):
 
     class FooCommand(CommandWithSubcommands):
@@ -83,7 +82,6 @@ def test_command_with_subcommands_sub(capsys, command_calls):
     assert "{bar}" in out
 
 
-@pytest.mark.django
 def test_command_with_subcommands_many_subs(capsys, command_calls):
 
     class FooCommand(CommandWithSubcommands):
@@ -183,7 +181,6 @@ def test_command_with_subcommands_sub_args(capsys, command_calls):
     assert out == "Bar called with fooarg: BAR\n"
 
 
-@pytest.mark.django
 def test_command_with_subcommands_bad_args(capsys):
 
     class FooCommand(CommandWithSubcommands):
@@ -197,7 +194,6 @@ def test_command_with_subcommands_bad_args(capsys):
     assert "unrecognized arguments: bad args" in err
 
 
-@pytest.mark.django
 def test_command_with_subcommands_bad_exec(capsys):
 
     class RandomError(Exception):
@@ -213,7 +209,6 @@ def test_command_with_subcommands_bad_exec(capsys):
         foo_command.run_from_argv(["", "foo"])
 
 
-@pytest.mark.django
 def test_command_with_subcommands_bad_syscheck(capsys):
 
     class FooCommand(CommandWithSubcommands):
@@ -228,7 +223,6 @@ def test_command_with_subcommands_bad_syscheck(capsys):
     assert err == "BAD SYSTEM\n"
 
 
-@pytest.mark.django
 def test_command_with_subcommands_bad_commanderror(capsys):
 
     class FooCommand(CommandWithSubcommands):
