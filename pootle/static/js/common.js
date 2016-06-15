@@ -113,7 +113,9 @@ PTL.common = {
       traditional: true,
       crossDomain: false,
       beforeSend(xhr, settings) {
-        if (!/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
+        // Set CSRF token only for local requests.
+        if (!this.crossDomain &&
+            !/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type)) {
           xhr.setRequestHeader('X-CSRFToken', cookie('csrftoken'));
         }
       },
