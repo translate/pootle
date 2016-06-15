@@ -81,20 +81,24 @@
         </div>
       {% endif %}
       <div class="summary-3-col">
-        <h3 class="top">{% trans "Updates" %}</h3>
-        <div class="bd">
-          <div class="graph"></div>
-          <div class="action-wrapper">
-            <label>{% trans "Last action:" %}</label>
-            <div id="js-last-updated" class="last-updated"></div>
+        <div id="js-last-updated-wrapper">
+          <h3 class="top">{% trans "Updates" %}</h3>
+          <div class="bd">
+            <div class="graph"></div>
+            <div class="action-wrapper">
+              <label>{% trans "Last action:" %}</label>
+              <div id="js-last-updated" class="last-updated"></div>
+            </div>
           </div>
         </div>
-        <h3>{% trans "Translations" %}</h3>
-        <div class="bd">
-          <div class="graph"></div>
-          <div class="action-wrapper">
-            <label>{% trans "Last action:" %}</label>
-            <div id="js-last-action" class="last-action"></div>
+        <div id="js-last-action-wrapper">
+          <h3>{% trans "Translations" %}</h3>
+          <div class="bd">
+            <div class="graph"></div>
+            <div class="action-wrapper">
+              <label>{% trans "Last action:" %}</label>
+              <div id="js-last-action" class="last-action"></div>
+            </div>
           </div>
         </div>
       </div>
