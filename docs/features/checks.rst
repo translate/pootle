@@ -13,15 +13,22 @@ Pootle administrators should indicate the correct project type (GNOME, KDE,
 Mozilla, etc.) in the administration pages. This will improve the accuracy of
 the quality checks.
 
-Critical checks are prominently displayed through the browsing UI. Any extra
-failing checks can be accessed by clicking the |icon:icon-expand-stats| button
-located below the navigation breadcrumbs. Clicking on the name of a test
-will step you through the translations that fail that test.
+Critical checks are prominently displayed through the browsing UI.
+
+.. image:: ../_static/critical_errors.png
+
+Any extra failing checks can be accessed by clicking the
+|icon:icon-expand-stats| button located below the navigation breadcrumbs.
+Clicking on the name of a test will step you through the translations that fail
+that test.
 
 While in the translation editor, submissions resulting in critical failing
 checks will be immediately reported, preventing you from automatically
-continuing until the issues have been resolved or muted as false
-positives by using the mute |icon:icon-block| button.
+continuing until the issues have been resolved or muted as false positives by
+using the mute |icon:icon-block| button. Non-crtical errors flag potential
+problems but can be ignored or muted as needed.
+
+.. image:: ../_static/failing-checks.png
 
 To understand the meaning of each test, Pootle displays the failing tests
 right on top of the submission button, with a link to the online
