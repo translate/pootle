@@ -336,8 +336,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         :cls:`~pootle_store.models.Store` resource paths available for
         this :cls:`~pootle_project.models.Project` across all languages.
         """
-        from virtualfolder.models import VirtualFolderTreeItem
-
         cache_key = make_method_key(self, 'resources', self.code)
         resources = cache.get(cache_key, None)
         if resources is not None:
@@ -347,20 +345,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             translation_project__project__pk=self.pk)
         dirs = Directory.objects.live().order_by().filter(
             pootle_path__regex=r"^/[^/]*/%s/" % self.code)
-        vftis = (
-            VirtualFolderTreeItem.objects.filter(
-                vfolder__is_public=True,
-                pootle_path__regex=r"^/[^/]*/%s/" % self.code)
-            if 'virtualfolder' in settings.INSTALLED_APPS
-            else [])
         resources = sorted(
             {to_tp_relative_path(pootle_path)
              for pootle_path
              in (set(stores.values_list("pootle_path", flat=True))
-                 | set(dirs.values_list("pootle_path", flat=True))
-                 | set(vftis.values_list("pootle_path", flat=True)
-                       if vftis
-                       else []))},
+                 | set(dirs.values_list("pootle_path", flat=True)))},
             key=get_path_sortkey)
         cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
         return resources
