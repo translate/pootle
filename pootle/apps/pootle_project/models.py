@@ -19,7 +19,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
-from django.db.models.signals import post_delete, post_save, pre_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
@@ -558,27 +558,6 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
         return project.code
 
     # # # /TreeItem
-
-
-if 'virtualfolder' in settings.INSTALLED_APPS:
-    from virtualfolder.signals import vfolder_post_save
-
-    @receiver([vfolder_post_save, pre_delete])
-    def invalidate_resources_cache_for_vfolders(sender, instance, **kwargs):
-        if instance.__class__.__name__ == 'VirtualFolder':
-            try:
-                # In case this is vfolder_post_save.
-                affected_projects = kwargs['projects']
-            except KeyError:
-                # In case this is pre_delete.
-                affected_projects = Project.objects.filter(
-                    translationproject__stores__unit__vfolders=instance
-                ).distinct().values_list('code', flat=True)
-
-            cache.delete_many([
-                make_method_key('Project', 'resources', proj)
-                for proj in affected_projects
-            ])
 
 
 @receiver([post_delete, post_save])
