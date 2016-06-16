@@ -413,7 +413,6 @@ intersphinx_mapping = {
     'django': ('https://docs.djangoproject.com/en/%s' % django_ver,
                'https://docs.djangoproject.com/en/%s/_objects' % django_ver),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
-    'tastypie': ('https://django-tastypie.readthedocs.io/en/latest/', None),
 }
 
 
