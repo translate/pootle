@@ -1448,7 +1448,7 @@ PTL.editor = {
     let { unitGroups } = data;
     let prependUnits = false;
 
-    if (!unitGroups.length) {
+    if (!unitGroups.length && !this.units.uIds.length) {
       this.noResults();
       return false;
     }
