@@ -37,7 +37,7 @@ If a job fails it needs to be investigated. In most cases a traceback will
 indicate why the job failed.
 
 The simplest way to work with queues and jobs is to use `rq-dashboard
-<https://github.com/nvie/rq-dashboard>`_, though you likely don't want to
+<https://github.com/ducu/rq-dashboard>`_, though you likely don't want to
 deploy that on a production server.  With this you can see the jobs in the
 queue, you can check the tracebacks and you can retry failed jobs.
 
