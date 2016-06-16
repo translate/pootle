@@ -14,7 +14,7 @@ import operator
 from django.forms import ValidationError
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db.models import ObjectDoesNotExist, ProtectedError, Q
@@ -445,10 +445,15 @@ def server_error(request):
 
 class PootleAdminView(DetailView):
 
-    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    @set_permissions
+    @requires_permission("administrate")
     def dispatch(self, request, *args, **kwargs):
         return super(
             PootleAdminView, self).dispatch(request, *args, **kwargs)
+
+    @property
+    def permission_context(self):
+        return self.get_object().directory
 
     def post(self, *args, **kwargs):
         return self.get(*args, **kwargs)
