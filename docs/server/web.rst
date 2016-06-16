@@ -16,7 +16,7 @@ Running Pootle and RQ workers as a Service
 If you plan to run Pootle and/or RQ workers as system services, you can use
 whatever software you are familiar with for that purpose. For example
 `Supervisor <http://supervisord.org/>`_, `Circus
-<http://circus.readthedocs.org/en/latest/>`_ or `daemontools
+<https://circus.readthedocs.io/en/latest/>`_ or `daemontools
 <http://cr.yp.to/daemontools.html>`_ might fit your needs.
 
 

@@ -10,7 +10,7 @@ Testing
 
 Pootle tests use the full-featured `pytest testing tool
 <http://pytest.org/latest/>`_ and its integration with Django via
-`pytest-django <http://pytest-django.readthedocs.org/en/latest/>`_.
+`pytest-django <https://pytest-django.readthedocs.io/en/latest/>`_.
 
 The entire test suite can be executed from a checkout by running ``make
 test``. This will create a new virtual environment, install the required
@@ -75,7 +75,7 @@ DB access. At the same time, pytest-django encourages you to follow these
 best practices and disables DB access by default. If your test needs DB
 access, you need to explicitly request it by using the
 `@`pytest.mark.django_db marker
-<http://pytest-django.readthedocs.org/en/latest/helpers.html#pytest-mark-django-db-request-database-access>`_.
+<https://pytest-django.readthedocs.io/en/latest/helpers.html#pytest-mark-django-db-request-database-access>`_.
 
 While testing views/integration tests can also help catch regressions,
 they're slower to run and end up in less useful failures, so better to
@@ -102,4 +102,4 @@ Note that these might depend on other fixtures too.
 For now these model fixtures require DB access, but since that's not what
 every single test might need, we might want to combine this with other
 more complete solutions like `factory_boy
-<https://factoryboy.readthedocs.org/en/latest/>`_ in the future.
+<https://factoryboy.readthedocs.io/en/latest/>`_ in the future.

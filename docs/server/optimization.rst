@@ -51,9 +51,9 @@ Speed-ups and Extras
 `iso-codes <https://packages.debian.org/unstable/source/iso-codes>`_
   Enables translated language and country names.
 
-`raven <http://raven.readthedocs.org/en/latest/>`_
+`raven <https://raven.readthedocs.io/en/latest/>`_
   Enables logging server exceptions to a `Sentry server
-  <http://sentry.readthedocs.org/en/latest/>`_. If installed and configured,
+  <https://sentry.readthedocs.io/en/latest/>`_. If installed and configured,
   Pootle will automatically use the raven client.
 
 

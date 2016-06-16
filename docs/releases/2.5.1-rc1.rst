@@ -56,7 +56,7 @@ Important server admin changes
   - The `updatedb
     <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.1/server/commands.html#updatedb>`_
     management command has been phased out in favor of South's own
-    `migrate <http://south.readthedocs.org/en/latest/commands.html#migrate>`_
+    `migrate <https://south.readthedocs.io/en/latest/commands.html#migrate>`_
     command.
   - Post schema upgrade actions have been moved to the `upgrade
     <http://docs.translatehouse.org/projects/pootle/en/stable-2.5.1/server/commands.html#upgrade>`_

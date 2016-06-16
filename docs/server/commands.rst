@@ -1046,7 +1046,7 @@ servers that can be reverse proxied to a proper HTTP web server such as nginx
 or lighttpd.
 
 There are many more options such as `uWSGI
-<http://uwsgi-docs.readthedocs.org/en/latest/WSGIquickstart.html>`_, `Gunicorn
+<https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html>`_, `Gunicorn
 <http://gunicorn.org/>`_, etc.
 
 
@@ -1144,6 +1144,6 @@ from a bash script that creates the correct environment for your command to run
 from.  Call this script then from cron. It shouldn't be necessary to specify
 the settings file for Pootle — it should automatically be detected.
 
-.. _django-assets: http://django-assets.readthedocs.org/en/latest/
+.. _django-assets: https://django-assets.readthedocs.io/en/latest/
 
 .. _webassets: http://elsdoerfer.name/docs/webassets/

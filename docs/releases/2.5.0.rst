@@ -129,7 +129,7 @@ Other important changes
   previous version, you will need to replace the occurrences of *static* with
   *assets* within your web server configuration.
 - Static files are bundled into assets by using `django-assets
-  <http://django-assets.readthedocs.org/en/latest/>`_.
+  <https://django-assets.readthedocs.io/en/latest/>`_.
 - Several features from translation projects have been merged into the
   *Overview* tab, including quality check failures and directory- and
   file-level actions. As a consequence the *Review* tab has been dropped and
