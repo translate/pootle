@@ -4,7 +4,7 @@ Pootle 2.1.2 Released including security fix
 *Released on 15 Nov 2010*
 
 
-http://sourceforge.net/projects/translate/files/Pootle/2.1.2/Pootle-2.1.2.tar.bz2
+https://sourceforge.net/projects/translate/files/Pootle/2.1.2/Pootle-2.1.2.tar.bz2
 
 This release includes an important security fix to a cross site scripting
 vulnerability in the translate page. All users are encouraged to upgrade
@@ -64,7 +64,7 @@ This work was made possible by many volunteers and our funders:
 * `More information`_
 
 .. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
-.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.2/
+.. _Download: https://sourceforge.net/projects/translate/files/Pootle/2.1.2/
 .. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
 .. _Bugs: https://github.com/translate/pootle/issues
 .. _More information: http://pootle.translatehouse.org

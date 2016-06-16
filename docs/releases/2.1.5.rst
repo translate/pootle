@@ -4,7 +4,7 @@ Pootle 2.1.5 released
 *Released on 18 Jan 2011*
 
 A quick bug fix release to celebrate the new Year. Please welcome `Pootle 2.1.5
-<http://sourceforge.net/projects/translate/files/Pootle/2.1.5/>`_!
+<https://sourceforge.net/projects/translate/files/Pootle/2.1.5/>`_!
 
 Pootle is a web based system for translation and translation management.
 
@@ -38,7 +38,7 @@ Enjoy it,
 The Translate Team
 
 .. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
-.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.5/
+.. _Download: https://sourceforge.net/projects/translate/files/Pootle/2.1.5/
 .. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
 .. _Bugs: https://github.com/translate/pootle/issues
 .. _More information: http://pootle.translatehouse.org

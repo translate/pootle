@@ -6,7 +6,7 @@ Pootle 2.1.1 Released including security fix
 With the coming of spring we thought it's a good time to make the first
 bug fix release of the exciting new Pootle. We bring you Pootle 2.1.1
 get it while it is blooming from
-http://sourceforge.net/projects/translate/files/Pootle/2.1.1/
+https://sourceforge.net/projects/translate/files/Pootle/2.1.1/
 
 Pootle is a web based system for translation and translation
 management.
@@ -20,7 +20,7 @@ Note that database migration depends on Django 1.2 or later.
 
 As an added bonus we added database migration to the 2.0 branch and
 quietly slipped in the last bug fix release for that series
-http://sourceforge.net/projects/translate/files/Pootle/2.0.6/ we made
+https://sourceforge.net/projects/translate/files/Pootle/2.0.6/ we made
 this bonus release so users still on the 2.0 branch using sqlite can
 migrate databases before they upgrade to 2.1 since the upgrade process
 is slow and the database size under 2.1 is considerably larger.
@@ -89,7 +89,7 @@ This work was made possible by many volunteers and our funders:
 * `More information`_
 
 .. _Feature list: http://docs.translatehouse.org/projects/pootle/en/latest/features/index.html
-.. _Download: http://sourceforge.net/projects/translate/files/Pootle/2.1.1/
+.. _Download: https://sourceforge.net/projects/translate/files/Pootle/2.1.1/
 .. _Installation instructions: http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html
 .. _Bugs: https://github.com/translate/pootle/issues
 .. _More information: http://pootle.translatehouse.org
