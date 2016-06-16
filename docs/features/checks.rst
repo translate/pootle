@@ -13,15 +13,15 @@ Pootle administrators should indicate the correct project type (GNOME, KDE,
 Mozilla, etc.) in the administration pages. This will improve the accuracy of
 the quality checks.
 
-Critical checks are prominently displayed through the browsing UI. Any
-extra failing checks can be accessed by clicking the ``+`` button located
-right below the navigation breadcrumbs. Clicking on the name of a test
-will step you through the translations that fail the test.
+Critical checks are prominently displayed through the browsing UI. Any extra
+failing checks can be accessed by clicking the |icon:icon-expand-stats| button
+located below the navigation breadcrumbs. Clicking on the name of a test
+will step you through the translations that fail that test.
 
 While in the translation editor, submissions resulting in critical failing
 checks will be immediately reported, preventing you from automatically
-continuing until the issues have been resolved or disregarded as false
-positives.
+continuing until the issues have been resolved or muted as false
+positives by using the mute |icon:icon-block| button.
 
 To understand the meaning of each test, Pootle displays the failing tests
 right on top of the submission button, with a link to the online
@@ -35,9 +35,10 @@ Overriding Quality Checks
 -------------------------
 
 It is possible to override the quality check if the translation is correct.
-Reviewers are able to remove the check for a certain string to indicate that
-the string is correctly translated. This avoids having to recheck the same
-checks multiple times.
+Reviewers are able to remove the check for a certain string, by clicking on the
+|icon:icon-block| button, to indicate that the string is correctly translated.
+This avoids having to recheck the same checks multiple times.  You can off
+course unmute the test using the |icon:icon-block-muted| button.
 
-If the translation is changed, this information is discarded to ensure that the
-new translation is tested again for any possible issues.
+If the translation is changed, the override information is discarded to ensure
+that the new translation is tested again for any possible issues.
