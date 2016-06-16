@@ -16,6 +16,7 @@ from pytest_pootle.factories import LanguageDBFactory
 
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
+from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
@@ -119,14 +120,27 @@ def test_admin_view_projects(client, request_users):
     response = _admin_view_get(client, project)
 
     if not user.is_superuser:
-        assert response.status_code == 302
-        request = response.wsgi_request
-        redirect = (
-            "http://testserver%s?next=%s"
-            % (reverse("account_login"),
-               request.get_full_path()))
-        assert response.get("location") == redirect
+        assert response.status_code == 403
         return
+    _test_admin_view(response, project)
+
+
+@pytest.mark.django_db
+def test_admin_view_projects_manager(client, member, administrate):
+    project = Project.objects.get(code="project0")
+    criteria = {
+        'user': member,
+        'directory': project.directory}
+    ps = PermissionSet.objects.create(**criteria)
+    ps.positive_permissions = [administrate]
+    client.login(
+        username=member.username,
+        password=TEST_USERS[member.username]["password"])
+    response = _admin_view_get(client, project)
+    assert response.status_code == 200
+    _test_admin_view(response, project)
+    response = _admin_view_post(client, project)
+    assert response.status_code == 200
     _test_admin_view(response, project)
 
 
@@ -143,13 +157,7 @@ def test_admin_view_projects_post(client, request_users):
     if user.is_superuser:
         return
     response = _admin_view_post(client, project)
-    request = response.wsgi_request
-    assert response.status_code == 302
-    redirect = (
-        "http://testserver%s?next=%s"
-        % (reverse("account_login"),
-           request.get_full_path()))
-    assert response.get("location") == redirect
+    assert response.status_code == 403
 
 
 @pytest.mark.django_db
