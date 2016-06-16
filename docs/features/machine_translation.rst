@@ -57,7 +57,7 @@ Supported Services:
 Google Translate is widely used and supports a number of `languages`_.
 It is a `paid service`_ requiring an account and API key.
 
-.. _languages:  https://cloud.google.com/translate/v2/using_rest#language-params
+.. _languages:  https://cloud.google.com/translate/v2/translate-reference#supported_languages
 .. _paid service: https://cloud.google.com/translate/v2/pricing
 
 `Yandex.Translate`_ is the free alternative to Google.
