@@ -383,7 +383,7 @@ can be used.
   settings nor using the language picker. Pootle UI now uses the preferred
   language as specified by user's browser. See `Setting language preferences in
   a browse
-  <http://www.w3.org/International/questions/qa-lang-priorities.en.php>`_ for
+  <https://www.w3.org/International/questions/qa-lang-priorities.en>`_ for
   more information. The ability to specify Pootle UI language will be added
   back (:issue:`4230`).
 

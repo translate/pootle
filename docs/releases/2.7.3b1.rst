@@ -34,7 +34,7 @@ release notes at the time:
   their preferred UI language on Pootle. Pootle now uses the preferred
   languages as reported by the user's browser and falls back to English if the
   specified languages can't be used. See `Setting language preferences in a
-  browse <http://www.w3.org/International/questions/qa-lang-priorities.en.php>`_
+  browse <https://www.w3.org/International/questions/qa-lang-priorities.en>`_
   for more information. The ability to specify Pootle UI language will be added
   back (:issue:`4230`).
 

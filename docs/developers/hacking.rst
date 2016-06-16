@@ -34,7 +34,7 @@ Setting up the development environment
 --------------------------------------
 
 The minimum software packages you need for setting up a development environment
-include `git <http://git-scm.com/>`_ and a `Python interpreter
+include `git <https://git-scm.com/>`_ and a `Python interpreter
 <https://www.python.org>`_ along with the `pip installer
 <https://pip.pypa.io/en/stable/>`_. Consult the specifics for your operating
 system in order to get each package installed successfully.
@@ -91,7 +91,7 @@ Replace ``<env-name>`` with a meaningful name that describes the environment
 you are creating. :command:`mkvirtualenv` accepts any options that
 :command:`virtualenv` accepts. We could for example specify to use the Python
 2.6 interpreter by passing the `-p python2.6
-<https://virtualenv.pypa.io/en/latest/reference.html#cmdoption--python>`_
+<https://virtualenv.pypa.io/en/latest/reference/#cmdoption--python>`_
 option.
 
 .. note:: After running :command:`mkvirtualenv`, the newly created environment
