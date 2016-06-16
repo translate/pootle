@@ -315,3 +315,49 @@ def test_apiview_search(rf):
 
     assert response.status_code == 200
     assert len(response_data['models']) == 1
+
+
+@pytest.mark.django_db
+def test_view_gathered_context_data(rf, member):
+
+    from pootle.core.views import PootleDetailView
+    from pootle_project.models import Project
+    from pootle.core.delegate import context_data
+    from pootle.core.plugin import provider
+
+    class DummyView(PootleDetailView):
+
+        model = Project
+
+        def get_object(self):
+            return Project.objects.get(code="project0")
+
+        def get_context_data(self, *args, **kwargs):
+            return dict(foo="bar")
+
+        @property
+        def permission_context(self):
+            return self.get_object().directory
+
+    request = rf.get("foo")
+    request.user = member
+    view = DummyView.as_view()
+    response = view(request)
+    assert response.context_data == dict(foo="bar")
+
+    @provider(context_data, sender=DummyView)
+    def provide_context_data(sender, **kwargs):
+        return dict(
+            foo2="bar2",
+            sender=sender,
+            context=kwargs["context"],
+            view=kwargs["view"])
+
+    view = DummyView.as_view()
+    response = view(request)
+    assert response.context_data.pop("sender") == DummyView
+    assert response.context_data.pop("context") is response.context_data
+    assert isinstance(response.context_data.pop("view"), DummyView)
+    assert sorted(response.context_data.items()) == [
+        ("foo", "bar"), ("foo2", "bar2")]
+    context_data.receivers = []
