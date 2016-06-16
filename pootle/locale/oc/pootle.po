@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-06 19:33+0000\n"
+"PO-Revision-Date: 2016-06-05 15:50+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: Tot en òc (totenoc.eu)\n"
 "Language: oc\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1462563226.000000\n"
+"X-POOTLE-MTIME: 1465141819.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -89,15 +89,15 @@ msgstr "Lengas d'origina alternativas"
 
 #: apps/accounts/models.py:94 templates/admin/detailed_reports.html:156
 msgid "Rate"
-msgstr ""
+msgstr "Taus"
 
 #: apps/accounts/models.py:95 apps/reports/forms.py:31
 msgid "Review Rate"
-msgstr ""
+msgstr "Taus de revision"
 
 #: apps/accounts/models.py:96 apps/reports/forms.py:36
 msgid "Hourly Rate"
-msgstr ""
+msgstr "Taus orari"
 
 #: apps/accounts/models.py:97
 msgid "Score"
@@ -214,11 +214,11 @@ msgstr ""
 
 #: apps/import_export/utils.py:65
 msgid "There was an error uploading your file"
-msgstr "Une error s'es produita pendent lo mandadís del fichièr"
+msgstr "Una error s'es produita pendent lo mandadís del fichièr"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
-msgstr "Lo còde de lenga seguís pas la norma ISO"
+msgstr "Lo còdi de lenga seguís pas la nòrma ISO"
 
 #: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:194
 msgid "Source Language"
@@ -227,7 +227,7 @@ msgstr "Lenga d'origina"
 #: apps/pootle_app/forms.py:94
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
-msgstr "Impossible d'utilizar «%s» coma còde de projècte"
+msgstr "Impossible d'utilizar «%s» coma còdi de projècte"
 
 #: apps/pootle_app/forms.py:101 custom/templates/profiles/_tabs.html:5
 msgid "Password"
@@ -303,7 +303,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:162
 msgid "Code"
-msgstr "Còde"
+msgstr "Còdi"
 
 #: apps/pootle_language/models.py:68
 msgid ""
@@ -311,8 +311,8 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"Còde ISO 639 de la lenga, eventualament seguit d'un caractèr de solinhament "
-"(_) e del còde ISO 3166 d'un país. <a href=\"http://www.w3.org/International/"
+"Còdi ISO 639 de la lenga, eventualament seguit d'un caractèr de solinhament "
+"(_) e del còdi ISO 3166 d'un país. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Mai d'informacions</a>"
 
 #: apps/pootle_language/models.py:77 templates/languages/_nav.html:31
@@ -729,7 +729,7 @@ msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"Còde cort pel projècte. Pòt pas comportar que de caractèrs ASCII, de chifras "
+"Còdi cort pel projècte. Pòt pas comportar que de caractèrs ASCII, de chifras "
 "e lo caractèr de solinhament (_)."
 
 #: apps/pootle_project/models.py:177
@@ -746,7 +746,7 @@ msgstr "Deteccion autometica (mai lent)"
 
 #: apps/pootle_project/models.py:185
 msgid "GNU style: files named by language code"
-msgstr "Estil GNU : los fichièrs son nomenats d'aprèp lo còde de la lenga"
+msgstr "Estil GNU : los fichièrs son nomenats d'aprèp lo còdi de la lenga"
 
 #: apps/pootle_project/models.py:186
 msgid "Non-GNU: Each language in its own directory"
@@ -808,7 +808,7 @@ msgstr "Comentari"
 
 #: apps/pootle_store/decorators.py:25
 msgid "Insufficient rights to access this directory."
-msgstr "Avètz pas los dreches sufisents per accedir a aquesta repertòri."
+msgstr "Avètz pas los dreits sufisents per accedir a aquesta repertòri."
 
 #: apps/pootle_store/decorators.py:28
 msgid "Insufficient rights to access suggestion mode."
@@ -820,7 +820,7 @@ msgstr "Permissions insufisentas per accedir a aqueste mòde de traduccion."
 
 #: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:647
 msgid "Insufficient rights to access review mode."
-msgstr "Avètz pas los dreches sufisents per accedir al mòde de relectura."
+msgstr "Avètz pas los dreits sufisents per accedir al mòde de relectura."
 
 #: apps/pootle_store/filetypes.py:19
 msgid "Gettext PO"
@@ -915,28 +915,28 @@ msgid "Plural"
 msgstr "Plural"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Acceptar la suggestion de %s"
+msgstr "Acceptar la suggestion de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Regetar la suggestion de %s"
+msgstr "Regetar la suggestion de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "Acceptar la suggestion de %s"
+msgstr "Acceptar la suggestion de %(author)s amb lo comentari : %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "Regetar la suggestion de %s"
+msgstr "Regetar la suggestion de %(author)s amb lo comentari : %(comment)s "
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
-msgstr "Apondre la suggestion"
+msgstr "Apondre una suggestion"
 
 #: apps/pootle_store/util.py:27
 msgid "Obsolete"
@@ -976,14 +976,14 @@ msgid "This term already exists in this file."
 msgstr "Aqueste tèrme existís ja dins lo fichièr."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Pagina d'acuèlh del projècte de traduccion"
+msgstr "Creacion del projècte de traduccion (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Pagina d'acuèlh del projècte de traduccion"
+msgstr "Impossible de crear lo projècte de traduccion (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1497,7 +1497,7 @@ msgstr "Retorn al dorsièr parent"
 
 #: core/decorators.py:319 core/views.py:96
 msgid "Insufficient rights to access this page."
-msgstr "Avètz pas los dreches sufisents per accedir a aquesta pagina."
+msgstr "Avètz pas los dreits sufisents per accedir a aquesta pagina."
 
 #: core/decorators.py:332 core/views.py:107
 msgid "You do not have rights to administer Pootle."
@@ -1574,9 +1574,8 @@ msgid "Can review suggestions"
 msgstr "Pòt repassar las suggestions"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Administracion de Django"
+msgstr "Impossible d'efectuar los prètzfaits administratius"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -1897,8 +1896,8 @@ msgid ""
 "them."
 msgstr ""
 "L'identificant « nobody » correspond a tot utilizaire qu'es pas connectat "
-"(doncas un utilizaire anonim). L'identificant « default » indica los dreches "
-"qu'auràn per defaut los utilizaires, tant que de dreches particulars lor "
+"(doncas un utilizaire anonim). L'identificant « default » indica los dreits "
+"qu'auràn per defaut los utilizaires, tant que de dreits particulars lor "
 "seràn pas acordats."
 
 #: templates/admin/reports.html:58 templates/user/stats.html:60
@@ -2023,9 +2022,8 @@ msgid "Fix critical errors"
 msgstr ""
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Errors critica :"
+msgstr "Errors criticas :"
 
 # 83%
 #: templates/browser/_actions.html:19
@@ -2037,7 +2035,6 @@ msgid "Continue translation"
 msgstr "Contunhar la traduccion"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Traduccion necessària"
 
@@ -2073,32 +2070,28 @@ msgid "Failing Checks"
 msgstr "Contraròtles en fracàs"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Mai..."
+msgstr "mai..."
 
 #: templates/browser/index.html:67
 msgid "less..."
 msgstr ""
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Contributors principals"
+msgstr "Contributors los mai actius pendent los 30 darrièrs jorns"
 
 #: templates/browser/index.html:84
 msgid "Updates"
 msgstr ""
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Darrièr comentari :"
+msgstr "Darrièra accion :"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Traduccion"
+msgstr "Traduccions"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2147,9 +2140,8 @@ msgid "No user contributions yet."
 msgstr ""
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Contributors principals"
+msgstr "Contributors los mai actius :"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2349,27 +2341,27 @@ msgstr "repassat per <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:219
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr "Inserir una marca drecha-a-esquèrra (MDAG) dins l'editor"
+msgstr "Inserir una marca dreita-a-esquèrra (MDAG) dins l'editor"
 
 #: templates/editor/units/edit.html:222
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr "Inserir una marca esquèrra-a-drecha (MGAD) dins l'editor"
+msgstr "Inserir una marca esquèrra-a-dreita (MGAD) dins l'editor"
 
 #: templates/editor/units/edit.html:225
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr "Inserir enchassament drecha-a-esquèrra (EDAG) dins l'editor"
+msgstr "Inserir enchassament dreita-a-esquèrra (EDAG) dins l'editor"
 
 #: templates/editor/units/edit.html:228
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr "Inserir enchassament esquèrra-a-drecha (EGAD) dins l'editor"
+msgstr "Inserir enchassament esquèrra-a-dreita (EGAD) dins l'editor"
 
 #: templates/editor/units/edit.html:231
 msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr "Inserir forçatge drecha-a-esquèrra (FDAG) dins l'editor"
+msgstr "Inserir forçatge dreita-a-esquèrra (FDAG) dins l'editor"
 
 #: templates/editor/units/edit.html:234
 msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr "Inserir forçatge esquèrra-a-drecha (FGAD) dins l'editor"
+msgstr "Inserir forçatge esquèrra-a-dreita (FGAD) dins l'editor"
 
 #: templates/editor/units/edit.html:237
 msgid "Insert PDF (Pop Directional Format ) into the editor"
@@ -2392,14 +2384,12 @@ msgid "User suggestions"
 msgstr "Suggestions d'utilizaires"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Correccion"
+msgstr "Mai d'opcions"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Emplaçaments"
+msgstr "Mens d'opcions"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2419,7 +2409,7 @@ msgstr ""
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr "Comentaris :"
+msgstr "Comentari :"
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical issues with the translation"
@@ -2702,7 +2692,7 @@ msgstr ""
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
 msgstr ""
-"A aqueste endreich, podètz gerir los tèrmes dels fichièrs de terminologia."
+"A aqueste endreit, podètz gerir los tèrmes dels fichièrs de terminologia."
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"

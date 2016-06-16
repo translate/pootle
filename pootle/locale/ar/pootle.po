@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-06-01 06:55+0000\n"
+"PO-Revision-Date: 2016-06-12 16:29+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464764158.000000\n"
+"X-POOTLE-MTIME: 1465748942.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -2700,7 +2700,7 @@ msgstr "المصطلح"
 
 #: templates/translation_projects/terminology/manage.html:58
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "لا ملفات مصطلحات"
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated

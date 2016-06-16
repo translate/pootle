@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-26 07:43+0000\n"
+"PO-Revision-Date: 2016-06-14 09:44+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
@@ -19,13 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1464248629.000000\n"
+"X-POOTLE-MTIME: 1465897460.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"S'ha produït algun problema en intentar enviar el correu de confirmació. "
+"Torneu-ho a intentar més tard."
 
 #: apps/accounts/forms.py:42
 msgid ""
@@ -67,6 +69,8 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Indica si aquest usuari ha de considerar-se actiu. Desmarqueu aquesta opció "
+"per a suprimir comptes."
 
 #: apps/accounts/models.py:79
 msgid "Superuser Status"
@@ -77,10 +81,12 @@ msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Indica que aquest usuari té tots els permisos sense assignar-los-hi "
+"explícitament."
 
 #: apps/accounts/models.py:83
 msgid "date joined"
-msgstr ""
+msgstr "data d'incorporació"
 
 #: apps/accounts/models.py:87
 msgid "Number of Rows"
@@ -92,7 +98,7 @@ msgstr "Llengües d'origen alternatives"
 
 #: apps/accounts/models.py:94 templates/admin/detailed_reports.html:156
 msgid "Rate"
-msgstr ""
+msgstr "Tarifa"
 
 #: apps/accounts/models.py:95 apps/reports/forms.py:31
 msgid "Review Rate"
@@ -201,21 +207,24 @@ msgstr "Puja les traduccions"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"El tipus de fitxers «%s» no és compatible. Ara per ara, només s'admeten "
+"fitxers PO\n"
 
 #: apps/import_export/utils.py:35
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Manca la capçalera X-Pootle-Path en el fitxer «%s»\n"
 
 #: apps/import_export/utils.py:40
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
+"Manca la capçalera X-Pootle-Revision, o és invàlida, en el fitxer «%s»\n"
 
 #: apps/import_export/utils.py:48
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "No es pot crear «%s». Manca el projecte o la llengua? (%s)"
 
 #: apps/import_export/utils.py:65
 msgid "There was an error uploading your file"
@@ -548,7 +557,7 @@ msgstr "Caràcters vàlids"
 
 #: apps/pootle_misc/checks.py:85
 msgid "Placeholders"
-msgstr "Textos variables"
+msgstr "Texts variables"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
@@ -572,19 +581,19 @@ msgstr "Format de la plantilla"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "Texts variables del Mustache"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "Parells de texts variables del Mustache"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "Parells de texts variables semblats al Mustache"
 
 #: apps/pootle_misc/checks.py:95
 msgid "C format placeholders"
-msgstr ""
+msgstr "Texts variables de format C"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Non printable"
@@ -592,7 +601,7 @@ msgstr "No imprimible"
 
 #: apps/pootle_misc/checks.py:97
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Claus d'etiqueta desemparellades"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
@@ -600,11 +609,11 @@ msgstr "Atributs canviats"
 
 #: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "Ets (&) no escapats"
 
 #: apps/pootle_misc/checks.py:100
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "Ets (&) escapats incorrectament"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Whitespaces"
@@ -616,23 +625,23 @@ msgstr "Format de la data"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Uppercase placeholders"
-msgstr ""
+msgstr "Texts variables en majúscules"
 
 #: apps/pootle_misc/checks.py:104
 msgid "Percent sign placeholders"
-msgstr ""
+msgstr "Texts variables de signe de percentatge"
 
 #: apps/pootle_misc/checks.py:106
 msgid "Percent sign closure placeholders"
-msgstr ""
+msgstr "Texts variables de tancament de signe de percentatge"
 
 #: apps/pootle_misc/checks.py:107
 msgid "$ placeholders"
-msgstr "Textos variables amb $"
+msgstr "Texts variables amb $"
 
 #: apps/pootle_misc/checks.py:108
 msgid "$ closure placeholders"
-msgstr ""
+msgstr "Texts variables de tancament amb $"
 
 #: apps/pootle_misc/checks.py:109
 msgid "Java-encoded unicode"
@@ -656,7 +665,7 @@ msgstr "Claus"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
-msgstr "Espais reservats potencialment no desitjats"
+msgstr "Texts variables potencialment no desitjats"
 
 #: apps/pootle_misc/checks.py:115
 msgid "Double quotes in tags"
@@ -664,7 +673,7 @@ msgstr "Cometes dobles en etiquetes"
 
 #: apps/pootle_misc/checks.py:116
 msgid "Percent brace placeholders"
-msgstr "Textos variables entre símbols de percentge"
+msgstr "Texts variables entre símbols de percentge"
 
 #: apps/pootle_misc/checks.py:117
 msgid "Plurr format"
@@ -884,7 +893,7 @@ msgstr "El valor de «similarity» hauria de ser entre l'interval [0..1]"
 
 #: apps/pootle_store/forms.py:311
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "l valor de «mt_similarity» hauria de ser entre l'interval [0..1] "
+msgstr "El valor de «mt_similarity» hauria de ser entre l'interval [0..1]"
 
 #: apps/pootle_store/forms.py:328
 msgid "Needs work flag must be cleared"
@@ -1134,6 +1143,7 @@ msgstr "Filtre"
 #: apps/virtualfolder/models.py:46
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
+"Les regles de filtratge indiquen què s'inclou en aquesta carpeta virtual."
 
 #: apps/virtualfolder/models.py:50 core/browser.py:21
 msgid "Priority"
@@ -1216,10 +1226,11 @@ msgstr "La versió del Redis és massa antiga."
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
+"Actualitzeu el paquet Redis del vostre sistema com a mínim a la versió %s"
 
 #: checks.py:146
 msgid "No RQ Worker running."
-msgstr ""
+msgstr "No s'està executant cap tasca RQ."
 
 #: checks.py:147
 msgid "Run new workers with manage.py rqworker"
@@ -1242,7 +1253,7 @@ msgstr ""
 
 #: checks.py:174 checks.py:188
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "Comproveu les opcions de configuració CACHES"
 
 #: checks.py:186
 msgid ""
@@ -1252,15 +1263,15 @@ msgstr ""
 
 #: checks.py:194
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "El mode DEBUG és actiu. No feu això a producció!"
 
 #: checks.py:195
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "Estableix DEBUG = False en la configuració del Pootle"
 
 #: checks.py:201
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "No s'admet el motor de base de dades sqlite"
 
 #: checks.py:202
 msgid "Set your default database engine to postgresql_psycopg2 or mysql"
@@ -1279,7 +1290,7 @@ msgstr ""
 
 #: checks.py:218
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr "No s'ha definit POOTLE_CONTACT_EMAIL"
+msgstr "No s'ha definit POOTLE_CONTACT_EMAIL."
 
 #: checks.py:219
 msgid ""
@@ -1292,17 +1303,19 @@ msgstr ""
 #: checks.py:227
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL està usant l'opció predeterminada %r."
 
 #: checks.py:229
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL és l'adreça on es rebran els missatges enviats pel "
+"formulari de contacte."
 
 #: checks.py:236
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "L'opció DEFAULT_FROM_EMAIL no està definida."
 
 #: checks.py:237 checks.py:247
 msgid ""
@@ -1321,7 +1334,7 @@ msgstr "Manca el POOTLE_MARKUP_FILTER."
 
 #: checks.py:257
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Definiu l'opció POOTLE_MARKUP_FILTER."
 
 #: checks.py:262
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
@@ -1329,7 +1342,7 @@ msgstr "El valor de POOTLE_MARKUP_FILTER no és vàlid."
 
 #: checks.py:263
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Definiu un valor vàlid per a l'opció POOTLE_MARKUP_FILTER."
 
 #: checks.py:277
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
@@ -1353,21 +1366,22 @@ msgstr ""
 #: checks.py:296
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no té INDEX_NAME."
 
 #: checks.py:297
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Definiu un INDEX_NAME per a POOTLE_TM_SERVER['%s']."
 
 #: checks.py:303
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "INDEX_NAME «%s» duplicat en el POOTLE_TM_SERVER."
 
 #: checks.py:305
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
+"Definiu un INDEX_NAME diferent per a tots els servidors en POOTLE_TM_SERVER."
 
 #: checks.py:315
 #, python-format
@@ -1377,27 +1391,27 @@ msgstr "POOTLE_TM_SERVER['%s'] no té ENGINE."
 #: checks.py:316
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Definiu un ENGINE per a POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no té HOST."
 
 #: checks.py:324
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Definiu un HOST per a POOTLE_TM_SERVER['%s']."
 
 #: checks.py:331
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no té PORT."
 
 #: checks.py:332
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Definiu un PORT per a POOTLE_TM_SERVER['%s']."
 
 #: checks.py:341
 #, python-format
@@ -1409,6 +1423,8 @@ msgstr "POOTLE_TM_SERVER['%s'] té un WEIGHT menor que 0.0 o major que 1.0"
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Definiu un WEIGHT entre 0.0 i 1.0 (ambdós inclosos) per a "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:351
 #, python-format
@@ -1418,7 +1434,7 @@ msgstr "POOTLE_SCORE_COEFFICIENTS no té %s."
 #: checks.py:352
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Defineix %s a POOTLE_SCORE_COEFFICIENTS."
+msgstr "Definiu %s a POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:359
 #, python-format
@@ -1432,15 +1448,15 @@ msgstr "El valor «%s» al POOTLE_SCORE_COEFFICIENTS no és vàlid."
 
 #: checks.py:385
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "L'usuari predeterminat «admin» encara té la contrasenya «admin»."
 
 #: checks.py:387
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Suprimiu l'usuari «admin» o canvieu-ne la contrasenya."
 
 #: checks.py:402
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "La connexió de base de dades no implementa on_commit."
 
 #: checks.py:403
 msgid ""
@@ -1594,7 +1610,7 @@ msgstr "No podeu accedir a aquesta pàgina."
 
 #: custom/templates/layout.html:11
 msgid "Getting Started"
-msgstr ""
+msgstr "Primers passos"
 
 #: custom/templates/layout.html:15
 msgid "License Terms"
@@ -1667,7 +1683,7 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
 "\"icon-external-link\"></i> project website</a>."
 msgstr ""
-"Això és un lloc web que funciona amb el Pootle &mdash;  un potent programari "
+"Això és un lloc web que funciona amb el Pootle &mdash; un potent programari "
 "web que facilita la traducció en equips i la seva gestió. Aquesta eina "
 "comunitària és programari lliure i qualsevol equip pot utilitzar-lo i "
 "contribuir a la comunitat del Pootle. Llegiu-ne més al <a href=\"http://"
@@ -2150,11 +2166,11 @@ msgstr "puntuació"
 #: templates/core/_top_scorers_as_ul.html:7
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "nbre. %(position)s"
 
 #: templates/core/_top_scorers.html:31
 msgid "No user contributions yet."
-msgstr "Encara no hi ha cap contribució de l'usuari"
+msgstr "Encara no hi ha cap contribució de l'usuari."
 
 #: templates/core/_top_scorers_as_ul.html:3
 msgid "Top contributors:"
@@ -2227,7 +2243,7 @@ msgstr "Cadenes totals"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr " Aneu a la cadena següent (Ctrl+Avall) "
+msgstr "Aneu a la cadena següent (Ctrl+Avall)"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2348,7 +2364,7 @@ msgstr "Afegeix un comentari"
 
 #: templates/editor/units/edit.html:199
 msgid "Raw View"
-msgstr ""
+msgstr "Visualització en brut"
 
 #: templates/editor/units/edit.html:209
 #, python-format
@@ -2473,7 +2489,7 @@ msgstr "S'ha suprimit l'últim comentari"
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
-"Heu silenciat la comprovació <a href=\"%(check_url)s\">%(check_url)s</a>"
+"Heu silenciat la comprovació <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
 #, python-format
@@ -2635,6 +2651,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"No hi ha cap plantilla per a aquest projecte, per això no es poden afegir "
+"llengües des d'aquesta pantalla."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2648,7 +2666,7 @@ msgid ""
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
 "Aquesta pàgina és inactiva i només és visible per als administradors. Podeu "
-"activar-la  <a href=\"%(edit_url)s\">editant-ne les propietats</a>."
+"activar-la <a href=\"%(edit_url)s\">editant-ne les propietats</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2756,17 +2774,21 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s for this month at "
 "%(server_title)s! "
 msgstr ""
+"Sóc el col·laborador número %(pos)s per a %(lang_name)s d'aquest mes en "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s for this month"
-msgstr ""
+msgstr "Col·laborador número %(pos)s per a %(lang_name)s d'aquest mes"
 
 #: templates/user/profile.html:49
 #, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
 msgstr ""
+"Col·laborador %(pos)s per a <a href=\"%(url)s\">%(lang_name)s</a> d'aquest "
+"mes"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"
@@ -2785,18 +2807,24 @@ msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
+"Expliqueu als altres usuaris qui sou i què feu<br/>i feu el vostre perfil "
+"públic atractiu!"
 
 #: templates/user/profile.html:101
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Algunes traduccions estan proporcionades per voluntaris anònims. Aquestes "
+"traduccions queden enregistrades en aquest metacompte especial."
 
 #: templates/user/profile.html:103
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Algunes traduccions s'han importat des de fitxers externs. Aquestes "
+"traduccions queden enregistrades en aquest metacompte especial."
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"

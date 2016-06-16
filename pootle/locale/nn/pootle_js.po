@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-03-24 03:02+0000\n"
+"PO-Revision-Date: 2016-06-04 15:12+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1458788541.000000\n"
+"X-POOTLE-MTIME: 1465053151.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr "Vellukka lagring."
+msgstr "Lagra"
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr "Vellukka sletting."
+msgstr "Sletta."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
@@ -180,7 +180,7 @@ msgstr "Kontaktperson for feil i strengar"
 
 #: static/js/admin/components/Project/ProjectForm.js:125
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Søkjeprefiks-skjermbilde"
 
 #: static/js/admin/components/Project/ProjectForm.js:133
 msgid "Disabled"
@@ -196,7 +196,7 @@ msgstr "Last meir"
 
 #: static/js/admin/components/Search.js:93
 msgid "Loading..."
-msgstr "Lastar …"
+msgstr "Lastar…"
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
@@ -261,7 +261,7 @@ msgstr "Passord"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr "Lag eit nytt passord"
+msgstr "Vel eit nytt passord"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:91
@@ -292,9 +292,8 @@ msgstr "URL til LinkedIn-profil"
 
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
-#, fuzzy
 msgid "Website"
-msgstr "Nettstad"
+msgstr "Nettside"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
@@ -506,14 +505,12 @@ msgid "Social Verification"
 msgstr "Sosial stadfesting"
 
 #: static/js/browser/components/VisibilityToggle.js:51
-#, fuzzy
 msgid "Show disabled"
-msgstr "avslått"
+msgstr "Vis avslått"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Hide disabled"
-msgstr "avslått"
+msgstr "Gøym avslått"
 
 #: static/js/editor/app.js:294 static/js/editor/app.js:606
 msgid ""
@@ -605,15 +602,15 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:103
 msgid "Accept"
-msgstr ""
+msgstr "Godkjenn"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Reject"
-msgstr ""
+msgstr "Avvis"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
-msgstr "Vel …"
+msgstr "Vel…"
 
 #: static/js/shared/components/FormSelectInput.js:33
 msgid "No results found"
@@ -715,14 +712,14 @@ msgstr ""
 "andre!"
 
 #: static/js/utils.js:165
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Eitt år sidan"
 msgstr[1] "%s år sidan"
 
 #: static/js/utils.js:168
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Ei veke sidan"

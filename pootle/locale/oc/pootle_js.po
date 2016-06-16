@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-06 18:09+0000\n"
+"PO-Revision-Date: 2016-06-05 15:47+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: oc\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1462558156.000000\n"
+"X-POOTLE-MTIME: 1465141635.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -26,7 +26,7 @@ msgstr "Enregistrat amb succès."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr "Suprtimit amb succès."
+msgstr "Suprimit amb succès."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
@@ -47,16 +47,17 @@ msgstr "Anullar"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s lenga correspond a vòstra requèsta."
+msgstr[1] "%(count)s lengas correspondon a vòstra requèsta."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "I a %(count)s lenga."
 msgstr[1] ""
+"I a %(count)s lengas. Çaijós se tròban las apondudas lo mai recentament."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
@@ -64,7 +65,7 @@ msgstr "Cercar de lengas"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Trobar lenga per nom, còdi"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
@@ -78,7 +79,7 @@ msgstr ""
 #: static/js/admin/components/Language/LanguageForm.js:54
 #: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
-msgstr "Còde"
+msgstr "Còdi"
 
 #: static/js/admin/components/Language/LanguageForm.js:61
 #: static/js/admin/components/Project/ProjectForm.js:63
@@ -146,7 +147,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr ""
+msgstr "Editar lo projècte"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
@@ -163,7 +164,7 @@ msgstr "Tipe de fichièr"
 
 #: static/js/admin/components/Project/ProjectForm.js:93
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Estil d'arborescéncia del projècte"
 
 #: static/js/admin/components/Project/ProjectForm.js:103
 msgid "Source Language"
@@ -171,7 +172,7 @@ msgstr "Font de la lenga"
 
 #: static/js/admin/components/Project/ProjectForm.js:110
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ignorar los fichièrs"
 
 #: static/js/admin/components/Project/ProjectForm.js:118
 msgid "String Errors Contact"
@@ -183,7 +184,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:133
 msgid "Disabled"
-msgstr ""
+msgstr "Desactivat"
 
 #: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Languages"
@@ -191,11 +192,11 @@ msgstr "Lengas"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
-msgstr ""
+msgstr "Ne cargar mai"
 
 #: static/js/admin/components/Search.js:93
 msgid "Loading..."
-msgstr ""
+msgstr "Cargament..."
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
@@ -219,7 +220,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr ""
+msgstr "Cercar d'utilizaires"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
@@ -247,7 +248,7 @@ msgstr ""
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:103
@@ -255,7 +256,7 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr ""
+msgstr "Senhal"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
@@ -277,7 +278,7 @@ msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
-msgstr ""
+msgstr "Nom d'utilizaire Twitter"
 
 #: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
@@ -286,7 +287,7 @@ msgstr "LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:127
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "URL del perfil de LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
@@ -295,20 +296,20 @@ msgstr "Site Web"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
-msgstr ""
+msgstr "URL del site web personal"
 
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr ""
+msgstr "Biografía brèva"
 
 #: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
-msgstr ""
+msgstr "Descripcion personala"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
-msgstr ""
+msgstr "Perfil public"
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
@@ -350,7 +351,7 @@ msgstr ""
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "Tampar"
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
@@ -358,7 +359,7 @@ msgstr ""
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "Contactatz-nos"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
@@ -372,7 +373,7 @@ msgstr ""
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr ""
+msgstr "Reïnicializar lo senhal"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
@@ -424,7 +425,7 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
-msgstr ""
+msgstr "Se connectar"
 
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:73
@@ -433,16 +434,16 @@ msgstr ""
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
-msgstr ""
+msgstr "Servicis de rets socialas"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
-msgstr ""
+msgstr "Utilizaire e senhal"
 
 #: static/js/auth/components/SignUpForm.js:121
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
-msgstr ""
+msgstr "S’inscriure"
 
 #: static/js/auth/components/SignUpForm.js:126
 msgid "Sign in as an existing user"
@@ -478,11 +479,11 @@ msgstr ""
 
 #: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
-msgstr ""
+msgstr "Compte inactiu"
 
 #: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
-msgstr ""
+msgstr "Activacion del compte"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
@@ -495,11 +496,11 @@ msgstr ""
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr ""
+msgstr "Ops..."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr ""
+msgstr "Verificacion sociala"
 
 #: static/js/browser/components/VisibilityToggle.js:51
 msgid "Show disabled"
@@ -570,7 +571,7 @@ msgstr "Sembla que lo servidor es fòra servici. Ensajatz pus tard."
 
 #: static/js/editor/app.js:1074
 msgid "This string no longer exists."
-msgstr ""
+msgstr "Aquesta cadena existís pas mai."
 
 #: static/js/editor/app.js:1075
 msgid "Go back to browsing"
@@ -598,15 +599,15 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:103
 msgid "Accept"
-msgstr ""
+msgstr "Acceptar"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Reject"
-msgstr ""
+msgstr "Refusar"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
-msgstr ""
+msgstr "Seleccionar..."
 
 #: static/js/shared/components/FormSelectInput.js:33
 msgid "No results found"
@@ -614,7 +615,7 @@ msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:34
 msgid "Clear value"
-msgstr ""
+msgstr "Escafar la valor"
 
 #: static/js/shared/components/FormSelectInput.js:35
 msgid "Clear all"
@@ -629,9 +630,8 @@ msgid "disabled"
 msgstr ""
 
 #: static/js/stats.js:59
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Felicitacions, avètz percorrut totes los elements"
+msgstr "Felicitacions ! Avètz acabat aqueste prètzfait !"
 
 #: static/js/stats.js:405
 #, python-format, javascript-format
@@ -654,19 +654,19 @@ msgstr ""
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr ""
+msgstr "Mon perfil public"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
-msgstr ""
+msgstr "Abandonar las modificacions"
 
 #: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
-msgstr ""
+msgstr "Òc"
 
 #: static/js/user/components/UserProfileEdit.js:119
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
@@ -681,11 +681,11 @@ msgstr ""
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
-msgstr ""
+msgstr "Vòstre nom complet"
 
 #: static/js/user/components/UserProfileForm.js:83
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: static/js/user/components/UserProfileForm.js:94
 msgid "Your Twitter username"
@@ -783,9 +783,8 @@ msgid "All Projects"
 msgstr "Totes los projèctes"
 
 #: static/js/browser.js:236
-#, fuzzy
 msgid "Entire Project"
-msgstr "Apondre un projècte"
+msgstr "Projècte entièr"
 
 #: static/js/editor/app.js:2144
 msgid "some anonymous user"
@@ -793,7 +792,7 @@ msgstr ""
 
 #: static/js/editor/app.js:2146
 msgid "someone"
-msgstr ""
+msgstr "qualqu'un"
 
 #: static/js/shared/components/UserEvent.js:78
 msgid "uploaded file"
@@ -801,19 +800,19 @@ msgstr ""
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Projècte / Lenga"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Suggerit"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr ""
+msgstr "Traduit"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr ""
+msgstr "Repassat"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
@@ -851,50 +850,50 @@ msgstr ""
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Comentari"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Accion"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Quantitat"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Taus"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Sostotal"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
 msgid "hour"
 msgid_plural "hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ora"
+msgstr[1] "oras"
 
 #: templates/admin/xhr_paid_tasks_report.html:24
 #: templates/admin/xhr_summary_report.html:18
 #: templates/admin/xhr_summary_report.html:31
 msgid "word"
 msgid_plural "words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "mot"
+msgstr[1] "mots"
 
 #: templates/admin/xhr_paid_tasks_report.html:36
 msgid "Remove task"
-msgstr ""
+msgstr "Suprimir lo prètzfait"
 
 #: templates/admin/xhr_paid_tasks_report.html:41
 msgid "Comment on it"
-msgstr ""
+msgstr "Comentar aquò"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
@@ -942,6 +941,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Traduit per %(fullname)s en &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo; projècte"
 
 #~ msgid "Unknown error"
 #~ msgstr "Error desconeguda"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-24 12:00+0000\n"
+"PO-Revision-Date: 2016-06-14 09:25+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464091211.000000\n"
+"X-POOTLE-MTIME: 1465896315.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -341,7 +341,7 @@ msgstr "La vista preliminar es mostrarà aquí."
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
-"Us hem enviat un correu electrònic amb l'enllaç especial a <span>%s</span>."
+"Us hem enviat un correu electrònic amb l'enllaç especial a <span>%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:37
 msgid ""
@@ -547,7 +547,7 @@ msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"Va a la cadena següent (Ctrl+.))<br/><br/>També:<br/>Pàgina següent: Ctrl+Maj"
+"Va a la cadena següent (Ctrl+.)<br/><br/>També:<br/>Pàgina següent: Ctrl+Maj"
 "+.<br/>Última pàgina: Ctrl+Maj+Final"
 
 #: static/js/editor/app.js:331
@@ -621,7 +621,7 @@ msgstr "Traduccions semblants"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:81
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr "Si cal, editeu el suggeriment abans d'acceptar-lo."
+msgstr "Si cal, editeu el suggeriment abans d'acceptar-lo"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:92
 msgid "Provide optional comment (will be publicly visible)"
@@ -709,7 +709,7 @@ msgid ""
 "to gravatar.com."
 msgstr ""
 "Per a definir o canviar el vostre avatar per l'adreça de correu (%(email)s), "
-"aneu a gravatar.com"
+"aneu a gravatar.com."
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"

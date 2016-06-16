@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-30 18:02+0000\n"
+"PO-Revision-Date: 2016-06-03 06:25+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1464631355.000000\n"
+"X-POOTLE-MTIME: 1464935128.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -2103,7 +2103,7 @@ msgstr "<span class=\"value translated\">0</span>%% vertaald"
 #: templates/browser/_progressbar.html:4
 #, python-format
 msgid "<span class=\"value fuzzy\">0</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% werk vereist"
+msgstr "<span class=\"value fuzzy\">0</span>%% werk vereist"
 
 #: templates/browser/_progressbar.html:5
 #, python-format
