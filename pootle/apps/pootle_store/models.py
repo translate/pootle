@@ -38,6 +38,7 @@ from pootle.core.log import (
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
+from pootle.core.signals import object_obsoleted
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_all_pootle_paths, get_editor_filter, split_pootle_path)
@@ -402,6 +403,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.reviewed_by = None
             self.submitted_by = None
             self.submitted_on = None
+        elif self.state == OBSOLETE and not created:
+            object_obsoleted.send(self.__class__, instance=self)
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -1274,6 +1277,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unit_query.update(state=OBSOLETE, index=0)
         self.obsolete = True
         self.save()
+        object_obsoleted.send(self.__class__, instance=self)
         self.clear_all_cache(parents=False, children=False)
 
     def get_absolute_url(self):
