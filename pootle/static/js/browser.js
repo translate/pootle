@@ -105,7 +105,54 @@ function navigateTo(languageCode, projectCode, resource) {
 }
 
 
-function makeNavDropdown(selector, opts) {
+function handleNavDropDownSelectClick() {
+  const $select = $(this);
+  const $opt = $select.find('option:selected');
+  const href = $opt.data('href');
+
+  if (href) {
+    const openInNewTab = $opt.data('new-tab');
+
+    if (openInNewTab) {
+      window.open(href, '_blank');
+      // Reset drop-down to its original value
+      $select.select2('val', $select.data('initial-code'));
+    } else {
+      window.location.href = href;
+    }
+
+    return false;
+  }
+
+  const langCode = $(sel.language).val();
+  const projectCode = $(sel.project).val();
+  const $resource = $(sel.resource);
+  const resource = $resource.length ? $resource.val()
+                                              .replace('ctx-', '')
+                                   : '';
+  navigateTo(langCode, projectCode, resource);
+  return true;
+}
+
+
+function handleBeforeNavDropDownResourceSelect(e) {
+  const $select = $(this);
+  const resource = e.val ? e.val.replace('ctx-', '')
+                          : '';
+  if (resource === '') {
+    e.preventDefault();
+    if ($select.val() === '') {
+      $select.select2('close');
+    } else {
+      $select.select2('val', '');
+      $select.select2('close');
+      handleNavDropDownSelectClick();
+    }
+  }
+}
+
+
+function makeNavDropdown(selector, opts, handleSelectClick, handleBeforeSelect) {
   const defaults = {
     allowClear: true,
     dropdownAutoWidth: true,
@@ -114,35 +161,11 @@ function makeNavDropdown(selector, opts) {
   };
   const options = $.extend({}, defaults, opts);
 
-  return utils.makeSelectableInput(selector, options,
-    function handleSelectClick() {
-      const $select = $(this);
-      const $opt = $select.find('option:selected');
-      const href = $opt.data('href');
-
-      if (href) {
-        const openInNewTab = $opt.data('new-tab');
-
-        if (openInNewTab) {
-          window.open(href, '_blank');
-          // Reset drop-down to its original value
-          $select.select2('val', $select.data('initial-code'));
-        } else {
-          window.location.href = href;
-        }
-
-        return false;
-      }
-
-      const langCode = $(sel.language).val();
-      const projectCode = $(sel.project).val();
-      const $resource = $(sel.resource);
-      const resource = $resource.length ? $resource.val()
-                                                  .replace('ctx-', '')
-                                       : '';
-      navigateTo(langCode, projectCode, resource);
-      return true;
-    }
+  return utils.makeSelectableInput(
+    selector,
+    options,
+    handleSelectClick,
+    handleBeforeSelect
   );
 }
 
@@ -234,20 +257,20 @@ const browser = {
 
     makeNavDropdown(sel.navigation, {
       minimumResultsForSearch: -1,
-    });
+    }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.language, {
       placeholder: gettext('All Languages'),
       formatResult: formatLanguage,
-    });
+    }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.project, {
       placeholder: gettext('All Projects'),
       formatResult: formatProject,
-    });
+    }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.resource, {
       placeholder: gettext('Entire Project'),
       formatResult: formatResource,
       sortResults: removeCtxEntries,
-    });
+    }, handleNavDropDownSelectClick, handleBeforeNavDropDownResourceSelect);
 
     /* Adjust breadcrumb layout on window resize */
     $(window).on('resize', () => {
