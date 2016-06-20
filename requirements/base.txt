@@ -16,7 +16,7 @@ django-transaction-hooks==0.2
 cssmin==0.2.0
 diff-match-patch==20121119
 dirsync==2.2.2
-elasticsearch>=1.0.0,<1.7
+elasticsearch>=1.0.0,<2.0.0
 jsonfield==1.0.3
 lxml>=3.0,<=3.6.0
 python-levenshtein==0.12.0
