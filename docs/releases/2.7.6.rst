@@ -1,0 +1,30 @@
+===============================
+Welcome to the new Pootle 2.7.6
+===============================
+
+*Released on 20 June 2016*
+
+Bugfix release for 2.7.5. This release is meant as the latest stable release of
+the 2.7 series.
+
+
+2.7.6 vs 2.7.5
+==============
+
+Changes since 2.7.5:
+
+- Fixed assets
+
+
+View the `git log <https://github.com/translate/pootle/compare/2.7.5...2.7.6>`_
+for complete information.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Leandro Regueiro.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
