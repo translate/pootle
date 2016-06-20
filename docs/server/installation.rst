@@ -107,7 +107,7 @@ To verify that everything installed correctly, you should be able to access the
 .. code-block:: console
 
   (env) $ pootle --version
-  Pootle 2.7.3 (Django 1.8.8, Translate Toolkit 1.13.0)
+  Pootle 2.8.0b1 (Django 1.8.13, Translate Toolkit 1.13.0)
 
 
 .. _installation#initializing-the-configuration:
