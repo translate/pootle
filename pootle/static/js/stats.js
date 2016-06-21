@@ -121,7 +121,7 @@ const stats = {
     if (isExpanded) {
       this.loadChecks();
     } else {
-      this.updateUI({});
+      this.updateUI();
     }
   },
 
