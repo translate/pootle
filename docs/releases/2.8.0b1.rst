@@ -2,7 +2,7 @@
 Welcome to the new Pootle 2.8.0b1
 =================================
 
-*Released on 20 June 2016*
+*Released on 22 June 2016*
 
 Major release.
 
