@@ -321,7 +321,9 @@ class Submission(models.Model):
         super(Submission, self).save(*args, **kwargs)
 
         if self.needs_scorelog():
-            ScoreLog.record_scorelogs(submission=self)
+            for score in ScoreLog.get_scorelogs(submission=self):
+                if 'action_code' in score and score['user'] is not None:
+                    ScoreLog.objects.create(**score)
 
 
 class TranslationActionCodes(object):
@@ -399,7 +401,7 @@ class ScoreLog(models.Model):
         unique_together = ('submission', 'action_code')
 
     @classmethod
-    def record_scorelogs(cls, submission):
+    def get_scorelogs(cls, submission):
         """Records a new log entry for ``submission``."""
         score_dict = {
             'creation_time': submission.creation_time,
@@ -481,10 +483,8 @@ class ScoreLog(models.Model):
             suggester_score['action_code'] = \
                 TranslationActionCodes.SUGG_REJECTED
 
-        for score in [submitter_score, previous_translator_score,
-                      previous_reviewer_score, suggester_score]:
-            if 'action_code' in score and score['user'] is not None:
-                ScoreLog.objects.create(**score)
+        return [submitter_score, previous_translator_score,
+                previous_reviewer_score, suggester_score]
 
     def save(self, *args, **kwargs):
         # copy current user rate
