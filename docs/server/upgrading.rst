@@ -130,7 +130,7 @@ Upgrade to the latest Pootle version:
 
 .. code-block:: console
 
-   (env) $ pip install --upgrade Pootle
+   (env) $ pip install --pre --upgrade Pootle
 
 
 .. _upgrading#check-settings:
