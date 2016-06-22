@@ -23,12 +23,14 @@
     <% }); %>
     <% _.each(data.paid_task_summary, function (row) { %>
       <%
-        var amountStr = row.amount;
+        let amountStr;
         if (row.type === paidTaskTypes.hourlyWork) {
           amountStr = interpolate(ngettext("%s hour", "%s hours", Math.round(row.amount)), [Math.round(row.amount)]);
         } else if (row.type === paidTaskTypes.translation ||
                    row.type === paidTaskTypes.review) {
           amountStr = interpolate(ngettext("%s word", "%s words", Math.round(row.amount)), [Math.round(row.amount)]);
+        } else {
+          amountStr = row.amount;
         }
       %>
       <tr class="item is-visible">

@@ -16,12 +16,14 @@
     <tbody>
     <% _.each(data.paid_tasks, function (row) { %>
       <%
-        var amount = row.amount;
+        let amount;
         if (row.type === paidTaskTypes.hourlyWork) {
           amount = interpolate(ngettext("%s hour", "%s hours", Math.round(row.amount)), [Math.round(row.amount)]);
         } else if (row.type === paidTaskTypes.translation ||
                    row.type === paidTaskTypes.review) {
           amount = interpolate(ngettext("%s word", "%s words", Math.round(row.amount)), [Math.round(row.amount)]);
+        } else {
+          amount = row.amount;
         }
       %>
       <tr class="item is-visible task<%= row.id %>">
