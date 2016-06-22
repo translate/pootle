@@ -18,10 +18,10 @@
       <%
         var amount = row.amount;
         if (row.type === paidTaskTypes.hourlyWork) {
-          amount += ' ' + ngettext("hour", "hours", Math.round(row.amount));
+          amount = interpolate(ngettext("%s hour", "%s hours", Math.round(row.amount)), [Math.round(row.amount)]);
         } else if (row.type === paidTaskTypes.translation ||
                    row.type === paidTaskTypes.review) {
-          amount += ' ' + ngettext("word", "words", Math.round(row.amount));
+          amount = interpolate(ngettext("%s word", "%s words", Math.round(row.amount)), [Math.round(row.amount)]);
         }
       %>
       <tr class="item is-visible task<%= row.id %>">
