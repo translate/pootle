@@ -48,6 +48,14 @@ class Command(PootleCommand):
                   '"2016-01-24 23:15:22 +0000" or "2016-01-24"'),
         )
         parser.add_argument(
+            "--until",
+            type=get_aware_datetime,
+            action="store",
+            dest="until",
+            help=('ISO 8601 format: 2016-01-24T23:15:22+0000 or '
+                  '"2016-01-24 23:15:22 +0000" or "2016-01-24"'),
+        )
+        parser.add_argument(
             "--sort-by",
             default="username",
             choices=["username", "contributions"],
@@ -80,7 +88,7 @@ class Command(PootleCommand):
             for k, v
             in options.items()
             if k in ["projects", "languages", "include_anon",
-                     "since", "sort_by"]}
+                     "since", "until", "sort_by"]}
         kwargs["project_codes"] = kwargs.pop("projects", None)
         kwargs["language_codes"] = kwargs.pop("languages", None)
         return kwargs
