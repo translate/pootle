@@ -104,10 +104,12 @@ This will also fetch and install Pootle's dependencies.
 To verify that everything installed correctly, you should be able to access the
 :command:`pootle` command line tool within your environment.
 
-.. code-block:: console
+
+.. highlight:: console
+.. parsed-literal::
 
   (env) $ pootle --version
-  Pootle 2.8.0b1 (Django 1.8.13, Translate Toolkit 1.13.0)
+  Pootle |release| (Django |django|, Translate Toolkit |ttk|)
 
 
 .. _installation#initializing-the-configuration:
