@@ -127,9 +127,7 @@ function handleNavDropDownSelectClick() {
   const langCode = $(sel.language).val();
   const projectCode = $(sel.project).val();
   const $resource = $(sel.resource);
-  const resource = $resource.length ? $resource.val()
-                                              .replace('ctx-', '')
-                                   : '';
+  const resource = $resource.length ? $resource.val().replace('ctx-', '') : '';
   navigateTo(langCode, projectCode, resource);
   return true;
 }
@@ -137,8 +135,7 @@ function handleNavDropDownSelectClick() {
 
 function handleBeforeNavDropDownResourceSelect(e) {
   const $select = $(this);
-  const resource = e.val ? e.val.replace('ctx-', '')
-                          : '';
+  const resource = e.val ? e.val.replace('ctx-', '') : '';
   if (resource === '') {
     e.preventDefault();
     if ($select.val() === '') {
