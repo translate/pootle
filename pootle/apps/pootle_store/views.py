@@ -389,7 +389,8 @@ class UnitTimelineJSON(PootleUnitJSON):
             result.append({
                 "display_datetime": display_dt,
                 "iso_datetime": iso_dt,
-                "via_upload": entry_group.get('via_upload', False)})
+                "via_upload": entry_group.get('via_upload', False),
+            })
         return result
 
 
