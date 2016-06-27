@@ -134,17 +134,19 @@ function handleNavDropDownSelectClick() {
 
 
 function handleBeforeNavDropDownResourceSelect(e) {
-  const $select = $(this);
   const resource = e.val ? e.val.replace('ctx-', '') : '';
-  if (resource === '') {
-    e.preventDefault();
-    if ($select.val() === '') {
-      $select.select2('close');
-    } else {
-      $select.select2('val', '');
-      $select.select2('close');
-      handleNavDropDownSelectClick();
-    }
+  if (resource !== '') {
+    return;
+  }
+
+  e.preventDefault();
+  const $select = $(this);
+  if ($select.val() === '') {
+    $select.select2('close');
+  } else {
+    $select.select2('val', '');
+    $select.select2('close');
+    handleNavDropDownSelectClick();
   }
 }
 
