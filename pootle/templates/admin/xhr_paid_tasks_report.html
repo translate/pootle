@@ -16,7 +16,7 @@
     <tbody>
     <% _.each(data.paid_tasks, function (row) { %>
       <%
-        let amount;
+        var amount;
         if (row.type === paidTaskTypes.hourlyWork) {
           amount = interpolate(ngettext("%s hour", "%s hours", Math.round(row.amount)), [Math.round(row.amount)]);
         } else if (row.type === paidTaskTypes.translation ||
