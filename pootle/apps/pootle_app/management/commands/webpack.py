@@ -76,6 +76,7 @@ class Command(BaseCommand):
             webpack_args.extend([watch, '--display-error-details'])
         else:
             os.environ['NODE_ENV'] = 'production'
+            webpack_args.append("--bail")
 
         webpack_args.extend(options['extra'])
 
