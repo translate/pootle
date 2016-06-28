@@ -82,3 +82,7 @@ rqworker
 manage
 
 .coverage
+
+.cache
+
+pytest_pootle/data/po/.tmp
