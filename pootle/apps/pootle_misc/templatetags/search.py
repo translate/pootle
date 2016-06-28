@@ -21,11 +21,12 @@ def render_search(context):
     is_disabled = (context["page"] != "translate" and
                    not context["can_translate_stats"])
     if is_disabled:
-        search_form.fields["search"].widget.attrs["readonly"] = "readonly"
-        search_form.fields["search"].widget.attrs["disabled"] = True
-        search_form.fields["search"].widget.attrs["title"] = ""
-        search_form.fields["search"].widget.attrs[
-            "placeholder"] = _("Search unavailable")
+        search_form.fields["search"].widget.attrs.update({
+            'readonly': 'readonly',
+            'disabled': True,
+            'title': '',
+            'placeholder': _("Search unavailable"),
+        })
 
     return {
         'search_form': search_form,
