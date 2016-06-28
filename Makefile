@@ -21,6 +21,7 @@ assets:
 	npm --version
 	node --version
 	cd ${JS_DIR} && \
+	npm cache clear && \
 	npm install && \
 	cd ${CWD}
 	python manage.py webpack --extra=--display-error-details
