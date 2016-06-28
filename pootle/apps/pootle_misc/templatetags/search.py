@@ -18,15 +18,17 @@ register = template.Library()
 @register.inclusion_tag('core/search.html', takes_context=True)
 def render_search(context):
     search_form = make_search_form(request=context['request'])
-    if context["page"] != "translate" and not context["can_translate_stats"]:
+    is_disabled = (context["page"] != "translate" and
+                   not context["can_translate_stats"])
+    if is_disabled:
         search_form.fields["search"].widget.attrs["readonly"] = "readonly"
         search_form.fields["search"].widget.attrs["disabled"] = True
         search_form.fields["search"].widget.attrs["title"] = ""
         search_form.fields["search"].widget.attrs[
             "placeholder"] = _("Search unavailable")
-        search_form.fields[
-            "search"].widget.attrs["class"] = "search-widget-disabled"
 
     return {
         'search_form': search_form,
-        'search_action': context["object"].get_translate_url()}
+        'search_action': context["object"].get_translate_url(),
+        'is_disabled': is_disabled,
+    }

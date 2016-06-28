@@ -1,5 +1,10 @@
 <div id="search">
-  <form action="{{ search_action }}" method="get" id="search-form">
+  <form
+    action="{{ search_action }}"
+    method="get"
+    id="search-form"
+    {% if is_disabled %}class="is-disabled"{% endif %}
+  >
     <div class="search-wrapper">
       {{ search_form.search }}
       <button class="btn-search">

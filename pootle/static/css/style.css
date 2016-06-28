@@ -1801,6 +1801,13 @@ html[dir="rtl"] #tabs li
     border-radius: 3px;
 }
 
+#search-form.is-disabled,
+#search-form.is-disabled input[type="text"]
+{
+    background-color: #eee;
+    font-style: italic;
+}
+
 #search-form.focused,
 .search-container
 {
@@ -1835,12 +1842,6 @@ html[dir="rtl"] #tabs li
 #search-form input[type="text"]:focus
 {
     color: #000;
-}
-
-#search-form input[type="text"].search-widget-disabled
-{
-    background: #eee;
-    font-style: italic;
 }
 
 .btn-search
