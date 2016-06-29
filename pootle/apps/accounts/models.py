@@ -152,7 +152,8 @@ class User(AbstractBaseUser):
             return None
 
     @classmethod
-    def top_scorers(cls, days=30, language=None, project=None, limit=5):
+    def top_scorers(cls, days=30, language=None, project=None, limit=5,
+                    offset=0):
         """Returns users with the top scores.
 
         :param days: period of days to account for scores.
@@ -166,6 +167,7 @@ class User(AbstractBaseUser):
             'language': language,
             'project': project,
             'limit': limit,
+            'offset': offset,
         }
         cache_key = make_method_key(cls, 'top_scorers', cache_kwargs)
 
@@ -234,7 +236,7 @@ class User(AbstractBaseUser):
                     output_field=models.IntegerField()
                 )
             ),
-        ).order_by('-total_score')
+        ).order_by('-total_score')[offset:]
 
         if isinstance(limit, (int, long)) and limit > 0:
             top_scores = top_scores[:limit]

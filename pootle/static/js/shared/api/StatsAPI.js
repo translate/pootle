@@ -27,6 +27,15 @@ const StatsAPI = {
     });
   },
 
+  getTopContributors(path, { offset = 0 } = {}) {
+    const body = { path, offset };
+
+    return fetch({
+      body: body,
+      url: `${this.apiRoot}contributors/`,
+    });
+  },
+
 };
 
 
