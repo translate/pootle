@@ -1318,6 +1318,8 @@ class StoreManager(models.Manager):
 
         store, created = self.get_or_create(
             name=filename, parent=parent, translation_project=tp)
+        if created:
+            store.mark_all_dirty()
         return store
 
 
