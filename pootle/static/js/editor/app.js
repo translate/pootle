@@ -742,7 +742,7 @@ PTL.editor = {
     const targetIndex = qAll('.js-translation-area').indexOf(this.focused);
 
     let newValue = value;
-    if (!overwrite) {
+    if (!overwrite && newValues[targetIndex] !== '') {
       const { selectionStart } = this.focused;
       const { selectionEnd } = this.focused;
       const areaValue = this.focused.value;
