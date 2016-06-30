@@ -14,6 +14,9 @@
 import sys
 import os
 
+from django import VERSION as dj_version_actual
+from translate.__version__ import ver as ttk_version_actual
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -425,3 +428,9 @@ extlinks = {
     'wiki': ('http://translate.sourceforge.net/wiki/%s', ''),
     'wp': ('https://en.wikipedia.org/wiki/%s', ''),
 }
+
+
+# -- Dependency versions ----
+
+django = str(dj_version_actual)
+ttk = str(ttk_version_actual)
