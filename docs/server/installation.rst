@@ -109,7 +109,7 @@ To verify that everything installed correctly, you should be able to access the
 .. parsed-literal::
 
   (env) $ pootle --version
-  Pootle |release| (Django |django|, Translate Toolkit |ttk|)
+  Pootle |release| (Django |django_ver|, Translate Toolkit |ttk_ver|)
 
 
 .. _installation#initializing-the-configuration:

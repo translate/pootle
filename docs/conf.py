@@ -14,8 +14,8 @@
 import sys
 import os
 
-from django import VERSION as dj_version_actual
-from translate.__version__ import ver as ttk_version_actual
+from django import __version__ as dj_version_actual
+from translate.__version__ import sver as ttk_version_actual
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -432,5 +432,7 @@ extlinks = {
 
 # -- Dependency versions ----
 
-django = str(dj_version_actual)
-ttk = str(ttk_version_actual)
+rst_prolog += """
+.. |django_ver| replace:: %s
+.. |ttk_ver| replace:: %s
+""" % (dj_version_actual, ttk_version_actual)
