@@ -93,3 +93,13 @@ class FSPlugin(object):
 
     def __str__(self):
         return str(self.plugin)
+
+
+def parse_fs_url(fs_url):
+    fs_type = 'localfs'
+    chunks = fs_url.split('+', 1)
+    if len(chunks) > 1:
+        if chunks[0] in fs_plugins.gather().keys():
+            fs_type = chunks[0]
+            fs_url = chunks[1]
+    return fs_type, fs_url

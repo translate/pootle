@@ -18,7 +18,7 @@ from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins
 from pootle_fs.models import StoreFS
 from pootle_fs.utils import (
-    PathFilter, StoreFSPathFilter, StorePathFilter, FSPlugin)
+    PathFilter, StoreFSPathFilter, StorePathFilter, FSPlugin, parse_fs_url)
 from pootle_project.models import Project
 from pootle_store.models import Store
 
@@ -181,3 +181,12 @@ def test_project_fs_instance_bad(english):
 
     with pytest.raises(MissingPluginError):
         FSPlugin(project)
+
+
+@pytest.mark.parametrize(
+    "fs, fs_type, fs_url", [
+        ("/test/fs/path/", "localfs", "/test/fs/path/"),
+        ("localfs+/test/fs/path/", "localfs", "/test/fs/path/"),
+    ])
+def test_parse_fs_url(fs, fs_type, fs_url):
+    assert (fs_type, fs_url) == parse_fs_url(fs)

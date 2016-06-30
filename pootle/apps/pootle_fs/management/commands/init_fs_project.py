@@ -11,8 +11,7 @@ import logging
 from django.core.management import BaseCommand, CommandError
 from django.db import IntegrityError
 
-from pootle_fs.delegate import fs_plugins
-from pootle_fs.utils import FSPlugin
+from pootle_fs.utils import FSPlugin, parse_fs_url
 from pootle_language.models import Language
 from pootle_project.models import Project
 
@@ -40,7 +39,7 @@ class Command(BaseCommand):
             metavar='TRANSLATION_PATH'
         )
         parser.add_argument(
-            '--name',
+            '-n', '--name',
             action='store',
             dest='name',
             nargs='?',
@@ -63,7 +62,7 @@ class Command(BaseCommand):
             default='standard'
         )
         parser.add_argument(
-            '-l --source-language',
+            '-l', '--source-language',
             action='store',
             dest='source_language',
             help="Code for the project's source language",
@@ -78,15 +77,6 @@ class Command(BaseCommand):
             default=True
         )
 
-    def parse_fs_url(self, fs_url):
-        fs_type = 'localfs'
-        chunks = fs_url.split('+', 1)
-        if len(chunks) > 1:
-            if chunks[0] in fs_plugins.gather().keys():
-                fs_type = chunks[0]
-                fs_url = chunks[2]
-        return fs_type, fs_url
-
     def handle(self, **options):
         source_language_code = options['source_language']
         try:
@@ -96,7 +86,7 @@ class Command(BaseCommand):
                               source_language_code)
             raise CommandError(e)
 
-        fs_type, fs_url = self.parse_fs_url(options['fs'])
+        fs_type, fs_url = parse_fs_url(options['fs'])
         code = options['code']
         name = options['name'] or code.capitalize()
 
