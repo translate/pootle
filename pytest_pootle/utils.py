@@ -112,8 +112,9 @@ def create_api_request(rf, method='get', url='/', data='', user=None):
 
 def update_store(store, units=None, store_revision=None, add_headers=False,
                  user=None, submission_type=None, resolve_conflict=None):
-    from pootle_store.models import POOTLE_WINS
     if resolve_conflict is None:
+        from pootle_store.models import POOTLE_WINS
+
         resolve_conflict = POOTLE_WINS
     store_headers = {}
     if add_headers and store_revision:
