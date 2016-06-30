@@ -432,7 +432,7 @@ extlinks = {
 
 # -- Dependency versions ----
 
-rst_prolog += """
+rst_prolog = """
 .. |django_ver| replace:: %s
 .. |ttk_ver| replace:: %s
 """ % (dj_version_actual, ttk_version_actual)
