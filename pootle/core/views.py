@@ -656,6 +656,8 @@ class PootleBrowseView(PootleDetailView):
 
         ctx.update(
             {'page': 'browse',
+             'stats_banner_auto_refresh_enabled':
+                 settings.POOTLE_STATS_BANNER_AUTO_REFRESH_ENABLED,
              'stats': self.stats,
              'translation_states': get_translation_states(self.object),
              'checks': get_qualitycheck_list(self.object),

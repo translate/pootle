@@ -74,6 +74,7 @@ const stats = {
 
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
+    this.isStatsBannerAutoRefreshEnabled = options.isStatsBannerAutoRefreshEnabled;
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
@@ -305,10 +306,14 @@ const stats = {
 
     $(dirtySelector).toggleClass('dirty', !!data.is_dirty);
     if (!!data.is_dirty) {
-      this.dirtyBackoff = Math.pow(2, this.retries);
-      this.updateDirtyBackoffCounter();
-      $('.js-stats-refresh').show();
-      this.dirtyBackoffId = setInterval(() => this.updateDirty(), 1000);
+      if (this.isStatsBannerAutoRefreshEnabled) {
+        this.dirtyBackoff = Math.pow(2, this.retries);
+        this.updateDirtyBackoffCounter();
+        $('.js-stats-refresh').show();
+        this.dirtyBackoffId = setInterval(() => this.updateDirty(), 1000);
+      } else {
+        $('.js-stats-refresh').show();
+      }
     }
 
     this.updateProgressbar($('#progressbar'), data);
