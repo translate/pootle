@@ -15,6 +15,7 @@ search_backend = Getter(providing_args=["instance"])
 lang_mapper = Getter(providing_args=["instance"])
 state = Getter()
 response = Getter()
+contributors = Getter()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
