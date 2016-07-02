@@ -26,23 +26,13 @@ class Command(PootleCommand):
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
-
-        timeframe = parser.add_mutually_exclusive_group(required=False)
-        timeframe.add_argument(
-            "--from-revision",
-            type=int,
-            default=0,
-            dest="revision",
-            help="Only count contributions newer than this revision",
-        )
-        timeframe.add_argument(
+        parser.add_argument(
             "--since",
             action="store",
             dest="since",
             help=('ISO 8601 format: 2016-01-24T23:15:22+0000 or '
                   '"2016-01-24 23:15:22 +0000"'),
         )
-
         parser.add_argument(
             "--sort-by",
             default="name",
@@ -97,9 +87,7 @@ class Command(PootleCommand):
             nobody_user = User.objects.get_nobody_user()
             units = units.exclude(submitted_by=nobody_user)
 
-        if options["revision"]:
-            units = units.filter(revision__gte=options["revision"])
-        elif options["since"]:
+        if options["since"]:
             units = units.filter(
                 revision__gte=self._get_revision_from_since(options["since"]),
             )

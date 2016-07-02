@@ -25,16 +25,6 @@ def test_contributors_noargs(capfd, en_tutorial_po_member_updated):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_contributors_revision(capfd, en_tutorial_po_member_updated):
-    """Contributors since a given revision."""
-    call_command('contributors', '--from-revision=1')
-    out, err = capfd.readouterr()
-    contribs = Unit.objects.filter(submitted_by__username="member")
-    assert ("Member (%d contributions)" % contribs.count()) in out
-
-
-@pytest.mark.cmd
-@pytest.mark.django_db
 def test_contributors_project(capfd, en_tutorial_po_member_updated):
     """Contributors in a given project."""
     call_command('contributors', '--project=tutorial')

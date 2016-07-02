@@ -377,13 +377,6 @@ of contributions they have.
 
 Available options:
 
-.. django-admin-option:: --from-revision
-
-  Tells to only take into account contributions newer than the specified
-  revision.
-
-  Default: ``0``.
-
 .. django-admin-option:: --sort-by
 
   .. versionadded:: 2.7.3
@@ -408,10 +401,6 @@ Available options:
   Only consider contributions since the specified date. Date must be in ISO
   8601 format (``2016-01-24T23:15:22+0000``) or be a string formatted like
   ``"2016-01-24 23:15:22 +0000"`` (quotes included).
-
-  :option:`--since <contributors --since>` and
-  :option:`--from-revision <contributors --from-revision>` are mutually
-  exclusive.
 
 
 .. django-admin:: revision
