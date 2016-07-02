@@ -9,6 +9,10 @@ Pootle
     :alt: Build Status
     :target: https://travis-ci.org/translate/pootle
 
+.. image:: https://landscape.io/github/translate/pootle/master/landscape.svg?style=flat-square
+    :target: https://landscape.io/github/translate/pootle/master
+    :alt: Code Health
+
 `Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
 localization tool.  It works to lower the barrier of entry, providing tools to
 enable teams to work towards higher quality while welcoming newcomers.
