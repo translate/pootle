@@ -378,10 +378,8 @@ class PootleTestEnv(object):
                 for i in range(0, n[1]):
                     UnitDBFactory(store=store, state=state)
 
-    def _update_submission_times(self, update_time, last_update=None):
-        from pootle_statistics.models import Submission
-
-        submissions = Submission.objects.all()
+    def _update_submission_times(self, unit, update_time, last_update=None):
+        submissions = unit.submission_set.all()
         if last_update:
             submissions = submissions.exclude(
                 creation_time__lte=last_update)
@@ -408,7 +406,7 @@ class PootleTestEnv(object):
             "Suggestion for %s" % (unit.target or unit.source),
             user=member,
             touch=False)
-        self._update_submission_times(first_modified, created)
+        self._update_submission_times(unit, first_modified, created)
 
         # accept the suggestion 7 days later if not untranslated
         next_time = first_modified + timedelta(days=7)
@@ -421,7 +419,7 @@ class PootleTestEnv(object):
             Unit.objects.filter(pk=unit.pk).update(
                 submitted_on=next_time, mtime=next_time)
         self._update_submission_times(
-            next_time, first_modified)
+            unit, next_time, first_modified)
 
         # add another suggestion as different user 7 days later
         suggestion2, _ = unit.add_suggestion(
@@ -429,6 +427,7 @@ class PootleTestEnv(object):
             user=member2,
             touch=False)
         self._update_submission_times(
+            unit,
             first_modified + timedelta(days=14),
             next_time)
 
