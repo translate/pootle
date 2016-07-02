@@ -7,18 +7,35 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+from argparse import ArgumentTypeError
 from collections import Counter
+from dateutil.parser import parse as parse_datetime
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "pootle.settings"
 
 from django.contrib.auth import get_user_model
 
+from pootle.core.utils.timezone import make_aware
 from pootle_store.models import Unit
 
 from . import PootleCommand
 
 
 User = get_user_model()
+
+
+def get_aware_datetime(dt_string):
+    """Return an aware datetime parsed from a datetime or date string.
+
+    Datetime or date string can be any format parsable by dateutil.parser.parse
+    """
+    if not dt_string:
+        return None
+    try:
+        return make_aware(parse_datetime(dt_string))
+    except ValueError:
+        raise ArgumentTypeError('The provided datetime/date string is not '
+                                'valid: "%s"' % dt_string)
 
 
 class Command(PootleCommand):
@@ -29,10 +46,11 @@ class Command(PootleCommand):
         super(Command, self).add_arguments(parser)
         parser.add_argument(
             "--since",
+            type=get_aware_datetime,
             action="store",
             dest="since",
             help=('ISO 8601 format: 2016-01-24T23:15:22+0000 or '
-                  '"2016-01-24 23:15:22 +0000"'),
+                  '"2016-01-24 23:15:22 +0000" or "2016-01-24"'),
         )
         parser.add_argument(
             "--sort-by",
@@ -51,14 +69,7 @@ class Command(PootleCommand):
         )
 
     def _get_revision_from_since(self, since):
-        from pootle.core.dateparse import parse_datetime
-        from pootle.core.utils.timezone import make_aware
         from pootle_statistics.models import Submission
-
-        if " " in since:
-            since = "%sT%s%s" % tuple(since.split(" "))
-
-        since = make_aware(parse_datetime(since))
 
         submissions_qs = Submission.objects.filter(creation_time__lt=since)
 
