@@ -9,6 +9,10 @@
 from argparse import ArgumentTypeError
 from dateutil.parser import parse as parse_datetime
 
+import pytest
+
+from django.core.management import call_command
+
 from pootle.core.utils.timezone import make_aware
 from pootle_app.management.commands.contributors import get_aware_datetime
 
@@ -40,3 +44,34 @@ def test_contributors_get_aware_datetime():
     # Test blank string.
     with pytest.raises(ArgumentTypeError):
         get_aware_datetime(" ")
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_cmd_contributors(capfd, dummy_contributors,
+                          default_contributors_kwargs, contributors_kwargs):
+    """Contributors across the site."""
+    result_kwargs = default_contributors_kwargs.copy()
+    result_kwargs.update(contributors_kwargs)
+    cmd_args = []
+    for k in ["project", "language"]:
+        if result_kwargs["%s_codes" % k]:
+            for arg in result_kwargs["%s_codes" % k]:
+                cmd_args.extend(["--%s" % k, arg])
+    for k in ["since", "until"]:
+        if result_kwargs[k]:
+            cmd_args.extend(
+                ["--%s" % k,
+                 result_kwargs[k]])
+            result_kwargs[k] = make_aware(parse_datetime(result_kwargs[k]))
+
+    if result_kwargs["sort_by"]:
+        cmd_args.extend(["--sort-by", result_kwargs["sort_by"]])
+
+    call_command('contributors', *cmd_args)
+    out, err = capfd.readouterr()
+    assert out.strip() == str(
+        "\n".join(
+            "%s (%s contributions)" % (k, v)
+            for k, v
+            in result_kwargs.items()))
