@@ -81,6 +81,7 @@ def test_contributors_instance(member, anon_submission_unit):
     assert list(contribs.user_qs) == list(User.objects.hide_meta())
     assert someuser in contribs.user_qs
     assert anon not in contribs.user_qs
+    assert sorted(contribs.items()) == sorted(contribs.contributors.items())
     assert (
         sorted(contribs)
         == sorted(contribs.contributors)

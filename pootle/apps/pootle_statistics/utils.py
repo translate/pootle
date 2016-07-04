@@ -69,6 +69,9 @@ class Contributors(object):
     def __getitem__(self, k):
         return self.contributors[k]
 
+    def items(self):
+        return self.contributors.items()
+
     @cached_property
     def contributors(self):
         qs = self.user_qs.filter(self.filters).annotate(
