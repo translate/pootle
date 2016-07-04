@@ -23,6 +23,7 @@ User = get_user_model()
 
 class Command(PootleCommand):
     help = "Print a list of contributors."
+    requires_system_checks = False
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
