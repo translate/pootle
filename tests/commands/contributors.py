@@ -7,7 +7,9 @@
 # AUTHORS file for copyright and authorship information.
 
 from argparse import ArgumentTypeError
+from collections import OrderedDict
 from dateutil.parser import parse as parse_datetime
+from email.utils import formataddr
 
 import pytest
 
@@ -16,6 +18,7 @@ from django.core.management.base import CommandError
 
 from pootle.core.utils.timezone import make_aware
 from pootle_app.management.commands.contributors import get_aware_datetime
+from pytest_pootle.fixtures.contributors import CONTRIBUTORS_WITH_EMAIL
 
 
 def test_contributors_get_aware_datetime():
@@ -90,3 +93,18 @@ def test_cmd_contributors_mutually_exclusive(capfd):
         call_command('contributors', '--mailmerge', '--include-anonymous')
     assert ("argument --include-anonymous: not allowed with argument "
             "--mailmerge") in str(e)
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_cmd_contributors_mailmerge(capfd, dummy_email_contributors):
+    """Contributors across the site with mailmerge."""
+    call_command('contributors', '--mailmerge')
+    out, err = capfd.readouterr()
+    temp = OrderedDict(sorted(CONTRIBUTORS_WITH_EMAIL.items(),
+                              key=lambda x: str.lower(x[1]['username'])))
+    expected = [
+        formataddr((item["full_name"].strip() or item["username"],
+                    item['email'].strip()))
+        for item in temp.values() if item['email'].strip()]
+    assert out.strip() == "\n".join(expected)
