@@ -54,3 +54,11 @@ def administrate(pootle_content_type):
     """Require the `suggest` permission."""
     return _require_permission('administrate', 'Can administrate a TP',
                                pootle_content_type)
+
+
+@pytest.fixture
+def translate():
+    """Require the `translate` permission."""
+    from django.contrib.auth.models import Permission
+
+    return Permission.objects.get(codename="translate")
