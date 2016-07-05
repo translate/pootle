@@ -149,7 +149,11 @@
     refreshed automatically in <strong>30 seconds</strong>.
     {% endblocktrans %}
   {% elif user.is_superuser %}
-    {% trans "Stats are out of date. See documentation for dealing with stats issues." %}
+    {% blocktrans trimmed with docs_url="server/rq.html"|docs_url %}
+    Stats are out of date.
+    See <a href='{{ docs_url }}'>documentation</a>
+    for dealing with stats issues.
+    {% endblocktrans %}
   {% else %}
     {% trans "The stats on this page may be out of date." %}
   {% endif %}
