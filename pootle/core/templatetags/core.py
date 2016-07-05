@@ -11,6 +11,7 @@ from django import template
 from django.utils.html import escapejs
 from django.utils.safestring import mark_safe
 
+from ..utils.docs import get_docs_url
 from ..utils.json import jsonify
 
 
@@ -23,3 +24,9 @@ def to_js(value):
     consumption.
     """
     return mark_safe('JSON.parse("%s")' % escapejs(jsonify(value)))
+
+
+@register.filter
+def docs_url(path_name):
+    """Returns the absolute URL to `path_name` in the RTD docs."""
+    return get_docs_url(path_name)
