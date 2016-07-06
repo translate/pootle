@@ -310,7 +310,7 @@ const stats = {
     if (!!data.is_dirty) {
       if (dirtyStatsRefreshEnabled) {
         this.dirtyBackoff = Math.pow(2, this.retries);
-        this.dirtyBackoffId = setInterval(() => this.updateDirty(), 1000);
+        this.dirtyBackoffId = setInterval(() => this.updateDirty({ hideSpin: true }), 1000);
       } else {
         $('.js-stats-refresh').show();
       }
@@ -397,7 +397,7 @@ const stats = {
     }
   },
 
-  updateDirty() {
+  updateDirty({ hideSpin = false } = {}) {
     if (--this.dirtyBackoff === 0) {
       $('.js-stats-refresh').hide();
       clearInterval(this.dirtyBackoffId);
@@ -405,19 +405,21 @@ const stats = {
         if (this.retries < 5) {
           this.retries++;
         }
-        this.loadStats();
+        this.loadStats({ hideSpin });
       }, 250);
     }
   },
 
-  load(methodName) {
-    $('body').spin();
+  load(methodName, { hideSpin = false } = {}) {
+    if (!hideSpin) {
+      $('body').spin();
+    }
     return StatsAPI[methodName](this.pootlePath)
       .always(() => $('body').spin(false));
   },
 
-  loadStats() {
-    return this.load('getStats')
+  loadStats({ hideSpin = false } = {}) {
+    return this.load('getStats', { hideSpin })
       .done((data) => this.setState({ data }));
   },
 
