@@ -309,7 +309,8 @@ PTL.editor = {
         this.closeSuggestion();
       }
     });
-    hotkeys.bind('ctrl+return', () => {
+    hotkeys.bind('ctrl+return', (e) => {
+      e.preventDefault();
       if (this.isSuggestMode()) {
         this.handleSuggest();
       } else {
