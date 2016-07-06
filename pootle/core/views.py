@@ -656,6 +656,8 @@ class PootleBrowseView(PootleDetailView):
 
         ctx.update(
             {'page': 'browse',
+             'stats_refresh_attempts_count':
+                 settings.POOTLE_STATS_REFRESH_ATTEMPTS_COUNT,
              'stats': self.stats,
              'translation_states': get_translation_states(self.object),
              'checks': get_qualitycheck_list(self.object),

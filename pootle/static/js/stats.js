@@ -74,6 +74,7 @@ const stats = {
 
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
+    this.statsRefreshAttemptsCount = options.statsRefreshAttemptsCount;
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
@@ -257,7 +258,8 @@ const stats = {
       return false;
     }
 
-    $td.parent().toggleClass('dirty', item.is_dirty);
+    const dirtyStylesEnabled = this.retries >= this.statsRefreshAttemptsCount;
+    $td.parent().toggleClass('dirty', item.is_dirty && dirtyStylesEnabled);
     this.updateItemStats($td, item.total);
 
     const isFullRatio = item.total === 0 || item.total === null;
@@ -302,13 +304,16 @@ const stats = {
     const $vfoldersTable = $('#content .vfolders table.stats');
     const dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice';
     const now = parseInt(Date.now() / 1000, 10);
+    const dirtyStatsRefreshEnabled = this.retries < this.statsRefreshAttemptsCount;
 
-    $(dirtySelector).toggleClass('dirty', !!data.is_dirty);
+    $(dirtySelector).toggleClass('dirty', !!data.is_dirty && !dirtyStatsRefreshEnabled);
     if (!!data.is_dirty) {
-      this.dirtyBackoff = Math.pow(2, this.retries);
-      this.updateDirtyBackoffCounter();
-      $('.js-stats-refresh').show();
-      this.dirtyBackoffId = setInterval(() => this.updateDirty(), 1000);
+      if (dirtyStatsRefreshEnabled) {
+        this.dirtyBackoff = Math.pow(2, this.retries);
+        this.dirtyBackoffId = setInterval(() => this.updateDirty(), 1000);
+      } else {
+        $('.js-stats-refresh').show();
+      }
     }
 
     this.updateProgressbar($('#progressbar'), data);
@@ -403,16 +408,6 @@ const stats = {
         this.loadStats();
       }, 250);
     }
-    this.updateDirtyBackoffCounter();
-  },
-
-  updateDirtyBackoffCounter() {
-    const noticeStr = interpolate(
-      ngettext('%s second', '%s seconds', this.dirtyBackoff),
-      [this.dirtyBackoff],
-      false
-    );
-    $('#autorefresh-notice strong').text(noticeStr);
   },
 
   load(methodName) {
