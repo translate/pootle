@@ -12,6 +12,7 @@ from dateutil.parser import parse as parse_datetime
 import pytest
 
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 from pootle.core.utils.timezone import make_aware
 from pootle_app.management.commands.contributors import get_aware_datetime
@@ -75,3 +76,17 @@ def test_cmd_contributors(capfd, dummy_contributors,
             "%s (%s contributions)" % (k, v)
             for k, v
             in result_kwargs.items()))
+
+
+@pytest.mark.cmd
+def test_cmd_contributors_mutually_exclusive(capfd):
+    """Test mutually exclusive arguments are not accepted."""
+    with pytest.raises(CommandError) as e:
+        call_command('contributors', '--include-anonymous', '--mailmerge')
+    assert ("argument --mailmerge: not allowed with argument "
+            "--include-anonymous") in str(e)
+
+    with pytest.raises(CommandError) as e:
+        call_command('contributors', '--mailmerge', '--include-anonymous')
+    assert ("argument --include-anonymous: not allowed with argument "
+            "--mailmerge") in str(e)
