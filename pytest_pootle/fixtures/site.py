@@ -26,11 +26,19 @@ def setup_db_if_needed(request):
 
 
 @pytest.fixture(scope='session')
-def post_db_setup(translations_directory, _django_db_setup,
-                  _django_cursor_wrapper, request):
+def tests_use_db(request):
+    return bool(
+        [item for item in request.node.items
+         if item.get_marker('django_db')])
+
+
+@pytest.fixture(autouse=True, scope='session')
+def post_db_setup(translations_directory, django_db_setup, django_db_blocker,
+                  tests_use_db, request):
     """Sets up the site DB for the test session."""
-    with _django_cursor_wrapper:
-        PootleTestEnv(request).setup()
+    if tests_use_db:
+        with django_db_blocker.unblock():
+            PootleTestEnv(request).setup()
 
 
 @pytest.fixture
