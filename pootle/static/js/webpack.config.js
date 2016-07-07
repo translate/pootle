@@ -8,7 +8,6 @@
 
 var webpack = require('webpack');
 var path = require('path');
-var _ = require('lodash');
 
 var env = process.env.NODE_ENV;
 var DEBUG = env !== 'production';
@@ -73,16 +72,28 @@ if (root !== undefined) {
   var customPaths = root.split(':');
   resolve.root = [path.join(__dirname, 'node_modules')].concat(customPaths);
 
-  var mergeArrays = function (a, b) {
-    return _.isArray(a) ? a.concat(b) : undefined;
-  };
+  function mergeWithArrays(target, source) {
+    var rv = Object(target);
+    var value;
+    Object.getOwnPropertyNames(source).forEach(function (key) {
+      value = source[key];
+      // Merge values if a key exists both in source and target objects and the
+      // target contains an array
+      if (target.hasOwnProperty(key) && Array.isArray(target[key])) {
+        value = target[key].concat(source[key]);
+      }
+      rv[key] = value;
+    });
+
+    return rv;
+  }
 
   for (var i=0; i<customPaths.length; i++) {
     var customPath = customPaths[i];
 
     try {
       var manifestEntries = require(path.join(customPath, 'manifest.json'));
-      entries = _.merge(entries, manifestEntries, mergeArrays);
+      entries = mergeWithArrays(entries, manifestEntries);
     } catch (e) {
       console.error(e.message);
     }
