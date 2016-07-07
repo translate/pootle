@@ -143,10 +143,20 @@
 {% endif %}
 
 <div id="autorefresh-notice">
-  {% blocktrans trimmed %}
-  Some data on this page is currently being calculated, and the page will be
-  refreshed automatically in <strong>30 seconds</strong>.
-  {% endblocktrans %}
+  {% if stats_banner_auto_refresh_enabled %}
+    {% blocktrans trimmed %}
+    Some data on this page is currently being calculated, and the page will be
+    refreshed automatically in <strong>30 seconds</strong>.
+    {% endblocktrans %}
+  {% elif user.is_superuser %}
+    {% blocktrans trimmed with docs_url="server/rq.html"|docs_url %}
+    Stats are out of date.
+    See <a href='{{ docs_url }}'>documentation</a>
+    for dealing with stats issues.
+    {% endblocktrans %}
+  {% else %}
+    {% trans "The stats on this page may be out of date." %}
+  {% endif %}
   <a href="#" class="js-stats-refresh">{% trans "Refresh now" %}</a>
 </div>
 
@@ -181,6 +191,7 @@ $(function () {
     isAdmin: {{ has_admin_access|yesno:"true,false" }},
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
     initialData: {{ stats|to_js }},
+    isStatsBannerAutoRefreshEnabled: {{ stats_banner_auto_refresh_enabled|yesno:"true,false" }},
     uiLocaleDir: '{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}',
   });
 });
