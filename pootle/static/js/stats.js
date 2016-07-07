@@ -105,6 +105,9 @@ const stats = {
       e.preventDefault();
       this.refreshStats();
     });
+    $(document).on('click', '.js-stats-refresh-close', () => {
+      $('#autorefresh-notice').hide();
+    });
 
     window.addEventListener('popstate', (e) => {
       const state = e.state;

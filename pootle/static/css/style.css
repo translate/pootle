@@ -723,11 +723,30 @@ button.close
 
 #autorefresh-notice
 {
-    display: none;
+    margin: -0.6em auto 0;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    text-align: center;
+}
+
+#autorefresh-notice span {
     background: #fe9;
-    margin: 0 -1em;
-    padding: 0.7em 1.5em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.9em 1.5em;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 5px 5px;
+    border-top: 0;
+    padding-right: 3.7em;
+}
+
+#autorefresh-notice .x {
+    margin-left: 1em;
+    font-size: 1.5em;
+    position: absolute;
+    top: -0.2em;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 /*
@@ -1986,7 +2005,9 @@ table.stats td.not-inited span.not-inited
 
 #autorefresh-notice.dirty
 {
-    display: inherit;
+    opacity: 1;
+    transition-timing-function: ease;
+    transition-duration: 1s;
 }
 
 #top-stats.dirty #progressbar td,

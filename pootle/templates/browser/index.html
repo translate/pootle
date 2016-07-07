@@ -143,16 +143,19 @@
 {% endif %}
 
 <div id="autorefresh-notice">
-  {% if user.is_superuser %}
-    {% blocktrans trimmed with docs_url="server/rq.html"|docs_url %}
-    Stats are out of date.
-    See <a href="{{ docs_url }}">documentation</a>
-    for dealing with stats issues.
-    {% endblocktrans %}
-  {% else %}
-    {% trans "The stats on this page may be out of date." %}
-  {% endif %}
-  <a href="#" class="js-stats-refresh">{% trans "Refresh now" %}</a>
+  <span>
+    {% if user.is_superuser %}
+      {% blocktrans trimmed with docs_url="server/rq.html"|docs_url %}
+      Stats are out of date.
+      See <a href="{{ docs_url }}">documentation</a>
+      for dealing with stats issues.
+      {% endblocktrans %}
+    {% else %}
+      {% trans "The stats on this page may be out of date." %}
+    {% endif %}
+    <a href="#" class="js-stats-refresh">{% trans "Refresh now" %}</a>
+    <a href="#" class="js-stats-refresh-close x">×</a>
+  </span>
 </div>
 
 {% if parent %}
