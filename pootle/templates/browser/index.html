@@ -133,14 +133,6 @@
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}
-{% endblock %}
-
-{% block content %}
-{% if project and project.disabled %}
-<div class="alert alert-danger">
-{% trans "This project is disabled and visible to administrators only." %}
-</div>
-{% endif %}
 
 <div id="autorefresh-notice">
   <span>
@@ -157,6 +149,15 @@
     <a href="#" class="js-stats-refresh-close x">×</a>
   </span>
 </div>
+
+{% endblock %}
+
+{% block content %}
+{% if project and project.disabled %}
+<div class="alert alert-danger">
+{% trans "This project is disabled and visible to administrators only." %}
+</div>
+{% endif %}
 
 {% if parent %}
 <div class="browser-parent" lang="{{ LANGUAGE_CODE }}">
