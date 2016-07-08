@@ -379,28 +379,55 @@ Available options:
 
 .. django-admin-option:: --sort-by
 
-  .. versionadded:: 2.7.3
+  .. versionchanged:: 2.8.0
 
   Specifies the sorting to be used. Valid options are ``contributions`` (sort
-  by decreasing number of contributions) and ``name`` (sort by user name,
+  by decreasing number of contributions) and ``username`` (sort by user name,
   alphabetically).
 
-  Default: ``name``.
+  Default: ``username``.
 
-.. django-admin-option:: --only-emails
+.. django-admin-option:: --mailmerge
 
   .. versionadded:: 2.8.0
 
   Specifies to only output user names and emails. Users with no email are
   skipped.
 
+  :option:`--mailmerge <contributors --mailmerge>` and
+  :option:`--include-anonymous <contributors --include-anonymous>` are mutually
+  exclusive.
+
+.. django-admin-option:: --include-anonymous
+
+  .. versionadded:: 2.8.0
+
+  Specifies to include anonymous contributions.
+
+  :option:`--include-anonymous <contributors --include-anonymous>` and
+  :option:`--mailmerge <contributors --mailmerge>` are mutually exclusive.
+
 .. django-admin-option:: --since
 
   .. versionadded:: 2.8.0
 
-  Only consider contributions since the specified date. Date must be in ISO
-  8601 format (``2016-01-24T23:15:22+0000``) or be a string formatted like
-  ``"2016-01-24 23:15:22 +0000"`` (quotes included).
+  Only consider contributions since the specified date or datetime.
+
+  Date or datetime can be in any format accepted by ``python-dateutil``
+  library, for example ISO 8601 format (``2016-01-24T23:15:22+0000`` or
+  ``2016-01-24``) or a string formatted like ``"2016-01-24 23:15:22 +0000"``
+  (quotes included).
+
+.. django-admin-option:: --until
+
+  .. versionadded:: 2.8.0
+
+  Only consider contributions until the specified date or datetime.
+
+  Date or datetime can be in any format accepted by ``python-dateutil``
+  library, for example ISO 8601 format (``2016-01-24T23:15:22+0000`` or
+  ``2016-01-24``) or a string formatted like ``"2016-01-24 23:15:22 +0000"``
+  (quotes included).
 
 
 .. django-admin:: revision
