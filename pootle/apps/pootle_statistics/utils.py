@@ -83,4 +83,4 @@ class Contributors(object):
         return OrderedDict(
             [(user["username"], user)
              for user
-             in qs.values("username", "contributions", "email")])
+             in qs.values("username", "full_name", "contributions", "email")])

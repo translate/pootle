@@ -49,6 +49,7 @@ def _contributors_list(contribs):
                 (user.username,
                  dict(contributions=submissions.count(),
                       username=user.username,
+                      full_name=user.full_name,
                       email=user.email)))
     if contribs.sort_by != "contributions":
         return OrderedDict(
