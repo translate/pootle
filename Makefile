@@ -10,6 +10,11 @@ SPRITE_DIR = ${IMAGES_DIR}/sprite
 FORMATS=--formats=bztar
 TEST_ENV_NAME = pootle_test_env
 
+POOTLE_CMD = $(shell sh -c "command -v pootle")
+ifeq ($(POOTLE_CMD),)
+	POOTLE_CMD=python manage.py
+endif
+
 .PHONY: all build clean sprite test pot help docs assets
 
 all: help
@@ -24,10 +29,12 @@ assets:
 	npm cache clear && \
 	npm install && \
 	cd ${CWD}
-	python manage.py webpack --extra=--display-error-details
+	${POOTLE_CMD} webpack --extra=--display-error-details
 	mkdir -p ${ASSETS_DIR}
-	python manage.py collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}
-	python manage.py assets build ${TAIL}
+
+	${POOTLE_CMD} collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}
+	${POOTLE_CMD} assets build ${TAIL}
+
 	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 
 travis-assets:
@@ -39,10 +46,10 @@ travis-assets:
 		cd ${JS_DIR} && \
 		npm install && \
 		cd ${CWD}; \
-		python manage.py webpack --dev --nowatch; \
+		${POOTLE_CMD} webpack --dev --nowatch; \
 		mkdir -p ${ASSETS_DIR}; \
-		python manage.py collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}; \
-		python manage.py assets build ${TAIL}; \
+		${POOTLE_CMD} collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}; \
+		${POOTLE_CMD} assets build ${TAIL}; \
 		chmod 664 ${ASSETS_DIR}.webassets-cache/*; \
 	fi
 
