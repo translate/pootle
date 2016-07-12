@@ -20,9 +20,13 @@
 
       {% if 'name' in table.fields %}
       <td class="stats-name {{ item.icon }}"{% if item.description %} title="{{ item.description|striptags }}"{% endif %}>
-        {% if item.href %}<a href="{{ item.href }}">{% endif %}
-          <i class="icon-{{ item.icon }}"></i> <span>{{ item.title }}</span>
-        {% if item.href %}</a>{% endif %}
+        {% if item.href %}
+        <div class="truncate-ellipsis">
+          <a href="{{ item.href }}" title="{{ item.title }}">{% endif %}
+            <i class="icon-{{ item.icon }}"></i> <span>{{ item.title }}</span>
+        {% if item.href %}
+          </a>
+        </div>{% endif %}
       </td>
       {% endif %}
 

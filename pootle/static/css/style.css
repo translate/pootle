@@ -1139,6 +1139,21 @@ td.stats-name
 {
     white-space: nowrap;
     line-height: 20px;
+    width: 100%;
+    min-width: 10em;
+}
+
+.truncate-ellipsis {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+ 
+.truncate-ellipsis > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 td.stats-number
