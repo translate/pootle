@@ -228,12 +228,12 @@ class TPBrowseBaseView(PootleBrowseView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseBaseView, self).get_context_data(*args, **kwargs)
-        ctx.update(self.get_upload_widget(self.project))
+        ctx.update(self.get_upload_widget())
         ctx.update(
             {'parent': get_parent(self.object)})
         return ctx
 
-    def get_upload_widget(self, project):
+    def get_upload_widget(self):
         ctx = {}
         has_upload = (
             "import_export" in settings.INSTALLED_APPS
@@ -241,7 +241,7 @@ class TPBrowseBaseView(PootleBrowseView):
             and check_permission('translate', self.request))
         if has_upload:
             if self.project.localfiletype == 'po':
-                ctx.update(handle_upload_form(self.request, project))
+                ctx.update(handle_upload_form(self.request, self.project))
             ctx.update(
                 {'display_download': True,
                  'has_sidebar': True})
