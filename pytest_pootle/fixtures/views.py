@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 import pytest
 from dateutil.relativedelta import relativedelta
 
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 
 from pytest_pootle.env import TEST_USERS
@@ -377,11 +378,19 @@ def bad_views(request, client):
         test)
 
 
-@pytest.fixture
-def tp_uploads(client, member):
+@pytest.fixture(params=[
+    ("member", "member", {}),
+    # member doesn't have administarate permissions to set member2 as uploader
+    ("member", "member2", {"user_id": ""}),
+    ("admin", "member2", {}),
+])
+def tp_uploads(request, client):
     from pootle_translationproject.models import TranslationProject
     from pootle_store.models import Store
+    from django.contrib.auth import get_user_model
 
+    submitter_name, uploader_name, errors = request.param
+    uploader = get_user_model().objects.get(username=uploader_name)
     tp = TranslationProject.objects.all()[0]
     store = Store.objects.filter(parent=tp.directory)[0]
     kwargs = {
@@ -389,15 +398,28 @@ def tp_uploads(client, member):
         "language_code": tp.language.code,
         "dir_path": "",
         "filename": store.name}
-    password = TEST_USERS[member.username]['password']
-    client.login(username=member.username, password=password)
+    password = TEST_USERS[submitter_name]['password']
+    client.login(username=submitter_name, password=password)
+    updated_units = [
+        (unit.source_f, "%s UPDATED" % unit.target_f)
+        for unit in store.units
+    ]
+    updated_store = create_store(store.pootle_path, "0", updated_units)
+    uploaded_file = SimpleUploadedFile(
+        store.name,
+        str(updated_store),
+        "text/x-gettext-translation"
+    )
     response = client.post(
         reverse("pootle-tp-store-browse", kwargs=kwargs),
-        {'name': '', 'attachment': create_store([
-            (unit.source_f, "%s UPDATED" % unit.target_f)
-            for unit in store.units])})
+        {
+            'name': '',
+            'file': uploaded_file,
+            'user_id': uploader.id
+        }
+    )
 
-    return tp, response.wsgi_request, response, kwargs
+    return tp, response.wsgi_request, response, kwargs, errors
 
 
 @pytest.fixture(params=("browse", "translate", "export"))

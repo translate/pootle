@@ -262,5 +262,6 @@ def test_view_user_choice(client):
 
 @pytest.mark.django_db
 def test_uploads_tp(tp_uploads):
-    tp, request, response, kwargs = tp_uploads
+    tp, request, response, kwargs, errors = tp_uploads
     assert response.status_code == 200
+    assert errors.keys() == response.context['upload_form'].errors.keys()
