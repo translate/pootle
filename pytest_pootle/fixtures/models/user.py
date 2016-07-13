@@ -28,6 +28,7 @@ def site_users(request):
 def _require_user(username, fullname, password=None,
                   is_superuser=False, email=None):
     """Helper to get/create a new user."""
+    from accounts.utils import verify_user
     from django.contrib.auth import get_user_model
     User = get_user_model()
 
@@ -46,6 +47,8 @@ def _require_user(username, fullname, password=None,
         if email:
             user.email = email
         user.save()
+        if email:
+            verify_user(user)
 
     return user
 
