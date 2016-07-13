@@ -424,8 +424,8 @@ class User(AbstractBaseUser):
         if language is not None:
             language_scorers = self.top_scorers(language=language.code,
                                                 days=days, limit=None)
-            for index, user in enumerate(language_scorers, start=1):
-                if user == self:
+            for index, user_score in enumerate(language_scorers, start=1):
+                if user_score['user'] == self:
                     position = index
                     break
 
