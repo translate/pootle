@@ -1593,19 +1593,15 @@ html[dir="rtl"] ul.pager li:last-child > *
 {
     display: block;
     margin-top: 11px;
+    margin-left: -10px;
+    padding: 10px 0 10px 0;
+    height: 15px;
 }
 
 .path-summary-more.expand .path-summary-expanded
 {
     display: block;
     margin-top: 2.5em;
-}
-
-.path-summary-more .path-summary-collapsed
-{
-    margin-left: -10px;
-    padding: 10px 0 10px 0;
-    height: 15px;
 }
 
 .path-summary-more .path-summary-collapsed label
