@@ -272,11 +272,18 @@ update_stores
 
 .. versionchanged:: 2.7
 
-The opposite of :djadmin:`sync_stores`, this will update the strings in the
-database to reflect what is on disk, as Pootle will not detect changes in the
-file system on its own.
+Load translation files currently on the file system into the database, thereby
+bringing the Pootle database in sync with the files under the
+:setting:`POOTLE_TRANSLATION_DIRECTORY` directory.  Pootle will not detect
+changes in the file system on its own.  This is the opposite of
+:djadmin:`sync_stores`.
 
 .. note:: Disabled projects are skipped.
+
+.. note:: :djadmin:`update_stores` does not update your files against
+   templates.  If you wish to update files against templates then make use of
+   :ref:`pot2po <toolkit:pot2po>` followed by :djadmin:`update_stores` to load
+   the changed translations into the database.
 
 It also discovers new units, files and translation projects that were
 added on disk:
