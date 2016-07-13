@@ -11,8 +11,12 @@ import os
 from io import BytesIO
 from zipfile import ZipFile, is_zipfile
 
+from django.contrib.auth import get_user_model
 from django.http import Http404, HttpResponse
 
+from accounts.utils import get_user_list_with_permission
+
+from pootle_app.models.permissions import check_permission
 from pootle_store.models import Store
 
 from .forms import UploadForm
@@ -62,15 +66,38 @@ def export(request):
         return download(f.getvalue(), "%s.zip" % (prefix), "application/zip")
 
 
-def handle_upload_form(request, project):
+def handle_upload_form(request, project, language):
     """Process the upload form."""
+    uploader_list = [(request.user.id, request.user.display_name), ]
+    if check_permission('administrate', request):
+        uploader_list = [
+            (user.id, user.display_name)
+            for user in get_user_list_with_permission(
+                "translate",
+                project,
+                language
+            )
+        ]
+
     if request.method == "POST" and "file" in request.FILES:
-        upload_form = UploadForm(request.POST, request.FILES)
+        upload_form = UploadForm(
+            request.POST,
+            request.FILES,
+            uploader_list=uploader_list
+        )
         project_filetypes = [project.localfiletype,
                              project.get_template_filetype()]
 
         if upload_form.is_valid():
+            uploader_id = upload_form.cleaned_data["user_id"]
             django_file = request.FILES["file"]
+            uploader = request.user
+            if uploader_id and uploader_id != uploader.id:
+                User = get_user_model()
+                uploader = User.objects.get(
+                    id=upload_form.cleaned_data["user_id"]
+                )
+
             try:
                 if is_zipfile(django_file):
                     with ZipFile(django_file, "r") as zf:
@@ -82,19 +109,26 @@ def handle_upload_form(request, project):
                             if ext not in project_filetypes:
                                 continue
                             with zf.open(path, "r") as f:
-                                import_file(f, user=request.user)
+                                import_file(f, user=uploader)
                 else:
                     # It is necessary to seek to the beginning because
                     # is_zipfile fucks the file, and thus cannot be read.
                     django_file.seek(0)
-                    import_file(django_file, user=request.user)
+                    import_file(django_file, user=uploader)
             except Exception as e:
                 upload_form.add_error("file", e)
                 return {
                     "upload_form": upload_form,
                 }
+        else:
+            return {
+                "upload_form": upload_form,
+            }
 
     # Always return a blank upload form unless the upload form is not valid.
     return {
-        "upload_form": UploadForm(),
+        "upload_form": UploadForm(
+            uploader_list=uploader_list,
+            initial=dict(user_id=request.user.id)
+        ),
     }

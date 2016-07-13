@@ -2187,9 +2187,9 @@ h2:lang(zh) a
  * Import-export styling
  */
 
-.upload-form
+.upload-form span
 {
-    display: none;
+    margin-left: 18px;
 }
 
 

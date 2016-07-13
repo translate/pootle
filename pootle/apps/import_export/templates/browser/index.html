@@ -31,10 +31,13 @@
   <form action="" method="post" enctype="multipart/form-data"
     id="js-upload-form" class="upload-form">
     {% csrf_token %}
-    {% for field in upload_form %}
-      {{ field }}
-    {% endfor %}
-    <input type="submit" />
+    <div class="hide">{{ upload_form.file }}</div>
+    <span {% if not has_admin_access %}class="hide"{% endif %}>
+    {% blocktrans with user=upload_form.user_id %}
+      Upload as {{ user }}
+    {% endblocktrans %}
+    </span>
+    <div class="hide"><input type="submit" /></div>
   </form>
   {# Dirty hack: Upload form is hidden, so render errors out of it so they get displayed. #}
   {% for field in upload_form %}
