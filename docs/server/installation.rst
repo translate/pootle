@@ -76,6 +76,9 @@ Now create a virtual environment on your location of choice by issuing the
   $ cd ~/dev/pootle
   $ virtualenv env
 
+.. note:: for versions of ``virtualenv`` prior to 1.10, you may need to call
+    :command:`virtualenv` with the ``--setuptools`` option, to ensure the correct
+    environment.
 
 To activate the virtual environment run the :command:`activate` script:
 
