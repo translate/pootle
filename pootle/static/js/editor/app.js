@@ -2223,6 +2223,7 @@ PTL.editor = {
     fetch({ url: tmUrl, crossDomain: true })
       .then(
         (data) => this.handleTmResults(data, store, unit),
+        // eslint-disable-next-line no-console
         (xhr, s) => console.error(`HTTP ${xhr.status} (${s}): ${tmUrl}`)
       );
   },
