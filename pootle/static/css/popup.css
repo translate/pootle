@@ -48,6 +48,11 @@
     font-size: 0.8em;
 }
 
+html[dir="rtl"] .lightbox-body
+{
+    text-align: right;
+}
+
 .popup-form h1,
 .lightbox-body h1
 {

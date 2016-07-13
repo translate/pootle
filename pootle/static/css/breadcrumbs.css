@@ -46,6 +46,11 @@
     margin-left: 0.3em;
 }
 
+html[dir="rtl"] .breadcrumb li
+{
+    float: right;
+}
+
 .breadcrumb li.hide
 {
     display: none;

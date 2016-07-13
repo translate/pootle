@@ -53,6 +53,12 @@ body.translate #actions
     font-weight: bold;
 }
 
+html[dir="rtl"] #translate-actions li
+{
+    margin-right: 2em;
+    margin-left: -0.5em;
+}
+
 #translate-actions li.non-zero,
 #translate-actions li.back-to-browser
 {

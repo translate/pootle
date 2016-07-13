@@ -880,6 +880,12 @@ html[dir="rtl"] .last-action
     margin-left: 24px;
 }
 
+html[dir="rtl"] .last-action .user-name
+{
+    margin-left: auto;
+    margin-right: 24px;
+}
+
 .last-action .extra-item-meta
 {
     color: #999;
@@ -1592,6 +1598,11 @@ html[dir="rtl"] ul.pager li:last-child > *
     height: 0;
 }
 
+html[dir="rtl"] .expand-stats
+{
+    float: left;
+}
+
 .expand-stats .icon-expand-stats,
 .expand-stats .icon-collapse-stats
 {
@@ -1621,6 +1632,12 @@ html[dir="rtl"] ul.pager li:last-child > *
     margin-left: -10px;
     padding: 10px 0 10px 0;
     height: 15px;
+}
+
+html[dir="rtl"] .path-summary-more .path-summary-collapsed
+{
+    margin-left: auto;
+    margin-right: -10px;
 }
 
 .path-summary-more.expand .path-summary-expanded

@@ -210,6 +210,12 @@ th.number
     display: none;
 }
 
+
+html[dir="rtl"] #detailed
+{
+    text-align: left;
+}
+
 #reports-params
 {
     display: none;
