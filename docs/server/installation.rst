@@ -21,6 +21,12 @@ For a production deployment we **strongly** recommend that you set up the follow
    :ref:`necessary requirements <requirements>`.
 
 
+.. warning:: It is important to install Pootle into a virtual environment to ensure
+   the correct packages and permissions. It's even more important not to install Pootle
+   as the root user on your system. **Installing or running Pootle as the root user
+   will expose your system to many potential security vulnerabilities**
+
+
 .. _installation#assumptions:
 
 Setup assumptions
