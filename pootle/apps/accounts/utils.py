@@ -12,15 +12,13 @@ import sys
 
 from django.contrib.auth import get_user_model
 from django.core.validators import ValidationError, validate_email
-from django.db.models import Count, Q
+from django.db.models import Count
 
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
-from pootle_app.models.permissions import check_user_permission
 from pootle_store.models import SuggestionStates
 from pootle_store.util import FUZZY, UNTRANSLATED
-from pootle_translationproject.models import TranslationProject
 
 
 logger = logging.getLogger(__name__)
@@ -421,34 +419,3 @@ def update_user_email(user, new_email):
     validate_email(new_email)
     user.email = new_email
     user.save()
-
-
-def get_user_list_with_permission(permission_code, project, language):
-    User = get_user_model()
-    default = User.objects.get_default_user()
-
-    directory = TranslationProject.objects.get(
-        project=project,
-        language=language
-    ).directory
-
-    if check_user_permission(default, permission_code, directory):
-        return User.objects.hide_meta() \
-                           .filter(is_active=True) \
-                           .distinct()
-
-    user_filter = Q(
-        permissionset__positive_permissions__codename=permission_code
-    )
-
-    language_path = language.directory.pootle_path
-    project_path = project.directory.pootle_path
-
-    user_filter &= (
-        Q(permissionset__directory__pootle_path=directory.pootle_path)
-        | Q(permissionset__directory__pootle_path=language_path)
-        | Q(permissionset__directory__pootle_path=project_path)
-    )
-    user_filter |= Q(is_superuser=True)
-
-    return list(User.objects.filter(user_filter).distinct())

@@ -488,9 +488,10 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
 
 
 @pytest.mark.django_db
-def test_user_list_with_permission(default, member, translate):
+def test_get_users_with_permission(default, member, translate):
     language = Language.objects.get(code='language0')
     project = Project.objects.get(code='project0')
+    User = get_user_model()
 
     directory = TranslationProject.objects.get(
         project=project,
@@ -507,7 +508,6 @@ def test_user_list_with_permission(default, member, translate):
                                       directory=Directory.objects.root)[0]
     ps.positive_permissions = ps.positive_permissions.exclude(id=translate.id)
     ps.save()
-    users = accounts.utils.get_user_list_with_permission(
-        'translate', project, language)
+    users = User.objects.get_users_with_permission('translate', project, language)
     for user in users:
         assert check_user_permission(user, 'translate', directory)
