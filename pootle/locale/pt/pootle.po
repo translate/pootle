@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-04-11 21:50+0000\n"
+"PO-Revision-Date: 2016-06-29 09:30+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1460411406.000000\n"
+"X-POOTLE-MTIME: 1467192656.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -739,7 +739,7 @@ msgstr "Última (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "Pesquisar indisponíveis"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -802,16 +802,18 @@ msgid "Disabled"
 msgstr "Inativo"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "O projeto de tradução foi atualizado com base nos últimos modelos."
+msgstr ""
+"O projeto de tradução (%s) foi criado. Estamos a atualizar os ficheiros a "
+"partir dos modelos de tradução."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Os ficheiros do projeto foram reanalisados."
+msgstr "O projeto de tradução (%s) foi eliminado"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -938,24 +940,24 @@ msgid "Plural"
 msgstr "Plural"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Aceitou a sugestão de %s"
+msgstr "Aceitou a sugestão de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Recusou uma sugestão de %s"
+msgstr "Rejeitou a sugestão de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "com sugestão aceite em %(source_string)s"
+msgstr "Aceitou a sugestão de %(author)s com o comentário: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "com sugestão recusada em %(source_string)s"
+msgstr "Rejeitou a sugestão de %(author)s com o comentário: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -999,14 +1001,14 @@ msgid "This term already exists in this file."
 msgstr "Este termo já existe neste ficheiro."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Página principal do projeto da tradução"
+msgstr "Criado o projeto de tradução (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Página principal do projeto da tradução"
+msgstr "Erro ao criar o projeto de tradução (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1634,9 +1636,8 @@ msgid "Can review suggestions"
 msgstr "Pode rever sugestões"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Administração do Django"
+msgstr "Pode executar tarefas administrativas"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -1794,8 +1795,8 @@ msgstr "Projetos"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1999,7 +2000,8 @@ msgstr "Definir taxas"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "Guardar"
 
@@ -2089,9 +2091,8 @@ msgid "Fix critical errors"
 msgstr "Corrigir erros críticos"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Erros críticos:"
+msgstr "Erros críticos"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2102,7 +2103,6 @@ msgid "Continue translation"
 msgstr "Continuar tradução"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
 msgstr "Precisa de tradução"
 
@@ -2138,33 +2138,28 @@ msgid "Failing Checks"
 msgstr "Verificações falhadas"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Mais..."
+msgstr "mais..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "menos..."
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Top contributors Last 30 days"
-msgstr "Maiores colaboradores"
+msgstr "Maiores colaboradores dos últimos 30 dias"
 
 #: templates/browser/index.html:84
-#, fuzzy
 msgid "Updates"
-msgstr "Actualizar"
+msgstr "Atualizações"
 
 #: templates/browser/index.html:88 templates/browser/index.html.py:96
-#, fuzzy
 msgid "Last action:"
-msgstr "Última ação"
+msgstr "Última ação:"
 
 #: templates/browser/index.html:92
-#, fuzzy
 msgid "Translations"
-msgstr "Tradução"
+msgstr "Traduções"
 
 #: templates/browser/index.html:137
 msgid "This project is disabled and visible to administrators only."
@@ -2216,9 +2211,8 @@ msgid "No user contributions yet."
 msgstr "Ainda não existem contribuições dos utilizadores."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Maiores colaboradores"
+msgstr "Maiores colaboradores:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2464,14 +2458,12 @@ msgid "User suggestions"
 msgstr "Sugestões do utilizador"
 
 #: templates/editor/units/edit.html:305
-#, fuzzy
 msgid "More options"
-msgstr "Alterar opções"
+msgstr "Mais opções"
 
 #: templates/editor/units/edit.html:307
-#, fuzzy
 msgid "Less options"
-msgstr "Alterar opções"
+msgstr "Menos opções"
 
 #: templates/editor/units/edit.html:312
 msgid "Accept suggestion"
@@ -2672,20 +2664,22 @@ msgid "Sign In"
 msgstr "Iniciar sessão"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "O projeto de tradução foi atualizado com base nos últimos modelos."
+msgstr ""
+"O projeto de tradução (%(tp)s) foi criado com o URL %(url)s e foi atualizado "
+"com sucesso."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
-"Ocorreu um erro ao iniciar a sua sessão. Por favor, contacte o seu "
-"administrador do sistema."
+"Ocorreu um erro ao criar o projeto de tradução (%(tp)s). Por favor contacte "
+"o administrador de sistemas."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."

@@ -1748,8 +1748,8 @@ msgstr "מיזמים"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1957,7 +1957,8 @@ msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "שמירה"
 
@@ -3660,8 +3661,8 @@ msgstr ""
 #~ "Tag names cannot have leading nor trailing spaces, colons (:), hyphens "
 #~ "(-), underscores (_), slashes (/) or periods (.)!"
 #~ msgstr ""
-#~ "שמות של תגיות לא יכולים להתחיל או להסתיים ברווחים, נקודתיים (:), "
-#~ "מקפים/מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
+#~ "שמות של תגיות לא יכולים להתחיל או להסתיים ברווחים, נקודתיים (:), מקפים/"
+#~ "מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
 
 #~ msgid ""
 #~ "Tag names cannot contain two or more consecutive: spaces, colons (:), "
@@ -3694,8 +3695,8 @@ msgstr ""
 #~ "colons (:), hyphens (-), underscores (_), slashes (/) or periods (.)!"
 #~ msgstr ""
 #~ "השמות המקוצרים של התגים חייבים להיות זהים לשם התג למעט החלפה של במינוס של "
-#~ "מופע יחיד או רבים של כל אחד מהתווים הבאים: רווחים, נקודתיים (:), "
-#~ "מקפים/מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
+#~ "מופע יחיד או רבים של כל אחד מהתווים הבאים: רווחים, נקודתיים (:), מקפים/"
+#~ "מינוסים (-), קווים תחתיים (_), לוכסנים (/) או נקודות (.)!"
 
 #~ msgid ""
 #~ "Warning: Changing the name also changes the slug, so it won't be possible "

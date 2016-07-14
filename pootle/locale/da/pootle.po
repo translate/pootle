@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2015-06-22 18:31+0000\n"
-"Last-Translator: Jesper <jesper.hertel@gmail.com>\n"
+"PO-Revision-Date: 2016-06-21 23:51+0000\n"
+"Last-Translator: Aputsiak Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1434997881.000000\n"
+"X-POOTLE-MTIME: 1466553104.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Der opstod et problem ved forsøg på afsendelse af bekræftelsesmail. Prøv "
+"venligst igen senere."
 
 #: apps/accounts/forms.py:42
 msgid ""
@@ -78,10 +80,12 @@ msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Udpeger denne person har alle tilladelser, selv om de ikke eksplicit bliver "
+"tildelt.  "
 
 #: apps/accounts/models.py:83
 msgid "date joined"
-msgstr ""
+msgstr "dato for indmelding"
 
 #: apps/accounts/models.py:87
 msgid "Number of Rows"
@@ -105,36 +109,35 @@ msgstr ""
 
 #: apps/accounts/models.py:97
 msgid "Score"
-msgstr ""
+msgstr "Score"
 
 #: apps/accounts/models.py:98 apps/reports/forms.py:20
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #: apps/accounts/models.py:100
 msgid "Is employee?"
-msgstr ""
+msgstr "Er medarbejder?"
 
 #: apps/accounts/models.py:101
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:103
 msgid "Website"
-msgstr ""
+msgstr "Hjemmeside"
 
 #: apps/accounts/models.py:104
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:105
 msgid "Short Bio"
-msgstr ""
+msgstr "Kort biografi"
 
 #: apps/accounts/models.py:326
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Denne term findes allerede i denne fil."
+msgstr "Denne e-mailadresse findes allerede."
 
 #: apps/accounts/views.py:36
 msgid ""
@@ -861,7 +864,7 @@ msgstr "TMX"
 msgid "TBX"
 msgstr "TBX"
 
-# Formatet hedder "catkeys" og skal derfor ikke oversættes (https://translate-toolkit.readthedocs.io/en/latest/formats/catkeys.html)
+# Formatet hedder "catkeys" og skal derfor ikke oversættes (http://translate-toolkit.readthedocs.org/en/latest/formats/catkeys.html)
 #: apps/pootle_store/filetypes.py:48
 msgid "Haiku catkeys"
 msgstr "Haiku catkeys"
@@ -1764,8 +1767,8 @@ msgstr "Projekter"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1976,7 +1979,8 @@ msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "Gem"
 

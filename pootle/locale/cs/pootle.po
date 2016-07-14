@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-25 17:28+0000\n"
+"PO-Revision-Date: 2016-07-09 09:10+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464197290.000000\n"
+"X-POOTLE-MTIME: 1468055408.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -1775,8 +1775,8 @@ msgstr "Projekty"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1980,7 +1980,8 @@ msgstr "Nastavit sazby"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "Uložit"
 
@@ -2772,7 +2773,7 @@ msgstr ""
 
 #: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr "Obrázek svého avatara můžete nastavit nebo změnit na www.gravatar.com"
+msgstr "Obrázek svého avataru můžete nastavit nebo změnit na www.gravatar.com"
 
 #: templates/user/profile.html:16
 msgid "Anonymous User"

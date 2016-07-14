@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-06-14 09:44+0000\n"
+"PO-Revision-Date: 2016-06-30 11:45+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1465897460.000000\n"
+"X-POOTLE-MTIME: 1467287102.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -1760,8 +1760,8 @@ msgstr "Projectes"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1965,7 +1965,8 @@ msgstr "Estableix les tarifes"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "Desa"
 
@@ -2166,7 +2167,7 @@ msgstr "puntuació"
 #: templates/core/_top_scorers_as_ul.html:7
 #, python-format
 msgid "#%(position)s"
-msgstr "nbre. %(position)s"
+msgstr "núm. %(position)s"
 
 #: templates/core/_top_scorers.html:31
 msgid "No user contributions yet."

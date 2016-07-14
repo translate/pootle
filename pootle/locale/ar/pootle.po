@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-06-12 16:29+0000\n"
+"PO-Revision-Date: 2016-06-23 18:43+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1465748942.000000\n"
+"X-POOTLE-MTIME: 1466707390.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -624,7 +624,7 @@ msgstr "علامة المئويّة في حافظات المكان"
 
 #: apps/pootle_misc/checks.py:106
 msgid "Percent sign closure placeholders"
-msgstr ""
+msgstr "حافظات المكان المحصورة بعلامة النسبة المئوية"
 
 #: apps/pootle_misc/checks.py:107
 msgid "$ placeholders"
@@ -632,7 +632,7 @@ msgstr "حافظات المكان $"
 
 #: apps/pootle_misc/checks.py:108
 msgid "$ closure placeholders"
-msgstr ""
+msgstr "حافظات المكان المحصورة ب‍ $"
 
 #: apps/pootle_misc/checks.py:109
 msgid "Java-encoded unicode"
@@ -656,7 +656,7 @@ msgstr "أقواس مجعدة"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Potential unwanted placeholders"
-msgstr ""
+msgstr "حافظات مكان غير مرغوب بها"
 
 #: apps/pootle_misc/checks.py:115
 msgid "Double quotes in tags"
@@ -719,7 +719,7 @@ msgstr "الأخيرة (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:26
 msgid "Search unavailable"
-msgstr ""
+msgstr "البحث غير متوفّر"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -885,7 +885,7 @@ msgstr ""
 
 #: apps/pootle_store/forms.py:328
 msgid "Needs work flag must be cleared"
-msgstr ""
+msgstr "يجب محو راية \"تحتاج للعمل\""
 
 #: apps/pootle_store/forms.py:389
 msgid "Translator comment"
@@ -1079,9 +1079,8 @@ msgid "Redirect to URL"
 msgstr "أعد التّوجيه إلى العنوان"
 
 #: apps/staticpages/models.py:53
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr "إذا مُلئِت هذه الخانة فسيُحوّل أي مرجع لهذه الصفحة إلى هذا المسار"
+msgstr "إذا ضُبط، ستُحّول هذه الصفحة إلى هذا العنوان"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:98
@@ -1307,7 +1306,6 @@ msgstr ""
 "التّواصل."
 
 #: checks.py:236
-#, fuzzy
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "settings.DEFAULT_FROM_EMAIL غير معيّن."
 
@@ -1320,7 +1318,7 @@ msgstr ""
 "لا تنس مراجعة إعدادات خادوم بريدك."
 
 #: checks.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "‏settings.DEFAULT_FROM_EMAIL يستخدم الإعداد الافتراضيّ الآتي %r."
 
@@ -1338,36 +1336,36 @@ msgstr "قيمة POOTLE_MARKUP_FILTER غير صالحة."
 
 #: checks.py:263
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "ضع قيمة صالحة ل‍ POOTLE_MARKUP_FILTER."
 
 #: checks.py:277
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "رقم غير صالح في POOTLE_MARKUP_FILTER."
 
 #: checks.py:278
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "ضع رقما صالحا ل‍ POOTLE_MARKUP_FILTER."
 
 #: checks.py:283
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
-msgstr ""
+msgstr "ضُبط POOTLE_MARKUP_FILTER برقم '%s'، ولكن تعذر إيجاد الحزمة التي توفره."
 
 #: checks.py:285
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "ثبت الحزمة أو غير POOTLE_MARKUP_FILTER."
 
 #: checks.py:296
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة INDEX_NAME."
 
 #: checks.py:297
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "اضبط INDEX_NAME ل‍ POOTLE_TM_SERVER['%s']."
 
 #: checks.py:303
 #, python-format
@@ -1376,42 +1374,42 @@ msgstr ""
 
 #: checks.py:305
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "اضبط قيمة INDEX_NAME مختلفة لكل الخواديم في POOTLE_TM_SERVER."
 
 #: checks.py:315
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة ENGINE."
 
 #: checks.py:316
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "اضبط ENGINE ل‍ POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة HOST."
 
 #: checks.py:324
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "اضبط HOST ل‍ POOTLE_TM_SERVER['%s']."
 
 #: checks.py:331
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة PORT."
 
 #: checks.py:332
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "اضبط PORT ل‍ POOTLE_TM_SERVER['%s']."
 
 #: checks.py:341
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "ل‍ POOTLE_TM_SERVER['%s'] قيمة WEIGHT أقل من 0.0 أو أكبر من 1.0"
 
 #: checks.py:343
 #, python-format
@@ -1422,22 +1420,22 @@ msgstr ""
 #: checks.py:351
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة %s."
 
 #: checks.py:352
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "اضبط %s ل‍ POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:359
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "قيمة POOTLE_MARKUP_FILTER غير صالحة."
+msgstr "قيمة %s في POOTLE_SCORE_COEFFICIENTS غير صالحة."
 
 #: checks.py:361
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "قيمة POOTLE_MARKUP_FILTER غير صالحة."
+msgstr "اضبط قيمة صالحة ل‍ %s في POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:385
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1449,13 +1447,15 @@ msgstr "أزل المستخدم 'admin' أو غيّر كلمة مروره."
 
 #: checks.py:402
 msgid "Database connection does not implement on_commit."
-msgstr ""
+msgstr "الاتصال بقاعدة البيانات لا ينفّذ on_commit."
 
 #: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
 msgstr ""
+"اضبط قيمة DATABASES['default']['ENGINE'] لاستخدام سند من transaction_hooks."
+"backends."
 
 #: checks.py:423
 msgid "Email server is not available."
@@ -1467,11 +1467,11 @@ msgstr "راجع إعدادات البريد الإلكترونيّ وتأكّد
 
 #: checks.py:446
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "المراجعة ناقصة أو أن قيمتها خاطئة."
 
 #: checks.py:447
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "شغل `revision --restore` لتصفير عدّاد المراجعات."
 
 #: core/browser.py:26
 msgid "Project"
@@ -1593,9 +1593,8 @@ msgid "Can review suggestions"
 msgstr "يمكنه مراجعة الاقتراحات"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "إدارة جانغو (Django)"
+msgstr "يمكنه أداء مهام الإدارة"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -1748,8 +1747,8 @@ msgstr "المشاريع"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1953,7 +1952,8 @@ msgstr "عيّن المعدّلات"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "احفظ"
 
@@ -1981,6 +1981,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"استخدم <code><strong>/xx/</strong></code> في صفحات الإعلانات وذلك داخل "
+"العناوين ليتغير رمز اللغة حركيًّا."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"

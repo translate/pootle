@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-05-24 11:00+0100\n"
-"PO-Revision-Date: 2016-05-28 17:55+0000\n"
+"PO-Revision-Date: 2016-07-07 10:46+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464458154.000000\n"
+"X-POOTLE-MTIME: 1467888379.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -789,16 +789,18 @@ msgid "Disabled"
 msgstr "O‘chirib qo‘yilgan"
 
 #: apps/pootle_project/views.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Tarjima loyihasi so‘nggi shablonlarga qarshi yangilandi."
+msgstr ""
+"Tarjima loyihasi (%s) yaratildi. Biz hozir tarkibini shablon fayldan "
+"yangilayapmiz."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Tarjima loyihasi fayllari qayta tekshirib chiqildi."
+msgstr "Tarjima loyihasi (%s) o‘chirildi"
 
 #: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
 msgid "Source"
@@ -926,14 +928,14 @@ msgid "Plural"
 msgstr "Ko‘plikda"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "%s tavsiyasi qabul qilindi"
+msgstr "%(author)s tavsiyasi qabul qilindi"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "%s tavsiyasi qabul rad qilindi"
+msgstr "%(author)s tavsiyasi rad qilindi"
 
 #: apps/pootle_store/unit/timeline.py:89
 #, fuzzy, python-format
@@ -1629,7 +1631,7 @@ msgstr "Tarjimalarni ko‘rib chiqish mumkin"
 
 #: core/initdb.py:149
 msgid "Can perform administrative tasks"
-msgstr ""
+msgstr "Administrator vazifasini bajara oladi"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -1786,8 +1788,8 @@ msgstr "Loyihalar"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
-#: templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5
+#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1991,7 +1993,8 @@ msgstr "Baho o‘rnatish"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20
+#: templates/user/settings.html:39
 msgid "Save"
 msgstr "Saqlash"
 
@@ -2136,7 +2139,7 @@ msgstr "Ko‘proq..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "kamroq…"
 
 #: templates/browser/index.html:77
 #, fuzzy
