@@ -280,12 +280,11 @@ changes in the file system on its own.  This is the opposite of
 
 .. note:: Disabled projects are skipped.
 
-.. note:: If you have modified your project's template files, executing
-   :djadmin:`update_stores` will **only** update the template language in the
-   database. If you wish to update the other languages to reflect the changes
-   made to the template language, you must make use of :ref:`pot2po
-   <toolkit:pot2po>` followed by :djadmin:`update_stores` to load the changed
-   translations into the database.
+.. note:: :djadmin:`update_stores` does not manage the updating of translations
+   against templates, it simply loads translation files and translation
+   templates into Pootle.  For a full understanding of the role of templates
+   and updating translations against templates read the :doc:`templates
+   </features/templates>` section.
 
 It also discovers new units, files and translation projects that were
 added on disk:
