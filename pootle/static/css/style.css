@@ -1191,6 +1191,15 @@ table.stats td.last-updated
     text-align: right;
 }
 
+html[dir="rtl"] table.stats .number,
+html[dir="rtl"] th.stats-number,
+html[dir="rtl"] td.stats-number,
+html[dir="rtl"] td.stats-percentage,
+html[dir="rtl"] table.stats td.last-updated
+{
+    text-align: left;
+}
+
 
 td.stats-number.need-translation .stats-data,
 td.stats-number.suggestions .stats-data,
@@ -1676,6 +1685,13 @@ html[dir="rtl"] .path-summary-more .path-summary-collapsed
 .summary-3-col
 {
     float: left;
+}
+
+html[dir="rtl"] .summary-1-col,
+html[dir="rtl"] .summary-2-col,
+html[dir="rtl"] .summary-3-col
+{
+    float: right;
 }
 
 .path-summary-more .summary-3-col
