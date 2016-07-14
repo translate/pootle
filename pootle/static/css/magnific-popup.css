@@ -49,6 +49,11 @@
   text-align: left;
   z-index: 505; }
 
+html[dir="rtl"] .mfp-content
+{
+  text-align: right;
+}
+
 .mfp-inline-holder .mfp-content,
 .mfp-ajax-holder .mfp-content {
   width: 100%;
@@ -143,6 +148,13 @@ button::-moz-focus-inner {
     opacity: 1; }
   .mfp-close:active {
     top: 1px; }
+
+html[dir="rtl"] .mfp-close
+{
+  right: auto;
+  left: 0;
+  padding: 0 10px 18px 0;
+}
 
 .mfp-close-btn-in .mfp-close {
   color: #333333; }
