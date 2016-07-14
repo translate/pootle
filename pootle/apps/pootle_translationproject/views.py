@@ -28,9 +28,6 @@ from pootle_app.models.permissions import (
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_language.models import Language
 from pootle_store.models import Store
-from virtualfolder.helpers import (
-    extract_vfolder_from_path, make_vfolder_treeitem_dict, vftis_for_child_dirs)
-from virtualfolder.models import VirtualFolderTreeItem
 
 from .models import TranslationProject
 
@@ -267,6 +264,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     @cached_property
     def items(self):
         if 'virtualfolder' in settings.INSTALLED_APPS:
+            from virtualfolder.helpers import vftis_for_child_dirs
             dirs_with_vfolders = set(
                 vftis_for_child_dirs(self.object).values_list(
                     "directory__pk", flat=True))
@@ -292,6 +290,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def vfolders(self):
+        from virtualfolder.helpers import make_vfolder_treeitem_dict
         vftis = self.object.vf_treeitems
         if not self.has_admin_access:
             vftis = vftis.filter(vfolder__is_public=True)
@@ -365,6 +364,11 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
 
     @cached_property
     def extracted_path(self):
+        if 'virtualfolder' not in settings.INSTALLED_APPS:
+            return None, self.request_path
+
+        from virtualfolder.helpers import extract_vfolder_from_path
+        from virtualfolder.models import VirtualFolderTreeItem
         return extract_vfolder_from_path(
             self.request_path,
             vfti=VirtualFolderTreeItem.objects.select_related(

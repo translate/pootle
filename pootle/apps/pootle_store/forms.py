@@ -30,8 +30,6 @@ from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from virtualfolder.helpers import extract_vfolder_from_path
-from virtualfolder.models import VirtualFolderTreeItem
 
 from .fields import to_db
 from .form_fields import (
@@ -514,6 +512,8 @@ class UnitSearchForm(forms.Form):
         self.cleaned_data["vfolder"] = None
         pootle_path = self.cleaned_data.get("path")
         if 'virtualfolder' in settings.INSTALLED_APPS:
+            from virtualfolder.helpers import extract_vfolder_from_path
+            from virtualfolder.models import VirtualFolderTreeItem
             vfolder, pootle_path = extract_vfolder_from_path(
                 pootle_path,
                 vfti=VirtualFolderTreeItem.objects.select_related(
