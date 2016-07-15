@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-05-24 11:00+0100\n"
+"POT-Creation-Date: 2016-07-14 18:55+0200\n"
 "PO-Revision-Date: 2016-05-28 14:57+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -57,7 +57,7 @@ msgid "Email Address"
 msgstr "Адрес электронной почты"
 
 #: apps/accounts/models.py:72 apps/pootle_language/models.py:74
-#: apps/pootle_project/models.py:166
+#: apps/pootle_project/models.py:167
 msgid "Full Name"
 msgstr "Имя и фамилия"
 
@@ -137,7 +137,7 @@ msgstr "LinkedIn"
 msgid "Short Bio"
 msgstr "Короткая биография"
 
-#: apps/accounts/models.py:326
+#: apps/accounts/models.py:352
 msgid "This email address already exists."
 msgstr "Этот адрес электронной почты уже используется."
 
@@ -186,19 +186,29 @@ msgstr "Связаться с нами"
 msgid "Report problem with string"
 msgstr "Сообщить о проблеме с этой строкой"
 
-#: apps/import_export/templates/browser/index.html:10
+#: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
 msgstr "Скачать файлы перевода для работы оффлайн"
 
-#: apps/import_export/templates/browser/index.html:11
+#: apps/import_export/templates/browser/index.html:12
 msgid "Download for offline translation"
 msgstr "Скачать для перевода оффлайн"
 
-#: apps/import_export/templates/browser/index.html:19
+#: apps/import_export/templates/browser/index.html:16
+#, fuzzy
+msgid "Download translation files for backup"
+msgstr "Скачать файлы перевода для работы оффлайн"
+
+#: apps/import_export/templates/browser/index.html:17
+#, fuzzy
+msgid "Download for backup"
+msgstr "Скачать файл"
+
+#: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
 msgstr "Выгрузить файлы перевода или архивы в формате .zip"
 
-#: apps/import_export/templates/browser/index.html:20
+#: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
 msgstr "Загрузить переводы"
 
@@ -230,7 +240,7 @@ msgstr "Произошла ошибка при загрузке файла"
 msgid "Language code does not follow the ISO convention"
 msgstr "Код языка не совпадает с обозначением, принятым ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:194
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:196
 msgid "Source Language"
 msgstr "Язык источника"
 
@@ -239,7 +249,7 @@ msgstr "Язык источника"
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" не может быть использовано как код проекта"
 
-#: apps/pootle_app/forms.py:101 custom/templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:101
 msgid "Password"
 msgstr "Пароль"
 
@@ -310,7 +320,7 @@ msgstr "В этом проекте нет файлов."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "В этой форме имеются ошибки. Просмотрите и исправьте их."
 
-#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:162
+#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:163
 msgid "Code"
 msgstr "Код"
 
@@ -685,23 +695,23 @@ msgstr "Поиск"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Поиск (Ctrl+Shift+S)<br/>Наберите и нажмите Enter для поиска"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:476
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
 msgid "Exact Match"
 msgstr "Точное совпадение"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
 msgid "Source Text"
 msgstr "Исходный текст"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
 msgid "Target Text"
 msgstr "Целевой текст"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:484
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
 msgid "Comments"
 msgstr "Комментарии"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:485
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
 msgid "Locations"
 msgstr "Местонахождения"
 
@@ -722,7 +732,7 @@ msgstr "Следующая"
 msgid "Last (%d)"
 msgstr "Последняя (%d)"
 
-#: apps/pootle_misc/templatetags/search.py:26
+#: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
 msgstr "Поиск недоступен"
 
@@ -734,7 +744,7 @@ msgstr "Выберите один или несколько языков"
 msgid "Language"
 msgstr "Язык"
 
-#: apps/pootle_project/models.py:156
+#: apps/pootle_project/models.py:157
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -742,48 +752,53 @@ msgstr ""
 "Короткое кодовое название проекта. Может содержать только ASCII символы, "
 "цифры и знак подчёркивания (_)."
 
-#: apps/pootle_project/models.py:177
+#: apps/pootle_project/models.py:178
 msgid "Quality Checks"
 msgstr "Проверка качества"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 msgid "File Type"
 msgstr "Тип файла"
 
-#: apps/pootle_project/models.py:184
-msgid "Automatic detection (slower)"
+#: apps/pootle_project/models.py:185
+#, fuzzy
+msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Автоматическое выявление (медленнее)"
 
-#: apps/pootle_project/models.py:185
+#: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
 msgstr "Стиль GNU: файлы именуются по коду языка"
 
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:187
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Не GNU-стиль: каждый язык в своей директории"
 
-#: apps/pootle_project/models.py:190
+#: apps/pootle_project/models.py:188
+msgid "Allow pootle_fs to manage filesystems"
+msgstr ""
+
+#: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
 msgstr "Дерево проекта"
 
-#: apps/pootle_project/models.py:198
+#: apps/pootle_project/models.py:200
 msgid "Ignore Files"
 msgstr "Игнорировать файлы"
 
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:205
 msgid "Errors Report Email"
 msgstr "Электронная почта для ошибок"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:206
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Адрес электронной почты, куда можно сообщать о проблемах с исходным текстом."
 
-#: apps/pootle_project/models.py:208
+#: apps/pootle_project/models.py:210
 msgid "Screenshot Search Prefix"
 msgstr "Префикс для поиска снимков экрана"
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:215
 msgid "Disabled"
 msgstr "Отключено"
 
@@ -801,19 +816,19 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Проект (%s) был удален"
 
-#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Источник"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Цель"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Состояние"
 
-#: apps/pootle_statistics/models.py:67
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Комментарий"
 
@@ -829,7 +844,7 @@ msgstr "Недостаточно прав для доступа к режиму 
 msgid "Insufficient rights to access translation mode."
 msgstr "Недостаточно прав для доступа к режиму перевода."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:647
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:665
 msgid "Insufficient rights to access review mode."
 msgstr "Недостаточно прав для доступа к режиму одобрения предложений."
 
@@ -869,7 +884,7 @@ msgstr "Excel CSV"
 msgid "Mozilla .lang"
 msgstr "Mozilla .lang"
 
-#: apps/pootle_store/forms.py:132
+#: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
 #: apps/pootle_store/templatetags/store_tags.py:189
@@ -878,24 +893,24 @@ msgstr "Mozilla .lang"
 msgid "Plural Form %d"
 msgstr "Форма множественного числа %d"
 
-#: apps/pootle_store/forms.py:254 apps/pootle_store/util.py:29
+#: apps/pootle_store/forms.py:252 apps/pootle_store/util.py:29
 #: core/helpers.py:49 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Необходима доработка"
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:299
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr "Значение `similarity` должно быть в диапазоне [0..1]"
 
-#: apps/pootle_store/forms.py:311
+#: apps/pootle_store/forms.py:309
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "Значение `mt_similarity` должно быть в диапазоне [0..1]"
 
-#: apps/pootle_store/forms.py:328
+#: apps/pootle_store/forms.py:326
 msgid "Needs work flag must be cleared"
 msgstr "Флаг неточного перевода должен быть снят"
 
-#: apps/pootle_store/forms.py:389
+#: apps/pootle_store/forms.py:387
 msgid "Translator comment"
 msgstr "Комментарий переводчика"
 
@@ -911,7 +926,7 @@ msgstr "Принято"
 msgid "Rejected"
 msgstr "Отказано"
 
-#: apps/pootle_store/models.py:1346
+#: apps/pootle_store/models.py:1348
 msgid "Path"
 msgstr "Путь"
 
@@ -958,27 +973,27 @@ msgstr "Устаревшее"
 msgid "Translated"
 msgstr "Переведено"
 
-#: apps/pootle_store/views.py:203
+#: apps/pootle_store/views.py:204
 msgid "Path too long."
 msgstr "Путь слишком длинный."
 
-#: apps/pootle_store/views.py:205 core/decorators.py:44
+#: apps/pootle_store/views.py:206 core/decorators.py:44
 msgid "Arguments missing."
 msgstr "Параметры пропущены."
 
-#: apps/pootle_store/views.py:260
+#: apps/pootle_store/views.py:261
 msgid "Failed to remove comment."
 msgstr "Не удалось удалить комментарий."
 
-#: apps/pootle_store/views.py:295
+#: apps/pootle_store/views.py:296
 msgid "Comment submission failed."
 msgstr "Не удалось отправить комментарий."
 
-#: apps/pootle_store/views.py:576
+#: apps/pootle_store/views.py:594
 msgid "Failed to process submission."
 msgstr "Не удалось обработать данные."
 
-#: apps/pootle_store/views.py:617
+#: apps/pootle_store/views.py:635
 msgid "Failed to process suggestion."
 msgstr "Не удалось обработать предложение."
 
@@ -1044,12 +1059,12 @@ msgstr "Дата"
 msgid "Description"
 msgstr "Описание"
 
-#: apps/reports/views.py:314
+#: apps/reports/views.py:313
 #, python-format
 msgid "User %s not found"
 msgstr "Пользователь %s не найден"
 
-#: apps/reports/views.py:391
+#: apps/reports/views.py:390
 msgid "Invalid request method"
 msgstr "Неверный метод запроса"
 
@@ -1540,11 +1555,11 @@ msgstr "Перейти к языку"
 msgid "Back to parent folder"
 msgstr "Перейти на уровень выше"
 
-#: core/decorators.py:319 core/views.py:96
+#: core/decorators.py:323 core/views.py:96
 msgid "Insufficient rights to access this page."
 msgstr "Недостаточно прав для доступа к этой странице."
 
-#: core/decorators.py:332 core/views.py:107
+#: core/decorators.py:336 core/views.py:107
 msgid "You do not have rights to administer Pootle."
 msgstr "У вас нет прав для администрирования Pootle."
 
@@ -1624,19 +1639,6 @@ msgstr "Может выполнять административные зада�
 #: core/views.py:151
 msgid "You cannot access this page."
 msgstr "У вас нет доступа к этой странице."
-
-#: custom/templates/layout.html:11
-msgid "Getting Started"
-msgstr "Начало работы"
-
-#: custom/templates/layout.html:15
-msgid "License Terms"
-msgstr "Лицензионное соглашение"
-
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:114
-#: templates/user/settings.html:4 templates/user/settings.html.py:7
-msgid "Settings"
-msgstr "Настройки"
 
 #: middleware/errorpages.py:81
 #, python-format
@@ -1776,8 +1778,8 @@ msgstr "Проекты"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5
-#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
+#: templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1982,8 +1984,7 @@ msgstr "Установить тарифы"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20
-#: templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
 msgid "Save"
 msgstr "Сохранить"
 
@@ -2127,37 +2128,41 @@ msgstr "больше..."
 msgid "less..."
 msgstr "меньше..."
 
-#: templates/browser/index.html:77
-msgid "Top contributors Last 30 days"
+#: templates/browser/index.html:77 templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
 msgstr "Топ переводчиков за последние 30 дней"
 
-#: templates/browser/index.html:84
+#: templates/browser/index.html:85
 msgid "Updates"
 msgstr "Обновления"
 
-#: templates/browser/index.html:88 templates/browser/index.html.py:96
+#: templates/browser/index.html:89 templates/browser/index.html.py:99
 msgid "Last action:"
 msgstr "Последнее действие:"
 
-#: templates/browser/index.html:92
+#: templates/browser/index.html:95
 msgid "Translations"
 msgstr "Переводы"
 
-#: templates/browser/index.html:137
-msgid "This project is disabled and visible to administrators only."
-msgstr "Этот проект был выключен и виден только администраторам."
-
-#: templates/browser/index.html:142
+#: templates/browser/index.html:140
+#, python-format
 msgid ""
-"Some data on this page is currently being calculated, and the page will be "
-"refreshed automatically in <strong>30 seconds</strong>."
+"Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
+"dealing with stats issues."
 msgstr ""
-"Некоторые данные на этой странице в настоящий момент еще вычисляются. "
-"Страница будет автоматически обновлена через <strong>30 секунд</strong>."
 
 #: templates/browser/index.html:146
+msgid "The stats on this page may be out of date."
+msgstr ""
+
+#: templates/browser/index.html:148
 msgid "Refresh now"
 msgstr "Обновить сейчас"
+
+#: templates/browser/index.html:158
+msgid "This project is disabled and visible to administrators only."
+msgstr "Этот проект был выключен и виден только администраторам."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
@@ -2181,14 +2186,14 @@ msgstr ""
 msgid "score"
 msgstr "счет"
 
-#: templates/core/_top_scorers.html:15
-#: templates/core/_top_scorers_as_table.html:7
-#: templates/core/_top_scorers_as_ul.html:7
+#: templates/core/_top_scorers.html:16
+#: templates/core/_top_scorers_as_table.html:8
+#: templates/core/_top_scorers_as_ul.html:8
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: templates/core/_top_scorers.html:31
+#: templates/core/_top_scorers.html:33
 msgid "No user contributions yet."
 msgstr "Нет вклада."
 
@@ -2637,6 +2642,11 @@ msgstr "перейти к навигации"
 msgid "Public Profile"
 msgstr "Публичный профиль"
 
+#: templates/layout.html:114 templates/user/settings.html:4
+#: templates/user/settings.html.py:7
+msgid "Settings"
+msgstr "Настройки"
+
 #: templates/layout.html:115 templates/user/profile.html:67
 #: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
@@ -2804,27 +2814,29 @@ msgid "Tweet this!"
 msgstr "Твитни это!"
 
 #: templates/user/profile.html:40
-msgid "No contributions in the last month"
+#, fuzzy
+msgid "No contributions in the last 30 days"
 msgstr "Нет вклада в последнем месяце"
 
 #: templates/user/profile.html:43
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"I am #%(pos)s contributor in %(lang_name)s for this month at "
+"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
 "Я занимаю #%(pos)s место в %(lang_name)s в этом месяце на at "
 "%(server_title)s! "
 
 #: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s for this month"
+#, fuzzy, python-format
+msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
 msgstr "#%(pos)s место в %(lang_name)s в этом месяце"
 
 #: templates/user/profile.html:49
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
+"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
+"days"
 msgstr "#%(pos)s место в <a href=\"%(url)s\">%(lang_name)s</a> в этом месяце"
 
 #: templates/user/profile.html:60
@@ -2914,9 +2926,21 @@ msgstr "Присоединяйтесь!"
 msgid "Sign in"
 msgstr "Войти"
 
-#: templates/welcome.html:32
-msgid "Top Contributors This Month"
-msgstr "Лучшие участники этого месяца"
+#~ msgid "Getting Started"
+#~ msgstr "Начало работы"
+
+#~ msgid "License Terms"
+#~ msgstr "Лицензионное соглашение"
+
+#~ msgid ""
+#~ "Some data on this page is currently being calculated, and the page will "
+#~ "be refreshed automatically in <strong>30 seconds</strong>."
+#~ msgstr ""
+#~ "Некоторые данные на этой странице в настоящий момент еще вычисляются. "
+#~ "Страница будет автоматически обновлена через <strong>30 секунд</strong>."
+
+#~ msgid "Top Contributors This Month"
+#~ msgstr "Лучшие участники этого месяца"
 
 #~ msgid "Can administrate a translation project"
 #~ msgstr "Может администрировать проект"
@@ -3789,9 +3813,6 @@ msgstr "Лучшие участники этого месяца"
 
 #~ msgid "Download"
 #~ msgstr "Скачать"
-
-#~ msgid "Download file"
-#~ msgstr "Скачать файл"
 
 #~ msgid "Upload"
 #~ msgstr "Загрузить"

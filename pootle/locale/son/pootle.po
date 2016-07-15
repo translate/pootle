@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-05-24 11:00+0100\n"
+"POT-Creation-Date: 2016-07-14 18:55+0200\n"
 "PO-Revision-Date: 2014-09-01 09:41+0000\n"
 "Last-Translator: Mohomodou  <mh@bollag-areal.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgid "Email Address"
 msgstr "Bataga aderesu"
 
 #: apps/accounts/models.py:72 apps/pootle_language/models.py:74
-#: apps/pootle_project/models.py:166
+#: apps/pootle_project/models.py:167
 msgid "Full Name"
 msgstr "Maa timmante"
 
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Short Bio"
 msgstr ""
 
-#: apps/accounts/models.py:326
+#: apps/accounts/models.py:352
 #, fuzzy
 msgid "This email address already exists."
 msgstr "Kalimaa woo ga bara tukoo ra ka ben."
@@ -178,21 +178,31 @@ msgstr "Hantum ir se"
 msgid "Report problem with string"
 msgstr "Šenday foo bayrandi nd'aššil tenjiri"
 
-#: apps/import_export/templates/browser/index.html:10
+#: apps/import_export/templates/browser/index.html:11
 #, fuzzy
 msgid "Download translation files for offline translation"
 msgstr "XLIFF tukoo zumandi ka berandi bila nda ciyari"
 
-#: apps/import_export/templates/browser/index.html:11
+#: apps/import_export/templates/browser/index.html:12
 #, fuzzy
 msgid "Download for offline translation"
 msgstr "XLIFF tukoo zumandi ka berandi bila nda ciyari"
 
-#: apps/import_export/templates/browser/index.html:19
+#: apps/import_export/templates/browser/index.html:16
+#, fuzzy
+msgid "Download translation files for backup"
+msgstr "XLIFF tukoo zumandi ka berandi bila nda ciyari"
+
+#: apps/import_export/templates/browser/index.html:17
+#, fuzzy
+msgid "Download for backup"
+msgstr "Tukoo zumandi"
+
+#: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
 msgstr "Berandiyan tukey wala jiširey zijandi .zip takari ra"
 
-#: apps/import_export/templates/browser/index.html:20
+#: apps/import_export/templates/browser/index.html:27
 #, fuzzy
 msgid "Upload translations"
 msgstr "Berandiyaney fattandi"
@@ -226,7 +236,7 @@ msgstr "Ga hin ka berandiyaney hantum zijandiyan tukey boŋ"
 msgid "Language code does not follow the ISO convention"
 msgstr "Šenni ašariya ši hanga ISO alaadaa bande"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:194
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:196
 msgid "Source Language"
 msgstr "Aššil šenni"
 
@@ -235,7 +245,7 @@ msgstr "Aššil šenni"
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" ši hin ka tee sanda porože ašariya"
 
-#: apps/pootle_app/forms.py:101 custom/templates/profiles/_tabs.html:5
+#: apps/pootle_app/forms.py:101
 msgid "Password"
 msgstr "Šennikufal"
 
@@ -305,7 +315,7 @@ msgstr "Tukuyaŋ kul ši porožewoo woo ra."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Firkayaŋ ga bara takaroo ra. Taare ne ganda šendawey guna boryo."
 
-#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:162
+#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:163
 msgid "Code"
 msgstr "Ašariya"
 
@@ -679,23 +689,23 @@ msgstr "Ceeci"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Ceeci (Ctrl+Shift+S)<br/> Hantum nda Dam butoŋ naagu ka guna"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:476
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
 msgid "Exact Match"
 msgstr "Tenjandi alhakiika"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
 msgid "Source Text"
 msgstr "Aššil kalimaɲaa kuru"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
 msgid "Target Text"
 msgstr "Toodoo kalimaɲaa kuru"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:484
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
 msgid "Comments"
 msgstr "Daarawey"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:485
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
 msgid "Locations"
 msgstr "Gorodogey"
 
@@ -716,7 +726,7 @@ msgstr "Jine"
 msgid "Last (%d)"
 msgstr "(%d) korawey"
 
-#: apps/pootle_misc/templatetags/search.py:26
+#: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
 msgstr ""
 
@@ -728,7 +738,7 @@ msgstr "Šenni foo wal'ibooboyaŋ suuba"
 msgid "Language"
 msgstr "Šenni"
 
-#: apps/pootle_project/models.py:156
+#: apps/pootle_project/models.py:157
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -736,49 +746,54 @@ msgstr ""
 "Ašariya duurya porožewoo se. Woo ga hima ka bara nda ASCII harfey, hinnawey "
 "nda ganda-žeeri (_) harfu."
 
-#: apps/pootle_project/models.py:177
+#: apps/pootle_project/models.py:178
 msgid "Quality Checks"
 msgstr "Hennari korošiyaney"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 msgid "File Type"
 msgstr "Tuku dumi"
 
-#: apps/pootle_project/models.py:184
-msgid "Automatic detection (slower)"
+#: apps/pootle_project/models.py:185
+#, fuzzy
+msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Boŋ-maateyan (cee-yayna)"
 
-#: apps/pootle_project/models.py:185
+#: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
 msgstr "GNU fasal: tukey maaɲey šenni ašariya bande"
 
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:187
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Manti-GNU: šenni foo kul nga boŋ fooloɲaŋoo ra"
 
-#: apps/pootle_project/models.py:190
+#: apps/pootle_project/models.py:188
+msgid "Allow pootle_fs to manage filesystems"
+msgstr ""
+
+#: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
 msgstr "Porože tuuri fasal"
 
-#: apps/pootle_project/models.py:198
+#: apps/pootle_project/models.py:200
 msgid "Ignore Files"
 msgstr "Tukey muray"
 
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:205
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:206
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "URL wala bataga aderesu kaŋ nda šenday aššil hantum here ga hin ka bayrandi."
 
-#: apps/pootle_project/models.py:208
+#: apps/pootle_project/models.py:210
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:215
 msgid "Disabled"
 msgstr ""
 
@@ -794,19 +809,19 @@ msgstr "Berandiyan porožewoo n' ka taagandi leeti kokorantey bande."
 msgid "Translation project (%s) has been deleted"
 msgstr "Berandiyan porože tukey n' ka cawandi taaga."
 
-#: apps/pootle_statistics/models.py:64 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
 msgid "Source"
 msgstr "Aššil"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Toodoo"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Alhaali"
 
-#: apps/pootle_statistics/models.py:67
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Daara"
 
@@ -822,7 +837,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr ""
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:647
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:665
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Fondo ši wasa ka huru moɲoo woo ra."
@@ -863,7 +878,7 @@ msgstr "Excel CSV"
 msgid "Mozilla .lang"
 msgstr "Mozilla .lang"
 
-#: apps/pootle_store/forms.py:132
+#: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
 #: apps/pootle_store/templatetags/store_tags.py:189
@@ -872,24 +887,24 @@ msgstr "Mozilla .lang"
 msgid "Plural Form %d"
 msgstr "%d"
 
-#: apps/pootle_store/forms.py:254 apps/pootle_store/util.py:29
+#: apps/pootle_store/forms.py:252 apps/pootle_store/util.py:29
 #: core/helpers.py:49 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Ga boona goy"
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:299
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:311
+#: apps/pootle_store/forms.py:309
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:328
+#: apps/pootle_store/forms.py:326
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:389
+#: apps/pootle_store/forms.py:387
 msgid "Translator comment"
 msgstr "Berandikaw daara"
 
@@ -905,7 +920,7 @@ msgstr "Yaddante"
 msgid "Rejected"
 msgstr "Mongante"
 
-#: apps/pootle_store/models.py:1346
+#: apps/pootle_store/models.py:1348
 msgid "Path"
 msgstr "Fondo"
 
@@ -953,27 +968,27 @@ msgstr "A žen."
 msgid "Translated"
 msgstr "Berante"
 
-#: apps/pootle_store/views.py:203
+#: apps/pootle_store/views.py:204
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:205 core/decorators.py:44
+#: apps/pootle_store/views.py:206 core/decorators.py:44
 msgid "Arguments missing."
 msgstr "Šennigoy ga kuma."
 
-#: apps/pootle_store/views.py:260
+#: apps/pootle_store/views.py:261
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:295
+#: apps/pootle_store/views.py:296
 msgid "Comment submission failed."
 msgstr "Daara sanbayanoo dunbu."
 
-#: apps/pootle_store/views.py:576
+#: apps/pootle_store/views.py:594
 msgid "Failed to process submission."
 msgstr "Sanbaroo mana hin ka koy."
 
-#: apps/pootle_store/views.py:617
+#: apps/pootle_store/views.py:635
 msgid "Failed to process suggestion."
 msgstr "Honnandiyanoo mana hin ka koy."
 
@@ -1040,12 +1055,12 @@ msgstr ""
 msgid "Description"
 msgstr "Šilbayyan"
 
-#: apps/reports/views.py:314
+#: apps/reports/views.py:313
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:391
+#: apps/reports/views.py:390
 msgid "Invalid request method"
 msgstr ""
 
@@ -1515,11 +1530,11 @@ msgstr "Šenni goyantey"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:319 core/views.py:96
+#: core/decorators.py:323 core/views.py:96
 msgid "Insufficient rights to access this page."
 msgstr "Fondo ši wasa ka huru moɲoo woo ra."
 
-#: core/decorators.py:332 core/views.py:107
+#: core/decorators.py:336 core/views.py:107
 msgid "You do not have rights to administer Pootle."
 msgstr "War ši nda fondo ka Pootle juwal."
 
@@ -1601,20 +1616,6 @@ msgstr "Django juwalyan"
 #: core/views.py:151
 msgid "You cannot access this page."
 msgstr ""
-
-#: custom/templates/layout.html:11
-msgid "Getting Started"
-msgstr ""
-
-#: custom/templates/layout.html:15
-#, fuzzy
-msgid "License Terms"
-msgstr "Duɲe kaddasu"
-
-#: custom/templates/profiles/_tabs.html:4 templates/layout.html:114
-#: templates/user/settings.html:4 templates/user/settings.html.py:7
-msgid "Settings"
-msgstr "Kayandiyaney"
 
 #: middleware/errorpages.py:81
 #, python-format
@@ -1753,8 +1754,8 @@ msgstr "Porožewey"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5
-#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
+#: templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1965,8 +1966,7 @@ msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20
-#: templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
 msgid "Save"
 msgstr "Gaabu"
 
@@ -2110,38 +2110,43 @@ msgstr "Tontoni..."
 msgid "less..."
 msgstr ""
 
-#: templates/browser/index.html:77
+#: templates/browser/index.html:77 templates/welcome.html:32
 #, fuzzy
-msgid "Top contributors Last 30 days"
+msgid "Top Contributors for the Last 30 Days"
 msgstr "Kanbuzaakaw beerey"
 
-#: templates/browser/index.html:84
+#: templates/browser/index.html:85
 #, fuzzy
 msgid "Updates"
 msgstr "Fondawey taagandi"
 
-#: templates/browser/index.html:88 templates/browser/index.html.py:96
+#: templates/browser/index.html:89 templates/browser/index.html.py:99
 #, fuzzy
 msgid "Last action:"
 msgstr "Goy koraw"
 
-#: templates/browser/index.html:92
+#: templates/browser/index.html:95
 #, fuzzy
 msgid "Translations"
 msgstr "Berandiyan"
 
-#: templates/browser/index.html:137
-msgid "This project is disabled and visible to administrators only."
-msgstr ""
-
-#: templates/browser/index.html:142
+#: templates/browser/index.html:140
+#, python-format
 msgid ""
-"Some data on this page is currently being calculated, and the page will be "
-"refreshed automatically in <strong>30 seconds</strong>."
+"Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
+"dealing with stats issues."
 msgstr ""
 
 #: templates/browser/index.html:146
+msgid "The stats on this page may be out of date."
+msgstr ""
+
+#: templates/browser/index.html:148
 msgid "Refresh now"
+msgstr ""
+
+#: templates/browser/index.html:158
+msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
 #: templates/contact_form/xhr_contact_form.html:8
@@ -2165,14 +2170,14 @@ msgstr ""
 msgid "score"
 msgstr ""
 
-#: templates/core/_top_scorers.html:15
-#: templates/core/_top_scorers_as_table.html:7
-#: templates/core/_top_scorers_as_ul.html:7
+#: templates/core/_top_scorers.html:16
+#: templates/core/_top_scorers_as_table.html:8
+#: templates/core/_top_scorers_as_ul.html:8
 #, python-format
 msgid "#%(position)s"
 msgstr ""
 
-#: templates/core/_top_scorers.html:31
+#: templates/core/_top_scorers.html:33
 msgid "No user contributions yet."
 msgstr ""
 
@@ -2619,6 +2624,11 @@ msgstr "sar naaruyan do"
 msgid "Public Profile"
 msgstr ""
 
+#: templates/layout.html:114 templates/user/settings.html:4
+#: templates/user/settings.html.py:7
+msgid "Settings"
+msgstr "Kayandiyaney"
+
 #: templates/layout.html:115 templates/user/profile.html:67
 #: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
@@ -2774,25 +2784,27 @@ msgid "Tweet this!"
 msgstr ""
 
 #: templates/user/profile.html:40
-msgid "No contributions in the last month"
-msgstr ""
+#, fuzzy
+msgid "No contributions in the last 30 days"
+msgstr "Kanbuzaakaw beerey"
 
 #: templates/user/profile.html:43
 #, python-format
 msgid ""
-"I am #%(pos)s contributor in %(lang_name)s for this month at "
+"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
 
 #: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s for this month"
-msgstr ""
+#, fuzzy, python-format
+msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+msgstr "Kanbuzaakaw beerey"
 
 #: templates/user/profile.html:49
 #, python-format
 msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> for this month"
+"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
+"days"
 msgstr ""
 
 #: templates/user/profile.html:60
@@ -2877,9 +2889,9 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/welcome.html:32
-msgid "Top Contributors This Month"
-msgstr ""
+#, fuzzy
+#~ msgid "License Terms"
+#~ msgstr "Duɲe kaddasu"
 
 #~ msgid "Can administrate a translation project"
 #~ msgstr "Ga hin ka berandiyan porože foo juwal"
@@ -3803,9 +3815,6 @@ msgstr ""
 
 #~ msgid "Download"
 #~ msgstr "Zumandi"
-
-#~ msgid "Download file"
-#~ msgstr "Tukoo zumandi"
 
 #~ msgid "Upload"
 #~ msgstr "Zijandi"
