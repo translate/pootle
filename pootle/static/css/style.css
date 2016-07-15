@@ -732,7 +732,8 @@ button.close
     text-align: center;
 }
 
-#autorefresh-notice span {
+#autorefresh-notice span
+{
     background: #fe9;
     padding: 0.9em 1.5em;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -741,7 +742,8 @@ button.close
     padding-right: 3.7em;
 }
 
-#autorefresh-notice .x {
+#autorefresh-notice .x
+{
     margin-left: 1em;
     font-size: 1.5em;
     position: absolute;
