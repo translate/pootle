@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:55+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: 2010-08-04 14:21+0200\n"
 "Last-Translator: Gia <giasher@telenet.ge>\n"
 "Language-Team: Georgian <www.gia.ge>\n"
@@ -205,6 +205,11 @@ msgstr "ყველა თარგმანი გადმოტანილ�
 #, fuzzy
 msgid "Upload translations"
 msgstr "თარგმანის ექსპორტი"
+
+#: apps/import_export/templates/browser/index.html:36
+#, python-format
+msgid "Upload as %(user)s"
+msgstr ""
 
 #: apps/import_export/utils.py:29
 #, python-format

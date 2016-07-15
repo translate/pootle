@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:55+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: 2015-08-25 21:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,6 +203,11 @@ msgstr "Senda inn þýðingaskrár eða safnskrár á in .zip skráasniði"
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
 msgstr "Flytja út þýðingar"
+
+#: apps/import_export/templates/browser/index.html:36
+#, python-format
+msgid "Upload as %(user)s"
+msgstr ""
 
 #: apps/import_export/utils.py:29
 #, python-format

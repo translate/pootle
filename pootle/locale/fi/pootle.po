@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:55+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: 2015-06-08 15:43+0000\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,6 +206,11 @@ msgstr "Lähetä käännöstiedostoja tai -arkistoja .zip-muodossa"
 #, fuzzy
 msgid "Upload translations"
 msgstr "Vie käännökset"
+
+#: apps/import_export/templates/browser/index.html:36
+#, python-format
+msgid "Upload as %(user)s"
+msgstr ""
 
 #: apps/import_export/utils.py:29
 #, python-format

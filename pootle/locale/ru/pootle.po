@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:55+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: 2016-05-28 14:57+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -211,6 +211,11 @@ msgstr "Выгрузить файлы перевода или архивы в ф
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
 msgstr "Загрузить переводы"
+
+#: apps/import_export/templates/browser/index.html:36
+#, fuzzy, python-format
+msgid "Upload as %(user)s"
+msgstr "Отчет про %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format

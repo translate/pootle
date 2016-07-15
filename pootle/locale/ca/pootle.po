@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:55+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: 2016-06-30 11:45+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
@@ -212,6 +212,11 @@ msgstr "Puja els fitxers o arxius de traducció en format .zip"
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
 msgstr "Puja les traduccions"
+
+#: apps/import_export/templates/browser/index.html:36
+#, fuzzy, python-format
+msgid "Upload as %(user)s"
+msgstr "Informe per a %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format

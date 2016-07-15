@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:55+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,6 +207,11 @@ msgstr "번역파일 또는 .zip파일 업로드"
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
 msgstr "번역 업로드"
+
+#: apps/import_export/templates/browser/index.html:36
+#, fuzzy, python-format
+msgid "Upload as %(user)s"
+msgstr "%(user)s 레포트"
 
 #: apps/import_export/utils.py:29
 #, python-format
