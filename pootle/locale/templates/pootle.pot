@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-14 18:53+0200\n"
+"POT-Creation-Date: 2016-07-15 11:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,6 +195,11 @@ msgstr ""
 
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
+msgstr ""
+
+#: apps/import_export/templates/browser/index.html:36
+#, python-format
+msgid "Upload as %(user)s"
 msgstr ""
 
 #: apps/import_export/utils.py:29
@@ -1698,8 +1703,8 @@ msgstr ""
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5
-#: templates/projects/_nav.html:33 templates/projects/admin/permissions.html:7
+#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
+#: templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
 #: templates/translation_projects/_nav.html:31
 #: templates/translation_projects/admin/permissions.html:5
@@ -1897,8 +1902,7 @@ msgstr ""
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20
-#: templates/user/settings.html:39
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
 msgid "Save"
 msgstr ""
 
