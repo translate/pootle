@@ -730,6 +730,7 @@ button.close
     right: 0;
     z-index: 1;
     text-align: center;
+    pointer-events: none;
 }
 
 #autorefresh-notice span
@@ -749,6 +750,11 @@ button.close
     position: absolute;
     top: -0.2em;
     color: rgba(0, 0, 0, 0.4);
+}
+
+#autorefresh-notice.dirty span
+{
+    pointer-events: auto;
 }
 
 /*
