@@ -126,6 +126,11 @@ html[dir="rtl"] .path-summary-more .path-summary-collapsed label
     text-align: right;
 }
 
+html[dir="rtl"] .path-summary-more .top-scorers-table tr td.number:last-child
+{
+    text-align: left;
+}
+
 .path-summary-more .top-scorers-table tr td.number:first-child
 {
     text-align: left;

@@ -850,12 +850,6 @@ html[dir="rtl"] .hd h2
 
 }
 
-html[dir="rtl"] .last-action
-{
-    margin-left: 0;
-    margin-right: 1em;
-}
-
 .last-action
 {
     margin-top: 1px;
@@ -868,6 +862,11 @@ html[dir="rtl"] .last-action
     height: 20px;
     position: absolute;
     top: -2px;
+}
+
+html[dir="rtl"] .last-action img
+{
+    right: 0;
 }
 
 .last-action a
@@ -1322,6 +1321,11 @@ html[dir="rtl"] td.stats-name,
     text-align: right;
 }
 
+html[dir="rtl"] .check-count
+{
+    text-align: left;
+}
+
 .toggle-more-checks.collapsed .hide-more,
 .toggle-more-checks .show-more
 {
@@ -1331,12 +1335,6 @@ html[dir="rtl"] td.stats-name,
 .toggle-more-checks.collapsed .show-more
 {
     display: inherit;
-}
-
-html[dir="rtl"] .check-count
-{
-    padding-right: 0;
-    padding-left: 5%;
 }
 
 div.small
@@ -1741,9 +1739,19 @@ html[dir="rtl"] .summary-3-col
         margin: 0 0 0 6.25%;
     }
 
+    html[dir="rtl"] .path-summary-more .summary-2-col
+    {
+        margin: 0 6.25% 0 0;
+    }
+
     .path-summary-more .summary-1-col
     {
         margin: 0 6.25% 0 0;
+    }
+
+    html[dir="rtl"] .path-summary-more .summary-1-col
+    {
+        margin: 0 0 0 6.25%;
     }
 }
 
