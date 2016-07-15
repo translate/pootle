@@ -10,7 +10,6 @@ import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'jquery-bidi';
 import 'jquery-utils';
 import assign from 'object-assign';
 import 'sorttable';
@@ -78,8 +77,6 @@ const stats = {
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
-
-    $('td.stats-name').filter(':not([dir])').bidi();
 
     $(document).on('click', '#js-path-summary', (e) => {
       e.preventDefault();

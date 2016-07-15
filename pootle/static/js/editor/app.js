@@ -15,6 +15,7 @@ import TimeSince from 'components/TimeSince';
 import ReactRenderer from 'utils/ReactRenderer';
 
 // jQuery plugins
+import 'jquery-bidi';
 import 'jquery-caret';
 import 'jquery-easing';
 import 'jquery-highlightRegex';
