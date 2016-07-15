@@ -8,11 +8,26 @@
 
 import React, { PropTypes } from 'react';
 import { PureRenderMixin } from 'react-addons-pure-render-mixin';
-import _ from 'underscore';
 
 import Avatar from 'components/Avatar';
 import TimeSince from 'components/TimeSince';
+import { t } from 'utils/i18n';
 
+const Check = ({ name, displayName }) => (
+  <a href={`#${name}`}>{displayName}</a>
+);
+Check.propTypes = {
+  name: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
+};
+
+const SourceString = ({ sourceText, url }) => (
+  <i><a href={url}>{sourceText}</a></i>
+);
+SourceString.propTypes = {
+  sourceText: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+};
 
 const UserEvent = React.createClass({
 
@@ -41,14 +56,22 @@ const UserEvent = React.createClass({
     const { unitSource } = this.props;
     const { unitUrl } = this.props;
 
-    const sourceString = `<i><a href="${unitUrl}">${_.escape(unitSource)}</a></i>`;
+    const sourceString = (
+      <SourceString
+        url={unitUrl}
+        sourceText={unitSource}
+      />
+    );
 
     let check;
     if (checkName !== undefined && checkDisplayName !== undefined) {
-      check = `<a href="#${checkName}">${checkDisplayName}</a>`;
+      check = (
+        <Check
+          name={checkName}
+          displayName={checkDisplayName}
+        />
+      );
     }
-
-    let html;
 
     /*
      * NORMAL = 1  # Interactive web editing
@@ -71,38 +94,36 @@ const UserEvent = React.createClass({
      */
 
     if (type === 2) {
-      html = gettext(`removed translation for ${sourceString}`);
+      return t('removed translation for %(sourceString)s', { sourceString });
     } else if (type === 3) {
-      html = gettext(`accepted suggestion for ${sourceString}`);
+      return t('accepted suggestion for %(sourceString)s', { sourceString });
     } else if (type === 4) {
-      html = gettext('uploaded file');
+      return [gettext('uploaded file')];
     } else if (type === 6) {
-      html = gettext(`muted ${check} for ${sourceString}`);
+      return t('muted %(check)s for %(sourceString)s', { check, sourceString });
     } else if (type === 7) {
-      html = gettext(`unmuted ${check} for ${sourceString}`);
+      return t('unmuted %(check)s for %(sourceString)s', { check, sourceString });
     } else if (type === 8) {
-      html = gettext(`added suggestion for ${sourceString}`);
+      return t('added suggestion for %(sourceString)s', { sourceString });
     } else if (type === 9) {
-      html = gettext(`rejected suggestion for ${sourceString}`);
+      return t('rejected suggestion for %(sourceString)s', { sourceString });
     } else if (type === 1 || type === 5) {
       if (translationActionType === 0) {
-        html = gettext(`translated ${sourceString}`);
+        return t('translated %(sourceString)s', { sourceString });
       } else if (translationActionType === 1) {
-        html = gettext(`edited ${sourceString}`);
+        return t('edited %(sourceString)s', { sourceString });
       } else if (translationActionType === 2) {
-        html = gettext(`pre-translated ${sourceString}`);
+        return t('pre-translated %(sourceString)s', { sourceString });
       } else if (translationActionType === 3) {
-        html = gettext(`removed translation for ${sourceString}`);
+        return t('removed translation for %(sourceString)s', { sourceString });
       } else if (translationActionType === 4) {
-        html = gettext(`reviewed ${sourceString}`);
+        return t('reviewed %(sourceString)s', { sourceString });
       } else if (translationActionType === 5) {
-        html = gettext(`marked as needs work ${sourceString}`);
+        return t('marked as needs work %(sourceString)s', { sourceString });
       }
     }
 
-    return {
-      __html: html,
-    };
+    return [''];
   },
 
   render() {
@@ -114,10 +135,9 @@ const UserEvent = React.createClass({
           size={20}
           username={this.props.username}
         />{' '}
-        <span
-          className="action-text"
-          dangerouslySetInnerHTML={this.getActionText()}
-        />{' '}
+        <span className="action-text">
+          {this.getActionText()}
+        </span>{' '}
         <TimeSince
           title={this.props.displayDatetime}
           dateTime={this.props.isoDatetime}
