@@ -33,7 +33,7 @@
     {% csrf_token %}
     <div class="hide">{{ upload_form.file }}</div>
     <span {% if not has_admin_access %}class="hide"{% endif %}>
-    {% blocktrans with user=upload_form.user_id %}
+    {% blocktrans with user=upload_form.user_id trimmed %}
       Upload as {{ user }}
     {% endblocktrans %}
     </span>
