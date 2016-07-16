@@ -57,7 +57,6 @@ var resolve = {
     'jquery-utils': __dirname + '/vendor/jquery/jquery.utils.js',
 
     levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
-    moment: __dirname + '/vendor/moment.js', // FIXME: use npm module
     odometer: __dirname + '/vendor/odometer.js', // FIXME: use npm module
     sorttable: __dirname + '/vendor/sorttable.js',
     spin: __dirname + '/vendor/spin.js', // FIXME: use npm module
@@ -121,7 +120,6 @@ plugins.push.apply(plugins, [
   new webpack.DefinePlugin({
     'process.env': {NODE_ENV: JSON.stringify(env)}
   }),
-  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new webpack.ContextReplacementPlugin(
     /codemirror[\/\\]mode$/,
     /htmlmixed|markdown|rst|textile/
