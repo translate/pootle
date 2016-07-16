@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-15 11:25+0100\n"
-"PO-Revision-Date: 2016-07-09 09:10+0000\n"
+"PO-Revision-Date: 2016-07-15 17:00+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468055408.000000\n"
+"X-POOTLE-MTIME: 1468602036.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -192,14 +192,12 @@ msgid "Download for offline translation"
 msgstr "Stáhnout pro offline překlad"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Stáhnout soubory překladu pro offline překlad"
+msgstr "Stáhnout soubory překladu pro potřeby zálohy"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Stáhnout soubor"
+msgstr "Stáhnout pro potřeby zálohy"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -210,9 +208,9 @@ msgid "Upload translations"
 msgstr "Nahrát překlady"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Sestava pro %(user)s"
+msgstr "Nahrát jako uživatel %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -768,9 +766,8 @@ msgid "File Type"
 msgstr "Typ souboru"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Automatická detekce (pomalejší)"
+msgstr "Automatická detekce gnu/ne-gnu schémat souboru (pomalejší)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -782,7 +779,7 @@ msgstr "Jiný než GNU: Každý jazyk má vlastní adresář"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Povolit správu systému souborů prostřednictvím pootle_fs"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -2132,7 +2129,6 @@ msgid "less..."
 msgstr "sbalit..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Hlavní přispěvatelé za posledních 30 dní"
 
@@ -2154,10 +2150,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"Statistika není aktuální. Pro podrobnosti k řešení problémů se statistikou "
+"naleznete v <a href=\"%(docs_url)s\">dokumentaci</a>."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "Statistika zobrazená na této stránce nemusí být aktuální."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2808,31 +2806,30 @@ msgid "Tweet this!"
 msgstr "Tweetni to!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Žádné příspěvky v posledním měsíci"
+msgstr "Žádné příspěvky za posledních 30 dní"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"V tomto měsíci jsem pro jazyk %(lang_name)s na serveru %(server_title)s "
-"přispěvatelem #%(pos)s! "
+"Za posledních 30 dní jsem pro jazyk %(lang_name)s na serveru "
+"%(server_title)s přispěvatelem #%(pos)s! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "V tomto měsíci přispěvatel #%(pos)s pro jazyk %(lang_name)s"
+msgstr "Za posledních 30 dní přispěvatel #%(pos)s pro jazyk %(lang_name)s"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"V tomto měsíci přispěvatel #%(pos)s pro jazyk <a href=\"%(url)s\">"
+"Za posledních 30 dní přispěvatel #%(pos)s pro jazyk <a href=\"%(url)s\">"
 "%(lang_name)s</a>"
 
 #: templates/user/profile.html:60

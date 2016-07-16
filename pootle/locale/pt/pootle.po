@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-15 11:25+0100\n"
-"PO-Revision-Date: 2016-06-29 09:30+0000\n"
-"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
+"PO-Revision-Date: 2016-07-15 15:09+0000\n"
+"Last-Translator: Manuela <manuela.silva@sky.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1467192656.000000\n"
+"X-POOTLE-MTIME: 1468595352.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 
 #: apps/accounts/models.py:62 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
-msgstr "Nome de utilizador"
+msgstr "Nome de Utilizador"
 
 #: apps/accounts/models.py:63
 msgid ""
@@ -180,7 +180,7 @@ msgstr "Endereço de e-mail"
 
 #: apps/contact/forms.py:39
 msgid "Please enter your email address"
-msgstr "Por favor digite o seu endereço de e-mail"
+msgstr "Por favor, insira o seu endereço de e-mail"
 
 #: apps/contact/forms.py:42
 msgid "Message"
@@ -188,7 +188,7 @@ msgstr "Mensagem"
 
 #: apps/contact/forms.py:43
 msgid "Please enter your message"
-msgstr "Por favor digite a sua mensagem"
+msgstr "Por favor, insira a sua mensagem"
 
 #: apps/contact/views.py:34 templates/layout.html:102
 msgid "Contact Us"
@@ -200,21 +200,19 @@ msgstr "Comunicar um problema com esta linha"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
-msgstr "Descarregar ficheiros de tradução para edição offline"
+msgstr "Transferir ficheiros de tradução para edição off-line"
 
 #: apps/import_export/templates/browser/index.html:12
 msgid "Download for offline translation"
-msgstr "Descarregar para edição offline"
+msgstr "Transferir para edição off-line"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Descarregar ficheiros de tradução para edição offline"
+msgstr "Transferir ficheiros de tradução para edição off-line"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Transferir ficheiro"
+msgstr "Transferir para edição off-line"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -225,26 +223,26 @@ msgid "Upload translations"
 msgstr "Enviar traduções"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Relatório para %(user)s"
+msgstr "Enviar como %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
-"Tipo de ficheiro %s não suportado. Neste momento, apenas são suportados "
+"Tipo de ficheiro %s não suportado, atualmente, são suportados apenas os "
 "ficheiros PO\n"
 
 #: apps/import_export/utils.py:35
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "Ficheiro '%s' ou cabeçalho X-Pootle-Path em falta\n"
+msgstr "Ficheiro '%s' ou cabeçalho X-Pootle-Caminho em falta\n"
 
 #: apps/import_export/utils.py:40
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "Ficheiro '%s' em falta ou cabeçalho X-Pootle-Revision inválido\n"
+msgstr "Ficheiro '%s' em falta ou cabeçalho X-Pootle-Revisão inválido\n"
 
 #: apps/import_export/utils.py:48
 #, python-format
@@ -253,15 +251,15 @@ msgstr "Não foi possível criar '%s'. Projeto/Idioma em falta? (%s)"
 
 #: apps/import_export/utils.py:65
 msgid "There was an error uploading your file"
-msgstr "Não foi possível criar '%s'. Projeto/Idioma em falta? (%s)"
+msgstr "Ocorreu um erro ao enviar o seu ficheiro"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
-msgstr "O código do idioma não corresponde à norma ISO."
+msgstr "O código do idioma não corresponde à convenção ISO."
 
 #: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:196
 msgid "Source Language"
-msgstr "Idioma fonte"
+msgstr "Idioma Fonte"
 
 #: apps/pootle_app/forms.py:94
 #, python-format
@@ -274,7 +272,7 @@ msgstr "Palavra-passe"
 
 #: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr "Por favor introduza um URL de perfil LinkedIn válido."
+msgstr "Por favor, insira um URL de perfil do LinkedIn válido."
 
 #: apps/pootle_app/views/admin/dashboard.py:85
 msgid "Files"
@@ -315,11 +313,11 @@ msgstr "Parado"
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
-msgstr "Todos os utilizadores"
+msgstr "Todos os Utilizadores"
 
 #: apps/pootle_app/views/admin/permissions.py:92
 msgid "Add Permissions"
-msgstr "Adicionar permissões"
+msgstr "Adicionar Permissões"
 
 #: apps/pootle_app/views/admin/permissions.py:97
 #: apps/pootle_app/views/admin/permissions.py:106
@@ -328,7 +326,7 @@ msgstr "Selecione uma ou mais permissões"
 
 #: apps/pootle_app/views/admin/permissions.py:101
 msgid "Revoke Permissions"
-msgstr "Revogar permissões"
+msgstr "Revogar Permissões"
 
 #: apps/pootle_app/views/admin/util.py:125
 msgid "No files in this project."
@@ -349,20 +347,20 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"O código da norma ISO 639 para o idioma, possivelmente seguido por um (_) e "
-"um código de país ISO 3166. <a href=\"http://www.w3.org/International/"
-"articles/language-tags/\">Mais informações</a>"
+"O código de idiomas ISO 639 para o idioma, possivelmente seguido por um "
+"sublinhado (_) e um código de país ISO 3166. <a href=\"https://www.w3.org/"
+"International/articles/language-tags//\">Mais informação</a>"
 
 #: apps/pootle_language/models.py:77 templates/languages/_nav.html:31
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
-msgstr "Caracteres especiais"
+msgstr "Carateres Especiais"
 
 #: apps/pootle_language/models.py:78
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
-"Insira quaisquer caracteres especiais que os utilizadores poderão ter "
+"Insira quaisquer carateres especiais que os utilizadores possam ter "
 "dificuldade em digitar"
 
 #: apps/pootle_language/models.py:82
@@ -371,9 +369,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
-"Para mais informações, consulte <a href=\"http://docs.translatehouse.org/"
+"Para mais informação, visite <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">a nossa "
-"página</a> sobre formas plurais."
+"página</a> sobre as formas plurais."
 
 #: apps/pootle_language/models.py:88
 msgid "Unknown"
@@ -381,11 +379,11 @@ msgstr "Desconhecido"
 
 #: apps/pootle_language/models.py:92
 msgid "Number of Plurals"
-msgstr "Número de plurais"
+msgstr "Número de Plurais"
 
 #: apps/pootle_language/models.py:95
 msgid "Plural Equation"
-msgstr "Equação de plural"
+msgstr "Equação de Plural"
 
 #: apps/pootle_misc/checks.py:33 core/browser.py:54
 msgid "Critical"
@@ -441,7 +439,7 @@ msgstr "Aspas"
 
 #: apps/pootle_misc/checks.py:49
 msgid "Double spaces"
-msgstr "Espaço duplo"
+msgstr "Espaços duplos"
 
 #: apps/pootle_misc/checks.py:50
 msgid "Repeated word"
@@ -493,7 +491,7 @@ msgstr "Palavras que devem ser traduzidas"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Newlines"
-msgstr "Newlines"
+msgstr "Novas linhas"
 
 #: apps/pootle_misc/checks.py:63
 msgid "Number of plurals"
@@ -575,7 +573,7 @@ msgstr "Não traduzido"
 
 #: apps/pootle_misc/checks.py:83
 msgid "URLs"
-msgstr "URL"
+msgstr "URLs"
 
 #: apps/pootle_misc/checks.py:84
 msgid "Valid characters"
@@ -587,7 +585,7 @@ msgstr "Símbolos"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
-msgstr "XML válido"
+msgstr "XML Válido"
 
 #: apps/pootle_misc/checks.py:87
 msgid "XML tags"
@@ -781,9 +779,9 @@ msgid "File Type"
 msgstr "Tipo de ficheiro"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Deteção automática (mais lento)"
+msgstr ""
+"Deteção automática das disposições de ficheiro gnu/não gnu (mais lento)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -795,7 +793,7 @@ msgstr "Não GNU: cada idioma no seu diretório"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Permitir que pootle_fs controle filesystems"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -2152,9 +2150,8 @@ msgid "less..."
 msgstr "menos..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Maiores colaboradores dos últimos 30 dias"
+msgstr "Top de Colaboradores para os últimos 30 dias"
 
 #: templates/browser/index.html:85
 msgid "Updates"
@@ -2174,10 +2171,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"As estatísticas estão desatualizadas. Consulte a <a href=\"%(docs_url)s"
+"\">documentação</a> para resolver os problemas das estatísticas."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "As estatísticas nesta página poderão estar desatualizadas."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2826,12 +2825,11 @@ msgid "Tweet this!"
 msgstr "Tweet isto!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Nenhuma contribuição no último mês"
+msgstr "Nenhuma contribuição nos últimos 30 dias"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
@@ -2840,18 +2838,18 @@ msgstr ""
 "%(server_title)s!"
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "#%(pos)s colaborador no idioma %(lang_name)s para este mês"
+msgstr "#%(pos)s colaborador no idioma %(lang_name)s nos últimos 30 dias"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"#%(pos)s colaborador no idioma <a href=\"%(url)s\">%(lang_name)s</a> para "
-"este mês"
+"#%(pos)s colaborador no idioma <a href=\"%(url)s\">%(lang_name)s</a> nos "
+"últimos 30 dias"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-15 11:25+0100\n"
-"PO-Revision-Date: 2016-05-27 18:45+0000\n"
+"PO-Revision-Date: 2016-07-15 11:54+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464374759.000000\n"
+"X-POOTLE-MTIME: 1468583648.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -194,14 +194,12 @@ msgid "Download for offline translation"
 msgstr "Descargar para traducir en desconexión"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Descargar ficheiros de tradución para traducir en desconexión"
+msgstr "Descargar copia de seguridade dos ficheiros de tradución"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Descargar o ficheiro"
+msgstr "Descargar copia de seguridade"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -212,9 +210,9 @@ msgid "Upload translations"
 msgstr "Enviar traducións"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Informe para %(user)s"
+msgstr "Enviar como %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -765,9 +763,9 @@ msgid "File Type"
 msgstr "Tipo de ficheiro"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Detección automática (máis lenta)"
+msgstr ""
+"Detección automática de disposicións de ficheiros gnu/non-gnu (máis lenta)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -779,7 +777,7 @@ msgstr "Non-GNU: cada idioma no seu propio cartafol"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Permitir que pootle_fs xestione os sistemas de ficheiros"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -2136,9 +2134,8 @@ msgid "less..."
 msgstr "menos..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Máximos colaboradores nos últimos 30 días"
+msgstr "Maiores colaboradores nos últimos 30 días"
 
 #: templates/browser/index.html:85
 msgid "Updates"
@@ -2158,10 +2155,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"As estatísticas están desactualizadas. Consulte a <a href=\"%(docs_url)s"
+"\">documentación</a> para ver como manexar os problemas coas estatísticas."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "As estatísticas nesta páxina poden estar desactualizadas."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2619,7 +2618,7 @@ msgstr "O erro sobre o que se informou é:"
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:5
 msgid "Browse"
-msgstr "Navegar"
+msgstr "Navegación"
 
 #: templates/languages/admin/permissions.html:9
 msgid "Below you can add, edit, and delete the permissions for this language."
@@ -2637,7 +2636,7 @@ msgstr ""
 
 #: templates/layout.html:92
 msgid "skip to navigation"
-msgstr "saltar a navegar"
+msgstr "saltar a navegación"
 
 #: templates/layout.html:113
 msgid "Public Profile"
@@ -2811,31 +2810,31 @@ msgid "Tweet this!"
 msgstr "Chía isto en Twitter!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Non hai contribucións no último mes"
+msgstr "Non hai contribucións nos últimos 30 días"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"Son o colaborador número %(pos)s para %(lang_name)s deste mes en "
-"%(server_title)s! "
+"Son o colaborador número %(pos)s para %(lang_name)s dos últimos 30 días en "
+"%(server_title)s!  "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Colaborador número %(pos)s para %(lang_name)s deste mes"
+msgstr "Colaborador número %(pos)s para %(lang_name)s dos últimos 30 días"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"Colaborador %(pos)s para <a href=\"%(url)s\">%(lang_name)s</a> deste mes"
+"Colaborador %(pos)s para <a href=\"%(url)s\">%(lang_name)s</a> dos últimos "
+"30 días"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"
