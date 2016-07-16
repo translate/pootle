@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:26+0100\n"
+"POT-Creation-Date: 2016-07-16 17:23+0100\n"
 "PO-Revision-Date: 2016-06-22 14:37+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -563,26 +563,32 @@ msgstr ""
 "اذهب إلى المقطع السّابق (Ctrl+,)<br/><br/>أيضًا:</br>الصّفحة السّابقة: Ctrl+Shift"
 "+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:461
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "اقتراحات %s المعلّقة"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:464
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "اقتراحات %s المقبولة"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:467
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "اقتراحات %s المرفوضة"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:470
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "مساهمات %s"
 
+#. Translators: '%s' is a username, meaning "submissions by %s,
+#. that were overwritten"
 #: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
@@ -680,11 +686,11 @@ msgstr "معطّل"
 msgid "Congratulations! You have completed this task!"
 msgstr "تهانينا! لقد أنهيت المهمة!"
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Collapse details"
 msgstr "أخفِ التّفاصيل"
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Expand details"
 msgstr "اعرض التّفاصيل"
 

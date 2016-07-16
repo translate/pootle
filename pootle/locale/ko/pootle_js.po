@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:26+0100\n"
+"POT-Creation-Date: 2016-07-16 17:23+0100\n"
 "PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -544,26 +544,32 @@ msgstr ""
 "이전의 문자열로 돌아가기(Ctrl+,)<br/><br/>또는:</br>이전 페이지: Ctrl+Shift+,"
 "<br/>첫 페이지: Ctrl+Shift+Home"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:461
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s의 보류중인 제안들"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:464
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s의 받아들여진 제안"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:467
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s에 의해 거부된 제안"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:470
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s의 제안"
 
+#. Translators: '%s' is a username, meaning "submissions by %s,
+#. that were overwritten"
 #: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
@@ -662,11 +668,11 @@ msgstr "사용 안 함"
 msgid "Congratulations! You have completed this task!"
 msgstr "축하합니다! 이 작업을 완료하셨습니다!"
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Collapse details"
 msgstr "세부사항 접기"
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Expand details"
 msgstr "세부사항 보기"
 

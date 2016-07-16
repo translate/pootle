@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:26+0100\n"
+"POT-Creation-Date: 2016-07-16 17:23+0100\n"
 "PO-Revision-Date: 2016-07-15 11:48+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -553,26 +553,32 @@ msgstr ""
 "Ir á cadea anterior (Ctrl+,)<br/><br/>Tamén:</br>Páxina anterior: Ctrl+Maiús"
 "+,<br/>Primeira páxina: Ctrl+Maiús+Inicio"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:461
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suxestións pendentes de %s"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:464
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suxestións aceptadas de %s"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:467
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suxestións rexeitadas de %s"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:470
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Envíos de %s"
 
+#. Translators: '%s' is a username, meaning "submissions by %s,
+#. that were overwritten"
 #: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
@@ -670,12 +676,12 @@ msgstr "desactivado"
 msgid "Congratulations! You have completed this task!"
 msgstr "Parabéns! Completou esta tarefa!"
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Collapse details"
 msgstr "Contraer os detalles"
 
 # resposta
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Expand details"
 msgstr "Mostrar os detalles"
 

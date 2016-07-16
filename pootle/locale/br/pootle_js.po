@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:26+0100\n"
+"POT-Creation-Date: 2016-07-16 17:23+0100\n"
 "PO-Revision-Date: 2016-05-18 09:40+0000\n"
 "Last-Translator: Tornoz <tornoz@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -534,26 +534,32 @@ msgid ""
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:461
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Kinnigoù da c'hortoz %s"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:464
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Kinnigoù %s bet degemeret"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:467
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Kinnigoù %s bet distaolet"
 
+#. Translators: '%s' is a username
 #: static/js/editor/app.js:470
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Kinnigoù %s"
 
+#. Translators: '%s' is a username, meaning "submissions by %s,
+#. that were overwritten"
 #: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
@@ -652,11 +658,11 @@ msgstr ""
 msgid "Congratulations! You have completed this task!"
 msgstr "Gourc'hemennoù, aet dre an holl neudennadoù."
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Collapse details"
 msgstr "Kuzhat ar munudoù"
 
-#: static/js/stats.js:448
+#: static/js/stats.js:449
 msgid "Expand details"
 msgstr "Diskouez ar munudoù"
 
