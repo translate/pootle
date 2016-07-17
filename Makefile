@@ -64,8 +64,8 @@ docs-review: docs
 	python -mwebbrowser file://$(shell pwd)/${DOCS_DIR}/_build/html/index.html
 
 sprite:
-	glue --sprite-namespace="" --namespace="" ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
-	optipng -o7 ${IMAGES_DIR}/sprite.png
+	glue --sprite-namespace="" --namespace="" --cachebuster ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
+	optipng -o7 ${IMAGES_DIR}/sprite*.png
 
 clean:
 	npm cache clear
