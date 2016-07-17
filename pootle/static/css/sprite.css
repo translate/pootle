@@ -1,4 +1,4 @@
-/* glue: 0.11.1 hash: 669bb45f8c */
+/* glue: 0.11.1 hash: bb696ed544 */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -41,7 +41,7 @@
 .icon-back,
 .icon-accept-white,
 .icon-external-link {
-            background-image: url('../images/sprite.png');
+            background-image: url('../images/sprite.png?bb696ed544');
             background-repeat: no-repeat;
         }
         
@@ -340,9 +340,10 @@
     .icon-back,
     .icon-accept-white,
     .icon-external-link {
-                background-image: url('../images/sprite.png');
+                background-image: url('../images/sprite.png?bb696ed544');
                 -webkit-background-size: 131px 112px;
                 -moz-background-size: 131px 112px;
                 background-size: 131px 112px;
             }
         }
+        
