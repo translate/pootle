@@ -62,7 +62,7 @@ Eg. on a Debian-based system:
 
 .. code-block:: console
 
-  $ sudo apt-get install build-essential libxml2-dev libxslt-dev python-dev python-pip
+  $ sudo apt-get install build-essential libxml2-dev libxslt-dev python-dev python-pip zlib1g-dev
 
 You will also need to access to a working Redis server to provide caching to
 Pootle and for managing asynchronous workers.
