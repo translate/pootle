@@ -1157,7 +1157,7 @@ td.stats-name
     width: 100%;
     white-space: nowrap;
 }
- 
+
 .truncate-ellipsis > * {
     display: table-cell;
     overflow: hidden;
@@ -1640,6 +1640,10 @@ html[dir="rtl"] ul.pager li:last-child > *
 .path-summary-more td
 {
     height: 1.8em;
+}
+
+.path-summary-more .expand-stats {
+    outline: 0 none;
 }
 
 .summary-1-col,
