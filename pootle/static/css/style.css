@@ -1151,14 +1151,16 @@ td.stats-name
     min-width: 10em;
 }
 
-.truncate-ellipsis {
+.truncate-ellipsis
+{
     display: table;
     table-layout: fixed;
     width: 100%;
     white-space: nowrap;
 }
 
-.truncate-ellipsis > * {
+.truncate-ellipsis > *
+{
     display: table-cell;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1642,7 +1644,8 @@ html[dir="rtl"] ul.pager li:last-child > *
     height: 1.8em;
 }
 
-.path-summary-more .expand-stats {
+.path-summary-more .expand-stats
+{
     outline: 0 none;
 }
 
