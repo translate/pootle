@@ -113,6 +113,11 @@ html[dir="rtl"] .path-summary-more .path-summary-collapsed label
     padding-left: 1em;
 }
 
+html[dir="rtl"] .path-summary-more .top-scorers .top-scorer
+{
+    padding-right: 1em;
+}
+
 .path-summary-more .top-scorers-table
 {
     font-size: 1em;

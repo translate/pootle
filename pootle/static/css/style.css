@@ -743,6 +743,12 @@ button.close
     padding-right: 3.7em;
 }
 
+html[dir="rtl"] #autorefresh-notice span
+{
+    padding: 0.9em 1.5em;
+    padding-left: 3.7em;
+}
+
 #autorefresh-notice .x
 {
     margin-left: 1em;
@@ -750,6 +756,12 @@ button.close
     position: absolute;
     top: -0.2em;
     color: rgba(0, 0, 0, 0.4);
+}
+
+html[dir="rtl"] #autorefresh-notice .x
+{
+    margin-left: auto;
+    margin-right: 1em;
 }
 
 #autorefresh-notice.dirty span
