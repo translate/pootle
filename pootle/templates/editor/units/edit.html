@@ -188,7 +188,12 @@
             {% endif %}
 
             {% block target_field %}
-            {{ form.target_f }}
+            <div
+              class="editor-area-wrapper js-editor-area-wrapper
+              {% if form.target_f.field.widget.attrs.disabled %} is-disabled{% endif %}"
+            >
+              {{ form.target_f }}
+            </div>
             {% endblock %}
 
             <div class="extras-bar">

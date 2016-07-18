@@ -193,6 +193,12 @@ PTL.editor = {
     $(document).on('focus', '.focusthis', (e) => {
       PTL.editor.focused = e.target;
     });
+    $(document).on('focus', '.js-translation-area', (e) => {
+      $(e.target).closest('.js-editor-area-wrapper').addClass('is-focused');
+    });
+    $(document).on('blur', '.js-translation-area', (e) => {
+      $(e.target).closest('.js-editor-area-wrapper').removeClass('is-focused');
+    });
 
     /* General */
     $(document).on('click', '.js-editor-reload', (e) => {
