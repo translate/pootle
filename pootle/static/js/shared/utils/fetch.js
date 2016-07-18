@@ -29,7 +29,7 @@ function fetch({ url, body, method = 'GET', dataType = 'json', queue = null,
       data: body,
     })
   );
-
+  requests[queueName].done(() => {requests[queueName] = null;});
   return requests[queueName];
 }
 
