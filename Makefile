@@ -94,9 +94,15 @@ put-translations:
 linguas:
 	@${SRC_DIR}/tools/make-LINGUAS.sh 80 > ${SRC_DIR}/locale/LINGUAS
 
+lint: lint-js lint-css
+
 lint-js:
 	cd ${JS_DIR} \
 	&& npm run lint
+
+lint-css:
+	cd ${JS_DIR} \
+	&& npm run stylelint
 
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload

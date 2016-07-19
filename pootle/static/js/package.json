@@ -7,7 +7,8 @@
     "url": "git://github.com/translate/pootle.git"
   },
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "stylelint": "stylelint --config=stylelint.json ../css/**/*.css **/*.css"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -20,6 +21,7 @@
     "eslint-config-airbnb": "~6.2.0",
     "eslint-plugin-react": "^4.2.0",
     "style-loader": "^0.8.0",
+    "stylelint": "^7.1.0",
     "webpack": "^1.9.8"
   },
   "dependencies": {
