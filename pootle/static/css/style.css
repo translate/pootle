@@ -1164,21 +1164,13 @@ td.stats-name
 {
     white-space: nowrap;
     line-height: 20px;
-    width: 100%;
-    min-width: 10em;
+    max-width: 25vw;
+    overflow: hidden;
 }
 
-.truncate-ellipsis
+td.stats-name a
 {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-    white-space: nowrap;
-}
-
-.truncate-ellipsis > *
-{
-    display: table-cell;
+    display: block;
     overflow: hidden;
     text-overflow: ellipsis;
 }
