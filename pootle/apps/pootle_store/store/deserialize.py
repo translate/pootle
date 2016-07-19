@@ -47,8 +47,14 @@ class StoreDeserialization(object):
             data = deserializer(self.store, data).output
         return data
 
+    def dataio(self, data):
+        data = io.BytesIO(data)
+        data.name = self.store.name
+        return data
+
     def fromstring(self, data):
-        return getclass(io.BytesIO(data))(data)
+        data = self.dataio(data)
+        return getclass(data)(data)
 
     def deserialize(self, data):
         return self.fromstring(self.pipeline(data))
