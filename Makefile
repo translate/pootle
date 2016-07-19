@@ -29,6 +29,7 @@ assets:
 	npm cache clear && \
 	npm install && \
 	cd ${CWD}
+	${POOTLE_CMD} compilejsi18n -o ${STATIC_DIR}/jsi18n
 	${POOTLE_CMD} webpack --extra=--display-error-details
 	mkdir -p ${ASSETS_DIR}
 
