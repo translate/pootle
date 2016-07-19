@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-15 11:25+0100\n"
-"PO-Revision-Date: 2016-05-25 09:00+0000\n"
+"PO-Revision-Date: 2016-07-18 18:25+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1464166808.000000\n"
+"X-POOTLE-MTIME: 1468866325.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -194,14 +194,12 @@ msgid "Download for offline translation"
 msgstr "Çevrimdışı çeviri için indirin"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Çevrimdışı çeviri için çeviri dosyalarını indirin"
+msgstr "Yedeklemek için çeviri dosyalarını indirin"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Dosya indir"
+msgstr "Yedeklemek için indir"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -212,9 +210,9 @@ msgid "Upload translations"
 msgstr "Çevirileri gönder"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "%(user)s için rapor"
+msgstr "%(user)s olarak gönder"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -292,6 +290,7 @@ msgstr "Aktif kullanıcılar"
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
 msgstr[0] "Çalışıyor (%d işleyici)"
+msgstr[1] "Çalışıyor (%d işleyici)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:115
@@ -735,7 +734,7 @@ msgstr "Son (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
-msgstr "Hizmet kullanılamaz"
+msgstr "Arama kullanılamaz"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -762,9 +761,8 @@ msgid "File Type"
 msgstr "Dosya Türü"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Otomatik saptama (yavaş)"
+msgstr "Gnu/gnu olmayan dosya düzenlerini otomatik algılama (yavaş)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -776,7 +774,7 @@ msgstr "GNU olmayan: Her dil kendi dizinindedir"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Dosya sistemlerini yönetmesi için pootle_fs'ye izin ver"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -1079,7 +1077,7 @@ msgstr ""
 
 #: apps/staticpages/models.py:33
 msgid "Whether this page is active or not."
-msgstr "Bu sayfanın aktif olup olmayacağı."
+msgstr "Bu sayfanın aktif olup olmadığı."
 
 #: apps/staticpages/models.py:36 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
@@ -2140,9 +2138,8 @@ msgid "less..."
 msgstr "daha az..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Son 30 günün en çok katkıda bulunanları"
+msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #: templates/browser/index.html:85
 msgid "Updates"
@@ -2162,10 +2159,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"Stats eskimiş. Stats sorunları ile uğraşmak için <a href=\"%(docs_url)s"
+"\">belgelere</a> bakın."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "Bu sayfadaki stats eskimiş olabilir."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2307,6 +2306,9 @@ msgid_plural ""
 "We displayed the first %(unit_count)s units out of %(total_count)s. Please "
 "refine your search."
 msgstr[0] ""
+"Toplam %(total_count)s birimin ilk birimini görüntüledik. Lütfen aradığınızı "
+"daraltın."
+msgstr[1] ""
 "Toplam %(total_count)s birimin ilk %(unit_count)s birimini görüntüledik. "
 "Lütfen aradığınızı daraltın."
 
@@ -2563,7 +2565,7 @@ msgstr "Sayfa Bulunamadı"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr "Üzgünüz, istediğiniz sayfa bulunamadı."
+msgstr "Üzgünüz, ancak istediğiniz sayfa bulunamadı."
 
 #: templates/errors/500.html:4 templates/errors/500.html.py:8
 msgid "Server Error"
@@ -2637,7 +2639,7 @@ msgstr ""
 
 #: templates/layout.html:92
 msgid "skip to navigation"
-msgstr "rehbere atla"
+msgstr "gezinme alanına geç"
 
 #: templates/layout.html:113
 msgid "Public Profile"
@@ -2820,31 +2822,31 @@ msgid "Tweet this!"
 msgstr "Bunu tweetle!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Geçen ay hiç katılım yok"
+msgstr "Son 30 gün içinde hiç katılım yok"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"Ben %(server_title)s sitesinde bu ay için %(lang_name)s dilinde #%(pos)s "
-"katılımcısıyım! "
+"Ben %(server_title)s sitesinde son 30 gün içinde %(lang_name)s dilinde #"
+"%(pos)s katılımcısıyım! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Bu ay için %(lang_name)s dilinde #%(pos)s katılımcısı"
+msgstr "Son 30 gün içinde %(lang_name)s dilinde #%(pos)s katılımcısı"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"Bu ay için <a href=\"%(url)s\">%(lang_name)s</a> dilinde #%(pos)s katılımcısı"
+"Son 30 gün içinde <a href=\"%(url)s\">%(lang_name)s</a> dilinde #%(pos)s "
+"katılımcısı"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

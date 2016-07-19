@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-16 17:23+0100\n"
-"PO-Revision-Date: 2016-05-25 08:16+0000\n"
+"PO-Revision-Date: 2016-07-18 18:11+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464164186.000000\n"
+"X-POOTLE-MTIME: 1468865495.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -48,13 +48,15 @@ msgstr "İptal"
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] "%(count)s dil sorgunuzla eşleşiyor."
+msgstr[1] "%(count)s dil sorgunuzla eşleşiyor."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)s dil var."
+msgstr[1] ""
 "%(count)s dil var. Aşağıda birden fazla olanlar ise en son eklenenlerdir."
 
 #: static/js/admin/components/Language/LanguageController.js:79
@@ -127,13 +129,15 @@ msgstr "Proje Ekle"
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
 msgstr[0] "%(count)s proje sorgunuzla eşleşiyor."
+msgstr[1] "%(count)s proje sorgunuzla eşleşiyor."
 
 #: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)s proje var."
+msgstr[1] ""
 "%(count)s proje var. Aşağıda birden fazla olanlar ise en son eklenenlerdir."
 
 #: static/js/admin/components/Project/ProjectController.js:79
@@ -209,13 +213,15 @@ msgstr "Kullanıcı Ekle"
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
 msgstr[0] "%(count)s kullanıcı sorgunuzla eşleşiyor."
+msgstr[1] "%(count)s kullanıcı sorgunuzla eşleşiyor."
 
 #: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "%(count)s kullanıcı var."
+msgstr[1] ""
 "%(count)s kullanıcı var. Aşağıda birden fazla olanlar ise en son "
 "eklenenlerdir."
 
@@ -643,7 +649,7 @@ msgstr "Reddet"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s aracılığıyla dosya gönderme"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -746,31 +752,36 @@ msgstr ""
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "%s yıl önce"
+msgstr[0] "Bir yıl önce"
+msgstr[1] "%s yıl önce"
 
 #: static/js/utils.js:168
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "%s hafta önce"
+msgstr[0] "Bir hafta önce"
+msgstr[1] "%s hafta önce"
 
 #: static/js/utils.js:171
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "%s gün önce"
+msgstr[0] "Dün"
+msgstr[1] "%s gün önce"
 
 #: static/js/utils.js:174
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "%s saat önce"
+msgstr[0] "Bir saat önce"
+msgstr[1] "%s saat önce"
 
 #: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "%s dakika önce"
+msgstr[0] "Bir dakika önce"
+msgstr[1] "%s dakika önce"
 
 #: static/js/utils.js:185
 msgid "A few seconds ago"
@@ -862,6 +873,7 @@ msgstr "Skor Değişikliği"
 msgid "%s word"
 msgid_plural "%s words"
 msgstr[0] "%s kelime"
+msgstr[1] "%s kelime"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -905,10 +917,11 @@ msgstr "Alt toplam"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "saat"
+msgstr[0] "%s saat"
+msgstr[1] "%s saat"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"

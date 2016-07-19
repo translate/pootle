@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-15 11:25+0100\n"
-"PO-Revision-Date: 2016-06-23 18:43+0000\n"
+"PO-Revision-Date: 2016-07-18 11:50+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1466707390.000000\n"
+"X-POOTLE-MTIME: 1468842653.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -188,9 +188,8 @@ msgid "Download for offline translation"
 msgstr "نزّل للتّرجمة المحليّة"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "نزّل ملفّات التّرجمة للتّرجمة محليًّا"
+msgstr "نزّل ملفّات التّرجمة لإبقائها احتياطيا"
 
 #: apps/import_export/templates/browser/index.html:17
 #, fuzzy
@@ -206,9 +205,9 @@ msgid "Upload translations"
 msgstr "ارفع ترجمات"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "تقرير عن %(user)s"
+msgstr "ارفع ك‍ %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -775,7 +774,7 @@ msgstr "نمط غير غنو: لكلّ لغة دليل خاصّ بها"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "اسمح ل‍ pootle_fs بإدارة أنظمة الملفات"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -2103,7 +2102,6 @@ msgid "less..."
 msgstr "أقل..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "أعلى المساهمين خلال الثلاثين يوما الماضية"
 
@@ -2125,10 +2123,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"باتت الإحصائيّات قديمة. طالع <a href=\"%(docs_url)s\">التّوثيق</a> لتعرف طريقة "
+"التّعامل مع مشاكل الإحصائيّات."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "قد تكون الإحصائيّات في هذه الصّفحة قديمة."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2768,30 +2768,31 @@ msgid "Tweet this!"
 msgstr "غرّد هذه!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "لا مساهمات في هذا الشّهر"
+msgstr "لا مساهمات في الأيام الثلاثين الماضية"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"أنا المساهم رقم %(pos)s في %(lang_name)s لهذا الشّهر على %(server_title)s! "
+"أنا المساهم رقم %(pos)s في %(lang_name)s في الأيام الثلاثين الماضية على "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "المساهم رقم (pos)s في %(lang_name)s لهذا الشّهر"
+msgstr "المساهم رقم (pos)s في %(lang_name)s في الأيام الثلاثين الماضية"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"المساهم رقم %(pos)s في <a href=\"%(url)s\">%(lang_name)s</a> لهذا الشّهر"
+"المساهم رقم %(pos)s في <a href=\"%(url)s\">%(lang_name)s</a> في الأيام "
+"الثلاثين الماضية"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

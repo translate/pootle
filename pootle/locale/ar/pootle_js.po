@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-16 17:23+0100\n"
-"PO-Revision-Date: 2016-06-22 14:37+0000\n"
+"PO-Revision-Date: 2016-07-18 11:53+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1466606267.000000\n"
+"X-POOTLE-MTIME: 1468842798.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -656,7 +656,7 @@ msgstr "ارفض"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s عبر رفع ملف"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -948,12 +948,12 @@ msgstr "المجموع الفرعيّ"
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أقل من ساعة"
+msgstr[1] "ساعة واحدة"
+msgstr[2] "ساعتان"
+msgstr[3] "%s ساعات"
+msgstr[4] "%s ساعة"
+msgstr[5] "%s ساعة"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
