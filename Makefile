@@ -96,6 +96,10 @@ jslint:
 	cd ${JS_DIR} \
 	&& npm run lint
 
+csslint:
+	cd ${JS_DIR} \
+	&& npm run csslint -- ../css/
+
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
