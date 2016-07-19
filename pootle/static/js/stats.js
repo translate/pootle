@@ -80,7 +80,7 @@ const stats = {
 
     $(document).on('click', '#js-path-summary', (e) => {
       e.preventDefault();
-      this.toggleChecks();
+      this.toggleDetailedStats();
     });
     $(document).on('click', '.js-toggle-more-checks', (e) => {
       let count = 0;
@@ -439,7 +439,7 @@ const stats = {
   },
 
   /* Path summary */
-  toggleChecks() {
+  toggleDetailedStats() {
     if (this.state.checksData) {
       this.setState({ isExpanded: !this.state.isExpanded });
       this.navigate();
