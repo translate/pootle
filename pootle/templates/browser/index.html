@@ -60,15 +60,13 @@
                 {% endif %}
               </tr>
             {% endfor %}
-            <tr class="js-more-checks">
-              <td colspan="2">
-                <a class="js-toggle-more-checks toggle-more-checks collapsed">
-                  <span class="show-more">{% trans "More..." %}</span>
-                  <span class="hide-more">{% trans "Less..." %}</span>
-                </a>
-              </td>
-            </tr>
             </table>
+            <div class="js-more-checks toggle-more-checks">
+              <a class="js-toggle-more-checks collapsed">
+                <span class="show-more">{% trans "More..." %}</span>
+                <span class="hide-more">{% trans "Less..." %}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

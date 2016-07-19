@@ -1331,17 +1331,18 @@ html[dir="rtl"] .check-count
     text-align: left;
 }
 
-.toggle-more-checks.collapsed .hide-more,
+.toggle-more-checks .collapsed .hide-more,
 .toggle-more-checks .show-more
 {
     display: none;
 }
 
-.toggle-more-checks.collapsed .show-more
+.toggle-more-checks .collapsed .show-more
 {
     display: inherit;
 }
 
+.toggle-more-checks,
 .more-top-contributors
 {
     padding: 9px 0;
