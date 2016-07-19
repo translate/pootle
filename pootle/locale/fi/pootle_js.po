@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-16 17:23+0100\n"
+"POT-Creation-Date: 2016-07-19 12:08+0100\n"
 "PO-Revision-Date: 2016-03-09 20:07+0000\n"
 "Last-Translator: enyone <enyone@rainio.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -621,6 +621,87 @@ msgstr ""
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
+msgstr ""
+
+#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
+#: static/js/reports/app.js:285
+msgid "%b %d, %a"
+msgstr ""
+
+#: static/js/reports/app.js:287
+msgid "Jan"
+msgstr ""
+
+#: static/js/reports/app.js:288
+msgid "Feb"
+msgstr ""
+
+#: static/js/reports/app.js:289
+msgid "Mar"
+msgstr ""
+
+#: static/js/reports/app.js:290
+msgid "Apr"
+msgstr ""
+
+#: static/js/reports/app.js:291
+msgid "May"
+msgstr ""
+
+#: static/js/reports/app.js:292
+msgid "Jun"
+msgstr ""
+
+#: static/js/reports/app.js:293
+msgid "Jul"
+msgstr ""
+
+#: static/js/reports/app.js:294
+msgid "Aug"
+msgstr ""
+
+#: static/js/reports/app.js:295
+msgid "Sep"
+msgstr ""
+
+#: static/js/reports/app.js:296
+msgid "Oct"
+msgstr ""
+
+#: static/js/reports/app.js:297
+msgid "Nov"
+msgstr ""
+
+#: static/js/reports/app.js:298
+msgid "Dec"
+msgstr ""
+
+#: static/js/reports/app.js:301
+msgid "Sun"
+msgstr ""
+
+#: static/js/reports/app.js:302
+msgid "Mon"
+msgstr ""
+
+#: static/js/reports/app.js:303
+msgid "Tue"
+msgstr ""
+
+#: static/js/reports/app.js:304
+msgid "Wed"
+msgstr ""
+
+#: static/js/reports/app.js:305
+msgid "Thu"
+msgstr ""
+
+#: static/js/reports/app.js:306
+msgid "Fri"
+msgstr ""
+
+#: static/js/reports/app.js:307
+msgid "Sat"
 msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:32
