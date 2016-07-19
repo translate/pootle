@@ -1,4 +1,4 @@
-{% load core i18n assets locale profile_tags humanize staticfiles %}
+{% load core i18n assets locale profile_tags humanize staticfiles statici18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}pootle-base{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
@@ -36,7 +36,7 @@
     {% assets "js_vendor" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
-    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+    <script src="{% statici18n LANGUAGE_CODE %}"></script>
     {% assets "js_common" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
