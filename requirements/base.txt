@@ -11,6 +11,7 @@ django-overextends==0.4.1
 django-redis==4.4.3
 django-rq>=0.8.0,<=0.9.1
 django-transaction-hooks==0.2
+django-statici18n
 
 # Libraries
 cssmin==0.2.0
