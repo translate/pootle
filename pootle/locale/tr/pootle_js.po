@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-19 12:08+0100\n"
-"PO-Revision-Date: 2016-07-18 18:11+0000\n"
+"PO-Revision-Date: 2016-07-19 17:10+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468865495.000000\n"
+"X-POOTLE-MTIME: 1468948229.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -397,7 +397,7 @@ msgstr "Parola değiştirildi, giriş yapılıyor..."
 #: static/js/auth/components/PasswordResetForm.js:125
 #: static/js/auth/components/SignUpForm.js:107
 msgid "Repeat Password"
-msgstr "Parolayı Tekrarla"
+msgstr "Parola Tekrarı"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
@@ -432,7 +432,7 @@ msgstr "Epostayı Yeniden Gönder"
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
-msgstr "Yeni bir kullanıcı olarak kaydol"
+msgstr "Yeni bir kullanıcı olarak kaydolun"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:108
@@ -654,84 +654,83 @@ msgstr "%(timeSince)s aracılığıyla dosya gönderme"
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%d %b, %a"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Oca"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Şub"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Nis"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Haz"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Tem"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Ağu"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Eyl"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Eki"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Hayır"
+msgstr "Kas"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Ara"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Paz"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Pts"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Sal"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Çar"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Per"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Cum"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Cts"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."

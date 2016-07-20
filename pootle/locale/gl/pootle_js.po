@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-19 12:08+0100\n"
-"PO-Revision-Date: 2016-07-15 11:48+0000\n"
+"PO-Revision-Date: 2016-07-19 16:13+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468583326.000000\n"
+"X-POOTLE-MTIME: 1468944821.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -651,84 +651,83 @@ msgstr "%(timeSince)s mediante envío"
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a %d %b"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Xan"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Xuñ"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Xul"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Set"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Out"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Non"
+msgstr "Nov"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Mér"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Xov"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."

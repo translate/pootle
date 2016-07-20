@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-15 11:25+0100\n"
-"PO-Revision-Date: 2016-07-18 18:25+0000\n"
+"PO-Revision-Date: 2016-07-19 17:08+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1468866325.000000\n"
+"X-POOTLE-MTIME: 1468948087.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -155,7 +155,7 @@ msgstr "Lütfen ileti özetinizi girin"
 
 #: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:16
 msgid "Name"
-msgstr "Adı"
+msgstr "Ad"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
@@ -163,7 +163,7 @@ msgstr "Lütfen adınızı girin"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
-msgstr "Eposta adresiniz"
+msgstr "ePosta adresi"
 
 #: apps/contact/forms.py:39
 msgid "Please enter your email address"
@@ -183,7 +183,7 @@ msgstr "Bize Ulaşın"
 
 #: apps/contact/views.py:65
 msgid "Report problem with string"
-msgstr "Satırla ilgili sorunu bildir"
+msgstr "Satırla ilgili sorunu bildirin"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
