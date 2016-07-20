@@ -20,6 +20,12 @@ PACKAGE="Pootle"
 VERSION=$(python -m pootle.core.utils.version main)
 MSGID_BUGS_TO="https://github.com/translate/pootle/issues/new"
 
+REQUIRED_GETTEXT_VERSION=0.19.7
+if [[ $(xgettext --version | head -1 | sed 's/^[^0-9]*//') < "$REQUIRED_GETTEXT_VERSION" ]]; then
+    echo "Gettext >=$REQUIRED_GETTEXT_VERSION required"
+    exit 1
+fi
+
 cd $SRC_DIR
 
 # Common folders to ignore when extracting

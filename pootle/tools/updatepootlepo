@@ -2,6 +2,12 @@
 
 L10N_DIR=pootle/locale
 
+REQUIRED_GETTEXT_VERSION=0.19.7
+if [[ $(xgettext --version | head -1 | sed 's/^[^0-9]*//') < "$REQUIRED_GETTEXT_VERSION" ]]; then
+    echo "Gettext >=$REQUIRED_GETTEXT_VERSION required"
+    exit 1
+fi
+
 cd $L10N_DIR
 for lang in $(find . -type d -mindepth 1 -maxdepth 1 | egrep -v "templates")
 do
