@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:25+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2337,7 +2337,7 @@ msgid "Report a problem with this string"
 msgstr "이 문자열에 있는 문제 보고하기"
 
 #: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:273
 msgid "Submit"
 msgstr "제출"
 
@@ -2365,90 +2365,90 @@ msgstr "제안 모드 바꾸기 (Ctrl+Shift+Space)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "작업이 더 필요한 문자열 표시하기 (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:200
 msgid "Show Timeline"
 msgstr "타임라인 표시"
 
-#: templates/editor/units/edit.html:197
+#: templates/editor/units/edit.html:202
 msgid "Add Comment"
 msgstr "주석 넣기"
 
-#: templates/editor/units/edit.html:199
+#: templates/editor/units/edit.html:204
 msgid "Raw View"
 msgstr "작업하나도 않한 뷰"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "검토자 <a href=\"%(profile_url)s\">%(reviewer)s</a>의해 검토 됨"
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:224
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "편집기에 RLM (Right-To-Left Mark) 삽입하기"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:227
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "편집기에 LRM (Left-To-Right Mark) 삽입하기"
 
-#: templates/editor/units/edit.html:225
+#: templates/editor/units/edit.html:230
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "편집기에 RLE (Right-To-Left Embedding) 삽입하기"
 
-#: templates/editor/units/edit.html:228
+#: templates/editor/units/edit.html:233
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "편집기에 LRE (Left-To-Right Embedding) 삽입하기"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:236
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "편집기에 RLO (Right-To-Left Override) 삽입하기"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:239
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "편집기에 LRO (Left-To-Right Override) 삽입하기"
 
-#: templates/editor/units/edit.html:237
+#: templates/editor/units/edit.html:242
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "편집기에 PDF (Pop Directional Format ) 삽입하기"
 
-#: templates/editor/units/edit.html:240
+#: templates/editor/units/edit.html:245
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "편집기에 ZWJ (Zero Width Joiner) 삽입하기"
 
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:248
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "편집기에 ZWNJ (Zero Width Non Joiner) 삽입하기"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:255
 msgid "Insert this symbol into the editor"
 msgstr "편집기에 이 기호 삽입하기"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:293
 msgid "User suggestions"
 msgstr "사용자 제안"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:310
 #, fuzzy
 msgid "More options"
 msgstr "설정 바꾸기"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:312
 #, fuzzy
 msgid "Less options"
 msgstr "설정 바꾸기"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:317
 msgid "Accept suggestion"
 msgstr "제안 사항 수락"
 
-#: templates/editor/units/edit.html:317
+#: templates/editor/units/edit.html:322
 msgid "Reject suggestion"
 msgstr "제안 사항 거부"
 
-#: templates/editor/units/edit.html:323
+#: templates/editor/units/edit.html:328
 msgid "Remove suggestion"
 msgstr "제안 사항 제거"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:348
 msgid "A long time ago"
 msgstr "오래 전"
 

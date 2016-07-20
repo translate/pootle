@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:25+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2016-05-24 16:07+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2347,7 +2347,7 @@ msgid "Report a problem with this string"
 msgstr "Rapportera ett problem med den här strängen"
 
 #: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:273
 msgid "Submit"
 msgstr "Skicka in"
 
@@ -2375,88 +2375,88 @@ msgstr "Växla till förslagsläge (Ctrl+Shift+Space)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Markera denna sträng som om den behöver kontrolleras (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:200
 msgid "Show Timeline"
 msgstr "Visa tidslinje"
 
-#: templates/editor/units/edit.html:197
+#: templates/editor/units/edit.html:202
 msgid "Add Comment"
 msgstr "Lägg till kommentar"
 
-#: templates/editor/units/edit.html:199
+#: templates/editor/units/edit.html:204
 msgid "Raw View"
 msgstr "Rå vy"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "granskad av <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:224
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "Infoga RLM (Right-To-Left Mark) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:227
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Infoga LRM (Left-To-Right Mark) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:225
+#: templates/editor/units/edit.html:230
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Infoga RLE (Right-To-Left Embedding) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:228
+#: templates/editor/units/edit.html:233
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Infoga LRE (Left-To-Right Embedding) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:236
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Infoga RLO (Right-To-Left Override) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:239
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Infoga LRO (Left-To-Right Override) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:237
+#: templates/editor/units/edit.html:242
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Infoga PDF (Pop Directional Format) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:240
+#: templates/editor/units/edit.html:245
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Infoga ZWJ (Zero Width Joiner) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:248
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Infoga ZWNJ (Zero Width Non Joiner) i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:255
 msgid "Insert this symbol into the editor"
 msgstr "Lägg till den här symbolen i redigeringsprogrammet"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:293
 msgid "User suggestions"
 msgstr "Visa förslag"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:310
 msgid "More options"
 msgstr "Fler alternativ"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:312
 msgid "Less options"
 msgstr "Färre alternativ"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:317
 msgid "Accept suggestion"
 msgstr "Godkänn förslag"
 
-#: templates/editor/units/edit.html:317
+#: templates/editor/units/edit.html:322
 msgid "Reject suggestion"
 msgstr "Avvisa förslag"
 
-#: templates/editor/units/edit.html:323
+#: templates/editor/units/edit.html:328
 msgid "Remove suggestion"
 msgstr "Ta bort förslag"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:348
 msgid "A long time ago"
 msgstr "För länge sedan"
 

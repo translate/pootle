@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:25+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2016-02-17 09:31+0000\n"
 "Last-Translator: popcorner <memoword@163.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2313,7 +2313,7 @@ msgid "Report a problem with this string"
 msgstr "报告此字符串的一个问题"
 
 #: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:273
 msgid "Submit"
 msgstr "提交"
 
@@ -2341,90 +2341,90 @@ msgstr "切换到建议模式(Ctrl+Shift+Space)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "将此字符串标记为尚需完善(Ctrl+Space)"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:200
 msgid "Show Timeline"
 msgstr "显示时间线"
 
-#: templates/editor/units/edit.html:197
+#: templates/editor/units/edit.html:202
 msgid "Add Comment"
 msgstr "添加注释"
 
-#: templates/editor/units/edit.html:199
+#: templates/editor/units/edit.html:204
 msgid "Raw View"
 msgstr "原始视图"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "经 <a href=\"%(profile_url)s\">%(reviewer)s</a> 审核"
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:224
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "将 RLM (Right-To-Left Mark) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:227
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "将 LRM (Left-To-Right Mark) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:225
+#: templates/editor/units/edit.html:230
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "将 RLE (Right-To-Left Embedding) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:228
+#: templates/editor/units/edit.html:233
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "半 LRE (Left-To-Right Embedding) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:236
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "将 RLO (Right-To-Left Override) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:239
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "将 LRO (Left-To-Right Override) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:237
+#: templates/editor/units/edit.html:242
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "将 PDF (Pop Directional Format ) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:240
+#: templates/editor/units/edit.html:245
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "将 ZWJ (Zero Width Joiner) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:248
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "将 ZWNJ (Zero Width Non Joiner) 字符插入编辑器"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:255
 msgid "Insert this symbol into the editor"
 msgstr "将此符号插入编辑器"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:293
 msgid "User suggestions"
 msgstr "用户建议"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:310
 #, fuzzy
 msgid "More options"
 msgstr "更改选项"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:312
 #, fuzzy
 msgid "Less options"
 msgstr "更改选项"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:317
 msgid "Accept suggestion"
 msgstr "接受建议"
 
-#: templates/editor/units/edit.html:317
+#: templates/editor/units/edit.html:322
 msgid "Reject suggestion"
 msgstr "拒绝建议"
 
-#: templates/editor/units/edit.html:323
+#: templates/editor/units/edit.html:328
 msgid "Remove suggestion"
 msgstr "移除建议"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:348
 msgid "A long time ago"
 msgstr "很久以前"
 

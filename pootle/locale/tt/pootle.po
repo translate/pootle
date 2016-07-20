@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:25+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2014-05-21 22:04+0000\n"
 "Last-Translator: Динар <qdinar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2341,7 +2341,7 @@ msgid "Report a problem with this string"
 msgstr "Чыганак билге тезентесендәге хата турында хәбәр бирү"
 
 #: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:273
 msgid "Submit"
 msgstr "Тапшыру"
 
@@ -2369,90 +2369,90 @@ msgstr "Тәкъдим итү режимына күчү (Ctrl+Shift+Space)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Бу билге тезентесе белән эшлисе бар дип билгеләү (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:200
 msgid "Show Timeline"
 msgstr "Вакыт турысын күрсәтү"
 
-#: templates/editor/units/edit.html:197
+#: templates/editor/units/edit.html:202
 msgid "Add Comment"
 msgstr "Коммент өстәү"
 
-#: templates/editor/units/edit.html:199
+#: templates/editor/units/edit.html:204
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "<a href=\"%(profile_url)s\">%(reviewer)s</a> тикшереп чыкты"
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:224
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "RLM (уңнан сулга язу билгесе) урнаштыру"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:227
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Төзәткечкә LRM (Сулдан уңга агым билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:225
+#: templates/editor/units/edit.html:230
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Төзәткечкә RLE (Уңнан сулга юнәлгән язу беркетү билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:228
+#: templates/editor/units/edit.html:233
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Төзәткечкә LRE (Сулдан уңга юнәлгән язу беркетү билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:236
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Төзәткечкә RLO (Уңнан сулга яздыру билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:239
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Төзәткечкә LRO (Сулдан уңга яздыру билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:237
+#: templates/editor/units/edit.html:242
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Төзәткечкә PDF (Элекке юнәлешне кайтару билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:240
+#: templates/editor/units/edit.html:245
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Төзәткечкә ZWJ (Ноль киңлекле кушкыч билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:248
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Төзәткечкә ZWNJ (Ноль киңлекле кушмаучы билгесе)-не кертү"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:255
 msgid "Insert this symbol into the editor"
 msgstr "Бу билгене төзәткечкә кертү"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:293
 msgid "User suggestions"
 msgstr "Кулланучыларның тәкъдимнәре"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:310
 #, fuzzy
 msgid "More options"
 msgstr "Көйләүләр"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:312
 #, fuzzy
 msgid "Less options"
 msgstr "Урыннар"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:317
 msgid "Accept suggestion"
 msgstr "Тәкъдимне кабул итү"
 
-#: templates/editor/units/edit.html:317
+#: templates/editor/units/edit.html:322
 msgid "Reject suggestion"
 msgstr "Тәкъдимне кире кагу"
 
-#: templates/editor/units/edit.html:323
+#: templates/editor/units/edit.html:328
 msgid "Remove suggestion"
 msgstr "Тәкъдимне бетерү"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:348
 msgid "A long time ago"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-15 11:25+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2016-07-19 17:08+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2364,7 +2364,7 @@ msgid "Report a problem with this string"
 msgstr "Bu satırla ilgili bir sorunu bildir"
 
 #: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:273
 msgid "Submit"
 msgstr "Gönder"
 
@@ -2392,89 +2392,89 @@ msgstr "Öneri kipini değiştir (Ctrl+Shift+Boşluk)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Bu satırı daha fazla çalışmak gerekiyor olarak işaretle (Ctrl+Boşluk)"
 
-#: templates/editor/units/edit.html:195
+#: templates/editor/units/edit.html:200
 msgid "Show Timeline"
 msgstr "Zaman Çizelgesini Göster"
 
-#: templates/editor/units/edit.html:197
+#: templates/editor/units/edit.html:202
 msgid "Add Comment"
 msgstr "Yorum Ekle"
 
-#: templates/editor/units/edit.html:199
+#: templates/editor/units/edit.html:204
 msgid "Raw View"
 msgstr "Ham Görünüm"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 "<a href=\"%(profile_url)s\">%(reviewer)s</a> tarafından gözden geçirildi"
 
-#: templates/editor/units/edit.html:219
+#: templates/editor/units/edit.html:224
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "Düzenleyici içine RLM (Sağdan-Sola İşaretleme) ekle"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:227
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Düzenleyici içine LRM (Soldan-Sağa İşaretleme) ekle"
 
-#: templates/editor/units/edit.html:225
+#: templates/editor/units/edit.html:230
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Düzenleyici içine RLE (Sağdan-Sola İçerme) ekle"
 
-#: templates/editor/units/edit.html:228
+#: templates/editor/units/edit.html:233
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Düzenleyici içine LRE (Soldan-Sağa İçerme) ekle"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:236
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Düzenleyici içine RLO (Sağdan-Sola Üstüne Yazma) ekle"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:239
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Düzenleyici içine LRO (Soldan-Sağa Üstüne Yazma) ekle"
 
-#: templates/editor/units/edit.html:237
+#: templates/editor/units/edit.html:242
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Düzenleyici içine PDF (Pop Directional Format) ekle"
 
-#: templates/editor/units/edit.html:240
+#: templates/editor/units/edit.html:245
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Düzenleyici içine ZWJ (Zero Width Joiner) ekle"
 
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:248
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Düzenleyici içine ZWNJ (Zero Width Non Joiner) ekle"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:255
 msgid "Insert this symbol into the editor"
 msgstr "Düzenleyici içine bu sembolü ekle"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:293
 msgid "User suggestions"
 msgstr "Kullanıcı önerileri"
 
-#: templates/editor/units/edit.html:305
+#: templates/editor/units/edit.html:310
 msgid "More options"
 msgstr "Daha fazla seçenek"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:312
 msgid "Less options"
 msgstr "Daha az seçenek"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:317
 msgid "Accept suggestion"
 msgstr "Öneriyi kabul et"
 
-#: templates/editor/units/edit.html:317
+#: templates/editor/units/edit.html:322
 msgid "Reject suggestion"
 msgstr "Öneriyi reddet"
 
-#: templates/editor/units/edit.html:323
+#: templates/editor/units/edit.html:328
 msgid "Remove suggestion"
 msgstr "Öneriyi kaldır"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:348
 msgid "A long time ago"
 msgstr "Uzun bir zaman önce"
 

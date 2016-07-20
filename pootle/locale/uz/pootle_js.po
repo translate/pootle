@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-19 12:08+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2016-07-07 10:40+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -527,7 +527,7 @@ msgstr "Ko‘rsatish o‘chirib qo‘yilgan"
 msgid "Hide disabled"
 msgstr "Yashirish o‘chirib qo‘yilgan"
 
-#: static/js/editor/app.js:298 static/js/editor/app.js:615
+#: static/js/editor/app.js:305 static/js/editor/app.js:619
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -535,7 +535,7 @@ msgstr ""
 "Ushbu qatorda siz kiritgan, lekin saqlanmagan o‘zgarishlar bor. Keyingi yoki "
 "oldinga tarjimaga o‘tsangiz, ushbu o‘zgartirishlar saqlanmaydi."
 
-#: static/js/editor/app.js:333
+#: static/js/editor/app.js:340
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -544,7 +544,7 @@ msgstr ""
 ">Keyingi sahifaga: Ctrl+Shift+.<br/>So‘nggi sahifaga: Ctrl+Shift+End "
 "tugmalari bilan o‘tish mumkin"
 
-#: static/js/editor/app.js:339
+#: static/js/editor/app.js:346
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -554,77 +554,77 @@ msgstr ""
 "tugmalari bilan o‘tish mumkin."
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:461
+#: static/js/editor/app.js:465
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s's tavsiyalar jo‘natmoqda"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:464
+#: static/js/editor/app.js:468
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s's tavsiyalarni qabul qildi"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:467
+#: static/js/editor/app.js:471
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s's tavsiyalarni rad qildi"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:470
+#: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s's tarjimalari"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:478
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s'ning almashtirilgan tarjimalari"
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Server bilan bog'lanishda xatolik"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Topilmadi"
 
-#: static/js/editor/app.js:1072
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Server xatoligi"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Server ishlamayapti. Keyinroq harakat qilib ko'ring."
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Ushbu qator mavjud emas."
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Ko‘rish uchun orqaga qaytish"
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Sahifani qayta yuklash"
 
-#: static/js/editor/app.js:1832 static/js/editor/app.js:607
+#: static/js/editor/app.js:1836 static/js/editor/app.js:611
 msgid "No results."
 msgstr "Natijalarsiz."
 
-#: static/js/editor/app.js:2169
+#: static/js/editor/app.js:2173
 msgid "some anonymous user"
 msgstr "anonim foydalanuvchi"
 
-#: static/js/editor/app.js:2171
+#: static/js/editor/app.js:2175
 msgid "someone"
 msgstr "kimdir"
 
-#: static/js/editor/app.js:2189 static/js/editor/app.js:2238
+#: static/js/editor/app.js:2193 static/js/editor/app.js:2242
 msgid "Similar translations"
 msgstr "Bir xil tarjimalar"
 
@@ -750,19 +750,79 @@ msgstr "Barchasini tozalash"
 msgid "Type to search"
 msgstr "Izlash uchun yozing"
 
+#: static/js/shared/components/UserEvent.js:97
+#: static/js/shared/components/UserEvent.js:118
+#, fuzzy
+msgid "removed translation for %(sourceString)s"
+msgstr "${sourceString} uchun tarjima olib tashlandi"
+
+#: static/js/shared/components/UserEvent.js:99
+#, fuzzy
+msgid "accepted suggestion for %(sourceString)s"
+msgstr "${sourceString} uchun tavsiya qabul qilindi"
+
+#: static/js/shared/components/UserEvent.js:101
+msgid "uploaded file"
+msgstr "fayl yuklab qo‘yildi"
+
+#: static/js/shared/components/UserEvent.js:103
+#, fuzzy
+msgid "muted %(check)s for %(sourceString)s"
+msgstr "${sourceString} uchun ${check} o‘chirib qo‘yildi"
+
+#: static/js/shared/components/UserEvent.js:105
+#, fuzzy
+msgid "unmuted %(check)s for %(sourceString)s"
+msgstr "${sourceString} uchun ${check} yoqib qo‘yildi"
+
+#: static/js/shared/components/UserEvent.js:107
+#, fuzzy
+msgid "added suggestion for %(sourceString)s"
+msgstr "${sourceString} uchun tavsiya qo‘shildi"
+
+#: static/js/shared/components/UserEvent.js:109
+#, fuzzy
+msgid "rejected suggestion for %(sourceString)s"
+msgstr "${sourceString} uchun tavsiya rad qilindi"
+
+#: static/js/shared/components/UserEvent.js:112
+#, fuzzy
+msgid "translated %(sourceString)s"
+msgstr "${sourceString} tarjima qilindi"
+
+#: static/js/shared/components/UserEvent.js:114
+#, fuzzy
+msgid "edited %(sourceString)s"
+msgstr "${sourceString} tahrir qilindi"
+
+#: static/js/shared/components/UserEvent.js:116
+#, fuzzy
+msgid "pre-translated %(sourceString)s"
+msgstr "${sourceString} oldindan tarjima qilindi"
+
+#: static/js/shared/components/UserEvent.js:120
+#, fuzzy
+msgid "reviewed %(sourceString)s"
+msgstr "${sourceString} qayta ko‘rib chiqildi"
+
+#: static/js/shared/components/UserEvent.js:122
+#, fuzzy
+msgid "marked as needs work %(sourceString)s"
+msgstr "${sourceString} qayta ishlash kerak deb belgilandi"
+
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "o‘chirib qo‘yilgan"
 
-#: static/js/stats.js:59
+#: static/js/stats.js:58
 msgid "Congratulations! You have completed this task!"
 msgstr "Tabriklaymiz! Siz bu vazifani bajarib bo‘ldingiz!"
 
-#: static/js/stats.js:449
+#: static/js/stats.js:446
 msgid "Collapse details"
 msgstr "Tafsilotlarni yigʻish"
 
-#: static/js/stats.js:449
+#: static/js/stats.js:446
 msgid "Expand details"
 msgstr "Tafsilotlarni yoyish"
 
@@ -912,10 +972,6 @@ msgstr "Barcha loyihalar"
 #: static/js/browser.js:269
 msgid "Entire Project"
 msgstr "Butun loyiha"
-
-#: static/js/shared/components/UserEvent.js:78
-msgid "uploaded file"
-msgstr "fayl yuklab qo‘yildi"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1070,39 +1126,6 @@ msgstr ""
 
 #~ msgid "Unknown error"
 #~ msgstr "Nomaʼlum xato"
-
-#~ msgid "removed translation for ${sourceString}"
-#~ msgstr "${sourceString} uchun tarjima olib tashlandi"
-
-#~ msgid "accepted suggestion for ${sourceString}"
-#~ msgstr "${sourceString} uchun tavsiya qabul qilindi"
-
-#~ msgid "muted ${check} for ${sourceString}"
-#~ msgstr "${sourceString} uchun ${check} o‘chirib qo‘yildi"
-
-#~ msgid "unmuted ${check} for ${sourceString}"
-#~ msgstr "${sourceString} uchun ${check} yoqib qo‘yildi"
-
-#~ msgid "added suggestion for ${sourceString}"
-#~ msgstr "${sourceString} uchun tavsiya qo‘shildi"
-
-#~ msgid "rejected suggestion for ${sourceString}"
-#~ msgstr "${sourceString} uchun tavsiya rad qilindi"
-
-#~ msgid "translated ${sourceString}"
-#~ msgstr "${sourceString} tarjima qilindi"
-
-#~ msgid "edited ${sourceString}"
-#~ msgstr "${sourceString} tahrir qilindi"
-
-#~ msgid "pre-translated ${sourceString}"
-#~ msgstr "${sourceString} oldindan tarjima qilindi"
-
-#~ msgid "reviewed ${sourceString}"
-#~ msgstr "${sourceString} qayta ko‘rib chiqildi"
-
-#~ msgid "marked as needs work ${sourceString}"
-#~ msgstr "${sourceString} qayta ishlash kerak deb belgilandi"
 
 #~ msgid "Are you sure you want to continue?"
 #~ msgstr "Davom ettirmoqchi ekanligingizga ishonchingiz komilmi?"

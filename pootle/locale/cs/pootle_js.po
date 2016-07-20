@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-19 12:08+0100\n"
+"POT-Creation-Date: 2016-07-20 12:44+0100\n"
 "PO-Revision-Date: 2016-07-15 16:52+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -534,7 +534,7 @@ msgstr "Zobrazit vypnuté"
 msgid "Hide disabled"
 msgstr "Skrýt vypnuté"
 
-#: static/js/editor/app.js:298 static/js/editor/app.js:615
+#: static/js/editor/app.js:305 static/js/editor/app.js:619
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -542,7 +542,7 @@ msgstr ""
 "Pro tento řetězec existují neuložené změny. Při přechodu na jiný řetězec "
 "budou tyto změny zahozeny."
 
-#: static/js/editor/app.js:333
+#: static/js/editor/app.js:340
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -550,7 +550,7 @@ msgstr ""
 "Přejít na další řetězec (Ctrl+.)<br/><br/>Také:<br/>Další stránka: Ctrl+Shift"
 "+.<br/>Poslední stránka: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:339
+#: static/js/editor/app.js:346
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -559,77 +559,77 @@ msgstr ""
 "Ctrl+Shift+,<br/>První stránka: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:461
+#: static/js/editor/app.js:465
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Nevyřízené návrhy uživatele %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:464
+#: static/js/editor/app.js:468
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Přijaté návrhy uživatele %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:467
+#: static/js/editor/app.js:471
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Odmítnuté návrhy uživatele %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:470
+#: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Překlady uživatele %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:478
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Přepsané překlady uživatele %s"
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Při připojování k serveru došlo k chybě"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Nenalezeno"
 
-#: static/js/editor/app.js:1072
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Chyba na straně serveru"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Zdá se, že server není funkční. Zkuste se připojit později."
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Tento řetězec již neexistuje."
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Zpět na procházení"
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Znovu načíst stránku"
 
-#: static/js/editor/app.js:1832 static/js/editor/app.js:607
+#: static/js/editor/app.js:1836 static/js/editor/app.js:611
 msgid "No results."
 msgstr "Žádné výsledky."
 
-#: static/js/editor/app.js:2169
+#: static/js/editor/app.js:2173
 msgid "some anonymous user"
 msgstr "anonymní uživatel"
 
-#: static/js/editor/app.js:2171
+#: static/js/editor/app.js:2175
 msgid "someone"
 msgstr "uživatel"
 
-#: static/js/editor/app.js:2189 static/js/editor/app.js:2238
+#: static/js/editor/app.js:2193 static/js/editor/app.js:2242
 msgid "Similar translations"
 msgstr "Obdobné překlady"
 
@@ -755,19 +755,79 @@ msgstr "Smazat vše"
 msgid "Type to search"
 msgstr "Zadejte text pro vyhledávání"
 
+#: static/js/shared/components/UserEvent.js:97
+#: static/js/shared/components/UserEvent.js:118
+#, fuzzy
+msgid "removed translation for %(sourceString)s"
+msgstr "odstranil překlad pro ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:99
+#, fuzzy
+msgid "accepted suggestion for %(sourceString)s"
+msgstr "přijal návrh pro ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:101
+msgid "uploaded file"
+msgstr "nahrál soubor"
+
+#: static/js/shared/components/UserEvent.js:103
+#, fuzzy
+msgid "muted %(check)s for %(sourceString)s"
+msgstr "potlačil kontrolu ${check} pro ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:105
+#, fuzzy
+msgid "unmuted %(check)s for %(sourceString)s"
+msgstr "obnovil kontrolu ${check} pro ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:107
+#, fuzzy
+msgid "added suggestion for %(sourceString)s"
+msgstr "přidal návrh pro ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:109
+#, fuzzy
+msgid "rejected suggestion for %(sourceString)s"
+msgstr "odmítl návrh pro ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:112
+#, fuzzy
+msgid "translated %(sourceString)s"
+msgstr "přeložil ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:114
+#, fuzzy
+msgid "edited %(sourceString)s"
+msgstr "upravil ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:116
+#, fuzzy
+msgid "pre-translated %(sourceString)s"
+msgstr "předběžně přeložil ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:120
+#, fuzzy
+msgid "reviewed %(sourceString)s"
+msgstr "zkontroloval ${sourceString}"
+
+#: static/js/shared/components/UserEvent.js:122
+#, fuzzy
+msgid "marked as needs work %(sourceString)s"
+msgstr "označil jako vyžadující úpravu ${sourceString}"
+
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "zakázáno"
 
-#: static/js/stats.js:59
+#: static/js/stats.js:58
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulujeme! Dokončili jste tuto úlohu!"
 
-#: static/js/stats.js:449
+#: static/js/stats.js:446
 msgid "Collapse details"
 msgstr "Sbalit podrobnosti"
 
-#: static/js/stats.js:449
+#: static/js/stats.js:446
 msgid "Expand details"
 msgstr "Rozbalit podrobnosti"
 
@@ -923,10 +983,6 @@ msgstr "Všechny projekty"
 #: static/js/browser.js:269
 msgid "Entire Project"
 msgstr "Celý projekt"
-
-#: static/js/shared/components/UserEvent.js:78
-msgid "uploaded file"
-msgstr "nahrál soubor"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1088,39 +1144,6 @@ msgstr ""
 
 #~ msgid "Unknown error"
 #~ msgstr "Neznámá chyba"
-
-#~ msgid "removed translation for ${sourceString}"
-#~ msgstr "odstranil překlad pro ${sourceString}"
-
-#~ msgid "accepted suggestion for ${sourceString}"
-#~ msgstr "přijal návrh pro ${sourceString}"
-
-#~ msgid "muted ${check} for ${sourceString}"
-#~ msgstr "potlačil kontrolu ${check} pro ${sourceString}"
-
-#~ msgid "unmuted ${check} for ${sourceString}"
-#~ msgstr "obnovil kontrolu ${check} pro ${sourceString}"
-
-#~ msgid "added suggestion for ${sourceString}"
-#~ msgstr "přidal návrh pro ${sourceString}"
-
-#~ msgid "rejected suggestion for ${sourceString}"
-#~ msgstr "odmítl návrh pro ${sourceString}"
-
-#~ msgid "translated ${sourceString}"
-#~ msgstr "přeložil ${sourceString}"
-
-#~ msgid "edited ${sourceString}"
-#~ msgstr "upravil ${sourceString}"
-
-#~ msgid "pre-translated ${sourceString}"
-#~ msgstr "předběžně přeložil ${sourceString}"
-
-#~ msgid "reviewed ${sourceString}"
-#~ msgstr "zkontroloval ${sourceString}"
-
-#~ msgid "marked as needs work ${sourceString}"
-#~ msgstr "označil jako vyžadující úpravu ${sourceString}"
 
 #~ msgid "Sign In')}REGEX"
 #~ msgstr "Přihlásit se"
