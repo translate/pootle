@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-19 16:13+0000\n"
+"PO-Revision-Date: 2016-07-20 13:15+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468944821.000000\n"
+"X-POOTLE-MTIME: 1469020511.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -751,63 +751,52 @@ msgstr "Escriba para buscar"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "retirou a tradución para ${sourceString}"
+msgstr "retirou a tradución para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "aceptou unha suxestión para ${sourceString}"
+msgstr "aceptou unha suxestión para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
 msgstr "ficheiro enviado"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "muted %(check)s for %(sourceString)s"
-msgstr "silenciou ${check} para ${sourceString}"
+msgstr "silenciou %(check)s para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr "reactivou ${check} para ${sourceString}"
+msgstr "reactivou %(check)s para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "suxeriu para ${sourceString}"
+msgstr "suxeriu para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "rexeitou unha suxestión para ${sourceString}"
+msgstr "rexeitou unha suxestión para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "translated %(sourceString)s"
-msgstr "traduciu ${sourceString}"
+msgstr "traduciu %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "edited %(sourceString)s"
-msgstr "editou ${sourceString}"
+msgstr "editou %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "pre-translated %(sourceString)s"
-msgstr "pretraduciu ${sourceString}"
+msgstr "pretraduciu %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy
 msgid "reviewed %(sourceString)s"
-msgstr "revisou ${sourceString}"
+msgstr "revisou %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "marked as needs work %(sourceString)s"
-msgstr "marcou como que precisa máis traballo ${sourceString}"
+msgstr "marcou %(sourceString)s como que precisa máis traballo"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-17 14:32+0000\n"
+"PO-Revision-Date: 2016-07-20 16:38+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1468765937.000000\n"
+"X-POOTLE-MTIME: 1469032730.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -1360,7 +1360,7 @@ msgstr "DEFAULT_FROM_EMAIL использует следующее значен�
 
 #: checks.py:256
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr "POOTLE_MARKUP_FILTER  отсутствует."
+msgstr "POOTLE_MARKUP_FILTER отсутствует."
 
 #: checks.py:257
 msgid "Set POOTLE_MARKUP_FILTER."
@@ -1380,7 +1380,7 @@ msgstr "Некорректная разметка в POOTLE_MARKUP_FILTER."
 
 #: checks.py:278
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr "Установите корректную разметку для  POOTLE_MARKUP_FILTER."
+msgstr "Установите корректную разметку для POOTLE_MARKUP_FILTER."
 
 #: checks.py:283
 #, python-format

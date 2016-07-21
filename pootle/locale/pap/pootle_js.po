@@ -9,38 +9,39 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-07-20 16:59+0000\n"
+"Last-Translator: Richenel  <richenel.ansano@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pap\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1469033999.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr ""
+msgstr "wardá ku éksito"
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr ""
+msgstr "eliminá ku éksito"
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
-msgstr ""
+msgstr "Eliminá"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
-msgstr ""
+msgstr "añadí idioma"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr ""
+msgstr "Kanselá"
 
 #: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
@@ -54,41 +55,44 @@ msgstr[1] ""
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Tin %(kantidat di) idioma."
 msgstr[1] ""
+"Tin %(kantidat di) idioma. Esnan aki bou ta esnan añadí mas resientemente."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr ""
+msgstr "Buska idioma"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Buska idioma pa nòmber, kódigo"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "Redaktá idioma"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Usa e formulario di buska pa haña e idioma, despues klek riba e idioma pa "
+"redaktá."
 
 #: static/js/admin/components/Language/LanguageForm.js:54
 #: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
-msgstr ""
+msgstr "Kódigo"
 
 #: static/js/admin/components/Language/LanguageForm.js:61
 #: static/js/admin/components/Project/ProjectForm.js:63
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr ""
+msgstr "Nòmber kompletu"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr ""
+msgstr "Símbolo spesial"
 
 #: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"

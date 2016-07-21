@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2015-05-19 17:40+0000\n"
-"Last-Translator: David <david.ducassou@gmail.com>\n"
+"PO-Revision-Date: 2016-07-20 15:45+0000\n"
+"Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1432057231.000000\n"
+"X-POOTLE-MTIME: 1469029556.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -106,7 +106,7 @@ msgstr ""
 
 #: apps/accounts/models.py:98 apps/reports/forms.py:20
 msgid "Currency"
-msgstr ""
+msgstr "Monnaie"
 
 #: apps/accounts/models.py:100
 msgid "Is employee?"
@@ -114,29 +114,30 @@ msgstr ""
 
 #: apps/accounts/models.py:101
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:103
 msgid "Website"
-msgstr ""
+msgstr "Site web"
 
 #: apps/accounts/models.py:104
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:105
 msgid "Short Bio"
-msgstr ""
+msgstr "Courte biographie"
 
 #: apps/accounts/models.py:352
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Ce terme existe déjà dans le fichier."
+msgstr "Cette adresse électronique existe déjà."
 
 #: apps/accounts/views.py:36
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Une erreur s'est produite lors du processus de connexion. Veuillez contacter "
+"l'administrateur système."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -144,7 +145,7 @@ msgstr "Résumé"
 
 #: apps/contact/forms.py:27
 msgid "Please enter your message summary"
-msgstr ""
+msgstr "Saisissez le résumé de votre message"
 
 #: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:16
 msgid "Name"
@@ -152,7 +153,7 @@ msgstr "Nom"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
-msgstr ""
+msgstr "Saisissez votre nom"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
@@ -160,7 +161,7 @@ msgstr "Adresse de courriel"
 
 #: apps/contact/forms.py:39
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Saisissez votre adresse électronique"
 
 #: apps/contact/forms.py:42
 msgid "Message"
@@ -175,43 +176,37 @@ msgid "Contact Us"
 msgstr "Nous contacter"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
-msgstr "Signaler un problème avec la chaîne source"
+msgstr "Signaler un problème avec la chaîne"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Télécharger le fichier XLIFF pour traduction hors-ligne"
+msgstr "Télécharger les fichiers de traduction pour traduction hors ligne"
 
 #: apps/import_export/templates/browser/index.html:12
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Télécharger le fichier XLIFF pour traduction hors-ligne"
+msgstr "Télécharger pour traduction hors ligne"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Télécharger le fichier XLIFF pour traduction hors-ligne"
+msgstr "Télécharger les fichiers de traduction pour leur sauvegarde"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Télécharger le fichier"
+msgstr "Télécharger pour sauvegarde"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
 msgstr "Envoyer des fichiers de traduction ou des archives au format .zip"
 
 #: apps/import_export/templates/browser/index.html:27
-#, fuzzy
 msgid "Upload translations"
-msgstr "Exporter les traductions"
+msgstr "Envoyer des traductions"
 
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
 msgid "Upload as %(user)s"
-msgstr ""
+msgstr "Envoyer en tant que %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -301,9 +296,8 @@ msgid "All Users"
 msgstr "Tous les utilisateurs"
 
 #: apps/pootle_app/views/admin/permissions.py:92
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Autorisations utilisateur"
+msgstr "Ajouter des permissions"
 
 #: apps/pootle_app/views/admin/permissions.py:97
 #: apps/pootle_app/views/admin/permissions.py:106
@@ -312,7 +306,7 @@ msgstr "Sélectionnez une ou plusieurs permissions"
 
 #: apps/pootle_app/views/admin/permissions.py:101
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Révoquer des permissions"
 
 #: apps/pootle_app/views/admin/util.py:125
 msgid "No files in this project."
@@ -356,6 +350,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
+"Pour plus d'informations, visitez <a href=\"http://docs.translatehouse.org/"
+"projects/localization-guide/en/latest/l10n/pluralforms.html\">notre page</a> "
+"sur les formes de pluriels."
 
 #: apps/pootle_language/models.py:88
 msgid "Unknown"
@@ -387,7 +384,7 @@ msgstr "Extraction"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Other"
-msgstr ""
+msgstr "Autre"
 
 #: apps/pootle_misc/checks.py:41
 msgid "Accelerators"
@@ -415,7 +412,7 @@ msgstr "Liste de traducteurs"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Tailles des boîtes de dialogue"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Double quotes"
@@ -506,9 +503,8 @@ msgid "Pure punctuation"
 msgstr "Ponctuation pure"
 
 #: apps/pootle_misc/checks.py:70
-#, fuzzy
 msgid "Python brace placeholders"
-msgstr "Substituants"
+msgstr "Substituants Python avec parenthèses"
 
 #: apps/pootle_misc/checks.py:71
 msgid "Number of sentences"
@@ -570,7 +566,7 @@ msgstr "Substituants"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
-msgstr ""
+msgstr "XML valide"
 
 #: apps/pootle_misc/checks.py:87
 msgid "XML tags"
@@ -578,15 +574,15 @@ msgstr "Balises XML"
 
 #: apps/pootle_misc/checks.py:89
 msgid "Broken HTML Entities"
-msgstr ""
+msgstr "Entités HTML non valides"
 
 #: apps/pootle_misc/checks.py:90
 msgid "Java format"
-msgstr ""
+msgstr "Format Java"
 
 #: apps/pootle_misc/checks.py:91
 msgid "Template format"
-msgstr ""
+msgstr "Format de gabarits"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Mustache placeholders"
@@ -645,29 +641,28 @@ msgid "Percent sign closure placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:107
-#, fuzzy
 msgid "$ placeholders"
-msgstr "Substituants"
+msgstr "Substituants $"
 
 #: apps/pootle_misc/checks.py:108
 msgid "$ closure placeholders"
-msgstr ""
+msgstr "Substituants de closure $"
 
 #: apps/pootle_misc/checks.py:109
 msgid "Java-encoded unicode"
-msgstr ""
+msgstr "Unicode codé en Java"
 
 #: apps/pootle_misc/checks.py:110
 msgid "Objective-C format"
-msgstr ""
+msgstr "Format Objective-C"
 
 #: apps/pootle_misc/checks.py:111
 msgid "Android format"
-msgstr ""
+msgstr "Format Android"
 
 #: apps/pootle_misc/checks.py:112
 msgid "Tags differ"
-msgstr ""
+msgstr "Différences de balises"
 
 #: apps/pootle_misc/checks.py:113
 msgid "Curly braces"
@@ -1216,7 +1211,7 @@ msgstr ""
 
 #: checks.py:88
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "Votre version de Django est trop ancienne."
 
 #: checks.py:89
 #, python-format
@@ -1225,24 +1220,24 @@ msgstr ""
 
 #: checks.py:96
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "Votre version de lxml est trop ancienne."
 
 #: checks.py:97
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "Essayez : pip install --upgrade lxml"
 
 #: checks.py:103
 msgid "Your version of Translate Toolkit is too old."
-msgstr ""
+msgstr "Votre version de Translate Toolkit est trop ancienne."
 
 #: checks.py:104
 msgid "Try pip install --upgrade translate-toolkit"
-msgstr ""
+msgstr "Essayez : pip install --upgrade translate-toolkit"
 
 #: checks.py:124
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "Impossible de se connecter à Redis : (%s)"
 
 #: checks.py:125
 #, python-format
@@ -1250,9 +1245,8 @@ msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr ""
 
 #: checks.py:135
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "La version %s de Django est installée."
+msgstr "Votre version de Redis est trop ancienne."
 
 #: checks.py:136
 #, python-format
@@ -1261,7 +1255,7 @@ msgstr ""
 
 #: checks.py:146
 msgid "No RQ Worker running."
-msgstr ""
+msgstr "Aucun processus RQ n'est disponible."
 
 #: checks.py:147
 msgid "Run new workers with manage.py rqworker"

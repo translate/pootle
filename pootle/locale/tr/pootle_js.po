@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-19 17:10+0000\n"
+"PO-Revision-Date: 2016-07-21 12:54+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468948229.000000\n"
+"X-POOTLE-MTIME: 1469105661.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -754,63 +754,52 @@ msgstr "Arananı yazın"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "${sourceString} için kaldırılan çeviri"
+msgstr "%(sourceString)s için çeviriyi kaldırdı"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "${sourceString} için kabul edilen öneri"
+msgstr "%(sourceString)s için öneriyi kabul etti"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
 msgstr "gönderilen dosya"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "muted %(check)s for %(sourceString)s"
-msgstr "${sourceString} için sessizleştirilen ${check}"
+msgstr "%(sourceString)s için %(check)s sesini kapattı"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr "${sourceString} için sessizliği kaldırılan ${check}"
+msgstr "%(sourceString)s için %(check)s sesini açtı"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "${sourceString} için eklenen öneri"
+msgstr "%(sourceString)s için öneri ekledi"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "${sourceString} için reddedilen öneri"
+msgstr "%(sourceString)s için öneriyi reddetti"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "translated %(sourceString)s"
-msgstr "çevrilen ${sourceString}"
+msgstr "%(sourceString)s çevirdi"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "edited %(sourceString)s"
-msgstr "düzenlenen ${sourceString}"
+msgstr "%(sourceString)s düzenledi"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "pre-translated %(sourceString)s"
-msgstr "ön çevirisi yapılan ${sourceString}"
+msgstr "%(sourceString)s ön çevirisini yaptı"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy
 msgid "reviewed %(sourceString)s"
-msgstr "incelenen ${sourceString}"
+msgstr "%(sourceString)s gözden geçirdi"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "marked as needs work %(sourceString)s"
-msgstr "çalışma gerekli olarak işaretlenen ${sourceString}"
+msgstr "%(sourceString)s çalışma gerekli olarak işaretledi"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
@@ -893,36 +882,31 @@ msgstr ""
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Bir yıl önce"
-msgstr[1] "%s yıl önce"
+msgstr[0] "%s yıl önce"
 
 #: static/js/utils.js:168
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Bir hafta önce"
-msgstr[1] "%s hafta önce"
+msgstr[0] "%s hafta önce"
 
 #: static/js/utils.js:171
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
-msgstr[0] "Dün"
-msgstr[1] "%s gün önce"
+msgstr[0] "%s gün önce"
 
 #: static/js/utils.js:174
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Bir saat önce"
-msgstr[1] "%s saat önce"
+msgstr[0] "%s saat önce"
 
 #: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Bir dakika önce"
-msgstr[1] "%s dakika önce"
+msgstr[0] "%s dakika önce"
 
 #: static/js/utils.js:185
 msgid "A few seconds ago"

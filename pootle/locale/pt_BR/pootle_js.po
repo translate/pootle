@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2015-12-12 21:22+0000\n"
-"Last-Translator: Caio <caiofonseca@outlook.com>\n"
+"PO-Revision-Date: 2016-07-20 15:16+0000\n"
+"Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1449955361.000000\n"
+"X-POOTLE-MTIME: 1469027761.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -35,7 +35,7 @@ msgstr "Excluir"
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
-msgstr "Adicionar Idioma"
+msgstr "Adicionar idioma"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
@@ -61,7 +61,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr "Procurar Idiomas"
+msgstr "Procurar idiomas"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
@@ -122,7 +122,7 @@ msgstr "Permissões"
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
 msgid "Add Project"
-msgstr "Adicionar Projeto"
+msgstr "Adicionar projeto"
 
 #: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
@@ -142,7 +142,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
-msgstr "Procurar Projetos"
+msgstr "Procurar projetos"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
@@ -150,7 +150,7 @@ msgstr "Encontrar projeto por nome, código"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr "Editar Projeto"
+msgstr "Editar projeto"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
@@ -161,31 +161,31 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
-msgstr "Verificações de Qualidade"
+msgstr "Verificações de qualidade"
 
 #: static/js/admin/components/Project/ProjectForm.js:83
 msgid "File Type"
-msgstr "Tipo de Arquivo"
+msgstr "Tipo de arquivo"
 
 #: static/js/admin/components/Project/ProjectForm.js:93
 msgid "Project Tree Style"
-msgstr "Estilo de Árvore do Projeto"
+msgstr "Estilo de árvore do projeto"
 
 #: static/js/admin/components/Project/ProjectForm.js:103
 msgid "Source Language"
-msgstr "Idioma Fonte"
+msgstr "Idioma fonte"
 
 #: static/js/admin/components/Project/ProjectForm.js:110
 msgid "Ignore Files"
-msgstr "Ignorar Arquivos"
+msgstr "Ignorar arquivos"
 
 #: static/js/admin/components/Project/ProjectForm.js:118
 msgid "String Errors Contact"
-msgstr "Contato para Erros de Strings"
+msgstr "Contato para erros nas strings"
 
 #: static/js/admin/components/Project/ProjectForm.js:125
 msgid "Screenshot Search Prefix"
-msgstr "Prefixo de Pesquisa de Captura de Tela"
+msgstr "Prefixo de pesquisa de captura de tela"
 
 #: static/js/admin/components/Project/ProjectForm.js:133
 msgid "Disabled"
@@ -206,7 +206,7 @@ msgstr "Carregando..."
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr "Adicionar Usuário"
+msgstr "Adicionar usuário"
 
 #: static/js/admin/components/User/UserController.js:59
 #, python-format
@@ -226,7 +226,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr "Procurar Usuários"
+msgstr "Procurar usuários"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
@@ -234,7 +234,7 @@ msgstr "Encontrar usuário por nome, e-mail, propriedades"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr "Editar Usuário"
+msgstr "Editar usuário"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
@@ -320,7 +320,7 @@ msgstr "Descrição pessoal"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
-msgstr "Perfil Público"
+msgstr "Perfil público"
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
@@ -336,7 +336,7 @@ msgstr "Relatórios"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr "A pré-visualização será exibida aqui."
+msgstr "A pré-visualização será mostrada aqui."
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
@@ -388,7 +388,7 @@ msgstr ""
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr "Redefinir Senha"
+msgstr "Redefinir senha"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
@@ -397,7 +397,7 @@ msgstr "Senha alterada, entrando..."
 #: static/js/auth/components/PasswordResetForm.js:125
 #: static/js/auth/components/SignUpForm.js:107
 msgid "Repeat Password"
-msgstr "Repita a Senha"
+msgstr "Repita a senha"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
@@ -427,7 +427,7 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
-msgstr "Reenviar E-mail"
+msgstr "Reenviar e-mail"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
@@ -452,11 +452,11 @@ msgstr "Logado. Redirecionando..."
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
-msgstr "Serviços Sociais"
+msgstr "Serviços sociais"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
-msgstr "Login / Senha"
+msgstr "Login/senha"
 
 #: static/js/auth/components/SignUpForm.js:121
 #: static/js/auth/containers/Auth.js:96
@@ -499,38 +499,36 @@ msgstr "Entrar com..."
 
 #: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
-msgstr "Conta Inativa"
+msgstr "Conta inativa"
 
 #: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
-msgstr "Ativação de Conta"
+msgstr "Ativação de conta"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr "Confirmação de E-mail"
+msgstr "Confirmação de e-mail"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr "Redefina Sua Senha"
+msgstr "Redefina sua senha"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr "Oops..."
+msgstr "Ops..."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr "Verificação Social"
+msgstr "Verificação social"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Show disabled"
-msgstr "desativado"
+msgstr "Mostrar desativados"
 
 #: static/js/browser/components/VisibilityToggle.js:53
-#, fuzzy
 msgid "Hide disabled"
-msgstr "desativado"
+msgstr "Ocultar desativados"
 
 #: static/js/editor/app.js:305 static/js/editor/app.js:619
 msgid ""
@@ -633,105 +631,104 @@ msgstr "Traduções similares"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Editar a sugestão antes de aceitar, se necessário"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Fornecer comentário adicional (visível ao público)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "Aceitar"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "Rejeitar"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s via envio de arquivo"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a, %d de %b"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Fev"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Ago"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Set"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Out"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Não"
+msgstr "Nov"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Dez"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Seg"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Ter"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Qua"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Qui"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Sex"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -755,67 +752,60 @@ msgstr "Digite para pesquisar"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "Sugestões rejeitadas para %s"
+msgstr "tradução removida para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "Sugestões aceites para %s"
+msgstr "sugestão aceita para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
 msgstr "arquivo enviado"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "muted %(check)s for %(sourceString)s"
-msgstr "Sugestões aceites para %s"
+msgstr "%(check)s desligada para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "%(check)s ligada para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "Sugestões aceites para %s"
+msgstr "sugestão adicionada para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "Sugestões rejeitadas para %s"
+msgstr "sugestão rejeitada para %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
 msgid "translated %(sourceString)s"
-msgstr ""
+msgstr "%(sourceString)s traduzida"
 
 #: static/js/shared/components/UserEvent.js:114
 msgid "edited %(sourceString)s"
-msgstr ""
+msgstr "%(sourceString)s editada"
 
 #: static/js/shared/components/UserEvent.js:116
 msgid "pre-translated %(sourceString)s"
-msgstr ""
+msgstr "%(sourceString)s pré-traduzida"
 
 #: static/js/shared/components/UserEvent.js:120
 msgid "reviewed %(sourceString)s"
-msgstr ""
+msgstr "%(sourceString)s revisada"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "marked as needs work %(sourceString)s"
-msgstr "Sugestões aceites para %s"
+msgstr "%(sourceString)s marcada como necessita revisão"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "desativado"
 
 #: static/js/stats.js:58
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Parabéns, você entrou em todos os itens"
+msgstr "Parabéns! Você concluiu esta tarefa!"
 
 #: static/js/stats.js:446
 msgid "Collapse details"
@@ -827,11 +817,11 @@ msgstr "Mostrar detalhes"
 
 #: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
-msgstr "Editar Meu Perfil Público"
+msgstr "Editar meu perfil público"
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr "Meu Perfil Público"
+msgstr "Meu perfil público"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
@@ -890,36 +880,36 @@ msgstr ""
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Há um ano"
-msgstr[1] "Há %s anos"
+msgstr[0] "Um ano atrás"
+msgstr[1] "%s anos atrás"
 
 #: static/js/utils.js:168
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Há uma semana"
-msgstr[1] "Há %s semanas"
+msgstr[0] "Uma semana atrás"
+msgstr[1] "%s semanas atrás"
 
 #: static/js/utils.js:171
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ontem"
-msgstr[1] "Há %s dias"
+msgstr[1] "%s dias atrás"
 
 #: static/js/utils.js:174
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Há uma hora"
-msgstr[1] "Há %s horas"
+msgstr[0] "Uma hora atrás"
+msgstr[1] "%s horas atrás"
 
 #: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Há um minuto"
-msgstr[1] "Há %s minutos"
+msgstr[0] "Um minuto atrás"
+msgstr[1] "%s minutos atrás"
 
 #: static/js/utils.js:185
 msgid "A few seconds ago"
@@ -943,7 +933,7 @@ msgstr "Não, obrigado"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
-msgstr "Enviar E-mail"
+msgstr "Enviar e-mail"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
@@ -971,11 +961,11 @@ msgstr "Todos os projetos"
 
 #: static/js/browser.js:269
 msgid "Entire Project"
-msgstr "Projeto Inteiro"
+msgstr "Projeto inteiro"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr "Projeto / Idioma"
+msgstr "Projeto/idioma"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
@@ -991,7 +981,7 @@ msgstr "Revisado"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr "Alteração de Pontuação"
+msgstr "Alteração de pontuação"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -1020,7 +1010,7 @@ msgstr "Por favor, selecione um usuário válido."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr "Tarefas Registradas"
+msgstr "Tarefas registradas"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
@@ -1052,11 +1042,11 @@ msgstr "Subtotal"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "hora"
-msgstr[1] "horas"
+msgstr[0] "%s hora"
+msgstr[1] "%s horas"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"

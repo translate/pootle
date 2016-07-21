@@ -25,7 +25,9 @@ msgstr ""
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
-msgstr "Tharla earráid agus an ríomhphost deimhnithe á sheoladh. Bain triail eile as ar ball."
+msgstr ""
+"Tharla earráid agus an ríomhphost deimhnithe á sheoladh. Bain triail eile as "
+"ar ball."
 
 #: apps/accounts/forms.py:42
 msgid ""
@@ -141,7 +143,9 @@ msgstr "Tá an seoladh ríomhphoist seo ann cheana."
 #: apps/accounts/views.py:36
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr "Tharla earráid le linn logáil isteach. Téigh i dteagmháil le riarthóir do chórais"
+msgstr ""
+"Tharla earráid le linn logáil isteach. Téigh i dteagmháil le riarthóir do "
+"chórais"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -806,7 +810,9 @@ msgstr "Díchumasaithe"
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Cruthaíodh tionscadal aistriúcháin (%s). Táimid ag nuashonrú a bhunachair sonraí ó theimpléid."
+msgstr ""
+"Cruthaíodh tionscadal aistriúcháin (%s). Táimid ag nuashonrú a bhunachair "
+"sonraí ó theimpléid."
 
 #: apps/pootle_project/views.py:281
 #, python-format
@@ -1186,14 +1192,19 @@ msgstr ""
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
-msgstr "Níos mó ná cuntas amháin leis an seoladh ríomhphoist céanna. Ní cheadófar é seo in Pootle 2.8."
+msgstr ""
+"Níos mó ná cuntas amháin leis an seoladh ríomhphoist céanna. Ní cheadófar é "
+"seo in Pootle 2.8."
 
 #: checks.py:64
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
-msgstr "Bain triail as 'pootle find_duplicate_emails', ansin nuashonraigh na seoltaí le 'pootle update_user_email username email'. Nó, b'fhéidir, pootle merge_user or purge_user commands"
+msgstr ""
+"Bain triail as 'pootle find_duplicate_emails', ansin nuashonraigh na seoltaí "
+"le 'pootle update_user_email username email'. Nó, b'fhéidir, pootle "
+"merge_user or purge_user commands"
 
 #: checks.py:88
 msgid "Your version of Django is too old."
@@ -1273,7 +1284,9 @@ msgstr "Deimhnigh do shocrú CACHES"
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
-msgstr "Caithfidh tú cumraíochtaí difriúla django_redis.cache.RedisCache a úsáid le haghaidh `default`, `redis` and `stats`."
+msgstr ""
+"Caithfidh tú cumraíochtaí difriúla django_redis.cache.RedisCache a úsáid le "
+"haghaidh `default`, `redis` and `stats`."
 
 #: checks.py:194
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1444,7 +1457,8 @@ msgstr "WEIGHT níos lú ná 0.0 nó níos mó ná 1.0 ar POOTLE_TM_SERVER['%s']
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
-"Socraigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) ar POOTLE_TM_SERVER['%s']."
+"Socraigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) ar "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:351
 #, python-format
@@ -1492,7 +1506,9 @@ msgstr "Níl an freastalaí ríomhphoist ar fáil."
 
 #: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
-msgstr "Féach ar do shocrú ríomhphoist agus deimhnigh go bhfuil an freastalaí ríomhphoist ag obair mar is ceart."
+msgstr ""
+"Féach ar do shocrú ríomhphoist agus deimhnigh go bhfuil an freastalaí "
+"ríomhphoist ag obair mar is ceart."
 
 #: checks.py:446
 msgid "Revision is missing or has an incorrect value."
@@ -2136,7 +2152,9 @@ msgstr "Aistriúcháin"
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
-msgstr "Tá na staitisticí as dáta. Féach ar an <a href=\"%(docs_url)s\">doiciméadú</a> chun déileáil le fadhbanna den sórt seo."
+msgstr ""
+"Tá na staitisticí as dáta. Féach ar an <a href=\"%(docs_url)s\">doiciméadú</"
+"a> chun déileáil le fadhbanna den sórt seo."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
@@ -2663,14 +2681,17 @@ msgstr "Logáil Isteach"
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Cruthaíodh tionscadal aistriúcháin (%(tp)s) ag %(url)s, agus nuashonraíodh é."
+msgstr ""
+"Cruthaíodh tionscadal aistriúcháin (%(tp)s) ag %(url)s, agus nuashonraíodh é."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr "Tharla earráid agus an tionscadal aistriúcháin á chruthú (%(tp)s). Téigh i dteagmháil le riarthóir do chórais."
+msgstr ""
+"Tharla earráid agus an tionscadal aistriúcháin á chruthú (%(tp)s). Téigh i "
+"dteagmháil le riarthóir do chórais."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2763,7 +2784,12 @@ msgid ""
 "terminology' and use the same file extension (format) as the rest of the "
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
-msgstr "Le húsáid a bhaint as an gcóras téarmaíochta, cuir comhad téarmaíochta le do thionscadal aistriúcháin. Caithfidh tú an t-ainm 'pootle-terminology' a chur ar an gcomhad, san fhormáid chéanna leis an chuid eile de na comhaid sa tionscadal. Bainfear úsáid as an comhad téarmaíochta seo chomh maith le moltaí ón tionscadal speisialta 'Terminology'."
+msgstr ""
+"Le húsáid a bhaint as an gcóras téarmaíochta, cuir comhad téarmaíochta le do "
+"thionscadal aistriúcháin. Caithfidh tú an t-ainm 'pootle-terminology' a chur "
+"ar an gcomhad, san fhormáid chéanna leis an chuid eile de na comhaid sa "
+"tionscadal. Bainfear úsáid as an comhad téarmaíochta seo chomh maith le "
+"moltaí ón tionscadal speisialta 'Terminology'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

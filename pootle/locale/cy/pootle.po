@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-05-31 15:26+0000\n"
+"PO-Revision-Date: 2016-07-20 16:35+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464708394.000000\n"
+"X-POOTLE-MTIME: 1469032508.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -189,14 +189,12 @@ msgid "Download for offline translation"
 msgstr "Llwytho i lawr er mwyn cyfieithu all-lein"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Llwytho ffeil cyfieithu i lawr ar gyfer cyfieithu all-lein"
+msgstr "Llwytho ffeiliau cyfieithu i lawr ar gyfer copïau wrth gefn"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Llwytho ffeil i lawr"
+msgstr "Llwytho ffeil i lawr ar gyfer copïau wrth gefn"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -207,9 +205,9 @@ msgid "Upload translations"
 msgstr "Llwytho cyfieithiadau"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Adroddiad ar %(user)s"
+msgstr "Llwytho i fyny fel %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -760,9 +758,8 @@ msgid "File Type"
 msgstr "Math o Ffeil"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Canfod awtomatig (arafach)"
+msgstr "Canfod awtomatig o gynlluniau ffeiliau gnu/eraill (arafach)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -774,7 +771,7 @@ msgstr "Nid GNU: Pob iaith yn ei gyfarwyddiadur ei hun"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Caniatáu i pootle_fs i reoli systemau ffeiliau"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -2133,9 +2130,8 @@ msgid "less..."
 msgstr "llai..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Prif gyfrannwyr y 30 diwrnod diwethaf"
+msgstr "Prif Gyfranwyr y 30 Diwrnod Diwethaf"
 
 #: templates/browser/index.html:85
 msgid "Updates"
@@ -2155,10 +2151,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"Hen ystadegau. Gw <a href=\"%(docs_url)s\">dogfennaeth</a> ar sut i ddelio "
+"gyda materion ystadegau."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "Gall yr ystadegau ar y dudalen hon fod yn hen."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2814,29 +2812,31 @@ msgid "Tweet this!"
 msgstr "Trydarwch hwn!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Dim cyfraniad yn ystod y mis diwethaf"
+msgstr "Dim cyfraniad yn ystod y 30 diwrnod diwethaf"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"Fi yw cyfrannwr #%(pos)s y %(lang_name)s y mis yma ar %(server_title)s! "
+"Fi yw cyfrannwr #%(pos)s y %(lang_name)s y 30 diwrnod diwethaf ar "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Cyfrannwr #%(pos)s %(lang_name)s y mis yma"
+msgstr "Cyfrannwr #%(pos)s %(lang_name)s y 30 diwrnod diwethaf"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
-msgstr "Cyfrannwr #%(pos)s <a href=\"%(url)s\">%(lang_name)s</a> y mis yma"
+msgstr ""
+"Cyfrannwr #%(pos)s <a href=\"%(url)s\">%(lang_name)s</a> y 30 diwrnod "
+"diwethaf"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

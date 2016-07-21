@@ -9,45 +9,46 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-07-21 08:33+0000\n"
+"Last-Translator: Gia <giasher@telenet.ge>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1469090017.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr ""
+msgstr "შენახულია."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr ""
+msgstr "წაშლილია."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
-msgstr ""
+msgstr "წაშლა"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
-msgstr ""
+msgstr "ენის დამატება"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr ""
+msgstr "შეწყვეტა"
 
 #: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
 msgstr[0] ""
-msgstr[1] ""
+"მოთხოვნას შეესაბამება %(count)s ენა.მოთხოვნას შეესაბამება %(count)s ენა."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
@@ -55,198 +56,204 @@ msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
 msgstr[0] ""
-msgstr[1] ""
+"სულ არის %(count)s ენა.სულ არის %(count)s ენა. ქვემოთ ნაჩვენებია ბოლოს "
+"დამატებულები."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr ""
+msgstr "ენის ძებნა"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
-msgstr ""
+msgstr "ენის ძებნა სახელით, კოდით"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "ენის რედაქტირება"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"გამოიყენეთ ფორმა ენის ასარჩევად და დააჭირეთ ენის დასახელებას "
+"რედაქტირებისათვის."
 
 #: static/js/admin/components/Language/LanguageForm.js:54
 #: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
-msgstr ""
+msgstr "კოდი"
 
 #: static/js/admin/components/Language/LanguageForm.js:61
 #: static/js/admin/components/Project/ProjectForm.js:63
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr ""
+msgstr "სრული სახელი"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr ""
+msgstr "სპეციალური სიმბოლოები"
 
 #: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
-msgstr ""
+msgstr "მრავლობითის რაოდენობა"
 
 #: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "მრავლობითის ფორმულა"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
 #: static/js/admin/components/Project/ProjectForm.js:143
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
-msgstr ""
+msgstr "შენახვა"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
 #: static/js/admin/components/Project/ProjectForm.js:147
 msgid "Overview"
-msgstr ""
+msgstr "მიმოხილვა"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Permissions"
-msgstr ""
+msgstr "უფლებები"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
 msgid "Add Project"
-msgstr ""
+msgstr "პროექტის დამატება"
 
 #: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "თქვენს მოთხოვნას %(count)s პროექტი შეესაბამება."
 
 #: static/js/admin/components/Project/ProjectController.js:63
-#, python-format
+#, fuzzy, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "სულ %(count)s პროექტი."
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
-msgstr ""
+msgstr "პროექტის ძიება"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
-msgstr ""
+msgstr "პროექტის მოძიება სახელით, კოდით"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr ""
+msgstr "პროექტის რედაქცია"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"ისარგებლეთ საძიებო ფორმით პროექტის საპოვნელად, შემდეგ დაწკაპეთ იგი "
+"რედაქციისთვის."
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
-msgstr ""
+msgstr "ხარისხის შემოწმება"
 
 #: static/js/admin/components/Project/ProjectForm.js:83
 msgid "File Type"
-msgstr ""
+msgstr "ფაილის ტიპი"
 
 #: static/js/admin/components/Project/ProjectForm.js:93
 msgid "Project Tree Style"
-msgstr ""
+msgstr "პროექტის სტრუქტურა"
 
 #: static/js/admin/components/Project/ProjectForm.js:103
 msgid "Source Language"
-msgstr ""
+msgstr "დედნის ენა"
 
 #: static/js/admin/components/Project/ProjectForm.js:110
 msgid "Ignore Files"
-msgstr ""
+msgstr "ფაილების გამოტოვება"
 
 #: static/js/admin/components/Project/ProjectForm.js:118
 msgid "String Errors Contact"
-msgstr ""
+msgstr "კონტაქტი შეცდომებისთვის სტრიქონებში"
 
 #: static/js/admin/components/Project/ProjectForm.js:125
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "პრეფიქსი ანაბეჭდების ძიებისთვის"
 
 #: static/js/admin/components/Project/ProjectForm.js:133
 msgid "Disabled"
-msgstr ""
+msgstr "ამორთულია"
 
 #: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Languages"
-msgstr ""
+msgstr "ენები"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
-msgstr ""
+msgstr "სხვების ჩატვირთვა"
 
 #: static/js/admin/components/Search.js:93
 msgid "Loading..."
-msgstr ""
+msgstr "ჩატვირთვა..."
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr ""
+msgstr "მონაწილის დამატება"
 
 #: static/js/admin/components/User/UserController.js:59
-#, python-format
+#, fuzzy, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "თქვენს მოთხოვნას %(count)s მონაწილე შეესაბამება."
 
 #: static/js/admin/components/User/UserController.js:63
-#, python-format
+#, fuzzy, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "სულ %(count)s მონაწილე."
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr ""
+msgstr "მონაწილეთა ძიება"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "მონაწილის მოძიება სახელით, ელფოსტით, პარამეტრებით"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr ""
+msgstr "მონაწილის რედაქცია"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"ისარგებლეთ საძიებო ფორმით მონაწილის საპოვნელად, შემდეგ დაწკაპეთ იგი "
+"რედაქციისთვის."
 
 #: static/js/admin/components/User/UserForm.js:47
+#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
+"შენიშვნა: მონაწილის წაშლისას მისი წვლილი საიტზე (მაგალითად კომენტარები, "
+"შემოთავაზებები და თარგმანები) ანონიმურ მონაწილეზე (არავიზე) გაფორმდება."
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "მონაწილე"
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "აქტიური"
 
 #: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:103
@@ -254,114 +261,116 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr ""
+msgstr "პაროლი"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr ""
+msgstr "ახალი პაროლი"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:91
 msgid "Email"
-msgstr ""
+msgstr "ელფოსტა"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
-msgstr ""
+msgstr "ადმინი"
 
 #: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
-msgstr ""
+msgstr "Twitter სახელი"
 
 #: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:127
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "LinkedIn დოსიეს URL"
 
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "ვებსაიტი"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
-msgstr ""
+msgstr "პირადი ვებსაიტის URL"
 
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr ""
+msgstr "მოკლე ბიოგრაფია"
 
 #: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
-msgstr ""
+msgstr "პირადი მონაცემები"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
-msgstr ""
+msgstr "საზოგადო მონაცემები"
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
-msgstr ""
+msgstr "პარამეტრები"
 
 #: static/js/admin/components/User/UserForm.js:162
 msgid "Statistics"
-msgstr ""
+msgstr "სტატისტიკა"
 
 #: static/js/admin/components/User/UserForm.js:163
 msgid "Reports"
-msgstr ""
+msgstr "პატაკები"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "ესკიზი აქ აისახება"
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
+#, fuzzy, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr ""
+msgstr "ჩვენ გავგზავნეთ წერილი სპეციალური ბმით: <span>%s</span>"
 
 #: static/js/auth/components/AccountActivation.js:37
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"ჩვენ გავგზავნეთ წერილი სპეციალური ბმით ანგარიშის რეგისტრაციისას მითითებულ "
+"მისამართზე."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "თქვენი ანგარიში უნდა გააქტივდეს"
 
 #: static/js/auth/components/AccountActivation.js:44
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "გთხოვთ მიჰყვეთ ამ ბმას ანგარიშის შესაქმნელად."
 
 #: static/js/auth/components/AccountActivation.js:59
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "დახურვა"
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "თქვენი ანგარიში ამორთულია ადმინის მიერ."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "დაგვიკავშირდით"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "ანგარიშის დადასტურების ბმა ვადაგასული ან უმართებლოა."
 
 #: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
@@ -849,35 +858,30 @@ msgstr ""
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/utils.js:168
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/utils.js:171
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/utils.js:174
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/utils.js:177
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/utils.js:185
 msgid "A few seconds ago"
@@ -960,7 +964,6 @@ msgstr ""
 msgid "%s word"
 msgid_plural "%s words"
 msgstr[0] ""
-msgstr[1] ""
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -1008,7 +1011,6 @@ msgstr ""
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] ""
-msgstr[1] ""
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"

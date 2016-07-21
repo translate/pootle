@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-15 16:52+0000\n"
+"PO-Revision-Date: 2016-07-20 20:24+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468601522.000000\n"
+"X-POOTLE-MTIME: 1469046297.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -656,84 +656,83 @@ msgstr "%(timeSince)s nahráním souboru"
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a %d. %b."
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "1"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "2"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "3"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "4"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "5"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "6"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "7"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "8"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "9"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "10"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Ne"
+msgstr "11"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "12"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "ne"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "po"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "út"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "st"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "čt"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "pá"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "so"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -757,63 +756,52 @@ msgstr "Zadejte text pro vyhledávání"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "odstranil překlad pro ${sourceString}"
+msgstr "odstranil překlad pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "přijal návrh pro ${sourceString}"
+msgstr "přijal návrh pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
 msgstr "nahrál soubor"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "muted %(check)s for %(sourceString)s"
-msgstr "potlačil kontrolu ${check} pro ${sourceString}"
+msgstr "potlačil kontrolu %(check)s pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr "obnovil kontrolu ${check} pro ${sourceString}"
+msgstr "obnovil kontrolu %(check)s pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "přidal návrh pro ${sourceString}"
+msgstr "přidal návrh pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "odmítl návrh pro ${sourceString}"
+msgstr "odmítl návrh pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "translated %(sourceString)s"
-msgstr "přeložil ${sourceString}"
+msgstr "přeložil %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "edited %(sourceString)s"
-msgstr "upravil ${sourceString}"
+msgstr "upravil %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "pre-translated %(sourceString)s"
-msgstr "předběžně přeložil ${sourceString}"
+msgstr "předběžně přeložil %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy
 msgid "reviewed %(sourceString)s"
-msgstr "zkontroloval ${sourceString}"
+msgstr "zkontroloval %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "marked as needs work %(sourceString)s"
-msgstr "označil jako vyžadující úpravu ${sourceString}"
+msgstr "označil jako vyžadující úpravu %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"

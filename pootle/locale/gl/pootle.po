@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-18 11:16+0000\n"
+"PO-Revision-Date: 2016-07-22 12:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468840612.000000\n"
+"X-POOTLE-MTIME: 1469190658.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -1602,7 +1602,7 @@ msgstr "Comprobacións"
 
 #: core/helpers.py:54 templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr "Meus envíos"
+msgstr "Os meus envíos"
 
 #: core/helpers.py:55 templates/admin/dashboard.html:13
 msgid "Submissions"
@@ -1613,7 +1613,7 @@ msgstr "Envíos"
 #. in time but have been overwritten by other users.
 #: core/helpers.py:56 templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr "Os meus envíos substituídos"
+msgstr "Os meus envíos sobrescritos"
 
 #: core/helpers.py:57
 msgid "Overwritten submissions"

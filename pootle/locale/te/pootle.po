@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2013-05-20 13:26+0000\n"
+"PO-Revision-Date: 2016-07-20 15:51+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1369056390.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1469029893.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -78,7 +78,7 @@ msgstr ""
 
 #: apps/accounts/models.py:83
 msgid "date joined"
-msgstr ""
+msgstr "చేరిన తేదీ"
 
 #: apps/accounts/models.py:87
 msgid "Number of Rows"
@@ -110,19 +110,19 @@ msgstr ""
 
 #: apps/accounts/models.py:100
 msgid "Is employee?"
-msgstr ""
+msgstr "ఉద్యోగియా?"
 
 #: apps/accounts/models.py:101
 msgid "Twitter"
-msgstr ""
+msgstr "ట్విట్టర్"
 
 #: apps/accounts/models.py:103
 msgid "Website"
-msgstr ""
+msgstr "జాలగూడు"
 
 #: apps/accounts/models.py:104
 msgid "LinkedIn"
-msgstr ""
+msgstr "లింక్డ్‌ఇన్"
 
 #: apps/accounts/models.py:105
 msgid "Short Bio"
@@ -130,7 +130,7 @@ msgstr ""
 
 #: apps/accounts/models.py:352
 msgid "This email address already exists."
-msgstr ""
+msgstr "ఈ ఈమెయిలు చిరునామా ఇప్పుటికే ఉంది."
 
 #: apps/accounts/views.py:36
 msgid ""
@@ -151,7 +151,7 @@ msgstr "పేరు"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
-msgstr ""
+msgstr "దయచేసి మీ పేరు ఇవ్వండి"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
@@ -401,7 +401,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:46
 msgid "Translator credits"
-msgstr ""
+msgstr "అనువాద పరపతులు"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
@@ -1039,11 +1039,11 @@ msgstr ""
 
 #: apps/reports/models.py:64
 msgid "Amount"
-msgstr ""
+msgstr "మొత్తం"
 
 #: apps/reports/models.py:66
 msgid "Date"
-msgstr ""
+msgstr "తేదీ"
 
 #: apps/reports/models.py:67 apps/virtualfolder/models.py:61
 msgid "Description"
@@ -1052,7 +1052,7 @@ msgstr "వివరణ"
 #: apps/reports/views.py:313
 #, python-format
 msgid "User %s not found"
-msgstr ""
+msgstr "వాడుకరి %s కనబడలేదు"
 
 #: apps/reports/views.py:390
 msgid "Invalid request method"
@@ -1813,9 +1813,8 @@ msgid "Unit"
 msgstr ""
 
 #: templates/admin/detailed_reports.html:151
-#, fuzzy
 msgid "Action"
-msgstr "చర్యలు"
+msgstr "చర్య"
 
 #: templates/admin/detailed_reports.html:152
 #, fuzzy
@@ -1828,7 +1827,7 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:154
 msgid "Words"
-msgstr ""
+msgstr "పదాలు"
 
 #: templates/admin/detailed_reports.html:157
 msgid "Subtotal"
@@ -1845,9 +1844,8 @@ msgid "Subactions"
 msgstr "సలహాలు"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "అనువాదం"
+msgstr "ముడి అనువాదం"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2641,7 +2639,7 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "కొనసాగించు"
 
 #: templates/translation_projects/_nav.html:26
 msgid "Terminology"
@@ -2797,9 +2795,8 @@ msgid "Hourly Rate:"
 msgstr ""
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "ఖాతాని నమోదుచేసుకోండి"
+msgstr "వాడుకరి ఖాతా"
 
 #: templates/user/settings.html:14
 msgid ""
@@ -2813,15 +2810,15 @@ msgstr ""
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "స్వాగతం"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "పూటిల్‌కి స్వాగతం"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "రండి మాతో చేరండి!"
 
 #: templates/welcome.html:19
 #, fuzzy

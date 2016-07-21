@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-02-01 10:53+0000\n"
-"Last-Translator: ladyman <dchansel@free.fr>\n"
+"PO-Revision-Date: 2016-07-20 16:04+0000\n"
+"Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1454324031.000000\n"
+"X-POOTLE-MTIME: 1469030665.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -310,9 +310,8 @@ msgid "Website"
 msgstr "Site Web"
 
 #: static/js/admin/components/User/UserForm.js:135
-#, fuzzy
 msgid "Personal website URL"
-msgstr "Votre URL de blog/site web personnel"
+msgstr "URL de site web personnel"
 
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
@@ -395,57 +394,59 @@ msgstr ""
 "votre mot de passe."
 
 #: static/js/auth/components/PasswordResetForm.js:89
-#, fuzzy
 msgid "Reset Password"
 msgstr "Réinitialiser le mot de passe"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Le mot de passe a été changé, connexion…"
 
 #: static/js/auth/components/PasswordResetForm.js:125
 #: static/js/auth/components/SignUpForm.js:107
-#, fuzzy
 msgid "Repeat Password"
-msgstr "Mot de passe"
+msgstr "Répétition du mot de passe"
 
 #: static/js/auth/components/PasswordResetForm.js:139
-#, fuzzy
 msgid "Set New Password"
-msgstr "Mot de passe"
+msgstr "Définir le nouveau mot de passe"
 
 #: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
 msgstr ""
+"Après avoir changé le mot de passe, vous serez automatiquement reconnecté."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:24
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Envoi d'un courriel à %s…"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
+"Veuillez suivre ce lien pour continuer la procédure de réinitialisation du "
+"mot de passe."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Vous n'avez pas reçu de courriel ? Vérifiez qu'il n'a pas été envoyé dans "
+"votre dossier de spam ou essayez de demander un nouvel envoi du courriel."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
-msgstr ""
+msgstr "Ré-envoyer le courriel"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Se connecter sous un nouvel utilisateur"
 
 #: static/js/auth/components/SignInForm.js:111
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
-msgstr ""
+msgstr "J'ai oublié mon mot de passe"
 
 #: static/js/auth/components/SignInForm.js:122
 #: static/js/auth/components/SocialVerification.js:119
@@ -456,15 +457,13 @@ msgstr "Se connecter"
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:73
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Connecté. Redirection…"
 
 #: static/js/auth/components/SignInPanel.js:60
-#, fuzzy
 msgid "Social Services"
-msgstr "Caractères spéciaux"
+msgstr "Réseaux sociaux"
 
 #: static/js/auth/components/SignInPanel.js:63
-#, fuzzy
 msgid "Login / Password"
 msgstr "Identifiant / Mot de passe"
 
@@ -495,7 +494,7 @@ msgstr "Essayez à nouveau"
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Se connecter avec %s"
 
 #: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
@@ -505,24 +504,24 @@ msgstr ""
 
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
-msgstr ""
+msgstr "Se connecter avec…"
 
 #: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
-msgstr ""
+msgstr "Le compte est inactif"
 
 #: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
-msgstr ""
+msgstr "Activation de compte"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Confirmation par courriel"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
@@ -530,7 +529,7 @@ msgstr "Oups..."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr ""
+msgstr "Vérification sociale"
 
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
@@ -612,14 +611,12 @@ msgid "The server seems down. Try again later."
 msgstr "Le serveur semble hors service. Essayez plus tard."
 
 #: static/js/editor/app.js:1087
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Cette unité n'existe plus."
+msgstr "Cette chaîne n'existe plus."
 
 #: static/js/editor/app.js:1088
-#, fuzzy
 msgid "Go back to browsing"
-msgstr "Revenir à la vue d'ensemble"
+msgstr "Revenir à la navigation"
 
 #: static/js/editor/app.js:1090
 msgid "Reload page"
@@ -643,7 +640,7 @@ msgstr "Traductions similaires"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Modifiez la suggestion avant de l'accepter, si nécessaire"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Provide optional comment (will be publicly visible)"
@@ -651,97 +648,96 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "Accepter"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "Rejeter"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s par envoi de fichier"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a %d %b"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Fév"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Avr"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Juin"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Juil"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Août"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Non"
+msgstr "Nov"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Déc"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Dim"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Jeu"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Sam"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -757,26 +753,24 @@ msgstr "Effacer la valeur"
 
 #: static/js/shared/components/FormSelectInput.js:35
 msgid "Clear all"
-msgstr ""
+msgstr "Tout effacer"
 
 #: static/js/shared/components/FormSelectInput.js:36
 msgid "Type to search"
-msgstr ""
+msgstr "Saisir pour rechercher"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "Suggestions de %s rejetées"
+msgstr "traduction supprimée pour %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "Suggestions de %s acceptées"
+msgstr "suggestion acceptée pour %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
-msgstr ""
+msgstr "fichier envoyé"
 
 #: static/js/shared/components/UserEvent.js:103
 #, fuzzy
@@ -788,9 +782,8 @@ msgid "unmuted %(check)s for %(sourceString)s"
 msgstr ""
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "Suggestions de %s acceptées"
+msgstr "suggestion ajoutée pour %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
 #, fuzzy
@@ -919,14 +912,14 @@ msgstr[0] "Hier"
 msgstr[1] "Il y a %s jours"
 
 #: static/js/utils.js:174
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Il y a une heure"
 msgstr[1] "Il y a %s heures"
 
 #: static/js/utils.js:177
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Il y a une minute"
@@ -938,26 +931,27 @@ msgstr "Il y a quelques secondes"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr ""
+msgstr "Adresse électronique"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Saisissez votre adresse électronique et nous vous enverrons un message "
+"contenant un lien spécial pour réinitialiser votre mot de passe."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
-msgstr ""
+msgstr "Non merci"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
-#, fuzzy
 msgid "Send Email"
-msgstr "Courriel"
+msgstr "Envoyer le message"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "La création de nouveaux comptes utilisateurs est interdite."
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -1010,23 +1004,23 @@ msgstr ""
 #: templates/admin/xhr_paid_tasks_report.html:24
 #: templates/admin/xhr_summary_report.html:18
 #: templates/admin/xhr_summary_report.html:31
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "mot"
-msgstr[1] "mots"
+msgstr[0] "%s mot"
+msgstr[1] "%s mots"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Aucune activité enregistrée dans une période donnée"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Veuillez choisir un utilisateur valable."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Tâches enregistrées"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
@@ -1058,11 +1052,11 @@ msgstr "Sous-total"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "heure"
-msgstr[1] "heures"
+msgstr[0] "%s heure"
+msgstr[1] "%s heures"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
@@ -1106,13 +1100,13 @@ msgid "Show"
 msgstr "Montrer"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
-"Traduit par by %(fullname)s en &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; projet"
+"Traduit par %(fullname)s dans le projet &ldquo;<span title=\"%(path)s\">"
+"%(project)s</span>&rdquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format

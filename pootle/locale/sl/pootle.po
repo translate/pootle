@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2014-06-04 21:00+0000\n"
-"Last-Translator: mspiller <matej.spiller@gmail.com>\n"
+"PO-Revision-Date: 2016-07-20 23:04+0000\n"
+"Last-Translator: miles <miles@filmsi.net>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -20,18 +20,20 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1401915632.000000\n"
+"X-POOTLE-MTIME: 1469055845.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Ob poskusu pošiljanja potrditvenega sporočila je prišlo do napake. Prosimo "
+"poskusite kasneje."
 
 #: apps/accounts/forms.py:42
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
-msgstr ""
+msgstr "Vaše uporabniško ime je pogrešano. Prijavite težavo lastniku strani."
 
 #: apps/accounts/models.py:62 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -40,11 +42,11 @@ msgstr "Uporabniško ime"
 #: apps/accounts/models.py:63
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
+msgstr "Zahtevano. 30 znakov ali manj. Črke, števila in @/./+/-/_ simboli"
 
 #: apps/accounts/models.py:67
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Vnesite veljavno uporabniško ime."
 
 #: apps/accounts/models.py:71
 msgid "Email Address"
@@ -65,17 +67,19 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Določa, ali naj bo uporabnik obravnavan kot dejaven. Odznačite namesto "
+"brisanja računa."
 
 #: apps/accounts/models.py:79
-#, fuzzy
 msgid "Superuser Status"
-msgstr "položaj superuporabnika"
+msgstr "Status superuporabnika"
 
 #: apps/accounts/models.py:80
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Določa, da ima ta uporabnik vsa dovoljenja, ne da bi jih izrecno dodelili."
 
 #: apps/accounts/models.py:83
 msgid "date joined"
@@ -115,29 +119,30 @@ msgstr ""
 
 #: apps/accounts/models.py:101
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:103
 msgid "Website"
-msgstr ""
+msgstr "Spletišče"
 
 #: apps/accounts/models.py:104
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:105
 msgid "Short Bio"
 msgstr ""
 
 #: apps/accounts/models.py:352
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Izraz že obstaja v datoteki."
+msgstr "Ta e-poštni naslov že obstaja."
 
 #: apps/accounts/views.py:36
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Pri vaši prijavi je prišlo do napake. O tem povprašajte svojega sistemskega "
+"skrbnika."
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -153,7 +158,7 @@ msgstr "Ime"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
-msgstr ""
+msgstr "Vnesite svoje ime"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
@@ -241,7 +246,7 @@ msgstr "Lahko prepiše prevode ob nalaganju datotek"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
-msgstr "Koda jezika ne sledi dogovorom ISO"
+msgstr "Izbrana koda jezika ne sledi ISO specifikaciji"
 
 #: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:196
 msgid "Source Language"

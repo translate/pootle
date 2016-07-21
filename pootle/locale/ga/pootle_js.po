@@ -262,8 +262,8 @@ msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Nóta: má scriosann tú úsáideoir, cuirfear a c(h)uid nótaí tráchta, moltaí agus "
-"aistriúchán i leith úsáideora gan ainm (nobody)."
+"Nóta: má scriosann tú úsáideoir, cuirfear a c(h)uid nótaí tráchta, moltaí "
+"agus aistriúchán i leith úsáideora gan ainm (nobody)."
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
@@ -552,7 +552,9 @@ msgstr "Folaigh díchumasaithe"
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
-msgstr "Athruithe gan sábháil sa teaghrán seo. Caillfidh tú na hathruithe seo má fhágann tú."
+msgstr ""
+"Athruithe gan sábháil sa teaghrán seo. Caillfidh tú na hathruithe seo má "
+"fhágann tú."
 
 #: static/js/editor/app.js:340
 msgid ""
@@ -955,7 +957,9 @@ msgstr "Seoladh Ríomhphoist"
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
-msgstr "Cuir isteach do sheoladh ríomhphoist agus seolfaimid teachtaireacht ina bhfuil nasc lenar féidir d'fhocal faire a athrú."
+msgstr ""
+"Cuir isteach do sheoladh ríomhphoist agus seolfaimid teachtaireacht ina "
+"bhfuil nasc lenar féidir d'fhocal faire a athrú."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
@@ -975,7 +979,11 @@ msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
-msgstr "D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%s</span> inár gcóras. Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní bheidh sé ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle agus do chuntas %s."
+msgstr ""
+"D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%s</span> inár gcóras. "
+"Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní bheidh sé "
+"ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle "
+"agus do chuntas %s."
 
 #: static/js/browser.js:261
 msgid "All Languages"

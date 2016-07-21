@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-05-31 15:23+0000\n"
+"PO-Revision-Date: 2016-07-20 16:39+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464708195.000000\n"
+"X-POOTLE-MTIME: 1469032760.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -646,89 +646,88 @@ msgstr "Gwrthod"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s drwy lwytho ffeil"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%b %d, %a"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Ion"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Chw"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Maw"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Ebr"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Meh"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Gor"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Aws"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Med"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Hyd"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Na"
+msgstr "Tach"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Rha"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Sul"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Llu"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Maw"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Iau"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Gwe"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Sad"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -752,58 +751,52 @@ msgstr "Teipiwch i chwilio"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "Awgrymiadau %s wedi eu gwrthod"
+msgstr "cyfieithiadau wedi eu tynnu %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "Awgrymiadau %s wedi eu derbyn"
+msgstr "cyfieithiadau wedi eu derbyn %(sourceString)s "
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
 msgstr "ffeil wedi ei llwytho"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "muted %(check)s for %(sourceString)s"
-msgstr "Awgrymiadau %s wedi eu derbyn"
+msgstr "tewi %(check)s o %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "dad-dewi %(check)s o %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "Awgrymiadau %s wedi eu derbyn"
+msgstr "ychwanegu awgrymiadau %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "Awgrymiadau %s wedi eu gwrthod"
+msgstr "gwrthod awgrymiadau %(sourceString)s "
 
 #: static/js/shared/components/UserEvent.js:112
 msgid "translated %(sourceString)s"
-msgstr ""
+msgstr "cyfieithwyd %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
 msgid "edited %(sourceString)s"
-msgstr ""
+msgstr "golygwyd %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
 msgid "pre-translated %(sourceString)s"
-msgstr ""
+msgstr "rhag-gyfieithu %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
 msgid "reviewed %(sourceString)s"
-msgstr ""
+msgstr "adolygwyd %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "marked as needs work %(sourceString)s"
-msgstr "Awgrymiadau %s wedi eu derbyn"
+msgstr "nodwyd fel angen gwaith %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
@@ -1047,11 +1040,11 @@ msgstr "Is gyfanswm"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "awr"
-msgstr[1] "awr"
+msgstr[0] "%s awr"
+msgstr[1] "%s awr"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"

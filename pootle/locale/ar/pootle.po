@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-18 11:50+0000\n"
+"PO-Revision-Date: 2016-07-21 14:19+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1468842653.000000\n"
+"X-POOTLE-MTIME: 1469110743.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -192,9 +192,8 @@ msgid "Download translation files for backup"
 msgstr "نزّل ملفّات التّرجمة لإبقائها احتياطيا"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "نزّل الملف"
+msgstr "نزّل الملفّ لإبقائه احتياطيا"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -760,9 +759,8 @@ msgid "File Type"
 msgstr "نوع الملفّ"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "كشف آليّ (بطيء)"
+msgstr "كشف آليّ لتخطيطات ملفّات غنو/ليست غنو (أبطأ)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -1020,16 +1018,16 @@ msgstr ""
 #: templates/translation_projects/terminology/manage.html:35
 #: templates/user/settings.html:28
 msgid "Translation"
-msgstr "الترجمة"
+msgstr "ترجمة"
 
 #: apps/reports/models.py:32 apps/reports/models.py:56
 #: templates/admin/detailed_reports.html:232
 msgid "Review"
-msgstr "المراجعة"
+msgstr "مراجعة"
 
 #: apps/reports/models.py:33
 msgid "Suggestion"
-msgstr "الاقتراحات"
+msgstr "اقتراح"
 
 #: apps/reports/models.py:57
 msgid "Hourly Work"
@@ -1435,6 +1433,7 @@ msgstr "ل‍ POOTLE_TM_SERVER['%s'] قيمة WEIGHT أقل من 0.0 أو أكب
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"اضبط WEIGHT بين 0.0 و 1.0 (بما في ذلك العددين) لِ‍ POOTLE_TM_SERVER['%s']."
 
 #: checks.py:351
 #, python-format
@@ -1593,11 +1592,11 @@ msgstr "المساهمات التي استُبدلت"
 
 #: core/initdb.py:129
 msgid "Can access a project"
-msgstr "يمكنه النّفاذ إلى مشروع"
+msgstr "يمكنه الوصول إلى المشروع"
 
 #: core/initdb.py:133
 msgid "Cannot access a project"
-msgstr "لا يمكنه النّفاذ إلى مشروع"
+msgstr "لا يمكنه الوصول إلى المشروع"
 
 #: core/initdb.py:137
 msgid "Can make a suggestion for a translation"
@@ -1865,9 +1864,8 @@ msgid "MT"
 msgstr "ترجمة آلية"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "الدّوال"
+msgstr "الإجراءات الفرعيّة"
 
 #: templates/admin/detailed_reports.html:219
 #, fuzzy
@@ -1884,9 +1882,8 @@ msgid "No activity recorded in a given period"
 msgstr "لا نشاط مسجّل في الفترة المعطاة"
 
 #: templates/admin/detailed_reports.html:269
-#, fuzzy
 msgid "Suggestion (subtotal)"
-msgstr "التّرجمة (المجموع الفرعيّ)"
+msgstr "الاقتراح (المجموع الفرعيّ)"
 
 #: templates/admin/detailed_reports.html:279
 msgid "Translation (subtotal)"
@@ -1950,7 +1947,7 @@ msgstr "ساعة"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
-msgstr ""
+msgstr "أضف سجلًّا"
 
 #: templates/admin/reports/user_rates_form.html:4
 msgid "Set Rates"
