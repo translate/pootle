@@ -12,13 +12,13 @@ from django.utils.translation import ugettext as _
 
 
 # Minimum Translate Toolkit version required for Pootle to run.
-TTK_MINIMUM_REQUIRED_VERSION = (1, 13, 0)
+TTK_MINIMUM_REQUIRED_VERSION = (2, 0, 0)
 
 # Minimum Django version required for Pootle to run.
 DJANGO_MINIMUM_REQUIRED_VERSION = (1, 8, 13)
 
 # Minimum lxml version required for Pootle to run.
-LXML_MINIMUM_REQUIRED_VERSION = (2, 2, 2, 0)
+LXML_MINIMUM_REQUIRED_VERSION = (3, 0, 0, 0)
 
 # Minimum Redis server version required.
 # Initially set to some minimums based on:
