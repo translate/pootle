@@ -1742,10 +1742,12 @@ PTL.editor = {
     }
 
     e.preventDefault();
-    const index = parseInt(this.unitIndexEl.textContent, 10) - 1;
+
+    let index = parseInt(this.unitIndexEl.textContent, 10);
     if (isNaN(index)) {
       return;
     }
+    index = Math.max(0, index - 1);
 
     // if index is outside of current uids clear units first
     if (index < this.initialOffset || index >= this.getOffsetOfLastUnit()) {
