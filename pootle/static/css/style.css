@@ -382,7 +382,7 @@ td.stats-name a:hover > i + span,
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin-bottom: -62px; /* footer margin-top + height */
+    margin-bottom: 62px; /* footer margin-top + height */
 }
 
 #content
