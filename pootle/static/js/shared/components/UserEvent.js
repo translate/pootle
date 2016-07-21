@@ -48,7 +48,7 @@ const UserEvent = React.createClass({
 
   mixins: [PureRenderMixin],
 
-  getActionText() {
+  getActionText(user) {
     const { checkName } = this.props;
     const { checkDisplayName } = this.props;
     const { translationActionType } = this.props;
@@ -94,50 +94,57 @@ const UserEvent = React.createClass({
      */
 
     if (type === 2) {
-      return tct('removed translation for %(sourceString)s', { sourceString });
+      return tct('%(user)s removed translation for %(sourceString)s', { user, sourceString });
     } else if (type === 3) {
-      return tct('accepted suggestion for %(sourceString)s', { sourceString });
+      return tct('%(user)s accepted suggestion for %(sourceString)s', { user, sourceString });
     } else if (type === 4) {
-      return [gettext('uploaded file')];
+      return tct('%(user)s uploaded file', { user });
     } else if (type === 6) {
-      return tct('muted %(check)s for %(sourceString)s', { check, sourceString });
+      return tct('%(user)s muted %(check)s for %(sourceString)s', { user, check, sourceString });
     } else if (type === 7) {
-      return tct('unmuted %(check)s for %(sourceString)s', { check, sourceString });
+      return tct('%(user)s unmuted %(check)s for %(sourceString)s', { user, check, sourceString });
     } else if (type === 8) {
-      return tct('added suggestion for %(sourceString)s', { sourceString });
+      return tct('%(user)s added suggestion for %(sourceString)s', { user, sourceString });
     } else if (type === 9) {
-      return tct('rejected suggestion for %(sourceString)s', { sourceString });
+      return tct('%(user)s rejected suggestion for %(sourceString)s', { user, sourceString });
     } else if (type === 1 || type === 5) {
       if (translationActionType === 0) {
-        return tct('translated %(sourceString)s', { sourceString });
+        return tct('%(user)s translated %(sourceString)s', { user, sourceString });
       } else if (translationActionType === 1) {
-        return tct('edited %(sourceString)s', { sourceString });
+        return tct('%(user)s edited %(sourceString)s', { user, sourceString });
       } else if (translationActionType === 2) {
-        return tct('pre-translated %(sourceString)s', { sourceString });
+        return tct('%(user)s pre-translated %(sourceString)s', { user, sourceString });
       } else if (translationActionType === 3) {
-        return tct('removed translation for %(sourceString)s', { sourceString });
+        return tct('%(user)s removed translation for %(sourceString)s', { user, sourceString });
       } else if (translationActionType === 4) {
-        return tct('reviewed %(sourceString)s', { sourceString });
+        return tct('%(user)s reviewed %(sourceString)s', { user, sourceString });
       } else if (translationActionType === 5) {
-        return tct('marked as needs work %(sourceString)s', { sourceString });
+        return tct('%(user)s marked as needs work %(sourceString)s', { user, sourceString });
       }
     }
 
-    return [''];
+    return [user];
   },
 
   render() {
+    const avatar = (
+      <Avatar
+        email={this.props.email}
+        label={this.props.displayName}
+        size={20}
+        username={this.props.username}
+      />
+    );
+
     return (
       <div className="last-action">
-        <Avatar
-          email={this.props.email}
-          label={this.props.displayName}
-          size={20}
-          username={this.props.username}
-        />{' '}
+        <span className="short-action-text">
+          {avatar}
+        </span>
         <span className="action-text">
-          {this.getActionText()}
-        </span>{' '}
+          {this.getActionText(avatar)}
+        </span>
+        {' '}
         <TimeSince
           title={this.props.displayDatetime}
           dateTime={this.props.isoDatetime}

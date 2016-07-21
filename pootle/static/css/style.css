@@ -851,6 +851,10 @@ html[dir="rtl"] .hd h2
     margin-right: 0.5em;
 }
 
+.last-action .short-action-text
+{
+    display: none;
+}
 
 /* When browser size is 1440px or less, show the smaller version of the
  * last action message */
@@ -861,6 +865,10 @@ html[dir="rtl"] .hd h2
         display: none;
     }
 
+    table .last-action .short-action-text
+    {
+        display: inline;
+    }
 }
 
 .last-action
