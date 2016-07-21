@@ -25,7 +25,7 @@ msgstr ""
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
-msgstr ""
+msgstr "Tharla earráid agus an ríomhphost deimhnithe á sheoladh. Bain triail eile as ar ball."
 
 #: apps/accounts/forms.py:42
 msgid ""
@@ -141,7 +141,7 @@ msgstr "Tá an seoladh ríomhphoist seo ann cheana."
 #: apps/accounts/views.py:36
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr ""
+msgstr "Tharla earráid le linn logáil isteach. Téigh i dteagmháil le riarthóir do chórais"
 
 #: apps/contact/forms.py:25
 msgid "Summary"
@@ -180,40 +180,37 @@ msgid "Contact Us"
 msgstr "Déan Teagmháil Linn"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Déan tuairisc ar fhadhb leis an teaghrán seo"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
-msgstr "Íosluchtaigh na comhaid chun iad a aistriú as líne"
+msgstr "Íoslódáil na comhaid chun iad a aistriú as líne"
 
 #: apps/import_export/templates/browser/index.html:12
 msgid "Download for offline translation"
-msgstr "Íosluchtaigh le haistriú as líne"
+msgstr "Íoslódáil le haistriú as líne"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Íosluchtaigh na comhaid chun iad a aistriú as líne"
+msgstr "Íoslódáil na comhaid aistriúcháin mar chúltaca"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Íosluchtaigh comhad"
+msgstr "Íoslódáil mar chúltaca"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
-msgstr "Uasluchtaigh comhaid nó cartlanna i bhformáid .zip"
+msgstr "Uaslódáil comhaid nó cartlanna i bhformáid .zip"
 
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
-msgstr "Uasluchtaigh aistriúcháin"
+msgstr "Uaslódáil aistriúcháin"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Tuairisc do %(user)s"
+msgstr "Uaslódáil mar úsáideoir %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -236,9 +233,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Níorbh fhéidir '%s' a chruthú. Tionscadal/Teanga ar iarraidh? (%s)"
 
 #: apps/import_export/utils.py:65
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Is féidir aistriúcháin a fhorscríobh le comhaid uasluchtaithe"
+msgstr "Tharla earráid agus do chomhad á uaslódáil"
 
 #: apps/pootle_app/forms.py:37
 msgid "Language code does not follow the ISO convention"
@@ -418,7 +414,7 @@ msgstr "Admhálacha aistritheoirí"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Méideanna na ndialóg"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Double quotes"
@@ -450,7 +446,7 @@ msgstr "Éalúcháin"
 
 #: apps/pootle_misc/checks.py:55
 msgid "File paths"
-msgstr "Conairí comhaid"
+msgstr "Cosáin chomhaid"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Functions"
@@ -687,9 +683,8 @@ msgid "Percent brace placeholders"
 msgstr "Ionadchoinneálaithe céatadáin agus lúibíní"
 
 #: apps/pootle_misc/checks.py:117
-#, fuzzy
 msgid "Plurr format"
-msgstr "Formáid Android™"
+msgstr "Formáid Plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -739,7 +734,7 @@ msgstr "Deireadh (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
-msgstr ""
+msgstr "Níl cuardach ar fáil"
 
 #: apps/pootle_profile/views.py:54
 msgid "Select one or more languages"
@@ -759,16 +754,15 @@ msgstr ""
 
 #: apps/pootle_project/models.py:178
 msgid "Quality Checks"
-msgstr "Seiceálacha Cáilíochta"
+msgstr "Deimhnithe Cáilíochta"
 
 #: apps/pootle_project/models.py:181
 msgid "File Type"
 msgstr "Cineál Comhaid"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Brath uathoibríoch (níos moille)"
+msgstr "Brath uathoibríoch ar fhormáidí GNU/neamh-GNU (níos moille)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -780,7 +774,7 @@ msgstr "Neamh-GNU: Cuir gach teanga ina chomhadlann féin"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Lig do pootle_fs córais comhad a bhainistiú"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -812,12 +806,12 @@ msgstr "Díchumasaithe"
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr ""
+msgstr "Cruthaíodh tionscadal aistriúcháin (%s). Táimid ag nuashonrú a bhunachair sonraí ó theimpléid."
 
 #: apps/pootle_project/views.py:281
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Comhaid agus fillteáin an tionscnaimh aistriúcháin"
+msgstr "Scriosadh an tionscadal aistriúcháin (%s)"
 
 #: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
 msgid "Source"
@@ -931,7 +925,7 @@ msgstr "Diúltaithe"
 
 #: apps/pootle_store/models.py:1348
 msgid "Path"
-msgstr "Conair"
+msgstr "Cosán"
 
 #: apps/pootle_store/templatetags/store_tags.py:156
 #: apps/pootle_store/templatetags/store_tags.py:160
@@ -944,24 +938,24 @@ msgid "Plural"
 msgstr "Iolra"
 
 #: apps/pootle_store/unit/timeline.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Glacadh le moladh ó %s"
+msgstr "Glacadh le moladh ó %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:81
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Diúltaíodh moladh ó %s"
+msgstr "Diúltaíodh moladh ó %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:89
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "glacadh moladh do %(source_string)s"
+msgstr "Glacadh le moladh ó %(author)s le nóta: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "diúltaíodh moladh do %(source_string)s"
+msgstr "Diúltaíodh moladh ó %(author)s le nóta: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
@@ -978,7 +972,7 @@ msgstr "Aistrithe"
 
 #: apps/pootle_store/views.py:204
 msgid "Path too long."
-msgstr ""
+msgstr "Cosán rófhada."
 
 #: apps/pootle_store/views.py:206 core/decorators.py:44
 msgid "Arguments missing."
@@ -1005,14 +999,14 @@ msgid "This term already exists in this file."
 msgstr "Tá an téarmsa sa chomhad seo cheana féin."
 
 #: apps/pootle_translationproject/receivers.py:36
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Príomhleathanach an tionscadail aistriúcháin"
+msgstr "Cruthaíodh tionscadal aistriúcháin (%s)"
 
 #: apps/pootle_translationproject/receivers.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Príomhleathanach an tionscadail aistriúcháin"
+msgstr "Níorbh fhéidir an tionscadal aistriúcháin a chruthú (%s)"
 
 #: apps/reports/forms.py:26
 msgid "Translation Rate"
@@ -1086,7 +1080,7 @@ msgstr "An bhfuil an leathanach seo gníomhach?"
 
 #: apps/staticpages/models.py:36 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
-msgstr "Conair Fhíorúil"
+msgstr "Cosán Fíorúil"
 
 #: apps/staticpages/models.py:43
 msgid "Title"
@@ -1107,7 +1101,6 @@ msgid "Redirect to URL"
 msgstr "Atreorú chuig URL"
 
 #: apps/staticpages/models.py:53
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
 msgstr ""
 "Leis an rogha seo, cuirfear aon tagairt don leathanach seo ar aghaidh chuig "
@@ -1120,7 +1113,7 @@ msgstr "Caithfidh tú URL nó ábhar a sholáthar."
 
 #: apps/staticpages/models.py:104
 msgid "Virtual path already in use."
-msgstr "Conair fhíorúil in úsáid cheana."
+msgstr "Cosán fíorúil in úsáid cheana."
 
 #: apps/staticpages/models.py:113
 msgid "Legal Page"
@@ -1142,9 +1135,8 @@ msgstr ""
 "projects/<project_code> nó <language_code> nó <language_code>/<project_code>"
 
 #: apps/staticpages/views.py:231
-#, fuzzy
 msgid "Text is missing"
-msgstr "Argóintí ar iarraidh."
+msgstr "Téacs ar iarraidh"
 
 #: apps/virtualfolder/models.py:37
 msgid "Location"
@@ -1152,7 +1144,7 @@ msgstr "Suíomh"
 
 #: apps/virtualfolder/models.py:40
 msgid "Root path where this virtual folder is applied."
-msgstr "Fréamhchonair ina gcuirtear an fillteán fíorúil i bhfeidhm."
+msgstr "Fréamhchosán ina gcuirtear an fillteán fíorúil i bhfeidhm."
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:44
@@ -1194,14 +1186,14 @@ msgstr ""
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
-msgstr ""
+msgstr "Níos mó ná cuntas amháin leis an seoladh ríomhphoist céanna. Ní cheadófar é seo in Pootle 2.8."
 
 #: checks.py:64
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
-msgstr ""
+msgstr "Bain triail as 'pootle find_duplicate_emails', ansin nuashonraigh na seoltaí le 'pootle update_user_email username email'. Nó, b'fhéidir, pootle merge_user or purge_user commands"
 
 #: checks.py:88
 msgid "Your version of Django is too old."
@@ -1243,9 +1235,9 @@ msgid "Your version of Redis is too old."
 msgstr "Tá leagan róshean de Redis agat."
 
 #: checks.py:136
-#, fuzzy, python-format
+#, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "Nuashonraigh an pacáiste Redis ar do chóras"
+msgstr "Ní mór duit an pacáiste Redis a nuashonrú, leagan %s ar a laghad"
 
 #: checks.py:146
 msgid "No RQ Worker running."
@@ -1281,7 +1273,7 @@ msgstr "Deimhnigh do shocrú CACHES"
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `stats`."
-msgstr ""
+msgstr "Caithfidh tú cumraíochtaí difriúla django_redis.cache.RedisCache a úsáid le haghaidh `default`, `redis` and `stats`."
 
 #: checks.py:194
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1396,82 +1388,83 @@ msgstr "Suiteáil an pacáiste nó athraigh POOTLE_MARKUP_FILTER."
 #: checks.py:296
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] gan INDEX_NAME."
 
 #: checks.py:297
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Socraigh INDEX_NAME ar POOTLE_TM_SERVER['%s']."
 
 #: checks.py:303
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Cóipeáil INDEX_NAME '%s' ar POOTLE_TM_SERVER."
 
 #: checks.py:305
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Socraigh INDEX_NAME difriúil ar gach freastalaí in POOTLE_TM_SERVER."
 
 #: checks.py:315
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] gan ENGINE."
 
 #: checks.py:316
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Socraigh ENGINE ar POOTLE_TM_SERVER['%s']."
 
 #: checks.py:323
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] gan HOST."
 
 #: checks.py:324
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Socraigh HOST ar POOTLE_TM_SERVER['%s']."
 
 #: checks.py:331
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] gan PORT."
 
 #: checks.py:332
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Socraigh PORT ar POOTLE_TM_SERVER['%s']."
 
 #: checks.py:341
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "WEIGHT níos lú ná 0.0 nó níos mó ná 1.0 ar POOTLE_TM_SERVER['%s']"
 
 #: checks.py:343
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Socraigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) ar POOTLE_TM_SERVER['%s']."
 
 #: checks.py:351
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS gan %s."
 
 #: checks.py:352
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Socraigh %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:359
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_MARKUP_FILTER neamhbhailí."
+msgstr "Luach neamhbhailí ar %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:361
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "Socraigh POOTLE_MARKUP_FILTER."
+msgstr "Socraigh luach bailí ar %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:385
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1495,19 +1488,19 @@ msgstr ""
 
 #: checks.py:423
 msgid "Email server is not available."
-msgstr ""
+msgstr "Níl an freastalaí ríomhphoist ar fáil."
 
 #: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
-msgstr ""
+msgstr "Féach ar do shocrú ríomhphoist agus deimhnigh go bhfuil an freastalaí ríomhphoist ag obair mar is ceart."
 
 #: checks.py:446
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Leasú ar iarraidh nó luach mícheart."
 
 #: checks.py:447
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Úsáid `revision --restore` chun áiritheoir na leasuithe a athshocrú."
 
 #: core/browser.py:26
 msgid "Project"
@@ -1629,9 +1622,8 @@ msgid "Can review suggestions"
 msgstr "Is féidir moltaí a athbhreithniú"
 
 #: core/initdb.py:149
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Bainistiú Django"
+msgstr "Is féidir tascanna bainistíochta a dhéanamh"
 
 #: core/views.py:151
 msgid "You cannot access this page."
@@ -1884,17 +1876,15 @@ msgstr "Fo-iomlán"
 #: templates/admin/detailed_reports.html:184
 #: templates/admin/detailed_reports.html:222
 msgid "MT"
-msgstr ""
+msgstr "Ríomhaistriúchán"
 
 #: templates/admin/detailed_reports.html:218
-#, fuzzy
 msgid "Subactions"
-msgstr "Feidhmeanna"
+msgstr "Foghníomhartha"
 
 #: templates/admin/detailed_reports.html:219
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Aistriúchán"
+msgstr "Aistriúchán Amh"
 
 #: templates/admin/detailed_reports.html:249
 #: templates/admin/detailed_reports.html:308
@@ -2071,9 +2061,8 @@ msgid "Fix critical errors"
 msgstr "Ceartaigh earráidí criticiúla"
 
 #: templates/browser/_actions.html:11
-#, fuzzy
 msgid "Critical errors"
-msgstr "Earráidí criticiúla:"
+msgstr "Earráidí criticiúla"
 
 #: templates/browser/_actions.html:19
 msgid "Review suggestions"
@@ -2084,9 +2073,8 @@ msgid "Continue translation"
 msgstr "Lean ort ag aistriú"
 
 #: templates/browser/_actions.html:37
-#, fuzzy
 msgid "Needs translation"
-msgstr "Tá aistriúchán de dhíth"
+msgstr "Aistriúchán de dhíth"
 
 #: templates/browser/_actions.html:45
 msgid "View all"
@@ -2120,44 +2108,39 @@ msgid "Failing Checks"
 msgstr "Fadhbanna"
 
 #: templates/browser/index.html:66
-#, fuzzy
 msgid "more..."
-msgstr "Tuilleadh..."
+msgstr "níos mó..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr ""
+msgstr "níos lú..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Na Daoine A Rinne An Chuid Is Mó"
+msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Updates"
-msgstr "Nuashonraigh"
+msgstr "Nuashonruithe"
 
 #: templates/browser/index.html:89 templates/browser/index.html.py:99
-#, fuzzy
 msgid "Last action:"
-msgstr "An gníomh is déanaí"
+msgstr "An gníomh is déanaí:"
 
 #: templates/browser/index.html:95
-#, fuzzy
 msgid "Translations"
-msgstr "Aistriúchán"
+msgstr "Aistriúcháin"
 
 #: templates/browser/index.html:140
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
-msgstr ""
+msgstr "Tá na staitisticí as dáta. Féach ar an <a href=\"%(docs_url)s\">doiciméadú</a> chun déileáil le fadhbanna den sórt seo."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "Seans go bhfuil na staitisticí ar an leathanach seo as dáta."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2204,9 +2187,8 @@ msgid "No user contributions yet."
 msgstr "Níl aon rud déanta ag úsáideoirí fós."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Na Daoine A Rinne An Chuid Is Mó"
+msgstr "Na daoine a rinne an chuid is mó:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html.py:7
 #: templates/core/xhr_captcha.html:8
@@ -2462,14 +2444,12 @@ msgid "User suggestions"
 msgstr "Moltaí ó úsáideoirí"
 
 #: templates/editor/units/edit.html:310
-#, fuzzy
 msgid "More options"
-msgstr "Athraigh na roghanna"
+msgstr "Níos mó roghanna"
 
 #: templates/editor/units/edit.html:312
-#, fuzzy
 msgid "Less options"
-msgstr "Athraigh na roghanna"
+msgstr "Níos lú roghanna"
 
 #: templates/editor/units/edit.html:317
 msgid "Accept suggestion"
@@ -2534,14 +2514,14 @@ msgid "Last comment removed"
 msgstr "Baineadh an nóta tráchta is déanaí"
 
 #: templates/editor/units/xhr_timeline.html:38
-#, fuzzy, python-format
+#, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "athbhreithnithe ag <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "Balbhaíodh deimhniú <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:42
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "athbhreithnithe ag <a href=\"%(profile_url)s\">%(reviewer)s</a>"
+msgstr "Díbhalbhaíodh deimhniú <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2683,14 +2663,14 @@ msgstr "Logáil Isteach"
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr ""
+msgstr "Cruthaíodh tionscadal aistriúcháin (%(tp)s) ag %(url)s, agus nuashonraíodh é."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr ""
+msgstr "Tharla earráid agus an tionscadal aistriúcháin á chruthú (%(tp)s). Téigh i dteagmháil le riarthóir do chórais."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2783,7 +2763,7 @@ msgid ""
 "terminology' and use the same file extension (format) as the rest of the "
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
-msgstr ""
+msgstr "Le húsáid a bhaint as an gcóras téarmaíochta, cuir comhad téarmaíochta le do thionscadal aistriúcháin. Caithfidh tú an t-ainm 'pootle-terminology' a chur ar an gcomhad, san fhormáid chéanna leis an chuid eile de na comhaid sa tionscadal. Bainfear úsáid as an comhad téarmaíochta seo chomh maith le moltaí ón tionscadal speisialta 'Terminology'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -2796,7 +2776,7 @@ msgstr "Comhad"
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
-"Nuair atá comhaid uasluchtaithe agat, beidh tú in ann téarmaí a chuir leo, "
+"Tar éis duit comhaid a uaslódáil, beidh tú in ann téarmaí a chuir leo, "
 "téarmaí a chur in eagar agus téarmaí a scriosadh."
 
 #: templates/user/profile.html:13
@@ -2821,12 +2801,11 @@ msgid "Tweet this!"
 msgstr "Comhroinn ar Twitter!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Níl aon rud déanta sa mhí seo caite"
+msgstr "Níl aon rud déanta le mí anuas"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
@@ -2834,12 +2813,12 @@ msgstr ""
 "Mise rannpháirtí #%(pos)s i %(lang_name)s an mhí seo ar %(server_title)s! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
 msgstr "Rannpháirtí #%(pos)s i %(lang_name)s an mhí seo"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
@@ -2982,9 +2961,6 @@ msgstr "Logáil isteach"
 
 #~ msgid "added suggestion for %(source_string)s"
 #~ msgstr "cuireadh moladh le %(source_string)s"
-
-#~ msgid "uploaded a file"
-#~ msgstr "uasluchtaíodh comhad"
 
 #~ msgid "muted %(check_name)s for %(source_string)s"
 #~ msgstr "balbhaíodh deimhniú %(check_name)s do %(source_string)s"
@@ -3543,19 +3519,19 @@ msgstr "Logáil isteach"
 #~ msgstr "(Cuspóir an tionscnaimh)"
 
 #~ msgid "Download (.zip)"
-#~ msgstr "Íosluchtaigh (.zip)"
+#~ msgstr "Íoslódáil (.zip)"
 
 #~ msgid "Download XLIFF"
-#~ msgstr "Íosluchtaigh XLIFF"
+#~ msgstr "Íoslódáil XLIFF"
 
 #~ msgid "Export"
 #~ msgstr "Easpórtáil"
 
 #~ msgid "Download"
-#~ msgstr "Íosluchtaigh"
+#~ msgstr "Íoslódáil"
 
 #~ msgid "Upload"
-#~ msgstr "Uasluchtaigh"
+#~ msgstr "Uaslódáil"
 
 #~ msgid "Update from VCS"
 #~ msgstr "Nuashonraigh ón VCS"
@@ -3585,7 +3561,7 @@ msgstr "Logáil isteach"
 #~ msgstr "Déan moladh as gach aistriúchán nua"
 
 #~ msgid "Upload to"
-#~ msgstr "Uasluchtaigh go"
+#~ msgstr "Uaslódáil go"
 
 #~ msgid "File has been deleted."
 #~ msgstr "Scriosadh an comhad."
@@ -3597,16 +3573,16 @@ msgstr "Logáil isteach"
 #~ msgstr "Níl cead agat comhaid a fhorscríobh anseo."
 
 #~ msgid "You do not have rights to upload new files here."
-#~ msgstr "Níl cead agat comhaid nua a uasluchtú anseo."
+#~ msgstr "Níl cead agat comhaid nua a uaslódáil anseo."
 
 #~ msgid "You do not have rights to upload files here."
-#~ msgstr "Níl cead agat comhaid a uasluchtú anseo."
+#~ msgstr "Níl cead agat comhaid a uaslódáil anseo."
 
 #~ msgid "Goal"
 #~ msgstr "Cuspóir"
 
 #~ msgid "Upload File"
-#~ msgstr "Uasluchtaigh comhad"
+#~ msgstr "Uaslódáil comhad"
 
 #~ msgid "Nothing to show"
 #~ msgstr "Faic le teaspáint"
@@ -3663,7 +3639,7 @@ msgstr "Logáil isteach"
 #~ msgstr "Is féidir féachaint ar thionscadal aistriúcháin"
 
 #~ msgid "Can download archives of translation projects"
-#~ msgstr "Is féidir cartlann tionscadail a íosluchtú"
+#~ msgstr "Is féidir cartlann tionscadail a íoslódáil"
 
 #~ msgid "Can commit to version control"
 #~ msgstr ""
@@ -4093,7 +4069,7 @@ msgstr "Logáil isteach"
 #~ msgstr "(roghnaigh chun úsáideoir a chur leis)"
 
 #~ msgid "Download PO"
-#~ msgstr "Íosluchtaigh an PO"
+#~ msgstr "Íoslódáil an PO"
 
 #~ msgid "Start"
 #~ msgstr "An Tús"
@@ -4271,7 +4247,7 @@ msgstr "Logáil isteach"
 #~ msgstr ""
 #~ "Is tairseach gréasáin simplí é <strong>Pootle</strong> a ligeann duit "
 #~ "<strong>aistriú</strong>! De bharr gur <strong>Oideasra Saor In Aisce</"
-#~ "strong> é Pootle, is féidir leat é a íosluchtú agus do leagan féin de a "
+#~ "strong> é Pootle, is féidir leat é a íoslódáil agus do leagan féin de a "
 #~ "rith más mian leat. Is féidir cabhrú leis an fhorbairt freisin ar mórán "
 #~ "bealaí (ní gá duit bheith in ann ríomhoideas a chruthú)."
 
@@ -4288,7 +4264,7 @@ msgstr "Logáil isteach"
 #~ msgstr "%s: Tionscadal %s, Béarla %s"
 
 #~ msgid "Cannot upload file, no file attached"
-#~ msgstr "Ní féidir an comhad a huasluchtú, níl comhad ceangailte leis"
+#~ msgstr "Ní féidir an comhad a huaslódáil, níl comhad ceangailte leis"
 
 #~ msgid "Assign Strings"
 #~ msgstr "Sann Teaghráin"
@@ -4306,7 +4282,7 @@ msgstr "Logáil isteach"
 #~ msgstr "Cuir sprioc leis"
 
 #~ msgid "Select file to upload"
-#~ msgstr "Roghnaigh comhad le uasluchtú"
+#~ msgstr "Roghnaigh comhad le uaslódáil"
 
 #~ msgid "Overwrite"
 #~ msgstr "Forscríobh"
