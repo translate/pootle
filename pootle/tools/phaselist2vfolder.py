@@ -13,11 +13,14 @@ import json
 # Config
 # Goals file to convert to JSON
 phaselistfile = 'firefox.phaselist'
+
 # Name of the project on Pootle
 project = "firefox"
+
 # Mapping of goals and priorities, default will be 1.0
 priorities = {
-    'shared': 1.0,
+    'tbshared': 1.0,
+    'androidshared': 1.0,
     'user1': 5.0,
     'lang': 0.9,
     'user2': 4.0,
@@ -25,16 +28,18 @@ priorities = {
     'config1': 3.0,
     'user4': 2.0,
     'config2': 2.0,
+    'configx': 1.0,
     'install': 1.0,
     'platform': 1.0,
     'other': 0.9,
     '1': 0.9,
     'developers': 0.5,
-    'security': 0.4,
+    'security1': 0.4,
     'notnb': 0.3,
     'never': 0.1,
     'langpack': 6.0,
 }
+
 # If a goal should be marked as not public
 not_public = [
     'notnb',
@@ -54,17 +59,11 @@ with open(phaselistfile) as phaselist:
                 vfolder['filters']['files'].append(pofile)
                 break
         else:
-            priority = 1.0
-            if goal in priorities:
-                priority = priorities[goal]
-            public = True
-            if goal in not_public:
-                public = False
             vfolders.append({
                 'name': goal,
                 'location': '/{LANG}/%s/' % project,
-                'priority': priority,
-                'is_public': public,
+                'priority': priorities.get(goal, 1.0),
+                'is_public': goal not in not_public,
                 'filters': {
                     'files': [
                         pofile,
@@ -72,4 +71,4 @@ with open(phaselistfile) as phaselist:
                 }
             })
 
-print json.dumps(vfolders, sort_keys=True, indent=4)
+print(json.dumps(vfolders, sort_keys=True, indent=4))
