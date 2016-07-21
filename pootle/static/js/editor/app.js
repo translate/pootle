@@ -1341,15 +1341,13 @@ PTL.editor = {
 
   /* reDraws the translate table rows */
   reDraw(newTbody) {
-    const $oldRows = this.$editorBody.find('tr');
-
     // Remove autosize event listeners for textarea before removing
     autosize.destroy(document.querySelectorAll('textarea.expanding'));
 
-    $oldRows.remove();
+    this.$editorBody.find('tr').remove();
 
     if (newTbody !== undefined) {
-      this.$editorBody.append(newTbody);
+      this.$editorBody.html(newTbody);
 
       this.ready();
     }
