@@ -258,12 +258,11 @@ msgstr ""
 "eagar."
 
 #: static/js/admin/components/User/UserForm.js:47
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Nóta: má scriosann tú an t-úsáideoir, cuirfear a c(h)uid moltaí agus "
+"Nóta: má scriosann tú úsáideoir, cuirfear a c(h)uid nótaí tráchta, moltaí agus "
 "aistriúchán i leith úsáideora gan ainm (nobody)."
 
 #: static/js/admin/components/User/UserForm.js:63
@@ -351,7 +350,7 @@ msgstr "Tuairiscí"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Taispeánfar réamhamharc anseo."
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
@@ -542,20 +541,18 @@ msgid "Social Verification"
 msgstr "Deimhniú Sóisialta"
 
 #: static/js/browser/components/VisibilityToggle.js:52
-#, fuzzy
 msgid "Show disabled"
-msgstr "díchumasaithe"
+msgstr "Taispeáin díchumasaithe"
 
 #: static/js/browser/components/VisibilityToggle.js:53
-#, fuzzy
 msgid "Hide disabled"
-msgstr "díchumasaithe"
+msgstr "Folaigh díchumasaithe"
 
 #: static/js/editor/app.js:305 static/js/editor/app.js:619
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
-msgstr ""
+msgstr "Athruithe gan sábháil sa teaghrán seo. Caillfidh tú na hathruithe seo má fhágann tú."
 
 #: static/js/editor/app.js:340
 msgid ""
@@ -622,9 +619,8 @@ msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
 #: static/js/editor/app.js:1087
-#, fuzzy
 msgid "This string no longer exists."
-msgstr "Níl an t-aonad seo ann a thuilleadh."
+msgstr "Níl an teaghrán seo ann a thuilleadh."
 
 #: static/js/editor/app.js:1088
 msgid "Go back to browsing"
@@ -652,105 +648,104 @@ msgstr "Aistriúcháin cosúil leis seo"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Cuir an moladh in eagar sula nglacfaidh tú leis, más gá"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Cuir nóta tráchta roghnach leis (os comhair an tsaoil)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "Glac Leis"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "Diúltaigh"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "Uaslódáilte %(timeSince) ó shin"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a %d %b"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Ean"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Fea"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Már"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Aib"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "Bea"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Mei"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Iúl"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Lún"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "MFó"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "DFó"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Níl"
+msgstr "Samh"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Nol"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Domh"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Luan"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Máir"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Céad"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Déar"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Aoin"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Sath"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -774,58 +769,52 @@ msgstr "Clóscríobh le cuardach"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "Moltaí diúltaithe ó %s"
+msgstr "baineadh aistriúchán ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "Moltaí glactha ó %s"
+msgstr "glacadh moladh ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
-msgstr ""
+msgstr "uaslódáladh comhad"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "muted %(check)s for %(sourceString)s"
-msgstr "Moltaí glactha ó %s"
+msgstr "balbhaíodh %(check)s ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "díbhalbhaíodh %(check)s ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "added suggestion for %(sourceString)s"
-msgstr "Moltaí glactha ó %s"
+msgstr "cuireadh moladh nua le %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "Moltaí diúltaithe ó %s"
+msgstr "diúltaíodh moladh ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
 msgid "translated %(sourceString)s"
-msgstr ""
+msgstr "rinneadh aistriúchán ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
 msgid "edited %(sourceString)s"
-msgstr ""
+msgstr "cuireadh %(sourceString)s in eagar"
 
 #: static/js/shared/components/UserEvent.js:116
 msgid "pre-translated %(sourceString)s"
-msgstr ""
+msgstr "rinneadh réamhaistriúchán ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
 msgid "reviewed %(sourceString)s"
-msgstr ""
+msgstr "rinneadh athbhreithniú ar %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "marked as needs work %(sourceString)s"
-msgstr "Moltaí glactha ó %s"
+msgstr "marcáladh gur gá %(sourceString)s a dheimhniú"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
@@ -833,7 +822,7 @@ msgstr "díchumasaithe"
 
 #: static/js/stats.js:58
 msgid "Congratulations! You have completed this task!"
-msgstr ""
+msgstr "Comhghairdeas! Chríochnaigh tú an tasc seo!"
 
 #: static/js/stats.js:446
 msgid "Collapse details"
@@ -960,26 +949,25 @@ msgstr "Cúpla soicind ó shin"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr ""
+msgstr "Seoladh Ríomhphoist"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
-msgstr ""
+msgstr "Cuir isteach do sheoladh ríomhphoist agus seolfaimid teachtaireacht ina bhfuil nasc lenar féidir d'fhocal faire a athrú."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
-msgstr ""
+msgstr "Níl, GRMA"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
-#, fuzzy
 msgid "Send Email"
-msgstr "Seol an Ríomhphost Arís"
+msgstr "Seol Ríomhphost"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Níl cead agat cuntais nua a chruthú."
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -987,7 +975,7 @@ msgid ""
 "We found a user with <span>%s</span> email in our system. Please provide the "
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
-msgstr ""
+msgstr "D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%s</span> inár gcóras. Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní bheidh sé ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle agus do chuntas %s."
 
 #: static/js/browser.js:261
 msgid "All Languages"
@@ -1083,14 +1071,14 @@ msgstr "Fo-iomlán"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "uair an chloig"
-msgstr[1] "uair an chloig"
-msgstr[2] "huaire an chloig"
-msgstr[3] "n-uaire an chloig"
-msgstr[4] "uair an chloig"
+msgstr[0] "%s uair an chloig"
+msgstr[1] "%s uair an chloig"
+msgstr[2] "%s huaire an chloig"
+msgstr[3] "%s n-uaire an chloig"
+msgstr[4] "%s uair an chloig"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
@@ -1134,13 +1122,13 @@ msgid "Show"
 msgstr "Taispeáin"
 
 #: templates/editor/units/xhr_tm.html:15
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo;"
+"%(project)s</span>&rdquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format
