@@ -186,6 +186,11 @@ class VirtualFolder(models.Model):
         vfolder_post_save.send(sender=self.__class__, instance=self,
                                projects=list(projects))
 
+    def delete(self, *args, **kwargs):
+        self.vf_treeitems.all().delete()
+
+        super(VirtualFolder, self).delete(*args, **kwargs)
+
     def clean_fields(self):
         """Validate virtual folder fields."""
         if self.priority <= 0:
