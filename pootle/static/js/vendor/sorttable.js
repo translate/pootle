@@ -23,13 +23,6 @@
 
 sorttable = {
   init: function() {
-    // quit if this function has already been called
-    if (arguments.callee.done) return;
-    // flag this function so we don't do the same thing twice
-    arguments.callee.done = true;
-    // kill the timer
-    if (_timer) clearInterval(_timer);
-
     if (!document.createElement || !document.getElementsByTagName) return;
 
     sorttable.DATE_RE = /^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/;
@@ -401,35 +394,7 @@ sorttable = {
 
 // Dean Edwards/Matthias Miller/John Resig
 
-/* for Mozilla/Opera9 */
-if (document.addEventListener) {
-    document.addEventListener("DOMContentLoaded", sorttable.init, false);
-}
-
-/* for Internet Explorer */
-/*@cc_on @*/
-/*@if (@_win32)
-    var dummy = (location.protocol == "https:") ? "//:" : "javascript:void(0)";
-    document.write('<script id=__ie_onload defer src="' + dummy + '"><\/script>');
-    var script = document.getElementById("__ie_onload");
-    script.onreadystatechange = function() {
-        if (this.readyState == "complete") {
-            sorttable.init(); // call the onload handler
-        }
-    };
-/*@end @*/
-
-/* for Safari */
-if (/WebKit/i.test(navigator.userAgent)) { // sniff
-    var _timer = setInterval(function() {
-        if (/loaded|complete/.test(document.readyState)) {
-            sorttable.init(); // call the onload handler
-        }
-    }, 10);
-}
-
-/* for other browsers */
-window.onload = sorttable.init;
+document.addEventListener("DOMContentLoaded", sorttable.init, false);
 
 // written by Dean Edwards, 2005
 // with input from Tino Zijdel, Matthias Miller, Diego Perini
