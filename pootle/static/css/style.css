@@ -1759,7 +1759,7 @@ html[dir="rtl"] .summary-3-col
 }
 
 
-@media screen and (max-width: 1440px)
+@media screen and (max-width: 1600px)
 {
     .path-summary-more .summary-1-col,
     .path-summary-more .summary-2-col
@@ -1819,7 +1819,7 @@ html[dir="rtl"] .summary-3-col
 #top-stats .path-summary-more h3
 {
     border: 0;
-    margin: 2em 0 0;
+    margin: 1.6em 0 0 0;
 }
 
 #top-stats .path-summary-more h3.top
