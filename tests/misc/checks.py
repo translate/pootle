@@ -165,6 +165,12 @@ def test_uppercase_placeholders(source_string, target_string, should_skip):
     (u'{{#a}}a{{/a}}', u'{{a}}A{{/a#}}', False),
     (u'{{#a}}a{{/a}}', u'{{# a}}A{{/ a}}', False),
 
+    # The check should fire when placeholders are translated
+    (u'{{FOO}}a{{/FOO}}', u'{{OOF}}A{{/OOF}}', False),
+    (u'{{FOO}}a{{BAR}}', u'{{FOO}}A{{RAB}}', False),
+    (u'{{FOO}}a{{BAR}}', u'{{OOF}}A{{BAR}}', False),
+    (u'{{FOO}}a{{BAR}}', u'{{OOF}}A{{RAB}}', False),
+
     # Ignore the check altogether for Plurr-like source strings
     (u'{:{BAR}}', u'Foo', True),
     (u'{:{:a|b}|c}', u'Foo', True),
