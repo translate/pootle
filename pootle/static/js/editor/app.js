@@ -551,8 +551,8 @@ PTL.editor = {
             uId = this.units.uIds[this.offsetRequested - this.initialOffset - 1];
           } else {
             uId = this.units.uIds[0];
-            $.history.load(utils.updateHashPart('unit', uId));
           }
+          $.history.load(utils.updateHashPart('unit', uId));
         }
         this.offsetRequested = 0;
         this.setUnit(uId);
@@ -1746,20 +1746,23 @@ PTL.editor = {
       return;
     }
     index = Math.max(0, index - 1);
-
-    // if index is outside of current uids clear units first
-    if (index < this.initialOffset || index >= this.getOffsetOfLastUnit()) {
-      this.initialOffset = -1;
-      this.offset = 0;
-      this.offsetRequested = index + 1;
-      const newHash = utils.updateHashPart('offset',
-                                           this.getStartOfChunk(index),
-                                           ['unit']);
-      $.history.load(newHash);
-    } else if (index >= 0 && index <= this.units.total) {
-      const uId = this.units.uIds[(index - this.initialOffset)];
-      const newHash = utils.updateHashPart('unit', uId);
-      $.history.load(newHash);
+    if (index >= 0 && index <= this.units.total) {
+      // if index is outside of current uids clear units first
+      if (index < this.initialOffset || index >= this.getOffsetOfLastUnit()) {
+        this.initialOffset = -1;
+        this.offset = 0;
+        this.offsetRequested = index + 1;
+        $.history.load(utils.updateHashPart('offset',
+                                            this.getStartOfChunk(index),
+                                            ['unit']));
+      } else {
+        const uId = this.units.uIds[(index - this.initialOffset)];
+        const newHash = utils.updateHashPart('unit', uId);
+        $.history.load(utils.updateHashPart('offset',
+                                            this.getStartOfChunk(index),
+                                            [],
+                                            newHash));
+      }
     }
   },
 
