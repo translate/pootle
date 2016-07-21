@@ -51,10 +51,13 @@ export function getParsedHash(hash) {
 
 
 /* Updates current URL's hash */
-export function updateHashPart(part, newVal, removeArray) {
+export function updateHashPart(part, newVal, removeArray, hash) {
   const r = /([^&;=]+)=?([^&;]*)/g;
   const params = [];
-  const h = getHash();
+  let h = hash;
+  if (h === undefined) {
+    h = getHash();
+  }
   let ok = false;
   let e = r.exec(h);
 
