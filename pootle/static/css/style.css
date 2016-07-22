@@ -472,9 +472,10 @@ td.stats-name a:hover > i + span,
     margin: 0.5em 0;
 }
 
-.staticpage ol
+.staticpage ol,
+.staticpage ul
 {
-    margin-left: 2em;
+    margin: 0 2em;
 }
 
 .staticpage li
