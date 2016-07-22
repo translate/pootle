@@ -16,6 +16,7 @@ If you want to try it, check one of the following:
 ==================
 
 - Translation updates
+- JavaScript bugfixes
 
 
 2.8.0b2 brought the following changes:
