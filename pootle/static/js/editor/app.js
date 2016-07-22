@@ -161,7 +161,7 @@ PTL.editor = {
     this.$filterSortBy.select2(sortSelectOpts);
 
     /* Screenshot images */
-    $(document).on('click', '.js-dev-img', function displayScreenshot(e) {
+    $('#editor').on('click', '.js-dev-img', function displayScreenshot(e) {
       e.preventDefault();
 
       $(this).magnificPopup({
@@ -177,47 +177,47 @@ PTL.editor = {
      */
 
     /* State changes */
-    $(document).on('input', '.js-translation-area',
+    $('#editor').on('input', '.js-translation-area',
                    (e) => this.onTextareaChange(e));
-    $(document).on('change', 'input.fuzzycheck',
+    $('#editor').on('change', 'input.fuzzycheck',
                    () => this.onStateChange());
-    $(document).on('click', 'input.fuzzycheck',
+    $('#editor').on('click', 'input.fuzzycheck',
                    () => this.onStateClick());
-    $(document).on('input', '#id_translator_comment',
+    $('#editor').on('input', '#id_translator_comment',
                    () => this.handleTranslationChange());
 
     /* Suggest / submit */
-    $(document).on('click', '.switch-suggest-mode a',
+    $('#editor').on('click', '.switch-suggest-mode a',
                    (e) => this.toggleSuggestMode(e));
 
     /* Update focus when appropriate */
-    $(document).on('focus', '.focusthis', (e) => {
+    $('#editor').on('focus', '.focusthis', (e) => {
       PTL.editor.focused = e.target;
     });
-    $(document).on('focus', '.js-translation-area', (e) => {
+    $('#editor').on('focus', '.js-translation-area', (e) => {
       $(e.target).closest('.js-editor-area-wrapper').addClass('is-focused');
     });
-    $(document).on('blur', '.js-translation-area', (e) => {
+    $('#editor').on('blur', '.js-translation-area', (e) => {
       $(e.target).closest('.js-editor-area-wrapper').removeClass('is-focused');
     });
 
     /* General */
-    $(document).on('click', '.js-editor-reload', (e) => {
+    $('#editor').on('click', '.js-editor-reload', (e) => {
       e.preventDefault();
       $.history.load('');
     });
 
     /* Write TM results, special chars... into the currently focused element */
-    $(document).on('click', '.js-editor-copytext', (e) => this.copyText(e));
+    $('#editor').on('click', '.js-editor-copytext', (e) => this.copyText(e));
 
     /* Copy translator comment */
-    $(document).on('click', '.js-editor-copy-comment', (e) => {
+    $('#editor').on('click', '.js-editor-copy-comment', (e) => {
       const text = e.currentTarget.dataset.string;
       this.copyComment(text);
     });
 
     /* Copy original translation */
-    $(document).on('click', '.js-copyoriginal', (e) => {
+    $('#editor').on('click', '.js-copyoriginal', (e) => {
       const uId = e.currentTarget.dataset.uid;
       const sources = [
         ...document.querySelectorAll(`#js-unit-${uId} .js-translation-text`),
@@ -226,53 +226,53 @@ PTL.editor = {
     });
 
     /* Editor navigation/submission */
-    $(document).on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
-    $(document).on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
-    $(document).on('dblclick click', '.js-unit-index', (e) => this.unitIndex(e));
-    $(document).on('click', 'input.submit', (e) => {
+    $('#editor').on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
+    $('#editor').on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
+    $('#editor').on('dblclick click', '.js-unit-index', (e) => this.unitIndex(e));
+    $('#editor').on('click', 'input.submit', (e) => {
       e.preventDefault();
       this.handleSubmit();
     });
-    $(document).on('click', 'input.suggest', (e) => {
+    $('#editor').on('click', 'input.suggest', (e) => {
       e.preventDefault();
       this.handleSuggest();
     });
-    $(document).on('click', '#js-nav-prev', () => this.gotoPrev());
-    $(document).on('click', '#js-nav-next', () => this.gotoNext());
-    $(document).on('click', '.js-suggestion-reject', (e) => {
+    $('#editor').on('click', '#js-nav-prev', () => this.gotoPrev());
+    $('#editor').on('click', '#js-nav-next', () => this.gotoNext());
+    $('#editor').on('click', '.js-suggestion-reject', (e) => {
       e.stopPropagation();
       this.rejectSuggestion(e.currentTarget.dataset.suggId);
     });
-    $(document).on('click', '.js-suggestion-accept', (e) => {
+    $('#editor').on('click', '.js-suggestion-accept', (e) => {
       e.stopPropagation();
       this.acceptSuggestion(e.currentTarget.dataset.suggId);
     });
-    $(document).on('click', '.js-suggestion-toggle',
+    $('#editor').on('click', '.js-suggestion-toggle',
       (e) => this.toggleSuggestion(e, { canHide: true }));
 
     if (this.settings.canReview) {
-      $(document).on('click', '.js-user-suggestion',
+      $('#editor').on('click', '.js-user-suggestion',
         (e) => this.toggleSuggestion(e, { canHide: false }));
     }
 
-    $(document).on('click', '.js-translate-lightbox', () => this.closeSuggestion());
+    $('#editor').on('click', '.js-translate-lightbox', () => this.closeSuggestion());
 
-    $(document).on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
-    $(document).on('click', '.js-toggle-check', (e) => {
+    $('#editor').on('click', '#js-toggle-timeline', (e) => this.toggleTimeline(e));
+    $('#editor').on('click', '.js-toggle-check', (e) => {
       this.toggleCheck(e.currentTarget.dataset.checkId);
     });
 
     /* Filtering */
-    $(document).on('change', '#js-filter-status', () => this.filterStatus());
-    $(document).on('change', '#js-filter-checks', () => this.filterChecks());
-    $(document).on('change', '#js-filter-sort', () => this.filterSort());
-    $(document).on('click', '.js-more-ctx', () => this.moreContext());
-    $(document).on('click', '.js-less-ctx', () => this.lessContext());
-    $(document).on('click', '.js-show-ctx', () => this.showContext());
-    $(document).on('click', '.js-hide-ctx', () => this.hideContext());
+    $('#editor').on('change', '#js-filter-status', () => this.filterStatus());
+    $('#editor').on('change', '#js-filter-checks', () => this.filterChecks());
+    $('#editor').on('change', '#js-filter-sort', () => this.filterSort());
+    $('#editor').on('click', '.js-more-ctx', () => this.moreContext());
+    $('#editor').on('click', '.js-less-ctx', () => this.lessContext());
+    $('#editor').on('click', '.js-show-ctx', () => this.showContext());
+    $('#editor').on('click', '.js-hide-ctx', () => this.hideContext());
 
     /* Commenting */
-    $(document).on('click', '.js-editor-comment', (e) => {
+    $('#editor').on('click', '.js-editor-comment', (e) => {
       e.preventDefault();
       const $elem = $('.js-editor-comment-form');
       const $comment = $('.js-editor-comment');
@@ -284,13 +284,13 @@ PTL.editor = {
         $elem.css('display', 'none');
       }
     });
-    $(document).on('submit', '#js-comment-form', (e) => this.addComment(e));
-    $(document).on('click', '.js-comment-remove', (e) => this.removeComment(e));
+    $('#editor').on('submit', '#js-comment-form', (e) => this.addComment(e));
+    $('#editor').on('click', '.js-comment-remove', (e) => this.removeComment(e));
 
     /* Misc */
-    $(document).on('click', '.js-editor-msg-hide', () => this.hideMsg());
+    $('#editor').on('click', '.js-editor-msg-hide', () => this.hideMsg());
 
-    $(document).on('click', '.js-toggle-raw', (e) => {
+    $('#editor').on('click', '.js-toggle-raw', (e) => {
       e.preventDefault();
       $('.js-translate-translation').toggleClass('raw');
       $('.js-toggle-raw').toggleClass('selected');
