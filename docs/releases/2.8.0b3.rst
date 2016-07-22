@@ -4,7 +4,7 @@ Welcome to the new Pootle 2.8.0b3
 
 *Released on 22 July 2016*
 
-This is the second beta of 2.8.0, our next major Pootle release.
+This is the third beta of 2.8.0, our next major Pootle release.
 
 If you want to try it, check one of the following:
 
