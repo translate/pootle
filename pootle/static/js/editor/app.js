@@ -354,6 +354,10 @@ PTL.editor = {
     /* XHR activity indicator */
     $(document).ajaxStart(() => {
       clearTimeout(this.delayedActivityTimer);
+      if (this.isLoading) {
+        return;
+      }
+
       this.delayedActivityTimer = setTimeout(() => {
         this.showActivity();
       }, 3000);
