@@ -193,7 +193,7 @@ export function relativeDate(date) {
  *
  * `onChange` function will be fired when the select choice changes.
  */
-export function makeSelectableInput(selector, options, onChange, onSelecting) {
+export function makeSelectableInput(selector, options) {
   // XXX: Check if this works with multiple selects per page
   const $el = $(selector);
 
@@ -203,8 +203,6 @@ export function makeSelectableInput(selector, options, onChange, onSelecting) {
 
   $el.select2(options);
 
-  $el.on('change', onChange);
-  $el.on('select2-selecting', onSelecting);
 }
 
 
