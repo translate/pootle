@@ -41,6 +41,7 @@ urlpatterns += [
     url(r'', include('pootle_app.urls')),
     url(r'^projects/', include('pootle_project.urls')),
     url(r'', include('pootle_terminology.urls')),
+    url(r'', include('pootle_statistics.urls')),
     url(r'', include('pootle_store.urls')),
     url(r'', include('pootle_language.urls')),
     url(r'', include('pootle_translationproject.urls')),

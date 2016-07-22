@@ -12,7 +12,6 @@ from translate.lang import data
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import Http404, QueryDict
 from django.shortcuts import redirect
@@ -29,10 +28,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
-from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils import dateformat
-from pootle.core.utils.stats import (get_top_scorers_data,
-                                     TOP_CONTRIBUTORS_CHUNK_SIZE)
 from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
@@ -516,35 +512,6 @@ def get_stats(request, *args, **kwargs):
                     vfolder_treeitem.get_stats(include_children=False)
 
     return JsonResponse(stats)
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def get_contributors(request, *args, **kwargs):
-    User = get_user_model()
-    language_code, project_code = split_pootle_path(request.pootle_path)[:2]
-    try:
-        offset = int(request.GET.get('offset', 0))
-        if offset < 0:
-            offset = 0
-    except ValueError:
-        offset = 0
-
-    top_scorers = User.top_scorers(
-        project=project_code,
-        language=language_code,
-        limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1,
-        offset=offset
-    )
-
-    return JsonResponse(
-        get_top_scorers_data(
-            top_scorers,
-            TOP_CONTRIBUTORS_CHUNK_SIZE
-        )
-    )
 
 
 @ajax_required
