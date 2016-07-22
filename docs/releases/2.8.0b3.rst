@@ -18,6 +18,29 @@ If you want to try it, check one of the following:
 - Translation updates
 
 
+2.8.0b2 brought the following changes:
+
+- JavaScript fixes addressing performance and memory leaks in the editor
+- Extensive review and fixes to RTL layout in the editor and browse views
+- Browse pages:
+
+  - Improvements to the statistics table for overly long filenames and smaller screens
+  - Less intrusive and more helpful statistics refresh notice 
+
+- Commands:
+
+  - Rewrote :djadmin:`contributors` command
+  - Added :djadmin:`init_fs_project`
+
+- Upload:
+
+  - Disabled upload for non-PO projects as conflict handling currently only works in PO
+  - Admins can upload translations as another user
+
+- Added zlib1g-dev to system requirements for correct building of lxml
+- Addressed unlocalised parts of Pootle and updated translations
+
+
 Changes in Requirements
 =======================
 
