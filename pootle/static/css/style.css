@@ -1342,6 +1342,11 @@ html[dir="rtl"] .check-count
     display: inherit;
 }
 
+.more-top-contributors
+{
+    padding: 9px 0;
+}
+
 div.small
 {
     font-size: 1em;

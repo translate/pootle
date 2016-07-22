@@ -122,7 +122,6 @@ html[dir="rtl"] .path-summary-more .top-scorers .top-scorer
 {
     font-size: 1em;
     width: 100%;
-    table-layout: fixed;
 }
 
 .path-summary-more .top-scorers-table tr td.number:last-child
@@ -139,7 +138,15 @@ html[dir="rtl"] .path-summary-more .top-scorers-table tr td.number:last-child
 .path-summary-more .top-scorers-table tr td.number:first-child
 {
     text-align: left;
-    width: 2em;
+    width: 1em;
+    padding-right: 1em;
+}
+
+html[dir="rtl"] .path-summary-more .top-scorers-table tr td.number:first-child
+{
+    text-align: right;
+    padding-left: 1em;
+    padding-right: auto;
 }
 
 .top-scorer a

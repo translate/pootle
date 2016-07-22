@@ -45,7 +45,8 @@ from .helpers import (SIDEBAR_COOKIE_NAME,
 from .http import JsonResponse, JsonResponseBadRequest
 from .url_helpers import get_path_parts, get_previous_url
 from .utils.json import PootleJSONEncoder
-from .utils.stats import get_translation_states
+from .utils.stats import (get_top_scorers_data, get_translation_states,
+                          TOP_CONTRIBUTORS_CHUNK_SIZE)
 
 
 def check_directory_permission(permission_codename, request, directory):
@@ -685,6 +686,11 @@ class PootleBrowseView(PootleDetailView):
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
 
         language_code, project_code = split_pootle_path(self.pootle_path)[:2]
+        top_scorers = User.top_scorers(
+            project=project_code,
+            language=language_code,
+            limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1,
+        )
 
         ctx.update(
             {'page': 'browse',
@@ -701,10 +707,12 @@ class PootleBrowseView(PootleDetailView):
              'url_action_view_all': url_action_view_all,
              'table': self.table,
              'is_store': self.is_store,
-             'top_scorers': User.top_scorers(project=project_code,
-                                             language=language_code,
-                                             limit=10),
+             'top_scorers': top_scorers,
+             'top_scorers_data': get_top_scorers_data(
+                 top_scorers,
+                 TOP_CONTRIBUTORS_CHUNK_SIZE),
              'browser_extends': self.template_extends})
+
         return ctx
 
 

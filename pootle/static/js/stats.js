@@ -20,6 +20,7 @@ import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
 import cookie from 'utils/cookie';
 
+import Stats from './browser/components/Stats';
 import VisibilityToggle from './browser/components/VisibilityToggle';
 import msg from './msg';
 
@@ -62,7 +63,6 @@ const stats = {
     }
 
     this.retries = 0;
-
     const isExpanded = (options.isInitiallyExpanded ||
                         window.location.search.indexOf('?details') !== -1);
     this.state = {
@@ -118,6 +118,15 @@ const stats = {
       ReactDOM.render(<VisibilityToggle uiLocaleDir={options.uiLocaleDir} />,
                       document.querySelector('.js-mnt-visibility-toggle'));
     }
+
+    ReactDOM.render(
+      <Stats
+        hasMoreContributors={options.topContributorsData.has_more_items}
+        topContributors={options.topContributorsData.items}
+        pootlePath={this.pootlePath}
+      />,
+      document.querySelector('#js-mnt-top-contributors')
+    );
 
     // Retrieve async data if needed
     if (isExpanded) {

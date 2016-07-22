@@ -75,9 +75,7 @@
       {% if top_scorers %}
         <div class="summary-2-col">
           <h3 class="top">{% trans "Top Contributors for the Last 30 Days" %}</h3>
-          <div class="bd">
-            {% include 'core/_top_scorers_as_table.html' %}
-          </div>
+          <div id="js-mnt-top-contributors" class="bd"></div>
         </div>
       {% endif %}
       <div class="summary-3-col">
@@ -190,6 +188,7 @@ $(function () {
     isAdmin: {{ has_admin_access|yesno:"true,false" }},
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
     initialData: {{ stats|to_js }},
+    topContributorsData: {{ top_scorers_data|to_js }},
     statsRefreshAttemptsCount: {{ stats_refresh_attempts_count }},
     uiLocaleDir: '{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}',
   });

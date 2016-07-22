@@ -31,7 +31,7 @@ const StatsAPI = {
     const body = { path, offset };
 
     return fetch({
-      body: body,
+      body,
       url: `${this.apiRoot}contributors/`,
     });
   },
