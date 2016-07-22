@@ -440,8 +440,6 @@ function removeEvent(element, type, handler) {
 
 function handleEvent(event) {
   var returnValue = true;
-  // grab the event object (IE uses a global event object)
-  event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
   // get a reference to the hash table of event handlers
   var handlers = this.events[event.type];
   // execute each event handler
@@ -453,19 +451,6 @@ function handleEvent(event) {
   }
   return returnValue;
 };
-
-function fixEvent(event) {
-  // add W3C standard event methods
-  event.preventDefault = fixEvent.preventDefault;
-  event.stopPropagation = fixEvent.stopPropagation;
-  return event;
-};
-fixEvent.preventDefault = function() {
-  this.returnValue = false;
-};
-fixEvent.stopPropagation = function() {
-  this.cancelBubble = true;
-}
 
 // Dean's forEach: http://dean.edwards.name/base/forEach.js
 /*
