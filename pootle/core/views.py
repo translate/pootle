@@ -224,6 +224,8 @@ class APIView(View):
     json_encoder = PootleJSONEncoder()
     json_decoder = json.JSONDecoder()
 
+    m2m = ()
+
     @property
     def allowed_methods(self):
         methods = [m for m in self.http_method_names if hasattr(self, m)]
@@ -366,6 +368,12 @@ class APIView(View):
 
         raise Http404
 
+    def serialize_m2m(self, info, item):
+        for k in self.m2m:
+            info[k] = [
+                str(x) for x
+                in getattr(item, k).values_list("pk", flat=True)]
+
     def serialize_qs(self, queryset, single_object=False):
         """Serialize a queryset into a JSON object.
 
@@ -374,19 +382,22 @@ class APIView(View):
             If `False`, a JSON object is returned with an array of objects
             in `models` and the total object count in `count`.
         """
+
         if single_object or self.kwargs.get(self.pk_field_name):
-            values = queryset.values(*self.serialize_fields)
+            values = queryset.values(
+                *[k for k in self.serialize_fields if k not in self.m2m])
             # For single-item requests, convert ValuesQueryset to a dict simply
             # by slicing the first item
             serialize_values = values[0]
+            if self.m2m:
+                self.serialize_m2m(serialize_values, queryset[0])
         else:
             search_keyword = self.request.GET.get(self.search_param_name, None)
             if search_keyword is not None:
                 filter_by = self.get_search_filter(search_keyword)
                 queryset = queryset.filter(filter_by)
 
-            values = queryset.values(*self.serialize_fields)
-
+            values = queryset.all()
             # Process pagination options if they are enabled
             if isinstance(self.page_size, int):
                 try:
@@ -395,8 +406,29 @@ class APIView(View):
                     offset = (page_number - 1) * self.page_size
                 except ValueError:
                     offset = 0
-
                 values = values[offset:offset+self.page_size]
+            # handle m2m fields
+            if self.m2m:
+                serialize_fields = set(self.serialize_fields)
+                _serialize_fields = serialize_fields | set(["pk"])
+                all_values = []
+                # first retrieve the non-m2m fields
+                field_values = {
+                    x["pk"]: x
+                    for x
+                    in values.values(
+                        *[k for k in _serialize_fields if k not in self.m2m])}
+                # now add the m2m fields
+                related_fields = values.prefetch_related(*self.m2m).iterator()
+                for item in related_fields:
+                    info = field_values[item.pk]
+                    if "pk" not in serialize_fields:
+                        del info["pk"]
+                    self.serialize_m2m(info, item)
+                    all_values.append(info)
+                values = all_values
+            else:
+                values = values.values(*self.serialize_fields)
 
             serialize_values = {
                 'models': list(values),
