@@ -7,7 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 
 TEST_USERS = {
