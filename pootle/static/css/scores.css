@@ -103,6 +103,11 @@ html[dir="rtl"] .path-summary-more .path-summary-collapsed label
     display: block;
 }
 
+html[dir="rtl"] .path-summary-more .top-scorer .user-name
+{
+    display: inherit;
+}
+
 .path-summary-more .path-summary-collapsed .top-scorer .user-name
 {
     max-width: 10em;
@@ -149,6 +154,11 @@ html[dir="rtl"] .path-summary-more .top-scorers-table tr td.number:first-child
     padding-right: auto;
 }
 
+html[dir="rtl"] .path-summary-more .top-scorers-table tr td.number:first-child
+{
+    text-align: right;
+}
+
 .top-scorer a
 {
     position: relative;
@@ -170,4 +180,9 @@ html[dir="rtl"] .top-scorer .user-name
 {
     position: absolute;
     top: -3px;
+}
+
+html[dir="rtl"] .top-scorer img.avatar
+{
+    right: 0;
 }

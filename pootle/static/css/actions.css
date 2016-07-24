@@ -202,6 +202,12 @@ html[dir="rtl"] #translate-actions li
     vertical-align: text-top;
 }
 
+html[dir="rtl"] #translate-filters .breadcrumb
+{
+    margin-left: auto;
+    margin-right: 2em;
+}
+
 #translate-filters .breadcrumb .select2-container
 {
     top: 0;
