@@ -338,8 +338,9 @@ class PootleTestEnv(object):
 
     def setup_submissions(self):
         from pootle_store.models import Unit
+        from django.utils import timezone
 
-        year_ago = datetime.now() - timedelta(days=365)
+        year_ago = timezone.now() - timedelta(days=365)
         Unit.objects.update(creation_time=year_ago)
 
         for unit in Unit.objects.all():
@@ -390,6 +391,7 @@ class PootleTestEnv(object):
         from pootle_store.models import UNTRANSLATED, FUZZY, OBSOLETE, Unit
 
         from django.contrib.auth import get_user_model
+        from django.utils import timezone
 
         original_state = unit.state
         unit.created = created
@@ -444,7 +446,7 @@ class PootleTestEnv(object):
             # of SubmissionTypes.EDIT_TYPES
             old_target = unit.target
             old_state = unit.state
-            current_time = datetime.now() - timedelta(days=14)
+            current_time = timezone.now() - timedelta(days=14)
 
             unit.target_f = "Updated %s" % old_target
             unit._target_updated = True
