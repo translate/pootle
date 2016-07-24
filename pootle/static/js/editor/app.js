@@ -176,6 +176,17 @@ PTL.editor = {
      * Bind event handlers
      */
 
+    /* Editor toolbar navigation/search/filtering */
+    $('#toolbar').on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
+    $('#toolbar').on('dblclick click', '.js-unit-index', (e) => this.unitIndex(e));
+    $('#toolbar').on('click', '#js-nav-prev', () => this.gotoPrev());
+    $('#toolbar').on('click', '#js-nav-next', () => this.gotoNext());
+
+    /* Filtering */
+    $('#actions').on('change', '#js-filter-status', () => this.filterStatus());
+    $('#actions').on('change', '#js-filter-checks', () => this.filterChecks());
+    $('#actions').on('change', '#js-filter-sort', () => this.filterSort());
+
     /* State changes */
     $('#editor').on('input', '.js-translation-area',
                    (e) => this.onTextareaChange(e));
@@ -227,8 +238,6 @@ PTL.editor = {
 
     /* Editor navigation/submission */
     $('#editor').on('mouseup', 'tr.view-row, tr.ctx-row', this.gotoUnit);
-    $('#editor').on('keypress', '.js-unit-index', (e) => this.gotoIndex(e));
-    $('#editor').on('dblclick click', '.js-unit-index', (e) => this.unitIndex(e));
     $('#editor').on('click', 'input.submit', (e) => {
       e.preventDefault();
       this.handleSubmit();
@@ -237,8 +246,6 @@ PTL.editor = {
       e.preventDefault();
       this.handleSuggest();
     });
-    $('#editor').on('click', '#js-nav-prev', () => this.gotoPrev());
-    $('#editor').on('click', '#js-nav-next', () => this.gotoNext());
     $('#editor').on('click', '.js-suggestion-reject', (e) => {
       e.stopPropagation();
       this.rejectSuggestion(e.currentTarget.dataset.suggId);
@@ -261,11 +268,6 @@ PTL.editor = {
     $('#editor').on('click', '.js-toggle-check', (e) => {
       this.toggleCheck(e.currentTarget.dataset.checkId);
     });
-
-    /* Filtering */
-    $('#editor').on('change', '#js-filter-status', () => this.filterStatus());
-    $('#editor').on('change', '#js-filter-checks', () => this.filterChecks());
-    $('#editor').on('change', '#js-filter-sort', () => this.filterSort());
     $('#editor').on('click', '.js-more-ctx', () => this.moreContext());
     $('#editor').on('click', '.js-less-ctx', () => this.lessContext());
     $('#editor').on('click', '.js-show-ctx', () => this.showContext());
@@ -288,7 +290,7 @@ PTL.editor = {
     $('#editor').on('click', '.js-comment-remove', (e) => this.removeComment(e));
 
     /* Misc */
-    $('#editor').on('click', '.js-editor-msg-hide', () => this.hideMsg());
+    $(document).on('click', '.js-editor-msg-hide', () => this.hideMsg());
 
     $('#editor').on('click', '.js-toggle-raw', (e) => {
       e.preventDefault();
