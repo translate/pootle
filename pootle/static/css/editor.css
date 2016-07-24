@@ -1380,7 +1380,7 @@ table.suggest-mode .translate-fuzzy-block
 
 .translate-full[dir="rtl"] .switch-suggest-mode
 {
-    left: 0px;
+    left: auto;
     right: 120px;
 }
 
