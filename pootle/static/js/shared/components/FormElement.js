@@ -26,6 +26,7 @@ const FormElement = React.createClass({
       React.PropTypes.bool,
       React.PropTypes.number,
       React.PropTypes.string,
+      React.PropTypes.array,
     ]).isRequired,
     help: React.PropTypes.string,
     errors: React.PropTypes.array,

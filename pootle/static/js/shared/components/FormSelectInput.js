@@ -21,6 +21,7 @@ const FormSelectInput = React.createClass({
       React.PropTypes.array,
       React.PropTypes.number,
       React.PropTypes.string,
+      React.PropTypes.array,
     ]).isRequired,
   },
 
