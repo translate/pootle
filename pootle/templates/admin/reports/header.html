@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n locale %}
 <table id="reports-header">
   <tr>
     <td id="reports-form">
@@ -8,11 +8,13 @@
       <div class="dates">
         <ul>
           <li>
-            <a class="js-month js-previous" href="#"><span class="arrow">&larr;</span> {% trans "Previous month" %}</a>
+            <a class="js-month js-previous" href="#"><span class="arrow">
+            {% if locale_dir != "rtl" %}&larr;{% else %}&rarr;{% endif %}</span> {% trans "Previous month" %}</a>
           </li>
           <li class="selected"></li>
           <li>
-             <a class="js-month js-next" href="#">{% trans "Next month" %} <span class="arrow">&rarr;</span></a>
+             <a class="js-month js-next" href="#">{% trans "Next month" %} <span class="arrow">
+             {% if locale_dir != "rtl" %}&rarr;{% else %}&larr;{% endif %}</span></a>
           </li>
         </ul>
       </div>

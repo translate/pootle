@@ -86,6 +86,7 @@ const SignUpForm = React.createClass({
             name="username"
             errors={errors.username}
             value={formData.username}
+            dir="ltr"
           />
           <FormElement
             label={gettext('Email')}
@@ -93,6 +94,7 @@ const SignUpForm = React.createClass({
             name="email"
             errors={errors.email}
             value={formData.email}
+            dir="ltr"
           />
           <FormElement
             type="password"
@@ -101,6 +103,7 @@ const SignUpForm = React.createClass({
             name="password1"
             errors={errors.password1}
             value={formData.password1}
+            dir="ltr"
           />
           <FormElement
             type="password"
@@ -109,6 +112,7 @@ const SignUpForm = React.createClass({
             name="password2"
             errors={errors.password2}
             value={formData.password2}
+            dir="ltr"
           />
         </div>
         {this.renderAllFormErrors()}

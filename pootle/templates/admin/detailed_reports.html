@@ -1,6 +1,7 @@
-{% load i18n common_tags %}
+{% load i18n locale common_tags %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 <head>
   <meta charset="utf-8">
   <title>{% blocktrans with object.display_name as user %}Report for {{ user }}, {% endblocktrans %}{% format_date_range start end " &ndash; " %} | {{ settings.POOTLE_TITLE }}</title>

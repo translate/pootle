@@ -97,6 +97,7 @@ const SignInForm = React.createClass({
             name="login"
             errors={errors.login}
             value={formData.login}
+            dir="ltr"
           />
           <FormElement
             type="password"
@@ -105,6 +106,7 @@ const SignInForm = React.createClass({
             name="password"
             errors={errors.password}
             value={formData.password}
+            dir="ltr"
           />
           <div className="actions password-forgotten">
             <a href="#" onClick={this.handleRequestPasswordReset}>

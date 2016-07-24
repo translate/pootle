@@ -195,6 +195,12 @@
             height: 16px;
         }
         
+        html[dir="rtl"] .icon-folder-parent {
+            -webkit-transform: scaleX(-1);
+            -moz-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+        
         .icon-file {
             background-position: -101px 0;
             width: 16px;
