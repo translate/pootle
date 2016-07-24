@@ -16,6 +16,8 @@ lang_mapper = Getter(providing_args=["instance"])
 state = Getter()
 response = Getter()
 contributors = Getter()
+formats = Getter()
+format_registration = Provider()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
