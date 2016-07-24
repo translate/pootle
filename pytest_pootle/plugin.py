@@ -13,6 +13,7 @@ from pkgutil import iter_modules
 import pytest
 
 from . import fixtures
+from .fixtures import formats as fixtures_format
 from .fixtures import models as fixtures_models
 from .fixtures.core import management as fixtures_core_management
 from .fixtures.core import utils as fixtures_core_utils
@@ -73,6 +74,7 @@ def po_directory(request, po_test_dir, settings):
 pytest_plugins = tuple(
     _load_fixtures(
         fixtures,
+        fixtures_format,
         fixtures_core_management,
         fixtures_core_utils,
         fixtures_formats,
