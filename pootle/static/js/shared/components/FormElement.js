@@ -11,6 +11,7 @@ import React from 'react';
 import FormCheckedInput from './FormCheckedInput';
 import FormValueInput from './FormValueInput';
 import FormSelectInput from './FormSelectInput';
+import FormMultiSelectInput from './FormMultiSelectInput';
 
 
 const FormElement = React.createClass({
@@ -49,6 +50,7 @@ const FormElement = React.createClass({
       checkbox: FormCheckedInput,
       radio: FormCheckedInput,
 
+      multi_select: FormMultiSelectInput,
       select: FormSelectInput,
     }[this.props.type];
 
