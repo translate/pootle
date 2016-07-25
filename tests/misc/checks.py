@@ -356,6 +356,35 @@ def test_plurr_format(source_string, target_string, should_skip):
                  language_code='ru')
 
 
+@pytest.mark.parametrize('source_string, target_string, should_skip', [
+    (u'', u'', True),
+    (u'Foo bar', u'', True),
+    (u'Foo {bar}', u'', True),
+    (u'Foo bar baz', u'Baz bar foo', True),
+
+    (u'A {BAR_PLURAL:Zero|{BAR}}', u'', True),
+    (u'B {BAR_PLURAL:Zero|{BAR}}', u'B {BAR_PLURAL:foo}', True),
+    (u'C {BAR_PLURAL:Zero|{BAR}}', u'C {BAR_PLURAL:foo|{BAR}}', True),
+    (u'{FOO} {BAR} {BAZ}', u'{FOO} {BAR} {BAZ}', True),
+
+    (u'D {BAR_PLURAL:Zero|{BAR}}', u'D {RAB_PLURAL:rab|{RAB} rab}', False),
+    (u'F {BAR_PLURAL:Zero|{BAR}}', u'F {BAR_PLURALL:rab|{RAB} rab}', False),
+    (u'G {BAR}', u'{FOO} Bar', False),
+    (u'H {FOO}', u'FOO H', False),
+    (u'{FOO} {BAR} {BAZ}', u'{OOF} {BAR} {BAZ}', False),
+    (u'{FOO} {BAR} {BAZ}', u'{OOF} {RAB} {BAZ}', False),
+    (u'{FOO} {BAR} {BAZ}', u'{OOF} {RAB} {ZAB}', False),
+
+    (u'{N} {N_PLURAL:Note|Notes}', u'{N} {Not}', False),
+    (u'{DATE}', u'{FECHA}', False),
+    (u'{QUOTA} upload limit resets in {N} {N_PLURAL:day|days}',
+     u'{CUOTA} se restablece en {N} {FOO_PLURAL:día|días}', False),
+])
+def test_plurr_placeholders(source_string, target_string, should_skip):
+    check = checker.plurr_placeholders
+    assert_check(check, source_string, target_string, should_skip)
+
+
 def test_get_qualitycheck_schema():
     d = {}
     checks = get_qualitychecks()

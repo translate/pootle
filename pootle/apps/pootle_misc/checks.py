@@ -115,6 +115,7 @@ check_names = {
     'double_quotes_in_tags': _(u"Double quotes in tags"),
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
     'plurr_format': _(u'Plurr format'),
+    'plurr_placeholders': _(u'Plurr placeholders'),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy',
@@ -241,6 +242,12 @@ fmt = u"\%\{{1}[^\}]+\}{1}"
 percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
 plurr_format_regex = re.compile(u'{[^{}]*:.*?}')
+plurr_placeholders_regex = re.compile(u'{([^{}]*):.*?}|{([^{}]*?)}')
+plurr_plural_suffix_regex = re.compile(u'_PLURAL$')
+
+
+def clean_plurr_placeholder(string):
+    return plurr_plural_suffix_regex.sub('', string)
 
 
 def get_checker(unit):
@@ -984,6 +991,47 @@ class ENChecker(checks.UnitChecker):
             })
         except SyntaxError as e:
             raise checks.FilterFailure(e.message)
+
+        return True
+
+    @critical
+    def plurr_placeholders(self, str1, str2, **kwargs):
+        """For plurr-formatted strings, checks placeholders used in target
+        strings actually exist in the source string.
+        """
+        if str2 == u'' or not plurr_placeholders_regex.search(str1):
+            return True
+
+        placeholders_source = map(
+            clean_plurr_placeholder,
+            filter(None,
+                   reduce(lambda x, y: x + y,
+                          map(list, plurr_placeholders_regex.findall(str1)),
+                          []))
+        )
+        placeholders_target = map(
+            clean_plurr_placeholder,
+            filter(None,
+                   reduce(lambda x, y: x + y,
+                          map(list, plurr_placeholders_regex.findall(str2)),
+                          []))
+        )
+        if set(placeholders_source) == set(placeholders_target):
+            return True
+
+        unknown_in_target = set(placeholders_target) - set(placeholders_source)
+        if len(unknown_in_target) > 0:
+            raise checks.FilterFailure(
+                u'Unknown placeholders in translation: %s' %
+                u', '.join(unknown_in_target)
+            )
+
+        missing_in_translation = set(placeholders_source) - set(placeholders_target)
+        if len(missing_in_translation) > 0:
+            raise checks.FilterFailure(
+                u'Placeholders missing in translation: %s' %
+                u', '.join(missing_in_translation)
+            )
 
         return True
 
