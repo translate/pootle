@@ -492,7 +492,22 @@ class PootleAdminView(DetailView):
         return self.get(*args, **kwargs)
 
 
-class PootleDetailView(DetailView):
+class GatherContextMixin(object):
+
+    def gather_context_data(self, context):
+        context.update(
+            context_data.gather(
+                sender=self.__class__,
+                context=context, view=self))
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        return super(GatherContextMixin, self).render_to_response(
+            self.gather_context_data(context),
+            **response_kwargs)
+
+
+class PootleDetailView(GatherContextMixin, DetailView):
     translate_url_path = ""
     browse_url_path = ""
     export_url_path = ""
@@ -562,29 +577,10 @@ class PootleDetailView(DetailView):
             'export_url': self.export_url,
             'browse_url': self.browse_url}
 
-    def gather_context_data(self, context):
-        context.update(
-            context_data.gather(
-                sender=self.__class__,
-                context=context, view=self))
-        return context
 
-    def render_to_response(self, context, **response_kwargs):
-        return super(PootleDetailView, self).render_to_response(
-            self.gather_context_data(context),
-            **response_kwargs)
-
-
-class PootleJSON(PootleDetailView):
+class PootleJSONMixin(GatherContextMixin):
 
     response_class = JsonResponse
-
-    @never_cache
-    @method_decorator(ajax_required)
-    @set_permissions
-    @requires_permission("view")
-    def dispatch(self, request, *args, **kwargs):
-        return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_response_data(self, context):
         """Override this method if you need to render a template with the context object
@@ -600,6 +596,16 @@ class PootleJSON(PootleDetailView):
         return self.response_class(
             self.get_response_data(self.gather_context_data(context)),
             **response_kwargs)
+
+
+class PootleJSON(PootleJSONMixin, PootleDetailView):
+
+    @never_cache
+    @method_decorator(ajax_required)
+    @set_permissions
+    @requires_permission("view")
+    def dispatch(self, request, *args, **kwargs):
+        return super(PootleJSON, self).dispatch(request, *args, **kwargs)
 
 
 class PootleBrowseView(PootleDetailView):
