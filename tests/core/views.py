@@ -13,7 +13,7 @@ import pytest
 from django import forms
 from django.http import Http404
 
-from pytest_pootle.factories import UserFactory
+from pytest_pootle.factories import LanguageDBFactory, UserFactory
 from pytest_pootle.utils import create_api_request
 
 from pootle.core.views import APIView
@@ -50,6 +50,14 @@ class UserSettingsForm(forms.ModelForm):
 class WriteableUserSettingsAPIView(APIView):
     model = User
     edit_form_class = UserSettingsForm
+
+
+class UserM2MAPIView(APIView):
+    model = User
+    restrict_to_methods = ('get', 'delete',)
+    page_size = 10
+    fields = ('username', 'alt_src_langs',)
+    m2m = ('alt_src_langs', )
 
 
 def test_apiview_invalid_method(rf):
@@ -361,3 +369,59 @@ def test_view_gathered_context_data(rf, member):
     assert sorted(response.context_data.items()) == [
         ("foo", "bar"), ("foo2", "bar2")]
     context_data.receivers = []
+
+
+@pytest.mark.django_db
+def test_apiview_get_single_m2m(rf):
+    """Tests retrieving a single object with an m2m field using the API."""
+    view = UserM2MAPIView.as_view()
+    user = UserFactory.create(username='foo')
+
+    request = create_api_request(rf)
+    response = view(request, id=user.id)
+    response_data = json.loads(response.content)
+    assert response_data["alt_src_langs"] == []
+
+    user.alt_src_langs.add(LanguageDBFactory(code="alt1"))
+    user.alt_src_langs.add(LanguageDBFactory(code="alt2"))
+    request = create_api_request(rf)
+    response = view(request, id=user.id)
+    response_data = json.loads(response.content)
+    assert response_data["alt_src_langs"]
+    assert (
+        response_data["alt_src_langs"]
+        == list(str(l) for l in user.alt_src_langs.values_list("pk", flat=True)))
+
+
+@pytest.mark.django_db
+def test_apiview_get_multi_m2m(rf):
+    """Tests several objects with m2m fields using the API."""
+    view = UserM2MAPIView.as_view()
+    user0 = UserFactory.create(username='foo0')
+    user1 = UserFactory.create(username='foo1')
+
+    request = create_api_request(rf)
+    response = view(request)
+    response_data = json.loads(response.content)
+
+    for model in response_data["models"]:
+        assert model['alt_src_langs'] == []
+
+    user0.alt_src_langs.add(LanguageDBFactory(code="alt1"))
+    user0.alt_src_langs.add(LanguageDBFactory(code="alt2"))
+    user1.alt_src_langs.add(LanguageDBFactory(code="alt3"))
+    user1.alt_src_langs.add(LanguageDBFactory(code="alt4"))
+
+    request = create_api_request(rf)
+    response = view(request)
+    response_data = json.loads(response.content)
+
+    for model in response_data["models"]:
+        user = User.objects.get(username=model["username"])
+        if user in [user0, user1]:
+            assert model["alt_src_langs"]
+        assert (
+            model["alt_src_langs"]
+            == list(
+                str(l) for l
+                in user.alt_src_langs.values_list("pk", flat=True)))
