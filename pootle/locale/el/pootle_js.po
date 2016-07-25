@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2015-09-29 13:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -545,7 +545,7 @@ msgstr "ανενεργό"
 msgid "Hide disabled"
 msgstr "ανενεργό"
 
-#: static/js/editor/app.js:305 static/js/editor/app.js:619
+#: static/js/editor/app.js:307 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -553,7 +553,7 @@ msgstr ""
 "Έχετε μη αποθηκευμένες αλλαγές σε αυτήν τη συμβολοσειρά. Η περιήγηση εκτός "
 "αυτής θα απορρίψει αυτές τις αλλαγές."
 
-#: static/js/editor/app.js:340
+#: static/js/editor/app.js:342
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -561,7 +561,7 @@ msgstr ""
 "Μετάβαση στην επόμενη συμβολοσειρά (Ctrl+.)<br/><br/>Επίσης:<br/>Επόμενη "
 "σελίδα:Ctrl+Shift+.<br/>Τελευταία σελίδα:Last page: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:346
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -570,77 +570,77 @@ msgstr ""
 "br>Προηγούμενη σελίδα:Ctrl+Shift+,<br/>Πρώτη σελίδα: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:465
+#: static/js/editor/app.js:471
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Εκκρεμείς προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:468
+#: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Αποδεκτές προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:477
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Απορριφθείσες προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:480
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Υποβολές του %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:478
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Αντικατασταθείσες υποβολές του %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1076
 msgid "Error while connecting to the server"
 msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετητή"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1080
 msgid "Not found"
 msgstr "Δε βρέθηκε"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1082
 msgid "Server error"
 msgstr "Σφάλμα εξυπηρετητή"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1084
 msgid "The server seems down. Try again later."
 msgstr "Ο εξυπηρετητής φαίνεται ανενεργός. Δοκιμάστε αργότερα."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1093
 msgid "This string no longer exists."
 msgstr "Αυτή η συμβολοσειρά δεν υπάρχει πια."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1094
 msgid "Go back to browsing"
 msgstr "Επιστροφή στην περιήγηση"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1096
 msgid "Reload page"
 msgstr "Επαναφόρτωση της σελίδας"
 
-#: static/js/editor/app.js:1836 static/js/editor/app.js:611
+#: static/js/editor/app.js:1845 static/js/editor/app.js:617
 msgid "No results."
 msgstr "Κανένα αποτέλεσμα."
 
-#: static/js/editor/app.js:2173
+#: static/js/editor/app.js:2182
 msgid "some anonymous user"
 msgstr "κάποιος ανώνυμος χρήστης"
 
-#: static/js/editor/app.js:2175
+#: static/js/editor/app.js:2184
 msgid "someone"
 msgstr "κάποιος"
 
-#: static/js/editor/app.js:2193 static/js/editor/app.js:2242
+#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Παρόμοιες μεταφράσεις"
 
@@ -902,42 +902,42 @@ msgstr ""
 "Γιατί είσαστε μέλος του έργου της μετάφρασής μας; Περιγράψτε τον εαυτό σας, "
 "εμπνεύστε τους άλλους!"
 
-#: static/js/utils.js:165
+#: static/js/utils.js:168
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Ένα χρόνο πριν"
 msgstr[1] "%s χρόνια πριν"
 
-#: static/js/utils.js:168
+#: static/js/utils.js:171
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Μια βδομάδα πριν"
 msgstr[1] "%s βδομάδες πριν"
 
-#: static/js/utils.js:171
+#: static/js/utils.js:174
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Χθες"
 msgstr[1] "%s ημέρες πριν"
 
-#: static/js/utils.js:174
+#: static/js/utils.js:177
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Μια ώρα πριν"
 msgstr[1] "%s ώρες πριν"
 
-#: static/js/utils.js:177
+#: static/js/utils.js:180
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Ένα λεπτό πριν"
 msgstr[1] "%s λεπτά πριν"
 
-#: static/js/utils.js:185
+#: static/js/utils.js:188
 msgid "A few seconds ago"
 msgstr "Λίγα δευτερόλεπτα πριν"
 

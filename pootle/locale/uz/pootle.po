@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-07 10:46+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1824,7 +1824,7 @@ msgstr "Server statistikasi"
 msgid "Pending suggestions"
 msgstr "Kutilayotgan tavsiyalar"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Ko‘proq..."
 
@@ -2137,13 +2137,9 @@ msgstr "Tarjima statistikasi"
 msgid "Failing Checks"
 msgstr "Xatolarni tekshirish"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Ko‘proq..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "kamroq…"
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2963,6 +2959,10 @@ msgstr "Bizga qo‘shiling!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Kirish"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Ko‘proq..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Tarjima qilishni boshlash"

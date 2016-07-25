@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-06-14 09:25+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -534,7 +534,7 @@ msgstr "Mostra els inhabilitats"
 msgid "Hide disabled"
 msgstr "Amaga els inhabilitats"
 
-#: static/js/editor/app.js:305 static/js/editor/app.js:619
+#: static/js/editor/app.js:307 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -542,7 +542,7 @@ msgstr ""
 "Teniu canvis sense desar en aquesta cadena Si abandoneu la navegació es "
 "descartaran tots els canvis."
 
-#: static/js/editor/app.js:340
+#: static/js/editor/app.js:342
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -550,7 +550,7 @@ msgstr ""
 "Va a la cadena següent (Ctrl+.)<br/><br/>També:<br/>Pàgina següent: Ctrl+Maj"
 "+.<br/>Última pàgina: Ctrl+Maj+Final"
 
-#: static/js/editor/app.js:346
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -559,77 +559,77 @@ msgstr ""
 "+,<br/>Primera pàgina: Ctrl+Maj+Inici"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:465
+#: static/js/editor/app.js:471
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suggeriments pendents de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:468
+#: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suggeriments acceptats de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:477
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suggeriments rebutjats de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:480
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Enviaments de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:478
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Enviaments sobreescrits de %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1076
 msgid "Error while connecting to the server"
 msgstr "S'ha produït un error en connectar amb el servidor"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1080
 msgid "Not found"
 msgstr "No s'ha trobat"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1082
 msgid "Server error"
 msgstr "Error del servidor"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1084
 msgid "The server seems down. Try again later."
 msgstr "Sembla que el servidor no funciona. Proveu-ho més tard."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1093
 msgid "This string no longer exists."
 msgstr "Aquesta cadena ja no existeix."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1094
 msgid "Go back to browsing"
 msgstr "Torna enrere a la navegació"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1096
 msgid "Reload page"
 msgstr "Torna a carregar la pàgina"
 
-#: static/js/editor/app.js:1836 static/js/editor/app.js:611
+#: static/js/editor/app.js:1845 static/js/editor/app.js:617
 msgid "No results."
 msgstr "No s'ha trobat cap resultat."
 
-#: static/js/editor/app.js:2173
+#: static/js/editor/app.js:2182
 msgid "some anonymous user"
 msgstr "un usuari anònim"
 
-#: static/js/editor/app.js:2175
+#: static/js/editor/app.js:2184
 msgid "someone"
 msgstr "algú"
 
-#: static/js/editor/app.js:2193 static/js/editor/app.js:2242
+#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Traduccions semblants"
 
@@ -887,42 +887,42 @@ msgstr ""
 "Per què sou part del nostre projecte de traducció? Descriviu-vos i inspireu "
 "a altres usuaris!"
 
-#: static/js/utils.js:165
+#: static/js/utils.js:168
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Fa un any"
 msgstr[1] "Fa %s anys"
 
-#: static/js/utils.js:168
+#: static/js/utils.js:171
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Fa 1 setmana"
 msgstr[1] "Fa %s setmanes"
 
-#: static/js/utils.js:171
+#: static/js/utils.js:174
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Ahir"
 msgstr[1] "Fa %s dies"
 
-#: static/js/utils.js:174
+#: static/js/utils.js:177
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Fa una hora"
 msgstr[1] "Fa %s hores"
 
-#: static/js/utils.js:177
+#: static/js/utils.js:180
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Fa un minut"
 msgstr[1] "Fa %s minuts"
 
-#: static/js/utils.js:185
+#: static/js/utils.js:188
 msgid "A few seconds ago"
 msgstr "Fa uns quants segons"
 

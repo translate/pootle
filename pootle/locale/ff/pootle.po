@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-23 05:45+0000\n"
 "Last-Translator: Bocar Amadou <bokarba@yahoo.fr>\n"
 "Language-Team: FULA LOCALIZATION\n"
@@ -1789,7 +1789,7 @@ msgstr "Limlimtooje Sarwoore"
 msgid "Pending suggestions"
 msgstr "Miijtanɗe cabbiiɗe"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Jokku..."
 
@@ -2105,13 +2105,8 @@ msgstr "Limlimtooje Firooji"
 msgid "Failing Checks"
 msgstr "Ƴeewndite ɗe peewaani"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Jokku..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2893,6 +2888,10 @@ msgstr ""
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr ""
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Jokku..."
 
 #, fuzzy
 #~ msgid "License Terms"

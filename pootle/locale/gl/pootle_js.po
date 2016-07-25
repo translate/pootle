@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-22 16:34+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -529,7 +529,7 @@ msgstr "Mostrar os desactivados"
 msgid "Hide disabled"
 msgstr "Ocultar os desactivados"
 
-#: static/js/editor/app.js:305 static/js/editor/app.js:619
+#: static/js/editor/app.js:307 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -537,7 +537,7 @@ msgstr ""
 "Ten cambios sen gardar nesta cadea. Continuar sen gardalos fará que se "
 "desboten."
 
-#: static/js/editor/app.js:340
+#: static/js/editor/app.js:342
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -545,7 +545,7 @@ msgstr ""
 "Ir á seguinte cadea (Ctrl+.)<br/><br/>Tamén:<br/>Seguinte páxina: Ctrl+Maiús"
 "+.<br/>Última páxina: Ctrl+Maiús+Fin"
 
-#: static/js/editor/app.js:346
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -554,77 +554,77 @@ msgstr ""
 "+,<br/>Primeira páxina: Ctrl+Maiús+Inicio"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:465
+#: static/js/editor/app.js:471
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suxestións pendentes de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:468
+#: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suxestións aceptadas de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:477
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suxestións rexeitadas de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:480
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Envíos de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:478
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Envíos sobrescritos de %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1076
 msgid "Error while connecting to the server"
 msgstr "Produciuse un erro ao conectar co servidor"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1080
 msgid "Not found"
 msgstr "Non atopado"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1082
 msgid "Server error"
 msgstr "Erro do servidor"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1084
 msgid "The server seems down. Try again later."
 msgstr "Parece ser que o servidor está caído. Probe de novo máis tarde."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1093
 msgid "This string no longer exists."
 msgstr "Esta cadea xa non existe."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1094
 msgid "Go back to browsing"
 msgstr "Volver á navegación"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1096
 msgid "Reload page"
 msgstr "Recargar a páxina"
 
-#: static/js/editor/app.js:1836 static/js/editor/app.js:611
+#: static/js/editor/app.js:1845 static/js/editor/app.js:617
 msgid "No results."
 msgstr "Sen resultados."
 
-#: static/js/editor/app.js:2173
+#: static/js/editor/app.js:2182
 msgid "some anonymous user"
 msgstr "algún usuario anónimo"
 
-#: static/js/editor/app.js:2175
+#: static/js/editor/app.js:2184
 msgid "someone"
 msgstr "alguén"
 
-#: static/js/editor/app.js:2193 static/js/editor/app.js:2242
+#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Traducións semellantes"
 
@@ -875,42 +875,42 @@ msgid ""
 msgstr ""
 "Por que é parte do noso proxecto de tradución? Descríbase, inspire a outros!"
 
-#: static/js/utils.js:165
+#: static/js/utils.js:168
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Hai un ano"
 msgstr[1] "Hai %s anos"
 
-#: static/js/utils.js:168
+#: static/js/utils.js:171
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Hai unha semana"
 msgstr[1] "Hai %s semanas"
 
-#: static/js/utils.js:171
+#: static/js/utils.js:174
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
 msgstr[0] "Onte"
 msgstr[1] "Hai %s días"
 
-#: static/js/utils.js:174
+#: static/js/utils.js:177
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Hai unha hora"
 msgstr[1] "Hai %s horas"
 
-#: static/js/utils.js:177
+#: static/js/utils.js:180
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Hai un minuto"
 msgstr[1] "Hai %s minutos"
 
-#: static/js/utils.js:185
+#: static/js/utils.js:188
 msgid "A few seconds ago"
 msgstr "Hai uns segundos"
 

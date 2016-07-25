@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-20 20:24+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -534,7 +534,7 @@ msgstr "Zobrazit vypnuté"
 msgid "Hide disabled"
 msgstr "Skrýt vypnuté"
 
-#: static/js/editor/app.js:305 static/js/editor/app.js:619
+#: static/js/editor/app.js:307 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -542,7 +542,7 @@ msgstr ""
 "Pro tento řetězec existují neuložené změny. Při přechodu na jiný řetězec "
 "budou tyto změny zahozeny."
 
-#: static/js/editor/app.js:340
+#: static/js/editor/app.js:342
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -550,7 +550,7 @@ msgstr ""
 "Přejít na další řetězec (Ctrl+.)<br/><br/>Také:<br/>Další stránka: Ctrl+Shift"
 "+.<br/>Poslední stránka: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:346
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -559,77 +559,77 @@ msgstr ""
 "Ctrl+Shift+,<br/>První stránka: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:465
+#: static/js/editor/app.js:471
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Nevyřízené návrhy uživatele %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:468
+#: static/js/editor/app.js:474
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Přijaté návrhy uživatele %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:477
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Odmítnuté návrhy uživatele %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:480
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Překlady uživatele %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:478
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Přepsané překlady uživatele %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1076
 msgid "Error while connecting to the server"
 msgstr "Při připojování k serveru došlo k chybě"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1080
 msgid "Not found"
 msgstr "Nenalezeno"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1082
 msgid "Server error"
 msgstr "Chyba na straně serveru"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1084
 msgid "The server seems down. Try again later."
 msgstr "Zdá se, že server není funkční. Zkuste se připojit později."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1093
 msgid "This string no longer exists."
 msgstr "Tento řetězec již neexistuje."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1094
 msgid "Go back to browsing"
 msgstr "Zpět na procházení"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1096
 msgid "Reload page"
 msgstr "Znovu načíst stránku"
 
-#: static/js/editor/app.js:1836 static/js/editor/app.js:611
+#: static/js/editor/app.js:1845 static/js/editor/app.js:617
 msgid "No results."
 msgstr "Žádné výsledky."
 
-#: static/js/editor/app.js:2173
+#: static/js/editor/app.js:2182
 msgid "some anonymous user"
 msgstr "anonymní uživatel"
 
-#: static/js/editor/app.js:2175
+#: static/js/editor/app.js:2184
 msgid "someone"
 msgstr "uživatel"
 
-#: static/js/editor/app.js:2193 static/js/editor/app.js:2242
+#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Obdobné překlady"
 
@@ -880,7 +880,7 @@ msgstr ""
 "Proč jste se stali účastníky našeho překladového projektu? Řekněte nám něco "
 "o sobě a inspirujte ostatní uživatele!"
 
-#: static/js/utils.js:165
+#: static/js/utils.js:168
 #, javascript-format
 msgid "A year ago"
 msgid_plural "%s years ago"
@@ -888,7 +888,7 @@ msgstr[0] "Před rokem"
 msgstr[1] "Před %s roky"
 msgstr[2] "Před %s roky"
 
-#: static/js/utils.js:168
+#: static/js/utils.js:171
 #, javascript-format
 msgid "A week ago"
 msgid_plural "%s weeks ago"
@@ -896,7 +896,7 @@ msgstr[0] "Před týdnem"
 msgstr[1] "Před %s týdny"
 msgstr[2] "Před %s týdny"
 
-#: static/js/utils.js:171
+#: static/js/utils.js:174
 #, javascript-format
 msgid "Yesterday"
 msgid_plural "%s days ago"
@@ -904,7 +904,7 @@ msgstr[0] "Včera"
 msgstr[1] "Před %s dny"
 msgstr[2] "Před %s dny"
 
-#: static/js/utils.js:174
+#: static/js/utils.js:177
 #, javascript-format
 msgid "An hour ago"
 msgid_plural "%s hours ago"
@@ -912,7 +912,7 @@ msgstr[0] "Před hodinou"
 msgstr[1] "Před %s hodinami"
 msgstr[2] "Před %s hodinami"
 
-#: static/js/utils.js:177
+#: static/js/utils.js:180
 #, javascript-format
 msgid "A minute ago"
 msgid_plural "%s minutes ago"
@@ -920,7 +920,7 @@ msgstr[0] "Před minutou"
 msgstr[1] "Před %s minutami"
 msgstr[2] "Před %s minutami"
 
-#: static/js/utils.js:185
+#: static/js/utils.js:188
 msgid "A few seconds ago"
 msgstr "Před pár sekundami"
 

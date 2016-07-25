@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-06-30 11:45+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
@@ -1797,7 +1797,7 @@ msgstr "Estadístiques del servidor"
 msgid "Pending suggestions"
 msgstr "Suggeriments pendents"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Més..."
 
@@ -2106,12 +2106,9 @@ msgstr "Estadístiques de la traducció"
 msgid "Failing Checks"
 msgstr "Comprovacions que han fallat"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "més..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "menys..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2897,6 +2894,9 @@ msgstr "Veniu i uniu-vos a nosaltres!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Inicia la sessió"
+
+#~ msgid "more..."
+#~ msgstr "més..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Primers passos"

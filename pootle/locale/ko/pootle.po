@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1792,7 +1792,7 @@ msgstr "서버 통계"
 msgid "Pending suggestions"
 msgstr "대기 중인 제안 내역"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "더 보기..."
 
@@ -2103,13 +2103,8 @@ msgstr "번역 통계"
 msgid "Failing Checks"
 msgstr "검사 실패"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "더 보기..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2886,6 +2881,10 @@ msgstr "와서 우리와 함께 참여하세요!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "로그인"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "더 보기..."
 
 #~ msgid "Getting Started"
 #~ msgstr "시작하기"

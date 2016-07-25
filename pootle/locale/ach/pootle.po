@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2014-07-31 10:29+0000\n"
 "Last-Translator: Leitwerk <lars.klein@outlook.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1781,7 +1781,7 @@ msgstr "Namba me ngec pa lagab tic"
 msgid "Pending suggestions"
 msgstr "Tam amia ma otyeko kuru"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Madwong..."
 
@@ -2094,13 +2094,8 @@ msgstr ""
 msgid "Failing Checks"
 msgstr "Rota Makwero"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Madwong..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2864,6 +2859,10 @@ msgstr ""
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr ""
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Madwong..."
 
 #, fuzzy
 #~ msgid "License Terms"

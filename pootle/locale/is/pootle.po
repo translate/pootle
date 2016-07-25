@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2015-08-25 21:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1782,7 +1782,7 @@ msgstr "Tölfræði vefþjóns"
 msgid "Pending suggestions"
 msgstr "Tillögur í bið"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Meira..."
 
@@ -2092,13 +2092,8 @@ msgstr "Þýðingartölfræði"
 msgid "Failing Checks"
 msgstr "Fell á prófi"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Meira..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2860,6 +2855,10 @@ msgstr "Gakktu til liðs við okkur!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Skrá inn"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Meira..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Til að komast í gang"

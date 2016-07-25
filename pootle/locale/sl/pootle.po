@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-20 23:04+0000\n"
 "Last-Translator: miles <miles@filmsi.net>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
@@ -1800,7 +1800,7 @@ msgstr "Statistike strežnika"
 msgid "Pending suggestions"
 msgstr "Predlogi v obdelavi"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Več ..."
 
@@ -2121,13 +2121,8 @@ msgstr "Statistika prevajanja"
 msgid "Failing Checks"
 msgstr "Spodletela preverjanja"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Več ..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2905,6 +2900,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Dodeli dejanje"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Več ..."
 
 #, fuzzy
 #~ msgid "License Terms"

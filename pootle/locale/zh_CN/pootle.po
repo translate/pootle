@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-02-17 09:31+0000\n"
 "Last-Translator: popcorner <memoword@163.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1775,7 +1775,7 @@ msgstr "服务器统计"
 msgid "Pending suggestions"
 msgstr "待审阅的建议"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "更多..."
 
@@ -2081,13 +2081,8 @@ msgstr "翻译统计"
 msgid "Failing Checks"
 msgstr "失败点检查"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "更多..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2853,6 +2848,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "登录"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "更多..."
 
 #~ msgid "Getting Started"
 #~ msgstr "入门教程"

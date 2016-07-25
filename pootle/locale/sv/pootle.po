@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-05-24 16:07+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1803,7 +1803,7 @@ msgstr "Serverstatistik"
 msgid "Pending suggestions"
 msgstr "Väntande förslag"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Mer..."
 
@@ -2113,12 +2113,9 @@ msgstr "Översättningsstatistik"
 msgid "Failing Checks"
 msgstr "Fel har upptäckts"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "mer..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "mindre..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2907,6 +2904,9 @@ msgstr "Kom och gör oss sällskap!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Logga in"
+
+#~ msgid "more..."
+#~ msgstr "mer..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Komma igång"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2015-07-12 15:59+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -1805,7 +1805,7 @@ msgstr "Serverio statistika"
 msgid "Pending suggestions"
 msgstr "Pateikta pasiūlymų"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Išsamiau…"
 
@@ -2123,13 +2123,8 @@ msgstr "Vertimo statistika"
 msgid "Failing Checks"
 msgstr "Galimos problemos"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Išsamiau…"
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2913,6 +2908,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Priskirti veiksmą"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Išsamiau…"
 
 #, fuzzy
 #~ msgid "License Terms"

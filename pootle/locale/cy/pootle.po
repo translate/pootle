@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-20 16:35+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -1811,7 +1811,7 @@ msgstr "Ystadegau'r Gweinydd"
 msgid "Pending suggestions"
 msgstr "Awgrymiadau dan ystyriaeth"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Rhagor..."
 
@@ -2121,12 +2121,9 @@ msgstr "Ystadegau Cyfieithu"
 msgid "Failing Checks"
 msgstr "Gwiriadau'n Methu"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "rhagor..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "llai..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2925,6 +2922,9 @@ msgstr "Dewch i ymuno â ni!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Mewngofnodi"
+
+#~ msgid "more..."
+#~ msgstr "rhagor..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Cychwyn Arni"

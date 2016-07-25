@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2015-06-08 15:43+0000\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1793,7 +1793,7 @@ msgstr "Palvelimen tilastot"
 msgid "Pending suggestions"
 msgstr "Tarkastusta odottavia ehdotuksia"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Lisää..."
 
@@ -2112,13 +2112,8 @@ msgstr "Käännöstilastot"
 msgid "Failing Checks"
 msgstr "Havaitut virheet"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Lisää..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2895,6 +2890,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Osoitettava tehtävä"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Lisää..."
 
 #, fuzzy
 #~ msgid "License Terms"

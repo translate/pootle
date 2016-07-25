@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-21 14:19+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -1782,7 +1782,7 @@ msgstr "إحصائيّات الخادوم"
 msgid "Pending suggestions"
 msgstr "الاقتراحات المنتظرة"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "المزيد..."
 
@@ -2090,12 +2090,9 @@ msgstr "إحصائيّات التّرجمة"
 msgid "Failing Checks"
 msgstr "فحوص بها مشاكل"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "أكثر..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "أقل..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2874,6 +2871,9 @@ msgstr "تعال وانضمّ معنا!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "لِج"
+
+#~ msgid "more..."
+#~ msgstr "أكثر..."
 
 #~ msgid "Getting Started"
 #~ msgstr "البدء"

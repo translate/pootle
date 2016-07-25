@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2010-08-05 17:16+0200\n"
 "Last-Translator: Pheledi <pheledi@mosekolatranslation.co.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1783,7 +1783,7 @@ msgstr "Dipalopalo tša modiriši"
 msgid "Pending suggestions"
 msgstr "Ditšhišinyo tše letetšwego"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "... tše oketšegilego"
 
@@ -2098,13 +2098,8 @@ msgstr ""
 msgid "Failing Checks"
 msgstr "Ditekolo tšeo di palelwago"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "... tše oketšegilego"
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2876,6 +2871,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Aba Tiro"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "... tše oketšegilego"
 
 #, fuzzy
 #~ msgid "License Terms"

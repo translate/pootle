@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-20 21:28+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
@@ -1798,7 +1798,7 @@ msgstr "Estatísticas do servidor"
 msgid "Pending suggestions"
 msgstr "Sugestões pendentes"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Mais..."
 
@@ -2108,12 +2108,9 @@ msgstr "Estatísticas da tradução"
 msgid "Failing Checks"
 msgstr "Verificações falhando"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "mais..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "menos..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2907,6 +2904,9 @@ msgstr "Venha e junte-se a nós!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Entrar"
+
+#~ msgid "more..."
+#~ msgstr "mais..."
 
 #, fuzzy
 #~ msgid "License Terms"

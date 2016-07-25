@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-06-08 12:15+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -1789,7 +1789,7 @@ msgstr "Statistikat e Serverit"
 msgid "Pending suggestions"
 msgstr "Sygjerime të mbetura pezull"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Më shumë..."
 
@@ -2111,13 +2111,8 @@ msgstr ""
 msgid "Failing Checks"
 msgstr "Kontrollet dështuar:"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Më shumë..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2890,6 +2885,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Cakto veprimin"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Më shumë..."
 
 #, fuzzy
 #~ msgid "License Terms"

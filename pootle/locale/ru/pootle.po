@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-20 16:38+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1810,7 +1810,7 @@ msgstr "Статистика сервера"
 msgid "Pending suggestions"
 msgstr "Ожидающих предложений"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Больше..."
 
@@ -2122,12 +2122,9 @@ msgstr "Статистика перевода"
 msgid "Failing Checks"
 msgstr "Проверки с ошибками"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "больше..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "меньше..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2929,6 +2926,9 @@ msgstr "Присоединяйтесь!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Войти"
+
+#~ msgid "more..."
+#~ msgstr "больше..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Начало работы"

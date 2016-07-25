@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-22 17:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1814,7 +1814,7 @@ msgstr "Estatísticas do servidor"
 msgid "Pending suggestions"
 msgstr "Suxestións pendentes"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Máis..."
 
@@ -2125,12 +2125,9 @@ msgstr "Estatísticas de tradución"
 msgid "Failing Checks"
 msgstr "Control de fallos"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "Máis..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "Menos..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2923,6 +2920,9 @@ msgstr "Únase a nós!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Acceder"
+
+#~ msgid "more..."
+#~ msgstr "Máis..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Comezar"

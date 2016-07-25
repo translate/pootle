@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2013-10-30 16:29+0000\n"
 "Last-Translator: Tranzistors <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1792,7 +1792,7 @@ msgstr "Servera statistika"
 msgid "Pending suggestions"
 msgstr "Rindā gaidošie ieteikumi"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Vairāk..."
 
@@ -2110,13 +2110,8 @@ msgstr "Tulkošanas statistika"
 msgid "Failing Checks"
 msgstr "Neizturētās pārbaudes"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Vairāk..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2902,6 +2897,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Piešķirt darbības"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Vairāk..."
 
 #, fuzzy
 #~ msgid "License Terms"

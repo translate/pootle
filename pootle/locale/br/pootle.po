@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-01-29 07:40+0000\n"
 "Last-Translator: Tornoz <tornoz@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1763,7 +1763,7 @@ msgstr ""
 msgid "Pending suggestions"
 msgstr "Kinnigoù o c'hortoz"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Muioc'h..."
 
@@ -2074,13 +2074,8 @@ msgstr ""
 msgid "Failing Checks"
 msgstr ""
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Muioc'h..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2838,6 +2833,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Deverkañ an Ober"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Muioc'h..."
 
 #, fuzzy
 #~ msgid "License Terms"

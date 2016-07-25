@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-06-05 15:50+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: Tot en òc (totenoc.eu)\n"
@@ -1770,7 +1770,7 @@ msgstr "Estatisticas del servidor"
 msgid "Pending suggestions"
 msgstr "Suggestions en espèra"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Mai..."
 
@@ -2076,12 +2076,8 @@ msgstr "Estatisticas de traduccion"
 msgid "Failing Checks"
 msgstr "Contraròtles en fracàs"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "mai..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2846,6 +2842,9 @@ msgstr ""
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Connexion"
+
+#~ msgid "more..."
+#~ msgstr "mai..."
 
 #~ msgid "License Terms"
 #~ msgstr "Tèrmes de la licéncia"

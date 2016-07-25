@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-21 02:22+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1769,7 +1769,7 @@ msgstr "サーバー統計"
 msgid "Pending suggestions"
 msgstr "留保中の提案"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "続き..."
 
@@ -2074,12 +2074,8 @@ msgstr "翻訳の統計"
 msgid "Failing Checks"
 msgstr "誤りの確認"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "続き..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2838,6 +2834,9 @@ msgstr ""
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "サインイン"
+
+#~ msgid "more..."
+#~ msgstr "続き..."
 
 #, fuzzy
 #~ msgid "License Terms"

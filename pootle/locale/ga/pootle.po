@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2014-06-18 14:37+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -1813,7 +1813,7 @@ msgstr "Staidreamh an Fhreastalaí"
 msgid "Pending suggestions"
 msgstr "Moltaí ar feitheamh"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Tuilleadh..."
 
@@ -2123,12 +2123,9 @@ msgstr "Staitisticí Aistriúcháin"
 msgid "Failing Checks"
 msgstr "Fadhbanna"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "níos mó..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "níos lú..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2936,6 +2933,9 @@ msgstr "Bí linn!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Logáil isteach"
+
+#~ msgid "more..."
+#~ msgstr "níos mó..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Tús Maith"

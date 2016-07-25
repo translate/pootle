@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2015-09-29 19:03+0000\n"
 "Last-Translator: வே. இளஞ்செழியன் <tamiliam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1781,7 +1781,7 @@ msgstr "வழங்கியின் புள்ளிவிவரங்க�
 msgid "Pending suggestions"
 msgstr "நிலுவையிலுள்ள பரிந்துரைகள்"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "மேலும்..."
 
@@ -2101,13 +2101,8 @@ msgstr "மொழிபெயர்ப்பு புள்ளிவிவர�
 msgid "Failing Checks"
 msgstr "தவறுகின்ற ஆய்வுகள்"
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "மேலும்..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2878,6 +2873,10 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr " செயற்பாட்டை வழங்கு"
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "மேலும்..."
 
 #, fuzzy
 #~ msgid "License Terms"

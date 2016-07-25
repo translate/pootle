@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2016-07-20 15:13+0000\n"
 "Last-Translator: DiGro <th.groskamp@quicknet.nl>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
@@ -1814,7 +1814,7 @@ msgstr "Serverstatistieken"
 msgid "Pending suggestions"
 msgstr "Wachtende suggesties"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Meer..."
 
@@ -2126,12 +2126,9 @@ msgstr "Vertaalstatistieken"
 msgid "Failing Checks"
 msgstr "Mislukte controles"
 
-#: templates/browser/index.html:66
-msgid "more..."
-msgstr "meer..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+#, fuzzy
+msgid "Less..."
 msgstr "minder..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2934,6 +2931,9 @@ msgstr "Kom en doe mee!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Aanmelden"
+
+#~ msgid "more..."
+#~ msgstr "meer..."
 
 #~ msgid "Getting Started"
 #~ msgstr "Aan de slag"

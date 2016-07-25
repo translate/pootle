@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-20 12:44+0100\n"
+"POT-Creation-Date: 2016-07-25 12:14+0100\n"
 "PO-Revision-Date: 2010-08-10 13:13+0200\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1779,7 +1779,7 @@ msgstr "Emiwendo y'Engabizi"
 msgid "Pending suggestions"
 msgstr "Endowooza ekumirira"
 
-#: templates/admin/dashboard.html:29
+#: templates/admin/dashboard.html:29 templates/browser/index.html:66
 msgid "More..."
 msgstr "Ebisigawo..."
 
@@ -2089,13 +2089,8 @@ msgstr ""
 msgid "Failing Checks"
 msgstr ""
 
-#: templates/browser/index.html:66
-#, fuzzy
-msgid "more..."
-msgstr "Ebisigawo..."
-
 #: templates/browser/index.html:67
-msgid "less..."
+msgid "Less..."
 msgstr ""
 
 #: templates/browser/index.html:77 templates/welcome.html:32
@@ -2868,6 +2863,10 @@ msgstr ""
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr ""
+
+#, fuzzy
+#~ msgid "more..."
+#~ msgstr "Ebisigawo..."
 
 #, fuzzy
 #~ msgid "License Terms"
