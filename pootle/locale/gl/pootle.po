@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2016-07-22 12:30+0000\n"
+"PO-Revision-Date: 2016-07-22 17:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469190658.000000\n"
+"X-POOTLE-MTIME: 1469208656.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -614,7 +614,7 @@ msgstr "Chaves de etiqueta sen parella"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Changed attributes"
-msgstr "Atributos modificados"
+msgstr "Atributos cambiados"
 
 #: apps/pootle_misc/checks.py:99
 msgid "Unescaped ampersands"
@@ -2127,11 +2127,11 @@ msgstr "Control de fallos"
 
 #: templates/browser/index.html:66
 msgid "more..."
-msgstr "máis..."
+msgstr "Máis..."
 
 #: templates/browser/index.html:67
 msgid "less..."
-msgstr "menos..."
+msgstr "Menos..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"

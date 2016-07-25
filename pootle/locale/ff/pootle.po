@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-20 12:44+0100\n"
-"PO-Revision-Date: 2014-06-22 18:41+0000\n"
-"Last-Translator: Ibrahima SARR <ibrahima.sarr@pulaagu.com>\n"
+"PO-Revision-Date: 2016-07-23 05:45+0000\n"
+"Last-Translator: Bocar Amadou <bokarba@yahoo.fr>\n"
 "Language-Team: FULA LOCALIZATION\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
@@ -18,18 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1403462477.000000\n"
+"X-POOTLE-MTIME: 1469252751.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Waɗii caɗeele nde eti-ɗaa teeŋtinde iimeel oo. Waɗtu ɗoo e yeeso seeɗa. "
 
 #: apps/accounts/forms.py:42
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
-msgstr ""
+msgstr "Kuutoro maa oo wayi ko no majjuɗo nii. Tintin ɗum joom lowre ndee."
 
 #: apps/accounts/models.py:62 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
