@@ -185,11 +185,14 @@ class TranslationStoreFieldFile(FieldFile):
             except KeyError:
                 logging.debug(u"Cache miss for %s", self.path)
                 from translate.storage import factory
-                from pootle_store.filetypes import factory_classes
 
+                fileclass = self.instance.get_file_class()
+                classes = {
+                    str(self.instance.filetype.extension): fileclass,
+                    str(self.instance.filetype.template_extension): fileclass}
                 store_obj = factory.getobject(self.path,
                                               ignore=self.field.ignore,
-                                              classes=factory_classes)
+                                              classes=classes)
                 self._store_tuple = StoreTuple(store_obj, mod_info,
                                                self.realpath)
                 self._store_cache[self.path] = self._store_tuple

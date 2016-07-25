@@ -36,7 +36,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_config.utils import ObjectConfig
 from pootle_format.models import Format
-from pootle_store.filetypes import factory_classes
+from pootle_format.utils import ProjectFiletypes
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path
 from staticpages.models import StaticPage
@@ -448,27 +448,18 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         return self.code in Project.accessible_by_user(user)
 
-    def get_template_filetype(self):
-        if self.localfiletype == 'po':
-            return 'pot'
-        else:
-            return self.localfiletype
-
-    def get_file_class(self):
-        """Returns the TranslationStore subclass required for parsing project
-        files.
-        """
-        return factory_classes[self.localfiletype]
-
     def file_belongs_to_project(self, filename, match_templates=True):
         """Tests if ``filename`` matches project filetype (ie. extension).
 
         If ``match_templates`` is ``True``, this will also check if the file
         matches the template filetype.
         """
-        template_ext = os.path.extsep + self.get_template_filetype()
-        return (filename.endswith(os.path.extsep + self.localfiletype)
-                or match_templates and filename.endswith(template_ext))
+        ext = os.path.splitext(filename)[1][1:]
+        filetypes = ProjectFiletypes(self)
+        return (
+            ext in filetypes.filetype_extensions
+            or (match_templates
+                and ext in filetypes.template_extensions))
 
     def _detect_treestyle(self):
         try:

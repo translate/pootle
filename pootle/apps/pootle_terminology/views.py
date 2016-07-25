@@ -25,7 +25,9 @@ def get_terminology_filename(translation_project):
     except IndexError:
         pass
 
-    return 'pootle-terminology.' + translation_project.project.localfiletype
+    return (
+        'pootle-terminology.%s'
+        % translation_project.project.filetypes[0].extension)
 
 
 def manage_store(request, ctx, language, term_store):

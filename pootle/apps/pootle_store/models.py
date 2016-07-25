@@ -12,10 +12,11 @@ import operator
 import os
 from hashlib import md5
 
-from collections import OrderedDict
+from collections import namedtuple, OrderedDict
 
 from translate.filters.decorators import Category
 from translate.storage import base
+from translate.storage.factory import getclass
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -30,6 +31,7 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.delegate import format_classes
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -56,7 +58,6 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from .diff import StoreDiff
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
-from .filetypes import factory_classes
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
 from .util import (
@@ -1972,15 +1973,29 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.save()
 
     def get_file_class(self):
+        fileclass = format_classes.gather().get(str(self.filetype.extension))
+        if fileclass:
+            return fileclass
         try:
-            return self.translation_project.project.get_file_class()
-        except ObjectDoesNotExist:
-            if self.name:
-                name, ext = os.path.splitext(self.name)
-                return factory_classes[ext]
-        return factory_classes['po']
+            return getclass(self)
+        except ValueError:
+            pass
+        if not self.name.endswith(str(self.filetype.extension)):
+            # template
+            name = ".".join(
+                [os.path.splitext(self.name)[0],
+                 str(self.filetype.extension)])
+            try:
+                # namedtuple is equiv here of object() with name attr
+                return getclass(
+                    namedtuple("instance", "name")(name=name))
+            except ValueError:
+                pass
+        raise ValueError(
+            "Unable to find conversion class for Store '%s'"
+            % self.name)
 
-    def convert(self, fileclass):
+    def convert(self, fileclass=None):
         """export to fileclass"""
         logging.debug(u"Converting %s to %s", self.pootle_path, fileclass)
         output = fileclass()
@@ -2100,14 +2115,15 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             'fuzzy': 0
         }
 
-        # only count files with an ext matching the project ext
-        proj_ext = "." + self.translation_project.project.localfiletype
-
         # XXX: `order_by()` here is important as it removes the default
         # ordering for units. See #3897 for reference.
-        res = self.units.filter(store__name__endswith=proj_ext) \
-                        .order_by().values('state') \
-                        .annotate(wordcount=models.Sum('source_wordcount'))
+        filetype_ids = self.translation_project.project.filetypes.values_list(
+            "pk", flat=True)
+        res = (
+            self.units.filter(store__filetype_id__in=filetype_ids)
+                      .exclude(store__is_template=True)
+                      .order_by().values('state')
+                      .annotate(wordcount=models.Sum('source_wordcount')))
         for item in res:
             ret['total'] += item['wordcount']
             if item['state'] == TRANSLATED:
