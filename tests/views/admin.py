@@ -14,13 +14,13 @@ from django.utils.safestring import mark_safe
 from pytest_pootle.env import TEST_USERS
 from pytest_pootle.factories import LanguageDBFactory
 
+from pootle.core.delegate import formats
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.filetypes import filetype_choices
 from pootle_translationproject.models import TranslationProject
 
 
@@ -248,11 +248,15 @@ def test_admin_view_projects(client, request_users, english):
         return
     languages = Language.objects.exclude(code='templates')
     language_choices = [(lang.id, unicode(lang)) for lang in languages]
+    filetypes = []
+    for name, info in formats.get().items():
+        filetypes.append(
+            [info["pk"], info["display_title"]])
     expected = {
         'page': 'admin-projects',
         'form_choices': {
             'checkstyle': Project.checker_choices,
-            'localfiletype': filetype_choices,
+            'filetypes': filetypes,
             'source_language': language_choices,
             'treestyle': Project.treestyle_choices,
             'defaults': {
