@@ -16,3 +16,12 @@ def no_formats():
 
     Format.objects.all().delete()
     formats.get().clear()
+
+
+@pytest.fixture
+def format_registry():
+    from pootle.core.delegate import formats
+
+    format_registry = formats.get()
+    format_registry.initialize()
+    return format_registry
