@@ -1,0 +1,20 @@
+# Travis specific pylint configuration #
+# ######################################
+#
+# For Travis we only care to fail if a test fails, so no fancy reporting
+#
+# Adding new enabled checks:
+# 1. They must pass
+# 2. They must pass reliably, no false positives
+# 3. Prefer a checker over and individual check
+# 4. We don't include anything that the devs can't agree on in terms of linting
+
+[MESSAGES CONTROL]
+disable=all
+# For checkers and individual checks see
+# https://pylint.readthedocs.io/en/latest/features.html
+enable=reimported,logging,stdlib,string
+
+[REPORTS]
+output-format=colorized
+reports=no
