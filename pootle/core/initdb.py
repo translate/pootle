@@ -242,8 +242,6 @@ class InitDB(object):
         You might want to add your projects here, although you can also add
         things through the web interface later.
         """
-        from pootle_project.models import Project
-
         en = self.require_english()
 
         criteria = {
@@ -273,8 +271,6 @@ class InitDB(object):
     def create_default_languages(self):
         """Create the default languages."""
         from translate.lang import data, factory
-
-        from pootle_language.models import Language
 
         # import languages from toolkit
         for code in data.languages.keys():

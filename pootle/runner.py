@@ -266,7 +266,6 @@ def run_app(project, default_settings_path, settings_template,
     # If no CACHES backend set tell user and exit. This prevents raising
     # ImproperlyConfigured error on trying to run any pootle commands
     # NB: it may be possible to remove this when #4006 is fixed
-    from django.conf import settings
     caches = settings.CACHES.keys()
     if "stats" not in caches or "redis" not in caches:
         sys.stdout.write("\nYou need to configure the CACHES setting, "
