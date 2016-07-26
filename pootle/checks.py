@@ -369,7 +369,6 @@ def check_settings(app_configs=None, **kwargs):
 @checks.register('data')
 def check_users(app_configs=None, **kwargs):
     from django.contrib.auth import get_user_model
-    from django.db.utils import OperationalError
 
     errors = []
 
