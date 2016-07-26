@@ -47,12 +47,12 @@ class InitDB(object):
         instance, created = model_klass.objects.get_or_create(**criteria)
         if created:
             logger.debug(
-                "Created %s: '%s'"
-                % (instance.__class__.__name__, instance))
+                "Created %s: '%s'",
+                instance.__class__.__name__, instance)
         else:
             logger.debug(
-                "%s already exists - skipping: '%s'"
-                % (instance.__class__.__name__, instance))
+                "%s already exists - skipping: '%s'",
+                instance.__class__.__name__, instance)
         return instance, created
 
     def _create_pootle_user(self, **criteria):

@@ -106,8 +106,8 @@ class FSPathMatcher(object):
                 yield matched_pootle_path, self.relative_path(file_path)
         if missing_langs:
             logger.warning(
-                "Could not import files for languages: %s"
-                % (", ".join(sorted(missing_langs))))
+                "Could not import files for languages: %s",
+                (", ".join(sorted(missing_langs))))
 
     def reverse_match(self, pootle_path):
         lang_code, __, dir_path, filename = split_pootle_path(pootle_path)

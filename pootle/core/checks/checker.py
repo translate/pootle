@@ -253,22 +253,22 @@ class QualityCheckUpdater(object):
         logger.debug("Clearing unknown checks...")
         self.clear_checks()
         logger.debug(
-            "Cleared unknown checks in %s seconds"
-            % (time.time() - start))
+            "Cleared unknown checks in %s seconds",
+            (time.time() - start))
 
         start = time.time()
         logger.debug("Deleting checks for untranslated units...")
         untrans = self.update_untranslated()
         logger.debug(
-            "Deleted %s checks for untranslated units in %s seconds"
-            % (untrans, (time.time() - start)))
+            "Deleted %s checks for untranslated units in %s seconds",
+            untrans, (time.time() - start))
 
         start = time.time()
         logger.debug("Updating checks - this may take some time...")
         trans = self.update_translated()
         logger.debug(
-            "Updated checks for %s units in %s seconds"
-            % (trans, (time.time() - start)))
+            "Updated checks for %s units in %s seconds",
+            trans, (time.time() - start))
 
     def update_store_caches(self, stores):
         """After completing QualityCheck updates expire caches for affected Stores.

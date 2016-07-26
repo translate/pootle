@@ -74,8 +74,8 @@ class ProjectLanguageMapper(object):
         for preset_name in self.project_presets:
             if preset_name not in self.site_presets:
                 logger.warning(
-                    "Unrecognised lang mapping preset: %s"
-                    % preset_name)
+                    "Unrecognised lang mapping preset: %s",
+                    preset_name)
                 continue
             mappings.update(self.site_presets[preset_name])
         return mappings

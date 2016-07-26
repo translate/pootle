@@ -89,8 +89,8 @@ class Plugin(object):
                 return User.objects.get(username=username)
             except User.DoesNotExist:
                 logger.warning(
-                    "Misconfigured pootle_fs user: %s"
-                    % username)
+                    "Misconfigured pootle_fs user: %s",
+                    username)
 
     @cached_property
     def resources(self):

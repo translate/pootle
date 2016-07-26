@@ -95,7 +95,7 @@ class FSFile(object):
         return self.store_fs.store
 
     def add(self):
-        logger.debug("Adding file: %s" % self.path)
+        logger.debug("Adding file: %s", self.path)
         self.store_fs.resolve_conflict = POOTLE_WINS
         self.store_fs.save()
 
@@ -129,7 +129,7 @@ class FSFile(object):
         """
         Called when FS file is fetched
         """
-        logger.debug("Fetching file: %s" % self.path)
+        logger.debug("Fetching file: %s", self.path)
         self.store_fs.resolve_conflict = FILE_WINS
         self.store_fs.save()
 
@@ -150,7 +150,7 @@ class FSFile(object):
         self.store_fs.last_sync_hash = self.latest_hash
         self.store_fs.last_sync_revision = self.store.get_max_unit_revision()
         self.store_fs.save()
-        logger.debug("File synced: %s" % self.path)
+        logger.debug("File synced: %s", self.path)
 
     def pull(self, user=None, merge=False, pootle_wins=None):
         """
@@ -158,7 +158,7 @@ class FSFile(object):
         """
         if self.store_exists and not self.fs_changed:
             return
-        logger.debug("Pulling file: %s" % self.path)
+        logger.debug("Pulling file: %s", self.path)
         if not self.store_exists:
             self.create_store()
         self._sync_to_pootle(user=user, merge=merge, pootle_wins=pootle_wins)
@@ -172,10 +172,10 @@ class FSFile(object):
             or (self.file_exists and not self.pootle_changed))
         if dont_push:
             return
-        logger.debug("Pushing file: %s" % self.path)
+        logger.debug("Pushing file: %s", self.path)
         directory = os.path.dirname(self.file_path)
         if not os.path.exists(directory):
-            logger.debug("Creating directory: %s" % directory)
+            logger.debug("Creating directory: %s", directory)
             os.makedirs(directory)
         self._sync_from_pootle()
 
@@ -227,7 +227,7 @@ class FSFile(object):
         """
         with open(self.file_path, "w") as f:
             f.write(self.serialize())
-        logger.debug("Pushed file: %s" % self.path)
+        logger.debug("Pushed file: %s", self.path)
 
     def _sync_to_pootle(self, merge=False, user=None, pootle_wins=None):
         """
@@ -255,4 +255,4 @@ class FSFile(object):
             user=user or User.objects.get_system_user(),
             store_revision=revision,
             resolve_conflict=resolve_conflict)
-        logger.debug("Pulled file: %s" % self.path)
+        logger.debug("Pulled file: %s", self.path)
