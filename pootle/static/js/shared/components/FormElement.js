@@ -11,7 +11,6 @@ import React from 'react';
 import FormCheckedInput from './FormCheckedInput';
 import FormValueInput from './FormValueInput';
 import FormSelectInput from './FormSelectInput';
-import FormMultiSelectInput from './FormMultiSelectInput';
 
 
 const FormElement = React.createClass({
@@ -19,9 +18,11 @@ const FormElement = React.createClass({
   propTypes: {
     type: React.PropTypes.string,
     label: React.PropTypes.string.isRequired,
+    multiple: React.PropTypes.bool,
     name: React.PropTypes.string.isRequired,
     handleChange: React.PropTypes.func.isRequired,
     value: React.PropTypes.oneOfType([
+      React.PropTypes.array,
       React.PropTypes.bool,
       React.PropTypes.number,
       React.PropTypes.string,
@@ -55,7 +56,6 @@ const FormElement = React.createClass({
       checkbox: FormCheckedInput,
       radio: FormCheckedInput,
 
-      multi_select: FormMultiSelectInput,
       select: FormSelectInput,
     }[this.props.type];
 

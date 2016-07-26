@@ -16,12 +16,14 @@ const FormSelectInput = React.createClass({
     clearAllText: React.PropTypes.string,
     clearValueText: React.PropTypes.string,
     handleChange: React.PropTypes.func.isRequired,
+    multiple: React.PropTypes.bool,
     name: React.PropTypes.string.isRequired,
     noResultsText: React.PropTypes.string,
     options: React.PropTypes.array.isRequired,
     placeholder: React.PropTypes.string,
     searchPromptText: React.PropTypes.string,
     value: React.PropTypes.oneOfType([
+      React.PropTypes.array,
       React.PropTypes.number,
       React.PropTypes.string,
     ]).isRequired,
@@ -29,6 +31,7 @@ const FormSelectInput = React.createClass({
 
   getDefaultProps() {
     return {
+      multiple: false,
       placeholder: gettext('Select...'),
       noResultsText: gettext('No results found'),
       clearValueText: gettext('Clear value'),
@@ -41,19 +44,23 @@ const FormSelectInput = React.createClass({
   /* Handlers */
 
   handleChange(value) {
-    this.props.handleChange(this.props.name, value);
+    const newValue = this.props.multiple ? value.split(',') : value;
+    this.props.handleChange(this.props.name, newValue);
   },
 
 
   /* Layout */
 
   render() {
+    const { value } = this.props;
+    /* FIXME: react-select#25 prevents using non-string values */
+    const selectValue = this.props.multiple ? value : value.toString();
     return (
       <Select
         onChange={this.handleChange}
         {...this.props}
-        /* FIXME: react-select#25 prevents using non-string values */
-        value={this.props.value.toString()}
+        multi={this.props.multiple}
+        value={selectValue}
       />
     );
   },
