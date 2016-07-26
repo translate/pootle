@@ -25,7 +25,8 @@ from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
-from pootle.core.utils.stats import get_translation_states
+from pootle.core.utils.stats import (get_top_scorers_data,
+                                     get_translation_states)
 from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
@@ -114,6 +115,8 @@ def _test_browse_view(tp, request, response, kwargs):
         table = None
 
     User = get_user_model()
+    top_scorers = User.top_scorers(language=tp.language.code,
+                                   project=tp.project.code, limit=11)
     assertions = dict(
         page="browse",
         object=ob,
@@ -128,8 +131,8 @@ def _test_browse_view(tp, request, response, kwargs):
         resource_path_parts=get_path_parts(resource_path),
         translation_states=get_translation_states(ob),
         checks=get_qualitycheck_list(ob),
-        top_scorers=User.top_scorers(language=tp.language.code,
-                                     project=tp.project.code, limit=10),
+        top_scorers=top_scorers,
+        top_scorers_data=get_top_scorers_data(top_scorers, 10),
         url_action_continue=ob.get_translate_url(
             state='incomplete', **filters),
         url_action_fixcritical=ob.get_critical_url(**filters),
