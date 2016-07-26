@@ -144,10 +144,11 @@ def get_complete_version(version=None):
     >>> get_complete_version((1, 2, 3, 'alpha', 0))
     (1, 2, 3, 'alpha', 0)
     """
-    if version is None:
-        from pootle import VERSION as version
+    if version is not None:
+        return version
 
-    return version
+    from pootle import VERSION
+    return VERSION
 
 
 def get_docs_version(version=None, positions=2):

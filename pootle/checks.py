@@ -77,13 +77,13 @@ def check_duplicate_emails(app_configs=None, **kwargs):
 
 @checks.register()
 def check_library_versions(app_configs=None, **kwargs):
-    from django import VERSION as django_version
-    from lxml.etree import LXML_VERSION as lxml_version
+    from django import VERSION as DJANGO_VERSION
+    from lxml.etree import LXML_VERSION
     from translate.__version__ import ver as ttk_version
 
     errors = []
 
-    if django_version < DJANGO_MINIMUM_REQUIRED_VERSION:
+    if DJANGO_VERSION < DJANGO_MINIMUM_REQUIRED_VERSION:
         errors.append(checks.Critical(
             _("Your version of Django is too old."),
             hint=_("Try pip install --upgrade 'Django==%s'",
@@ -91,7 +91,7 @@ def check_library_versions(app_configs=None, **kwargs):
             id="pootle.C002",
         ))
 
-    if lxml_version < LXML_MINIMUM_REQUIRED_VERSION:
+    if LXML_VERSION < LXML_MINIMUM_REQUIRED_VERSION:
         errors.append(checks.Warning(
             _("Your version of lxml is too old."),
             hint=_("Try pip install --upgrade lxml"),
