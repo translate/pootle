@@ -189,13 +189,14 @@ def _require_store(tp, po_dir, name):
             translation_project=tp,
         )
     except Store.DoesNotExist:
-        store = Store.objects.create(
+        store = Store.objects.create_by_path(
             file=file_path,
-            parent=parent_dir,
-            name=name,
-            translation_project=tp,
-        )
-
+            create_tp=False,
+            create_directory=False,
+            pootle_path=(
+                "%s%s"
+                % (parent_dir.pootle_path,
+                   name)))
     if store.file.exists():
         if store.state < PARSED:
             store.update(store.file.store)
