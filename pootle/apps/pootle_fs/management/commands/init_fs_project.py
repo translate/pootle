@@ -11,6 +11,7 @@ import logging
 from django.core.management import BaseCommand, CommandError
 from django.db import IntegrityError
 
+from pootle_format.models import Format
 from pootle_fs.utils import FSPlugin, parse_fs_url
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -46,12 +47,10 @@ class Command(BaseCommand):
             help='Project name',
         )
         parser.add_argument(
-            '--file-type',
-            action='store',
-            dest='file_type',
-            help='File type',
-            nargs='?',
-            default='po'
+            '--filetypes',
+            action='append',
+            dest='filetypes',
+            help='File types',
         )
         parser.add_argument(
             '--checkstyle',
@@ -94,11 +93,15 @@ class Command(BaseCommand):
             project = Project.objects.create(
                 code=code,
                 fullname=name,
-                localfiletype=options['file_type'],
                 treestyle='none',
                 checkstyle=options['checkstyle'],
-                source_language=source_language
-            )
+                source_language=source_language)
+            for filetype in options["filetypes"] or ["po"]:
+                try:
+                    filetype = Format.objects.get(name=filetype)
+                    project.filetypes.add(filetype)
+                except Format.DoesNotExist as e:
+                    raise CommandError(e)
             project.update_all_cache()
         except IntegrityError as e:
             self.stdout.write('Project code "%s" already exists.'
