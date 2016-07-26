@@ -65,9 +65,12 @@ def ts_directory(po_directory, request, tmpdir, settings):
 @pytest.fixture
 def en_tutorial_ts(settings, english_tutorial, ts_directory):
     """Require the en/tutorial/tutorial.ts store."""
+    from pootle_format.models import Format
 
     english_tutorial.project.localfiletype = "ts"
     english_tutorial.project.save()
+    english_tutorial.project.filetypes.add(
+        Format.objects.get(name="ts"))
     return store._require_store(english_tutorial,
                                 ts_directory,
                                 'tutorial.ts')

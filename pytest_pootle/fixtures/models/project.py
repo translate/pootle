@@ -21,11 +21,9 @@ def _require_project(code, name, source_language, **kwargs):
         'fullname': name,
         'source_language': source_language,
         'checkstyle': 'standard',
-        'localfiletype': 'po',
         'treestyle': 'auto',
     }
     criteria.update(kwargs)
-
     new_project, created = Project.objects.get_or_create(**criteria)
     return new_project
 

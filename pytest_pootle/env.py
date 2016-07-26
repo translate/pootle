@@ -37,7 +37,7 @@ TEST_USERS = {
 class PootleTestEnv(object):
 
     methods = (
-        "redis", "case_sensitive_schema", "content_type", "site_root",
+        "redis", "case_sensitive_schema", "formats", "content_type", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
         "site_permissions", "tps", "disabled_project",
         "subdirs", "submissions", "announcements", "terminology", "fs")
@@ -49,6 +49,11 @@ class PootleTestEnv(object):
         [getattr(self, "setup_%s" % method)()
          for method
          in self.methods]
+
+    def setup_formats(self):
+        from pootle.core.delegate import formats
+
+        formats.get().initialize()
 
     def setup_announcements(self):
         from pytest_pootle.factories import AnnouncementFactory
@@ -279,6 +284,7 @@ class PootleTestEnv(object):
     def setup_site_matrix(self):
         from pytest_pootle.factories import ProjectDBFactory, LanguageDBFactory
 
+        from pootle_format.models import Format
         from pootle_language.models import Language
 
         # add 2 languages
@@ -286,9 +292,11 @@ class PootleTestEnv(object):
             LanguageDBFactory()
 
         source_language = Language.objects.get(code="en")
+        po = Format.objects.get(name="po")
         for i in range(0, 2):
             # add 2 projects
-            ProjectDBFactory(source_language=source_language)
+            project = ProjectDBFactory(source_language=source_language)
+            project.filetypes.add(po)
 
     def setup_terminology(self):
         from pytest_pootle.factories import (ProjectDBFactory,
@@ -308,12 +316,14 @@ class PootleTestEnv(object):
                                              ProjectDBFactory,
                                              TranslationProjectFactory)
 
+        from pootle_format.models import Format
         from pootle_language.models import Language
 
         source_language = Language.objects.get(code="en")
         project = ProjectDBFactory(code="disabled_project0",
                                    fullname="Disabled Project 0",
                                    source_language=source_language)
+        project.filetypes.add(Format.objects.get(name="po"))
         project.disabled = True
         project.save()
         language = Language.objects.get(code="language0")
@@ -365,6 +375,7 @@ class PootleTestEnv(object):
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
 
+        from pootle_format.utils import ProjectFiletypes
         from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
 
         for i in range(0, n[0]):
@@ -373,6 +384,9 @@ class PootleTestEnv(object):
                 store = StoreDBFactory(translation_project=tp)
             else:
                 store = StoreDBFactory(translation_project=tp, parent=parent)
+            store.filetype = ProjectFiletypes(
+                tp.project).choose_filetype(store.name)
+            store.save()
 
             # add 8 units to each store
             for state in [UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE]:
