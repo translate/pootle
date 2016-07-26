@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_noop as _
 from pootle.core.models import Revision
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
+from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import StaticPage as Announcement
@@ -31,6 +32,7 @@ class InitDB(object):
 
         This creates the default database to get a working Pootle installation.
         """
+        self.create_formats()
         self.create_revision()
         self.create_essential_users()
         self.create_root_directories()
@@ -42,6 +44,11 @@ class InitDB(object):
         if create_projects:
             self.create_default_projects()
         self.create_default_languages()
+
+    def create_formats(self):
+        from pootle.core.delegate import formats
+
+        formats.get().initialize()
 
     def _create_object(self, model_klass, **criteria):
         instance, created = model_klass.objects.get_or_create(**criteria)
@@ -234,7 +241,9 @@ class InitDB(object):
             'source_language': self.require_english(),
             'checkstyle': "terminology",
         }
-        self._create_object(Project, **criteria)
+        po = Format.objects.get(name="po")
+        terminology, created = self._create_object(Project, **criteria)
+        terminology.filetypes.add(po)
 
     def create_default_projects(self):
         """Create the default projects that we host.
@@ -243,16 +252,17 @@ class InitDB(object):
         things through the web interface later.
         """
         en = self.require_english()
+        po = Format.objects.get(name="po")
 
         criteria = {
             'code': u"tutorial",
             'source_language': en,
             'fullname': u"Tutorial",
             'checkstyle': "standard",
-            'localfiletype': "po",
             'treestyle': "auto",
         }
         tutorial, created = self._create_object(Project, **criteria)
+        tutorial.filetypes.add(po)
 
         criteria = {
             'active': True,
