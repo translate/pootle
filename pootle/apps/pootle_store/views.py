@@ -31,7 +31,8 @@ from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils import dateformat
-from pootle.core.utils.stats import get_top_scorers_data
+from pootle.core.utils.stats import (get_top_scorers_data,
+                                     TOP_CONTRIBUTORS_CHUNK_SIZE)
 from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
@@ -534,11 +535,16 @@ def get_contributors(request, *args, **kwargs):
     top_scorers = User.top_scorers(
         project=project_code,
         language=language_code,
-        limit=11,
+        limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1,
         offset=offset
     )
 
-    return JsonResponse(get_top_scorers_data(top_scorers, 10))
+    return JsonResponse(
+        get_top_scorers_data(
+            top_scorers,
+            TOP_CONTRIBUTORS_CHUNK_SIZE
+        )
+    )
 
 
 @ajax_required
