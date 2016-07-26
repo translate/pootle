@@ -21,12 +21,14 @@ from pytest_pootle.utils import update_store
 from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.dispatch import receiver
 
 from pootle.core.delegate import config
 from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
 from pootle.core.serializers import Serializer, Deserializer
+from pootle.core.signals import object_obsoleted
 from pootle_app.models import Directory
 from pootle_config.exceptions import ConfigurationError
 from pootle_language.models import Language
@@ -825,3 +827,23 @@ def test_store_create_by_new_tp_path():
     store = Store.objects.create_by_path(path)
     assert store.pootle_path == path
     assert store.translation_project.language == language
+
+
+@pytest.mark.django_db
+def test_store_obsolete_signal(cleanup_receivers):
+    store = Store.objects.filter(obsolete=False).first()
+
+    class ResultHandler(object):
+        pass
+
+    results = ResultHandler()
+
+    @receiver(object_obsoleted, sender=Store)
+    def handle_object_obsolete(**kwargs):
+        kwargs["foo"] = "bar"
+        results.kwargs = kwargs
+
+    store.makeobsolete()
+    assert results.kwargs["foo"] == "bar"
+    assert results.kwargs["sender"] is Store
+    assert results.kwargs["instance"] is store

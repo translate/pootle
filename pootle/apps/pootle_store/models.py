@@ -30,6 +30,9 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.delegate import (
+    object_parents, pootle_paths as pootle_paths_providers,
+    unit_priority)
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -39,6 +42,7 @@ from pootle.core.log import (
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
+from pootle.core.signals import object_obsoleted
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_all_pootle_paths, get_editor_filter, split_pootle_path)
@@ -512,6 +516,8 @@ class Unit(models.Model, base.TranslationUnit):
             self.reviewed_by = None
             self.submitted_by = None
             self.submitted_on = None
+        elif self.state == OBSOLETE and not created:
+            object_obsoleted.send(self.__class__, instance=self)
 
         super(Unit, self).save(*args, **kwargs)
 
@@ -647,10 +653,13 @@ class Unit(models.Model, base.TranslationUnit):
         if not vfolders_installed():
             return 1.0
 
-        priority = (
-            self.vfolders.order_by("-priority")
-                         .values_list("priority", flat=True)
-                         .first())
+        priority = unit_priority.get(self.__class__, instance=self)
+
+        if priority is None:
+            priority = (
+                self.vfolders.order_by("-priority")
+                             .values_list("priority", flat=True)
+                             .first())
         if priority is None:
             return 1.0
         return priority
@@ -1475,6 +1484,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unit_query.update(state=OBSOLETE, index=0)
         self.obsolete = True
         self.save()
+        object_obsoleted.send(self.__class__, instance=self)
         self.clear_all_cache(parents=False, children=False)
 
     def get_absolute_url(self):
@@ -2053,6 +2063,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if 'virtualfolder' in settings.INSTALLED_APPS:
             parents.extend(self.parent_vf_treeitems.all())
 
+        parents.extend(
+            object_parents.gather(
+                self.__class__,
+                instance=self,
+                parents=parents))
+
         return parents
 
     def get_cachekey(self):
@@ -2164,6 +2180,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     [p for p
                      in get_all_pootle_paths(pootle_path)
                      if p.count('/') > location.count('/')])
+        pootle_paths.extend(
+            pootle_paths_providers.gather(
+                self.__class__,
+                instance=self,
+                pootle_paths=pootle_paths))
         return pootle_paths
 
     # # # /TreeItem

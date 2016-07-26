@@ -16,6 +16,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 
+from pootle.core.delegate import extracted_path
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
@@ -141,6 +142,10 @@ def set_resource(request, path_obj, dir_path, filename):
         # it. For example /af/test_vfolders/browser/chrome/ is the corresponding
         # clean pootle path for /af/test_vfolders/browser/vfolder8/chrome/
         vfolder, clean_pootle_path = extract_vfolder_from_path(pootle_path)
+
+    extracted = extracted_path.get(str.__class__, instance=clean_pootle_path)
+    if extracted:
+        clean_pootle_path = extracted[0]
 
     if filename:
         pootle_path = pootle_path + filename

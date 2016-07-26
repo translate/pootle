@@ -317,3 +317,30 @@ def test_unit_ts_plurals(store_po, test_fs):
     unit.save()
     unit = Unit.objects.get(id=unit.id)
     assert unit.hasplural()
+
+
+@pytest.mark.django_db
+def test_unit_obsolete_signal(cleanup_receivers):
+
+    from django.dispatch import receiver
+
+    from pootle.core.signals import object_obsoleted
+    from pootle_store.models import OBSOLETE, Unit
+
+    unit = Unit.objects.exclude(state=OBSOLETE).first()
+
+    class ResultHandler(object):
+        pass
+
+    results = ResultHandler()
+
+    @receiver(object_obsoleted, sender=Unit)
+    def handle_object_obsolete(**kwargs):
+        kwargs["foo"] = "bar"
+        results.kwargs = kwargs
+
+    unit.makeobsolete()
+    unit.save()
+    assert results.kwargs["foo"] == "bar"
+    assert results.kwargs["sender"] is Unit
+    assert results.kwargs["instance"] is unit
