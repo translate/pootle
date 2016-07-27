@@ -313,7 +313,8 @@ PTL.editor = {
     const hotkeys = mousetrap(document.body);
 
     // FIXME: move binding to `SuggestionFeedbackForm` component
-    hotkeys.bind('esc', () => {
+    hotkeys.bind('esc', (e) => {
+      e.preventDefault();
       if (this.selectedSuggestionId !== undefined) {
         this.closeSuggestion();
       }
@@ -326,14 +327,32 @@ PTL.editor = {
         this.handleSubmit();
       }
     });
-    hotkeys.bind('ctrl+space', () => this.toggleState());
-    hotkeys.bind('ctrl+shift+space', (e) => this.toggleSuggestMode(e));
+    hotkeys.bind('ctrl+space', (e) => {
+      e.preventDefault();
+      this.toggleState();
+    });
+    hotkeys.bind('ctrl+shift+space', (e) => {
+      e.preventDefault();
+      this.toggleSuggestMode(e);
+    });
 
-    hotkeys.bind('ctrl+up', () => this.gotoPrev());
-    hotkeys.bind('ctrl+,', () => this.gotoPrev());
+    hotkeys.bind('ctrl+up', (e) => {
+      e.preventDefault();
+      this.gotoPrev();
+    });
+    hotkeys.bind('ctrl+,', (e) => {
+      e.preventDefault();
+      this.gotoPrev();
+    });
 
-    hotkeys.bind('ctrl+down', () => this.gotoNext({ isSubmission: false }));
-    hotkeys.bind('ctrl+.', () => this.gotoNext({ isSubmission: false }));
+    hotkeys.bind('ctrl+down', (e) => {
+      e.preventDefault();
+      this.gotoNext({ isSubmission: false });
+    });
+    hotkeys.bind('ctrl+.', (e) => {
+      e.preventDefault();
+      this.gotoNext({ isSubmission: false });
+    });
 
     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0) {
       // Optimize string join with '<br/>' as separator
@@ -351,7 +370,10 @@ PTL.editor = {
       );
     }
 
-    hotkeys.bind('ctrl+shift+n', (e) => this.unitIndex(e));
+    hotkeys.bind('ctrl+shift+n', (e) => {
+      e.preventDefault();
+      this.unitIndex(e);
+    });
 
     /* XHR activity indicator */
     $(document).ajaxStart(() => {

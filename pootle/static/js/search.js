@@ -40,10 +40,12 @@ const search = {
 
     /* Shortcuts */
 
-    mousetrap(document.body).bind('mod+shift+s', () => {
+    mousetrap(document.body).bind('mod+shift+s', (e) => {
+      e.preventDefault();
       this.$input.focus();
     });
     mousetrap(this.$form[0]).bind('esc', (e) => {
+      e.preventDefault();
       if (this.$form.hasClass('focused')) {
         this.$input.blur();
         this.toggleFields(e);
