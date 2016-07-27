@@ -22,6 +22,7 @@ from django.db.models import ProtectedError, Q, Sum, Case, When
 from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
+from django.utils.lru_cache import lru_cache
 from django.utils.translation import ugettext_lazy as _
 
 from allauth.account.models import EmailAddress
@@ -431,6 +432,7 @@ class User(AbstractBaseUser):
 
         return (position, language)
 
+    @lru_cache()
     def last_event(self):
         """Returns the latest submission linked with this user. If there's
         no activity, `None` is returned instead.
