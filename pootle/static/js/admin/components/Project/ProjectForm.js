@@ -134,7 +134,7 @@ const ProjectForm = React.createClass({
             handleChange={this.handleChange}
             name="disabled"
             errors={errors.disabled}
-            value={formData.disabled}
+            value={!!formData.disabled}
           />
         </div>
         <div className="buttons">
