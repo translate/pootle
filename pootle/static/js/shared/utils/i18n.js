@@ -53,4 +53,9 @@ export function gettextComponentTemplate(string, ctx = null) {
 }
 
 
+export function t(string, args) {
+  return interpolate(gettext(string), args, true);
+}
+
+
 export const tct = gettextComponentTemplate;
