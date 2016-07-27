@@ -165,19 +165,20 @@ export function relativeDate(date) {
   let count;
 
   if (years > 0) {
-    fmt = ngettext('A year ago', '%s years ago', years);
+    fmt = years === 1 ? gettext('A year ago') : ngettext('%s year ago', '%s years ago', years);
     count = [years];
   } else if (weeks > 0) {
-    fmt = ngettext('A week ago', '%s weeks ago', weeks);
+    fmt = weeks === 1 ? gettext('A week ago') : ngettext('%s week ago', '%s weeks ago', weeks);
     count = [weeks];
   } else if (days > 0) {
-    fmt = ngettext('Yesterday', '%s days ago', days);
+    fmt = days === 1 ? gettext('Yesterday') : ngettext('%s day ago', '%s days ago', days);
     count = [days];
   } else if (hours > 0) {
-    fmt = ngettext('An hour ago', '%s hours ago', hours);
+    fmt = hours === 1 ? gettext('An hour ago') : ngettext('%s hour ago', '%s hours ago', hours);
     count = [hours];
   } else if (minutes > 0) {
-    fmt = ngettext('A minute ago', '%s minutes ago', minutes);
+    fmt = minutes === 1 ?
+      gettext('A minute ago') : ngettext('%s minute ago', '%s minutes ago', minutes);
     count = [minutes];
   }
 
