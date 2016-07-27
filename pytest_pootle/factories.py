@@ -192,6 +192,14 @@ class UnitDBFactory(factory.django.DjangoModelFactory):
                    ending))
         return ""
 
+    @factory.lazy_attribute
+    def source_wordcount(self):
+        return pootle_store.models.count_words(self.source_f)
+
+    @factory.lazy_attribute
+    def target_wordcount(self):
+        return pootle_store.models.count_words(self.target_f)
+
 
 class VirtualFolderDBFactory(factory.django.DjangoModelFactory):
 
