@@ -10,7 +10,7 @@ import React, { PropTypes } from 'react';
 import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
 import TimeSince from 'components/TimeSince';
-import { t } from 'utils/i18n';
+import { tct } from 'utils/i18n';
 
 const UploadTimeSince = React.createClass({
 
@@ -31,7 +31,7 @@ const UploadTimeSince = React.createClass({
 
     return (
       <span className="extra-item-meta">
-        {t('%(timeSince)s via file upload', { timeSince })}
+        {tct('%(timeSince)s via file upload', { timeSince })}
       </span>
     );
   },

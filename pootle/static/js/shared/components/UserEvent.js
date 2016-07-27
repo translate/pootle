@@ -11,7 +11,7 @@ import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
 import Avatar from 'components/Avatar';
 import TimeSince from 'components/TimeSince';
-import { t } from 'utils/i18n';
+import { tct } from 'utils/i18n';
 
 const Check = ({ name, displayName }) => (
   <a href={`#${name}`}>{displayName}</a>
@@ -94,32 +94,32 @@ const UserEvent = React.createClass({
      */
 
     if (type === 2) {
-      return t('removed translation for %(sourceString)s', { sourceString });
+      return tct('removed translation for %(sourceString)s', { sourceString });
     } else if (type === 3) {
-      return t('accepted suggestion for %(sourceString)s', { sourceString });
+      return tct('accepted suggestion for %(sourceString)s', { sourceString });
     } else if (type === 4) {
       return [gettext('uploaded file')];
     } else if (type === 6) {
-      return t('muted %(check)s for %(sourceString)s', { check, sourceString });
+      return tct('muted %(check)s for %(sourceString)s', { check, sourceString });
     } else if (type === 7) {
-      return t('unmuted %(check)s for %(sourceString)s', { check, sourceString });
+      return tct('unmuted %(check)s for %(sourceString)s', { check, sourceString });
     } else if (type === 8) {
-      return t('added suggestion for %(sourceString)s', { sourceString });
+      return tct('added suggestion for %(sourceString)s', { sourceString });
     } else if (type === 9) {
-      return t('rejected suggestion for %(sourceString)s', { sourceString });
+      return tct('rejected suggestion for %(sourceString)s', { sourceString });
     } else if (type === 1 || type === 5) {
       if (translationActionType === 0) {
-        return t('translated %(sourceString)s', { sourceString });
+        return tct('translated %(sourceString)s', { sourceString });
       } else if (translationActionType === 1) {
-        return t('edited %(sourceString)s', { sourceString });
+        return tct('edited %(sourceString)s', { sourceString });
       } else if (translationActionType === 2) {
-        return t('pre-translated %(sourceString)s', { sourceString });
+        return tct('pre-translated %(sourceString)s', { sourceString });
       } else if (translationActionType === 3) {
-        return t('removed translation for %(sourceString)s', { sourceString });
+        return tct('removed translation for %(sourceString)s', { sourceString });
       } else if (translationActionType === 4) {
-        return t('reviewed %(sourceString)s', { sourceString });
+        return tct('reviewed %(sourceString)s', { sourceString });
       } else if (translationActionType === 5) {
-        return t('marked as needs work %(sourceString)s', { sourceString });
+        return tct('marked as needs work %(sourceString)s', { sourceString });
       }
     }
 

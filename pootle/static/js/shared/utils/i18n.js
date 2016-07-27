@@ -44,9 +44,13 @@ function formatComponent(str, ctx) {
   return result;
 }
 
-export function t(string, ctx = null) {
+
+export function gettextComponentTemplate(string, ctx = null) {
   if (!ctx) {
     return gettext(string);
   }
   return formatComponent(gettext(string), ctx);
 }
+
+
+export const tct = gettextComponentTemplate;
