@@ -66,7 +66,7 @@ def test_finder_match_stores():
         # clean up if no dir_path
         expected = expected.replace("//", "/")
         expected = expected.replace(
-            "<ext>", store.translation_project.project.localfiletype)
+            "<ext>", str(store.filetype.extension))
         assert finder.reverse_match(**kwargs) == expected
         matched = finder.match(expected)
         for k, v in kwargs.items():
