@@ -22,6 +22,7 @@ const FormElement = React.createClass({
     name: React.PropTypes.string.isRequired,
     handleChange: React.PropTypes.func.isRequired,
     value: React.PropTypes.oneOfType([
+      React.PropTypes.bool,
       React.PropTypes.number,
       React.PropTypes.string,
     ]).isRequired,
