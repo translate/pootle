@@ -35,7 +35,7 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
         tr_path,
         "--nosync",
         "--checkstyle=standard",
-        "--file-type=po",
+        "--filetypes=po",
         "--source-language=en",
         "--name=Foo"
     )
@@ -44,7 +44,7 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
     assert project is not None
     assert project.code == "foo"
     assert project.fullname == "Foo"
-    assert project.localfiletype == "po"
+    assert "po" in project.filetypes.values_list("name", flat=True)
     assert project.checkstyle == "standard"
     assert project.source_language.code == "en"
     assert project.treestyle == "none"
