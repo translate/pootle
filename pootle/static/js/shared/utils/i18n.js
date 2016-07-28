@@ -45,6 +45,17 @@ function formatComponent(str, ctx) {
 }
 
 
+/**
+ * Mark a string for localization and replace placeholders with the components
+ * provided in the context argument. This is intended to use in the context of
+ * JSX and React components.
+ *
+ * @param {String} string - The string to internationalize. It accepts
+ * printf-style named placeholders.
+ * @param {Object} ctx - Components to be injected in the placeholders specified
+ * by the keys.
+ * @return {Array|String} - The original `string` with replaced placeholders.
+ */
 export function gettextComponentTemplate(string, ctx = null) {
   if (!ctx) {
     return gettext(string);
