@@ -10,13 +10,13 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle_project.models import Project
+
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_initdb_noprojects(capfd, no_permission_sets, no_permissions, no_users):
+def test_cmd_initdb_noprojects(capfd, no_permission_sets, no_permissions, no_users):
     """Initialise the database with initdb
-
-    Testing without --no-projects would take too long
     """
     call_command('initdb', '--no-projects')
     out, err = capfd.readouterr()
@@ -30,3 +30,18 @@ def test_initdb_noprojects(capfd, no_permission_sets, no_permissions, no_users):
     # assert "Created Permission:" in err
     # assert "Created PermissionSet:" in err
     # assert "Created Language:" in err
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_cmd_initdb(capfd, no_permission_sets, no_permissions, no_users,
+                    no_projects):
+    """Initialise the database with initdb
+    """
+    call_command('initdb')
+    out, err = capfd.readouterr()
+    assert "Successfully populated the database." in out
+    assert "pootle createsuperuser" in out
+    assert (
+        sorted(Project.objects.values_list("code", flat=True))
+        == ["terminology", "tutorial"])
