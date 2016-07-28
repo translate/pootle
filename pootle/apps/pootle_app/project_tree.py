@@ -16,6 +16,7 @@ from django.conf import settings
 from pootle.core.log import STORE_RESURRECTED, store_log
 from pootle.core.utils.timezone import datetime_min
 from pootle_app.models.directory import Directory
+from pootle_format.utils import ProjectFiletypes
 from pootle_language.models import Language
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -48,11 +49,12 @@ def match_template_filename(project, filename):
     """Test if :param:`filename` might point at a template file for a given
     :param:`project`.
     """
-    name, ext = os.path.splitext(os.path.basename(filename))
+    ext = os.path.splitext(os.path.basename(filename))[1][1:]
+    project_filetypes = ProjectFiletypes(project)
 
     # FIXME: is the test for matching extension redundant?
-    if ext == os.path.extsep + project.get_template_filetype():
-        if ext != os.path.extsep + project.localfiletype:
+    if ext in project_filetypes.template_extensions:
+        if ext not in project_filetypes.filetype_extensions:
             # Template extension is distinct, surely file is a template.
             return True
         elif not find_lang_postfix(filename):
@@ -119,19 +121,25 @@ def is_hidden_file(path):
     return path[0] == '.'
 
 
-def split_files_and_dirs(ignored_files, ext, real_dir, file_filter):
+def split_files_and_dirs(ignored_files, exts, real_dir, file_filter):
     files = []
     dirs = []
-    for child_path in [child_path for child_path in os.listdir(real_dir)
-                       if child_path not in ignored_files and
-                       not is_hidden_file(child_path)]:
+    child_paths = [
+        child_path
+        for child_path
+        in os.listdir(real_dir)
+        if (child_path not in ignored_files
+            and not is_hidden_file(child_path))]
+    for child_path in child_paths:
         full_child_path = os.path.join(real_dir, child_path)
-        if (os.path.isfile(full_child_path) and
-            full_child_path.endswith(ext) and file_filter(full_child_path)):
+        should_include_file = (
+            os.path.isfile(full_child_path)
+            and os.path.splitext(full_child_path)[1][1:] in exts
+            and file_filter(full_child_path))
+        if should_include_file:
             files.append(child_path)
         elif os.path.isdir(full_child_path):
             dirs.append(child_path)
-
     return files, dirs
 
 
@@ -188,9 +196,9 @@ def create_or_resurrect_store(file, parent, name, translation_project):
         store_log(user='system', action=STORE_RESURRECTED,
                   path=store.pootle_path, store=store.id)
     except Store.DoesNotExist:
-        store = Store(file=file, parent=parent,
-                      name=name, translation_project=translation_project)
-
+        store = Store.objects.create(
+            file=file, parent=parent,
+            name=name, translation_project=translation_project)
     store.mark_all_dirty()
     return store
 
@@ -208,11 +216,11 @@ def create_or_resurrect_dir(name, parent):
 
 
 # TODO: rename function or even rewrite it
-def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
+def add_files(translation_project, ignored_files, exts, relative_dir, db_dir,
               file_filter=lambda _x: True):
     podir_path = to_podir_path(relative_dir)
-    files, dirs = split_files_and_dirs(ignored_files, ext, podir_path,
-                                       file_filter)
+    files, dirs = split_files_and_dirs(
+        ignored_files, exts, podir_path, file_filter)
     file_set = set(files)
     dir_set = set(dirs)
 
@@ -221,6 +229,7 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
                                                      .iterator())
     existing_dirs = dict((dir.name, dir) for dir in
                          db_dir.child_dirs.live().iterator())
+
     files, new_files = add_items(
         file_set,
         existing_stores,
@@ -243,9 +252,13 @@ def add_files(translation_project, ignored_files, ext, relative_dir, db_dir,
     is_empty = len(files) == 0
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(relative_dir, db_subdir.name)
-        _files, _new_files, _is_empty = \
-            add_files(translation_project, ignored_files, ext, fs_subdir,
-                      db_subdir, file_filter)
+        _files, _new_files, _is_empty = add_files(
+            translation_project,
+            ignored_files,
+            exts,
+            fs_subdir,
+            db_subdir,
+            file_filter)
         files += _files
         new_files += _new_files
         is_empty &= _is_empty
@@ -349,8 +362,11 @@ def get_translated_name_gnu(translation_project, store):
     if not pootle_path.endswith('/'):
         pootle_path = pootle_path + '/'
 
-    suffix = "%s%s%s" % (translation_project.language.code, os.extsep,
-                         translation_project.project.localfiletype)
+    suffix = (
+        "%s%s%s"
+        % (translation_project.language.code,
+           os.extsep,
+           store.filetype.extension))
     # try loading file first
     try:
         target_store = translation_project.stores.live().get(
@@ -370,9 +386,11 @@ def get_translated_name_gnu(translation_project, store):
         # let's make sure
         for tp in translation_project.project.translationproject_set.exclude(
                 language__code='templates').iterator():
-            temp_suffix = \
-                "%s%s%s" % (tp.language.code, os.extsep,
-                            translation_project.project.localfiletype)
+            temp_suffix = (
+                "%s%s%s"
+                % (tp.language.code,
+                   os.extsep,
+                   store.filetype.template_extension))
             if tp.stores.live().exclude(
                     name__iexact=temp_suffix).exclude(file="").count():
                 use_prefix = True
@@ -436,10 +454,14 @@ def get_translated_name(translation_project, store):
     pootle_path_parts[1] = translation_project.language.code
 
     # Replace extension
-    path_parts[-1] = "%s.%s" % (name,
-                                translation_project.project.localfiletype)
-    pootle_path_parts[-1] = \
-        "%s.%s" % (name, translation_project.project.localfiletype)
+    path_parts[-1] = (
+        "%s.%s"
+        % (name,
+           store.filetype.extension))
+    pootle_path_parts[-1] = (
+        "%s.%s"
+        % (name,
+           store.filetype.extension))
 
     return ('/'.join(pootle_path_parts),
             absolute_real_path(os.sep.join(path_parts)))

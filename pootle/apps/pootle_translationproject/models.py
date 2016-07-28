@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
-import os
 
 from translate.misc.lru import LRUCachingDict
 
@@ -23,6 +22,8 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
                                      translation_project_dir_exists)
+from pootle_format.models import Format
+from pootle_format.utils import ProjectFiletypes
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
@@ -411,11 +412,13 @@ class TranslationProject(models.Model, CachedTreeItem):
         """
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
-        ext = os.extsep + self.project.localfiletype
+
+        filetypes = ProjectFiletypes(self.project)
+        exts = filetypes.filetype_extensions
 
         # Scan for pots if template project
         if self.is_template_project:
-            ext = os.extsep + self.project.get_template_filetype()
+            exts = filetypes.template_extensions
 
         from pootle_app.project_tree import (add_files,
                                              match_template_filename,
@@ -437,7 +440,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         all_files, new_files, is_empty = add_files(
             self,
             ignored_files,
-            ext,
+            exts,
             self.real_path,
             self.directory,
             file_filter,
@@ -491,6 +494,9 @@ class TranslationProject(models.Model, CachedTreeItem):
 def scan_languages(sender, instance, created=False, raw=False, **kwargs):
     if not created or raw or instance.disabled:
         return
+
+    if not instance.filetypes.all().exists():
+        instance.filetypes.add(Format.objects.get(name="po"))
 
     for language in Language.objects.iterator():
         tp = create_translation_project(language, instance)
