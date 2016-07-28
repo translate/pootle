@@ -181,11 +181,11 @@ PTL.editor = {
     $('#toolbar').on('dblclick click', '.js-unit-index', (e) => this.unitIndex(e));
     $('#toolbar').on('click', '#js-nav-prev', () => this.gotoPrev());
     $('#toolbar').on('click', '#js-nav-next', () => this.gotoNext());
+    $('#toolbar').on('change', '#js-filter-sort', () => this.filterSort());
 
     /* Filtering */
     $('#actions').on('change', '#js-filter-status', () => this.filterStatus());
     $('#actions').on('change', '#js-filter-checks', () => this.filterChecks());
-    $('#actions').on('change', '#js-filter-sort', () => this.filterSort());
 
     /* State changes */
     $('#editor').on('input', '.js-translation-area',
