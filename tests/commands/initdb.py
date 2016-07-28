@@ -10,6 +10,7 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle_format.models import Format
 from pootle_project.models import Project
 
 
@@ -45,3 +46,7 @@ def test_cmd_initdb(capfd, no_permission_sets, no_permissions, no_users,
     assert (
         sorted(Project.objects.values_list("code", flat=True))
         == ["terminology", "tutorial"])
+    po = Format.objects.get(name="po")
+    # TODO: add unit tests for initdb
+    assert po in Project.objects.get(code="terminology").filetypes.all()
+    assert po in Project.objects.get(code="tutorial").filetypes.all()
