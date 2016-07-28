@@ -1275,7 +1275,7 @@ class StoreManager(models.Manager):
         return self.filter(obsolete=False)
 
     def create_by_path(self, pootle_path, project=None,
-                       create_tp=True, create_directory=True):
+                       create_tp=True, create_directory=True, **kwargs):
         from pootle_language.models import Language
         from pootle_project.models import Project
 
@@ -1300,7 +1300,7 @@ class StoreManager(models.Manager):
             tp, created = (
                 project.translationproject_set.get_or_create(
                     language=Language.objects.get(code=lang_code)))
-        else:
+        elif create_directory or not dir_path:
             tp = project.translationproject_set.get(
                 language__code=lang_code)
         if dir_path:
@@ -1317,7 +1317,7 @@ class StoreManager(models.Manager):
             parent = tp.directory
 
         store, created = self.get_or_create(
-            name=filename, parent=parent, translation_project=tp)
+            name=filename, parent=parent, translation_project=tp, **kwargs)
         if created:
             store.mark_all_dirty()
         return store
