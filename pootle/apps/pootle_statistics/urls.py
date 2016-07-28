@@ -15,4 +15,7 @@ urlpatterns = [
     url(r'^xhr/stats/contributors/?$',
         views.TopContributorsJSON.as_view(),
         name='pootle-xhr-contributors'),
+    url(r'^xhr/stats/?$',
+        views.StatsJSON.as_view(),
+        name='pootle-xhr-stats'),
 ]

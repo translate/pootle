@@ -496,25 +496,6 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 
 
 @ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def get_stats(request, *args, **kwargs):
-    stats = request.resource_obj.get_stats()
-
-    if (isinstance(request.resource_obj, Directory) and
-        'virtualfolder' in settings.INSTALLED_APPS):
-        stats['vfolders'] = {}
-
-        for vfolder_treeitem in request.resource_obj.vf_treeitems.iterator():
-            if request.user.is_superuser or vfolder_treeitem.is_visible:
-                stats['vfolders'][vfolder_treeitem.code] = \
-                    vfolder_treeitem.get_stats(include_children=False)
-
-    return JsonResponse(stats)
-
-
-@ajax_required
 @get_unit_context('translate')
 def submit(request, unit):
     """Processes translation submissions and stores them in the database.

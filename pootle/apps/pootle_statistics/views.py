@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.forms import ValidationError
 from django.http import Http404
@@ -17,19 +18,36 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data)
 from pootle.core.views import PootleJSONMixin
+from pootle_app.models.directory import Directory
 from pootle_language.views import LanguageBrowseView
 from pootle_misc.util import ajax_required
 from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
 from pootle_translationproject.views import TPBrowseStoreView, TPBrowseView
 
-from .forms import ContributorsForm
+from .forms import ContributorsForm, StatsForm
 
 
-class ContributorsJSONMixin(PootleJSONMixin):
+class StatsJSONMixin(PootleJSONMixin):
     @property
     def path(self):
         return self.kwargs["path"]
 
+    def get_context_data(self, *args, **kwargs):
+        stats = self.stats
+
+        if (isinstance(self.object, Directory) and
+            'virtualfolder' in settings.INSTALLED_APPS):
+            stats['vfolders'] = {}
+
+            for vf_treeitem in self.object.vf_treeitems.iterator():
+                if self.request.user.is_superuser or vf_treeitem.is_visible:
+                    stats['vfolders'][vf_treeitem.code] = \
+                        vf_treeitem.get_stats(include_children=False)
+
+        return stats
+
+
+class ContributorsJSONMixin(StatsJSONMixin):
     def get_context_data(self, *args, **kwargs):
         User = get_user_model()
 
@@ -101,6 +119,11 @@ class BaseStatsJSON(View):
 
     def get_form(self):
         return self.form_class(self.request.GET)
+
+
+class StatsJSON(BaseStatsJSON):
+    form_class = StatsForm
+    mixin_class = StatsJSONMixin
 
 
 class TopContributorsJSON(BaseStatsJSON):
