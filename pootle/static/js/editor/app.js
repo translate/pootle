@@ -336,20 +336,11 @@ PTL.editor = {
       this.toggleSuggestMode(e);
     });
 
-    hotkeys.bind('ctrl+up', (e) => {
+    hotkeys.bind(['ctrl+up', 'ctrl+,'], (e) => {
       e.preventDefault();
       this.gotoPrev();
     });
-    hotkeys.bind('ctrl+,', (e) => {
-      e.preventDefault();
-      this.gotoPrev();
-    });
-
-    hotkeys.bind('ctrl+down', (e) => {
-      e.preventDefault();
-      this.gotoNext({ isSubmission: false });
-    });
-    hotkeys.bind('ctrl+.', (e) => {
+    hotkeys.bind(['ctrl+down', 'ctrl+.'], (e) => {
       e.preventDefault();
       this.gotoNext({ isSubmission: false });
     });
