@@ -59,6 +59,20 @@ PROJECT_CHECKERS = {
 
 class ProjectManager(models.Manager):
 
+    def create(self, *args, **kwargs):
+        filetypes = Format.objects.filter(name__in=kwargs.pop("filetypes", ["po"]))
+        project = super(ProjectManager, self).create(*args, **kwargs)
+        for filetype in filetypes:
+            project.filetypes.add(filetype)
+        return project
+
+    def get_or_create(self, *args, **kwargs):
+        project, created = super(
+            ProjectManager, self).get_or_create(*args, **kwargs)
+        if created and not project.filetypes.count():
+            project.filetypes.add(Format.objects.get(name="po"))
+        return project, created
+
     def cached_dict(self, user):
         """Return a cached ordered dictionary of projects tuples for `user`.
 
