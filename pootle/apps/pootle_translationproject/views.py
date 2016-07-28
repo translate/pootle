@@ -26,6 +26,7 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
+from pootle_format.utils import ProjectFiletypes
 from pootle_language.models import Language
 from pootle_store.models import Store
 
@@ -240,7 +241,7 @@ class TPBrowseBaseView(PootleBrowseView):
             and self.request.user.is_authenticated()
             and check_permission('translate', self.request))
         if has_upload:
-            if self.project.localfiletype == 'po':
+            if "po" in ProjectFiletypes(self.project).valid_extensions:
                 ctx.update(handle_upload_form(
                     self.request,
                     self.project,
