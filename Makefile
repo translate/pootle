@@ -29,9 +29,9 @@ assets:
 	npm cache clear && \
 	npm install && \
 	cd ${CWD}
-	${POOTLE_CMD} compilejsi18n -o ${STATIC_DIR}/jsi18n
+	${POOTLE_CMD} compilejsi18n
 	# The site language en-us is not compiled by default, so handle it specially
-	${POOTLE_CMD} compilejsi18n -l en-us -o ${STATIC_DIR}/jsi18n
+	${POOTLE_CMD} compilejsi18n -l en-us
 	${POOTLE_CMD} webpack --extra=--display-error-details
 	mkdir -p ${ASSETS_DIR}
 
@@ -49,8 +49,8 @@ travis-assets:
 		cd ${JS_DIR} && \
 		npm install && \
 		cd ${CWD}; \
-		${POOTLE_CMD} compilejsi18n -o ${STATIC_DIR}/jsi18n; \
-		${POOTLE_CMD} compilejsi18n -l en-us -o ${STATIC_DIR}/jsi18n; \
+		${POOTLE_CMD} compilejsi18n; \
+		${POOTLE_CMD} compilejsi18n -l en-us; \
 		${POOTLE_CMD} webpack --dev --nowatch; \
 		mkdir -p ${ASSETS_DIR}; \
 		${POOTLE_CMD} collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}; \
