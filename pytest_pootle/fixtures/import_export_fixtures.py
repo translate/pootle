@@ -65,6 +65,9 @@ def ts_directory(po_directory, request, tmpdir, settings):
 @pytest.fixture
 def en_tutorial_ts(settings, english_tutorial, ts_directory):
     """Require the en/tutorial/tutorial.ts store."""
+
+    english_tutorial.project.localfiletype = "ts"
+    english_tutorial.project.save()
     return store._require_store(english_tutorial,
                                 ts_directory,
                                 'tutorial.ts')
