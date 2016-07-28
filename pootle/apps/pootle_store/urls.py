@@ -18,9 +18,6 @@ urlpatterns = [
         name='pootle-unit-permalink'),
 
     # XHR
-    url(r'^xhr/stats/checks/?$',
-        views.get_qualitycheck_stats,
-        name='pootle-xhr-stats-checks'),
     url(r'^xhr/units/?$',
         views.get_units,
         name='pootle-xhr-units'),

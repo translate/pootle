@@ -23,8 +23,6 @@ from django.utils.translation import to_locale, ugettext as _
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_http_methods
 
-from pootle.core.decorators import (get_path_obj, get_resource,
-                                    permission_required)
 from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
@@ -484,15 +482,6 @@ class UnitEditJSON(PootleUnitJSON):
 @get_unit_context('view')
 def permalink_redirect(request, unit):
     return redirect(request.build_absolute_uri(unit.get_translate_url()))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-@get_resource
-def get_qualitycheck_stats(request, *args, **kwargs):
-    failing_checks = request.resource_obj.get_checks()
-    return JsonResponse(failing_checks if failing_checks is not None else {})
 
 
 @ajax_required

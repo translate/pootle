@@ -47,6 +47,12 @@ class StatsJSONMixin(PootleJSONMixin):
         return stats
 
 
+class QualityCheckStatsJSONMixin(StatsJSONMixin):
+    def get_context_data(self, *args, **kwargs):
+        failing_checks = self.object.get_checks()
+        return failing_checks if failing_checks is not None else {}
+
+
 class ContributorsJSONMixin(StatsJSONMixin):
     def get_context_data(self, *args, **kwargs):
         User = get_user_model()
@@ -124,6 +130,11 @@ class BaseStatsJSON(View):
 class StatsJSON(BaseStatsJSON):
     form_class = StatsForm
     mixin_class = StatsJSONMixin
+
+
+class QualityCheckStatsJSON(BaseStatsJSON):
+    form_class = StatsForm
+    mixin_class = QualityCheckStatsJSONMixin
 
 
 class TopContributorsJSON(BaseStatsJSON):
