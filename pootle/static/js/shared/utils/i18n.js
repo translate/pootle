@@ -56,7 +56,7 @@ function formatComponent(str, ctx) {
  * by the keys.
  * @return {Array|String} - The original `string` with replaced placeholders.
  */
-export function gettextComponentTemplate(string, ctx = null) {
+export function tct(string, ctx = null) {
   if (!ctx) {
     return gettext(string);
   }
@@ -67,6 +67,3 @@ export function gettextComponentTemplate(string, ctx = null) {
 export function t(string, args) {
   return interpolate(gettext(string), args, true);
 }
-
-
-export const tct = gettextComponentTemplate;
