@@ -25,13 +25,18 @@ from pootle_store.util import absolute_real_path, relative_real_path
 LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$',
                          re.IGNORECASE)
 #: Case insensitive match for language codes as postfix
+
+# this is regex for LO
+#LANGCODE_POSTFIX_RE = re.compile('^.*?[-_.]([a-z]{2,3}[-_@][a-z0-9]+|[a-z]{2,3})$', re.IGNORECASE)
+
 LANGCODE_POSTFIX_RE = re.compile(
     '^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$', re.IGNORECASE)
+LANGCODE_SEPARATOR_RE = re.compile('([-_])')
 
 
 def direct_language_match_filename(language_code, path_name):
     name, ext = os.path.splitext(os.path.basename(path_name))
-    if name == language_code or name.lower() == language_code.lower():
+    if name.lower() == language_code.lower():
         return True
 
     # Check file doesn't match another language.
@@ -39,9 +44,21 @@ def direct_language_match_filename(language_code, path_name):
         return False
 
     detect = LANGCODE_POSTFIX_RE.split(name)
-    return (len(detect) > 1 and
-            (detect[1] == language_code or
-             detect[1].lower() == language_code.lower()))
+    if len(detect) <= 1:
+        return False
+
+    if detect[1].lower() == language_code.lower():
+        return True
+
+    if len(detect[1]) <= len(language_code):
+        return False
+
+    # Check file doesn't match another language.
+    if Language.objects.filter(code__iexact=detect[1]).count():
+        return False
+
+    detected_code = "".join(LANGCODE_SEPARATOR_RE.split(detect[1])[2:])
+    return detected_code == language_code
 
 
 def match_template_filename(project, filename):
