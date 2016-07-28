@@ -16,6 +16,9 @@
 !/pootle/translations/tutorial/
 !/pootle/translations/templates/
 
+# /pootle/static/translations/*
+/pootle/static/translations/
+
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
