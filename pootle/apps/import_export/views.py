@@ -15,6 +15,7 @@ from django.contrib.auth import get_user_model
 from django.http import Http404, HttpResponse
 
 from pootle_app.models.permissions import check_permission
+from pootle_format.utils import ProjectFiletypes
 from pootle_store.models import Store
 
 from .forms import UploadForm
@@ -67,6 +68,7 @@ def export(request):
 def handle_upload_form(request, project, language):
     """Process the upload form."""
     uploader_list = [(request.user.id, request.user.display_name), ]
+    valid_extensions = ProjectFiletypes(project).valid_extensions
     if check_permission('administrate', request):
         User = get_user_model()
         uploader_list = [
@@ -84,8 +86,6 @@ def handle_upload_form(request, project, language):
             request.FILES,
             uploader_list=uploader_list
         )
-        project_filetypes = [project.localfiletype,
-                             project.get_template_filetype()]
 
         if upload_form.is_valid():
             uploader_id = upload_form.cleaned_data["user_id"]
@@ -105,7 +105,7 @@ def handle_upload_form(request, project, language):
                                 # is a directory
                                 continue
                             ext = os.path.splitext(path)[1].strip(".")
-                            if ext not in project_filetypes:
+                            if ext not in valid_extensions:
                                 continue
                             with zf.open(path, "r") as f:
                                 import_file(f, user=uploader)
