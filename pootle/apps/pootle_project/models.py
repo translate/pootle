@@ -10,6 +10,8 @@ import logging
 import os
 from collections import OrderedDict
 
+from sortedm2m.fields import SortedManyToManyField
+
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
@@ -33,6 +35,7 @@ from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_config.utils import ObjectConfig
+from pootle_format.models import Format
 from pootle_store.filetypes import factory_classes
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path
@@ -179,6 +182,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     localfiletype = models.CharField(max_length=50, default="po",
                                      verbose_name=_('File Type'))
+    filetypes = SortedManyToManyField(Format)
 
     treestyle_choices = (
         # TODO: check that the None is stored and handled correctly
