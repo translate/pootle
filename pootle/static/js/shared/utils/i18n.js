@@ -84,3 +84,26 @@ export function t(string, ctx = null) {
   }
   return interpolate(gettext(string), ctx, true);
 }
+
+
+/**
+ * Mark a plural string for localization and optionally replace placeholders
+ * with the values provided in the context argument.
+ *
+ * @param {String} singular - The singular string to internationalize. It
+ * accepts the same placeholders as `t()`.
+ * @param {String} plural - The plural string to internationalize. It accepts
+ * the same placeholders as `t()`.
+ * @param {Integer} count - The object count which will determine the
+ * translation string o use.
+ * @param {Object} ctx - Values to be injected in the placeholders specified by
+ * the keys. Note these will be coerced to strings.
+ * @return {String} - The translation for `singular` or `plural` (depending on
+ * `count`) with placeholders replaced by the given context values.
+ */
+export function nt(singular, plural, count, ctx = null) {
+  if (!ctx) {
+    return ngettext(singular, plural, count);
+  }
+  return interpolate(ngettext(singular, plural, count), ctx, true);
+}
