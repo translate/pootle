@@ -54,11 +54,12 @@ function formatComponent(str, ctx) {
  * printf-style named placeholders.
  * @param {Object} ctx - Components to be injected in the placeholders specified
  * by the keys.
- * @return {Array|String} - The original `string` with replaced placeholders.
+ * @return {Array} - An array with the original `string`, and placeholders
+ * replaced by the given components.
  */
 export function tct(string, ctx = null) {
   if (!ctx) {
-    return gettext(string);
+    return [gettext(string)];
   }
   return formatComponent(gettext(string), ctx);
 }
