@@ -22,13 +22,15 @@ from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from pootle.core.delegate import config
+from pootle.core.delegate import config, formats
 from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
 from pootle.core.serializers import Serializer, Deserializer
 from pootle_app.models import Directory
 from pootle_config.exceptions import ConfigurationError
+from pootle_format.exceptions import UnrecognizedFiletype
+from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
@@ -825,3 +827,58 @@ def test_store_create_by_new_tp_path():
     store = Store.objects.create_by_path(path)
     assert store.pootle_path == path
     assert store.translation_project.language == language
+
+
+@pytest.mark.django_db
+def test_store_create():
+    tp = TranslationProject.objects.get(
+        language__code="language0", project__code="project0")
+    project = tp.project
+    registry = formats.get()
+    po = Format.objects.get(name="po")
+    po2 = registry.register("special_po_2", "po")
+    po3 = registry.register("special_po_3", "po")
+    xliff = Format.objects.get(name="xliff")
+    project.filetypes.add(xliff)
+    project.filetypes.add(po2)
+    project.filetypes.add(po3)
+
+    store = Store.objects.create(
+        name="store.po",
+        parent=tp.directory,
+        translation_project=tp)
+    assert store.filetype == po
+    store = Store.objects.create(
+        name="store.pot",
+        parent=tp.directory,
+        translation_project=tp)
+    assert store.filetype == po
+    store = Store.objects.create(
+        name="store.xliff",
+        parent=tp.directory,
+        translation_project=tp)
+    assert store.filetype == xliff
+
+    # push po to the back of the queue
+    project.filetypes.remove(po)
+    project.filetypes.add(po)
+    store = Store.objects.create(
+        name="another_store.po",
+        parent=tp.directory,
+        translation_project=tp)
+    assert store.filetype == po2
+    store = Store.objects.create(
+        name="another_store.pot",
+        parent=tp.directory,
+        translation_project=tp)
+    assert store.filetype == po
+    store = Store.objects.create(
+        name="another_store.xliff",
+        parent=tp.directory,
+        translation_project=tp)
+
+    with pytest.raises(UnrecognizedFiletype):
+        store = Store.objects.create(
+            name="another_store.foo",
+            parent=tp.directory,
+            translation_project=tp)
