@@ -56,8 +56,8 @@ from .util import find_altsrcs
 ALLOWED_SORTS = {
     'units': {
         'priority': '-priority',
-        'oldest': 'submitted_on',
-        'newest': '-submitted_on',
+        'oldest': 'mtime',
+        'newest': '-mtime',
     },
     'suggestions': {
         'oldest': 'suggestion__creation_time',
