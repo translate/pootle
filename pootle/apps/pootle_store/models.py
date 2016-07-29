@@ -1364,6 +1364,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         null=True,
         blank=True,
         db_index=True)
+    is_template = models.BooleanField(default=False)
 
     # any changes to the `pootle_path` field may require updating the schema
     # see migration 0007_case_sensitive_schema.py
