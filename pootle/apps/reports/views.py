@@ -12,6 +12,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
@@ -59,6 +60,10 @@ INITIAL_STATES = ['new', 'edit']
 class UserStatsView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/stats.html'
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserStatsView, self).dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(UserStatsView, self).get_context_data(**kwargs)
         now = make_aware(datetime.now())
@@ -76,6 +81,7 @@ class UserStatsView(NoDefaultUserMixin, UserObjectMixin, DetailView):
 
 class UserActivityView(NoDefaultUserMixin, UserObjectMixin, DetailView):
 
+    @method_decorator(login_required)
     @method_decorator(ajax_required)
     def dispatch(self, request, *args, **kwargs):
         self.month = request.GET.get('month', None)
@@ -89,6 +95,7 @@ class UserActivityView(NoDefaultUserMixin, UserObjectMixin, DetailView):
 class UserDetailedStatsView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/detailed_stats.html'
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.month = request.GET.get('month', None)
         self.user = request.user
