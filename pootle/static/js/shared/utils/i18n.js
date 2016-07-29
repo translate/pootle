@@ -66,6 +66,21 @@ export function tct(string, ctx = null) {
 }
 
 
-export function t(string, args) {
-  return interpolate(gettext(string), args, true);
+/**
+ * Mark a string for localization and optionally replace placeholders with the
+ * values provided in the context argument.
+ *
+ * @param {String} string - The string to internationalize. It accepts a
+ * simplified form of printf-style placeholders, however note these must be
+ * named, so they need to take the explicit `%(key)s` form, not `%s`.
+ * @param {Object} ctx - Values to be injected in the placeholders specified by
+ * the keys. Note these will be coerced to strings.
+ * @return {String} - The original `string` with placeholders replaced by the
+ * given context values.
+ */
+export function t(string, ctx = null) {
+  if (!ctx) {
+    return gettext(string);
+  }
+  return interpolate(gettext(string), ctx, true);
 }
