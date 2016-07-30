@@ -188,7 +188,7 @@ class VirtualFolder(models.Model):
 
     def clean_fields(self):
         """Validate virtual folder fields."""
-        if not self.priority > 0:
+        if self.priority <= 0:
             raise ValidationError(u'Priority must be greater than zero.')
 
         elif self.location == "/":

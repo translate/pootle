@@ -377,7 +377,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     def save(self, *args, **kwargs):
         requires_translation_directory = (
-            not self.treestyle == "none"
+            self.treestyle != "none"
             and not self.disabled
             and not self.directory_exists_on_disk())
         if requires_translation_directory:
