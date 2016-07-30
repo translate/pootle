@@ -22,7 +22,7 @@ def migrate_store_is_template(apps, schema_editor):
         try:
             project = tp.project
         except apps.get_model("pootle_project.Project").DoesNotExist:
-            logger.warn("TP with missing project '%s', not updating" % tp.pootle_path)
+            logger.warn("TP with missing project '%s', not updating", tp.pootle_path)
             continue
         if tp.language == tp.project.source_language or tp.language.code == "templates":
             tp.stores.update(is_template=True)
