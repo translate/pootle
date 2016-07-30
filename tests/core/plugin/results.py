@@ -34,6 +34,9 @@ def test_gathered_dict():
     assert gd.items() == memberdict.items()
     assert [x for x in gd] == memberdict.keys()
     assert all((k in gd) for k in memberdict.keys())
+    assert all((gd.get(k) == gd[k]) for k in memberdict.keys())
+    assert gd.get("DOES_NOT_EXIST") is None
+    assert gd.get("DOES_NOT_EXIST", "DEFAULT") == "DEFAULT"
 
 
 def test_gathered_dict_update():

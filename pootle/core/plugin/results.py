@@ -33,6 +33,12 @@ class GatheredDict(Gathered):
                     pass
         return gathered
 
+    def get(self, k, default=None):
+        try:
+            return self[k]
+        except KeyError:
+            return default
+
     def keys(self):
         return self.results.keys()
 
