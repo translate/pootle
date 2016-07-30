@@ -88,3 +88,17 @@ def test_init_fs_project_cmd_duplicated(capsys):
 
     with pytest.raises(CommandError):
         call_command("init_fs_project", "foo", fs_path, tr_path)
+
+
+@pytest.mark.django_db
+def test_cmd_init_fs_project_bad_filetype(capsys):
+    fs_path = "/test/fs/path"
+    tr_path = "<language_code>/<filename>.<ext>"
+
+    with pytest.raises(CommandError):
+        call_command(
+            "init_fs_project",
+            "foo",
+            fs_path,
+            tr_path,
+            "--filetypes", "NO_SUCH_FILETYPE")
