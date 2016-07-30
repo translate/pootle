@@ -18,7 +18,9 @@ from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
+from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_store.filetypes import filetype_choices
 from pootle_translationproject.models import TranslationProject
 
 
@@ -109,7 +111,7 @@ def test_admin_access(client):
 
 
 @pytest.mark.django_db
-def test_admin_view_projects(client, request_users):
+def test_admin_view_project(client, request_users):
     user = request_users["user"]
     project = Project.objects.get(code="project0")
 
@@ -126,7 +128,7 @@ def test_admin_view_projects(client, request_users):
 
 
 @pytest.mark.django_db
-def test_admin_view_projects_manager(client, member, administrate):
+def test_admin_view_project_manager(client, member, administrate):
     project = Project.objects.get(code="project0")
     criteria = {
         'user': member,
@@ -145,7 +147,7 @@ def test_admin_view_projects_manager(client, member, administrate):
 
 
 @pytest.mark.django_db
-def test_admin_view_projects_post(client, request_users):
+def test_admin_view_project_post(client, request_users):
 
     project = Project.objects.get(code="project0")
     user = request_users["user"]
@@ -161,7 +163,7 @@ def test_admin_view_projects_post(client, request_users):
 
 
 @pytest.mark.django_db
-def test_admin_view_projects_add_tp(english, client, admin):
+def test_admin_view_project_add_tp(english, client, admin):
 
     user = admin
     project = Project.objects.get(code="project0")
@@ -196,7 +198,7 @@ def test_admin_view_projects_add_tp(english, client, admin):
 
 
 @pytest.mark.django_db
-def test_admin_view_projects_delete_tp(english, client, admin):
+def test_admin_view_project_delete_tp(english, client, admin):
 
     user = admin
     project = Project.objects.get(code="project0")
@@ -227,3 +229,33 @@ def test_admin_view_projects_delete_tp(english, client, admin):
         not in project.translationproject_set.values_list("pk", flat=True))
 
     _test_admin_view(response, project)
+
+
+@pytest.mark.django_db
+def test_admin_view_projects(client, request_users, english):
+    user = request_users["user"]
+
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+
+    response = client.get(
+        reverse(
+            "pootle-admin-projects"))
+
+    if not user.is_superuser:
+        assert response.status_code == 403
+        return
+    languages = Language.objects.exclude(code='templates')
+    language_choices = [(lang.id, unicode(lang)) for lang in languages]
+    expected = {
+        'page': 'admin-projects',
+        'form_choices': {
+            'checkstyle': Project.checker_choices,
+            'localfiletype': filetype_choices,
+            'source_language': language_choices,
+            'treestyle': Project.treestyle_choices,
+            'defaults': {
+                'source_language': english.id}}}
+    for k, v in expected.items():
+        assert response.context_data[k] == v
