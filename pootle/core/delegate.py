@@ -18,6 +18,7 @@ response = Getter()
 contributors = Getter()
 formats = Getter()
 format_registration = Provider()
+format_classes = Provider()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
