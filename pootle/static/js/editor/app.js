@@ -1216,7 +1216,7 @@ PTL.editor = {
     }
 
     if (this.month !== null) {
-      reqData['month'] = this.month;
+      reqData.month = this.month;
     }
 
     if (this.user) {
