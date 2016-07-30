@@ -19,8 +19,6 @@ def make_project_codes_cs(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-
-
     dependencies = [
         ('pootle_project', '0002_remove_dynamic_model_choices_localfiletype'),
     ]
