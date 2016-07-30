@@ -501,7 +501,6 @@ PTL.editor = {
           if (!values.hasOwnProperty(key)) {
             continue;
           }
-
           newOpts.push(`
             <option value="${key}" data-user="${user}" class="js-user-filter">
               ${values[key]}
@@ -1214,6 +1213,10 @@ PTL.editor = {
 
     if (this.modifiedSince !== null) {
       reqData['modified-since'] = this.modifiedSince;
+    }
+
+    if (this.month !== null) {
+      reqData['month'] = this.month;
     }
 
     if (this.user) {
