@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-07-22 17:30+0000\n"
+"PO-Revision-Date: 2016-07-26 09:07+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469208656.000000\n"
+"X-POOTLE-MTIME: 1469524052.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -2126,7 +2126,6 @@ msgid "Failing Checks"
 msgstr "Control de fallos"
 
 #: templates/browser/index.html:67
-#, fuzzy
 msgid "Less..."
 msgstr "Menos..."
 

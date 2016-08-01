@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-02-07 17:37+0000\n"
-"Last-Translator: Heyang <qysnn1@gmail.com>\n"
+"PO-Revision-Date: 2016-07-29 10:40+0000\n"
+"Last-Translator: chanson <84365252@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1454866652.000000\n"
+"X-POOTLE-MTIME: 1469788805.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -616,15 +616,16 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "接受"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "拒绝"
 
 #: static/js/editor/components/UploadTimeSince.js:34
+#, fuzzy
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)秒上传文件"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
@@ -633,35 +634,35 @@ msgstr ""
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "一月"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "二月"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "三月"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "四月"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "五月"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "六月"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "七月"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "八月"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
@@ -672,41 +673,40 @@ msgid "Oct"
 msgstr ""
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "否"
+msgstr "11月"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "十二月"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "星期日"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "星期一"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "星期二"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "星期三"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "星期四"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "星期五"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "星期六"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."

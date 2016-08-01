@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-07-21 13:03+0000\n"
+"PO-Revision-Date: 2016-07-25 16:02+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469106228.000000\n"
+"X-POOTLE-MTIME: 1469462550.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -2130,9 +2130,8 @@ msgid "Failing Checks"
 msgstr "Başarısız Kontrolleri"
 
 #: templates/browser/index.html:67
-#, fuzzy
 msgid "Less..."
-msgstr "daha az..."
+msgstr "Daha az..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"

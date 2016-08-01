@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-05-24 16:07+0000\n"
+"PO-Revision-Date: 2016-08-01 14:56+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1464106048.000000\n"
+"X-POOTLE-MTIME: 1470063371.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -193,14 +193,12 @@ msgid "Download for offline translation"
 msgstr "Hämta för översättning offline"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Hämta översättningsfiler för översättning offline"
+msgstr "Hämta översättningsfiler för säkerhetskopiering"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Hämta fil"
+msgstr "Hämta för säkerhetskopiering"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -211,9 +209,9 @@ msgid "Upload translations"
 msgstr "Ladda upp översättningar"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Rapport för %(user)s"
+msgstr "Ladda upp som %(user)s"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -762,9 +760,8 @@ msgid "File Type"
 msgstr "Filtyp"
 
 #: apps/pootle_project/models.py:185
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Automatisk identifiering (långsammare)"
+msgstr "Automatisk identifiering av gnu/icke-gnu fillayouter (långsammare )"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -776,7 +773,7 @@ msgstr "Icke-GNU: Varje språk i sin egna katalog"
 
 #: apps/pootle_project/models.py:188
 msgid "Allow pootle_fs to manage filesystems"
-msgstr ""
+msgstr "Tillåt pootle_fs att hantera filsystem"
 
 #: apps/pootle_project/models.py:192
 msgid "Project Tree Style"
@@ -2114,14 +2111,12 @@ msgid "Failing Checks"
 msgstr "Fel har upptäckts"
 
 #: templates/browser/index.html:67
-#, fuzzy
 msgid "Less..."
-msgstr "mindre..."
+msgstr "Mindre..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Bästa bidragsgivare senaste 30 dagarna"
+msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
 
 #: templates/browser/index.html:85
 msgid "Updates"
@@ -2141,10 +2136,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
+"Statistiken är inaktuell. Se <a href=\"%(docs_url)s\">dokumentationen</a> "
+"för att hantera statistikproblem."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr ""
+msgstr "Statistiken på denna sida kan vara inaktuell."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2791,31 +2788,31 @@ msgid "Tweet this!"
 msgstr "Twittra detta!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Inga bidrag under den senaste månaden"
+msgstr "Inga bidrag under de senaste 30 dagarna"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"Jag är bidragsgivare #%(pos)s för %(lang_name)s denna månad på "
-"%(server_title)s! "
+"Jag är bidragsgivare #%(pos)s för %(lang_name) s under de senaste 30 dagarna "
+"på %(server_title)s! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Bidragsgivare #%(pos)s för %(lang_name)s denna månad"
+msgstr "Bidragsgivare #%(pos)s för %(lang_name)s under de senaste 30 dagarna"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"Bidragsgivare #%(pos)s för <a href=\"%(url)s\">%(lang_name)s</a> denna månad"
+"Bidragsgivare #%(pos)s för <a href=\"%(url)s\">%(lang_name)s</a> under de "
+"senaste 30 dagarna"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

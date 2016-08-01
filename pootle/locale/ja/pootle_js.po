@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-07-21 02:07+0000\n"
+"PO-Revision-Date: 2016-07-28 07:22+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469066823.000000\n"
+"X-POOTLE-MTIME: 1469690546.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -235,8 +235,8 @@ msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"注意: ユーザを削除すると、そのユーザの貢献（例: コメント、提案、訳）は、匿名"
-"のユーザのものとして分類されます。"
+"注意: ユーザを削除すると、そのユーザのコメント、提案、翻訳などの貢献は、匿名"
+"のユーザ (nobody) のものとして分類されます。"
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
@@ -502,7 +502,7 @@ msgstr "パスワードをリセット"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr ""
+msgstr "申し訳ありません..."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
@@ -527,12 +527,16 @@ msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"次の文字列へ移動 (Ctrl+.)<br/><br/>他の操作:<br/>次のページ: Ctrl+Shift+.<br/"
+">最後のページ: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:348
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"前の文字列へ戻る (Ctrl+,)<br/><br/>他の操作:</br>前のページ: Ctrl+Shift+,<br/"
+">最初のページ: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:471
@@ -571,7 +575,7 @@ msgstr "サーバーに接続する際にエラーが発生しました"
 
 #: static/js/editor/app.js:1080
 msgid "Not found"
-msgstr ""
+msgstr "見つかりませんでした"
 
 #: static/js/editor/app.js:1082
 msgid "Server error"
@@ -583,15 +587,15 @@ msgstr "サーバーが停止しているようです。後でもう一度試し
 
 #: static/js/editor/app.js:1093
 msgid "This string no longer exists."
-msgstr ""
+msgstr "この文字列は存在しません。"
 
 #: static/js/editor/app.js:1094
 msgid "Go back to browsing"
-msgstr ""
+msgstr "ブラウジングへ戻る"
 
 #: static/js/editor/app.js:1096
 msgid "Reload page"
-msgstr ""
+msgstr "ページを再読み込み"
 
 #: static/js/editor/app.js:1845 static/js/editor/app.js:617
 msgid "No results."
@@ -599,11 +603,11 @@ msgstr "該当するものはありません。"
 
 #: static/js/editor/app.js:2182
 msgid "some anonymous user"
-msgstr ""
+msgstr "匿名ユーザ"
 
 #: static/js/editor/app.js:2184
 msgid "someone"
-msgstr ""
+msgstr "誰か"
 
 #: static/js/editor/app.js:2202 static/js/editor/app.js:2251
 msgid "Similar translations"
@@ -611,124 +615,125 @@ msgstr "類似翻訳"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "受諾する前に、必要であれば提案を編集してください"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "任意のコメントを記入してください (公開されます)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "受諾"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "拒否"
 
 #: static/js/editor/components/UploadTimeSince.js:34
+#, fuzzy
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s にファイルをアップロード"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%b%d日(%a)"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "1月"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "2月"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "3月"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "4月"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "5月"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "6月"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "7月"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "8月"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "9月"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "10月"
 
 #: static/js/reports/app.js:297
 msgid "Nov"
-msgstr ""
+msgstr "11月"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "12月"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "日"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "月"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "火"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "水"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "木"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "金"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "土"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
-msgstr ""
+msgstr "選択..."
 
 #: static/js/shared/components/FormSelectInput.js:33
 msgid "No results found"
-msgstr ""
+msgstr "結果はありません"
 
 #: static/js/shared/components/FormSelectInput.js:34
 msgid "Clear value"
-msgstr ""
+msgstr "値を消去"
 
 #: static/js/shared/components/FormSelectInput.js:35
 msgid "Clear all"
-msgstr ""
+msgstr "すべて消去"
 
 #: static/js/shared/components/FormSelectInput.js:36
 msgid "Type to search"
-msgstr ""
+msgstr "検索語を入力してください。"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
@@ -741,7 +746,7 @@ msgstr "%(sourceString)s の提案を承認しました"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
-msgstr ""
+msgstr "アップロードしたファイル"
 
 #: static/js/shared/components/UserEvent.js:103
 msgid "muted %(check)s for %(sourceString)s"
@@ -825,32 +830,36 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"あなたのメールアドレス (%(email)s) のアバターを gravatar.com で設定または変更"
+"できます。"
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
-msgstr ""
+msgstr "あなたの氏名"
 
 #: static/js/user/components/UserProfileForm.js:83
 msgid "Avatar"
-msgstr ""
+msgstr "アバター"
 
 #: static/js/user/components/UserProfileForm.js:94
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Twitter ユーザ名"
 
 #: static/js/user/components/UserProfileForm.js:103
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "LinkedIn プロフィール URL"
 
 #: static/js/user/components/UserProfileForm.js:111
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "個人のウェブサイトまたはブログ URL"
 
 #: static/js/user/components/UserProfileForm.js:120
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"この翻訳プロジェクトに参加した理由は？ 自己紹介を書いて他の人を活気付けてくだ"
+"さい！"
 
 #: static/js/utils.js:168
 #, javascript-format
@@ -908,7 +917,7 @@ msgstr "メールを送信"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "新しいアカウントの作成は禁止されています。"
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -917,6 +926,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"<span>%s</span> のメールアドレスで登録されたユーザが見つかりました。ログイン"
+"手続きを完了するにはパスワードを入力してください。この手続きは一度限りであ"
+"り、あなたの Pootle アカウントと %s アカウントの間のリンクを確立します。"
 
 #: static/js/browser.js:261
 msgid "All Languages"
@@ -948,7 +960,7 @@ msgstr "査読済み"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "スコアの変更"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -989,54 +1001,54 @@ msgstr "コメント"
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "アクション"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "合計"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "率"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "小計"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
+msgstr[0] "%s 時間"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
-msgstr ""
+msgstr "タスクの削除"
 
 #: templates/admin/xhr_paid_tasks_report.html:43
 msgid "Comment on it"
-msgstr ""
+msgstr "コメントする"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "概要"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "期間"
 
 #: templates/admin/xhr_summary_report.html:38
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(登録されたタスク)"
 
 #: templates/admin/xhr_summary_report.html:46
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "合計 (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -1060,6 +1072,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
+"%(fullname)s による &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo; プロジェクトの翻訳 (%(time_ago)s)"
 
 #: templates/editor/units/xhr_tm.html:18
 #, python-format
@@ -1067,6 +1081,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"%(fullname)s による &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo; プロジェクトの翻訳"
 
 #~ msgid "Unknown error"
 #~ msgstr "不明なエラー"

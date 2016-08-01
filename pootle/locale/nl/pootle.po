@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-07-20 15:13+0000\n"
-"Last-Translator: DiGro <th.groskamp@quicknet.nl>\n"
+"PO-Revision-Date: 2016-07-27 17:15+0000\n"
+"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469027594.000000\n"
+"X-POOTLE-MTIME: 1469639714.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -769,7 +769,7 @@ msgstr "Bestandstype"
 
 #: apps/pootle_project/models.py:185
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Automatische detectie van lay-outs voor gnu/niet-gnu-bestand (trager)"
+msgstr "Automatische detectie van GNU/niet-GNU-bestandsindelingen (trager)"
 
 #: apps/pootle_project/models.py:186
 msgid "GNU style: files named by language code"
@@ -879,7 +879,7 @@ msgstr "TBX"
 
 #: apps/pootle_store/filetypes.py:48
 msgid "Haiku catkeys"
-msgstr "Haiku-toetsen voor categorieën"
+msgstr "Haiku catkeys"
 
 #: apps/pootle_store/filetypes.py:55
 msgid "Excel CSV"
@@ -905,11 +905,11 @@ msgstr "Werk vereist"
 
 #: apps/pootle_store/forms.py:299
 msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "Waarde van `similarity` moet binnen het bereik [0..1] vallen"
+msgstr "Waarde van 'similarity' moet binnen het bereik [0..1] vallen"
 
 #: apps/pootle_store/forms.py:309
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "Waarde van `mt_similarity` moet binnen het bereik [0..1] vallen"
+msgstr "Waarde van 'mt_similarity' moet binnen het bereik [0..1] vallen"
 
 #: apps/pootle_store/forms.py:326
 msgid "Needs work flag must be cleared"
@@ -917,7 +917,7 @@ msgstr "Vlag Werk vereist moet worden gewist"
 
 #: apps/pootle_store/forms.py:387
 msgid "Translator comment"
-msgstr "Opmerking van de vertaler"
+msgstr "Opmerking van vertaler"
 
 #: apps/pootle_store/models.py:149
 msgid "Pending"
@@ -948,26 +948,26 @@ msgstr "Meervoud"
 #: apps/pootle_store/unit/timeline.py:80
 #, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Geaccepteerde suggestie van %(author)s"
+msgstr "Heeft suggestie van %(author)s geaccepteerd"
 
 #: apps/pootle_store/unit/timeline.py:81
 #, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Afgewezen suggestie van %(author)s"
+msgstr "Heeft suggestie van %(author)s afgewezen"
 
 #: apps/pootle_store/unit/timeline.py:89
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "Geaccepteerde suggestie van %(author)s met opmerking: %(comment)s"
+msgstr "Heeft suggestie van %(author)s geaccepteerd met opmerking: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "Afgewezen suggestie van %(author)s met opmerking: %(comment)s"
+msgstr "Heeft suggestie van %(author)s afgewezen met opmerking: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:100
 msgid "Added suggestion"
-msgstr "Toegevoegde suggestie"
+msgstr "Heeft suggestie toegevoegd"
 
 #: apps/pootle_store/util.py:27
 msgid "Obsolete"
@@ -1470,7 +1470,7 @@ msgstr "POOTLE_SCORE_COEFFICIENTS heeft geen %s."
 #: checks.py:352
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "%s ingesteld in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Stel %s in in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:359
 #, python-format
@@ -1572,7 +1572,7 @@ msgstr "U hebt geen rechten om Pootle te beheren."
 
 #: core/forms.py:115
 msgid "Time to answer has expired"
-msgstr "De tijd om te antwoorden is verlopen"
+msgstr "Tijd om te antwoorden is verlopen"
 
 #: core/forms.py:134
 msgid "Enter a number"
@@ -1695,7 +1695,7 @@ msgstr "Servicevoorwaarden"
 
 #: templates/about.html:7 templates/layout.html:170
 msgid "About"
-msgstr "Info"
+msgstr "Over"
 
 #: templates/about.html:13
 msgid "About This Pootle Server"
@@ -1933,8 +1933,8 @@ msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
-"Hier kunt u de standaard toegangsrechten voor deze Pootle-server toevoegen, "
-"bewerken en verwijderen."
+"Hier kunt u de standaardrechten in deze Pootle-server toevoegen, bewerken en "
+"verwijderen."
 
 # ‘inloggen’ vermijden (bestaat niet) -> ‘aanmelden’
 #: templates/admin/permissions.html:14
@@ -2127,13 +2127,12 @@ msgid "Failing Checks"
 msgstr "Mislukte controles"
 
 #: templates/browser/index.html:67
-#, fuzzy
 msgid "Less..."
-msgstr "minder..."
+msgstr "Minder..."
 
 #: templates/browser/index.html:77 templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Meest actieve medewerkers voor de afgelopen 30 dagen"
+msgstr "Meest actieve medewerkers in de afgelopen 30 dagen"
 
 #: templates/browser/index.html:85
 msgid "Updates"
@@ -2153,12 +2152,12 @@ msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
-"Statistieken zijn gedateerd. Bekijk <a href=\"%(docs_url)s\">documentatie</"
-"a> voor het afhandelen van problemen met statistieken."
+"Statistieken zijn verouderd. Bekijk <a href=\"%(docs_url)s\">documentatie</"
+"a> voor het omgaan met problemen met statistieken."
 
 #: templates/browser/index.html:146
 msgid "The stats on this page may be out of date."
-msgstr "De statistieken op deze pagina kunnen gedateerd zijn."
+msgstr "De statistieken op deze pagina kunnen zijn verouderd."
 
 #: templates/browser/index.html:148
 msgid "Refresh now"
@@ -2279,7 +2278,7 @@ msgstr "Naar de volgende tekenreeks (Ctrl+Omlaag)"
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
 #: templates/translation_projects/_nav.html:18
 msgid "Export View"
-msgstr "Weergave exporteren"
+msgstr "Exportweergave"
 
 #: templates/editor/export_view.html:7 templates/editor/export_view.html:98
 msgid "All Projects"
@@ -2488,7 +2487,7 @@ msgstr "Kritieke fouten:"
 #: templates/editor/units/xhr_checks.html:12
 #: templates/editor/units/xhr_checks.html:32
 msgid "Mute quality check"
-msgstr "Kwaliteitscontrole dempen"
+msgstr "Kwaliteitscontrole verbergen"
 
 #: templates/editor/units/xhr_checks.html:13
 #: templates/editor/units/xhr_checks.html:33
@@ -2501,7 +2500,7 @@ msgstr "Mogelijke problemen met de vertaling"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr "Oppassen voor:"
+msgstr "Pas op voor:"
 
 #: templates/editor/units/xhr_comment.html:13
 msgid "Remove comment"
@@ -2522,14 +2521,15 @@ msgstr "Laatste opmerking verwijderd"
 #: templates/editor/units/xhr_timeline.html:38
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Controle voor <a href=\"%(check_url)s\">%(check_name)s</a> gedempt"
+msgstr ""
+"Heeft controle voor <a href=\"%(check_url)s\">%(check_name)s</a> verborgen"
 
 #: templates/editor/units/xhr_timeline.html:42
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
-"Dempen van controle voor <a href=\"%(check_url)s\">%(check_name)s</a> "
-"opgeheven"
+"Heeft controle voor <a href=\"%(check_url)s\">%(check_name)s</a> zichtbaar "
+"gemaakt"
 
 #: templates/editor/units/xhr_timeline.html:54
 msgid "Unit created"
@@ -2606,7 +2606,7 @@ msgid ""
 msgstr ""
 "Lees de <a href=\"%(url)s\">Pootle-documentatie</a> voor installatie- en "
 "upgrade-instructies. Neem contact op met de serverbeheerder als u denkt dat "
-"dit een vergissing is ."
+"dit een vergissing is."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
@@ -2685,7 +2685,8 @@ msgstr ""
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Hier kunt u talen voor dit project toevoegen, bewerken en verwijderen."
+msgstr ""
+"Hier kunt u de talen voor dit project toevoegen, bewerken of verwijderen."
 
 #: templates/projects/admin/languages.html:14
 msgid ""
@@ -2698,7 +2699,7 @@ msgstr ""
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Hieronder kunt u de toegangsrechten voor dit project toevoegen, bewerken en "
+"Hieronder kunt u de rechten voor dit project toevoegen, bewerken en "
 "verwijderen."
 
 #: templates/staticpages/_body.html:6
@@ -2717,7 +2718,7 @@ msgstr "Actie vereist"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
-msgstr "Voordat u doorgaat moet u de volgende documenten lezen en accepteren."
+msgstr "Voordat u doorgaat, moet u de volgende documenten lezen en accepteren."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
@@ -2749,7 +2750,7 @@ msgstr "Details..."
 
 #: templates/translation_projects/terminology/_term_edit.html:31
 msgid "Translator Comments"
-msgstr "Opmerkingen van de vertaler"
+msgstr "Opmerkingen van vertaler"
 
 #: templates/translation_projects/terminology/base.html:4
 msgid "Manage Terminology"
@@ -2818,7 +2819,7 @@ msgstr "Dit tweeten!"
 
 #: templates/user/profile.html:40
 msgid "No contributions in the last 30 days"
-msgstr "Geen bijdragen in de laatste 30 dagen"
+msgstr "Geen bijdragen in de afgelopen 30 dagen"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -2826,13 +2827,13 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
-"Ik ben de #%(pos)s medewerker in het %(lang_name)s van de laatste 30 dagen "
-"op %(server_title)s! "
+"Ik ben medewerker #%(pos)s in het %(lang_name)s in de afgelopen 30 dagen op "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "#%(pos)s medewerker in het %(lang_name)s van de laatste 30 dagen"
+msgstr "medewerker #%(pos)s in het %(lang_name)s in de afgelopen 30 dagen"
 
 #: templates/user/profile.html:49
 #, python-format
@@ -2840,8 +2841,8 @@ msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"#%(pos)s medewerker in <a href=\"%(url)s\">%(lang_name)s</a> van de laatste "
-"30 dagen"
+"medewerker #%(pos)s in het <a href=\"%(url)s\">%(lang_name)s</a> in de "
+"afgelopen 30 dagen"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"

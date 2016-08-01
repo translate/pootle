@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-07-25 12:14+0100\n"
-"PO-Revision-Date: 2016-05-24 15:37+0000\n"
+"PO-Revision-Date: 2016-08-01 15:05+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1464104240.000000\n"
+"X-POOTLE-MTIME: 1470063953.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -650,84 +650,83 @@ msgstr ""
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a %d %b"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "Maj"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Nej"
+msgstr "Nov"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Dec"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Sön"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Mån"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Tis"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Ons"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Tors"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Fre"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Lör"
 
 #: static/js/shared/components/FormSelectInput.js:32
 msgid "Select..."
@@ -752,12 +751,11 @@ msgstr "Skriv för att söka"
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
 msgid "removed translation for %(sourceString)s"
-msgstr ""
+msgstr "tog bort översättning för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "%s godkända förslag"
+msgstr "godkände förslag för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"
@@ -765,28 +763,27 @@ msgstr "Uppladdad fil"
 
 #: static/js/shared/components/UserEvent.js:103
 msgid "muted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "ta bort %(check)s för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
 msgid "unmuted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "använd %(check)s för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
 msgid "added suggestion for %(sourceString)s"
-msgstr ""
+msgstr "lade till förslag för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "rejected suggestion for %(sourceString)s"
-msgstr "%s avvisade förslag"
+msgstr "avvisade förslag för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
 msgid "translated %(sourceString)s"
-msgstr ""
+msgstr "översatte %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
 msgid "edited %(sourceString)s"
-msgstr ""
+msgstr "redigerade %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
 msgid "pre-translated %(sourceString)s"
@@ -794,11 +791,11 @@ msgstr ""
 
 #: static/js/shared/components/UserEvent.js:120
 msgid "reviewed %(sourceString)s"
-msgstr ""
+msgstr "granskade %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
 msgid "marked as needs work %(sourceString)s"
-msgstr ""
+msgstr "markerad för kontroll %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
@@ -1042,11 +1039,11 @@ msgstr "Delsumma"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "timme"
-msgstr[1] "timmar"
+msgstr[0] "%s timme"
+msgstr[1] "%s timmar"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
