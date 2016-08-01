@@ -16,5 +16,6 @@ disable=all
 enable=reimported,logging,stdlib,string,unneeded-not
 
 [REPORTS]
+msg-template="{path}:{line}: {msg_id} {msg} ({symbol})"
 output-format=colorized
 reports=no
