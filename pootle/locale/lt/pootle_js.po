@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2015-07-11 20:06+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -266,8 +266,8 @@ msgid "Active"
 msgstr "Aktyvus"
 
 #: static/js/admin/components/User/UserForm.js:81
-#: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:101
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
@@ -278,7 +278,7 @@ msgid "Set a new password"
 msgstr "Įveskite naują slaptažodį"
 
 #: static/js/admin/components/User/UserForm.js:98
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
 msgstr "Elektroninis paštas"
 
@@ -400,7 +400,7 @@ msgid "Password changed, signing in..."
 msgstr "Slaptažodis pakeistas, prisijungiama…"
 
 #: static/js/auth/components/PasswordResetForm.js:125
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
 msgstr "Pakartokite slaptažodį"
 
@@ -439,12 +439,12 @@ msgstr "Pakartotinai išsiųsti laišką"
 msgid "Sign up as a new user"
 msgstr "Registruoti naują naudotojo paskyrą"
 
-#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "Pamiršote slaptažodį?"
 
-#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
@@ -463,12 +463,12 @@ msgstr "Socialiniai tinklai"
 msgid "Login / Password"
 msgstr "Naudotojo vardas / Slaptažodis"
 
-#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "Užsiregistruoti"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
 msgstr "Prisijungti esama naudotojo paskyra"
 
@@ -528,6 +528,19 @@ msgstr "Oi…"
 msgid "Social Verification"
 msgstr "Socialinio tinklo paskyros patvirtinimas"
 
+#: static/js/browser/components/TopContributors.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:39
+msgid "#%(position)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:62
+#, fuzzy
+msgid "More..."
+msgstr "Daugiau"
+
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
 msgid "Show disabled"
@@ -538,13 +551,13 @@ msgstr "išjungta"
 msgid "Hide disabled"
 msgstr "išjungta"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:625
+#: static/js/editor/app.js:307 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:352
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -552,7 +565,7 @@ msgstr ""
 "Eiti į kitą eilutę (Vald+.)<br/><br/>Taip pat:<br/>Kitas puslapis – Vald"
 "+Lyg2+.<br/>Paskutinis puslapis – Vald+Lyg2+Pab"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:358
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -561,78 +574,78 @@ msgstr ""
 "– Vald+Lyg2+,<br/>Pirmas puslapis – Vald+Lyg2+Prad"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Nepatvirtinti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:487
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:477
+#: static/js/editor/app.js:490
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Vertimai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Perrašyti vertimai, kuriuos pateikė %s"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1088
 msgid "Error while connecting to the server"
 msgstr "Klaida jungiantis prie serverio"
 
-#: static/js/editor/app.js:1080
+#: static/js/editor/app.js:1092
 msgid "Not found"
 msgstr "Nerasta"
 
-#: static/js/editor/app.js:1082
+#: static/js/editor/app.js:1094
 msgid "Server error"
 msgstr "Serverio klaida"
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1096
 msgid "The server seems down. Try again later."
 msgstr "Panašu, kad serveris išjungtas. Pabandykite vėliau."
 
-#: static/js/editor/app.js:1093
+#: static/js/editor/app.js:1105
 #, fuzzy
 msgid "This string no longer exists."
 msgstr "Ši eilutė nebeegzistuoja."
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1106
 msgid "Go back to browsing"
 msgstr "Grįžti į apžvalgą"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1108
 msgid "Reload page"
 msgstr "Įkelti tinklalapį iš naujo"
 
-#: static/js/editor/app.js:1845 static/js/editor/app.js:617
+#: static/js/editor/app.js:1861 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Nėra rezultatų."
 
-#: static/js/editor/app.js:2182
+#: static/js/editor/app.js:2198
 msgid "some anonymous user"
 msgstr "anoniminis naudotojas"
 
-#: static/js/editor/app.js:2184
+#: static/js/editor/app.js:2200
 msgid "someone"
 msgstr "kažkas"
 
-#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
 msgid "Similar translations"
 msgstr "Panašūs vertimai"
 
@@ -738,23 +751,23 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
-#: static/js/shared/components/FormSelectInput.js:32
-msgid "Select..."
-msgstr "Parinkti…"
-
-#: static/js/shared/components/FormSelectInput.js:33
-msgid "No results found"
-msgstr "Rezultatų nerasta"
-
-#: static/js/shared/components/FormSelectInput.js:34
-msgid "Clear value"
-msgstr "Išvalyti reikšmę"
-
-#: static/js/shared/components/FormSelectInput.js:35
+#: static/js/shared/components/FormSelectInput.js:38
 msgid "Clear all"
 msgstr "Išvalyti viską"
 
-#: static/js/shared/components/FormSelectInput.js:36
+#: static/js/shared/components/FormSelectInput.js:39
+msgid "Clear value"
+msgstr "Išvalyti reikšmę"
+
+#: static/js/shared/components/FormSelectInput.js:40
+msgid "No results found"
+msgstr "Rezultatų nerasta"
+
+#: static/js/shared/components/FormSelectInput.js:42
+msgid "Select..."
+msgstr "Parinkti…"
+
+#: static/js/shared/components/FormSelectInput.js:43
 #, fuzzy
 msgid "Type to search"
 msgstr "Rašykite paieškai"
@@ -818,16 +831,16 @@ msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
 msgid "disabled"
 msgstr "išjungta"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "Sveikiname, Jūs peržiūrėjote visas eilutes."
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Collapse details"
 msgstr "Suskleisti išsamią statistiką"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Expand details"
 msgstr "Išskleisti išsamią statistiką"
 
@@ -893,46 +906,71 @@ msgstr ""
 "įkvėpkite kitus!"
 
 #: static/js/utils.js:168
-#, javascript-format
+#, fuzzy
 msgid "A year ago"
+msgstr "Prieš %s metus"
+
+#: static/js/utils.js:168
+#, fuzzy, python-format, javascript-format
+msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Prieš %s metus"
 msgstr[1] "Prieš %s metus"
 msgstr[2] "Prieš %s metų"
 
 #: static/js/utils.js:171
-#, javascript-format
+#, fuzzy
 msgid "A week ago"
+msgstr "Prieš %s savaitę"
+
+#: static/js/utils.js:171
+#, fuzzy, python-format, javascript-format
+msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Prieš %s savaitę"
 msgstr[1] "Prieš %s savaites"
 msgstr[2] "Prieš %s savaičių"
 
 #: static/js/utils.js:174
-#, javascript-format
+#, fuzzy
 msgid "Yesterday"
+msgstr "Prieš %s dieną"
+
+#: static/js/utils.js:174
+#, fuzzy, python-format, javascript-format
+msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Prieš %s dieną"
-msgstr[1] "Prieš %s dienas"
-msgstr[2] "Prieš %s dienų"
+msgstr[0] "Prieš %s metus"
+msgstr[1] "Prieš %s metus"
+msgstr[2] "Prieš %s metų"
 
 #: static/js/utils.js:177
-#, javascript-format
+#, fuzzy
 msgid "An hour ago"
+msgstr "Prieš %s valandą"
+
+#: static/js/utils.js:177
+#, fuzzy, python-format, javascript-format
+msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Prieš %s valandą"
 msgstr[1] "Prieš %s valandas"
 msgstr[2] "Prieš %s valandų"
 
-#: static/js/utils.js:180
-#, javascript-format
+#: static/js/utils.js:181
+#, fuzzy
 msgid "A minute ago"
+msgstr "Prieš %s minutę"
+
+#: static/js/utils.js:181
+#, fuzzy, python-format, javascript-format
+msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Prieš %s minutę"
 msgstr[1] "Prieš %s minutes"
 msgstr[2] "Prieš %s minučių"
 
-#: static/js/utils.js:188
+#: static/js/utils.js:189
 msgid "A few seconds ago"
 msgstr "Prieš kelias sekundes"
 

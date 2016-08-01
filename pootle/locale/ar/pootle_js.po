@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2016-07-21 12:31+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -277,8 +277,8 @@ msgid "Active"
 msgstr "نشط"
 
 #: static/js/admin/components/User/UserForm.js:81
-#: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:101
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
@@ -289,7 +289,7 @@ msgid "Set a new password"
 msgstr "عيّن كلمة مرور جديدة"
 
 #: static/js/admin/components/User/UserForm.js:98
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
 msgstr "البريد الإلكترونيّ"
 
@@ -409,7 +409,7 @@ msgid "Password changed, signing in..."
 msgstr "تغيّرت كلمة المرور، يلج..."
 
 #: static/js/auth/components/PasswordResetForm.js:125
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
 msgstr "كرّر كلمة المرور"
 
@@ -446,12 +446,12 @@ msgstr "أعد إرسال الرّسالة"
 msgid "Sign up as a new user"
 msgstr "سجّل بمستخدم جديد"
 
-#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "نسيت كلمة مروري"
 
-#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
@@ -470,12 +470,12 @@ msgstr "الخدمات الاجتماعيّة"
 msgid "Login / Password"
 msgstr "لِج / كلمة المرور"
 
-#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "سجّل"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
 msgstr "لِج بحساب موجود"
 
@@ -532,6 +532,19 @@ msgstr "آخ..."
 msgid "Social Verification"
 msgstr "التّحقّق الاجتماعيّ"
 
+#: static/js/browser/components/TopContributors.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:39
+msgid "#%(position)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:62
+#, fuzzy
+msgid "More..."
+msgstr "أكثر"
+
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
 msgstr "اعرض المعطّلة"
@@ -540,14 +553,14 @@ msgstr "اعرض المعطّلة"
 msgid "Hide disabled"
 msgstr "أخفِ المعطّلة"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:625
+#: static/js/editor/app.js:307 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 "لديك تعديلات غير محفوظة في المقطع. التّنقل إلى غيره سيتجاهل هذه التّعديلات."
 
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:352
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -555,7 +568,7 @@ msgstr ""
 "اذهب إلى المقطع التّالي (Ctrl+.)<br/><br/>أيضًا:<br/>الصّفحة التّالية: Ctrl+Shift"
 "+.<br/>الصّفحة الأخيرة: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:358
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -564,77 +577,77 @@ msgstr ""
 "+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "اقتراحات %s المعلّقة"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:487
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "اقتراحات %s المقبولة"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:477
+#: static/js/editor/app.js:490
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "اقتراحات %s المرفوضة"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "مساهمات %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "مساهمات %s المُستبدَلة"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1088
 msgid "Error while connecting to the server"
 msgstr "خطأ أثناء الاتّصال بالخادوم"
 
-#: static/js/editor/app.js:1080
+#: static/js/editor/app.js:1092
 msgid "Not found"
 msgstr "لم يُعثر عليها"
 
-#: static/js/editor/app.js:1082
+#: static/js/editor/app.js:1094
 msgid "Server error"
 msgstr "خطأ في الخادوم"
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1096
 msgid "The server seems down. Try again later."
 msgstr "تعذّر الوصول إلى الخادوم. جرّب مجدّدًا لاحقًا."
 
-#: static/js/editor/app.js:1093
+#: static/js/editor/app.js:1105
 msgid "This string no longer exists."
 msgstr "لم يعد هذا المقطع موجودًا."
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1106
 msgid "Go back to browsing"
 msgstr "ارجع إلى التّصفّح"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1108
 msgid "Reload page"
 msgstr "أعد تحميل الصّفحة"
 
-#: static/js/editor/app.js:1845 static/js/editor/app.js:617
+#: static/js/editor/app.js:1861 static/js/editor/app.js:629
 msgid "No results."
 msgstr "لا نتائج."
 
-#: static/js/editor/app.js:2182
+#: static/js/editor/app.js:2198
 msgid "some anonymous user"
 msgstr "مستخدم ما مجهول"
 
-#: static/js/editor/app.js:2184
+#: static/js/editor/app.js:2200
 msgid "someone"
 msgstr "أحدهم"
 
-#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
 msgid "Similar translations"
 msgstr "التّرجمات المشابهة"
 
@@ -739,23 +752,23 @@ msgstr "الجمعة"
 msgid "Sat"
 msgstr "السبت"
 
-#: static/js/shared/components/FormSelectInput.js:32
-msgid "Select..."
-msgstr "اختر..."
-
-#: static/js/shared/components/FormSelectInput.js:33
-msgid "No results found"
-msgstr "لم يُعثر على نتائج"
-
-#: static/js/shared/components/FormSelectInput.js:34
-msgid "Clear value"
-msgstr "امحُ القيمة"
-
-#: static/js/shared/components/FormSelectInput.js:35
+#: static/js/shared/components/FormSelectInput.js:38
 msgid "Clear all"
 msgstr "امحُ الكلّ"
 
-#: static/js/shared/components/FormSelectInput.js:36
+#: static/js/shared/components/FormSelectInput.js:39
+msgid "Clear value"
+msgstr "امحُ القيمة"
+
+#: static/js/shared/components/FormSelectInput.js:40
+msgid "No results found"
+msgstr "لم يُعثر على نتائج"
+
+#: static/js/shared/components/FormSelectInput.js:42
+msgid "Select..."
+msgstr "اختر..."
+
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Type to search"
 msgstr "اطبع للبحث"
 
@@ -812,15 +825,15 @@ msgstr "علّم %(sourceString)s على أنّها تحتاج للعمل"
 msgid "disabled"
 msgstr "معطّل"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 msgid "Congratulations! You have completed this task!"
 msgstr "تهانينا! لقد أنهيت المهمة!"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Collapse details"
 msgstr "أخفِ التّفاصيل"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Expand details"
 msgstr "اعرض التّفاصيل"
 
@@ -884,8 +897,13 @@ msgid ""
 msgstr "لمَ أنت جزء من مشروع الترجمة؟ صِف نفسك وألهم الغير!"
 
 #: static/js/utils.js:168
-#, javascript-format
+#, fuzzy
 msgid "A year ago"
+msgstr "منذ أقلّ من سنة"
+
+#: static/js/utils.js:168
+#, fuzzy, python-format, javascript-format
+msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "منذ أقلّ من سنة"
 msgstr[1] "منذ سنة واحدة"
@@ -895,8 +913,13 @@ msgstr[4] "منذ %s سنةً"
 msgstr[5] "منذ %s سنة"
 
 #: static/js/utils.js:171
-#, javascript-format
+#, fuzzy
 msgid "A week ago"
+msgstr "منذ أقلّ من أسبوع"
+
+#: static/js/utils.js:171
+#, fuzzy, python-format, javascript-format
+msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "منذ أقلّ من أسبوع"
 msgstr[1] "منذ أسبوع واحد"
@@ -906,19 +929,29 @@ msgstr[4] "منذ %s أسبوعًا"
 msgstr[5] "منذ %s أسبوع"
 
 #: static/js/utils.js:174
-#, javascript-format
+#, fuzzy
 msgid "Yesterday"
+msgstr "منذ أقلّ من يوم"
+
+#: static/js/utils.js:174
+#, fuzzy, python-format, javascript-format
+msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "منذ أقلّ من يوم"
-msgstr[1] "البارحة"
-msgstr[2] "ما قبل البارحة"
-msgstr[3] "منذ %s أيّام"
-msgstr[4] "منذ %s يومًا"
-msgstr[5] "منذ %s يوم"
+msgstr[0] "منذ أقلّ من سنة"
+msgstr[1] "منذ سنة واحدة"
+msgstr[2] "منذ سنتين"
+msgstr[3] "منذ %s سنوات"
+msgstr[4] "منذ %s سنةً"
+msgstr[5] "منذ %s سنة"
 
 #: static/js/utils.js:177
-#, javascript-format
+#, fuzzy
 msgid "An hour ago"
+msgstr "منذ أقلّ من ساعة"
+
+#: static/js/utils.js:177
+#, fuzzy, python-format, javascript-format
+msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "منذ أقلّ من ساعة"
 msgstr[1] "منذ ساعة"
@@ -927,9 +960,14 @@ msgstr[3] "منذ %s ساعات"
 msgstr[4] "منذ %s ساعةً"
 msgstr[5] "منذ %s ساعة"
 
-#: static/js/utils.js:180
-#, javascript-format
+#: static/js/utils.js:181
+#, fuzzy
 msgid "A minute ago"
+msgstr "منذ أقلّ من دقيقة"
+
+#: static/js/utils.js:181
+#, fuzzy, python-format, javascript-format
+msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "منذ أقلّ من دقيقة"
 msgstr[1] "منذ دقيقة"
@@ -938,7 +976,7 @@ msgstr[3] "منذ %s دقائق"
 msgstr[4] "منذ %s دقيقةً"
 msgstr[5] "منذ %s دقيقة"
 
-#: static/js/utils.js:188
+#: static/js/utils.js:189
 msgid "A few seconds ago"
 msgstr "منذ بضعة ثوان"
 

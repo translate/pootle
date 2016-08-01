@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2016-07-27 11:48+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,8 +262,8 @@ msgid "Active"
 msgstr "Actief"
 
 #: static/js/admin/components/User/UserForm.js:81
-#: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:101
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
@@ -274,7 +274,7 @@ msgid "Set a new password"
 msgstr "Nieuw wachtwoord: instellen"
 
 #: static/js/admin/components/User/UserForm.js:98
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
 msgstr "E-mailadres"
 
@@ -398,7 +398,7 @@ msgid "Password changed, signing in..."
 msgstr "Wachtwoord gewijzigd, aanmelden..."
 
 #: static/js/auth/components/PasswordResetForm.js:125
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
 msgstr "Herhaal wachtwoord"
 
@@ -438,12 +438,12 @@ msgstr "E-mailbericht opnieuw verzenden"
 msgid "Sign up as a new user"
 msgstr "Registreren als nieuwe gebruiker"
 
-#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "Ik ben mijn wachtwoord vergeten"
 
-#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
@@ -462,12 +462,12 @@ msgstr "Sociale services"
 msgid "Login / Password"
 msgstr "Aanmelding / Wachtwoord"
 
-#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "Registreren"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
 msgstr "Aanmelden als bestaande gebruiker"
 
@@ -527,6 +527,19 @@ msgstr "Oeps..."
 msgid "Social Verification"
 msgstr "Sociale verificatie"
 
+#: static/js/browser/components/TopContributors.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:39
+msgid "#%(position)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:62
+#, fuzzy
+msgid "More..."
+msgstr "Meer"
+
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
 msgstr "Tonen uitgeschakeld"
@@ -535,7 +548,7 @@ msgstr "Tonen uitgeschakeld"
 msgid "Hide disabled"
 msgstr "Verbergen uitgeschakeld"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:625
+#: static/js/editor/app.js:307 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -543,7 +556,7 @@ msgstr ""
 "Er zijn niet-opgeslagen wijzigingen in deze tekenreeks. Verder browsen zal "
 "deze wijzigingen verwerpen."
 
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:352
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -551,7 +564,7 @@ msgstr ""
 "Naar de volgende tekenreeks (Ctrl+.)<br/><br/>Ook:<br/>Volgende pagina: Ctrl"
 "+Shift+.<br/>Vorige pagina: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:358
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -560,77 +573,77 @@ msgstr ""
 "+Shift+,<br/>Eerste pagina: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Openstaande suggesties van %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:487
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Geaccepteerde suggesties van %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:477
+#: static/js/editor/app.js:490
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Afgewezen suggesties van %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Bijdragen van %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Overschreven bijdragen van %s"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1088
 msgid "Error while connecting to the server"
 msgstr "Fout tijdens verbinden met de server"
 
-#: static/js/editor/app.js:1080
+#: static/js/editor/app.js:1092
 msgid "Not found"
 msgstr "Niet gevonden"
 
-#: static/js/editor/app.js:1082
+#: static/js/editor/app.js:1094
 msgid "Server error"
 msgstr "Serverfout"
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1096
 msgid "The server seems down. Try again later."
 msgstr "De server lijkt niet beschikbaar. Probeer het later nog eens."
 
-#: static/js/editor/app.js:1093
+#: static/js/editor/app.js:1105
 msgid "This string no longer exists."
 msgstr "Deze tekenreeks bestaat niet meer."
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1106
 msgid "Go back to browsing"
 msgstr "Terug naar bladeren"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1108
 msgid "Reload page"
 msgstr "Pagina herladen"
 
-#: static/js/editor/app.js:1845 static/js/editor/app.js:617
+#: static/js/editor/app.js:1861 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Geen resultaten."
 
-#: static/js/editor/app.js:2182
+#: static/js/editor/app.js:2198
 msgid "some anonymous user"
 msgstr "een anonieme server"
 
-#: static/js/editor/app.js:2184
+#: static/js/editor/app.js:2200
 msgid "someone"
 msgstr "iemand"
 
-#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
 msgid "Similar translations"
 msgstr "Soortgelijke vertalingen"
 
@@ -735,23 +748,23 @@ msgstr "vr"
 msgid "Sat"
 msgstr "za"
 
-#: static/js/shared/components/FormSelectInput.js:32
-msgid "Select..."
-msgstr "Selecteren..."
-
-#: static/js/shared/components/FormSelectInput.js:33
-msgid "No results found"
-msgstr "Geen resultaten gevonden"
-
-#: static/js/shared/components/FormSelectInput.js:34
-msgid "Clear value"
-msgstr "Waarde wissen"
-
-#: static/js/shared/components/FormSelectInput.js:35
+#: static/js/shared/components/FormSelectInput.js:38
 msgid "Clear all"
 msgstr "Alles wissen"
 
-#: static/js/shared/components/FormSelectInput.js:36
+#: static/js/shared/components/FormSelectInput.js:39
+msgid "Clear value"
+msgstr "Waarde wissen"
+
+#: static/js/shared/components/FormSelectInput.js:40
+msgid "No results found"
+msgstr "Geen resultaten gevonden"
+
+#: static/js/shared/components/FormSelectInput.js:42
+msgid "Select..."
+msgstr "Selecteren..."
+
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Type to search"
 msgstr "Typ om te zoeken"
 
@@ -808,15 +821,15 @@ msgstr "heeft %(sourceString)s gemarkeerd als Werk vereist"
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 msgid "Congratulations! You have completed this task!"
 msgstr "Gefeliciteerd! U hebt deze taak voltooid!"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Collapse details"
 msgstr "Details samenvouwen"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Expand details"
 msgstr "Details uitvouwen"
 
@@ -882,41 +895,66 @@ msgstr ""
 "anderen!"
 
 #: static/js/utils.js:168
-#, javascript-format
+#, fuzzy
 msgid "A year ago"
+msgstr "Een jaar geleden"
+
+#: static/js/utils.js:168
+#, fuzzy, python-format, javascript-format
+msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Een jaar geleden"
 msgstr[1] "%s jaar geleden"
 
 #: static/js/utils.js:171
-#, javascript-format
+#, fuzzy
 msgid "A week ago"
+msgstr "Een week geleden"
+
+#: static/js/utils.js:171
+#, fuzzy, python-format, javascript-format
+msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Een week geleden"
 msgstr[1] "%s weken geleden"
 
 #: static/js/utils.js:174
-#, javascript-format
+#, fuzzy
 msgid "Yesterday"
+msgstr "Gisteren"
+
+#: static/js/utils.js:174
+#, fuzzy, python-format, javascript-format
+msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Gisteren"
-msgstr[1] "%s dagen geleden"
+msgstr[0] "Een jaar geleden"
+msgstr[1] "%s jaar geleden"
 
 #: static/js/utils.js:177
-#, javascript-format
+#, fuzzy
 msgid "An hour ago"
+msgstr "Een uur geleden"
+
+#: static/js/utils.js:177
+#, fuzzy, python-format, javascript-format
+msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Een uur geleden"
 msgstr[1] "%s uur geleden"
 
-#: static/js/utils.js:180
-#, javascript-format
+#: static/js/utils.js:181
+#, fuzzy
 msgid "A minute ago"
+msgstr "Een minuut geleden"
+
+#: static/js/utils.js:181
+#, fuzzy, python-format, javascript-format
+msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Een minuut geleden"
 msgstr[1] "%s minuten geleden"
 
-#: static/js/utils.js:188
+#: static/js/utils.js:189
 msgid "A few seconds ago"
 msgstr "Enkele seconden geleden"
 

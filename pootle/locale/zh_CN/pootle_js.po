@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2016-07-29 10:40+0000\n"
 "Last-Translator: chanson <84365252@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -248,8 +248,8 @@ msgid "Active"
 msgstr "活跃"
 
 #: static/js/admin/components/User/UserForm.js:81
-#: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:101
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
@@ -260,7 +260,7 @@ msgid "Set a new password"
 msgstr "设置新密码"
 
 #: static/js/admin/components/User/UserForm.js:98
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
 msgstr "电子邮件地址"
 
@@ -377,7 +377,7 @@ msgid "Password changed, signing in..."
 msgstr "密码已更改，正在登录..."
 
 #: static/js/auth/components/PasswordResetForm.js:125
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
 msgstr "重复密码"
 
@@ -413,12 +413,12 @@ msgstr "重发电子邮件"
 msgid "Sign up as a new user"
 msgstr "注册新账户"
 
-#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "我忘记了密码"
 
-#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
@@ -437,12 +437,12 @@ msgstr "社交服务"
 msgid "Login / Password"
 msgstr "登录/密码"
 
-#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "注册"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
 msgstr "以现有用户登录"
 
@@ -499,6 +499,19 @@ msgstr "Oops..."
 msgid "Social Verification"
 msgstr ""
 
+#: static/js/browser/components/TopContributors.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:39
+msgid "#%(position)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:62
+#, fuzzy
+msgid "More..."
+msgstr "更多"
+
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
 msgid "Show disabled"
@@ -509,13 +522,13 @@ msgstr "已禁用"
 msgid "Hide disabled"
 msgstr "已禁用"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:625
+#: static/js/editor/app.js:307 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr "你在这个单元有未保存的数据。离开会丢失这些数据。"
 
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:352
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -523,7 +536,7 @@ msgstr ""
 "转到下一个字符串 (Ctrl+.)<br/><br/>也可以：<br/>下一页：Ctrl+Shift+.<br/>最后"
 "一页：Ctrl+Shift+End"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:358
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -532,77 +545,77 @@ msgstr ""
 "页：Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s 的待审建议"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:487
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s 的获准建议"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:477
+#: static/js/editor/app.js:490
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s 的被拒建议"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s 的提交"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s 的被覆盖的提交"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1088
 msgid "Error while connecting to the server"
 msgstr "连接到服务器时出错"
 
-#: static/js/editor/app.js:1080
+#: static/js/editor/app.js:1092
 msgid "Not found"
 msgstr "未找到"
 
-#: static/js/editor/app.js:1082
+#: static/js/editor/app.js:1094
 msgid "Server error"
 msgstr "服务器错误"
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1096
 msgid "The server seems down. Try again later."
 msgstr "服务器似乎宕机了。请您稍后重试。"
 
-#: static/js/editor/app.js:1093
+#: static/js/editor/app.js:1105
 msgid "This string no longer exists."
 msgstr "这个字符串已不存在。"
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1106
 msgid "Go back to browsing"
 msgstr "返回浏览"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1108
 msgid "Reload page"
 msgstr "重新载入页面"
 
-#: static/js/editor/app.js:1845 static/js/editor/app.js:617
+#: static/js/editor/app.js:1861 static/js/editor/app.js:629
 msgid "No results."
 msgstr "没有结果。"
 
-#: static/js/editor/app.js:2182
+#: static/js/editor/app.js:2198
 msgid "some anonymous user"
 msgstr "一些匿名用户"
 
-#: static/js/editor/app.js:2184
+#: static/js/editor/app.js:2200
 msgid "someone"
 msgstr "某人"
 
-#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
 msgid "Similar translations"
 msgstr "类似的翻译"
 
@@ -708,23 +721,23 @@ msgstr "星期五"
 msgid "Sat"
 msgstr "星期六"
 
-#: static/js/shared/components/FormSelectInput.js:32
-msgid "Select..."
-msgstr "选择..."
-
-#: static/js/shared/components/FormSelectInput.js:33
-msgid "No results found"
-msgstr "未找到结果"
-
-#: static/js/shared/components/FormSelectInput.js:34
-msgid "Clear value"
-msgstr "清除值"
-
-#: static/js/shared/components/FormSelectInput.js:35
+#: static/js/shared/components/FormSelectInput.js:38
 msgid "Clear all"
 msgstr "全部清除"
 
-#: static/js/shared/components/FormSelectInput.js:36
+#: static/js/shared/components/FormSelectInput.js:39
+msgid "Clear value"
+msgstr "清除值"
+
+#: static/js/shared/components/FormSelectInput.js:40
+msgid "No results found"
+msgstr "未找到结果"
+
+#: static/js/shared/components/FormSelectInput.js:42
+msgid "Select..."
+msgstr "选择..."
+
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Type to search"
 msgstr "输入进行搜索"
 
@@ -791,16 +804,16 @@ msgstr "把${sourceString}标记为尚需完善"
 msgid "disabled"
 msgstr "已禁用"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "祝贺您，您已遍历全部项目"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Collapse details"
 msgstr "收起细节"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Expand details"
 msgstr "展开细节"
 
@@ -864,36 +877,61 @@ msgid ""
 msgstr "你为何成为了翻译项目的一员？介绍自己，激励他人！"
 
 #: static/js/utils.js:168
-#, javascript-format
+#, fuzzy
 msgid "A year ago"
+msgstr "%s 年前"
+
+#: static/js/utils.js:168
+#, fuzzy, python-format, javascript-format
+msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "%s 年前"
 
 #: static/js/utils.js:171
-#, javascript-format
+#, fuzzy
 msgid "A week ago"
+msgstr "%s 周前"
+
+#: static/js/utils.js:171
+#, fuzzy, python-format, javascript-format
+msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "%s 周前"
 
 #: static/js/utils.js:174
-#, javascript-format
+#, fuzzy
 msgid "Yesterday"
+msgstr "%s 天前"
+
+#: static/js/utils.js:174
+#, fuzzy, python-format, javascript-format
+msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "%s 天前"
+msgstr[0] "%s 年前"
 
 #: static/js/utils.js:177
-#, javascript-format
+#, fuzzy
 msgid "An hour ago"
+msgstr "%s 小时前"
+
+#: static/js/utils.js:177
+#, fuzzy, python-format, javascript-format
+msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "%s 小时前"
 
-#: static/js/utils.js:180
-#, javascript-format
+#: static/js/utils.js:181
+#, fuzzy
 msgid "A minute ago"
+msgstr "%s 分钟前"
+
+#: static/js/utils.js:181
+#, fuzzy, python-format, javascript-format
+msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "%s 分钟前"
 
-#: static/js/utils.js:188
+#: static/js/utils.js:189
 msgid "A few seconds ago"
 msgstr "几秒钟前"
 

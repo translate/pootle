@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2015-09-29 13:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,8 +264,8 @@ msgid "Active"
 msgstr "Ενεργό"
 
 #: static/js/admin/components/User/UserForm.js:81
-#: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:101
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
@@ -276,7 +276,7 @@ msgid "Set a new password"
 msgstr "Ορισμός νέου κωδικού πρόσβασης"
 
 #: static/js/admin/components/User/UserForm.js:98
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
 msgstr "Ηλ. διεύθυνση"
 
@@ -405,7 +405,7 @@ msgid "Password changed, signing in..."
 msgstr "Ο κωδικός πρόσβασης άλλαξε, πραγματοποιείται είσοδος..."
 
 #: static/js/auth/components/PasswordResetForm.js:125
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
 msgstr "Επανάληψη κωδικού πρόσβασης"
 
@@ -445,12 +445,12 @@ msgstr "Επαναποστολή μηνύματος"
 msgid "Sign up as a new user"
 msgstr "Εγγραφείτε ως νέος χρήστης"
 
-#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "Ξέχασα τον κωδικό πρόσβασής μου"
 
-#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
@@ -469,12 +469,12 @@ msgstr "Κοινωνικές υπηρεσίες"
 msgid "Login / Password"
 msgstr "Σύνδεση / Κωδικός πρόσβασης"
 
-#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "Εγγραφή"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
 msgstr "Είσοδος ως υπάρχων χρήστης"
 
@@ -535,6 +535,19 @@ msgstr "Όπα..."
 msgid "Social Verification"
 msgstr "Κοινωνική επαλήθευση"
 
+#: static/js/browser/components/TopContributors.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:39
+msgid "#%(position)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:62
+#, fuzzy
+msgid "More..."
+msgstr "Περισσότερα"
+
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
 msgid "Show disabled"
@@ -545,7 +558,7 @@ msgstr "ανενεργό"
 msgid "Hide disabled"
 msgstr "ανενεργό"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:625
+#: static/js/editor/app.js:307 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -553,7 +566,7 @@ msgstr ""
 "Έχετε μη αποθηκευμένες αλλαγές σε αυτήν τη συμβολοσειρά. Η περιήγηση εκτός "
 "αυτής θα απορρίψει αυτές τις αλλαγές."
 
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:352
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -561,7 +574,7 @@ msgstr ""
 "Μετάβαση στην επόμενη συμβολοσειρά (Ctrl+.)<br/><br/>Επίσης:<br/>Επόμενη "
 "σελίδα:Ctrl+Shift+.<br/>Τελευταία σελίδα:Last page: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:358
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -570,77 +583,77 @@ msgstr ""
 "br>Προηγούμενη σελίδα:Ctrl+Shift+,<br/>Πρώτη σελίδα: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Εκκρεμείς προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:487
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Αποδεκτές προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:477
+#: static/js/editor/app.js:490
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Απορριφθείσες προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Υποβολές του %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Αντικατασταθείσες υποβολές του %s"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1088
 msgid "Error while connecting to the server"
 msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετητή"
 
-#: static/js/editor/app.js:1080
+#: static/js/editor/app.js:1092
 msgid "Not found"
 msgstr "Δε βρέθηκε"
 
-#: static/js/editor/app.js:1082
+#: static/js/editor/app.js:1094
 msgid "Server error"
 msgstr "Σφάλμα εξυπηρετητή"
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1096
 msgid "The server seems down. Try again later."
 msgstr "Ο εξυπηρετητής φαίνεται ανενεργός. Δοκιμάστε αργότερα."
 
-#: static/js/editor/app.js:1093
+#: static/js/editor/app.js:1105
 msgid "This string no longer exists."
 msgstr "Αυτή η συμβολοσειρά δεν υπάρχει πια."
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1106
 msgid "Go back to browsing"
 msgstr "Επιστροφή στην περιήγηση"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1108
 msgid "Reload page"
 msgstr "Επαναφόρτωση της σελίδας"
 
-#: static/js/editor/app.js:1845 static/js/editor/app.js:617
+#: static/js/editor/app.js:1861 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Κανένα αποτέλεσμα."
 
-#: static/js/editor/app.js:2182
+#: static/js/editor/app.js:2198
 msgid "some anonymous user"
 msgstr "κάποιος ανώνυμος χρήστης"
 
-#: static/js/editor/app.js:2184
+#: static/js/editor/app.js:2200
 msgid "someone"
 msgstr "κάποιος"
 
-#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
 msgid "Similar translations"
 msgstr "Παρόμοιες μεταφράσεις"
 
@@ -746,23 +759,23 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
-#: static/js/shared/components/FormSelectInput.js:32
-msgid "Select..."
-msgstr "Επιλογή..."
-
-#: static/js/shared/components/FormSelectInput.js:33
-msgid "No results found"
-msgstr "Δεν βρέθηκαν αποτελέσματα"
-
-#: static/js/shared/components/FormSelectInput.js:34
-msgid "Clear value"
-msgstr "Καθαρισμός τιμής"
-
-#: static/js/shared/components/FormSelectInput.js:35
+#: static/js/shared/components/FormSelectInput.js:38
 msgid "Clear all"
 msgstr "Καθαρισμός όλων"
 
-#: static/js/shared/components/FormSelectInput.js:36
+#: static/js/shared/components/FormSelectInput.js:39
+msgid "Clear value"
+msgstr "Καθαρισμός τιμής"
+
+#: static/js/shared/components/FormSelectInput.js:40
+msgid "No results found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
+
+#: static/js/shared/components/FormSelectInput.js:42
+msgid "Select..."
+msgstr "Επιλογή..."
+
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Type to search"
 msgstr "Πληκτρολογήστε για αναζήτηση"
 
@@ -828,16 +841,16 @@ msgstr "προστέθηκε πρόταση για τη ${συμβολοσειρ
 msgid "disabled"
 msgstr "ανενεργό"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "Συγχαρητήρια, διασχίσατε όλα τα στοιχεία"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Collapse details"
 msgstr "Σύμπτυξη λεπτομερειών"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Expand details"
 msgstr "Επέκταση λεπτομερειών"
 
@@ -903,41 +916,66 @@ msgstr ""
 "εμπνεύστε τους άλλους!"
 
 #: static/js/utils.js:168
-#, javascript-format
+#, fuzzy
 msgid "A year ago"
+msgstr "Ένα χρόνο πριν"
+
+#: static/js/utils.js:168
+#, fuzzy, python-format, javascript-format
+msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Ένα χρόνο πριν"
 msgstr[1] "%s χρόνια πριν"
 
 #: static/js/utils.js:171
-#, javascript-format
+#, fuzzy
 msgid "A week ago"
+msgstr "Μια βδομάδα πριν"
+
+#: static/js/utils.js:171
+#, fuzzy, python-format, javascript-format
+msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Μια βδομάδα πριν"
 msgstr[1] "%s βδομάδες πριν"
 
 #: static/js/utils.js:174
-#, javascript-format
+#, fuzzy
 msgid "Yesterday"
+msgstr "Χθες"
+
+#: static/js/utils.js:174
+#, fuzzy, python-format, javascript-format
+msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Χθες"
-msgstr[1] "%s ημέρες πριν"
+msgstr[0] "Ένα χρόνο πριν"
+msgstr[1] "%s χρόνια πριν"
 
 #: static/js/utils.js:177
-#, javascript-format
+#, fuzzy
 msgid "An hour ago"
+msgstr "Μια ώρα πριν"
+
+#: static/js/utils.js:177
+#, fuzzy, python-format, javascript-format
+msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Μια ώρα πριν"
 msgstr[1] "%s ώρες πριν"
 
-#: static/js/utils.js:180
-#, javascript-format
+#: static/js/utils.js:181
+#, fuzzy
 msgid "A minute ago"
+msgstr "Ένα λεπτό πριν"
+
+#: static/js/utils.js:181
+#, fuzzy, python-format, javascript-format
+msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Ένα λεπτό πριν"
 msgstr[1] "%s λεπτά πριν"
 
-#: static/js/utils.js:188
+#: static/js/utils.js:189
 msgid "A few seconds ago"
 msgstr "Λίγα δευτερόλεπτα πριν"
 

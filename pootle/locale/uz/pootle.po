@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2016-07-07 10:46+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,36 +35,36 @@ msgstr ""
 "Foydalanuvchingiz yo‘qolib qolganga o‘xshaydi. Bu haqida sayt egalariga "
 "xabar bering."
 
-#: apps/accounts/models.py:62 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Foydalanuvchi nomi"
 
-#: apps/accounts/models.py:63
+#: apps/accounts/models.py:64
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "30 tagacha belgi kiritish mumkin. Harflar, raqamlar va @/./+/-/_ kabi "
 "belgilar"
 
-#: apps/accounts/models.py:67
+#: apps/accounts/models.py:68
 msgid "Enter a valid username."
 msgstr "To‘g‘ri foydalanuvchi nomini kiriting."
 
-#: apps/accounts/models.py:71
+#: apps/accounts/models.py:72
 msgid "Email Address"
 msgstr "E-pochta manzili"
 
-#: apps/accounts/models.py:72 apps/pootle_language/models.py:74
-#: apps/pootle_project/models.py:167
+#: apps/accounts/models.py:73 apps/pootle_language/models.py:74
+#: apps/pootle_project/models.py:184
 msgid "Full Name"
 msgstr "To‘liq ismi"
 
-#: apps/accounts/models.py:75 apps/staticpages/models.py:31
+#: apps/accounts/models.py:76 apps/staticpages/models.py:31
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Faol"
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:77
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -72,11 +72,11 @@ msgstr ""
 "Ushbu foydalanuvchini faol sifatida  ko‘rinishi uchun qilingan. O‘chirilgan "
 "hisoblar o‘rniga buni olib tashlang."
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid "Superuser Status"
 msgstr "Super foydalanuvchi holati"
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:81
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -84,59 +84,59 @@ msgstr ""
 "Ushbu foydalanuvchi aniq ularni tayinlashsiz barcha huquqlarga ega "
 "ekanligini bildiradi."
 
-#: apps/accounts/models.py:83
+#: apps/accounts/models.py:84
 msgid "date joined"
 msgstr "qo‘shilgan sanasi"
 
-#: apps/accounts/models.py:87
+#: apps/accounts/models.py:88
 msgid "Number of Rows"
 msgstr "Qatorlar soni"
 
-#: apps/accounts/models.py:91
+#: apps/accounts/models.py:92
 msgid "Alternative Source Languages"
 msgstr "Muqobil manba tillar"
 
-#: apps/accounts/models.py:94 templates/admin/detailed_reports.html:156
+#: apps/accounts/models.py:95 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Baholash"
 
-#: apps/accounts/models.py:95 apps/reports/forms.py:31
+#: apps/accounts/models.py:96 apps/reports/forms.py:31
 msgid "Review Rate"
 msgstr "Baholashga fikr bildirish"
 
-#: apps/accounts/models.py:96 apps/reports/forms.py:36
+#: apps/accounts/models.py:97 apps/reports/forms.py:36
 msgid "Hourly Rate"
 msgstr "Soat bo‘yicha bahosi"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:98
 msgid "Score"
 msgstr "Tezligi"
 
-#: apps/accounts/models.py:98 apps/reports/forms.py:20
+#: apps/accounts/models.py:99 apps/reports/forms.py:20
 msgid "Currency"
 msgstr "Pul birligi"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Is employee?"
 msgstr "Ish beruvchimi?"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:102
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:104
 msgid "Website"
 msgstr "Veb sayt"
 
-#: apps/accounts/models.py:104
+#: apps/accounts/models.py:105
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:106
 msgid "Short Bio"
 msgstr "Qisqacha biografiya"
 
-#: apps/accounts/models.py:352
+#: apps/accounts/models.py:355
 msgid "This email address already exists."
 msgstr "Bu e-pochta manzili allaqachon mavjud."
 
@@ -246,7 +246,7 @@ msgstr "Faylni yuklashda xatolik yuz bergan"
 msgid "Language code does not follow the ISO convention"
 msgstr "Til kodi ISO bitimiga to‘g‘ri kelmaydi"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:196
+#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
 msgid "Source Language"
 msgstr "Manba til"
 
@@ -324,7 +324,26 @@ msgstr "Ushbu loyihada fayllar yo‘q."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Shaklda xatolar mavjud. Quyidagi muammolarni ko‘rib chiqing."
 
-#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:163
+#: apps/pootle_format/abstracts.py:34
+#, fuzzy
+msgid "Format name"
+msgstr "Ism"
+
+#: apps/pootle_format/abstracts.py:39
+msgid "Format title"
+msgstr ""
+
+#: apps/pootle_format/abstracts.py:43
+#, fuzzy
+msgid "Enabled"
+msgstr "O‘chirib qo‘yilgan"
+
+#: apps/pootle_format/abstracts.py:45
+#, fuzzy
+msgid "Monolingual format"
+msgstr "Android formati"
+
+#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
 msgstr "Kod"
 
@@ -459,7 +478,7 @@ msgstr "Funksiya"
 msgid "GConf values"
 msgstr "GConf qiymatlari"
 
-#: apps/pootle_misc/checks.py:58 core/utils/stats.py:25
+#: apps/pootle_misc/checks.py:58 core/utils/stats.py:28
 msgid "Fuzzy"
 msgstr "Noaniq"
 
@@ -553,7 +572,7 @@ msgid "Unchanged"
 msgstr "O‘zgartirilmagan"
 
 #: apps/pootle_misc/checks.py:82 apps/pootle_store/util.py:28
-#: core/helpers.py:48 core/utils/stats.py:26 templates/editor/_filters.html:9
+#: core/helpers.py:48 core/utils/stats.py:29 templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Tarjima qilinmagan"
 
@@ -689,6 +708,11 @@ msgstr "Qavs o‘zgaruvchilar foizi"
 msgid "Plurr format"
 msgstr "Plurr formati"
 
+#: apps/pootle_misc/checks.py:118
+#, fuzzy
+msgid "Plurr placeholders"
+msgstr "$ o‘zgaruvchilar"
+
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
 msgid "Search"
@@ -748,7 +772,7 @@ msgstr "Bir yoki bir nechta tillarni tanlang"
 msgid "Language"
 msgstr "Til"
 
-#: apps/pootle_project/models.py:157
+#: apps/pootle_project/models.py:174
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -756,54 +780,54 @@ msgstr ""
 "Loyiha uchun qisqa kod. U faqat ASCII kodlar, raqamlar va pastki chiziq (_) "
 "belgisini o‘zida jamlashi kerak."
 
-#: apps/pootle_project/models.py:178
+#: apps/pootle_project/models.py:195
 msgid "Quality Checks"
 msgstr "Sifat tekshiruvlari"
 
-#: apps/pootle_project/models.py:181
+#: apps/pootle_project/models.py:198
 msgid "File Type"
 msgstr "Fayl turi"
 
-#: apps/pootle_project/models.py:185
+#: apps/pootle_project/models.py:203
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Avtomatik aniqlash (sekinroq)"
 
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:204
 msgid "GNU style: files named by language code"
 msgstr "GNU uslubi: til kodi bo‘yicha nomlangan fayllar"
 
-#: apps/pootle_project/models.py:187
+#: apps/pootle_project/models.py:205
 msgid "Non-GNU: Each language in its own directory"
 msgstr "GNU emas: Har bir til o‘zininng direktoriyasida"
 
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:206
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:192
+#: apps/pootle_project/models.py:210
 msgid "Project Tree Style"
 msgstr "Loyiha daraxt uslubida"
 
-#: apps/pootle_project/models.py:200
+#: apps/pootle_project/models.py:218
 msgid "Ignore Files"
 msgstr "Fayllarni e’tiborsiz qoldirish"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:223
 msgid "Errors Report Email"
 msgstr "Hisobot xati xatoliklari"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:224
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Manba matni bilan bog‘liq muammolar mavjud e-pochta manzili haqida hisobot "
 "berish mumkin."
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:228
 msgid "Screenshot Search Prefix"
 msgstr "Old qo‘shimchalarni izlash rasmi"
 
-#: apps/pootle_project/models.py:215
+#: apps/pootle_project/models.py:233
 msgid "Disabled"
 msgstr "O‘chirib qo‘yilgan"
 
@@ -920,19 +944,19 @@ msgstr "Ishlash kerak bayroqchasi tozalanishi kerak"
 msgid "Translator comment"
 msgstr "Tarjimon izohi"
 
-#: apps/pootle_store/models.py:149
+#: apps/pootle_store/models.py:151
 msgid "Pending"
 msgstr "Kutilmoqda"
 
-#: apps/pootle_store/models.py:150
+#: apps/pootle_store/models.py:152
 msgid "Accepted"
 msgstr "Qabul qilindi"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:153
 msgid "Rejected"
 msgstr "Rad qilindi"
 
-#: apps/pootle_store/models.py:1348
+#: apps/pootle_store/models.py:1372
 msgid "Path"
 msgstr "Yo‘l"
 
@@ -974,7 +998,7 @@ msgstr "Tavsiya qo‘shildi"
 msgid "Obsolete"
 msgstr "Mutlaqo"
 
-#: apps/pootle_store/util.py:30 core/helpers.py:47 core/utils/stats.py:24
+#: apps/pootle_store/util.py:30 core/helpers.py:47 core/utils/stats.py:27
 #: templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Tarjima qilindi"
@@ -1033,7 +1057,7 @@ msgid "Translation"
 msgstr "Tarjima"
 
 #: apps/reports/models.py:32 apps/reports/models.py:56
-#: templates/admin/detailed_reports.html:232
+#: templates/admin/detailed_reports.html:233
 msgid "Review"
 msgstr "Ko‘rib chiqish"
 
@@ -1065,12 +1089,12 @@ msgstr "Sana"
 msgid "Description"
 msgstr "Ta’rifi"
 
-#: apps/reports/views.py:313
+#: apps/reports/views.py:320
 #, python-format
 msgid "User %s not found"
 msgstr "%s foydalanuvchi topilmadi"
 
-#: apps/reports/views.py:390
+#: apps/reports/views.py:397
 msgid "Invalid request method"
 msgstr "So‘rov uslubi noto‘g‘ri"
 
@@ -1488,20 +1512,20 @@ msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
 
-#: checks.py:385
+#: checks.py:383
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "Asosiy 'admin' foydalanuvchisi hali ham 'admin'ga o‘rnatilgan parolga ega."
 
-#: checks.py:387
+#: checks.py:385
 msgid "Remove the 'admin' user or change its password."
 msgstr "'admin' foydalanuvchisini olib tashlang yoki parolini o‘zgartiring."
 
-#: checks.py:402
+#: checks.py:400
 msgid "Database connection does not implement on_commit."
 msgstr "Ma’lumotlar bazasiga ulanish on_commit amalga oshmadi."
 
-#: checks.py:403
+#: checks.py:401
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a backend from "
 "transaction_hooks.backends."
@@ -1509,21 +1533,21 @@ msgstr ""
 "transaction_hooks.backends ma’lumotlar bazasini hisoblash uchun "
 "DATABASES['default']['ENGINE'] sozlamasini o‘rnating."
 
-#: checks.py:423
+#: checks.py:421
 msgid "Email server is not available."
 msgstr "E-pochta serveri mavjud emas."
 
-#: checks.py:424
+#: checks.py:422
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "E-pochta sozlamalarini ko‘rib chiqing va e-pochta serveri ishlayotganligiga "
 "ishonch hosil qiling."
 
-#: checks.py:446
+#: checks.py:444
 msgid "Revision is missing or has an incorrect value."
 msgstr "Qayta ko‘rilmagan yoki qiymati noto‘g‘ri."
 
-#: checks.py:447
+#: checks.py:445
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Qayta ko‘rishni hisoblagichni tiklash uchun `revision --restore` buyrug‘ini "
@@ -1540,8 +1564,8 @@ msgstr "Jarayon"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: core/browser.py:44 core/utils/stats.py:23
-#: templates/admin/detailed_reports.html:318
+#: core/browser.py:44 core/utils/stats.py:26
+#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Jami"
 
@@ -1571,11 +1595,11 @@ msgstr "Tilga qaytish"
 msgid "Back to parent folder"
 msgstr "Yuqori jilga qaytish"
 
-#: core/decorators.py:323 core/views.py:96
+#: core/decorators.py:323 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "Ushbu sahifaga kirish uchun yetarlicha huquq yo‘q."
 
-#: core/decorators.py:336 core/views.py:107
+#: core/decorators.py:336 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle’ni boshqarish uchun sizga huquq berilmagan."
 
@@ -1628,31 +1652,31 @@ msgstr "Mening almashtirgan tarjimalarim"
 msgid "Overwritten submissions"
 msgstr "Almashtirilgan tarjimalar"
 
-#: core/initdb.py:129
+#: core/initdb.py:136
 msgid "Can access a project"
 msgstr "Loyihaga kira oladi"
 
-#: core/initdb.py:133
+#: core/initdb.py:140
 msgid "Cannot access a project"
 msgstr "Loyihaga kirib bo‘lmadi"
 
-#: core/initdb.py:137
+#: core/initdb.py:144
 msgid "Can make a suggestion for a translation"
 msgstr "Tarjima uchun tavsiya bera oladi"
 
-#: core/initdb.py:141
+#: core/initdb.py:148
 msgid "Can submit a translation"
 msgstr "Tarjima qila oladi"
 
-#: core/initdb.py:145
+#: core/initdb.py:152
 msgid "Can review suggestions"
 msgstr "Tarjimalarni ko‘rib chiqish mumkin"
 
-#: core/initdb.py:149
+#: core/initdb.py:156
 msgid "Can perform administrative tasks"
 msgstr "Administrator vazifasini bajara oladi"
 
-#: core/views.py:151
+#: core/views.py:152
 msgid "You cannot access this page."
 msgstr "Siz ushbu sahifaga kira olmaysiz."
 
@@ -1709,12 +1733,13 @@ msgid "About This Pootle Server"
 msgstr "Pootle serveri haqida"
 
 #: templates/about.html:16
+#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
 "Software, and any team can use it and contribute to the Pootle community. "
-"Read more on the <a href=\"http://pootle.translatehouse.org/\"><i class="
-"\"icon-external-link\"></i> project website</a>."
+"Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
+"website</a>."
 msgstr ""
 "Ushbu sayt tarjima qilish va tarjimalarni boshqarish uchun guruhlarni "
 "ruhlantiruvchi kuchli veb dastur – Pootledan foydalanmoqda. Ushbu jamoaviy "
@@ -1723,7 +1748,7 @@ msgstr ""
 "ma’lumotlarni <a href=\"http://pootle.translatehouse.org/\"><i class=\"icon-"
 "external-link\"></i> loyiha vebsahifasi</a>dan olishingiz mumkin."
 
-#: templates/about.html:26
+#: templates/about.html:25
 #, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
@@ -1852,89 +1877,89 @@ msgstr "Tizim tekshiruvlari"
 msgid "No issues have been detected. All is good!"
 msgstr "Hech qanday muammo aniqlanmadi. Hammasi joyida!"
 
-#: templates/admin/detailed_reports.html:6
+#: templates/admin/detailed_reports.html:7
 #, python-format
 msgid "Report for %(user)s, "
 msgstr "%(user)s uchun hisobot berish, "
 
-#: templates/admin/detailed_reports.html:136
+#: templates/admin/detailed_reports.html:137
 #, python-format
 msgid "Report for %(user)s"
 msgstr "%(user)s uchun hisobot berish"
 
-#: templates/admin/detailed_reports.html:140
-#: templates/admin/reports/header.html:11 templates/user/detailed_stats.html:7
+#: templates/admin/detailed_reports.html:141
+#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
 msgid "Previous month"
 msgstr "Oldingi oy"
 
-#: templates/admin/detailed_reports.html:142
-#: templates/admin/reports/header.html:15 templates/user/detailed_stats.html:9
+#: templates/admin/detailed_reports.html:143
+#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
 msgid "Next month"
 msgstr "Keyingi oy"
 
-#: templates/admin/detailed_reports.html:149
+#: templates/admin/detailed_reports.html:150
 msgid "Local server time"
 msgstr "Mahalliy server vaqti"
 
-#: templates/admin/detailed_reports.html:150
+#: templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Qism"
 
-#: templates/admin/detailed_reports.html:151
+#: templates/admin/detailed_reports.html:152
 msgid "Action"
 msgstr "Amal"
 
-#: templates/admin/detailed_reports.html:152
+#: templates/admin/detailed_reports.html:153
 msgid "Source words"
 msgstr "Manba so‘zlar"
 
-#: templates/admin/detailed_reports.html:153
+#: templates/admin/detailed_reports.html:154
 msgid "Similarity"
 msgstr "Bir xillik"
 
-#: templates/admin/detailed_reports.html:154
+#: templates/admin/detailed_reports.html:155
 msgid "Words"
 msgstr "So‘zlar"
 
-#: templates/admin/detailed_reports.html:157
+#: templates/admin/detailed_reports.html:158
 msgid "Subtotal"
 msgstr "O‘rtacha natija"
 
-#: templates/admin/detailed_reports.html:184
-#: templates/admin/detailed_reports.html:222
+#: templates/admin/detailed_reports.html:185
+#: templates/admin/detailed_reports.html:223
 msgid "MT"
 msgstr "MT"
 
-#: templates/admin/detailed_reports.html:218
+#: templates/admin/detailed_reports.html:219
 msgid "Subactions"
 msgstr "Faoliyatlar"
 
-#: templates/admin/detailed_reports.html:219
+#: templates/admin/detailed_reports.html:220
 msgid "Raw Translation"
 msgstr "Qator tarjimasi"
 
-#: templates/admin/detailed_reports.html:249
-#: templates/admin/detailed_reports.html:308
+#: templates/admin/detailed_reports.html:250
+#: templates/admin/detailed_reports.html:309
 msgid "registered tasks"
 msgstr "ro‘yxatdan o‘tgan vazifalar"
 
-#: templates/admin/detailed_reports.html:260
+#: templates/admin/detailed_reports.html:261
 msgid "No activity recorded in a given period"
 msgstr "Berilgan muddatda hech qanday faoliyat yozib olinmagan"
 
-#: templates/admin/detailed_reports.html:269
+#: templates/admin/detailed_reports.html:270
 msgid "Suggestion (subtotal)"
 msgstr "Tavsiyalar (o‘rtacha natija)"
 
-#: templates/admin/detailed_reports.html:279
+#: templates/admin/detailed_reports.html:280
 msgid "Translation (subtotal)"
 msgstr "Tarjima (o‘rtacha natija)"
 
-#: templates/admin/detailed_reports.html:294
+#: templates/admin/detailed_reports.html:295
 msgid "Review (subtotal)"
 msgstr "Ko‘rib chiqish (o‘rtacha natija)"
 
-#: templates/admin/detailed_reports.html:326
+#: templates/admin/detailed_reports.html:327
 msgid "Please select a valid user."
 msgstr "To‘g‘ri foydalanuvchini tanlang."
 
@@ -1969,11 +1994,11 @@ msgstr "Har kunlik faoliyat"
 msgid "User"
 msgstr "Foydalanuvchi"
 
-#: templates/admin/reports/header.html:22
+#: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Batafsil hisobot"
 
-#: templates/admin/reports/header.html:24
+#: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Batafsil statistika"
 
@@ -2142,42 +2167,42 @@ msgstr "Xatolarni tekshirish"
 msgid "Less..."
 msgstr "kamroq…"
 
-#: templates/browser/index.html:77 templates/welcome.html:32
+#: templates/browser/index.html:75 templates/welcome.html:32
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Eng ko‘p hissa qo‘shuvchilar"
 
-#: templates/browser/index.html:85
+#: templates/browser/index.html:81
 #, fuzzy
 msgid "Updates"
 msgstr "Narxlar"
 
-#: templates/browser/index.html:89 templates/browser/index.html.py:99
+#: templates/browser/index.html:85 templates/browser/index.html.py:95
 #, fuzzy
 msgid "Last action:"
 msgstr "So‘nggi faoliyat"
 
-#: templates/browser/index.html:95
+#: templates/browser/index.html:91
 #, fuzzy
 msgid "Translations"
 msgstr "Tarjima"
 
-#: templates/browser/index.html:140
+#: templates/browser/index.html:136
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:146
+#: templates/browser/index.html:142
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:148
+#: templates/browser/index.html:144
 msgid "Refresh now"
 msgstr "Hozir yangilash"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:154
 msgid "This project is disabled and visible to administrators only."
 msgstr "Ushbu loyiha o‘chirib qo‘yilgan va faqat administratorlarga ko‘rinadi."
 
@@ -2204,9 +2229,7 @@ msgstr ""
 msgid "score"
 msgstr "tarjimalar soni"
 
-#: templates/core/_top_scorers.html:16
-#: templates/core/_top_scorers_as_table.html:8
-#: templates/core/_top_scorers_as_ul.html:8
+#: templates/core/_top_scorers.html:16 templates/core/_top_scorers_as_ul.html:8
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
@@ -2671,7 +2694,7 @@ msgstr "Ommaviy profil"
 msgid "Settings"
 msgstr "Sozlamalar"
 
-#: templates/layout.html:115 templates/user/profile.html:67
+#: templates/layout.html:115 templates/user/profile.html:68
 #: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr "Statistika"
@@ -2876,15 +2899,15 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "So‘nggi faoliyat:"
 
-#: templates/user/profile.html:76
+#: templates/user/profile.html:78
 msgid "My Website"
 msgstr "Men veb saytim"
 
-#: templates/user/profile.html:82
+#: templates/user/profile.html:84
 msgid "My LinkedIn Profile"
 msgstr "Mening LinkedIn profilim"
 
-#: templates/user/profile.html:91
+#: templates/user/profile.html:93
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -2892,7 +2915,7 @@ msgstr ""
 "Kimligingizni boshqalarga ko‘rsating, o‘zingiz haqingizda ayting<br/>va "
 "ommaviy profilingizni ajoyib ko‘rinishga aylantiring!"
 
-#: templates/user/profile.html:101
+#: templates/user/profile.html:103
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -2900,7 +2923,7 @@ msgstr ""
 "Ba’zi tarjimalar anonim ko‘ngillilar tomonidan amalga oshirilgan. Ular ushbu "
 "maxsus meta-account ostida ro‘yxatdan o‘tishgan."
 
-#: templates/user/profile.html:103
+#: templates/user/profile.html:105
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3808,9 +3831,6 @@ msgstr "Kirish"
 
 #~ msgid "Profiles list"
 #~ msgstr "Profil ro‘yxati"
-
-#~ msgid "First name"
-#~ msgstr "Ism"
 
 #~ msgid "Last name"
 #~ msgstr "Familiya"

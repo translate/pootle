@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-07-25 12:14+0100\n"
+"POT-Creation-Date: 2016-08-01 16:39+0100\n"
 "PO-Revision-Date: 2015-11-25 15:57+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,8 +255,8 @@ msgid "Active"
 msgstr "ئاكتىپ"
 
 #: static/js/admin/components/User/UserForm.js:81
-#: static/js/auth/components/SignInForm.js:103
-#: static/js/auth/components/SignUpForm.js:99
+#: static/js/auth/components/SignInForm.js:104
+#: static/js/auth/components/SignUpForm.js:101
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
@@ -267,7 +267,7 @@ msgid "Set a new password"
 msgstr "يېڭى ئىم تەڭشەك"
 
 #: static/js/admin/components/User/UserForm.js:98
-#: static/js/auth/components/SignUpForm.js:91
+#: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
 msgstr "تورخەت"
 
@@ -388,7 +388,7 @@ msgid "Password changed, signing in..."
 msgstr "ئىم ئۆزگەردى، تىزىمغا كىرىۋاتىدۇ…"
 
 #: static/js/auth/components/PasswordResetForm.js:125
-#: static/js/auth/components/SignUpForm.js:107
+#: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
 msgstr "ئىم تەكرارلا"
 
@@ -426,12 +426,12 @@ msgstr "تورخەتنى قايتا يوللا"
 msgid "Sign up as a new user"
 msgstr "يېڭى ئىشلەتكۈچى خەتلىتىش"
 
-#: static/js/auth/components/SignInForm.js:111
+#: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
 msgstr "ئىمنى ئۇنۇتتۇم"
 
-#: static/js/auth/components/SignInForm.js:122
+#: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
@@ -450,12 +450,12 @@ msgstr "ئىجتىمائىي مۇلازىمەتلەر"
 msgid "Login / Password"
 msgstr "تىزىمغا كىر /ئىم"
 
-#: static/js/auth/components/SignUpForm.js:121
+#: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
 msgstr "خەتلەت"
 
-#: static/js/auth/components/SignUpForm.js:126
+#: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
 msgstr "مەۋجۇت ئىشلەتكۈچى سۈپىتىدە تىزىمغا كىرىڭ"
 
@@ -516,6 +516,19 @@ msgstr "ۋاييەي…"
 msgid "Social Verification"
 msgstr "ئىجتىمائىي دەلىللەش"
 
+#: static/js/browser/components/TopContributors.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:39
+msgid "#%(position)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributors.js:62
+#, fuzzy
+msgid "More..."
+msgstr "تېخىمۇ كۆپ"
+
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
 msgid "Show disabled"
@@ -526,7 +539,7 @@ msgstr "چەكلەنگەن"
 msgid "Hide disabled"
 msgstr "چەكلەنگەن"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:625
+#: static/js/editor/app.js:307 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -534,7 +547,7 @@ msgstr ""
 "بۇ تىزىقتا تېخى ساقلىمىغان ئۆزگەرتىشىڭىز بار. ئايرىلسىڭىز بۇ سانلىق "
 "مەلۇماتلار يوقىلىدۇ."
 
-#: static/js/editor/app.js:342
+#: static/js/editor/app.js:352
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -542,7 +555,7 @@ msgstr ""
 "كېيىنكى تىزىققا يۆتكىلىشتە (Ctrl+.)<br/><br/> يەنە: <br/>كېيىنكى بەت: Ctrl"
 "+Shift+.<br/>ئاخىرقى بەت: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:358
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -551,77 +564,77 @@ msgstr ""
 "+Shift+,<br/>بىرىنچى بەت: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:471
+#: static/js/editor/app.js:484
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s نىڭ كۈتۈۋاتقان تەكلىپلىرى"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:474
+#: static/js/editor/app.js:487
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s نىڭ قوبۇل قىلىنغان تەكلىپلىرى"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:477
+#: static/js/editor/app.js:490
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s نىڭ رەت قىلىنغان تەكلىپلىرى"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s نىڭ تاپشۇرغانلىرى"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s نىڭ قاپلىۋەتكەن تاپشۇرغانلىرى"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1088
 msgid "Error while connecting to the server"
 msgstr "مۇلازىمېتىرغا باغلانغاندا خاتالىق كۆرۈلدى"
 
-#: static/js/editor/app.js:1080
+#: static/js/editor/app.js:1092
 msgid "Not found"
 msgstr "تېپىلمىدى"
 
-#: static/js/editor/app.js:1082
+#: static/js/editor/app.js:1094
 msgid "Server error"
 msgstr "مۇلازىمېتىر خاتالىقى"
 
-#: static/js/editor/app.js:1084
+#: static/js/editor/app.js:1096
 msgid "The server seems down. Try again later."
 msgstr "مۇلازىمېتىر تاقالغاندەك تۇرىدۇ. سەل تۇرۇپ قايتا سىناڭ."
 
-#: static/js/editor/app.js:1093
+#: static/js/editor/app.js:1105
 msgid "This string no longer exists."
 msgstr "بۇ تىزىق ئەمدى مەۋجۇد ئەمەس."
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1106
 msgid "Go back to browsing"
 msgstr "كۆز يۈگۈرتۈشكە قايت"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1108
 msgid "Reload page"
 msgstr "بەتنى قايتا يۈكلە"
 
-#: static/js/editor/app.js:1845 static/js/editor/app.js:617
+#: static/js/editor/app.js:1861 static/js/editor/app.js:629
 msgid "No results."
 msgstr "نەتىجە يوق."
 
-#: static/js/editor/app.js:2182
+#: static/js/editor/app.js:2198
 msgid "some anonymous user"
 msgstr "بەزى ئاتسىز ئىشلەتكۈچى"
 
-#: static/js/editor/app.js:2184
+#: static/js/editor/app.js:2200
 msgid "someone"
 msgstr "بىرسى"
 
-#: static/js/editor/app.js:2202 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
 msgid "Similar translations"
 msgstr "ئوخشايدىغان تەرجىمىلەر"
 
@@ -727,23 +740,23 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
-#: static/js/shared/components/FormSelectInput.js:32
-msgid "Select..."
-msgstr "تاللا…"
-
-#: static/js/shared/components/FormSelectInput.js:33
-msgid "No results found"
-msgstr "نەتىجە تېپىلمىدى"
-
-#: static/js/shared/components/FormSelectInput.js:34
-msgid "Clear value"
-msgstr "قىممىتىنى تازىلا"
-
-#: static/js/shared/components/FormSelectInput.js:35
+#: static/js/shared/components/FormSelectInput.js:38
 msgid "Clear all"
 msgstr "ھەممىنى تازىلا"
 
-#: static/js/shared/components/FormSelectInput.js:36
+#: static/js/shared/components/FormSelectInput.js:39
+msgid "Clear value"
+msgstr "قىممىتىنى تازىلا"
+
+#: static/js/shared/components/FormSelectInput.js:40
+msgid "No results found"
+msgstr "نەتىجە تېپىلمىدى"
+
+#: static/js/shared/components/FormSelectInput.js:42
+msgid "Select..."
+msgstr "تاللا…"
+
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Type to search"
 msgstr "ئىزدەيدىغاننى كىرگۈزۈڭ"
 
@@ -808,16 +821,16 @@ msgstr "${sourceString} نىڭ تەرجىمىسىنى چىقىرىۋەتتى"
 msgid "disabled"
 msgstr "چەكلەنگەن"
 
-#: static/js/stats.js:58
+#: static/js/stats.js:59
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "مۇبارەك بولسۇن، سىز ھەممە تۈرلەرنى كۆرۈپ چىقتىڭىز."
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Collapse details"
 msgstr "تەپسىلاتىنى قاتلا"
 
-#: static/js/stats.js:446
+#: static/js/stats.js:455
 msgid "Expand details"
 msgstr "تەپسىلاتىنى ياي"
 
@@ -883,36 +896,61 @@ msgstr ""
 "تونۇشتۇرۇڭ، باشقىلارنى رىغبەتلەندۈرۈڭ!"
 
 #: static/js/utils.js:168
-#, javascript-format
+#, fuzzy
 msgid "A year ago"
+msgstr "%s يىل ئىلگىرى"
+
+#: static/js/utils.js:168
+#, fuzzy, python-format, javascript-format
+msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "%s يىل ئىلگىرى"
 
 #: static/js/utils.js:171
-#, javascript-format
+#, fuzzy
 msgid "A week ago"
+msgstr "%s ھەپتە ئىلگىرى"
+
+#: static/js/utils.js:171
+#, fuzzy, python-format, javascript-format
+msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "%s ھەپتە ئىلگىرى"
 
 #: static/js/utils.js:174
-#, javascript-format
+#, fuzzy
 msgid "Yesterday"
+msgstr "%s كۈن ئىلگىرى"
+
+#: static/js/utils.js:174
+#, fuzzy, python-format, javascript-format
+msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "%s كۈن ئىلگىرى"
+msgstr[0] "%s يىل ئىلگىرى"
 
 #: static/js/utils.js:177
-#, javascript-format
+#, fuzzy
 msgid "An hour ago"
+msgstr "%s سائەت ئىلگىرى"
+
+#: static/js/utils.js:177
+#, fuzzy, python-format, javascript-format
+msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "%s سائەت ئىلگىرى"
 
-#: static/js/utils.js:180
-#, javascript-format
+#: static/js/utils.js:181
+#, fuzzy
 msgid "A minute ago"
+msgstr "%s مىنۇت ئىلگىرى"
+
+#: static/js/utils.js:181
+#, fuzzy, python-format, javascript-format
+msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "%s مىنۇت ئىلگىرى"
 
-#: static/js/utils.js:188
+#: static/js/utils.js:189
 msgid "A few seconds ago"
 msgstr "بىر قانچە سېكۇنت ئىلگىرى"
 
