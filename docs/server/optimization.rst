@@ -94,6 +94,11 @@ some tips for performance tuning on your Pootle installation.
   for Nginx, `ngx_http_gzip_module
   <http://nginx.org/en/docs/http/ngx_http_gzip_module.html>`_.
 
+- Serve your `robots.txt` file statically.  By default Pootle will serve this
+  file as a static template, but that means it is still going through a small
+  layer of Django.  On larger sites you likely want to have your webserver
+  serve this file.
+
 
 .. _optimization#apache:
 

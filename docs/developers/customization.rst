@@ -111,6 +111,20 @@ On the contrary, if you want to reference images from HTML code or inline CSS,
 you should use the ``{% static %}`` template tag.
 
 
+.. _customization#robots:
+
+Customising robots.txt
+----------------------
+
+The site `robots.txt` file uses a static template.  There is no dynamic
+content.  Place your custom `robots.txt` file in your custom templates folder
+and this will be served instead of Pootle's default `robots.txt` file.
+
+Larger installs will want to serve this file statically, bypassing Django
+completely.  You can safely serve the `robots.txt` template file as is,
+statically, via your configured webserver.
+
+
 .. _customization#install-node-libs:
 
 Installing JS build libraries
