@@ -12,9 +12,8 @@ current release.
 Stop your running Pootle
 ------------------------
 
-You may want to stop your running Pootle while you upgrade to prevent updates
-to your data during the migration process. If you have RQ workers running you
-may want to stop those also.
+Stop your running Pootle while you upgrade to prevent updates to your data
+during the migration process. If you have RQ workers running stop those also.
 
 
 .. _upgrading#system-backup:
@@ -213,6 +212,20 @@ This command will dispatch jobs to the RQ worker and may take some time.
 If you wish to run :djadmin:`calculate_checks` and :djadmin:`refresh_stats` in
 the foreground without using the RQ worker you can use the :option:`--no-rq`
 option.
+
+
+.. _upgrading#drop-cached-snippets:
+
+Drop cached snippets
+--------------------
+
+Redis might have cached HTML snippets referring to outdated static assets. In
+order for Pootle to return references to the newest assets these cached
+snippets must go away:
+
+.. code-block:: console
+
+   (env) $ pootle flush_cache --django-cache
 
 
 .. _upgrading#setup-users:
