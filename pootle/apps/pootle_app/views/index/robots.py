@@ -19,6 +19,7 @@ def view(request):
         content += "Allow: /%s/\n" % path
     for path in ["*/translate", "*/*/translate",
                  "*/export-view", "*/*/export-view",
+                 "user/*/stats",
                  "accounts", "unit", "xhr"]:
         content += "Disallow: /%s/\n" % path
     return HttpResponse(content, content_type="text/plain")
