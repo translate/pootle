@@ -13,10 +13,12 @@ from pootle_language.models import Language
 
 def view(request):
     """generates the robots.txt file"""
-    langcodes = [language.code for language in Language.objects.iterator()]
     content = "User-agent: *\n"
-    for path in ["accounts", "projects", "unit", "xhr"]:
+    content += "Allow: /\n"
+    for path in ["projects", "projects/*", "pages"]:
+        content += "Allow: /%s/\n" % path
+    for path in ["*/translate", "*/*/translate",
+                 "*/export-view", "*/*/export-view",
+                 "accounts", "unit", "xhr"]:
         content += "Disallow: /%s/\n" % path
-    for langcode in langcodes:
-        content += "Disallow: /%s/\n" % langcode
     return HttpResponse(content, content_type="text/plain")
