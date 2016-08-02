@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /projects/
+Allow: /projects/*/
+Allow: /pages/
+Disallow: /*/translate/
+Disallow: /*/*/translate/
+Disallow: /*/export-view/
+Disallow: /*/*/export-view/
+Disallow: /user/*/stats/
+Disallow: /accounts/
+Disallow: /unit/
+Disallow: /xhr/
