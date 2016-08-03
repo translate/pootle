@@ -14,6 +14,7 @@ from pytest_pootle.factories import UserFactory
 from pytest_pootle.fixtures.models.permission_set import _require_permission_set
 from pytest_pootle.utils import items_equal
 
+from pootle_format.models import Format
 from pootle_project.models import Project
 
 
@@ -207,3 +208,40 @@ def test_project_create_with_none_treestyle(english, templates, settings):
         os.path.join(
             settings.POOTLE_TRANSLATION_DIRECTORY,
             project.code))
+
+
+@pytest.mark.django_db
+def test_file_belongs_to_project(english, templates, settings):
+    project = Project.objects.get(code="project0")
+
+    # ensure the project has po and only po
+    assert (
+        list(project.filetypes.values_list("extension__name", flat=True))
+        == ["po"])
+
+    # po/pot matches, ts doesnt
+    assert project.file_belongs_to_project("foo.po")
+    assert project.file_belongs_to_project("foo.pot")
+    assert not project.file_belongs_to_project("foo.ts")
+    # if match_templates is False, only po matches
+    assert project.file_belongs_to_project("foo.po", match_templates=False)
+    assert not project.file_belongs_to_project("foo.pot", match_templates=False)
+    assert not project.file_belongs_to_project("foo.ts", match_templates=False)
+
+    # lets add ts
+    ts = Format.objects.get(name="ts")
+    project.filetypes.add(ts)
+
+    # now ts/po/pot all match
+    assert project.file_belongs_to_project("foo.po")
+    assert project.file_belongs_to_project("foo.pot")
+    assert project.file_belongs_to_project("foo.ts")
+
+    # and remove po...
+    po = Format.objects.get(name="po")
+    project.filetypes.remove(po)
+
+    # only ts matches
+    assert project.file_belongs_to_project("foo.ts")
+    assert not project.file_belongs_to_project("foo.po")
+    assert not project.file_belongs_to_project("foo.pot")
