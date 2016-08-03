@@ -95,13 +95,16 @@ def items_equal(left, right):
         return False
 
 
-def create_api_request(rf, method='get', url='/', data='', user=None):
+def create_api_request(rf, method='get', url='/', data='', user=None,
+                       encode_as_json=True):
     """Convenience function to create and setup fake requests."""
-    if data:
+    content_type = 'application/x-www-form-urlencoded'
+    if data and encode_as_json:
+        content_type = 'application/json'
         data = json.dumps(data)
 
     request_method = getattr(rf, method)
-    request = request_method(url, data=data, content_type='application/json')
+    request = request_method(url, data=data, content_type=content_type)
     request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
 
     if user is not None:
