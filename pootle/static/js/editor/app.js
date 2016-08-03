@@ -2379,10 +2379,10 @@ PTL.editor = {
   /* Mutes or unmutes a quality check marking it as false positive or not */
   toggleCheck(checkId) {
     const $check = $(`.js-check-${checkId}`);
-    const isFalsePositive = !$check.hasClass('false-positive');
+    const isFalsePositive = $check.hasClass('false-positive');
 
-    UnitAPI.toggleCheck(this.units.getCurrent().id, checkId,
-                        { mute: isFalsePositive })
+    const opts = isFalsePositive ? null : { mute: 1 };
+    UnitAPI.toggleCheck(this.units.getCurrent().id, checkId, opts)
       .then(
         () => this.processToggleCheck(checkId, isFalsePositive),
         this.error
@@ -2390,7 +2390,7 @@ PTL.editor = {
   },
 
   processToggleCheck(checkId, isFalsePositive) {
-    $(`.js-check-${checkId}`).toggleClass('false-positive', isFalsePositive);
+    $(`.js-check-${checkId}`).toggleClass('false-positive', !isFalsePositive);
 
     const hasError = $('#translate-checks-block .check')
       .not('.false-positive').size() > 0;

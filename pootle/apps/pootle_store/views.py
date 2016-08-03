@@ -720,8 +720,7 @@ def accept_suggestion(request, unit, suggid):
 @get_unit_context('review')
 def toggle_qualitycheck(request, unit, check_id):
     try:
-        unit.toggle_qualitycheck(check_id, bool(request.POST.get('mute')),
-                                 request.user)
+        unit.toggle_qualitycheck(check_id, 'mute' in request.POST, request.user)
     except ObjectDoesNotExist:
         raise Http404
 

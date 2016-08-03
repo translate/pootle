@@ -92,9 +92,9 @@ const UnitAPI = {
 
   /* Quality checks */
 
-  toggleCheck(uId, checkId, { mute = false }) {
+  toggleCheck(uId, checkId, body = {}) {
     return fetch({
-      body: { mute },
+      body,
       method: 'POST',
       url: `${this.apiRoot}${uId}/checks/${checkId}/toggle/`,
     });

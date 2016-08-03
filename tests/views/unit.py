@@ -15,8 +15,9 @@ from pytest_pootle.utils import create_api_request
 from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
-from pootle_store.models import Suggestion, Unit, UNTRANSLATED
-from pootle_store.views import get_units
+from pootle_store.models import (QualityCheck, Suggestion, Unit, TRANSLATED,
+                                 UNTRANSLATED)
+from pootle_store.views import get_units, toggle_qualitycheck
 
 
 @pytest.mark.django_db
@@ -167,3 +168,29 @@ def test_reject_suggestion_with_comment(client, request_users):
                        .get().comment == comment)
     else:
         assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_toggle_quality_check(rf, admin):
+    """Tests the view that mutes/unmutes quality checks."""
+    qc_filter = dict(
+        false_positive=False,
+        unit__state=TRANSLATED,
+        unit__store__translation_project__project__disabled=False,
+    )
+    qc = QualityCheck.objects.filter(**qc_filter).first()
+    unit = qc.unit
+
+    # Explicit POST data present, mute
+    data = 'mute='
+    request = create_api_request(rf, method='post', user=admin, data=data,
+                                 encode_as_json=False)
+    response = toggle_qualitycheck(request, unit.id, qc.id)
+    assert response.status_code == 200
+    assert QualityCheck.objects.get(id=qc.id).false_positive is True
+
+    # No POST data present, unmute
+    request = create_api_request(rf, method='post', user=admin)
+    response = toggle_qualitycheck(request, unit.id, qc.id)
+    assert response.status_code == 200
+    assert QualityCheck.objects.get(id=qc.id).false_positive is False
