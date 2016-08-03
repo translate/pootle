@@ -5,6 +5,7 @@ Allow: /projects/*/
 Allow: /pages/
 Disallow: /*/translate/
 Disallow: /*/*/translate/
+Disallow: /export/
 Disallow: /*/export-view/
 Disallow: /*/*/export-view/
 Disallow: /user/*/stats/
