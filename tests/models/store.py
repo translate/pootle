@@ -23,7 +23,7 @@ from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from pootle.core.delegate import config, formats
+from pootle.core.delegate import config, format_classes, formats
 from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
@@ -886,6 +886,79 @@ def test_store_create():
             name="another_store.foo",
             parent=tp.directory,
             translation_project=tp)
+
+
+@pytest.mark.django_db
+def test_store_get_file_class():
+    store = Store.objects.filter(
+        translation_project__project__code="project0",
+        translation_project__language__code="language0").first()
+
+    # this matches because po is recognised by ttk
+    assert store.get_file_class() == getclass(store)
+
+    class CustomFormatClass(object):
+        pass
+
+    @provider(format_classes)
+    def format_class_provider(**kwargs):
+        return dict(po=CustomFormatClass)
+
+    # we get the CutomFormatClass as it was registered
+    assert store.get_file_class() is CustomFormatClass
+
+    # the Store.filetype is used in this case not the name
+    store.name = "new_store_name.foo"
+    assert store.get_file_class() is CustomFormatClass
+
+    # lets register a foo filetype
+    format_registry = formats.get()
+    foo_filetype = format_registry.register("foo", "foo")
+
+    store.filetype = foo_filetype
+    store.save()
+
+    # oh no! not recognised by ttk
+    with pytest.raises(ValueError):
+        store.get_file_class()
+
+    @provider(format_classes)
+    def another_format_class_provider(**kwargs):
+        return dict(foo=CustomFormatClass)
+
+    # works now
+    assert store.get_file_class() is CustomFormatClass
+
+    format_classes.disconnect(format_class_provider)
+    format_classes.disconnect(another_format_class_provider)
+
+
+@pytest.mark.django_db
+def test_store_get_template_file_class(templates):
+    project = ProjectDBFactory(source_language=templates)
+    tp = TranslationProjectFactory(language=templates, project=project)
+    format_registry = formats.get()
+    foo_filetype = format_registry.register("foo", "foo", template_extension="bar")
+    tp.project.filetypes.add(foo_filetype)
+    store = Store.objects.create(
+        name="mystore.bar",
+        translation_project=tp,
+        parent=tp.directory)
+
+    # oh no! not recognised by ttk
+    with pytest.raises(ValueError):
+        store.get_file_class()
+
+    class CustomFormatClass(object):
+        pass
+
+    @provider(format_classes)
+    def format_class_provider(**kwargs):
+        return dict(foo=CustomFormatClass)
+
+    assert store.get_file_class() == CustomFormatClass
+
+    format_classes.disconnect(format_class_provider)
 
 
 @pytest.mark.django_db
