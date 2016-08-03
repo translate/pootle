@@ -119,14 +119,17 @@ const stats = {
                       document.querySelector('.js-mnt-visibility-toggle'));
     }
 
-    ReactDOM.render(
-      <Stats
-        hasMoreContributors={options.topContributorsData.has_more_items}
-        topContributors={options.topContributorsData.items}
-        pootlePath={this.pootlePath}
-      />,
-      document.querySelector('#js-mnt-top-contributors')
-    );
+    const topContributorStatsMountPoint = document.querySelector('#js-mnt-top-contributors');
+    if (!!topContributorStatsMountPoint) {
+      ReactDOM.render(
+        <Stats
+          hasMoreContributors={options.topContributorsData.has_more_items}
+          topContributors={options.topContributorsData.items}
+          pootlePath={this.pootlePath}
+        />,
+        topContributorStatsMountPoint
+      );
+    }
 
     // Retrieve async data if needed
     if (isExpanded) {
