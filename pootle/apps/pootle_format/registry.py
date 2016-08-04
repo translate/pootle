@@ -70,6 +70,7 @@ class FormatRegistry(object):
                 pk=filetype.pk,
                 name=filetype.name,
                 title=filetype.title,
+                display_title=str(filetype),
                 extension=str(filetype.extension),
                 template_extension=str(filetype.template_extension))
         return formats
