@@ -194,8 +194,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         choices=checker_choices,
         verbose_name=_('Quality Checks'))
 
-    localfiletype = models.CharField(max_length=50, default="po",
-                                     verbose_name=_('File Type'))
     filetypes = SortedManyToManyField(Format)
 
     treestyle_choices = (
