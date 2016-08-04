@@ -27,7 +27,7 @@ def get_terminology_filename(translation_project):
 
     return (
         'pootle-terminology.%s'
-        % translation_project.project.filetypes[0].extension)
+        % translation_project.project.filetypes.first().extension)
 
 
 def manage_store(request, ctx, language, term_store):
