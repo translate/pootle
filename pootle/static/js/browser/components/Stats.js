@@ -11,7 +11,7 @@ import React from 'react';
 import StatsAPI from 'api/StatsAPI';
 import { t } from 'utils/i18n';
 
-import TopContributors from './TopContributors';
+import TopContributorsTable from './TopContributorsTable';
 
 
 const Stats = React.createClass({
@@ -54,7 +54,7 @@ const Stats = React.createClass({
     return (
       <div className="summary-2-col bd">
         <h3 className="top">{t('Top Contributors for the Last 30 Days')}</h3>
-        <TopContributors
+        <TopContributorsTable
           items={this.state.topContributors}
           hasMoreItems={this.state.hasMoreContributors}
           loadMore={this.loadMoreTopContributors}

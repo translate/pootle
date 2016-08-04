@@ -20,7 +20,7 @@ function getScoreText(score) {
 }
 
 
-const TopContributors = React.createClass({
+const TopContributorsTable = React.createClass({
 
   propTypes: {
     items: React.PropTypes.array.isRequired,
@@ -79,4 +79,4 @@ const TopContributors = React.createClass({
 });
 
 
-export default TopContributors;
+export default TopContributorsTable;
