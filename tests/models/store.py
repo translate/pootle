@@ -15,7 +15,8 @@ import six
 
 import pytest
 
-from pytest_pootle.factories import LanguageDBFactory
+from pytest_pootle.factories import (
+    LanguageDBFactory, ProjectDBFactory, TranslationProjectFactory)
 from pytest_pootle.utils import update_store
 
 from translate.storage.factory import getclass
@@ -848,10 +849,13 @@ def test_store_create():
         parent=tp.directory,
         translation_project=tp)
     assert store.filetype == po
+    assert not store.is_template
     store = Store.objects.create(
         name="store.pot",
         parent=tp.directory,
         translation_project=tp)
+    # not in source_language folder
+    assert not store.is_template
     assert store.filetype == po
     store = Store.objects.create(
         name="store.xliff",
@@ -882,3 +886,29 @@ def test_store_create():
             name="another_store.foo",
             parent=tp.directory,
             translation_project=tp)
+
+
+@pytest.mark.django_db
+def test_store_create_templates(templates):
+    project = ProjectDBFactory(source_language=templates)
+    tp = TranslationProjectFactory(language=templates, project=project)
+    po = Format.objects.get(name="po")
+    store = Store.objects.create(
+        name="mystore.pot",
+        translation_project=tp,
+        parent=tp.directory)
+    assert store.filetype == po
+    assert store.is_template
+
+
+@pytest.mark.django_db
+def test_store_get_or_create_templates(templates):
+    project = ProjectDBFactory(source_language=templates)
+    tp = TranslationProjectFactory(language=templates, project=project)
+    po = Format.objects.get(name="po")
+    store, created = Store.objects.get_or_create(
+        name="mystore.pot",
+        translation_project=tp,
+        parent=tp.directory)
+    assert store.filetype == po
+    assert store.is_template
