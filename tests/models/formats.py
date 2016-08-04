@@ -35,6 +35,7 @@ def _test_formats(registry, keys):
                 dict(
                     pk=filetype.pk,
                     name=filetype.name,
+                    display_title=str(filetype),
                     title=filetype.title,
                     extension=str(filetype.extension),
                     template_extension=str(filetype.template_extension)).items()))
