@@ -10,60 +10,128 @@ import assign from 'object-assign';
 import _ from 'underscore';
 
 
+export const CHARACTERS = {
+  NULL: '\u0000',
+  BELL: '\u0007',
+  BS: '\u0008',
+  TAB: '\u0009',
+  VT: '\u000B',
+  FF: '\u000C',
+  ESC: '\u001B',
+  NBSP: '\u00A0',
+
+  LF: '\u000A',
+  CR: '\u000D',
+
+  SPACE: '\u0020',
+
+  ALM: '\u061C',
+  ZWS: '\u200B',
+  ZWNJ: '\u200C',
+  ZWJ: '\u200D',
+  LRM: '\u200E',
+  RLM: '\u200F',
+  LRE: '\u202A',
+  RLE: '\u202B',
+  PDF: '\u202C',
+  LRO: '\u202D',
+  RLO: '\u202E',
+  WJ: '\u2060',
+  LRI: '\u2066',
+  RLI: '\u2067',
+  FSI: '\u2068',
+  PDI: '\u2069',
+};
+
+
+export const SYMBOLS = {
+  NULL: '\u2400',
+  BELL: '\u2407',
+  BS: '\u2408',
+  TAB: '\u2409',
+  VT: '\u240B',
+  FF: '\u240C',
+  ESC: '\u241B',
+  NBSP: '\u2423',
+
+  LF: '\u240A',
+  CR: '\u240D',
+
+  SPACE: '\u2420',
+
+  ALM: '\uF000',
+  ZWS: '\uF001',
+  ZWNJ: '\uF002',
+  ZWJ: '\uF003',
+  LRM: '\uF004',
+  RLM: '\uF005',
+  LRE: '\uF006',
+  RLE: '\uF007',
+  PDF: '\uF008',
+  LRO: '\uF009',
+  RLO: '\uF00A',
+  WJ: '\uF00B',
+  LRI: '\uF00C',
+  RLI: '\uF00D',
+  FSI: '\uF00E',
+  PDI: '\uF00F',
+};
+
+
 /* Character mapping/unmapping definitions for the custom font */
 
 const REGULAR_MAP_COMMON = {
-  '\u0000': '\u2400',  // NULL
-  '\u0007': '\u2407',  // BELL
-  '\u0008': '\u2408',  // BS
-  '\u0009': '\u2409',  // TAB
-  '\u000B': '\u240B',  // VT
-  '\u000C': '\u240C',  // FF
-  '\u001B': '\u241B',  // ESC
-  '\u00A0': '\u2423',  // NBSP
+  [CHARACTERS.NULL]: SYMBOLS.NULL,
+  [CHARACTERS.BELL]: SYMBOLS.BELL,
+  [CHARACTERS.BS]: SYMBOLS.BS,
+  [CHARACTERS.TAB]: SYMBOLS.TAB,
+  [CHARACTERS.VT]: SYMBOLS.VT,
+  [CHARACTERS.FF]: SYMBOLS.FF,
+  [CHARACTERS.ESC]: SYMBOLS.ESC,
+  [CHARACTERS.NBSP]: SYMBOLS.NBSP,
 };
 
 const REGULAR_MAP = assign({}, REGULAR_MAP_COMMON, {
-  '\u000A': '\u240A\u000A',  // LF (symbol + char)
-  '\u000D': '\u240D\u000D',  // CR (symbol + char)
+  [CHARACTERS.LF]: `${SYMBOLS.LF}${CHARACTERS.LF}`,
+  [CHARACTERS.CR]: `${SYMBOLS.CR}${CHARACTERS.CR}`,
 });
 
 const REGULAR_MAP_REV = assign({}, _.invert(REGULAR_MAP_COMMON), {
-  '\u240A': '',  // LF
-  '\u240D': '',  // CR
+  [SYMBOLS.LF]: '',
+  [SYMBOLS.CR]: '',
 });
 
 // Only for highlight purposes
 export const REGULAR_MAP_REV_HL = assign({}, _.invert(REGULAR_MAP_COMMON), {
-  '\u240A': '\u000A',  // LF
-  '\u240D': '\u000D',  // CR
+  [SYMBOLS.LF]: CHARACTERS.LF,
+  [SYMBOLS.CR]: CHARACTERS.CR,
 });
 
 
-const NEWLINE_CHARACTERS = ['\u000A', '\u000D'];
+const NEWLINE_CHARACTERS = [CHARACTERS.LF, CHARACTERS.CR];
 
-const NEWLINE_SYMBOLS = ['\u240A', '\u240D'];
+const NEWLINE_SYMBOLS = [SYMBOLS.LF, SYMBOLS.CR];
 
 
 const RAW_MAP_COMMON = {
-  '\u0020': '\u2420',  // SPACE
+  [CHARACTERS.SPACE]: SYMBOLS.SPACE,
 
-  '\u061C': '\uF000',  // ALM
-  '\u200B': '\uF001',  // ZWS
-  '\u200C': '\uF002',  // ZWNJ
-  '\u200D': '\uF003',  // ZWJ
-  '\u200E': '\uF004',  // LRM
-  '\u200F': '\uF005',  // RLM
-  '\u202A': '\uF006',  // LRE
-  '\u202B': '\uF007',  // RLE
-  '\u202C': '\uF008',  // PDF
-  '\u202D': '\uF009',  // LRO
-  '\u202E': '\uF00A',  // RLO
-  '\u2060': '\uF00B',  // WJ
-  '\u2066': '\uF00C',  // LRI
-  '\u2067': '\uF00D',  // RLI
-  '\u2068': '\uF00E',  // FSI
-  '\u2069': '\uF00F',  // PDI
+  [CHARACTERS.ALM]: SYMBOLS.ALM,
+  [CHARACTERS.ZWS]: SYMBOLS.ZWS,
+  [CHARACTERS.ZWNJ]: SYMBOLS.ZWNJ,
+  [CHARACTERS.ZWJ]: SYMBOLS.ZWJ,
+  [CHARACTERS.LRM]: SYMBOLS.LRM,
+  [CHARACTERS.RLM]: SYMBOLS.RLM,
+  [CHARACTERS.LRE]: SYMBOLS.LRE,
+  [CHARACTERS.RLE]: SYMBOLS.RLE,
+  [CHARACTERS.PDF]: SYMBOLS.PDF,
+  [CHARACTERS.LRO]: SYMBOLS.LRO,
+  [CHARACTERS.RLO]: SYMBOLS.RLO,
+  [CHARACTERS.WJ]: SYMBOLS.WJ,
+  [CHARACTERS.LRI]: SYMBOLS.LRI,
+  [CHARACTERS.RLI]: SYMBOLS.RLI,
+  [CHARACTERS.FSI]: SYMBOLS.FSI,
+  [CHARACTERS.PDI]: SYMBOLS.PDI,
 };
 
 const RAW_MAP = assign({}, REGULAR_MAP, RAW_MAP_COMMON);
