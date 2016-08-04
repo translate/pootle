@@ -1280,6 +1280,8 @@ class StoreManager(models.Manager):
         if "filetype" not in kwargs:
             filetypes = ProjectFiletypes(kwargs["translation_project"].project)
             kwargs['filetype'] = filetypes.choose_filetype(kwargs["name"])
+        if kwargs["translation_project"].is_template_project:
+            kwargs["is_template"] = True
         kwargs["pootle_path"] = (
             "%s%s"
             % (kwargs["parent"].pootle_path, kwargs["name"]))
@@ -1287,9 +1289,17 @@ class StoreManager(models.Manager):
 
     def get_or_create(self, *args, **kwargs):
         store, created = super(StoreManager, self).get_or_create(*args, **kwargs)
-        if created and "filetype" not in kwargs:
+        if not created:
+            return store, created
+        update = False
+        if store.translation_project.is_template_project:
+            store.is_template = True
+            update = True
+        if "filetype" not in kwargs:
             filetypes = ProjectFiletypes(store.translation_project.project)
             store.filetype = filetypes.choose_filetype(store.name)
+            update = True
+        if update:
             store.save()
         return store, created
 
