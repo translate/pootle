@@ -119,16 +119,14 @@ const stats = {
                       document.querySelector('.js-mnt-visibility-toggle'));
     }
 
-    if (options.topContributorsData.items.length) {
-      ReactDOM.render(
-        <Stats
-          hasMoreContributors={options.topContributorsData.has_more_items}
-          topContributors={options.topContributorsData.items}
-          pootlePath={this.pootlePath}
-        />,
-        document.querySelector('#js-mnt-top-contributors')
-      );
-    }
+    ReactDOM.render(
+      <Stats
+        hasMoreContributors={options.topContributorsData.has_more_items}
+        topContributors={options.topContributorsData.items}
+        pootlePath={this.pootlePath}
+      />,
+      document.querySelector('#js-mnt-top-contributors')
+    );
 
     // Retrieve async data if needed
     if (isExpanded) {
