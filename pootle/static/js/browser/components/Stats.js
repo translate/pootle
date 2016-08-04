@@ -52,7 +52,7 @@ const Stats = React.createClass({
     }
 
     return (
-      <div className="summary-2-col bd">
+      <div className="summary-2-col">
         <h3 className="top">{t('Top Contributors for the Last 30 Days')}</h3>
         <TopContributorsTable
           items={this.state.topContributors}
