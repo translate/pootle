@@ -34,7 +34,7 @@ def calculate_search_results(kwargs, user):
     sfields = kwargs.get("sfields")
     soptions = kwargs.get("soptions", [])
     sort = kwargs.get("sort", None)
-    language_code, project_code, dir_path, filename = (
+    language_code, project_code, dir_path_, filename = (
         split_pootle_path(kwargs["pootle_path"]))
     uids = [
         int(x)

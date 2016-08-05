@@ -69,7 +69,7 @@ class TranslationFileFinder(object):
 
     def walk(self):
         """Walk a filesystem"""
-        for root, dirs, files in scandir.walk(self.file_root):
+        for root, dirs_, files in scandir.walk(self.file_root):
             for filename in files:
                 yield os.path.join(root, filename)
 

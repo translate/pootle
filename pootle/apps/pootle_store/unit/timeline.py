@@ -309,7 +309,7 @@ class Timeline(object):
 
         # Group by submitter id and creation_time because
         # different submissions can have same creation time
-        for key, values in grouped_timeline:
+        for __, values in grouped_timeline:
             entry_group = {'entries': []}
             values = sorted(values, key=target_field_should_be_first)
             for item in values:

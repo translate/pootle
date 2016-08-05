@@ -629,7 +629,7 @@ class PootleBrowseView(PootleDetailView):
 
     @cached_property
     def cookie_data(self):
-        ctx, cookie_data = self.sidebar_announcements
+        ctx_, cookie_data = self.sidebar_announcements
         return cookie_data
 
     @property
@@ -687,7 +687,7 @@ class PootleBrowseView(PootleDetailView):
             url_action_fixcritical = None
             url_action_review = None
             url_action_view_all = None
-        ctx, cookie_data = self.sidebar_announcements
+        ctx, cookie_data_ = self.sidebar_announcements
         ctx.update(
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
 
@@ -778,7 +778,7 @@ class PootleExportView(PootleDetailView):
             raise Http404(
                 ValidationError(search_form.errors).messages)
 
-        total, start, end, units_qs = search_backend.get(Unit)(
+        total, start_, end_, units_qs = search_backend.get(Unit)(
             self.request.user, **search_form.cleaned_data).search()
 
         units_qs = units_qs.select_related('store')

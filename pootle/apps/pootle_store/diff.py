@@ -191,7 +191,7 @@ class StoreDiff(object):
     def get_indexes_to_update(self):
         offset = 0
         index_updates = []
-        for (insert_at, uids_add, next_index, delta) in self.insert_points:
+        for (insert_at_, uids_add_, next_index, delta) in self.insert_points:
             if delta > 0:
                 index_updates += [(next_index + offset, delta)]
                 offset += delta
@@ -200,7 +200,7 @@ class StoreDiff(object):
     def get_units_to_add(self):
         offset = 0
         to_add = []
-        for (insert_at, uids_add, next_index, delta) in self.insert_points:
+        for (insert_at, uids_add, next_index_, delta) in self.insert_points:
             for index, uid in enumerate(uids_add):
                 file_unit = self.file_store.findid(uid)
                 if file_unit and file_unit.getid() not in self.db_units:
@@ -220,7 +220,7 @@ class StoreDiff(object):
         uid_index_map = {}
         offset = 0
 
-        for (insert_at, uids_add, next_index, delta) in self.insert_points:
+        for (insert_at, uids_add, next_index_, delta) in self.insert_points:
             for index, uid in enumerate(uids_add):
                 new_unit_index = insert_at + index + 1 + offset
                 if uid in self.db_units:
@@ -238,7 +238,7 @@ class StoreDiff(object):
         """
         update_dbids = set()
 
-        for (tag, i1, i2, j1, j2) in self.opcodes:
+        for (tag, i1, i2, j1_, j2_) in self.opcodes:
             if tag == 'equal':
                 update_dbids.update(
                     set(self.db_units[uid]['id']

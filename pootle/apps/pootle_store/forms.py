@@ -116,7 +116,7 @@ class MultiStringWidget(forms.MultiWidget):
         else:
             widget = forms.TextInput
 
-        widgets = [widget(attrs=attrs) for i in xrange(nplurals)]
+        widgets = [widget(attrs=attrs) for i_ in xrange(nplurals)]
         super(MultiStringWidget, self).__init__(widgets, attrs)
 
     def format_output(self, rendered_widgets):
@@ -150,7 +150,7 @@ class HiddenMultiStringWidget(MultiStringWidget):
     """Uses hidden input instead of textareas."""
 
     def __init__(self, attrs=None, nplurals=1):
-        widgets = [forms.HiddenInput(attrs=attrs) for i in xrange(nplurals)]
+        widgets = [forms.HiddenInput(attrs=attrs) for i_ in xrange(nplurals)]
         super(MultiStringWidget, self).__init__(widgets, attrs)
 
     def format_output(self, rendered_widgets):
@@ -173,7 +173,7 @@ class MultiStringFormField(forms.MultiValueField):
         self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs,
                                         textarea=textarea)
         self.hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
-        fields = [forms.CharField() for i in range(nplurals)]
+        fields = [forms.CharField() for i_ in range(nplurals)]
         super(MultiStringFormField, self).__init__(fields=fields,
                                                    *args, **kwargs)
 

@@ -464,7 +464,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def _detect_treestyle(self):
         try:
             dirlisting = os.walk(self.get_real_path())
-            dirpath, dirnames, filenames = dirlisting.next()
+            dirpath_, dirnames, filenames = dirlisting.next()
 
             if not dirnames:
                 # No subdirectories
@@ -479,7 +479,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                 return "nongnu"
 
             # No language subdirs found, look for any translation file
-            for dirpath, dirnames, filenames in os.walk(self.get_real_path()):
+            for dirpath_, dirnames, filenames in os.walk(self.get_real_path()):
                 if filter(self.file_belongs_to_project, filenames):
                     return "gnu"
         except:

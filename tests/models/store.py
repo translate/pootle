@@ -403,7 +403,7 @@ def _test_store_update_indexes(store, *test_args):
 def _test_store_update_units_before(*test_args):
     # test what has happened to the units that were present before the update
     (store, units_update, store_revision, resolve_conflict,
-     units_before, member, member2) = test_args
+     units_before, member_, member2) = test_args
 
     updates = {unit[0]: unit[1] for unit in units_update}
 
@@ -463,8 +463,8 @@ def _test_store_update_units_before(*test_args):
 
 
 def _test_store_update_ordering(*test_args):
-    (store, units_update, store_revision, resolve_conflict,
-     units_before, member, member2) = test_args
+    (store, units_update, store_revision, resolve_conflict_,
+     units_before, member_, member2_) = test_args
 
     updates = {unit[0]: unit[1] for unit in units_update}
     old_units = {unit.source: unit for unit in units_before}
@@ -477,7 +477,7 @@ def _test_store_update_ordering(*test_args):
                     and unit.revision > store_revision)
         if add_unit:
             new_unit_list.append(unit.source)
-    for source, target in units_update:
+    for source, target_ in units_update:
         if source in old_units:
             old_unit = old_units[source]
             should_add = (not old_unit.isobsolete()
@@ -490,8 +490,8 @@ def _test_store_update_ordering(*test_args):
 
 
 def _test_store_update_units_now(*test_args):
-    (store, units_update, store_revision, resolve_conflict,
-     units_before, member, member2) = test_args
+    (store, units_update, store_revision, resolve_conflict_,
+     units_before, member_, member2_) = test_args
 
     # test that all the current units should be there
     updates = {unit[0]: unit[1] for unit in units_update}

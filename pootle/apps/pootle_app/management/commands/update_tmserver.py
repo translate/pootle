@@ -122,7 +122,7 @@ class FileParser(object):
                 continue
 
             if os.path.isdir(filename):
-                for dirpath, dirs, fnames in os.walk(filename):
+                for dirpath, dirs_, fnames in os.walk(filename):
                     if (os.path.basename(dirpath) in
                         ["CVS", ".svn", "_darcs", ".git", ".hg", ".bzr"]):
 

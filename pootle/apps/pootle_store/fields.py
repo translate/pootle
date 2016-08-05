@@ -75,7 +75,7 @@ def to_python(value):
         ms.plural = plural
         return ms
     elif isinstance(value, dict):
-        return multistring([val for key, val in sorted(value.items())],
+        return multistring([val for __, val in sorted(value.items())],
                            encoding="UTF-8")
     else:
         return multistring(value, encoding="UTF-8")

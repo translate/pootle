@@ -20,7 +20,7 @@ def migrate_store_is_template(apps, schema_editor):
 
     for tp in tps:
         try:
-            project = tp.project
+            __ = tp.project
         except apps.get_model("pootle_project.Project").DoesNotExist:
             logger.warn("TP with missing project '%s', not updating", tp.pootle_path)
             continue

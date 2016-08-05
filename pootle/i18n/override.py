@@ -68,7 +68,7 @@ def get_lang_from_http_header(request, supported):
     If nothing is found, return None.
     """
     accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
-    for accept_lang, unused in trans_real.parse_accept_lang_header(accept):
+    for accept_lang, __ in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
             return None
 

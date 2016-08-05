@@ -13,7 +13,7 @@ import pytest
 def test_hash(af_tutorial_po):
     """Tests that target hash changes when suggestion is modified"""
     unit = af_tutorial_po.getitem(0)
-    suggestion, created = unit.add_suggestion("gras")
+    suggestion, created_ = unit.add_suggestion("gras")
 
     first_hash = suggestion.target_hash
     suggestion.translator_comment = "my nice comment"

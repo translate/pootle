@@ -288,12 +288,12 @@ class PootleTestEnv(object):
         from pootle_language.models import Language
 
         # add 2 languages
-        for i in range(0, 2):
+        for i_ in range(0, 2):
             LanguageDBFactory()
 
         source_language = Language.objects.get(code="en")
         po = Format.objects.get(name="po")
-        for i in range(0, 2):
+        for i_ in range(0, 2):
             # add 2 projects
             project = ProjectDBFactory(source_language=source_language)
             project.filetypes.add(po)
@@ -378,7 +378,7 @@ class PootleTestEnv(object):
         from pootle_format.utils import ProjectFiletypes
         from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
 
-        for i in range(0, n[0]):
+        for i_ in range(0, n[0]):
             # add 3 stores
             if parent is None:
                 store = StoreDBFactory(translation_project=tp)
@@ -390,7 +390,7 @@ class PootleTestEnv(object):
 
             # add 8 units to each store
             for state in [UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE]:
-                for i in range(0, n[1]):
+                for i_ in range(0, n[1]):
                     UnitDBFactory(store=store, state=state)
 
     def _update_submission_times(self, unit, update_time, last_update=None):
@@ -418,7 +418,7 @@ class PootleTestEnv(object):
         first_modified = created + timedelta(days=((30 * unit.index) + 10))
 
         # add suggestion at first_modified
-        suggestion, _ = unit.add_suggestion(
+        suggestion, created_ = unit.add_suggestion(
             "Suggestion for %s" % (unit.target or unit.source),
             user=member,
             touch=False)
@@ -438,7 +438,7 @@ class PootleTestEnv(object):
             unit, next_time, first_modified)
 
         # add another suggestion as different user 7 days later
-        suggestion2, _ = unit.add_suggestion(
+        suggestion2_, created_ = unit.add_suggestion(
             "Suggestion 2 for %s" % (unit.target or unit.source),
             user=member2,
             touch=False)

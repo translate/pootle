@@ -143,7 +143,7 @@ def _calculate_timeline(request, unit):
 
     # Group by submitter id and creation_time because
     # different submissions can have same creation time
-    for key, values in grouped_timeline:
+    for key_, values in grouped_timeline:
         entry_group = {
             'entries': [],
         }

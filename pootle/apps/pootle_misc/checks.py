@@ -869,7 +869,7 @@ class ENChecker(checks.UnitChecker):
             translate = False
             fingerprint = 0
 
-            for chunk in chunks:
+            for chunk_ in chunks:
                 translate = not translate
                 if translate:
                     # ordinary text (safe to translate)
@@ -901,7 +901,7 @@ class ENChecker(checks.UnitChecker):
             translate = False
             double_quote_count = 0
 
-            for chunk in chunks:
+            for chunk_ in chunks:
                 translate = not translate
                 if translate:
                     # ordinary text (safe to translate)

@@ -11,7 +11,7 @@ import pytest
 
 @pytest.mark.django_db
 def test_views_bad(bad_views):
-    path, response, test = bad_views
+    path_, response, test = bad_views
     assert response.status_code == test["code"]
     if test.get("location"):
         location = "http://testserver/%s" % test["location"].lstrip("/")

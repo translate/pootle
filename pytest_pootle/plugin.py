@@ -25,7 +25,7 @@ def _load_fixtures(*modules):
         path = mod.__path__
         prefix = '%s.' % mod.__name__
 
-        for loader, name, is_pkg in iter_modules(path, prefix):
+        for loader_, name, is_pkg in iter_modules(path, prefix):
             if not is_pkg:
                 yield name
 

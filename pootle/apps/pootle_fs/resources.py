@@ -163,7 +163,7 @@ class FSProjectStateResources(object):
 
     def reload(self):
         """Uncache cached_properties"""
-        for k, v in self.__dict__.items():
+        for k, v_ in self.__dict__.items():
             if k in ["context", "pootle_path", "fs_path"]:
                 continue
             del self.__dict__[k]

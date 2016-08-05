@@ -242,7 +242,7 @@ def add_files(translation_project, ignored_files, exts, relative_dir, db_dir,
         db_dir,
     )
 
-    db_subdirs, new_db_subdirs = add_items(
+    db_subdirs, new_db_subdirs_ = add_items(
         dir_set,
         existing_dirs,
         lambda name: create_or_resurrect_dir(name=name, parent=db_dir),
@@ -301,7 +301,7 @@ def translation_project_dir_exists(language, project):
 
         if language.code == 'templates':
             # Language is template look for template files
-            for dirpath, dirnames, filenames in os.walk(
+            for dirpath_, dirnames, filenames in os.walk(
                     project.get_real_path()):
                 for filename in filenames:
                     if (project.file_belongs_to_project(filename,
@@ -310,7 +310,7 @@ def translation_project_dir_exists(language, project):
                         return True
         else:
             # find files with the language name in the project dir
-            for dirpath, dirnames, filenames in os.walk(
+            for dirpath_, dirnames, filenames in os.walk(
                     project.get_real_path()):
                 for filename in filenames:
                     # FIXME: don't reuse already used file
@@ -322,7 +322,7 @@ def translation_project_dir_exists(language, project):
     else:
         # find directory with the language name in the project dir
         try:
-            dirpath, dirnames, filename = os.walk(
+            dirpath_, dirnames, filename = os.walk(
                 project.get_real_path()).next()
             if language.code in dirnames:
                 return True
@@ -336,10 +336,10 @@ def init_store_from_template(translation_project, template_store):
     """Initialize a new file for `translation_project` using `template_store`.
     """
     if translation_project.file_style == 'gnu':
-        target_pootle_path, target_path = get_translated_name_gnu(
+        target_pootle_path_, target_path = get_translated_name_gnu(
             translation_project, template_store)
     else:
-        target_pootle_path, target_path = get_translated_name(
+        target_pootle_path_, target_path = get_translated_name(
             translation_project, template_store)
 
     # Create the missing directories for the new TP.

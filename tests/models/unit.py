@@ -228,7 +228,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     unit = issue_2401_po.getitem(0)
     assert unit.state == UNTRANSLATED
 
-    suggestion, created = unit.add_suggestion('foo')
+    suggestion, created_ = unit.add_suggestion('foo')
     assert unit.state == UNTRANSLATED
 
     unit.accept_suggestion(suggestion, tp, system)
@@ -238,7 +238,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     unit = issue_2401_po.getitem(1)
     assert unit.state == TRANSLATED
 
-    suggestion, created = unit.add_suggestion('bar')
+    suggestion, created_ = unit.add_suggestion('bar')
     assert unit.state == TRANSLATED
 
     unit.accept_suggestion(suggestion, tp, system)
@@ -248,7 +248,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     unit = issue_2401_po.getitem(2)
     assert unit.state == FUZZY
 
-    suggestion, created = unit.add_suggestion('baz')
+    suggestion, created_ = unit.add_suggestion('baz')
     assert unit.state == FUZZY
 
     unit.accept_suggestion(suggestion, tp, system)

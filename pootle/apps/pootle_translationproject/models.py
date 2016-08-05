@@ -56,7 +56,7 @@ def create_or_resurrect_translation_project(language, project):
 def create_translation_project(language, project):
     if translation_project_dir_exists(language, project):
         try:
-            translation_project, created = TranslationProject.objects.all() \
+            translation_project, __ = TranslationProject.objects.all() \
                 .get_or_create(language=language, project=project)
             return translation_project
         except OSError:
@@ -437,7 +437,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         else:
             file_filter = lambda filename: True
 
-        all_files, new_files, is_empty = add_files(
+        all_files, new_files, __ = add_files(
             self,
             ignored_files,
             exts,

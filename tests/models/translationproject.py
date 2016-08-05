@@ -135,7 +135,7 @@ def test_cannot_be_inited_from_templates():
 @pytest.mark.django_db
 def test_tp_checker(tp_checker_tests):
     language = Language.objects.get(code="language0")
-    checker_name, project = tp_checker_tests
+    checker_name_, project = tp_checker_tests
     tp = TranslationProject.objects.create(project=project, language=language)
 
     checkerclasses = [

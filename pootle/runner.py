@@ -124,7 +124,7 @@ def init_command(parser, settings_template, args):
                         help=(u"Database port. Defaults to backend default. "
                               u"Not used with sqlite."))
 
-    args, remainder = parser.parse_known_args(args)
+    args, remainder_ = parser.parse_known_args(args)
     config_path = os.path.expanduser(args.config)
 
     if os.path.exists(config_path):

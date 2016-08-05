@@ -166,7 +166,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     kwargs["language_code"] = tp.language.code
     resource_path = "%(dir_path)s%(filename)s" % kwargs
     request_path = "%s%s" % (tp.pootle_path, resource_path)
-    vfolder, pootle_path = extract_vfolder_from_path(request_path)
+    vfolder, pootle_path_ = extract_vfolder_from_path(request_path)
     current_vfolder_pk = (
         vfolder.pk
         if vfolder
@@ -206,7 +206,7 @@ def _test_export_view(tp, request, response, kwargs, settings):
     search_form = UnitExportForm(
         form_data, user=request.user)
     assert search_form.is_valid()
-    total, start, end, units_qs = search_backend.get(Unit)(
+    total, start_, end_, units_qs = search_backend.get(Unit)(
         request.user, **search_form.cleaned_data).search()
     units_qs = units_qs.select_related('store')
     assertions = {}
@@ -265,6 +265,6 @@ def test_view_user_choice(client):
 
 @pytest.mark.django_db
 def test_uploads_tp(tp_uploads):
-    tp, request, response, kwargs, errors = tp_uploads
+    tp_, request_, response, kwargs_, errors = tp_uploads
     assert response.status_code == 200
     assert errors.keys() == response.context['upload_form'].errors.keys()

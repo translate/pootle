@@ -24,7 +24,7 @@ class GatheredDict(Gathered):
     @property
     def results(self):
         gathered = OrderedDict()
-        for func, result in self.__results__:
+        for func_, result in self.__results__:
             if result:
                 try:
                     gathered.update(result)
@@ -64,7 +64,7 @@ class GatheredList(Gathered):
     @property
     def results(self):
         gathered = []
-        for func, result in self.__results__:
+        for func_, result in self.__results__:
             if isinstance(result, (list, tuple)):
                 gathered.extend(result)
         return gathered

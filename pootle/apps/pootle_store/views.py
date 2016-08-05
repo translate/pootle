@@ -88,7 +88,7 @@ def get_alt_src_langs(request, user, translation_project):
         from pootle_language.models import Language
         accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
 
-        for accept_lang, unused in parse_accept_lang_header(accept):
+        for accept_lang, __ in parse_accept_lang_header(accept):
             if accept_lang == '*':
                 continue
 

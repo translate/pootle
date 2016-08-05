@@ -56,7 +56,7 @@ def trim_url(link):
 def url_trim(html):
     """Trims anchor texts that are longer than 70 chars."""
     fragment = fromstring(html)
-    for el, attrib, link, pos in fragment.iterlinks():
+    for el, attrib_, link_, pos_ in fragment.iterlinks():
         new_link_text = trim_url(el.text_content())
         el.text = new_link_text
 

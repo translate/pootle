@@ -145,7 +145,7 @@ class ProjectFSState(State):
             resolve_conflict__gt=0)
         for store_fs in conflict.iterator():
             store_fs.project = self.project
-            pootle_changed, fs_changed = self._get_changes(store_fs.file)
+            pootle_changed_, fs_changed = self._get_changes(store_fs.file)
             if fs_changed:
                 yield dict(store_fs=store_fs)
 
@@ -256,7 +256,7 @@ class ProjectFSState(State):
     def state_pootle_ahead(self):
         for store_fs in self.resources.pootle_changed.iterator():
             store_fs.project = self.project
-            pootle_changed, fs_changed = self._get_changes(store_fs.file)
+            pootle_changed_, fs_changed = self._get_changes(store_fs.file)
             pootle_ahead = (
                 not fs_changed
                 or store_fs.resolve_conflict == POOTLE_WINS)
