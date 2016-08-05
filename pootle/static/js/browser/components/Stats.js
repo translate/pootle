@@ -56,7 +56,7 @@ const Stats = React.createClass({
       loadMore = (
         <div className="more-top-contributors">
           <a onClick={this.loadMoreTopContributors}>
-            <span className="show-more">{gettext('More...')}</span>
+            <span className="show-more">{t('More...')}</span>
           </a>
         </div>
       );
