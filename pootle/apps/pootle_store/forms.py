@@ -318,6 +318,11 @@ def unit_form_factory(language, snplurals=None, request=None):
             if self.cleaned_data['suggestion']:
                 old_state = TRANSLATED
 
+                # Skip `TARGET` field submission if suggestion value is equal
+                # to submitted translation
+                if new_target == self.cleaned_data['suggestion'].target_f:
+                    self._updated_fields = []
+
             if (self.request is not None and
                 not check_permission('administrate', self.request) and
                 is_fuzzy):
