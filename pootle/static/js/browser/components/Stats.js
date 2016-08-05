@@ -46,20 +46,23 @@ const Stats = React.createClass({
       .done(this.onLoadMoreTopContributors);
   },
 
-  render() {
-    if (!this.state.topContributors.length) {
+  renderLoadMoreButton() {
+    if (!this.state.hasMoreContributors) {
       return null;
     }
 
-    let loadMore;
-    if (this.state.hasMoreContributors) {
-      loadMore = (
-        <div className="more-top-contributors">
-          <a onClick={this.loadMoreTopContributors}>
-            <span className="show-more">{t('More...')}</span>
-          </a>
-        </div>
-      );
+    return (
+      <div className="more-top-contributors">
+        <a onClick={this.loadMoreTopContributors}>
+          <span className="show-more">{t('More...')}</span>
+        </a>
+      </div>
+    );
+  },
+
+  render() {
+    if (!this.state.topContributors.length) {
+      return null;
     }
 
     return (
@@ -69,7 +72,7 @@ const Stats = React.createClass({
           <TopContributorsTable
             items={this.state.topContributors}
           />
-          {loadMore}
+          {this.renderLoadMoreButton()}
         </div>
       </div>
     );
