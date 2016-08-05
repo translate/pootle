@@ -38,9 +38,6 @@ const Stats = React.createClass({
   },
 
   loadMoreTopContributors() {
-    if (!this.state.hasMoreContributors) {
-      return false;
-    }
     const params = { offset: this.state.topContributors.length };
     return StatsAPI.getTopContributors(this.props.pootlePath, params)
       .done(this.onLoadMoreTopContributors);
