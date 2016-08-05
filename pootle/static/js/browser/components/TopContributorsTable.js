@@ -20,47 +20,42 @@ function getScoreText(score) {
 }
 
 
-const TopContributorsTable = React.createClass({
+function createRow(item, index) {
+  const title = (`
+    <span class="value">${item.suggested}</span> suggested<br/>
+    <span class="value">${item.translated}</span> translated<br/>
+    <span class="value">${item.reviewed}</span> reviewed<br/>
+  `);
+  return (
+    <tr key={`top-contibutor-${index}`}>
+      <td className="number">{t('#%(position)s', { position: index + 1 })}</td>
+      <td className="user top-scorer">
+        <Avatar
+          email={item.email}
+          label={item.display_name}
+          size={20}
+          username={item.username}
+        />
+      </td>
+      <td className="number">
+        <span title={title}>{getScoreText(item.public_total_score)}</span>
+      </td>
+    </tr>
+  );
+}
 
-  propTypes: {
-    items: React.PropTypes.array.isRequired,
-  },
 
-  createRow(item, index) {
-    const title = (`
-      <span class="value">${item.suggested}</span> suggested<br/>
-      <span class="value">${item.translated}</span> translated<br/>
-      <span class="value">${item.reviewed}</span> reviewed<br/>
-    `);
-    return (
-      <tr key={`top-contibutor-${index}`}>
-        <td className="number">{t('#%(position)s', { position: index + 1 })}</td>
-        <td className="user top-scorer">
-          <Avatar
-            email={item.email}
-            label={item.display_name}
-            size={20}
-            username={item.username}
-          />
-        </td>
-        <td className="number">
-          <span title={title}>{getScoreText(item.public_total_score)}</span>
-        </td>
-      </tr>
-    );
-  },
+const TopContributorsTable = ({ items }) => (
+  <table className="top-scorers-table">
+    <tbody>
+      {items.map(createRow)}
+    </tbody>
+  </table>
+);
 
-  render() {
-    return (
-      <table className="top-scorers-table">
-        <tbody>
-          {this.props.items.map(this.createRow)}
-        </tbody>
-      </table>
-    );
-  },
-
-});
+TopContributorsTable.propTypes = {
+  items: React.PropTypes.array.isRequired,
+};
 
 
 export default TopContributorsTable;
