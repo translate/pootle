@@ -54,11 +54,13 @@ const Stats = React.createClass({
     return (
       <div className="summary-2-col">
         <h3 className="top">{t('Top Contributors for the Last 30 Days')}</h3>
-        <TopContributorsTable
-          items={this.state.topContributors}
-          hasMoreItems={this.state.hasMoreContributors}
-          loadMore={this.loadMoreTopContributors}
-        />
+        <div className="bd">
+          <TopContributorsTable
+            items={this.state.topContributors}
+            hasMoreItems={this.state.hasMoreContributors}
+            loadMore={this.loadMoreTopContributors}
+          />
+        </div>
       </div>
     );
   },

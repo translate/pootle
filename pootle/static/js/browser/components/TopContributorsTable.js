@@ -65,7 +65,7 @@ const TopContributorsTable = React.createClass({
       );
     }
     return (
-      <div className="bd">
+      <div>
         <table className="top-scorers-table">
           <tbody>
             {this.props.items.map(this.createRow)}
