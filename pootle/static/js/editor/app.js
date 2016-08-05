@@ -1575,8 +1575,13 @@ PTL.editor = {
     const suggestionIndex = suggestionTexts.indexOf(newTranslation);
 
     if (suggestionIndex !== -1 && !this.isFuzzy()) {
-      this.acceptSuggestion(suggestionIds[suggestionIndex], { skipToNext: true });
-      return;
+      if (this.settings.canReview) {
+        this.acceptSuggestion(suggestionIds[suggestionIndex], { skipToNext: true });
+        return;
+      }
+      // Exact match suggestions are still accepted this way for users
+      // with no review right
+      this.selectedSuggestionId = suggestionIds[suggestionIndex];
     }
 
     // If similarities were in the process of being calculated by the time
