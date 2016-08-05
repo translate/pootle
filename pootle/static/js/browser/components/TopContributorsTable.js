@@ -24,8 +24,6 @@ const TopContributorsTable = React.createClass({
 
   propTypes: {
     items: React.PropTypes.array.isRequired,
-    hasMoreItems: React.PropTypes.bool.isRequired,
-    loadMore: React.PropTypes.func.isRequired,
   },
 
   createRow(item, index) {
@@ -53,26 +51,12 @@ const TopContributorsTable = React.createClass({
   },
 
   render() {
-    let loadMore;
-
-    if (this.props.hasMoreItems) {
-      loadMore = (
-        <div className="more-top-contributors">
-          <a onClick={this.props.loadMore}>
-            <span className="show-more">{gettext('More...')}</span>
-          </a>
-        </div>
-      );
-    }
     return (
-      <div>
-        <table className="top-scorers-table">
-          <tbody>
-            {this.props.items.map(this.createRow)}
-          </tbody>
-        </table>
-        {loadMore}
-      </div>
+      <table className="top-scorers-table">
+        <tbody>
+          {this.props.items.map(this.createRow)}
+        </tbody>
+      </table>
     );
   },
 

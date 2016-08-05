@@ -51,15 +51,25 @@ const Stats = React.createClass({
       return null;
     }
 
+    let loadMore;
+    if (this.state.hasMoreContributors) {
+      loadMore = (
+        <div className="more-top-contributors">
+          <a onClick={this.loadMoreTopContributors}>
+            <span className="show-more">{gettext('More...')}</span>
+          </a>
+        </div>
+      );
+    }
+
     return (
       <div className="summary-2-col">
         <h3 className="top">{t('Top Contributors for the Last 30 Days')}</h3>
         <div className="bd">
           <TopContributorsTable
             items={this.state.topContributors}
-            hasMoreItems={this.state.hasMoreContributors}
-            loadMore={this.loadMoreTopContributors}
           />
+          {loadMore}
         </div>
       </div>
     );
