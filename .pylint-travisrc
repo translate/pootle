@@ -17,6 +17,7 @@ disable=all
 # For checkers and individual checks see
 # https://pylint.readthedocs.io/en/latest/features.html
 enable=reimported,logging,stdlib,string,unneeded-not
+dummy-variables-rgx=__|^.*[^_]_$
 
 [REPORTS]
 msg-template="{path}:{line}: {msg_id} {msg} ({symbol})"
