@@ -31,7 +31,15 @@ def get_permission_message(permission_code):
     }.get(permission_code, default_message)
 
 
-def get_unit_context(permission_code=None):
+def get_most_important_permission(permission_codes):
+    if 'review' in permission_codes:
+        return 'review'
+    if 'translate' in permission_codes:
+        return 'translate'
+    return 'suggest'
+
+
+def get_unit_context(permission_codes=None):
 
     def wrap_f(f):
 
@@ -49,9 +57,14 @@ def get_unit_context(permission_code=None):
             request.permissions = get_matching_permissions(request.user,
                                                            tp.directory)
 
-            if (permission_code is not None and
-                not check_permission(permission_code, request)):
-                raise PermissionDenied(get_permission_message(permission_code))
+            if permission_codes is not None:
+                perms = permission_codes
+                if isinstance(perms, basestring):
+                    perms = list(perms)
+
+                if not any(check_permission(code, request) for code in perms):
+                    raise PermissionDenied(get_permission_message(
+                        get_most_important_permission(perms)))
 
             request.unit = unit
             request.store = unit.store
