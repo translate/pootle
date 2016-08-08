@@ -44,7 +44,7 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
         body_placeholder = _('Please enter your message')
         self.fields['body'].widget.attrs['placeholder'] = body_placeholder
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             del self.fields['captcha_answer']
             del self.fields['captcha_token']
 

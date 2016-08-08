@@ -40,7 +40,7 @@ class ContactFormView(AjaxResponseMixin, OriginalContactFormView):
         initial = super(ContactFormView, self).get_initial()
 
         user = self.request.user
-        if user.is_authenticated():
+        if user.is_authenticated:
             initial.update({
                 'name': user.full_name,
                 'email': user.email,

@@ -250,7 +250,7 @@ class TPBrowseBaseView(PootleBrowseView):
     def can_upload(self):
         return (
             "import_export" in settings.INSTALLED_APPS
-            and self.request.user.is_authenticated()
+            and self.request.user.is_authenticated
             and (self.request.user.is_superuser
                  or "translate" in self.request.permissions
                  or "administrate" in self.request.permissions))

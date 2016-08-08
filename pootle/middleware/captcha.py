@@ -46,7 +46,7 @@ class CaptchaMiddleware(object):
         except Http404:
             pass
 
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if ('target_f_0' not in request.POST or
                 'translator_comment' not in request.POST):
                 return

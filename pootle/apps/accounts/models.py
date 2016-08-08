@@ -302,6 +302,7 @@ class User(AbstractBaseUser):
         """Returns `True` if this is an anonymous user."""
         return self.username == 'nobody'
 
+    @property
     def is_authenticated(self):
         """Returns `True` if this is an authenticated user."""
         return self.username != 'nobody'

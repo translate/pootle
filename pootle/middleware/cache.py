@@ -13,7 +13,7 @@ class CacheAnonymousOnly(object):
     """Imitate the deprecated `CACHE_MIDDLEWARE_ANONYMOUS_ONLY` behavior."""
 
     def process_response(self, request, response):
-        if hasattr(request, 'user') and request.user.is_authenticated():
+        if hasattr(request, 'user') and request.user.is_authenticated:
             add_never_cache_headers(response)
 
         return response
