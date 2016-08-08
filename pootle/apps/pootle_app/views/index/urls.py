@@ -25,6 +25,5 @@ urlpatterns = [
 
     url(r'^about/$',
         AboutView.as_view(),
-        name='pootle-about',
-        prefix='pootle_app.views.index'),
+        name='pootle-about'),
 ]
