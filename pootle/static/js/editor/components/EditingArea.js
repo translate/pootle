@@ -10,30 +10,21 @@ import cx from 'classnames';
 import React from 'react';
 
 
-const EditingArea = (props) => {
+const EditingArea = ({ isDisabled, children }) => {
   const editorWrapperClasses = cx('editor-area-wrapper js-editor-area-wrapper', {
-    'is-disabled': props.isDisabled,
+    'is-disabled': isDisabled,
   });
 
   return (
     <div className={editorWrapperClasses}>
-      <props.textareaComponent
-        {...props}
-      />
+      {children}
     </div>
   );
 };
 
 EditingArea.propTypes = {
-  autoFocus: React.PropTypes.bool,
-  id: React.PropTypes.string,
-  initialValue: React.PropTypes.string,
-  isDisabled: React.PropTypes.bool,
-  isRawMode: React.PropTypes.bool,
-  // FIXME: needed to allow interaction from the outside world. Remove ASAP.
-  onChange: React.PropTypes.func.isRequired,
-  textareaComponent: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string,
+  children: React.PropTypes.element.isRequired,
+  isDisabled: React.PropTypes.bool.isRequired,
 };
 
 

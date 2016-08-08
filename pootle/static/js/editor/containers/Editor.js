@@ -101,11 +101,7 @@ const Editor = React.createClass({
     const editingAreas = [];
 
     for (let i = 0; i < this.props.targetNplurals; i++) {
-      const extraProps = {
-        autoFocus: i === 0,
-        isDisabled: this.props.isDisabled,
-        textareaComponent: this.props.textareaComponent,
-      };
+      const extraProps = {};
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
       }
@@ -118,13 +114,19 @@ const Editor = React.createClass({
       }
       editingAreas.push(
         <EditingArea
-          id={getAreaId(i)}
-          initialValue={this.props.initialValues[i]}
+          isDisabled={this.props.isDisabled}
           key={i}
-          onChange={(value) => this.handleChange(i, value)}
-          value={this.state.values[i]}
-          {...extraProps}
-        />
+        >
+          <this.props.textareaComponent
+            autoFocus={i === 0}
+            id={getAreaId(i)}
+            initialValue={this.props.initialValues[i]}
+            isDisabled={this.props.isDisabled}
+            onChange={(value) => this.handleChange(i, value)}
+            value={this.state.values[i]}
+            {...extraProps}
+          />
+        </EditingArea>
       );
     }
     return (
