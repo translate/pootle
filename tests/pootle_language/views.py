@@ -61,7 +61,7 @@ def test_view_language_team_new_member(client, language0, request_users,
     response = client.get(admin_url)
     if not user.is_superuser:
         assert response.status_code == 403
-        if user.is_anonymous():
+        if user.is_anonymous:
             return
         team.add_member(user, "admin")
         response = client.get(admin_url)
@@ -103,7 +103,7 @@ def test_view_language_team_admin(client, language0, request_users):
     response = client.get(admin_url)
     if not user.is_superuser:
         assert response.status_code == 403
-        if user.is_anonymous():
+        if user.is_anonymous:
             return
         team.add_member(user, "admin")
         response = client.get(admin_url)
@@ -150,7 +150,7 @@ def test_view_language_team_admin_post(client, language0, request_users,
         data=dict(new_member=search_member.id, role="member"))
     if not user.is_superuser:
         assert search_member not in team.members
-        if user.is_anonymous():
+        if user.is_anonymous:
             assert response.status_code == 402
             return
         team.add_member(user, "admin")
@@ -223,7 +223,7 @@ def test_view_admin_language_team_suggestion(client, language0, request_users):
     response = client.get(admin_url)
     if not user.is_superuser:
         assert response.status_code == 403
-        if user.is_anonymous():
+        if user.is_anonymous:
             return
         team.add_member(user, "admin")
         response = client.get(admin_url)
@@ -263,7 +263,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users):
         suggestions=[suggestion.id])
     response = client.post(admin_url, data=data)
     if not user.is_superuser:
-        if user.is_anonymous():
+        if user.is_anonymous:
             assert response.status_code == 402
             return
         assert response.status_code == 403

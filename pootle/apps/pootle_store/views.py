@@ -626,7 +626,7 @@ def reject_suggestion(request, unit, suggid, **kwargs_):
     # 2. Be the author of the suggestion being rejected
     has_permission = (
         check_permission('review', request)
-        or (not request.user.is_anonymous()
+        or (not request.user.is_anonymous
             and request.user == suggestion.user))
     if not has_permission:
         raise PermissionDenied(
