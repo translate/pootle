@@ -115,6 +115,10 @@ class AddUserPaidTaskView(NoDefaultUserMixin, TestUserFieldMixin,
     form_class = PaidTaskForm
     template_name = 'admin/reports/paid_task_form.html'
 
+    @method_decorator(ajax_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AddUserPaidTaskView, self).dispatch(request, *args, **kwargs)
+
     def get_success_url(self):
         # XXX: This is unused but enforced by `CreateView`
         return reverse('pootle-user-stats', kwargs=self.kwargs)
