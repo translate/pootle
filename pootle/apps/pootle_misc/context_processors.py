@@ -21,7 +21,7 @@ def _agreement_context(request):
     nocheck = filter(lambda x: request_path.startswith(x),
                      settings.POOTLE_LEGALPAGE_NOCHECK_PREFIXES)
 
-    if (request.user.is_authenticated() and not nocheck and
+    if (request.user.is_authenticated and not nocheck and
         LegalPage.objects.has_pending_agreement(request.user)):
         return True
 

@@ -111,7 +111,7 @@ def _test_browse_view(tp, request, response, kwargs):
         assertions[k] = sidebar[0][k]
     view_context_test(ctx, **assertions)
     assert (('display_download' in ctx and ctx['display_download']) ==
-            (request.user.is_authenticated()
+            (request.user.is_authenticated
              and check_permission('translate', request)))
 
 

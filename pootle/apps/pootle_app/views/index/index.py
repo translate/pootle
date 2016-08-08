@@ -19,7 +19,7 @@ COOKIE_NAME = 'pootle-language'
 
 
 def view(request):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         ctx = {
             'next': request.GET.get(REDIRECT_FIELD_NAME, ''),
         }

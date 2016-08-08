@@ -108,7 +108,7 @@ class ErrorPagesMiddleware(object):
                 'permission_error': msg,
             }
 
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated:
                 msg_args = {
                     'login_link': reverse('account_login'),
                 }
