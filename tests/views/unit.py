@@ -17,6 +17,7 @@ from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
 from pootle_store.models import (QualityCheck, Suggestion, Unit, TRANSLATED,
                                  UNTRANSLATED)
+from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.views import get_units, toggle_qualitycheck
 
 
@@ -91,6 +92,48 @@ def test_submit_with_suggestion_and_comment(client, request_users, settings):
         assert (Comment.objects
                        .for_model(accepted_suggestion)
                        .get().comment == comment)
+    else:
+        assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_submit_with_suggestion(client, request_users, settings):
+    """Tests translation can be applied after suggestion is accepted."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    unit = Unit.objects.filter(suggestion__state='pending',
+                               state=UNTRANSLATED).first()
+    unit_submissions = Submission.objects.filter(unit=unit)
+    unit_submissions_count = unit_submissions.count()
+    sugg = Suggestion.objects.filter(unit=unit, state='pending').first()
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    url = '/xhr/units/%d/' % unit.id
+
+    response = client.post(
+        url,
+        {
+            'state': False,
+            'target_f_0': sugg.target_f,
+            'suggestion': sugg.id,
+        },
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+    )
+
+    if check_permission('translate', response.wsgi_request):
+        assert response.status_code == 200
+        accepted_suggestion = Suggestion.objects.get(id=sugg.id)
+        updated_unit = Unit.objects.get(id=unit.id)
+        assert accepted_suggestion.state == 'accepted'
+        assert str(updated_unit.target) == sugg.target_f
+        unit_submissions = unit_submissions.exclude(
+            type=SubmissionTypes.SUGG_ACCEPT
+        )
+        assert (unit_submissions.count() - unit_submissions_count == 0)
+
     else:
         assert response.status_code == 403
 
