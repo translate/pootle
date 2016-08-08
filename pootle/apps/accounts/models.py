@@ -297,6 +297,7 @@ class User(AbstractBaseUser):
         """Returns the user's field-values (can be encoded as e.g. JSON)."""
         return model_to_dict(self, exclude=['password'])
 
+    @property
     def is_anonymous(self):
         """Returns `True` if this is an anonymous user."""
         return self.username == 'nobody'
@@ -311,7 +312,7 @@ class User(AbstractBaseUser):
 
     def has_manager_permissions(self):
         """Tells if the user is a manager for any language, project or TP."""
-        if self.is_anonymous():
+        if self.is_anonymous:
             return False
         if self.is_superuser:
             return True

@@ -53,7 +53,7 @@ def test_view_fs_project_admin_post(client, project0, request_users):
         admin_url,
         dict(foo="bar"))
     if not user.is_superuser:
-        if user.is_anonymous():
+        if user.is_anonymous:
             assert response.status_code == 402
         else:
             assert response.status_code == 403
@@ -81,7 +81,7 @@ def test_view_fs_project_admin_post_config(client, project0, request_users):
          'fs-config-translation_mapping': (
              "/trans/<language_code>/<filename>.<ext>")})
     if not user.is_superuser:
-        if user.is_anonymous():
+        if user.is_anonymous:
             assert response.status_code == 402
         else:
             assert response.status_code == 403

@@ -287,7 +287,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         else:
             ALL_PROJECTS = set(ALL_PROJECTS)
 
-            if user.is_anonymous():
+            if user.is_anonymous:
                 allow_usernames = [username]
                 forbid_usernames = [username, 'default']
             else:
