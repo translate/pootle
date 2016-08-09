@@ -680,7 +680,7 @@ def reject_suggestion(request, unit, suggid):
     return JsonResponse(json)
 
 
-@get_unit_context('review')
+@get_unit_context(['review', 'translate'])
 def accept_suggestion(request, unit, suggid):
     json = {
         'udbid': unit.id,
