@@ -173,7 +173,6 @@ def test_merge_user(en_tutorial_po, member, member2):
 @pytest.mark.django_db
 def test_delete_user(en_tutorial_po):
     """Test default behaviour of User.delete - merge to nobody"""
-    from django.contrib.auth import get_user_model
     User = get_user_model()
 
     member = User.objects.get(username="member")
@@ -450,8 +449,6 @@ def test_update_user_email_bad_invalid_duplicate(member_with_email, member2):
 def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
                                       afrikaans, afrikaans_tutorial):
     """Test user `has_manager_permissions` method."""
-    from pootle_app.models.permissions import PermissionSet
-
     # User has no permissions, so can't be manager.
     assert not no_perms_user.has_manager_permissions()
 

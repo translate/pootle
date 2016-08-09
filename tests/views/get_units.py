@@ -73,8 +73,6 @@ def test_get_units(get_units_views):
 
 @pytest.mark.django_db
 def test_get_previous_slice(client, request_users):
-    import json
-
     user = request_users["user"]
     if user.username != "nobody":
         client.login(
@@ -162,8 +160,6 @@ def test_get_previous_slice(client, request_users):
 
 @pytest.mark.django_db
 def test_get_next_slice(client, request_users):
-    import json
-
     user = request_users["user"]
     if user.username != "nobody":
         client.login(

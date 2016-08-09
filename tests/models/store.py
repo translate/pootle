@@ -76,7 +76,7 @@ def test_delete_mark_obsolete(af_tutorial_subdir_po):
 
     Refs. #269.
     """
-    from pootle_store.models import Store, Unit
+    from pootle_store.models import Unit
 
     tp = af_tutorial_subdir_po.translation_project
     pootle_path = af_tutorial_subdir_po.pootle_path
@@ -118,7 +118,6 @@ def test_sync(fr_tutorial_remove_sync_po):
     assert fr_tutorial_remove_sync_po.file.exists()
     os.remove(fr_tutorial_remove_sync_po.file.path)
 
-    from pootle_store.models import Store
     store = Store.objects.get(pootle_path=pootle_path)
     assert not store.file.exists()
     store.sync()
