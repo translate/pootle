@@ -104,10 +104,6 @@ def get_language_from_request(request, check_path=False):
 
 def override_gettext(real_translation):
     """Replace Django's translation functions with safe versions."""
-    translation.gettext = real_translation.gettext
-    translation.ugettext = real_translation.ugettext
-    translation.ngettext = real_translation.ngettext
-    translation.ungettext = real_translation.ungettext
     translation.gettext_lazy = lazy(real_translation.gettext, str)
     translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
     translation.ngettext_lazy = lazy(real_translation.ngettext, str)
