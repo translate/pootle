@@ -24,10 +24,9 @@ const ProjectForm = React.createClass({
 
   mixins: [ModelFormMixin],
 
-  fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'treestyle',
-           'source_language', 'ignoredfiles', 'report_email',
+  fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'treestyle', 'tps',
+           'source_language', 'template_lang', 'template_tp', 'ignoredfiles', 'report_email',
            'screenshot_search_prefix', 'disabled'],
-
 
   /* Handlers */
 
@@ -107,6 +106,28 @@ const ProjectForm = React.createClass({
             errors={errors.source_language}
             value={formData.source_language}
           />
+          {model.id &&
+           <FormElement
+             type="select"
+             clearable={false}
+             options={formData.tps}
+             label={gettext('Template translation project')}
+             handleChange={this.handleChange}
+             name="template_tp"
+             errors={errors.template_tp}
+             value={formData.template_tp}
+           />}
+          {!model.id &&
+           <FormElement
+             type="select"
+             clearable={false}
+             options={model.getFieldChoices('template_lang')}
+             label={gettext('Template translation project')}
+             handleChange={this.handleChange}
+             name="template_lang"
+             errors={errors.template_lang}
+             value={formData.template_lang}
+           />}
           <FormElement
             label={gettext('Ignore Files')}
             handleChange={this.handleChange}
