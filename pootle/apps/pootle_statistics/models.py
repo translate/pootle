@@ -491,7 +491,7 @@ class ScoreLog(models.Model):
         self.rate = self.user.rate
         self.review_rate = self.user.review_rate
         self.score_delta = self.get_score_delta()
-        translated, reviewed = self.get_paid_wordcounts()
+        translated = self.get_paid_wordcounts()[0]
         self.translated_wordcount = translated
 
         super(ScoreLog, self).save(*args, **kwargs)

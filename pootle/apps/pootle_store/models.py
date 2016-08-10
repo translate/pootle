@@ -1645,11 +1645,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
             if conflict_found:
                 if resolve_conflict == POOTLE_WINS:
-                    (suggestion,
-                     created) = unit.add_suggestion(newunit.target, user)
+                    created = unit.add_suggestion(newunit.target, user)[1]
                 else:
-                    (suggestion,
-                     created) = unit.add_suggestion(old_target, old_submitter)
+                    created = unit.add_suggestion(old_target, old_submitter)[1]
                 if created:
                     suggested += 1
         return updated, suggested

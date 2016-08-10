@@ -250,7 +250,7 @@ def check_settings(app_configs=None, **kwargs):
         ))
 
     try:
-        markup_filter, markup_kwargs = settings.POOTLE_MARKUP_FILTER
+        markup_filter = settings.POOTLE_MARKUP_FILTER[0]
     except AttributeError:
         errors.append(checks.Warning(
             _("POOTLE_MARKUP_FILTER is missing."),

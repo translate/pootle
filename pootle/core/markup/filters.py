@@ -48,7 +48,7 @@ def rewrite_internal_link(link):
 
 def get_markup_filter_name():
     """Returns the current markup filter's name."""
-    name, args = get_markup_filter()
+    name = get_markup_filter()[0]
     return 'html' if name is None else name
 
 

@@ -68,7 +68,7 @@ class Command(BaseCommand):
             user_score = 0
             for scorelog in scorelog_qs.iterator():
                 score_delta = scorelog.get_score_delta()
-                translated, reviewed = scorelog.get_paid_wordcounts()
+                translated = scorelog.get_paid_wordcounts()[0]
                 user_score += score_delta
                 ScoreLog.objects.filter(id=scorelog.id).update(
                     score_delta=score_delta,

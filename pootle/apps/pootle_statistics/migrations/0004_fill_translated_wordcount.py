@@ -20,7 +20,7 @@ def set_translated_wordcount(apps, schema_editor):
         ]
     )
     for scorelog in scorelog_qs.iterator():
-        translated, reviewed = scorelog.get_paid_wordcounts()
+        translated = scorelog.get_paid_wordcounts()[0]
         ScoreLog.objects.filter(id=scorelog.id).update(
             translated_wordcount=translated
         )
