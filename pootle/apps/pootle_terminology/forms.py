@@ -7,8 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 from django import forms
-from django.utils.translation import ugettext as _
 
+from pootle.i18n.gettext import ugettext as _
 from pootle_store.forms import MultiStringFormField
 from pootle_store.models import Store, Unit
 

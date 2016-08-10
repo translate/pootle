@@ -8,7 +8,8 @@
 
 from django import template
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+
+from pootle.i18n.gettext import ugettext as _
 
 
 def render_pager(pager):

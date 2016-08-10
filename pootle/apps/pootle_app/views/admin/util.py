@@ -11,9 +11,9 @@ from django.forms.models import modelformset_factory
 from django.forms.utils import ErrorList
 from django.shortcuts import render
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
 
 from pootle.core.paginator import paginate
+from pootle.i18n.gettext import ugettext as _
 
 
 def form_set_as_table(formset, link=None, linkfield='code'):

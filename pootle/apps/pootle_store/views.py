@@ -19,7 +19,7 @@ from django.template import RequestContext, loader
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
-from django.utils.translation import to_locale, ugettext as _
+from django.utils.translation import to_locale
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_http_methods
 
@@ -29,6 +29,7 @@ from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.mail import send_mail
+from pootle.i18n.gettext import ugettext as _
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory

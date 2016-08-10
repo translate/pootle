@@ -22,7 +22,6 @@ from django.forms.models import modelform_factory
 from django.http import Http404, HttpResponse
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from django.views.defaults import (permission_denied as django_403,
                                    page_not_found as django_404,
@@ -31,6 +30,7 @@ from django.views.generic import View, DetailView
 
 from pootle.core.delegate import search_backend, context_data
 from pootle.core.url_helpers import split_pootle_path
+from pootle.i18n.gettext import ugettext as _
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
 from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema

@@ -16,13 +16,13 @@ from django.contrib.auth import get_user_model
 from django.core.cache import cache
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.utils.translation import ugettext as _, ungettext
 
 from django_rq.queues import get_failed_queue, get_queue
 from django_rq.workers import Worker
 
 from pootle.core.decorators import admin_required
 from pootle.core.utils.aggregate import sum_column
+from pootle.i18n.gettext import ugettext as _, ungettext
 from pootle_statistics.models import Submission
 from pootle_store.models import Suggestion, Unit
 from pootle_store.util import TRANSLATED

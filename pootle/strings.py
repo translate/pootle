@@ -16,7 +16,7 @@
 #    consider having translators work on the upstream translations.
 
 # Fake imports
-from django.utils.translation import ugettext as _
+from pootle.i18n.gettext import ugettext as _
 
 
 #########

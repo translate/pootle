@@ -8,8 +8,8 @@
 
 from django import forms
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext as _
 
+from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (PermissionSet,
                                            get_permission_contenttype)

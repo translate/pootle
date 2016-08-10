@@ -15,8 +15,8 @@ from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
 
+from pootle.i18n.gettext import ugettext as _
 from pootle_comment import get_model as get_comment_model
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (

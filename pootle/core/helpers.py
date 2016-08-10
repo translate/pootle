@@ -10,8 +10,8 @@ import json
 from urllib import quote, unquote
 
 from django.utils import dateformat
-from django.utils.translation import ugettext as _
 
+from pootle.i18n.gettext import ugettext as _
 from pootle_misc.checks import check_names
 
 

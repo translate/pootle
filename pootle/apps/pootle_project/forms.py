@@ -12,11 +12,11 @@ from django.core.urlresolvers import set_script_prefix
 from django.db import connection
 from django.forms.models import BaseModelFormSet
 from django.utils.encoding import force_unicode
-from django.utils.translation import ugettext as _
 
 from django_rq.queues import get_queue
 
 from pootle.core.utils.db import useable_connection
+from pootle.i18n.gettext import ugettext as _
 from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project

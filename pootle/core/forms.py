@@ -17,7 +17,8 @@ from random import randint
 from django import forms
 from django.conf import settings
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+
+from pootle.i18n.gettext import ugettext as _
 
 from .utils.json import jsonify
 

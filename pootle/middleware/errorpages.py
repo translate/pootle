@@ -17,7 +17,6 @@ from django.http import Http404, HttpResponseForbidden, HttpResponseServerError
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils.encoding import force_unicode
-from django.utils.translation import ugettext as _
 
 try:
     from raven.contrib.django.models import sentry_exception_handler
@@ -27,6 +26,7 @@ except ImportError:
 from pootle.core.exceptions import Http400
 from pootle.core.http import (JsonResponseBadRequest, JsonResponseForbidden,
                               JsonResponseNotFound, JsonResponseServerError)
+from pootle.i18n.gettext import ugettext as _
 
 
 def log_exception(request, exception, tb):

@@ -16,9 +16,9 @@ from django import template
 from django.core.exceptions import ObjectDoesNotExist
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
 
 from pootle.core.utils.templates import get_template_source
+from pootle.i18n.gettext import ugettext as _
 from pootle_store.fields import list_empty
 
 

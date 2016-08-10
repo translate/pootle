@@ -17,7 +17,6 @@ from django.utils.functional import cached_property
 from django.utils.html import escape
 from django.utils.lru_cache import lru_cache
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
 
 from pootle.core.browser import (
     make_language_item, make_project_list_item, make_xlanguage_item)
@@ -28,6 +27,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
     PootleAdminView, PootleBrowseView, PootleExportView,
     PootleTranslateView)
+from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
