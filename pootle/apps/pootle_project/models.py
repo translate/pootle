@@ -142,7 +142,7 @@ class ProjectURLMixin(object):
     """
 
     def get_absolute_url(self):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        proj = split_pootle_path(self.pootle_path)[1]
 
         if proj is not None:
             pattern_name = 'pootle-project-browse'
@@ -154,7 +154,7 @@ class ProjectURLMixin(object):
         return reverse(pattern_name, args=pattern_args)
 
     def get_translate_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        proj, dir, fn = split_pootle_path(self.pootle_path)[1:]
 
         if proj is not None:
             pattern_name = 'pootle-project-translate'
@@ -577,7 +577,7 @@ def invalidate_resources_cache(sender, instance, **kwargs):
         (not kwargs['created'] or kwargs['raw'])):
         return
 
-    lang, proj, dir, fn = split_pootle_path(instance.pootle_path)
+    proj = split_pootle_path(instance.pootle_path)[1]
     if proj is not None:
         cache.delete(make_method_key(Project, 'resources', proj))
 

@@ -167,8 +167,7 @@ def set_resource(request, path_obj, dir_path, filename):
             directory = obj_directory
 
     if is_404:  # Try parent directory
-        language_code, project_code, dp, fn = \
-            split_pootle_path(clean_pootle_path)
+        language_code, project_code = split_pootle_path(clean_pootle_path)[:2]
         if not filename:
             dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
 

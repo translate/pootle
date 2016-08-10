@@ -22,7 +22,7 @@ def make_empty_directories_obsolete(apps, schema_editor):
     for d in Directory.objects.filter(child_stores__isnull=True,
                                       child_dirs__isnull=True,
                                       obsolete=False):
-        lang_code, prj_code, dir_path, fname = split_pootle_path(d.pootle_path)
+        lang_code, prj_code, dir_path = split_pootle_path(d.pootle_path)[:3]
 
         # makeobsolete translation project directories and lower
         # and do not touch language and project directories

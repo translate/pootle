@@ -131,7 +131,7 @@ class Directory(models.Model, CachedTreeItem):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
-        lang, proj, dir, fn = split_pootle_path(self.pootle_path)
+        lang, proj, dir = split_pootle_path(self.pootle_path)[:3]
 
         if lang and proj:
             pattern_name = 'pootle-tp-translate'

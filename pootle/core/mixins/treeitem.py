@@ -439,7 +439,7 @@ class CachedTreeItem(TreeItem):
             if path == '/':
                 return True
 
-            lang, prj, dir, file = split_pootle_path(path)
+            prj = split_pootle_path(path)[1]
             key = self.get_cachekey()
 
             return key in path or path in key or key in '/projects/%s/' % prj
