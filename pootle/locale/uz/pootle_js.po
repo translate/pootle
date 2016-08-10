@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-07-07 10:40+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,19 +102,19 @@ msgid "Plural Equation"
 msgstr "Ko‘plik ifodasi"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:143
+#: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Saqlash"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
-#: static/js/admin/components/Project/ProjectForm.js:147
+#: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
 msgstr "Umumiy ko‘rinishi"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:149
+#: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
 msgstr "Huquqlar"
 
@@ -160,35 +160,36 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Sifatini tekshirish"
 
-#: static/js/admin/components/Project/ProjectForm.js:83
-msgid "File Type"
+#: static/js/admin/components/Project/ProjectForm.js:84
+#, fuzzy
+msgid "File types"
 msgstr "Fayl turi"
 
-#: static/js/admin/components/Project/ProjectForm.js:93
+#: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
 msgstr "Loyiha daraxt uslubi"
 
-#: static/js/admin/components/Project/ProjectForm.js:103
+#: static/js/admin/components/Project/ProjectForm.js:104
 msgid "Source Language"
 msgstr "Manba til"
 
-#: static/js/admin/components/Project/ProjectForm.js:110
+#: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
 msgstr "Fayllarni e’tiborsiz qoldirish"
 
-#: static/js/admin/components/Project/ProjectForm.js:118
+#: static/js/admin/components/Project/ProjectForm.js:119
 msgid "String Errors Contact"
 msgstr "Kontakt xatoliklari qatori"
 
-#: static/js/admin/components/Project/ProjectForm.js:125
+#: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
 msgstr "Ekran rasmi qidiruvi old qo‘shimchasi"
 
-#: static/js/admin/components/Project/ProjectForm.js:133
+#: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
 msgstr "O‘chirilgan"
 
-#: static/js/admin/components/Project/ProjectForm.js:148
+#: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Tillar"
 
@@ -519,18 +520,22 @@ msgstr "Obbo..."
 msgid "Social Verification"
 msgstr "Ijtimoiy tasdiqlash"
 
-#: static/js/browser/components/TopContributors.js:17
-msgid "+%(score)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:39
-msgid "#%(position)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:62
+#: static/js/browser/components/Stats.js:54
 #, fuzzy
 msgid "More..."
 msgstr "Koʻproq"
+
+#: static/js/browser/components/Stats.js:67
+msgid "Top Contributors for the Last 30 Days"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:31
+msgid "#%(position)s"
+msgstr ""
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -625,19 +630,19 @@ msgstr "Ko‘rish uchun orqaga qaytish"
 msgid "Reload page"
 msgstr "Sahifani qayta yuklash"
 
-#: static/js/editor/app.js:1861 static/js/editor/app.js:629
+#: static/js/editor/app.js:1866 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Natijalarsiz."
 
-#: static/js/editor/app.js:2198
+#: static/js/editor/app.js:2203
 msgid "some anonymous user"
 msgstr "anonim foydalanuvchi"
 
-#: static/js/editor/app.js:2200
+#: static/js/editor/app.js:2205
 msgid "someone"
 msgstr "kimdir"
 
-#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
+#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
 msgid "Similar translations"
 msgstr "Bir xil tarjimalar"
 
@@ -743,23 +748,23 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
-#: static/js/shared/components/FormSelectInput.js:38
+#: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
 msgstr "Barchasini tozalash"
 
-#: static/js/shared/components/FormSelectInput.js:39
+#: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
 msgstr "Qiymatni tozalash"
 
-#: static/js/shared/components/FormSelectInput.js:40
+#: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
 msgstr "Hech qanday natija topilmadi"
 
-#: static/js/shared/components/FormSelectInput.js:42
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
 msgstr "Tanlash..."
 
-#: static/js/shared/components/FormSelectInput.js:43
+#: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
 msgstr "Izlash uchun yozing"
 

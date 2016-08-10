@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-08-06 12:07+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -236,24 +236,31 @@ msgstr "'%s' を作成できませんでした。プロジェクト/言語があ
 msgid "There was an error uploading your file"
 msgstr "ファイルのアップロード中にエラーが発生しました"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "言語コードが ISO の慣例に従っていません"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "ソース言語"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" はプロジェクトコードとして使用できません"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "パスワード"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "LinkedIn の正しいユーザプロファイル URL を入力してください。"
 
@@ -711,23 +718,23 @@ msgstr "検索"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "検索 (Ctrl+Shift+S)<br/>検索語を入力して Enter キーを押してください"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "完全一致"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "ソーステキスト"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "ターゲットテキスト"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "コメント"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "位置"
 
@@ -772,47 +779,43 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "品質チェック"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "ファイル形式"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "GNU / 非 GNU ファイルレイアウトの自動判別 (遅め)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "GNU スタイル: 言語コードによるファイル名"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "非 GNU: 言語ごとにディレクトリを作成"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr "pootle_fs にファイルシステムの管理を許可する"
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "プロジェクトの階層スタイル"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "無視ファイル"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr "エラーレポートのメール"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "An email address where issues with the source text can be reported."
 msgstr "原文の問題を報告できるメールアドレス。"
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr "スクリーンショット検索の接頭辞"
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr "無効"
 
@@ -862,42 +865,6 @@ msgstr "翻訳モードへのアクセスに必要な権限がありません。
 msgid "Insufficient rights to access review mode."
 msgstr "査読モードへのアクセスに必要な権限がありません。"
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "Gettext PO"
-
-#: apps/pootle_store/filetypes.py:23
-msgid "XLIFF (.xlf)"
-msgstr "XLIFF (.xlf)"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr "XLIFF (.xliff)"
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Haiku catkey"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "Excel カンマ区切り (CSV)"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr "Mozilla .lang"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -920,27 +887,27 @@ msgstr "`similarity` の値は [0..1] の範囲内でなければなりません
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "`mt_similarity` の値は [0..1] の範囲内でなければなりません"
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr "要修正フラグを消去してください"
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "翻訳者によるコメント"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "留保"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "採用"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "却下"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "パス"
 
@@ -1073,12 +1040,12 @@ msgstr "日付"
 msgid "Description"
 msgstr "説明"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr "ユーザ %s が見つかりません"
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr "要求メソッドが正しくありません"
 
@@ -1559,9 +1526,10 @@ msgstr "最終更新日"
 msgid "Suggestions"
 msgstr "提案"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "要翻訳"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "不完全"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1575,11 +1543,11 @@ msgstr "言語ページへ戻る"
 msgid "Back to parent folder"
 msgstr "親フォルダへ戻る"
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "このページにアクセスする十分な権限がありません。"
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle の管理権限がありません。"
 
@@ -1604,10 +1572,6 @@ msgstr "ユーザーがありません"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "すべて"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "不完全"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2100,10 +2064,6 @@ msgstr "提案の査読"
 msgid "Continue translation"
 msgstr "翻訳続行"
 
-#: templates/browser/_actions.html:37
-msgid "Needs translation"
-msgstr "翻訳が必要"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr "すべて表示"
@@ -2139,23 +2099,19 @@ msgstr "誤りの確認"
 msgid "Less..."
 msgstr "減らす..."
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-msgid "Top Contributors for the Last 30 Days"
-msgstr "最近 30 日間の上位の貢献者たち"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 msgid "Updates"
 msgstr "更新"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 msgid "Last action:"
 msgstr "最終操作:"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 msgid "Translations"
 msgstr "訳文"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
@@ -2164,15 +2120,15 @@ msgstr ""
 "統計データの有効期限切れです。統計データの問題への対処は <a href="
 "\"%(docs_url)s\">ドキュメント</a> を参照してください。"
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr "このページの統計データは有効期限切れです。"
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr "今すぐ更新"
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "このプロジェクトは無効化されており、管理者しか閲覧できません。"
 
@@ -2911,6 +2867,46 @@ msgstr "あなたも参加してください！"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "サインイン"
+
+#: templates/welcome.html:32
+msgid "Top Contributors for the Last 30 Days"
+msgstr "最近 30 日間の上位の貢献者たち"
+
+#~ msgid "File Type"
+#~ msgstr "ファイル形式"
+
+#~ msgid "Gettext PO"
+#~ msgstr "Gettext PO"
+
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "XLIFF (.xlf)"
+
+#~ msgid "XLIFF (.xliff)"
+#~ msgstr "XLIFF (.xliff)"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Haiku catkey"
+
+#~ msgid "Excel CSV"
+#~ msgstr "Excel カンマ区切り (CSV)"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr "Mozilla .lang"
+
+#~ msgid "Need Translation"
+#~ msgstr "要翻訳"
+
+#~ msgid "Needs translation"
+#~ msgstr "翻訳が必要"
 
 #~ msgid ""
 #~ "This site is running Pootle &mdash; powerful web software to empower "

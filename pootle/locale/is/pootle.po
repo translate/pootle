@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2015-08-25 21:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,24 +234,31 @@ msgstr ""
 msgid "There was an error uploading your file"
 msgstr "Getur halað upp skrár og yfirskrifað þýðingar"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "Tungumálakóði fylgir ekki ISO reglum"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "Upphaflegt tungumál"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" er ekki hægt að nota sem verkefnakóða"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "Lykilorð"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
@@ -717,23 +724,23 @@ msgstr "Leit"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Leit (Ctrl+Shift+S)<br/>Skrifaðu og ýttu á Enter til að leita"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "Nákvæm samsvörun"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "Frumtexti"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "Þýðingartexti"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "Athugasemdir"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "Staðsetningar"
 
@@ -778,48 +785,44 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Gæða athuganir"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "Skráar tegund"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Sjálfvirk uppgötvun (hægvirkt)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "GNU stíll: skrár eftir tungumálakóða"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Ekki GNU stíll: Hvert tungumál í sér möppu"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "Greinastíll verkefnis"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "Hunsa skrár"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "An email address where issues with the source text can be reported."
 msgstr "Tölvupóstfang þar sem hægt er að tilkynna um vandamál með frumtexta."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr "Óvirkt"
 
@@ -867,43 +870,6 @@ msgstr "Ekki næg réttindi fyrir aðgang að þýðingarham."
 msgid "Insufficient rights to access review mode."
 msgstr ""
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "Gettext PO"
-
-#: apps/pootle_store/filetypes.py:23
-#, fuzzy
-msgid "XLIFF (.xlf)"
-msgstr "XLIFF skrá"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "Excel CSV"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr "Mozilla .lang"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -926,27 +892,27 @@ msgstr ""
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "Athugasemd þýðanda"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "Í bið"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "Samþykkt"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "Slóð"
 
@@ -1081,12 +1047,12 @@ msgstr "Dagsetning"
 msgid "Description"
 msgstr "Lýsing"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr "Notandinn %s finnst ekki."
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr ""
 
@@ -1541,9 +1507,10 @@ msgstr "Síðast uppfært"
 msgid "Suggestions"
 msgstr "Tillögur"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "Vantar þýðingu"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "Óklárað"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1557,11 +1524,11 @@ msgstr "Aftur á síðu tungumáls"
 msgid "Back to parent folder"
 msgstr "Til baka í yfirmöppu"
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "Ónógar heimildir til að fá aðgang að þessari síðu."
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Þú hefur ekki réttindi til að stjórna Pootle."
 
@@ -1586,10 +1553,6 @@ msgstr "Notanda vantar"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "Allt"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "Óklárað"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2081,11 +2044,6 @@ msgstr "Yfirfara tillögur"
 msgid "Continue translation"
 msgstr "Halda áfram með þýðingu"
 
-#: templates/browser/_actions.html:37
-#, fuzzy
-msgid "Needs translation"
-msgstr "Vantar þýðingu"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr "Skoða allt"
@@ -2121,42 +2079,37 @@ msgstr "Fell á prófi"
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-#, fuzzy
-msgid "Top Contributors for the Last 30 Days"
-msgstr "Bestu þátttakendur"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 #, fuzzy
 msgid "Updates"
 msgstr "Uppfæra"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 #, fuzzy
 msgid "Last action:"
 msgstr "Síðasta aðgerð"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 #, fuzzy
 msgid "Translations"
 msgstr "Þýðing"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr "Endurlesa núna"
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2878,6 +2831,46 @@ msgstr "Gakktu til liðs við okkur!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Skrá inn"
+
+#: templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
+msgstr "Bestu þátttakendur"
+
+#~ msgid "File Type"
+#~ msgstr "Skráar tegund"
+
+#~ msgid "Gettext PO"
+#~ msgstr "Gettext PO"
+
+#, fuzzy
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "XLIFF skrá"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Haiku catkeys"
+
+#~ msgid "Excel CSV"
+#~ msgstr "Excel CSV"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr "Mozilla .lang"
+
+#~ msgid "Need Translation"
+#~ msgstr "Vantar þýðingu"
+
+#, fuzzy
+#~ msgid "Needs translation"
+#~ msgstr "Vantar þýðingu"
 
 #~ msgid ""
 #~ "This site is running Pootle &mdash; powerful web software to empower "

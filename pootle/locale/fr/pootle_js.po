@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-07-20 16:04+0000\n"
 "Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,19 +104,19 @@ msgid "Plural Equation"
 msgstr "Équation du pluriel"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:143
+#: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Sauvegarder"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
-#: static/js/admin/components/Project/ProjectForm.js:147
+#: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
 msgstr "Vue d'ensemble"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:149
+#: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
 msgstr "Permissions"
 
@@ -165,36 +165,37 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Vérifications de la qualité"
 
-#: static/js/admin/components/Project/ProjectForm.js:83
-msgid "File Type"
+#: static/js/admin/components/Project/ProjectForm.js:84
+#, fuzzy
+msgid "File types"
 msgstr "Type de fichier"
 
-#: static/js/admin/components/Project/ProjectForm.js:93
+#: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
 msgstr "Style d'arborescence du projet"
 
-#: static/js/admin/components/Project/ProjectForm.js:103
+#: static/js/admin/components/Project/ProjectForm.js:104
 msgid "Source Language"
 msgstr "Langue source"
 
-#: static/js/admin/components/Project/ProjectForm.js:110
+#: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
 msgstr "Ignorer fichiers"
 
-#: static/js/admin/components/Project/ProjectForm.js:118
+#: static/js/admin/components/Project/ProjectForm.js:119
 msgid "String Errors Contact"
 msgstr "Contact pour les erreurs dans les chaînes de caractères"
 
 # Je ne suis pas sûr de moi !!
-#: static/js/admin/components/Project/ProjectForm.js:125
+#: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
 msgstr "Préfixe de recherche des copies d'écran"
 
-#: static/js/admin/components/Project/ProjectForm.js:133
+#: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
 msgstr "Désactivé"
 
-#: static/js/admin/components/Project/ProjectForm.js:148
+#: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Langues"
 
@@ -531,18 +532,22 @@ msgstr "Oups..."
 msgid "Social Verification"
 msgstr "Vérification sociale"
 
-#: static/js/browser/components/TopContributors.js:17
-msgid "+%(score)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:39
-msgid "#%(position)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:62
+#: static/js/browser/components/Stats.js:54
 #, fuzzy
 msgid "More..."
 msgstr "Plus"
+
+#: static/js/browser/components/Stats.js:67
+msgid "Top Contributors for the Last 30 Days"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:31
+msgid "#%(position)s"
+msgstr ""
 
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
@@ -635,19 +640,19 @@ msgstr "Revenir à la navigation"
 msgid "Reload page"
 msgstr "Recharger la page"
 
-#: static/js/editor/app.js:1861 static/js/editor/app.js:629
+#: static/js/editor/app.js:1866 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Aucun résultat."
 
-#: static/js/editor/app.js:2198
+#: static/js/editor/app.js:2203
 msgid "some anonymous user"
 msgstr "un certain utilisateur anonyme"
 
-#: static/js/editor/app.js:2200
+#: static/js/editor/app.js:2205
 msgid "someone"
 msgstr "quelqu'un"
 
-#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
+#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
 msgid "Similar translations"
 msgstr "Traductions similaires"
 
@@ -752,23 +757,23 @@ msgstr "Ven"
 msgid "Sat"
 msgstr "Sam"
 
-#: static/js/shared/components/FormSelectInput.js:38
+#: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
 msgstr "Tout effacer"
 
-#: static/js/shared/components/FormSelectInput.js:39
+#: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
 msgstr "Effacer la valeur"
 
-#: static/js/shared/components/FormSelectInput.js:40
+#: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
-#: static/js/shared/components/FormSelectInput.js:42
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
 msgstr "Sélectionner..."
 
-#: static/js/shared/components/FormSelectInput.js:43
+#: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
 msgstr "Saisir pour rechercher"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-07-29 10:40+0000\n"
 "Last-Translator: chanson <84365252@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,19 +98,19 @@ msgid "Plural Equation"
 msgstr "复数表达式"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:143
+#: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "保存"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
-#: static/js/admin/components/Project/ProjectForm.js:147
+#: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
 msgstr "概览"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:149
+#: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
 msgstr "权限"
 
@@ -154,35 +154,36 @@ msgstr "使用搜索表格来查找项目，然后点击一个项目以编辑。
 msgid "Quality Checks"
 msgstr "质量检查"
 
-#: static/js/admin/components/Project/ProjectForm.js:83
-msgid "File Type"
+#: static/js/admin/components/Project/ProjectForm.js:84
+#, fuzzy
+msgid "File types"
 msgstr "文件类型"
 
-#: static/js/admin/components/Project/ProjectForm.js:93
+#: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
 msgstr "项目树样式"
 
-#: static/js/admin/components/Project/ProjectForm.js:103
+#: static/js/admin/components/Project/ProjectForm.js:104
 msgid "Source Language"
 msgstr "源语言"
 
-#: static/js/admin/components/Project/ProjectForm.js:110
+#: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
 msgstr "忽略文件"
 
-#: static/js/admin/components/Project/ProjectForm.js:118
+#: static/js/admin/components/Project/ProjectForm.js:119
 msgid "String Errors Contact"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:125
+#: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
 msgstr "屏幕截图搜索前缀"
 
-#: static/js/admin/components/Project/ProjectForm.js:133
+#: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
 msgstr "已禁用"
 
-#: static/js/admin/components/Project/ProjectForm.js:148
+#: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "语言"
 
@@ -499,18 +500,22 @@ msgstr "Oops..."
 msgid "Social Verification"
 msgstr ""
 
-#: static/js/browser/components/TopContributors.js:17
-msgid "+%(score)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:39
-msgid "#%(position)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:62
+#: static/js/browser/components/Stats.js:54
 #, fuzzy
 msgid "More..."
 msgstr "更多"
+
+#: static/js/browser/components/Stats.js:67
+msgid "Top Contributors for the Last 30 Days"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:31
+msgid "#%(position)s"
+msgstr ""
 
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
@@ -603,19 +608,19 @@ msgstr "返回浏览"
 msgid "Reload page"
 msgstr "重新载入页面"
 
-#: static/js/editor/app.js:1861 static/js/editor/app.js:629
+#: static/js/editor/app.js:1866 static/js/editor/app.js:629
 msgid "No results."
 msgstr "没有结果。"
 
-#: static/js/editor/app.js:2198
+#: static/js/editor/app.js:2203
 msgid "some anonymous user"
 msgstr "一些匿名用户"
 
-#: static/js/editor/app.js:2200
+#: static/js/editor/app.js:2205
 msgid "someone"
 msgstr "某人"
 
-#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
+#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
 msgid "Similar translations"
 msgstr "类似的翻译"
 
@@ -721,23 +726,23 @@ msgstr "星期五"
 msgid "Sat"
 msgstr "星期六"
 
-#: static/js/shared/components/FormSelectInput.js:38
+#: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
 msgstr "全部清除"
 
-#: static/js/shared/components/FormSelectInput.js:39
+#: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
 msgstr "清除值"
 
-#: static/js/shared/components/FormSelectInput.js:40
+#: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
 msgstr "未找到结果"
 
-#: static/js/shared/components/FormSelectInput.js:42
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
 msgstr "选择..."
 
-#: static/js/shared/components/FormSelectInput.js:43
+#: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
 msgstr "输入进行搜索"
 

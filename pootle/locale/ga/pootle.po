@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2014-06-18 14:37+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -240,24 +240,31 @@ msgstr "Níorbh fhéidir '%s' a chruthú. Tionscadal/Teanga ar iarraidh? (%s)"
 msgid "There was an error uploading your file"
 msgstr "Tharla earráid agus do chomhad á uaslódáil"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "Ní ghéilleann an cód teanga don chaighdeán ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "Bunteanga"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "Ní féidir \"%s\" a úsáid mar chód tionscadail"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "Focal Faire"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "Cuir isteach URL bailí don phróifíl LinkedIn."
 
@@ -723,23 +730,23 @@ msgstr "Cuardaigh"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Cuardach (Ctrl+Shift+S)<br/>Clóscríobh agus brúigh Enter le cuardach"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "Toradh Beacht"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "Téacs Foinseach"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "Téacs Sprice"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "Nótaí Tráchta"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "Suíomhanna"
 
@@ -784,48 +791,44 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Deimhnithe Cáilíochta"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "Cineál Comhaid"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Brath uathoibríoch ar fhormáidí GNU/neamh-GNU (níos moille)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "Nós GNU: úsáíd cód teanga mar ainm comhaid"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Neamh-GNU: Cuir gach teanga ina chomhadlann féin"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr "Lig do pootle_fs córais comhad a bhainistiú"
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "Stíl Chrainn an Tionscadail"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "Déan Neamhaird de Chomhaid"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr "Ríomhphost do Thuairiscí Earráide"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Seoladh ríomhphoist a seolfar tuariscí faoi fhadhbanna sa mbunteanga chuige."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr "Réimír Chuardaigh do Phictiúir"
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr "Díchumasaithe"
 
@@ -875,42 +878,6 @@ msgstr "Níl cead agat mód aistrithe a chur ar siúl."
 msgid "Insufficient rights to access review mode."
 msgstr "Níl cead agat mód athbhreithnithe a chur ar siúl."
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "Gettext PO"
-
-#: apps/pootle_store/filetypes.py:23
-msgid "XLIFF (.xlf)"
-msgstr "XLIFF (.xlf)"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr "XLIFF (.xliff)"
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "Excel CSV"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr ".lang Mozilla"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -933,27 +900,27 @@ msgstr "Ba chóir don luach `similarity` a bheith sa raon [0..1]"
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "Ba chóir don luach `mt_similarity` a bheith sa raon [0..1]"
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr "Is gá an bhratach Le Deimhniú a ghlanadh"
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "Trácht de chuid an aistritheora"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "Ar Feitheamh"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "Glactha"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "Diúltaithe"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "Cosán"
 
@@ -1086,12 +1053,12 @@ msgstr "Dáta"
 msgid "Description"
 msgstr "Cur Síos"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr "Úsáideoir %s gan aimsiú"
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr "Modh iarratais neamhbhailí"
 
@@ -1568,9 +1535,10 @@ msgstr "Athraithe"
 msgid "Suggestions"
 msgstr "Moltaí"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "Tá aistriúchán de dhíth"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "Neamhchríochnaithe"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1584,11 +1552,11 @@ msgstr "Fill ar an teanga"
 msgid "Back to parent folder"
 msgstr "Fill ar an máthairfhillteán"
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "Níl dóthain cearta agat chun an leathanach seo a rochtain."
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Níl cearta agat Pootle chun a bhainistiú."
 
@@ -1613,10 +1581,6 @@ msgstr "Tá an duine seo ar iarraidh"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "Uile"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "Neamhchríochnaithe"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2113,10 +2077,6 @@ msgstr "Athbhreithnigh na moltaí"
 msgid "Continue translation"
 msgstr "Lean ort ag aistriú"
 
-#: templates/browser/_actions.html:37
-msgid "Needs translation"
-msgstr "Aistriúchán de dhíth"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr "Taispeáin uile"
@@ -2153,23 +2113,19 @@ msgstr "Fadhbanna"
 msgid "Less..."
 msgstr "níos lú..."
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-msgid "Top Contributors for the Last 30 Days"
-msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 msgid "Updates"
 msgstr "Nuashonruithe"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 msgid "Last action:"
 msgstr "An gníomh is déanaí:"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 msgid "Translations"
 msgstr "Aistriúcháin"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
@@ -2178,15 +2134,15 @@ msgstr ""
 "Tá na staitisticí as dáta. Féach ar an <a href=\"%(docs_url)s\">doiciméadú</"
 "a> chun déileáil le fadhbanna den sórt seo."
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr "Seans go bhfuil na staitisticí ar an leathanach seo as dáta."
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr "Athnuaigh anois"
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 "Tá an tionscadal seo díchumasaithe agus is é riarthóirí amháin atá in ann é "
@@ -2956,6 +2912,46 @@ msgstr "Bí linn!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Logáil isteach"
+
+#: templates/welcome.html:32
+msgid "Top Contributors for the Last 30 Days"
+msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
+
+#~ msgid "File Type"
+#~ msgstr "Cineál Comhaid"
+
+#~ msgid "Gettext PO"
+#~ msgstr "Gettext PO"
+
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "XLIFF (.xlf)"
+
+#~ msgid "XLIFF (.xliff)"
+#~ msgstr "XLIFF (.xliff)"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Haiku catkeys"
+
+#~ msgid "Excel CSV"
+#~ msgstr "Excel CSV"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr ".lang Mozilla"
+
+#~ msgid "Need Translation"
+#~ msgstr "Tá aistriúchán de dhíth"
+
+#~ msgid "Needs translation"
+#~ msgstr "Aistriúchán de dhíth"
 
 #~ msgid "more..."
 #~ msgstr "níos mó..."

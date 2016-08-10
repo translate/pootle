@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-07-02 02:36+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,19 +102,19 @@ msgid "Plural Equation"
 msgstr "Уравнение на мн. форма"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:143
+#: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr "Запазване"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
-#: static/js/admin/components/Project/ProjectForm.js:147
+#: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
 msgstr "Обобщение"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:149
+#: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
 msgstr "Права"
 
@@ -161,35 +161,36 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Критерии за качество"
 
-#: static/js/admin/components/Project/ProjectForm.js:83
-msgid "File Type"
+#: static/js/admin/components/Project/ProjectForm.js:84
+#, fuzzy
+msgid "File types"
 msgstr "Вид на файла"
 
-#: static/js/admin/components/Project/ProjectForm.js:93
+#: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:103
+#: static/js/admin/components/Project/ProjectForm.js:104
 msgid "Source Language"
 msgstr "Изходен език"
 
-#: static/js/admin/components/Project/ProjectForm.js:110
+#: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:118
+#: static/js/admin/components/Project/ProjectForm.js:119
 msgid "String Errors Contact"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:125
+#: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:133
+#: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
 msgstr "Изключен"
 
-#: static/js/admin/components/Project/ProjectForm.js:148
+#: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Езици"
 
@@ -513,18 +514,22 @@ msgstr ""
 msgid "Social Verification"
 msgstr ""
 
-#: static/js/browser/components/TopContributors.js:17
-msgid "+%(score)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:39
-msgid "#%(position)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributors.js:62
+#: static/js/browser/components/Stats.js:54
 #, fuzzy
 msgid "More..."
 msgstr "Още"
+
+#: static/js/browser/components/Stats.js:67
+msgid "Top Contributors for the Last 30 Days"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:17
+msgid "+%(score)s"
+msgstr ""
+
+#: static/js/browser/components/TopContributorsTable.js:31
+msgid "#%(position)s"
+msgstr ""
 
 #: static/js/browser/components/VisibilityToggle.js:52
 #, fuzzy
@@ -619,19 +624,19 @@ msgstr "Назад към обобщението"
 msgid "Reload page"
 msgstr "Презареждане"
 
-#: static/js/editor/app.js:1861 static/js/editor/app.js:629
+#: static/js/editor/app.js:1866 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Няма резултати."
 
-#: static/js/editor/app.js:2198
+#: static/js/editor/app.js:2203
 msgid "some anonymous user"
 msgstr "анонимен потребител"
 
-#: static/js/editor/app.js:2200
+#: static/js/editor/app.js:2205
 msgid "someone"
 msgstr "някой"
 
-#: static/js/editor/app.js:2218 static/js/editor/app.js:2267
+#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
 msgid "Similar translations"
 msgstr "Подобни преводи"
 
@@ -737,23 +742,23 @@ msgstr ""
 msgid "Sat"
 msgstr ""
 
-#: static/js/shared/components/FormSelectInput.js:38
+#: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
 msgstr "Изчистване на всичко"
 
-#: static/js/shared/components/FormSelectInput.js:39
+#: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
 msgstr "Изчистване на стойността"
 
-#: static/js/shared/components/FormSelectInput.js:40
+#: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
 msgstr "Няма резултати"
 
-#: static/js/shared/components/FormSelectInput.js:42
+#: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
 msgstr "Избиране…"
 
-#: static/js/shared/components/FormSelectInput.js:43
+#: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
 msgstr "Въвеждайте за търсете"
 

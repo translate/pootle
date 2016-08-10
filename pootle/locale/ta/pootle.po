@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2015-09-29 19:03+0000\n"
 "Last-Translator: வே. இளஞ்செழியன் <tamiliam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,24 +234,31 @@ msgstr ""
 msgid "There was an error uploading your file"
 msgstr "மொழிப்பெயர்ப்பு கோப்புக்களை திருத்தம் செய்து பதிவேற்றம் செய்யலாம்"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "ISO மரபை இம்மொழிக்குறியீடு ஏற்கவில்லை"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "மூல மொழி"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr ""
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "கடவுச்சொல்"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
@@ -715,23 +722,23 @@ msgstr "தேடு"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "மூல உரை"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "இலக்கு உரை"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "கருத்துரைகள்"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "இடங்கள்"
 
@@ -776,49 +783,45 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "தர ஆய்வு"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "கோப்பு வகை"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "தானியங்கி கண்டறிதல் (மெதுவாக)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "ஜிஎன்யு நடை; கோப்புக்கள் மொழிக்குறியீடுகளால் பெயரிடப்பட்டள்ளது"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "ஜிஎன்யு அல்லாத; ஒவ்வொரு மொழியும் தத்தம் கோப்பகத்தில் உள்ளது "
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "திட்ட கிளை நடை"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "கோப்புகளை புறக்கணி "
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr "ஒரு URL அல்லது மின்னஞ்சல் முகவரியை அங்கு மூல உரை சிக்கல்களை அறிக்கை."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr ""
 
@@ -867,43 +870,6 @@ msgstr "இம்மொழிபெயர்ப்பு திட்டத�
 msgid "Insufficient rights to access review mode."
 msgstr ""
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "உரையை வாங்கு பிஓ"
-
-#: apps/pootle_store/filetypes.py:23
-#, fuzzy
-msgid "XLIFF (.xlf)"
-msgstr "XLIFF கோப்பு"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "க்யூடி டிஎஸ் (Qt ts)"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "டிஎம்எக்ஸ் (TMX)"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "டிபிஎக்ஸ் (TBX)"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "ஐக்யூ காட்சாவிகள் "
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr ""
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -926,27 +892,27 @@ msgstr ""
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "மொழி பெயர்ப்பாளர் கருத்துரைகள்"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "நிலுவை"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "ஏற்கப்பட்டது"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "ஒதுக்கப்பட்டது"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "பாதை"
 
@@ -1081,12 +1047,12 @@ msgstr ""
 msgid "Description"
 msgstr "விவரம்"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr ""
 
@@ -1535,9 +1501,10 @@ msgstr ""
 msgid "Suggestions"
 msgstr "அலோசனைகள் "
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "மொழிபெயர்ப்பு தெவை"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "முழுமையடையாதது"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1552,11 +1519,11 @@ msgstr "மீண்டும் முதன்மை பக்கத்தி�
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr ""
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "உமக்கு பூட்டலை நிர்வகிக்க அனுமதியில்லை."
 
@@ -1581,10 +1548,6 @@ msgstr ""
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "அனைத்தும்"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "முழுமையடையாதது"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2088,11 +2051,6 @@ msgstr "முன் மொழிவுகளை மீள்பார்வை�
 msgid "Continue translation"
 msgstr "மொழி பெயர்ப்புக்குள் நகலெடு"
 
-#: templates/browser/_actions.html:37
-#, fuzzy
-msgid "Needs translation"
-msgstr "மொழிபெயர்ப்பு தெவை"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr ""
@@ -2128,42 +2086,37 @@ msgstr "தவறுகின்ற ஆய்வுகள்"
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-#, fuzzy
-msgid "Top Contributors for the Last 30 Days"
-msgstr "அதிக பங்களித்தவர்"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 #, fuzzy
 msgid "Updates"
 msgstr "இற்றைப்படுத்து (Update)"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 #, fuzzy
 msgid "Last action:"
 msgstr "கடைசி செயல்"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 #, fuzzy
 msgid "Translations"
 msgstr "மொழி பெயர்ப்பு"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2894,6 +2847,40 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr " செயற்பாட்டை வழங்கு"
+
+#: templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
+msgstr "அதிக பங்களித்தவர்"
+
+#~ msgid "File Type"
+#~ msgstr "கோப்பு வகை"
+
+#~ msgid "Gettext PO"
+#~ msgstr "உரையை வாங்கு பிஓ"
+
+#, fuzzy
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "XLIFF கோப்பு"
+
+#~ msgid "Qt ts"
+#~ msgstr "க்யூடி டிஎஸ் (Qt ts)"
+
+#~ msgid "TMX"
+#~ msgstr "டிஎம்எக்ஸ் (TMX)"
+
+#~ msgid "TBX"
+#~ msgstr "டிபிஎக்ஸ் (TBX)"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "ஐக்யூ காட்சாவிகள் "
+
+#~ msgid "Need Translation"
+#~ msgstr "மொழிபெயர்ப்பு தெவை"
+
+#, fuzzy
+#~ msgid "Needs translation"
+#~ msgstr "மொழிபெயர்ப்பு தெவை"
 
 #~ msgid ""
 #~ "This site is running Pootle &mdash; powerful web software to empower "

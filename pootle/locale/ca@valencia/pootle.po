@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2013-12-23 10:46+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Softcatalà\n"
@@ -238,24 +238,31 @@ msgstr ""
 msgid "There was an error uploading your file"
 msgstr "Pot sobreescriure les traduccions en pujar els fitxers"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "El codi de llengua no segueix la convenció ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "Llengua d'origen"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "No es pot utilitzar «%s» com a codi de projecte"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "Contrasenya"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
@@ -721,23 +728,23 @@ msgstr "Cerca"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Cerca (Ctrl+Maj+S)<br/>Escriviu i premeu Retorn per cercar"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "Coincidència exacta"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "Text d'origen"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "Text de destí"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "Comentaris"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "Ubicacions"
 
@@ -782,51 +789,47 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Comprovacions de qualitat"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "Tipus de fitxer"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Detecció automàtica (més lent)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "Estil GNU: els fitxers s'anomenen pel codi de llengua"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "No GNU: cada llengua en el seu propi directori"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "Estil d'arbre del projecte"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "Ignora els fitxers"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Un URL o una adreça electrònica des d'on es pot informar dels problemes amb "
 "el text d'origen."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr ""
 
@@ -878,43 +881,6 @@ msgstr "Permisos insuficients per a aquest projecte de traducció."
 msgid "Insufficient rights to access review mode."
 msgstr "No teniu permisos suficients per accedir a la pàgina."
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "PO Gettext"
-
-#: apps/pootle_store/filetypes.py:23
-#, fuzzy
-msgid "XLIFF (.xlf)"
-msgstr "Fitxer XLIFF"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "CSV d'Excel"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr ".lang de Mozilla"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -937,27 +903,27 @@ msgstr ""
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "Comentari del traductor"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "Pendent"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "Acceptada"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "Rebutjada"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "Camí"
 
@@ -1092,12 +1058,12 @@ msgstr ""
 msgid "Description"
 msgstr "Descripció"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr ""
 
@@ -1549,9 +1515,10 @@ msgstr "Darrera modificació"
 msgid "Suggestions"
 msgstr "Suggeriments"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "Cal traduir"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "Incomplets"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1566,11 +1533,11 @@ msgstr "Torna a la pàgina principal"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "No teniu permisos suficients per accedir a la pàgina."
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "No teniu permisos per administrar el Pootle."
 
@@ -1595,10 +1562,6 @@ msgstr "Hi manca l'usuari"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "Tots"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "Incomplets"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2105,11 +2068,6 @@ msgstr "Repassa els suggeriments"
 msgid "Continue translation"
 msgstr "Copia a la traducció"
 
-#: templates/browser/_actions.html:37
-#, fuzzy
-msgid "Needs translation"
-msgstr "Cal traduir"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr ""
@@ -2145,42 +2103,37 @@ msgstr "Comprovacions que han fallat"
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-#, fuzzy
-msgid "Top Contributors for the Last 30 Days"
-msgstr "Col·laboradors més actius"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 #, fuzzy
 msgid "Updates"
 msgstr "Actualitza"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 #, fuzzy
 msgid "Last action:"
 msgstr "Darrera activitat"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 #, fuzzy
 msgid "Translations"
 msgstr "Traducció"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2929,6 +2882,46 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Assigna una acció"
+
+#: templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
+msgstr "Col·laboradors més actius"
+
+#~ msgid "File Type"
+#~ msgstr "Tipus de fitxer"
+
+#~ msgid "Gettext PO"
+#~ msgstr "PO Gettext"
+
+#, fuzzy
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "Fitxer XLIFF"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Haiku catkeys"
+
+#~ msgid "Excel CSV"
+#~ msgstr "CSV d'Excel"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr ".lang de Mozilla"
+
+#~ msgid "Need Translation"
+#~ msgstr "Cal traduir"
+
+#, fuzzy
+#~ msgid "Needs translation"
+#~ msgstr "Cal traduir"
 
 #~ msgid ""
 #~ "This site is running Pootle &mdash; powerful web software to empower "

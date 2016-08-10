@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,24 +237,31 @@ msgstr "'%s'생성 할 수 없습니다. Project/Language 누락인가요? (%s)"
 msgid "There was an error uploading your file"
 msgstr "당신의 파일을 업로드 중 에러가 있었습니다"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "언어코드가 ISO 방식을 따르지 않습니다"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "원시 언어"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "\"%s\" 프로젝트 코드로 사용 될 수 없습니다"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "비밀번호"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "유효한 LinkedIn 사용자 프로필 URL을 입력해 주십시오."
 
@@ -721,23 +728,23 @@ msgstr "찾기"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "검색 (Ctrl+Shift+S)<br/>검색 하려면 입력하고 엔터를 누르세요"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "정확한 일치"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "원본 텍스트"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "타겟 텍스트"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "주석"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "위치"
 
@@ -780,48 +787,44 @@ msgstr "프로젝트를 위한 짧은 코드. ASCII 문자, 숫자, 밑줄(_)만
 msgid "Quality Checks"
 msgstr "품질 검사"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "파일 유형"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "자동 감지(느리게)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "GNU 스타일: 언어코드에 의해 이름 지어진 파일"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "비 GNU: 고유 디렉터리의 각 언어"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "프로젝트 트리 스타일"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "파일 무시"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr "에러 리포트 이메일"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "An email address where issues with the source text can be reported."
 msgstr "어디서나 이슈가 될수 있는 소식은 이메일 주소에 언급 될 수 있습니다."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr "스크린샷 찾기 접두사"
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr "사용 안 함"
 
@@ -869,42 +872,6 @@ msgstr "번역모드에 접근하기 위한 권한이 아닙니다."
 msgid "Insufficient rights to access review mode."
 msgstr "리뷰모드에 접근하기 위한 권한이 아닙니다."
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "Gettext PO"
-
-#: apps/pootle_store/filetypes.py:23
-msgid "XLIFF (.xlf)"
-msgstr "XLIFF (.xlf)"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr "XLIFF (.xliff)"
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Hailku catkeys"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "엑셀 CSV"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr "Mozilla .lang"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -927,27 +894,27 @@ msgstr "값 `유사성` 은 [0..1] 범위안에 있어야 한다"
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "값 `mt_similarity`는 [0..1] 범위안에 있어야 한다"
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr "작업표시를 없애야 합니다"
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "번역자 주석"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "대기 중"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "수락"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "거부됨"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "경로"
 
@@ -1080,12 +1047,12 @@ msgstr "날짜"
 msgid "Description"
 msgstr "설명"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr "사용자 %s 를 찾지 못 했습니다"
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr "잘못된 요청 방법입니다"
 
@@ -1550,9 +1517,10 @@ msgstr "최근 업데이트"
 msgid "Suggestions"
 msgstr "제안"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "번역이 필요함"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "완료되지 않은"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1566,11 +1534,11 @@ msgstr "언어로 돌아가기"
 msgid "Back to parent folder"
 msgstr "상위 폴더로 돌아가기"
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "이 페이지에 접근하기 위한 권한이 부족합니다."
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle을 관리할 권한이 없습니다."
 
@@ -1595,10 +1563,6 @@ msgstr "사용자없음"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "전부"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "완료되지 않은"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2092,11 +2056,6 @@ msgstr "제안 검토"
 msgid "Continue translation"
 msgstr "번역 계속"
 
-#: templates/browser/_actions.html:37
-#, fuzzy
-msgid "Needs translation"
-msgstr "번역이 필요함"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr "전체 보기"
@@ -2132,42 +2091,37 @@ msgstr "검사 실패"
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-#, fuzzy
-msgid "Top Contributors for the Last 30 Days"
-msgstr "기여자"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 #, fuzzy
 msgid "Updates"
 msgstr "업데이트"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 #, fuzzy
 msgid "Last action:"
 msgstr "마지막 활동"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 #, fuzzy
 msgid "Translations"
 msgstr "번역"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr "지금 새로고침"
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "이 프로젝트는 비활성되었고 관리자만 볼 수 있습니다."
 
@@ -2904,6 +2858,48 @@ msgstr "와서 우리와 함께 참여하세요!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "로그인"
+
+#: templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
+msgstr "기여자"
+
+#~ msgid "File Type"
+#~ msgstr "파일 유형"
+
+#~ msgid "Gettext PO"
+#~ msgstr "Gettext PO"
+
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "XLIFF (.xlf)"
+
+#~ msgid "XLIFF (.xliff)"
+#~ msgstr "XLIFF (.xliff)"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Hailku catkeys"
+
+#~ msgid "Excel CSV"
+#~ msgstr "엑셀 CSV"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr "Mozilla .lang"
+
+#~ msgid "Need Translation"
+#~ msgstr "번역이 필요함"
+
+#, fuzzy
+#~ msgid "Needs translation"
+#~ msgstr "번역이 필요함"
 
 #, fuzzy
 #~ msgid "more..."

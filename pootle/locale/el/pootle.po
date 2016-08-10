@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2015-10-01 14:51+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,24 +246,31 @@ msgstr "Αδύνατη η δημιουργία του '%s'. Λείπει το έ
 msgid "There was an error uploading your file"
 msgstr "Υπήρξε ένα σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "Ο κωδικός γλώσσας δεν ακολουθεί τη σύμβαση ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "Αρχική γλώσσα"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "Το \"%s\" δεν μπορεί να χρησιμοποιηθεί ως κώδικας έργου"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "Κωδικός πρόσβασης"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "Παρακαλούμε, εισάγετε ένα έγκυρο URL της κατατομής χρήστη LinkedIn."
 
@@ -731,23 +738,23 @@ msgstr ""
 "Αναζήτηση (Ctrl+Shift+S)<br/>Πληκτρολογήστε και έπειτα πατήστε εισαγωγή για "
 "αναζήτηση"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "Ακριβής συμφωνία"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "Αρχικό κείμενο"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "Τελικό κείμενο"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "Σχόλια"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "Τοποθεσίες"
 
@@ -792,50 +799,46 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Έλεγχοι ποιότητας"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "Τύπος αρχείου"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Αυτόματη ανίχνευση (πιο αργό)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "Τεχνοτροπία GNU: τα αρχεία ονομάζονται σύμφωνα με τον κωδικό γλώσσας"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Μη GNU: Κάθε γλώσσα στον δικό της κατάλογο"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "Τεχνοτροπία δένδρου έργου"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "Παράβλεψη αρχείων"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr "Μήνυμα αναφοράς σφαλμάτων"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Μια διεύθυνση αλληλογραφίας όπου θέματα με το πηγαίο κείμενο μπορούν να "
 "αναφερθούν."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr "Πρόθεμα αναζήτησης στιγμιοτύπου"
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr "Ανενεργό"
 
@@ -883,42 +886,6 @@ msgstr "Ανεπαρκή δικαιώματα για πρόσβαση στην �
 msgid "Insufficient rights to access review mode."
 msgstr "Ανεπαρκή δικαιώματα για πρόσβαση κατάστασης ελέγχου."
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "Gettext PO"
-
-#: apps/pootle_store/filetypes.py:23
-msgid "XLIFF (.xlf)"
-msgstr "XLIFF (.xlf)"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr "XLIFF (.xliff)"
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "Excel CSV"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr "Mozilla .lang"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -941,27 +908,27 @@ msgstr "Η τιμή `similarity (ομοιότητα)` πρέπει να είνα
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "Η τιμή `mt_similarity` πρέπει να είναι στην περιοχή [0..1]"
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr "Πρέπει να καθαριστεί η σημαία ασαφούς"
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "Σχόλιο μεταφραστή"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "Εκκρεμές"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "Αποδεκτό"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "Απορριπτέο"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "Διαδρομή"
 
@@ -1094,12 +1061,12 @@ msgstr "Ημερομηνία"
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr "Δε βρέθηκε ο χρήστης %s"
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr "Άκυρη μέθοδος ερωτήματος"
 
@@ -1584,9 +1551,10 @@ msgstr "Τελευταία ενημέρωση"
 msgid "Suggestions"
 msgstr "Προτάσεις"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "Χρειάζεται μετάφραση"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "Ατελές"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1600,11 +1568,11 @@ msgstr "Επιστροφή στη γλώσσα"
 msgid "Back to parent folder"
 msgstr "Επιστροφή στον γονικό φάκελο"
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "Ανεπαρκή δικαιώματα για πρόσβαση σε αυτήν τη σελίδα."
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Δεν έχετε δικαιώματα διαχείρισης του Pootle."
 
@@ -1629,10 +1597,6 @@ msgstr "Λείπει ο χρήστης"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "Όλα"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "Ατελές"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2137,11 +2101,6 @@ msgstr "Έλεγχος προτάσεων"
 msgid "Continue translation"
 msgstr "Συνέχιση μετάφρασης"
 
-#: templates/browser/_actions.html:37
-#, fuzzy
-msgid "Needs translation"
-msgstr "Χρειάζεται μετάφραση"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr "Προβολή όλων"
@@ -2177,42 +2136,37 @@ msgstr "Αποτυχημένοι έλεγχοι"
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-#, fuzzy
-msgid "Top Contributors for the Last 30 Days"
-msgstr "Κορυφαίοι συντελεστές"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 #, fuzzy
 msgid "Updates"
 msgstr "Ενημέρωση"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 #, fuzzy
 msgid "Last action:"
 msgstr "Τελευταία ενέργεια"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 #, fuzzy
 msgid "Translations"
 msgstr "Μετάφραση"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr "Ανανέωση τώρα"
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "Αυτό το έργο είναι ανενεργό και ορατό μόνο σε διαχειριστές."
 
@@ -2982,6 +2936,48 @@ msgstr "Ελάτε και συμμετάσχετε μαζί μας!"
 #: templates/welcome.html:19
 msgid "Sign in"
 msgstr "Σύνδεση"
+
+#: templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
+msgstr "Κορυφαίοι συντελεστές"
+
+#~ msgid "File Type"
+#~ msgstr "Τύπος αρχείου"
+
+#~ msgid "Gettext PO"
+#~ msgstr "Gettext PO"
+
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "XLIFF (.xlf)"
+
+#~ msgid "XLIFF (.xliff)"
+#~ msgstr "XLIFF (.xliff)"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Haiku catkeys"
+
+#~ msgid "Excel CSV"
+#~ msgstr "Excel CSV"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr "Mozilla .lang"
+
+#~ msgid "Need Translation"
+#~ msgstr "Χρειάζεται μετάφραση"
+
+#, fuzzy
+#~ msgid "Needs translation"
+#~ msgstr "Χρειάζεται μετάφραση"
 
 #, fuzzy
 #~ msgid "more..."

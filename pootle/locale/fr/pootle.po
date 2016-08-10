@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-01 16:39+0100\n"
+"POT-Creation-Date: 2016-08-10 17:32+0100\n"
 "PO-Revision-Date: 2016-07-20 15:45+0000\n"
 "Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -233,24 +233,31 @@ msgstr ""
 msgid "There was an error uploading your file"
 msgstr "Peut remplacer des traductions par envoi de fichiers"
 
-#: apps/pootle_app/forms.py:37
+#: apps/pootle_app/forms.py:36
 msgid "Language code does not follow the ISO convention"
 msgstr "Le code de langue ne suit pas la norme ISO"
 
-#: apps/pootle_app/forms.py:45 apps/pootle_project/models.py:214
+#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
 msgstr "Langue d'origine"
 
-#: apps/pootle_app/forms.py:94
+#: apps/pootle_app/forms.py:78
+#, python-format
+msgid ""
+"You cannot remove a file type from a Project, if there are Stores of that "
+"file type ('%s')"
+msgstr ""
+
+#: apps/pootle_app/forms.py:93
 #, python-format
 msgid "\"%s\" cannot be used as a project code"
 msgstr "« %s » ne peut être utilisé comme code de projet"
 
-#: apps/pootle_app/forms.py:101
+#: apps/pootle_app/forms.py:100
 msgid "Password"
 msgstr "Mot de passe"
 
-#: apps/pootle_app/forms.py:136 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:135 apps/pootle_profile/forms.py:27
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
@@ -720,23 +727,23 @@ msgstr ""
 "Rechercher (Ctrl+Maj+S)<br/>Saisissez du texte, puis appuyez sur Entrée pour "
 "rechercher"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:474
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
 msgstr "Correspondance exacte"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:480
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
 msgstr "Texte source"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:481
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
 msgstr "Texte cible"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:482
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
 msgstr "Commentaires"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:483
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:488
 msgid "Locations"
 msgstr "Emplacements"
 
@@ -781,51 +788,47 @@ msgstr ""
 msgid "Quality Checks"
 msgstr "Contrôles de qualité"
 
-#: apps/pootle_project/models.py:198
-msgid "File Type"
-msgstr "Type de fichier"
-
-#: apps/pootle_project/models.py:203
+#: apps/pootle_project/models.py:201
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Détection automatique (plus lent)"
 
-#: apps/pootle_project/models.py:204
+#: apps/pootle_project/models.py:202
 msgid "GNU style: files named by language code"
 msgstr "Style GNU : les fichiers sont nommés d'après le code de la langue"
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Non GNU : chaque langue utilise un sous-répertoire"
 
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:210
+#: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
 msgstr "Style de l'arborescence du projet"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:216
 msgid "Ignore Files"
 msgstr "Fichiers à ignorer"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Un URL ou une adresse électronique pour signaler des problèmes avec le texte "
 "source."
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:233
+#: apps/pootle_project/models.py:231
 msgid "Disabled"
 msgstr ""
 
@@ -877,43 +880,6 @@ msgstr "Permissions insuffisantes pour ce projet de traduction."
 msgid "Insufficient rights to access review mode."
 msgstr "Droits d'accès inssufisants pour acceder à cette page."
 
-#: apps/pootle_store/filetypes.py:19
-msgid "Gettext PO"
-msgstr "PO pour Gettext"
-
-#: apps/pootle_store/filetypes.py:23
-#, fuzzy
-msgid "XLIFF (.xlf)"
-msgstr "Fichier XLIFF"
-
-#: apps/pootle_store/filetypes.py:24
-msgid "XLIFF (.xliff)"
-msgstr ""
-
-#: apps/pootle_store/filetypes.py:30
-msgid "Qt ts"
-msgstr "Qt ts"
-
-#: apps/pootle_store/filetypes.py:36
-msgid "TMX"
-msgstr "TMX"
-
-#: apps/pootle_store/filetypes.py:42
-msgid "TBX"
-msgstr "TBX"
-
-#: apps/pootle_store/filetypes.py:48
-msgid "Haiku catkeys"
-msgstr "Haiku catkeys"
-
-#: apps/pootle_store/filetypes.py:55
-msgid "Excel CSV"
-msgstr "CSV Excel"
-
-#: apps/pootle_store/filetypes.py:61
-msgid "Mozilla .lang"
-msgstr ".lang Mozilla"
-
 #: apps/pootle_store/forms.py:130
 #: apps/pootle_store/templatetags/store_tags.py:165
 #: apps/pootle_store/templatetags/store_tags.py:182
@@ -936,27 +902,27 @@ msgstr ""
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:326
+#: apps/pootle_store/forms.py:331
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:387
+#: apps/pootle_store/forms.py:392
 msgid "Translator comment"
 msgstr "Commentaires du traducteur"
 
-#: apps/pootle_store/models.py:151
+#: apps/pootle_store/models.py:152
 msgid "Pending"
 msgstr "En attente"
 
-#: apps/pootle_store/models.py:152
+#: apps/pootle_store/models.py:153
 msgid "Accepted"
 msgstr "Accepté"
 
-#: apps/pootle_store/models.py:153
+#: apps/pootle_store/models.py:154
 msgid "Rejected"
 msgstr "Rejeté"
 
-#: apps/pootle_store/models.py:1372
+#: apps/pootle_store/models.py:1383
 msgid "Path"
 msgstr "Chemin"
 
@@ -1091,12 +1057,12 @@ msgstr ""
 msgid "Description"
 msgstr "Description"
 
-#: apps/reports/views.py:320
+#: apps/reports/views.py:324
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:397
+#: apps/reports/views.py:401
 msgid "Invalid request method"
 msgstr ""
 
@@ -1547,9 +1513,10 @@ msgstr ""
 msgid "Suggestions"
 msgstr "Suggestions"
 
-#: core/browser.py:65
-msgid "Need Translation"
-msgstr "Traduction nécessaire"
+#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: templates/editor/_filters.html:8
+msgid "Incomplete"
+msgstr "Incomplets"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1564,11 +1531,11 @@ msgstr "Revenir à la page principale"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:323 core/views.py:97
+#: core/decorators.py:322 core/views.py:97
 msgid "Insufficient rights to access this page."
 msgstr "Droits d'accès inssufisants pour acceder à cette page."
 
-#: core/decorators.py:336 core/views.py:108
+#: core/decorators.py:335 core/views.py:108
 msgid "You do not have rights to administer Pootle."
 msgstr "Vous n'avez pas les autorisations pour administrer Pootle."
 
@@ -1593,10 +1560,6 @@ msgstr "Nom d'utilisateur manquant"
 #: templates/editor/_filters.html:6
 msgid "All"
 msgstr "Tous"
-
-#: core/helpers.py:50 templates/editor/_filters.html:8
-msgid "Incomplete"
-msgstr "Incomplets"
 
 #: core/helpers.py:53 templates/editor/_filters.html:18
 msgid "Checks"
@@ -2107,11 +2070,6 @@ msgstr "Examiner les suggestions"
 msgid "Continue translation"
 msgstr "Copier dans la traduction"
 
-#: templates/browser/_actions.html:37
-#, fuzzy
-msgid "Needs translation"
-msgstr "Traduction nécessaire"
-
 #: templates/browser/_actions.html:45
 msgid "View all"
 msgstr ""
@@ -2147,42 +2105,37 @@ msgstr "Contrôles en échec"
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:75 templates/welcome.html:32
-#, fuzzy
-msgid "Top Contributors for the Last 30 Days"
-msgstr "Contributeurs principaux"
-
-#: templates/browser/index.html:81
+#: templates/browser/index.html:78
 #, fuzzy
 msgid "Updates"
 msgstr "Mise à jour"
 
-#: templates/browser/index.html:85 templates/browser/index.html.py:95
+#: templates/browser/index.html:82 templates/browser/index.html.py:92
 #, fuzzy
 msgid "Last action:"
 msgstr "Dernière activité"
 
-#: templates/browser/index.html:91
+#: templates/browser/index.html:88
 #, fuzzy
 msgid "Translations"
 msgstr "Traduction"
 
-#: templates/browser/index.html:136
+#: templates/browser/index.html:133
 #, python-format
 msgid ""
 "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
 "dealing with stats issues."
 msgstr ""
 
-#: templates/browser/index.html:142
+#: templates/browser/index.html:139
 msgid "The stats on this page may be out of date."
 msgstr ""
 
-#: templates/browser/index.html:144
+#: templates/browser/index.html:141
 msgid "Refresh now"
 msgstr ""
 
-#: templates/browser/index.html:154
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2932,6 +2885,46 @@ msgstr ""
 #, fuzzy
 msgid "Sign in"
 msgstr "Attribuer l'action"
+
+#: templates/welcome.html:32
+#, fuzzy
+msgid "Top Contributors for the Last 30 Days"
+msgstr "Contributeurs principaux"
+
+#~ msgid "File Type"
+#~ msgstr "Type de fichier"
+
+#~ msgid "Gettext PO"
+#~ msgstr "PO pour Gettext"
+
+#, fuzzy
+#~ msgid "XLIFF (.xlf)"
+#~ msgstr "Fichier XLIFF"
+
+#~ msgid "Qt ts"
+#~ msgstr "Qt ts"
+
+#~ msgid "TMX"
+#~ msgstr "TMX"
+
+#~ msgid "TBX"
+#~ msgstr "TBX"
+
+#~ msgid "Haiku catkeys"
+#~ msgstr "Haiku catkeys"
+
+#~ msgid "Excel CSV"
+#~ msgstr "CSV Excel"
+
+#~ msgid "Mozilla .lang"
+#~ msgstr ".lang Mozilla"
+
+#~ msgid "Need Translation"
+#~ msgstr "Traduction nécessaire"
+
+#, fuzzy
+#~ msgid "Needs translation"
+#~ msgstr "Traduction nécessaire"
 
 #~ msgid ""
 #~ "This site is running Pootle &mdash; powerful web software to empower "
