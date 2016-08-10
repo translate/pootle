@@ -252,12 +252,18 @@ def test_admin_view_projects(client, request_users, english):
     for info in formats.get().values():
         filetypes.append(
             [info["pk"], info["display_title"]])
+    template_choices = Language.objects.values_list("id", "fullname")
+    template_choices = [
+        (choice[0], unicode(choice[1])) for choice in template_choices]
+
     expected = {
         'page': 'admin-projects',
         'form_choices': {
             'checkstyle': Project.checker_choices,
             'filetypes': filetypes,
             'source_language': language_choices,
+            'template_tp': template_choices,
+            'template_lang': language_choices,
             'treestyle': Project.treestyle_choices,
             'defaults': {
                 'source_language': english.id}}}
