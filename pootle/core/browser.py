@@ -62,7 +62,7 @@ HEADING_CHOICES = [
     {
         'id': 'need-translation',
         'class': 'stats-number sorttable_numeric when-loaded',
-        'display_name': _("Need Translation"),
+        'display_name': _("Incomplete"),
     },
     {
         'id': 'activity',
