@@ -249,6 +249,8 @@ class APIView(View):
 
     @property
     def form_class(self):
+        if self._form_class:
+            return self._form_class
         if self.request.method == "POST":
             return self.add_form_class
         return self.edit_form_class
@@ -259,18 +261,21 @@ class APIView(View):
 
         if key:
             kwargs['instance'] = self.base_queryset.get(pk=key)
-
         return self.form_class(**kwargs)
 
     def _init_fields(self):
+        all_fields = [f.name for f in self.model._meta.fields]
         if len(self.fields) < 1:
             if self.form_class is not None:
-                self.fields = self.get_form().fields
-            else:  # Assume all fields by default
-                self.fields = (f.name for f in self.model._meta.fields)
-
-        self.serialize_fields = (f for f in self.fields if
-                                 f not in self.sensitive_field_names)
+                self.fields = self.get_form().fields.keys()
+            else:
+                # Assume all fields by default
+                self.fields = all_fields
+        self.serialize_fields = (
+            f for f
+            in ["id"] + list(self.fields)
+            if f in all_fields
+            and f not in self.sensitive_field_names)
 
     def _init_forms(self):
         if 'post' in self.allowed_methods and self.add_form_class is None:
@@ -282,6 +287,7 @@ class APIView(View):
                                                      fields=self.fields)
 
     def dispatch(self, request, *args, **kwargs):
+        self._form_class = None
         self._init_fields()
         self._init_forms()
         if request.method.lower() in self.allowed_methods:
@@ -331,6 +337,9 @@ class APIView(View):
             new_object = form.save()
             # Serialize the new object to json using our built-in methods. The
             # extra DB read here is not ideal, but it keeps the code DRY:
+            self.fields = []
+            self._form_class = self.edit_form_class
+            self._init_fields()
             wrapper_qs = self.base_queryset.filter(pk=new_object.pk)
             return self.json_response(
                 self.serialize_qs(wrapper_qs, single_object=True)

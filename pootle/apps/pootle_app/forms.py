@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 from pootle_language.models import Language
 from pootle_project.models import RESERVED_PROJECT_CODES, Project
 from pootle_store.models import Store
+from pootle_translationproject.models import TranslationProject
 
 
 LANGCODE_RE = re.compile("^[a-z]{2,}([_-]([a-z]{2,}|[0-9]{3}))*(@[a-z0-9]+)?$",
@@ -46,9 +47,11 @@ class ProjectForm(forms.ModelForm):
 
     class Meta(object):
         model = Project
-        fields = ('id', 'code', 'fullname', 'checkstyle',
-                  'filetypes', 'treestyle', 'source_language', 'ignoredfiles',
-                  'report_email', 'screenshot_search_prefix', 'disabled',)
+        fields = (
+            'id', 'code', 'fullname', 'checkstyle',
+            'filetypes', 'treestyle', 'source_language', 'template_tp',
+            'ignoredfiles', 'report_email', 'screenshot_search_prefix',
+            'disabled')
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
@@ -93,6 +96,52 @@ class ProjectForm(forms.ModelForm):
                 _('"%s" cannot be used as a project code', value)
             )
         return value
+
+
+class ProjectEditForm(ProjectForm):
+    template_tp = forms.ModelChoiceField(
+        label=_('Template tp'),
+        queryset=TranslationProject.objects.none())
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectEditForm, self).__init__(*args, **kwargs)
+        self.fields[
+            "template_tp"].queryset = self.instance.translationproject_set.all()
+
+
+class ProjectAddForm(ProjectForm):
+    template_lang = forms.ChoiceField(
+        label=_('Template translation project'),
+        choices=[])
+
+    class Meta(object):
+        model = Project
+        fields = (
+            'id', 'code', 'fullname', 'checkstyle',
+            'filetypes', 'treestyle', 'source_language',
+            'ignoredfiles', 'report_email', 'screenshot_search_prefix',
+            'disabled')
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectAddForm, self).__init__(*args, **kwargs)
+        self.fields["template_lang"].choices = Language.objects.values_list(
+            "pk", "fullname")
+
+    def save(self, *args, **kwargs):
+        template_language = self.cleaned_data.pop("template_lang", None)
+        if template_language:
+            # create disabled initially
+            disabled = self.cleaned_data.get("disabled")
+            self.cleaned_data["disabled"] = True
+            template_lang = Language.objects.get(pk=template_language)
+        project = super(ProjectForm, self).save(*args, **kwargs)
+        if template_language:
+            if disabled != project.disabled:
+                project.disabled = disabled
+            project.template_tp = TranslationProject.objects.create(
+                project=project, language=template_lang)
+            project.save()
+        return project
 
 
 class UserForm(forms.ModelForm):
