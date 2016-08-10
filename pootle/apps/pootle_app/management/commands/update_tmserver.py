@@ -352,5 +352,4 @@ class Command(BaseCommand):
         if self.is_local_tm:
             self._set_latest_indexed_revision(**options)
 
-        success, _ = helpers.bulk(self.es,
-                                  self._parse_translations(**options))
+        helpers.bulk(self.es, self._parse_translations(**options))
