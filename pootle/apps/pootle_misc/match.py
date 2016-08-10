@@ -45,7 +45,7 @@ class TerminologyComparer(terminology.TerminologyComparer):
         term_count = len(term_list)
         matched_index = 0
 
-        for i, term_word in enumerate(term_list):
+        for term_word in term_list:
             for j, text_word in enumerate(text_list[matched_index:],
                                           start=matched_index):
                 text_word_len = len(text_word)

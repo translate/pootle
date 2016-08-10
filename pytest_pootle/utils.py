@@ -132,7 +132,7 @@ def get_translated_storefile(store, pootle_path=None):
     """Returns file store with added translations for untranslated units."""
     storeclass = store.get_file_class()
     filestore = store.convert(storeclass)
-    for i, unit in enumerate(filestore.units):
+    for unit in filestore.units:
         if not unit.istranslated():
             unit.target = "Translation of %s" % unit.source
 
