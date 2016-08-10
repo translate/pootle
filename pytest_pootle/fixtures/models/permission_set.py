@@ -16,7 +16,7 @@ def _require_permission_set(user, directory, positive_permissions=None,
         'user': user,
         'directory': directory,
     }
-    permission_set, created = PermissionSet.objects.get_or_create(**criteria)
+    permission_set = PermissionSet.objects.get_or_create(**criteria)[0]
     if positive_permissions is not None:
         permission_set.positive_permissions = positive_permissions
     if negative_permissions is not None:

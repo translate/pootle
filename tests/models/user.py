@@ -458,7 +458,7 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
         'user': no_perms_user,
         'directory': afrikaans_tutorial.directory,
     }
-    ps, created = PermissionSet.objects.get_or_create(**criteria)
+    ps = PermissionSet.objects.get_or_create(**criteria)[0]
     ps.positive_permissions = [administrate]
     ps.save()
     assert no_perms_user.has_manager_permissions()
@@ -467,7 +467,7 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
 
     # Assign 'administrate' right for 'Afrikaans' and check user is manager.
     criteria['directory'] = afrikaans.directory
-    ps, created = PermissionSet.objects.get_or_create(**criteria)
+    ps = PermissionSet.objects.get_or_create(**criteria)[0]
     ps.positive_permissions = [administrate]
     ps.save()
     assert no_perms_user.has_manager_permissions()
@@ -476,7 +476,7 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
 
     # Assign 'administrate' right for 'Tutorial' and check user is manager.
     criteria['directory'] = tutorial.directory
-    ps, created = PermissionSet.objects.get_or_create(**criteria)
+    ps = PermissionSet.objects.get_or_create(**criteria)[0]
     ps.positive_permissions = [administrate]
     ps.save()
     assert no_perms_user.has_manager_permissions()

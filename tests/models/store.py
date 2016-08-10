@@ -978,9 +978,9 @@ def test_store_get_or_create_templates(templates):
     project = ProjectDBFactory(source_language=templates)
     tp = TranslationProjectFactory(language=templates, project=project)
     po = Format.objects.get(name="po")
-    store, created = Store.objects.get_or_create(
+    store = Store.objects.get_or_create(
         name="mystore.pot",
         translation_project=tp,
-        parent=tp.directory)
+        parent=tp.directory)[0]
     assert store.filetype == po
     assert store.is_template

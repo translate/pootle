@@ -24,7 +24,7 @@ def _require_project(code, name, source_language, **kwargs):
         'treestyle': 'auto',
     }
     criteria.update(kwargs)
-    new_project, created = Project.objects.get_or_create(**criteria)
+    new_project = Project.objects.get_or_create(**criteria)[0]
     return new_project
 
 

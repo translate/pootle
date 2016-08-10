@@ -43,7 +43,7 @@ def import_file(file, user=None):
     rev = int(rev)
 
     try:
-        store, __ = Store.objects.get_or_create(pootle_path=pootle_path)
+        store = Store.objects.get_or_create(pootle_path=pootle_path)[0]
     except Exception as e:
         raise FileImportError(_("Could not create '%s'. Missing "
                                 "Project/Language? (%s)", (file.name, e)))

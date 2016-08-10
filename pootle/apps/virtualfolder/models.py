@@ -365,10 +365,10 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         # adjusted location.
         if (self.directory.pootle_path.count('/') >
                 self.vfolder.location.count('/')):
-            parent, created = VirtualFolderTreeItem.objects.get_or_create(
+            parent = VirtualFolderTreeItem.objects.get_or_create(
                 directory=self.directory.parent,
                 vfolder=self.vfolder,
-            )
+            )[0]
             self.parent = parent
 
         super(VirtualFolderTreeItem, self).save(*args, **kwargs)

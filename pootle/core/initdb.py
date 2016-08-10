@@ -127,7 +127,7 @@ class InitDB(object):
             'model': "directory",
         }
 
-        pootle_content_type, created = self._create_object(ContentType, **args)
+        pootle_content_type = self._create_object(ContentType, **args)[0]
         pootle_content_type.save()
 
         # Create the permissions.
@@ -211,12 +211,12 @@ class InitDB(object):
             'nplurals': 2,
             'pluralequation': "(n != 1)",
         }
-        en, created = self._create_object(Language, **criteria)
+        en = self._create_object(Language, **criteria)[0]
         return en
 
     def create_root_directories(self):
         """Create the root Directory items."""
-        root, created = self._create_object(Directory, **dict(name=""))
+        root = self._create_object(Directory, **dict(name=""))[0]
         self._create_object(Directory, **dict(name="projects", parent=root))
 
     def create_template_languages(self):
@@ -242,7 +242,7 @@ class InitDB(object):
             'checkstyle': "terminology",
         }
         po = Format.objects.get(name="po")
-        terminology, created = self._create_object(Project, **criteria)
+        terminology = self._create_object(Project, **criteria)[0]
         terminology.filetypes.add(po)
 
     def create_default_projects(self):
@@ -261,7 +261,7 @@ class InitDB(object):
             'checkstyle': "standard",
             'treestyle': "auto",
         }
-        tutorial, created = self._create_object(Project, **criteria)
+        tutorial = self._create_object(Project, **criteria)[0]
         tutorial.filetypes.add(po)
 
         criteria = {

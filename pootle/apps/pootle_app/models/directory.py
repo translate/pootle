@@ -212,8 +212,8 @@ class Directory(models.Model, CachedTreeItem):
             return self
 
     def get_or_make_subdir(self, child_name):
-        child_dir, created = Directory.objects.get_or_create(name=child_name,
-                                                             parent=self)
+        child_dir = Directory.objects.get_or_create(name=child_name,
+                                                    parent=self)[0]
         return child_dir
 
     def trail(self, only_dirs=True):
