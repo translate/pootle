@@ -86,7 +86,7 @@ def get_path_sortkey(path):
     if path == '' or path.endswith('/'):
         return path
 
-    (head, tail) = os.path.split(path)
+    head = os.path.split(path)[0]
     return u'~'.join([head, path])
 
 
@@ -95,7 +95,7 @@ def get_path_parts(path):
     if not path:
         return []
 
-    (parent, filename) = os.path.split(path)
+    parent = os.path.split(path)[0]
     parent_parts = parent.split(u'/')
 
     if len(parent_parts) == 1 and parent_parts[0] == u'':
