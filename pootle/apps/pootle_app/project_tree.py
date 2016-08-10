@@ -31,7 +31,7 @@ LANGCODE_POSTFIX_RE = re.compile(
 
 
 def direct_language_match_filename(language_code, path_name):
-    name, ext = os.path.splitext(os.path.basename(path_name))
+    name = os.path.splitext(os.path.basename(path_name))[0]
     if name == language_code or name.lower() == language_code.lower():
         return True
 
@@ -439,7 +439,7 @@ def get_translated_name_gnu(translation_project, store):
 
 
 def get_translated_name(translation_project, store):
-    name, ext = os.path.splitext(store.name)
+    name = os.path.splitext(store.name)[0]
 
     if store.file:
         path_parts = store.file.name.split(os.sep)
