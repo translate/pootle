@@ -245,17 +245,27 @@ class APIView(View):
 
         if self.base_queryset is None:
             self.base_queryset = self.model._default_manager
-
-        self._init_fields()
-        self._init_forms()
-
         return super(APIView, self).__init__(*args, **kwargs)
+
+    @property
+    def form_class(self):
+        if self.request.method == "POST":
+            return self.add_form_class
+        return self.edit_form_class
+
+    def get_form(self):
+        kwargs = {}
+        key = self.kwargs.get(self.pk_field_name)
+
+        if key:
+            kwargs['instance'] = self.base_queryset.get(pk=key)
+
+        return self.form_class(**kwargs)
 
     def _init_fields(self):
         if len(self.fields) < 1:
-            form = self.add_form_class or self.edit_form_class
-            if form is not None:
-                self.fields = form._meta.fields
+            if self.form_class is not None:
+                self.fields = self.get_form().fields
             else:  # Assume all fields by default
                 self.fields = (f.name for f in self.model._meta.fields)
 
@@ -272,6 +282,8 @@ class APIView(View):
                                                      fields=self.fields)
 
     def dispatch(self, request, *args, **kwargs):
+        self._init_fields()
+        self._init_forms()
         if request.method.lower() in self.allowed_methods:
             handler = getattr(self, request.method.lower(),
                               self.http_method_not_allowed)
@@ -313,7 +325,7 @@ class APIView(View):
         except ValueError:
             return self.status_msg('Invalid JSON data', status=400)
 
-        form = self.add_form_class(request_dict)
+        form = self.form_class(request_dict)
 
         if form.is_valid():
             new_object = form.save()
