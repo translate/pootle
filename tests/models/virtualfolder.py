@@ -277,3 +277,23 @@ def test_virtualfoldertreeitem_repr(vfolders):
     assert (
         "<VirtualFolderTreeItem: %s>" % vfti.pootle_path
         == repr(vfti))
+
+
+@pytest.mark.django_db
+def test_vfti_rm(vfolders):
+    original_vftis = VirtualFolderTreeItem.objects.values_list("pk", flat=True)
+
+    vf0 = VirtualFolder.objects.first()
+    vf0_vftis = list(vf0.vf_treeitems.values_list("pk", flat=True))
+
+    vf0.delete()
+    new_vftis = VirtualFolderTreeItem.objects.values_list("pk", flat=True)
+    assert new_vftis
+
+    # Ensure only the other vftis exist.
+    assert set(original_vftis) - set(vf0_vftis) == set(new_vftis)
+
+    # Ensure that there are no vftis left when all VirtualFolders have been
+    # deleted.
+    VirtualFolder.objects.all().delete()
+    assert not VirtualFolderTreeItem.objects.exists()
