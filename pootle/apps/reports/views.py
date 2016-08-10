@@ -257,14 +257,14 @@ def get_detailed_report_context(user, month):
                     'subtotal': subtotal,
                 }
 
-        for rate, words in totals['translated'].items():
+        for rate in totals['translated']:
             totals['translated'][rate]['rounded_words'] = \
                 int(round(totals['translated'][rate]['words']))
             totals['translated'][rate]['subtotal'] = \
                 rate * totals['translated'][rate]['rounded_words']
             totals['all'] += totals['translated'][rate]['subtotal']
 
-        for rate, words in totals['reviewed'].items():
+        for rate in totals['reviewed']:
             totals['reviewed'][rate]['subtotal'] = (
                 rate * totals['reviewed'][rate]['words'])
             totals['all'] += totals['reviewed'][rate]['subtotal']
