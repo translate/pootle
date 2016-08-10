@@ -188,7 +188,7 @@ class ProjectFSState(State):
     def state_unchanged(self):
         has_changes = []
         [has_changes.extend([p.pootle_path for p in v])
-         for k, v in self.__state__.items()
+         for v in self.__state__.values()
          if v]
         return self.resources.synced.exclude(pootle_path__in=has_changes)
 

@@ -402,7 +402,7 @@ def test_get_qualitycheck_schema():
             'url': ''
         })
 
-    result = sorted([item for code, item in d.items()],
+    result = sorted([item for item in d.values()],
                     key=lambda x: x['code'],
                     reverse=True)
 

@@ -1145,7 +1145,7 @@ def get_qualitycheck_schema(path_obj=None):
             'url': path_obj.get_translate_url(check=check) if path_obj else ''
         })
 
-    result = sorted([item for code, item in d.items()],
+    result = sorted([item for item in d.values()],
                     key=lambda x: x['code'],
                     reverse=True)
 

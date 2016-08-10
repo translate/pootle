@@ -520,7 +520,7 @@ def test_store_diff(store_diff_tests):
     assert (
         update_units
         == [(x.source, x.target) for x in diff.file_store.units[1:]]
-        == [(v['source'], v['target']) for k, v in diff.file_units.items()])
+        == [(v['source'], v['target']) for v in diff.file_units.values()])
     assert diff.active_units == [x.source for x in store.units]
     assert diff.db_revision == store.get_max_unit_revision()
     assert (

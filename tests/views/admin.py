@@ -249,7 +249,7 @@ def test_admin_view_projects(client, request_users, english):
     languages = Language.objects.exclude(code='templates')
     language_choices = [(lang.id, unicode(lang)) for lang in languages]
     filetypes = []
-    for name, info in formats.get().items():
+    for info in formats.get().values():
         filetypes.append(
             [info["pk"], info["display_title"]])
     expected = {
