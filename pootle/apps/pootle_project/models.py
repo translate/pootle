@@ -583,8 +583,13 @@ def invalidate_resources_cache(**kwargs):
         return
 
     # Don't invalidate if the save didn't create new objects
-    if (('created' in kwargs and 'raw' in kwargs) and
-        (not kwargs['created'] or kwargs['raw'])):
+    no_new_objects = (
+        ('created' in kwargs
+         and 'raw' in kwargs)
+        and (not kwargs['created']
+             or kwargs['raw']))
+
+    if no_new_objects and instance.parent.get_children():
         return
 
     proj_code = split_pootle_path(instance.pootle_path)[1]
