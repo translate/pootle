@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-26 14:26+0000\n"
+"PO-Revision-Date: 2016-08-01 17:51+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469543211.000000\n"
+"X-POOTLE-MTIME: 1470073889.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -325,23 +325,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Do formuláře byly zadány chybné údaje. Zkontrolujte uvedené problémy."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Jméno"
+msgstr "Název formátu"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Popis formátu"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Zakázáno"
+msgstr "Zapnuto"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android formát"
+msgstr "Jednojazyčný formát"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -709,9 +706,8 @@ msgid "Plurr format"
 msgstr "Formát plurálu"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ zástupné řetězce"
+msgstr "Zástupné řetězce plurálu"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -1720,7 +1716,6 @@ msgid "About This Pootle Server"
 msgstr "O tomto Pootle serveru"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1731,7 +1726,7 @@ msgstr ""
 "Tato stránka využívá Pootle &mdash; výkonný webový software umožňující "
 "týmovou tvorbu překladů a jejich správu. Tento komunitní nástroj je svobodný "
 "software, jakýkoliv tým ho může používat a dále komunitě kolem Pootle "
-"přispívat. Více se dočtete na <a href=\"http://translate.sourceforge.net/"
+"přispívat. Více se dočtete na <a href=\"http://pootle.translatehouse.org/"
 "\">stránkách projektu</a>."
 
 #: templates/about.html:25

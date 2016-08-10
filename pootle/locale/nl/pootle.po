@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-27 17:15+0000\n"
+"PO-Revision-Date: 2016-08-02 14:54+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469639714.000000\n"
+"X-POOTLE-MTIME: 1470149691.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -325,23 +325,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Het formulier bevat fouten. Controleer de onderstaande problemen."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Voornaam"
+msgstr "Naam van indeling"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Titel van indeling"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Uitgeschakeld"
+msgstr "Ingeschakeld"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android-indeling"
+msgstr "Monolinguale indeling"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -713,9 +710,8 @@ msgid "Plurr format"
 msgstr "Plurr-indeling"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$-plaatshouders"
+msgstr "Plurr-plaatshouders"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -1726,7 +1722,6 @@ msgid "About This Pootle Server"
 msgstr "Over deze Pootle-server"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1734,11 +1729,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Op deze website draait Pootle &mdash; krachtige web-software die teams in "
-"staat stelt te vertalen en vertalingen te beheren. Deze Vrije Software werd "
-"ontwikkeld door en voor de gemeenschap en elk team kan het gebruiken en "
-"bijdragen aan de Pootle gemeenschap. Lees meer op de <a href=\"http://"
-"translate.sourceforge.net/\">website van het project</a>."
+"Deze website gebruikt Pootle &ndash; krachtige websoftware waarmee teams "
+"kunnen vertalen en vertalingen kunnen beheren. Deze Vrije Software is door "
+"en voor de gemeenschap ontwikkeld, en elk team kan het gebruiken en aan de "
+"Pootle-gemeenschap bijdragen. Lees meer op de <a href=\"http://pootle."
+"translatehouse.org/\">website van het project</a>."
 
 #: templates/about.html:25
 #, python-format

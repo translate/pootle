@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-25 16:02+0000\n"
+"PO-Revision-Date: 2016-08-02 16:29+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469462550.000000\n"
+"X-POOTLE-MTIME: 1470155358.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -323,23 +323,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Formda hatalar var. Lütfen aşağıdan sorunları inceleyin."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Adınız"
+msgstr "Biçim adı"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Biçim başlığı"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Etkisizleştirildi"
+msgstr "Etkinleştirildi"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android biçimi"
+msgstr "Tek dilli biçim"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -706,9 +703,8 @@ msgid "Plurr format"
 msgstr "Plurr biçimi"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ yer tutucular"
+msgstr "Plurr yer tutucuları"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -1729,7 +1725,6 @@ msgid "About This Pootle Server"
 msgstr "Bu Pootle Sunucusu Hakkında"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1739,9 +1734,9 @@ msgid ""
 msgstr ""
 "Bu sitede Pootle çalıştırılmaktadır &mdash; takımlara çeviri yapmaları ve "
 "çeviri yönetmeleri için yetki veren güçlü bir web yazılımıdır. Bu topluluk "
-"aracı Ücretsiz Yazılımdır ve herhangi bir grup bunu kullanabilir ve Pootle "
-"topluluklarına katkıda bulunabilir. <a href=\"http://translate.sourceforge."
-"net/\">Proje web sitesinde</a> daha fazlasını okuyun."
+"aracı Ücretsiz Yazılımdır ve herhangi bir takım bunu kullanabilir ve Pootle "
+"topluluğuna katkıda bulunabilir. <a href=\"http://pootle.translatehouse.org/"
+"\">Proje web sitesinde</a> daha fazla bilgi edinin."
 
 #: templates/about.html:25
 #, python-format

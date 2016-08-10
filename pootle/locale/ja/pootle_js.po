@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-28 07:22+0000\n"
+"PO-Revision-Date: 2016-08-06 12:09+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469690546.000000\n"
+"X-POOTLE-MTIME: 1470485364.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -510,16 +510,15 @@ msgstr "ソーシャル検証"
 
 #: static/js/browser/components/TopContributors.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributors.js:39
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/TopContributors.js:62
-#, fuzzy
 msgid "More..."
-msgstr "増やす"
+msgstr "増やす..."
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -643,7 +642,6 @@ msgid "Reject"
 msgstr "拒否"
 
 #: static/js/editor/components/UploadTimeSince.js:34
-#, fuzzy
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s にファイルをアップロード"
 
@@ -875,56 +873,51 @@ msgstr ""
 "さい！"
 
 #: static/js/utils.js:168
-#, fuzzy
 msgid "A year ago"
-msgstr "%s 年前"
+msgstr "1 年前"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "%s 年前"
 
 #: static/js/utils.js:171
-#, fuzzy
 msgid "A week ago"
-msgstr "%s 週間前"
+msgstr "1 週間前"
 
 #: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "%s 週間前"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
-msgstr "%s 日前"
+msgstr "昨日"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "%s 年前"
+msgstr[0] "%s 日前"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
-msgstr "%s 時間前"
+msgstr "1 時間前"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "%s 時間前"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
-msgstr "%s 分前"
+msgstr "1 分前"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "%s 分前"

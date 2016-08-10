@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-20 16:38+0000\n"
+"PO-Revision-Date: 2016-08-01 16:04+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469032690.000000\n"
+"X-POOTLE-MTIME: 1470067478.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -529,16 +529,15 @@ msgstr "Социальная верификация"
 
 #: static/js/browser/components/TopContributors.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributors.js:39
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/TopContributors.js:62
-#, fuzzy
 msgid "More..."
-msgstr "Ещё"
+msgstr "Больше..."
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -895,67 +894,62 @@ msgstr ""
 "вдохновите других!"
 
 #: static/js/utils.js:168
-#, fuzzy
 msgid "A year ago"
 msgstr "Год назад"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Год назад"
+msgstr[0] "%s год назад"
 msgstr[1] "%s года назад"
 msgstr[2] "%s лет назад"
 
 #: static/js/utils.js:171
-#, fuzzy
 msgid "A week ago"
 msgstr "Неделю назад"
 
 #: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Неделю назад"
+msgstr[0] "%s неделю назад"
 msgstr[1] "%s недели назад"
 msgstr[2] "%s недель назад"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
 msgstr "Вчера"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Год назад"
+msgstr[0] "%s год назад"
 msgstr[1] "%s года назад"
 msgstr[2] "%s лет назад"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
 msgstr "Час назад"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Час назад"
+msgstr[0] "%s час назад"
 msgstr[1] "%s часа назад"
 msgstr[2] "%s часов назад"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
 msgstr "Минуту назад"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Минуту назад"
+msgstr[0] "%s минуту назад"
 msgstr[1] "%s минуты назад"
 msgstr[2] "%s минут назад"
 

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-20 20:24+0000\n"
+"PO-Revision-Date: 2016-08-01 15:58+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469046297.000000\n"
+"X-POOTLE-MTIME: 1470067080.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -528,16 +528,15 @@ msgstr "Sociální ověření"
 
 #: static/js/browser/components/TopContributors.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributors.js:39
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/TopContributors.js:62
-#, fuzzy
 msgid "More..."
-msgstr "Více"
+msgstr "Podrobnosti..."
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -894,12 +893,11 @@ msgstr ""
 "o sobě a inspirujte ostatní uživatele!"
 
 #: static/js/utils.js:168
-#, fuzzy
 msgid "A year ago"
 msgstr "Před rokem"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "Před rokem"
@@ -907,12 +905,11 @@ msgstr[1] "Před %s roky"
 msgstr[2] "Před %s roky"
 
 #: static/js/utils.js:171
-#, fuzzy
 msgid "A week ago"
 msgstr "Před týdnem"
 
 #: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "Před týdnem"
@@ -920,25 +917,23 @@ msgstr[1] "Před %s týdny"
 msgstr[2] "Před %s týdny"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
 msgstr "Včera"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Před rokem"
-msgstr[1] "Před %s roky"
-msgstr[2] "Před %s roky"
+msgstr[0] "Včera"
+msgstr[1] "Před %s dny"
+msgstr[2] "Před %s dny"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
 msgstr "Před hodinou"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "Před hodinou"
@@ -946,12 +941,11 @@ msgstr[1] "Před %s hodinami"
 msgstr[2] "Před %s hodinami"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
 msgstr "Před minutou"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "Před minutou"

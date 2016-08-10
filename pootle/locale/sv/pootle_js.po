@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-08-01 15:05+0000\n"
+"PO-Revision-Date: 2016-08-02 15:36+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470063953.000000\n"
+"X-POOTLE-MTIME: 1470152203.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -522,16 +522,15 @@ msgstr "Social verifikation"
 
 #: static/js/browser/components/TopContributors.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributors.js:39
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/TopContributors.js:62
-#, fuzzy
 msgid "More..."
-msgstr "Mer"
+msgstr "Mer..."
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -888,63 +887,58 @@ msgstr ""
 "inspirera andra!"
 
 #: static/js/utils.js:168
-#, fuzzy
 msgid "A year ago"
 msgstr "Ett år sedan"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Ett år sedan"
+msgstr[0] "%s år sedan"
 msgstr[1] "%s år sedan"
 
 #: static/js/utils.js:171
-#, fuzzy
 msgid "A week ago"
 msgstr "En vecka sedan"
 
 #: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "En vecka sedan"
+msgstr[0] "%s vecka sedan"
 msgstr[1] "%s veckor sedan"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
 msgstr "Igår"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Ett år sedan"
-msgstr[1] "%s år sedan"
+msgstr[0] "%s dag sedan"
+msgstr[1] "%s dagar sedan"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
 msgstr "En timme sedan"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "En timme sedan"
+msgstr[0] "%s timme sedan"
 msgstr[1] "%s timmar sedan"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
 msgstr "En minut sedan"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "En minut sedan"
+msgstr[0] "%s minut sedan"
 msgstr[1] "%s minuter sedan"
 
 #: static/js/utils.js:189

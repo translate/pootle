@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-21 12:54+0000\n"
+"PO-Revision-Date: 2016-08-02 16:24+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469105661.000000\n"
+"X-POOTLE-MTIME: 1470155057.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -526,16 +526,15 @@ msgstr "Sosyal Doğrulama"
 
 #: static/js/browser/components/TopContributors.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributors.js:39
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/TopContributors.js:62
-#, fuzzy
 msgid "More..."
-msgstr "Daha fazla"
+msgstr "Daha fazla..."
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -892,56 +891,51 @@ msgstr ""
 "ilham verin!"
 
 #: static/js/utils.js:168
-#, fuzzy
 msgid "A year ago"
-msgstr "%s yıl önce"
+msgstr "Bir yıl önce"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
 msgstr[0] "%s yıl önce"
 
 #: static/js/utils.js:171
-#, fuzzy
 msgid "A week ago"
-msgstr "%s hafta önce"
+msgstr "Bir hafta önce"
 
 #: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
 msgstr[0] "%s hafta önce"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
-msgstr "%s gün önce"
+msgstr "Dün"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "%s yıl önce"
+msgstr[0] "%s gün önce"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
-msgstr "%s saat önce"
+msgstr "Bir saat önce"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
 msgstr[0] "%s saat önce"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
-msgstr "%s dakika önce"
+msgstr "Bir dakika önce"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
 msgstr[0] "%s dakika önce"

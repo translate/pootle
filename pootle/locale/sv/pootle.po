@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-08-01 14:56+0000\n"
+"PO-Revision-Date: 2016-08-08 14:31+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470063371.000000\n"
+"X-POOTLE-MTIME: 1470666706.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -321,23 +321,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Det finns fel i formuläret. Granska problemen nedan."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Förnamn"
+msgstr "Format namn"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Format titel"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Inaktiverad"
+msgstr "Aktiverad"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android-format"
+msgstr "Enspråkigt format"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -1713,7 +1710,6 @@ msgid "About This Pootle Server"
 msgstr "Om denna Pootle-server"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1724,8 +1720,8 @@ msgstr ""
 "Denna webbplats kör Pootle &mdash; en kraftfull webbprogramvara för att "
 "samla grupper att översätta och hantera översättningar. Detta "
 "gemenskapsdrivna verktyg är fri programvara och alla grupper kan använda det "
-"för att bidra till Pootle-gemenskapen. Läs mer på <a href=\"http://translate."
-"sourceforge.net/\">projektets webbplats</a>."
+"för att bidra till Pootle-gemenskapen. Läs mer på <a href=\"http://pootle."
+"translatehouse.org/\">projektets webbplats</a>."
 
 #: templates/about.html:25
 #, python-format

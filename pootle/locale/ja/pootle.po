@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-28 07:38+0000\n"
+"PO-Revision-Date: 2016-08-06 12:07+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469691539.000000\n"
+"X-POOTLE-MTIME: 1470485226.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -319,23 +319,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "フォームにエラーがあります。以下の問題を見直してください。"
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "名"
+msgstr "フォーマット名"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "フォーマットタイトル"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "無効"
+msgstr "有効"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android 形式"
+msgstr "Monolingual 形式"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -702,9 +699,8 @@ msgid "Plurr format"
 msgstr "複数形"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ プレースホルダー"
+msgstr "複数形プレースホルダー"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -1151,7 +1147,7 @@ msgstr "ページタイトル"
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
-"projects/<project_code> または <language_code> または <language_code>/"
+"projects/<project_code>、<language_code> または <language_code>/"
 "<project_code>"
 
 #: apps/staticpages/views.py:231
@@ -1719,7 +1715,6 @@ msgid "About This Pootle Server"
 msgstr "この Pootle サーバーについて"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1727,11 +1722,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"このサイトは Pootle &mdash; 翻訳と翻訳を管理するチームに力を与えるパワフルな"
-"ウェブソフトウェアを実行しています。このコミュニティツールはフリーソフトウェ"
-"アであり、どなたでも使用できます。また、どなたでも Pootle コミュニティに貢献"
-"することができます。 詳しくは<a href=\"http://translate.sourceforge.net/\">プ"
-"ロジェクトのウェブサイト</a>をお読みください。"
+"このサイトは Pootle &mdash; 翻訳チームに翻訳と翻訳管理のための機能を提供する"
+"パワフルなウェブソフトウェアを実行しています。このコミュニティツールはフリー"
+"ソフトウェアであり、どなたでも使用できます。また、どなたでも Pootle コミュニ"
+"ティに貢献することができます。 詳しくは<a href=\"http://pootle."
+"translatehouse.org/\">プロジェクトのウェブサイト</a>をお読みください。"
 
 #: templates/about.html:25
 #, python-format
@@ -2477,7 +2472,7 @@ msgstr "提案を削除"
 
 #: templates/editor/units/edit.html:348
 msgid "A long time ago"
-msgstr ""
+msgstr "ずっと前"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
@@ -2768,7 +2763,7 @@ msgid ""
 msgstr ""
 "用語機能を利用するため、翻訳プロジェクトに用語ファイルを追加してください。用"
 "語ファイルは 'pootle-terminology' という名前でプロジェクトファイルの残りと同"
-"じ拡張子 (ファイル形式) を使用してください。 この独自の用語ファイルは "
+"じ拡張子 (ファイル形式) を使用してください。  この独自の用語ファイルは "
 "'Terminology' プロジェクトにより提供される用語候補に加えて使用されます。"
 
 #: templates/translation_projects/terminology/stores.html:7
@@ -2867,7 +2862,7 @@ msgstr ""
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"
-msgstr ""
+msgstr "率"
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"

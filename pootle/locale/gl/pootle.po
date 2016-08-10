@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-26 09:07+0000\n"
+"PO-Revision-Date: 2016-08-10 14:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469524052.000000\n"
+"X-POOTLE-MTIME: 1470839431.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -323,23 +323,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Hai erros no formulario. Revise os seguintes problemas."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Nome"
+msgstr "Nome do formato"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Título do formato"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Desactivado"
+msgstr "Activado"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Formato Android"
+msgstr "Formato monolingüe"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -708,9 +705,8 @@ msgid "Plurr format"
 msgstr "Formato Plurr"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "Marcadores de posición $"
+msgstr "Marcadores de posición Plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -923,7 +919,7 @@ msgstr "Forma plural %d"
 #: apps/pootle_store/forms.py:252 apps/pootle_store/util.py:29
 #: core/helpers.py:49 templates/editor/_filters.html:10
 msgid "Needs work"
-msgstr "Precisa mellorar"
+msgstr "Precisa traballo"
 
 #: apps/pootle_store/forms.py:299
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -1572,7 +1568,7 @@ msgstr "Suxestións"
 
 #: core/browser.py:65
 msgid "Need Translation"
-msgstr "Precisa de tradución"
+msgstr "Incompletas"
 
 #: core/browser.py:70
 msgid "Last Activity"
@@ -1726,7 +1722,6 @@ msgid "About This Pootle Server"
 msgstr "Sobre este servidor de Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1734,11 +1729,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Este sitio executa Pootle &mdash; potente software web que lles permite a "
-"equipos xestionar e facer tradución. Esta ferramenta de comunidade é "
-"software libre, e calquera equipo pode usala e colaborar coa comunidade "
-"Pootle. Lea máis no <a href=\"http://translate.sourceforge.net/\">Web do "
-"proxecto</a>."
+"Este sitio executa Pootle, un potente software web que lles permite aos "
+"equipos xestionar e facer traducións. Esta ferramenta de comunidade é "
+"software libre, e calquera equipo pode usala e colaborar coa comunidade de "
+"Pootle. Lea máis no <a href=\"http://pootle.translatehouse.org/\">sitio web "
+"do proxecto</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -2117,7 +2112,7 @@ msgstr "Continuar a tradución"
 
 #: templates/browser/_actions.html:37
 msgid "Needs translation"
-msgstr "Precisa tradución"
+msgstr "Incompletas"
 
 #: templates/browser/_actions.html:45
 msgid "View all"
@@ -2466,7 +2461,7 @@ msgstr "Inserir este símbolo no editor"
 
 #: templates/editor/units/edit.html:293
 msgid "User suggestions"
-msgstr "Suxestións do usuario"
+msgstr "Suxestións de usuarios"
 
 #: templates/editor/units/edit.html:310
 msgid "More options"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-28 13:23+0000\n"
+"PO-Revision-Date: 2016-08-01 16:04+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469712181.000000\n"
+"X-POOTLE-MTIME: 1470067463.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -324,23 +324,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "В этой форме имеются ошибки. Просмотрите и исправьте их."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Имя"
+msgstr "Имя формата"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Заголовок формата"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Отключено"
+msgstr "Включено"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "формат Android"
+msgstr "Одноязычный формат"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -709,9 +706,8 @@ msgid "Plurr format"
 msgstr "Формат Plurr"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "Заполнитель \"$\""
+msgstr "Заполнитель множественного числа"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -1720,7 +1716,6 @@ msgid "About This Pootle Server"
 msgstr "Об этом сервере Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1728,12 +1723,12 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Этот сайт управляется Pootle &mdash; мощным программным обеспечением для "
-"управления проектами переводов, осуществляемыми командами переводчиков. Это "
-"программное обеспечение является свободным , любая команда может "
+"Этот сайт создан с помощью Pootle &mdash; мощным программным обеспечением "
+"для управления проектами переводов, осуществляемыми командами переводчиков. "
+"Это программное обеспечение является свободным , любая команда может "
 "использовать его и вносить вклад в его развитие. Для получения "
-"дополнительной информации, посетите <a href=\"http://translate.sourceforge."
-"net/\">вебсайт проекта Pootle</a>."
+"дополнительной информации, посетите <a href=\"http://pootle.translatehouse."
+"org/\">вебсайт проекта</a>."
 
 #: templates/about.html:25
 #, python-format

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-01 16:39+0100\n"
-"PO-Revision-Date: 2016-07-22 16:34+0000\n"
+"PO-Revision-Date: 2016-08-02 09:00+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469205281.000000\n"
+"X-POOTLE-MTIME: 1470128435.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -523,16 +523,15 @@ msgstr "Verificación social"
 
 #: static/js/browser/components/TopContributors.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributors.js:39
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/TopContributors.js:62
-#, fuzzy
 msgid "More..."
-msgstr "Máis"
+msgstr "Máis…"
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -664,7 +663,7 @@ msgstr "%(timeSince)s mediante envío"
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr "%a %d %b"
+msgstr "%a de %d de %b"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
@@ -889,63 +888,58 @@ msgstr ""
 "Por que é parte do noso proxecto de tradución? Descríbase, inspire a outros!"
 
 #: static/js/utils.js:168
-#, fuzzy
 msgid "A year ago"
 msgstr "Hai un ano"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Hai un ano"
+msgstr[0] "Hai %s ano"
 msgstr[1] "Hai %s anos"
 
 #: static/js/utils.js:171
-#, fuzzy
 msgid "A week ago"
 msgstr "Hai unha semana"
 
 #: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Hai unha semana"
+msgstr[0] "Hai %s semana"
 msgstr[1] "Hai %s semanas"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
 msgstr "Onte"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Hai un ano"
+msgstr[0] "Hai %s ano"
 msgstr[1] "Hai %s anos"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
 msgstr "Hai unha hora"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Hai unha hora"
+msgstr[0] "Hai %s hora"
 msgstr[1] "Hai %s horas"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
 msgstr "Hai un minuto"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Hai un minuto"
+msgstr[0] "Hai %s minuto"
 msgstr[1] "Hai %s minutos"
 
 #: static/js/utils.js:189
