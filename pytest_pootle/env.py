@@ -10,30 +10,6 @@ import os
 from datetime import timedelta
 
 
-TEST_USERS = {
-    'nobody': dict(
-        fullname='Nobody',
-        password=''),
-    'system': dict(
-        fullname='System',
-        password=''),
-    'default': dict(
-        fullname='Default',
-        password=''),
-    'admin': dict(
-        fullname='Admin',
-        password='admin',
-        is_superuser=True,
-        email="admin@poot.le"),
-    'member': dict(
-        fullname='Member',
-        password=''),
-    'member2': dict(
-        fullname='Member2',
-        password=''),
-}
-
-
 class PootleTestEnv(object):
 
     methods = (
@@ -238,7 +214,7 @@ class PootleTestEnv(object):
         Revision.initialize(force=True)
 
     def setup_system_users(self):
-        from .fixtures.models.user import _require_user
+        from .fixtures.models.user import TEST_USERS, _require_user
 
         for username, user_params in TEST_USERS.items():
             user = _require_user(username=username, **user_params)

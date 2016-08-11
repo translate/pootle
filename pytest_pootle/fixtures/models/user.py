@@ -10,7 +10,28 @@ import copy
 
 import pytest
 
-from pytest_pootle.env import TEST_USERS
+
+TEST_USERS = {
+    'nobody': dict(
+        fullname='Nobody',
+        password=''),
+    'system': dict(
+        fullname='System',
+        password=''),
+    'default': dict(
+        fullname='Default',
+        password=''),
+    'admin': dict(
+        fullname='Admin',
+        password='admin',
+        is_superuser=True,
+        email="admin@poot.le"),
+    'member': dict(
+        fullname='Member',
+        password=''),
+    'member2': dict(
+        fullname='Member2',
+        password='')}
 
 
 @pytest.fixture(
