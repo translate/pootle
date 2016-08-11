@@ -220,6 +220,7 @@ PTL.editor = {
 
     /* Write TM results, special chars... into the currently focused element */
     $('#editor').on('click', '.js-editor-copytext', (e) => this.copyText(e));
+    $('#editor').on('click', '.js-editor-copy-tm-text', (e) => this.copyTMText(e));
 
     /* Copy translator comment */
     $('#editor').on('click', '.js-editor-copy-comment', (e) => {
@@ -691,6 +692,14 @@ PTL.editor = {
 
     $target.caret(start, start);
     autosize.update(this.focused);
+  },
+
+  copyTMText(e) {
+    // Don't do anything if we're selecting text
+    if (window.getSelection().toString() !== '') {
+      return;
+    }
+    this.copyText(e);
   },
 
 
