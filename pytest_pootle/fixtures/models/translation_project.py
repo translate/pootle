@@ -114,3 +114,13 @@ def templates_project0(request, templates):
     request.addfinalizer(_cleanup)
 
     return tp
+
+
+@pytest.fixture
+def tp0(language0, project0):
+    """Require English Project0."""
+    from pootle_translationproject.models import TranslationProject
+
+    return TranslationProject.objects.get(
+        language=language0,
+        project=project0)
