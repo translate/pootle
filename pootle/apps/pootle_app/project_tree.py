@@ -16,7 +16,6 @@ from django.conf import settings
 from pootle.core.log import STORE_RESURRECTED, store_log
 from pootle.core.utils.timezone import datetime_min
 from pootle_app.models.directory import Directory
-from pootle_format.utils import ProjectFiletypes
 from pootle_language.models import Language
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -50,11 +49,10 @@ def match_template_filename(project, filename):
     :param:`project`.
     """
     ext = os.path.splitext(os.path.basename(filename))[1][1:]
-    project_filetypes = ProjectFiletypes(project)
 
     # FIXME: is the test for matching extension redundant?
-    if ext in project_filetypes.template_extensions:
-        if ext not in project_filetypes.filetype_extensions:
+    if ext in project.filetype_tool.template_extensions:
+        if ext not in project.filetype_tool.filetype_extensions:
             # Template extension is distinct, surely file is a template.
             return True
         elif not find_lang_postfix(filename):
