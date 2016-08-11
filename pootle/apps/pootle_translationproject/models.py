@@ -23,7 +23,6 @@ from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
                                      translation_project_dir_exists)
 from pootle_format.models import Format
-from pootle_format.utils import ProjectFiletypes
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
@@ -413,7 +412,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
 
-        filetypes = ProjectFiletypes(self.project)
+        filetypes = self.project.filetype_tool
         exts = filetypes.filetype_extensions
 
         # Scan for pots if template project
