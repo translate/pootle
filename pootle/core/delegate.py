@@ -19,6 +19,7 @@ contributors = Getter()
 formats = Getter()
 format_registration = Provider()
 format_classes = Provider()
+filetype_tool = Getter()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
