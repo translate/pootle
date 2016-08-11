@@ -375,7 +375,6 @@ class PootleTestEnv(object):
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
 
-        from pootle_format.utils import ProjectFiletypes
         from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
 
         for i_ in range(0, n[0]):
@@ -384,8 +383,7 @@ class PootleTestEnv(object):
                 store = StoreDBFactory(translation_project=tp)
             else:
                 store = StoreDBFactory(translation_project=tp, parent=parent)
-            store.filetype = ProjectFiletypes(
-                tp.project).choose_filetype(store.name)
+            store.filetype = tp.project.filetype_tool.choose_filetype(store.name)
             store.save()
 
             # add 8 units to each store
