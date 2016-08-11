@@ -28,6 +28,7 @@ from pootle.core.decorators import (get_path_obj, get_resource,
 from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
+from pootle.core.mail import send_mail
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
 from pootle_app.models.directory import Directory
@@ -620,7 +621,7 @@ def manage_suggestion(request, uid, sugg_id):
         return accept_suggestion(request, uid, sugg_id)
 
 
-def handle_suggestion_comment(request, suggestion, comment):
+def handle_suggestion_comment(request, suggestion, unit, comment, action):
     kwargs = {
         'comment': comment,
         'user': request.user,
@@ -628,6 +629,26 @@ def handle_suggestion_comment(request, suggestion, comment):
     comment_form = UnsecuredCommentForm(suggestion, kwargs)
     if comment_form.is_valid():
         comment_form.save()
+
+        if action not in ("accepted", "rejected"):
+            return
+
+        ctx = {
+            'suggestion_id': suggestion.id,
+            'unit_url': request.build_absolute_uri(unit.get_translate_url()),
+            'comment': comment,
+        }
+        if action == "rejected":
+            message = loader.render_to_string(
+                'editor/email/suggestion_rejected_with_comment.txt', ctx)
+            subject = _(u"Suggestion rejected with comment")
+        else:
+            message = loader.render_to_string(
+                'editor/email/suggestion_accepted_with_comment.txt', ctx)
+            subject = _(u"Suggestion accepted with comment")
+
+        send_mail(subject, message, from_email=None,
+                  recipient_list=[suggestion.user.email], fail_silently=True)
 
 
 @get_unit_context()
@@ -647,7 +668,8 @@ def reject_suggestion(request, unit, suggid):
     unit.reject_suggestion(sugg, request.translation_project, request.user)
     r_data = QueryDict(request.body)
     if "comment" in r_data and r_data["comment"]:
-        handle_suggestion_comment(request, sugg, r_data["comment"])
+        handle_suggestion_comment(request, sugg, unit, r_data["comment"],
+                                  "rejected")
 
     json = {
         'udbid': unit.id,
@@ -666,7 +688,8 @@ def accept_suggestion(request, unit, suggid):
 
     unit.accept_suggestion(suggestion, request.translation_project, request.user)
     if "comment" in request.POST and request.POST["comment"]:
-        handle_suggestion_comment(request, suggestion, request.POST["comment"])
+        handle_suggestion_comment(request, suggestion, unit,
+                                  request.POST["comment"], "accepted")
 
     json = {
         'udbid': unit.id,

@@ -1,0 +1,7 @@
+{% load i18n %}
+{% filter wordwrap:70 %}{% blocktrans %}Suggestion #{{ suggestion_id }} submitted by you for {{ unit_url }} has been accepted with the following comment:{% endblocktrans %}{% endfilter %}
+
+{{ comment }}
+
+
+{% filter wordwrap:70 %}{% blocktrans %}We hope this feedback will help you improve your future contributions.{% endblocktrans %}{% endfilter %}
