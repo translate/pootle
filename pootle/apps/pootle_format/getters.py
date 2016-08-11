@@ -6,13 +6,21 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.delegate import formats
+from pootle.core.delegate import filetype_tool, formats
 from pootle.core.plugin import getter
+from pootle_project.models import Project
 
 from .registry import format_registry
+from .utils import ProjectFiletypes
 
 
 @getter(formats)
 def formats_getter(**kwargs):
 
     return format_registry
+
+
+@getter(filetype_tool, sender=Project)
+def filetype_tool_getter(**kwargs):
+
+    return ProjectFiletypes
