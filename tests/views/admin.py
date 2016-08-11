@@ -11,7 +11,7 @@ import pytest
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils.safestring import mark_safe
 
-from pytest_pootle.env import TEST_USERS
+from pytest_pootle.fixtures.models.user import TEST_USERS
 from pytest_pootle.factories import LanguageDBFactory
 
 from pootle.core.delegate import formats
