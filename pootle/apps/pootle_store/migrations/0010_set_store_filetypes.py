@@ -6,8 +6,6 @@ import logging
 from django.db import migrations, models
 
 from pootle.core.delegate import formats
-from pootle_format.exceptions import UnrecognizedFiletype
-from pootle_format.utils import ProjectFiletypes
 
 
 logger = logging.getLogger(__name__)
