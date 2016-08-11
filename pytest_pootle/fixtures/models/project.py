@@ -77,3 +77,11 @@ def vfolder_project(english, settings):
             "vfolder_test"))
 
     return _require_project('vfolder_test', 'Virtual Folder Test', english)
+
+
+@pytest.fixture
+def project0():
+    """project0 Project"""
+    from pootle_project.models import Project
+
+    return Project.objects.get(code="project0")
