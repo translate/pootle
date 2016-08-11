@@ -622,11 +622,6 @@ def manage_suggestion(request, uid, sugg_id):
 
 @get_unit_context()
 def reject_suggestion(request, unit, suggid):
-    json = {
-        'udbid': unit.id,
-        'sugid': suggid,
-    }
-
     try:
         sugg = unit.suggestion_set.get(id=suggid)
     except ObjectDoesNotExist:
@@ -650,18 +645,16 @@ def reject_suggestion(request, unit, suggid):
         if comment_form.is_valid():
             comment_form.save()
 
-    json['user_score'] = request.user.public_score
-
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+        'user_score': request.user.public_score,
+    }
     return JsonResponse(json)
 
 
 @get_unit_context('review')
 def accept_suggestion(request, unit, suggid):
-    json = {
-        'udbid': unit.id,
-        'sugid': suggid,
-    }
-
     try:
         suggestion = unit.suggestion_set.get(id=suggid)
     except ObjectDoesNotExist:
@@ -677,17 +670,19 @@ def accept_suggestion(request, unit, suggid):
         if comment_form.is_valid():
             comment_form.save()
 
-    json['user_score'] = request.user.public_score
-    json['newtargets'] = [highlight_whitespace(target)
-                          for target in unit.target.strings]
-    json['newdiffs'] = {}
+    json = {
+        'udbid': unit.id,
+        'sugid': suggid,
+        'user_score': request.user.public_score,
+        'newtargets': [highlight_whitespace(target)
+                       for target in unit.target.strings],
+        'checks': _get_critical_checks_snippet(request, unit),
+        'newdiffs': {},
+    }
     for sugg in unit.get_suggestions():
         json['newdiffs'][sugg.id] = [highlight_diffs(unit.target.strings[i],
                                                      target) for i, target in
                                      enumerate(sugg.target.strings)]
-
-    json['checks'] = _get_critical_checks_snippet(request, unit)
-
     return JsonResponse(json)
 
 
