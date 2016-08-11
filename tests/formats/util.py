@@ -11,7 +11,6 @@ import pytest
 from pootle.core.delegate import formats
 from pootle_format.exceptions import UnrecognizedFiletype
 from pootle_format.models import Format
-from pootle_format.utils import ProjectFiletypes
 from pootle_project.models import Project
 
 
@@ -19,18 +18,18 @@ from pootle_project.models import Project
 def test_format_util():
 
     project = Project.objects.get(code="project0")
-    filetypes = ProjectFiletypes(project)
-    assert list(filetypes.filetypes.all()) == list(project.filetypes.all())
+    filetype_tool = project.filetype_tool
+    assert list(filetype_tool.filetypes.all()) == list(project.filetypes.all())
 
-    assert filetypes.filetype_extensions == ["po"]
-    assert filetypes.template_extensions == ["pot"]
-    assert filetypes.valid_extensions == ["po", "pot"]
+    assert filetype_tool.filetype_extensions == ["po"]
+    assert filetype_tool.template_extensions == ["pot"]
+    assert filetype_tool.valid_extensions == ["po", "pot"]
 
     xliff = Format.objects.get(name="xliff")
     project.filetypes.add(xliff)
-    assert filetypes.filetype_extensions == ["po", "xliff"]
-    assert filetypes.template_extensions == ["pot", "xliff"]
-    assert filetypes.valid_extensions == ["po", "xliff", "pot"]
+    assert filetype_tool.filetype_extensions == ["po", "xliff"]
+    assert filetype_tool.template_extensions == ["pot", "xliff"]
+    assert filetype_tool.valid_extensions == ["po", "xliff", "pot"]
 
 
 @pytest.mark.django_db
@@ -44,18 +43,18 @@ def test_format_chooser():
     project.filetypes.add(xliff)
     project.filetypes.add(po2)
     project.filetypes.add(po3)
-    filetypes = ProjectFiletypes(project)
+    filetype_tool = project.filetype_tool
 
-    assert filetypes.choose_filetype("foo.po") == po
-    assert filetypes.choose_filetype("foo.pot") == po
-    assert filetypes.choose_filetype("foo.xliff") == xliff
+    assert filetype_tool.choose_filetype("foo.po") == po
+    assert filetype_tool.choose_filetype("foo.pot") == po
+    assert filetype_tool.choose_filetype("foo.xliff") == xliff
 
     # push po to the back of the queue
     project.filetypes.remove(po)
     project.filetypes.add(po)
-    assert filetypes.choose_filetype("foo.po") == po2
-    assert filetypes.choose_filetype("foo.pot") == po
-    assert filetypes.choose_filetype("foo.xliff") == xliff
+    assert filetype_tool.choose_filetype("foo.po") == po2
+    assert filetype_tool.choose_filetype("foo.pot") == po
+    assert filetype_tool.choose_filetype("foo.xliff") == xliff
 
     with pytest.raises(UnrecognizedFiletype):
-        filetypes.choose_filetype("foo.bar")
+        filetype_tool.choose_filetype("foo.bar")
