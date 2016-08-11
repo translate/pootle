@@ -620,6 +620,16 @@ def manage_suggestion(request, uid, sugg_id):
         return accept_suggestion(request, uid, sugg_id)
 
 
+def handle_suggestion_comment(request, suggestion, comment):
+    kwargs = {
+        'comment': comment,
+        'user': request.user,
+    }
+    comment_form = UnsecuredCommentForm(suggestion, kwargs)
+    if comment_form.is_valid():
+        comment_form.save()
+
+
 @get_unit_context()
 def reject_suggestion(request, unit, suggid):
     try:
@@ -637,13 +647,7 @@ def reject_suggestion(request, unit, suggid):
     unit.reject_suggestion(sugg, request.translation_project, request.user)
     r_data = QueryDict(request.body)
     if "comment" in r_data and r_data["comment"]:
-        kwargs = dict(
-            comment=r_data["comment"],
-            user=request.user,
-        )
-        comment_form = UnsecuredCommentForm(sugg, kwargs)
-        if comment_form.is_valid():
-            comment_form.save()
+        handle_suggestion_comment(request, sugg, r_data["comment"])
 
     json = {
         'udbid': unit.id,
@@ -662,13 +666,7 @@ def accept_suggestion(request, unit, suggid):
 
     unit.accept_suggestion(suggestion, request.translation_project, request.user)
     if "comment" in request.POST and request.POST["comment"]:
-        kwargs = dict(
-            comment=request.POST["comment"],
-            user=request.user,
-        )
-        comment_form = UnsecuredCommentForm(suggestion, kwargs)
-        if comment_form.is_valid():
-            comment_form.save()
+        handle_suggestion_comment(request, suggestion, request.POST["comment"])
 
     json = {
         'udbid': unit.id,
