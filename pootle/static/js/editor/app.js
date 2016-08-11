@@ -2438,33 +2438,39 @@ PTL.editor = {
     return true;
   },
 
+  openSuggestion(suggId, initialSuggestionText) {
+    const suggestion = document.getElementById(`suggestion-${suggId}`);
+
+    this.selectedSuggestionId = suggId;
+    const props = {
+      suggId,
+      initialSuggestionText,
+      localeDir: this.settings.localeDir,
+      onAcceptSuggestion: this.handleAcceptSuggestion.bind(this),
+      onRejectSuggestion: this.handleRejectSuggestion.bind(this),
+      onChange: this.handleSuggestionFeedbackChange.bind(this),
+    };
+    const mountSelector = `.js-mnt-suggestion-feedback-${suggId}`;
+    const feedbackMountPoint = document.querySelector(mountSelector);
+    const editorBody = document.querySelector('.js-editor-body .translate-full');
+    suggestion.classList.add('suggestion-expanded');
+    editorBody.classList.add('suggestion-expanded');
+
+    this.isSuggestionFeedbackFormDirty = false;
+    this.suggestionFeedbackForm = ReactDOM.render(
+      <SuggestionFeedbackForm {...props} />,
+      feedbackMountPoint
+    );
+  },
+
   toggleSuggestion(e, { canHide = false } = {}) {
-    e.stopPropagation();
-    const suggestionId = parseInt(e.currentTarget.dataset.suggId, 10);
-    const suggestion = document.getElementById(`suggestion-${suggestionId}`);
-
     if (this.selectedSuggestionId === undefined) {
-      this.selectedSuggestionId = suggestionId;
-      const props = {
-        suggId: this.selectedSuggestionId,
-        initialSuggestionText: e.currentTarget.dataset.translationAid,
-        localeDir: this.settings.localeDir,
-        onAcceptSuggestion: this.handleAcceptSuggestion.bind(this),
-        onRejectSuggestion: this.handleRejectSuggestion.bind(this),
-        onChange: this.handleSuggestionFeedbackChange.bind(this),
-      };
-      const mountSelector = `.js-mnt-suggestion-feedback-${suggestionId}`;
-      const feedbackMountPoint = document.querySelector(mountSelector);
-      const editorBody = document.querySelector('.js-editor-body .translate-full');
-      suggestion.classList.add('suggestion-expanded');
-      editorBody.classList.add('suggestion-expanded');
-
-      this.isSuggestionFeedbackFormDirty = false;
-      this.suggestionFeedbackForm = ReactDOM.render(
-        <SuggestionFeedbackForm {...props} />,
-        feedbackMountPoint
-      );
+      e.stopPropagation();
+      const suggestionId = parseInt(e.currentTarget.dataset.suggId, 10);
+      const initialSuggestionText = e.currentTarget.dataset.translationAid;
+      this.openSuggestion(suggestionId, initialSuggestionText);
     } else if (canHide) {
+      e.stopPropagation();
       this.closeSuggestion();
     }
   },
