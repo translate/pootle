@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-01-29 07:40+0000\n"
 "Last-Translator: Tornoz <tornoz@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1678,6 +1678,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "enrolladur war Pootle"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "Da weredekaat ho kont, klikit war al liamm-mañ :"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "Adderaouekaat ar ger-tremen war %s"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -2898,9 +2917,6 @@ msgstr "Perzhidi bennañ"
 #~ msgstr ""
 #~ "Merkit un anv implijer hag ur ger-tremen reizh. Taolit pled e vez kemeret "
 #~ "e kont ar pennlizherennoù en div vaezienn."
-
-#~ msgid "Password reset on %s"
-#~ msgstr "Adderaouekaat ar ger-tremen war %s"
 
 #~ msgid "Add %(name)s"
 #~ msgstr "Ouzhpennañ %(name)s"

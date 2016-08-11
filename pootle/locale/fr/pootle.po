@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-07-20 15:45+0000\n"
 "Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -1715,6 +1715,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "Inscription sur Pootle"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "Pour activer votre compte d'utilisateur, veuillez ouvrir ce lien :"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "Échec de la réinitialisation du mot de passe."
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -3207,9 +3226,6 @@ msgstr "Contributeurs principaux"
 
 #~ msgid "Reset My Password"
 #~ msgstr "Réinitialiser mon mot de passe"
-
-#~ msgid "Password Reset Failed."
-#~ msgstr "Échec de la réinitialisation du mot de passe."
 
 #~ msgid ""
 #~ "The password reset link was invalid, possibly because it has already been "

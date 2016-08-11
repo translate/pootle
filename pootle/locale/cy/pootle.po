@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-07-27 13:16+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -1728,6 +1728,25 @@ msgstr ""
 #: templates/account/email/email_confirmation_subject.txt:2
 msgid "Pootle e-mail confirmation"
 msgstr "E-bost cadarnhau Pootle"
+
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "I agor eich cyfrif, dilynwch y ddolen:"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "Methodd Ailosod Eich Cyfrinair."
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -4271,9 +4290,6 @@ msgstr "Prif Gyfranwyr y 30 Diwrnod Diwethaf"
 
 #~ msgid "Reset My Password"
 #~ msgstr "Ailosod Eich Cyfrinair"
-
-#~ msgid "Password Reset Failed."
-#~ msgstr "Methodd Ailosod Eich Cyfrinair."
 
 #~ msgid ""
 #~ "The password reset link was invalid, possibly because it has already been "

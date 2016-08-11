@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2014-07-02 02:37+0000\n"
 "Last-Translator: sovichet.tep <sovichet.tep@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1662,6 +1662,24 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr ""
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+msgid "To reset your password, follow this link:"
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ​នៅ %s"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -2868,9 +2886,6 @@ msgstr "អ្នក​ចូលរួម​កំពូល"
 #~ "case-sensitive."
 #~ msgstr ""
 #~ "សូម​បញ្ចូល​ឈ្មោះ​អ្នក​ប្រើ និង​ពាក្យ​សម្ងាត់​ដែល​ត្រឹម​ត្រូវ។ សូម​ចាំ​ទេ វាល​ទាំង​ពីរ​នេះ​ប្រកាន់​តួ​អក្សរ​តូច​ធំ។"
-
-#~ msgid "Password reset on %s"
-#~ msgstr "កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ​នៅ %s"
 
 #~ msgid "Add %(name)s"
 #~ msgstr "បន្ថែម %(name)s"

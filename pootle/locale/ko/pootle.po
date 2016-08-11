@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1712,6 +1712,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "Pootle 이메일 확인"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "당신의 계정을 활성화 하기 위해, 링크를 따라 가세요:"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "비밀번호 초기화 실패"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -3291,9 +3310,6 @@ msgstr "기여자"
 
 #~ msgid "Reset My Password"
 #~ msgstr "내 비밀번호 초기화"
-
-#~ msgid "Password Reset Failed."
-#~ msgstr "비밀번호 초기화 실패"
 
 #~ msgid ""
 #~ "The password reset link was invalid, possibly because it has already been "

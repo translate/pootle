@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-08-01 17:51+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1723,6 +1723,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "Pootle - potvrzení e-mailu"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "Pro aktivaci účtu klikněte na následující odkaz:"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "Resetování hesla se nezdařilo."
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -3365,9 +3384,6 @@ msgstr "Hlavní přispěvatelé za posledních 30 dní"
 
 #~ msgid "Reset My Password"
 #~ msgstr "Resetovat heslo"
-
-#~ msgid "Password Reset Failed."
-#~ msgstr "Resetování hesla se nezdařilo."
 
 #~ msgid ""
 #~ "The password reset link was invalid, possibly because it has already been "

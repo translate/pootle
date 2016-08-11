@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2015-09-29 19:03+0000\n"
 "Last-Translator: வே. இளஞ்செழியன் <tamiliam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1697,6 +1697,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "பூட்டில் பதிவு"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "உமது கணக்கை செயலாக்க இவ்விணைப்பை தொடரவும்:"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "கடவுச்சொல்லை மீண்டும் நிறுவுதல் தடங்களுற்றது"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -3151,9 +3170,6 @@ msgstr "அதிக பங்களித்தவர்"
 
 #~ msgid "Reset My Password"
 #~ msgstr "எனது கடவுச்சொல்லை மீண்டும் நிறுவு"
-
-#~ msgid "Password Reset Failed."
-#~ msgstr "கடவுச்சொல்லை மீண்டும் நிறுவுதல் தடங்களுற்றது"
 
 #~ msgid ""
 #~ "The password reset link was invalid, possibly because it has already been "

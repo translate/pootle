@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2015-08-01 21:40+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1677,6 +1677,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "ਪੋਟਲ ਰਜਿਸਟਰੇਸ਼ਨ"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "ਆਪਣਾ ਅਕਾਊਂਟ ਐਕਟੀਵੇਟ ਕਰਨ ਲਈ, ਇਹ ਲਿੰਕ ਖੋਲ੍ਹੋ:"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "ਪਾਸਵਰਡ ਮੁੜ-ਸੈੱਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ।"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -2983,9 +3002,6 @@ msgstr "ਚੋਟੀ ਦੇ ਯੋਗਦਾਨੀ"
 
 #~ msgid "Reset My Password"
 #~ msgstr "ਮੇਰਾ ਪਾਸਵਰਡ ਮੁੜ-ਸੈੱਟ ਕਰੋ"
-
-#~ msgid "Password Reset Failed."
-#~ msgstr "ਪਾਸਵਰਡ ਮੁੜ-ਸੈੱਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ।"
 
 #~ msgid ""
 #~ "The password reset link was invalid, possibly because it has already been "

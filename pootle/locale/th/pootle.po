@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-03-24 18:09+0000\n"
 "Last-Translator: teerapat.top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1668,6 +1668,24 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr ""
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+msgid "To reset your password, follow this link:"
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "ตั้งค่ารหัสผ่านใหม่บน %s"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -2870,9 +2888,6 @@ msgstr "ผู้มีส่วนร่วมมากที่สุด"
 
 #~ msgid "Change"
 #~ msgstr "เปลี่ยน"
-
-#~ msgid "Password reset on %s"
-#~ msgstr "ตั้งค่ารหัสผ่านใหม่บน %s"
 
 #~ msgid "Add %(name)s"
 #~ msgstr "เพิ่ม %(name)s"

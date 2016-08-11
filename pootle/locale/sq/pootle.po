@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-11 10:26+0100\n"
 "PO-Revision-Date: 2016-06-08 12:15+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -1705,6 +1705,25 @@ msgstr ""
 msgid "Pootle e-mail confirmation"
 msgstr "Regjistrimi në Pootle"
 
+#: templates/account/email/password_reset_key_message.txt:2
+msgid "We have received a request to reset your password."
+msgstr ""
+
+#: templates/account/email/password_reset_key_message.txt:3
+#, fuzzy
+msgid "To reset your password, follow this link:"
+msgstr "Për të aktivizuar profilin, ndiq këtë lidhje:"
+
+#: templates/account/email/password_reset_key_message.txt:6
+msgid ""
+"If you do not want to reset your password, you may simply ignore the message."
+msgstr ""
+
+#: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
+msgid "Pootle password reset e-mail"
+msgstr "Fjalekalimi u rivendos në %s"
+
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
@@ -3146,9 +3165,6 @@ msgstr "Kontribuesit Kryesor"
 #~ msgstr ""
 #~ "Ju lutemi jepni një perdorues dhe fjalkalim të saktë. Shënim të dyja këto "
 #~ "fusha janë të ndjeshme ndaj Gërmave të mëdha/ të vogla.  "
-
-#~ msgid "Password reset on %s"
-#~ msgstr "Fjalekalimi u rivendos në %s"
 
 #~ msgid "Add %(name)s"
 #~ msgstr "Shto %(emra)s"
