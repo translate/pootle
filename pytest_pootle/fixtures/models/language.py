@@ -94,3 +94,11 @@ def klingon(english):
 def klingon_vpw(english):
     """Require the Klingon language (VPW dialect)."""
     return _require_language('kl_VPW', 'Klingon vegan peace warriors')
+
+
+@pytest.fixture
+def language0():
+    """language0 Language"""
+    from pootle_language.models import Language
+
+    return Language.objects.get(code="language0")
