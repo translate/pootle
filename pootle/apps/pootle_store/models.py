@@ -49,7 +49,6 @@ from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_app.models import Directory
 from pootle_format.models import Format
-from pootle_format.utils import ProjectFiletypes
 from pootle_misc.checks import check_names, get_checker
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
@@ -1279,7 +1278,7 @@ class StoreManager(models.Manager):
 
     def create(self, *args, **kwargs):
         if "filetype" not in kwargs:
-            filetypes = ProjectFiletypes(kwargs["translation_project"].project)
+            filetypes = kwargs["translation_project"].project.filetype_tool
             kwargs['filetype'] = filetypes.choose_filetype(kwargs["name"])
         if kwargs["translation_project"].is_template_project:
             kwargs["is_template"] = True
@@ -1297,7 +1296,7 @@ class StoreManager(models.Manager):
             store.is_template = True
             update = True
         if "filetype" not in kwargs:
-            filetypes = ProjectFiletypes(store.translation_project.project)
+            filetypes = store.translation_project.project.filetype_tool
             store.filetype = filetypes.choose_filetype(store.name)
             update = True
         if update:
@@ -1319,7 +1318,7 @@ class StoreManager(models.Manager):
         elif project.code != proj_code:
             raise ValueError(
                 "Project must match pootle_path when provided")
-        if ext not in ProjectFiletypes(project).valid_extensions:
+        if ext not in project.filetype_tool.valid_extensions:
             raise ValueError(
                 "'%s' is not a valid extension for this Project"
                 % ext)
