@@ -100,12 +100,10 @@ def tp_checker_tests(request, english, checkers):
 
 
 @pytest.fixture
-def templates_project0(request, templates):
+def templates_project0(request, templates, project0):
     """Require the templates/project0/ translation project."""
-    from pootle_project.models import Project
     from pytest_pootle.factories import TranslationProjectFactory
 
-    project0 = Project.objects.get(code="project0")
     tp = TranslationProjectFactory(language=templates, project=project0)
 
     def _cleanup():
