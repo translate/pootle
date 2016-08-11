@@ -15,7 +15,6 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import lang_mapper
 from pootle.core.url_helpers import split_pootle_path
-from pootle_format.utils import ProjectFiletypes
 
 
 logger = logging.getLogger(__name__)
@@ -39,7 +38,7 @@ class FSPathMatcher(object):
             path_filters.append(fs_path)
         return self.context.finder_class(
             self.translation_path,
-            extensions=ProjectFiletypes(self.project).valid_extensions,
+            extensions=self.project.filetype_tool.valid_extensions,
             path_filters=path_filters)
 
     @property
