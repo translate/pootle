@@ -50,31 +50,6 @@ from .unit.timeline import Timeline
 from .util import find_altsrcs
 
 
-#: Mapping of allowed sorting criteria.
-#: Keys are supported query strings, values are the field + order that
-#: will be used against the DB.
-ALLOWED_SORTS = {
-    'units': {
-        'priority': '-priority',
-        'oldest': 'submitted_on',
-        'newest': '-submitted_on',
-    },
-    'suggestions': {
-        'oldest': 'suggestion__creation_time',
-        'newest': '-suggestion__creation_time',
-    },
-    'submissions': {
-        'oldest': 'submission__creation_time',
-        'newest': '-submission__creation_time',
-    },
-}
-
-
-#: List of fields from `ALLOWED_SORTS` that can be sorted by simply using
-#: `order_by(field)`
-SIMPLY_SORTED = ['units']
-
-
 def get_alt_src_langs(request, user, translation_project):
     language = translation_project.language
     project = translation_project.project

@@ -9,9 +9,9 @@
 from django.db.models import Max
 from django.utils.functional import cached_property
 
+from pootle_store.constants import SIMPLY_SORTED
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
-from pootle_store.views import SIMPLY_SORTED
 
 
 class DBSearchBackend(object):

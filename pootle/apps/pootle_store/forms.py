@@ -31,6 +31,7 @@ from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
+from .constants import ALLOWED_SORTS
 from .fields import to_db
 from .form_fields import (
     CategoryChoiceField, ISODateTimeField, MultipleArgsField,
@@ -500,8 +501,6 @@ class UnitSearchForm(forms.Form):
         self.fields["modified-since"] = ISODateTimeField(required=False)
 
     def clean(self):
-        from .views import ALLOWED_SORTS
-
         if "checks" in self.errors:
             del self.errors["checks"]
             self.cleaned_data["checks"] = None
