@@ -571,7 +571,6 @@ PTL.editor = {
           } else {
             uId = this.units.uIds[0];
           }
-          $.history.load(utils.updateHashPart('unit', uId));
         }
         this.offsetRequested = 0;
         this.setUnit(uId);
