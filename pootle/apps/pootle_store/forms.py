@@ -105,7 +105,22 @@ def unhighlight_whitespace(text):
     return FORM_UNRE.sub(replace, text)
 
 
-class MultiStringWidget(forms.MultiWidget):
+class MultiStringWidgetMixin(object):
+
+    def decompress(self, value):
+        if value is None:
+            return [None] * len(self.widgets)
+        elif isinstance(value, multistring):
+            return [highlight_whitespace(string) for string in value.strings]
+        elif isinstance(value, list):
+            return [highlight_whitespace(string) for string in value]
+        elif isinstance(value, basestring):
+            return [highlight_whitespace(value)]
+        else:
+            raise ValueError
+
+
+class MultiStringWidget(MultiStringWidgetMixin, forms.MultiWidget):
     """Custom Widget for editing multistrings, expands number of text
     area based on number of plural forms.
     """
@@ -133,28 +148,17 @@ class MultiStringWidget(forms.MultiWidget):
 
         return mark_safe(output)
 
-    def decompress(self, value):
-        if value is None:
-            return [None] * len(self.widgets)
-        elif isinstance(value, multistring):
-            return [highlight_whitespace(string) for string in value.strings]
-        elif isinstance(value, list):
-            return [highlight_whitespace(string) for string in value]
-        elif isinstance(value, basestring):
-            return [highlight_whitespace(value)]
-        else:
-            raise ValueError
 
-
-class HiddenMultiStringWidget(MultiStringWidget):
+class HiddenMultiStringWidget(MultiStringWidgetMixin, forms.MultiWidget):
     """Uses hidden input instead of textareas."""
 
     def __init__(self, attrs=None, nplurals=1):
         widgets = [forms.HiddenInput(attrs=attrs) for i_ in xrange(nplurals)]
-        super(MultiStringWidget, self).__init__(widgets, attrs)
+        super(HiddenMultiStringWidget, self).__init__(widgets, attrs)
 
     def format_output(self, rendered_widgets):
-        return super(MultiStringWidget, self).format_output(rendered_widgets)
+        return super(
+            HiddenMultiStringWidget, self).format_output(rendered_widgets)
 
     def __call__(self):
         # HACKISH: Django is inconsistent in how it handles Field.widget and
@@ -201,7 +205,7 @@ class UnitStateField(forms.BooleanField):
         else:
             value = bool(value)
 
-        return super(forms.BooleanField, self).to_python(value)
+        return super(UnitStateField, self).to_python(value)
 
 
 def unit_form_factory(language, snplurals=None, request=None):
