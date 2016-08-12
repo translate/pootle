@@ -92,7 +92,11 @@ def requires_permission(permission):
         def method_wrapper(self, request, *args, **kwargs):
             directory_permission = check_directory_permission(
                 permission, request, self.permission_context)
-            if directory_permission and hasattr(self, "required_permission"):
+            check_class_permission = (
+                directory_permission
+                and hasattr(self, "required_permission")
+                and permission != self.required_permission)
+            if check_class_permission:
                 directory_permission = check_directory_permission(
                     self.required_permission, request, self.permission_context)
             if not directory_permission:
