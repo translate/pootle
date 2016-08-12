@@ -468,7 +468,7 @@ div.translate-container.error div.language-name
     border-bottom: 1px solid #fdd;
 }
 
-.translate-focus div.translate-original,
+.translate-focus div.translate-original
 {
     color: #130f30;
 }
@@ -479,31 +479,36 @@ div.source-language.alternative
     margin-bottom: 2em;
 }
 
-table td.translate-original,
-table td.translate-translation
+table .view-row td
 {
-    padding: 0.5em 5px;
+    padding: 0;
     width: 50%;
     vertical-align: top;
 }
 
-table td.translate-original
+table .translate-view.translate-original,
+table .translate-view.translate-translation
+{
+    padding: 5px;
+}
+
+table .translate-view.translate-original
 {
     padding-left: 25px;
 }
 
-table td.translate-translation
+table .translate-view.translate-translation
 {
     padding-right: 25px;
 }
 
-html[dir="rtl"] table td.translate-original
+html[dir="rtl"] table .translate-view.translate-original
 {
     padding-left: auto;
     padding-right: 25px;
 }
 
-html[dir="rtl"] table td.translate-translation
+html[dir="rtl"] table .translate-view.translate-translation
 {
     padding-right: auto;
     padding-left: 25px;
@@ -1613,7 +1618,7 @@ td.translate-full div.translate-translation:lang(zh)
     margin-bottom: 35px;
 }
 
-tr.view-row td.fuzzy-unit .translation-text
+tr.view-row .fuzzy-unit .translation-text
 {
     color: #888;
     font-style: italic;

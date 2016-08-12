@@ -37,6 +37,7 @@ import linkHashtags from 'utils/linkHashtags';
 
 import SuggestionFeedbackForm from './components/SuggestionFeedbackForm';
 import UploadTimeSince from './components/UploadTimeSince';
+import ViewUnit from './components/ViewUnit';
 
 import captcha from '../captcha';
 import { UnitSet } from '../collections';
@@ -1234,12 +1235,8 @@ PTL.editor = {
 
 
   /* Renders a single row */
-  renderRow(unit) {
-    return (`
-      <tr id="row${unit.id}" class="view-row">
-        ${this.tmpl.vUnit({ unit: unit.toJSON() })}
-      </tr>
-    `);
+  renderRow(unitId) {
+    return (`<tr id="row${unitId}" class="view-row" data-id="${unitId}"><td></td><td></td></tr>`);
   },
 
   renderEditorRow(unit) {
@@ -1265,6 +1262,7 @@ PTL.editor = {
     const currentUnit = this.units.getCurrent();
 
     const rows = [];
+    this.viewUnits = {};
 
     unitGroups.forEach((unitGroup) => {
       // Don't display a delimiter row if all units have the same origin
@@ -1282,7 +1280,8 @@ PTL.editor = {
         if (unit.id === currentUnit.id) {
           rows.push(this.renderEditorRow(unit));
         } else {
-          rows.push(this.renderRow(unit));
+          this.viewUnits[unit.id] = unit.toJSON();
+          rows.push(this.renderRow(unit.id));
         }
       }
     });
@@ -1368,7 +1367,30 @@ PTL.editor = {
 
     if (newTbody !== undefined) {
       this.$editorBody.html(newTbody);
+      const rows = document.querySelectorAll('.view-row');
+      for (let i = 0; i < rows.length; i++) {
+        const unit = this.viewUnits[rows[i].dataset.id];
+        const sourceProps = {
+          id: unit.id,
+          url: unit.url,
+          dir: unit.store.source_dir,
+          language: unit.store.source_lang,
+          values: unit.source,
+          type: 'original',
+        };
+        const targetProps = {
+          id: unit.id,
+          url: unit.url,
+          isFuzzy: unit.isfuzzy,
+          dir: unit.store.target_dir,
+          language: unit.store.target_lang,
+          values: unit.target,
+          type: 'translation',
+        };
 
+        ReactRenderer.render(<ViewUnit {...sourceProps} />, rows[i].cells[0]);
+        ReactRenderer.render(<ViewUnit {...targetProps} />, rows[i].cells[1]);
+      }
       this.ready();
     }
   },
