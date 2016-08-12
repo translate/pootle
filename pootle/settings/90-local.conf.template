@@ -153,6 +153,9 @@ POOTLE_CONTACT_ENABLED = True
 # different from the general contact address.
 POOTLE_CONTACT_REPORT_EMAIL = 'string_errors_manager@YOUR_DOMAIN.com'
 
+# Whether to email reviewer's feedback to suggesters.
+POOTLE_EMAIL_FEEDBACK_ENABLED = False
+
 # Mail server settings
 
 # By default Pootle uses the SMTP server on localhost. If the server is not

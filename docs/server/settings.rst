@@ -134,6 +134,17 @@ Site-specific settings.
   Email address to report errors on strings.
 
 
+.. setting:: POOTLE_EMAIL_FEEDBACK_ENABLED
+
+``POOTLE_EMAIL_FEEDBACK_ENABLED``
+  Default: ``False``
+
+  .. versionadded:: 2.8
+
+  Controls whether emails are sent to suggesters when a reviewer accepts or
+  rejects their suggestions providing some comment for the suggester.
+
+
 40-apps.conf
 ^^^^^^^^^^^^
 

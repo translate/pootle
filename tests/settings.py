@@ -86,6 +86,9 @@ RQ_QUEUES = {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
+POOTLE_EMAIL_FEEDBACK_ENABLED = True
+
+
 # Faster password hasher
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',

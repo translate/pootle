@@ -630,7 +630,9 @@ def handle_suggestion_comment(request, suggestion, unit, comment, action):
     if comment_form.is_valid():
         comment_form.save()
 
-        if action not in ("accepted", "rejected"):
+        if (action not in ("accepted", "rejected") or
+            not settings.POOTLE_EMAIL_FEEDBACK_ENABLED):
+
             return
 
         ctx = {
