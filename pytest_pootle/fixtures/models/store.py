@@ -431,3 +431,27 @@ def complex_po(test_fs):
 
     store.update(ttk)
     return store
+
+
+@pytest.fixture
+def diffable_stores(complex_po, request):
+    from pootle.core.delegate import format_diffs
+    from pootle_store.models import Store
+    from pootle_translationproject.models import TranslationProject
+
+    start_receivers = format_diffs.receivers
+
+    tp = TranslationProject.objects.get(
+        language=complex_po.translation_project.language,
+        project__code="project1")
+    other_po = Store.objects.create(
+        name="complex.po",
+        translation_project=tp,
+        parent=tp.directory,
+        pootle_path=complex_po.pootle_path.replace("project0", "project1"))
+    other_po.update(other_po.deserialize(complex_po.serialize()))
+
+    def _reset_format_diffs():
+        format_diffs.receivers = start_receivers
+    request.addfinalizer(_reset_format_diffs)
+    return complex_po, other_po
