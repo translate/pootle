@@ -23,7 +23,8 @@ from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from pootle.core.delegate import config, format_classes, formats
+from pootle.core.delegate import (
+    config, format_classes, format_diffs, formats)
 from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
@@ -35,6 +36,7 @@ from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.diff import DiffableStore, StoreDiff
 from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
 from pootle_store.util import parse_pootle_revision
 from pootle_translationproject.models import TranslationProject
@@ -512,7 +514,7 @@ def test_store_update(param_update_store_test):
 
 
 @pytest.mark.django_db
-def test_store_diff(store_diff_tests):
+def test_store_file_diff(store_diff_tests):
     diff, store, update_units, store_revision = store_diff_tests
 
     assert diff.target_store == store
@@ -521,7 +523,7 @@ def test_store_diff(store_diff_tests):
         update_units
         == [(x.source, x.target) for x in diff.source_store.units[1:]]
         == [(v['source'], v['target']) for v in diff.source_units.values()])
-    assert diff.active_units == [x.source for x in store.units]
+    assert diff.active_target_units == [x.source for x in store.units]
     assert diff.target_revision == store.get_max_unit_revision()
     assert (
         diff.target_units
@@ -984,3 +986,206 @@ def test_store_get_or_create_templates(templates):
         parent=tp.directory)[0]
     assert store.filetype == po
     assert store.is_template
+
+
+@pytest.mark.django_db
+def test_store_diff(diffable_stores):
+    target_store, source_store = diffable_stores
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+    # no changes
+    assert not differ.diff()
+    assert differ.target_store == target_store
+    assert differ.source_store == source_store
+
+
+@pytest.mark.django_db
+def test_store_diff_delete_target_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+
+    # delete a unit in the target store
+    remove_unit = target_store.units.first()
+    remove_unit.delete()
+
+    # the unit will always be re-added (as its not obsolete)
+    # with source_revision to the max
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision())
+    result = differ.diff()
+    assert result["add"][0][0].source_f == remove_unit.source_f
+    assert len(result["add"]) == 1
+    assert len(result["index"]) == 0
+    assert len(result["obsolete"]) == 0
+    assert result['update'] == (set(), {})
+
+    # and source_revision to 0
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        0)
+    result = differ.diff()
+    assert result["add"][0][0].source_f == remove_unit.source_f
+    assert len(result["add"]) == 1
+    assert len(result["index"]) == 0
+    assert len(result["obsolete"]) == 0
+    assert result['update'] == (set(), {})
+
+
+@pytest.mark.django_db
+def test_store_diff_delete_source_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+
+    # delete a unit in the source store
+    remove_unit = source_store.units.first()
+    remove_unit.delete()
+
+    # set the source_revision to max and the unit will be obsoleted
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision())
+    result = differ.diff()
+    to_remove = target_store.units.get(unitid=remove_unit.unitid)
+    assert result["obsolete"] == [to_remove.pk]
+    assert len(result["obsolete"]) == 1
+    assert len(result["add"]) == 0
+    assert len(result["index"]) == 0
+
+    # set the source_revision to less that than the target_stores' max_revision
+    # and the unit will be ignored, as its assumed to have been previously
+    # deleted
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() - 1)
+    result = differ.diff()
+
+
+@pytest.mark.django_db
+def test_store_diff_delete_obsoleted_target_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+    # delete a unit in the source store
+    remove_unit = source_store.units.first()
+    remove_unit.delete()
+    # and obsolete the same unit in the target
+    obsolete_unit = target_store.units.get(unitid=remove_unit.unitid)
+    obsolete_unit.makeobsolete()
+    obsolete_unit.save()
+    # as the unit is already obsolete - nothing
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+    assert not differ.diff()
+
+
+@pytest.mark.django_db
+def test_store_diff_obsoleted_target_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+    # obsolete a unit in target
+    obsolete_unit = target_store.units.first()
+    obsolete_unit.makeobsolete()
+    obsolete_unit.save()
+    # as the revision is higher it gets unobsoleted
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+    result = differ.diff()
+    assert result["update"][0] == set([obsolete_unit.pk])
+    assert len(result["update"][1]) == 1
+    assert result["update"][1][obsolete_unit.unitid]["dbid"] == obsolete_unit.pk
+
+    # if the revision is less - no change
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() - 1)
+    assert not differ.diff()
+
+
+@pytest.mark.django_db
+def test_store_diff_update_target_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+    # update a unit in target
+    update_unit = target_store.units.first()
+    update_unit.target_f = "Some other string"
+    update_unit.save()
+
+    # the unit is always marked for update
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+    result = differ.diff()
+    assert result["update"][0] == set([update_unit.pk])
+    assert result["update"][1] == {}
+    assert len(result["add"]) == 0
+    assert len(result["index"]) == 0
+
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        0)
+    result = differ.diff()
+    assert result["update"][0] == set([update_unit.pk])
+    assert result["update"][1] == {}
+    assert len(result["add"]) == 0
+    assert len(result["index"]) == 0
+
+
+@pytest.mark.django_db
+def test_store_diff_update_source_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+    # update a unit in source
+    update_unit = source_store.units.first()
+    update_unit.target_f = "Some other string"
+    update_unit.save()
+
+    target_unit = target_store.units.get(
+        unitid=update_unit.unitid)
+
+    # the unit is always marked for update
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+    result = differ.diff()
+    assert result["update"][0] == set([target_unit.pk])
+    assert result["update"][1] == {}
+    assert len(result["add"]) == 0
+    assert len(result["index"]) == 0
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        0)
+    result = differ.diff()
+    assert result["update"][0] == set([target_unit.pk])
+    assert result["update"][1] == {}
+    assert len(result["add"]) == 0
+    assert len(result["index"]) == 0
+
+
+@pytest.mark.django_db
+def test_store_diff_custom(diffable_stores):
+    target_store, source_store = diffable_stores
+
+    class CustomDiffableStore(DiffableStore):
+        pass
+
+    @provider(format_diffs)
+    def format_diff_provider(**kwargs):
+        return {
+            target_store.filetype.name: CustomDiffableStore}
+
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+
+    assert isinstance(
+        differ.diffable, CustomDiffableStore)
