@@ -352,7 +352,6 @@ class Unit(models.Model, base.TranslationUnit):
         validators=[MinValueValidator(0)])
 
     objects = UnitManager()
-    simple_objects = models.Manager()
 
     class Meta(object):
         unique_together = ('store', 'unitid_hash')
@@ -1393,7 +1392,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     obsolete = models.BooleanField(default=False)
 
     objects = StoreManager()
-    simple_objects = models.Manager()
 
     class Meta(object):
         ordering = ['pootle_path']
@@ -1829,7 +1827,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             'state__gt': OBSOLETE,
         }
         count = 0
-        for unit in Unit.simple_objects.filter(**filter_by):
+        for unit in Unit.objects.filter(**filter_by):
             unit.save(revision=Revision.incr())
             count += 1
 
@@ -2181,9 +2179,18 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def _get_last_action(self, submission=None):
         if submission is None:
             try:
-                sub = Submission.simple_objects.filter(store=self) \
-                                .exclude(type=SubmissionTypes.UNIT_CREATE) \
-                                .latest()
+                sub = self.submission_set.select_related(
+                    'unit',
+                    'submitter',
+                    'suggestion',
+                    'suggestion__reviewer',
+                    'quality_check'
+                ).exclude(type=SubmissionTypes.UNIT_CREATE).latest()
+
+                # Use self as store to avoid extra queries
+                sub.store = self
+                sub.unit.store = self
+
             except Submission.DoesNotExist:
                 return CachedTreeItem._get_last_action()
         else:

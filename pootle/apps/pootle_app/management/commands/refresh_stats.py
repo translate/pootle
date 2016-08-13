@@ -25,7 +25,9 @@ class Command(PootleCommand):
     process_disabled_projects = True
 
     def handle_all_stores(self, translation_project, **options):
-        stores = Store.objects.live().filter(
+        stores = Store.objects.live().select_related(
+            'translation_project__project'
+        ).filter(
             translation_project=translation_project
         )
         for store in stores.iterator():

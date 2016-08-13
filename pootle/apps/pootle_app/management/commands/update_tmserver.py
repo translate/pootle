@@ -36,7 +36,7 @@ class DBParser(object):
 
     def get_units(self, filenames):
         """Gets the units to import and its total count."""
-        units_qs = Unit.simple_objects \
+        units_qs = Unit.objects \
             .exclude(target_f__isnull=True) \
             .exclude(target_f__exact='') \
             .filter(revision__gt=self.last_indexed_revision) \

@@ -167,7 +167,6 @@ class Submission(models.Model):
         db_table = 'pootle_app_submission'
 
     objects = SubmissionManager()
-    simple_objects = BaseSubmissionManager()
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
