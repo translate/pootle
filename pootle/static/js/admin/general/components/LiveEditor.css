@@ -75,6 +75,11 @@
     {
         flex-direction: row;
     }
+    
+    #sidebar .live-editor
+    {
+        flex-direction: column;
+    }
 
     .content-editor
     {

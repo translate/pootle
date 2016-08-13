@@ -146,6 +146,81 @@ PTL.common = {
       cookie(cookieName, JSON.stringify(cookieData), { path: '/' });
     });
 
+    $(document).on('click', '.js-edit-sidebar-toggle', (e) => {
+      e.preventDefault();
+
+      const $sidebar = $('.js-sidebar');
+      const $sidebarEditContent = $('.js-sidebar-edit-content');
+      const $sidebarContent = $('.js-sidebar-content');
+      const openClassName = 'sidebar-edit-open';
+
+      if (!$sidebar.hasClass(openClassName)) {
+        const announcementPk = e.target.dataset.announcementPk;
+
+        $.ajax({
+          url: `/xhr/announcement/${announcementPk}/edit/`,
+          type: 'GET',
+          success: (data) => {
+            const contentWidth = $sidebarContent.outerWidth();
+
+            $sidebarContent.outerWidth(contentWidth);
+            $sidebar.toggleClass(openClassName);
+            /*
+            const sidebarWidth = $sidebar.outerWidth();
+            */
+            const editContentWidth = contentWidth;
+            /* eslint-disable no-console */
+            /*
+            console.log('Content: ' + contentWidth);
+            console.log('Sidebar: ' + sidebarWidth);
+            console.log('Edit: ' + editContentWidth);
+            */
+            $sidebarEditContent.outerWidth(editContentWidth);
+
+            const $contentEdited = $(`.js-announcement-${announcementPk}`);
+            const topOffset = $contentEdited.offset().top;
+            console.log(`Offset: ${topOffset}`);
+            /* eslint-enable no-console */
+
+            $sidebarEditContent.html(data.formSnippet);
+            $sidebarEditContent.children().first().offset({ top: topOffset });
+
+            PTL.commonAdmin.init({
+              page: 'staticpages',
+              opts: {
+                htmlName: data.htmlName,
+                initialValue: data.initialValue,
+                markup: PTL.settings.MARKUP_FILTER,
+              },
+            });
+
+            $sidebarEditContent.show();
+          },
+          complete: (xhr) => {
+            if (xhr.status === 400) {
+              const formSnippet = $.parseJSON(xhr.responseText).formSnippet;
+              $sidebarEditContent.html(formSnippet);
+              $sidebarEditContent.show();
+            }
+          },
+
+
+        });
+      }
+    });
+
+    $(document).on('click', '.js-cancel-edit-announcement', (e) => {
+      e.preventDefault();
+
+      const $sidebar = $('.js-sidebar');
+      const $sidebarEditContent = $('.js-sidebar-edit-content');
+      const openClassName = 'sidebar-edit-open';
+
+      $sidebarEditContent.hide();
+      $sidebarEditContent.html('');
+      $sidebar.toggleClass(openClassName);
+    });
+
     /* Popups */
     $(document).magnificPopup({
       type: 'ajax',

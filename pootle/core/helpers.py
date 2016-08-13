@@ -12,6 +12,7 @@ from urllib import quote, unquote
 from django.utils import dateformat
 from django.utils.translation import ugettext as _
 
+from pootle_app.models.permissions import check_user_permission
 from pootle_misc.checks import check_names
 
 
@@ -85,7 +86,13 @@ def get_sidebar_announcements_context(request, objects):
         if announcement is None:
             continue
 
-        announcements.append(announcement)
+        can_be_edited = check_user_permission(request.user, 'administrate',
+                                              item.directory),
+
+        announcements.append({
+            'announcement': announcement,
+            'can_be_edited': can_be_edited,
+        })
         # The virtual_path cannot be used as is for JSON.
         ann_key = announcement.virtual_path.replace('/', '_')
         ann_mtime = dateformat.format(announcement.modified_on, 'U')

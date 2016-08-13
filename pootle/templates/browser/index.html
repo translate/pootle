@@ -110,13 +110,14 @@
 {% if has_sidebar %}
 <div id="sidebar"
   class="js-sidebar{% if is_sidebar_open %} sidebar-open{% endif %}">
-  <div id="sidebar-content">
+  <div id="sidebar-edit-content" class="js-sidebar-edit-content"></div>
+  <div id="sidebar-content" class="js-sidebar-content">
     {% block sidebar_content %}
 
     {% if announcements %}
     <div class="sidebar-group">
       {% for announcement in announcements %}
-        {% include "staticpages/_body.html" with page=announcement %}
+        {% include "staticpages/_body_inline.html" with announcement=announcement.announcement can_be_edited=announcement.can_be_edited %}
       {% endfor %}
     </div>
     {% endif %}
@@ -171,8 +172,23 @@
 {% endif %}
 {% endblock content %}
 
+{% block css %}
+{{ block.super }}
+{% if announcements %}
+{% assets "css_admin" %}
+<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+{% endassets %}
+{% endif %}
+{% endblock css %}
+
 {% block scripts_extra %}
 {{ block.super }}
+
+{% if announcements %}
+{% assets 'js_admin_general_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+{% endif %}
 
 <script type="text/javascript">
 $(function () {
