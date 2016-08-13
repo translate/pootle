@@ -9,7 +9,10 @@
 import difflib
 from collections import OrderedDict
 
+from django.db import models
 from django.utils.functional import cached_property
+
+from pootle.core.delegate import format_diffs
 
 from .fields import to_python as multistring_to_python
 from .unit import UnitProxy
@@ -49,58 +52,117 @@ class FileUnit(UnitDiffProxy):
         return multistring_to_python(self.unit["target"])
 
 
+class DiffableStore(object):
+    """Default Store representation for diffing
+
+    this can be customized per-format using `format_diffs` provider
+    """
+
+    file_unit_class = FileUnit
+    db_unit_class = DBUnit
+
+    unit_fields = (
+        "unitid", "state", "id", "index", "revision",
+        "source_f", "target_f", "developer_comment",
+        "translator_comment", "locations", "context")
+
+    def __init__(self, target_store, source_store):
+        self.target_store = target_store
+        self.source_store = source_store
+
+    def get_db_units(self, unit_qs):
+        diff_units = OrderedDict()
+        units = unit_qs.values(*self.unit_fields).order_by("index")
+        for unit in units:
+            diff_units[unit["unitid"]] = unit
+        return diff_units
+
+    def get_file_unit(self, unit):
+        state = UNTRANSLATED
+        if unit.isobsolete():
+            state = OBSOLETE
+        elif unit.istranslated():
+            state = TRANSLATED
+        elif unit.isfuzzy():
+            state = FUZZY
+        return {
+            "unitid": unit.getid(),
+            "context": unit.getcontext(),
+            "locations": unit.getlocations(),
+            "source": unit.source,
+            "target": unit.target,
+            "state": state,
+            "developer_comment": unit.getnotes(origin="developer"),
+            "translator_comment": unit.getnotes(origin="translator")}
+
+    def get_file_units(self, units):
+        diff_units = OrderedDict()
+        for unit in units:
+            if unit.isheader():
+                continue
+            diff_units[unit.getid()] = self.get_file_unit(unit)
+        return diff_units
+
+    @cached_property
+    def target_units(self):
+        return self.get_db_units(self.target_store.unit_set)
+
+    @cached_property
+    def source_units(self):
+        if isinstance(self.source_store, models.Model):
+            return self.get_db_units(self.source_store.unit_set)
+        return self.get_file_units(self.source_store.units)
+
+    @property
+    def target_unit_class(self):
+        return self.db_unit_class
+
+    @property
+    def source_unit_class(self):
+        if isinstance(self.source_store, models.Model):
+            return self.db_unit_class
+        return self.file_unit_class
+
+
 class StoreDiff(object):
+    """Compares 2 DBStores"""
 
     def __init__(self, target_store, source_store, source_revision):
         self.target_store = target_store
         self.source_store = source_store
         self.source_revision = source_revision
+        self.target_revision = self.get_target_revision()
 
-    @cached_property
-    def target_revision(self):
+    @property
+    def diff_class(self):
+        diffs = format_diffs.gather()
+        differ = diffs.get(
+            self.target_store.filetype.name)
+        if differ:
+            return differ
+        return diffs["default"]
+
+    def get_target_revision(self):
         return self.target_store.get_max_unit_revision()
 
     @cached_property
-    def active_units(self):
+    def active_target_units(self):
         return [unitid for unitid, unit in self.target_units.items()
                 if unit['state'] != OBSOLETE]
 
     @cached_property
+    def diffable(self):
+        return self.diff_class(self.target_store, self.source_store)
+
+    @cached_property
     def target_units(self):
         """All of the db units regardless of state or revision"""
-        target_units = OrderedDict()
-        unit_fields = ("unitid", "state", "id", "index", "revision",
-                       "source_f", "target_f", "developer_comment",
-                       "translator_comment", "locations", "context")
-        units = self.target_store.unit_set.values(
-            *unit_fields).order_by("index")
-        for unit in units:
-            target_units[unit["unitid"]] = unit
-        return target_units
+        return self.diffable.target_units
 
     @cached_property
     def source_units(self):
-        source_units = OrderedDict()
-        for unit in self.source_store.units:
-            if unit.isheader():
-                continue
-            state = UNTRANSLATED
-            if unit.isobsolete():
-                state = OBSOLETE
-            elif unit.istranslated():
-                state = TRANSLATED
-            elif unit.isfuzzy():
-                state = FUZZY
-            source_units[unit.getid()] = {
-                "unitid": unit.getid(),
-                "context": unit.getcontext(),
-                "locations": unit.getlocations(),
-                "source": unit.source,
-                "target": unit.target,
-                "state": state,
-                "developer_comment": unit.getnotes(origin="developer"),
-                "translator_comment": unit.getnotes(origin="translator")}
-        return source_units
+        """All of the db units regardless of state or revision"""
+        return self.diffable.source_units
 
     @cached_property
     def insert_points(self):
@@ -121,10 +183,12 @@ class StoreDiff(object):
                 insert_at = 0
                 if i1 > 0:
                     insert_at = (
-                        self.target_units[self.active_units[i1 - 1]]['index'])
+                        self.target_units[
+                            self.active_target_units[i1 - 1]]['index'])
                 next_index = insert_at + 1
-                if i1 < len(self.active_units):
-                    next_index = self.target_units[self.active_units[i1]]["index"]
+                if i1 < len(self.active_target_units):
+                    next_index = self.target_units[
+                        self.active_target_units[i1]]["index"]
                     update_index_delta = (
                         j2 - j1 - next_index + insert_at + 1)
 
@@ -134,8 +198,10 @@ class StoreDiff(object):
                                 update_index_delta))
 
             elif tag == 'replace':
-                insert_at = self.target_units[self.active_units[i1 - 1]]['index']
-                next_index = self.target_units[self.active_units[i2 - 1]]['index']
+                insert_at = self.target_units[
+                    self.active_target_units[i1 - 1]]['index']
+                next_index = self.target_units[
+                    self.active_target_units[i2 - 1]]['index']
                 inserts.append((insert_at,
                                 new_unitid_list[j1:j2],
                                 next_index,
@@ -171,7 +237,7 @@ class StoreDiff(object):
     @cached_property
     def opcodes(self):
         sm = difflib.SequenceMatcher(None,
-                                     self.active_units,
+                                     self.active_target_units,
                                      self.new_unit_list)
         return sm.get_opcodes()
 
@@ -218,7 +284,7 @@ class StoreDiff(object):
     def get_units_to_obsolete(self):
         return [unit['id'] for unitid, unit in self.target_units.items()
                 if (unitid not in self.source_units
-                    and unitid in self.active_units
+                    and unitid in self.active_target_units
                     and unitid not in self.updated_target_units)]
 
     def get_units_to_update(self):
@@ -244,13 +310,17 @@ class StoreDiff(object):
         update_ids = set()
 
         for (tag, i1, i2, j1_, j2_) in self.opcodes:
-            if tag == 'equal':
-                update_ids.update(
-                    set(self.target_units[uid]['id']
-                        for uid in self.active_units[i1:i2]
-                        if (uid in self.source_units
-                            and (DBUnit(self.target_units[uid])
-                                 != FileUnit(self.source_units[uid])))))
+            if tag != 'equal':
+                continue
+            update_ids.update(
+                set(self.target_units[uid]['id']
+                    for uid in self.active_target_units[i1:i2]
+                    if (uid in self.source_units
+                        and (
+                            self.diffable.target_unit_class(
+                                self.target_units[uid])
+                            != self.diffable.source_unit_class(
+                                self.source_units[uid])))))
         return update_ids
 
     def has_changes(self, diff):
