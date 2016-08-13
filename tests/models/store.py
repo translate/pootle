@@ -515,16 +515,16 @@ def test_store_update(param_update_store_test):
 def test_store_diff(store_diff_tests):
     diff, store, update_units, store_revision = store_diff_tests
 
-    assert diff.db_store == store
-    assert diff.file_revision == store_revision
+    assert diff.target_store == store
+    assert diff.source_revision == store_revision
     assert (
         update_units
-        == [(x.source, x.target) for x in diff.file_store.units[1:]]
-        == [(v['source'], v['target']) for v in diff.file_units.values()])
+        == [(x.source, x.target) for x in diff.source_store.units[1:]]
+        == [(v['source'], v['target']) for v in diff.source_units.values()])
     assert diff.active_units == [x.source for x in store.units]
-    assert diff.db_revision == store.get_max_unit_revision()
+    assert diff.target_revision == store.get_max_unit_revision()
     assert (
-        diff.db_units
+        diff.target_units
         == {unit["source_f"]: unit
             for unit
             in store.unit_set.values("source_f", "index", "target_f",
@@ -541,11 +541,11 @@ def test_store_diff(store_diff_tests):
     obsoleted = (store.unit_set.filter(state=OBSOLETE)
                                .filter(revision__gt=store_revision)
                                .values_list("source_f", flat=True))
-    assert len(diff.obsoleted_db_units) == obsoleted.count()
-    assert all(x in diff.obsoleted_db_units for x in obsoleted)
+    assert len(diff.obsoleted_target_units) == obsoleted.count()
+    assert all(x in diff.obsoleted_target_units for x in obsoleted)
 
     assert (
-        diff.updated_db_units
+        diff.updated_target_units
         == list(store.units.filter(revision__gt=store_revision)
                            .values_list("source_f", flat=True)))
 
