@@ -12,9 +12,11 @@ from django import forms
 
 
 class StatsForm(forms.Form):
-
-    offset = forms.IntegerField(required=False)
     path = forms.CharField(max_length=2048, required=True)
 
     def clean_path(self):
         return self.cleaned_data.get("path", "/") or "/"
+
+
+class ContributorsForm(StatsForm):
+    offset = forms.IntegerField(required=False, initial=0)

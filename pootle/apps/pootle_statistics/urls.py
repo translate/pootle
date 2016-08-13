@@ -12,7 +12,13 @@ from . import views
 
 urlpatterns = [
     # XHR
+    url(r'^xhr/stats/checks/?$',
+        views.QualityCheckStatsJSON.as_view(),
+        name='pootle-xhr-stats-checks'),
     url(r'^xhr/stats/contributors/?$',
         views.TopContributorsJSON.as_view(),
         name='pootle-xhr-contributors'),
+    url(r'^xhr/stats/?$',
+        views.StatsJSON.as_view(),
+        name='pootle-xhr-stats'),
 ]

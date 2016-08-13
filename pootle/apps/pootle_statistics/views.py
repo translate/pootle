@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.forms import ValidationError
 from django.http import Http404
@@ -17,19 +18,42 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data)
 from pootle.core.views import PootleJSONMixin
+from pootle_app.models.directory import Directory
 from pootle_language.views import LanguageBrowseView
 from pootle_misc.util import ajax_required
 from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
 from pootle_translationproject.views import TPBrowseStoreView, TPBrowseView
 
-from .forms import StatsForm
+from .forms import ContributorsForm, StatsForm
 
 
-class ContributorsJSONMixin(PootleJSONMixin):
+class StatsJSONMixin(PootleJSONMixin):
     @property
     def path(self):
         return self.kwargs["path"]
 
+    def get_context_data(self, *args, **kwargs):
+        stats = self.stats
+
+        if (isinstance(self.object, Directory) and
+            'virtualfolder' in settings.INSTALLED_APPS):
+            stats['vfolders'] = {}
+
+            for vf_treeitem in self.object.vf_treeitems.iterator():
+                if self.request.user.is_superuser or vf_treeitem.is_visible:
+                    stats['vfolders'][vf_treeitem.code] = \
+                        vf_treeitem.get_stats(include_children=False)
+
+        return stats
+
+
+class QualityCheckStatsJSONMixin(StatsJSONMixin):
+    def get_context_data(self, *args, **kwargs):
+        failing_checks = self.object.get_checks()
+        return failing_checks if failing_checks is not None else {}
+
+
+class ContributorsJSONMixin(StatsJSONMixin):
     def get_context_data(self, *args, **kwargs):
         User = get_user_model()
 
@@ -49,40 +73,26 @@ class ContributorsJSONMixin(PootleJSONMixin):
         )
 
 
-class TPContributorsJSON(ContributorsJSONMixin, TPBrowseView):
-    pass
+def create_stats_view_class(mixin_class, base_class):
+    class new_class(mixin_class, base_class):
+        pass
+    return new_class
 
 
-class TPStoreContributorsJSON(ContributorsJSONMixin, TPBrowseStoreView):
-    pass
-
-
-class LanguageContributorsJSON(ContributorsJSONMixin, LanguageBrowseView):
-    pass
-
-
-class ProjectContributorsJSON(ContributorsJSONMixin, ProjectBrowseView):
-    pass
-
-
-class ProjectsContributorsJSON(ContributorsJSONMixin, ProjectsBrowseView):
-    pass
-
-
-class TopContributorsJSON(View):
-    form_class = StatsForm
+class BaseStatsJSON(View):
+    form_class = None
     content_type = None
+    mixin_class = None
 
     @never_cache
     @method_decorator(ajax_required)
     def dispatch(self, request, *args, **kwargs):
-        stats_form = self.get_form()
-        if not stats_form.is_valid():
+        form = self.get_form()
+        if not form.is_valid():
             raise Http404(
-                ValidationError(stats_form.errors).messages)
+                ValidationError(form.errors).messages)
 
-        offset = stats_form.cleaned_data['offset'] or 0
-        path = stats_form.cleaned_data['path']
+        path = form.cleaned_data['path']
         language_code, project_code, dir_path, filename = \
             split_pootle_path(path)
 
@@ -92,22 +102,41 @@ class TopContributorsJSON(View):
                 project_code=project_code,
                 dir_path=dir_path,
                 filename=filename,
-                offset=offset,
                 path=path,
             )
         )
-        view_class = ProjectsContributorsJSON
+        for field, value in form.cleaned_data.items():
+            if field != 'path':
+                kwargs.update({field: value})
+
+        base_view_class = ProjectsBrowseView
         if language_code and project_code:
             if filename:
-                view_class = TPStoreContributorsJSON
+                base_view_class = TPBrowseStoreView
             else:
-                view_class = TPContributorsJSON
+                base_view_class = TPBrowseView
         elif language_code:
-            view_class = LanguageContributorsJSON
+            base_view_class = LanguageBrowseView
         elif project_code:
-            view_class = ProjectContributorsJSON
+            base_view_class = ProjectBrowseView
+        view_class = create_stats_view_class(self.mixin_class, base_view_class)
 
         return view_class.as_view()(request, *args, **kwargs)
 
     def get_form(self):
         return self.form_class(self.request.GET)
+
+
+class StatsJSON(BaseStatsJSON):
+    form_class = StatsForm
+    mixin_class = StatsJSONMixin
+
+
+class QualityCheckStatsJSON(BaseStatsJSON):
+    form_class = StatsForm
+    mixin_class = QualityCheckStatsJSONMixin
+
+
+class TopContributorsJSON(BaseStatsJSON):
+    form_class = ContributorsForm
+    mixin_class = ContributorsJSONMixin
