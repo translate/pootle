@@ -698,10 +698,10 @@ class PootleBrowseView(PootleDetailView):
         ctx.update(
             super(PootleBrowseView, self).get_context_data(*args, **kwargs))
 
-        language_code, project_code = split_pootle_path(self.pootle_path)[:2]
+        lang_code, proj_code = split_pootle_path(self.pootle_path)[:2]
         top_scorers = User.top_scorers(
-            project=project_code,
-            language=language_code,
+            project=proj_code,
+            language=lang_code,
             limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1,
         )
 

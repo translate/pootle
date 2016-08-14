@@ -131,17 +131,17 @@ class Directory(models.Model, CachedTreeItem):
         return l(self.pootle_path)
 
     def get_translate_url(self, **kwargs):
-        lang, proj, dir_path = split_pootle_path(self.pootle_path)[:3]
+        lang_code, proj_code, dir_path = split_pootle_path(self.pootle_path)[:3]
 
-        if lang and proj:
+        if lang_code and proj_code:
             pattern_name = 'pootle-tp-translate'
-            pattern_args = [lang, proj, dir_path]
-        elif lang:
+            pattern_args = [lang_code, proj_code, dir_path]
+        elif lang_code:
             pattern_name = 'pootle-language-translate'
-            pattern_args = [lang]
-        elif proj:
+            pattern_args = [lang_code]
+        elif proj_code:
             pattern_name = 'pootle-project-translate'
-            pattern_args = [proj]
+            pattern_args = [proj_code]
         else:
             pattern_name = 'pootle-projects-translate'
             pattern_args = []

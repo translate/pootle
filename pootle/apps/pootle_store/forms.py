@@ -558,14 +558,14 @@ class UnitSearchForm(forms.Form):
         return self.cleaned_data["user"] or self.request_user
 
     def clean_path(self):
-        language_code, project_code = split_pootle_path(
+        lang_code, proj_code = split_pootle_path(
             self.cleaned_data["path"])[:2]
-        if not (language_code or project_code):
+        if not (lang_code or proj_code):
             permission_context = Directory.objects.projects
-        elif project_code and not language_code:
+        elif proj_code and not lang_code:
             try:
                 permission_context = Project.objects.select_related(
-                    "directory").get(code=project_code).directory
+                    "directory").get(code=proj_code).directory
             except Project.DoesNotExist:
                 raise forms.ValidationError("Unrecognized path")
         else:

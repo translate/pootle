@@ -68,11 +68,11 @@ class DummyPlugin(object):
     def get_fs_path(self, pootle_path):
         from pootle.core.url_helpers import split_pootle_path
 
-        lang_code, proj_code_, dir_path, fn = split_pootle_path(pootle_path)
+        lang_code, proj_code_, dir_path, filename = split_pootle_path(pootle_path)
         parts = ["", lang_code]
         if dir_path:
             parts.append(dir_path.rstrip("/"))
-        parts.append(fn)
+        parts.append(filename)
         return "/".join(parts)
 
 

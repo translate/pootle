@@ -143,11 +143,11 @@ class ProjectURLMixin(object):
     """
 
     def get_absolute_url(self):
-        proj = split_pootle_path(self.pootle_path)[1]
+        proj_code = split_pootle_path(self.pootle_path)[1]
 
-        if proj is not None:
+        if proj_code is not None:
             pattern_name = 'pootle-project-browse'
-            pattern_args = [proj, '']
+            pattern_args = [proj_code, '']
         else:
             pattern_name = 'pootle-projects-browse'
             pattern_args = []
@@ -155,11 +155,11 @@ class ProjectURLMixin(object):
         return reverse(pattern_name, args=pattern_args)
 
     def get_translate_url(self, **kwargs):
-        proj, dir_path, fn = split_pootle_path(self.pootle_path)[1:]
+        proj_code, dir_path, filename = split_pootle_path(self.pootle_path)[1:]
 
-        if proj is not None:
+        if proj_code is not None:
             pattern_name = 'pootle-project-translate'
-            pattern_args = [proj, dir_path, fn]
+            pattern_args = [proj_code, dir_path, filename]
         else:
             pattern_name = 'pootle-projects-translate'
             pattern_args = []
@@ -583,9 +583,9 @@ def invalidate_resources_cache(**kwargs):
         (not kwargs['created'] or kwargs['raw'])):
         return
 
-    proj = split_pootle_path(instance.pootle_path)[1]
-    if proj is not None:
-        cache.delete(make_method_key(Project, 'resources', proj))
+    proj_code = split_pootle_path(instance.pootle_path)[1]
+    if proj_code is not None:
+        cache.delete(make_method_key(Project, 'resources', proj_code))
 
 
 @receiver([post_delete, post_save])
