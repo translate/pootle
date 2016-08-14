@@ -13,7 +13,8 @@ SERVER_SETTINGS_NAME = 'POOTLE_TM_SERVER'
 
 
 class SearchBackend(object):
-    def __init__(self, config_name=None, **kwargs):
+
+    def __init__(self, config_name=None):
         self._setup_settings(config_name)
         self.weight = 1.0
 
