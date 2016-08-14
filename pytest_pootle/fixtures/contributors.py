@@ -94,7 +94,7 @@ def dummy_contributors(request, default_contributors_kwargs):
             return _result_kwargs
 
     @getter(contributors, weak=False)
-    def get_dummy_contribs(**kwargs):
+    def get_dummy_contribs_(**kwargs_):
         return DummyContributors
 
     def _reset_contributors():
@@ -122,7 +122,7 @@ def dummy_email_contributors(request):
                        key=lambda x: str.lower(x[1]['username'])))
 
     @getter(contributors, weak=False)
-    def get_dummy_contribs(**kwargs):
+    def get_dummy_contribs_(**kwargs_):
         return DummyContributors
 
     def _reset_contributors():
