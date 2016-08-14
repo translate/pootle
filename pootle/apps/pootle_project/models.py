@@ -573,7 +573,8 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
 
 
 @receiver([post_delete, post_save])
-def invalidate_resources_cache(sender, instance, **kwargs):
+def invalidate_resources_cache(**kwargs):
+    instance = kwargs["instance"]
     if instance.__class__.__name__ not in ['Directory', 'Store']:
         return
 
@@ -588,7 +589,8 @@ def invalidate_resources_cache(sender, instance, **kwargs):
 
 
 @receiver([post_delete, post_save])
-def invalidate_accessible_projects_cache(sender, instance, **kwargs):
+def invalidate_accessible_projects_cache(**kwargs):
+    instance = kwargs["instance"]
     # XXX: maybe use custom signals or simple function calls?
     if (instance.__class__.__name__ not in
         ['Project', 'TranslationProject', 'PermissionSet']):
