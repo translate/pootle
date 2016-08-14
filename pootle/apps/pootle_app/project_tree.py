@@ -204,13 +204,13 @@ def create_or_resurrect_store(f, parent, name, translation_project):
 def create_or_resurrect_dir(name, parent):
     """Create or resurrect a directory db item with given name and parent."""
     try:
-        dir = Directory.objects.get(parent=parent, name=name)
-        dir.obsolete = False
+        directory = Directory.objects.get(parent=parent, name=name)
+        directory.obsolete = False
     except Directory.DoesNotExist:
-        dir = Directory(name=name, parent=parent)
+        directory = Directory(name=name, parent=parent)
 
-    dir.mark_all_dirty()
-    return dir
+    directory.mark_all_dirty()
+    return directory
 
 
 # TODO: rename function or even rewrite it
