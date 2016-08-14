@@ -46,37 +46,37 @@ def templates():
 
 
 @pytest.fixture
-def afrikaans(english):
+def afrikaans():
     """Require the Afrikaans language."""
     return _require_language('af', 'Afrikaans')
 
 
 @pytest.fixture
-def arabic(english):
+def arabic():
     """Require the Arabic language."""
     return _require_language('ar', 'Arabic')
 
 
 @pytest.fixture
-def french(english):
+def french():
     """Require the French language."""
     return _require_language('fr', 'French')
 
 
 @pytest.fixture
-def spanish(english):
+def spanish():
     """Require the Spanish language."""
     return _require_language('es', 'Spanish')
 
 
 @pytest.fixture
-def italian(english):
+def italian():
     """Require the Italian language."""
     return _require_language('it', 'Italian')
 
 
 @pytest.fixture
-def russian(english):
+def russian():
     """Require the Russian language."""
     return _require_language('ru', 'Russian')
 
@@ -85,13 +85,13 @@ def russian(english):
 # (https://github.com/translate/pootle/issues/3898)
 # please do not use the klingon fixtures 8)
 @pytest.fixture
-def klingon(english):
+def klingon():
     """Require the Klingon language."""
     return _require_language('kl', 'Klingon')
 
 
 @pytest.fixture
-def klingon_vpw(english):
+def klingon_vpw():
     """Require the Klingon language (VPW dialect)."""
     return _require_language('kl_VPW', 'Klingon vegan peace warriors')
 
