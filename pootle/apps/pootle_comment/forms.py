@@ -51,7 +51,7 @@ class CommentForm(DjCommentForm):
         if should_not_save:
             raise CommentNotSaved(dict(comment=should_not_save))
 
-    def save(self, *la, **kwa):
+    def save(self):
         ob = self.comment
         ob.user = self.cleaned_data["user"]
         ob.submit_date = datetime.now()
