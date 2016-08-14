@@ -207,7 +207,8 @@ class Language(models.Model, TreeItem):
 
 
 @receiver([post_delete, post_save])
-def invalidate_language_list_cache(sender, instance, **kwargs):
+def invalidate_language_list_cache(**kwargs):
+    instance = kwargs["instance"]
     # XXX: maybe use custom signals or simple function calls?
     if instance.__class__.__name__ not in ['Language', 'TranslationProject']:
         return
