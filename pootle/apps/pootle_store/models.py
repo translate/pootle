@@ -557,10 +557,10 @@ class Unit(models.Model, base.TranslationUnit):
                '#unit=%s' % unicode(self.id)))
 
     def get_search_locations_url(self, **kwargs):
-        proj, dir, fn = split_pootle_path(self.store.pootle_path)[1:]
+        proj, dir_path, fn = split_pootle_path(self.store.pootle_path)[1:]
 
         return u''.join([
-            reverse('pootle-project-translate', args=[proj, dir, fn]),
+            reverse('pootle-project-translate', args=[proj, dir_path, fn]),
             get_editor_filter(search=self.locations, sfields='locations'),
         ])
 
