@@ -155,11 +155,11 @@ class ProjectURLMixin(object):
         return reverse(pattern_name, args=pattern_args)
 
     def get_translate_url(self, **kwargs):
-        proj, dir, fn = split_pootle_path(self.pootle_path)[1:]
+        proj, dir_path, fn = split_pootle_path(self.pootle_path)[1:]
 
         if proj is not None:
             pattern_name = 'pootle-project-translate'
-            pattern_args = [proj, dir, fn]
+            pattern_args = [proj, dir_path, fn]
         else:
             pattern_name = 'pootle-projects-translate'
             pattern_args = []
