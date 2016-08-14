@@ -14,5 +14,5 @@ from .models import Project
 
 
 @getter(lang_mapper, sender=Project)
-def get_lang_mapper(sender, instance, **kwargs):
-    return ProjectLanguageMapper(instance)
+def get_lang_mapper(**kwargs):
+    return ProjectLanguageMapper(kwargs["instance"])
