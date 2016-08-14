@@ -14,7 +14,10 @@ from .models import Config
 
 
 @getter(config)
-def config_getter(sender=None, instance=None, key=None, **kwargs):
+def config_getter(**kwargs):
+    sender = kwargs["sender"]
+    instance = kwargs.get("instance")
+    key = kwargs.get("key")
 
     if sender:
         if instance is not None and not isinstance(instance, sender):
