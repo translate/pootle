@@ -15,5 +15,5 @@ from .default import POOTLE_FORMATS
 
 
 @provider(format_registration)
-def register_formats(**kwargs):
+def register_formats(**kwargs_):
     return OrderedDict(POOTLE_FORMATS)
