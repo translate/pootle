@@ -13,7 +13,7 @@ from pytest_pootle.factories import ProjectDBFactory
 from pytest_pootle.fixtures.pootle_fs.state import DummyPlugin
 
 from pootle_fs.state import FS_STATE, ProjectFSState
-from pootle_store.models import FILE_WINS, POOTLE_WINS
+from pootle_store.models import POOTLE_WINS, SOURCE_WINS
 
 
 def _test_state(plugin, pootle_path, fs_path, state_type, paths=None):
@@ -107,7 +107,7 @@ def test_fs_state_fs_staged(fs_path_qs, dummyfs_plugin_del_stores):
     plugin.resources.tracked.update(
         last_sync_hash=None,
         last_sync_revision=None,
-        resolve_conflict=FILE_WINS)
+        resolve_conflict=SOURCE_WINS)
     _test_state(plugin, pootle_path, fs_path, "fs_staged")
 
 
@@ -116,7 +116,7 @@ def test_fs_state_fs_staged_store_removed(fs_path_qs,
                                           dummyfs_plugin_del_stores):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_del_stores
-    plugin.resources.tracked.update(resolve_conflict=FILE_WINS)
+    plugin.resources.tracked.update(resolve_conflict=SOURCE_WINS)
     _test_state(plugin, pootle_path, fs_path, "fs_staged")
 
 
@@ -168,7 +168,7 @@ def test_fs_state_merge_fs_synced(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
     plugin.resources.tracked.update(
-        resolve_conflict=FILE_WINS, staged_for_merge=True)
+        resolve_conflict=SOURCE_WINS, staged_for_merge=True)
     _test_state(plugin, pootle_path, fs_path, "merge_fs_wins")
 
 
@@ -177,7 +177,7 @@ def test_fs_state_merge_fs_unsynced(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
     plugin.resources.tracked.update(
-        resolve_conflict=FILE_WINS, staged_for_merge=True,
+        resolve_conflict=SOURCE_WINS, staged_for_merge=True,
         last_sync_hash=None, last_sync_revision=None)
     _test_state(plugin, pootle_path, fs_path, "merge_fs_wins")
 

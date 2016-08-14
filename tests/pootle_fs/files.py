@@ -19,7 +19,7 @@ from pootle_fs.models import StoreFS
 from pootle_fs.files import FSFile
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.models import FILE_WINS, POOTLE_WINS
+from pootle_store.models import POOTLE_WINS, SOURCE_WINS
 
 
 @pytest.mark.django_db
@@ -125,7 +125,7 @@ def test_wrap_store_fs_with_file(settings, tmpdir, tp0_store, test_fs):
 def test_wrap_store_fs_fetch(store_fs_file):
     fs_file = store_fs_file
     fs_file.fetch()
-    assert fs_file.store_fs.resolve_conflict == FILE_WINS
+    assert fs_file.store_fs.resolve_conflict == SOURCE_WINS
 
 
 @pytest.mark.django_db
@@ -147,7 +147,7 @@ def test_wrap_store_fs_merge_pootle(store_fs_file_store):
 def test_wrap_store_fs_merge_fs(store_fs_file_store):
     fs_file = store_fs_file_store
     fs_file.merge(pootle_wins=False)
-    assert fs_file.store_fs.resolve_conflict == FILE_WINS
+    assert fs_file.store_fs.resolve_conflict == SOURCE_WINS
     assert fs_file.store_fs.staged_for_merge is True
 
 
@@ -306,7 +306,7 @@ def test_wrap_store_fs_pull_merge_fs_wins(store_fs_file):
         target.truncate()
     assert fs_file.fs_changed is True
     assert fs_file.pootle_changed is True
-    # this ensures FILE_WINS
+    # this ensures SOURCE_WINS
     fs_file.fetch()
     fs_file.pull(merge=True)
     assert fs_file.store.units[0].target == "BAR"
