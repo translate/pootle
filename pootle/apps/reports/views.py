@@ -104,9 +104,9 @@ class UserDetailedStatsView(NoDefaultUserMixin, UserObjectMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(UserDetailedStatsView, self).get_context_data(**kwargs)
-        object = self.get_object()
-        ctx.update(get_detailed_report_context(user=object, month=self.month))
-        ctx.update({'own_report': object.username == self.user.username})
+        ob = self.get_object()
+        ctx.update(get_detailed_report_context(user=ob, month=self.month))
+        ctx.update({'own_report': ob.username == self.user.username})
         return ctx
 
 
