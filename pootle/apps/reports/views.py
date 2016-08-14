@@ -457,7 +457,7 @@ def user_date_prj_activity(request):
     try:
         User = get_user_model()
         user = User.objects.get(username=username)
-    except:
+    except User.DoesNotExist:
         user = ''
 
     data = get_activity_data(request, user, month)
