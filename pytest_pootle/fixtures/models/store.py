@@ -114,7 +114,7 @@ UPDATE_STORE_TESTS['max_obsolete'] = {
 
 
 def _setup_store_test(store, member, member2, test):
-    from pootle_store.models import FILE_WINS, POOTLE_WINS
+    from pootle_store.models import POOTLE_WINS, SOURCE_WINS
 
     setup = test.get("setup", None)
 
@@ -138,7 +138,7 @@ def _setup_store_test(store, member, member2, test):
 
     fs_wins = test.get("fs_wins", True)
     if fs_wins:
-        resolve_conflict = FILE_WINS
+        resolve_conflict = SOURCE_WINS
     else:
         resolve_conflict = POOTLE_WINS
 

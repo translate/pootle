@@ -328,13 +328,13 @@ def localfs_merge_pootle_wins(localfs, localfs_dummy_finder):
 
 @pytest.fixture
 def localfs_merge_fs_wins(localfs, localfs_dummy_finder):
-    from pootle_store.models import FILE_WINS
+    from pootle_store.models import SOURCE_WINS
 
     plugin = localfs
 
     stores = plugin.resources.stores
     plugin.resources.tracked.update(
-        resolve_conflict=FILE_WINS,
+        resolve_conflict=SOURCE_WINS,
         staged_for_merge=True)
     state = plugin.state()
     assert len(state["merge_fs_wins"]) == stores.count()
@@ -434,12 +434,12 @@ def localfs_force_added(localfs, localfs_dummy_finder):
 
 @pytest.fixture
 def localfs_force_fetched(localfs, localfs_dummy_finder):
-    from pootle_store.models import FILE_WINS
+    from pootle_store.models import SOURCE_WINS
 
     plugin = localfs
     for store_fs in plugin.resources.tracked:
         store_fs.last_sync_revision = store_fs.last_sync_revision - 1
-        store_fs.resolve_conflict = FILE_WINS
+        store_fs.resolve_conflict = SOURCE_WINS
         store_fs.save()
     state = plugin.state()
     assert len(state["fs_ahead"]) == plugin.resources.tracked.count()
