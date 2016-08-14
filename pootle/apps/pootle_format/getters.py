@@ -15,12 +15,12 @@ from .utils import ProjectFiletypes
 
 
 @getter(formats)
-def formats_getter(**kwargs):
+def formats_getter(**kwargs_):
 
     return format_registry
 
 
 @getter(filetype_tool, sender=Project)
-def filetype_tool_getter(**kwargs):
+def filetype_tool_getter(**kwargs_):
 
     return ProjectFiletypes
