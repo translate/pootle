@@ -488,7 +488,11 @@ class TranslationProject(models.Model, CachedTreeItem):
 
 
 @receiver(post_save, sender=Project)
-def scan_languages(sender, instance, created=False, raw=False, **kwargs):
+def scan_languages(**kwargs):
+    instance = kwargs["instance"]
+    created = kwargs.get("created", False)
+    raw = kwargs.get("raw", False)
+
     if not created or raw or instance.disabled:
         return
 
@@ -502,7 +506,11 @@ def scan_languages(sender, instance, created=False, raw=False, **kwargs):
 
 
 @receiver(post_save, sender=Language)
-def scan_projects(sender, instance, created=False, raw=False, **kwargs):
+def scan_projects(**kwargs):
+    instance = kwargs["instance"]
+    created = kwargs.get("created", False)
+    raw = kwargs.get("raw", False)
+
     if not created or raw:
         return
 
