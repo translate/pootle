@@ -13,5 +13,5 @@ from .utils import Contributors
 
 
 @getter(contributors)
-def get_contributors(**kwargs):
+def get_contributors(**kwargs_):
     return Contributors
