@@ -23,30 +23,30 @@ from .exceptions import (FileImportError, MissingPootlePathError,
 logger = logging.getLogger(__name__)
 
 
-def import_file(file, user=None):
-    f = getclass(file)(file.read())
-    if not hasattr(f, "parseheader"):
+def import_file(f, user=None):
+    ttk = getclass(f)(f.read())
+    if not hasattr(ttk, "parseheader"):
         raise UnsupportedFiletypeError(_("Unsupported filetype '%s', only PO "
                                          "files are supported at this time\n",
-                                         file.name))
-    header = f.parseheader()
+                                         f.name))
+    header = ttk.parseheader()
     pootle_path = header.get("X-Pootle-Path")
     if not pootle_path:
         raise MissingPootlePathError(_("File '%s' missing X-Pootle-Path "
-                                       "header\n", file.name))
+                                       "header\n", f.name))
 
     rev = header.get("X-Pootle-Revision")
     if not rev or not rev.isdigit():
         raise MissingPootleRevError(_("File '%s' missing or invalid "
                                       "X-Pootle-Revision header\n",
-                                      file.name))
+                                      f.name))
     rev = int(rev)
 
     try:
         store = Store.objects.get_or_create(pootle_path=pootle_path)[0]
     except Exception as e:
         raise FileImportError(_("Could not create '%s'. Missing "
-                                "Project/Language? (%s)", (file.name, e)))
+                                "Project/Language? (%s)", (f.name, e)))
 
     tp = store.translation_project
     allow_add_and_obsolete = ((tp.project.checkstyle == 'terminology'
@@ -55,7 +55,7 @@ def import_file(file, user=None):
                                                         'administrate',
                                                         tp.directory))
     try:
-        store.update(store=f, user=user,
+        store.update(store=ttk, user=user,
                      submission_type=SubmissionTypes.UPLOAD,
                      store_revision=rev,
                      allow_add_and_obsolete=allow_add_and_obsolete)
