@@ -28,7 +28,9 @@ def get_recipients(project):
 
 
 @receiver(tp_inited_async, sender=TranslationProject)
-def tp_inited_async(instance, response_url, **kwargs):
+def tp_inited_async(**kwargs):
+    instance = kwargs["instance"]
+    response_url = kwargs["response_url"]
     ctx = {"tp": instance,
            "url": urljoin(response_url, instance.get_absolute_url())}
     message = render_to_string(
@@ -40,7 +42,9 @@ def tp_inited_async(instance, response_url, **kwargs):
 
 
 @receiver(tp_init_failed_async, sender=TranslationProject)
-def tp_init_failed_async(instance, **kwargs):
+def tp_init_failed_async(**kwargs):
+    instance = kwargs["instance"]
+
     ctx = {"tp": instance}
     message = render_to_string(
         'projects/admin/email/translation_project_creation_failed.txt', ctx)
