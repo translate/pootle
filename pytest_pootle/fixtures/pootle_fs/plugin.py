@@ -114,7 +114,7 @@ def localfs_staged_envs(request):
 
 
 @pytest.fixture
-def localfs_env(settings, project_fs):
+def localfs_env(project_fs):
     return project_fs
 
 
@@ -403,7 +403,7 @@ def localfs_remove(localfs, localfs_dummy_finder_empty):
 
 
 @pytest.fixture
-def localfs_pootle_staged_real(localfs_base, settings):
+def localfs_pootle_staged_real(localfs_base):
     from pytest_pootle.utils import add_store_fs
 
     plugin = localfs_base
