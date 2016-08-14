@@ -361,8 +361,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def mustache_placeholder_pairs(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = mustache_placeholder_pairs_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = mustache_placeholder_pairs_regex.split(string)
             translate = False
             fingerprint = 1
 
@@ -411,8 +411,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def mustache_like_placeholder_pairs(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = mustache_like_placeholder_pairs_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = mustache_like_placeholder_pairs_regex.split(string)
             translate = False
             fingerprint = 1
             d = {}
@@ -457,14 +457,14 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def date_format(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            is_date_format = bool(date_format_regex.match(str))
+        def get_fingerprint(string, is_source=False, translation=''):
+            is_date_format = bool(date_format_regex.match(string))
             if is_source:
                 if not is_date_format:
                     raise SkipCheck()
 
                 # filter out specific English strings which are not dates
-                if date_format_exception_regex.match(str):
+                if date_format_exception_regex.match(string):
                     raise SkipCheck()
 
             return is_date_format
@@ -476,8 +476,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def whitespace(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = whitespace_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = whitespace_regex.split(string)
             translate = False
             fp_data = [u"\001"]
 
@@ -507,7 +507,7 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def test_check(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
+        def get_fingerprint(string, is_source=False, translation=''):
             return 0
 
         if check_translation(get_fingerprint, str1, str2):
@@ -541,14 +541,14 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def changed_attributes(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
+        def get_fingerprint(string, is_source=False, translation=''):
             # hardcoded rule: skip web banner images which are translated
             # differently
             if is_source:
-                if img_banner_regex.match(str):
+                if img_banner_regex.match(string):
                     raise SkipCheck()
 
-            chunks = changed_attributes_regex.split(str)
+            chunks = changed_attributes_regex.split(string)
             translate = False
             fingerprint = ''
             d = {}
@@ -577,8 +577,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def c_format(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = c_format_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = c_format_regex.split(string)
             translate = False
             fingerprint = ''
             for chunk in chunks:
@@ -600,8 +600,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def non_printable(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = non_printable_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = non_printable_regex.split(string)
             translate = False
             fingerprint = ''
 
@@ -624,8 +624,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def unbalanced_tag_braces(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = unbalanced_tag_braces_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = unbalanced_tag_braces_regex.split(string)
             translate = False
             level = 0
 
@@ -652,8 +652,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def unbalanced_curly_braces(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = unbalanced_curly_braces_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = unbalanced_curly_braces_regex.split(string)
             translate = False
             count = 0
             level = 0
@@ -692,20 +692,20 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def tags_differ(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
+        def get_fingerprint(string, is_source=False, translation=''):
 
             if is_source:
                 # hardcoded rule: skip web banner images which are translated
                 # differently
-                if img_banner_regex.match(str):
+                if img_banner_regex.match(string):
                     raise SkipCheck()
 
                 # hardcoded rules for strings that look like tags but are
                 # not them
-                if no_tags_regex.match(str):
+                if no_tags_regex.match(string):
                     raise SkipCheck()
 
-            chunks = tags_differ_regex_0.split(str)
+            chunks = tags_differ_regex_0.split(string)
             translate = False
             fingerprint = ''
             d = {}
@@ -738,7 +738,7 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def accelerators(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
+        def get_fingerprint(string, is_source=False, translation=''):
 
             # special rule for banner images in the web client which are
             # translated differently, e.g.:
@@ -746,11 +746,11 @@ class ENChecker(checks.UnitChecker):
             #            alt="Allow Account Access" />
             # To:   <h1>Allow Konto Zugriff</h1>
             if is_source:
-                if img_banner_regex.match(str):
+                if img_banner_regex.match(string):
                     raise SkipCheck()
 
             # temporarily escape HTML entities
-            s = accelerators_regex_0.sub(r'\001\1\001', str)
+            s = accelerators_regex_0.sub(r'\001\1\001', string)
             chunks = accelerators_regex_1.split(s)
             translate = False
             ampersand_count = 0
@@ -792,8 +792,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def broken_entities(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = broken_entities_regex_0.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = broken_entities_regex_0.split(string)
             translate = False
             fingerprint = 1
 
@@ -864,8 +864,8 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def potential_unwanted_placeholders(self, str1, str2, **kwargs):
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = potential_placeholders_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = potential_placeholders_regex.split(string)
             translate = False
             fingerprint = 0
 
@@ -893,9 +893,9 @@ class ENChecker(checks.UnitChecker):
         """Checks whether there is no double quotation mark `"` in source string but
         there is in a translation string.
         """
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = str.split('"')
-            if is_source and '"' in str:
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = string.split('"')
+            if is_source and '"' in string:
                 raise SkipCheck()
 
             translate = False
@@ -923,8 +923,8 @@ class ENChecker(checks.UnitChecker):
         """Checks whether double quotation mark `"` in tags is consistent between the
         two strings.
         """
-        def get_fingerprint(str, is_source=False, translation=''):
-            chunks = unbalanced_tag_braces_regex.split(str)
+        def get_fingerprint(string, is_source=False, translation=''):
+            chunks = unbalanced_tag_braces_regex.split(string)
             translate = False
             level = 0
             d = {}
@@ -1178,8 +1178,8 @@ def get_qualitycheck_list(path_obj):
 
 
 def _generic_check(str1, str2, regex, message):
-    def get_fingerprint(str, is_source=False, translation=''):
-        chunks = regex.split(str)
+    def get_fingerprint(string, is_source=False, translation=''):
+        chunks = regex.split(string)
 
         d = {}
         fingerprint = ''
