@@ -228,8 +228,8 @@ class Timeline(object):
         "suggestion_id", "suggestion__target_f", "suggestion__user__full_name",
         "suggestion__user__username", "quality_check__name"]
 
-    def __init__(self, object):
-        self.object = object
+    def __init__(self, ob):
+        self.object = ob
 
     @property
     def grouped_entries(self):
