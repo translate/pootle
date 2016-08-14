@@ -20,30 +20,30 @@ from .state import ProjectFSState
 
 
 @getter(state, sender=LocalFSPlugin)
-def fs_plugin_state_getter(**kwargs):
+def fs_plugin_state_getter(**kwargs_):
     return ProjectFSState
 
 
 @getter(response, sender=ProjectFSState)
-def fs_plugin_response_getter(**kwargs):
+def fs_plugin_response_getter(**kwargs_):
     return ProjectFSResponse
 
 
 @getter(fs_file, sender=LocalFSPlugin)
-def fs_file_getter(**kwargs):
+def fs_file_getter(**kwargs_):
     return FSFile
 
 
 @getter(fs_resources, sender=LocalFSPlugin)
-def fs_resources_getter(**kwargs):
+def fs_resources_getter(**kwargs_):
     return FSProjectResources
 
 
 @getter(fs_finder, sender=LocalFSPlugin)
-def fs_finder_getter(**kwargs):
+def fs_finder_getter(**kwargs_):
     return TranslationFileFinder
 
 
 @getter(fs_matcher, sender=LocalFSPlugin)
-def fs_matcher_getter(**kwargs):
+def fs_matcher_getter(**kwargs_):
     return FSPathMatcher
