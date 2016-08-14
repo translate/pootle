@@ -56,7 +56,7 @@ def add_unit_to_vfolders(unit):
 
 
 @receiver(pre_save, sender=VirtualFolder)
-def vfolder_unit_priority_presave_handler(sender, instance, **kwargs):
+def vfolder_unit_priority_presave_handler(**kwargs):
     """Remove Units from VirtualFolder when vfolder changes
 
     - Check the original VirtualFolder object's locations
@@ -65,7 +65,7 @@ def vfolder_unit_priority_presave_handler(sender, instance, **kwargs):
       locations and reset Unit priority
     - Update VirtualFolderTree for any Stores that may have been affected
     """
-
+    instance = kwargs["instance"]
     if instance.id is None:
         return
 
@@ -100,17 +100,19 @@ def vfolder_unit_priority_presave_handler(sender, instance, **kwargs):
 
 
 @receiver(vfolder_post_save, sender=VirtualFolder)
-def vfolder_unit_priority_handler(sender, instance, **kwargs):
+def vfolder_unit_priority_handler(**kwargs):
     """Set Unit priorities for VirtualFolder members on change
     """
+    instance = kwargs["instance"]
     for unit in instance.units.all():
         unit.set_priority()
 
 
 @receiver(pre_save, sender=Unit)
-def vfolder_unit_resurrected(sender, instance, created=False, **kwargs):
+def vfolder_unit_resurrected(**kwargs):
     """Update Unit VirtualFolder membership when Unit is *un*obsoleted
     """
+    instance = kwargs["instance"]
     if instance.state == OBSOLETE:
         return
     try:
@@ -122,9 +124,10 @@ def vfolder_unit_resurrected(sender, instance, created=False, **kwargs):
 
 
 @receiver(pre_save, sender=Unit)
-def vfolder_unit_obsoleted(sender, instance, created=False, **kwargs):
+def vfolder_unit_obsoleted(**kwargs):
     """Update Unit VirtualFolder membership when Unit is obsoleted
     """
+    instance = kwargs["instance"]
     if instance.state != OBSOLETE:
         return
     try:
@@ -146,14 +149,15 @@ def vfolder_unit_obsoleted(sender, instance, created=False, **kwargs):
 
 
 @receiver(post_save, sender=Unit)
-def vfolder_unit_postsave_handler(sender, instance, created=False, **kwargs):
+def vfolder_unit_postsave_handler(**kwargs):
     """Match VirtualFolders to Unit and update Unit.priority
 
     - If unit was newly created, then check vfolders for membership
     - Update Unit priority from vfolder membership on Unit.save or create
 
     """
-
+    instance = kwargs["instance"]
+    created = kwargs.get("created", False)
     if created:
         add_unit_to_vfolders(instance)
     instance.set_priority()
