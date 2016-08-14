@@ -85,11 +85,11 @@ def dummyfs(settings, no_fs_plugins, no_fs_files):
     from pootle_project.models import Project
 
     @provider(fs_plugins, weak=False)
-    def plugin_provider(**kwargs):
+    def plugin_provider_(**kwargs_):
         return dict(dummyfs=DummyPlugin)
 
     @getter(fs_file, weak=False, sender=DummyPlugin)
-    def fs_files_getter(**kwargs):
+    def fs_files_getter_(**kwargs_):
         return FSFile
 
     project = Project.objects.get(code="project0")
@@ -128,11 +128,11 @@ def dummyfs_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
         pass
 
     @provider(fs_plugins, weak=False, sender=Project)
-    def plugin_provider(**kwargs):
+    def plugin_provider_(**kwargs_):
         return dict(dummyfs=PootleConflictDummyPlugin)
 
     @getter(fs_file, weak=False, sender=PootleConflictDummyPlugin)
-    def fs_files_getter(**kwargs):
+    def fs_files_getter_(**kwargs_):
         return FSChangedFile
 
     project = Project.objects.get(code="project0")
@@ -169,11 +169,11 @@ def dummyfs_plugin_no_stores(settings, no_fs_plugins, no_fs_files):
                 yield pp, fp
 
     @provider(fs_plugins, weak=False, sender=Project)
-    def plugin_provider(**kwargs):
+    def plugin_provider_(**kwargs_):
         return dict(dummyfs=NoStoresDummyPlugin)
 
     @getter(fs_file, weak=False, sender=NoStoresDummyPlugin)
-    def fs_files_getter(**kwargs):
+    def fs_files_getter_(**kwargs_):
         return FSFile
 
     plugin = FSPlugin(project)
@@ -208,7 +208,7 @@ def dummyfs_plugin_no_files(settings, no_fs_plugins, no_fs_files):
             return []
 
     @provider(fs_plugins, weak=False, sender=Project)
-    def plugin_provider(**kwargs):
+    def plugin_provider_(**kwargs_):
         return dict(dummyfs=NoFilesDummyPlugin)
 
     project = Project.objects.get(code="project0")
