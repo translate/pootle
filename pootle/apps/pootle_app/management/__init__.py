@@ -29,7 +29,7 @@ def fix_permission_content_type_pre(**kwargs):
 
 
 @receiver(post_delete, sender=ContentType)
-def fix_permission_content_type_post(**kwargs):
+def fix_permission_content_type_post(**kwargs_):
     global permission_queryset
     if permission_queryset is not None:
         dir_content_type = ContentType.objects.get(app_label='pootle_app',
