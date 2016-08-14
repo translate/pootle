@@ -81,14 +81,15 @@ def no_extra_users():
 
 
 @pytest.fixture(autouse=True, scope="session")
-def translations_directory(request):
+def translations_directory():
     """used by PootleEnv"""
     from django.conf import settings
+
     settings.POOTLE_TRANSLATION_DIRECTORY = tempfile.mkdtemp()
 
 
 @pytest.fixture(autouse=True)
-def clear_cache(request):
+def clear_cache():
     """Currently tests only use one cache so this clears all"""
 
     from django.core.cache import caches
