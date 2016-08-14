@@ -96,7 +96,7 @@ def dummy_cmd_response():
     DummyResponse, DummyCommandPlugin = _get_dummy_api_plugin()
 
     @provider(fs_plugins, sender=Project, weak=False)
-    def plugins_provider(*args, **kwargs):
+    def plugins_provider_(**kwargs_):
         return dict(dummy_cmd=DummyCommandPlugin)
 
     project = Project.objects.get(code="project0")
@@ -140,7 +140,7 @@ def dummy_cmd_state():
     DummyState, DummyCommandPlugin = _get_dummy_state_plugin()
 
     @provider(fs_plugins, sender=Project, weak=False)
-    def plugins_provider(*args, **kwargs):
+    def plugins_provider_(**kwargs_):
         return dict(dummy_state_cmd=DummyCommandPlugin)
 
     project = Project.objects.get(code="project0")
