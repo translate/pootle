@@ -18,7 +18,8 @@ permission_queryset = None
 
 
 @receiver(pre_delete, sender=ContentType)
-def fix_permission_content_type_pre(sender, instance, **kwargs):
+def fix_permission_content_type_pre(**kwargs):
+    instance = kwargs["instance"]
     if instance.name == 'pootle' and instance.model == "":
         logging.debug("Fixing permissions content types")
         global permission_queryset
@@ -28,7 +29,7 @@ def fix_permission_content_type_pre(sender, instance, **kwargs):
 
 
 @receiver(post_delete, sender=ContentType)
-def fix_permission_content_type_post(sender, instance, **kwargs):
+def fix_permission_content_type_post(**kwargs):
     global permission_queryset
     if permission_queryset is not None:
         dir_content_type = ContentType.objects.get(app_label='pootle_app',
