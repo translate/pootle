@@ -47,7 +47,7 @@ def dummy_project_filetypes(request, dummy_filetypes_class):
     result = Result()
 
     @getter(filetype_tool, sender=Project, weak=False)
-    def filetype_tool_getter(**kwargs):
+    def filetype_tool_getter_(**kwargs_):
         dummy_filetypes_class.result = result
         return dummy_filetypes_class
 
