@@ -389,10 +389,12 @@ def remove_paid_task(request, task_id=None):
     if request.method == 'DELETE':
         try:
             obj = PaidTask.objects.get(id=task_id)
-            str = '%s\t%s\t%s' % (request.user.username,
-                                  PAID_TASK_DELETED, obj)
+            string = (
+                '%s\t%s\t%s'
+                % (request.user.username,
+                   PAID_TASK_DELETED, obj))
             obj.delete()
-            log(str)
+            log(string)
             return JsonResponse({'removed': 1})
 
         except PaidTask.DoesNotExist:
