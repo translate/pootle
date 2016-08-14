@@ -182,7 +182,7 @@ def add_items(fs_items_set, db_items, create_or_resurrect_db_item, parent):
     return items, new_items
 
 
-def create_or_resurrect_store(file, parent, name, translation_project):
+def create_or_resurrect_store(f, parent, name, translation_project):
     """Create or resurrect a store db item with given name and parent."""
     try:
         store = Store.objects.get(parent=parent, name=name)
@@ -195,7 +195,7 @@ def create_or_resurrect_store(file, parent, name, translation_project):
                   path=store.pootle_path, store=store.id)
     except Store.DoesNotExist:
         store = Store.objects.create(
-            file=file, parent=parent,
+            file=f, parent=parent,
             name=name, translation_project=translation_project)
     store.mark_all_dirty()
     return store
@@ -232,7 +232,7 @@ def add_files(translation_project, ignored_files, exts, relative_dir, db_dir,
         file_set,
         existing_stores,
         lambda name: create_or_resurrect_store(
-            file=os.path.join(relative_dir, name),
+            f=os.path.join(relative_dir, name),
             parent=db_dir,
             name=name,
             translation_project=translation_project,
