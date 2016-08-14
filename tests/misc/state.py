@@ -191,7 +191,7 @@ def test_state_bad():
         def state_foo(self, **kwargs):
             yield []
 
-    # context.state_* methods should yield dict-like ob
+    # context.state_* methods should yield dict-like object
     with pytest.raises(TypeError):
         ContextualState(DummyContext())
 

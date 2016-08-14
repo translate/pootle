@@ -53,15 +53,15 @@ def _test_browse_view(tp, request, response, kwargs):
     pootle_path = "%s%s" % (tp.pootle_path, resource_path)
 
     if not (kwargs["dir_path"] or kwargs.get("filename")):
-        ob = tp.directory
+        obj = tp.directory
     elif not kwargs.get("filename"):
-        ob = Directory.objects.get(
+        obj = Directory.objects.get(
             pootle_path=pootle_path)
     else:
-        ob = Store.objects.get(
+        obj = Store.objects.get(
             pootle_path=pootle_path)
     if not kwargs.get("filename"):
-        vftis = ob.vf_treeitems.select_related("vfolder")
+        vftis = obj.vf_treeitems.select_related("vfolder")
         if not ctx["has_admin_access"]:
             vftis = vftis.filter(vfolder__is_public=True)
         vfolders = [
@@ -76,18 +76,18 @@ def _test_browse_view(tp, request, response, kwargs):
                 vfolder_treeitem['code']] = vfolder_treeitem["stats"]
             del vfolder_treeitem["stats"]
         if stats["vfolders"]:
-            stats.update(ob.get_stats())
+            stats.update(obj.get_stats())
         else:
-            stats = ob.get_stats()
+            stats = obj.get_stats()
     else:
-        stats = ob.get_stats()
+        stats = obj.get_stats()
         vfolders = None
 
     filters = {}
     if vfolders:
         filters['sort'] = 'priority'
 
-    dirs_with_vfolders = vftis_for_child_dirs(ob).values_list(
+    dirs_with_vfolders = vftis_for_child_dirs(obj).values_list(
         "directory__pk", flat=True)
     directories = [
         make_directory_item(
@@ -95,11 +95,11 @@ def _test_browse_view(tp, request, response, kwargs):
             **(dict(sort="priority")
                if child.pk in dirs_with_vfolders
                else {}))
-        for child in ob.get_children()
+        for child in obj.get_children()
         if isinstance(child, Directory)]
     stores = [
         make_store_item(child)
-        for child in ob.get_children()
+        for child in obj.get_children()
         if isinstance(child, Store)]
 
     if not kwargs.get("filename"):
@@ -119,7 +119,7 @@ def _test_browse_view(tp, request, response, kwargs):
                                    project=tp.project.code, limit=11)
     assertions = dict(
         page="browse",
-        object=ob,
+        object=obj,
         translation_project=tp,
         language=tp.language,
         project=tp.project,
@@ -129,18 +129,18 @@ def _test_browse_view(tp, request, response, kwargs):
         pootle_path=pootle_path,
         resource_path=resource_path,
         resource_path_parts=get_path_parts(resource_path),
-        translation_states=get_translation_states(ob),
-        checks=get_qualitycheck_list(ob),
+        translation_states=get_translation_states(obj),
+        checks=get_qualitycheck_list(obj),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        url_action_continue=ob.get_translate_url(
+        url_action_continue=obj.get_translate_url(
             state='incomplete', **filters),
-        url_action_fixcritical=ob.get_critical_url(**filters),
-        url_action_review=ob.get_translate_url(
+        url_action_fixcritical=obj.get_critical_url(**filters),
+        url_action_review=obj.get_translate_url(
             state='suggestions', **filters),
-        url_action_view_all=ob.get_translate_url(state='all'),
+        url_action_view_all=obj.get_translate_url(state='all'),
         stats=stats,
-        parent=get_parent(ob))
+        parent=get_parent(obj))
     if table:
         assertions["table"] = table
     sidebar = get_sidebar_announcements_context(

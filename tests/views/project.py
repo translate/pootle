@@ -90,14 +90,14 @@ def _test_browse_view(project, request, response, kwargs):
         "%s/%s"
         % (kwargs["project_code"], resource_path))
     if not (kwargs["dir_path"] or kwargs["filename"]):
-        ob = project
+        obj = project
     elif not kwargs["filename"]:
-        ob = ProjectResource(
+        obj = ProjectResource(
             Directory.objects.live().filter(
                 pootle_path__regex="^/.*/%s$" % project_path),
             pootle_path="/projects/%s" % project_path)
     else:
-        ob = ProjectResource(
+        obj = ProjectResource(
             Store.objects.live().filter(
                 pootle_path__regex="^/.*/%s$" % project_path),
             pootle_path="/projects/%s" % project_path)
@@ -110,7 +110,7 @@ def _test_browse_view(project, request, response, kwargs):
     items = [
         item_func(item)
         for item
-        in ob.get_children_for_user(request.user)
+        in obj.get_children_for_user(request.user)
     ]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
 
@@ -123,10 +123,10 @@ def _test_browse_view(project, request, response, kwargs):
         'items': items}
 
     if request.user.is_superuser or kwargs.get("language_code"):
-        url_action_continue = ob.get_translate_url(state='incomplete')
-        url_action_fixcritical = ob.get_critical_url()
-        url_action_review = ob.get_translate_url(state='suggestions')
-        url_action_view_all = ob.get_translate_url(state='all')
+        url_action_continue = obj.get_translate_url(state='incomplete')
+        url_action_fixcritical = obj.get_critical_url()
+        url_action_review = obj.get_translate_url(state='suggestions')
+        url_action_view_all = obj.get_translate_url(state='all')
     else:
         (url_action_continue,
          url_action_fixcritical,
@@ -146,12 +146,12 @@ def _test_browse_view(project, request, response, kwargs):
         url_action_fixcritical=url_action_fixcritical,
         url_action_review=url_action_review,
         url_action_view_all=url_action_view_all,
-        translation_states=get_translation_states(ob),
-        checks=get_qualitycheck_list(ob),
+        translation_states=get_translation_states(obj),
+        checks=get_qualitycheck_list(obj),
         table=table,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        stats=ob.get_stats(),
+        stats=obj.get_stats(),
     )
     sidebar = get_sidebar_announcements_context(
         request, (project, ))
@@ -219,10 +219,10 @@ def test_view_projects_browse(client, request_users):
     user_projects = (
         Project.objects.for_user(request.user)
                        .filter(code__in=user_projects))
-    ob = ProjectSet(user_projects)
+    obj = ProjectSet(user_projects)
     items = [
         make_project_list_item(project)
-        for project in ob.children]
+        for project in obj.children]
     items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
@@ -234,10 +234,10 @@ def test_view_projects_browse(client, request_users):
         'items': items}
 
     if request.user.is_superuser:
-        url_action_continue = ob.get_translate_url(state='incomplete')
-        url_action_fixcritical = ob.get_critical_url()
-        url_action_review = ob.get_translate_url(state='suggestions')
-        url_action_view_all = ob.get_translate_url(state='all')
+        url_action_continue = obj.get_translate_url(state='incomplete')
+        url_action_fixcritical = obj.get_critical_url()
+        url_action_review = obj.get_translate_url(state='suggestions')
+        url_action_view_all = obj.get_translate_url(state='all')
     else:
         (url_action_continue,
          url_action_fixcritical,
@@ -251,14 +251,14 @@ def test_view_projects_browse(client, request_users):
         pootle_path="/projects/",
         resource_path="",
         resource_path_parts=[],
-        object=ob,
+        object=obj,
         table=table,
         browser_extends="projects/all/base.html",
-        stats=ob.get_stats(),
-        checks=get_qualitycheck_list(ob),
+        stats=obj.get_stats(),
+        checks=get_qualitycheck_list(obj),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        translation_states=get_translation_states(ob),
+        translation_states=get_translation_states(obj),
         url_action_continue=url_action_continue,
         url_action_fixcritical=url_action_fixcritical,
         url_action_review=url_action_review,
