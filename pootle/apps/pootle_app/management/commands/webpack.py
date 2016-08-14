@@ -9,7 +9,6 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import subprocess
-import sys
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -101,4 +100,3 @@ class Command(BaseCommand):
                 'Make sure to install it by running '
                 '`cd %s && npm install`' % default_js_dir
             )
-            sys.exit(0)
