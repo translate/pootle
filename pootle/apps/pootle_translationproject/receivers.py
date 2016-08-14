@@ -28,7 +28,7 @@ def get_recipients(project):
 
 
 @receiver(tp_inited_async, sender=TranslationProject)
-def tp_inited_async(**kwargs):
+def tp_inited_async_handler(**kwargs):
     instance = kwargs["instance"]
     response_url = kwargs["response_url"]
     ctx = {"tp": instance,
@@ -42,7 +42,7 @@ def tp_inited_async(**kwargs):
 
 
 @receiver(tp_init_failed_async, sender=TranslationProject)
-def tp_init_failed_async(**kwargs):
+def tp_init_failed_async_handler(**kwargs):
     instance = kwargs["instance"]
 
     ctx = {"tp": instance}
