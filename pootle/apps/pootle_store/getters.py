@@ -19,7 +19,7 @@ from .unit.search import DBSearchBackend
 
 
 @getter(search_backend, sender=Unit)
-def get_search_backend(**kwargs):
+def get_search_backend(**kwargs_):
     return DBSearchBackend
 
 
