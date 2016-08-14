@@ -23,19 +23,19 @@ def locale_dir():
 
 
 @register.filter(name='dateformat')
-def do_dateformat(value, format='c'):
+def do_dateformat(value, use_format='c'):
     """Formats a `value` date using `format`.
 
     :param value: a datetime object.
-    :param format: a format string accepted by
+    :param use_format: a format string accepted by
         :func:`django.utils.formats.get_format` or
         :func:`django.utils.dateformat.format`. If none is set, the current
         locale's default format will be used.
     """
     try:
-        use_format = get_format(format)
+        use_format = get_format(use_format)
     except AttributeError:
-        use_format = format
+        pass
 
     return dateformat.format(value, use_format)
 
