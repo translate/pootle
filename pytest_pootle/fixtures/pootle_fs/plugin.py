@@ -155,7 +155,7 @@ def localfs_dummy_finder(no_fs_finder, localfs_env):
                 yield plugin.get_fs_path(pootle_path), matched
 
     @getter(fs_finder, sender=plugin.__class__, weak=False)
-    def get_fs_finder(**kwargs):
+    def get_fs_finder_(**kwargs_):
         return DummyFSFinder
 
 
@@ -173,7 +173,7 @@ def localfs_dummy_finder_empty(no_fs_finder, localfs_env):
             return []
 
     @getter(fs_finder, sender=plugin.__class__, weak=False)
-    def get_fs_finder(**kwargs):
+    def get_fs_finder_(**kwargs_):
         return DummyEmptyFSFinder
 
 
@@ -232,7 +232,7 @@ def localfs_dummy_file(no_fs_files):
             self._unstaged = True
 
     @getter(fs_file, sender=LocalFSPlugin, weak=False)
-    def get_fs_file(**kwargs):
+    def get_fs_file_(**kwargs_):
         return DummyFSFile
 
 
