@@ -52,7 +52,7 @@ def tp0_store(settings, tp0, fs_src):
 
 
 @pytest.fixture
-def tp0_store_fs(settings, tp0_store):
+def tp0_store_fs(tp0_store):
     """Require the /en/project0/project0.po store."""
     from pootle_fs.models import StoreFS
 
