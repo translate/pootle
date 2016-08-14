@@ -27,7 +27,6 @@ from django.template.defaultfilters import truncatechars
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
-from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.delegate import data_tool, format_syncers, format_updaters
 from pootle.core.log import (
@@ -46,6 +45,7 @@ from pootle.core.url_helpers import (
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_format.models import Format
 from pootle_misc.checks import check_names
 from pootle_misc.util import import_func

@@ -12,13 +12,13 @@ from django.http import Http404
 from django.shortcuts import redirect, render
 from django.template import RequestContext
 from django.template.loader import get_template
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.markup.filters import apply_markup_filter
 from pootle.core.views.mixins import SuperuserRequiredMixin
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_misc.util import ajax_required
 
 from .forms import agreement_form_factory

@@ -13,10 +13,10 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
 from pootle.core.mixins import DirtyFieldsMixin
+from pootle.i18n.gettext import ugettext_lazy as _
 
 from .managers import PageManager
 

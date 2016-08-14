@@ -10,9 +10,10 @@ import logging
 
 from django.conf import settings
 from django.http import JsonResponse
-from django.utils.translation import ugettext_lazy as _
 
 from allauth.account.adapter import DefaultAccountAdapter
+
+from pootle.i18n.gettext import ugettext_lazy as _
 
 
 logger = logging.getLogger('action')

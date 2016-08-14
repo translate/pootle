@@ -15,12 +15,11 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
-from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
-from pootle.i18n.gettext import language_dir, tr_lang
+from pootle.i18n.gettext import language_dir, tr_lang, ugettext_lazy as _
 from staticpages.models import StaticPage
 
 

@@ -23,7 +23,6 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
 
 from sortedm2m.fields import SortedManyToManyField
 
@@ -33,6 +32,7 @@ from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
                                      split_pootle_path, to_tp_relative_path)
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
 from pootle_config.utils import ObjectConfig
