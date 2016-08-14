@@ -9,7 +9,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+
+from pootle.i18n.gettext import ugettext_lazy as _
 
 
 __all__ = ('PaidTask', )

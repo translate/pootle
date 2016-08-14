@@ -23,12 +23,12 @@ from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
-from django.utils.translation import ugettext_lazy as _
 
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.models import Language
 from pootle_statistics.models import (ScoreLog, Submission,
                                       TranslationActionCodes)

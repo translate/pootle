@@ -7,12 +7,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib import auth
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView, UpdateView
 
 from pootle.core.views import APIView
 from pootle.core.views.mixins import (NoDefaultUserMixin, TestUserFieldMixin,
                                       UserObjectMixin)
+from pootle.i18n.gettext import ugettext_lazy as _
 
 from .forms import EditUserForm
 

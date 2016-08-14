@@ -10,13 +10,13 @@ from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.mixins.treeitem import NoCachedStats
 from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
                                      split_pootle_path)
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project

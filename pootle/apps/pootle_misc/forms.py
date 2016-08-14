@@ -8,7 +8,8 @@
 
 from django import forms
 from django.core.validators import EMPTY_VALUES
-from django.utils.translation import ugettext_lazy as _
+
+from pootle.i18n.gettext import ugettext_lazy as _
 
 
 class GroupedModelChoiceField(forms.ModelChoiceField):

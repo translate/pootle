@@ -7,7 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+
+from pootle.i18n.gettext import ugettext_lazy as _
 
 
 class AbstractFileExtension(models.Model):

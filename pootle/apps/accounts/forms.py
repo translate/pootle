@@ -9,11 +9,12 @@
 import logging
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 
 from allauth.account import app_settings
 from allauth.account.app_settings import AuthenticationMethod
 from allauth.account.forms import LoginForm
+
+from pootle.i18n.gettext import ugettext_lazy as _
 
 from .utils import get_user_by_email
 

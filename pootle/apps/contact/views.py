@@ -8,12 +8,12 @@
 
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView
 
 from contact_form.views import ContactFormView as OriginalContactFormView
 
 from pootle.core.views.mixins import AjaxResponseMixin
+from pootle.i18n.gettext import ugettext_lazy as _
 
 from .forms import ContactForm, ReportForm
 
