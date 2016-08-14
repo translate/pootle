@@ -32,7 +32,7 @@ class FormatRegistry(object):
             template_ext = ext
         try:
             filetype = Format.objects.get(name=name)
-        except:
+        except Format.DoesNotExist:
             filetype = None
         if not filetype:
             filetype = Format.objects.create(
