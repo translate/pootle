@@ -25,6 +25,8 @@ except ImportError:
             return func
         return fake
 
+from pootle.constants import VERSION
+
 
 CANDIDATE_MARKERS = ('alpha', 'beta', 'rc', 'final')
 
@@ -147,7 +149,6 @@ def get_complete_version(version=None):
     if version is not None:
         return version
 
-    from pootle import VERSION
     return VERSION
 
 
