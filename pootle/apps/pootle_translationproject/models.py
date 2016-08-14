@@ -322,8 +322,6 @@ class TranslationProject(models.Model, CachedTreeItem):
             and not translation_project_dir_exists(self.language,
                                                    self.project))
 
-        return False
-
     def init_from_templates(self):
         """Initializes the current translation project files using
         the templates TP ones.
