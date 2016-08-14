@@ -22,9 +22,8 @@ class PootleTestEnv(object):
         self.request = request
 
     def setup(self):
-        [getattr(self, "setup_%s" % method)()
-         for method
-         in self.methods]
+        for method in self.methods:
+            getattr(self, "setup_%s" % method)()
 
     def setup_formats(self):
         from pootle.core.delegate import formats
