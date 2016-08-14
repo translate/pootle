@@ -13,7 +13,7 @@ from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
 from pootle.core.state import ItemState, State
-from pootle_store.models import FILE_WINS, POOTLE_WINS
+from pootle_store.models import POOTLE_WINS, SOURCE_WINS
 
 from .resources import FSProjectStateResources
 
@@ -201,7 +201,7 @@ class ProjectFSState(State):
             | self.resources.synced
                             .filter(Q(store__isnull=True) | Q(store__obsolete=True))
                             .filter(path__in=self.resources.found_file_paths)
-                            .filter(resolve_conflict=FILE_WINS))
+                            .filter(resolve_conflict=SOURCE_WINS))
         for store_fs in staged.iterator():
             store_fs.project = self.project
             yield dict(store_fs=store_fs)
@@ -218,7 +218,7 @@ class ProjectFSState(State):
                 fs_changed
                 and (
                     not pootle_changed
-                    or store_fs.resolve_conflict == FILE_WINS))
+                    or store_fs.resolve_conflict == SOURCE_WINS))
             if fs_ahead:
                 yield dict(store_fs=store_fs)
 
@@ -247,7 +247,7 @@ class ProjectFSState(State):
     def state_merge_fs_wins(self):
         to_merge = self.resources.tracked.filter(
             staged_for_merge=True,
-            resolve_conflict=FILE_WINS)
+            resolve_conflict=SOURCE_WINS)
         for store_fs in to_merge.iterator():
             store_fs.project = self.project
             yield dict(store_fs=store_fs)
@@ -267,7 +267,7 @@ class ProjectFSState(State):
     def state_pootle_staged(self):
         staged = (
             self.resources.unsynced
-                          .exclude(resolve_conflict=FILE_WINS)
+                          .exclude(resolve_conflict=SOURCE_WINS)
                           .exclude(store__isnull=True)
                           .exclude(store__obsolete=True)
             | self.resources.synced
@@ -293,7 +293,7 @@ class ProjectFSState(State):
     def state_pootle_removed(self):
         synced = (
             self.resources.synced
-                          .exclude(resolve_conflict=FILE_WINS)
+                          .exclude(resolve_conflict=SOURCE_WINS)
                           .filter(path__in=self.resources.found_file_paths)
                           .filter(Q(store__isnull=True) | Q(store__obsolete=True)))
         for store_fs in synced.iterator():

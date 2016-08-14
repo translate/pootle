@@ -11,7 +11,7 @@ from django.utils.functional import cached_property
 
 from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 from pootle_project.models import Project
-from pootle_store.models import FILE_WINS, POOTLE_WINS, Store
+from pootle_store.models import POOTLE_WINS, SOURCE_WINS, Store
 
 from .delegate import fs_file
 from .managers import StoreFSManager, validate_store_fs
@@ -36,7 +36,7 @@ class AbstractStoreFS(models.Model):
         default=0,
         choices=[(0, ""),
                  (POOTLE_WINS, "pootle"),
-                 (FILE_WINS, "fs")])
+                 (SOURCE_WINS, "fs")])
 
     objects = StoreFSManager()
 

@@ -16,7 +16,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
     config, response as pootle_response, state as pootle_state)
-from pootle_store.models import FILE_WINS, POOTLE_WINS, Store
+from pootle_store.models import POOTLE_WINS, SOURCE_WINS, Store
 from pootle_project.models import Project
 
 from .decorators import emits_state, responds_to_state
@@ -302,7 +302,7 @@ class Plugin(object):
         for fs_state in to_unstage:
             staged = (
                 fs_state.state_type not in ["fs_ahead", "pootle_ahead"]
-                or fs_state.store_fs.resolve_conflict in [FILE_WINS, POOTLE_WINS])
+                or fs_state.store_fs.resolve_conflict in [SOURCE_WINS, POOTLE_WINS])
             if staged:
                 fs_state.store_fs.file.unstage()
                 response.add("unstaged", fs_state=fs_state)

@@ -18,7 +18,7 @@ from django.utils.functional import cached_property
 
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.models import FILE_WINS, POOTLE_WINS, Store
+from pootle_store.models import POOTLE_WINS, SOURCE_WINS, Store
 
 
 logger = logging.getLogger(__name__)
@@ -130,14 +130,14 @@ class FSFile(object):
         Called when FS file is fetched
         """
         logger.debug("Fetching file: %s", self.path)
-        self.store_fs.resolve_conflict = FILE_WINS
+        self.store_fs.resolve_conflict = SOURCE_WINS
         self.store_fs.save()
 
     def merge(self, pootle_wins):
         if pootle_wins:
             self.store_fs.resolve_conflict = POOTLE_WINS
         else:
-            self.store_fs.resolve_conflict = FILE_WINS
+            self.store_fs.resolve_conflict = SOURCE_WINS
         self.store_fs.staged_for_merge = True
         self.store_fs.save()
 
@@ -236,11 +236,11 @@ class FSFile(object):
         User = get_user_model()
         if pootle_wins is None:
             resolve_conflict = (
-                self.store_fs.resolve_conflict or FILE_WINS)
+                self.store_fs.resolve_conflict or SOURCE_WINS)
         elif pootle_wins:
             resolve_conflict = POOTLE_WINS
         else:
-            resolve_conflict = FILE_WINS
+            resolve_conflict = SOURCE_WINS
         if merge:
             revision = self.store_fs.last_sync_revision or 0
         else:
