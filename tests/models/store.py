@@ -1189,3 +1189,21 @@ def test_store_diff_custom(diffable_stores):
 
     assert isinstance(
         differ.diffable, CustomDiffableStore)
+
+
+@pytest.mark.django_db
+def test_store_diff_delete_obsoleted_source_unit(diffable_stores):
+    target_store, source_store = diffable_stores
+    # delete a unit in the target store
+    remove_unit = target_store.units.first()
+    remove_unit.delete()
+    # and obsolete the same unit in the target
+    obsolete_unit = source_store.units.get(unitid=remove_unit.unitid)
+    obsolete_unit.makeobsolete()
+    obsolete_unit.save()
+    # as the unit is already obsolete - nothing
+    differ = StoreDiff(
+        target_store,
+        source_store,
+        target_store.get_max_unit_revision() + 1)
+    assert not differ.diff()
