@@ -21,6 +21,10 @@ from pootle_store.unit.proxy import UnitProxy
 class UnitResult(UnitProxy):
 
     @property
+    def filetype(self):
+        return self.unit["store__filetype__name"]
+
+    @property
     def nplurals(self):
         return self.unit[
             "store__translation_project__language__nplurals"] or 0
@@ -79,6 +83,7 @@ class StoreResults(object):
             unit = UnitResult(unit)
             if meta is None:
                 meta = {
+                    'filetype': unit.filetype,
                     'source_lang': unit.source_lang,
                     'source_dir': unit.source_dir,
                     'target_lang': unit.target_lang,
@@ -107,6 +112,7 @@ class GroupedResults(object):
         "source_f",
         "target_f",
         "state",
+        "store__filetype__name",
         "store__pootle_path",
         "store__translation_project__project__code",
         "store__translation_project__project__source_language__code",
