@@ -1062,7 +1062,7 @@ def test_store_diff_delete_source_unit(diffable_stores):
         target_store,
         source_store,
         target_store.get_max_unit_revision() - 1)
-    result = differ.diff()
+    assert not differ.diff()
 
 
 @pytest.mark.django_db
