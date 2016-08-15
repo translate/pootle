@@ -58,8 +58,8 @@ const RawFontTextarea = React.createClass({
   },
 
   contextTypes: {
-    locale: React.PropTypes.string,
-    localeDir: React.PropTypes.string,
+    currentLocaleCode: React.PropTypes.string,
+    currentLocaleDir: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -255,10 +255,10 @@ const RawFontTextarea = React.createClass({
         autoFocus={this.props.autoFocus}
         className="translation focusthis js-translation-area"
         defaultValue={applyFontFilter(this.props.initialValue, this.getMode())}
-        dir={this.context.localeDir}
+        dir={this.context.currentLocaleDir}
         disabled={this.props.isDisabled}
         id={this.props.id}
-        lang={this.context.locale}
+        lang={this.context.currentLocaleCode}
         onChange={this.handleChange}
         onCopy={this.handleCopyCut}
         onCut={this.handleCopyCut}

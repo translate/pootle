@@ -16,11 +16,11 @@ import { getAreaId } from '../utils';
 const Editor = React.createClass({
 
   propTypes: {
+    currentLocaleCode: React.PropTypes.string.isRequired,
+    currentLocaleDir: React.PropTypes.string.isRequired,
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
-    locale: React.PropTypes.string,
-    localeDir: React.PropTypes.string,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
     overrideValues: React.PropTypes.array,
@@ -35,8 +35,8 @@ const Editor = React.createClass({
   // undesired way, and wrapping the component in a context provider would
   // prevent us from doing so.
   childContextTypes: {
-    locale: React.PropTypes.string,
-    localeDir: React.PropTypes.string,
+    currentLocaleCode: React.PropTypes.string,
+    currentLocaleDir: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -55,8 +55,8 @@ const Editor = React.createClass({
 
   getChildContext() {
     return {
-      locale: this.props.locale,
-      localeDir: this.props.localeDir,
+      currentLocaleCode: this.props.currentLocaleCode,
+      currentLocaleDir: this.props.currentLocaleDir,
     };
   },
 

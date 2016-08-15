@@ -208,8 +208,8 @@
               PTL.reactEditor.init({
                 initialValues: {{ unit_values|to_js }},
                 isDisabled: {{ form.target_f.field.widget.attrs.disabled|yesno:'true,false' }},
-                locale: '{{ language.code }}',
-                localeDir: '{{ language.direction }}',
+                currentLocaleCode: '{{ language.code }}',
+                currentLocaleDir: '{{ language.direction }}',
                 sourceString: {{ unit.source_f|to_js }},
                 targetNplurals: {{ target_nplurals }},
               });
