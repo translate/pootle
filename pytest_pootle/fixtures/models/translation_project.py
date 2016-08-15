@@ -10,6 +10,8 @@ import shutil
 
 import pytest
 
+from pootle.core.delegate import tp_tool
+
 
 def pytest_generate_tests(metafunc):
     from pootle_project.models import PROJECT_CHECKERS
@@ -122,3 +124,14 @@ def tp0(language0, project0):
     return TranslationProject.objects.get(
         language=language0,
         project=project0)
+
+
+@pytest.fixture
+def no_tp_tool_(request):
+    start_receivers = tp_tool.receivers
+    tp_tool.receivers = []
+
+    def _reset_tp_tool():
+        tp_tool.receivers = start_receivers
+
+    request.addfinalizer(_reset_tp_tool)
