@@ -110,7 +110,7 @@ class DiffableStore(object):
     @cached_property
     def source_units(self):
         if isinstance(self.source_store, models.Model):
-            return self.get_db_units(self.source_store.unit_set)
+            return self.get_db_units(self.source_store.unit_set.live())
         return self.get_file_units(self.source_store.units)
 
     @property
