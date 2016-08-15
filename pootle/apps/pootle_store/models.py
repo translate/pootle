@@ -31,7 +31,7 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.delegate import format_classes
+from pootle.core.delegate import format_classes, format_updaters
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -62,6 +62,7 @@ from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
 from .managers import StoreManager, SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
+from .updater import StoreUpdate
 from .util import get_change_str, SuggestionStates, vfolders_installed
 
 
@@ -1384,87 +1385,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         return obsoleted
 
-    def update_units(self, store, uids_to_update, uid_index_map, user,
-                     store_revision, update_revision, submission_type=None,
-                     resolve_conflict=POOTLE_WINS, change_indexes=True):
-        """Updates existing units in the store.
-
-        :param uids_to_update: UIDs of the units to be updated.
-        :param uid_index_map: dictionary of DB ID to index mappings.
-        :param user: attribute specific changes to this user.
-        :param revision: set updated unit revision to this value.
-        :param submission_type: set submission type for update.
-        :param resolve_conflict: set how conflicts are resolved.
-        :param change_indexes: set if it is allowed to change unit indexing.
-        :return: a tuple ``(updated, suggested)`` where ``updated`` is the
-            the number of units that were actually updated, and ``suggested``
-            is the number of suggestions added due to revision conflicts.
-        """
-        updated = 0
-        suggested = 0
-
-        uids_to_update = list(uids_to_update)
-        for unit in self.findid_bulk(uids_to_update):
-            # Use the same (parent) object since units will accumulate
-            # the list of cache attributes to clear in the parent Store
-            # object
-            unit.store = self
-            uid = unit.getid()
-            newunit = store.findid(uid)
-
-            # If the unit's revision is greater than the store's add a
-            # suggestion instead.
-            conflict_found = (newunit
-                              and store_revision is not None
-                              and store_revision < unit.revision
-                              and (unit.target != newunit.target
-                                   or unit.source != newunit.source))
-
-            # FIXME: `old_unit = copy.copy(unit)?`
-            old_target = unit.target_f
-            old_state = unit.state
-            old_submitter = unit.submitted_by
-            changed = False
-
-            should_update = (newunit
-                             and not (conflict_found
-                                      and resolve_conflict == POOTLE_WINS))
-            if should_update:
-                changed = unit.update(newunit, user=user)
-
-            if change_indexes and uid in uid_index_map:
-                unit.index = uid_index_map[uid]['index']
-                changed = True
-
-            if changed:
-                updated += 1
-                current_time = timezone.now()
-                self.record_submissions(unit, old_target, old_state,
-                                        current_time, user, submission_type)
-
-                # FIXME: extreme implicit hazard
-                if unit._comment_updated:
-                    unit.commented_by = user
-                    unit.commented_on = current_time
-
-                # Set unit fields if target was updated
-                # FIXME: extreme implicit hazard
-                if unit._target_updated:
-                    unit.submitted_by = user
-                    unit.submitted_on = current_time
-                    unit.reviewed_on = None
-                    unit.reviewed_by = None
-
-                unit.save(revision=update_revision)
-
-            if conflict_found:
-                if resolve_conflict == POOTLE_WINS:
-                    created = unit.add_suggestion(newunit.target, user)[1]
-                else:
-                    created = unit.add_suggestion(old_target, old_submitter)[1]
-                if created:
-                    suggested += 1
-        return updated, suggested
+    @cached_property
+    def updater(self):
+        updaters = format_updaters.gather()
+        updater_class = (
+            updaters.get(self.filetype.name)
+            or updaters.get("default"))
+        return updater_class(self)
 
     def record_submissions(self, unit, old_target, old_state, current_time,
                            user, submission_type=None):
@@ -1586,14 +1513,17 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         # Update units
         update_dbids, uid_index_map = to_change['update']
-        (changes['updated'],
-         changes['suggested']) = (
-            self.update_units(store, update_dbids,
-                              uid_index_map, user,
-                              store_revision, update_revision,
-                              submission_type=submission_type,
-                              resolve_conflict=resolve_conflict,
-                              change_indexes=allow_add_and_obsolete))
+        update = StoreUpdate(
+            store,
+            user=user,
+            submission_type=submission_type,
+            resolve_conflict=resolve_conflict,
+            change_indices=allow_add_and_obsolete,
+            uids=update_dbids,
+            indices=uid_index_map,
+            store_revision=store_revision,
+            update_revision=update_revision)
+        changes['updated'], changes['suggested'] = self.updater.update(update)
         return changes
 
     def update_from_disk(self, overwrite=False):
