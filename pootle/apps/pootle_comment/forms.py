@@ -52,13 +52,13 @@ class CommentForm(DjCommentForm):
             raise CommentNotSaved(dict(comment=should_not_save))
 
     def save(self):
-        ob = self.comment
-        ob.user = self.cleaned_data["user"]
-        ob.submit_date = datetime.now()
-        ob.save()
+        comment = self.comment
+        comment.user = self.cleaned_data["user"]
+        comment.submit_date = datetime.now()
+        comment.save()
         comment_was_saved.send(
-            sender=ob.__class__,
-            comment=ob)
+            sender=comment.__class__,
+            comment=comment)
 
 
 class UnsecuredCommentForm(CommentForm):
