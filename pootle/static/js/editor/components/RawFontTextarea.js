@@ -72,6 +72,8 @@ const RawFontTextarea = React.createClass({
     this.mousetrap = new Mousetrap(ReactDOM.findDOMNode(this.refs.textarea));
     this.mousetrap.bind(UNDO_SHORTCUT, this.handleUndo);
     this.mousetrap.bind(REDO_SHORTCUT, this.props.onRedo);
+
+    this.isComposing = false;
   },
 
   shouldComponentUpdate(nextProps) {
@@ -152,6 +154,9 @@ const RawFontTextarea = React.createClass({
   },
 
   handleChange(e) {
+    if (this.isComposing) {
+      return;
+    }
     this._handleChange(e.target.value);
   },
 
@@ -171,7 +176,7 @@ const RawFontTextarea = React.createClass({
     // the `keydown` event because the `input` event doesn't yet provide all the
     // necessary data to implement the functionality.
 
-    if (!shouldEventOverwriteSelection(e)) {
+    if (this.isComposing || !shouldEventOverwriteSelection(e)) {
       return;
     }
 
@@ -251,6 +256,14 @@ const RawFontTextarea = React.createClass({
     }
   },
 
+  handleComposition(e) {
+    if (e.type === 'compositionend') {
+      this.isComposing = false;
+    } else {
+      this.isComposing = true;
+    }
+  },
+
   render() {
     const style = assign({}, {
       boxSizing: 'border-box',
@@ -268,6 +281,9 @@ const RawFontTextarea = React.createClass({
         id={this.props.id}
         lang={this.context.currentLocaleCode}
         onChange={this.handleChange}
+        onCompositionStart={this.handleComposition}
+        onCompositionUpdate={this.handleComposition}
+        onCompositionEnd={this.handleComposition}
         onCopy={this.handleCopyCut}
         onCut={this.handleCopyCut}
         onKeyDown={this.handleKeyDown}
