@@ -13,9 +13,9 @@ from pootle.core.plugin import getter
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.getters import get_search_backend
-from pootle_store.models import (
-    FUZZY, TRANSLATED, UNTRANSLATED,
-    SuggestionStates, Unit)
+from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.models import Unit
+from pootle_store.util import SuggestionStates
 from pootle_store.unit.filters import (
     FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitSearchFilter,
     UnitStateFilter, UnitTextSearch)

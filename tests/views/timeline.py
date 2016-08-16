@@ -29,7 +29,8 @@ from pootle_store.constants import (
     FUZZY, OBSOLETE, STATES_MAP, TRANSLATED, UNTRANSLATED)
 from pootle_store.fields import to_python
 from pootle_store.models import (
-    Suggestion, SuggestionStates, QualityCheck, Store, Unit)
+    Suggestion, QualityCheck, Store, Unit)
+from pootle_store.util import SuggestionStates
 
 
 class ProxyTimelineLanguage(object):
