@@ -13,5 +13,5 @@ from .localfs import LocalFSPlugin
 
 
 @provider(fs_plugins)
-def localfs_plugin_provider(**kwargs):
+def localfs_plugin_provider(**kwargs_):
     return dict(localfs=LocalFSPlugin)
