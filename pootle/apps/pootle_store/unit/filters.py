@@ -19,7 +19,7 @@ class FilterNotFound(Exception):
 
 class BaseUnitFilter(object):
 
-    def __init__(self, qs, *args, **kwargs):
+    def __init__(self, qs, *args_, **kwargs_):
         self.qs = qs
 
     def filter(self, unit_filter):

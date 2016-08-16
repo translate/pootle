@@ -87,7 +87,7 @@ class UserActivityView(NoDefaultUserMixin, UserObjectMixin, DetailView):
         self.month = request.GET.get('month', None)
         return super(UserActivityView, self).dispatch(request, *args, **kwargs)
 
-    def get(self, *args, **kwargs):
+    def get(self, *args_, **kwargs_):
         data = get_activity_data(self.request, self.get_object(), self.month)
         return JsonResponse(data)
 
