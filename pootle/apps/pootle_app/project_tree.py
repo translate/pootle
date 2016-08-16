@@ -55,7 +55,7 @@ def match_template_filename(project, filename):
         if ext not in project.filetype_tool.filetype_extensions:
             # Template extension is distinct, surely file is a template.
             return True
-        elif not find_lang_postfix(filename):
+        elif not find_lang_postfix(project, filename):
             # File name can't possibly match any language, assume it is a
             # template.
             return True
@@ -272,17 +272,18 @@ def to_podir_path(path):
     return os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, path)
 
 
-def find_lang_postfix(filename):
+def find_lang_postfix(project, filename):
     """Finds the language code at end of a filename."""
     name = os.path.splitext(os.path.basename(filename))[0]
     if LANGCODE_RE.match(name):
-        return name
+        return project.lang_mapper.get_pootle_code(name)
 
     match = LANGCODE_POSTFIX_RE.match(name)
     if match:
-        return match.groups()[0]
+        return project.lang_mapper.get_pootle_code(match.groups()[0])
 
     for code in Language.objects.values_list('code', flat=True):
+        code = project.lang_mapper.get_upstream_code(code)
         if (name.endswith('-'+code) or name.endswith('_'+code) or
             name.endswith('.'+code) or
             name.lower().endswith('-'+code.lower()) or
@@ -294,6 +295,7 @@ def translation_project_dir_exists(language, project):
     """Tests if there are translation files corresponding to the given
     :param:`language` and :param:`project`.
     """
+
     if project.get_treestyle() == "gnu":
         # GNU style projects are tricky
 
@@ -312,17 +314,22 @@ def translation_project_dir_exists(language, project):
                     project.get_real_path()):
                 for filename in filenames:
                     # FIXME: don't reuse already used file
-                    if (project.file_belongs_to_project(filename,
-                                                        match_templates=False)
-                            and direct_language_match_filename(language.code,
-                                                               filename)):
+                    filename_matches = (
+                        project.file_belongs_to_project(
+                            filename,
+                            match_templates=False)
+                        and direct_language_match_filename(
+                            project.lang_mapper.get_upstream_code(language.code),
+                            filename))
+                    if filename_matches:
                         return True
     else:
         # find directory with the language name in the project dir
         try:
             dirpath_, dirnames, filename = os.walk(
                 project.get_real_path()).next()
-            if language.code in dirnames:
+            lang_code = project.lang_mapper.get_upstream_code(language.code)
+            if lang_code in dirnames:
                 return True
         except StopIteration:
             pass
