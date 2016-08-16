@@ -146,10 +146,13 @@ const RawFontTextarea = React.createClass({
     return this.props.isRawMode ? 'raw' : 'regular';
   },
 
-  handleChange(e) {
-    const newValue = e.target.value;
+  _handleChange(newValue) {
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
     this.props.onChange(cleanValue);
+  },
+
+  handleChange(e) {
+    this._handleChange(e.target.value);
   },
 
   handleUndo(e) {
@@ -212,8 +215,8 @@ const RawFontTextarea = React.createClass({
     );
     const newValue = (value.slice(0, start) + replacementChar +
                       value.slice(end, value.length));
-    const cleanValue = unapplyFontFilter(newValue, this.getMode());
-    this.props.onChange(cleanValue);
+
+    this._handleChange(newValue);
   },
 
   handleCopyCut(e) {
