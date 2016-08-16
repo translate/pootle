@@ -228,7 +228,7 @@ class ProjectAdminView(PootleAdminView):
             'dir_path': '',
             'filename': ''}
 
-    def get_context_data(self, *la, **kwa):
+    def get_context_data(self, **kwargs_):
         if self.request.method == 'POST' and self.request.POST:
             self.process_formset()
 

@@ -30,7 +30,7 @@ class ContributorsJSONMixin(PootleJSONMixin):
     def path(self):
         return self.kwargs["path"]
 
-    def get_context_data(self, *args, **kwargs):
+    def get_context_data(self, **kwargs_):
         User = get_user_model()
 
         language_code, project_code = split_pootle_path(self.pootle_path)[:2]
