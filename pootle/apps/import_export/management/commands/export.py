@@ -70,7 +70,7 @@ class Command(PootleCommand):
             for tp in tp_query.iterator():
                 self.do_translation_project(tp, **options)
 
-    def handle_translation_project(self, translation_project, **options):
+    def handle_translation_project(self, translation_project, **options_):
         stores = translation_project.stores.live()
         prefix = "%s-%s" % (translation_project.project.code,
                             translation_project.language.code)
