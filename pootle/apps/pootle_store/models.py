@@ -556,7 +556,7 @@ class Unit(models.Model, base.TranslationUnit):
             % (self.store.get_translate_url(),
                '#unit=%s' % unicode(self.id)))
 
-    def get_search_locations_url(self, **kwargs):
+    def get_search_locations_url(self):
         (proj_code, dir_path,
          filename) = split_pootle_path(self.store.pootle_path)[1:]
 
