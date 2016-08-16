@@ -47,7 +47,6 @@ from pootle.core.url_helpers import (
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
-from pootle_app.models import Directory
 from pootle_format.models import Format
 from pootle_misc.checks import check_names, get_checker
 from pootle_misc.util import import_func
@@ -55,14 +54,15 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .constants import (
-    FUZZY, LANGUAGE_REGEX, NEW, OBSOLETE, PARSED, POOTLE_WINS,
-    PROJECT_REGEX, TRANSLATED, UNTRANSLATED)
+    FUZZY, NEW, OBSOLETE, PARSED, POOTLE_WINS,
+    TRANSLATED, UNTRANSLATED)
 from .diff import StoreDiff
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
+from .managers import StoreManager, SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
-from .util import get_change_str, vfolders_installed
+from .util import get_change_str, SuggestionStates, vfolders_installed
 
 
 TM_BROKER = None
@@ -101,18 +101,6 @@ class QualityCheck(models.Model):
         unknown_checks.delete()
 
 # # # # # # # # # Suggestion # # # # # # # #
-
-
-class SuggestionManager(models.Manager):
-
-    def pending(self):
-        return self.get_queryset().filter(state=SuggestionStates.PENDING)
-
-
-class SuggestionStates(object):
-    PENDING = 'pending'
-    ACCEPTED = 'accepted'
-    REJECTED = 'rejected'
 
 
 class Suggestion(models.Model, base.TranslationUnit):
@@ -200,84 +188,6 @@ def stringcount(string):
         return len(string.strings)
     except AttributeError:
         return 1
-
-
-class UnitManager(models.Manager):
-
-    def live(self):
-        """Filters non-obsolete units."""
-        return self.filter(state__gt=OBSOLETE)
-
-    def get_for_user(self, user):
-        """Filters units for a specific user.
-
-        - Admins always get all non-obsolete units
-        - Regular users only get units from enabled projects accessible
-            to them.
-
-        :param user: The user for whom units need to be retrieved for.
-        :return: A filtered queryset with `Unit`s for `user`.
-        """
-        from pootle_project.models import Project
-
-        if user.is_superuser:
-            return self.live()
-
-        user_projects = Project.accessible_by_user(user)
-        filter_by = {
-            "store__translation_project__project__disabled": False,
-            "store__translation_project__project__code__in": user_projects
-        }
-        return self.live().filter(**filter_by)
-
-    def get_translatable(self, user, project_code=None, language_code=None,
-                         dir_path=None, filename=None):
-        """Returns translatable units for a `user`, optionally filtered by their
-        location within Pootle.
-
-        :param user: The user who is accessing the units.
-        :param project_code: A string for matching the code of a Project.
-        :param language_code: A string for matching the code of a Language.
-        :param dir_path: A string for matching the dir_path and descendants
-           from the TP.
-        :param filename: A string for matching the filename of Stores.
-        """
-
-        units_qs = self.get_for_user(user)
-
-        if language_code:
-            units_qs = units_qs.filter(
-                store__translation_project__language__code=language_code)
-        else:
-            units_qs = units_qs.exclude(
-                store__pootle_path__startswith="/templates/")
-
-        if project_code:
-            units_qs = units_qs.filter(
-                store__translation_project__project__code=project_code)
-
-        if not (dir_path or filename):
-            return units_qs
-
-        pootle_path = "/%s/%s/%s%s" % (
-            language_code or LANGUAGE_REGEX,
-            project_code or PROJECT_REGEX,
-            dir_path or "",
-            filename or "")
-        if language_code and project_code:
-            if filename:
-                return units_qs.filter(
-                    store__pootle_path=pootle_path)
-            else:
-                return units_qs.filter(
-                    store__pootle_path__startswith=pootle_path)
-        else:
-            # we need to use a regex in this case as lang or proj are not
-            # set
-            if filename:
-                pootle_path = "%s$" % pootle_path
-            return units_qs.filter(
-                store__pootle_path__regex=pootle_path)
 
 
 class Unit(models.Model, base.TranslationUnit):
@@ -1252,86 +1162,6 @@ class Unit(models.Model, base.TranslationUnit):
 
 # Needed to alter storage location in tests
 fs = PootleFileSystemStorage()
-
-
-class StoreManager(models.Manager):
-    use_for_related_fields = True
-
-    def live(self):
-        """Filters non-obsolete stores."""
-        return self.filter(obsolete=False)
-
-    def create(self, *args, **kwargs):
-        if "filetype" not in kwargs:
-            filetypes = kwargs["translation_project"].project.filetype_tool
-            kwargs['filetype'] = filetypes.choose_filetype(kwargs["name"])
-        if kwargs["translation_project"].is_template_project:
-            kwargs["is_template"] = True
-        kwargs["pootle_path"] = (
-            "%s%s"
-            % (kwargs["parent"].pootle_path, kwargs["name"]))
-        return super(StoreManager, self).create(*args, **kwargs)
-
-    def get_or_create(self, *args, **kwargs):
-        store, created = super(StoreManager, self).get_or_create(*args, **kwargs)
-        if not created:
-            return store, created
-        update = False
-        if store.translation_project.is_template_project:
-            store.is_template = True
-            update = True
-        if "filetype" not in kwargs:
-            filetypes = store.translation_project.project.filetype_tool
-            store.filetype = filetypes.choose_filetype(store.name)
-            update = True
-        if update:
-            store.save()
-        return store, created
-
-    def create_by_path(self, pootle_path, project=None,
-                       create_tp=True, create_directory=True, **kwargs):
-        from pootle_language.models import Language
-        from pootle_project.models import Project
-
-        (lang_code, proj_code,
-         dir_path, filename) = split_pootle_path(pootle_path)
-
-        ext = filename.split(".")[-1]
-
-        if project is None:
-            project = Project.objects.get(code=proj_code)
-        elif project.code != proj_code:
-            raise ValueError(
-                "Project must match pootle_path when provided")
-        if ext not in project.filetype_tool.valid_extensions:
-            raise ValueError(
-                "'%s' is not a valid extension for this Project"
-                % ext)
-        if create_tp:
-            tp, created = (
-                project.translationproject_set.get_or_create(
-                    language=Language.objects.get(code=lang_code)))
-        elif create_directory or not dir_path:
-            tp = project.translationproject_set.get(
-                language__code=lang_code)
-        if dir_path:
-            if not create_directory:
-                parent = Directory.objects.get(
-                    pootle_path="/".join(
-                        ["", lang_code, proj_code, dir_path]))
-            else:
-                parent = tp.directory
-                for child in dir_path.strip("/").split("/"):
-                    parent, created = Directory.objects.get_or_create(
-                        name=child, parent=parent)
-        else:
-            parent = tp.directory
-
-        store, created = self.get_or_create(
-            name=filename, parent=parent, translation_project=tp, **kwargs)
-        if created:
-            store.mark_all_dirty()
-        return store
 
 
 class Store(models.Model, CachedTreeItem, base.TranslationStore):
