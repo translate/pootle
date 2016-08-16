@@ -17,5 +17,5 @@ from pootle_app.management.commands import PootleCommand
 class Command(PootleCommand):
     help = "Clear stats cache."
 
-    def handle_all_stores(self, translation_project, **options):
+    def handle_all_stores(self, translation_project, **options_):
         translation_project.clear_all_cache()

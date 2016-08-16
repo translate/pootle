@@ -24,7 +24,7 @@ class Command(PootleCommand):
     help = "Allow stats and text indices to be refreshed manually."
     process_disabled_projects = True
 
-    def handle_all_stores(self, translation_project, **options):
+    def handle_all_stores(self, translation_project, **options_):
         stores = Store.objects.live().filter(
             translation_project=translation_project
         )
