@@ -18,7 +18,8 @@ from django.utils.functional import cached_property
 
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.models import POOTLE_WINS, SOURCE_WINS, Store
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
+from pootle_store.models import Store
 
 
 logger = logging.getLogger(__name__)

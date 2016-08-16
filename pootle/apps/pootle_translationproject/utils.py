@@ -11,8 +11,9 @@ from django.contrib.auth import get_user_model
 from pootle.core.models import Revision
 from pootle_app.models import Directory
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.constants import SOURCE_WINS
 from pootle_store.diff import StoreDiff
-from pootle_store.models import SOURCE_WINS, Store
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 

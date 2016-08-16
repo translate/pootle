@@ -16,7 +16,8 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
     config, response as pootle_response, state as pootle_state)
-from pootle_store.models import POOTLE_WINS, SOURCE_WINS, Store
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
+from pootle_store.models import Store
 from pootle_project.models import Project
 
 from .decorators import emits_state, responds_to_state

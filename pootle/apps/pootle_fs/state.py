@@ -13,7 +13,7 @@ from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
 from pootle.core.state import ItemState, State
-from pootle_store.models import POOTLE_WINS, SOURCE_WINS
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 from .resources import FSProjectStateResources
 

@@ -11,7 +11,8 @@ from django.utils.functional import cached_property
 
 from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 from pootle_project.models import Project
-from pootle_store.models import POOTLE_WINS, SOURCE_WINS, Store
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
+from pootle_store.models import Store
 
 from .delegate import fs_file
 from .managers import StoreFSManager, validate_store_fs
