@@ -46,18 +46,18 @@ class Command(PootleCommand):
             project_query = project_query.filter(code__in=self.projects)
 
         if options['pootle_path'] is not None:
-            return self.handle_path(options['pootle_path'], **options)
+            return self.handle_path(options['pootle_path'])
 
         # support exporting an entire project
         if self.projects and not self.languages:
             for project in project_query:
-                self.handle_project(project, **options)
+                self.handle_project(project)
             return
 
         # Support exporting an entire language
         if self.languages and not self.projects:
             for language in Language.objects.filter(code__in=self.languages):
-                self.handle_language(language, **options)
+                self.handle_language(language)
             return
 
         for project in project_query.iterator():
@@ -76,19 +76,19 @@ class Command(PootleCommand):
                             translation_project.language.code)
         self._create_zip(stores, prefix)
 
-    def handle_project(self, project, **options):
+    def handle_project(self, project):
         stores = Store.objects.live().filter(
             translation_project__project=project)
         if not stores:
             raise CommandError("No matches for project '%s'" % (project))
         self._create_zip(stores, prefix=project.code)
 
-    def handle_language(self, language, **options):
+    def handle_language(self, language):
         stores = Store.objects.live().filter(
             translation_project__language=language)
         self._create_zip(stores, prefix=language.code)
 
-    def handle_path(self, path, **options):
+    def handle_path(self, path):
         stores = Store.objects.live().filter(pootle_path__startswith=path)
         if not stores:
             raise CommandError("Could not find store matching '%s'" % (path))
