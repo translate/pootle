@@ -255,6 +255,7 @@ class Command(BaseCommand):
 
         self.stdout.write("")
 
+        i = 0
         for i, unit in enumerate(units, start=1):
             if (i % 1000 == 0) or (i == total):
                 percent = "%.1f" % (i * 100.0 / total)
