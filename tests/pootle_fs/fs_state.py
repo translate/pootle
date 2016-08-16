@@ -13,7 +13,7 @@ from pytest_pootle.factories import ProjectDBFactory
 from pytest_pootle.fixtures.pootle_fs.state import DummyPlugin
 
 from pootle_fs.state import FS_STATE, ProjectFSState
-from pootle_store.models import POOTLE_WINS, SOURCE_WINS
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 
 def _test_state(plugin, pootle_path, fs_path, state_type, paths=None):

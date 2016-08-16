@@ -19,7 +19,7 @@ from pootle_fs.models import StoreFS
 from pootle_fs.files import FSFile
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.models import POOTLE_WINS, SOURCE_WINS
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 
 @pytest.mark.django_db

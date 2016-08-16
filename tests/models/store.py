@@ -36,9 +36,10 @@ from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.constants import NEW, PARSED, POOTLE_WINS
 from pootle_store.diff import DiffableStore, StoreDiff
-from pootle_store.models import NEW, OBSOLETE, PARSED, POOTLE_WINS, Store
-from pootle_store.util import parse_pootle_revision
+from pootle_store.models import Store
+from pootle_store.util import OBSOLETE, parse_pootle_revision
 from pootle_translationproject.models import TranslationProject
 
 from .unit import _update_translation

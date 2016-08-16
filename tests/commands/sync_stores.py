@@ -11,7 +11,8 @@ import pytest
 from django.core.management import call_command
 
 from pootle_project.models import Project
-from pootle_store.models import PARSED, Store
+from pootle_store.constants import PARSED
+from pootle_store.models import Store
 
 
 @pytest.mark.cmd
