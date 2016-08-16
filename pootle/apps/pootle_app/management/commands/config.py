@@ -129,7 +129,7 @@ class Command(BaseCommand):
             return config.get(ct_model)
         return config.get()
 
-    def print_no_config(self, **kwargs):
+    def print_no_config(self):
         self.stdout.write("No configuration found")
 
     def handle(self, **kwargs):
@@ -229,7 +229,7 @@ class Command(BaseCommand):
                 name_col=name_col,
                 key_col=key_col)
         if not items:
-            self.print_no_config(**kwargs)
+            self.print_no_config()
 
     def handle_clear_config(self, conf, **kwargs):
         for key in kwargs["clear"]:
