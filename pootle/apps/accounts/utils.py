@@ -18,7 +18,7 @@ from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
 from pootle_store.constants import FUZZY, UNTRANSLATED
-from pootle_store.models import SuggestionStates
+from pootle_store.util import SuggestionStates
 
 
 logger = logging.getLogger(__name__)
