@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 
-from pootle_store.util import OBSOLETE
+from pootle_store.constants import OBSOLETE
 
 
 def make_tp_directories_obsolete(apps, schema_editor):

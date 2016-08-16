@@ -9,8 +9,8 @@
 from django.db.models import Q
 
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.models import SuggestionStates
-from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
 class FilterNotFound(Exception):

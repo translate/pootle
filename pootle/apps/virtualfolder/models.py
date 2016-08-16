@@ -19,8 +19,8 @@ from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_store.constants import OBSOLETE
 from pootle_store.models import Store, Unit
-from pootle_store.util import OBSOLETE
 
 from .signals import vfolder_post_save
 

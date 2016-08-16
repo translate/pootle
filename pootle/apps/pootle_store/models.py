@@ -55,16 +55,14 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .constants import (
-    NEW, PARSED, POOTLE_WINS,
-    LANGUAGE_REGEX, PROJECT_REGEX)
+    FUZZY, LANGUAGE_REGEX, NEW, OBSOLETE, PARSED, POOTLE_WINS,
+    PROJECT_REGEX, TRANSLATED, UNTRANSLATED)
 from .diff import StoreDiff
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
-from .util import (
-    FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED, get_change_str,
-    vfolders_installed)
+from .util import get_change_str, vfolders_installed
 
 
 TM_BROKER = None

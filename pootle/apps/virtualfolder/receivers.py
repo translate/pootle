@@ -9,8 +9,8 @@
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
+from pootle_store.constants import OBSOLETE
 from pootle_store.models import Unit
-from pootle_store.util import OBSOLETE
 
 from .models import VirtualFolder, VirtualFolderTreeItem
 from .signals import vfolder_post_save

@@ -32,13 +32,12 @@ from pootle_project.models import Project
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .constants import ALLOWED_SORTS
+from .constants import ALLOWED_SORTS, FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .fields import to_db
 from .form_fields import (
     CategoryChoiceField, ISODateTimeField, MultipleArgsField,
     CommaSeparatedCheckboxSelectMultiple)
 from .models import Unit, Suggestion
-from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
 EXPORT_VIEW_QUERY_LIMIT = 10000

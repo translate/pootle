@@ -14,9 +14,9 @@ from django.utils.functional import cached_property
 
 from pootle.core.delegate import format_diffs
 
+from .constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .fields import to_python as multistring_to_python
 from .unit import UnitProxy
-from .util import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 
 
 class UnitDiffProxy(UnitProxy):

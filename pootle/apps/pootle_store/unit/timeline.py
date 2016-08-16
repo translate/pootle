@@ -22,9 +22,9 @@ from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 
+from pootle_store.constants import STATES_MAP
 from pootle_store.fields import to_python
 from pootle_store.models import Suggestion
-from pootle_store.util import STATES_MAP
 
 
 class DisplayUser(object):

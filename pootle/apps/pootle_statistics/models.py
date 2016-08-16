@@ -18,8 +18,8 @@ from django.utils.translation import ugettext_lazy as _
 from pootle.core.log import SCORE_CHANGED, log
 from pootle.core.utils import dateformat
 from pootle_misc.checks import check_names
+from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.fields import to_python
-from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
 
 
 SIMILARITY_THRESHOLD = 0.5

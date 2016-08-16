@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import language_dir
-from pootle_store.models import FUZZY
+from pootle_store.constants import FUZZY
 from pootle_store.templatetags.store_tags import (
     pluralize_source, pluralize_target)
 from pootle_store.unit.proxy import UnitProxy
