@@ -12,7 +12,7 @@ from .views.admin import urls as admin_urls
 
 
 urlpatterns = [
-    url(r'^admin',
+    url(r'^admin/',
         include(admin_urls)),
     url(r'^xhr/admin/',
         include(admin_urls.api_patterns)),
