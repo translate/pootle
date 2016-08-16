@@ -9,32 +9,8 @@
 import os
 
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 
-
-# Unit States
-#: Unit is no longer part of the store
-OBSOLETE = -100
-#: Empty unit
-UNTRANSLATED = 0
-#: Marked as fuzzy, typically means translation needs more work
-FUZZY = 50
-#: Unit is fully translated
-TRANSLATED = 200
-
-# Map for retrieving natural names for unit states
-STATES_MAP = {
-    OBSOLETE: _("Obsolete"),
-    UNTRANSLATED: _("Untranslated"),
-    FUZZY: _("Needs work"),
-    TRANSLATED: _("Translated"),
-}
-
-STATES_NAMES = {
-    OBSOLETE: "obsolete",
-    UNTRANSLATED: "untranslated",
-    FUZZY: "fuzzy",
-    TRANSLATED: "translated"}
+from .constants import STATES_NAMES, TRANSLATED
 
 
 def add_trailing_slash(path):

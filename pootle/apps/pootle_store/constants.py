@@ -6,6 +6,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.utils.translation import ugettext_lazy as _
+
+
 #: Mapping of allowed sorting criteria.
 #: Keys are supported query strings, values are the field + order that
 #: will be used against the DB.
@@ -46,3 +49,27 @@ SOURCE_WINS = 2
 
 LANGUAGE_REGEX = r"[^/]{2,255}"
 PROJECT_REGEX = r"[^/]{1,255}"
+
+# Unit States
+#: Unit is no longer part of the store
+OBSOLETE = -100
+#: Empty unit
+UNTRANSLATED = 0
+#: Marked as fuzzy, typically means translation needs more work
+FUZZY = 50
+#: Unit is fully translated
+TRANSLATED = 200
+
+# Map for retrieving natural names for unit states
+STATES_MAP = {
+    OBSOLETE: _("Obsolete"),
+    UNTRANSLATED: _("Untranslated"),
+    FUZZY: _("Needs work"),
+    TRANSLATED: _("Translated"),
+}
+
+STATES_NAMES = {
+    OBSOLETE: "obsolete",
+    UNTRANSLATED: "untranslated",
+    FUZZY: "fuzzy",
+    TRANSLATED: "translated"}
