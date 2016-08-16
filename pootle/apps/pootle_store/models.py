@@ -54,6 +54,9 @@ from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
+from .constants import (
+    NEW, PARSED, POOTLE_WINS,
+    LANGUAGE_REGEX, PROJECT_REGEX)
 from .diff import StoreDiff
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
@@ -72,24 +75,6 @@ def get_tm_broker():
     if TM_BROKER is None:
         TM_BROKER = SearchBroker()
     return TM_BROKER
-
-#
-# Store States
-#
-
-# Store just created, not parsed yet
-NEW = 0
-# Store just parsed, units added but no quality checks were run
-PARSED = 1
-# Quality checks run
-CHECKED = 2
-
-# Resolve conflict flags for Store.update
-POOTLE_WINS = 1
-SOURCE_WINS = 2
-
-LANGUAGE_REGEX = r"[^/]{2,255}"
-PROJECT_REGEX = r"[^/]{1,255}"
 
 
 # # # # # # # # Quality Check # # # # # # #

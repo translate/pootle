@@ -28,3 +28,21 @@ ALLOWED_SORTS = {
 #: List of fields from `ALLOWED_SORTS` that can be sorted by simply using
 #: `order_by(field)`
 SIMPLY_SORTED = ['units']
+
+#
+# Store States
+#
+
+# Store just created, not parsed yet
+NEW = 0
+# Store just parsed, units added but no quality checks were run
+PARSED = 1
+# Quality checks run
+CHECKED = 2
+
+# Resolve conflict flags for Store.update
+POOTLE_WINS = 1
+SOURCE_WINS = 2
+
+LANGUAGE_REGEX = r"[^/]{2,255}"
+PROJECT_REGEX = r"[^/]{1,255}"
