@@ -13,6 +13,12 @@ from django.conf import settings
 from .constants import STATES_NAMES, TRANSLATED
 
 
+class SuggestionStates(object):
+    PENDING = 'pending'
+    ACCEPTED = 'accepted'
+    REJECTED = 'rejected'
+
+
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 
