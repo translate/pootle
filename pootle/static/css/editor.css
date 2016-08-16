@@ -478,6 +478,7 @@ table td.translate-translation
 {
     padding: 0.5em 5px;
     width: 50%;
+    vertical-align: top;
 }
 
 table td.translate-original
