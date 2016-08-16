@@ -28,7 +28,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
-from pootle.core.delegate import filetype_tool, tp_tool
+from pootle.core.delegate import filetype_tool, lang_mapper, tp_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
@@ -321,6 +321,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     @cached_property
     def filetype_tool(self):
         return filetype_tool.get(self.__class__)(self)
+
+    @cached_property
+    def lang_mapper(self):
+        return lang_mapper.get(self.__class__, instance=self)
 
     @cached_property
     def tp_tool(self):
