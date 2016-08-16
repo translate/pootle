@@ -16,8 +16,8 @@ from pytest_pootle.utils import create_store
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
+from pootle_store.constants import TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion, Unit
-from pootle_store.util import TRANSLATED, UNTRANSLATED
 
 
 def _create_comment_submission(unit, user, creation_time, comment):

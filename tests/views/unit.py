@@ -15,8 +15,8 @@ from pytest_pootle.utils import create_api_request
 from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
-from pootle_store.models import (QualityCheck, Suggestion, Unit, TRANSLATED,
-                                 UNTRANSLATED)
+from pootle_store.constants import TRANSLATED, UNTRANSLATED
+from pootle_store.models import QualityCheck, Suggestion, Unit
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.views import get_units, toggle_qualitycheck
 

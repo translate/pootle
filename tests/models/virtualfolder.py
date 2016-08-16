@@ -14,8 +14,8 @@ import pytest
 
 from pytest_pootle.factories import VirtualFolderDBFactory
 
+from pootle_store.constants import OBSOLETE, TRANSLATED
 from pootle_store.models import Unit
-from pootle_store.util import OBSOLETE, TRANSLATED
 from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
 
 

@@ -18,9 +18,8 @@ from pytest_pootle.utils import create_store
 from import_export.exceptions import UnsupportedFiletypeError
 from import_export.utils import import_file
 from pootle_app.models.permissions import check_user_permission
-from pootle_store.constants import NEW, PARSED
+from pootle_store.constants import NEW, OBSOLETE, PARSED, TRANSLATED
 from pootle_store.models import Store, Unit
-from pootle_store.util import OBSOLETE, TRANSLATED
 
 
 IMPORT_SUCCESS = "headers_correct.po"

@@ -23,7 +23,7 @@ from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet, check_user_permission
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.util import FUZZY, TRANSLATED
+from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_translationproject.models import TranslationProject
 
 

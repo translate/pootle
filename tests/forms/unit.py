@@ -10,7 +10,7 @@ import pytest
 
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_store.forms import UnitStateField, unit_form_factory
-from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 
 
 def _create_post_request(rf, directory, user, url='/', data=None):

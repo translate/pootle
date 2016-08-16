@@ -11,7 +11,8 @@ import pytest
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-from pootle_store.models import Unit, TRANSLATED
+from pootle_store.constants import TRANSLATED
+from pootle_store.models import Unit
 
 
 @pytest.mark.cmd

@@ -25,11 +25,11 @@ from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
+from pootle_store.constants import (
+    FUZZY, OBSOLETE, STATES_MAP, TRANSLATED, UNTRANSLATED)
 from pootle_store.fields import to_python
 from pootle_store.models import (
-    FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED,
     Suggestion, SuggestionStates, QualityCheck, Store, Unit)
-from pootle_store.util import STATES_MAP
 
 
 class ProxyTimelineLanguage(object):

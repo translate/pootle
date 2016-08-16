@@ -16,7 +16,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 from pootle.core.mixins.treeitem import CachedMethods
-from pootle_store.util import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Unit
 
 
