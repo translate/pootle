@@ -77,7 +77,8 @@ def get_test_uids(offset=0, count=1, pootle_path="^/language0/"):
     """Returns a list translated unit uids from ~middle of
     translated units dataset
     """
-    from pootle_store.models import TRANSLATED, Unit
+    from pootle_store.constants import TRANSLATED
+    from pootle_store.models import Unit
 
     units = Unit.objects.filter(
         store__pootle_path__regex=pootle_path).filter(state=TRANSLATED)

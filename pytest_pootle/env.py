@@ -350,7 +350,7 @@ class PootleTestEnv(object):
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
 
-        from pootle_store.models import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
+        from pootle_store.constants import UNTRANSLATED, TRANSLATED, FUZZY, OBSOLETE
 
         for i_ in range(0, n[0]):
             # add 3 stores
@@ -375,7 +375,8 @@ class PootleTestEnv(object):
 
     def _add_submissions(self, unit, created):
         from pootle_statistics.models import SubmissionTypes
-        from pootle_store.models import UNTRANSLATED, FUZZY, OBSOLETE, Unit
+        from pootle_store.constants import UNTRANSLATED, FUZZY, OBSOLETE
+        from pootle_store.models import Unit
 
         from django.contrib.auth import get_user_model
         from django.utils import timezone

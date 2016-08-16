@@ -249,7 +249,7 @@ def _create_comment_on_unit(unit, user, comment):
 
 
 def _mark_unit_fuzzy(unit, user):
-    from pootle_store.util import FUZZY
+    from pootle_store.constants import FUZZY
     from pootle_statistics.models import (Submission, SubmissionFields,
                                           SubmissionTypes)
     sub = Submission(

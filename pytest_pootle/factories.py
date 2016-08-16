@@ -151,7 +151,7 @@ class UnitDBFactory(factory.django.DjangoModelFactory):
     class Meta(object):
         model = 'pootle_store.Unit'
 
-    state = pootle_store.util.UNTRANSLATED
+    state = pootle_store.constants.UNTRANSLATED
 
     @factory.lazy_attribute
     def index(self):
