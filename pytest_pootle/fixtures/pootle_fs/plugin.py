@@ -328,7 +328,7 @@ def localfs_merge_pootle_wins(localfs, localfs_dummy_finder):
 
 @pytest.fixture
 def localfs_merge_fs_wins(localfs, localfs_dummy_finder):
-    from pootle_store.models import SOURCE_WINS
+    from pootle_store.constants import SOURCE_WINS
 
     plugin = localfs
 
@@ -434,7 +434,7 @@ def localfs_force_added(localfs, localfs_dummy_finder):
 
 @pytest.fixture
 def localfs_force_fetched(localfs, localfs_dummy_finder):
-    from pootle_store.models import SOURCE_WINS
+    from pootle_store.constants import SOURCE_WINS
 
     plugin = localfs
     for store_fs in plugin.resources.tracked:
