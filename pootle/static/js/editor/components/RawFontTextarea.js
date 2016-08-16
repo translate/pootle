@@ -75,8 +75,13 @@ const RawFontTextarea = React.createClass({
   },
 
   shouldComponentUpdate(nextProps) {
-    // Avoid unnecessary re-renders when the undo stack saves snapshots
-    return this.props.value !== nextProps.value;
+    // Avoid unnecessary re-renders when the undo stack saves snapshots but
+    // Only value and mode changes should re-render the textarea — otherwise
+    // there are many unnecessary re-renders when the undo stack saves snapshots.
+    return (
+      this.props.value !== nextProps.value ||
+      this.props.isRawMode !== nextProps.isRawMode
+    );
   },
 
   componentDidUpdate() {
