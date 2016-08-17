@@ -21,6 +21,7 @@ format_registration = Provider()
 format_classes = Provider()
 format_diffs = Provider()
 format_updaters = Provider()
+format_syncers = Provider()
 filetype_tool = Getter()
 tp_tool = Getter()
 
