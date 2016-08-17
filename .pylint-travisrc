@@ -16,7 +16,7 @@ ignore=migrations
 disable=all
 # For checkers and individual checks see
 # https://pylint.readthedocs.io/en/latest/features.html
-enable=reimported,logging,stdlib,string,unneeded-not
+enable=reimported,logging,stdlib,string,unneeded-not,undefined-loop-variable
 dummy-variables-rgx=__|^.*[^_]_$
 
 [REPORTS]
