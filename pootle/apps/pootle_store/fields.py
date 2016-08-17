@@ -186,7 +186,7 @@ class TranslationStoreFieldFile(FieldFile):
                 logging.debug(u"Cache miss for %s", self.path)
                 from translate.storage import factory
 
-                fileclass = self.instance.get_file_class()
+                fileclass = self.instance.syncer.file_class
                 classes = {
                     str(self.instance.filetype.extension): fileclass,
                     str(self.instance.filetype.template_extension): fileclass}
