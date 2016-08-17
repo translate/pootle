@@ -61,7 +61,7 @@ def _update_from_upload_file(store, update_file,
 
 
 def _store_as_string(store):
-    ttk = store.convert(store.get_file_class())
+    ttk = store.syncer.convert(store.syncer.file_class)
     if hasattr(ttk, "updateheader"):
         # FIXME We need those headers on import
         # However some formats just don't support setting metadata
@@ -556,7 +556,7 @@ def test_store_file_diff(store_diff_tests):
 @pytest.mark.django_db
 def test_store_repr():
     store = Store.objects.first()
-    assert str(store) == str(store.convert(store.get_file_class()))
+    assert str(store) == str(store.syncer.convert(store.syncer.file_class))
     assert repr(store) == u"<Store: %s>" % store.pootle_path
 
 
@@ -897,7 +897,10 @@ def test_store_get_file_class():
         translation_project__language__code="language0").first()
 
     # this matches because po is recognised by ttk
-    assert store.get_file_class() == getclass(store)
+    assert store.syncer.file_class == getclass(store)
+
+    # file_class is cached so lets delete it
+    del store.syncer.__dict__["file_class"]
 
     class CustomFormatClass(object):
         pass
@@ -907,11 +910,12 @@ def test_store_get_file_class():
         return dict(po=CustomFormatClass)
 
     # we get the CutomFormatClass as it was registered
-    assert store.get_file_class() is CustomFormatClass
+    assert store.syncer.file_class is CustomFormatClass
 
     # the Store.filetype is used in this case not the name
     store.name = "new_store_name.foo"
-    assert store.get_file_class() is CustomFormatClass
+    del store.syncer.__dict__["file_class"]
+    assert store.syncer.file_class is CustomFormatClass
 
     # lets register a foo filetype
     format_registry = formats.get()
@@ -921,15 +925,16 @@ def test_store_get_file_class():
     store.save()
 
     # oh no! not recognised by ttk
+    del store.syncer.__dict__["file_class"]
     with pytest.raises(ValueError):
-        store.get_file_class()
+        store.syncer.file_class
 
     @provider(format_classes)
     def another_format_class_provider(**kwargs):
         return dict(foo=CustomFormatClass)
 
     # works now
-    assert store.get_file_class() is CustomFormatClass
+    assert store.syncer.file_class is CustomFormatClass
 
     format_classes.disconnect(format_class_provider)
     format_classes.disconnect(another_format_class_provider)
@@ -949,7 +954,7 @@ def test_store_get_template_file_class(templates):
 
     # oh no! not recognised by ttk
     with pytest.raises(ValueError):
-        store.get_file_class()
+        store.syncer.file_class
 
     class CustomFormatClass(object):
         pass
@@ -958,7 +963,7 @@ def test_store_get_template_file_class(templates):
     def format_class_provider(**kwargs):
         return dict(foo=CustomFormatClass)
 
-    assert store.get_file_class() == CustomFormatClass
+    assert store.syncer.file_class == CustomFormatClass
 
     format_classes.disconnect(format_class_provider)
 
