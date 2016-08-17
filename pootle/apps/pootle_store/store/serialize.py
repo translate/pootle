@@ -46,8 +46,7 @@ class StoreSerialization(object):
         return found_serializers
 
     def tostring(self):
-        storeclass = self.store.get_file_class()
-        store = self.store.convert(storeclass)
+        store = self.store.syncer.convert()
         if hasattr(store, "updateheader"):
             # FIXME We need those headers on import
             # However some formats just don't support setting metadata
