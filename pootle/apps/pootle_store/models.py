@@ -9,14 +9,12 @@
 import datetime
 import logging
 import operator
-import os
 from hashlib import md5
 
-from collections import namedtuple, OrderedDict
+from collections import OrderedDict
 
 from translate.filters.decorators import Category
 from translate.storage import base
-from translate.storage.factory import getclass
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -31,7 +29,7 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
-from pootle.core.delegate import format_classes, format_updaters
+from pootle.core.delegate import format_updaters, format_syncers
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -491,37 +489,19 @@ class Unit(models.Model, base.TranslationUnit):
                 new_value=self.target,
             )
 
+    @cached_property
+    def unit_syncer(self):
+        return self.store.syncer.unit_sync_class(self)
+
     def convert(self, unitclass):
         """Convert to a unit of type :param:`unitclass` retaining as much
         information from the database as the target format can support.
         """
-        newunit = unitclass(self.source)
-        newunit.target = self.target
-        newunit.markfuzzy(self.isfuzzy())
-
-        locations = self.getlocations()
-        if locations:
-            newunit.addlocations(locations)
-
-        notes = self.getnotes(origin="developer")
-        if notes:
-            newunit.addnote(notes, origin="developer")
-
-        notes = self.getnotes(origin="translator")
-        if notes:
-            newunit.addnote(notes, origin="translator")
-
-        newunit.setid(self.getid())
-        newunit.setcontext(self.getcontext())
-
-        if self.isobsolete():
-            newunit.makeobsolete()
-
-        return newunit
+        return self.unit_syncer.convert(unitclass)
 
     def get_unit_class(self):
         try:
-            return self.store.get_file_class().UnitClass
+            return self.store.syncer.file_class.UnitClass
         except ObjectDoesNotExist:
             from translate.storage import po
             return po.pounit
@@ -1266,8 +1246,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return unicode(self.pootle_path)
 
     def __str__(self):
-        storeclass = self.get_file_class()
-        store = self.convert(storeclass)
+        storeclass = self.syncer.file_class
+        store = self.syncer.convert(storeclass)
         return str(store)
 
     def save(self, *args, **kwargs):
@@ -1338,14 +1318,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                      args=split_pootle_path(self.pootle_path)),
              get_editor_filter(**kwargs)])
 
-    def require_dbid_index(self, update=False, obsolete=False):
-        """build a quick mapping index between unit ids and database ids"""
-        if update or not hasattr(self, "dbid_index"):
-            units = self.unit_set.all()
-            if not obsolete:
-                units = units.filter(state__gt=OBSOLETE)
-            self.dbid_index = dict(units.values_list('unitid', 'id'))
-
     def findid_bulk(self, ids):
         chunks = 200
         for i in xrange(0, len(ids), chunks):
@@ -1392,6 +1364,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             updaters.get(self.filetype.name)
             or updaters.get("default"))
         return updater_class(self)
+
+    @cached_property
+    def syncer(self):
+        syncers = format_syncers.gather()
+        syncer_class = (
+            syncers.get(self.filetype.name)
+            or syncers.get("default"))
+        return syncer_class(self)
 
     def record_submissions(self, unit, old_target, old_state, current_time,
                            user, submission_type=None):
@@ -1592,163 +1572,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if skip_missing and not self.file.exists():
             return
 
-        last_revision = self.get_max_unit_revision()
+        self.syncer.sync(
+            update_structure=update_structure,
+            conservative=conservative,
+            user=user,
+            only_newer=only_newer)
 
-        # TODO only_newer -> not force
-        if (only_newer and self.file.exists() and
-            self.last_sync_revision >= last_revision):
-            logging.info(u"[sync] No updates for %s after [revision: %d]",
-                         self.pootle_path, self.last_sync_revision)
-            return
-
-        if not self.file.exists():
-            # File doesn't exist let's create it
-            logging.debug(u"Creating file %s", self.pootle_path)
-
-            # FIXME: put this is a `create_file()` method
-            storeclass = self.get_file_class()
-            store_path = os.path.join(
-                self.translation_project.abs_real_path, self.name
-            )
-            store = self.convert(storeclass)
-            store.savefile(store_path)
-            log(u"Created file for %s [revision: %d]" %
-                (self.pootle_path, last_revision))
-
-            self.file = store_path
-            self.update_store_header(user=user)
-            self.file.savestore()
-            self.file_mtime = self.get_file_mtime()
-            self.last_sync_revision = last_revision
-
-            self.save()
-
-            return
-
-        if conservative and self.translation_project.is_template_project:
-            # don't save to templates
-            return
-
-        logging.info(u"Syncing %s", self.pootle_path)
-        self.require_dbid_index(update=True)
-        disk_store = self.file.store
-        old_ids = set(disk_store.getids())
-        new_ids = set(self.dbid_index.keys())
-
-        file_changed = False
-        changes = {
-            'obsolete': 0,
-            'deleted': 0,
-            'updated': 0,
-            'added': 0,
-        }
-
-        if update_structure:
-            obsolete_units = (disk_store.findid(uid)
-                              for uid in old_ids - new_ids)
-            for unit in obsolete_units:
-                if not unit.istranslated():
-                    del unit
-                elif not conservative:
-                    changes['obsolete'] += 1
-                    unit.makeobsolete()
-
-                    if not unit.isobsolete():
-                        changes['deleted'] += 1
-                        del unit
-
-                file_changed = True
-
-            new_dbids = [self.dbid_index.get(uid) for uid in new_ids - old_ids]
-            for unit in self.findid_bulk(new_dbids):
-                newunit = unit.convert(disk_store.UnitClass)
-                disk_store.addunit(newunit)
-                changes['added'] += 1
-                file_changed = True
-
-        # Get units modified after last sync and before this sync started
-        filter_by = {
-            'revision__lte': last_revision,
-            'store': self,
-        }
-        # Sync all units if first sync
-        if self.last_sync_revision is not None:
-            filter_by.update({'revision__gt': self.last_sync_revision})
-
-        if last_revision > self.last_sync_revision:
-            modified_units = set(
-                Unit.objects.filter(**filter_by).values_list(
-                    'id', flat=True).distinct())
-        else:
-            modified_units = set()
-
-        common_dbids = set(self.dbid_index.get(uid)
-                           for uid in old_ids & new_ids)
-
-        if conservative:
-            # Sync only modified units
-            common_dbids &= modified_units
-
-        common_dbids = list(common_dbids)
-
-        for unit in self.findid_bulk(common_dbids):
-            match = disk_store.findid(unit.getid())
-            if match is not None:
-                changed = unit.sync(match)
-                if changed:
-                    changes['updated'] += 1
-                    file_changed = True
-
-        # TODO conservative -> not overwrite
-        if file_changed or not conservative:
-            self.update_store_header(user=user)
-            self.file.savestore()
-            self.file_mtime = self.get_file_mtime()
-
-            log(u"[sync] File saved; %s units in %s [revision: %d]" %
-                (get_change_str(changes), self.pootle_path, last_revision))
-        else:
-            logging.info(u"[sync] nothing changed in %s [revision: %d]",
-                         self.pootle_path, last_revision)
-
-        self.last_sync_revision = last_revision
-        self.save()
-
-    def get_file_class(self):
-        fileclass = format_classes.gather().get(str(self.filetype.extension))
-        if fileclass:
-            return fileclass
-        try:
-            return getclass(self)
-        except ValueError:
-            pass
-        if not self.name.endswith(str(self.filetype.extension)):
-            # template
-            name = ".".join(
-                [os.path.splitext(self.name)[0],
-                 str(self.filetype.extension)])
-            try:
-                # namedtuple is equiv here of object() with name attr
-                return getclass(
-                    namedtuple("instance", "name")(name=name))
-            except ValueError:
-                pass
-        raise ValueError(
-            "Unable to find conversion class for Store '%s'"
-            % self.name)
-
-    def convert(self, fileclass=None):
-        """export to fileclass"""
-        logging.debug(u"Converting %s to %s", self.pootle_path, fileclass)
-        output = fileclass()
-        try:
-            output.settargetlanguage(self.translation_project.language.code)
-        except ObjectDoesNotExist:
-            pass
-        # FIXME: we should add some headers
-        for unit in self.units.iterator():
-            output.addunit(unit.convert(output.UnitClass))
-        return output
 
 # # # # # # # # # # # #  TranslationStore # # # # # # # # # # # # #
 
@@ -1970,70 +1799,3 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         for i, unit in enumerate(self.units):
             if i == item:
                 return unit
-
-    def update_store_header(self, user=None):
-        language = self.translation_project.language
-        source_language = self.translation_project.project.source_language
-        disk_store = self.file.store
-        disk_store.settargetlanguage(language.code)
-        disk_store.setsourcelanguage(source_language.code)
-
-        from translate.storage import poheader
-        if isinstance(disk_store, poheader.poheader):
-            mtime = self.get_cached_value(CachedMethods.MTIME)
-            if mtime is None or mtime == datetime_min:
-                mtime = timezone.now()
-            user_displayname = None
-            user_email = None
-            if user is None:
-                submissions = self.translation_project.submission_set.exclude(
-                    submitter__username="nobody")
-                try:
-                    username, fullname, user_email = (
-                        submissions.filter(creation_time=mtime).values_list(
-                            "submitter__username",
-                            "submitter__full_name",
-                            "submitter__email").latest())
-                except Submission.DoesNotExist:
-                    try:
-                        _mtime, username, fullname, user_email = (
-                            submissions.values_list(
-                                "creation_time",
-                                "submitter__username",
-                                "submitter__full_name",
-                                "submitter__email").latest())
-                        mtime = min(_mtime, mtime)
-                    except ObjectDoesNotExist:
-                        pass
-                if user_email:
-                    user_displayname = (
-                        fullname.strip()
-                        if fullname.strip()
-                        else username)
-            elif user.is_authenticated:
-                user_displayname = user.display_name
-                user_email = user.email
-
-            po_revision_date = mtime.strftime('%Y-%m-%d %H:%M') + \
-                poheader.tzstring()
-            from pootle.core.utils.version import get_major_minor_version
-            x_generator = "Pootle %s" % get_major_minor_version()
-            headerupdates = {
-                'PO_Revision_Date': po_revision_date,
-                'X_Generator': x_generator,
-                'X_POOTLE_MTIME': ('%s.%06d' %
-                                   (int(dateformat.format(mtime, 'U')),
-                                    mtime.microsecond)),
-            }
-
-            if user_displayname and user_email:
-                headerupdates['Last_Translator'] = (
-                    '%s <%s>' % (user_displayname, user_email))
-            else:
-                # FIXME: maybe insert settings.POOTLE_TITLE or domain here?
-                headerupdates['Last_Translator'] = 'Anonymous Pootle User'
-            disk_store.updateheader(add=True, **headerupdates)
-
-            if language.nplurals and language.pluralequation:
-                disk_store.updateheaderplural(language.nplurals,
-                                              language.pluralequation)
