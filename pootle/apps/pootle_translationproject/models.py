@@ -263,10 +263,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         self.pootle_path = self.directory.pootle_path
 
         if self.project.treestyle != "none":
-            project_dir = self.project.get_real_path()
             from pootle_app.project_tree import get_translation_project_dir
             self.abs_real_path = get_translation_project_dir(
-                self.language, project_dir, self.file_style, make_dirs=not
+                self.language, self.project, self.file_style, make_dirs=not
                 self.directory.obsolete)
         else:
             self.abs_real_path = None
