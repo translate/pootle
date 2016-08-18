@@ -5,7 +5,7 @@ from django.db import models, migrations
 import django.utils.timezone
 import re
 import django.core.validators
-
+from django.conf import settings
 
 class Migration(migrations.Migration):
 
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('review_rate', models.FloatField(default=0, verbose_name='Review Rate')),
                 ('hourly_rate', models.FloatField(default=0, verbose_name='Hourly Rate')),
                 ('score', models.FloatField(default=0, verbose_name='Score')),
-                ('currency', models.CharField(blank=True, max_length=3, null=True, verbose_name='Currency', choices=[(b'USD', b'USD'), (b'EUR', b'EUR'), (b'CNY', b'CNY'), (b'JPY', b'JPY')])),
+                ('currency', models.CharField(blank=True, max_length=3, null=True, verbose_name='Currency', choices=settings.POOTLE_CURRENCIES)),
                 ('is_employee', models.BooleanField(default=False, verbose_name='Is employee?')),
                 ('twitter', models.CharField(max_length=15, null=True, verbose_name='Twitter', blank=True)),
                 ('website', models.URLField(null=True, verbose_name='Website', blank=True)),

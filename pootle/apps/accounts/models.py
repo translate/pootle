@@ -41,7 +41,7 @@ from .utils import UserMerger, UserPurger
 __all__ = ('User', )
 
 
-CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'), ('CNY', 'CNY'), ('JPY', 'JPY'))
+CURRENCIES = settings.POOTLE_CURRENCIES
 
 
 def _humanize_score(score):
