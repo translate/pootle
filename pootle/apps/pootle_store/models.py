@@ -1642,16 +1642,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         except Unit.DoesNotExist:
             return None
 
-    def getids(self, filename=None):
-        if hasattr(self, "_units"):
-            self.makeindex()
-        if hasattr(self, "id_index"):
-            return self.id_index.keys()
-        elif hasattr(self, "dbid_index"):
-            return self.dbid_index.values()
-        else:
-            return self.units.values_list('unitid', flat=True)
-
     def header(self):
         # FIXME: we should store some metadata in db
         if self.file and hasattr(self.file.store, 'header'):
