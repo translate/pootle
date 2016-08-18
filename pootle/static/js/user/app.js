@@ -11,6 +11,7 @@ import ReactDOM from 'react-dom';
 
 import UserEvent from 'components/UserEvent';
 import { User } from 'models/user';
+import { qAll } from 'utils/dom';
 
 import UserProfileEdit from './components/UserProfileEdit';
 
@@ -33,8 +34,7 @@ PTL.user = {
 
       // FIXME: let's make the whole profile page a component, so a lot of the
       // boilerplate here is rendered redundant
-      const popupBtns = document.querySelectorAll('.js-popup-tweet');
-      [...popupBtns].map((btn) => {
+      qAll('.js-popup-tweet').map((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
 

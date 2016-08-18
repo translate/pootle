@@ -9,6 +9,7 @@
 import React, { PropTypes } from 'react';
 
 import TextToggle from 'components/TextToggle';
+import { qAll } from 'utils/dom';
 
 
 const VisibilityToggle = React.createClass({
@@ -27,13 +28,13 @@ const VisibilityToggle = React.createClass({
    * The implementation must change once the table is rendered as a component.
    */
   handleVisibility({ isActive: showDisabled }) {
-    const rows = [...document.querySelectorAll('tr.item')];
+    const rows = qAll('tr.item');
     rows.map(row => row.classList.remove('odd'));
     rows
       .filter(row => row.classList.contains('is-disabled'))
       .forEach(row => row.classList.toggle('is-visible', showDisabled));
 
-    [...document.querySelectorAll('tr.is-visible')].forEach((row, i) => {
+    qAll('tr.is-visible').forEach((row, i) => {
       row.classList.toggle('odd', i % 2 === 0);
     });
   },

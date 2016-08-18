@@ -33,6 +33,7 @@ import assign from 'object-assign';
 import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
+import { qAll } from 'utils/dom';
 import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
@@ -231,9 +232,8 @@ PTL.editor = {
     /* Copy original translation */
     $('#editor').on('click', '.js-copyoriginal', (e) => {
       const uId = e.currentTarget.dataset.uid;
-      const sources = [
-        ...document.querySelectorAll(`#js-unit-${uId} .js-translation-text`),
-      ].map((el) => el.textContent);
+      const sources = qAll(`#js-unit-${uId} .js-translation-text`)
+        .map((el) => el.textContent);
       this.copyOriginal(sources);
     });
 
@@ -2149,7 +2149,7 @@ PTL.editor = {
         $(data.timeline).hide().prependTo('#extras-container')
                         .slideDown(1000, 'easeOutQuad');
       }
-      [...document.querySelectorAll('.js-mount-timesince')].forEach((el, i) => {
+      qAll('.js-mount-timesince').forEach((el, i) => {
         const props = {
           title: data.entries_group[i].display_datetime,
           dateTime: data.entries_group[i].iso_datetime,
