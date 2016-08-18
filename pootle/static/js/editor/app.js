@@ -33,7 +33,7 @@ import assign from 'object-assign';
 import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
-import { qAll } from 'utils/dom';
+import { q, qAll } from 'utils/dom';
 import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
@@ -97,10 +97,10 @@ PTL.editor = {
     }
 
     /* Cached elements */
-    this.backToBrowserEl = document.querySelector('.js-back-to-browser');
+    this.backToBrowserEl = q('.js-back-to-browser');
     this.$editorActivity = $('#js-editor-act');
     this.$editorBody = $('.js-editor-body');
-    this.editorTableEl = document.querySelector('.js-editor-table');
+    this.editorTableEl = q('.js-editor-table');
     this.$filterStatus = $('#js-filter-status');
     this.$filterChecks = $('#js-filter-checks');
     this.$filterChecksWrapper = $('.js-filter-checks-wrapper');
@@ -108,8 +108,8 @@ PTL.editor = {
     this.$msgOverlay = $('#js-editor-msg-overlay');
     this.$navNext = $('#js-nav-next');
     this.$navPrev = $('#js-nav-prev');
-    this.unitCountEl = document.querySelector('.js-unit-count');
-    this.unitIndexEl = document.querySelector('.js-unit-index');
+    this.unitCountEl = q('.js-unit-count');
+    this.unitIndexEl = q('.js-unit-index');
     this.offsetRequested = 0;
 
     /* Initialize variables */
@@ -297,7 +297,7 @@ PTL.editor = {
       e.preventDefault();
       $('.js-translate-translation').toggleClass('raw');
       $('.js-toggle-raw').toggleClass('selected');
-      autosize.update(document.querySelector('.js-translation-area'));
+      autosize.update(q('.js-translation-area'));
     });
 
     /* Confirmation prompt */
@@ -585,7 +585,7 @@ PTL.editor = {
       this.displayObsoleteMsg();
     }
 
-    autosize(document.querySelector('textarea.expanding:not([disabled="disabled"])'));
+    autosize(q('textarea.expanding:not([disabled="disabled"])'));
 
     // set direction of the comment body
     $('.extra-item-comment').filter(':not([dir])').bidi();
@@ -728,9 +728,9 @@ PTL.editor = {
   },
 
   copyComment(text) {
-    const comment = document.querySelector('.js-editor-comment');
-    const commentForm = document.querySelector('.js-editor-comment-form');
-    const commentInput = document.querySelector('#id_translator_comment');
+    const comment = q('.js-editor-comment');
+    const commentForm = q('.js-editor-comment-form');
+    const commentInput = q('#id_translator_comment');
 
     if (!comment.classList.contains('selected')) {
       commentForm.style.display = 'inline-block';
@@ -824,30 +824,30 @@ PTL.editor = {
     $('.js-translation-area').each(function setDefaultValue() {
       this.defaultValue = this.value;
     });
-    const checkbox = document.querySelector('#id_state');
+    const checkbox = q('#id_state');
     checkbox.defaultChecked = checkbox.checked;
     this.handleTranslationChange();
   },
 
   /* Updates comment area's `defaultValue` value. */
   updateCommentDefaultProperties() {
-    const comment = document.querySelector('#id_translator_comment');
+    const comment = q('#id_translator_comment');
     comment.defaultValue = comment.value;
     this.handleTranslationChange();
   },
 
   handleTranslationChange() {
-    const comment = document.querySelector('#id_translator_comment');
+    const comment = q('#id_translator_comment');
     const commentChanged = comment !== null ?
                            comment.value !== comment.defaultValue : false;
 
-    const submit = document.querySelector('.js-submit');
-    const suggest = document.querySelector('.js-suggest');
+    const submit = q('.js-submit');
+    const suggest = q('.js-suggest');
     const translations = $('.js-translation-area').get();
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return $(this).data('translation-aid');
     }).get();
-    const checkbox = document.querySelector('#id_state');
+    const checkbox = q('#id_state');
     const stateChanged = checkbox.defaultChecked !== checkbox.checked;
 
     let areaChanged = false;
@@ -1372,7 +1372,7 @@ PTL.editor = {
   /* reDraws the translate table rows */
   reDraw(newTbody) {
     // Remove autosize event listeners for textarea before removing
-    autosize.destroy(document.querySelectorAll('textarea.expanding'));
+    autosize.destroy(qAll('textarea.expanding'));
 
     this.$editorBody.find('tr').remove();
 
@@ -1558,7 +1558,7 @@ PTL.editor = {
 
   /* Pushes translation submissions and moves to the next unit */
   handleSubmit(comment = '') {
-    const el = document.querySelector('input.submit');
+    const el = q('input.submit');
     const newTranslation = $('.js-translation-area')[0].value;
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return {
@@ -2326,7 +2326,7 @@ PTL.editor = {
     suggId, { requestData = {}, isSuggestionChanged = false } = {}
   ) {
     if (isSuggestionChanged) {
-      const area = document.querySelector('.js-translation-area');
+      const area = q('.js-translation-area');
       area.value = decodeEntities(requestData.translation);
       this.undoFuzzyBox();
       this.handleSubmit(requestData.comment);
@@ -2429,7 +2429,7 @@ PTL.editor = {
       return false;
     }
 
-    const area = document.querySelector('.js-translation-area');
+    const area = q('.js-translation-area');
 
     area.value = decodeEntities(translation);
     autosize.update(area);
@@ -2459,8 +2459,8 @@ PTL.editor = {
       onChange: this.handleSuggestionFeedbackChange.bind(this),
     };
     const mountSelector = `.js-mnt-suggestion-feedback-${suggId}`;
-    const feedbackMountPoint = document.querySelector(mountSelector);
-    const editorBody = document.querySelector('.js-editor-body .translate-full');
+    const feedbackMountPoint = q(mountSelector);
+    const editorBody = q('.js-editor-body .translate-full');
     suggestion.classList.add('suggestion-expanded');
     editorBody.classList.add('suggestion-expanded');
 
@@ -2490,10 +2490,10 @@ PTL.editor = {
   closeSuggestion({ checkIfCanNavigate = true } = {}) {
     if (this.selectedSuggestionId !== undefined &&
         (!checkIfCanNavigate || this.canNavigate())) {
-      const suggestion = document.querySelector(`#suggestion-${this.selectedSuggestionId}`);
-      const editorBody = document.querySelector('.js-editor-body .translate-full');
+      const suggestion = q(`#suggestion-${this.selectedSuggestionId}`);
+      const editorBody = q('.js-editor-body .translate-full');
       const mountSelector = `.js-mnt-suggestion-feedback-${this.selectedSuggestionId}`;
-      const feedbackMountPoint = document.querySelector(mountSelector);
+      const feedbackMountPoint = q(mountSelector);
       editorBody.classList.remove('suggestion-expanded');
       suggestion.classList.remove('suggestion-expanded');
       ReactDOM.unmountComponentAtNode(feedbackMountPoint);

@@ -11,6 +11,8 @@ import 'imports?Backbone=>require("backbone")!backbone-move';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { q } from 'utils/dom';
+
 import AdminController from './components/AdminController';
 import User from './components/User';
 import Language from './components/Language';
@@ -42,7 +44,7 @@ PTL.admin = {
         formChoices={opts.formChoices || {}}
         router={new AdminRouter()}
       />,
-      document.querySelector('.js-admin-app')
+      q('.js-admin-app')
     );
   },
 

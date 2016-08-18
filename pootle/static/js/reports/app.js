@@ -18,6 +18,8 @@ import 'jquery-flot-time';
 import 'jquery-history';
 import 'jquery-serializeObject';
 
+import { q } from 'utils/dom';
+
 import msg from '../msg';
 import utils from '../utils';
 
@@ -504,7 +506,7 @@ PTL.reports = {
           $('#user-rates-form .currency').text($('#id_currency').val());
 
           if ('task' in PTL.reports.params) {
-            const task = document.querySelector(`.task${PTL.reports.params.task}`);
+            const task = q(`.task${PTL.reports.params.task}`);
             if (!!task) {
               task.classList.add('highlight');
               setTimeout(() => {

@@ -12,6 +12,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
+import { q } from 'utils/dom';
+
 import Auth from './containers/Auth';
 
 
@@ -40,12 +42,12 @@ export default {
       <Provider store={PTL.store}>
         <Auth onClose={this.close} {...newProps} />
       </Provider>,
-      document.querySelector(mountNodeSelector)
+      q(mountNodeSelector)
     );
   },
 
   close() {
-    ReactDOM.unmountComponentAtNode(document.querySelector(mountNodeSelector));
+    ReactDOM.unmountComponentAtNode(q(mountNodeSelector));
   },
 
 };

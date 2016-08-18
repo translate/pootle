@@ -10,7 +10,7 @@ import React from 'react';
 import _ from 'underscore';
 
 import { outerHeight } from 'utils/dimensions';
-import { qAll } from 'utils/dom';
+import { q, qAll } from 'utils/dom';
 import fetch from 'utils/fetch';
 
 import ContentEditor from './ContentEditor';
@@ -62,11 +62,11 @@ export const LiveEditor = React.createClass({
 
   getContentHeight() {
     const topHeight = (
-      outerHeight(document.querySelector('#navbar')) +
-      outerHeight(document.querySelector('#header-meta')) +
-      outerHeight(document.querySelector('#header-tabs'))
+      outerHeight(q('#navbar')) +
+      outerHeight(q('#header-meta')) +
+      outerHeight(q('#header-tabs'))
     );
-    const footerHeight = outerHeight(document.querySelector('#footer'));
+    const footerHeight = outerHeight(q('#footer'));
 
     const formFields = qAll('.js-staticpage-non-content');
     const fieldsHeight = (

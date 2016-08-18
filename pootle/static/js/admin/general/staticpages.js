@@ -9,6 +9,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { q } from 'utils/dom';
+
 import LiveEditor from './components/LiveEditor';
 
 
@@ -21,7 +23,7 @@ const staticpages = {
         markup={opts.markup}
         name={opts.htmlName}
       />,
-      document.querySelector('.js-staticpage-editor')
+      q('.js-staticpage-editor')
     );
   },
 

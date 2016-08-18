@@ -19,6 +19,7 @@ import LastUpdate from 'components/LastUpdate';
 import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
 import cookie from 'utils/cookie';
+import { q } from 'utils/dom';
 
 import Stats from './browser/components/Stats';
 import VisibilityToggle from './browser/components/VisibilityToggle';
@@ -116,7 +117,7 @@ const stats = {
 
     if (this.isAdmin && options.hasDisabledItems) {
       ReactDOM.render(<VisibilityToggle uiLocaleDir={options.uiLocaleDir} />,
-                      document.querySelector('.js-mnt-visibility-toggle'));
+                      q('.js-mnt-visibility-toggle'));
     }
 
     ReactDOM.render(
@@ -125,7 +126,7 @@ const stats = {
         topContributors={options.topContributorsData.items}
         pootlePath={this.pootlePath}
       />,
-      document.querySelector('#js-mnt-top-contributors')
+      q('#js-mnt-top-contributors')
     );
 
     // Retrieve async data if needed
@@ -246,18 +247,18 @@ const stats = {
   },
 
   updateLastUpdates(statsData) {
-    const luWrapper = document.querySelector('#js-last-updated-wrapper');
+    const luWrapper = q('#js-last-updated-wrapper');
     const hideLastUpdated = !statsData.lastupdated || statsData.lastupdated.mtime === 0;
     luWrapper.classList.toggle('hide', hideLastUpdated);
     if (statsData.lastupdated) {
-      const lastUpdated = document.querySelector('#js-last-updated');
+      const lastUpdated = q('#js-last-updated');
       this.renderLastUpdate(lastUpdated, statsData.lastupdated);
     }
-    const laWrapper = document.querySelector('#js-last-action-wrapper');
+    const laWrapper = q('#js-last-action-wrapper');
     const hideLastAction = !statsData.lastaction || statsData.lastaction.mtime === 0;
     laWrapper.classList.toggle('hide', hideLastAction);
     if (statsData.lastaction) {
-      const lastAction = document.querySelector('#js-last-action');
+      const lastAction = q('#js-last-action');
       this.renderLastEvent(lastAction, statsData.lastaction);
     }
   },
