@@ -291,12 +291,12 @@ Configuration settings for applications used by Pootle.
 ``POOTLE_CURRENCIES``
   Default::
 
-  (
-    ('USD', 'USD'),
-    ('EUR', 'EUR'),
-    ('CNY', 'CNY'),
-    ('JPY', 'JPY')
-  )
+    (
+       ('USD', 'USD'),
+       ('EUR', 'EUR'),
+       ('CNY', 'CNY'),
+       ('JPY', 'JPY')
+    )
 
   A collection currencies that can be selected for reporting of user activities
 
