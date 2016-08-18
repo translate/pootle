@@ -32,11 +32,13 @@ from pootle.core.serializers import Serializer, Deserializer
 from pootle_app.models import Directory
 from pootle_config.exceptions import ConfigurationError
 from pootle_format.exceptions import UnrecognizedFiletype
+from pootle_format.formats.po import PoStoreSyncer
 from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.constants import NEW, OBSOLETE, PARSED, POOTLE_WINS
+from pootle_store.constants import (
+    NEW, OBSOLETE, PARSED, POOTLE_WINS, TRANSLATED)
 from pootle_store.diff import DiffableStore, StoreDiff
 from pootle_store.models import Store
 from pootle_store.util import parse_pootle_revision
@@ -1213,3 +1215,218 @@ def test_store_diff_delete_obsoleted_source_unit(diffable_stores):
         source_store,
         target_store.get_max_unit_revision() + 1)
     assert not differ.diff()
+
+
+@pytest.mark.django_db
+def test_store_syncer(tp0):
+    store = tp0.stores.live().first()
+    assert isinstance(store.syncer, PoStoreSyncer)
+    assert store.syncer.file_class == getclass(store)
+    assert store.syncer.translation_project == store.translation_project
+    assert (
+        store.syncer.language
+        == store.translation_project.language)
+    assert (
+        store.syncer.project
+        == store.translation_project.project)
+    assert (
+        store.syncer.source_language
+        == store.translation_project.project.source_language)
+
+
+@pytest.mark.django_db
+def test_store_syncer_obsolete_unit(tp0):
+    store = tp0.stores.live().first()
+    unit = store.units.filter(state=TRANSLATED).first()
+    unit_syncer = store.syncer.unit_sync_class(unit)
+    newunit = unit_syncer.create_unit(store.syncer.file_class.UnitClass)
+
+    # unit is untranslated, its always just deleted
+    obsolete, deleted = store.syncer.obsolete_unit(newunit, True)
+    assert not obsolete
+    assert deleted
+    obsolete, deleted = store.syncer.obsolete_unit(newunit, False)
+    assert not obsolete
+    assert deleted
+
+    # set unit to translated
+    newunit.target = unit.target
+
+    # if conservative, nothings changed
+    obsolete, deleted = store.syncer.obsolete_unit(newunit, True)
+    assert not obsolete
+    assert not deleted
+
+    # not conservative and the unit is deleted
+    obsolete, deleted = store.syncer.obsolete_unit(newunit, False)
+    assert obsolete
+    assert not deleted
+
+
+@pytest.mark.django_db
+def test_store_syncer_sync_store(tp0, dummy_store_syncer):
+    store = tp0.stores.live().first()
+    DummyStoreSyncer, expected = dummy_store_syncer
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+    result = dummy_syncer.sync_store(
+        expected["last_revision"],
+        expected["update_structure"],
+        expected["conservative"])
+    assert result[0] is True
+    assert result[1]["updated"] == expected["changes"]
+    # conservative makes no diff here
+    expected["conservative"] = False
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+    result = dummy_syncer.sync_store(
+        expected["last_revision"],
+        expected["update_structure"],
+        expected["conservative"])
+    assert result[0] is True
+    assert result[1]["updated"] == expected["changes"]
+
+
+@pytest.mark.django_db
+def test_store_syncer_sync_store_no_changes(tp0, dummy_store_syncer):
+    store = tp0.stores.live().first()
+    DummyStoreSyncer, expected = dummy_store_syncer
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+
+    # no changes
+    expected["changes"] = []
+    expected["conservative"] = True
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+    result = dummy_syncer.sync_store(
+        expected["last_revision"],
+        expected["update_structure"],
+        expected["conservative"])
+    assert result[0] is False
+    assert not result[1].get("updated")
+
+    # conservative makes no diff here
+    expected["conservative"] = False
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+    result = dummy_syncer.sync_store(
+        expected["last_revision"],
+        expected["update_structure"],
+        expected["conservative"])
+    assert result[0] is False
+    assert not result[1].get("updated")
+
+
+@pytest.mark.django_db
+def test_store_syncer_sync_store_structure(tp0, dummy_store_syncer):
+    store = tp0.stores.live().first()
+    DummyStoreSyncer, expected = dummy_store_syncer
+
+    expected["update_structure"] = True
+    expected["changes"] = []
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+    result = dummy_syncer.sync_store(
+        expected["last_revision"],
+        expected["update_structure"],
+        expected["conservative"])
+    assert result[0] is True
+    assert result[1]["updated"] == []
+    assert result[1]["obsolete"] == 8
+    assert result[1]["deleted"] == 9
+    assert result[1]["added"] == 10
+
+    expected["obsolete_units"] = []
+    expected["new_units"] = []
+    expected["changes"] = []
+    dummy_syncer = DummyStoreSyncer(store, expected=expected)
+    result = dummy_syncer.sync_store(
+        expected["last_revision"],
+        expected["update_structure"],
+        expected["conservative"])
+    assert result[0] is False
+
+
+@pytest.mark.django_db
+def test_store_syncer_sync_update_structure(dummy_store_structure_syncer, tp0):
+    store = tp0.stores.live().first()
+    DummyStoreSyncer, DummyUnit = dummy_store_structure_syncer
+    expected = dict(
+        unit_class="FOO",
+        conservative=True,
+        obsolete_delete=(True, True),
+        obsolete_units=["a", "b", "c"])
+    expected["new_units"] = [
+        DummyUnit(unit, expected=expected)
+        for unit in ["5", "6", "7"]]
+    syncer = DummyStoreSyncer(store, expected=expected)
+    result = syncer.update_structure(
+        expected["obsolete_units"],
+        expected["new_units"],
+        expected["conservative"])
+    obsolete_units = (
+        len(expected["obsolete_units"])
+        if expected["obsolete_delete"][0]
+        else 0)
+    deleted_units = (
+        len(expected["obsolete_units"])
+        if expected["obsolete_delete"][1]
+        else 0)
+    new_units = len(expected["new_units"])
+    assert result == (obsolete_units, deleted_units, new_units)
+
+
+def _test_get_new(results, syncer, old_ids, new_ids):
+    assert list(results) == list(
+        syncer.store.findid_bulk(
+            [syncer.dbid_index.get(uid)
+             for uid
+             in new_ids - old_ids]))
+
+
+def _test_get_obsolete(results, syncer, old_ids, new_ids):
+    assert list(results) == list(
+        syncer.disk_store.findid(uid)
+        for uid
+        in old_ids - new_ids)
+
+
+@pytest.mark.django_db
+def test_store_syncer_obsolete_units(dummy_store_syncer_units, tp0):
+    store = tp0.stores.live().first()
+    expected = dict(
+        old_ids=set(),
+        new_ids=set(),
+        disk_ids={})
+    syncer = dummy_store_syncer_units(store, expected=expected)
+    results = syncer.get_obsolete_units(
+        expected["old_ids"], expected["new_ids"])
+    _test_get_obsolete(
+        results, syncer, expected["old_ids"], expected["new_ids"])
+    expected = dict(
+        old_ids=set(["2", "3", "4"]),
+        new_ids=set(["3", "4", "5"]),
+        disk_ids={"3": "foo", "4": "bar", "5": "baz"})
+    results = syncer.get_obsolete_units(
+        expected["old_ids"], expected["new_ids"])
+    _test_get_obsolete(
+        results, syncer, expected["old_ids"], expected["new_ids"])
+
+
+@pytest.mark.django_db
+def test_store_syncer_new_units(dummy_store_syncer_units, tp0):
+    store = tp0.stores.live().first()
+    expected = dict(
+        old_ids=set(),
+        new_ids=set(),
+        disk_ids={},
+        db_ids={})
+    syncer = dummy_store_syncer_units(store, expected=expected)
+    results = syncer.get_new_units(
+        expected["old_ids"], expected["new_ids"])
+    _test_get_new(
+        results, syncer, expected["old_ids"], expected["new_ids"])
+    expected = dict(
+        old_ids=set(["2", "3", "4"]),
+        new_ids=set(["3", "4", "5"]),
+        db_ids={"3": "foo", "4": "bar", "5": "baz"})
+    syncer = dummy_store_syncer_units(store, expected=expected)
+    results = syncer.get_new_units(
+        expected["old_ids"], expected["new_ids"])
+    _test_get_new(
+        results, syncer, expected["old_ids"], expected["new_ids"])
