@@ -8,6 +8,17 @@
 
 
 /**
+ * Queries the DOM for an element matching `selector`.
+ *
+ * @param {String} selector - The CSS selector
+ * @return {Node} - the matched `Node`, `null` otherwise.
+ */
+export function q(selector) {
+  return document.querySelector(selector);
+}
+
+
+/**
  * Queries the DOM for a collection matching `selector`.
  *
  * @param {String} selector - The CSS selector
