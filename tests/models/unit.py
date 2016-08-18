@@ -16,8 +16,9 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 from pootle.core.mixins.treeitem import CachedMethods
-from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Unit
+from pootle_store.syncer import UnitSyncer
 
 
 User = get_user_model()
@@ -317,3 +318,94 @@ def test_unit_ts_plurals(store_po, test_fs):
     unit.save()
     unit = Unit.objects.get(id=unit.id)
     assert unit.hasplural()
+
+
+def _test_unit_syncer(unit, newunit):
+    assert newunit.source == unit.source
+    assert newunit.target == unit.target
+    assert newunit.getid() == unit.getid()
+    assert newunit.istranslated() == unit.istranslated()
+    assert (
+        newunit.getnotes(origin="developer")
+        == unit.getnotes(origin="developer"))
+    assert (
+        newunit.getnotes(origin="translator")
+        == unit.getnotes(origin="translator"))
+    assert newunit.isobsolete() == unit.isobsolete()
+    assert newunit.isfuzzy() == unit.isfuzzy()
+
+
+@pytest.mark.django_db
+def test_unit_syncer(unit_syncer):
+    unit, unit_class = unit_syncer
+    syncer = UnitSyncer(unit)
+    newunit = syncer.convert(unit_class)
+    assert newunit.istranslated()
+    assert not newunit.isfuzzy()
+    assert not newunit.isobsolete()
+    _test_unit_syncer(unit, newunit)
+
+
+@pytest.mark.django_db
+def test_unit_syncer_fuzzy(unit_syncer):
+    unit, unit_class = unit_syncer
+    syncer = UnitSyncer(unit)
+    unit.state = FUZZY
+    unit.save()
+    newunit = syncer.convert(unit_class)
+    assert newunit.isfuzzy()
+    assert not newunit.isobsolete()
+    assert not newunit.istranslated()
+    _test_unit_syncer(unit, newunit)
+
+
+@pytest.mark.django_db
+def test_unit_syncer_untranslated(unit_syncer):
+    unit, unit_class = unit_syncer
+    syncer = UnitSyncer(unit)
+    unit.state = UNTRANSLATED
+    unit.target = ""
+    unit.save()
+    newunit = syncer.convert(unit_class)
+    assert not newunit.isfuzzy()
+    assert not newunit.isobsolete()
+    assert not newunit.istranslated()
+    _test_unit_syncer(unit, newunit)
+
+
+@pytest.mark.django_db
+def test_unit_syncer_obsolete(unit_syncer):
+    unit, unit_class = unit_syncer
+    syncer = UnitSyncer(unit)
+    unit.state = OBSOLETE
+    unit.save()
+    newunit = syncer.convert(unit_class)
+    assert newunit.isobsolete()
+    assert not newunit.isfuzzy()
+    assert not newunit.istranslated()
+    _test_unit_syncer(unit, newunit)
+
+
+@pytest.mark.django_db
+def test_unit_syncer_notes(unit_syncer):
+    unit, unit_class = unit_syncer
+    syncer = UnitSyncer(unit)
+    unit.addnote(origin="developer", text="hello")
+    newunit = syncer.convert(unit_class)
+    assert newunit.getnotes(origin="developer") == "hello"
+    _test_unit_syncer(unit, newunit)
+
+    unit.addnote(origin="translator", text="world")
+    newunit = syncer.convert(unit_class)
+    assert newunit.getnotes(origin="translator") == "world"
+    _test_unit_syncer(unit, newunit)
+
+
+@pytest.mark.django_db
+def test_unit_syncer_locations(unit_syncer):
+    unit, unit_class = unit_syncer
+    unit.addlocation("FOO")
+    syncer = UnitSyncer(unit)
+    newunit = syncer.convert(unit_class)
+    assert newunit.getlocations() == ["FOO"]
+    _test_unit_syncer(unit, newunit)
