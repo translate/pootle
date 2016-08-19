@@ -1767,11 +1767,3 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
 
 # # # # # # # # # # # # # # # #  Translation # # # # # # # # # # # # # # #
-
-    def getitem(self, item):
-        """Returns a single unit based on the item number."""
-        # store.units[item] is unreliable so we need to enumerate
-        #   - please see #4160 for discussion
-        for i, unit in enumerate(self.units):
-            if i == item:
-                return unit
