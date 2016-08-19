@@ -20,7 +20,7 @@ diff-match-patch==20121119
 dirsync==2.2.2
 elasticsearch>=1.0.0,<2.0.0
 jsonfield==1.0.3
-lxml>=3.0,<=3.6.0
+lxml>=3.0,<=3.6.4
 python-dateutil==2.5.3
 python-levenshtein==0.12.0
 rq>=0.5.0,<=0.5.6
