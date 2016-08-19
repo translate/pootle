@@ -244,16 +244,16 @@ tr.edit-ctx td
 
 tr.edit-ctx a
 {
-     text-decoration: none;
+    text-decoration: none;
 
-     opacity: 0.5;
+    opacity: 0.5;
 }
 
 tr.edit-ctx a:hover
 {
-     text-decoration: none;
+    text-decoration: none;
 
-     opacity: 1;
+    opacity: 1;
 }
 
 tr.edit-ctx.before .edit-ctx-wrapper

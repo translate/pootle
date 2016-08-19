@@ -12,8 +12,8 @@
 
 #welcome-page #content
 {
-  background: url(../images/bg.png) 0px 0px repeat-x;
-  margin: 0;
+    background: url(../images/bg.png) 0px 0px repeat-x;
+    margin: 0;
 }
 
 #welcome-page .top
@@ -58,8 +58,7 @@
     width: 960px;
 }
 
-@media
-only screen and (max-width: 960px)
+@media only screen and (max-width: 960px)
 {
     #welcome-page .columns-inner
     {
@@ -72,8 +71,7 @@ only screen and (max-width: 960px)
     width: 480px;
 }
 
-@media
-only screen and (max-width: 480px)
+@media only screen and (max-width: 480px)
 {
     #welcome-page .column
     {

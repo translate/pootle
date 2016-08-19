@@ -9,8 +9,9 @@
     background: rgba(0, 0, 0, 0.3);
     padding: 2px 4px;
     border-radius: 4px;
-    box-shadow: 0 -1px 0px rgba(255, 255, 255, 0.2) inset,
-                0  1px 0px rgba(0, 0, 0, 0.2) inset;
+    box-shadow:
+        0 -1px 0px rgba(255, 255, 255, 0.2) inset,
+        0  1px 0px rgba(0, 0, 0, 0.2) inset;
     transition: 2s width ease;
 }
 

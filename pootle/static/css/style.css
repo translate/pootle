@@ -795,12 +795,12 @@ html[dir="rtl"] #autorefresh-notice .x
 
 .stats tr.item
 {
-   display: none;
+    display: none;
 }
 
 .stats tr.item.is-visible
 {
-   display: table-row;
+    display: table-row;
 }
 
 tr.view-row:nth-child(odd),
@@ -1440,7 +1440,7 @@ table.sortable th
 
 table.sortable th i
 {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 table.sortable th.sorttable_nosort
@@ -2241,7 +2241,7 @@ table.stats .item.dirty .last-updated
 
 .vfolders
 {
-     margin-bottom: 3em;
+    margin-bottom: 3em;
 }
 
 /* FIX FOR HEADING SIZES */
