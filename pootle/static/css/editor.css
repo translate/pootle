@@ -469,7 +469,7 @@ div.language-name
     border-bottom: 1px solid #f1f7f8;
     border-radius: 5px 5px 0 0;
 
-    padding: 1px 5px 0px;
+    padding: 1px 5px 0;
     display: inline-block;
     position: absolute;
     bottom: -1px;
@@ -771,7 +771,7 @@ html[dir="rtl"] .extras-bar a
 .extras-bar a.selected
 {
     background: rgba(0, 0, 0, 0.05);
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3) inset;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) inset;
 }
 
 .extras-bar a i
@@ -892,7 +892,7 @@ html[dir="rtl"] .suggestion-action
 
 .extra-item-block .suggestion-feedback .field-wrapper
 {
-    margin: 5px 5px 0px 0px;
+    margin: 5px 5px 0 0;
 }
 
 .extra-item-block .suggestion-feedback .field-wrapper label,
@@ -910,13 +910,13 @@ html[dir="rtl"] .suggestion-action
 .extra-item-block .suggestion-feedback .buttons button
 {
     float: right;
-    margin: 15px 0px 5px 15px;
+    margin: 15px 0 5px 15px;
 }
 
 html[dir="rtl"] .extra-item-block .suggestion-feedback .buttons button
 {
     float: left;
-    margin: 15px 15px 5px 0px;
+    margin: 15px 15px 5px 0;
 }
 
 .extra-item-block .suggestion-feedback .buttons button i
@@ -1373,7 +1373,7 @@ table.suggest-mode .translate-fuzzy-block
 {
     position: absolute;
     left: 120px;
-    top: 0px;
+    top: 0;
     padding: 5px 0;
     line-height: 150%;
 }

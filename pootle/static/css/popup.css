@@ -76,7 +76,7 @@ html[dir="rtl"] .lightbox-body
 .popup-form .buttons input,
 .lightbox-body .buttons input
 {
-    margin: 0.3em 0px 0px;
+    margin: 0.3em 0 0;
 }
 
 .popup-form label,
@@ -89,5 +89,5 @@ html[dir="rtl"] .lightbox-body
 /* for forms displayed in lightbox mode (via magnificPopup plugin), use different shadow */
 .mfp-content .form
 {
-    box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }

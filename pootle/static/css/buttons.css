@@ -22,7 +22,7 @@
     box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
 
     text-align: center;
-    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 
     transition: all 0.25s linear 0s;
 

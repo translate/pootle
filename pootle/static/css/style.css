@@ -188,7 +188,7 @@ form, fieldset, legend,
 p, blockquote
 {
     margin: 0;
-    padding: 0px;
+    padding: 0;
 }
 
 input, textarea
@@ -541,7 +541,7 @@ td.stats-name a:hover > i + span,
 
     background-color: #fff;
 
-    box-shadow: -1px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease 0s;
 }
 
@@ -562,7 +562,7 @@ html[dir="rtl"] #sidebar
     right: auto;
     left: 0;
 
-    box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 0 2px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar #sidebar-content
@@ -600,7 +600,7 @@ html[dir="rtl"] #sidebar
     text-decoration: none;
     font-size: 24px;
 
-    box-shadow: -2px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 0 2px rgba(0, 0, 0, 0.2);
     border-radius: 2px 0 0 2px;
 }
 
@@ -609,7 +609,7 @@ html[dir="rtl"] #sidebar-toggle
     left: auto;
     right: -1em;
 
-    box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 0 2px rgba(0, 0, 0, 0.2);
     border-radius: 0 2px 2px 0;
 }
 
@@ -945,7 +945,7 @@ html[dir="rtl"] .last-action .user-name
     padding: 1em;
     text-align: left;
     border-radius: 10px;
-    box-shadow: 0px 2px 5px #777;
+    box-shadow: 0 2px 5px #777;
 
     background: #eee;
 }
@@ -1634,7 +1634,7 @@ html[dir="rtl"] .expand-stats
 {
     position: relative;
     top: 20px;
-    left: 0px;
+    left: 0;
 }
 
 .path-summary-more
@@ -1936,7 +1936,7 @@ html[dir="rtl"] #tabs li
     border: 0 none;
     height: 16px;
     line-height: 16px;
-    padding: 0px 4px;
+    padding: 0 4px;
     width: 145px;
     background-color: #fff;
     color: #666;
