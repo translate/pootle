@@ -1563,7 +1563,7 @@ div.translate-translation.raw textarea.translation
     unicode-bidi: bidi-override;
     font-family: "Raw", Consolas, "Ubuntu Mono", "Lucida Console", monospace;
     font-feature-settings: "isol" off, "init" off, "medi" off, "fina" off;
-    line-height: 110%;
+    line-height: 115%;
 }
 
 /* Special handling for languages with big fonts */
