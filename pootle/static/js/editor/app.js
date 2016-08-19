@@ -1465,7 +1465,7 @@ PTL.editor = {
       }
       return UnitAPI.fetchUnits(reqData)
         .then(
-          (data) => this.storeUnitData(data),
+          (data) => this.storeUnitData(data, { isInitial: initial }),
           this.error
         ).always(() => this.markAsFetched(offsetToFetch));
     }
@@ -1474,14 +1474,14 @@ PTL.editor = {
     /* eslint-enable new-cap */
   },
 
-  storeUnitData(data) {
+  storeUnitData(data, { isInitial = false } = {}) {
     const { total } = data;
     const { start } = data;
     const { end } = data;
     let { unitGroups } = data;
     let prependUnits = false;
 
-    if (!unitGroups.length && !this.units.uIds.length) {
+    if (!unitGroups.length && isInitial) {
       this.noResults();
       return false;
     }
