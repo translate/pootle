@@ -62,8 +62,13 @@ class UnitSyncer(object):
     def unitid(self):
         return self.unit.getid()
 
-    def convert(self, unitclass):
-        newunit = self.create_unit(unitclass)
+    @property
+    def unit_class(self):
+        return self.unit.store.syncer.unit_class
+
+    def convert(self, unitclass=None):
+        newunit = self.create_unit(
+            unitclass or self.unit_class)
         self.set_target(newunit)
         self.set_fuzzy(newunit)
         self.set_locations(newunit)
@@ -140,6 +145,10 @@ class StoreSyncer(object):
         return os.path.join(
             self.translation_project.abs_real_path,
             self.store.name)
+
+    @property
+    def unit_class(self):
+        return self.file_class.UnitClass
 
     @cached_property
     def file_class(self):
