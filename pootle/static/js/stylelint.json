@@ -1,6 +1,8 @@
 # Configuration: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/configuration.md#rules
 # Example: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/example-config.md
+# Default config: https://github.com/stylelint/stylelint-config-standard
 {
+  "extends": "stylelint-config-standard",
   "ignoreFiles": [
     "../css/magnific-popup.css",
     "../css/react-select.css",
@@ -10,6 +12,14 @@
     "node_modules"
   ],
   "rules": {
-    "indentation": 4
+    "block-opening-brace-space-before": null,
+    "block-opening-brace-newline-before": "always",
+    "declaration-empty-line-before": null,
+    "indentation": 4,
+    "max-empty-lines": 2,
+    "rule-non-nested-empty-line-before": ["always", {
+        "except": ["after-single-line-comment"],
+        "ignore": ["after-comment"]
+        }]
   }
 }
