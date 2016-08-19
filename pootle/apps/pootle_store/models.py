@@ -18,7 +18,6 @@ from translate.storage import base
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -285,8 +284,7 @@ class Unit(models.Model, base.TranslationUnit):
         return unicode(self.source)
 
     def __str__(self):
-        unitclass = self.get_unit_class()
-        return str(self.convert(unitclass))
+        return str(self.convert())
 
     def __init__(self, *args, **kwargs):
         super(Unit, self).__init__(*args, **kwargs)
@@ -490,18 +488,11 @@ class Unit(models.Model, base.TranslationUnit):
     def unit_syncer(self):
         return self.store.syncer.unit_sync_class(self)
 
-    def convert(self, unitclass):
+    def convert(self, unitclass=None):
         """Convert to a unit of type :param:`unitclass` retaining as much
         information from the database as the target format can support.
         """
         return self.unit_syncer.convert(unitclass)
-
-    def get_unit_class(self):
-        try:
-            return self.store.syncer.file_class.UnitClass
-        except ObjectDoesNotExist:
-            from translate.storage import po
-            return po.pounit
 
     def getorig(self):
         unit = self.store.file.store.units[self.index]
@@ -1243,9 +1234,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return unicode(self.pootle_path)
 
     def __str__(self):
-        storeclass = self.syncer.file_class
-        store = self.syncer.convert(storeclass)
-        return str(store)
+        return str(self.syncer.convert())
 
     def save(self, *args, **kwargs):
         created = not self.id
