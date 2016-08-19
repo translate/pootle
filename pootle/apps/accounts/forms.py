@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
+
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -14,6 +16,20 @@ from allauth.account.app_settings import AuthenticationMethod
 from allauth.account.forms import LoginForm
 
 from .utils import get_user_by_email
+
+
+logger = logging.getLogger(__name__)
+
+
+class SignInForm(LoginForm):
+
+    def login(self, request, redirect_url=None):
+        try:
+            return super(SignInForm, self).login(request, redirect_url)
+        except Exception as e:
+            logger.exception("%s %s", e.__class__.__name__, e)
+            raise RuntimeError(_("An error occurred logging you in. Please "
+                                 "contact your system administrator"))
 
 
 class SocialVerificationForm(LoginForm):
