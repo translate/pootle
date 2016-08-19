@@ -281,7 +281,7 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     # Get unsynced unit in DB. Its revision should be greater
     # than store.last_sync_revision to allow to keep this change during
     # update from a file
-    dbunit = store.getitem(item_index)
+    dbunit = store.units[item_index]
     assert dbunit.revision == store.last_sync_revision + 1
 
 

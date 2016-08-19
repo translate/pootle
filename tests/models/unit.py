@@ -25,7 +25,7 @@ User = get_user_model()
 
 
 def _update_translation(store, item, new_values, sync=True):
-    unit = store.getitem(item)
+    unit = store.units[item]
 
     if 'target' in new_values:
         unit.target = new_values['target']
@@ -44,7 +44,7 @@ def _update_translation(store, item, new_values, sync=True):
     if sync:
         store.sync()
 
-    return store.getitem(item)
+    return store.units[item]
 
 
 @pytest.mark.django_db
@@ -183,8 +183,8 @@ def test_update_comment(af_tutorial_po):
 @pytest.mark.django_db
 def test_add_suggestion(af_tutorial_po, system):
     """Tests adding new suggestions to units."""
-    untranslated_unit = af_tutorial_po.getitem(0)
-    translated_unit = af_tutorial_po.getitem(1)
+    untranslated_unit = af_tutorial_po.units[0]
+    translated_unit = af_tutorial_po.units[1]
     suggestion_text = 'foo bar baz'
 
     # Empty suggestion is not recorded
@@ -226,7 +226,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     tp = issue_2401_po.translation_project
 
     # First test with an untranslated unit
-    unit = issue_2401_po.getitem(0)
+    unit = issue_2401_po.units[0]
     assert unit.state == UNTRANSLATED
 
     suggestion, created_ = unit.add_suggestion('foo')
@@ -236,7 +236,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     assert unit.state == TRANSLATED
 
     # Let's try with a translated unit now
-    unit = issue_2401_po.getitem(1)
+    unit = issue_2401_po.units[1]
     assert unit.state == TRANSLATED
 
     suggestion, created_ = unit.add_suggestion('bar')
@@ -246,7 +246,7 @@ def test_accept_suggestion_changes_state(issue_2401_po, system):
     assert unit.state == TRANSLATED
 
     # And finally a fuzzy unit
-    unit = issue_2401_po.getitem(2)
+    unit = issue_2401_po.units[2]
     assert unit.state == FUZZY
 
     suggestion, created_ = unit.add_suggestion('baz')
@@ -265,7 +265,7 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
     # Parse store
     it_tutorial_po.update(it_tutorial_po.file.store)
 
-    untranslated_unit = it_tutorial_po.getitem(0)
+    untranslated_unit = it_tutorial_po.units[0]
     suggestion_text = 'foo bar baz'
 
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
