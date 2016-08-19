@@ -4,7 +4,7 @@ Django>=1.8.13,<1.9
 
 # Django apps
 django-allauth==0.27.0
-django-assets==0.11
+django-assets==0.12
 django-contact-form==1.2
 django-contrib-comments==1.7.1
 django-overextends==0.4.2
