@@ -289,7 +289,7 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
 @pytest.mark.django_db
 def test_unit_repr():
     unit = Unit.objects.first()
-    assert str(unit) == str(unit.convert(unit.get_unit_class()))
+    assert str(unit) == str(unit.convert())
     assert unicode(unit) == unicode(unit.source)
 
 
