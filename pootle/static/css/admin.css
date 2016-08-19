@@ -208,8 +208,8 @@ html[dir="rtl"] td.pootle_path
 {
     display: inline;
     margin-bottom: 1em;
-    margin-left: .25em;
-    margin-right: .25em;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
 }
 
 

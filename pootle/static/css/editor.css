@@ -424,7 +424,7 @@ html[dir="rtl"] div.unit-path li span.content-wrapper
 div.unit-path li a
 {
     color: #cff;
-    opacity: .8;
+    opacity: 0.8;
 }
 
 div.translate-left,
