@@ -29,7 +29,7 @@
     border-radius: 2px;
 
     background-color: #fcfcfc;
-    background-image: linear-gradient(to bottom, #fcfcfc 0%, #eeeeee 50%);
+    background-image: linear-gradient(to bottom, #fcfcfc 0%, #eee 50%);
 }
 
 .breadcrumb .select2-container .select2-choice,
@@ -81,7 +81,7 @@ html[dir="rtl"] .select2-container.select2-allowclear .select2-choice span
     border-radius: 0 2px 2px 0;
 
     background-color: #ddd;
-    background-image: linear-gradient(to top, #dddddd 0%, #eeeeee 60%);
+    background-image: linear-gradient(to top, #ddd 0%, #eee 60%);
 }
 
 html[dir="rtl"] .select2-container .select2-choice div
@@ -122,7 +122,7 @@ html[dir="rtl"] .select2-container .select2-choice div
 .unit-sort .select2-dropdown-open .select2-choice
 {
     background-color: #eee;
-    background-image: linear-gradient(to bottom, #ffffff 0%,#eeeeee 50%);
+    background-image: linear-gradient(to bottom, #fff 0%,#eee 50%);
 }
 
 .select2-results .select2-highlighted
