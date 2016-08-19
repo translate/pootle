@@ -57,7 +57,7 @@ body
 html
 {
     color: #130f30;
-    background: #FFF;
+    background: #fff;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -65,7 +65,7 @@ html
 
 body
 {
-    background: #FFF;
+    background: #fff;
     color: #130f30;
     width: 100%;
 
@@ -399,7 +399,7 @@ td.stats-name a:hover > i + span,
 {
     background-color: #f8f8f8;
     color: #d9d9d9;
-    border-top: 1px dashed #D9D9D9;
+    border-top: 1px dashed #d9d9d9;
     clear: both;
     font-size: 12px;
     text-align: center;
@@ -1554,7 +1554,7 @@ html[dir="rtl"] ul.pager li:last-child > *
 
 #header-tabs
 {
-    border-bottom: 1px solid #D9D9D9;
+    border-bottom: 1px solid #d9d9d9;
 }
 
 #header-meta

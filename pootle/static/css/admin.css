@@ -22,7 +22,7 @@ div#depchecks ul#optimal
 {
     font-style: italic;
     background-color: inherit;
-    color: #4B4740;
+    color: #4b4740;
 }
 
 div#depchecks ul li
@@ -448,13 +448,13 @@ html[dir="rtl"] .admin-content .item-delete input
 
 .search-results tr:nth-child(2n+1)
 {
-    background-color: #F5FBFD;
+    background-color: #f5fbfd;
     color: #000;
 }
 
 .search-results tr:hover
 {
-    background-color: #E2F4F8;
+    background-color: #e2f4f8;
 }
 
 .search-results tr.is-disabled

@@ -1493,7 +1493,7 @@ a.editor-specialchar:hover
 {
     color: #999;
     border: 1px dotted #d9d9d9;
-    background-color: #F1F7F8; /* same as edit-row bg */
+    background-color: #f1f7f8; /* same as edit-row bg */
 }
 
 .tm-server .diff-delete,
