@@ -6,7 +6,7 @@ Django>=1.8.13,<1.9
 django-allauth==0.27.0
 django-assets==0.12
 django-contact-form==1.2
-django-contrib-comments==1.7.1
+django-contrib-comments==1.7.2
 django-overextends==0.4.2
 django-redis==4.4.3
 django-rq>=0.8.0,<=0.9.1
