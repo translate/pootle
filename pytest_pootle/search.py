@@ -24,6 +24,17 @@ from virtualfolder.helpers import extract_vfolder_from_path
 from virtualfolder.models import VirtualFolderTreeItem
 
 
+def get_max_and_order_fields(sort_by):
+    if sort_by[0] == '-':
+        max_field = sort_by[1:]
+        sort_order = '-sort_by_field'
+    else:
+        max_field = sort_by
+        sort_order = 'sort_by_field'
+
+    return max_field, sort_order
+
+
 def calculate_search_results(kwargs, user):
     pootle_path = kwargs["pootle_path"]
     category = kwargs.get("category")
@@ -90,12 +101,7 @@ def calculate_search_results(kwargs, user):
             if sort_on in SIMPLY_SORTED:
                 qs = qs.order_by(sort_by, "store__pootle_path", "index")
             else:
-                if sort_by[0] == '-':
-                    max_field = sort_by[1:]
-                    sort_order = '-sort_by_field'
-                else:
-                    max_field = sort_by
-                    sort_order = 'sort_by_field'
+                max_field, sort_order = get_max_and_order_fields(sort_by)
                 qs = (
                     qs.annotate(sort_by_field=Max(max_field))
                       .order_by(sort_order, "store__pootle_path", "index"))
