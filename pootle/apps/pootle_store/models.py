@@ -464,9 +464,6 @@ class Unit(models.Model, base.TranslationUnit):
         if prefix:
             return prefix + urlquote(self.source_f)
 
-    def get_mtime(self):
-        return self.mtime
-
     def is_accessible_by(self, user):
         """Returns `True` if the current unit is accessible by `user`."""
         if user.is_superuser:
