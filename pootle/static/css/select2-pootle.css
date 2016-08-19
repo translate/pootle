@@ -41,12 +41,14 @@
     filter: none;
 }
 
-html[dir="rtl"] .select2-container .select2-choice span {
+html[dir="rtl"] .select2-container .select2-choice span
+{
     margin-right: auto;
     margin-left: 26px;
 }
 
-html[dir="rtl"] .select2-container.select2-allowclear .select2-choice span {
+html[dir="rtl"] .select2-container.select2-allowclear .select2-choice span
+{
     margin-right: auto;
     margin-left: 42px;
 }

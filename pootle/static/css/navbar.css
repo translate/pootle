@@ -240,14 +240,16 @@ html[dir="rtl"] #nav-access
 
 /* Responsive styles */
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 900px)
+{
     #nav-main
     {
         display: block !important;
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px)
+{
     .brand-name
     {
         display: none;

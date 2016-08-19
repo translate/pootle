@@ -65,7 +65,8 @@ html[dir="rtl"] .staticpages-edit
     height: 30em;
 }
 
-.staticpages td {
+.staticpages td
+{
     width: 1%;
 }
 
