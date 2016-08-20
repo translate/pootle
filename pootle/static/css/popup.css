@@ -33,7 +33,7 @@
 .popup-ajax .popup-form,
 .lightbox-body
 {
-    line-height: 1!important;
+    line-height: 1 !important;
 }
 
 /* MFP popus are next to the body, they need a bigger font-size */
