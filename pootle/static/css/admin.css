@@ -207,7 +207,6 @@ html[dir="rtl"] td.pootle_path
 .admin-buttons-block input
 {
     display: inline;
-    margin-bottom: 1em;
     margin-left: 0.25em;
     margin-right: 0.25em;
 }
