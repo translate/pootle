@@ -24,8 +24,6 @@ def setup_db_if_needed(request):
     if is_db_marker_set:
         return request.getfuncargvalue('post_db_setup')
 
-    return None
-
 
 @pytest.fixture(scope='session')
 def post_db_setup(translations_directory, _django_db_setup,
