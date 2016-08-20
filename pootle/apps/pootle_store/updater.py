@@ -123,7 +123,8 @@ class UnitUpdater(object):
     def should_update_index(self):
         return (
             self.update.change_indices
-            and self.uid in self.update.indices)
+            and self.uid in self.update.indices
+            and self.unit.index != self.update.get_index(self.uid))
 
     @property
     def should_update_target(self):
