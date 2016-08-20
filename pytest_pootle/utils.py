@@ -90,10 +90,7 @@ def items_equal(left, right):
     """Returns `True` if items in `left` list are equal to items in
     `right` list.
     """
-    try:
-        return sorted(left) == sorted(right)
-    except TypeError:  # non-iterable
-        return False
+    return sorted(left) == sorted(right)
 
 
 def create_api_request(rf, method='get', url='/', data='', user=None,
@@ -114,15 +111,12 @@ def create_api_request(rf, method='get', url='/', data='', user=None,
     return request
 
 
-def update_store(store, units=None, store_revision=None, add_headers=False,
+def update_store(store, units=None, store_revision=None,
                  user=None, submission_type=None, resolve_conflict=None):
     from pootle_store.models import POOTLE_WINS
     if resolve_conflict is None:
         resolve_conflict = POOTLE_WINS
     store_headers = {}
-    if add_headers and store_revision:
-        store_headers = {"store_revision": store_revision,
-                         "pootle_path": store.pootle_path}
     store.update(store=create_store(units=units, **store_headers),
                  store_revision=store_revision,
                  user=user, submission_type=submission_type,
