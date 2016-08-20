@@ -61,7 +61,7 @@ html[dir="rtl"] .select2-container.select2-allowclear .select2-choice span
 .select2-container.select2-drop-above .select2-choice
 {
     border-bottom-color: #d9d9d9;
-    border-radius:0 0 2px 2px;
+    border-radius: 0 0 2px 2px;
 }
 
 .select2-drop

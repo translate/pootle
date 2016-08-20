@@ -1099,7 +1099,7 @@ html[dir="rtl"] #target-item-gravatar
 
 .timeline-extra
 {
-    position:absolute;
+    position: absolute;
     top: 0;
     left: 100%;
     font-size: 0.9em;
@@ -1148,7 +1148,7 @@ html[dir="rtl"] .timeline-arrow::before
     font-size: 115%;
     display: inline-block;
     white-space: nowrap;
-    width:100%;
+    width: 100%;
     margin-top: 1em;
 }
 

@@ -455,7 +455,7 @@ td.stats-name a:hover > i + span,
 
 #footer .nav li::after
 {
-    content:  " | ";
+    content: " | ";
     margin: 0 1em;
 }
 
