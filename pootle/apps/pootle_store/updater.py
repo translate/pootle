@@ -104,14 +104,21 @@ class UnitUpdater(object):
     def newunit(self):
         return self.update.find_source_unit(self.uid)
 
+    @property
+    def unit_changed(self):
+        if self.unit.store.is_template:
+            return self.unit.source != self.newunit.source
+        return (
+            self.unit.target != self.newunit.target
+            or self.unit.source != self.newunit.source)
+
     @cached_property
     def conflict_found(self):
         return (
             self.newunit
             and self.update.store_revision is not None
             and self.update.store_revision < self.unit.revision
-            and (self.unit.target != self.newunit.target
-                 or self.unit.source != self.newunit.source))
+            and self.unit_changed)
 
     @property
     def should_create_suggestion(self):
