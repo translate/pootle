@@ -49,11 +49,11 @@ def _update_translation(store, item, new_values, sync=True):
 
 @pytest.mark.django_db
 def test_getorig(af_tutorial_po):
-    """Tests that the in-DB Store and on-disk Store match by checking that
+    """Tests that the inDB Store and ondisk Store match by checking that
     units match in order.
     """
-    for db_unit in af_tutorial_po.units.iterator():
-        store_unit = db_unit.getorig()
+    for i, db_unit in enumerate(af_tutorial_po.units.iterator()):
+        store_unit = af_tutorial_po.file.store.units[i + 1]
         assert db_unit.getid() == store_unit.getid()
 
 
@@ -65,7 +65,7 @@ def test_convert(af_tutorial_po):
             # Skip untranslated plural units, they will always look different
             continue
 
-        store_unit = db_unit.getorig()
+        store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
         newunit = db_unit.convert(af_tutorial_po.file.store.UnitClass)
 
         assert str(newunit) == str(store_unit)
@@ -75,7 +75,7 @@ def test_convert(af_tutorial_po):
 def test_update_target(af_tutorial_po):
     """Tests that target changes are properly sync'ed to disk."""
     db_unit = _update_translation(af_tutorial_po, 0, {'target': u'samaka'})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
 
     assert db_unit.target == u'samaka'
     assert db_unit.target == store_unit.target
@@ -88,7 +88,7 @@ def test_update_target(af_tutorial_po):
 def test_empty_plural_target(af_tutorial_po):
     """Tests empty plural targets are not deleted."""
     db_unit = _update_translation(af_tutorial_po, 2, {'target': [u'samaka']})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
     assert len(store_unit.target.strings) == 2
 
     db_unit = _update_translation(af_tutorial_po, 2, {'target': u''})
@@ -101,7 +101,7 @@ def test_update_plural_target(af_tutorial_po):
     db_unit = _update_translation(
         af_tutorial_po, 2,
         {'target': [u'samaka', u'samak']})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
 
     assert db_unit.target.strings == [u'samaka', u'samak']
     assert db_unit.target.strings == store_unit.target.strings
@@ -122,7 +122,7 @@ def test_update_plural_target_dict(af_tutorial_po):
     db_unit = _update_translation(
         af_tutorial_po, 2,
         {'target': {0: u'samaka', 1: u'samak'}})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
 
     assert db_unit.target.strings == [u'samaka', u'samak']
     assert db_unit.target.strings == store_unit.target.strings
@@ -143,7 +143,7 @@ def test_update_fuzzy(af_tutorial_po):
     db_unit = _update_translation(
         af_tutorial_po, 0,
         {'target': u'samaka', 'fuzzy': True})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
 
     assert db_unit.isfuzzy()
     assert db_unit.isfuzzy() == store_unit.isfuzzy()
@@ -152,7 +152,7 @@ def test_update_fuzzy(af_tutorial_po):
     assert db_unit.isfuzzy() == po_file.units[db_unit.index].isfuzzy()
 
     db_unit = _update_translation(af_tutorial_po, 0, {'fuzzy': False})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
 
     assert not db_unit.isfuzzy()
     assert db_unit.isfuzzy() == store_unit.isfuzzy()
@@ -167,7 +167,7 @@ def test_update_comment(af_tutorial_po):
     db_unit = _update_translation(
         af_tutorial_po, 0,
         {'translator_comment': u'7amada'})
-    store_unit = db_unit.getorig()
+    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
 
     assert db_unit.getnotes(origin='translator') == u'7amada'
     assert (
