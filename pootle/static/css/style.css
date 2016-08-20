@@ -812,6 +812,7 @@ html[dir="rtl"] #autorefresh-notice .x
     position: relative;
     width: 100%;
     display: inline-block;
+
     /* height calculated via js */
 }
 
@@ -1842,6 +1843,7 @@ html[dir="rtl"] .summary-3-col
     background-color: #ccc;
     width: 100%;
     margin-bottom: 1em;
+
     /* hide graph areas while we don't render anything there */
     display: none;
 }

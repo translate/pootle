@@ -116,6 +116,7 @@ html[dir="rtl"] .breadcrumb .select2-container .select2-choice abbr
 {
     cursor: default;
 }
+
 /* END HACK */
 
 .select2-results .project-disabled

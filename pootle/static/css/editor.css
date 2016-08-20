@@ -1403,6 +1403,7 @@ table.suggest-mode .switch-suggest-mode .submit
 {
     position: absolute;
     top: -12px;
+
     /* LTR */
     right: 0;
 }
