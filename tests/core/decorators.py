@@ -19,10 +19,10 @@ from pootle_translationproject.models import TranslationProject
 
 
 @pytest.mark.django_db
-def test_get_path_obj(rf, default, afrikaans_tutorial):
+def test_get_path_obj(rf, default, tp0):
     """Ensure the correct path object is retrieved."""
-    language_code = afrikaans_tutorial.language.code
-    project_code = afrikaans_tutorial.project.code
+    language_code = tp0.language.code
+    project_code = tp0.project.code
 
     language_code_fake = 'faf'
     project_code_fake = 'fake-tutorial'
@@ -61,13 +61,13 @@ def test_get_path_obj(rf, default, afrikaans_tutorial):
 
 @pytest.mark.django_db
 def test_get_path_obj_disabled(rf, default, admin, project_foo,
-                               afrikaans_tutorial,
+                               tp0,
                                arabic_tutorial_obsolete,
                                tutorial_disabled):
     """Ensure the correct path object is retrieved when projects are
     disabled (#3451) or translation projects are obsolete (#3682).
     """
-    language_code = afrikaans_tutorial.language.code
+    language_code = tp0.language.code
     language_code_obsolete = arabic_tutorial_obsolete.language.code
     project_code_obsolete = arabic_tutorial_obsolete.project.code
     project_code_disabled = tutorial_disabled.code
@@ -120,10 +120,10 @@ def test_get_path_obj_disabled(rf, default, admin, project_foo,
 
 
 @pytest.mark.django_db
-def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
+def test_get_resource_tp(rf, default, tp0):
     """Tests that the correct resources are set for the given TP contexts."""
-    store_name = 'tutorial.po'
-    subdir_name = 'subdir/'
+    store_name = 'store0.po'
+    subdir_name = 'subdir0/'
 
     subdir_name_fake = 'fake_subdir/'
     store_name_fake = 'fake_store.po'
@@ -135,40 +135,39 @@ def test_get_resource_tp(rf, default, tutorial, afrikaans_tutorial):
     func = get_resource(lambda x, y, s, t: (x, y, s, t))
 
     # TP, no resource
-    func(request, afrikaans_tutorial, '', '')
+    func(request, tp0, '', '')
     assert isinstance(request.resource_obj, TranslationProject)
 
     # TP, file resource
-    func(request, afrikaans_tutorial, '', store_name)
+    func(request, tp0, '', store_name)
     assert isinstance(request.resource_obj, Store)
 
     # TP, directory resource
-    func(request, afrikaans_tutorial, subdir_name, '')
+    func(request, tp0, subdir_name, '')
     assert isinstance(request.resource_obj, Directory)
 
     # TP, missing file/dir resource, redirects to parent resource
-    response = func(request, afrikaans_tutorial, '', store_name_fake)
+    response = func(request, tp0, '', store_name_fake)
     assert response.status_code == 302
-    assert afrikaans_tutorial.pootle_path in response.get('location')
+    assert tp0.pootle_path in response.get('location')
 
-    response = func(request, afrikaans_tutorial, subdir_name, store_name_fake)
+    response = func(request, tp0, subdir_name, store_name_fake)
     assert response.status_code == 302
-    assert (''.join([afrikaans_tutorial.pootle_path, subdir_name]) in
+    assert (''.join([tp0.pootle_path, subdir_name]) in
             response.get('location'))
 
-    response = func(request, afrikaans_tutorial, subdir_name_fake, '')
+    response = func(request, tp0, subdir_name_fake, '')
     assert response.status_code == 302
-    assert afrikaans_tutorial.pootle_path in response.get('location')
+    assert tp0.pootle_path in response.get('location')
 
 
 @pytest.mark.django_db
-def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
-                              arabic_tutorial_obsolete):
+def test_get_resource_project(rf, default, project0, tp0):
     """Tests that the correct resources are set for the given Project
     contexts.
     """
-    store_name = 'tutorial.po'
-    subdir_name = 'subdir/'
+    store_name = 'store0.po'
+    subdir_name = 'subdir0/'
 
     request = rf.get('/')
     request.user = default
@@ -177,25 +176,35 @@ def test_get_resource_project(rf, default, tutorial, afrikaans_tutorial,
     func = get_resource(lambda x, y, s, t: (x, y, s, t))
 
     # Project, no resource
-    func(request, tutorial, '', '')
+    func(request, project0, '', '')
     assert isinstance(request.resource_obj, Project)
 
     # Project, cross-language file resource
-    func(request, tutorial, '', store_name)
+    func(request, project0, '', store_name)
     assert isinstance(request.resource_obj, ProjectResource)
 
     # Two languages had this file, but it was marked as obsolete for the Arabic
     # language!
     # Should only contain a single file resource
-    assert len(request.resource_obj.resources) == 1
+    assert (
+        len(request.resource_obj.resources)
+        == len(
+            Store.objects.filter(
+                translation_project__project__code=project0.code,
+                name="store0.po")))
     assert isinstance(request.resource_obj.resources[0], Store)
 
     # Project, cross-language directory resource
-    func(request, tutorial, subdir_name, '')
+    func(request, project0, subdir_name, '')
     assert isinstance(request.resource_obj, ProjectResource)
 
     # Two languages have this dir, but it was marked as obsolete for the Arabic
     # language!
     # Should only contain a single dir resource
-    assert len(request.resource_obj.resources) == 1
+    assert (
+        len(request.resource_obj.resources)
+        == len(
+            Directory.objects.filter(
+                name=subdir_name.rstrip("/"),
+                parent__translationproject__project=project0)))
     assert isinstance(request.resource_obj.resources[0], Directory)
