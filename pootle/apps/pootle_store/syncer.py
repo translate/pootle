@@ -205,10 +205,10 @@ class StoreSyncer(object):
              in new_ids - old_ids])
 
     def get_units_to_obsolete(self, old_ids, new_ids):
-        return (
-            self.disk_store.findid(uid)
-            for uid
-            in old_ids - new_ids)
+        for uid in old_ids - new_ids:
+            unit = self.disk_store.findid(uid)
+            if unit and not unit.isobsolete():
+                yield unit
 
     def obsolete_unit(self, unit, conservative):
         deleted = not unit.istranslated()
