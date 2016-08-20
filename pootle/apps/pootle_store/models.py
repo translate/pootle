@@ -494,21 +494,6 @@ class Unit(models.Model, base.TranslationUnit):
         """
         return self.unit_syncer.convert(unitclass)
 
-    def getorig(self):
-        unit = self.store.file.store.units[self.index]
-        if self.getid() == unit.getid():
-            return unit
-
-        # FIXME: if we are here, file changed structure and we need to update
-        # indexes
-        logging.debug(u"Incorrect unit index %d for %s in file %s",
-                      unit.index, unit, unit.store.file)
-
-        self.store.file.store.require_index()
-        unit = self.store.file.store.findid(self.getid())
-
-        return unit
-
     def calculate_priority(self):
         if not vfolders_installed():
             return 1.0
