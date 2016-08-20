@@ -122,7 +122,7 @@ html[dir="rtl"] .select2-container .select2-choice div
 .unit-sort .select2-dropdown-open .select2-choice
 {
     background-color: #eee;
-    background-image: linear-gradient(to bottom, #fff 0%,#eee 50%);
+    background-image: linear-gradient(to bottom, #fff 0%, #eee 50%);
 }
 
 .select2-results .select2-highlighted

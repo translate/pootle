@@ -1024,17 +1024,17 @@ html[dir="rtl"] .form .buttons
 
 .form.message
 {
-    background: linear-gradient(to bottom,  #e5f3f8,  #cde7f1);
+    background: linear-gradient(to bottom, #e5f3f8, #cde7f1);
 }
 
 .form.success
 {
-    background: linear-gradient(to bottom,  #efd,  #cf9);
+    background: linear-gradient(to bottom, #efd, #cf9);
 }
 
 .form.error
 {
-    background: linear-gradient(to bottom,  #fee,  #fcc);
+    background: linear-gradient(to bottom, #fee, #fcc);
 }
 
 .form p.info
