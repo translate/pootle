@@ -1369,7 +1369,9 @@ def _test_get_obsolete(results, syncer, old_ids, new_ids):
     assert list(results) == list(
         syncer.disk_store.findid(uid)
         for uid
-        in old_ids - new_ids)
+        in old_ids - new_ids
+        if (syncer.disk_store.findid(uid)
+            and not syncer.disk_store.findid(uid).isobsolete()))
 
 
 @pytest.mark.django_db
