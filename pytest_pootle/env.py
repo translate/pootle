@@ -15,7 +15,7 @@ from dateutil.relativedelta import relativedelta
 class PootleTestEnv(object):
 
     methods = (
-        "redis", "case_sensitive_schema", "formats", "content_type", "site_root",
+        "redis", "case_sensitive_schema", "formats", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
         "site_permissions", "tps", "disabled_project",
         "subdirs", "submissions", "announcements", "terminology", "fs")
@@ -133,15 +133,6 @@ class PootleTestEnv(object):
             "name",
             "utf8_bin",
             "varchar(255)")
-
-    def setup_content_type(self):
-        from django.contrib.contenttypes.models import ContentType
-
-        args = {
-            'app_label': 'pootle_app',
-            'model': 'directory'}
-        content_type, created = ContentType.objects.get_or_create(**args)
-        return content_type
 
     def setup_permissions(self):
         from django.contrib.contenttypes.models import ContentType
