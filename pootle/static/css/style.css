@@ -38,12 +38,15 @@
  * BASIC ELEMENT STYLING
  */
 
-#header-meta, #footer, .header
+#header-meta,
+#footer,
+.header
 {
     background-color: #eee;
 }
 
-#body, html#tp
+#body,
+html#tp
 {
     background: white;
 }
@@ -137,14 +140,21 @@ td
     padding: 5px 0;
 }
 
-h1, h2, h3, h4, h5, h6
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
 {
     font-weight: normal;
     font-size: 100%;
     color: #999;
 }
 
-h1, h2, h3
+h1,
+h2,
+h3
 {
     font-family: sans-serif;
 }
@@ -180,18 +190,31 @@ h6
     font-size: 100%;
 }
 
-body, div,
-ul, ol, li,
-h1, h2, h3, h4, h5, h6,
-pre, code,
-form, fieldset, legend,
-p, blockquote
+body,
+div,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+p,
+blockquote
 {
     margin: 0;
     padding: 0;
 }
 
-input, textarea
+input,
+textarea
 {
     margin: 0;
 }
@@ -209,8 +232,13 @@ img
     border: 0;
 }
 
-address, caption, cite, code, dfn,
-th, var
+address,
+caption,
+cite,
+code,
+dfn,
+th,
+var
 {
     font-style: normal;
     font-weight: normal;
@@ -272,7 +300,11 @@ legend
     color: #130f30;
 }
 
-pre, code, kbd, samp, tt
+pre,
+code,
+kbd,
+samp,
+tt
 {
     font-family: monospace;
     line-height: 100%;
@@ -2170,7 +2202,15 @@ table.stats .item.dirty .last-updated
  */
 
 /* Doesn't work: [dir="rtl"] */
-*:lang(ar), *:lang(arc), *:lang(dv), *:lang(fa), *:lang(he), *:lang(ks), *:lang(ps), *:lang(ur), *:lang(yi)
+*:lang(ar),
+*:lang(arc),
+*:lang(dv),
+*:lang(fa),
+*:lang(he),
+*:lang(ks),
+*:lang(ps),
+*:lang(ur),
+*:lang(yi)
 {
     /* If any styling is necessary for the rtl languages, add it here */
     direction: rtl;
