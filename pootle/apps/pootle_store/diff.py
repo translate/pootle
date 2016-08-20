@@ -74,6 +74,8 @@ class DiffableStore(object):
         diff_units = OrderedDict()
         units = unit_qs.values(*self.unit_fields).order_by("index")
         for unit in units:
+            if self.target_store.is_template:
+                unit["target"] = ""
             diff_units[unit["unitid"]] = unit
         return diff_units
 
@@ -85,15 +87,19 @@ class DiffableStore(object):
             state = TRANSLATED
         elif unit.isfuzzy():
             state = FUZZY
-        return {
+        file_unit = {
             "unitid": unit.getid(),
             "context": unit.getcontext(),
             "locations": unit.getlocations(),
             "source": unit.source,
-            "target": unit.target,
             "state": state,
             "developer_comment": unit.getnotes(origin="developer"),
             "translator_comment": unit.getnotes(origin="translator")}
+        if not self.target_store.is_template:
+            file_unit["target"] = unit.target
+        else:
+            file_unit["target"] = ""
+        return file_unit
 
     def get_file_units(self, units):
         diff_units = OrderedDict()
