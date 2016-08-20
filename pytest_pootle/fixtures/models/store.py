@@ -613,3 +613,10 @@ def dummy_store_syncer():
         common_units=["common", "units"],
         changes=["some", "changes"])
     return DummyStoreSyncer, expected
+
+
+@pytest.fixture
+def store0(tp0):
+    store = tp0.stores.first()
+    store.sync()
+    return store
