@@ -163,13 +163,13 @@ def test_admin_view_project_post(client, request_users):
 
 
 @pytest.mark.django_db
-def test_admin_view_project_add_tp(english, client, admin):
+def test_admin_view_project_add_tp(templates, client, admin):
 
     user = admin
     project = Project.objects.get(code="project0")
 
     new_language = LanguageDBFactory()
-    TranslationProject.objects.create(language=english, project=project)
+    TranslationProject.objects.create(language=templates, project=project)
 
     client.login(
         username=user.username,
