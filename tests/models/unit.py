@@ -61,10 +61,6 @@ def test_getorig(store0):
 def test_convert(store0):
     """Tests that in-DB and on-disk units match after format conversion."""
     for db_unit in store0.units.iterator():
-        if db_unit.hasplural() and not db_unit.istranslated():
-            # Skip untranslated plural units, they will always look different
-            continue
-
         store_unit = store0.file.store.findid(db_unit.getid())
         newunit = db_unit.convert(store0.file.store.UnitClass)
 
