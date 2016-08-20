@@ -130,7 +130,7 @@ pre
 th
 {
     font-size: 110%;
-    padding: 0 0 7px 0;
+    padding: 0 0 7px;
     background-color: inherit;
     color: #4b4742;
 }
@@ -1688,7 +1688,7 @@ html[dir="rtl"] .expand-stats
     display: block;
     margin-top: 11px;
     margin-left: -10px;
-    padding: 10px 0 10px 0;
+    padding: 10px 0;
     height: 15px;
 }
 
@@ -1756,7 +1756,7 @@ html[dir="rtl"] .summary-3-col
 
 .path-summary-more .summary-2-col
 {
-    margin: 0 3.125% 0 3.125%;
+    margin: 0 3.125%;
 }
 
 
@@ -1777,12 +1777,12 @@ html[dir="rtl"] .summary-3-col
 
     #top-stats .path-summary-more .summary-3-col h3.top
     {
-        margin: 1em 0 0 0;
+        margin: 1em 0 0;
     }
 
     .path-summary-more.expand .path-summary-expanded
     {
-        margin: 2.5em 0 1em 0;
+        margin: 2.5em 0 1em;
     }
 
     .path-summary-more .summary-2-col
@@ -1808,19 +1808,19 @@ html[dir="rtl"] .summary-3-col
 
 .path-summary-more .bd
 {
-    margin: 1em 0 1em 0;
+    margin: 1em 0;
 }
 
 .path-summary-more .summary-3-col .bd
 {
-    margin: 1em 0 1em 0;
+    margin: 1em 0;
 }
 
 
 #top-stats .path-summary-more h3
 {
     border: 0;
-    margin: 2em 0 0 0;
+    margin: 2em 0 0;
 }
 
 #top-stats .path-summary-more h3.top

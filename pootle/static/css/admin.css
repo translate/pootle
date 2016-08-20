@@ -438,7 +438,7 @@ html[dir="rtl"] .admin-content .item-delete input
 
 .search-results caption
 {
-    padding: 0 0 1em 0;
+    padding: 0 0 1em;
 }
 
 .search-results tr
