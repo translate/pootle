@@ -141,9 +141,6 @@ class PootleTestEnv(object):
             'app_label': 'pootle_app',
             'model': 'directory'}
         content_type, created = ContentType.objects.get_or_create(**args)
-        if created:
-            content_type.save()
-
         return content_type
 
     def setup_permissions(self):
