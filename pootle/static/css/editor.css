@@ -388,22 +388,22 @@ html[dir="rtl"] div.unit-path li
     margin-left: 0.3em;
 }
 
-div.unit-path li:after
+div.unit-path li::after
 {
     content: '→';
 }
 
-html[dir="rtl"] div.unit-path li:after
+html[dir="rtl"] div.unit-path li::after
 {
     content: '←';
 }
 
-div.unit-path li:last-child:after
+div.unit-path li:last-child::after
 {
     content: '';
 }
 
-html[dir="rtl"] div.unit-path li:last-child:after
+html[dir="rtl"] div.unit-path li:last-child::after
 {
     content: '';
 }
@@ -1128,12 +1128,12 @@ html[dir="rtl"] .timeline-extra
     unicode-bidi: embed;
 }
 
-.timeline-arrow:before
+.timeline-arrow::before
 {
     content: "→";
 }
 
-html[dir="rtl"] .timeline-arrow:before
+html[dir="rtl"] .timeline-arrow::before
 {
     content: "←";
 }

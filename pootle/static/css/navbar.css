@@ -260,7 +260,7 @@ html[dir="rtl"] #nav-access
         max-width: 70%;
     }
 
-    #navbar:after
+    #navbar::after
     {
         clear: both;
     }

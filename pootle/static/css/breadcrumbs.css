@@ -61,7 +61,7 @@ html[dir="rtl"] .breadcrumb li
     content: " / ";
 }
 
-.breadcrumb li:first-child:before,
+.breadcrumb li:first-child::before,
 .translate .breadcrumb li::before,
 .browser .breadcrumb li::before
 {
