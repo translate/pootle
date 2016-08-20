@@ -10,9 +10,9 @@ import pytest
 
 
 @pytest.mark.django_db
-def test_hash(af_tutorial_po):
+def test_hash(store0):
     """Tests that target hash changes when suggestion is modified"""
-    unit = af_tutorial_po.units[0]
+    unit = store0.units[0]
     suggestion, created_ = unit.add_suggestion("gras")
 
     first_hash = suggestion.target_hash

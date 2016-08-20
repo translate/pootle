@@ -31,10 +31,10 @@ def _create_unit_form(request, language, unit):
 
 
 @pytest.mark.django_db
-def test_submit_no_source(rf, default, af_tutorial_po):
+def test_submit_no_source(rf, default, store0):
     """Tests that the source string cannot be modified."""
-    language = af_tutorial_po.translation_project.language
-    unit = af_tutorial_po.units[0]
+    language = store0.translation_project.language
+    unit = store0.units[0]
     source_string = unit.source_f
     directory = unit.store.parent
     post_dict = {
@@ -50,17 +50,16 @@ def test_submit_no_source(rf, default, af_tutorial_po):
     assert form.is_valid()
     form.save()
 
-    unit = af_tutorial_po.units[0]
+    unit = store0.units[0]
     assert unit.source_f == source_string
     assert unit.target_f == 'dummy'
 
 
 @pytest.mark.django_db
-def test_submit_fuzzy(rf, admin, default,
-                      afrikaans, af_tutorial_po):
+def test_submit_fuzzy(rf, admin, default, store0):
     """Tests that non-admin users can't set the fuzzy flag."""
-    language = afrikaans
-    unit = af_tutorial_po.units[0]
+    language = store0.translation_project.language
+    unit = store0.units[0]
     directory = unit.store.parent
     post_dict = {
         'id': unit.id,
@@ -80,10 +79,10 @@ def test_submit_fuzzy(rf, admin, default,
 
 
 @pytest.mark.django_db
-def test_submit_similarity(rf, default, afrikaans, af_tutorial_po):
+def test_submit_similarity(rf, default, store0):
     """Tests that similarities are within a particular range."""
-    language = afrikaans
-    unit = af_tutorial_po.units[0]
+    language = store0.translation_project.language
+    unit = store0.units[0]
     directory = unit.store.parent
 
     post_dict = {

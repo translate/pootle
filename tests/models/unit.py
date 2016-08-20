@@ -48,40 +48,41 @@ def _update_translation(store, item, new_values, sync=True):
 
 
 @pytest.mark.django_db
-def test_getorig(af_tutorial_po):
+def test_getorig(store0):
     """Tests that the inDB Store and ondisk Store match by checking that
     units match in order.
     """
-    for i, db_unit in enumerate(af_tutorial_po.units.iterator()):
-        store_unit = af_tutorial_po.file.store.units[i + 1]
+    for i, db_unit in enumerate(store0.units.iterator()):
+        store_unit = store0.file.store.units[i + 1]
         assert db_unit.getid() == store_unit.getid()
 
 
 @pytest.mark.django_db
-def test_convert(af_tutorial_po):
+def test_convert(store0):
     """Tests that in-DB and on-disk units match after format conversion."""
-    for db_unit in af_tutorial_po.units.iterator():
+    for db_unit in store0.units.iterator():
         if db_unit.hasplural() and not db_unit.istranslated():
             # Skip untranslated plural units, they will always look different
             continue
 
-        store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
-        newunit = db_unit.convert(af_tutorial_po.file.store.UnitClass)
+        store_unit = store0.file.store.findid(db_unit.getid())
+        newunit = db_unit.convert(store0.file.store.UnitClass)
 
         assert str(newunit) == str(store_unit)
 
 
 @pytest.mark.django_db
-def test_update_target(af_tutorial_po):
+def test_update_target(store0):
     """Tests that target changes are properly sync'ed to disk."""
-    db_unit = _update_translation(af_tutorial_po, 0, {'target': u'samaka'})
-    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
+    db_unit = _update_translation(store0, 0, {'target': u'samaka'})
+    store0.sync()
+    store_unit = store0.file.store.findid(db_unit.getid())
 
     assert db_unit.target == u'samaka'
     assert db_unit.target == store_unit.target
 
-    po_file = factory.getobject(af_tutorial_po.file.path)
-    assert db_unit.target == po_file.units[db_unit.index].target
+    po_file = factory.getobject(store0.file.path)
+    assert db_unit.target == po_file.findid(db_unit.unitid).target
 
 
 @pytest.mark.django_db
@@ -130,62 +131,65 @@ def test_update_plural_target_dict(af_tutorial_po):
     po_file = factory.getobject(af_tutorial_po.file.path)
     assert (
         db_unit.target.strings
-        == po_file.units[db_unit.index].target.strings)
+        == po_file.findid(db_unit.getid()).target.strings)
 
     assert db_unit.target == u'samaka'
     assert db_unit.target == store_unit.target
-    assert db_unit.target == po_file.units[db_unit.index].target
+    assert db_unit.target == po_file.findid(db_unit.getid()).target
 
 
 @pytest.mark.django_db
-def test_update_fuzzy(af_tutorial_po):
+def test_update_fuzzy(store0):
     """Tests fuzzy state changes are stored and sync'ed."""
     db_unit = _update_translation(
-        af_tutorial_po, 0,
+        store0, 0,
         {'target': u'samaka', 'fuzzy': True})
-    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
+    store_unit = store0.file.store.findid(db_unit.getid())
 
     assert db_unit.isfuzzy()
     assert db_unit.isfuzzy() == store_unit.isfuzzy()
 
-    po_file = factory.getobject(af_tutorial_po.file.path)
-    assert db_unit.isfuzzy() == po_file.units[db_unit.index].isfuzzy()
+    po_file = factory.getobject(store0.file.path)
+    assert db_unit.isfuzzy() == po_file.findid(db_unit.getid()).isfuzzy()
 
-    db_unit = _update_translation(af_tutorial_po, 0, {'fuzzy': False})
-    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
+    db_unit = _update_translation(store0, 0, {'fuzzy': False})
+    store_unit = store0.file.store.findid(db_unit.getid())
 
     assert not db_unit.isfuzzy()
     assert db_unit.isfuzzy() == store_unit.isfuzzy()
 
-    po_file = factory.getobject(af_tutorial_po.file.path)
-    assert db_unit.isfuzzy() == po_file.units[db_unit.index].isfuzzy()
+    po_file = factory.getobject(store0.file.path)
+    assert db_unit.isfuzzy() == po_file.findid(db_unit.getid()).isfuzzy()
 
 
 @pytest.mark.django_db
-def test_update_comment(af_tutorial_po):
+def test_update_comment(store0):
     """Tests translator comments are stored and sync'ed."""
     db_unit = _update_translation(
-        af_tutorial_po, 0,
+        store0, 0,
         {'translator_comment': u'7amada'})
-    store_unit = af_tutorial_po.file.store.findid(db_unit.getid())
+    store0.sync()
+    store_unit = store0.file.store.findid(db_unit.getid())
 
     assert db_unit.getnotes(origin='translator') == u'7amada'
     assert (
         db_unit.getnotes(origin='translator')
         == store_unit.getnotes(origin='translator'))
 
-    po_file = factory.getobject(af_tutorial_po.file.path)
+    po_file = factory.getobject(store0.file.path)
     assert (
         db_unit.getnotes(origin='translator')
-        == po_file.units[db_unit.index].getnotes(origin='translator'))
+        == po_file.findid(db_unit.getid()).getnotes(origin='translator'))
 
 
 @pytest.mark.django_db
-def test_add_suggestion(af_tutorial_po, system):
+def test_add_suggestion(store0, system):
     """Tests adding new suggestions to units."""
-    untranslated_unit = af_tutorial_po.units[0]
-    translated_unit = af_tutorial_po.units[1]
+    untranslated_unit = store0.units.filter(state=UNTRANSLATED)[0]
+    translated_unit = store0.units.filter(state=TRANSLATED)[0]
     suggestion_text = 'foo bar baz'
+
+    initial_suggestions = len(untranslated_unit.get_suggestions())
 
     # Empty suggestion is not recorded
     sugg, added = untranslated_unit.add_suggestion('')
@@ -201,23 +205,23 @@ def test_add_suggestion(af_tutorial_po, system):
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
     assert sugg is not None
     assert added
-    assert len(untranslated_unit.get_suggestions()) == 1
+    assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
     # Already-suggested text can't be suggested again
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
     assert sugg is not None
     assert not added
-    assert len(untranslated_unit.get_suggestions()) == 1
+    assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
     # Removing a suggestion should allow suggesting the same text again
     tp = untranslated_unit.store.translation_project
     untranslated_unit.reject_suggestion(sugg, tp, system)
-    assert len(untranslated_unit.get_suggestions()) == 0
+    assert len(untranslated_unit.get_suggestions()) == initial_suggestions
 
     sugg, added = untranslated_unit.add_suggestion(suggestion_text)
     assert sugg is not None
     assert added
-    assert len(untranslated_unit.get_suggestions()) == 1
+    assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
 
 @pytest.mark.django_db

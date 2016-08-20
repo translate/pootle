@@ -15,11 +15,11 @@ from .unit import _update_translation
 
 
 @pytest.mark.django_db
-def test_max_revision(af_tutorial_po):
+def test_max_revision(store0):
     """Tests `max_revision()` gets the latest revision."""
 
     # update a store first, initial_revision = 1 after this update
-    af_tutorial_po.update(af_tutorial_po.file.store)
+    store0.update(store0.file.store)
 
     initial_max_revision = Unit.max_revision()
     initial_revision = Revision.get()
@@ -28,7 +28,7 @@ def test_max_revision(af_tutorial_po):
     # Let's make 10 translation updates, this must also update their revision
     # numbers
     for i in range(10):
-        _update_translation(af_tutorial_po, 0, {'target': str(i)},
+        _update_translation(store0, 0, {'target': str(i)},
                             sync=False)
 
     end_max_revision = Unit.max_revision()
@@ -41,10 +41,10 @@ def test_max_revision(af_tutorial_po):
 
 
 @pytest.mark.django_db
-def test_revision_incr(af_tutorial_po):
+def test_revision_incr(store0):
     """Tests revision is incremented when units change."""
     previous_revision = Revision.get()
-    db_unit = _update_translation(af_tutorial_po, 0, {'target': [u'Fleisch']},
+    db_unit = _update_translation(store0, 0, {'target': [u'Fleisch']},
                                   sync=False)
 
     assert db_unit.revision != previous_revision
@@ -53,7 +53,7 @@ def test_revision_incr(af_tutorial_po):
 
     previous_revision = Revision.get()
 
-    db_unit = _update_translation(af_tutorial_po, 0, {'target': u'Lachs'},
+    db_unit = _update_translation(store0, 0, {'target': u'Lachs'},
                                   sync=False)
 
     assert db_unit.revision != previous_revision
