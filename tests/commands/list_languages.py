@@ -10,19 +10,15 @@ import pytest
 
 from django.core.management import call_command
 
-from pootle_store.models import Unit
-
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_list_languages_af_es_fr(capfd, afrikaans_tutorial, spanish_tutorial,
-                                 french_tutorial):
+def test_list_languages(capfd):
     """Full site list of active languages"""
     call_command('list_languages')
     out, err = capfd.readouterr()
-    assert 'af' in out
-    assert 'es' in out
-    assert 'fr' in out
+    assert 'language0' in out
+    assert 'language1' in out
 
 
 @pytest.mark.cmd
@@ -33,19 +29,14 @@ def test_list_languages_project(capfd):
     out, err = capfd.readouterr()
     assert 'language0' in out
     assert 'language1' in out
-    assert 'af' not in out
+    assert 'en' not in out
 
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_list_languages_modified_since(capfd, afrikaans_tutorial,
-                                       spanish_tutorial, french_tutorial):
+def test_list_languages_modified_since(capfd):
     """Languages modified since a revision"""
-    fr_units = Unit.objects.filter(
-        store__translation_project__language=french_tutorial.language)
-    fr_revision = max(fr_units.values_list("revision", flat=True))
-    call_command('list_languages', '--modified-since=%d' % (fr_revision - 1))
+    call_command('list_languages', '--modified-since=%d' % (3))
     out, err = capfd.readouterr()
-    assert 'af' not in out
-    assert 'es' not in out
-    assert 'fr' in out
+    assert 'language0' in out
+    assert 'language1' in out
