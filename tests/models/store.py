@@ -204,15 +204,16 @@ def test_update_unit_order(ru_tutorial_po):
 
 
 @pytest.mark.django_db
-def test_update_save_changed_units(ru_update_save_changed_units_po):
+def test_update_save_changed_units(store0):
     """Tests that any update saves changed units only.
     """
-    store = ru_update_save_changed_units_po
+    store = store0
+
+    # Set last sync revision
+    store.sync()
 
     store.update(store.file.store)
     unit_list = list(store.units)
-    # Set last sync revision
-    store.sync()
 
     # delay for 1 sec, we'll compare mtimes
     time.sleep(1)

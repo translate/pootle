@@ -446,17 +446,19 @@ def test_update_user_email_bad_invalid_duplicate(member_with_email, member2):
 
 
 @pytest.mark.django_db
-def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
-                                      afrikaans, afrikaans_tutorial):
+def test_user_has_manager_permissions(no_perms_user, administrate, tp0):
     """Test user `has_manager_permissions` method."""
+    language0 = tp0.language
+    project0 = tp0.project
+
     # User has no permissions, so can't be manager.
     assert not no_perms_user.has_manager_permissions()
 
-    # Assign 'administrate' right for 'Afrikaans (Tutorial)' TP and check user
+    # Assign 'administrate' right for 'Language0 (Project0)' TP and check user
     # is manager.
     criteria = {
         'user': no_perms_user,
-        'directory': afrikaans_tutorial.directory,
+        'directory': tp0.directory,
     }
     ps = PermissionSet.objects.get_or_create(**criteria)[0]
     ps.positive_permissions = [administrate]
@@ -465,8 +467,8 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
     ps.positive_permissions.clear()
     assert not no_perms_user.has_manager_permissions()
 
-    # Assign 'administrate' right for 'Afrikaans' and check user is manager.
-    criteria['directory'] = afrikaans.directory
+    # Assign 'administrate' right for 'Language0' and check user is manager.
+    criteria['directory'] = language0.directory
     ps = PermissionSet.objects.get_or_create(**criteria)[0]
     ps.positive_permissions = [administrate]
     ps.save()
@@ -474,8 +476,8 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tutorial,
     ps.positive_permissions.clear()
     assert not no_perms_user.has_manager_permissions()
 
-    # Assign 'administrate' right for 'Tutorial' and check user is manager.
-    criteria['directory'] = tutorial.directory
+    # Assign 'administrate' right for 'Project0' and check user is manager.
+    criteria['directory'] = project0.directory
     ps = PermissionSet.objects.get_or_create(**criteria)[0]
     ps.positive_permissions = [administrate]
     ps.save()
