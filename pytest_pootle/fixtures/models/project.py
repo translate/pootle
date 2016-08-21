@@ -85,3 +85,11 @@ def project0():
     from pootle_project.models import Project
 
     return Project.objects.get(code="project0")
+
+
+@pytest.fixture
+def project1():
+    """project0 Project"""
+    from pootle_project.models import Project
+
+    return Project.objects.get(code="project1")

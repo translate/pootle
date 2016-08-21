@@ -102,3 +102,11 @@ def language0():
     from pootle_language.models import Language
 
     return Language.objects.get(code="language0")
+
+
+@pytest.fixture
+def language1():
+    """language1 Language"""
+    from pootle_language.models import Language
+
+    return Language.objects.get(code="language1")
