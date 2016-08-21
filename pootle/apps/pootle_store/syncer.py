@@ -16,6 +16,7 @@ from django.utils.functional import cached_property
 
 from pootle.core.delegate import format_classes
 from pootle.core.log import log
+from pootle.core.url_helpers import split_pootle_path
 
 from .models import Unit
 from .util import get_change_str
@@ -144,7 +145,7 @@ class StoreSyncer(object):
     def store_file_path(self):
         return os.path.join(
             self.translation_project.abs_real_path,
-            self.store.name)
+            *split_pootle_path(self.store.pootle_path)[2:])
 
     @property
     def unit_class(self):
@@ -232,6 +233,8 @@ class StoreSyncer(object):
     def create_store_file(self, last_revision, user):
         logging.debug(u"Creating file %s", self.store.pootle_path)
         store = self.convert()
+        if not os.path.exists(os.path.dirname(self.store_file_path)):
+            os.makedirs(os.path.dirname(self.store_file_path))
         store.savefile(self.store_file_path)
         log(u"Created file for %s [revision: %d]" %
             (self.store.pootle_path, last_revision))
