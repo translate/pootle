@@ -38,11 +38,13 @@ def test_get_units(rf, default):
 
 
 @pytest.mark.django_db
-def test_get_units_ordered(rf, default, admin, test_get_units_po):
+def test_get_units_ordered(rf, default, admin, numbered_po):
     """Tests units can be retrieved while applying order filters."""
     view = get_units
-
-    url = '/?path=/af/tutorial/&filter=incomplete&sort=newest&initial=true'
+    tp = numbered_po.translation_project
+    url = (
+        '/?path=/%s/%s/&filter=incomplete&sort=newest&initial=true'
+        % (tp.language.code, tp.project.code))
 
     request = create_api_request(rf, url=url, user=default)
     response = view(request)

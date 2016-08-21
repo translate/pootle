@@ -9,14 +9,14 @@
 import io
 import os
 import shutil
-import time
 
 import six
 
 import pytest
 
 from pytest_pootle.factories import (
-    LanguageDBFactory, ProjectDBFactory, TranslationProjectFactory)
+    LanguageDBFactory, ProjectDBFactory, StoreDBFactory,
+    TranslationProjectFactory)
 from pytest_pootle.utils import update_store
 
 from translate.storage.factory import getclass
@@ -75,24 +75,24 @@ def _store_as_string(store):
 
 
 @pytest.mark.django_db
-def test_delete_mark_obsolete(af_tutorial_subdir_po):
+def test_delete_mark_obsolete(project0, store0):
     """Tests that the in-DB Store and Directory are marked as obsolete
     after the on-disk file ceased to exist.
 
     Refs. #269.
     """
-    from pootle_store.models import Unit
+    tp = TranslationProjectFactory(
+        project=project0, language=LanguageDBFactory())
+    store = StoreDBFactory(
+        translation_project=tp,
+        parent=tp.directory)
 
-    tp = af_tutorial_subdir_po.translation_project
-    pootle_path = af_tutorial_subdir_po.pootle_path
-
-    # Scan TP files and parse units
-    tp.scan_files()
-    for store in tp.stores.all():
-        store.update(store.file.store)
+    store.update(store.deserialize(store0.serialize()))
+    store.sync()
+    pootle_path = store.pootle_path
 
     # Remove on-disk file
-    os.remove(af_tutorial_subdir_po.file.path)
+    os.remove(store.file.path)
 
     # Update stores by rescanning TP
     tp.scan_files()
@@ -102,28 +102,26 @@ def test_delete_mark_obsolete(af_tutorial_subdir_po):
     assert updated_store.obsolete
 
     # The units they contained are obsolete too
-    store_units = Unit.objects.filter(store=updated_store)
-    for unit in store_units:
-        assert unit.isobsolete()
+    assert not updated_store.units.exists()
+    assert updated_store.unit_set.filter(state=OBSOLETE).exists()
 
 
 @pytest.mark.django_db
-def test_sync(fr_tutorial_remove_sync_po):
+def test_sync(project0, store0):
     """Tests that the new on-disk file is created after sync for existing
     in-DB Store if the corresponding on-disk file ceased to exist.
     """
 
-    tp = fr_tutorial_remove_sync_po.translation_project
-    pootle_path = fr_tutorial_remove_sync_po.pootle_path
-
-    # Parse stores
-    for store in tp.stores.all():
-        store.update(store.file.store)
-
-    assert fr_tutorial_remove_sync_po.file.exists()
-    os.remove(fr_tutorial_remove_sync_po.file.path)
-
-    store = Store.objects.get(pootle_path=pootle_path)
+    tp = TranslationProjectFactory(
+        project=project0, language=LanguageDBFactory())
+    store = StoreDBFactory(
+        translation_project=tp,
+        parent=tp.directory)
+    store.update(store.deserialize(store0.serialize()))
+    assert not store.file.exists()
+    store.sync()
+    assert store.file.exists()
+    os.remove(store.file.path)
     assert not store.file.exists()
     store.sync()
     assert store.file.exists()
@@ -168,37 +166,30 @@ def test_update_with_non_ascii(en_tutorial_po, test_fs):
 
 
 @pytest.mark.django_db
-def test_update_unit_order(ru_tutorial_po):
+def test_update_unit_order(ordered_po, ordered_update_ttk):
     """Tests unit order after a specific update.
     """
 
-    # Parse stores
-    ru_tutorial_po.update(ru_tutorial_po.file.store)
-
     # Set last sync revision
-    ru_tutorial_po.sync()
-
-    assert ru_tutorial_po.file.exists()
+    ordered_po.sync()
+    assert ordered_po.file.exists()
 
     old_unit_list = ['1->2', '2->4', '3->3', '4->5']
     updated_unit_list = list(
-        [unit.unitid for unit in ru_tutorial_po.units]
+        [unit.unitid for unit in ordered_po.units]
     )
     assert old_unit_list == updated_unit_list
+    current_revision = ordered_po.get_max_unit_revision()
 
-    # as the tutorial_updated.po file has no revision header we need to set it
-    # manually for this test to pass
-    ru_tutorial_po.file = 'tutorial/ru/tutorial_updated.po'
-
-    current_revision = ru_tutorial_po.get_max_unit_revision()
-    ru_tutorial_po.update(ru_tutorial_po.file.store,
-                          store_revision=current_revision)
+    ordered_po.update(
+        ordered_update_ttk,
+        store_revision=current_revision)
 
     old_unit_list = [
         'X->1', '1->2', '3->3', '2->4',
         '4->5', 'X->6', 'X->7', 'X->8']
     updated_unit_list = list(
-        [unit.unitid for unit in ru_tutorial_po.units]
+        [unit.unitid for unit in ordered_po.units]
     )
     assert old_unit_list == updated_unit_list
 
@@ -215,8 +206,6 @@ def test_update_save_changed_units(store0):
     store.update(store.file.store)
     unit_list = list(store.units)
 
-    # delay for 1 sec, we'll compare mtimes
-    time.sleep(1)
     store.file = 'tutorial/ru/update_save_changed_units_updated.po'
     store.update(store.file.store)
     updated_unit_list = list(store.units)

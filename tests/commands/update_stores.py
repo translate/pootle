@@ -10,20 +10,22 @@ import pytest
 
 from django.core.management import call_command
 
-from pootle_project.models import Project
-
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_stores_noargs(capfd, en_tutorial_po_member_updated):
+def test_update_stores_noargs(capfd, project1, language1):
     """Site wide update_stores"""
+    # speed up test by deleting objects
+    project1.delete()
+    language1.delete()
     call_command('update_stores')
     out, err = capfd.readouterr()
+
     # Store and Unit are deleted as there are no files on disk
     # SO - Store Obsolete
-    assert 'system\tSO\t/en/tutorial/tutorial.po' in err
+    assert 'system\tSO\t/language0/project0/store0.po' in err
     # UO - Unit Obsolete
-    assert 'system\tUO\ten' in err
+    assert 'system\tUO\tlanguage0' in err
 
     # Repeat and we should have zero output
     call_command('update_stores')
@@ -34,11 +36,10 @@ def test_update_stores_noargs(capfd, en_tutorial_po_member_updated):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_stores_project_tree_none(capfd):
-    project = Project.objects.get(code="project0")
-    project.treestyle = "none"
-    project.save()
-    call_command("update_stores", "--project", project.code)
+def test_update_stores_project_tree_none(capfd, project0):
+    project0.treestyle = "none"
+    project0.save()
+    call_command("update_stores", "--project", project0.code)
     out, err = capfd.readouterr()
     assert not out
     assert not err
