@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-import shutil
 
 import pytest
 
@@ -46,14 +45,21 @@ def test_tp_create_fail(tutorial, english):
 
 
 @pytest.mark.django_db
-def test_tp_create_templates(tutorial, klingon_vpw, templates):
+def test_tp_create_templates(project0, templates, complex_ttk):
     # As there is a tutorial template it will automatically create stores for
     # our new TP
-    template_tp = TranslationProject.objects.get(
-        language=templates, project=tutorial)
-
+    template_tp = TranslationProject.objects.create(
+        language=templates, project=project0)
+    template = Store.objects.create(
+        name="foo.pot",
+        translation_project=template_tp,
+        parent=template_tp.directory)
+    project0.treestyle = "nongnu"
+    project0.save()
+    template.update(complex_ttk)
+    template.sync()
     tp = TranslationProject.objects.create(
-        project=tutorial, language=klingon_vpw)
+        project=project0, language=LanguageDBFactory())
     tp.init_from_templates()
     assert tp.stores.count() == template_tp.stores.count()
     assert (
@@ -68,16 +74,18 @@ def test_tp_create_templates(tutorial, klingon_vpw, templates):
 
 
 @pytest.mark.django_db
-def test_tp_create_with_files(tutorial, klingon, settings):
+def test_tp_create_with_files(project0, store0, settings):
     # lets add some files by hand
 
     trans_dir = settings.POOTLE_TRANSLATION_DIRECTORY
+    language = LanguageDBFactory()
+    tp_dir = os.path.join(trans_dir, "%s/project0" % language.code)
+    os.makedirs(tp_dir)
 
-    shutil.copytree(
-        os.path.join(trans_dir, "tutorial/en"),
-        os.path.join(trans_dir, "tutorial/kl"))
+    with open(os.path.join(tp_dir, "store0.po"), "w") as f:
+        f.write(store0.serialize())
 
-    TranslationProject.objects.create(project=tutorial, language=klingon)
+    TranslationProject.objects.create(project=project0, language=language)
 
 
 @pytest.mark.django_db
