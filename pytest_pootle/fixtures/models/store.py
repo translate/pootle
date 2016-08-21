@@ -370,14 +370,6 @@ def ru_tutorial_po(settings, russian_tutorial):
 
 
 @pytest.fixture
-def ru_update_save_changed_units_po(settings, russian_tutorial):
-    """Require the /ru/tutorial/tutorial.po store."""
-    return _require_store(russian_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'update_save_changed_units.po')
-
-
-@pytest.fixture
 def ru_update_set_last_sync_revision_po(settings, russian_tutorial):
     """Require the /ru/tutorial/tutorial.po store."""
     return _require_store(russian_tutorial,
