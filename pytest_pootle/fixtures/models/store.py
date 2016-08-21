@@ -154,24 +154,36 @@ def _setup_store_test(store, member, member2, test):
 
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
-def store_diff_tests(request, en_tutorial_po, member, member2):
+def store_diff_tests(request, tp0, member, member2):
+    from pytest_pootle.factories import StoreDBFactory
     from pootle_store.models import StoreDiff
 
-    test = _setup_store_test(en_tutorial_po, member, member2,
+    store = StoreDBFactory(
+        translation_project=tp0,
+        parent=tp0.directory)
+
+    test = _setup_store_test(store, member, member2,
                              UPDATE_STORE_TESTS[request.param])
     test_store = create_store(units=test[1])
     return [StoreDiff(test[0], test_store, test[2])] + list(test[:3])
 
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
-def param_update_store_test(request, en_tutorial_po, member, member2):
-    test = _setup_store_test(en_tutorial_po, member, member2,
-                             UPDATE_STORE_TESTS[request.param])
-    update_store(test[0],
-                 units=test[1],
-                 store_revision=test[2],
-                 user=member2,
-                 resolve_conflict=test[3])
+def param_update_store_test(request, tp0, member, member2):
+    from pytest_pootle.factories import StoreDBFactory
+
+    store = StoreDBFactory(
+        translation_project=tp0,
+        parent=tp0.directory)
+    test = _setup_store_test(
+        store, member, member2,
+        UPDATE_STORE_TESTS[request.param])
+    update_store(
+        test[0],
+        units=test[1],
+        store_revision=test[2],
+        user=member2,
+        resolve_conflict=test[3])
     return test
 
 
