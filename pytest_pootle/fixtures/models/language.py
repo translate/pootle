@@ -58,18 +58,6 @@ def arabic():
 
 
 @pytest.fixture
-def french():
-    """Require the French language."""
-    return _require_language('fr', 'French')
-
-
-@pytest.fixture
-def spanish():
-    """Require the Spanish language."""
-    return _require_language('es', 'Spanish')
-
-
-@pytest.fixture
 def italian():
     """Require the Italian language."""
     return _require_language('it', 'Italian')

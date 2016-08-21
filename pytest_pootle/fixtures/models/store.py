@@ -328,22 +328,6 @@ def issue_2401_po(settings, afrikaans_tutorial):
 
 
 @pytest.fixture
-def fr_tutorial_subdir_to_remove_po(settings, french_tutorial):
-    """Require the /fr/tutorial/subdir_to_remove/tutorial.po store."""
-    return _require_store(french_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'subdir_to_remove/tutorial.po')
-
-
-@pytest.fixture
-def es_tutorial_subdir_remove_po(settings, spanish_tutorial):
-    """Require the /es/tutorial/subdir/remove_tutorial.po store."""
-    return _require_store(spanish_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'subdir/remove_tutorial.po')
-
-
-@pytest.fixture
 def ru_update_set_last_sync_revision_po(settings, russian_tutorial):
     """Require the /ru/tutorial/tutorial.po store."""
     return _require_store(russian_tutorial,
