@@ -315,27 +315,11 @@ def it_tutorial_po(settings, italian_tutorial):
 
 
 @pytest.fixture
-def af_tutorial_subdir_po(settings, afrikaans_tutorial):
-    """Require the /af/tutorial/subdir/tutorial.po store."""
-    return _require_store(afrikaans_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'subdir/tutorial.po')
-
-
-@pytest.fixture
 def issue_2401_po(settings, afrikaans_tutorial):
     """Require the /af/tutorial/issue_2401.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'issue_2401.po')
-
-
-@pytest.fixture
-def test_get_units_po(settings, afrikaans_tutorial):
-    """Require the /af/tutorial/test_get_units.po store."""
-    return _require_store(afrikaans_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'test_get_units.po')
 
 
 @pytest.fixture
@@ -347,26 +331,11 @@ def fr_tutorial_subdir_to_remove_po(settings, french_tutorial):
 
 
 @pytest.fixture
-def fr_tutorial_remove_sync_po(settings, french_tutorial):
-    """Require the /fr/tutorial/remove_sync_tutorial.po store."""
-    return _require_store(french_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'remove_sync_tutorial.po')
-
-
-@pytest.fixture
 def es_tutorial_subdir_remove_po(settings, spanish_tutorial):
     """Require the /es/tutorial/subdir/remove_tutorial.po store."""
     return _require_store(spanish_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
                           'subdir/remove_tutorial.po')
-
-
-@pytest.fixture
-def ru_tutorial_po(settings, russian_tutorial):
-    """Require the /ru/tutorial/tutorial.po store."""
-    return _require_store(russian_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
