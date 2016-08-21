@@ -69,21 +69,6 @@ def russian():
     return _require_language('ru', 'Russian')
 
 
-# due to issues with tests not having a clean slate ie:
-# (https://github.com/translate/pootle/issues/3898)
-# please do not use the klingon fixtures 8)
-@pytest.fixture
-def klingon():
-    """Require the Klingon language."""
-    return _require_language('kl', 'Klingon')
-
-
-@pytest.fixture
-def klingon_vpw():
-    """Require the Klingon language (VPW dialect)."""
-    return _require_language('kl_VPW', 'Klingon vegan peace warriors')
-
-
 @pytest.fixture
 def language0():
     """language0 Language"""
