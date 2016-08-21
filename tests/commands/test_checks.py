@@ -26,7 +26,7 @@ def test_test_checks_noargs():
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_test_checks_unit_unkown(afrikaans_tutorial):
+def test_test_checks_unit_unkown():
     """Check a --unit that we won't have"""
     with pytest.raises(CommandError) as e:
         call_command('test_checks', '--unit=100000')
