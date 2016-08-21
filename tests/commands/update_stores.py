@@ -13,7 +13,7 @@ from django.core.management import call_command
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_stores_noargs(capfd, project1, language1):
+def test_update_stores_noargs(capfd, po_directory, project1, language1):
     """Site wide update_stores"""
     # speed up test by deleting objects
     project1.delete()

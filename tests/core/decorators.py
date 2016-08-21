@@ -19,7 +19,7 @@ from pootle_translationproject.models import TranslationProject
 
 
 @pytest.mark.django_db
-def test_get_path_obj(rf, default, tp0):
+def test_get_path_obj(rf, po_directory, default, tp0):
     """Ensure the correct path object is retrieved."""
     language_code = tp0.language.code
     project_code = tp0.project.code
@@ -60,8 +60,9 @@ def test_get_path_obj(rf, default, tp0):
 
 
 @pytest.mark.django_db
-def test_get_path_obj_disabled(rf, default, admin, project_foo,
+def test_get_path_obj_disabled(rf, default, admin,
                                tp0,
+                               project_foo,
                                arabic_tutorial_obsolete,
                                tutorial_disabled):
     """Ensure the correct path object is retrieved when projects are

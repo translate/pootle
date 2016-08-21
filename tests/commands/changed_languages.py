@@ -17,7 +17,7 @@ from pootle_store.models import Unit
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_changed_languages_noargs(capfd):
+def test_changed_languages_noargs(capfd, po_directory):
     """Get changed languages since last sync."""
     revision = Revision.get()
     call_command('changed_languages')
@@ -44,7 +44,7 @@ def test_changed_languages_noargs(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_changed_languages_since_revision(capfd, tp0):
+def test_changed_languages_since_revision(capfd, po_directory, tp0):
     """Changed languages since a given revision"""
     # Everything
     for store in tp0.stores.all():

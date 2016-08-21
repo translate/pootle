@@ -50,7 +50,7 @@ def test_import_success(store0, admin):
 
 
 @pytest.mark.django_db
-def test_import_failure(file_import_failure, en_tutorial_po, member):
+def test_import_failure(en_tutorial_po, file_import_failure, member):
     filename, exception = file_import_failure
     with pytest.raises(exception):
         _import_file(filename, user=member)

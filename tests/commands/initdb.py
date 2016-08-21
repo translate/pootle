@@ -35,8 +35,8 @@ def test_cmd_initdb_noprojects(capfd, no_permission_sets, no_permissions, no_use
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_cmd_initdb(capfd, no_permission_sets, no_permissions, no_users,
-                    no_projects):
+def test_cmd_initdb(capfd, po_directory, no_permission_sets, no_permissions,
+                    no_users, no_projects):
     """Initialise the database with initdb
     """
     call_command('initdb')

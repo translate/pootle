@@ -344,7 +344,7 @@ def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test):
 
 
 @pytest.fixture
-def store_po():
+def store_po(tp0):
     """An empty Store in the /language0/project0 TP"""
     from pootle_translationproject.models import TranslationProject
 

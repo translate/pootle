@@ -16,7 +16,7 @@ from django.core.management.base import CommandError
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_tmserver_nosetting(capfd, afrikaans_tutorial):
+def test_update_tmserver_nosetting(capfd, po_directory, afrikaans_tutorial):
     """We need configured TM for anything to work"""
     with pytest.raises(CommandError) as e:
         call_command('update_tmserver')

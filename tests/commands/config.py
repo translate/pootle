@@ -810,19 +810,18 @@ def test_cmd_config_bad_flags(capfd, bad_config_flags):
 
 
 @pytest.mark.django_db
-def test_cmd_config_long_instance_name(no_config_env, capfd):
-    project = Project.objects.get(code="project0")
-    project.code = "foobar" * 10
-    project.save()
-    config.get(Project, instance=project).append_config("foo", "bar")
-    config.get(Project, instance=project).append_config("foo", "bar")
+def test_cmd_config_long_instance_name(project0, no_config_env, capfd):
+    project0.code = "foobar" * 10
+    project0.save()
+    config.get(Project, instance=project0).append_config("foo", "bar")
+    config.get(Project, instance=project0).append_config("foo", "bar")
     call_command(
         "config",
         "pootle_project.project",
-        project.code,
+        project0.code,
         "-o", "code")
     out, err = capfd.readouterr()
-    _test_config_list(out, model=Project, instance=project, object_field="code")
+    _test_config_list(out, model=Project, instance=project0, object_field="code")
 
 
 @pytest.mark.django_db

@@ -727,8 +727,7 @@ def test_store_set_bad_serializers(store_po):
 
 
 @pytest.mark.django_db
-def test_store_create_by_bad_path():
-    project0 = Project.objects.get(code="project0")
+def test_store_create_by_bad_path(project0):
 
     # bad project name
     with pytest.raises(Project.DoesNotExist):
@@ -764,7 +763,7 @@ def test_store_create_by_bad_path():
 
 
 @pytest.mark.django_db
-def test_store_create_by_path():
+def test_store_create_by_path(po_directory):
 
     # create in tp
     path = '/language0/project0/path.po'
@@ -787,9 +786,7 @@ def test_store_create_by_path():
 
 
 @pytest.mark.django_db
-def test_store_create_by_path_with_project():
-    project0 = Project.objects.get(code="project0")
-
+def test_store_create_by_path_with_project(project0):
     # create in tp with project
     path = '/language0/project0/path2.po'
     store = Store.objects.create_by_path(
@@ -810,7 +807,7 @@ def test_store_create_by_path_with_project():
 
 
 @pytest.mark.django_db
-def test_store_create_by_new_tp_path():
+def test_store_create_by_new_tp_path(po_directory):
     language = LanguageDBFactory()
     path = '/%s/project0/tp.po' % language.code
     store = Store.objects.create_by_path(path)
@@ -825,9 +822,8 @@ def test_store_create_by_new_tp_path():
 
 
 @pytest.mark.django_db
-def test_store_create():
-    tp = TranslationProject.objects.get(
-        language__code="language0", project__code="project0")
+def test_store_create(tp0):
+    tp = tp0
     project = tp.project
     registry = formats.get()
     po = Format.objects.get(name="po")

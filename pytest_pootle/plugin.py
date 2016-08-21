@@ -30,13 +30,24 @@ def _load_fixtures(*modules):
                 yield name
 
 
-# this must be here to be used in every test
-@pytest.fixture(autouse=True)
-def po_directory(request, tmpdir, settings):
+@pytest.fixture
+def po_test_dir(request, tmpdir):
+    po_dir = str(tmpdir.mkdir("po"))
+
+    def rm_po_dir():
+        if os.path.exists(po_dir):
+            shutil.rmtree(po_dir)
+
+    request.addfinalizer(rm_po_dir)
+    return po_dir
+
+
+@pytest.fixture
+def po_directory(request, po_test_dir, settings):
     """Sets up a tmp directory for PO files."""
     from pootle_store.models import fs
 
-    po_dir = str(tmpdir.mkdir("po"))
+    translation_directory = settings.POOTLE_TRANSLATION_DIRECTORY
 
     projects = [
         dirname for dirname
@@ -47,15 +58,15 @@ def po_directory(request, tmpdir, settings):
         src_dir = os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, project)
 
         # Copy files over the temporary dir
-        shutil.copytree(src_dir, os.path.join(po_dir, project))
+        shutil.copytree(src_dir, os.path.join(po_test_dir, project))
 
     # Adjust locations
-    settings.POOTLE_TRANSLATION_DIRECTORY = po_dir
-    fs.location = po_dir
+    settings.POOTLE_TRANSLATION_DIRECTORY = po_test_dir
+    fs.location = po_test_dir
 
     def _cleanup():
-        for f in tmpdir.listdir():
-            f.remove()
+        settings.POOTLE_TRANSLATION_DIRECTORY = translation_directory
+
     request.addfinalizer(_cleanup)
 
 

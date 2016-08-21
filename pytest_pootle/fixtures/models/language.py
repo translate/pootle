@@ -32,45 +32,45 @@ def _require_language(code, fullname, plurals=2, plural_equation='(n != 1)'):
     return language
 
 
-@pytest.fixture(scope="session")
-def english():
+@pytest.fixture
+def english(po_directory):
     """Require the English language."""
     from pootle_language.models import Language
     return Language.objects.get(code="en")
 
 
 @pytest.fixture
-def templates():
+def templates(po_directory):
     """Require the special Templates language."""
     return _require_language("templates", "Templates")
 
 
 @pytest.fixture
-def afrikaans():
+def afrikaans(po_directory):
     """Require the Afrikaans language."""
     return _require_language('af', 'Afrikaans')
 
 
 @pytest.fixture
-def arabic():
+def arabic(po_directory):
     """Require the Arabic language."""
     return _require_language('ar', 'Arabic')
 
 
 @pytest.fixture
-def italian():
+def italian(po_directory):
     """Require the Italian language."""
     return _require_language('it', 'Italian')
 
 
 @pytest.fixture
-def russian():
+def russian(po_directory):
     """Require the Russian language."""
     return _require_language('ru', 'Russian')
 
 
 @pytest.fixture
-def language0():
+def language0(po_directory):
     """language0 Language"""
     from pootle_language.models import Language
 
@@ -78,7 +78,7 @@ def language0():
 
 
 @pytest.fixture
-def language1():
+def language1(po_directory):
     """language1 Language"""
     from pootle_language.models import Language
 

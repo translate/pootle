@@ -31,7 +31,7 @@ def _create_unit_form(request, language, unit):
 
 
 @pytest.mark.django_db
-def test_submit_no_source(rf, default, store0):
+def test_submit_no_source(rf, po_directory, default, store0):
     """Tests that the source string cannot be modified."""
     language = store0.translation_project.language
     unit = store0.units[0]
@@ -56,7 +56,7 @@ def test_submit_no_source(rf, default, store0):
 
 
 @pytest.mark.django_db
-def test_submit_fuzzy(rf, admin, default, store0):
+def test_submit_fuzzy(rf, po_directory, admin, default, store0):
     """Tests that non-admin users can't set the fuzzy flag."""
     language = store0.translation_project.language
     unit = store0.units[0]
@@ -79,7 +79,7 @@ def test_submit_fuzzy(rf, admin, default, store0):
 
 
 @pytest.mark.django_db
-def test_submit_similarity(rf, default, store0):
+def test_submit_similarity(rf, po_directory, default, store0):
     """Tests that similarities are within a particular range."""
     language = store0.translation_project.language
     unit = store0.units[0]
