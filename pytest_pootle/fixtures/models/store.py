@@ -303,13 +303,6 @@ def en_tutorial_po(settings, english_tutorial):
 
 
 @pytest.fixture
-def en_tutorial_po_no_file(settings, english_tutorial):
-    """Require an empty store."""
-    return _require_store(english_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY, 'no_file.po')
-
-
-@pytest.fixture
 def en_tutorial_po_member_updated(settings, english_tutorial, member):
     """Require the /en/tutorial/tutorial.po store."""
     store = _require_store(english_tutorial,
