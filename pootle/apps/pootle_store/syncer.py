@@ -148,6 +148,14 @@ class StoreSyncer(object):
             *split_pootle_path(self.store.pootle_path)[2:])
 
     @property
+    def relative_file_path(self):
+        path_parts = split_pootle_path(self.store.pootle_path)
+        path_prefix = [path_parts[1]]
+        if self.project.get_treestyle() != "gnu":
+            path_prefix.append(path_parts[0])
+        return os.path.join(*(path_prefix + list(path_parts[2:])))
+
+    @property
     def unit_class(self):
         return self.file_class.UnitClass
 
@@ -235,10 +243,10 @@ class StoreSyncer(object):
         store = self.convert()
         if not os.path.exists(os.path.dirname(self.store_file_path)):
             os.makedirs(os.path.dirname(self.store_file_path))
+        self.store.file = self.relative_file_path
         store.savefile(self.store_file_path)
         log(u"Created file for %s [revision: %d]" %
             (self.store.pootle_path, last_revision))
-        self.store.file = self.store_file_path
         self.update_store_header(user=user)
         self.store.file.savestore()
         self.store.file_mtime = self.store.get_file_mtime()
