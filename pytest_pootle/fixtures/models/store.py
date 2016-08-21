@@ -584,7 +584,7 @@ def store0(tp0):
 
 
 @pytest.fixture
-def ordered_po(settings, test_fs, tp0):
+def ordered_po(test_fs, tp0):
     """Create a store with ordered units."""
     from pytest_pootle.factories import StoreDBFactory
 
@@ -598,7 +598,7 @@ def ordered_po(settings, test_fs, tp0):
 
 
 @pytest.fixture
-def numbered_po(settings, test_fs, project0):
+def numbered_po(test_fs, project0):
     """Create a store with numbered units."""
     from pytest_pootle.factories import (
         LanguageDBFactory, StoreDBFactory, TranslationProjectFactory)
@@ -616,7 +616,7 @@ def numbered_po(settings, test_fs, project0):
 
 
 @pytest.fixture
-def ordered_update_ttk(settings, test_fs, store0):
+def ordered_update_ttk(test_fs, store0):
     with test_fs.open("data/po/ordered_updated.po") as src:
         ttk = store0.deserialize(src.read())
     return ttk
