@@ -13,8 +13,11 @@ from django.core.management import call_command
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_refresh_scores_recalculate(capfd):
+def test_refresh_scores_recalculate(capfd, admin, member):
     """Recalculate scores."""
+    # delete the 2 most prolific contribs to speed up
+    member.delete()
+    admin.delete()
     call_command('refresh_scores')
     out, err = capfd.readouterr()
     assert 'Score for user system set to' in out
