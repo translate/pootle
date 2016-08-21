@@ -384,8 +384,15 @@ def store_po():
     return store
 
 
+@pytest.fixture(scope="session")
+def complex_ttk(test_fs):
+    with test_fs.open(("data", "po", "complex.po")) as f:
+        ttk = getclass(f)(f.read())
+    return ttk
+
+
 @pytest.fixture
-def complex_po(test_fs):
+def complex_po(complex_ttk):
     """A Store with some complex Units"""
     from pootle_translationproject.models import TranslationProject
 
@@ -400,10 +407,7 @@ def complex_po(test_fs):
         translation_project=tp,
         name="complex_store.po")
 
-    with test_fs.open(("data", "po", "complex.po")) as f:
-        ttk = getclass(f)(f.read())
-
-    store.update(ttk)
+    store.update(complex_ttk)
     return store
 
 
