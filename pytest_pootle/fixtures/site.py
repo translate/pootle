@@ -98,7 +98,7 @@ def clear_cache():
     caches["exports"].clear()
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def test_fs():
     """A convenience fixture for retrieving data from test files"""
     import pytest_pootle
