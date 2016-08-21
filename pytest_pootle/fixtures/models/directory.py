@@ -15,3 +15,8 @@ def root():
     from pootle_app.models import Directory
 
     return Directory.objects.root
+
+
+@pytest.fixture
+def subdir0(tp0):
+    return tp0.directory.child_dirs.get(name="subdir0")
