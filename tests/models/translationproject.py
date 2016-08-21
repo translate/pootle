@@ -81,19 +81,18 @@ def test_tp_create_with_files(tutorial, klingon, settings):
 
 
 @pytest.mark.django_db
-def test_tp_empty_stats():
+def test_tp_empty_stats(templates, project0):
     """Tests if empty stats is initialized when translation project (new language)
     is added for a project with existing but empty template translation project.
     """
 
     # Create an empty template translation project for project0.
-    project = Project.objects.get(code="project0")
-    english = Language.objects.get(code="en")
-    TranslationProjectFactory(project=project, language=english)
+    TranslationProjectFactory(project=project0, language=templates)
 
     # Create a new language to test.
     language = LanguageDBFactory()
-    tp = TranslationProject.objects.create(language=language, project=project)
+    tp = TranslationProject.objects.create(
+        language=language, project=project0)
     tp.init_from_templates()
 
     # There are no files on disk so TP was not automagically filled.
