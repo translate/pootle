@@ -319,8 +319,8 @@ def test_update_upload_new_revision(en_tutorial_po):
 
 
 @pytest.mark.django_db
-def test_update_upload_again_new_revision(en_tutorial_po_no_file):
-    store = en_tutorial_po_no_file
+def test_update_upload_again_new_revision(store0):
+    store = store0
     assert store.state == NEW
     update_store(
         store,
@@ -342,26 +342,26 @@ def test_update_upload_again_new_revision(en_tutorial_po_no_file):
 
 
 @pytest.mark.django_db
-def test_update_upload_old_revision_unit_conflict(en_tutorial_po):
+def test_update_upload_old_revision_unit_conflict(store0):
     original_revision = Revision.get()
     update_store(
-        en_tutorial_po,
+        store0,
         [("Hello, world", "Hello, world UPDATED")],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=original_revision + 1)
 
     # load update with expired revision and conflicting unit
     update_store(
-        en_tutorial_po,
+        store0,
         [("Hello, world", "Hello, world CONFLICT")],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=original_revision)
 
     # unit target is not updated
-    assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
+    assert store0.units[0].target == "Hello, world UPDATED"
 
     # but suggestion is added
-    suggestion = en_tutorial_po.units[0].get_suggestions()[0].target
+    suggestion = store0.units[0].get_suggestions()[0].target
     assert suggestion == "Hello, world CONFLICT"
 
 
