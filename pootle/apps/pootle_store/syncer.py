@@ -204,7 +204,7 @@ class StoreSyncer(object):
              for uid
              in new_ids - old_ids])
 
-    def get_obsolete_units(self, old_ids, new_ids):
+    def get_units_to_obsolete(self, old_ids, new_ids):
         return (
             self.disk_store.findid(uid)
             for uid
@@ -299,7 +299,7 @@ class StoreSyncer(object):
         file_changed = False
         changes = {}
         if update_structure:
-            obsolete_units = self.get_obsolete_units(old_ids, new_ids)
+            obsolete_units = self.get_units_to_obsolete(old_ids, new_ids)
             new_units = self.get_new_units(old_ids, new_ids)
             if obsolete_units or new_units:
                 file_changed = True
