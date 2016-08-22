@@ -22,6 +22,10 @@ class TPTool(object):
     def __init__(self, project):
         self.project = project
 
+    def __getitem__(self, language_code):
+        """Access to Project TPs by language_code"""
+        return self.tp_qs.get(language__code=language_code)
+
     @property
     def tp_qs(self):
         """Queryset of translation_projects"""
@@ -87,6 +91,15 @@ class TPTool(object):
     def create_tp(self, language):
         """Create a TP for a given language"""
         return self.tp_qs.create(language=language)
+
+    def get(self, language_code, default=None):
+        """Given a language code, returns the relevant TP.
+        If the TP doesnt exist returns a default or None
+        """
+        try:
+            return self[language_code]
+        except self.tp_qs.model.DoesNotExist:
+            return default
 
     def get_path(self, language_code):
         """Returns the pootle_path of a TP for a given language_code"""
