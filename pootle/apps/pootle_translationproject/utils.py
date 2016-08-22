@@ -24,21 +24,28 @@ class TPTool(object):
 
     @property
     def tp_qs(self):
+        """Queryset of translation_projects"""
         return self.project.translationproject_set
 
     def check_no_tp(self, language):
+        """Check a TP doesnt exist already for a give language
+        """
         if self.get_tp(language):
             raise ValueError(
                 "TranslationProject '%s' already exists"
                 % self.get_path(language.code))
 
     def check_tp(self, tp):
+        """Check if a TP is part of our Project"""
         if tp.project != self.project:
             raise ValueError(
                 "TP '%s' is not part of project '%s'"
                 % (tp, self.project.code))
 
     def clone(self, tp, language):
+        """Clone a TP to a given language. Raises Exception if an existing TP
+        exists for that Language.
+        """
         self.check_tp(tp)
         self.check_no_tp(language)
         new_tp = self.create_tp(language)
@@ -48,12 +55,17 @@ class TPTool(object):
         return new_tp
 
     def clone_children(self, source_dir, target_parent):
+        """Clone a a Directory's children to a give target Directory.
+        """
         for store in source_dir.child_stores.live():
             self.clone_store(store, target_parent)
         for subdir in source_dir.child_dirs.live():
             self.clone_directory(subdir, target_parent)
 
     def clone_directory(self, source_dir, target_parent):
+        """Clone a source Directory and its children to a give target Directory.
+        Raises Exception if the target exists already
+        """
         target_dir = target_parent.child_dirs.create(
             name=source_dir.name)
         self.clone_children(
@@ -62,6 +74,7 @@ class TPTool(object):
         return target_dir
 
     def clone_store(self, store, target_dir):
+        """Clone given Store to target Directory"""
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
@@ -72,12 +85,15 @@ class TPTool(object):
         return cloned
 
     def create_tp(self, language):
+        """Create a TP for a given language"""
         return self.tp_qs.create(language=language)
 
     def get_path(self, language_code):
+        """Returns the pootle_path of a TP for a given language_code"""
         return "/%s/%s/" % (language_code, self.project.code)
 
     def get_tp(self, language):
+        """Given a language return the related TP"""
         try:
             return self.tp_qs.get(language=language)
         except self.tp_qs.model.DoesNotExist:
@@ -113,6 +129,9 @@ class TPTool(object):
             self.set_parents(subdir, subdir)
 
     def update_children(self, source_dir, target_dir):
+        """Update a target Directory and its children from a given
+        source Directory
+        """
         stores = []
         dirs = []
         for store in source_dir.child_stores.live():
@@ -136,11 +155,13 @@ class TPTool(object):
             store.makeobsolete()
 
     def update_from_tp(self, source, target):
+        """Update one TP from another"""
         self.check_tp(source)
         self.check_tp(target)
         self.update_children(source.directory, target.directory)
 
     def update_store(self, source, target):
+        """Update a target Store from a given source Store"""
         source_revision = target.get_max_unit_revision() + 1
         differ = StoreDiff(target, source, source_revision)
         diff = differ.diff()
