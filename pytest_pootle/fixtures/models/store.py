@@ -289,21 +289,21 @@ def _make_member_updates(store, member):
 
 
 @pytest.fixture
-def af_tutorial_po(settings, afrikaans_tutorial):
+def af_tutorial_po(po_directory, settings, afrikaans_tutorial):
     """Require the /af/tutorial/tutorial.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def en_tutorial_po(settings, english_tutorial):
+def en_tutorial_po(po_directory, settings, english_tutorial):
     """Require the /en/tutorial/tutorial.po store."""
     return _require_store(english_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def en_tutorial_po_member_updated(settings, english_tutorial, member):
+def en_tutorial_po_member_updated(po_directory, settings, english_tutorial, member):
     """Require the /en/tutorial/tutorial.po store."""
     store = _require_store(english_tutorial,
                            settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -313,14 +313,14 @@ def en_tutorial_po_member_updated(settings, english_tutorial, member):
 
 
 @pytest.fixture
-def it_tutorial_po(settings, italian_tutorial):
+def it_tutorial_po(po_directory, settings, italian_tutorial):
     """Require the /it/tutorial/tutorial.po store."""
     return _require_store(italian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY, 'tutorial.po')
 
 
 @pytest.fixture
-def issue_2401_po(settings, afrikaans_tutorial):
+def issue_2401_po(po_directory, settings, afrikaans_tutorial):
     """Require the /af/tutorial/issue_2401.po store."""
     return _require_store(afrikaans_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -328,7 +328,7 @@ def issue_2401_po(settings, afrikaans_tutorial):
 
 
 @pytest.fixture
-def ru_update_set_last_sync_revision_po(settings, russian_tutorial):
+def ru_update_set_last_sync_revision_po(po_directory, settings, russian_tutorial):
     """Require the /ru/tutorial/tutorial.po store."""
     return _require_store(russian_tutorial,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
@@ -336,7 +336,8 @@ def ru_update_set_last_sync_revision_po(settings, russian_tutorial):
 
 
 @pytest.fixture
-def af_vfolder_test_browser_defines_po(settings, afrikaans_vfolder_test):
+def af_vfolder_test_browser_defines_po(po_directory, settings,
+                                       afrikaans_vfolder_test):
     """Require the /af/vfolder_test/browser/defines.po store."""
     return _require_store(afrikaans_vfolder_test,
                           settings.POOTLE_TRANSLATION_DIRECTORY,
