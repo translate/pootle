@@ -344,10 +344,10 @@ def init_store_from_template(translation_project, template_store):
     """Initialize a new file for `translation_project` using `template_store`.
     """
     if translation_project.file_style == 'gnu':
-        target_pootle_path_, target_path = get_translated_name_gnu(
+        target_path = get_translated_name_gnu(
             translation_project, template_store)
     else:
-        target_pootle_path_, target_path = get_translated_name(
+        target_path = get_translated_name(
             translation_project, template_store)
 
     # Create the missing directories for the new TP.
@@ -384,8 +384,7 @@ def get_translated_name_gnu(translation_project, store):
             parent__pootle_path=pootle_path,
             name__iexact=suffix,
         )
-        return (target_store.pootle_path,
-                target_store.file and target_store.file.path)
+        return target_store.file and target_store.file.path
     except Store.DoesNotExist:
         target_store = None
 
@@ -430,8 +429,7 @@ def get_translated_name_gnu(translation_project, store):
                 ],
             )[0]
 
-            return (target_store.pootle_path,
-                    target_store.file and target_store.file.path)
+            return target_store.file and target_store.file.path
         except (Store.DoesNotExist, IndexError):
             pass
     else:
@@ -441,12 +439,11 @@ def get_translated_name_gnu(translation_project, store):
         path_parts = store.file.path.split(os.sep)
         name = prefix + suffix
         path_parts[-1] = name
-        pootle_path_parts[-1] = name
     else:
         path_parts = store.parent.get_real_path().split(os.sep)
         path_parts.append(store.name)
 
-    return '/'.join(pootle_path_parts), os.sep.join(path_parts)
+    return os.sep.join(path_parts)
 
 
 def get_translated_name(translation_project, store):
@@ -460,24 +457,16 @@ def get_translated_name(translation_project, store):
         path_parts = store.parent.get_real_path().split(os.sep)
         path_parts.append(store.name)
 
-    pootle_path_parts = store.pootle_path.split('/')
-
     # Replace language code
     path_parts[1] = project.lang_mapper.get_upstream_code(language_code)
-    pootle_path_parts[1] = language_code
 
     # Replace extension
     path_parts[-1] = (
         "%s.%s"
         % (name,
            store.filetype.extension))
-    pootle_path_parts[-1] = (
-        "%s.%s"
-        % (name,
-           store.filetype.extension))
 
-    return ('/'.join(pootle_path_parts),
-            absolute_real_path(os.sep.join(path_parts)))
+    return absolute_real_path(os.sep.join(path_parts))
 
 
 def does_not_exist(path):
