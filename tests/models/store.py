@@ -1380,7 +1380,7 @@ def test_store_syncer_obsolete_units(dummy_store_syncer_units, tp0):
         new_ids=set(),
         disk_ids={})
     syncer = dummy_store_syncer_units(store, expected=expected)
-    results = syncer.get_obsolete_units(
+    results = syncer.get_units_to_obsolete(
         expected["old_ids"], expected["new_ids"])
     _test_get_obsolete(
         results, syncer, expected["old_ids"], expected["new_ids"])
@@ -1388,7 +1388,7 @@ def test_store_syncer_obsolete_units(dummy_store_syncer_units, tp0):
         old_ids=set(["2", "3", "4"]),
         new_ids=set(["3", "4", "5"]),
         disk_ids={"3": "foo", "4": "bar", "5": "baz"})
-    results = syncer.get_obsolete_units(
+    results = syncer.get_units_to_obsolete(
         expected["old_ids"], expected["new_ids"])
     _test_get_obsolete(
         results, syncer, expected["old_ids"], expected["new_ids"])

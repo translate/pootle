@@ -532,7 +532,7 @@ def dummy_store_syncer():
         def dbid_index(self):
             return self.expected["db_index"]
 
-        def get_obsolete_units(self, old_ids_, new_ids_):
+        def get_units_to_obsolete(self, old_ids_, new_ids_):
             return self.expected["obsolete_units"]
 
         def get_new_units(self, old_ids, new_ids):
