@@ -25,6 +25,10 @@ class TPTool(object):
     def __init__(self, project):
         self.project = project
 
+    @propert
+    def tp_qs(self):
+        return self.project.translationproject_set
+
     def get_path(self, language_code):
         return "/%s/%s/" % (language_code, self.project.code)
 
