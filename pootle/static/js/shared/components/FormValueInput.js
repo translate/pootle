@@ -6,8 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import autosize from 'autosize';
 import React from 'react';
+
+import AutosizeTextarea from './AutosizeTextarea';
 
 
 const FormValueInput = React.createClass({
@@ -25,18 +26,6 @@ const FormValueInput = React.createClass({
     };
   },
 
-  componentDidMount() {
-    if (this.props.type === 'textarea' && this.props.autosize) {
-      autosize(this.refs.textarea);
-    }
-  },
-
-  componentWillUnmount() {
-    if (this.props.type === 'textarea' && this.props.autosize) {
-      autosize.destroy(this.refs.textarea);
-    }
-  },
-
   handleChange(e) {
     this.props.handleChange(e.target.name, e.target.value);
   },
@@ -44,10 +33,18 @@ const FormValueInput = React.createClass({
 
   render() {
     if (this.props.type === 'textarea') {
+      if (this.props.autosize) {
+        return (
+          <AutosizeTextarea
+            onChange={this.handleChange}
+            {...this.props}
+          />
+        );
+      }
+
       return (
         <textarea
           onChange={this.handleChange}
-          ref="textarea"
           {...this.props}
         />
       );
