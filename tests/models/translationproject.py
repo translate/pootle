@@ -324,3 +324,14 @@ def test_tp_tool_custom_getter(project0, no_tp_tool_):
 
     assert tp_tool.get(Project) is CustomTPTool
     assert isinstance(project0.tp_tool, CustomTPTool)
+
+
+@pytest.mark.django_db
+def test_tp_tool_gets(project0, tp0):
+    assert project0.tp_tool[tp0.language.code] == tp0
+    assert project0.tp_tool.get(tp0.language.code) == tp0
+    assert project0.tp_tool.get("TP_DOES_NOT_EXIST") is None
+    assert project0.tp_tool.get("TP_DOES_NOT_EXIST", "FOO") == "FOO"
+
+    with pytest.raises(tp0.DoesNotExist):
+        project0.tp_tool["DOES_NOT_EXIST"]
