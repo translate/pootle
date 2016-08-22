@@ -49,7 +49,7 @@ def _update_translation(store, item, new_values, sync=True):
 
 @pytest.mark.django_db
 def test_getorig(store0):
-    """Tests that the inDB Store and ondisk Store match by checking that
+    """Tests that the in-DB Store and on-disk Store match by checking that
     units match in order.
     """
     for i, db_unit in enumerate(store0.units.iterator()):
