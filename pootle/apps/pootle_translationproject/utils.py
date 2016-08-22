@@ -9,12 +9,9 @@
 from django.contrib.auth import get_user_model
 
 from pootle.core.models import Revision
-from pootle_app.models import Directory
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import SOURCE_WINS
 from pootle_store.diff import StoreDiff
-from pootle_store.models import Store
-from pootle_translationproject.models import TranslationProject
 
 
 User = get_user_model()
@@ -25,7 +22,7 @@ class TPTool(object):
     def __init__(self, project):
         self.project = project
 
-    @propert
+    @property
     def tp_qs(self):
         return self.project.translationproject_set
 
@@ -34,9 +31,8 @@ class TPTool(object):
 
     def get_tp(self, language):
         try:
-            return self.project.translationproject_set.get(
-                language=language)
-        except TranslationProject.DoesNotExist:
+            return self.tp_qs.get(language=language)
+        except self.tp_qs.model.DoesNotExist:
             pass
 
     def check_tp(self, tp):
@@ -46,8 +42,7 @@ class TPTool(object):
                 % (tp, self.project.code))
 
     def create_tp(self, language):
-        return self.project.translationproject_set.create(
-            language=language)
+        return self.tp_qs.create(language=language)
 
     def update_from_tp(self, source, target):
         self.check_tp(source)
@@ -80,20 +75,16 @@ class TPTool(object):
             try:
                 self.update_store(
                     store,
-                    Store.objects.get(
-                        name=store.name,
-                        parent=target_dir))
-            except Store.DoesNotExist:
+                    target_dir.child_stores.get(name=store.name))
+            except target_dir.child_stores.model.DoesNotExist:
                 self.clone_store(store, target_dir)
         for subdir in source_dir.child_dirs.live():
             dirs.append(subdir.name)
             try:
                 self.update_children(
                     subdir,
-                    Directory.objects.get(
-                        name=subdir.name,
-                        parent=target_dir))
-            except Directory.DoesNotExist:
+                    target_dir.child_dirs.get(name=subdir.name))
+            except target_dir.child_dirs.model.DoesNotExist:
                 self.clone_directory(subdir, target_dir)
 
         for store in target_dir.child_stores.exclude(name__in=stores):
