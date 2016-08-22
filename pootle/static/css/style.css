@@ -2050,8 +2050,7 @@ html[dir="rtl"] #tabs li
     border-radius: 50%;
 }
 
-a.collapse,
-a.slide
+a.collapse
 {
     cursor: pointer;
 }

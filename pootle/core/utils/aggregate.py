@@ -8,7 +8,7 @@
 
 """Wrappers around Django 1.1+ aggregate query functions."""
 
-from django.db.models import Count, Max, Sum
+from django.db.models import Max
 
 
 def max_column(queryset, column, default):
@@ -16,15 +16,3 @@ def max_column(queryset, column, default):
     if result is None:
         return default
     return result
-
-
-def sum_column(queryset, columns, count=False):
-    arg_dict = {}
-
-    if count:
-        arg_dict['count'] = Count('id')
-
-    for column in columns:
-        arg_dict[column] = Sum(column)
-
-    return queryset.aggregate(**arg_dict)

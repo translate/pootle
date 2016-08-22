@@ -22,14 +22,6 @@
           <td class="stats-number">{{ server_stats.user_count }}</td>
         </tr>
       </tbody>
-      <tbody class="js-server-extra-stats"></tbody>
-      <tbody>
-        <tr>
-          <td colspan="2">
-            <a class="slide tiny">{% trans "More..." %}</a>
-          </td>
-        </tr>
-      </tbody>
     </table>
   </div>
 
@@ -76,15 +68,4 @@
     </ul>
   </div>
 </div>
-{% endblock %}
-
-{% block scripts_extra %}
-{% assets 'js_admin_general_app' %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
-<script type="text/javascript">
-  $(function () {
-    PTL.commonAdmin.init({page: 'dashboard'});
-  });
-</script>
 {% endblock %}

@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import dashboard from './dashboard';
 import formset from './formset';
 import staticpages from './staticpages';
 
@@ -17,9 +16,6 @@ PTL.commonAdmin = {
 
   init(opts) {
     switch (opts.page) {
-      case 'dashboard':
-        dashboard.init();
-        break;
       case 'formset':
         formset.init();
         break;

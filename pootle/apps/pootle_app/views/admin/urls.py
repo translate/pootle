@@ -48,11 +48,6 @@ urlpatterns = [
     url(r'^permissions/$',
         adminroot.view,
         name='pootle-admin-permissions'),
-
-    # XHR
-    url(r'^more-stats/?$',
-        dashboard.server_stats_more,
-        name='pootle-admin-more-stats'),
 ]
 
 
