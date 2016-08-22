@@ -21,8 +21,7 @@ from django_rq.workers import Worker
 from pootle.core.decorators import admin_required
 from pootle.i18n.gettext import ugettext as _, ungettext
 from pootle_statistics.models import Submission
-from pootle_store.constants import TRANSLATED
-from pootle_store.models import Suggestion, Unit
+from pootle_store.models import Suggestion
 
 
 def _format_numbers(numbers):
