@@ -45,7 +45,6 @@
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.0",
     "react-select": "^0.9.1",
-    "react-textarea-autosize": "^3.3.0",
     "redux": "^3.0.0",
     "redux-thunk": "^1.0.0",
     "tabbable": "^1.0.0"

@@ -10,9 +10,9 @@ import assign from 'object-assign';
 import Mousetrap from 'mousetrap';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AutosizeTextarea from 'react-textarea-autosize';
 
 import Undoable from 'components/Undoable';
+import AutosizeTextarea from 'components/AutosizeTextarea';
 
 import {
   applyFontFilter, unapplyFontFilter, isNewlineCharacter, isNewlineSymbol,
