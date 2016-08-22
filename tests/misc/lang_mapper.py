@@ -18,7 +18,7 @@ from pootle_language.models import Language
 
 
 @pytest.mark.django_db
-def test_lang_mapper_bad_preset(english, caplog):
+def test_lang_mapper_bad_preset(po_directory, english, caplog):
     project = ProjectDBFactory(source_language=english)
     mapper = lang_mapper.get(project.__class__, instance=project)
     assert mapper.lang_mappings == {}
@@ -34,7 +34,7 @@ def test_lang_mapper_bad_preset(english, caplog):
 
 
 @pytest.mark.django_db
-def test_lang_mapper_no_config(english):
+def test_lang_mapper_no_config(po_directory, english):
     project = ProjectDBFactory(source_language=english)
     mapper = lang_mapper.get(project.__class__, instance=project)
 
@@ -52,7 +52,7 @@ def test_lang_mapper_no_config(english):
 
 
 @pytest.mark.django_db
-def test_lang_mapper_project_config(english):
+def test_lang_mapper_project_config(po_directory, english):
     project = ProjectDBFactory(source_language=english)
     project_config = ObjectConfig(project)
     # upstream_code="en_US", pootle_code="en"
@@ -85,7 +85,7 @@ def test_lang_mapper_project_config(english):
 
 
 @pytest.mark.django_db
-def test_lang_mapper_preset_config(english):
+def test_lang_mapper_preset_config(po_directory, english):
     project = ProjectDBFactory(source_language=english)
     project_config = ObjectConfig(project)
     site_config = SiteConfig()
@@ -107,7 +107,7 @@ def test_lang_mapper_preset_config(english):
 
 
 @pytest.mark.django_db
-def test_lang_mapper_mappings(english):
+def test_lang_mapper_mappings(po_directory, english):
     project = ProjectDBFactory(source_language=english)
     _test_mapper(project)
     ObjectConfig(project)["pootle.core.lang_mapping"] = dict(lang0="language0")

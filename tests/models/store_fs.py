@@ -44,7 +44,7 @@ def test_add_new_store_fs(settings):
 
 
 @pytest.mark.django_db
-def test_add_store_fs_by_path(english):
+def test_add_store_fs_by_path(po_directory, english):
     """Add a store_fs for pootle_path
     """
     project = ProjectDBFactory(source_language=english)
@@ -72,7 +72,7 @@ def test_add_store_fs_by_path(english):
 
 
 @pytest.mark.django_db
-def test_add_store_fs_by_store(english):
+def test_add_store_fs_by_store(po_directory, english):
     """Add a store_fs using store= rather than pootle_path
     """
     fs_path = "/some/fs/example_store.po"
@@ -99,7 +99,7 @@ def test_add_store_fs_by_store(english):
 
 
 @pytest.mark.django_db
-def test_add_store_bad(english):
+def test_add_store_bad(po_directory, english):
     """Try to create a store_fs by pootle_path for a non existent project
     """
     project0 = Project.objects.get(code="project0")
@@ -135,18 +135,17 @@ def test_add_store_bad(english):
 
 
 @pytest.mark.django_db
-def test_add_store_bad_lang():
+def test_add_store_bad_lang(project0):
     """Try to create a store_fs by pootle_path for a non existent language
     """
-    project = Project.objects.get(code="project0")
     with pytest.raises(ValidationError):
         StoreFS.objects.create(
-            pootle_path="/fr/%s/example.po" % project.code,
+            pootle_path="/fr/%s/example.po" % project0.code,
             path="/some/fs/example.po")
 
 
 @pytest.mark.django_db
-def test_add_store_bad_path(english):
+def test_add_store_bad_path(po_directory, english):
     """Try to create a store_fs where pootle_path and store.pootle_path dont
     match.
     """

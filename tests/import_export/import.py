@@ -50,14 +50,16 @@ def test_import_success(store0, admin):
 
 
 @pytest.mark.django_db
-def test_import_failure(en_tutorial_po, file_import_failure, member):
+def test_import_failure(po_directory, en_tutorial_po,
+                        file_import_failure, member):
     filename, exception = file_import_failure
     with pytest.raises(exception):
         _import_file(filename, user=member)
 
 
 @pytest.mark.django_db
-def test_import_unsupported(en_tutorial_ts, ts_directory, member):
+def test_import_unsupported(po_directory, en_tutorial_ts,
+                            ts_directory, member):
     with pytest.raises(UnsupportedFiletypeError):
         _import_file(IMPORT_UNSUPP_FILE,
                      file_dir=os.path.join(ts_directory, "tutorial/en"),

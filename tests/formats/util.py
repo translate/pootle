@@ -116,7 +116,7 @@ def test_format_set_store_filetype(project0):
 
 
 @pytest.mark.django_db
-def test_format_set_template_store_filetype(templates, po):
+def test_format_set_template_store_filetype(po_directory, templates, po):
     project = ProjectDBFactory(source_language=templates)
     filetypes = project.filetype_tool
     tp = TranslationProjectFactory(language=templates, project=project)
@@ -158,7 +158,7 @@ def test_format_set_template_store_filetype(templates, po):
 
 
 @pytest.mark.django_db
-def test_format_set_native_store_filetype(templates,
+def test_format_set_native_store_filetype(po_directory, templates,
                                           language0, po2, english):
     project = ProjectDBFactory(source_language=english)
     filetypes = project.filetype_tool
@@ -269,7 +269,7 @@ def test_format_set_templates_tp_filetype(po_directory, templates, po2):
 
 
 @pytest.mark.django_db
-def test_format_set_tp_filetype(english, language0, po2):
+def test_format_set_tp_filetype(po_directory, english, language0, po2):
     project = ProjectDBFactory(source_language=english)
     filetypes = project.filetype_tool
     registry = formats.get()

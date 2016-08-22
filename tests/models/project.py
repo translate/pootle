@@ -19,7 +19,7 @@ from pootle_project.models import Project
 
 
 @pytest.mark.django_db
-def test_no_root_view_permissions(nobody, default, admin, view,
+def test_no_root_view_permissions(po_directory, nobody, default, admin, view,
                                   no_permission_sets, no_projects,
                                   project_foo, project_bar):
     """Tests user-accessible projects when there are no permissions set at
@@ -56,7 +56,7 @@ def test_no_root_view_permissions(nobody, default, admin, view,
 
 
 @pytest.mark.django_db
-def test_root_view_permissions(nobody, default, admin, view,
+def test_root_view_permissions(po_directory, nobody, default, admin, view,
                                no_projects, no_permission_sets,
                                project_foo, project_bar, root):
     """Tests user-accessible projects with view permissions at the root."""
@@ -100,8 +100,8 @@ def test_root_view_permissions(nobody, default, admin, view,
 
 
 @pytest.mark.django_db
-def test_no_root_hide_permissions(nobody, default, admin, hide, view,
-                                  no_projects, no_permission_sets,
+def test_no_root_hide_permissions(po_directory, nobody, default, admin, hide,
+                                  view, no_projects, no_permission_sets,
                                   project_foo, project_bar, root):
     """Tests user-accessible projects when there are no `hide` permissions
     set at the root.
@@ -149,8 +149,8 @@ def test_no_root_hide_permissions(nobody, default, admin, hide, view,
 
 
 @pytest.mark.django_db
-def test_root_hide_permissions(nobody, default, admin, hide, view,
-                               no_permission_sets, no_projects,
+def test_root_hide_permissions(po_directory, nobody, default, admin, hide,
+                               view, no_permission_sets, no_projects,
                                project_foo, project_bar, root):
     """Tests user-accessible projects when there are `hide` permissions
     set at the root.

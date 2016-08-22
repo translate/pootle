@@ -28,7 +28,7 @@ from pootle_translationproject.utils import TPTool
 
 
 @pytest.mark.django_db
-def test_tp_create_fail(tutorial, english):
+def test_tp_create_fail(po_directory, tutorial, english):
 
     # Trying to create a TP with no Language raises a RelatedObjectDoesNotExist
     # which can be caught with Language.DoesNotExist
@@ -89,7 +89,7 @@ def test_tp_create_with_files(project0, store0, settings):
 
 
 @pytest.mark.django_db
-def test_tp_empty_stats(templates, project0):
+def test_tp_empty_stats(project0, templates):
     """Tests if empty stats is initialized when translation project (new language)
     is added for a project with existing but empty template translation project.
     """
@@ -117,7 +117,7 @@ def test_tp_empty_stats(templates, project0):
 
 
 @pytest.mark.django_db
-def test_tp_stats_created_from_template(tutorial, templates):
+def test_tp_stats_created_from_template(po_directory, tutorial, templates):
     language = LanguageDBFactory()
     tp = TranslationProject.objects.create(language=language, project=tutorial)
     tp.init_from_templates()
@@ -133,22 +133,21 @@ def test_tp_stats_created_from_template(tutorial, templates):
 
 
 @pytest.mark.django_db
-def test_can_be_inited_from_templates(tutorial, templates):
+def test_can_be_inited_from_templates(po_directory, tutorial, templates):
     language = LanguageDBFactory()
     tp = TranslationProject(project=tutorial, language=language)
     assert tp.can_be_inited_from_templates()
 
 
 @pytest.mark.django_db
-def test_cannot_be_inited_from_templates():
+def test_cannot_be_inited_from_templates(project0):
     language = LanguageDBFactory()
-    project = Project.objects.get(code='project0')
-    tp = TranslationProject(project=project, language=language)
+    tp = TranslationProject(project=project0, language=language)
     assert not tp.can_be_inited_from_templates()
 
 
 @pytest.mark.django_db
-def test_tp_checker(tp_checker_tests):
+def test_tp_checker(po_directory, tp_checker_tests):
     language = Language.objects.get(code="language0")
     checker_name_, project = tp_checker_tests
     tp = TranslationProject.objects.create(project=project, language=language)
@@ -161,7 +160,7 @@ def test_tp_checker(tp_checker_tests):
 
 
 @pytest.mark.django_db
-def test_tp_create_with_none_treestyle(english, templates, settings):
+def test_tp_create_with_none_treestyle(po_directory, english, templates, settings):
     project = ProjectDBFactory(
         source_language=english,
         treestyle="none")

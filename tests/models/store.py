@@ -929,7 +929,7 @@ def test_store_get_file_class():
 
 
 @pytest.mark.django_db
-def test_store_get_template_file_class(templates):
+def test_store_get_template_file_class(po_directory, templates):
     project = ProjectDBFactory(source_language=templates)
     tp = TranslationProjectFactory(language=templates, project=project)
     format_registry = formats.get()
@@ -957,7 +957,7 @@ def test_store_get_template_file_class(templates):
 
 
 @pytest.mark.django_db
-def test_store_create_templates(templates):
+def test_store_create_templates(po_directory, templates):
     project = ProjectDBFactory(source_language=templates)
     tp = TranslationProjectFactory(language=templates, project=project)
     po = Format.objects.get(name="po")
@@ -970,7 +970,7 @@ def test_store_create_templates(templates):
 
 
 @pytest.mark.django_db
-def test_store_get_or_create_templates(templates):
+def test_store_get_or_create_templates(po_directory, templates):
     project = ProjectDBFactory(source_language=templates)
     tp = TranslationProjectFactory(language=templates, project=project)
     po = Format.objects.get(name="po")
