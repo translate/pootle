@@ -46,7 +46,7 @@ class TPTool(object):
                 "TP '%s' is not part of project '%s'"
                 % (tp, self.project.code))
 
-    def clone(self, tp, language):
+    def clone(self, tp, language, update_cache=True):
         """Clone a TP to a given language. Raises Exception if an existing TP
         exists for that Language.
         """
@@ -55,18 +55,19 @@ class TPTool(object):
         new_tp = self.create_tp(language)
         self.clone_children(
             tp.directory,
-            new_tp.directory)
+            new_tp.directory,
+            update_cache=update_cache)
         return new_tp
 
-    def clone_children(self, source_dir, target_parent):
+    def clone_children(self, source_dir, target_parent, update_cache=True):
         """Clone a a Directory's children to a give target Directory.
         """
         for store in source_dir.child_stores.live():
-            self.clone_store(store, target_parent)
+            self.clone_store(store, target_parent, update_cache=update_cache)
         for subdir in source_dir.child_dirs.live():
-            self.clone_directory(subdir, target_parent)
+            self.clone_directory(subdir, target_parent, update_cache=update_cache)
 
-    def clone_directory(self, source_dir, target_parent):
+    def clone_directory(self, source_dir, target_parent, update_cache=True):
         """Clone a source Directory and its children to a give target Directory.
         Raises Exception if the target exists already
         """
@@ -74,15 +75,17 @@ class TPTool(object):
             name=source_dir.name)
         self.clone_children(
             source_dir,
-            target_dir)
+            target_dir,
+            update_cache=update_cache)
         return target_dir
 
-    def clone_store(self, store, target_dir):
+    def clone_store(self, store, target_dir, update_cache=True):
         """Clone given Store to target Directory"""
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
-        cloned.mark_all_dirty()
+        if update_cache:
+            cloned.mark_all_dirty()
         cloned.update(cloned.deserialize(store.serialize()))
         cloned.state = store.state
         cloned.save()
@@ -112,7 +115,7 @@ class TPTool(object):
         except self.tp_qs.model.DoesNotExist:
             pass
 
-    def move(self, tp, language):
+    def move(self, tp, language, update_cache=True):
         """Re-assign a tp to a different language"""
         self.check_tp(tp)
         if tp.language == language:
@@ -123,25 +126,31 @@ class TPTool(object):
         tp.language = language
         tp.pootle_path = pootle_path
         tp.save()
-        self.set_parents(directory, self.get_tp(language).directory)
+        self.set_parents(
+            directory,
+            self.get_tp(language).directory,
+            update_cache=update_cache)
         directory.delete()
 
-    def set_parents(self, directory, parent):
+    def set_parents(self, directory, parent, update_cache=True):
         """Recursively sets the parent for children of a directory"""
         self.check_tp(directory.translation_project)
         self.check_tp(parent.translation_project)
         for store in directory.child_stores.all():
-            store.clear_all_cache(parents=False, children=False)
+            if update_cache:
+                store.clear_all_cache(parents=False, children=False)
             store.parent = parent
-            store.mark_all_dirty()
+            if update_cache:
+                store.mark_all_dirty()
             store.save()
         for subdir in directory.child_dirs.all():
-            subdir.clear_all_cache(parents=False, children=False)
+            if update_cache:
+                subdir.clear_all_cache(parents=False, children=False)
             subdir.parent = parent
             subdir.save()
-            self.set_parents(subdir, subdir)
+            self.set_parents(subdir, subdir, update_cache=update_cache)
 
-    def update_children(self, source_dir, target_dir):
+    def update_children(self, source_dir, target_dir, update_cache=True):
         """Update a target Directory and its children from a given
         source Directory
         """
@@ -154,24 +163,27 @@ class TPTool(object):
                     store,
                     target_dir.child_stores.get(name=store.name))
             except target_dir.child_stores.model.DoesNotExist:
-                self.clone_store(store, target_dir)
+                self.clone_store(store, target_dir, update_cache=update_cache)
         for subdir in source_dir.child_dirs.live():
             dirs.append(subdir.name)
             try:
                 self.update_children(
                     subdir,
-                    target_dir.child_dirs.get(name=subdir.name))
+                    target_dir.child_dirs.get(name=subdir.name),
+                    update_cache=update_cache)
             except target_dir.child_dirs.model.DoesNotExist:
-                self.clone_directory(subdir, target_dir)
+                self.clone_directory(
+                    subdir, target_dir, update_cache=update_cache)
 
         for store in target_dir.child_stores.exclude(name__in=stores):
             store.makeobsolete()
 
-    def update_from_tp(self, source, target):
+    def update_from_tp(self, source, target, update_cache=True):
         """Update one TP from another"""
         self.check_tp(source)
         self.check_tp(target)
-        self.update_children(source.directory, target.directory)
+        self.update_children(
+            source.directory, target.directory, update_cache=update_cache)
 
     def update_store(self, source, target):
         """Update a target Store from a given source Store"""
