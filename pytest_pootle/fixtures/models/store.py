@@ -192,9 +192,12 @@ def _require_store(tp, po_dir, name):
     from pootle_store.constants import PARSED
     from pootle_store.models import Store
 
-    file_path = os.path.join(po_dir, tp.real_path, name)
     parent_dir = tp.directory
     pootle_path = tp.pootle_path + name
+
+    file_path = (
+        tp.real_path
+        and os.path.join(po_dir, tp.real_path, name))
 
     try:
         store = Store.objects.get(
