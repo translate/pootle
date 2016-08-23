@@ -49,13 +49,6 @@ def po_directory(request, po_test_dir, settings):
 
     translation_directory = settings.POOTLE_TRANSLATION_DIRECTORY
 
-    projects = ["project0", "project1"]
-    for project in projects:
-        src_dir = os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, project)
-
-        # Copy files over the temporary dir
-        shutil.copytree(src_dir, os.path.join(po_test_dir, project))
-
     # Adjust locations
     settings.POOTLE_TRANSLATION_DIRECTORY = po_test_dir
     fs.location = po_test_dir
