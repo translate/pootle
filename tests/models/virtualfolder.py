@@ -272,7 +272,7 @@ def test_virtualfolder_repr():
 
 
 @pytest.mark.django_db
-def test_virtualfoldertreeitem_repr(vfolders):
+def test_virtualfoldertreeitem_repr():
     vfti = VirtualFolderTreeItem.objects.first()
     assert (
         "<VirtualFolderTreeItem: %s>" % vfti.pootle_path
@@ -280,7 +280,7 @@ def test_virtualfoldertreeitem_repr(vfolders):
 
 
 @pytest.mark.django_db
-def test_vfti_rm(vfolders):
+def test_vfti_rm():
     original_vftis = VirtualFolderTreeItem.objects.values_list("pk", flat=True)
 
     vf0 = VirtualFolder.objects.first()

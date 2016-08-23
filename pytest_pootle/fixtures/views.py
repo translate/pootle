@@ -314,7 +314,7 @@ def project_views(request, client, request_users, settings):
 
 
 @pytest.fixture(params=TP_VIEW_TESTS.keys())
-def tp_views(request, client, request_users, vfolders, settings):
+def tp_views(request, client, request_users, settings):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
 

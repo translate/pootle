@@ -34,7 +34,8 @@ def test_get_children(project0, language0):
 
 
 @pytest.mark.django_db
-def test_get_parents(po_directory, project0, language0, tp0, store0, subdir0):
+def test_get_parents(po_directory, project0, language0, tp0, store0, subdir0,
+                     no_vfolders):
     """Ensure that retrieved parent objects have a correct type."""
 
     subdir_store = subdir0.child_stores.first()
