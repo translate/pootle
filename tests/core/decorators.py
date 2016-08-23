@@ -63,14 +63,14 @@ def test_get_path_obj(rf, po_directory, default, tp0):
 def test_get_path_obj_disabled(rf, default, admin,
                                tp0,
                                project_foo,
-                               arabic_tutorial_obsolete,
+                               en_tutorial_obsolete,
                                tutorial_disabled):
     """Ensure the correct path object is retrieved when projects are
     disabled (#3451) or translation projects are obsolete (#3682).
     """
     language_code = tp0.language.code
-    language_code_obsolete = arabic_tutorial_obsolete.language.code
-    project_code_obsolete = arabic_tutorial_obsolete.project.code
+    language_code_obsolete = en_tutorial_obsolete.language.code
+    project_code_obsolete = en_tutorial_obsolete.project.code
     project_code_disabled = tutorial_disabled.code
 
     # Regular users first

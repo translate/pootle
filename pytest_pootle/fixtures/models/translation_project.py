@@ -27,16 +27,6 @@ def _require_tp(language, project):
     return create_translation_project(language, project)
 
 
-def _require_tp_with_obsolete_dir(language, project):
-    """Helper to get/create a translation project in obsolete state."""
-    from pootle_translationproject.models import create_translation_project
-
-    tp = create_translation_project(language, project)
-    tp.directory.makeobsolete()
-
-    return tp
-
-
 @pytest.fixture
 def afrikaans_tutorial(afrikaans, tutorial):
     """Require Afrikaans Tutorial."""
@@ -44,9 +34,10 @@ def afrikaans_tutorial(afrikaans, tutorial):
 
 
 @pytest.fixture
-def arabic_tutorial_obsolete(arabic, tutorial):
+def en_tutorial_obsolete(english_tutorial):
     """Require Arabic Tutorial in obsolete state."""
-    return _require_tp_with_obsolete_dir(arabic, tutorial)
+    english_tutorial.directory.makeobsolete()
+    return english_tutorial
 
 
 @pytest.fixture

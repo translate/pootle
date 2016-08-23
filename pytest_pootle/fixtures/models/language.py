@@ -52,12 +52,6 @@ def afrikaans():
 
 
 @pytest.fixture
-def arabic():
-    """Require the Arabic language."""
-    return _require_language('ar', 'Arabic')
-
-
-@pytest.fixture
 def italian():
     """Require the Italian language."""
     return _require_language('it', 'Italian')
