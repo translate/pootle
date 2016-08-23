@@ -19,6 +19,10 @@ install:
       -r requirements/base.txt
       -r requirements/travis.txt
       -e .
+  # http://entulho.fiatjaf.alhur.es/guias/how-to-use-node-along-with-other-language-on-travis-ci/
+  - source $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
 script:
   - tox -e $TOXENV
 notifications:
