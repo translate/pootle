@@ -34,7 +34,7 @@ from pootle.core.log import (
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
     STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
     MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
-    action_log, log, store_log)
+    action_log, store_log)
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
@@ -57,10 +57,11 @@ from .diff import StoreDiff
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
 from .managers import StoreManager, SuggestionManager, UnitManager
+from .revision import StoreRevision
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
 from .updater import StoreUpdate
-from .util import get_change_str, SuggestionStates, vfolders_installed
+from .util import SuggestionStates, vfolders_installed
 
 
 TM_BROKER = None
@@ -1407,115 +1408,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         :param allow_add_and_obsolete: allow to add new units
             and make obsolete existing units
         """
-
-        logging.debug(u"Updating %s", self.pootle_path)
-        old_state = self.state
-
-        if user is None:
-            User = get_user_model()
-            user = User.objects.get_system_user()
-
-        update_revision = None
-        changes = {}
-        try:
-            diff = StoreDiff(self, store, store_revision).diff()
-            if diff is not None:
-                update_revision = Revision.incr()
-                changes = self.update_from_diff(store,
-                                                store_revision,
-                                                diff, update_revision,
-                                                user, submission_type,
-                                                resolve_conflict,
-                                                allow_add_and_obsolete)
-        finally:
-            if old_state < PARSED:
-                self.state = PARSED
-            else:
-                self.state = old_state
-            has_changed = any(x > 0 for x in changes.values())
-            self.save(update_cache=has_changed)
-            if has_changed:
-                log(u"[update] %s units in %s [revision: %d]"
-                    % (get_change_str(changes),
-                       self.pootle_path,
-                       self.get_max_unit_revision()))
-        return update_revision, changes
-
-    def update_from_diff(self, store, store_revision,
-                         to_change, update_revision, user,
-                         submission_type, resolve_conflict=POOTLE_WINS,
-                         allow_add_and_obsolete=True):
-        changes = {}
-
-        if allow_add_and_obsolete:
-            # Update indexes
-            for start, delta in to_change["index"]:
-                self.update_index(start=start, delta=delta)
-
-            # Add new units
-            for unit, new_unit_index in to_change["add"]:
-                self.addunit(unit, new_unit_index, user=user,
-                             update_revision=update_revision)
-            changes["added"] = len(to_change["add"])
-
-            # Obsolete units
-            changes["obsoleted"] = self.mark_units_obsolete(to_change["obsolete"],
-                                                            update_revision)
-
-        # Update units
-        update_dbids, uid_index_map = to_change['update']
-        update = StoreUpdate(
-            store,
-            user=user,
-            submission_type=submission_type,
-            resolve_conflict=resolve_conflict,
-            change_indices=allow_add_and_obsolete,
-            uids=update_dbids,
-            indices=uid_index_map,
-            store_revision=store_revision,
-            update_revision=update_revision)
-        changes['updated'], changes['suggested'] = self.updater.update(update)
-        return changes
-
-    def update_from_disk(self, overwrite=False):
-        """Update DB with units from the disk Store.
-
-        :param overwrite: make db match file regardless of last_sync_revision.
-        """
-        changed = False
-
-        if not self.file:
-            return changed
-
-        if overwrite:
-            store_revision = self.get_max_unit_revision()
-        else:
-            store_revision = self.last_sync_revision or 0
-
-        # update the units
-        update_revision, changes = self.update(
-            self.file.store,
-            store_revision=store_revision,
-        )
-
-        # update file_mtime
-        self.file_mtime = self.get_file_mtime()
-
-        # update last_sync_revision if anything changed
-        changed = changes and any(x > 0 for x in changes.values())
-        if changed:
-            update_unsynced = None
-            if self.last_sync_revision is not None:
-                update_unsynced = self.increment_unsynced_unit_revision(
-                    update_revision
-                )
-            self.last_sync_revision = update_revision
-            if update_unsynced:
-                logging.info(u"[update] unsynced %d units in %s "
-                             "[revision: %d]", update_unsynced,
-                             self.pootle_path, update_revision)
-        self.save(update_cache=False)
-        return changed
+        self.updater.update(
+            store, user=user, store_revision=store_revision,
+            submission_type=submission_type, resolve_conflict=resolve_conflict,
+            allow_add_and_obsolete=allow_add_and_obsolete)
 
     def increment_unsynced_unit_revision(self, update_revision):
         filter_by = {
@@ -1618,8 +1514,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
+    @cached_property
+    def revisions(self):
+        return StoreRevision(self) 
+
     def get_max_unit_revision(self):
-        return max_column(self.unit_set.all(), 'revision', 0)
+        return self.revisions.get_max_unit_revision()
 
     # # # TreeItem
     def can_be_updated(self):

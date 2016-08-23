@@ -8,10 +8,13 @@
 
 from django.contrib.auth import get_user_model
 
+from pootle.core.delegate import format_updaters
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.constants import SOURCE_WINS
+from pootle_store.constants import OBSOLETE, SOURCE_WINS
+from pootle_store.store.deserialize import StoreDeserialization
 from pootle_store.diff import StoreDiff
+from pootle_store.store.serialize import StoreSerialization
 
 
 User = get_user_model()
@@ -62,9 +65,9 @@ class TPTool(object):
     def clone_children(self, source_dir, target_parent, update_cache=True):
         """Clone a source Directory's children to a given target Directory.
         """
-        for store in source_dir.child_stores.live():
+        for store in source_dir.child_stores.filter(obsolete=False):
             self.clone_store(store, target_parent, update_cache=update_cache)
-        for subdir in source_dir.child_dirs.live():
+        for subdir in source_dir.child_dirs.filter(obsolete=False):
             self.clone_directory(subdir, target_parent, update_cache=update_cache)
 
     def clone_directory(self, source_dir, target_parent, update_cache=True):
@@ -85,14 +88,20 @@ class TPTool(object):
             name=store.name, translation_project=store.translation_project)
         if update_cache:
             cloned.mark_all_dirty()
-        cloned.update(cloned.deserialize(store.serialize()))
+        cloned.filetype = store.filetype
+        self.store_updater(cloned).update(
+            self.store_deserializer(cloned).deserialize(
+                self.store_serializer(store).serialize()))
         cloned.state = store.state
         cloned.save()
         return cloned
 
     def create_tp(self, language):
         """Create a TP for a given language"""
-        return self.tp_qs.create(language=language)
+        tp_dir = language.directory.child_dirs.create(
+            name=self.project.code)
+        return self.tp_qs.create(
+            language=language, directory=tp_dir)
 
     def get(self, language_code, default=None):
         """Given a language code, returns the relevant TP.
@@ -150,13 +159,26 @@ class TPTool(object):
             subdir.save()
             self.set_parents(subdir, subdir, update_cache=update_cache)
 
+    def store_deserializer(self, store):
+        return StoreDeserialization(store)
+
+    def store_serializer(self, store):
+        return StoreSerialization(store)
+
+    def store_updater(self, store):
+        updaters = format_updaters.gather()
+        updater_class = (
+            updaters.get(store.filetype.name)
+            or updaters.get("default"))
+        return updater_class(store)
+
     def update_children(self, source_dir, target_dir, update_cache=True):
         """Update a target Directory and its children from a given
         source Directory
         """
         stores = []
         dirs = []
-        for store in source_dir.child_stores.live():
+        for store in source_dir.child_stores.filter(obsolete=False):
             stores.append(store.name)
             try:
                 self.update_store(
@@ -164,7 +186,7 @@ class TPTool(object):
                     target_dir.child_stores.get(name=store.name))
             except target_dir.child_stores.model.DoesNotExist:
                 self.clone_store(store, target_dir, update_cache=update_cache)
-        for subdir in source_dir.child_dirs.live():
+        for subdir in source_dir.child_dirs.filter(obsolete=False):
             dirs.append(subdir.name)
             try:
                 self.update_children(

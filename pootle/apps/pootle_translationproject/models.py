@@ -358,7 +358,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                               u"skipping %s", store.pootle_path)
                 continue
 
-            changed = store.update_from_disk(overwrite=overwrite) or changed
+            changed = (
+                store.updater.update_from_disk(overwrite=overwrite)
+                or changed)
 
         # If this TP has no stores, cache should be updated forcibly.
         if not changed and stores.count() == 0:

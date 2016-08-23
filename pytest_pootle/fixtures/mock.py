@@ -11,11 +11,11 @@
 from _pytest.monkeypatch import monkeypatch
 
 
-mp = monkeypatch()
+# mp = monkeypatch()
 
 
 class FakeJob(object):
     id = 'FAKE_JOB_ID'
 
 
-mp.setattr('rq.get_current_job', lambda: FakeJob())
+# mp.setattr('rq.get_current_job', lambda: FakeJob())

@@ -6,10 +6,18 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
+
+from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.functional import cached_property
 
-from pootle_store.constants import POOTLE_WINS
+from pootle.core.log import log
+from pootle.core.models import Revision
+
+from .constants import PARSED, POOTLE_WINS
+from .diff import StoreDiff
+from .util import get_change_str
 
 
 class StoreUpdate(object):
@@ -202,7 +210,121 @@ class StoreUpdater(object):
             unit.store = self.target_store
             yield unit
 
-    def update(self, update):
+    def update(self, store, user=None, store_revision=None,
+               submission_type=None, resolve_conflict=POOTLE_WINS,
+               allow_add_and_obsolete=True):
+        logging.debug(u"Updating %s", self.target_store.pootle_path)
+        old_state = self.target_store.state
+
+        if user is None:
+            User = get_user_model()
+            user = User.objects.get_system_user()
+
+        update_revision = None
+        changes = {}
+        try:
+            diff = StoreDiff(self.target_store, store, store_revision).diff()
+            if diff is not None:
+                update_revision = Revision.incr()
+                changes = self.update_from_diff(
+                    store,
+                    store_revision,
+                    diff, update_revision,
+                    user, submission_type,
+                    resolve_conflict,
+                    allow_add_and_obsolete)
+        finally:
+            if old_state < PARSED:
+                self.target_store.state = PARSED
+            else:
+                self.target_store.state = old_state
+            has_changed = any(x > 0 for x in changes.values())
+            self.target_store.save() # update_cache=has_changed)
+            if has_changed:
+                log(u"[update] %s units in %s [revision: %d]"
+                    % (get_change_str(changes),
+                       self.target_store.pootle_path,
+                       self.target_store.get_max_unit_revision()))
+        return update_revision, changes
+
+    def update_from_diff(self, store, store_revision,
+                         to_change, update_revision, user,
+                         submission_type, resolve_conflict=POOTLE_WINS,
+                         allow_add_and_obsolete=True):
+        changes = {}
+
+        if allow_add_and_obsolete:
+            # Update indexes
+            for start, delta in to_change["index"]:
+                self.target_store.update_index(start=start, delta=delta)
+
+            # Add new units
+            for unit, new_unit_index in to_change["add"]:
+                self.target_store.addunit(
+                    unit, new_unit_index, user=user,
+                    update_revision=update_revision)
+            changes["added"] = len(to_change["add"])
+
+            # Obsolete units
+            changes["obsoleted"] = self.target_store.mark_units_obsolete(
+                to_change["obsolete"],
+                update_revision)
+
+        # Update units
+        update_dbids, uid_index_map = to_change['update']
+        update = StoreUpdate(
+            store,
+            user=user,
+            submission_type=submission_type,
+            resolve_conflict=resolve_conflict,
+            change_indices=allow_add_and_obsolete,
+            uids=update_dbids,
+            indices=uid_index_map,
+            store_revision=store_revision,
+            update_revision=update_revision)
+        changes['updated'], changes['suggested'] = self.update_units(update)
+        return changes
+
+    def update_from_disk(self, overwrite=False):
+        """Update DB with units from the disk Store.
+
+        :param overwrite: make db match file regardless of last_sync_revision.
+        """
+        changed = False
+
+        if not self.target_store.file:
+            return changed
+
+        if overwrite:
+            store_revision = self.target_store.get_max_unit_revision()
+        else:
+            store_revision = self.target_store.last_sync_revision or 0
+
+        # update the units
+        update_revision, changes = self.update(
+            self.target_store.file.store,
+            store_revision=store_revision)
+
+        # update file_mtime
+        self.file_mtime = self.target_store.get_file_mtime()
+
+        # update last_sync_revision if anything changed
+        changed = changes and any(x > 0 for x in changes.values())
+        if changed:
+            update_unsynced = None
+            if self.target_store.last_sync_revision is not None:
+                update_unsynced = self.target_store.increment_unsynced_unit_revision(
+                    update_revision
+                )
+            self.target_store.last_sync_revision = update_revision
+            if update_unsynced:
+                logging.info(u"[update] unsynced %d units in %s "
+                             "[revision: %d]", update_unsynced,
+                             self.target_store.pootle_path, update_revision)
+        self.target_store.save(update_cache=False)
+        return changed
+
+    def update_units(self, update):
         update_count = 0
         suggestion_count = 0
         for unit in self.units(update.uids):

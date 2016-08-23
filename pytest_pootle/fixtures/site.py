@@ -14,6 +14,7 @@ import pytest
 from pytest_pootle.env import PootleTestEnv
 
 
+
 @pytest.fixture(autouse=True, scope='session')
 def setup_db_if_needed(request):
     """Sets up the site DB only if tests requested to use the DB (autouse)."""

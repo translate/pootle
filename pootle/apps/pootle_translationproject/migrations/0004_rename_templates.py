@@ -26,7 +26,10 @@ def rename_templates(apps, schema_editor):
         to_update.append((project, source_tp[0]))
     if not to_update:
         return
-    template_lang, created_ = Language.objects.get_or_create(code="templates")
+    try:
+        template_lang = Language.objects.get(code="templates")
+    except Language.DoesNotExist:
+        template_lang = Language.objects.create(code="templates")
     for project, source_tp in to_update:
         existing_dir = Directory.objects.filter(
             pootle_path="/templates/%s/" % project.code)
@@ -45,6 +48,7 @@ def rename_templates(apps, schema_editor):
             lang_mapping = config.get("pootle.core.lang_mapping", {}) or {}
             lang_mapping[source_tp.language.code] = "templates"
             config["pootle.core.lang_mapping"] = lang_mapping
+
 
 
 class Migration(migrations.Migration):

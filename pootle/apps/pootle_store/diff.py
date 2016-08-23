@@ -16,6 +16,7 @@ from pootle.core.delegate import format_diffs
 
 from .constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .fields import to_python as multistring_to_python
+from .revision import StoreRevision
 from .unit import UnitProxy
 
 
@@ -143,7 +144,7 @@ class StoreDiff(object):
         return diffs["default"]
 
     def get_target_revision(self):
-        return self.target_store.get_max_unit_revision()
+        return StoreRevision(self.target_store).get_max_unit_revision()
 
     @cached_property
     def active_target_units(self):

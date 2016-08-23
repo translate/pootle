@@ -332,3 +332,17 @@ def test_tp_tool_gets(project0, tp0):
 
     with pytest.raises(tp0.DoesNotExist):
         project0.tp_tool["DOES_NOT_EXIST"]
+
+
+
+@pytest.mark.django_db
+def test_tp_migration_0004(project0, tp0, language0, templates, settings):
+    from django.core.management import call_command
+    
+    settings.MIGRATION_MODULES = {}
+
+    project0.source_language = language0
+    project0.save()
+
+    call_command("migrate", "pootle_translationproject", "0003", "--fake")
+    call_command("migrate", "pootle_translationproject", "0004")
