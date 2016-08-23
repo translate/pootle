@@ -85,14 +85,7 @@ def templates_project0(request, templates, project0):
     """Require the templates/project0/ translation project."""
     from pytest_pootle.factories import TranslationProjectFactory
 
-    tp = TranslationProjectFactory(language=templates, project=project0)
-
-    def _cleanup():
-        shutil.rmtree(tp.abs_real_path)
-
-    request.addfinalizer(_cleanup)
-
-    return tp
+    return TranslationProjectFactory(language=templates, project=project0)
 
 
 @pytest.fixture
