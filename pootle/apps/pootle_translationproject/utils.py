@@ -124,12 +124,13 @@ class TPTool(object):
         directory = tp.directory
         tp.language = language
         tp.pootle_path = pootle_path
+        directory.pootle_path = pootle_path
+        directory.parent = language.directory
+        directory.save()
         tp.save()
         self.set_parents(
-            directory,
-            self.get_tp(language).directory,
+            directory, directory,
             update_cache=update_cache)
-        directory.delete()
 
     def set_parents(self, directory, parent, update_cache=True):
         """Recursively sets the parent for children of a directory"""
@@ -137,6 +138,7 @@ class TPTool(object):
             if update_cache:
                 store.clear_all_cache(parents=False, children=False)
             store.parent = parent
+            store.pootle_path = "%s%s/" % (parent.pootle_path, store.name)
             if update_cache:
                 store.mark_all_dirty()
             store.save()
@@ -144,6 +146,7 @@ class TPTool(object):
             if update_cache:
                 subdir.clear_all_cache(parents=False, children=False)
             subdir.parent = parent
+            subdir.pootle_path = "%s%s/" % (parent.pootle_path, subdir.name)
             subdir.save()
             self.set_parents(subdir, subdir, update_cache=update_cache)
 
