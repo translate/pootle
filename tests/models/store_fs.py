@@ -25,16 +25,15 @@ from pootle_project.models import Project
 
 
 @pytest.mark.django_db
-def test_add_new_store_fs(settings):
+def test_add_new_store_fs(settings, project0):
     """Add a store_fs for a store that doesnt exist yet
     """
-    project = Project.objects.get(code="project0")
-    pootle_path = "/language0/%s/example.po" % project.code
+    pootle_path = "/language0/%s/example.po" % project0.code
     fs_path = "/some/fs/example.po"
     store_fs = StoreFS.objects.create(
         pootle_path=pootle_path,
         path=fs_path)
-    assert store_fs.project == project
+    assert store_fs.project == project0
     assert store_fs.store is None
     assert store_fs.pootle_path == pootle_path
     assert store_fs.path == fs_path

@@ -61,6 +61,7 @@ def test_get_path_obj(rf, po_directory, default, tp0):
 
 @pytest.mark.django_db
 def test_get_path_obj_disabled(rf, default, admin,
+                               project0_nongnu,
                                tp0,
                                project_foo,
                                en_tutorial_obsolete,

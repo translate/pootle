@@ -44,7 +44,7 @@ def test_changed_languages_noargs(capfd, po_directory):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_changed_languages_since_revision(capfd, po_directory, tp0):
+def test_changed_languages_since_revision(capfd, project0_nongnu, tp0):
     """Changed languages since a given revision"""
     # Everything
     for store in tp0.stores.all():

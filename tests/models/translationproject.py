@@ -45,7 +45,7 @@ def test_tp_create_fail(po_directory, tutorial, english):
 
 
 @pytest.mark.django_db
-def test_tp_create_templates(project0_directory, project0,
+def test_tp_create_templates(project0_nongnu, project0,
                              templates, complex_ttk):
     # As there is a tutorial template it will automatically create stores for
     # our new TP
@@ -90,7 +90,7 @@ def test_tp_create_with_files(project0_directory, project0, store0, settings):
 
 
 @pytest.mark.django_db
-def test_tp_empty_stats(project0_directory, project0, templates):
+def test_tp_empty_stats(project0_nongnu, project0, templates):
     """Tests if empty stats is initialized when translation project (new language)
     is added for a project with existing but empty template translation project.
     """

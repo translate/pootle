@@ -17,7 +17,7 @@ from pootle_store.views import get_alt_src_langs
 
 
 @pytest.mark.django_db
-def test_get_edit_unit(client, request_users, settings):
+def test_get_edit_unit(project0_nongnu, client, request_users, settings):
 
     user = request_users["user"]
     if user.username != "nobody":

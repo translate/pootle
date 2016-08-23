@@ -16,7 +16,7 @@ from pootle_store.models import Store, Unit
 
 
 @pytest.mark.django_db
-def test_delete_mark_obsolete_resurrect_sync(project0_directory, subdir0):
+def test_delete_mark_obsolete_resurrect_sync(project0_nongnu, subdir0):
     """Tests that the in-DB Directory are marked as obsolete
     after the on-disk file ceased to exist and that the on-disk file and
     directory are recovered after syncing.
@@ -71,7 +71,7 @@ def test_delete_mark_obsolete_resurrect_sync(project0_directory, subdir0):
 
 
 @pytest.mark.django_db
-def test_scan_empty_project_obsolete_dirs(project0_directory, store0):
+def test_scan_empty_project_obsolete_dirs(project0_nongnu, store0):
     """Tests that the in-DB Directories are marked as obsolete
     if the on-disk directories are empty.
     """

@@ -41,7 +41,7 @@ def _import_file(file_name, file_dir=None,
 
 
 @pytest.mark.django_db
-def test_import_success(store0, admin):
+def test_import_success(project0_nongnu, store0, admin):
     store0.sync()
     assert store0.state == NEW
     _import_file(IMPORT_SUCCESS, user=admin)
@@ -68,7 +68,7 @@ def test_import_unsupported(po_directory, en_tutorial_ts,
 
 
 @pytest.mark.django_db
-def test_import_new_file(import_tps, site_users):
+def test_import_new_file(project0_nongnu, import_tps, site_users):
     tp = import_tps
     user = site_users["user"]
     store_pootle_path = tp.pootle_path + "import_new_file.po"
@@ -85,7 +85,7 @@ def test_import_new_file(import_tps, site_users):
 
 
 @pytest.mark.django_db
-def test_import_to_empty(import_tps, site_users):
+def test_import_to_empty(project0_nongnu, import_tps, site_users):
     from pytest_pootle.factories import StoreDBFactory
 
     tp = import_tps
@@ -109,7 +109,8 @@ def test_import_to_empty(import_tps, site_users):
 
 
 @pytest.mark.django_db
-def test_import_add_and_obsolete_units(import_tps, site_users):
+def test_import_add_and_obsolete_units(project0_nongnu, import_tps,
+                                       site_users):
     from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
 
     tp = import_tps
