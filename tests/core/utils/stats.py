@@ -11,7 +11,7 @@ import pytest
 from pootle.core.utils.stats import get_top_scorers_data
 
 
-class TestUser(object):
+class MockUser(object):
     def __init__(self, email, display_name, username):
         self.email = email
         self.display_name = display_name
@@ -24,7 +24,7 @@ TEST_TOP_SCORERS = [
         suggested=0,
         translated=1,
         reviewed=0,
-        user=TestUser(
+        user=MockUser(
             email='test0@poot.le',
             display_name='Test0',
             username='test0',
@@ -35,7 +35,7 @@ TEST_TOP_SCORERS = [
         suggested=1,
         translated=2,
         reviewed=1,
-        user=TestUser(
+        user=MockUser(
             email='test1@poot.le',
             display_name='Test1',
             username='test1',
