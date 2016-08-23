@@ -52,6 +52,7 @@ def test_getorig(store0):
     """Tests that the in-DB Store and on-disk Store match by checking that
     units match in order.
     """
+    store0.sync()
     for i, db_unit in enumerate(store0.units.iterator()):
         store_unit = store0.file.store.units[i + 1]
         assert db_unit.getid() == store_unit.getid()
@@ -60,6 +61,7 @@ def test_getorig(store0):
 @pytest.mark.django_db
 def test_convert(store0):
     """Tests that in-DB and on-disk units match after format conversion."""
+    store0.sync()
     for db_unit in store0.units.iterator():
         store_unit = store0.file.store.findid(db_unit.getid())
         newunit = db_unit.convert(store0.file.store.UnitClass)

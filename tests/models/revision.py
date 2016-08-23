@@ -17,6 +17,7 @@ from .unit import _update_translation
 @pytest.mark.django_db
 def test_max_revision(store0):
     """Tests `max_revision()` gets the latest revision."""
+    store0.sync()
 
     # update a store first, initial_revision = 1 after this update
     store0.update(store0.file.store)

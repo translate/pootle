@@ -76,7 +76,6 @@ def test_scan_empty_project_obsolete_dirs(store0):
     if the on-disk directories are empty.
     """
     tp = store0.translation_project
-    os.remove(store0.file.path)
 
     tp.scan_files()
     for item in tp.directory.child_dirs.all():

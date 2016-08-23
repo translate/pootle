@@ -572,9 +572,7 @@ def dummy_store_syncer():
 
 @pytest.fixture
 def store0(tp0):
-    store = tp0.stores.first()
-    store.sync()
-    return store
+    return tp0.stores.first()
 
 
 @pytest.fixture
