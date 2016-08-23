@@ -82,8 +82,7 @@ class TPTool(object):
     def clone_store(self, store, target_dir, update_cache=True):
         """Clone given Store to target Directory"""
         cloned = target_dir.child_stores.create(
-            name=store.name,
-            translation_project=target_dir.translation_project)
+            name=store.name, translation_project=store.translation_project)
         if update_cache:
             cloned.mark_all_dirty()
         cloned.update(cloned.deserialize(store.serialize()))
@@ -134,8 +133,6 @@ class TPTool(object):
 
     def set_parents(self, directory, parent, update_cache=True):
         """Recursively sets the parent for children of a directory"""
-        self.check_tp(directory.translation_project)
-        self.check_tp(parent.translation_project)
         for store in directory.child_stores.all():
             if update_cache:
                 store.clear_all_cache(parents=False, children=False)
