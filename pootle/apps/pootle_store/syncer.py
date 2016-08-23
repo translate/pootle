@@ -18,6 +18,7 @@ from pootle.core.delegate import format_classes
 from pootle.core.log import log
 from pootle.core.url_helpers import split_pootle_path
 
+from .constants import OBSOLETE
 from .models import Unit
 from .util import get_change_str
 
@@ -185,10 +186,15 @@ class StoreSyncer(object):
         output = fileclass()
         output.settargetlanguage(self.language.code)
         # FIXME: we should add some headers
-        for unit in self.store.units.iterator():
+        for unit in self.units.iterator():
             output.addunit(
                 self.unit_sync_class(unit).convert(output.UnitClass))
         return output
+
+    @property
+    def units(self):
+        return self.store.unit_set.filter(
+            state__gt=OBSOLETE).order_by('index')
 
     def _getclass(self, obj):
         try:

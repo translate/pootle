@@ -130,7 +130,7 @@ def test_sync(project0_nongnu, project0, store0):
 @pytest.mark.django_db
 def test_update_from_ts(en_tutorial_po, test_fs):
     # Parse store
-    en_tutorial_po.update_from_disk()
+    en_tutorial_po.updater.update_from_disk()
     tp = en_tutorial_po.translation_project
     with test_fs.open(['data', 'ts', tp.real_path, 'tutorial.ts']) as f:
         store = getclass(f)(f.read())
@@ -156,7 +156,7 @@ def test_update_ts_plurals(store_po, test_fs):
 @pytest.mark.django_db
 def test_update_with_non_ascii(en_tutorial_po, test_fs):
     # Parse store
-    en_tutorial_po.update_from_disk()
+    en_tutorial_po.updater.update_from_disk()
     tp = en_tutorial_po.translation_project
     with test_fs.open(['data', 'po', tp.real_path,
                        'tutorial_non_ascii.po']) as f:
@@ -230,7 +230,7 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
 
     # store.last_sync_revision is not changed after empty update
     saved_last_sync_revision = store.last_sync_revision
-    store.update_from_disk()
+    store.updater.update_from_disk()
     assert store.last_sync_revision == saved_last_sync_revision
 
     dir_path = os.path.join(store.translation_project.project.get_real_path(),
@@ -248,7 +248,7 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
 
     # any non-empty update sets last_sync_revision to next global revision
     next_revision = Revision.get() + 1
-    store.update_from_disk()
+    store.updater.update_from_disk()
     assert store.last_sync_revision == next_revision
 
     # store.last_sync_revision is not changed after empty update (even if it
@@ -258,7 +258,7 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     dbunit = _update_translation(store, item_index, {'target': u'first'},
                                  sync=False)
     assert dbunit.revision == next_unit_revision
-    store.update_from_disk()
+    store.updater.update_from_disk()
     assert store.last_sync_revision == next_revision
 
     # Non-empty update sets store.last_sync_revision to next global revision
@@ -266,7 +266,7 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
     # this case so its revision should be set next to store.last_sync_revision
     next_revision = Revision.get() + 1
     shutil.move(copied_initial_filepath, store.file.path)
-    store.update_from_disk()
+    store.updater.update_from_disk()
     assert store.last_sync_revision == next_revision
     # Get unsynced unit in DB. Its revision should be greater
     # than store.last_sync_revision to allow to keep this change during

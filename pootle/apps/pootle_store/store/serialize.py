@@ -9,7 +9,8 @@
 from django.core.cache import caches
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import config, serializers
+from pootle.core.delegate import config, serializers, format_syncers
+from pootle_store.revision import StoreRevision
 
 
 class StoreSerialization(object):
@@ -34,7 +35,7 @@ class StoreSerialization(object):
 
     @cached_property
     def max_unit_revision(self):
-        return self.store.get_max_unit_revision()
+        return StoreRevision(self.store).get_max_unit_revision()
 
     @cached_property
     def serializers(self):
@@ -45,8 +46,16 @@ class StoreSerialization(object):
             found_serializers.append(available_serializers[serializer])
         return found_serializers
 
+    @cached_property
+    def syncer(self):
+        syncers = format_syncers.gather()
+        syncer_class = (
+            syncers.get(self.store.filetype.name)
+            or syncers.get("default"))
+        return syncer_class(self.store)
+
     def tostring(self):
-        store = self.store.syncer.convert()
+        store = self.syncer.convert()
         if hasattr(store, "updateheader"):
             # FIXME We need those headers on import
             # However some formats just don't support setting metadata

@@ -228,12 +228,6 @@ def test_tp_tool_bad(po_directory, tp0, templates, english):
         tp_tool.check_tp(other_tp)
 
     with pytest.raises(ValueError):
-        tp_tool.set_parents(tp0.directory, other_tp.directory)
-
-    with pytest.raises(ValueError):
-        tp_tool.set_parents(other_tp.directory, tp0.directory)
-
-    with pytest.raises(ValueError):
         tp_tool.move(other_tp, templates)
 
     with pytest.raises(ValueError):
@@ -288,6 +282,9 @@ def test_tp_tool_update(po_directory, tp0, templates):
     new_tp = tp0.project.translationproject_set.create(
         language=new_lang)
 
+    # save to create the directory correctly
+    new_tp.save()
+
     # this will clone stores/directories as new_tp is empty
     tp0_tool.update_from_tp(tp0, new_tp)
     _test_tp_match(tp0, new_tp)
@@ -335,3 +332,17 @@ def test_tp_tool_gets(project0, tp0):
 
     with pytest.raises(tp0.DoesNotExist):
         project0.tp_tool["DOES_NOT_EXIST"]
+
+
+
+@pytest.mark.django_db
+def test_tp_migration_0004(project0, tp0, language0, templates, settings):
+    from django.core.management import call_command
+    
+    settings.MIGRATION_MODULES = {}
+
+    project0.source_language = language0
+    project0.save()
+
+    call_command("migrate", "pootle_translationproject", "0003", "--fake")
+    call_command("migrate", "pootle_translationproject", "0004")

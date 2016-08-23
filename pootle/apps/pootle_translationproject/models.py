@@ -328,6 +328,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         """
 
         template_tp = self.project.get_template_translationproject()
+        if not template_tp:
+            return
+
         template_stores = template_tp.stores.live().exclude(file="")
 
         for template_store in template_stores.iterator():
@@ -355,7 +358,9 @@ class TranslationProject(models.Model, CachedTreeItem):
                               u"skipping %s", store.pootle_path)
                 continue
 
-            changed = store.update_from_disk(overwrite=overwrite) or changed
+            changed = (
+                store.updater.update_from_disk(overwrite=overwrite)
+                or changed)
 
         # If this TP has no stores, cache should be updated forcibly.
         if not changed and stores.count() == 0:

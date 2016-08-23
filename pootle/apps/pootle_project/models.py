@@ -531,11 +531,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         try:
             return self.translationproject_set.get(language__code='templates')
         except ObjectDoesNotExist:
-            try:
-                return self.translationproject_set \
-                           .get(language=self.source_language_id)
-            except ObjectDoesNotExist:
-                pass
+            pass
 
 
 class ProjectResource(VirtualResource, ProjectURLMixin):

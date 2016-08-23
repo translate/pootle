@@ -16,6 +16,9 @@ import logging
 logging.getLogger("factory").setLevel(logging.WARN)
 
 
+import pytest
+
+
 def pytest_configure():
     if not settings.configured:
         from pootle import syspath_override  # Needed for monkey-patching
