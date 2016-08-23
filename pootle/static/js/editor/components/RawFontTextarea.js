@@ -74,6 +74,7 @@ const RawFontTextarea = React.createClass({
     this.mousetrap.bind(REDO_SHORTCUT, this.props.onRedo);
 
     this.isComposing = false;
+    this.isDirty = false;
   },
 
   shouldComponentUpdate(nextProps) {
@@ -81,6 +82,7 @@ const RawFontTextarea = React.createClass({
     // Only value and mode changes should re-render the textarea — otherwise
     // there are many unnecessary re-renders when the undo stack saves snapshots.
     return (
+      this.isDirty ||
       this.props.value !== nextProps.value ||
       this.props.isRawMode !== nextProps.isRawMode
     );
@@ -104,6 +106,7 @@ const RawFontTextarea = React.createClass({
     const oldIndex = node.selectionStart;
 
     node.value = applyFontFilter(this.props.value, this.getMode());
+    this.isDirty = false;
 
     let delta = 0;
     if (selectionStart === selectionEnd) {
@@ -150,6 +153,7 @@ const RawFontTextarea = React.createClass({
 
   _handleChange(newValue) {
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
+    this.isDirty = true;
     this.props.onChange(cleanValue);
   },
 
