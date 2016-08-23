@@ -80,7 +80,7 @@ def vfolder_project(english, settings):
 
 
 @pytest.fixture
-def project0(po_directory):
+def project0():
     """project0 Project"""
     from pootle_project.models import Project
 
@@ -88,8 +88,20 @@ def project0(po_directory):
 
 
 @pytest.fixture
-def project1(po_directory):
+def project1():
     """project0 Project"""
     from pootle_project.models import Project
 
     return Project.objects.get(code="project1")
+
+
+@pytest.fixture
+def project0_directory(po_directory, project0):
+    """project0 Project"""
+    return project0
+
+
+@pytest.fixture
+def project1_directory(po_directory, project1):
+    """project0 Project"""
+    return project1
