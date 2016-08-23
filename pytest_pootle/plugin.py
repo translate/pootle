@@ -49,11 +49,7 @@ def po_directory(request, po_test_dir, settings):
 
     translation_directory = settings.POOTLE_TRANSLATION_DIRECTORY
 
-    projects = [
-        dirname for dirname
-        in os.listdir(settings.POOTLE_TRANSLATION_DIRECTORY)
-        if dirname != '.tmp']
-
+    projects = ["project0", "project1"]
     for project in projects:
         src_dir = os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, project)
 
