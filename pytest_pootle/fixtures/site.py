@@ -41,6 +41,13 @@ def no_projects():
 
 
 @pytest.fixture
+def no_vfolders():
+    from virtualfolder.models import VirtualFolder
+
+    VirtualFolder.objects.all().delete()
+
+
+@pytest.fixture
 def no_permissions():
     from django.contrib.auth.models import Permission
 
