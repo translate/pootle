@@ -94,7 +94,7 @@ put-translations:
 linguas:
 	@${SRC_DIR}/tools/make-LINGUAS.sh 80 > ${SRC_DIR}/locale/LINGUAS
 
-jslint:
+lint-js:
 	cd ${JS_DIR} \
 	&& npm run lint
 
