@@ -45,7 +45,8 @@ def test_tp_create_fail(po_directory, tutorial, english):
 
 
 @pytest.mark.django_db
-def test_tp_create_templates(project0, templates, complex_ttk):
+def test_tp_create_templates(project0_directory, project0,
+                             templates, complex_ttk):
     # As there is a tutorial template it will automatically create stores for
     # our new TP
     template_tp = TranslationProject.objects.create(
@@ -74,7 +75,7 @@ def test_tp_create_templates(project0, templates, complex_ttk):
 
 
 @pytest.mark.django_db
-def test_tp_create_with_files(project0, store0, settings):
+def test_tp_create_with_files(project0_directory, project0, store0, settings):
     # lets add some files by hand
 
     trans_dir = settings.POOTLE_TRANSLATION_DIRECTORY
@@ -89,7 +90,7 @@ def test_tp_create_with_files(project0, store0, settings):
 
 
 @pytest.mark.django_db
-def test_tp_empty_stats(project0, templates):
+def test_tp_empty_stats(project0_directory, project0, templates):
     """Tests if empty stats is initialized when translation project (new language)
     is added for a project with existing but empty template translation project.
     """
@@ -216,7 +217,7 @@ def test_tp_tool_move(language0, project0, templates):
 
 
 @pytest.mark.django_db
-def test_tp_tool_bad(tp0, templates, english):
+def test_tp_tool_bad(po_directory, tp0, templates, english):
     other_project = ProjectDBFactory(source_language=english)
     other_tp = TranslationProjectFactory(
         project=other_project,
@@ -274,14 +275,14 @@ def _test_tp_match(source_tp, target_tp):
 
 
 @pytest.mark.django_db
-def test_tp_tool_clone(tp0, templates):
+def test_tp_tool_clone(po_directory, tp0, templates):
     new_lang = LanguageDBFactory()
     tp_tool = TPTool(tp0.project)
     _test_tp_match(tp0, tp_tool.clone(tp0, new_lang))
 
 
 @pytest.mark.django_db
-def test_tp_tool_update(tp0, templates):
+def test_tp_tool_update(po_directory, tp0, templates):
     new_lang = LanguageDBFactory()
     tp0_tool = TPTool(tp0.project)
     new_tp = tp0.project.translationproject_set.create(
@@ -306,7 +307,7 @@ def test_tp_tool_update(tp0, templates):
 
 
 @pytest.mark.django_db
-def test_tp_tool_getter(project0):
+def test_tp_tool_getter(project0_directory, project0):
     assert tp_tool.get(Project) is TPTool
     assert isinstance(project0.tp_tool, TPTool)
 

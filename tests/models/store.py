@@ -75,7 +75,7 @@ def _store_as_string(store):
 
 
 @pytest.mark.django_db
-def test_delete_mark_obsolete(project0, store0):
+def test_delete_mark_obsolete(project0_directory, project0, store0):
     """Tests that the in-DB Store and Directory are marked as obsolete
     after the on-disk file ceased to exist.
 
@@ -107,7 +107,7 @@ def test_delete_mark_obsolete(project0, store0):
 
 
 @pytest.mark.django_db
-def test_sync(project0, store0):
+def test_sync(project0_directory, project0, store0):
     """Tests that the new on-disk file is created after sync for existing
     in-DB Store if the corresponding on-disk file ceased to exist.
     """
@@ -166,7 +166,7 @@ def test_update_with_non_ascii(en_tutorial_po, test_fs):
 
 
 @pytest.mark.django_db
-def test_update_unit_order(ordered_po, ordered_update_ttk):
+def test_update_unit_order(project0_directory, ordered_po, ordered_update_ttk):
     """Tests unit order after a specific update.
     """
 
@@ -195,7 +195,7 @@ def test_update_unit_order(ordered_po, ordered_update_ttk):
 
 
 @pytest.mark.django_db
-def test_update_save_changed_units(store0):
+def test_update_save_changed_units(project0_directory, store0):
     """Tests that any update saves changed units only.
     """
     store = store0

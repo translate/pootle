@@ -36,7 +36,7 @@ def fs_src(pootle_fs_path):
 
 
 @pytest.fixture
-def tp0_store(settings, tp0, fs_src):
+def tp0_store(po_directory, settings, tp0, fs_src):
     from pootle_config.utils import ObjectConfig
 
     from .store import _require_store

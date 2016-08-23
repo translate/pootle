@@ -168,7 +168,7 @@ def test_add_store_bad_path(po_directory, english):
 
 
 @pytest.mark.django_db
-def test_save_store_fs_change_pootle_path_or_store(tp0_store_fs):
+def test_save_store_fs_change_pootle_path_or_store(po_directory, tp0_store_fs):
     """You cant change a pootle_path if a store is associated
     unless you also remove the store association - and vice versa
     """
@@ -197,7 +197,7 @@ def test_save_store_fs_change_pootle_path_or_store(tp0_store_fs):
 
 
 @pytest.mark.django_db
-def test_save_store_fs_bad_lang(tp0_store_fs):
+def test_save_store_fs_bad_lang(po_directory, tp0_store_fs):
     """Try to save a store with a non-existent lang code"""
     tp0_store_fs.store = None
     tp0_store_fs.pootle_path = "/fr/project0/example.po"
@@ -207,7 +207,7 @@ def test_save_store_fs_bad_lang(tp0_store_fs):
 
 
 @pytest.mark.django_db
-def test_save_store_fs_bad_lang_with_store(tp0_store, tp0_store_fs):
+def test_save_store_fs_bad_lang_with_store(po_directory, tp0_store, tp0_store_fs):
     """Try to save a store with a pootle_path that is different from the
     associated Store.
     """
@@ -218,7 +218,7 @@ def test_save_store_fs_bad_lang_with_store(tp0_store, tp0_store_fs):
 
 
 @pytest.mark.django_db
-def test_save_store_fs_bad_project(tp0_store_fs):
+def test_save_store_fs_bad_project(po_directory, tp0_store_fs):
     """Try to create a store_fs by pootle_path for a non existent project
     """
     tp0_store_fs.store = None
@@ -228,7 +228,7 @@ def test_save_store_fs_bad_project(tp0_store_fs):
 
 
 @pytest.mark.django_db
-def test_store_fs_plugin(tp0_store_fs, no_fs_plugins, no_fs_files):
+def test_store_fs_plugin(po_directory, tp0_store_fs, no_fs_plugins, no_fs_files):
     store_fs = tp0_store_fs
 
     class DummyPlugin(object):
@@ -258,7 +258,7 @@ def test_store_fs_plugin(tp0_store_fs, no_fs_plugins, no_fs_files):
 
 
 @pytest.mark.django_db
-def test_store_fs_plugin_bad(tp0_store_fs):
+def test_store_fs_plugin_bad(po_directory, tp0_store_fs):
     store_fs = tp0_store_fs
     project = store_fs.project
     project.config["pootle_fs.fs_type"] = None
