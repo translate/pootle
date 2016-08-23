@@ -32,7 +32,7 @@ class TPTool(object):
         return self.project.translationproject_set
 
     def check_no_tp(self, language):
-        """Check a TP doesnt exist already for a give language
+        """Check a TP doesn't exist already for a given language.
         """
         if self.get_tp(language):
             raise ValueError(
@@ -60,7 +60,7 @@ class TPTool(object):
         return new_tp
 
     def clone_children(self, source_dir, target_parent, update_cache=True):
-        """Clone a a Directory's children to a give target Directory.
+        """Clone a source Directory's children to a given target Directory.
         """
         for store in source_dir.child_stores.live():
             self.clone_store(store, target_parent, update_cache=update_cache)
@@ -68,8 +68,8 @@ class TPTool(object):
             self.clone_directory(subdir, target_parent, update_cache=update_cache)
 
     def clone_directory(self, source_dir, target_parent, update_cache=True):
-        """Clone a source Directory and its children to a give target Directory.
-        Raises Exception if the target exists already
+        """Clone a source Directory and its children to a given target
+        Directory. Raises Exception if the target exists already.
         """
         target_dir = target_parent.child_dirs.create(
             name=source_dir.name)
@@ -97,7 +97,7 @@ class TPTool(object):
 
     def get(self, language_code, default=None):
         """Given a language code, returns the relevant TP.
-        If the TP doesnt exist returns a default or None
+        If the TP doesn't exist returns a `default` or `None`.
         """
         try:
             return self[language_code]
