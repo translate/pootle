@@ -156,7 +156,7 @@ def _setup_store_test(store, member, member2, test):
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def store_diff_tests(request, tp0, member, member2):
     from pytest_pootle.factories import StoreDBFactory
-    from pootle_store.models import StoreDiff
+    from pootle_store.diff import StoreDiff
 
     store = StoreDBFactory(
         translation_project=tp0,
