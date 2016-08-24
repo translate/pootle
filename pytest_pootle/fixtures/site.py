@@ -36,7 +36,7 @@ def setup_db_if_needed(request, tests_use_db):
         return request.getfuncargvalue('post_db_setup')
 
 
-@pytest.fixture(autouse=True, scope='session')
+@pytest.fixture(scope='session')
 def post_db_setup(translations_directory, django_db_setup, django_db_blocker,
                   tests_use_db, request):
     """Sets up the site DB for the test session."""
