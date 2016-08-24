@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import shutil
-
 import pytest
 
 from pootle.core.delegate import tp_tool
@@ -72,11 +70,6 @@ def tp_checker_tests(request, english, checkers):
     project = ProjectDBFactory(
         checkstyle=checker_name,
         source_language=english)
-
-    def _remove_project_directory():
-        shutil.rmtree(project.get_real_path())
-    request.addfinalizer(_remove_project_directory)
-
     return (checker_name, project)
 
 
