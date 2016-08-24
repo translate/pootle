@@ -20,6 +20,7 @@ from pootle_fs.files import FSFile
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
+from pootle_store.revision import StoreRevision
 
 
 @pytest.mark.django_db
@@ -243,10 +244,12 @@ def test_wrap_store_fs_on_sync(store_fs_file_store):
     fs_file.fetch()
     fs_file.pull()
     fs_file.on_sync()
-    fs_file.store_fs.resolve_conflict = None
-    fs_file.store_fs.staged_for_merge = False
-    fs_file.store_fs.last_sync_hash = fs_file.latest_hash
-    fs_file.store_fs.last_sync_revision = fs_file.store.get_max_unit_revision()
+    assert fs_file.store_fs.resolve_conflict is None
+    assert fs_file.store_fs.staged_for_merge is False
+    assert fs_file.store_fs.last_sync_hash == fs_file.latest_hash
+    assert (
+        fs_file.store_fs.last_sync_revision
+        == StoreRevision(fs_file.store).get_max_unit_revision())
 
 
 @pytest.mark.django_db

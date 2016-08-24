@@ -135,7 +135,7 @@ def get_translated_storefile(store, pootle_path=None):
     path = pootle_path if pootle_path is not None else store.pootle_path
     filestore.updateheader(add=True, X_Pootle_Path=path)
     filestore.updateheader(add=True,
-                           X_Pootle_Revision=store.get_max_unit_revision())
+                           X_Pootle_Revision=store.revision)
 
     return filestore
 
@@ -148,7 +148,7 @@ def add_store_fs(store, fs_path, synced=False):
             store=store,
             path=fs_path,
             last_sync_hash=uuid4().hex,
-            last_sync_revision=store.get_max_unit_revision())
+            last_sync_revision=store.revision)
     return StoreFS.objects.create(
         store=store,
         path=fs_path)

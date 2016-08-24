@@ -70,7 +70,7 @@ def _store_as_string(store):
         ttk.updateheader(
             add=True, X_Pootle_Path=store.pootle_path)
         ttk.updateheader(
-            add=True, X_Pootle_Revision=store.get_max_unit_revision())
+            add=True, X_Pootle_Revision=store.revision)
     return str(ttk)
 
 
@@ -179,7 +179,7 @@ def test_update_unit_order(project0_nongnu, ordered_po, ordered_update_ttk):
         [unit.unitid for unit in ordered_po.units]
     )
     assert old_unit_list == updated_unit_list
-    current_revision = ordered_po.get_max_unit_revision()
+    current_revision = ordered_po.revision
 
     ordered_po.update(
         ordered_update_ttk,
@@ -226,7 +226,7 @@ def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
 
     # Store is already parsed and store.last_sync_revision should be equal to
     # max unit revision
-    assert store.last_sync_revision == store.get_max_unit_revision()
+    assert store.last_sync_revision == store.revision
 
     # store.last_sync_revision is not changed after empty update
     saved_last_sync_revision = store.last_sync_revision
@@ -517,7 +517,7 @@ def test_store_file_diff(store_diff_tests):
         == [(x.source, x.target) for x in diff.source_store.units[1:]]
         == [(v['source'], v['target']) for v in diff.source_units.values()])
     assert diff.active_target_units == [x.source for x in store.units]
-    assert diff.target_revision == store.get_max_unit_revision()
+    assert diff.target_revision == store.revision
     assert (
         diff.target_units
         == {unit["source_f"]: unit
@@ -988,7 +988,7 @@ def test_store_diff(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
     # no changes
     assert not differ.diff()
     assert differ.target_store == target_store
@@ -1008,7 +1008,7 @@ def test_store_diff_delete_target_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision())
+        target_store.revision)
     result = differ.diff()
     assert result["add"][0][0].source_f == remove_unit.source_f
     assert len(result["add"]) == 1
@@ -1041,7 +1041,7 @@ def test_store_diff_delete_source_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision())
+        target_store.revision)
     result = differ.diff()
     to_remove = target_store.units.get(unitid=remove_unit.unitid)
     assert result["obsolete"] == [to_remove.pk]
@@ -1055,7 +1055,7 @@ def test_store_diff_delete_source_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() - 1)
+        target_store.revision - 1)
     assert not differ.diff()
 
 
@@ -1073,7 +1073,7 @@ def test_store_diff_delete_obsoleted_target_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
     assert not differ.diff()
 
 
@@ -1088,7 +1088,7 @@ def test_store_diff_obsoleted_target_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
     result = differ.diff()
     assert result["update"][0] == set([obsolete_unit.pk])
     assert len(result["update"][1]) == 1
@@ -1098,7 +1098,7 @@ def test_store_diff_obsoleted_target_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() - 1)
+        target_store.revision - 1)
     assert not differ.diff()
 
 
@@ -1114,7 +1114,7 @@ def test_store_diff_update_target_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
     result = differ.diff()
     assert result["update"][0] == set([update_unit.pk])
     assert result["update"][1] == {}
@@ -1147,7 +1147,7 @@ def test_store_diff_update_source_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
     result = differ.diff()
     assert result["update"][0] == set([target_unit.pk])
     assert result["update"][1] == {}
@@ -1179,7 +1179,7 @@ def test_store_diff_custom(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
 
     assert isinstance(
         differ.diffable, CustomDiffableStore)
@@ -1199,7 +1199,7 @@ def test_store_diff_delete_obsoleted_source_unit(diffable_stores):
     differ = StoreDiff(
         target_store,
         source_store,
-        target_store.get_max_unit_revision() + 1)
+        target_store.revision + 1)
     assert not differ.diff()
 
 
