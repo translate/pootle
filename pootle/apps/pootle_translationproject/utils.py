@@ -194,7 +194,7 @@ class TPTool(object):
             return
         system = User.objects.get_system_user()
         update_revision = Revision.incr()
-        return target.update_from_diff(
+        return target.updater.update_from_diff(
             source,
             source_revision,
             diff,
