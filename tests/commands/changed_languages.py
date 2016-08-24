@@ -12,12 +12,11 @@ from django.core.management import call_command
 from django.db.models import Min
 
 from pootle.core.models import Revision
-from pootle_store.models import Unit
 
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_changed_languages_noargs(capfd, po_directory):
+def test_changed_languages_noargs(capfd):
     """Get changed languages since last sync."""
     revision = Revision.get()
     call_command('changed_languages')
@@ -28,9 +27,17 @@ def test_changed_languages_noargs(capfd, po_directory):
          "%d (inclusive)"
          % (revision))
         in err)
-    # sync the last changed store - this seems arbitrary - but is how the
-    # command works
-    Unit.objects.filter(revision=revision)[0].store.sync()
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_changed_languages_noargs_nochanges(capfd, project0_nongnu, store0):
+    """Get changed languages since last sync."""
+    unit = store0.units.first()
+    unit.target = "CHANGED"
+    unit.save()
+    store0.sync()
+    revision = Revision.get()
     out, err = capfd.readouterr()
     call_command('changed_languages')
     out, err = capfd.readouterr()
