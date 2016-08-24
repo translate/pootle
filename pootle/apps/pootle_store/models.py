@@ -432,8 +432,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         # update cache only if we are updating a single unit
         if self.store.state >= PARSED:
-            self.store.mark_dirty(CachedMethods.MTIME)
-            self.store.update_dirty_cache()
+            clear_cache.send(self.store)
 
     def get_absolute_url(self):
         return self.store.get_absolute_url()
