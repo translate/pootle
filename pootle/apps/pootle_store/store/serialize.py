@@ -33,10 +33,6 @@ class StoreSerialization(object):
         return self.store.pootle_path
 
     @cached_property
-    def max_unit_revision(self):
-        return self.store.get_max_unit_revision()
-
-    @cached_property
     def serializers(self):
         available_serializers = serializers.gather(
             self.store.translation_project.project.__class__)
@@ -51,7 +47,7 @@ class StoreSerialization(object):
             # FIXME We need those headers on import
             # However some formats just don't support setting metadata
             store.updateheader(add=True, X_Pootle_Path=self.pootle_path)
-            store.updateheader(add=True, X_Pootle_Revision=self.max_unit_revision)
+            store.updateheader(add=True, X_Pootle_Revision=self.store.revision)
         return str(store)
 
     def pipeline(self, data):
@@ -65,11 +61,11 @@ class StoreSerialization(object):
         cache = caches["exports"]
         ret = cache.get(
             self.pootle_path,
-            version=self.max_unit_revision)
+            version=self.store.revision)
         if not ret:
             ret = self.pipeline(self.tostring())
             cache.set(
                 self.pootle_path,
                 ret,
-                version=self.max_unit_revision)
+                version=self.store.revision)
         return ret

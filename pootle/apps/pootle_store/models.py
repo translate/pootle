@@ -1500,9 +1500,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
 
-    def get_max_unit_revision(self):
-        return max_column(self.unit_set.all(), 'revision', 0)
-
     # # # TreeItem
     def can_be_updated(self):
         return not self.obsolete

@@ -131,7 +131,7 @@ class StoreDiff(object):
         self.target_store = target_store
         self.source_store = source_store
         self.source_revision = source_revision
-        self.target_revision = self.get_target_revision()
+        self.target_revision = self.target_store.revision
 
     @property
     def diff_class(self):
@@ -141,9 +141,6 @@ class StoreDiff(object):
         if differ:
             return differ
         return diffs["default"]
-
-    def get_target_revision(self):
-        return self.target_store.get_max_unit_revision()
 
     @cached_property
     def active_target_units(self):

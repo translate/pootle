@@ -88,7 +88,7 @@ class FSFile(object):
         return (
             self.store_exists
             and (
-                self.store.get_max_unit_revision()
+                self.store.revision
                 != self.store_fs.last_sync_revision))
 
     @cached_property
@@ -149,7 +149,7 @@ class FSFile(object):
         self.store_fs.resolve_conflict = None
         self.store_fs.staged_for_merge = False
         self.store_fs.last_sync_hash = self.latest_hash
-        self.store_fs.last_sync_revision = self.store.get_max_unit_revision()
+        self.store_fs.last_sync_revision = self.store.revision
         self.store_fs.save()
         logger.debug("File synced: %s", self.path)
 
