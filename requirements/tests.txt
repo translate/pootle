@@ -4,4 +4,4 @@ factory_boy>=2.5.2
 pytest==3.0.1
 pytest-catchlog
 pytest-cov
-pytest-django>=2.8,<2.9
+pytest-django==3.0.0
