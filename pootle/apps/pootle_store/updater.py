@@ -211,8 +211,10 @@ class StoreUpdater(object):
             'revision__lt': update_revision,
             'state__gt': OBSOLETE}
         units = self.target_store.unit_set.filter(**filter_by)
-        units.update(revision=Revision.incr())
-        return units.count()
+        count = units.count()
+        if count:
+            units.update(revision=Revision.incr())
+        return count
 
     def units(self, uids):
         for unit in self.target_store.findid_bulk(uids):
