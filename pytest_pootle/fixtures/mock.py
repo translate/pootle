@@ -8,10 +8,10 @@
 
 """Monkeypatching fixtures."""
 
-from _pytest.monkeypatch import monkeypatch
+from _pytest.monkeypatch import MonkeyPatch
 
 
-mp = monkeypatch()
+mp = MonkeyPatch()
 
 
 class FakeJob(object):
