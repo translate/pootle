@@ -59,6 +59,9 @@ DATABASES = {
         # See https://docs.djangoproject.com/en/1.6/topics/db/transactions/
         # required for Django 1.6 + sqlite
         'ATOMIC_REQUESTS': True,
+        'TEST': {
+            'NAME': 'test_pootle',
+        }
     }
 }
 
