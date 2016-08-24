@@ -115,6 +115,7 @@ class ProjectDBFactory(factory.django.DjangoModelFactory):
 
     pootle_path = factory.LazyAttribute(lambda p: "/projects/%s" % p.code)
     checkstyle = "standard"
+    treestyle = "none"
 
 
 class StoreDBFactory(factory.django.DjangoModelFactory):
