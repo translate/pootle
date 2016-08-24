@@ -280,7 +280,7 @@ def test_matcher_matches_missing_langs(settings, caplog):
     assert list(matcher.matches(None, None)) == []
     assert (
         "Could not import files for languages: language0, language1"
-        in caplog.text())
+        in caplog.text)
 
 
 @pytest.mark.django_db

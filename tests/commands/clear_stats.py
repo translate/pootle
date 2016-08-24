@@ -16,5 +16,5 @@ from django.core.management import call_command
 def test_clear_stats(caplog):
     call_command('clear_stats', '--project=project0', '--language=language0',
                  '--verbosity=2')
-    infologs = [l.message for l in caplog.records() if l.levelname == "INFO"]
+    infologs = [l.message for l in caplog.records if l.levelname == "INFO"]
     assert "clear_stats over /language0/project0/" in "".join(infologs)

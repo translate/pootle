@@ -30,7 +30,7 @@ def test_lang_mapper_bad_preset(po_directory, english, caplog):
     assert mapper.lang_mappings == {}
     assert (
         "Unrecognised lang mapping preset"
-        in ''.join([l.message for l in caplog.records()]))
+        in ''.join([l.message for l in caplog.records]))
 
 
 @pytest.mark.django_db
