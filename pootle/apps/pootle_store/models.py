@@ -1159,6 +1159,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     last_sync_revision = models.IntegerField(db_index=True, null=True)
     obsolete = models.BooleanField(default=False)
 
+    revision = models.IntegerField(
+        null=False, default=0, db_index=True, blank=True)
+
     objects = StoreManager()
     simple_objects = models.Manager()
 
