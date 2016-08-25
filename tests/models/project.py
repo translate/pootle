@@ -305,6 +305,7 @@ def test_root_hide_permissions(po_directory, nobody, default, admin, hide,
 def test_project_create_with_none_treestyle(english, templates, settings):
     project = Project.objects.create(
         code="foo",
+        fullname="bar",
         source_language=english,
         treestyle="none")
     assert not os.path.exists(

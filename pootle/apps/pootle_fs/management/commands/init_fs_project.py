@@ -8,8 +8,8 @@
 
 import logging
 
+from django.core.exceptions import ValidationError
 from django.core.management import BaseCommand, CommandError
-from django.db import IntegrityError
 
 from pootle_format.models import Format
 from pootle_fs.utils import FSPlugin, parse_fs_url
@@ -96,9 +96,7 @@ class Command(BaseCommand):
                 treestyle='none',
                 checkstyle=options['checkstyle'],
                 source_language=source_language)
-        except IntegrityError as e:
-            self.stdout.write('Project code "%s" already exists.'
-                              % options['code'])
+        except ValidationError as e:
             raise CommandError(e)
 
         for filetype in options["filetypes"] or ["po"]:
