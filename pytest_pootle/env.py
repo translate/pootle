@@ -21,9 +21,13 @@ class PootleTestEnv(object):
         "subdirs", "submissions", "announcements", "terminology", "fs",
         "vfolders")
 
-    def setup(self):
+    def setup(self, **kwargs):
         for method in self.methods:
-            getattr(self, "setup_%s" % method)()
+            should_setup = (
+                method not in kwargs
+                or kwargs[method])
+            if should_setup:
+                getattr(self, "setup_%s" % method)()
 
     def setup_formats(self):
         from pootle.core.delegate import formats
