@@ -170,7 +170,7 @@ export function applyFontFilter(value, mode = 'regular') {
    */
   return newValue.replace(
     /^\u0020+|\u0020+$|\u0020+(?=\u2420$)|\u0020+(?=\u240A$)|\u0020{2,}/mg,
-    (match) => new Array(match.length + 1).join('\u2420')
+    (match) => new Array(match.length + 1).join(SYMBOLS.SPACE)
   );
 }
 
@@ -184,7 +184,7 @@ export function unapplyFontFilter(value, mode = 'regular') {
   // convert the `\n` back to `\r`. Sigh.
   const pattern = mode !== 'raw' ? REGULAR_MODE_PATTERN_REV : RAW_MODE_PATTERN_REV;
   const newValue = value
-    .replace(/\u240D\u000A/g, '\u240D\u000D')
+    .replace(/\u240D\u000A/g, `${SYMBOLS.CR}${CHARACTERS.CR}`)
     .replace(pattern, (match) => RAW_MAP_REV[match]);
 
   if (mode === 'raw') {
@@ -192,7 +192,7 @@ export function unapplyFontFilter(value, mode = 'regular') {
   }
 
   // Remove extra spacing symbols added in `applyFontFilter`.
-  return newValue.replace(/\u2420/g, '\u0020');
+  return newValue.replace(/\u2420/g, CHARACTERS.SPACE);
 }
 
 
