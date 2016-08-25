@@ -22,6 +22,7 @@ from pytest_pootle.utils import update_store
 from translate.storage.factory import getclass
 
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.dispatch import receiver
 
 from pootle.core.delegate import (
     config, format_classes, format_diffs, formats)
@@ -29,6 +30,7 @@ from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
 from pootle.core.plugin import provider
 from pootle.core.serializers import Serializer, Deserializer
+from pootle.core.signals import object_obsoleted
 from pootle_app.models import Directory
 from pootle_config.exceptions import ConfigurationError
 from pootle_format.exceptions import UnrecognizedFiletype
@@ -1418,3 +1420,23 @@ def test_store_syncer_new_units(dummy_store_syncer_units, tp0):
         expected["old_ids"], expected["new_ids"])
     _test_get_new(
         results, syncer, expected["old_ids"], expected["new_ids"])
+
+
+@pytest.mark.django_db
+def test_store_obsolete_signal(cleanup_receivers):
+    store = Store.objects.filter(obsolete=False).first()
+
+    class ResultHandler(object):
+        pass
+
+    results = ResultHandler()
+
+    @receiver(object_obsoleted, sender=Store)
+    def handle_object_obsolete(**kwargs):
+        kwargs["foo"] = "bar"
+        results.kwargs = kwargs
+
+    store.makeobsolete()
+    assert results.kwargs["foo"] == "bar"
+    assert results.kwargs["sender"] is Store
+    assert results.kwargs["instance"] is store

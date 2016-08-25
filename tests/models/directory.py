@@ -10,9 +10,14 @@ import os
 import shutil
 
 import pytest
+from pytest_pootle.factories import DirectoryFactory
 
-from pootle_app.models.directory import Directory
+from django.dispatch import receiver
+
+from pootle.core.signals import object_obsoleted
+from pootle_app.models import Directory
 from pootle_store.models import Store, Unit
+from pootle_translationproject.models import TranslationProject
 
 
 @pytest.mark.django_db
@@ -82,3 +87,26 @@ def test_scan_empty_project_obsolete_dirs(project0_nongnu, store0):
         assert item.obsolete
 
     assert tp.directory.obsolete
+
+
+@pytest.mark.django_db
+def test_directory_obsolete_signal(cleanup_receivers):
+    tp = TranslationProject.objects.get(
+        language__code="language0", project__code="project0")
+
+    directory = DirectoryFactory(name="signal_directory", parent=tp.directory)
+
+    class ResultHandler(object):
+        pass
+
+    results = ResultHandler()
+
+    @receiver(object_obsoleted, sender=Directory)
+    def handle_object_obsolete(**kwargs):
+        kwargs["foo"] = "bar"
+        results.kwargs = kwargs
+
+    directory.makeobsolete()
+    assert results.kwargs["foo"] == "bar"
+    assert results.kwargs["instance"] is directory
+    assert results.kwargs["sender"] is Directory

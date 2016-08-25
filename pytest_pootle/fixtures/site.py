@@ -6,10 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import gc
 import os
 import tempfile
 
 import pytest
+
+from django.dispatch import Signal
 
 from pytest_pootle.env import PootleTestEnv
 
@@ -140,3 +143,18 @@ def test_fs():
             return open(self.path(paths), *args, **kwargs)
 
     return TestFs()
+
+
+@pytest.fixture
+def cleanup_receivers(request):
+    signals = [
+        (obj, obj.receivers)
+        for obj
+        in gc.get_objects()
+        if isinstance(obj, Signal)]
+
+    def restore_signals():
+        for signal, receivers in signals:
+            signal.receivers = receivers
+
+    request.addfinalizer(restore_signals)
