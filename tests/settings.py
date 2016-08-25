@@ -108,4 +108,4 @@ try:
 except NameError:
     INSTALLED_APPS = ["pootle_fs"]
 
-DEBUG = False
+# DEBUG = False

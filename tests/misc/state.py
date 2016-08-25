@@ -12,6 +12,13 @@ import pytest
 from pootle.core.state import State, ItemState
 
 
+def test_settings(settings):
+    assert not settings.DEBUG
+    assert (
+        settings.TEMPLATES[0]["OPTIONS"]["loaders"][0][0]
+        == 'django.template.loaders.cached.Loader')
+
+
 class DummyContext(object):
 
     def __str__(self):
