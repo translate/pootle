@@ -24,7 +24,15 @@ POOTLE_FORMATS = [
      dict(title='TS',
           extension="ts",
           template_extension="ts")),
+    ("properties",
+     dict(title='Properties',
+          extension="properties",
+          template_extension="properties")),
     ("lang",
      dict(title='Mozilla Lang',
           extension="lang",
-          template_extension="lang"))]
+          template_extension="lang")),
+    ("l20n",
+     dict(title='L20n',
+          extension="ftl",
+          template_extension="ftl"))]
