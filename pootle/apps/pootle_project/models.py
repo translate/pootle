@@ -17,7 +17,7 @@ from translate.lang.data import langcode_re
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
@@ -170,6 +170,14 @@ class ProjectURLMixin(object):
         ])
 
 
+def validate_not_reserved(value):
+    if value in RESERVED_PROJECT_CODES:
+        raise ValidationError(
+            _('"%(code)s" cannot be used as a project code'),
+            params={'code': value},
+        )
+
+
 class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     code_help_text = _('A short code for the project. This should only '
@@ -178,10 +186,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     # any changes to the `code` field may require updating the schema
     # see migration 0003_case_sensitive_schema.py
     code = models.CharField(max_length=255, null=False, unique=True,
-                            db_index=True, verbose_name=_('Code'),
+                            db_index=True, verbose_name=_('Code'), blank=False,
+                            validators=[validate_not_reserved],
                             help_text=code_help_text)
 
-    fullname = models.CharField(max_length=255, null=False,
+    fullname = models.CharField(max_length=255, null=False, blank=False,
                                 verbose_name=_("Full Name"))
 
     checker_choices = [
@@ -389,6 +398,12 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         return self.fullname
 
     def save(self, *args, **kwargs):
+        self.fullname = self.fullname.strip()
+        self.code = self.code.strip()
+
+        # Force validation of fields.
+        self.full_clean()
+
         requires_translation_directory = (
             self.treestyle != "none"
             and not self.disabled
