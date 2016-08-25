@@ -231,6 +231,7 @@ def _test_export_view(tp, request, response, kwargs, settings):
     view_context_test(ctx, **assertions)
 
 
+@pytest.mark.pootle_vfolders
 @pytest.mark.django_db
 def test_views_tp(tp_views, settings):
     test_type, tp, request, response, kwargs = tp_views
