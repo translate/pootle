@@ -10,12 +10,120 @@ import os
 
 import pytest
 
+from django.core.exceptions import ValidationError
+
 from pytest_pootle.factories import UserFactory
 from pytest_pootle.fixtures.models.permission_set import _require_permission_set
 from pytest_pootle.utils import items_equal
 
 from pootle_format.models import Format
-from pootle_project.models import Project
+from pootle_project.models import Project, RESERVED_PROJECT_CODES
+
+
+@pytest.mark.django_db
+def test_create_project_good(english):
+    """Tests projects are created with valid arguments only."""
+
+    proj = Project(code="hello", fullname="world", source_language=english)
+    proj.save()
+    proj.delete()
+
+    code_with_padding = "  hello  "
+    fullname_with_padding = "  world  "
+
+    proj = Project(code=code_with_padding, fullname="world",
+                   source_language=english)
+    proj.save()
+    assert proj.code == code_with_padding.strip()
+    proj.delete()
+
+    proj = Project(code="hello", fullname=fullname_with_padding,
+                   source_language=english)
+    proj.save()
+    assert proj.fullname == fullname_with_padding.strip()
+    proj.delete()
+
+    proj = Project(code=code_with_padding, fullname=fullname_with_padding,
+                   source_language=english)
+    proj.save()
+    assert proj.code == code_with_padding.strip()
+    assert proj.fullname == fullname_with_padding.strip()
+    proj.delete()
+
+
+@pytest.mark.django_db
+def test_create_project_bad(english):
+    """Tests projects are not created with bad arguments."""
+
+    with pytest.raises(ValidationError):
+        Project().save()
+
+    with pytest.raises(ValidationError):
+        Project(code="hello").save()
+
+    with pytest.raises(ValidationError):
+        Project(fullname="world").save()
+
+    with pytest.raises(ValidationError):
+        Project(source_language=english).save()
+
+    with pytest.raises(ValidationError):
+        Project(code="hello", fullname="world").save()
+
+    with pytest.raises(ValidationError):
+        Project(code="hello", source_language=english).save()
+
+    with pytest.raises(ValidationError):
+        Project(fullname="world", source_language=english).save()
+
+    with pytest.raises(ValidationError):
+        Project(code="", fullname="world", source_language=english).save()
+
+    with pytest.raises(ValidationError):
+        Project(code="hello", fullname="", source_language=english).save()
+
+    with pytest.raises(ValidationError):
+        Project(code="  ", fullname="world", source_language=english).save()
+
+    with pytest.raises(ValidationError):
+        Project(code="hello", fullname="  ", source_language=english).save()
+
+
+@pytest.mark.parametrize('reserved_code', RESERVED_PROJECT_CODES)
+@pytest.mark.django_db
+def test_create_project_reserved_code(english, reserved_code):
+    """Tests projects are not created with reserved project codes."""
+
+    with pytest.raises(ValidationError):
+        Project(
+            code=reserved_code,
+            fullname="whatever",
+            source_language=english
+        ).save()
+
+    reserved_code_with_padding = "  %s  " % reserved_code
+    with pytest.raises(ValidationError):
+        Project(
+            code=reserved_code_with_padding,
+            fullname="whatever",
+            source_language=english
+        ).save()
+
+
+@pytest.mark.django_db
+def test_project_save_no_code(project0):
+    """Test that an existing project can't be removed its code."""
+    project0.code = ""
+    with pytest.raises(ValidationError):
+        project0.save()
+
+
+@pytest.mark.django_db
+def test_project_save_no_fullname(project0):
+    """Test that an existing project can't be removed its fullname."""
+    project0.fullname = ""
+    with pytest.raises(ValidationError):
+        project0.save()
 
 
 @pytest.mark.django_db
