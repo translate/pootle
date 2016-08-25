@@ -85,7 +85,7 @@ def tests_use_migration(request, tests_use_db):
 @pytest.fixture(autouse=True, scope='session')
 def setup_db_if_needed(request, tests_use_db):
     """Sets up the site DB only if tests requested to use the DB (autouse)."""
-    if tests_use_db:
+    if tests_use_db and not request.config.getvalue('reuse_db'):
         return request.getfuncargvalue('post_db_setup')
 
 
