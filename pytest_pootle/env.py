@@ -21,9 +21,6 @@ class PootleTestEnv(object):
         "subdirs", "submissions", "announcements", "terminology", "fs",
         "vfolders")
 
-    def __init__(self, request):
-        self.request = request
-
     def setup(self):
         for method in self.methods:
             getattr(self, "setup_%s" % method)()

@@ -42,7 +42,7 @@ def post_db_setup(translations_directory, django_db_setup, django_db_blocker,
     """Sets up the site DB for the test session."""
     if tests_use_db:
         with django_db_blocker.unblock():
-            PootleTestEnv(request).setup()
+            PootleTestEnv().setup()
 
 
 @pytest.fixture(scope='session')
