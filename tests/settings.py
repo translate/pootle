@@ -107,3 +107,5 @@ try:
         INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
 except NameError:
     INSTALLED_APPS = ["pootle_fs"]
+
+DEBUG = False
