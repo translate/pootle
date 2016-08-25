@@ -14,7 +14,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
 from pootle_language.models import Language
-from pootle_project.models import RESERVED_PROJECT_CODES, Project
+from pootle_project.models import Project
 from pootle_store.models import Store
 
 
@@ -80,6 +80,9 @@ class ProjectForm(forms.ModelForm):
                           % filetype))
         return value
 
+    def clean_fullname(self):
+        return self.cleaned_data['fullname'].strip()
+
     def clean_treestyle(self):
         value = self.cleaned_data.get('treestyle', None)
         if not value:
@@ -87,12 +90,7 @@ class ProjectForm(forms.ModelForm):
         return value
 
     def clean_code(self):
-        value = self.cleaned_data['code']
-        if value in RESERVED_PROJECT_CODES:
-            raise forms.ValidationError(
-                _('"%s" cannot be used as a project code', value)
-            )
-        return value
+        return self.cleaned_data['code'].strip()
 
 
 class UserForm(forms.ModelForm):
