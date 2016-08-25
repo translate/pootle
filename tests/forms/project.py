@@ -32,6 +32,22 @@ def test_clean_code_invalid(reserved_code, format_registry):
 
 
 @pytest.mark.django_db
+def test_clean_code_blank_invalid(format_registry):
+    form_data = {
+        'code': '  ',
+        'checkstyle': PROJECT_CHECKERS.keys()[0],
+        'fullname': 'Foo',
+        'filetypes': [format_registry["po"]["pk"]],
+        'source_language': 1,
+        'treestyle': Project.treestyle_choices[0][0],
+    }
+    form = ProjectForm(form_data)
+    assert not form.is_valid()
+    assert 'code' in form.errors
+    assert len(form.errors.keys()) == 1
+
+
+@pytest.mark.django_db
 def test_clean_localfiletype_invalid(format_registry):
     form_data = {
         'code': 'foo',
