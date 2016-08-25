@@ -13,6 +13,7 @@ from pkgutil import iter_modules
 import pytest
 
 from . import fixtures
+from .env import PootleTestEnv
 from .fixtures import models as fixtures_models
 from .fixtures.core import management as fixtures_core_management
 from .fixtures.core import utils as fixtures_core_utils
@@ -57,6 +58,42 @@ def po_directory(request, po_test_dir, settings):
         settings.POOTLE_TRANSLATION_DIRECTORY = translation_directory
 
     request.addfinalizer(_cleanup)
+
+
+@pytest.fixture(scope='session')
+def tests_use_db(request):
+    return bool(
+        [item for item in request.node.items
+         if item.get_marker('django_db')])
+
+
+@pytest.fixture(scope='session')
+def tests_use_migration(request, tests_use_db):
+    return bool(
+        tests_use_db
+        and [item for item in request.node.items
+             if item.get_marker('django_migration')])
+
+
+@pytest.fixture(autouse=True, scope='session')
+def setup_db_if_needed(request, tests_use_db):
+    """Sets up the site DB only if tests requested to use the DB (autouse)."""
+    if tests_use_db:
+        return request.getfuncargvalue('post_db_setup')
+
+
+@pytest.fixture(scope='session')
+def post_db_setup(translations_directory, django_db_setup, django_db_blocker,
+                  tests_use_db, request):
+    """Sets up the site DB for the test session."""
+    if tests_use_db:
+        with django_db_blocker.unblock():
+            PootleTestEnv(request).setup()
+
+
+@pytest.fixture(scope='session')
+def django_db_use_migrations(tests_use_migration):
+    return tests_use_migration
 
 
 pytest_plugins = tuple(
