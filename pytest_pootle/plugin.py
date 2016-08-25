@@ -68,6 +68,13 @@ def tests_use_db(request):
 
 
 @pytest.fixture(scope='session')
+def tests_use_vfolders(request):
+    return bool(
+        [item for item in request.node.items
+         if item.get_marker('pootle_vfolders')])
+
+
+@pytest.fixture(scope='session')
 def tests_use_migration(request, tests_use_db):
     return bool(
         tests_use_db
@@ -84,11 +91,12 @@ def setup_db_if_needed(request, tests_use_db):
 
 @pytest.fixture(scope='session')
 def post_db_setup(translations_directory, django_db_setup, django_db_blocker,
-                  tests_use_db, request):
+                  tests_use_db, tests_use_vfolders, request):
     """Sets up the site DB for the test session."""
     if tests_use_db:
         with django_db_blocker.unblock():
-            PootleTestEnv(request).setup()
+            PootleTestEnv().setup(
+                vfolders=tests_use_vfolders)
 
 
 @pytest.fixture(scope='session')
