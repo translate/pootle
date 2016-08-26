@@ -462,6 +462,11 @@ div.language-name
     bottom: -1px;
 }
 
+div.translate-container.error div.language-name
+{
+    border-bottom: 1px solid #fdd;
+}
+
 .translate-focus div.translate-original,
 {
     color: #130f30;
