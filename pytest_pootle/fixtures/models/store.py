@@ -569,7 +569,7 @@ def dummy_store_syncer():
 
 @pytest.fixture
 def store0(tp0):
-    return tp0.stores.first()
+    return tp0.stores.get(name="store0.po")
 
 
 @pytest.fixture
