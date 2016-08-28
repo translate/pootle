@@ -68,8 +68,7 @@ class UnitManager(models.Manager):
             units_qs = units_qs.filter(
                 store__translation_project__language__code=language_code)
         else:
-            units_qs = units_qs.exclude(
-                store__pootle_path__startswith="/templates/")
+            units_qs = units_qs.exclude(store__is_template=True)
 
         if project_code:
             units_qs = units_qs.filter(
