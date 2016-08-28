@@ -373,14 +373,14 @@ def complex_ttk(test_fs):
 
 
 @pytest.fixture
-def complex_po(project0):
+def complex_po():
     from pootle_store.models import Store
 
     return Store.objects.get(name="complex.po")
 
 
 @pytest.fixture
-def no_complex_po(project0):
+def no_complex_po_():
     from pootle_store.models import Store
 
     Store.objects.get(name="complex.po").delete()
