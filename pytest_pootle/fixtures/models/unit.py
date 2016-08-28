@@ -12,10 +12,9 @@ from translate.storage.factory import getclass
 
 
 @pytest.fixture
-def unit_syncer(tp0):
+def unit_syncer(store0):
     from pootle_store.constants import TRANSLATED
 
-    store = tp0.stores.live().first()
-    unit = store.units.filter(state=TRANSLATED).first()
-    ttk = getclass(store)
+    unit = store0.units.filter(state=TRANSLATED).first()
+    ttk = getclass(store0)
     return unit, ttk.UnitClass
