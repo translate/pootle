@@ -152,7 +152,7 @@ def test_fs_state_pootle_removed(dummyfs_plugin_del_stores, fs_path_qs):
 
 
 @pytest.mark.django_db
-def test_fs_state_conflict_untracked(fs_path_qs, dummyfs):
+def test_fs_state_conflict_untracked(fs_path_qs, no_complex_po_, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
     state = ProjectFSState(plugin, pootle_path=pootle_path, fs_path=fs_path)

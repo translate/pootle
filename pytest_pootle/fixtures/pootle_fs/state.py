@@ -142,7 +142,7 @@ def dummyfs_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
 
 
 @pytest.fixture
-def dummyfs_plugin_no_stores(settings, no_complex_po,
+def dummyfs_plugin_no_stores(settings, no_complex_po_,
                              no_fs_plugins, no_fs_files):
     from pootle.core.plugin import getter, provider
     from pootle_fs.delegate import fs_file, fs_plugins
@@ -195,7 +195,8 @@ def dummyfs_plugin_obs_stores(dummyfs_plugin_no_stores):
 
 
 @pytest.fixture
-def dummyfs_plugin_no_files(settings, no_fs_plugins, no_fs_files):
+def dummyfs_plugin_no_files(settings, no_complex_po_,
+                            no_fs_plugins, no_fs_files):
     from pootle.core.plugin import provider
     from pootle_fs.delegate import fs_plugins
     from pootle_fs.utils import FSPlugin

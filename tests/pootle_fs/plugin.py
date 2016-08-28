@@ -44,7 +44,7 @@ def _test_dummy_response(responses, **kwargs):
 
 
 @pytest.mark.django_db
-def test_fs_plugin_unstage_response(capsys, localfs_envs):
+def test_fs_plugin_unstage_response(capsys, no_complex_po_, localfs_envs):
     state_type, plugin = localfs_envs
     action = "unstage"
     original_state = plugin.state()
@@ -61,7 +61,9 @@ def test_fs_plugin_unstage_response(capsys, localfs_envs):
 
 
 @pytest.mark.django_db
-def test_fs_plugin_unstage_staged_response(capsys, localfs_staged_envs):
+def test_fs_plugin_unstage_staged_response(capsys,
+                                           no_complex_po_,
+                                           localfs_staged_envs):
     state_type, plugin = localfs_staged_envs
     action = "unstage"
     original_state = plugin.state()

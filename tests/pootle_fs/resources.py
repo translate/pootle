@@ -186,7 +186,7 @@ def test_fs_state_trackable_store_paths(fs_path_qs, dummyfs_untracked):
 
 
 @pytest.mark.django_db
-def test_fs_state_trackable_tracked(dummyfs):
+def test_fs_state_trackable_tracked(dummyfs, no_complex_po_):
     plugin = dummyfs
     resources = FSProjectStateResources(plugin)
     store_fs = resources.tracked[0]

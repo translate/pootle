@@ -114,19 +114,18 @@ def localfs_staged_envs(request):
 
 
 @pytest.fixture
-def localfs_env(project_fs):
+def localfs_env(project_fs, no_complex_po_):
     return project_fs
 
 
 @pytest.fixture
-def localfs_base(settings, localfs_env):
+def localfs_base(localfs_env):
     localfs_env.resources.tracked.delete()
     shutil.rmtree(localfs_env.fs_url)
-    shutil.copytree(
+    os.makedirs(
         os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY,
-            localfs_env.project.code),
-        localfs_env.fs_url)
+            localfs_env.fs_url,
+            localfs_env.project.code))
     return localfs_env
 
 
@@ -303,7 +302,8 @@ def localfs_pootle_removed(localfs, localfs_dummy_finder):
 
 
 @pytest.fixture
-def localfs_fs_untracked(localfs_base, localfs_dummy_finder, localfs_dummy_file):
+def localfs_fs_untracked(no_complex_po_, localfs_base,
+                         localfs_dummy_finder, localfs_dummy_file):
     plugin = localfs_base
     plugin.resources.stores.delete()
     state = plugin.state()
