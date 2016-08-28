@@ -115,7 +115,6 @@ def test_tp_empty_stats(project0_nongnu, project0, templates):
     assert stats['fuzzy'] == 0
     assert stats['suggestions'] == 0
     assert stats['critical'] == 0
-    assert not tp.is_dirty()
 
 
 @pytest.mark.django_db
@@ -131,7 +130,6 @@ def test_tp_stats_created_from_template(po_directory, tutorial, templates):
     assert stats['fuzzy'] == 0
     assert stats['suggestions'] == 0
     assert stats['critical'] == 0
-    assert not tp.is_dirty()
 
 
 @pytest.mark.django_db
