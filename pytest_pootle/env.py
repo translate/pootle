@@ -11,15 +11,17 @@ from datetime import timedelta
 
 from dateutil.relativedelta import relativedelta
 
+from translate.storage.factory import getclass
+
 
 class PootleTestEnv(object):
 
     methods = (
         "redis", "case_sensitive_schema", "formats", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
-        "site_permissions", "tps", "disabled_project",
-        "subdirs", "submissions", "announcements", "terminology", "fs",
-        "vfolders")
+        "site_permissions", "tps",
+        "disabled_project", "subdirs", "submissions", "announcements",
+        "terminology", "fs", "vfolders", "complex_po")
 
     def setup(self, **kwargs):
         for method in self.methods:
@@ -33,6 +35,27 @@ class PootleTestEnv(object):
         from pootle.core.delegate import formats
 
         formats.get().initialize()
+
+    def setup_complex_po(self):
+        import pytest_pootle
+        from pytest_pootle.factories import StoreDBFactory
+        from pootle_translationproject.models import TranslationProject
+
+        po_file = os.path.join(
+            os.path.dirname(pytest_pootle.__file__),
+            *("data", "po", "complex.po"))
+        with open(po_file) as f:
+            ttk = getclass(f)(f.read())
+
+        tp = TranslationProject.objects.get(
+            project__code="project0",
+            language__code="language0")
+
+        store = StoreDBFactory(
+            parent=tp.directory,
+            translation_project=tp,
+            name="complex.po")
+        store.update(ttk)
 
     def setup_announcements(self):
         from pytest_pootle.factories import AnnouncementFactory

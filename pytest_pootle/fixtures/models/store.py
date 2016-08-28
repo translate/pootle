@@ -373,23 +373,17 @@ def complex_ttk(test_fs):
 
 
 @pytest.fixture
-def complex_po(complex_ttk):
-    """A Store with some complex Units"""
-    from pootle_translationproject.models import TranslationProject
+def complex_po(project0):
+    from pootle_store.models import Store
 
-    from pytest_pootle.factories import StoreDBFactory
+    return Store.objects.get(name="complex.po")
 
-    tp = TranslationProject.objects.get(
-        project__code="project0",
-        language__code="language0")
 
-    store = StoreDBFactory(
-        parent=tp.directory,
-        translation_project=tp,
-        name="complex_store.po")
+@pytest.fixture
+def no_complex_po(project0):
+    from pootle_store.models import Store
 
-    store.update(complex_ttk)
-    return store
+    Store.objects.get(name="complex.po").delete()
 
 
 @pytest.fixture
