@@ -60,7 +60,7 @@ Major Changes
 
 Below we provide much more detail.  These are by no means exhaustive, view the
 `git log
-<https://github.com/translate/pootle/compare/2.7.6...2.8.0b2>`_ for complete
+<https://github.com/translate/pootle/compare/2.7.6...2.8.0b3>`_ for complete
 information.
 
 
