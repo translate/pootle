@@ -28,3 +28,18 @@ def anon_submission_unit():
         timezone.now(), anon,
         SubmissionTypes.NORMAL)
     unit.save()
+
+
+@pytest.fixture
+def quality_check_submission(admin):
+    from pootle_store.constants import TRANSLATED
+    from pootle_store.models import QualityCheck
+
+    # create a sub with quality check info
+    qc_filter = dict(
+        unit__state=TRANSLATED,
+        unit__store__translation_project__project__disabled=False)
+    qc = QualityCheck.objects.filter(**qc_filter).first()
+    unit = qc.unit
+    unit.toggle_qualitycheck(qc.id, True, admin)
+    return unit.submission_set.filter(quality_check__gt=0).first()
