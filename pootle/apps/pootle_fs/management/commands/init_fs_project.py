@@ -96,17 +96,19 @@ class Command(BaseCommand):
                 treestyle='none',
                 checkstyle=options['checkstyle'],
                 source_language=source_language)
-            for filetype in options["filetypes"] or ["po"]:
-                try:
-                    filetype = Format.objects.get(name=filetype)
-                    project.filetypes.add(filetype)
-                except Format.DoesNotExist as e:
-                    raise CommandError(e)
-            project.update_all_cache()
         except IntegrityError as e:
             self.stdout.write('Project code "%s" already exists.'
                               % options['code'])
             raise CommandError(e)
+
+        for filetype in options["filetypes"] or ["po"]:
+            try:
+                filetype = Format.objects.get(name=filetype)
+                project.filetypes.add(filetype)
+            except Format.DoesNotExist as e:
+                raise CommandError(e)
+
+        project.update_all_cache()
 
         project.config['pootle_fs.fs_type'] = fs_type
         project.config['pootle_fs.fs_url'] = fs_url
