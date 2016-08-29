@@ -21,6 +21,7 @@ from pytest_pootle.utils import update_store
 
 from translate.storage.factory import getclass
 
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from pootle.core.delegate import (
@@ -876,6 +877,19 @@ def test_store_create(tp0):
             name="another_store.foo",
             parent=tp.directory,
             translation_project=tp)
+
+
+@pytest.mark.django_db
+def test_store_create_name_with_slashes_or_backslashes(tp0):
+    """Test Stores are not created with (back)slashes on their name."""
+
+    with pytest.raises(ValidationError):
+        Store.objects.create(name="slashed/name.po", parent=tp0.directory,
+                             translation_project=tp0)
+
+    with pytest.raises(ValidationError):
+        Store.objects.create(name="backslashed\\name.po", parent=tp0.directory,
+                             translation_project=tp0)
 
 
 @pytest.mark.django_db

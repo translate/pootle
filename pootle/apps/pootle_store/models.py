@@ -18,6 +18,7 @@ from translate.storage import base
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.core.validators import MinValueValidator
 from django.db import models
@@ -1115,6 +1116,14 @@ class Unit(models.Model, base.TranslationUnit):
 # # # # # # # # # # #  Store # # # # # # # # # # # # # #
 
 
+def validate_no_slashes(value):
+    if '/' in value:
+        raise ValidationError('Store name cannot contain "/" characters')
+
+    if '\\' in value:
+        raise ValidationError('Store name cannot contain "\\" characters')
+
+
 # Needed to alter storage location in tests
 fs = PootleFileSystemStorage()
 
@@ -1152,7 +1161,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                    db_index=True, verbose_name=_("Path"))
     # any changes to the `name` field may require updating the schema
     # see migration 0007_case_sensitive_schema.py
-    name = models.CharField(max_length=128, null=False, editable=False)
+    name = models.CharField(max_length=128, null=False, editable=False,
+                            validators=[validate_no_slashes])
 
     file_mtime = models.DateTimeField(default=datetime_min)
     state = models.IntegerField(null=False, default=NEW, editable=False,
@@ -1227,6 +1237,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         update_cache = kwargs.pop("update_cache", True)
 
         self.pootle_path = self.parent.pootle_path + self.name
+
+        # Force validation of fields.
+        self.full_clean()
 
         super(Store, self).save(*args, **kwargs)
         if created:
