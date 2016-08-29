@@ -19,3 +19,4 @@ class PootleDataConfig(AppConfig):
     def ready(self):
         importlib.import_module("pootle_data.models")
         importlib.import_module("pootle_data.getters")
+        importlib.import_module("pootle_data.receivers")
