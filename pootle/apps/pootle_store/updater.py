@@ -213,7 +213,7 @@ class StoreUpdater(object):
         units = self.target_store.unit_set.filter(**filter_by)
         count = units.count()
         if count:
-            units.update(revision=Revision.incr())
+            units.update(revision=Revision.get())
         return count
 
     def units(self, uids):
