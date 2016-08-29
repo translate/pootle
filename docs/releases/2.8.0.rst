@@ -15,9 +15,10 @@ If you want to try it, check one of the following:
 Changes in Requirements
 =======================
 
-- Django>=1.9.10,<1.10
+- Django>=1.9.11,<1.10
 - zlib1g-dev required for lxml
 - MySQL support uses mysqlclient instead of MySQLdb
+- django-transaction-hooks is no longer used
 
 
 Major Changes
@@ -29,56 +30,135 @@ Major Changes
 - Pootle FS
 
 
-Below we provide much more detail.  These are by no means exhaustive, view the
-`git log
-<https://github.com/translate/pootle/compare/2.7.6...master>`_ for complete
-information.
+Below we provide much more detail. These are by no means exhaustive, view the
+`git log <https://github.com/translate/pootle/compare/2.7.6...master>`_ for
+complete information.
 
 
 Details of changes
 ==================
 
-- MySQL now uses the mysqlclient database driver instead of MySQLdb, this is
-  Django's preferred database driver.
+- MySQL now uses the ``mysqlclient`` database driver instead of ``MySQLdb``,
+  this is Django's preferred database driver.
 - Undertook a security audit
-- Improved editor performance
 - JavaScript fixes addressing performance and memory leaks in the editor
-- Extensive review and fixes to RTL layout in the editor and browse views
+- Improved editor performance
+- Extensive review and fixes to RTL layout
 - Added pluggable search backend
 - Pootle FS:
 
+  - Added admin UI to set up projects configuration and language mapping
   - CLI
   - LanguageMapper
   - FileMapper
   - Store de/serialization
 
-- Improved UI/stats reporting
-- Support rejecting/accepting suggestions with comments
+- Refactored code for syncing stores
+- Changed the default ``robots.txt``
+
+  - It is now a static file
+  - Now the site is ``allow`` by default
+
+- Editor:
+
+  - Suggestions:
+
+    - Support rejecting/accepting suggestions with comments
+
+      - Suggesters are emailed based on new
+        :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` setting
+
+    - Accept suggestion without "can review" permissions if submitted
+      translation is 100% match.
+
+  - Special characters are depicted by symbols from a custom-built font:
+
+    - Properly display whitespace as special character
+    - Technical details of escape sequences are omitted in the output displayed
+      to end users
+
+  - Errors fixed:
+
+    - Fixed bugs in muting/unmuting checks
+    - Fixed filtering translations by month
+    - Fixed ``TypeError`` error when filter in editor gets no units
+
+  - Translation memory:
+
+    - Display original and translations side-by-side for TM results
+    - amaGama Translation Memory is now queried using CORS
+
+  - Perform all highlighting in the client
+  - Clearly present plurals to translator
+  - Allow selecting similar translations' text in editor
+  - Force word wrapping on long strings with no spaces
+  - Improvements on timeline
+  - Cross-language translation is now restricted to admins as it heavily
+    impacts performance and translators are unlikely to require it
+
+- Added suggestion bulk management:
+
+  - Provides filtering by user, etc.
+  - Allows to review multiple suggestions at once and reject/accept them at
+    once optionally providing a comment for the suggesters
+
 - Configuration system
 - Plugin framework
 - Comment system
-- amaGama Translation Memory is now queried using CORS
-- Improvements on timeline
+- Added ``pootle_format`` app
+
+  - Added support to have several formats in the same project
+
 - Browse pages:
 
-  - Stats refresh notice has been changed to be less intrusive and more helpful
+  - Refactored stats backend:
+
+    - Removed stats refresh notice
+    - Faster stats retrieval
+
   - Hide disabled items and allow showing them to admin users
   - Show leaderboard on top panel and expanded stats panel
   - Search widget is disabled if user cannot translate
-  - Improvements to the statistics table for overly long filenames and smaller screens
+  - Improvements to the statistics table for overly long filenames and smaller
+    screens
+  - Files dropdown no longer keeps references to empty directories
+  - Fixed issue where "Back" button not always worked
+  - Fixed issue with project dropdown when there are projects without name
 
-- Cross-language translation is now restricted to admins since translators
-  don't require them.
+- Added team page:
+
+  - Only for languages so far, and only available to language managers
+  - Replaces permissions with roles
+  - Provides direct access to suggestion bulk management
+
+- Removed for performance reasons:
+
+  - Removed statistics from user profiles. Will be brought back in the future.
+  - Removed export view
+  - Removed unperformant "More stats" in admin dashboard
+
+- Removed reports feature
+- Own Pootle localization changes
+
+  - Updated translations. You can still `contribute translation updates for
+    your language <http://pootle.locamotion.org/projects/pootle/>`_.
+  - Now ``compilejsi18n`` is used to compile JavaScript translations into
+    assets, thus requiring ``django-statici18n`` app.
+  - Password reset email is now localizable in Pootle
+
 - Upload:
 
-  - Disabled upload for non-PO projects as conflict handling currently only works in PO
+  - Disabled upload for non-PO projects as conflict handling currently only
+    works in PO
   - Admins can upload translations as other user
 
 - New Machine Translation providers:
 
-  - `Caighdeán <https://github.com/kscanne/caighdean/blob/master/API.md>`_ - Irish
+  - `Caighdeán <https://github.com/kscanne/caighdean/blob/master/API.md>`_ -
+    Irish
   - `Welsh <http://techiaith.cymru/api/translation/?lang=en>`_
 
+- Added placeholders check for Plurr-formatted strings
 - Improved RQ usage and new management commands
 - Documentation updates
 
@@ -86,26 +166,39 @@ Details of changes
 Pootle FS
 ---------
 
-Pootle FS allows to synchronize Pootle against a filesystem, or VCS, allowing
-to handle conflicts and several other situations that previously required
-ad-hoc hacks.
+:ref:`Pootle FS <pootle_fs>` enables synchronization of Pootle against a
+filesystem, or version control system, handling conflict resolution and other
+situations of two files being out of sync.
 
 
 Development changes
 -------------------
 
+- Updated and pinned PyPI requirements:
+
+  - From now on requirements will be pinned in order to simplify support and
+    development
+
 - Tests:
+
   - Massive improvement in test framework
-  - Coverage increased from 55% to 88%
+  - Coverage increased from 55% to 92%
   - Moved to tox
   - Travis caching and optimisations
+  - Added JavaScript testing
+
 - Code sanity:
-  - Python code cleanup/linting pep8/pyflakes/pep257
+
+  - Python code cleanup/linting pep8/pyflakes/pep257 to increase code health
   - Javascript code linting and cleanups
+  - CSS code linting and cleanups
+
 - Code polishing:
+
   - Moved all commands to argparse
-  - Move shortcuts to Mousetrap
+  - Moved shortcuts to Mousetrap
   - JS improvements, move to React components
+
 - Triage meetings are now held on a weekly basis
 
 
@@ -132,6 +225,7 @@ Command changes and additions
 - :djadmin:`config` was added to get, set, list, append and clear configuration
   settings.
 - :djadmin:`init_fs_project` was added.
+- :djadmin:`set_filetype` was added.
 - Removed ``refresh_stats`` and ``clear_stats`` commands.
 
 
@@ -140,8 +234,8 @@ Changes in settings
 
 - :setting:`POOTLE_SCORE_COEFFICIENTS` accepts custom settings for user
   scores calculation.
-- :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter, as
-  it was misleading and had questionable effects.
+- :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter,
+  as it was misleading and had questionable effects.
 - :setting:`POOTLE_TM_SERVER` now accepts a ``MIN_SIMILARITY`` parameter, to
   filter out results which might be irrelevant. To learn more, check the
   documenation on :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>`.
@@ -149,7 +243,9 @@ Changes in settings
   backend to be used.
 - Changed the default value for `ACCOUNT_SESSION_REMEMBER
   <https://django-allauth.readthedocs.io/en/latest/configuration.html>`_ so now
-  sessions are always remembered.  
+  sessions are always remembered.
+- :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` was added, to allow disabling
+  sending emails to suggesters when suggestions are accepted or rejected.
 - Added new :setting:`POOTLE_FS_WORKING_PATH` and
   :setting:`POOTLE_CANONICAL_URL` settings.
 
@@ -159,10 +255,10 @@ Credits
 
 This release was made possible by the following people:
 
-Ryan Northey, Julen Ruiz Aizpuru, Dwayne Bailey, Taras Semenenko, Leandro
-Regueiro, safaalfulaij, Jason P. Pickering, The Gitter Badger, Rhoslyn Prys,
-Mikhail Paulyshka, Mike Robinson, Kevin Scannell, Igor Afanasyev, Henrik Feldt,
-Francesc Ortiz, Christian Lohmaier, burhan, Arash Mousavi, Andy Kittner, Adam
-Chainz.
+Ryan Northey, Dwayne Bailey, Julen Ruiz Aizpuru, Taras Semenenko, Leandro
+Regueiro, Igor Afanasyev, Safa Alfulaij, Rene Ladan, Kevin Scannell, Jason P.
+Pickering, Eamonn Lawlor, Alexander Lakhin, Robbie, Rhoslyn Prys, Nootan
+Ghimire, Mikhail Paulyshka, Mike Robinson, Henrik Feldt, Francesc Ortiz,
+Christian Lohmaier, Burhan Khalid, Arash Mousavi, Andy Kittner, Adam Chainz.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
