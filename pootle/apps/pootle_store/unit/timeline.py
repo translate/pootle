@@ -6,7 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from hashlib import md5
 from itertools import groupby
 
 from django.contrib.auth import get_user_model
@@ -16,48 +15,17 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
+from accounts.proxy import DisplayUser
 from pootle.i18n.gettext import ugettext as _
 from pootle_comment import get_model as get_comment_model
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
+from pootle_statistics.proxy import SubmissionProxy
 
 from pootle_store.constants import STATES_MAP
 from pootle_store.fields import to_python
 from pootle_store.models import Suggestion
-
-
-class DisplayUser(object):
-
-    def __init__(self, username, full_name, email=None):
-        self.username = username
-        self.full_name = full_name
-        self.email = email
-
-    @property
-    def author_link(self):
-        return format_html(
-            u'<a href="{}">{}</a>',
-            self.get_absolute_url(),
-            self.display_name)
-
-    @property
-    def display_name(self):
-        return (
-            self.full_name.strip()
-            if self.full_name.strip()
-            else self.username)
-
-    def get_absolute_url(self):
-        return reverse(
-            'pootle-user-profile',
-            args=[self.username])
-
-    def gravatar_url(self, size=80):
-        email_hash = md5(self.email).hexdigest()
-        return (
-            'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
-            % (email_hash, size))
 
 
 class SuggestionEvent(object):
@@ -103,56 +71,6 @@ class SuggestionEvent(object):
         }
 
         return description_dict.get(self.submission_type, None)
-
-
-class ProxySubmission(object):
-
-    def __init__(self, values):
-        self.values = values
-
-    @property
-    def old_value(self):
-        return self.values['old_value']
-
-    @property
-    def new_value(self):
-        return self.values['new_value']
-
-    @property
-    def field(self):
-        return self.values['field']
-
-    @property
-    def field_name(self):
-        return SubmissionFields.NAMES_MAP.get(self.field, None)
-
-    @property
-    def type(self):
-        return self.values['type']
-
-    @property
-    def qc_name(self):
-        return self.values['quality_check__name']
-
-    @property
-    def suggestion(self):
-        return self.values['suggestion_id']
-
-    @property
-    def suggestion_full_name(self):
-        return self.values['suggestion__user__full_name']
-
-    @property
-    def suggestion_username(self):
-        return self.values['suggestion__user__username']
-
-    @property
-    def suggestion_target(self):
-        return self.values['suggestion__target_f']
-
-    @property
-    def suggestion_comment(self):
-        return self.values['comment']
 
 
 class TimelineEntry(object):
@@ -221,12 +139,7 @@ class TimelineEntry(object):
 class Timeline(object):
 
     entry_class = TimelineEntry
-    fields = [
-        "type", "old_value", "new_value", "submitter_id", "creation_time",
-        "field", "quality_check_id",
-        "submitter__username", "submitter__email", "submitter__full_name",
-        "suggestion_id", "suggestion__target_f", "suggestion__user__full_name",
-        "suggestion__user__username", "quality_check__name"]
+    fields = SubmissionProxy.timeline_fields
 
     def __init__(self, ob):
         self.object = ob
@@ -327,5 +240,6 @@ class Timeline(object):
         return grouped_entries
 
     def get_entry(self, item):
-        item["comment"] = self.comment_dict.get(item["suggestion_id"])
-        return self.entry_class(ProxySubmission(item)).entry
+        item["suggestion_comment"] = self.comment_dict.get(
+            item["suggestion_id"])
+        return self.entry_class(SubmissionProxy(item)).entry
