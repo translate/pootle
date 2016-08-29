@@ -18,3 +18,9 @@ class PrefixedDict(object):
 
     def __setitem__(self, k, v):
         self.__context["%s%s" % (self.__prefix, k)] = v
+
+    def get(self, k, default=None):
+        try:
+            return self.__context["%s%s" % (self.__prefix, k)]
+        except KeyError:
+            return default
