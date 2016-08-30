@@ -28,6 +28,10 @@ def test_prefix_dict_no_prefix():
     assert mydict["foo"] == "pears"
     assert mydict["other"] == "plums"
 
+    assert no_prefix.get("foo") == "pears"
+    assert no_prefix.get("DOES NOT EXIST") is None
+    assert no_prefix.get("DOES NOT EXIST", "pears") == "pears"
+
 
 def test_prefix_dict_with_prefix():
     prefix = "some_prefix_"
@@ -54,3 +58,7 @@ def test_prefix_dict_with_prefix():
 
     assert mydict["%sfoo" % prefix] == "pears"
     assert mydict["%sother" % prefix] == "plums"
+
+    assert with_prefix.get("foo") == "pears"
+    assert with_prefix.get("DOES NOT EXIST") is None
+    assert with_prefix.get("DOES NOT EXIST", "pears") == "pears"
