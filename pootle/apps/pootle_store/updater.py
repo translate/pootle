@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.functional import cached_property
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.log import log
 from pootle.core.models import Revision
 
@@ -213,7 +214,10 @@ class StoreUpdater(object):
         units = self.target_store.unit_set.filter(**filter_by)
         count = units.count()
         if count:
-            units.update(revision=Revision.incr())
+            # we update after here to trigger a stats update
+            # for the store after doing Unit.objects.update()
+            with update_data_after(self.target_store):
+                units.update(revision=Revision.incr())
         return count
 
     def units(self, uids):
@@ -271,10 +275,11 @@ class StoreUpdater(object):
                 self.target_store.update_index(start=start, delta=delta)
 
             # Add new units
-            for unit, new_unit_index in to_change["add"]:
-                self.target_store.addunit(
-                    unit, new_unit_index, user=user,
-                    update_revision=update_revision)
+            with update_data_after(self.target_store):
+                for unit, new_unit_index in to_change["add"]:
+                    self.target_store.addunit(
+                        unit, new_unit_index, user=user,
+                        update_revision=update_revision)
             changes["added"] = len(to_change["add"])
 
             # Obsolete units
@@ -338,11 +343,14 @@ class StoreUpdater(object):
     def update_units(self, update):
         update_count = 0
         suggestion_count = 0
-        for unit in self.units(update.uids):
-            updated, suggested = self.unit_updater_class(
-                unit, update).update_unit()
-            if updated:
-                update_count += 1
-            if suggested:
-                suggestion_count += 1
+        if not update.uids:
+            return update_count, suggestion_count
+        with update_data_after(self.target_store):
+            for unit in self.units(update.uids):
+                updated, suggested = self.unit_updater_class(
+                    unit, update).update_unit()
+                if updated:
+                    update_count += 1
+                if suggested:
+                    suggestion_count += 1
         return update_count, suggestion_count
