@@ -823,10 +823,12 @@ html[dir="rtl"] .suggestion-action
     margin: 0 0.3em 0 0;
 }
 
-#tm-results .suggestion-original,
-#tm-results .suggestion-translation
+.translation-text,
+.suggestion-original,
+.suggestion-translation
 {
     word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .suggestion-translation

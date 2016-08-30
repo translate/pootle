@@ -29,6 +29,7 @@
       padding: 0px;
 
       width: 100%;
+      table-layout: fixed;
     }
     caption, th, td {
       border: 1px solid #d9d9d9;
@@ -68,6 +69,11 @@
     }
     tr.separator {
       font-style: italic;
+    }
+
+    .translation-text {
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     .unit-number {
@@ -115,8 +121,11 @@
       <tr{% if unit.isfuzzy %} class="unit-fuzzy"{% endif %}>
         <td>
         {% for i, source, title in unit|pluralize_source %}
-          <div lang="{{ source_language.code }}"
-            dir="{{ source_language.direction }}">
+          <div
+            class="translation-text"
+            dir="{{ source_language.direction }}"
+            lang="{{ source_language.code }}"
+          >
             {{ source|fancy_highlight }}
           </div>
         {% endfor %}
@@ -128,7 +137,11 @@
         </td>
         <td>
         {% for i, target, title in unit|pluralize_target %}
-          <div dir="{{ language.direction }}" lang="{{ language.code }}">
+          <div
+            class="translation-text"
+            dir="{{ language.direction }}"
+            lang="{{ language.code }}"
+          >
             {{ target|fancy_highlight }}
           </div>
         {% endfor %}
