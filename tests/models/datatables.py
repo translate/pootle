@@ -23,13 +23,19 @@ def test_data_store_bad(store0):
 
 
 @pytest.mark.django_db
-def test_data_store(store0):
+def test_data_store(tp0):
     """Test that you cant add a duplicate file extension
     """
-    data = StoreData.objects.create(store=store0)
+    from pytest_pootle.factories import StoreDBFactory
+
+    store = StoreDBFactory(
+        name="foo.po",
+        parent=tp0.directory,
+        translation_project=tp0)
+    data = StoreData.objects.create(store=store)
     assert (
         repr(data)
-        == '<StoreData: %s>' % store0.pootle_path)
+        == '<StoreData: %s>' % store.pootle_path)
 
 
 @pytest.mark.django_db
@@ -42,10 +48,17 @@ def test_data_tp_bad():
 
 
 @pytest.mark.django_db
-def test_data_tp(tp0):
+def test_data_tp(english):
     """Test that you cant add a duplicate file extension
     """
-    data = TPData.objects.create(tp=tp0)
+    from pytest_pootle.factories import (
+        LanguageDBFactory, ProjectDBFactory,
+        TranslationProjectFactory)
+
+    tp = TranslationProjectFactory(
+        project=ProjectDBFactory(source_language=english),
+        language=LanguageDBFactory())
+    data = TPData.objects.create(tp=tp)
     assert (
         repr(data)
-        == '<TPData: %s>' % tp0.pootle_path)
+        == '<TPData: %s>' % tp.pootle_path)
