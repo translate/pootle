@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-08-10 13:41+0000\n"
+"PO-Revision-Date: 2016-08-30 02:20+0000\n"
 "Last-Translator: Manuela <manuela.silva@sky.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470836485.000000\n"
+"X-POOTLE-MTIME: 1472523633.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 
 #: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
-msgstr "Nome de Utilizador"
+msgstr "Nome de utilizador"
 
 #: apps/accounts/models.py:64
 msgid ""
@@ -53,7 +53,7 @@ msgstr "Digite um nome de utilizador válido"
 
 #: apps/accounts/models.py:72
 msgid "Email Address"
-msgstr "Endereço de e-mail"
+msgstr "Endereço de E-mail"
 
 #: apps/accounts/models.py:73 apps/pootle_language/models.py:74
 #: apps/pootle_project/models.py:184
@@ -200,11 +200,11 @@ msgstr "Comunicar um problema com esta linha"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
-msgstr "Transferir ficheiros de tradução para edição off-line"
+msgstr "Descarregar ficheiros de tradução para edição off-line"
 
 #: apps/import_export/templates/browser/index.html:12
 msgid "Download for offline translation"
-msgstr "Transferir para edição off-line"
+msgstr "Descarregar para edição off-line"
 
 #: apps/import_export/templates/browser/index.html:16
 msgid "Download translation files for backup"
@@ -231,7 +231,7 @@ msgstr "Enviar como %(user)s"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
-"Tipo de ficheiro %s não suportado, atualmente, são suportados apenas os "
+"Tipo de ficheiro %s não suportado, atualmente são suportados apenas os "
 "ficheiros PO\n"
 
 #: apps/import_export/utils.py:35
@@ -259,7 +259,7 @@ msgstr "O código do idioma não corresponde à convenção ISO."
 
 #: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:212
 msgid "Source Language"
-msgstr "Idioma Fonte"
+msgstr "Idioma Original"
 
 #: apps/pootle_app/forms.py:78
 #, python-format
@@ -267,6 +267,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Não pode remover um tipo de ficheiro de um Projeto, se existirem Elementos "
+"desse tipo de ficheiro ('%s')"
 
 #: apps/pootle_app/forms.py:93
 #, python-format
@@ -341,8 +343,7 @@ msgstr "Nenhum ficheiro neste projeto."
 
 #: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:187
 msgid "There are errors in the form. Please review the problems below."
-msgstr ""
-"O formulário contém erros. Por favor, reveja os problemas indicados abaixo."
+msgstr "Existem erros no formulário. Por favor, reveja os problemas em baixo."
 
 #: apps/pootle_format/abstracts.py:34
 msgid "Format name"
@@ -378,7 +379,7 @@ msgstr ""
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
-msgstr "Carateres Especiais"
+msgstr "Carateres especiais"
 
 #: apps/pootle_language/models.py:78
 msgid "Enter any special characters that users might find difficult to type"
@@ -442,7 +443,7 @@ msgstr "Vazio"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Brackets"
-msgstr "Parênteses"
+msgstr "Parêntesis"
 
 #: apps/pootle_misc/checks.py:45
 msgid "Compendium conflict"
@@ -478,7 +479,7 @@ msgstr "Pontuação final"
 
 #: apps/pootle_misc/checks.py:53
 msgid "Ending whitespace"
-msgstr "Espaço em branco no final"
+msgstr "Espaço em branco no fim"
 
 #: apps/pootle_misc/checks.py:54
 msgid "Escapes"
@@ -596,7 +597,7 @@ msgstr "Não traduzido"
 
 #: apps/pootle_misc/checks.py:83
 msgid "URLs"
-msgstr "URLs"
+msgstr "URL"
 
 #: apps/pootle_misc/checks.py:84
 msgid "Valid characters"
@@ -608,7 +609,7 @@ msgstr "Símbolos"
 
 #: apps/pootle_misc/checks.py:86
 msgid "Valid XML"
-msgstr "XML Válido"
+msgstr "XML válido"
 
 #: apps/pootle_misc/checks.py:87
 msgid "XML tags"
@@ -727,9 +728,8 @@ msgid "Plurr format"
 msgstr "Formato Plurr"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "Símbolos $"
+msgstr "Símbolos plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -743,15 +743,15 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:479
 msgid "Exact Match"
-msgstr "Correspondência Exata"
+msgstr "Correspondência exata"
 
 #: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:485
 msgid "Source Text"
-msgstr "Texto Fonte"
+msgstr "Texto fonte"
 
 #: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:486
 msgid "Target Text"
-msgstr "Texto da Tradução"
+msgstr "Texto da tradução"
 
 #: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:487
 msgid "Comments"
@@ -800,7 +800,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:195
 msgid "Quality Checks"
-msgstr "Verificações de Qualidade"
+msgstr "Verificações de qualidade"
 
 #: apps/pootle_project/models.py:201
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
@@ -813,7 +813,7 @@ msgstr "Estilo GNU: nome do ficheiro conforme o código do idioma"
 
 #: apps/pootle_project/models.py:203
 msgid "Non-GNU: Each language in its own directory"
-msgstr "Não GNU: cada idioma na sua diretoria"
+msgstr "Não GNU: cada idioma no seu diretório"
 
 #: apps/pootle_project/models.py:204
 msgid "Allow pootle_fs to manage filesystems"
@@ -821,15 +821,15 @@ msgstr "Permitir que pootle_fs controle filesystems"
 
 #: apps/pootle_project/models.py:208
 msgid "Project Tree Style"
-msgstr "Estilo da Árvore do Projeto"
+msgstr "Estilo da árvore do projeto"
 
 #: apps/pootle_project/models.py:216
 msgid "Ignore Files"
-msgstr "Ignorar Ficheiros"
+msgstr "Ignorar ficheiros"
 
 #: apps/pootle_project/models.py:221
 msgid "Errors Report Email"
-msgstr "E-mail para Comunicar Erros"
+msgstr "E-mail para comunicar erros"
 
 #: apps/pootle_project/models.py:222
 msgid "An email address where issues with the source text can be reported."
@@ -839,7 +839,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:226
 msgid "Screenshot Search Prefix"
-msgstr "Prefixo de Captura de Ecrã"
+msgstr "Prefixo de captura de ecrã"
 
 #: apps/pootle_project/models.py:231
 msgid "Disabled"
@@ -898,7 +898,7 @@ msgstr "Não tem permissões suficientes para aceder ao modo de revisão."
 #: apps/pootle_store/templatetags/store_tags.py:211
 #, python-format
 msgid "Plural Form %d"
-msgstr "Forma de Plural %d"
+msgstr "Forma plural %d"
 
 #: apps/pootle_store/forms.py:252 apps/pootle_store/util.py:29
 #: core/helpers.py:49 templates/editor/_filters.html:10
@@ -1160,8 +1160,7 @@ msgstr "Filtro"
 
 #: apps/virtualfolder/models.py:46
 msgid "Filtering rules that tell which stores this virtual folder comprises."
-msgstr ""
-"As regras de filtragem que guardam os compromissos desta pasta virtual."
+msgstr "Regras de filtragem que guardam estes compromissos da pasta virtual."
 
 #: apps/virtualfolder/models.py:50 core/browser.py:21
 msgid "Priority"
@@ -1187,7 +1186,7 @@ msgstr "Se esta pasta virtual é ou não pública."
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
-"Utilize esta opção para disponibilizar mais informações ou instruções. "
+"Utilize esta opção para disponibilizar mais informação ou instruções. "
 "Marcação permitida: %s"
 
 #: checks.py:62
@@ -1703,7 +1702,6 @@ msgid "About This Pootle Server"
 msgstr "Sobre este servidor Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1711,10 +1709,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Este site usa o Pootle &mdash; software poderoso para capacitar equipas para "
-"traduzir e gerir traduções. Esta ferramenta é software livre, e cada equipa "
-"pode utiliza-la e contribuir para a comunidade do Pootle. Leia mais na <a "
-"href=\"http://translate.sourceforge.net/\">página do projecto</a>."
+"Este site utiliza o Pootle &mdash; software da Web poderoso para permitir "
+"que as equipas traduzam e controlem as traduções. Esta ferramenta "
+"comunitária é um Software Livre, e qualquer equipa pode utilizá-lo e "
+"contribuir para a comunidade do Pootle. Leia mais na <a href=\"http://"
+"translate.sourceforge.net/\">página da Web do projeto</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1748,22 +1747,20 @@ msgstr "Confirmação de e-mail do Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "recebemos um pedido de reposição da sua palavra-passe."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Para ativar a sua conta, siga esta hiperligação:"
+msgstr "Para repor a sua palavra-passe, siga esta hiperligação:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr ""
+msgstr "Se não quiser repor a palavra-passe, ignore esta mensagem."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Falha ao redefinir a palavra-passe."
+msgstr "Mensagem para redefinir a palavra-passe do Pootle."
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2143,9 +2140,8 @@ msgid "Failing Checks"
 msgstr "Verificações falhadas"
 
 #: templates/browser/index.html:67
-#, fuzzy
 msgid "Less..."
-msgstr "menos..."
+msgstr "Menos..."
 
 #: templates/browser/index.html:78
 msgid "Updates"
@@ -2849,11 +2845,11 @@ msgstr "Última atividade:"
 
 #: templates/user/profile.html:78
 msgid "My Website"
-msgstr "O Meu Site da Web"
+msgstr "O meu site da web"
 
 #: templates/user/profile.html:84
 msgid "My LinkedIn Profile"
-msgstr "O Meu Perfil do Linkedin"
+msgstr "O meu perfil do linkedin"
 
 #: templates/user/profile.html:93
 msgid ""
@@ -2901,7 +2897,7 @@ msgstr "Percentagem horária:"
 
 #: templates/user/settings.html:12
 msgid "User Account"
-msgstr "Conta do Utilizador"
+msgstr "Conta de utilizador"
 
 # Repor é a palavra que foi utilizada para a tradução do botão correspondente
 #: templates/user/settings.html:14
@@ -2914,7 +2910,7 @@ msgstr ""
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
-msgstr "Repor Palavra-passe"
+msgstr "Repor palavra-passe"
 
 #: templates/welcome.html:4
 msgid "Welcome"

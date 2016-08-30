@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-10 17:32+0100\n"
-"PO-Revision-Date: 2016-07-07 10:40+0000\n"
+"PO-Revision-Date: 2016-08-14 06:42+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1467888026.000000\n"
+"X-POOTLE-MTIME: 1471156949.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -161,7 +161,6 @@ msgid "Quality Checks"
 msgstr "Sifatini tekshirish"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
 msgstr "Fayl turi"
 
@@ -521,21 +520,20 @@ msgid "Social Verification"
 msgstr "Ijtimoiy tasdiqlash"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Koʻproq"
+msgstr "Koʻproq…"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Top Contributors for the Last 30 Days"
-msgstr ""
+msgstr "Shu oydagi faol tarjimonlar"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+% ta so‘z"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:52
 msgid "Show disabled"
@@ -664,89 +662,88 @@ msgstr "Rad qilish"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s orqali fayl yuklab qo‘yish"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:285
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%b %d, %a"
 
 #: static/js/reports/app.js:287
 msgid "Jan"
-msgstr ""
+msgstr "Yan"
 
 #: static/js/reports/app.js:288
 msgid "Feb"
-msgstr ""
+msgstr "Fev"
 
 #: static/js/reports/app.js:289
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:290
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: static/js/reports/app.js:291
 msgid "May"
-msgstr ""
+msgstr "May"
 
 #: static/js/reports/app.js:292
 msgid "Jun"
-msgstr ""
+msgstr "Iyun"
 
 #: static/js/reports/app.js:293
 msgid "Jul"
-msgstr ""
+msgstr "Iyul"
 
 #: static/js/reports/app.js:294
 msgid "Aug"
-msgstr ""
+msgstr "Avg"
 
 #: static/js/reports/app.js:295
 msgid "Sep"
-msgstr ""
+msgstr "Sen"
 
 #: static/js/reports/app.js:296
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: static/js/reports/app.js:297
-#, fuzzy
 msgid "Nov"
-msgstr "Yo‘q"
+msgstr "Noy"
 
 #: static/js/reports/app.js:298
 msgid "Dec"
-msgstr ""
+msgstr "Dek"
 
 #: static/js/reports/app.js:301
 msgid "Sun"
-msgstr ""
+msgstr "Yak"
 
 #: static/js/reports/app.js:302
 msgid "Mon"
-msgstr ""
+msgstr "Dush"
 
 #: static/js/reports/app.js:303
 msgid "Tue"
-msgstr ""
+msgstr "Sesh"
 
 #: static/js/reports/app.js:304
 msgid "Wed"
-msgstr ""
+msgstr "Chor"
 
 #: static/js/reports/app.js:305
 msgid "Thu"
-msgstr ""
+msgstr "Pay"
 
 #: static/js/reports/app.js:306
 msgid "Fri"
-msgstr ""
+msgstr "Jum"
 
 #: static/js/reports/app.js:307
 msgid "Sat"
-msgstr ""
+msgstr "Shan"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -770,14 +767,12 @@ msgstr "Izlash uchun yozing"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "removed translation for %(sourceString)s"
-msgstr "${sourceString} uchun tarjima olib tashlandi"
+msgstr "%{sourceString}s uchun tarjima olib tashlandi"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "accepted suggestion for %(sourceString)s"
-msgstr "${sourceString} uchun tavsiya qabul qilindi"
+msgstr "%{sourceString}s uchun tavsiya qabul qilindi"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "uploaded file"

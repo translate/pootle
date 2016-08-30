@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-08-01 17:51+0000\n"
+"PO-Revision-Date: 2016-08-11 19:08+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470073889.000000\n"
+"X-POOTLE-MTIME: 1470942497.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -254,6 +254,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Z projektu nelze odebrat typ souboru pokud již existují úložiště s tímto "
+"typem souboru (‚%s‘)"
 
 #: apps/pootle_app/forms.py:93
 #, python-format
@@ -1725,22 +1727,21 @@ msgstr "Pootle - potvrzení e-mailu"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Obdrželi jsme požadavek na resetování vašeho hesla."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Pro aktivaci účtu klikněte na následující odkaz:"
+msgstr "Pro resetování hesla klikněte na následující odkaz:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Pokud nechcete provést reset svého hesla, můžete tuto zprávu ignorovat."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Resetování hesla se nezdařilo."
+msgstr "Pootle - e-mail pro resetování hesla"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2886,11 +2887,11 @@ msgid ""
 "will initiate the process of setting a new password."
 msgstr ""
 "Chcete změnit své heslo? Pro spuštění procesu pro nastavení nového hesla "
-"klikněte na tlačítko ‚Změnit heslo‘."
+"klikněte na tlačítko ‚Resetovat heslo‘."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
-msgstr "Změnit heslo"
+msgstr "Resetovat heslo"
 
 #: templates/welcome.html:4
 msgid "Welcome"

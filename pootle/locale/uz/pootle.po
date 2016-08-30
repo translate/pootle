@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-07-07 10:46+0000\n"
+"PO-Revision-Date: 2016-08-21 19:51+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1467888379.000000\n"
+"X-POOTLE-MTIME: 1471809113.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -195,13 +195,12 @@ msgid "Download for offline translation"
 msgstr "Oflayn tarjima qilish uchun yuklab olish"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Oflayn tarjima qilish uchun tarjima fayllarini yuklab olish"
+msgstr "Nusxasini saqlab qo‘yish uchun tarjima fayllarini yuklab olish"
 
 #: apps/import_export/templates/browser/index.html:17
 msgid "Download for backup"
-msgstr ""
+msgstr "Zaxira uchun yuklab olish"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -212,9 +211,9 @@ msgid "Upload translations"
 msgstr "Kompyuterdan tarjimalarni yuklash"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "%(user)s uchun hisobot berish"
+msgstr "%(user)s sifatida yuklash"
 
 #: apps/import_export/utils.py:29
 #, python-format
@@ -256,6 +255,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Agar \"%s\" kabi turdagi fayllar joylashgan bo‘lsa, bunday fayllarni "
+"loyihadan olib tashlay olmaysiz."
 
 #: apps/pootle_app/forms.py:93
 #, python-format
@@ -332,23 +333,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Shaklda xatolar mavjud. Quyidagi muammolarni ko‘rib chiqing."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Ism"
+msgstr "Format nomi"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Format sarlavhasi"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "O‘chirib qo‘yilgan"
+msgstr "Yoqib qo‘yilgan"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android formati"
+msgstr "Bir tillik format"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:180
 msgid "Code"
@@ -716,9 +714,8 @@ msgid "Plurr format"
 msgstr "Plurr formati"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ o‘zgaruvchilar"
+msgstr "Plurr o‘zgaruvchilar"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52

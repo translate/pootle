@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-10 17:32+0100\n"
-"PO-Revision-Date: 2016-08-10 17:49+0000\n"
+"PO-Revision-Date: 2016-08-12 15:32+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470851378.000000\n"
+"X-POOTLE-MTIME: 1471015977.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -162,9 +162,8 @@ msgid "Quality Checks"
 msgstr "Comprobacións de calidade"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Tipo de ficheiro"
+msgstr "Tipos de ficheiro"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -382,12 +381,12 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"A ligazón para restabelecer o contrasinal era incorrecta, posibelmente "
-"porque xa foi usada. Solicite un novo restabelecemento do contrasinal."
+"A ligazón para cambiar o contrasinal era incorrecta, posibelmente porque xa "
+"foi usada. Solicite un novo cambio de contrasinal."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr "Restabelecer o contrasinal"
+msgstr "Cambiar o contrasinal"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
@@ -414,8 +413,7 @@ msgstr "Enviando mensaxe a %s..."
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
 msgstr ""
-"Visite esa ligazón para continuar co procedemento de restabelecemento do "
-"contrasinal."
+"Visite esa ligazón para continuar co procedemento de cambio do contrasinal."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
@@ -512,7 +510,7 @@ msgstr "Mensaxe de correo-e de confirmación"
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr "Restabelecer o contrasinal"
+msgstr "Cambiar o contrasinal"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
@@ -528,7 +526,7 @@ msgstr "Máis…"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Top Contributors for the Last 30 Days"
-msgstr ""
+msgstr "Máximos colaboradores dos últimos 30 días"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
@@ -961,7 +959,7 @@ msgid ""
 "link to reset your password."
 msgstr ""
 "Introduza o seu enderezo de correo-e e enviaráselle unha mensaxe cunha "
-"ligazón especial para restabelecer o seu contrasinal."
+"ligazón especial para cambiar o seu contrasinal."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"

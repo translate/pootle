@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-10 17:32+0100\n"
-"PO-Revision-Date: 2016-08-07 04:42+0000\n"
+"PO-Revision-Date: 2016-08-17 16:55+0000\n"
 "Last-Translator: wck317 <wck317@pchome.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470544958.000000\n"
+"X-POOTLE-MTIME: 1471452911.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr ""
+msgstr "已成功儲存。"
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr ""
+msgstr "已成功刪除。"
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
@@ -47,14 +47,14 @@ msgstr "取消"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
+msgstr[0] "%(count)s 語言符合您的查詢。%(count)s 語言符合您的查詢。"
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "有 %(count)s 種語言。有 %(count)s 種語言。下面是最近加入的語言。"
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
@@ -285,7 +285,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "網站"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"

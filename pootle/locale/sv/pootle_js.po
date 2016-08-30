@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-10 17:32+0100\n"
-"PO-Revision-Date: 2016-08-02 15:36+0000\n"
+"PO-Revision-Date: 2016-08-12 19:48+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470152203.000000\n"
+"X-POOTLE-MTIME: 1471031321.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -161,9 +161,8 @@ msgid "Quality Checks"
 msgstr "Kvalitetskontroller"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Filtyp"
+msgstr "Filtyper"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -527,7 +526,7 @@ msgstr "Mer..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Top Contributors for the Last 30 Days"
-msgstr ""
+msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"

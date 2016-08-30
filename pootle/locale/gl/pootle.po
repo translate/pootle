@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-08-10 14:30+0000\n"
+"PO-Revision-Date: 2016-08-12 15:33+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470839431.000000\n"
+"X-POOTLE-MTIME: 1471015993.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -253,6 +253,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Non pode retirar un tipo de ficheiro dun proxecto en caso de que haxa "
+"ficheiros con ese tipo de ficheiro («%s»)."
 
 #: apps/pootle_app/forms.py:93
 #, python-format
@@ -1721,9 +1723,9 @@ msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
-"Esta mensaxe mándaselle para verificar que o enderezo de correo electrónico "
+"Esta mensaxe envíaselle para verificar que o enderezo de correo electrónico "
 "é realmente correcto. Se vostede non quere rexistrar unha conta, pode "
-"ignorar simplemente esta mensaxe."
+"simplemente ignorar esta mensaxe."
 
 #: templates/account/email/email_confirmation_subject.txt:2
 msgid "Pootle e-mail confirmation"
@@ -1731,22 +1733,22 @@ msgstr "Confirmación de correo electrónico de Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Recibiuse unha solicitude para cambiar o seu contrasinal."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Para activar a súa conta, siga esta ligazón:"
+msgstr "Para cambiar o seu contrasinal, siga esta ligazón:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Se vostede non quere cambiar o seu contrasinal, pode simplemente ignorar "
+"esta mensaxe."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Fallou a reinicialización do contrasinal."
+msgstr "Email de cambio de contrasinal en Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2890,12 +2892,12 @@ msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
-"Desexa cambiar o seu contrasinal? Prema no botón 'Restabelecer o "
-"contrasinal' para iniciar o proceso de definir un novo contrasinal."
+"Desexa cambiar o seu contrasinal? Prema no botón 'Cambiar o contrasinal' "
+"para iniciar o proceso de definir un novo contrasinal."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
-msgstr "Reinicialización do contrasinal"
+msgstr "Cambio de contrasinal"
 
 #: templates/welcome.html:4
 msgid "Welcome"
@@ -2915,7 +2917,7 @@ msgstr "Acceder"
 
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Maiores colaboradores nos últimos 30 días"
+msgstr "Máximos colaboradores dos últimos 30 días"
 
 #~ msgid "File Type"
 #~ msgstr "Tipo de ficheiro"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-08-08 14:31+0000\n"
+"PO-Revision-Date: 2016-08-12 19:51+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470666706.000000\n"
+"X-POOTLE-MTIME: 1471031519.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -1718,22 +1718,22 @@ msgstr "Pootle e-postbekräftelse"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Vi har fått en begäran om att återställa lösenordet."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Följ denna länk för att aktivera ditt konto:"
+msgstr "För att återställa ditt lösenord, följ denna länk:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Om du inte vill återställa ditt lösenord, kan du helt enkelt ignorera "
+"meddelandet."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Nollställning av lösenord misslyckades."
+msgstr "Pootle e-post för återställning av lösenord"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8

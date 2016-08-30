@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-08-02 14:54+0000\n"
-"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2016-08-29 10:10+0000\n"
+"Last-Translator: demo <demo@mailinator.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470149691.000000\n"
+"X-POOTLE-MTIME: 1472465438.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -255,6 +255,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"U kunt geen bestandstype uit een project verwijderen als er archieven van "
+"dat bestandstype bestaan ('%s')"
 
 #: apps/pootle_app/forms.py:93
 #, python-format
@@ -1731,21 +1733,22 @@ msgstr "E-mailbevestiging van Pootle"
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
 msgstr ""
+"We hebben een verzoek voor het opnieuw instellen van uw wachtwoord ontvangen."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Klik op deze koppeling om uw account te activeren:"
+msgstr "Klik op deze koppeling om uw wachtwoord opnieuw in te stellen:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Als u uw wachtwoord niet opnieuw wilt instellen, kunt u dit bericht gewoon "
+"negeren."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Opnieuw instellen van wachtwoord mislukt."
+msgstr "E-mail voor opnieuw instellen van Pootle-wachtwoord"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8

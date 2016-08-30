@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-11 10:26+0100\n"
-"PO-Revision-Date: 2016-08-02 16:29+0000\n"
+"PO-Revision-Date: 2016-08-11 11:59+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470155358.000000\n"
+"X-POOTLE-MTIME: 1470916751.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -253,6 +253,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Bir Projeden gelen bir dosya türünü, bu dosya türünün ('%s') Depoları varsa "
+"silemezsiniz"
 
 #: apps/pootle_app/forms.py:93
 #, python-format
@@ -1735,22 +1737,21 @@ msgstr "Pootle e-posta onaylama"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Parolanızı sıfırlamak için bir istek aldık."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Hesabınızı etkinleştirmek için bu bağlantıyı takip edin:"
+msgstr "Parolanızı sıfırlamak için bu bağlantıyı takip edin:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Eğer parolanızı sıfırlamak istemiyorsanız, basitçe iletiyi yoksayabilirsiniz."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Parola Sıfırlama Başarısız Oldu."
+msgstr "Pootle parola sıfırlama e-postası"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8

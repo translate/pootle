@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-10 17:32+0100\n"
-"PO-Revision-Date: 2016-08-01 15:58+0000\n"
+"PO-Revision-Date: 2016-08-11 19:05+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470067080.000000\n"
+"X-POOTLE-MTIME: 1470942307.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -166,9 +166,8 @@ msgid "Quality Checks"
 msgstr "Kontroly kvality"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Typ souboru"
+msgstr "Typy souborů"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -388,12 +387,12 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"Odkaz na změnu hesla byl neplatný, patrně kvůli tomu, že už byl jednou "
-"použit. Požádejte prosím o změnu hesla znovu."
+"Odkaz na resetování hesla byl neplatný, patrně kvůli tomu, že už byl jednou "
+"použit. Požádejte prosím o resetování hesla znovu."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr "Změnit heslo"
+msgstr "Resetovat heslo"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
@@ -419,7 +418,7 @@ msgstr "Odesílání e-mailu na adresu %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
-msgstr "Pro pokračování v procesu změny hesla klikněte na zadaný odkaz."
+msgstr "Pro pokračování v procesu resetování hesla klikněte na daný odkaz."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
@@ -517,7 +516,7 @@ msgstr "Potvrzovací e-mail"
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr "Změnit heslo"
+msgstr "Resetovat heslo"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
@@ -533,7 +532,7 @@ msgstr "Podrobnosti..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Top Contributors for the Last 30 Days"
-msgstr ""
+msgstr "Největší přispěvatelé za posledních 30 dní"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
@@ -970,8 +969,8 @@ msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
-"Zadejte svou e-mailovou adresu a my vám zašleme speciální odkaz na změnu "
-"hesla."
+"Zadejte svou e-mailovou adresu a my vám zašleme speciální odkaz pro "
+"resetování hesla."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
