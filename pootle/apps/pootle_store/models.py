@@ -1169,7 +1169,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                 db_index=True)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
-    last_sync_revision = models.IntegerField(db_index=True, null=True)
+    last_sync_revision = models.IntegerField(db_index=True, null=True,
+                                             blank=True)
     obsolete = models.BooleanField(default=False)
 
     objects = StoreManager()
