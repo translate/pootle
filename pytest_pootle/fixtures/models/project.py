@@ -111,3 +111,48 @@ def project0_nongnu(project0_directory, project0, settings):
         os.makedirs(project_dir)
     for tp in project0.translationproject_set.all():
         tp.save()
+
+
+@pytest.fixture
+def project_dir_resources0(project0, subdir0):
+    """Returns a ProjectResource object for a Directory"""
+
+    from pootle_app.models import Directory
+    from pootle_project.models import ProjectResource
+
+    resources = Directory.objects.live().filter(
+        name=subdir0.name,
+        parent__translationproject__project=project0)
+    return ProjectResource(
+        resources,
+        ("/projects/%s/%s"
+         % (project0.code,
+            subdir0.name)))
+
+
+@pytest.fixture
+def project_store_resources0(project0, subdir0):
+    """Returns a ProjectResource object for a Store"""
+
+    from pootle_project.models import ProjectResource
+    from pootle_store.models import Store
+
+    store = subdir0.child_stores.live().first()
+    resources = Store.objects.live().filter(
+        name=store.name,
+        parent__name=subdir0.name,
+        translation_project__project=project0)
+
+    return ProjectResource(
+        resources,
+        ("/projects/%s/%s/%s"
+         % (project0.code,
+            subdir0.name,
+            store.name)))
+
+
+@pytest.fixture
+def project_set():
+    from pootle_project.models import Project, ProjectSet
+
+    return ProjectSet(Project.objects.exclude(disabled=True))
