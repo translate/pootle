@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-30 09:46+0100\n"
 "PO-Revision-Date: 2016-06-14 09:25+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -533,7 +533,7 @@ msgid "More..."
 msgstr "Més"
 
 #: static/js/browser/components/Stats.js:67
-msgid "Top Contributors for the Last 30 Days"
+msgid "Contributors, 30 Days"
 msgstr ""
 
 #: static/js/browser/components/TopContributorsTable.js:17
@@ -544,15 +544,15 @@ msgstr ""
 msgid "#%(position)s"
 msgstr ""
 
-#: static/js/browser/components/VisibilityToggle.js:52
+#: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
 msgstr "Mostra els inhabilitats"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:54
 msgid "Hide disabled"
 msgstr "Amaga els inhabilitats"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:637
+#: static/js/editor/app.js:308 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -560,7 +560,7 @@ msgstr ""
 "Teniu canvis sense desar en aquesta cadena Si abandoneu la navegació es "
 "descartaran tots els canvis."
 
-#: static/js/editor/app.js:352
+#: static/js/editor/app.js:353
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -568,7 +568,7 @@ msgstr ""
 "Va a la cadena següent (Ctrl+.)<br/><br/>També:<br/>Pàgina següent: Ctrl+Maj"
 "+.<br/>Última pàgina: Ctrl+Maj+Final"
 
-#: static/js/editor/app.js:358
+#: static/js/editor/app.js:359
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -577,77 +577,77 @@ msgstr ""
 "+,<br/>Primera pàgina: Ctrl+Maj+Inici"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suggeriments pendents de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:487
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suggeriments acceptats de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:490
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suggeriments rebutjats de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Enviaments de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Enviaments sobreescrits de %s"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1096
 msgid "Error while connecting to the server"
 msgstr "S'ha produït un error en connectar amb el servidor"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1100
 msgid "Not found"
 msgstr "No s'ha trobat"
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1102
 msgid "Server error"
 msgstr "Error del servidor"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1104
 msgid "The server seems down. Try again later."
 msgstr "Sembla que el servidor no funciona. Proveu-ho més tard."
 
-#: static/js/editor/app.js:1105
+#: static/js/editor/app.js:1113
 msgid "This string no longer exists."
 msgstr "Aquesta cadena ja no existeix."
 
-#: static/js/editor/app.js:1106
+#: static/js/editor/app.js:1114
 msgid "Go back to browsing"
 msgstr "Torna enrere a la navegació"
 
-#: static/js/editor/app.js:1108
+#: static/js/editor/app.js:1116
 msgid "Reload page"
 msgstr "Torna a carregar la pàgina"
 
-#: static/js/editor/app.js:1866 static/js/editor/app.js:629
+#: static/js/editor/app.js:1874 static/js/editor/app.js:629
 msgid "No results."
 msgstr "No s'ha trobat cap resultat."
 
-#: static/js/editor/app.js:2203
+#: static/js/editor/app.js:2211
 msgid "some anonymous user"
 msgstr "un usuari anònim"
 
-#: static/js/editor/app.js:2205
+#: static/js/editor/app.js:2213
 msgid "someone"
 msgstr "algú"
 
-#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
+#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
 msgid "Similar translations"
 msgstr "Traduccions semblants"
 
@@ -672,84 +672,84 @@ msgid "%(timeSince)s via file upload"
 msgstr ""
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:285
+#: static/js/reports/app.js:287
 msgid "%b %d, %a"
 msgstr ""
 
-#: static/js/reports/app.js:287
+#: static/js/reports/app.js:289
 msgid "Jan"
 msgstr ""
 
-#: static/js/reports/app.js:288
+#: static/js/reports/app.js:290
 msgid "Feb"
 msgstr ""
 
-#: static/js/reports/app.js:289
+#: static/js/reports/app.js:291
 msgid "Mar"
 msgstr ""
 
-#: static/js/reports/app.js:290
+#: static/js/reports/app.js:292
 msgid "Apr"
 msgstr ""
 
-#: static/js/reports/app.js:291
+#: static/js/reports/app.js:293
 msgid "May"
 msgstr ""
 
-#: static/js/reports/app.js:292
+#: static/js/reports/app.js:294
 msgid "Jun"
 msgstr ""
 
-#: static/js/reports/app.js:293
+#: static/js/reports/app.js:295
 msgid "Jul"
 msgstr ""
 
-#: static/js/reports/app.js:294
+#: static/js/reports/app.js:296
 msgid "Aug"
 msgstr ""
 
-#: static/js/reports/app.js:295
+#: static/js/reports/app.js:297
 msgid "Sep"
 msgstr ""
 
-#: static/js/reports/app.js:296
+#: static/js/reports/app.js:298
 msgid "Oct"
 msgstr ""
 
-#: static/js/reports/app.js:297
+#: static/js/reports/app.js:299
 #, fuzzy
 msgid "Nov"
 msgstr "No"
 
-#: static/js/reports/app.js:298
+#: static/js/reports/app.js:300
 msgid "Dec"
 msgstr ""
 
-#: static/js/reports/app.js:301
+#: static/js/reports/app.js:303
 msgid "Sun"
 msgstr ""
 
-#: static/js/reports/app.js:302
+#: static/js/reports/app.js:304
 msgid "Mon"
 msgstr ""
 
-#: static/js/reports/app.js:303
+#: static/js/reports/app.js:305
 msgid "Tue"
 msgstr ""
 
-#: static/js/reports/app.js:304
+#: static/js/reports/app.js:306
 msgid "Wed"
 msgstr ""
 
-#: static/js/reports/app.js:305
+#: static/js/reports/app.js:307
 msgid "Thu"
 msgstr ""
 
-#: static/js/reports/app.js:306
+#: static/js/reports/app.js:308
 msgid "Fri"
 msgstr ""
 
-#: static/js/reports/app.js:307
+#: static/js/reports/app.js:309
 msgid "Sat"
 msgstr ""
 
@@ -776,71 +776,77 @@ msgstr "Escriviu per a cercar"
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
 #, fuzzy
-msgid "removed translation for %(sourceString)s"
+msgid "%(user)s removed translation for %(sourceString)s"
 msgstr "Suggeriments rebutjats de %s"
 
 #: static/js/shared/components/UserEvent.js:99
 #, fuzzy
-msgid "accepted suggestion for %(sourceString)s"
+msgid "%(user)s accepted suggestion for %(sourceString)s"
 msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/components/UserEvent.js:101
-msgid "uploaded file"
+#, fuzzy
+msgid "%(user)s uploaded file"
 msgstr "ha pujat un fitxer"
 
 #: static/js/shared/components/UserEvent.js:103
 #, fuzzy
-msgid "muted %(check)s for %(sourceString)s"
+msgid "%(user)s muted %(check)s for %(sourceString)s"
 msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/components/UserEvent.js:105
-msgid "unmuted %(check)s for %(sourceString)s"
-msgstr ""
+#, fuzzy
+msgid "%(user)s unmuted %(check)s for %(sourceString)s"
+msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/components/UserEvent.js:107
 #, fuzzy
-msgid "added suggestion for %(sourceString)s"
+msgid "%(user)s added suggestion for %(sourceString)s"
 msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/components/UserEvent.js:109
 #, fuzzy
-msgid "rejected suggestion for %(sourceString)s"
+msgid "%(user)s rejected suggestion for %(sourceString)s"
 msgstr "Suggeriments rebutjats de %s"
 
 #: static/js/shared/components/UserEvent.js:112
-msgid "translated %(sourceString)s"
-msgstr ""
+#, fuzzy
+msgid "%(user)s translated %(sourceString)s"
+msgstr "Suggeriments rebutjats de %s"
 
 #: static/js/shared/components/UserEvent.js:114
-msgid "edited %(sourceString)s"
-msgstr ""
+#, fuzzy
+msgid "%(user)s edited %(sourceString)s"
+msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/components/UserEvent.js:116
-msgid "pre-translated %(sourceString)s"
-msgstr ""
+#, fuzzy
+msgid "%(user)s pre-translated %(sourceString)s"
+msgstr "Suggeriments rebutjats de %s"
 
 #: static/js/shared/components/UserEvent.js:120
-msgid "reviewed %(sourceString)s"
-msgstr ""
+#, fuzzy
+msgid "%(user)s reviewed %(sourceString)s"
+msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/components/UserEvent.js:122
 #, fuzzy
-msgid "marked as needs work %(sourceString)s"
+msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "Suggeriments acceptats de %s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "inhabilitat"
 
-#: static/js/stats.js:59
+#: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "Enhorabona! Heu passat finalitzat aquesta tasca!"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Collapse details"
 msgstr "Redueix els detalls"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Expand details"
 msgstr "Augmenta els detalls"
 

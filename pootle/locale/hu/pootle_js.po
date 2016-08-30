@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-30 09:46+0100\n"
 "PO-Revision-Date: 2016-08-26 08:16+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -526,7 +526,8 @@ msgid "More..."
 msgstr "Több…"
 
 #: static/js/browser/components/Stats.js:67
-msgid "Top Contributors for the Last 30 Days"
+#, fuzzy
+msgid "Contributors, 30 Days"
 msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
 
 #: static/js/browser/components/TopContributorsTable.js:17
@@ -537,15 +538,15 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "%(position)s."
 
-#: static/js/browser/components/VisibilityToggle.js:52
+#: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
 msgstr "Letiltottak megjelenítése"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:54
 msgid "Hide disabled"
 msgstr "Letiltottak elrejtése"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:637
+#: static/js/editor/app.js:308 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -553,7 +554,7 @@ msgstr ""
 "A karakterláncban mentetlen módosítások vannak. Más oldalra lépve ezek "
 "elvesznek."
 
-#: static/js/editor/app.js:352
+#: static/js/editor/app.js:353
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -561,7 +562,7 @@ msgstr ""
 "Ugrás a következő karakterláncra (Ctrl+.)<br/><br/>Továbbá:<br/>Következő "
 "oldal: Ctrl+Shift+.<br/>Utolsó oldal: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:358
+#: static/js/editor/app.js:359
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -570,77 +571,77 @@ msgstr ""
 "Ctrl+Shift+,<br/>Első oldal: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s függő javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:487
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s elfogadta a javaslatokat"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:490
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s elutasított javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s beküldései"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s felülírt beküldései"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1096
 msgid "Error while connecting to the server"
 msgstr "Hiba a kiszolgálóhoz való kapcsolódás közben"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1100
 msgid "Not found"
 msgstr "Nem található"
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1102
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1104
 msgid "The server seems down. Try again later."
 msgstr "Úgy tűnik, a kiszolgáló leállt. Próbálja meg később."
 
-#: static/js/editor/app.js:1105
+#: static/js/editor/app.js:1113
 msgid "This string no longer exists."
 msgstr "Ez a karakterlánc már nem létezik."
 
-#: static/js/editor/app.js:1106
+#: static/js/editor/app.js:1114
 msgid "Go back to browsing"
 msgstr "Vissza a tallózáshoz"
 
-#: static/js/editor/app.js:1108
+#: static/js/editor/app.js:1116
 msgid "Reload page"
 msgstr "Oldal újratöltése"
 
-#: static/js/editor/app.js:1866 static/js/editor/app.js:629
+#: static/js/editor/app.js:1874 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Nincs találat."
 
-#: static/js/editor/app.js:2203
+#: static/js/editor/app.js:2211
 msgid "some anonymous user"
 msgstr "egy névtelen felhasználó"
 
-#: static/js/editor/app.js:2205
+#: static/js/editor/app.js:2213
 msgid "someone"
 msgstr "valaki"
 
-#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
+#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
 msgid "Similar translations"
 msgstr "Hasonló fordítások"
 
@@ -665,83 +666,83 @@ msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s fájlfeltöltésen keresztül"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:285
+#: static/js/reports/app.js:287
 msgid "%b %d, %a"
 msgstr "%b %d, %a"
 
-#: static/js/reports/app.js:287
+#: static/js/reports/app.js:289
 msgid "Jan"
 msgstr "Jan"
 
-#: static/js/reports/app.js:288
+#: static/js/reports/app.js:290
 msgid "Feb"
 msgstr "Feb"
 
-#: static/js/reports/app.js:289
+#: static/js/reports/app.js:291
 msgid "Mar"
 msgstr "Már"
 
-#: static/js/reports/app.js:290
+#: static/js/reports/app.js:292
 msgid "Apr"
 msgstr "Ápr"
 
-#: static/js/reports/app.js:291
+#: static/js/reports/app.js:293
 msgid "May"
 msgstr "Máj"
 
-#: static/js/reports/app.js:292
+#: static/js/reports/app.js:294
 msgid "Jun"
 msgstr "Jún"
 
-#: static/js/reports/app.js:293
+#: static/js/reports/app.js:295
 msgid "Jul"
 msgstr "Júl"
 
-#: static/js/reports/app.js:294
+#: static/js/reports/app.js:296
 msgid "Aug"
 msgstr "Aug"
 
-#: static/js/reports/app.js:295
+#: static/js/reports/app.js:297
 msgid "Sep"
 msgstr "Szept"
 
-#: static/js/reports/app.js:296
+#: static/js/reports/app.js:298
 msgid "Oct"
 msgstr "Okt"
 
-#: static/js/reports/app.js:297
+#: static/js/reports/app.js:299
 msgid "Nov"
 msgstr "Nov"
 
-#: static/js/reports/app.js:298
+#: static/js/reports/app.js:300
 msgid "Dec"
 msgstr "Dec"
 
-#: static/js/reports/app.js:301
+#: static/js/reports/app.js:303
 msgid "Sun"
 msgstr "Va"
 
-#: static/js/reports/app.js:302
+#: static/js/reports/app.js:304
 msgid "Mon"
 msgstr "Hé"
 
-#: static/js/reports/app.js:303
+#: static/js/reports/app.js:305
 msgid "Tue"
 msgstr "Ke"
 
-#: static/js/reports/app.js:304
+#: static/js/reports/app.js:306
 msgid "Wed"
 msgstr "Sze"
 
-#: static/js/reports/app.js:305
+#: static/js/reports/app.js:307
 msgid "Thu"
 msgstr "Csü"
 
-#: static/js/reports/app.js:306
+#: static/js/reports/app.js:308
 msgid "Fri"
 msgstr "Pé"
 
-#: static/js/reports/app.js:307
+#: static/js/reports/app.js:309
 msgid "Sat"
 msgstr "Szo"
 
@@ -767,66 +768,78 @@ msgstr "Gépeljen a kereséshez"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-msgid "removed translation for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s removed translation for %(sourceString)s"
 msgstr "fordítás eltávolítva ehhez: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-msgid "accepted suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s accepted suggestion for %(sourceString)s"
 msgstr "javaslat elfogadva ehhez: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
-msgid "uploaded file"
+#, fuzzy
+msgid "%(user)s uploaded file"
 msgstr "fájl feltöltve"
 
 #: static/js/shared/components/UserEvent.js:103
-msgid "muted %(check)s for %(sourceString)s"
-msgstr "%(check)s elnémítva ehhez: %(sourceString)s"
+#, fuzzy
+msgid "%(user)s muted %(check)s for %(sourceString)s"
+msgstr "%(check)s újra aktiválva ehhez: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-msgid "unmuted %(check)s for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s unmuted %(check)s for %(sourceString)s"
 msgstr "%(check)s újra aktiválva ehhez: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-msgid "added suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s added suggestion for %(sourceString)s"
 msgstr "javaslat hozzáadva ehhez: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-msgid "rejected suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s rejected suggestion for %(sourceString)s"
 msgstr "javaslat elvetve ehhez: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-msgid "translated %(sourceString)s"
+#, fuzzy
+msgid "%(user)s translated %(sourceString)s"
 msgstr "lefordítva: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-msgid "edited %(sourceString)s"
+#, fuzzy
+msgid "%(user)s edited %(sourceString)s"
 msgstr "szerkesztve: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-msgid "pre-translated %(sourceString)s"
+#, fuzzy
+msgid "%(user)s pre-translated %(sourceString)s"
 msgstr "előfordítva: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-msgid "reviewed %(sourceString)s"
+#, fuzzy
+msgid "%(user)s reviewed %(sourceString)s"
 msgstr "lektorálva: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-msgid "marked as needs work %(sourceString)s"
+#, fuzzy
+msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "megjelölve munkát igénylőként: %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "letiltva"
 
-#: static/js/stats.js:59
+#: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulálunk! Befejezte ezt a feladatot!"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Collapse details"
 msgstr "Részletek elrejtése"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Expand details"
 msgstr "Részletek megjelenítése"
 
@@ -1139,6 +1152,9 @@ msgid ""
 msgstr ""
 "Fordította: %(fullname)s, itt: &bdquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
+
+#~ msgid "muted %(check)s for %(sourceString)s"
+#~ msgstr "%(check)s elnémítva ehhez: %(sourceString)s"
 
 #~ msgid "Unknown error"
 #~ msgstr "Ismeretlen hiba"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-30 09:46+0100\n"
 "PO-Revision-Date: 2016-08-11 11:32+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -529,7 +529,8 @@ msgid "More..."
 msgstr "Daha fazla..."
 
 #: static/js/browser/components/Stats.js:67
-msgid "Top Contributors for the Last 30 Days"
+#, fuzzy
+msgid "Contributors, 30 Days"
 msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #: static/js/browser/components/TopContributorsTable.js:17
@@ -540,15 +541,15 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: static/js/browser/components/VisibilityToggle.js:52
+#: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
 msgstr "Göster etkisizleştirildi"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:54
 msgid "Hide disabled"
 msgstr "Gizle etkisizleştirildi"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:637
+#: static/js/editor/app.js:308 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -556,7 +557,7 @@ msgstr ""
 "Bu satırda kaydedilmemiş değişiklikleriniz var. Buradan ayrılmak bu "
 "değişiklikleri yoksayacak."
 
-#: static/js/editor/app.js:352
+#: static/js/editor/app.js:353
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -564,7 +565,7 @@ msgstr ""
 "Sonraki satıra git (Ctrl+.)<br/><br/>Ayrıca:<br/>Sonraki sayfa: Ctrl+Shift+."
 "<br/>Son sayfa: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:358
+#: static/js/editor/app.js:359
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -573,77 +574,77 @@ msgstr ""
 "<br/>İlk sayfa: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s kullanıcısının bekleyen önerileri"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:487
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s kullanıcısının kabul edilen önerileri"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:490
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s kullanıcısının reddedilen önerileri"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s kullanıcısının sunuşları"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s kullanıcısının üzerine yazılan sunuşları"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1096
 msgid "Error while connecting to the server"
 msgstr "Sunucuya bağlanırken hata oldu"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1100
 msgid "Not found"
 msgstr "Bulunamadı"
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1102
 msgid "Server error"
 msgstr "Sunucu hatası"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1104
 msgid "The server seems down. Try again later."
 msgstr "Sunucu kapalı görünüyor. Daha sonra tekrar deneyin."
 
-#: static/js/editor/app.js:1105
+#: static/js/editor/app.js:1113
 msgid "This string no longer exists."
 msgstr "Bu satır artık mevcut değil."
 
-#: static/js/editor/app.js:1106
+#: static/js/editor/app.js:1114
 msgid "Go back to browsing"
 msgstr "Gözatmaya geri dön"
 
-#: static/js/editor/app.js:1108
+#: static/js/editor/app.js:1116
 msgid "Reload page"
 msgstr "Sayfayı yeniden yükle"
 
-#: static/js/editor/app.js:1866 static/js/editor/app.js:629
+#: static/js/editor/app.js:1874 static/js/editor/app.js:629
 msgid "No results."
 msgstr "Sonuç yok."
 
-#: static/js/editor/app.js:2203
+#: static/js/editor/app.js:2211
 msgid "some anonymous user"
 msgstr "bazı isimsiz kullanıcılar"
 
-#: static/js/editor/app.js:2205
+#: static/js/editor/app.js:2213
 msgid "someone"
 msgstr "birisi"
 
-#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
+#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
 msgid "Similar translations"
 msgstr "Benzer çeviriler"
 
@@ -668,83 +669,83 @@ msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s aracılığıyla dosya gönderme"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:285
+#: static/js/reports/app.js:287
 msgid "%b %d, %a"
 msgstr "%d %b, %a"
 
-#: static/js/reports/app.js:287
+#: static/js/reports/app.js:289
 msgid "Jan"
 msgstr "Oca"
 
-#: static/js/reports/app.js:288
+#: static/js/reports/app.js:290
 msgid "Feb"
 msgstr "Şub"
 
-#: static/js/reports/app.js:289
+#: static/js/reports/app.js:291
 msgid "Mar"
 msgstr "Mar"
 
-#: static/js/reports/app.js:290
+#: static/js/reports/app.js:292
 msgid "Apr"
 msgstr "Nis"
 
-#: static/js/reports/app.js:291
+#: static/js/reports/app.js:293
 msgid "May"
 msgstr "May"
 
-#: static/js/reports/app.js:292
+#: static/js/reports/app.js:294
 msgid "Jun"
 msgstr "Haz"
 
-#: static/js/reports/app.js:293
+#: static/js/reports/app.js:295
 msgid "Jul"
 msgstr "Tem"
 
-#: static/js/reports/app.js:294
+#: static/js/reports/app.js:296
 msgid "Aug"
 msgstr "Ağu"
 
-#: static/js/reports/app.js:295
+#: static/js/reports/app.js:297
 msgid "Sep"
 msgstr "Eyl"
 
-#: static/js/reports/app.js:296
+#: static/js/reports/app.js:298
 msgid "Oct"
 msgstr "Eki"
 
-#: static/js/reports/app.js:297
+#: static/js/reports/app.js:299
 msgid "Nov"
 msgstr "Kas"
 
-#: static/js/reports/app.js:298
+#: static/js/reports/app.js:300
 msgid "Dec"
 msgstr "Ara"
 
-#: static/js/reports/app.js:301
+#: static/js/reports/app.js:303
 msgid "Sun"
 msgstr "Paz"
 
-#: static/js/reports/app.js:302
+#: static/js/reports/app.js:304
 msgid "Mon"
 msgstr "Pts"
 
-#: static/js/reports/app.js:303
+#: static/js/reports/app.js:305
 msgid "Tue"
 msgstr "Sal"
 
-#: static/js/reports/app.js:304
+#: static/js/reports/app.js:306
 msgid "Wed"
 msgstr "Çar"
 
-#: static/js/reports/app.js:305
+#: static/js/reports/app.js:307
 msgid "Thu"
 msgstr "Per"
 
-#: static/js/reports/app.js:306
+#: static/js/reports/app.js:308
 msgid "Fri"
 msgstr "Cum"
 
-#: static/js/reports/app.js:307
+#: static/js/reports/app.js:309
 msgid "Sat"
 msgstr "Cts"
 
@@ -770,66 +771,78 @@ msgstr "Arananı yazın"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-msgid "removed translation for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s removed translation for %(sourceString)s"
 msgstr "%(sourceString)s için çeviriyi kaldırdı"
 
 #: static/js/shared/components/UserEvent.js:99
-msgid "accepted suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s accepted suggestion for %(sourceString)s"
 msgstr "%(sourceString)s için öneriyi kabul etti"
 
 #: static/js/shared/components/UserEvent.js:101
-msgid "uploaded file"
+#, fuzzy
+msgid "%(user)s uploaded file"
 msgstr "gönderilen dosya"
 
 #: static/js/shared/components/UserEvent.js:103
-msgid "muted %(check)s for %(sourceString)s"
-msgstr "%(sourceString)s için %(check)s sesini kapattı"
+#, fuzzy
+msgid "%(user)s muted %(check)s for %(sourceString)s"
+msgstr "%(sourceString)s için %(check)s sesini açtı"
 
 #: static/js/shared/components/UserEvent.js:105
-msgid "unmuted %(check)s for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s unmuted %(check)s for %(sourceString)s"
 msgstr "%(sourceString)s için %(check)s sesini açtı"
 
 #: static/js/shared/components/UserEvent.js:107
-msgid "added suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s added suggestion for %(sourceString)s"
 msgstr "%(sourceString)s için öneri ekledi"
 
 #: static/js/shared/components/UserEvent.js:109
-msgid "rejected suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s rejected suggestion for %(sourceString)s"
 msgstr "%(sourceString)s için öneriyi reddetti"
 
 #: static/js/shared/components/UserEvent.js:112
-msgid "translated %(sourceString)s"
+#, fuzzy
+msgid "%(user)s translated %(sourceString)s"
 msgstr "%(sourceString)s çevirdi"
 
 #: static/js/shared/components/UserEvent.js:114
-msgid "edited %(sourceString)s"
+#, fuzzy
+msgid "%(user)s edited %(sourceString)s"
 msgstr "%(sourceString)s düzenledi"
 
 #: static/js/shared/components/UserEvent.js:116
-msgid "pre-translated %(sourceString)s"
+#, fuzzy
+msgid "%(user)s pre-translated %(sourceString)s"
 msgstr "%(sourceString)s ön çevirisini yaptı"
 
 #: static/js/shared/components/UserEvent.js:120
-msgid "reviewed %(sourceString)s"
+#, fuzzy
+msgid "%(user)s reviewed %(sourceString)s"
 msgstr "%(sourceString)s gözden geçirdi"
 
 #: static/js/shared/components/UserEvent.js:122
-msgid "marked as needs work %(sourceString)s"
+#, fuzzy
+msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "%(sourceString)s çalışma gerekli olarak işaretledi"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "etkisizleştirildi"
 
-#: static/js/stats.js:59
+#: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "Tebrikler! Bu görevi tamamladınız!"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Collapse details"
 msgstr "Ayrıntıları daralt"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Expand details"
 msgstr "Ayrıntıları genişlet"
 
@@ -1138,6 +1151,9 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
 "%(fullname)s tarafından çevrilmiş"
+
+#~ msgid "muted %(check)s for %(sourceString)s"
+#~ msgstr "%(sourceString)s için %(check)s sesini kapattı"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

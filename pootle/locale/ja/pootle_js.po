@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-10 17:32+0100\n"
+"POT-Creation-Date: 2016-08-30 09:46+0100\n"
 "PO-Revision-Date: 2016-08-06 12:09+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -514,7 +514,7 @@ msgid "More..."
 msgstr "増やす..."
 
 #: static/js/browser/components/Stats.js:67
-msgid "Top Contributors for the Last 30 Days"
+msgid "Contributors, 30 Days"
 msgstr ""
 
 #: static/js/browser/components/TopContributorsTable.js:17
@@ -525,21 +525,21 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: static/js/browser/components/VisibilityToggle.js:52
+#: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
 msgstr "無効なものを表示"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:54
 msgid "Hide disabled"
 msgstr "無効なものを隠す"
 
-#: static/js/editor/app.js:307 static/js/editor/app.js:637
+#: static/js/editor/app.js:308 static/js/editor/app.js:637
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr "この文字列の変更は保存されていません。移動すると変更が破棄されます。"
 
-#: static/js/editor/app.js:352
+#: static/js/editor/app.js:353
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -547,7 +547,7 @@ msgstr ""
 "次の文字列へ移動 (Ctrl+.)<br/><br/>他の操作:<br/>次のページ: Ctrl+Shift+.<br/"
 ">最後のページ: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:358
+#: static/js/editor/app.js:359
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -556,77 +556,77 @@ msgstr ""
 ">最初のページ: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:484
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s の留保中の提案"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:487
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s の採用された提案"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:490
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s の却下された提案"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s の提出"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s の上書きする提出"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1096
 msgid "Error while connecting to the server"
 msgstr "サーバーに接続する際にエラーが発生しました"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1100
 msgid "Not found"
 msgstr "見つかりませんでした"
 
-#: static/js/editor/app.js:1094
+#: static/js/editor/app.js:1102
 msgid "Server error"
 msgstr "サーバー エラー"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1104
 msgid "The server seems down. Try again later."
 msgstr "サーバーが停止しているようです。後でもう一度試してください。"
 
-#: static/js/editor/app.js:1105
+#: static/js/editor/app.js:1113
 msgid "This string no longer exists."
 msgstr "この文字列は存在しません。"
 
-#: static/js/editor/app.js:1106
+#: static/js/editor/app.js:1114
 msgid "Go back to browsing"
 msgstr "ブラウジングへ戻る"
 
-#: static/js/editor/app.js:1108
+#: static/js/editor/app.js:1116
 msgid "Reload page"
 msgstr "ページを再読み込み"
 
-#: static/js/editor/app.js:1866 static/js/editor/app.js:629
+#: static/js/editor/app.js:1874 static/js/editor/app.js:629
 msgid "No results."
 msgstr "該当するものはありません。"
 
-#: static/js/editor/app.js:2203
+#: static/js/editor/app.js:2211
 msgid "some anonymous user"
 msgstr "匿名ユーザ"
 
-#: static/js/editor/app.js:2205
+#: static/js/editor/app.js:2213
 msgid "someone"
 msgstr "誰か"
 
-#: static/js/editor/app.js:2223 static/js/editor/app.js:2272
+#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
 msgid "Similar translations"
 msgstr "類似翻訳"
 
@@ -651,83 +651,83 @@ msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s にファイルをアップロード"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:285
+#: static/js/reports/app.js:287
 msgid "%b %d, %a"
 msgstr "%b%d日(%a)"
 
-#: static/js/reports/app.js:287
+#: static/js/reports/app.js:289
 msgid "Jan"
 msgstr "1月"
 
-#: static/js/reports/app.js:288
+#: static/js/reports/app.js:290
 msgid "Feb"
 msgstr "2月"
 
-#: static/js/reports/app.js:289
+#: static/js/reports/app.js:291
 msgid "Mar"
 msgstr "3月"
 
-#: static/js/reports/app.js:290
+#: static/js/reports/app.js:292
 msgid "Apr"
 msgstr "4月"
 
-#: static/js/reports/app.js:291
+#: static/js/reports/app.js:293
 msgid "May"
 msgstr "5月"
 
-#: static/js/reports/app.js:292
+#: static/js/reports/app.js:294
 msgid "Jun"
 msgstr "6月"
 
-#: static/js/reports/app.js:293
+#: static/js/reports/app.js:295
 msgid "Jul"
 msgstr "7月"
 
-#: static/js/reports/app.js:294
+#: static/js/reports/app.js:296
 msgid "Aug"
 msgstr "8月"
 
-#: static/js/reports/app.js:295
+#: static/js/reports/app.js:297
 msgid "Sep"
 msgstr "9月"
 
-#: static/js/reports/app.js:296
+#: static/js/reports/app.js:298
 msgid "Oct"
 msgstr "10月"
 
-#: static/js/reports/app.js:297
+#: static/js/reports/app.js:299
 msgid "Nov"
 msgstr "11月"
 
-#: static/js/reports/app.js:298
+#: static/js/reports/app.js:300
 msgid "Dec"
 msgstr "12月"
 
-#: static/js/reports/app.js:301
+#: static/js/reports/app.js:303
 msgid "Sun"
 msgstr "日"
 
-#: static/js/reports/app.js:302
+#: static/js/reports/app.js:304
 msgid "Mon"
 msgstr "月"
 
-#: static/js/reports/app.js:303
+#: static/js/reports/app.js:305
 msgid "Tue"
 msgstr "火"
 
-#: static/js/reports/app.js:304
+#: static/js/reports/app.js:306
 msgid "Wed"
 msgstr "水"
 
-#: static/js/reports/app.js:305
+#: static/js/reports/app.js:307
 msgid "Thu"
 msgstr "木"
 
-#: static/js/reports/app.js:306
+#: static/js/reports/app.js:308
 msgid "Fri"
 msgstr "金"
 
-#: static/js/reports/app.js:307
+#: static/js/reports/app.js:309
 msgid "Sat"
 msgstr "土"
 
@@ -753,66 +753,78 @@ msgstr "検索語を入力してください。"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-msgid "removed translation for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s removed translation for %(sourceString)s"
 msgstr "%(sourceString)s の翻訳を削除しました"
 
 #: static/js/shared/components/UserEvent.js:99
-msgid "accepted suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s accepted suggestion for %(sourceString)s"
 msgstr "%(sourceString)s の提案を承認しました"
 
 #: static/js/shared/components/UserEvent.js:101
-msgid "uploaded file"
+#, fuzzy
+msgid "%(user)s uploaded file"
 msgstr "アップロードしたファイル"
 
 #: static/js/shared/components/UserEvent.js:103
-msgid "muted %(check)s for %(sourceString)s"
-msgstr "%(sourceString)s の %(check)s を黙認しました"
+#, fuzzy
+msgid "%(user)s muted %(check)s for %(sourceString)s"
+msgstr "%(sourceString)s の %(check)s を黙認解除しました"
 
 #: static/js/shared/components/UserEvent.js:105
-msgid "unmuted %(check)s for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s unmuted %(check)s for %(sourceString)s"
 msgstr "%(sourceString)s の %(check)s を黙認解除しました"
 
 #: static/js/shared/components/UserEvent.js:107
-msgid "added suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s added suggestion for %(sourceString)s"
 msgstr "%(sourceString)s に提案を追加しました"
 
 #: static/js/shared/components/UserEvent.js:109
-msgid "rejected suggestion for %(sourceString)s"
+#, fuzzy
+msgid "%(user)s rejected suggestion for %(sourceString)s"
 msgstr "%(sourceString)s の提案を却下しました"
 
 #: static/js/shared/components/UserEvent.js:112
-msgid "translated %(sourceString)s"
+#, fuzzy
+msgid "%(user)s translated %(sourceString)s"
 msgstr "%(sourceString)s を翻訳しました"
 
 #: static/js/shared/components/UserEvent.js:114
-msgid "edited %(sourceString)s"
+#, fuzzy
+msgid "%(user)s edited %(sourceString)s"
 msgstr "%(sourceString)s を編集しました"
 
 #: static/js/shared/components/UserEvent.js:116
-msgid "pre-translated %(sourceString)s"
+#, fuzzy
+msgid "%(user)s pre-translated %(sourceString)s"
 msgstr "%(sourceString)s を仮翻訳しました"
 
 #: static/js/shared/components/UserEvent.js:120
-msgid "reviewed %(sourceString)s"
+#, fuzzy
+msgid "%(user)s reviewed %(sourceString)s"
 msgstr "%(sourceString)s を査読しました"
 
 #: static/js/shared/components/UserEvent.js:122
-msgid "marked as needs work %(sourceString)s"
+#, fuzzy
+msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "%(sourceString)s に作業が必要のマークを付けました"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "無効"
 
-#: static/js/stats.js:59
+#: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "おめでとうございます。すべての文字列に目を通しました。"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Collapse details"
 msgstr "詳細を折りたたむ"
 
-#: static/js/stats.js:455
+#: static/js/stats.js:456
 msgid "Expand details"
 msgstr "詳細を展開する"
 
@@ -1119,6 +1131,9 @@ msgid ""
 msgstr ""
 "%(fullname)s による &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; プロジェクトの翻訳"
+
+#~ msgid "muted %(check)s for %(sourceString)s"
+#~ msgstr "%(sourceString)s の %(check)s を黙認しました"
 
 #~ msgid "Unknown error"
 #~ msgstr "不明なエラー"
