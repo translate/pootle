@@ -246,7 +246,10 @@ class Unit(models.Model, base.TranslationUnit):
     class Meta(object):
         unique_together = ('store', 'unitid_hash')
         get_latest_by = 'mtime'
-        index_together = [["store", "index"]]
+        index_together = [
+            ["store", "index"],
+            ["store", "revision"],
+            ["store", "mtime"]]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
