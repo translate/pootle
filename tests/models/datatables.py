@@ -34,6 +34,7 @@ def test_data_store(tp0):
         name="foo.po",
         parent=tp0.directory,
         translation_project=tp0)
+    store.data_tool.update()
     assert (
         repr(store.data)
         == '<StoreData: %s>' % store.pootle_path)
