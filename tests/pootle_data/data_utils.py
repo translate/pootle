@@ -112,7 +112,7 @@ def test_data_store_util_suggestion_count(store0, member):
 @pytest.mark.django_db
 def test_data_store_util_max_unit_revision(store0):
     max_revision = 0
-    for unit in store0.units.all():
+    for unit in store0.unit_set.all():
         if unit.revision > max_revision:
             max_revision = unit.revision
     assert (
