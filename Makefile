@@ -27,7 +27,7 @@ assets:
 	node --version
 	cd ${JS_DIR} && \
 	npm cache clear && \
-	npm install && \
+	npm install --production && \
 	cd ${CWD}
 	${POOTLE_CMD} compilejsi18n
 	${POOTLE_CMD} webpack --extra=--display-error-details
@@ -45,7 +45,7 @@ travis-assets:
 		echo "eating cache - yum!"; \
 	else \
 		cd ${JS_DIR} && \
-		npm install && \
+		npm install --production && \
 		cd ${CWD}; \
 		${POOTLE_CMD} compilejsi18n; \
 		${POOTLE_CMD} webpack --dev --nowatch; \
