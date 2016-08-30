@@ -11,6 +11,7 @@ from collections import Counter
 from translate.filters.decorators import Category
 
 from django.db import models
+from django.db.models import Max
 from django.utils.functional import cached_property
 
 from pootle_statistics.models import SubmissionTypes
@@ -77,7 +78,8 @@ class StoreDataTool(object):
         return (
             unit.revision
             if unit is not None
-            else self.last_updated_unit.revision)
+            else self.store.unit_set.aggregate(
+                result=Max("revision"))['result'])
 
     @cached_property
     def checks(self):
