@@ -286,6 +286,20 @@ Configuration settings for applications used by Pootle.
   - ``ANALYZE`` - coefficient to calculate an user score change for
     rejecting suggestions and penalty for the rejected suggestion.
 
+.. setting:: POOTLE_CURRENCIES
+
+``POOTLE_CURRENCIES``
+  Default::
+
+    (
+       ('USD', 'USD'),
+       ('EUR', 'EUR'),
+       ('CNY', 'CNY'),
+       ('JPY', 'JPY')
+    )
+
+  A collection currencies that can be selected for reporting of user activities
+
 
 60-translation.conf
 ^^^^^^^^^^^^^^^^^^^
