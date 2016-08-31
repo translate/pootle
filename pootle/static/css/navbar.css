@@ -14,6 +14,7 @@
 {
     background-color: #005b7a;
     height: 50px;
+    display: block;
     line-height: 50px;
 }
 
