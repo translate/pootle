@@ -186,6 +186,7 @@ MARKUP_FILTER = (None, {})
 MT_BACKENDS = [
 #        ('APERTIUM', ''),
 #        ('GOOGLE_TRANSLATE', ''),
+#        ('YANDEX_TRANSLATE', ''),
 ]
 
 # Set the backends you want to use to allow web-based lookup. To disable this
