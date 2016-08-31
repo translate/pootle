@@ -29,7 +29,7 @@ from pootle_store.constants import (
     FUZZY, OBSOLETE, STATES_MAP, TRANSLATED, UNTRANSLATED)
 from pootle_store.fields import to_python
 from pootle_store.models import (
-    Suggestion, QualityCheck, Store, Unit)
+    Suggestion, QualityCheck, Unit)
 from pootle_store.util import SuggestionStates
 
 
@@ -275,10 +275,11 @@ def test_timeline_view_unit_disabled_project(client, request_users,
 
 @pytest.mark.django_db
 def test_timeline_view_unit_with_suggestion(client, request_users,
-                                            system, admin):
+                                            system, admin, store0):
     # test with "state change" subission - apparently this is what is required
     # to get one
     suggestion = Suggestion.objects.filter(
+        unit__store=store0,
         state=SuggestionStates.PENDING,
         unit__state=UNTRANSLATED).first()
     unit = suggestion.unit
@@ -292,9 +293,10 @@ def test_timeline_view_unit_with_suggestion(client, request_users,
 
 
 @pytest.mark.django_db
-def test_timeline_view_unit_with_qc(client, request_users, system, admin):
+def test_timeline_view_unit_with_qc(client, request_users, system, admin, store0):
     # check a Unit with a quality check
     qc_filter = dict(
+        unit__store=store0,
         unit__state=TRANSLATED,
         unit__store__translation_project__project__disabled=False)
     qc = QualityCheck.objects.filter(**qc_filter).first()
@@ -308,10 +310,11 @@ def test_timeline_view_unit_with_qc(client, request_users, system, admin):
 
 @pytest.mark.django_db
 def test_timeline_view_unit_with_suggestion_and_comment(client, request_users,
-                                                        system, admin):
+                                                        system, admin, store0):
     # test with "state change" subission - apparently this is what is required
     # to get one
     suggestion = Suggestion.objects.filter(
+        unit__store=store0,
         state=SuggestionStates.PENDING,
         unit__state=UNTRANSLATED).first()
     unit = suggestion.unit
@@ -333,14 +336,12 @@ def test_timeline_view_unit_with_suggestion_and_comment(client, request_users,
 
 @pytest.mark.django_db
 def test_timeline_view_unit_with_creation(client, request_users,
-                                          system, admin):
+                                          system, admin, store0):
     # add a creation submission for a unit and test with that
-    store = Store.objects.exclude(
-        translation_project__project__disabled=True).first()
-    index = max(store.unit_set.values_list("index", flat=True)) + 1
+    index = max(store0.unit_set.values_list("index", flat=True)) + 1
     unit = Unit.objects.create(
         state=TRANSLATED, source_f="Foo", target_f="Bar",
-        store=store, index=index)
+        store=store0, index=index)
     # save and get the unit to deal with mysql's microsecond issues
     unit.save()
     unit = Unit.objects.get(pk=unit.pk)
