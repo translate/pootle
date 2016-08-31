@@ -699,7 +699,10 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.mark_dirty(CachedMethods.CHECKS)
             self.qualitycheck_set.filter(name__in=existing).delete()
 
-        return result or bool(unmute_list) or bool(existing)
+        changed = result or bool(unmute_list) or bool(existing)
+        if changed:
+            self.store.data_tool.update()
+        return changed
 
     def get_qualitychecks(self):
         return self.qualitycheck_set.all()
