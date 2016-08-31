@@ -299,6 +299,7 @@ def translation_project_dir_exists(language, project):
     """Tests if there are translation files corresponding to the given
     :param:`language` and :param:`project`.
     """
+
     if project.get_treestyle() == "gnu":
         # GNU style projects are tricky
 
