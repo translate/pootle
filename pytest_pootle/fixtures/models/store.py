@@ -156,14 +156,16 @@ def _setup_store_test(store, member, member2, test):
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def store_diff_tests(request, tp0, member, member2):
     from pytest_pootle.factories import StoreDBFactory
+    from pootle.core.contextmanagers import update_data_after
     from pootle_store.diff import StoreDiff
 
     store = StoreDBFactory(
         translation_project=tp0,
         parent=tp0.directory)
 
-    test = _setup_store_test(store, member, member2,
-                             UPDATE_STORE_TESTS[request.param])
+    with update_data_after(store):
+        test = _setup_store_test(store, member, member2,
+                                 UPDATE_STORE_TESTS[request.param])
     test_store = create_store(units=test[1])
     return [StoreDiff(test[0], test_store, test[2])] + list(test[:3])
 
@@ -171,19 +173,21 @@ def store_diff_tests(request, tp0, member, member2):
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def param_update_store_test(request, tp0, member, member2):
     from pytest_pootle.factories import StoreDBFactory
+    from pootle.core.contextmanagers import update_data_after
 
     store = StoreDBFactory(
         translation_project=tp0,
         parent=tp0.directory)
-    test = _setup_store_test(
-        store, member, member2,
-        UPDATE_STORE_TESTS[request.param])
-    update_store(
-        test[0],
-        units=test[1],
-        store_revision=test[2],
-        user=member2,
-        resolve_conflict=test[3])
+    with update_data_after(store):
+        test = _setup_store_test(
+            store, member, member2,
+            UPDATE_STORE_TESTS[request.param])
+        update_store(
+            test[0],
+            units=test[1],
+            store_revision=test[2],
+            user=member2,
+            resolve_conflict=test[3])
     return test
 
 
@@ -285,10 +289,13 @@ def _mark_unit_fuzzy(unit, user):
 
 
 def _make_member_updates(store, member):
+    from pootle.core.contextmanagers import update_data_after
+
     # Member updates first unit, adding a suggestion, and marking unit as fuzzy
-    _create_submission_and_suggestion(store, member)
-    _create_comment_on_unit(store.units[0], member, "NICE COMMENT")
-    _mark_unit_fuzzy(store.units[0], member)
+    with update_data_after(store):
+        _create_submission_and_suggestion(store, member)
+        _create_comment_on_unit(store.units[0], member, "NICE COMMENT")
+        _mark_unit_fuzzy(store.units[0], member)
 
 
 @pytest.fixture
