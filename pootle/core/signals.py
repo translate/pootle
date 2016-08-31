@@ -10,4 +10,4 @@
 from django.dispatch import Signal
 
 
-update_data = Signal(providing_args=["instance"])
+update_data = Signal(providing_args=["instance"], use_caching=True)

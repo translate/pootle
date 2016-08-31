@@ -9,4 +9,6 @@
 from django.dispatch import Signal
 
 
-vfolder_post_save = Signal(providing_args=["instance", "projects"])
+vfolder_post_save = Signal(
+    providing_args=["instance", "projects"],
+    use_caching=True)

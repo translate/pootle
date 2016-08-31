@@ -9,5 +9,9 @@
 from django.dispatch import Signal
 
 
-tp_inited_async = Signal(providing_args=["instance", "response_url", ])
-tp_init_failed_async = Signal(providing_args=["instance", ])
+tp_inited_async = Signal(
+    providing_args=["instance", "response_url", ],
+    use_caching=True)
+tp_init_failed_async = Signal(
+    providing_args=["instance", ],
+    use_caching=True)

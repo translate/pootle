@@ -9,8 +9,8 @@
 from django.dispatch import Signal
 
 
-fs_pre_push = Signal(providing_args=["plugin"])
-fs_post_push = Signal(providing_args=["plugin"])
+fs_pre_push = Signal(providing_args=["plugin"], use_caching=True)
+fs_post_push = Signal(providing_args=["plugin"], use_caching=True)
 
-fs_pre_pull = Signal(providing_args=["plugin"])
-fs_post_pull = Signal(providing_args=["plugin"])
+fs_pre_pull = Signal(providing_args=["plugin"], use_caching=True)
+fs_post_pull = Signal(providing_args=["plugin"], use_caching=True)
