@@ -220,6 +220,13 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     source_language = models.ForeignKey(
         'pootle_language.Language', db_index=True,
         verbose_name=_('Source Language'))
+    template_tp = models.OneToOneField(
+        'pootle_translationproject.TranslationProject',
+        db_index=True,
+        null=True,
+        blank=True,
+        related_name="template_project",
+        verbose_name=_('Templates transation project'))
 
     ignoredfiles = models.CharField(
         max_length=255, blank=True, null=False, default="",

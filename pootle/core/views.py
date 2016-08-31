@@ -252,22 +252,37 @@ class APIView(View):
 
         if self.base_queryset is None:
             self.base_queryset = self.model._default_manager
-
-        self._init_fields()
-        self._init_forms()
-
         return super(APIView, self).__init__(*args, **kwargs)
 
-    def _init_fields(self):
-        if len(self.fields) < 1:
-            form = self.add_form_class or self.edit_form_class
-            if form is not None:
-                self.fields = form._meta.fields
-            else:  # Assume all fields by default
-                self.fields = (f.name for f in self.model._meta.fields)
+    @property
+    def form_class(self):
+        if self._form_class:
+            return self._form_class
+        if self.request.method == "POST":
+            return self.add_form_class
+        return self.edit_form_class
 
-        self.serialize_fields = (f for f in self.fields if
-                                 f not in self.sensitive_field_names)
+    def get_form(self):
+        kwargs = {}
+        key = self.kwargs.get(self.pk_field_name)
+
+        if key:
+            kwargs['instance'] = self.base_queryset.get(pk=key)
+        return self.form_class(**kwargs)
+
+    def _init_fields(self):
+        all_fields = [f.name for f in self.model._meta.fields]
+        if len(self.fields) < 1:
+            if self.form_class is not None:
+                self.fields = self.get_form().fields.keys()
+            else:
+                # Assume all fields by default
+                self.fields = all_fields
+        self.serialize_fields = (
+            f for f
+            in ["id"] + list(self.fields)
+            if f in all_fields
+            and f not in self.sensitive_field_names)
 
     def _init_forms(self):
         if 'post' in self.allowed_methods and self.add_form_class is None:
@@ -279,6 +294,9 @@ class APIView(View):
                                                      fields=self.fields)
 
     def dispatch(self, request, *args, **kwargs):
+        self._form_class = None
+        self._init_fields()
+        self._init_forms()
         if request.method.lower() in self.allowed_methods:
             handler = getattr(self, request.method.lower(),
                               self.http_method_not_allowed)
@@ -320,12 +338,15 @@ class APIView(View):
         except ValueError:
             return self.status_msg('Invalid JSON data', status=400)
 
-        form = self.add_form_class(request_dict)
+        form = self.form_class(request_dict)
 
         if form.is_valid():
             new_object = form.save()
             # Serialize the new object to json using our built-in methods. The
             # extra DB read here is not ideal, but it keeps the code DRY:
+            self.fields = []
+            self._form_class = self.edit_form_class
+            self._init_fields()
             wrapper_qs = self.base_queryset.filter(pk=new_object.pk)
             return self.json_response(
                 self.serialize_qs(wrapper_qs, single_object=True)
