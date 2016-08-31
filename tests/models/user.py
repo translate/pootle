@@ -24,6 +24,7 @@ from pootle_app.models.permissions import PermissionSet, check_user_permission
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.constants import FUZZY, TRANSLATED
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 
@@ -113,7 +114,7 @@ def _test_after_evil_user_updated(store, evil_member):
 
 def _test_user_purging(store, member, evil_member, purge):
 
-    first_revision = store.get_max_unit_revision()
+    first_revision = store.revision
     unit = store.units[0]
 
     # Get intitial change times
@@ -128,7 +129,8 @@ def _test_user_purging(store, member, evil_member, purge):
     _make_evil_member_updates(store, evil_member)
 
     # Revision has increased
-    latest_revision = store.get_max_unit_revision()
+    store = Store.objects.get(pk=store.pk)
+    latest_revision = store.revision
     assert latest_revision > first_revision
 
     unit = store.units[0]
@@ -149,7 +151,8 @@ def _test_user_purging(store, member, evil_member, purge):
     purge(evil_member)
 
     # Revision has increased again.
-    assert store.get_max_unit_revision() > latest_revision
+    store = Store.objects.get(pk=store.pk)
+    assert store.revision > latest_revision
 
     unit = store.units[0]
 

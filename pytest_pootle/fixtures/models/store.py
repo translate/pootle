@@ -123,7 +123,7 @@ def _setup_store_test(store, member, member2, test):
                  (DEFAULT_STORE_UNITS_1 + DEFAULT_STORE_UNITS_2)]
 
     for units in setup:
-        store_revision = store.get_max_unit_revision()
+        store_revision = store.revision
         print "setup store: %s %s" % (store_revision, units)
         update_store(store, store_revision=store_revision, units=units,
                      user=member)
@@ -143,7 +143,7 @@ def _setup_store_test(store, member, member2, test):
         resolve_conflict = POOTLE_WINS
 
     if store_revision == "MAX":
-        store_revision = store.get_max_unit_revision()
+        store_revision = store.revision
 
     elif store_revision == "MID":
         revisions = [unit.revision for unit in units_before]

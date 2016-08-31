@@ -1173,6 +1173,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                              blank=True)
     obsolete = models.BooleanField(default=False)
 
+    revision = models.IntegerField(
+        null=False, default=0, db_index=True, blank=True)
+
     objects = StoreManager()
     simple_objects = models.Manager()
 
@@ -1517,9 +1520,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         # FIXME: we should store some metadata in db
         if self.file and hasattr(self.file.store, 'header'):
             return self.file.store.header()
-
-    def get_max_unit_revision(self):
-        return max_column(self.unit_set.all(), 'revision', 0)
 
     # # # TreeItem
     def can_be_updated(self):
