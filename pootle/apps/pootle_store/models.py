@@ -28,6 +28,7 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import data_tool, format_syncers, format_updaters
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
@@ -38,6 +39,7 @@ from pootle.core.log import (
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
+from pootle.core.signals import update_data
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_all_pootle_paths, get_editor_filter, split_pootle_path,
@@ -434,6 +436,8 @@ class Unit(models.Model, base.TranslationUnit):
         if self.store.state >= PARSED:
             self.store.mark_dirty(CachedMethods.MTIME)
             self.store.update_dirty_cache()
+        update_data.send(
+            self.store.__class__, instance=self.store)
 
     def get_absolute_url(self):
         return self.store.get_absolute_url()
@@ -1323,9 +1327,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return disk_mtime
 
     def update_index(self, start, delta):
-        Unit.objects.filter(store_id=self.id, index__gte=start).update(
-            index=operator.add(F('index'), delta)
-        )
+        with update_data_after(self):
+            Unit.objects.filter(store_id=self.id, index__gte=start).update(
+                index=operator.add(F('index'), delta))
 
     def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
         """Marks a bulk of units as obsolete.
