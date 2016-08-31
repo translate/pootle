@@ -256,7 +256,8 @@ class StoreSyncer(object):
     def update_newer(self, last_revision):
         return (
             not self.store.file.exists()
-            or (last_revision >= self.store.last_sync_revision))
+            or last_revision > self.store.last_sync_revision
+        )
 
     @cached_property
     def dbid_index(self):
