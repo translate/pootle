@@ -29,6 +29,7 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 from django.utils.translation import ugettext_lazy as _
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import data_tool, format_updaters, format_syncers
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
@@ -1333,9 +1334,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return disk_mtime
 
     def update_index(self, start, delta):
-        Unit.objects.filter(store_id=self.id, index__gte=start).update(
-            index=operator.add(F('index'), delta)
-        )
+        with update_data_after(self):
+            Unit.objects.filter(store_id=self.id, index__gte=start).update(
+                index=operator.add(F('index'), delta))
 
     def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
         """Marks a bulk of units as obsolete.
