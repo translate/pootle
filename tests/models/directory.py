@@ -13,6 +13,7 @@ import pytest
 
 from django.core.exceptions import ValidationError
 
+from pootle.core.contextmanagers import update_data_after
 from pootle_app.models.directory import Directory
 from pootle_store.models import Store, Unit
 
@@ -85,9 +86,10 @@ def test_delete_mark_obsolete_resurrect_sync(project0_nongnu, subdir0):
     updated_store.obsolete = False
     updated_store.save()
     # Resurrect units
-    for unit in store_units:
-        unit.resurrect()
-        unit.save()
+    with update_data_after(updated_store):
+        for unit in store_units:
+            unit.resurrect()
+            unit.save()
 
     # Recover store and directory by syncing
     updated_store.sync(only_newer=False)

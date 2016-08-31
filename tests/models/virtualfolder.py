@@ -204,7 +204,7 @@ def test_vfolder_membership():
 @pytest.mark.django_db
 def test_vfolder_store_priorities():
 
-    # remove the default vfolders and update units to reset priorities
+    # remove the default vfolders and reset units priorities
     VirtualFolder.objects.all().delete()
     [store.save() for store in Store.objects.all()]
 

@@ -13,6 +13,7 @@ import pytest
 
 from pytest_pootle.search import calculate_search_results
 
+from pootle.core.contextmanagers import keep_data
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_user_permission
 from pootle_project.models import Project
@@ -127,9 +128,10 @@ def test_get_previous_slice(client, request_users):
     expected = list(qs[40:50].values_list("pk", flat=True))
 
     to_obsolete = [uid for i, uid in enumerate(uids2) if i % 2]
-    for unit in Unit.objects.filter(id__in=to_obsolete):
-        unit.makeobsolete()
-        unit.save()
+    with keep_data():
+        for unit in Unit.objects.filter(id__in=to_obsolete):
+            unit.makeobsolete()
+            unit.save()
 
     assert expected == list(qs.all()[40:50].values_list("pk", flat=True))
 
