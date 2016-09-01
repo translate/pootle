@@ -190,7 +190,7 @@ class TPTool(object):
 
     def update_store(self, source, target):
         """Update a target Store from a given source Store"""
-        source_revision = target.get_max_unit_revision() + 1
+        source_revision = target.data.max_unit_revision + 1
         differ = StoreDiff(target, source, source_revision)
         diff = differ.diff()
         if diff is None:

@@ -260,7 +260,7 @@ class StoreUpdater(object):
                 log(u"[update] %s units in %s [revision: %d]"
                     % (get_change_str(changes),
                        self.target_store.pootle_path,
-                       self.target_store.get_max_unit_revision()))
+                       self.target_store.data.max_unit_revision))
         return update_revision, changes
 
     def update_from_diff(self, store, store_revision,
@@ -313,7 +313,7 @@ class StoreUpdater(object):
             return changed
 
         if overwrite:
-            store_revision = self.target_store.get_max_unit_revision()
+            store_revision = self.target_store.data.max_unit_revision
         else:
             store_revision = self.target_store.last_sync_revision or 0
 

@@ -34,7 +34,7 @@ class StoreSerialization(object):
 
     @cached_property
     def max_unit_revision(self):
-        return self.store.get_max_unit_revision()
+        return self.store.data.max_unit_revision
 
     @cached_property
     def serializers(self):

@@ -85,10 +85,10 @@ class FSFile(object):
 
     @property
     def pootle_changed(self):
-        return (
+        return bool(
             self.store_exists
             and (
-                self.store.get_max_unit_revision()
+                (self.store.data.max_unit_revision or 0)
                 != self.store_fs.last_sync_revision))
 
     @cached_property
@@ -149,7 +149,7 @@ class FSFile(object):
         self.store_fs.resolve_conflict = None
         self.store_fs.staged_for_merge = False
         self.store_fs.last_sync_hash = self.latest_hash
-        self.store_fs.last_sync_revision = self.store.get_max_unit_revision()
+        self.store_fs.last_sync_revision = self.store.data.max_unit_revision
         self.store_fs.save()
         logger.debug("File synced: %s", self.path)
 
