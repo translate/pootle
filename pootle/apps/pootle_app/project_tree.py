@@ -189,7 +189,7 @@ def create_or_resurrect_store(f, parent, name, translation_project):
         store.obsolete = False
         store.file_mtime = datetime_min
         if store.last_sync_revision is None:
-            store.last_sync_revision = store.get_max_unit_revision()
+            store.last_sync_revision = store.data.max_unit_revision
 
         store_log(user='system', action=STORE_RESURRECTED,
                   path=store.pootle_path, store=store.id)
