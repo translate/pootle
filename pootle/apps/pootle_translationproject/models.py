@@ -17,6 +17,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
@@ -178,6 +179,10 @@ class TranslationProject(models.Model, CachedTreeItem):
     @cached_property
     def code(self):
         return u'-'.join([self.language.code, self.project.code])
+
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
