@@ -217,7 +217,8 @@ class StoreUpdater(object):
         return count
 
     def units(self, uids):
-        for unit in self.target_store.findid_bulk(uids):
+        unit_set = self.target_store.unit_set.select_related("submitted_by")
+        for unit in self.target_store.findid_bulk(uids, unit_set):
             unit.store = self.target_store
             yield unit
 

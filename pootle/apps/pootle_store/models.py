@@ -1304,10 +1304,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                      args=split_pootle_path(self.pootle_path)),
              get_editor_filter(**kwargs)])
 
-    def findid_bulk(self, ids):
+    def findid_bulk(self, ids, unit_set=None):
         chunks = 200
         for i in xrange(0, len(ids), chunks):
-            units = self.unit_set.filter(id__in=ids[i:i+chunks])
+            units = (unit_set or self.unit_set).filter(id__in=ids[i:i+chunks])
             for unit in units.iterator():
                 yield unit
 
