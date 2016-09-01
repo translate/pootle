@@ -10,6 +10,8 @@
 
 import io
 import json
+import time
+from datetime import datetime
 from uuid import uuid4
 
 from translate.storage.factory import getclass
@@ -152,3 +154,34 @@ def add_store_fs(store, fs_path, synced=False):
     return StoreFS.objects.create(
         store=store,
         path=fs_path)
+
+
+def log_test_timing(debug_logger, timings, name, start):
+    from django.db import connection, reset_queries
+
+    time_taken = time.time() - start
+    timings["tests"][name] = dict(
+        slow_queries=[
+            q for q
+            in connection.queries
+            if float(q["time"]) > 0],
+        query_count=len(connection.queries),
+        timing=time_taken)
+    debug_logger.debug(
+        "{: <70} {: <10} {: <10}".format(
+            *(name,
+              round(time_taken, 4),
+              len(connection.queries))))
+    reset_queries()
+
+
+def log_test_report(debug_logger, timings):
+    debug_logger.debug("TESTS END: %s", datetime.now())
+    debug_logger.debug(
+        "TOTAL test time: %s",
+        time.time() - timings["start"])
+    debug_logger.debug(
+        "TOTAL queries: %s\n",
+        sum(t["query_count"]
+            for t
+            in timings["tests"].values()))
