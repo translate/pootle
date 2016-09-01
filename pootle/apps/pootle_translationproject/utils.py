@@ -53,6 +53,7 @@ class TPTool(object):
         self.check_tp(tp)
         self.check_no_tp(language)
         new_tp = self.create_tp(language)
+        new_tp.directory.translationproject = new_tp
         self.clone_children(
             tp.directory,
             new_tp.directory,
@@ -62,9 +63,13 @@ class TPTool(object):
     def clone_children(self, source_dir, target_parent, update_cache=True):
         """Clone a source Directory's children to a given target Directory.
         """
-        for store in source_dir.child_stores.live():
+        source_stores = source_dir.child_stores.live().select_related(
+            "filetype", "filetype__extension")
+        for store in source_stores:
+            store.parent = source_dir
             self.clone_store(store, target_parent, update_cache=update_cache)
         for subdir in source_dir.child_dirs.live():
+            subdir.parent = source_dir
             self.clone_directory(subdir, target_parent, update_cache=update_cache)
 
     def clone_directory(self, source_dir, target_parent, update_cache=True):
@@ -73,6 +78,7 @@ class TPTool(object):
         """
         target_dir = target_parent.child_dirs.create(
             name=source_dir.name)
+        target_dir.parent = target_parent
         self.clone_children(
             source_dir,
             target_dir,
@@ -88,6 +94,7 @@ class TPTool(object):
             cloned.mark_all_dirty()
         cloned.update(cloned.deserialize(store.serialize()))
         cloned.state = store.state
+        cloned.filetype = store.filetype
         cloned.save()
         return cloned
 
@@ -156,7 +163,10 @@ class TPTool(object):
         """
         stores = []
         dirs = []
-        for store in source_dir.child_stores.live():
+        source_stores = source_dir.child_stores.select_related(
+            "translation_project")
+        for store in source_stores:
+            store.parent = source_dir
             stores.append(store.name)
             try:
                 self.update_store(
@@ -165,6 +175,7 @@ class TPTool(object):
             except target_dir.child_stores.model.DoesNotExist:
                 self.clone_store(store, target_dir, update_cache=update_cache)
         for subdir in source_dir.child_dirs.live():
+            subdir.parent = source_dir
             dirs.append(subdir.name)
             try:
                 self.update_children(
