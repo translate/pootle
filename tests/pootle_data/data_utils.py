@@ -21,7 +21,7 @@ from pootle_store.models import QualityCheck
 
 @pytest.mark.django_db
 def test_data_store_util(store0):
-    data_tool = StoreDataTool(store0)
+    data_tool = store0.data_tool
     assert data_tool.store == store0
 
 
