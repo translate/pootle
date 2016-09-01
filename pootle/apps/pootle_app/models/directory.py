@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
@@ -33,11 +34,20 @@ class DirectoryManager(models.Manager):
         return self.get(pootle_path='/projects/')
 
 
+def validate_no_slashes(value):
+    if '/' in value:
+        raise ValidationError('Directory name cannot contain "/" characters')
+
+    if '\\' in value:
+        raise ValidationError('Directory name cannot contain "\\" characters')
+
+
 class Directory(models.Model, CachedTreeItem):
 
     # any changes to the `name` field may require updating the schema
     # see migration 0005_case_sensitive_schema.py
-    name = models.CharField(max_length=255, null=False)
+    name = models.CharField(max_length=255, null=False,
+                            validators=[validate_no_slashes])
     parent = models.ForeignKey('Directory', related_name='child_dirs',
                                null=True, db_index=True)
     # any changes to the `pootle_path` field may require updating the schema
@@ -124,6 +134,9 @@ class Directory(models.Model, CachedTreeItem):
             self.pootle_path = self.parent.pootle_path + self.name + '/'
         else:
             self.pootle_path = '/'
+
+        # Force validation of fields.
+        self.full_clean()
 
         super(Directory, self).save(*args, **kwargs)
 

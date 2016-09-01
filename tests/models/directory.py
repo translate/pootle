@@ -11,8 +11,21 @@ import shutil
 
 import pytest
 
+from django.core.exceptions import ValidationError
+
 from pootle_app.models.directory import Directory
 from pootle_store.models import Store, Unit
+
+
+@pytest.mark.django_db
+def test_directory_create_name_with_slashes_or_backslashes(root):
+    """Test Directories are not created with (back)slashes on their name."""
+
+    with pytest.raises(ValidationError):
+        Directory.objects.create(name="slashed/name", parent=root)
+
+    with pytest.raises(ValidationError):
+        Directory.objects.create(name="backslashed\\name", parent=root)
 
 
 @pytest.mark.django_db
