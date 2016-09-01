@@ -9,8 +9,7 @@
 import React, { PropTypes } from 'react';
 import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
-// FIXME: avoid relative import
-import { relativeDate } from '../../utils';
+import { relativeTime } from 'utils/time';
 
 
 const TimeSince = React.createClass({
@@ -70,8 +69,6 @@ const TimeSince = React.createClass({
   },
 
   render() {
-    const displayTime = relativeDate(Date.parse(this.props.dateTime));
-
     return (
       <time
         className="extra-item-meta"
@@ -79,7 +76,7 @@ const TimeSince = React.createClass({
         dateTime={this.props.dateTime}
         {...this.props}
       >
-        {displayTime}
+        {relativeTime(this.props.dateTime)}
       </time>
     );
   },

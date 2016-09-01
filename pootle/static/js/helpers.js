@@ -8,7 +8,7 @@
 
 import $ from 'jquery';
 
-import utils from './utils';
+import { relativeTime } from 'utils/time';
 
 
 function updateInputState($checkboxes, $input) {
@@ -25,7 +25,7 @@ const helpers = {
   /* Updates relative dates */
   updateRelativeDates() {
     $('.js-relative-date').each((i, e) => {
-      $(e).text(utils.relativeDate(Date.parse($(e).attr('datetime'))));
+      $(e).text(relativeTime($(e).attr('datetime')));
     });
   },
 

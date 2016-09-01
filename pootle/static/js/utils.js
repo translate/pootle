@@ -167,44 +167,6 @@ export function highlightRWNodes(selector) {
 }
 
 
-/* Returns a string representing a relative datetime */
-export function relativeDate(date) {
-  const delta = Date.now() - date;
-  const seconds = Math.round(Math.abs(delta) / 1000);
-  const minutes = Math.round(seconds / 60);
-  const hours = Math.round(minutes / 60);
-  const days = Math.round(hours / 24);
-  const weeks = Math.round(days / 7);
-  const years = Math.round(days / 365);
-  let fmt;
-  let count;
-
-  if (years > 0) {
-    fmt = years === 1 ? gettext('A year ago') : ngettext('%s year ago', '%s years ago', years);
-    count = [years];
-  } else if (weeks > 0) {
-    fmt = weeks === 1 ? gettext('A week ago') : ngettext('%s week ago', '%s weeks ago', weeks);
-    count = [weeks];
-  } else if (days > 0) {
-    fmt = days === 1 ? gettext('Yesterday') : ngettext('%s day ago', '%s days ago', days);
-    count = [days];
-  } else if (hours > 0) {
-    fmt = hours === 1 ? gettext('An hour ago') : ngettext('%s hour ago', '%s hours ago', hours);
-    count = [hours];
-  } else if (minutes > 0) {
-    fmt = minutes === 1 ?
-      gettext('A minute ago') : ngettext('%s minute ago', '%s minutes ago', minutes);
-    count = [minutes];
-  }
-
-  if (fmt) {
-    return interpolate(fmt, count);
-  }
-
-  return gettext('A few seconds ago');
-}
-
-
 /* Converts the elements matched by `selector` into selectable inputs.
  *
  * `onChange` function will be fired when the select choice changes.
@@ -255,7 +217,6 @@ export default {
   getHash,
   getParsedHash,
   makeSelectableInput,
-  relativeDate,
   strCmp,
   updateHashPart,
 };
