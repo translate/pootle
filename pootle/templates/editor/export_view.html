@@ -125,9 +125,7 @@
             class="translation-text js-translation-text"
             dir="{{ source_language.direction }}"
             lang="{{ source_language.code }}"
-          >
-            {{ source }}
-          </div>
+          >{{ source }}</div>
         {% endfor %}
         {% if unit.getcontext %}
         <div class="unit-context">
@@ -141,9 +139,7 @@
             class="translation-text js-translation-text"
             dir="{{ language.direction }}"
             lang="{{ language.code }}"
-          >
-            {{ target }}
-          </div>
+          >{{ target }}</div>
         {% endfor %}
         <div class="unit-number">
           <a href="{{ unit.get_translate_url }}">#{{ unit.id }}</a>
