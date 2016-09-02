@@ -104,6 +104,10 @@ lint-css:
 	cd ${JS_DIR} \
 	&& npm run stylelint
 
+test-js:
+	cd ${JS_DIR} \
+	&& npm test
+
 publish-pypi:
 	python setup.py sdist ${FORMATS} upload
 
