@@ -1,7 +1,7 @@
 # Testing
 
 factory_boy>=2.5.2
-pytest==3.0.1
+pytest==3.0.2
 pytest-catchlog==1.2.2
 pytest-cov==2.3.1
 pytest-django==3.0.0
