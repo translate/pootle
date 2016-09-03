@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import shutil
 import tempfile
 
 import pytest
@@ -65,11 +66,16 @@ def no_extra_users():
 
 
 @pytest.fixture(autouse=True, scope="session")
-def translations_directory():
+def translations_directory(request):
     """used by PootleEnv"""
     from django.conf import settings
 
     settings.POOTLE_TRANSLATION_DIRECTORY = tempfile.mkdtemp()
+
+    def rm_tmp_dir():
+        shutil.rmtree(settings.POOTLE_TRANSLATION_DIRECTORY)
+
+    request.addfinalizer(rm_tmp_dir)
 
 
 @pytest.fixture(autouse=True)
