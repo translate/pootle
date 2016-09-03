@@ -16,7 +16,8 @@ from pytest_pootle.factories import VirtualFolderDBFactory
 
 from pootle_store.constants import OBSOLETE, TRANSLATED
 from pootle_store.models import Store, Unit
-from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
+from virtualfolder.models import VFData, VirtualFolder, VirtualFolderTreeItem
+from virtualfolder.utils import VirtualFolderPathMatcher
 
 
 @pytest.mark.django_db
@@ -314,3 +315,24 @@ def test_vfolder_calc_priority(settings, store0):
     assert store0.calculate_priority() == 5.0
     settings.INSTALLED_APPS.remove("virtualfolder")
     assert store0.calculate_priority() == 1.0
+
+
+@pytest.mark.pootle_vfolders
+@pytest.mark.django_db
+def test_vfolder_data_repr():
+    vf0 = VirtualFolder.objects.first()
+    vf_data = VFData.objects.create(vf=vf0)
+    assert (
+        repr(vf_data)
+        == "<VFData: %s>" % vf0)
+
+
+@pytest.mark.pootle_vfolders
+@pytest.mark.django_db
+def test_vfolder_path_matcher(vfolder0):
+    assert isinstance(
+        vfolder0.path_matcher,
+        VirtualFolderPathMatcher)
+    assert (
+        list(vfolder0.path_matcher.filter_rules)
+        == [x.strip() for x in vfolder0.filter_rules.split(",")])
