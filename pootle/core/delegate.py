@@ -25,6 +25,7 @@ format_syncers = Provider()
 filetype_tool = Getter()
 tp_tool = Getter()
 data_tool = Getter()
+data_updater = Getter()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
