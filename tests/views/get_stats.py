@@ -29,7 +29,7 @@ def test_get_stats_store(client, request_users, settings):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     result = json.loads(response.content)
 
-    stats = store.get_stats()
+    stats = store.data_tool.get_stats()
     for k, v in result.items():
         assert stats[k] == v
     assert "vfolders" not in result
