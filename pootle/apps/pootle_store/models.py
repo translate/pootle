@@ -688,7 +688,7 @@ class Unit(models.Model, base.TranslationUnit):
 
         checker = get_checker(self)
         qc_failures = checker.run_filters(self, categorised=True)
-
+        checks_to_add = []
         for name in qc_failures.iterkeys():
             if name in existing:
                 # keep false-positive checks if check is active
@@ -700,12 +700,17 @@ class Unit(models.Model, base.TranslationUnit):
 
             message = qc_failures[name]['message']
             category = qc_failures[name]['category']
-
-            self.qualitycheck_set.create(name=name, message=message,
-                                         category=category)
-
+            checks_to_add.append(
+                QualityCheck(
+                    unit=self,
+                    name=name,
+                    message=message,
+                    category=category))
             self.store.mark_dirty(CachedMethods.CHECKS)
             result = True
+
+        if checks_to_add:
+            self.qualitycheck_set.bulk_create(checks_to_add)
 
         if not keep_false_positives and unmute_list:
             self.qualitycheck_set.filter(name__in=unmute_list) \
