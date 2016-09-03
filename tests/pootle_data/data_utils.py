@@ -149,6 +149,7 @@ def test_data_tp_util_last_submission(tp0):
     last_submission.store.data_tool.update()
     tp0.data_tool.update()
     # TODO: fix
+    # this is failing - not sure why
     # assert (
     #    tp0.data_tool.updater.store_data["last_submission"]
     #    == last_submission.pk)
