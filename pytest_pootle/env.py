@@ -339,14 +339,20 @@ class PootleTestEnv(object):
             self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
-        from pootle_store.models import Unit
+        from pootle_store.models import Store, Unit
         from django.utils import timezone
 
         year_ago = timezone.now() - relativedelta(years=1)
         Unit.objects.update(creation_time=year_ago)
 
-        for unit in Unit.objects.all():
-            self._add_submissions(unit, year_ago)
+        stores = Store.objects.select_related(
+            "translation_project__project",
+            "translation_project__language")
+
+        for store in stores.all():
+            for unit in store.unit_set.all():
+                unit.store = store
+                self._add_submissions(unit, year_ago)
 
     def setup_tps(self):
         from pootle_project.models import Project
