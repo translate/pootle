@@ -343,6 +343,7 @@ class PootleTestEnv(object):
             self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
+        from pootle.core.contextmanagers import update_data_after
         from pootle_store.models import Store, Unit
         from django.utils import timezone
 
@@ -354,9 +355,10 @@ class PootleTestEnv(object):
             "translation_project__language")
 
         for store in stores.all():
-            for unit in store.unit_set.all():
-                unit.store = store
-                self._add_submissions(unit, year_ago)
+            with update_data_after(store):
+                for unit in store.unit_set.all():
+                    unit.store = store
+                    self._add_submissions(unit, year_ago)
 
     def setup_tps(self):
         from pootle_project.models import Project
