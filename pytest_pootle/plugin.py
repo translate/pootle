@@ -43,9 +43,12 @@ def pytest_addoption(parser):
 
 @pytest.fixture(autouse=True)
 def test_timing(request, settings, log_timings):
+    from django.db import reset_queries
+
     if not request.config.getoption("--debug-tests"):
         return
     settings.DEBUG = True
+    reset_queries()
     start = time.time()
     request.addfinalizer(
         functools.partial(
