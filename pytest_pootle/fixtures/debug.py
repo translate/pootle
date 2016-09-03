@@ -9,7 +9,6 @@
 import functools
 import logging
 import time
-from datetime import datetime
 
 import pytest
 
@@ -21,7 +20,6 @@ logger = logging.getLogger("POOTLE_DEBUG")
 
 @pytest.fixture(scope="session")
 def log_timings(request, timings):
-    logger.debug("TESTS START: %s", datetime.now())
     return functools.partial(
         utils.log_test_timing,
         logger,
@@ -36,6 +34,7 @@ def timings(request):
         return
     if debug_tests != "-":
         logger.addHandler(logging.FileHandler(debug_tests))
+    utils.log_test_start(logger)
     timings = dict(start=time.time(), tests={})
     request.addfinalizer(
         functools.partial(

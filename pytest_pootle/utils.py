@@ -10,6 +10,7 @@
 
 import io
 import json
+import sys
 import time
 from datetime import datetime
 from uuid import uuid4
@@ -156,8 +157,17 @@ def add_store_fs(store, fs_path, synced=False):
         path=fs_path)
 
 
+def log_test_start(debug_logger):
+    debug_logger.debug(
+        "\n%s\nTESTS START: %s\nTESTS: py.test %s\n%s",
+        "=" * 80,
+        datetime.now(),
+        " ".join(sys.argv[1:]),
+        "=" * 80)
+
+
 def log_test_timing(debug_logger, timings, name, start):
-    from django.db import connection, reset_queries
+    from django.db import connection
 
     time_taken = time.time() - start
     timings["tests"][name] = dict(
@@ -172,16 +182,27 @@ def log_test_timing(debug_logger, timings, name, start):
             *(name,
               round(time_taken, 4),
               len(connection.queries))))
-    reset_queries()
 
 
 def log_test_report(debug_logger, timings):
-    debug_logger.debug("TESTS END: %s", datetime.now())
     debug_logger.debug(
-        "TOTAL test time: %s",
-        time.time() - timings["start"])
+        "%s\nTESTS END: %s",
+        "=" * 80,
+        datetime.now())
+    total_time = time.time() - timings["start"]
+    total_queries = sum(
+        t["query_count"]
+        for t
+        in timings["tests"].values())
+    if total_queries:
+        avg_query_time = total_time / total_queries
+        debug_logger.debug(
+            "TESTS AVERAGE query time: %s",
+            avg_query_time)
     debug_logger.debug(
-        "TOTAL queries: %s\n",
-        sum(t["query_count"]
-            for t
-            in timings["tests"].values()))
+        "TESTS TOTAL test time: %s",
+        total_time)
+    debug_logger.debug(
+        "TESTS TOTAL queries: %s",
+        total_queries)
+    debug_logger.debug("%s\n" % ("=" * 80))
