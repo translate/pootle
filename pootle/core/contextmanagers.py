@@ -15,8 +15,10 @@ from pootle.core.signals import update_data
 def suppress_signal(signal):
     handlers = signal.receivers
     signal.receivers = []
-    yield
-    signal.receivers = handlers
+    try:
+        yield
+    finally:
+        signal.receivers = handlers
 
 
 @contextmanager
