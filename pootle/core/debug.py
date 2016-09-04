@@ -56,8 +56,10 @@ def debug_sql(debug_logger=None):
     debug = settings.DEBUG
     settings.DEBUG = True
     queries = len(connection.queries)
-    yield
-    log_new_queries(
-        queries,
-        debug_logger)
-    settings.DEBUG = debug
+    try:
+        yield
+    finally:
+        log_new_queries(
+            queries,
+            debug_logger)
+        settings.DEBUG = debug
