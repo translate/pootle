@@ -9,6 +9,7 @@
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
@@ -22,6 +23,7 @@ from pootle_project.models import Project
 from pootle_store.constants import OBSOLETE
 from pootle_store.models import Store, Unit
 
+from .delegate import path_matcher
 from .signals import vfolder_post_save
 
 
@@ -71,6 +73,10 @@ class VirtualFolder(models.Model):
 
     class Meta(object):
         unique_together = ('name', 'location')
+
+    @cached_property
+    def path_matcher(self):
+        return path_matcher.get(self.__class__)(self)
 
     @property
     def all_locations(self):

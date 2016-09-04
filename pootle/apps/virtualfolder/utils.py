@@ -28,11 +28,11 @@ class VirtualFolderPathMatcher(object):
                 to_add.append(store)
         for store in existing_stores:
             if store not in matching_stores:
-                to_delete.append(store)
+                to_delete.append(store.id)
         if to_add:
             self.vf.stores.add(*to_add)
         if to_delete:
-            self.vf.stores.delete(*to_delete)
+            self.vf.stores.filter(id__in=to_delete).delete()
 
     def add_store_if_matching(self, store):
         pootle_dir_path = "".join(
