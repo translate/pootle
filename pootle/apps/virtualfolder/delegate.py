@@ -12,3 +12,4 @@ from pootle.core.plugin.delegate import Getter
 path_matcher = Getter()
 vfolders_data_tool = Getter()
 vfolder_finder = Getter()
+vfolders_data_view = Getter()
