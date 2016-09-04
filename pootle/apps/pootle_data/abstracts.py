@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from translate.filters.decorators import Category
+
 from django.db import models
 
 
@@ -73,6 +75,26 @@ class AbstractPootleData(models.Model):
         db_index=True)
     # the number of fuzzy words
     fuzzy_words = models.IntegerField(
+        null=False,
+        blank=False,
+        default=0,
+        db_index=True)
+
+
+class AbstractPootleChecksData(models.Model):
+
+    class Meta(object):
+        abstract = True
+        index_together = ["name", "category"]
+
+    name = models.CharField(
+        max_length=64,
+        db_index=True)
+    category = models.IntegerField(
+        null=False,
+        default=Category.NO_CATEGORY,
+        db_index=True)
+    count = models.IntegerField(
         null=False,
         blank=False,
         default=0,
