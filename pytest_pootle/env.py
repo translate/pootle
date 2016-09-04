@@ -44,6 +44,7 @@ class PootleTestEnv(object):
             for tp in project.translationproject_set.all():
                 for store in tp.stores.all():
                     store.data_tool.update()
+                tp.data_tool.update()
 
     def setup_complex_po(self):
         import pytest_pootle
