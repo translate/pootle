@@ -8,7 +8,7 @@
 
 from django.db import models
 
-from .abstracts import AbstractPootleData
+from .abstracts import AbstractPootleChecksData, AbstractPootleData
 
 
 class StoreData(AbstractPootleData):
@@ -25,6 +25,20 @@ class StoreData(AbstractPootleData):
         return self.store.pootle_path
 
 
+class StoreChecksData(AbstractPootleChecksData):
+
+    class Meta(object):
+        db_table = "pootle_store_check_data"
+
+    store = models.ForeignKey(
+        "pootle_store.Store",
+        db_index=True,
+        related_name="check_data")
+
+    def __unicode__(self):
+        return self.store.pootle_path
+
+
 class TPData(AbstractPootleData):
 
     class Meta(object):
@@ -34,6 +48,20 @@ class TPData(AbstractPootleData):
         "pootle_translationproject.TranslationProject",
         db_index=True,
         related_name="data")
+
+    def __unicode__(self):
+        return self.tp.pootle_path
+
+
+class TPChecksData(AbstractPootleChecksData):
+
+    class Meta(object):
+        db_table = "pootle_tp_check_data"
+
+    tp = models.ForeignKey(
+        "pootle_translationproject.TranslationProject",
+        db_index=True,
+        related_name="check_data")
 
     def __unicode__(self):
         return self.tp.pootle_path
