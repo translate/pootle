@@ -6,8 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.plugin.delegate import Getter
+from pootle.core.plugin import getter
+
+from .delegate import path_matcher
+from .models import VirtualFolder
+from .utils import VirtualFolderPathMatcher
 
 
-path_matcher = Getter()
-vfolders_data_tool = Getter()
+@getter(path_matcher, sender=VirtualFolder)
+def vf_path_matcher_getter(**kwargs_):
+    return VirtualFolderPathMatcher
