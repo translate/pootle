@@ -17,6 +17,7 @@ class PootleVirtualFolderConfig(AppConfig):
     verbose_name = "Pootle Virtual Folders"
 
     def ready(self):
+        importlib.import_module("virtualfolder.getters")
         importlib.import_module("virtualfolder.receivers")
         importlib.import_module("virtualfolder.providers")
         importlib.import_module("virtualfolder.getters")
