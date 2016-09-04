@@ -31,9 +31,9 @@ from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
-from virtualfolder.helpers import (
-    extract_vfolder_from_path, make_vfolder_treeitem_dict)
-from virtualfolder.helpers import vftis_for_child_dirs
+from virtualfolder.helpers import extract_vfolder_from_path
+# make_vfolder_treeitem_dict)
+# from virtualfolder.helpers import vftis_for_child_dirs
 
 
 def _test_browse_view(tp, request, response, kwargs):
@@ -61,34 +61,36 @@ def _test_browse_view(tp, request, response, kwargs):
         obj = Store.objects.get(
             pootle_path=pootle_path)
     if not kwargs.get("filename"):
-        vftis = obj.vf_treeitems.select_related("vfolder")
-        if not ctx["has_admin_access"]:
-            vftis = vftis.filter(vfolder__is_public=True)
-        vfolders = [
-            make_vfolder_treeitem_dict(vfolder_treeitem)
-            for vfolder_treeitem
-            in vftis.order_by('-vfolder__priority')
-            if (ctx["has_admin_access"]
-                or vfolder_treeitem.is_visible)]
-        stats = {"vfolders": {}}
-        for vfolder_treeitem in vfolders or []:
-            stats['vfolders'][
-                vfolder_treeitem['code']] = vfolder_treeitem["stats"]
-            del vfolder_treeitem["stats"]
-        if stats["vfolders"]:
-            stats.update(obj.get_stats())
-        else:
-            stats = obj.get_stats()
+        # vftis = obj.vf_treeitems.select_related("vfolder")
+        # if not ctx["has_admin_access"]:
+        #    vftis = vftis.filter(vfolder__is_public=True)
+        # vfolders = [
+        #    make_vfolder_treeitem_dict(vfolder_treeitem)
+        #    for vfolder_treeitem
+        #    in vftis.order_by('-vfolder__priority')
+        #    if (ctx["has_admin_access"]
+        # or vfolder_treeitem.is_visible)]
+        # stats = {"vfolders": {}}
+        # for vfolder_treeitem in vfolders or []:
+        #    stats['vfolders'][
+        #        vfolder_treeitem['code']] = vfolder_treeitem["stats"]
+        #    del vfolder_treeitem["stats"]
+        # if stats["vfolders"]:
+        #    stats.update(obj.data_tool.get_stats())
+        # else:
+        stats = obj.data_tool.get_stats(children=True)
+        vfolders = None
     else:
-        stats = obj.get_stats()
+        stats = obj.data_tool.get_stats(children=True)
         vfolders = None
 
     filters = {}
     if vfolders:
         filters['sort'] = 'priority'
 
-    dirs_with_vfolders = vftis_for_child_dirs(obj).values_list(
-        "directory__pk", flat=True)
+    # dirs_with_vfolders = vftis_for_child_dirs(obj).values_list(
+    #    "directory__pk", flat=True)
+    dirs_with_vfolders = []
     directories = [
         make_directory_item(
             child,
