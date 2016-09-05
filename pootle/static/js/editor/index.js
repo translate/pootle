@@ -23,6 +23,8 @@ const ReactEditor = {
     this.node = q('.js-mount-editor');
     this.sourceNode = q('.js-mount-editor-original-src');
     this.alternativeSourceNodes = qAll('.js-mount-editor-alt-src');
+    this.editorModeNode = q('.js-mount-format-editor-toolbar');
+
     this.props = {};
     this.hasCRLF = props.sourceValues.some(hasCRLF);
 
@@ -94,6 +96,18 @@ const ReactEditor = {
         this.alternativeSourceNodes[i]
       );
     }
+    if (this.formatAdaptor.editorModeButton) {
+      ReactRenderer.render(
+        <this.formatAdaptor.editorModeButton
+          onChange={this.onEditorModeChange.bind(this)}
+        />,
+        this.editorModeNode
+      );
+    }
+  },
+
+  onEditorModeChange(options) {
+    this.setProps(options);
   },
 
   // FIXME: this additional layer of state tracking is only kept to allow

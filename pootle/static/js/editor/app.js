@@ -310,6 +310,10 @@ PTL.editor = {
       ReactEditor.setProps({ isRawMode: toggle.classList.contains('selected') });
     });
 
+    $('#editor').on('click', '.js-toggle-l20n', (e) => {
+      e.preventDefault();
+    });
+
     /* Confirmation prompt */
     window.addEventListener('beforeunload', (e) => {
       if (PTL.editor.isUnitDirty || PTL.editor.isSuggestionFeedbackFormDirty) {
