@@ -53,7 +53,7 @@ class Directory(models.Model, CachedTreeItem):
     # any changes to the `pootle_path` field may require updating the schema
     # see migration 0005_case_sensitive_schema.py
     pootle_path = models.CharField(max_length=255, null=False, db_index=True,
-                                   unique=True)
+                                   unique=True, default='/')
     obsolete = models.BooleanField(default=False)
 
     is_dir = True
@@ -130,6 +130,9 @@ class Directory(models.Model, CachedTreeItem):
         super(Directory, self).__init__(*args, **kwargs)
 
     def clean(self):
+        if self.parent is not None:
+            self.pootle_path = self.parent.pootle_path + self.name + '/'
+
         if self.name == '' and self.parent is not None:
             raise ValidationError('Name can be empty only for root directory.')
 
@@ -138,11 +141,6 @@ class Directory(models.Model, CachedTreeItem):
                                   'directory.')
 
     def save(self, *args, **kwargs):
-        if self.parent is not None:
-            self.pootle_path = self.parent.pootle_path + self.name + '/'
-        else:
-            self.pootle_path = '/'
-
         # Force validation of fields.
         self.full_clean()
 
