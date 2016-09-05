@@ -39,6 +39,7 @@ from pootle.core.log import (
 from pootle.core.mixins import CachedMethods, CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
+from pootle.core.signals import update_data
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_all_pootle_paths, get_editor_filter, split_pootle_path)
@@ -433,6 +434,8 @@ class Unit(models.Model, base.TranslationUnit):
         if self.store.state >= PARSED:
             self.store.mark_dirty(CachedMethods.MTIME)
             self.store.update_dirty_cache()
+        update_data.send_robust(
+            self.store.__class__, instance=self.store)
 
     def get_absolute_url(self):
         return self.store.get_absolute_url()
