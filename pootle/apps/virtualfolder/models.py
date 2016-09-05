@@ -18,6 +18,7 @@ from pootle.core.mixins.treeitem import NoCachedStats
 from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
                                      split_pootle_path)
 from pootle_app.models import Directory
+from pootle_data.abstracts import AbstractPootleData
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.constants import OBSOLETE
@@ -70,6 +71,22 @@ class VirtualFolder(models.Model):
         db_index=True,
         related_name='vfolders',
     )
+    project = models.ForeignKey(
+        Project,
+        null=True,
+        blank=True,
+        db_index=True,
+        related_name="vfolders")
+    language = models.ForeignKey(
+        Language,
+        null=True,
+        blank=True,
+        db_index=True,
+        related_name="vfolders")
+    stores = models.ManyToManyField(
+        Store,
+        db_index=True,
+        related_name='vfolders')
 
     class Meta(object):
         unique_together = ('name', 'location')
@@ -451,3 +468,17 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
                 if p.count('/') > self.vfolder.location.count('/')]
 
     # # # /TreeItem
+
+
+class VFData(AbstractPootleData):
+
+    class Meta(object):
+        db_table = "pootle_vf_data"
+
+    vf = models.OneToOneField(
+        "virtualfolder.VirtualFolder",
+        db_index=True,
+        related_name="data")
+
+    def __unicode__(self):
+        return unicode(self.vf)
