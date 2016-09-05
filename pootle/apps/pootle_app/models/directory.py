@@ -129,6 +129,14 @@ class Directory(models.Model, CachedTreeItem):
     def __init__(self, *args, **kwargs):
         super(Directory, self).__init__(*args, **kwargs)
 
+    def clean(self):
+        if self.name == '' and self.parent is not None:
+            raise ValidationError('Name can be empty only for root directory.')
+
+        if self.parent is None and self.name != '':
+            raise ValidationError('Parent can be unset only for root '
+                                  'directory.')
+
     def save(self, *args, **kwargs):
         if self.parent is not None:
             self.pootle_path = self.parent.pootle_path + self.name + '/'

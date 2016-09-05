@@ -29,6 +29,18 @@ def test_directory_create_name_with_slashes_or_backslashes(root):
 
 
 @pytest.mark.django_db
+def test_directory_create_bad(root):
+    """Test directory cannot be created with name and no parent or without name
+    but no parent.
+    """
+    with pytest.raises(ValidationError):
+        Directory.objects.create(name="name", parent=None)
+
+    with pytest.raises(ValidationError):
+        Directory.objects.create(name="", parent=root)
+
+
+@pytest.mark.django_db
 def test_delete_mark_obsolete_resurrect_sync(project0_nongnu, subdir0):
     """Tests that the in-DB Directory are marked as obsolete
     after the on-disk file ceased to exist and that the on-disk file and
