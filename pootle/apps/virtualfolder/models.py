@@ -18,6 +18,7 @@ from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
                                      split_pootle_path)
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models import Directory
+from pootle_data.abstracts import AbstractPootleData
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -272,3 +273,17 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
                 if p.count('/') > 3]
 
     # # # /TreeItem
+
+
+class VFData(AbstractPootleData):
+
+    class Meta(object):
+        db_table = "pootle_vf_data"
+
+    vf = models.OneToOneField(
+        "virtualfolder.VirtualFolder",
+        db_index=True,
+        related_name="data")
+
+    def __unicode__(self):
+        return unicode(self.vf)
