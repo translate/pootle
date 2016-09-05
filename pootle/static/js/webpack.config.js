@@ -35,7 +35,6 @@ var resolve = {
 
     jquery: __dirname + '/vendor/jquery/jquery.js',
     backbone: __dirname + '/vendor/backbone/backbone.js',
-    underscore: __dirname + '/vendor/underscore.js',
 
     'backbone-move': __dirname + '/vendor/backbone/backbone.move.js',
     'backbone-safesync': __dirname + '/vendor/backbone/backbone.safesync.js',

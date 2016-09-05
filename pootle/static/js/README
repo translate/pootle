@@ -96,13 +96,6 @@ Directory contents
 
       http://fgnass.github.io/spin.js/
 
-    - underscore.js :
-      Utility library providing functional programming support.
-
-      Version 1.6
-
-      http://underscorejs.org/
-
     + backbone/
 
       - backbone.js :

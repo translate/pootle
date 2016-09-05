@@ -48,6 +48,7 @@
     "react-select": "^0.9.1",
     "redux": "^3.0.0",
     "redux-thunk": "^1.0.0",
-    "tabbable": "^1.0.0"
+    "tabbable": "^1.0.0",
+    "underscore": "1.6.0"
   }
 }
