@@ -1255,7 +1255,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             self.update_dirty_cache()
 
     def delete(self, *args, **kwargs):
-        parents = self.get_parents()
+        self.get_parents()
 
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
