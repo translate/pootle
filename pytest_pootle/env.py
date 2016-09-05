@@ -21,7 +21,7 @@ class PootleTestEnv(object):
         "languages", "site_matrix", "system_users", "permissions",
         "site_permissions", "tps",
         "disabled_project", "subdirs", "submissions", "announcements",
-        "terminology", "fs", "vfolders", "complex_po", "data")
+        "terminology", "fs", "vfolders", "complex_po")
 
     def setup(self, **kwargs):
         for method in self.methods:
@@ -35,16 +35,6 @@ class PootleTestEnv(object):
         from pootle.core.delegate import formats
 
         formats.get().initialize()
-
-    def setup_data(self):
-        from pootle_project.models import Project
-
-        # TODO: remove once signals are in place
-        for project in Project.objects.all():
-            for tp in project.translationproject_set.all():
-                for store in tp.stores.all():
-                    store.data_tool.update()
-                tp.data_tool.update()
 
     def setup_complex_po(self):
         import pytest_pootle
