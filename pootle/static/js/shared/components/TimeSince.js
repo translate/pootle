@@ -9,7 +9,7 @@
 import React, { PropTypes } from 'react';
 import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
-import { relativeTime } from 'utils/time';
+import { relativeTime } from 'utils/relativeTime';
 
 
 const TimeSince = React.createClass({

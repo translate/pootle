@@ -8,7 +8,7 @@
 
 import $ from 'jquery';
 
-import { relativeTime } from 'utils/time';
+import { relativeTime } from 'utils/relativeTime';
 
 
 function updateInputState($checkboxes, $input) {
