@@ -31,24 +31,41 @@ class LiveLanguageManager(models.Manager):
     """
 
     def get_queryset(self):
+        """Returns a queryset for all live languages for enabled projects."""
         return super(LiveLanguageManager, self).get_queryset().filter(
             translationproject__isnull=False,
-            project__isnull=True,
+            translationproject__directory__obsolete=False,
+            translationproject__project__disabled=False,
         ).distinct()
 
-    def cached_dict(self, locale_code='en-us'):
+    def get_all_queryset(self):
+        """Returns a queryset for all live languages for all projects."""
+        return super(LiveLanguageManager, self).get_queryset().filter(
+            translationproject__isnull=False,
+            translationproject__directory__obsolete=False,
+        ).distinct()
+
+    def cached_dict(self, locale_code='en-us', show_all=False):
         """Retrieves a sorted list of live language codes and names.
+
+        By default only returns live languages for enabled projects, but it can
+        also return live languages for disabled projects if specified.
 
         :param locale_code: the UI locale for which language full names need to
             be localized.
+        :param show_all: tells whether to return all live languages (both for
+            disabled and enabled projects) or only live languages for enabled
+            projects.
         :return: an `OrderedDict`
         """
-        key = make_method_key(self, 'cached_dict', locale_code)
+        key_prefix = 'all_cached_dict' if show_all else 'cached_dict'
+        key = make_method_key(self, key_prefix, locale_code)
         languages = cache.get(key, None)
         if languages is None:
+            qs = self.get_all_queryset() if show_all else self.get_queryset()
             languages = OrderedDict(
                 sorted([(lang[0], tr_lang(lang[1]))
-                        for lang in self.values_list('code', 'fullname')],
+                        for lang in qs.values_list('code', 'fullname')],
                        cmp=locale.strcoll,
                        key=lambda x: x[1])
             )

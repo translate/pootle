@@ -28,7 +28,9 @@ def view(request):
     lang = request.COOKIES.get(COOKIE_NAME, None)
 
     if lang is None:
-        supported = Language.live.cached_dict()
+        supported = Language.live.cached_dict(
+            show_all=request.user.is_superuser
+        )
         lang = get_lang_from_http_header(request, supported)
 
     if lang is not None and lang not in ('projects', ''):
