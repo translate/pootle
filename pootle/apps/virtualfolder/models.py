@@ -77,6 +77,10 @@ class VirtualFolder(models.Model):
         db_index=True,
         related_name='vfolders',
     )
+    stores = models.ManyToManyField(
+        Store,
+        db_index=True,
+        related_name='vfolders')
 
     class Meta(object):
         unique_together = ('name', 'location')
