@@ -11,10 +11,10 @@ import operator
 
 from django.db.models import ObjectDoesNotExist, ProtectedError, Q
 from django.forms.models import modelform_factory
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.views.generic import View
 
-from pootle.core.utils.json import PootleJSONEncoder
+from pootle.core.http import JsonResponse
 
 
 class APIView(View):
@@ -56,10 +56,6 @@ class APIView(View):
 
     # Field names in which searching will be allowed
     search_fields = None
-
-    # Override these if you have custom JSON encoding/decoding needs
-    json_encoder = PootleJSONEncoder()
-    json_decoder = json.JSONDecoder()
 
     m2m = ()
 
@@ -131,11 +127,11 @@ class APIView(View):
         except AssertionError:
             raise Http404
 
-        return self.json_response(self.serialize_qs(qs))
+        return JsonResponse(self.qs_to_values(qs))
 
     def get_collection(self, request, *args, **kwargs):
         """Retrieve a full collection."""
-        return self.json_response(self.serialize_qs(self.base_queryset))
+        return JsonResponse(self.qs_to_values(self.base_queryset))
 
     def post(self, request, *args, **kwargs):
         """Creates a new model instance.
@@ -145,7 +141,7 @@ class APIView(View):
         the fields from `self.fields`.
         """
         try:
-            request_dict = self.json_decoder.decode(request.body)
+            request_dict = json.loads(request.body)
         except ValueError:
             return self.status_msg('Invalid JSON data', status=400)
 
@@ -156,8 +152,8 @@ class APIView(View):
             # Serialize the new object to json using our built-in methods. The
             # extra DB read here is not ideal, but it keeps the code DRY:
             wrapper_qs = self.base_queryset.filter(pk=new_object.pk)
-            return self.json_response(
-                self.serialize_qs(wrapper_qs, single_object=True)
+            return JsonResponse(
+                self.qs_to_values(wrapper_qs, single_object=True)
             )
 
         return self.form_invalid(form)
@@ -169,7 +165,7 @@ class APIView(View):
                                    status=405)
 
         try:
-            request_dict = self.json_decoder.decode(request.body)
+            request_dict = json.loads(request.body)
             instance = self.base_queryset.get(pk=kwargs[self.pk_field_name])
         except ValueError:
             return self.status_msg('Invalid JSON data', status=400)
@@ -181,8 +177,8 @@ class APIView(View):
         if form.is_valid():
             item = form.save()
             wrapper_qs = self.base_queryset.filter(id=item.id)
-            return self.json_response(
-                self.serialize_qs(wrapper_qs, single_object=True)
+            return JsonResponse(
+                self.qs_to_values(wrapper_qs, single_object=True)
             )
 
         return self.form_invalid(form)
@@ -195,11 +191,11 @@ class APIView(View):
 
         qs = self.base_queryset.filter(id=kwargs[self.pk_field_name])
         if qs:
-            output = self.serialize_qs(qs)
+            output = self.qs_to_values(qs)
             obj = qs[0]
             try:
                 obj.delete()
-                return self.json_response(output)
+                return JsonResponse(output)
             except ProtectedError as e:
                 return self.status_msg(e[0], status=405)
 
@@ -211,13 +207,13 @@ class APIView(View):
                 str(x) for x
                 in getattr(item, k).values_list("pk", flat=True)]
 
-    def serialize_qs(self, queryset, single_object=False):
-        """Serialize a queryset into a JSON object.
+    def qs_to_values(self, queryset, single_object=False):
+        """Convert a queryset to values for further serialization.
 
         :param single_object: if `True` (or the URL specified an id), it
-            will return a single JSON object.
-            If `False`, a JSON object is returned with an array of objects
-            in `models` and the total object count in `count`.
+            will return a single element.
+            If `False`, an array of objects in `models` and the total object
+            count in `count` is returned.
         """
 
         if single_object or self.kwargs.get(self.pk_field_name):
@@ -225,9 +221,9 @@ class APIView(View):
                 *[k for k in self.serialize_fields if k not in self.m2m])
             # For single-item requests, convert ValuesQueryset to a dict simply
             # by slicing the first item
-            serialize_values = values[0]
+            return_values = values[0]
             if self.m2m:
-                self.serialize_m2m(serialize_values, queryset[0])
+                self.serialize_m2m(return_values, queryset[0])
         else:
             search_keyword = self.request.GET.get(self.search_param_name, None)
             if search_keyword is not None:
@@ -267,12 +263,12 @@ class APIView(View):
             else:
                 values = values.values(*self.serialize_fields)
 
-            serialize_values = {
+            return_values = {
                 'models': list(values),
                 'count': queryset.count(),
             }
 
-        return self.json_encoder.encode(serialize_values)
+        return return_values
 
     def get_search_filter(self, keyword):
         search_fields = getattr(self, 'search_fields', None)
@@ -288,13 +284,7 @@ class APIView(View):
         return reduce(operator.or_, lookups)
 
     def status_msg(self, msg, status=400):
-        data = self.json_encoder.encode({'msg': msg})
-        return self.json_response(data, status=status)
+        return JsonResponse({'msg': msg}, status=status)
 
     def form_invalid(self, form):
-        data = self.json_encoder.encode({'errors': form.errors})
-        return self.json_response(data, status=400)
-
-    def json_response(self, output, **response_kwargs):
-        response_kwargs['content_type'] = 'application/json'
-        return HttpResponse(output, **response_kwargs)
+        return JsonResponse({'errors': form.errors}, status=400)
