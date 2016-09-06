@@ -46,7 +46,7 @@ def test_get_edit_unit(project0_nongnu, client, request_users, settings):
     assert result["sources"] == {src_lang.code: unit.source}
 
     assert response.context["unit"] == unit
-    assert response.context["priority"] == unit.priority
+    assert response.context["priority"] == store.priority
     assert response.context["store"] == store
     assert response.context["directory"] == directory
     assert response.context["project"] == project

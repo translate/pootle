@@ -15,7 +15,7 @@ import pytest
 from pytest_pootle.factories import VirtualFolderDBFactory
 
 from pootle_store.constants import OBSOLETE, TRANSLATED
-from pootle_store.models import Unit
+from pootle_store.models import Store, Unit
 from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
 
 
@@ -201,66 +201,72 @@ def test_vfolder_membership():
 
 
 @pytest.mark.django_db
-def test_vfolder_unit_priorities():
+def test_vfolder_store_priorities():
 
     # remove the default vfolders and update units to reset priorities
     VirtualFolder.objects.all().delete()
-    [unit.save() for unit in Unit.objects.all()]
+    [store.save() for store in Store.objects.all()]
 
     assert all(
         priority == 1
         for priority
-        in Unit.objects.values_list("priority", flat=True))
+        in Store.objects.values_list("priority", flat=True))
 
-    vfolder0 = VirtualFolderDBFactory(filter_rules="store0.po", priority=3)
-
+    vfolder0 = VirtualFolderDBFactory(filter_rules="store0.po")
+    vfolder0.priority = 3
+    vfolder0.save()
+    vfolder0_stores = vfolder0.units.values_list("store", flat=True).distinct()
     assert all(
         priority == 3
         for priority
-        in vfolder0.units.values_list("priority", flat=True))
-
+        in Store.objects.filter(id__in=vfolder0_stores)
+                        .values_list("priority", flat=True))
     assert all(
         priority == 1.0
         for priority
-        in Unit.objects.filter(vfolders__isnull=True)
-                       .values_list("priority", flat=True))
+        in Store.objects.exclude(id__in=vfolder0_stores)
+                        .values_list("priority", flat=True))
 
     vfolder0.filter_rules = "store1.po"
     vfolder0.save()
-
+    vfolder0_stores = vfolder0.units.values_list("store", flat=True).distinct()
     assert all(
         priority == 3
         for priority
-        in vfolder0.units.values_list("priority", flat=True))
-
+        in Store.objects.filter(id__in=vfolder0_stores)
+                        .values_list("priority", flat=True))
     assert all(
         priority == 1.0
         for priority
-        in Unit.objects.filter(vfolders__isnull=True)
-                       .values_list("priority", flat=True))
+        in Store.objects.exclude(id__in=vfolder0_stores)
+                        .values_list("priority", flat=True))
 
     vfolder1 = VirtualFolderDBFactory(
         location='/{LANG}/project0/',
-        filter_rules="store1.po",
-        priority=4)
-    vf1_pks = vfolder1.units.values_list("pk", flat=True)
+        filter_rules="store1.po")
+    vfolder1.priority = 4
+    vfolder1.save()
+    vfolder1_stores = vfolder1.units.values_list("store", flat=True).distinct()
 
     assert all(
         priority == 4.0
         for priority
-        in vfolder1.units.values_list("priority", flat=True))
+        in Store.objects.filter(id__in=vfolder1_stores)
+                        .values_list("priority", flat=True))
 
     assert all(
         priority == 3.0
         for priority
-        in vfolder0.units.exclude(pk__in=vf1_pks)
-                         .values_list("priority", flat=True))
+        in Store.objects.filter(id__in=vfolder0_stores)
+                        .exclude(id__in=vfolder1_stores)
+                        .values_list("priority", flat=True))
 
     assert all(
         priority == 1.0
         for priority
-        in Unit.objects.filter(vfolders__isnull=True)
-                       .values_list("priority", flat=True))
+        in Store.objects.exclude(id__in=vfolder0_stores)
+                        .exclude(id__in=vfolder1_stores)
+                        .values_list("priority", flat=True))
 
 
 @pytest.mark.django_db
@@ -297,3 +303,14 @@ def test_vfti_rm():
     # deleted.
     VirtualFolder.objects.all().delete()
     assert not VirtualFolderTreeItem.objects.exists()
+
+
+@pytest.mark.django_db
+def test_vfolder_calc_priority(settings, store0):
+    vf = VirtualFolderDBFactory(
+        filter_rules=store0.name)
+    vf.priority = 5
+    vf.save()
+    assert store0.calculate_priority() == 5.0
+    settings.INSTALLED_APPS.remove("virtualfolder")
+    assert store0.calculate_priority() == 1.0
