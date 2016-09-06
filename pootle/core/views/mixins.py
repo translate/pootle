@@ -30,14 +30,6 @@ class SuperuserRequiredMixin(object):
                                                             **kwargs)
 
 
-class LoginRequiredMixin(object):
-    """Require a logged-in user."""
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
-
-
 class UserObjectMixin(object):
     """Generic field definitions to be reused across user views."""
 
@@ -47,7 +39,7 @@ class UserObjectMixin(object):
     slug_url_kwarg = 'username'
 
 
-class TestUserFieldMixin(LoginRequiredMixin):
+class TestUserFieldMixin(object):
     """Require a field from the URL pattern to match a field of the
     current user.
 
@@ -59,6 +51,7 @@ class TestUserFieldMixin(LoginRequiredMixin):
 
     test_user_field = 'username'
 
+    @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         user = self.request.user
         url_field_value = kwargs[self.test_user_field]
