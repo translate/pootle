@@ -10,17 +10,20 @@ import assign from 'object-assign';
 import React from 'react';
 
 import ReactRenderer from 'utils/ReactRenderer';
+import { q } from 'utils/dom';
 
 import Editor from './containers/Editor';
+import UnitSource from './components/UnitSource';
 import { hasCRLF, normalize, denormalize } from './utils/normalizer';
 
 
 const ReactEditor = {
 
   init(props) {
-    this.node = document.querySelector('.js-mount-editor');
+    this.node = q('.js-mount-editor');
+    this.sourceNode = q('.js-mount-editor-original-src');
     this.props = {};
-    this.hasCRLF = hasCRLF(props.sourceString);
+    this.hasCRLF = props.sourceValues.some(hasCRLF);
 
     ReactRenderer.unmountComponents();
 
@@ -62,6 +65,14 @@ const ReactEditor = {
         {...extraProps}
       />,
       this.node
+    );
+    ReactRenderer.render(
+      <UnitSource
+        id={this.props.unitId}
+        values={this.props.sourceValues}
+        hasPlurals={this.props.hasPlurals}
+      />,
+      this.sourceNode
     );
   },
 

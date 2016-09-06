@@ -463,6 +463,7 @@ class UnitEditJSON(PootleUnitJSON):
             'altsrcs': self.get_alt_srcs(),
             'unit_values': self.get_unit_values(),
             'target_nplurals': self.get_target_nplurals(),
+            'has_plurals': self.object.hasplural(),
             'filetype': self.object.store.filetype.name,
         }
 

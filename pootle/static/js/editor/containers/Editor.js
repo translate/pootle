@@ -24,7 +24,6 @@ const Editor = React.createClass({
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
     overrideValues: React.PropTypes.array,
-    sourceString: React.PropTypes.string.isRequired,
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
     textareaComponent: React.PropTypes.func,
