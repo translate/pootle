@@ -1178,6 +1178,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                                              blank=True)
     obsolete = models.BooleanField(default=False)
 
+    # this is calculated from virtualfolders if installed and linked
+    priority = models.FloatField(
+        db_index=True, default=1,
+        validators=[MinValueValidator(0)])
+
     objects = StoreManager()
     simple_objects = models.Manager()
 
