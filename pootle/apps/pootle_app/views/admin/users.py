@@ -9,7 +9,8 @@
 from django.contrib.auth import get_user_model
 from django.views.generic import TemplateView
 
-from pootle.core.views import APIView, SuperuserRequiredMixin
+from pootle.core.views import APIView
+from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import UserForm
 
 

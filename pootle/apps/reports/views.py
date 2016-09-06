@@ -20,7 +20,7 @@ from django.template import RequestContext
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accounts.models import CURRENCIES
 from pootle.core.decorators import admin_required
@@ -28,11 +28,10 @@ from pootle.core.http import (JsonResponse, JsonResponseBadRequest,
                               JsonResponseNotFound)
 from pootle.core.log import PAID_TASK_ADDED, PAID_TASK_DELETED, log
 from pootle.core.utils.timezone import make_aware, make_naive
-from pootle.core.views import AjaxResponseMixin, UserObjectMixin
+from pootle.core.views.mixins import (AjaxResponseMixin, NoDefaultUserMixin,
+                                      TestUserFieldMixin, UserObjectMixin)
 from pootle_misc.util import (ajax_required, get_date_interval,
                               get_max_month_datetime, import_func)
-from pootle_profile.views import (DetailView, NoDefaultUserMixin,
-                                  TestUserFieldMixin)
 from pootle_statistics.models import ScoreLog
 
 from .forms import PaidTaskForm, UserRatesForm

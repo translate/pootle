@@ -16,7 +16,7 @@ from django.views.generic import View
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data)
-from pootle.core.views import PootleJSONMixin
+from pootle.core.views.mixins import PootleJSONMixin
 from pootle_language.views import LanguageBrowseView
 from pootle_misc.util import ajax_required
 from pootle_project.views import ProjectBrowseView, ProjectsBrowseView

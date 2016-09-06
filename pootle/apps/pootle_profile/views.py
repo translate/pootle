@@ -10,8 +10,9 @@ from django.contrib import auth
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView, UpdateView
 
-from pootle.core.views import (APIView, NoDefaultUserMixin, TestUserFieldMixin,
-                               UserObjectMixin)
+from pootle.core.views import APIView
+from pootle.core.views.mixins import (NoDefaultUserMixin, TestUserFieldMixin,
+                                      UserObjectMixin)
 
 from .forms import EditUserForm
 

@@ -9,7 +9,8 @@
 from django.views.generic import TemplateView
 
 from pootle.core.delegate import formats
-from pootle.core.views import APIView, SuperuserRequiredMixin
+from pootle.core.views import APIView
+from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_language.models import Language
 from pootle_project.models import Project

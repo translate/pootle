@@ -328,7 +328,7 @@ def test_apiview_search(rf):
 @pytest.mark.django_db
 def test_view_gathered_context_data(rf, member):
 
-    from pootle.core.views import PootleDetailView
+    from pootle.core.views.base import PootleDetailView
     from pootle_project.models import Project
     from pootle.core.delegate import context_data
     from pootle.core.plugin import provider

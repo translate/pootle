@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 
 from contact_form.views import ContactFormView as OriginalContactFormView
 
-from pootle.core.views import AjaxResponseMixin
+from pootle.core.views.mixins import AjaxResponseMixin
 
 from .forms import ContactForm, ReportForm
 

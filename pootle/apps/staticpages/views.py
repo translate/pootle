@@ -18,7 +18,7 @@ from django.views.generic import (CreateView, DeleteView, TemplateView,
 
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.markup.filters import apply_markup_filter
-from pootle.core.views import SuperuserRequiredMixin
+from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_misc.util import ajax_required
 
 from .forms import agreement_form_factory
