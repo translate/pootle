@@ -236,11 +236,6 @@ class Unit(models.Model, base.TranslationUnit):
                                     db_index=True, related_name='reviewed')
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 
-    # this is calculated from virtualfolders if installed and linked
-    priority = models.FloatField(
-        db_index=True, default=1,
-        validators=[MinValueValidator(0)])
-
     objects = UnitManager()
     simple_objects = models.Manager()
 
