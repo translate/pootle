@@ -17,6 +17,16 @@ export function loadFormatAdaptor(options, onLoad) {
   delete props.fileType;
 
   switch (options.fileType) {
+    // temporary use l20n adaptor for .po files
+    case 'po':
+    case 'ftl':
+    case 'l20n':
+      require.ensure(['./l20n/L20nAdaptor.js'], (require) => {
+        const adaptor = require('./l20n/L20nAdaptor.js');
+        onLoad(props, adaptor.default);
+      });
+      break;
+
     default: {
       onLoad(props, FormatAdaptor);
     }
