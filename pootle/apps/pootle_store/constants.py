@@ -73,3 +73,7 @@ STATES_NAMES = {
     UNTRANSLATED: "untranslated",
     FUZZY: "fuzzy",
     TRANSLATED: "translated"}
+
+# Default store priority - used by vfolders atm
+#  - valid range = 0 < n <= 999.99
+DEFAULT_PRIORITY = 1.0
