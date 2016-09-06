@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.exceptions import FieldError
 from django.db import models, migrations
 
 
-def forwards(apps, schema_editor):
-
+def forwards_units(apps, schema_editor):
     Unit = apps.get_model("pootle_store", "Unit")
     VirtualFolder = apps.get_model("virtualfolder", "VirtualFolder")
     db_alias = schema_editor.connection.alias
@@ -34,6 +34,18 @@ def forwards(apps, schema_editor):
         if new_priority != 1.0:
             if priority != new_priority:
                 Unit.objects.filter(pk=pk).update(priority=new_priority)
+
+
+def forwards(apps, schema_editor):
+    # as we have no real way of controlling whether this will be
+    # run before or after priority was moved to store, we need to
+    # test the field exists
+    try:
+        apps.get_model("pootle_store.Unit").objects.filter(priority=1)
+    except FieldError:
+        pass
+    else:
+        return forwards_units(apps, schema_editor)
 
 
 class Migration(migrations.Migration):
