@@ -10,7 +10,7 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 from pootle_store.constants import OBSOLETE
-from pootle_store.models import Unit
+from pootle_store.models import Store, Unit
 
 from .models import VirtualFolder, VirtualFolderTreeItem
 from .signals import vfolder_post_save
@@ -92,11 +92,11 @@ def vfolder_unit_priority_presave_handler(**kwargs):
                                 vfolders=original))
         for unit in removed_units.iterator():
             unit.vfolders.remove(original)
-            unit.set_priority()
             stores_affected.add(unit.store)
 
     for store in stores_affected:
         update_vfolder_tree(original, store)
+        store.set_priority()
 
 
 @receiver(vfolder_post_save, sender=VirtualFolder)
@@ -104,8 +104,10 @@ def vfolder_unit_priority_handler(**kwargs):
     """Set Unit priorities for VirtualFolder members on change
     """
     instance = kwargs["instance"]
-    for unit in instance.units.all():
-        unit.set_priority()
+    stores = Store.objects.filter(
+        id__in=instance.units.values_list("store_id").distinct())
+    for store in stores:
+        store.set_priority()
 
 
 @receiver(pre_save, sender=Unit)
@@ -120,7 +122,6 @@ def vfolder_unit_resurrected(**kwargs):
     except Unit.DoesNotExist:
         return
     add_unit_to_vfolders(instance)
-    instance.set_priority()
 
 
 @receiver(pre_save, sender=Unit)
@@ -140,7 +141,6 @@ def vfolder_unit_obsoleted(**kwargs):
 
     # clear Unit vfolder membership and update priority
     instance.vfolders.clear()
-    instance.set_priority()
 
     # update the vfolder treeitems
     vf_qs = VirtualFolderTreeItem.objects.filter(pk__in=vfolder_treeitems)
@@ -160,4 +160,9 @@ def vfolder_unit_postsave_handler(**kwargs):
     created = kwargs.get("created", False)
     if created:
         add_unit_to_vfolders(instance)
+
+
+@receiver(post_save, sender=Store)
+def vfolder_store_postsave_handler(**kwargs):
+    instance = kwargs["instance"]
     instance.set_priority()
