@@ -430,9 +430,9 @@ class UnitEditJSON(PootleUnitJSON):
 
     def get_context_data(self, *args, **kwargs):
         priority = (
-            self.object.priority if 'virtualfolder' in settings.INSTALLED_APPS
-            else None
-        )
+            self.store.priority
+            if 'virtualfolder' in settings.INSTALLED_APPS
+            else None)
         return {
             'unit': self.object,
             'form': self.get_unit_edit_form(),
