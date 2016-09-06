@@ -104,7 +104,7 @@ def create_api_request(rf, method='get', url='/', data='', user=None,
         content_type = 'application/json'
         data = json.dumps(data)
 
-    request_method = getattr(rf, method)
+    request_method = getattr(rf, method.lower())
     request = request_method(url, data=data, content_type=content_type)
     request.META['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest'
 
