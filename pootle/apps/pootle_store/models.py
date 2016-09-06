@@ -1274,13 +1274,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def calculate_priority(self):
         if not vfolders_installed():
             return DEFAULT_PRIORITY
-
-        from virtualfolder.models import VirtualFolder
-
-        vfolders = VirtualFolder.objects
-        priority = (
-            vfolders.filter(units__store_id=self.id)
-                    .aggregate(priority=models.Max("priority"))["priority"])
+        priority = self.vfolders.aggregate(
+            priority=models.Max("priority"))["priority"]
         if priority is None:
             return DEFAULT_PRIORITY
         return priority
