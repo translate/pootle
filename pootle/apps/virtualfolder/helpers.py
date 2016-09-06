@@ -6,29 +6,23 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle_app.models import Directory
+from pootle.core.url_helpers import split_pootle_path
 
-from .models import VirtualFolderTreeItem
-
-
-def make_vfolder_treeitem_dict(vfolder_treeitem):
-    return {
-        'href_all': vfolder_treeitem.get_translate_url(),
-        'href_todo': vfolder_treeitem.get_translate_url(
-            state='incomplete'),
-        'href_sugg': vfolder_treeitem.get_translate_url(
-            state='suggestions'),
-        'href_critical': vfolder_treeitem.get_critical_url(),
-        'title': vfolder_treeitem.vfolder.name,
-        'code': vfolder_treeitem.code,
-        'priority': vfolder_treeitem.vfolder.priority,
-        'is_grayed': not vfolder_treeitem.is_visible,
-        'stats': vfolder_treeitem.get_stats(
-            include_children=False),
-        'icon': 'vfolder'}
+from .models import VirtualFolder
 
 
-def extract_vfolder_from_path(request_path, vfti=None):
+def join_pootle_path(lang_code, proj_code, dir_path, filename):
+    parts = [lang_code, proj_code]
+    if dir_path.strip("/"):
+        parts.append(dir_path.strip("/"))
+    if filename:
+        parts.append(filename)
+    else:
+        parts.append("")
+    return "/".join([""] + parts)
+
+
+def extract_vfolder_from_path(request_path):
     """
     Matches request_path to a VirtualFolderTreeItem pootle_path
 
@@ -44,25 +38,27 @@ def extract_vfolder_from_path(request_path, vfti=None):
     """
     if not (request_path.count('/') > 3 and request_path.endswith('/')):
         return None, request_path
-
-    if vfti is None:
-        vfti = VirtualFolderTreeItem.objects.all()
-    try:
-        vfti = vfti.get(pootle_path=request_path)
-    except VirtualFolderTreeItem.DoesNotExist:
+    (lang_code, proj_code,
+     dir_path, filename) = split_pootle_path(request_path)
+    dir_path_parts = dir_path.split("/")
+    if not dir_path_parts:
         return None, request_path
-    else:
-        return vfti.vfolder, vfti.directory.pootle_path
-
-
-def vftis_for_child_dirs(directory):
-    """
-    Returns the vfoldertreeitems for a directory's child directories
-    """
-    child_dir_pks = [
-        child.pk
-        for child
-        in directory.children
-        if isinstance(child, Directory)]
-    return VirtualFolderTreeItem.objects.filter(
-        directory__pk__in=child_dir_pks)
+    vf_name = dir_path_parts[0]
+    try:
+        vfolder = VirtualFolder.objects.get(name=vf_name)
+    except VirtualFolder.DoesNotExist:
+        return None, request_path
+    dir_path = "/".join(dir_path_parts[1:])
+    tp_path = "/%s%s" % (dir_path, filename)
+    if filename:
+        if vfolder.path_matcher.path_matches(tp_path):
+            return (
+                vfolder,
+                join_pootle_path(
+                    lang_code, proj_code, dir_path, filename))
+    elif vfolder.path_matcher.dir_path_matches(tp_path):
+        return (
+            vfolder,
+            join_pootle_path(
+                lang_code, proj_code, dir_path, filename))
+    return None, request_path
