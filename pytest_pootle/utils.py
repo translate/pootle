@@ -72,7 +72,7 @@ def create_store(pootle_path=None, store_revision=None, units=None):
                                "revision": store_revision})
     string_store = STRING_STORE % {"x_pootle_headers": x_pootle_headers,
                                    "units": units}
-    io_store = io.BytesIO(string_store.encode())
+    io_store = io.BytesIO(string_store.encode('utf-8'))
     return getclass(io_store)(io_store.read())
 
 
