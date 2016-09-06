@@ -23,7 +23,10 @@ const EditingArea = ({ isDisabled, children }) => {
 };
 
 EditingArea.propTypes = {
-  children: React.PropTypes.element.isRequired,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.element,
+  ]),
   isDisabled: React.PropTypes.bool.isRequired,
 };
 

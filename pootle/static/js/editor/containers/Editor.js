@@ -8,6 +8,8 @@
 
 import React from 'react';
 
+import { t } from 'utils/i18n';
+
 import EditingArea from '../components/EditingArea';
 import RawFontTextarea from '../components/RawFontTextarea';
 import { getAreaId } from '../utils';
@@ -111,11 +113,17 @@ const Editor = React.createClass({
       if (this.shouldOverride) {
         extraProps.overrideValue = this.props.overrideValues[i];
       }
+
       editingAreas.push(
         <EditingArea
           isDisabled={this.props.isDisabled}
           key={i}
         >
+          {(this.props.targetNplurals > 1) &&
+            <div className="subheader">
+              { t('Plural form %(number)s', { number: i }) }
+            </div>
+          }
           <this.props.textareaComponent
             autoFocus={i === 0}
             id={getAreaId(i)}

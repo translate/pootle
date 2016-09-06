@@ -320,6 +320,7 @@ div.sources
 div.sources .translation-text
 {
     padding: 0.1em 0.4em;
+    margin-top: 0.2em;
 }
 
 .translation-text-headers
@@ -614,7 +615,7 @@ td.translate-focus
 td.translate-full div.translate-original
 {
     width: 100%;
-    margin: 0.5em 0;
+    margin: 0.7em 0;
 }
 
 td.translate-full textarea.translation
@@ -1027,11 +1028,41 @@ html[dir="rtl"] .suggestion-original
 .editor-area-wrapper
 {
     background-color: #fff;
-    border: 1px solid #d9d9d9;
-    border-radius: 3px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.075) inset;
-    margin: 0 auto 0.5em;
     overflow: hidden;
+    border-right: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-top: 1px solid #d9d9d9;
+}
+
+.editor-area-wrapper:last-child
+{
+    border-bottom: 1px solid #d9d9d9;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin: 0 auto 0.5em;
+}
+
+.editor-area-wrapper:first-child
+{
+    border-top: 1px solid #d9d9d9;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.plural-form-label
+{
+    color: #c896c8;
+    font-size: 85%;
+    margin: 0.5em 0 0 0.3em;
+}
+
+.editor-area-wrapper .subheader
+{
+    background: #fafafa;
+    color: #c896c8;
+    font-size: 85%;
+    padding: 0.2em;
 }
 
 .editor-area-wrapper.is-disabled,
