@@ -193,6 +193,7 @@
                 hasPlurals: {{ has_plurals|yesno:'true,false' }},
                 targetNplurals: {{ target_nplurals }},
                 alternativeSources: {{ altsrcs|to_js }},
+                fileType: '{{ filetype }}',
               });
             </script>
             {% endblock %}
