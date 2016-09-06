@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _
 #: will be used against the DB.
 ALLOWED_SORTS = {
     'units': {
-        'priority': '-priority',
+        'priority': '-store__priority',
         'oldest': 'submitted_on',
         'newest': '-submitted_on',
     },
