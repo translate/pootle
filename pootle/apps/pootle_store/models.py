@@ -52,7 +52,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .constants import (
-    FUZZY, NEW, OBSOLETE, PARSED, POOTLE_WINS,
+    DEFAULT_PRIORITY, FUZZY, NEW, OBSOLETE, PARSED, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
@@ -490,24 +490,6 @@ class Unit(models.Model, base.TranslationUnit):
         information from the database as the target format can support.
         """
         return self.unit_syncer.convert(unitclass)
-
-    def calculate_priority(self):
-        if not vfolders_installed():
-            return 1.0
-
-        priority = (
-            self.vfolders.order_by("-priority")
-                         .values_list("priority", flat=True)
-                         .first())
-        if priority is None:
-            return 1.0
-        return priority
-
-    def set_priority(self):
-        priority = self.calculate_priority()
-
-        if priority != self.priority:
-            Unit.objects.filter(pk=self.pk).update(priority=priority)
 
     def sync(self, unit):
         """Sync in file unit with translations from the DB."""
@@ -1281,6 +1263,26 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.clear_all_cache(parents=False, children=False)
         for p in parents:
             p.update_all_cache()
+
+    def calculate_priority(self):
+        if not vfolders_installed():
+            return DEFAULT_PRIORITY
+
+        from virtualfolder.models import VirtualFolder
+
+        vfolders = VirtualFolder.objects
+        priority = (
+            vfolders.filter(units__store_id=self.id)
+                    .aggregate(priority=models.Max("priority"))["priority"])
+        if priority is None:
+            return DEFAULT_PRIORITY
+        return priority
+
+    def set_priority(self):
+        priority = self.calculate_priority()
+
+        if priority != self.priority:
+            Store.objects.filter(pk=self.pk).update(priority=priority)
 
     def makeobsolete(self):
         """Make this store and all its units obsolete."""
