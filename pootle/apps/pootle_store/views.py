@@ -424,7 +424,7 @@ class UnitEditJSON(PootleUnitJSON):
 
     def get_sources(self):
         sources = {
-            unit.store.translation_project.language.code: unit.target_f.strings
+            unit.language_code: unit.target.strings
             for unit in self.get_alt_srcs()}
         sources[self.source_language.code] = self.object.source_f.strings
         return sources
@@ -460,7 +460,7 @@ class UnitEditJSON(PootleUnitJSON):
             'has_admin_access': check_user_permission(self.request.user,
                                                       'administrate',
                                                       self.directory),
-            'altsrcs': self.get_alt_srcs(),
+            'altsrcs': {x.id: x.data for x in self.get_alt_srcs()},
             'unit_values': self.get_unit_values(),
             'target_nplurals': self.get_target_nplurals(),
             'has_plurals': self.object.hasplural(),
