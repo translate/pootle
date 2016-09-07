@@ -9,14 +9,12 @@
 import logging
 import time
 
-from django.conf import settings
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
 from pootle.core.mixins.treeitem import CachedMethods
 from pootle_misc.checks import run_given_filters
-from pootle_misc.util import import_func
 from pootle_store.constants import OBSOLETE
 from pootle_store.models import QualityCheck, Store, Unit
 from pootle_store.unit import UnitProxy
@@ -220,12 +218,11 @@ class QualityCheckUpdater(object):
         """Return the site QualityChecker or the QualityCheck associated with
         the a Unit's TP otherwise.
         """
-        if settings.POOTLE_QUALITY_CHECKER:
-            return import_func(settings.POOTLE_QUALITY_CHECKER)()
         try:
             return TranslationProject.objects.get(id=tp_pk).checker
         except TranslationProject.DoesNotExist:
             # There seems to be a risk of dangling Stores with no TP
+            logger.error("Missing TP (pk '%s'). No checker retrieved.", tp_pk)
             return None
 
     def expire_store_cache(self, store_pk=None):

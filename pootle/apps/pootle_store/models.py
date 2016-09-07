@@ -47,7 +47,7 @@ from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_format.models import Format
-from pootle_misc.checks import check_names, get_checker
+from pootle_misc.checks import check_names
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
@@ -664,7 +664,7 @@ class Unit(models.Model, base.TranslationUnit):
 
             return False
 
-        checker = get_checker(self)
+        checker = self.store.translation_project.checker
         qc_failures = checker.run_filters(self, categorised=True)
         checks_to_add = []
         for name in qc_failures.iterkeys():

@@ -250,13 +250,6 @@ def clean_plurr_placeholder(string):
     return plurr_plural_suffix_regex.sub('', string)
 
 
-def get_checker(unit):
-    if settings.POOTLE_QUALITY_CHECKER:
-        return import_func(settings.POOTLE_QUALITY_CHECKER)()
-
-    return unit.store.translation_project.checker
-
-
 def get_category_id(code):
     return CATEGORY_IDS.get(code)
 
