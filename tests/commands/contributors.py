@@ -12,6 +12,7 @@ from dateutil.parser import parse as parse_datetime
 from email.utils import formataddr
 
 import pytest
+import pytz
 
 from django.core.management import call_command
 from django.core.management.base import CommandError
@@ -23,17 +24,21 @@ from pytest_pootle.fixtures.contributors import CONTRIBUTORS_WITH_EMAIL
 
 def test_contributors_get_aware_datetime():
     """Get an aware datetime from a valid string."""
-    iso_datetime = make_aware(parse_datetime("2016-01-24T23:15:22+0000"))
+    iso_datetime = make_aware(parse_datetime("2016-01-24T23:15:22+0000"),
+                              tz=pytz.utc)
 
     # Test ISO 8601 datetime.
-    assert iso_datetime == get_aware_datetime("2016-01-24T23:15:22+0000")
+    assert iso_datetime == get_aware_datetime("2016-01-24T23:15:22+0000",
+                                              tz=pytz.utc)
 
     # Test git-like datetime.
-    assert iso_datetime == get_aware_datetime("2016-01-24 23:15:22 +0000")
+    assert iso_datetime == get_aware_datetime("2016-01-24 23:15:22 +0000",
+                                              tz=pytz.utc)
 
     # Test just an ISO 8601 date.
-    iso_datetime = make_aware(parse_datetime("2016-01-24T00:00:00+0000"))
-    assert iso_datetime == get_aware_datetime("2016-01-24")
+    iso_datetime = make_aware(parse_datetime("2016-01-24T00:00:00+0000"),
+                              tz=pytz.utc)
+    assert iso_datetime == get_aware_datetime("2016-01-24", tz=pytz.utc)
 
     # Test None.
     assert get_aware_datetime(None) is None

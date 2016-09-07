@@ -19,15 +19,18 @@ from pootle.core.utils.timezone import make_aware
 from . import PootleCommand
 
 
-def get_aware_datetime(dt_string):
+def get_aware_datetime(dt_string, tz=None):
     """Return an aware datetime parsed from a datetime or date string.
 
-    Datetime or date string can be any format parsable by dateutil.parser.parse
+    :param dt_string: datetime or date string can be any format parsable by
+        dateutil.parser.parse.
+    :param tz: timezone in which `dt_string` should be
+        considered.
     """
     if not dt_string:
         return None
     try:
-        return make_aware(parse_datetime(dt_string))
+        return make_aware(parse_datetime(dt_string), tz=tz)
     except ValueError:
         raise ArgumentTypeError('The provided datetime/date string is not '
                                 'valid: "%s"' % dt_string)
