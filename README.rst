@@ -17,6 +17,10 @@ Pootle
    :target: https://coveralls.io/github/translate/pootle?branch=master
    :alt: Test Coverage
 
+.. image:: https://img.shields.io/requires/github/translate/pootle.svg?style=flat-square
+   :target: https://requires.io/github/translate/pootle/requirements/?branch=master
+   :alt: Requirements
+
 
 `Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
 localization tool.  It works to lower the barrier of entry, providing tools to
