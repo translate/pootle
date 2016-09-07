@@ -9,8 +9,7 @@
 import expect from 'expect';
 import { describe, it } from 'mocha';
 
-import relativeTimeModule from './relativeTime';
-import { relativeTime } from './relativeTime';
+import relativeTimeModule, { relativeTime } from './relativeTime';
 
 const relativeTimeMessage = relativeTimeModule.__GetDependency__(
   'relativeTimeMessage'
