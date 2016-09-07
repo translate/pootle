@@ -8,9 +8,13 @@
 
 import pytest
 
+from pytest_pootle.factories import (
+    LanguageDBFactory, ProjectDBFactory,
+    StoreDBFactory, TranslationProjectFactory)
+
 from django.db import IntegrityError
 
-from pootle_data.models import StoreData, TPData
+from pootle_data.models import StoreChecksData, StoreData, TPChecksData, TPData
 
 
 @pytest.mark.django_db
@@ -26,8 +30,6 @@ def test_data_store_bad(store0):
 def test_data_store(tp0):
     """Test that you cant add a duplicate file extension
     """
-    from pytest_pootle.factories import StoreDBFactory
-
     store = StoreDBFactory(
         name="foo.po",
         parent=tp0.directory,
@@ -36,6 +38,20 @@ def test_data_store(tp0):
     assert (
         repr(data)
         == '<StoreData: %s>' % store.pootle_path)
+
+
+@pytest.mark.django_db
+def test_data_store_checks(tp0):
+    """Test that you cant add a duplicate file extension
+    """
+    store = StoreDBFactory(
+        name="foo.po",
+        parent=tp0.directory,
+        translation_project=tp0)
+    check_data = StoreChecksData.objects.create(store=store)
+    assert (
+        repr(check_data)
+        == '<StoreChecksData: %s>' % store.pootle_path)
 
 
 @pytest.mark.django_db
@@ -51,10 +67,6 @@ def test_data_tp_bad():
 def test_data_tp(english):
     """Test that you cant add a duplicate file extension
     """
-    from pytest_pootle.factories import (
-        LanguageDBFactory, ProjectDBFactory,
-        TranslationProjectFactory)
-
     tp = TranslationProjectFactory(
         project=ProjectDBFactory(source_language=english),
         language=LanguageDBFactory())
@@ -62,3 +74,16 @@ def test_data_tp(english):
     assert (
         repr(data)
         == '<TPData: %s>' % tp.pootle_path)
+
+
+@pytest.mark.django_db
+def test_data_tp_checks(english):
+    """Test that you cant add a duplicate file extension
+    """
+    tp = TranslationProjectFactory(
+        project=ProjectDBFactory(source_language=english),
+        language=LanguageDBFactory())
+    check_data = TPChecksData.objects.create(tp=tp)
+    assert (
+        repr(check_data)
+        == '<TPChecksData: %s>' % tp.pootle_path)
