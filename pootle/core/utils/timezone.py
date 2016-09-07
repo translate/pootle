@@ -19,6 +19,10 @@ if settings.USE_TZ:
 
 
 def make_aware(value):
+    """Makes a `datetime` timezone-aware.
+
+    :param value: `datetime` object to make timezone-aware.
+    """
     if getattr(settings, 'USE_TZ', False) and timezone.is_naive(value):
         tz = timezone.get_default_timezone()
         value = timezone.make_aware(value, tz)
@@ -27,6 +31,10 @@ def make_aware(value):
 
 
 def make_naive(value):
+    """Makes a `datetime` naive, i.e. not aware of timezones.
+
+    :param value: `datetime` object to make timezone-aware.
+    """
     if getattr(settings, 'USE_TZ', False) and timezone.is_aware(value):
         tz = timezone.get_default_timezone()
         value = timezone.make_naive(value, tz)
@@ -35,4 +43,8 @@ def make_naive(value):
 
 
 def aware_datetime(*args, **kwargs):
+    """Creates a `datetime` object and makes it timezone-aware.
+
+    :param args: arguments passed to `datetime` constructor.
+    """
     return make_aware(datetime.datetime(*args, **kwargs))
