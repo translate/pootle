@@ -9,7 +9,6 @@
 """Random utilities for tests."""
 
 import io
-import json
 import sys
 import time
 from datetime import datetime
@@ -101,8 +100,9 @@ def create_api_request(rf, method='get', url='/', data='', user=None,
     """Convenience function to create and setup fake requests."""
     content_type = 'application/x-www-form-urlencoded'
     if data and encode_as_json:
+        from pootle.core.utils.json import jsonify
         content_type = 'application/json'
-        data = json.dumps(data)
+        data = jsonify(data)
 
     request_method = getattr(rf, method.lower())
     request = request_method(url, data=data, content_type=content_type)
