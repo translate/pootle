@@ -255,7 +255,7 @@ class StoreUpdater(object):
             else:
                 self.target_store.state = old_state
             has_changed = any(x > 0 for x in changes.values())
-            self.target_store.save(update_cache=has_changed)
+            self.target_store.save()
             if has_changed:
                 log(u"[update] %s units in %s [revision: %d]"
                     % (get_change_str(changes),
@@ -337,7 +337,7 @@ class StoreUpdater(object):
                 logging.info(u"[update] unsynced %d units in %s "
                              "[revision: %d]", update_unsynced,
                              self.target_store.pootle_path, update_revision)
-        self.target_store.save(update_cache=False)
+        self.target_store.save()
         return changed
 
     def update_units(self, update):
