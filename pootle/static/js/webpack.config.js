@@ -154,7 +154,7 @@ var config = {
             require.resolve('babel-preset-react'),
           ],
         },
-        exclude: /node_modules|vendor/,
+        exclude: /node_modules|vendor|.*\.test\.js/,
       }
     ]
   },
