@@ -9,6 +9,7 @@
 from fnmatch import fnmatch
 
 from pootle.core.url_helpers import split_pootle_path
+from pootle_data.utils import RelatedStoresDataTool
 from pootle_fs.utils import PathFilter
 from pootle_store.models import Store
 
@@ -217,3 +218,41 @@ class VirtualFolderPathMatcher(object):
         for store in removed:
             if store.priority == self.vf.priority:
                 store.set_priority()
+
+
+class DirectoryVFDataTool(RelatedStoresDataTool):
+    group_by = (
+        "store__vfolders__name", )
+
+    def filter_data(self, qs):
+        return (
+            qs.filter(store__pootle_path__startswith=self.context.pootle_path)
+              .exclude(store__vfolders__isnull=True))
+
+    def vfolder_is_visible(self, vfolder, vfolder_stats):
+        return (
+            vfolder_stats["critical"]
+            or vfolder_stats["suggestions"]
+            or (vfolder.priority >= 1
+                and vfolder_stats["total"] != vfolder_stats["translated"]))
+
+    def get_stats(self, user=None):
+        stats = super(self.__class__, self).get_stats(
+            user=user, aggregate=False).get("children") or {}
+        vfolders = {
+            vf.name: vf
+            for vf
+            in VirtualFolder.objects.filter(name__in=stats.keys())}
+        for k, v in stats.items():
+            vfolder = vfolders.get(k)
+            stats[k]["priority"] = vfolder.priority
+            stats[k]["isVisible"] = (
+                vfolder.is_public
+                and self.vfolder_is_visible(vfolder, v))
+            if not stats[k]["isVisible"] and not self.show_all_to(user):
+                del stats[k]
+                continue
+            stats[k]["name"] = k
+            stats[k]["code"] = k
+            stats[k]["title"] = k
+        return stats
