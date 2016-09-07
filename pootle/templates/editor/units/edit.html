@@ -105,32 +105,20 @@
         <form action="" method="post" name="translate" id="translate">
           <div class="sources">
             <!-- Alternative source language translations -->
-            {% for altunit in altsrcs %}
+            {% for altunit_id, altunit in altsrcs.items %}
             <div class="source-language alternative">
               <div class="translation-text-headers" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-                <div class="language-name">{{ altunit.store.translation_project.language.name }}</div>
+                <div class="language-name">{{ altunit.language_name }}</div>
                 {% if cansuggest or cantranslate %}
                 <div class="translate-toolbar">
-                  <span class="js-mt-{{ altunit.store.translation_project.language.code }}"></span>
+                  <span class="js-mt-{{ altunit.language_code }}"></span>
                   <a class="icon-copy js-copyoriginal"
-                     data-language-code="{{ altunit.store.translation_project.language.code }}"
+                     data-language-code="{{ altunit.language_code }}"
                      title="{% trans 'Copy into translation' %}" accesskey="c"></a>
                 </div>
                 {% endif %}
               </div>
-              <div id="js-unit-{{ altunit.id }}"
-                   class="translate-original{% if unit.hasplural %} translate-plural{% endif %}">
-                {% for i, target, title in altunit|pluralize_target %}
-                <div
-                  class="translation-text js-translation-text"
-                  lang="{{ altunit.store.translation_project.language.code }}"
-                  dir="{{ altunit.store.translation_project.language.direction }}"
-                  {% if title %} title="{{ title }}"{% endif %}
-                  data-string="{{ target|escapejs }}"
-                ></div>
-                {% endfor %}
-                <div class="placeholder"></div>
-              </div>
+              <div data-id="{{ altunit_id }}" class="js-mount-editor-alt-src"></div>
             </div>
             {% endfor %}
             <!-- Original -->
@@ -204,6 +192,7 @@
                 sourceLocaleDir: '{{ source_language.direction }}',
                 hasPlurals: {{ has_plurals|yesno:'true,false' }},
                 targetNplurals: {{ target_nplurals }},
+                alternativeSources: {{ altsrcs|to_js }},
               });
             </script>
             {% endblock %}

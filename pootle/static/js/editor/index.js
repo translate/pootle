@@ -10,7 +10,7 @@ import assign from 'object-assign';
 import React from 'react';
 
 import ReactRenderer from 'utils/ReactRenderer';
-import { q } from 'utils/dom';
+import { q, qAll } from 'utils/dom';
 
 import Editor from './containers/Editor';
 import UnitSource from './components/UnitSource';
@@ -22,6 +22,7 @@ const ReactEditor = {
   init(props) {
     this.node = q('.js-mount-editor');
     this.sourceNode = q('.js-mount-editor-original-src');
+    this.alternativeSourceNodes = qAll('.js-mount-editor-alt-src');
     this.props = {};
     this.hasCRLF = props.sourceValues.some(hasCRLF);
 
@@ -74,6 +75,18 @@ const ReactEditor = {
       />,
       this.sourceNode
     );
+    for (let i = 0; i < this.alternativeSourceNodes.length; i++) {
+      const mountNode = this.alternativeSourceNodes[i];
+      const unit = this.props.alternativeSources[mountNode.dataset.id];
+      ReactRenderer.render(
+        <UnitSource
+          id={unit.id}
+          values={unit.target}
+          hasPlurals={unit.has_plurals}
+        />,
+        this.alternativeSourceNodes[i]
+      );
+    }
   },
 
   // FIXME: this additional layer of state tracking is only kept to allow
