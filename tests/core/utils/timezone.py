@@ -39,6 +39,19 @@ def test_make_aware_default_tz(settings):
     assert datetime_aware.tzinfo.zone == timezone.get_default_timezone().zone
 
 
+def test_make_aware_explicit_tz(settings):
+    """Tests datetimes are made aware of the given timezone."""
+    settings.USE_TZ = True
+
+    given_timezone = pytz.timezone('Asia/Bangkok')
+    datetime_object = datetime(2016, 1, 2, 21, 52, 25)
+    assert timezone.is_naive(datetime_object)
+    datetime_aware = make_aware(datetime_object, tz=given_timezone)
+    assert timezone.is_aware(datetime_aware)
+
+    assert datetime_aware.tzinfo.zone == given_timezone.zone
+
+
 def test_make_aware_use_tz_false(settings):
     """Tests datetimes are left intact if `USE_TZ` is not in effect."""
     settings.USE_TZ = False
@@ -74,6 +87,21 @@ def test_make_naive_default_tz(settings):
     assert naive_datetime.hour == (datetime_object.hour - 1) % 24
 
 
+def test_make_naive_explicit_tz(settings):
+    """Tests datetimes are made naive of the given timezone."""
+    settings.USE_TZ = True
+
+    datetime_object = timezone.make_aware(datetime(2016, 1, 2, 21, 52, 25),
+                                          timezone=pytz.timezone('Europe/Helsinki'))
+    assert timezone.is_aware(datetime_object)
+    naive_datetime = make_naive(datetime_object, tz=pytz.timezone('Asia/Bangkok'))
+    assert timezone.is_naive(naive_datetime)
+
+    # Conversion from a Helsinki aware datetime to a naive datetime in Bangkok
+    # should increment 5 hours (UTC+2 vs. UTC+7)
+    assert naive_datetime.hour == (datetime_object.hour + 5) % 24
+
+
 def test_make_naive_use_tz_false(settings):
     """Tests datetimes are left intact if `USE_TZ` is not in effect."""
     settings.USE_TZ = False
@@ -89,3 +117,10 @@ def test_aware_datetime(settings):
     datetime_object = aware_datetime(2016, 1, 2, 21, 52, 25)
     assert timezone.is_aware(datetime_object)
     assert datetime_object.tzinfo.zone == settings.TIME_ZONE
+
+
+def test_aware_datetime_explicit_tz():
+    """Tests the creation of a explicitly provided timezone-aware datetime."""
+    new_datetime = aware_datetime(2016, 1, 2, 21, 52, 25, tz=pytz.utc)
+    assert timezone.is_aware(new_datetime)
+    assert new_datetime.tzinfo.zone == pytz.utc.zone
