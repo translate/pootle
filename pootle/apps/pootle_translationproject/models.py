@@ -18,7 +18,7 @@ from django.dispatch import receiver
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
-from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -364,10 +364,6 @@ class TranslationProject(models.Model, CachedTreeItem):
                 store.updater.update_from_disk(overwrite=overwrite)
                 or changed)
 
-        # If this TP has no stores, cache should be updated forcibly.
-        if not changed and stores.count() == 0:
-            self.update_all_cache()
-
         return changed
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
@@ -387,21 +383,6 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def get_parents(self):
         return [self.project]
-
-    def clear_all_cache(self, children=True, parents=True):
-        super(TranslationProject, self).clear_all_cache(children=children,
-                                                        parents=parents)
-
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            # VirtualFolderTreeItem can only have VirtualFolderTreeItem parents
-            # so it is necessary to flush their cache by calling them one by
-            # one.
-            from virtualfolder.models import VirtualFolderTreeItem
-            tp_vfolder_treeitems = VirtualFolderTreeItem.objects.filter(
-                pootle_path__startswith=self.pootle_path
-            )
-            for vfolder_treeitem in tp_vfolder_treeitems.iterator():
-                vfolder_treeitem.clear_all_cache(children=False, parents=False)
 
     # # # /TreeItem
 
@@ -464,7 +445,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             try:
                 termproject = TranslationProject.objects \
                     .get_terminology_project(self.language_id)
-                mtime = termproject.get_cached_value(CachedMethods.MTIME)
+                mtime = termproject.data.max_unit_mtime
                 terminology_stores = termproject.stores.live()
             except TranslationProject.DoesNotExist:
                 pass
@@ -473,10 +454,10 @@ class TranslationProject(models.Model, CachedTreeItem):
                 name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 if mtime is None:
-                    mtime = store.get_cached_value(CachedMethods.MTIME)
+                    mtime = store.data.max_unit_mtime
                 else:
                     mtime = max(mtime,
-                                store.get_cached_value(CachedMethods.MTIME))
+                                store.data.max_unit_mtime)
 
             terminology_stores = terminology_stores | local_terminology
 

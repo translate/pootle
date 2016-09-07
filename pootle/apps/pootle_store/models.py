@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import datetime
-import logging
 import operator
 from hashlib import md5
 
@@ -37,7 +36,7 @@ from pootle.core.log import (
     STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
     MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
     action_log, store_log)
-from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
@@ -54,7 +53,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .constants import (
-    DEFAULT_PRIORITY, FUZZY, NEW, OBSOLETE, PARSED, POOTLE_WINS,
+    DEFAULT_PRIORITY, FUZZY, NEW, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
 from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
                      TranslationStoreField)
@@ -299,23 +298,7 @@ class Unit(models.Model, base.TranslationUnit):
     # should be called to flag the store cache for a deletion
     # before the unit will be deleted
     def flag_store_before_going_away(self):
-        self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
-
-        if self.suggestion_set.pending().count() > 0:
-            self.store.mark_dirty(CachedMethods.SUGGESTIONS)
-
-        if self.get_qualitychecks().filter(false_positive=False):
-            self.store.mark_dirty(CachedMethods.CHECKS)
-
-        # Check if unit currently being deleted is the one referenced in
-        # last_action
-        la = self.store.get_cached_value(CachedMethods.LAST_ACTION)
-        if not la or 'id' not in la or la['id'] == self.id:
-            self.store.mark_dirty(CachedMethods.LAST_ACTION)
-        # and last_updated
-        lu = self.store.get_cached_value(CachedMethods.LAST_UPDATED)
-        if not lu or 'id' not in lu or lu['id'] == self.id:
-            self.store.mark_dirty(CachedMethods.LAST_UPDATED)
+        pass
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
@@ -336,8 +319,6 @@ class Unit(models.Model, base.TranslationUnit):
 
         if created:
             self._save_action = UNIT_ADDED
-            self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
-                                  CachedMethods.LAST_UPDATED)
 
         if self._source_updated:
             # update source related fields
@@ -349,11 +330,9 @@ class Unit(models.Model, base.TranslationUnit):
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
-            self.store.mark_dirty(CachedMethods.LAST_ACTION)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-                    self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
                     if not hasattr(self, '_save_action'):
                         self._save_action = TRANSLATION_ADDED
@@ -365,7 +344,6 @@ class Unit(models.Model, base.TranslationUnit):
                 # if it was TRANSLATED then set to UNTRANSLATED
                 if self.state > FUZZY:
                     self.state = UNTRANSLATED
-                    self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
 
         # Updating unit from the .po file set its revision property to
         # a new value (the same for all units during its store updated)
@@ -407,10 +385,6 @@ class Unit(models.Model, base.TranslationUnit):
         super(Unit, self).save(*args, **kwargs)
 
         if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
-            # just added FUZZY unit
-            if self.state == FUZZY:
-                self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
-
             action_log(user=self._log_user, action=self._save_action,
                        lang=self.store.translation_project.language.code,
                        unit=self.id, translation=self.target_f,
@@ -431,10 +405,6 @@ class Unit(models.Model, base.TranslationUnit):
         self._comment_updated = False
         self._auto_translated = False
 
-        # update cache only if we are updating a single unit
-        if self.store.state >= PARSED:
-            self.store.mark_dirty(CachedMethods.MTIME)
-            self.store.update_dirty_cache()
         update_data.send_robust(
             self.store.__class__, instance=self.store)
 
@@ -661,7 +631,6 @@ class Unit(models.Model, base.TranslationUnit):
         # no checks if unit is untranslated
         if not self.target:
             if existing:
-                self.store.mark_dirty(CachedMethods.CHECKS)
                 self.qualitycheck_set.all().delete()
                 return True
 
@@ -687,7 +656,6 @@ class Unit(models.Model, base.TranslationUnit):
                     name=name,
                     message=message,
                     category=category))
-            self.store.mark_dirty(CachedMethods.CHECKS)
             result = True
 
         if checks_to_add:
@@ -699,12 +667,9 @@ class Unit(models.Model, base.TranslationUnit):
 
         # delete inactive checks
         if existing:
-            self.store.mark_dirty(CachedMethods.CHECKS)
             self.qualitycheck_set.filter(name__in=existing).delete()
 
         changed = result or bool(unmute_list) or bool(existing)
-        if changed:
-            self.store.data_tool.update()
         return changed
 
     def get_qualitychecks(self):
@@ -830,8 +795,6 @@ class Unit(models.Model, base.TranslationUnit):
         if value != (self.state == FUZZY):
             # when Unit toggles its FUZZY state the number of translated words
             # also changes
-            self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
-                                  CachedMethods.LAST_ACTION)
             self._state_updated = True
             # that's additional check
             # but leave old value in case _save_action is set
@@ -883,7 +846,6 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             self.state = UNTRANSLATED
 
-        self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
         self.update_qualitychecks(keep_false_positives=True)
         self._state_updated = True
         self._save_action = UNIT_RESURRECTED
@@ -953,8 +915,6 @@ class Unit(models.Model, base.TranslationUnit):
             )
             sub.save()
 
-            self.store.mark_dirty(CachedMethods.SUGGESTIONS,
-                                  CachedMethods.LAST_ACTION)
             if touch:
                 self.save()
 
@@ -986,7 +946,6 @@ class Unit(models.Model, base.TranslationUnit):
         create_subs = OrderedDict()
         if old_state != self.state:
             create_subs[SubmissionFields.STATE] = [old_state, self.state]
-            self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
         create_subs[SubmissionFields.TARGET] = [old_target, self.target]
 
         for field in create_subs:
@@ -1018,8 +977,6 @@ class Unit(models.Model, base.TranslationUnit):
         self.reviewed_on = self.submitted_on
         self._log_user = reviewer
 
-        self.store.mark_dirty(CachedMethods.SUGGESTIONS,
-                              CachedMethods.LAST_ACTION)
         # Update timestamp
         self.save()
 
@@ -1040,8 +997,6 @@ class Unit(models.Model, base.TranslationUnit):
         )
         sub.save()
 
-        self.store.mark_dirty(CachedMethods.SUGGESTIONS,
-                              CachedMethods.LAST_ACTION)
         # Update timestamp
         self.save()
 
@@ -1059,8 +1014,6 @@ class Unit(models.Model, base.TranslationUnit):
         check.false_positive = false_positive
         check.save()
 
-        self.store.mark_dirty(CachedMethods.CHECKS,
-                              CachedMethods.LAST_ACTION)
         self._log_user = user
         if false_positive:
             self._save_action = MUTE_QUALITYCHECK
@@ -1229,8 +1182,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def save(self, *args, **kwargs):
         created = not self.id
-        update_cache = kwargs.pop("update_cache", True)
-
         self.pootle_path = self.parent.pootle_path + self.name
 
         # Force validation of fields.
@@ -1251,12 +1202,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                 unit.index = index + i
                 unit.save(revision=revision)
 
-        if update_cache:
-            self.update_dirty_cache()
-
     def delete(self, *args, **kwargs):
-        self.get_parents()
-
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
 
@@ -1266,10 +1212,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                        unit=unit.id, translation='', path=self.pootle_path)
 
         super(Store, self).delete(*args, **kwargs)
-
-        self.clear_all_cache(parents=False, children=False)
-        for p in parents:
-            p.update_all_cache()
 
     def calculate_priority(self):
         if not vfolders_installed():
@@ -1300,7 +1242,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unit_query.update(state=OBSOLETE, index=0)
         self.obsolete = True
         self.save()
-        self.clear_all_cache(parents=False, children=False)
 
     def get_absolute_url(self):
         return reverse(
@@ -1540,7 +1481,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         else:
             parents = [self.parent]
 
-        if 'virtualfolder' in settings.INSTALLED_APPS:
+        if 'virtualfolder' in settings.INSTALLED_APPS and False:
             parents.extend(self.parent_vf_treeitems.all())
 
         return parents
@@ -1548,106 +1489,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def get_cachekey(self):
         return self.pootle_path
 
-    def _get_wordcount_stats(self):
-        """calculate full wordcount statistics"""
-        ret = {
-            'total': 0,
-            'translated': 0,
-            'fuzzy': 0
-        }
-
-        # XXX: `order_by()` here is important as it removes the default
-        # ordering for units. See #3897 for reference.
-        filetype_ids = self.translation_project.project.filetypes.values_list(
-            "pk", flat=True)
-        res = (
-            self.units.filter(store__filetype_id__in=filetype_ids)
-                      .exclude(store__is_template=True)
-                      .order_by().values('state')
-                      .annotate(wordcount=models.Sum('source_wordcount')))
-        for item in res:
-            ret['total'] += item['wordcount']
-            if item['state'] == TRANSLATED:
-                ret['translated'] = item['wordcount']
-            elif item['state'] == FUZZY:
-                ret['fuzzy'] = item['wordcount']
-
-        return ret
-
-    def _get_checks(self):
-        try:
-            queryset = QualityCheck.objects.filter(
-                unit__store=self, unit__state__gt=UNTRANSLATED,
-                false_positive=False)
-
-            queryset = queryset.values('unit', 'name', 'category') \
-                               .order_by('unit', '-category')
-
-            saved_unit = None
-            result = {
-                'unit_critical_error_count': 0,
-                'checks': {},
-            }
-            for item in queryset:
-                if item['unit'] != saved_unit or saved_unit is None:
-                    saved_unit = item['unit']
-                    if item['category'] == Category.CRITICAL:
-                        result['unit_critical_error_count'] += 1
-                if item['name'] in result['checks']:
-                    result['checks'][item['name']] += 1
-                else:
-                    result['checks'][item['name']] = 1
-
-            return result
-        except Exception as e:
-            logging.info(u"Error getting quality checks for %s\n%s",
-                         self.name, e)
-            return {}
-
-    def _get_mtime(self):
-        return max_column(self.unit_set.all(), 'mtime', datetime_min)
-
-    def _get_last_updated(self):
-        try:
-            max_unit = self.unit_set.all().order_by('-creation_time')[0]
-        except IndexError:
-            max_unit = None
-
-        # creation_time field has been added recently, so it can have NULL
-        # value
-        if max_unit is not None:
-            max_time = max_unit.creation_time
-            if max_time:
-                return max_unit.get_last_updated_info()
-
-        return CachedTreeItem._get_last_updated()
-
-    def _get_last_action(self, submission=None):
-        if submission is None:
-            try:
-                sub = Submission.simple_objects.filter(store=self) \
-                                .exclude(type=SubmissionTypes.UNIT_CREATE) \
-                                .latest()
-            except Submission.DoesNotExist:
-                return CachedTreeItem._get_last_action()
-        else:
-            sub = submission
-
-        return sub.get_submission_info()
-
-    def _get_suggestion_count(self):
-        """Check if any unit in the store has suggestions"""
-        return Suggestion.objects.filter(
-            unit__store=self, unit__state__gt=OBSOLETE,
-            state=SuggestionStates.PENDING
-        ).count()
-
     def all_pootle_paths(self):
         """Get cache_key for all parents (to the Language and Project)
         of current TreeItem
         """
         pootle_paths = super(Store, self).all_pootle_paths()
-        if 'virtualfolder' in settings.INSTALLED_APPS:
+        if 'virtualfolder' in settings.INSTALLED_APPS and False:
             vftis = self.parent_vf_treeitems.values_list(
                 "vfolder__location", "pootle_path")
             for location, pootle_path in vftis:

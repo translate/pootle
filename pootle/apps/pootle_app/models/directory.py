@@ -88,6 +88,7 @@ class Directory(models.Model, CachedTreeItem):
 
     @property
     def has_vfolders(self):
+        return False
         return ('virtualfolder' in settings.INSTALLED_APPS and
                 self.vf_treeitems.count() > 0)
 
@@ -295,7 +296,6 @@ class Directory(models.Model, CachedTreeItem):
             return translation_project.real_path + path_prefix
 
     def delete(self, *args, **kwargs):
-        self.clear_all_cache(parents=False, children=False)
 
         self.initialize_children()
         for item in self.children:
@@ -312,8 +312,3 @@ class Directory(models.Model, CachedTreeItem):
 
         self.obsolete = True
         self.save()
-        self.clear_all_cache(parents=False, children=False)
-
-        # Clear stats cache for sibling VirtualFolderTreeItems as well.
-        for vfolder_treeitem in self.vfolder_treeitems:
-            vfolder_treeitem.clear_all_cache(parents=False, children=False)

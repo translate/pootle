@@ -107,11 +107,11 @@ class Language(models.Model, TreeItem):
         ordering = ['code']
         db_table = 'pootle_app_language'
 
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
+
     @cached_property
     def data_tool(self):
         return data_tool.get(self.__class__)(self)
-
-    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def pootle_path(self):
@@ -195,10 +195,6 @@ class Language(models.Model, TreeItem):
         return self.directory.pootle_path
 
     # # # /TreeItem
-
-    def get_stats_for_user(self, user):
-        self.set_children(self.get_children_for_user(user))
-        return self.get_stats()
 
     def get_children_for_user(self, user, select_related=None):
         return self.translationproject_set.for_user(
