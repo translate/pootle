@@ -6,11 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import os
 from fnmatch import fnmatch
+import os
+
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle_store.models import Store
+from pootle_data.utils import RelatedStoresDataTool, RelatedStoresDataUpdater
+from pootle_store.constants import OBSOLETE
 
 
 class VirtualFolderPathMatcher(object):
@@ -143,3 +146,42 @@ class VirtualFolderPathMatcher(object):
                 pootle_path__regex=dir_path).exists()
         return self.vf.stores.filter(
             pootle_path__startswith=dir_path).exists()
+
+
+class VirtualFolderDataUpdater(RelatedStoresDataUpdater):
+    related_name = "vf"
+
+    @property
+    def store_data_qs(self):
+        return self.tool.data_model.filter(
+            store__in=self.model.stores.filter(state__gt=OBSOLETE))
+
+
+class VirtualFolderDataTool(RelatedStoresDataTool):
+
+    @property
+    def vf(self):
+        return self.context
+
+
+class TPVirtualFoldersDataTool(RelatedStoresDataTool):
+
+    @property
+    def vf(self):
+        return self.context
+
+
+class DirectoryVirtualFoldersDataTool(RelatedStoresDataTool):
+
+    @property
+    def stat_data(self):
+        return self.data_model.filter(
+            store__pootle_path__startswith=self.context.pootle_path)
+
+
+class LanguageVirtualFoldersDataTool(RelatedStoresDataTool):
+
+    @property
+    def stat_data(self):
+        return self.data_model.filter(
+            store__translation_project__language=self.context)
