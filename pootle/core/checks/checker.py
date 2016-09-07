@@ -13,10 +13,9 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
-from pootle.core.mixins.treeitem import CachedMethods
 from pootle_misc.checks import run_given_filters
 from pootle_store.constants import OBSOLETE
-from pootle_store.models import QualityCheck, Store, Unit
+from pootle_store.models import QualityCheck, Unit
 from pootle_store.unit import UnitProxy
 from pootle_translationproject.models import TranslationProject
 
@@ -240,8 +239,6 @@ class QualityCheckUpdater(object):
         if store_pk == self._store_to_expire:
             # its the same Store that we saw last time
             return
-        # there was a _store_to_expire set and its changed - expire the cache
-        self.update_store_caches([self._store_to_expire])
 
         # remember the new store_pk
         self._store_to_expire = store_pk
@@ -269,13 +266,6 @@ class QualityCheckUpdater(object):
         logger.debug(
             "Updated checks for %s units in %s seconds",
             trans, (time.time() - start))
-
-    def update_store_caches(self, stores):
-        """After completing QualityCheck updates expire caches for affected Stores.
-        """
-        for store in Store.objects.filter(pk__in=stores):
-            store.mark_dirty(CachedMethods.CHECKS, CachedMethods.MTIME)
-            store.update_dirty_cache()
 
     def update_translated_unit(self, unit, checker=None):
         """Update checks for a translated Unit
@@ -330,8 +320,6 @@ class QualityCheckUpdater(object):
         """Delete QualityChecks for untranslated Units
         """
         checks_qs = self.checks_qs.exclude(unit__state__gte=OBSOLETE)
-        self.update_store_caches(
-            set(checks_qs.values_list("unit__store__pk", flat=True).distinct()))
         deleted = checks_qs.count()
         checks_qs.delete()
         return deleted

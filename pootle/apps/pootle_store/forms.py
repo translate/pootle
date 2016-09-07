@@ -18,7 +18,6 @@ from django.utils.translation import get_language
 
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED)
-from pootle.core.mixins import CachedMethods
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
@@ -297,8 +296,6 @@ def unit_form_factory(language, snplurals=None, request=None):
             if new_target:
                 if old_state == UNTRANSLATED:
                     self.instance._save_action = TRANSLATION_ADDED
-                    self.instance.store.mark_dirty(
-                        CachedMethods.WORDCOUNT_STATS)
                 else:
                     self.instance._save_action = TRANSLATION_CHANGED
 
@@ -310,14 +307,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                 new_state = UNTRANSLATED
                 if old_state > FUZZY:
                     self.instance._save_action = TRANSLATION_DELETED
-                    self.instance.store.mark_dirty(
-                        CachedMethods.WORDCOUNT_STATS)
-
-            if is_fuzzy != (old_state == FUZZY):
-                # when Unit toggles its FUZZY state the number of translated
-                # words also changes
-                self.instance.store.mark_dirty(CachedMethods.WORDCOUNT_STATS,
-                                               CachedMethods.LAST_ACTION)
 
             if old_state not in [new_state, OBSOLETE]:
                 self.instance._state_updated = True

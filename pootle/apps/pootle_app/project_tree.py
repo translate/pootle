@@ -166,8 +166,6 @@ def add_items(fs_items_set, db_items, create_or_resurrect_db_item, parent):
 
     for name in items_to_delete:
         db_items[name].makeobsolete()
-    if len(items_to_delete) > 0:
-        parent.update_all_cache()
 
     for name in db_items_set - items_to_delete:
         items.append(db_items[name])
@@ -199,7 +197,6 @@ def create_or_resurrect_store(f, parent, name, translation_project):
         store = Store.objects.create(
             file=f, parent=parent,
             name=name, translation_project=translation_project)
-    store.mark_all_dirty()
     return store
 
 
@@ -210,8 +207,6 @@ def create_or_resurrect_dir(name, parent):
         directory.obsolete = False
     except Directory.DoesNotExist:
         directory = Directory(name=name, parent=parent)
-
-    directory.mark_all_dirty()
     return directory
 
 

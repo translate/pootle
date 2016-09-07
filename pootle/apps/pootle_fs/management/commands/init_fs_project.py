@@ -106,8 +106,6 @@ class Command(BaseCommand):
             except Format.DoesNotExist as e:
                 raise CommandError(e)
 
-        project.update_all_cache()
-
         project.config['pootle_fs.fs_type'] = fs_type
         project.config['pootle_fs.fs_url'] = fs_url
         project.config['pootle_fs.translation_paths'] = {
