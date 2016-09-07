@@ -13,6 +13,12 @@ import os
 
 SECRET_KEY = "test_secret_key"
 
+# Ideally this setting would be set in a per-test basis, unfortunately some code
+# such as `django.utils.timezone.get_default_timezone` read from this setting
+# and at the same time are behind a `lru_cache` decorator, which makes it
+# impossible to alter the value at runtime because decorators are applied at
+# function definition time.
+TIME_ZONE = 'Europe/Amsterdam'
 
 ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'pytest_pootle', 'data', 'po')
