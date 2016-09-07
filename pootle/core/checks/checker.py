@@ -127,6 +127,7 @@ class UnitQualityCheck(object):
         Removes members of self.original_checks as they have been compared.
         """
         updated = False
+        new_checks = []
         for name in self.check_failures.iterkeys():
             if name in self.original_checks:
                 # keep false-positive checks if check is active
@@ -140,13 +141,15 @@ class UnitQualityCheck(object):
                 continue
 
             # the check didnt exist previously - so create it
-            self.checks_qs.create(
-                unit_id=self.unit.id,
-                name=name,
-                message=self.check_failures[name]['message'],
-                category=self.check_failures[name]['category'])
+            new_checks.append(
+                self.checks_qs.model(
+                    unit_id=self.unit.id,
+                    name=name,
+                    message=self.check_failures[name]['message'],
+                    category=self.check_failures[name]['category']))
             updated = True
-
+        if new_checks:
+            self.checks_qs.bulk_create(new_checks)
         return updated
 
 
