@@ -148,6 +148,7 @@ var config = {
         test: /\.js$/,
         loader: 'babel-loader',
         query: {
+          babelrc: false,
           cacheDirectory: true,
           presets: [
             require.resolve('babel-preset-es2015'),
