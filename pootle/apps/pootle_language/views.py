@@ -68,7 +68,8 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
 
     @property
     def stats(self):
-        return self.object.get_stats_for_user(self.request.user)
+        return self.object.data_tool.get_stats(
+            user=self.request.user, children=True)
 
     @cached_property
     def items(self):

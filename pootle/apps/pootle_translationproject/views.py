@@ -267,10 +267,8 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     @cached_property
     def items(self):
         if 'virtualfolder' in settings.INSTALLED_APPS:
-            from virtualfolder.helpers import vftis_for_child_dirs
-            dirs_with_vfolders = set(
-                vftis_for_child_dirs(self.object).values_list(
-                    "directory__pk", flat=True))
+            # TODO: add method to see if there are any vfolders in play
+            dirs_with_vfolders = []
         else:
             dirs_with_vfolders = []
         directories = [
@@ -293,16 +291,10 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def vfolders(self):
-        from virtualfolder.helpers import make_vfolder_treeitem_dict
-        vftis = self.object.vf_treeitems
-        if not self.has_admin_access:
-            vftis = vftis.filter(vfolder__is_public=True)
-        return [
-            make_vfolder_treeitem_dict(vfolder_treeitem)
-            for vfolder_treeitem
-            in vftis.order_by('-vfolder__priority').select_related("vfolder")
-            if (self.has_admin_access
-                or vfolder_treeitem.is_visible)]
+        from virtualfolder.delegate import vfolders_data_tool
+
+        return vfolders_data_tool.get(
+            self.object.__class__)(self.object).get_stats()
 
     @cached_property
     def vfolder_data(self):
@@ -324,6 +316,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def vfolder_stats(self):
+        return {}
         if 'virtualfolder' not in settings.INSTALLED_APPS:
             return {}
         stats = {"vfolders": {}}
@@ -335,12 +328,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def stats(self):
-        stats = self.vfolder_stats
-        if stats and stats["vfolders"]:
-            stats.update(self.object.get_stats())
-        else:
-            stats = self.object.get_stats()
-        return stats
+        return self.object.data_tool.get_stats(children=True)
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
@@ -371,11 +359,8 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
             return None, self.request_path
 
         from virtualfolder.helpers import extract_vfolder_from_path
-        from virtualfolder.models import VirtualFolderTreeItem
-        return extract_vfolder_from_path(
-            self.request_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
+
+        return extract_vfolder_from_path(self.request_path)
 
     @property
     def display_vfolder_priority(self):
