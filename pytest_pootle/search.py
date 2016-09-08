@@ -67,8 +67,17 @@ def calculate_search_results(kwargs, user):
             pootle_path,
             vfti=VirtualFolderTreeItem.objects.select_related(
                 "directory", "vfolder"))
+    path_kwargs = {
+        k: v
+        for k, v
+        in resolve(pootle_path).kwargs.items()
+        if k in [
+            "language_code",
+            "project_code",
+            "dir_path",
+            "filename"]}
     qs = (
-        Unit.objects.get_translatable(user=user, **resolve(pootle_path).kwargs)
+        Unit.objects.get_translatable(user=user, **path_kwargs)
                     .order_by("store", "index"))
     if vfolder is not None:
         qs = qs.filter(vfolders=vfolder)
