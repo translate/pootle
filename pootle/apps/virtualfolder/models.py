@@ -412,10 +412,14 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
             raise ValidationError(msg)
 
     def get_translate_url(self, **kwargs):
-        return u''.join([
-            reverse("pootle-tp-translate",
-                    args=split_pootle_path(self.pootle_path)[:-1]),
-            get_editor_filter(**kwargs)])
+        split_parts = list(split_pootle_path(self.pootle_path))
+        parts = [self.vfolder.name] + split_parts[:2]
+        parts.append(split_parts[2][len(self.vfolder.name) + 1:])
+        url = reverse(
+            "pootle-vfolder-tp-translate",
+            args=parts)
+        return u''.join(
+            [url, get_editor_filter(**kwargs)])
 
     # # # TreeItem
 
