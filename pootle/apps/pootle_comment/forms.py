@@ -18,6 +18,7 @@ from .exceptions import CommentNotSaved
 from .delegate import comment_should_not_be_saved
 from .signals import comment_was_saved
 
+
 User = get_user_model()
 
 

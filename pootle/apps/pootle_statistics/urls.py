@@ -10,6 +10,7 @@ from django.conf.urls import url
 
 from . import views
 
+
 urlpatterns = [
     # XHR
     url(r'^xhr/stats/contributors/?$',

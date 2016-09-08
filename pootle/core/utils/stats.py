@@ -8,6 +8,7 @@
 
 from django.utils.translation import ugettext_lazy as _
 
+
 # Maximal number of top contributors which is loaded for each request
 TOP_CONTRIBUTORS_CHUNK_SIZE = 10
 

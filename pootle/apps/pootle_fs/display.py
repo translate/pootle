@@ -10,6 +10,7 @@ from pootle.core.display import Display, ItemDisplay, SectionDisplay
 from pootle_fs.response import FS_RESPONSE
 from pootle_fs.state import FS_STATE
 
+
 BOTH_EXISTS_ACTIONS = [
     "merged_from_fs", "merged_from_pootle",
     "pulled_to_pootle", "pushed_to_fs",
