@@ -13,7 +13,7 @@ from translate.misc.multistring import multistring
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import resolve, Resolver404
+from django.core.urlresolvers import Resolver404, resolve
 from django.utils import timezone
 from django.utils.translation import get_language
 
@@ -35,7 +35,7 @@ from .fields import to_db
 from .form_fields import (
     CategoryChoiceField, ISODateTimeField, MultipleArgsField,
     CommaSeparatedCheckboxSelectMultiple)
-from .models import Unit, Suggestion
+from .models import Suggestion, Unit
 
 
 EXPORT_VIEW_QUERY_LIMIT = 10000

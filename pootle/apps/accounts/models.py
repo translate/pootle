@@ -18,7 +18,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import ProtectedError, Q, Sum, Case, When
+from django.db.models import Case, ProtectedError, Q, Sum, When
 from django.forms.models import model_to_dict
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -30,7 +30,7 @@ from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
 from pootle_language.models import Language
-from pootle_statistics.models import (Submission, ScoreLog,
+from pootle_statistics.models import (ScoreLog, Submission,
                                       TranslationActionCodes)
 from pootle_store.models import Unit
 

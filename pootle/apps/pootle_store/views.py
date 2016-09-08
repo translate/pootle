@@ -29,9 +29,9 @@ from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.mail import send_mail
-from pootle.i18n.gettext import ugettext as _
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
+from pootle.i18n.gettext import ugettext as _
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
@@ -41,7 +41,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .decorators import get_unit_context
-from .forms import unit_comment_form_factory, unit_form_factory, UnitSearchForm
+from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
 from .models import Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults

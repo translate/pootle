@@ -21,7 +21,7 @@ from pootle.core.browser import (
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import (
-    PootleBrowseView, PootleTranslateView, PootleExportView)
+    PootleBrowseView, PootleExportView, PootleTranslateView)
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)

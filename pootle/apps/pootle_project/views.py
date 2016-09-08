@@ -36,7 +36,7 @@ from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 from .forms import TranslationProjectFormSet
-from .models import Project, ProjectSet, ProjectResource
+from .models import Project, ProjectResource, ProjectSet
 
 
 class ProjectMixin(object):

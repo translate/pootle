@@ -10,8 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.encoding import force_text
 
-from .delegate import (
-    config_should_not_be_appended, config_should_not_be_set)
+from .delegate import config_should_not_be_appended, config_should_not_be_set
 from .exceptions import ConfigurationError
 
 

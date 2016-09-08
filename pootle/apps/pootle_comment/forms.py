@@ -14,8 +14,8 @@ from django.utils.functional import cached_property
 
 from django_comments.forms import CommentForm as DjCommentForm
 
-from .exceptions import CommentNotSaved
 from .delegate import comment_should_not_be_saved
+from .exceptions import CommentNotSaved
 from .signals import comment_was_saved
 
 
