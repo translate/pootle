@@ -6,15 +6,18 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import React from 'react';
-
 import L20nEditor from './L20nEditor';
 import L20nSource from './L20nSource';
+import L20nEditorMode from './L20nEditorMode';
 
 
 const L20nAdaptor = {
   editorComponent: L20nEditor,
   unitSourceComponent: L20nSource,
+  editorModeButton: L20nEditorMode,
+  getProps(props) {
+    return { isRichModeEnabled: props.isRichModeEnabled };
+  },
 };
 
 

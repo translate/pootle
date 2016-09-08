@@ -79,6 +79,7 @@ const ReactEditor = {
         hasPlurals={this.props.hasPlurals}
         sourceLocaleCode={this.props.sourceLocaleCode}
         sourceLocaleDir={this.props.sourceLocaleDir}
+        {...this.formatAdaptor.getProps(this.props)}
       />,
       this.sourceNode
     );
@@ -92,6 +93,7 @@ const ReactEditor = {
           hasPlurals={unit.has_plurals}
           sourceLocaleCode={unit.language_code}
           sourceLocaleDir={unit.language_direction}
+          {...this.formatAdaptor.getProps(this.props)}
         />,
         this.alternativeSourceNodes[i]
       );

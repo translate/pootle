@@ -18,7 +18,7 @@ const L20nSource = React.createClass({
 
   propTypes: {
     values: React.PropTypes.array.isRequired,
-    richModeEnabled: React.PropTypes.bool,
+    isRichModeEnabled: React.PropTypes.bool,
     sourceLocaleCode: React.PropTypes.string,
     },
 
@@ -40,13 +40,20 @@ const L20nSource = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const l20nPlurals = getL20nPlurals(nextProps.values, 1);
-    if (l20nPlurals) {
+    if (nextProps.isRichModeEnabled) {
       this.setState({
-        values: l20nPlurals.unitValues,
-        pluralForms: l20nPlurals.pluralForms,
-        hasPlurals: true,
+        values: nextProps.values,
+        hasPlurals: nextProps.values.length > 1,
       });
+    } else {
+      const l20nPlurals = getL20nPlurals(nextProps.values, 1);
+      if (l20nPlurals) {
+        this.setState({
+          values: l20nPlurals.unitValues,
+          pluralForms: l20nPlurals.pluralForms,
+          hasPlurals: true,
+        });
+      }
     }
   },
 

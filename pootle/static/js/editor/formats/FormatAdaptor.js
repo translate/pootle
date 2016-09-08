@@ -13,6 +13,9 @@ import UnitSource from '../components/UnitSource';
 const FormatAdaptor = {
   editorComponent: Editor,
   unitSourceComponent: UnitSource,
+  getProps() {
+    return {};
+  },
 };
 
 

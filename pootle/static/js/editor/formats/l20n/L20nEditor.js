@@ -27,6 +27,7 @@ const L20nEditor = React.createClass({
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
+    isRichModeEnabled: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
     sourceValues: React.PropTypes.array.isRequired,
