@@ -15,6 +15,7 @@ import pytest
 from pytest_pootle.suite import view_context_test
 
 from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
@@ -171,11 +172,20 @@ def _test_translate_view(tp, request, response, kwargs, settings):
             name=request.resolver_match.kwargs["vfolder_name"])
         current_vfolder_pk = vfolder.pk
         display_priority = False
+        unit_api_root = reverse(
+            "vfolder-pootle-xhr-units",
+            kwargs=dict(vfolder_name=vfolder.name))
+        resource_path = (
+            "/".join(
+                ["++vfolder",
+                 vfolder.name,
+                 ctx['object'].pootle_path.replace(tp.pootle_path, "")]))
     else:
         vfolder = None
         current_vfolder_pk = ""
         display_priority = (
             not kwargs['filename'] and ctx['object'].has_vfolders)
+        unit_api_root = "/xhr/units/"
     assertions = dict(
         page="translate",
         translation_project=tp,
@@ -195,6 +205,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         cansuggest=check_permission("suggest", request),
         canreview=check_permission("review", request),
         search_form=make_search_form(request=request),
+        unit_api_root=unit_api_root,
         POOTLE_MT_BACKENDS=settings.POOTLE_MT_BACKENDS,
         AMAGAMA_URL=settings.AMAGAMA_URL)
     view_context_test(ctx, **assertions)
