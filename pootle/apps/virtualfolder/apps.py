@@ -18,3 +18,4 @@ class PootleVirtualFolderConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("virtualfolder.receivers")
+        importlib.import_module("virtualfolder.providers")
