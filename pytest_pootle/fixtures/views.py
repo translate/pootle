@@ -126,8 +126,6 @@ GET_UNITS_TESTS = OrderedDict(
       {"modified_since": TWO_MONTHS_AGO.isoformat()}),
      ("modified_last_day",
       {"modified_since": DAY_AGO.isoformat()}),
-     ("path_vfolder",
-      {"path": "/language0/project0/virtualfolder0/"}),
      ("filter_suggestions",
       {"filter": "suggestions"}),
      ("filter_user_suggestions",
@@ -167,6 +165,10 @@ GET_UNITS_TESTS = OrderedDict(
      ("checks_category_critical",
       {"filter": "checks",
        "category": "critical"})))
+
+GET_VFOLDER_UNITS_TESTS = OrderedDict(
+    (("path_vfolder",
+      {"path": "/++vfolder/virtualfolder0/language0/project0/translate/"}), ))
 
 LANGUAGE_VIEW_TESTS = OrderedDict(
     (("browse", {}),
@@ -217,10 +219,6 @@ TP_VIEW_TESTS = OrderedDict(
      ("translate_directory_store",
       {"dir_path": "subdir0/",
        "filename": "store3.po"}),
-     ("translate_vfolder",
-      {"dir_path": "virtualfolder0/"}),
-     ("translate_vfolder_subdir",
-      {"dir_path": "virtualfolder4/subdir0/"}),
      ("translate_no_vfolders_in_subdir",
       {"dir_path": "subdir0/subdir1/"}),
      ("export", {}),
@@ -232,6 +230,12 @@ TP_VIEW_TESTS = OrderedDict(
      ("export_directory_store",
       {"dir_path": "subdir0/",
        "filename": "store3.po"})))
+
+VFOLDER_VIEW_TESTS = OrderedDict(
+    (("translate_vfolder",
+      {"dir_path": ""}),
+     ("translate_vfolder_subdir",
+      {"dir_path": "subdir0/"})))
 
 DISABLED_PROJECT_URL_PARAMS = OrderedDict(
     (("project", {
@@ -440,3 +444,58 @@ def dp_view_urls(request, view_types):
     view_name = "%s-%s" % (view_name, view_types)
 
     return reverse(view_name, kwargs=kwargs)
+
+
+@pytest.fixture(params=VFOLDER_VIEW_TESTS.keys())
+def vfolder_views(request, client, request_users, settings, tp0):
+    from pootle.core.helpers import SIDEBAR_COOKIE_NAME
+    from virtualfolder.models import VirtualFolder
+
+    vfolder0 = VirtualFolder.objects.first()
+
+    test_kwargs = VFOLDER_VIEW_TESTS[request.param].copy()
+    tp_view_test_names = request.param
+    user = request_users["user"]
+    test_type = tp_view_test_names.split("_")[0]
+    tp_view = "pootle-vfolder-tp"
+    kwargs = {
+        "vfolder_name": vfolder0.name,
+        "project_code": tp0.project.code,
+        "language_code": tp0.language.code,
+        "dir_path": "",
+        "filename": ""}
+    kwargs.update(test_kwargs)
+    client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
+    del kwargs["filename"]
+    view_name = "%s-%s" % (tp_view, test_type)
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+    response = client.get(reverse(view_name, kwargs=kwargs))
+    kwargs["filename"] = kwargs.get("filename", "")
+    return test_type, tp0, response.wsgi_request, response, kwargs
+
+
+@pytest.fixture(params=GET_VFOLDER_UNITS_TESTS.keys())
+def get_vfolder_units_views(request, client, request_users):
+    from virtualfolder.models import VirtualFolder
+
+    params = GET_VFOLDER_UNITS_TESTS[request.param].copy()
+    params["path"] = params.get("path", "/language0/")
+    vfolder0 = VirtualFolder.objects.first()
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+    url_params = urllib.urlencode(params, True)
+    response = client.get(
+        "%s?%s"
+        % (reverse("vfolder-pootle-xhr-units",
+                   kwargs=dict(vfolder_name=vfolder0.name)),
+           url_params),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+    params["pootle_path"] = params["path"]
+    return user, vfolder0, params, url_params, response
