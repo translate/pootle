@@ -30,6 +30,7 @@ data_updater = Getter()
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
 subcommands = Provider()
+url_patterns = Provider()
 
 # view.context_data
 context_data = Provider(providing_args=["view", "context"])
