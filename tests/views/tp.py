@@ -32,8 +32,8 @@ from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
 from virtualfolder.helpers import (
-    extract_vfolder_from_path, make_vfolder_treeitem_dict)
-from virtualfolder.helpers import vftis_for_child_dirs
+    make_vfolder_treeitem_dict, vftis_for_child_dirs)
+from virtualfolder.models import VirtualFolder
 
 
 def _test_browse_view(tp, request, response, kwargs):
@@ -166,14 +166,16 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     kwargs["language_code"] = tp.language.code
     resource_path = "%(dir_path)s%(filename)s" % kwargs
     request_path = "%s%s" % (tp.pootle_path, resource_path)
-    vfolder, pootle_path_ = extract_vfolder_from_path(request_path)
-    current_vfolder_pk = (
-        vfolder.pk
-        if vfolder
-        else "")
-    display_priority = (
-        not current_vfolder_pk
-        and not kwargs['filename'] and ctx['object'].has_vfolders)
+    if request.path.startswith("/++vfolder"):
+        vfolder = VirtualFolder.objects.get(
+            name=request.resolver_match.kwargs["vfolder_name"])
+        current_vfolder_pk = vfolder.pk
+        display_priority = False
+    else:
+        vfolder = None
+        current_vfolder_pk = ""
+        display_priority = (
+            not kwargs['filename'] and ctx['object'].has_vfolders)
     assertions = dict(
         page="translate",
         translation_project=tp,
