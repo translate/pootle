@@ -11,11 +11,12 @@ from django.conf.urls import url
 from . import views
 
 
-urlpatterns = [
-    # permalinks
-    url(r'^unit/(?P<uid>[0-9]+)/?$',
-        views.permalink_redirect,
-        name='pootle-unit-permalink'),
+get_units_urlpatterns = [
+    url(r'^xhr/units/?$',
+        views.get_units,
+        name='pootle-xhr-units')]
+
+unit_xhr_urlpatterns = [
 
     # XHR
     url(r'^xhr/stats/checks/?$',
@@ -24,10 +25,6 @@ urlpatterns = [
     url(r'^xhr/stats/?$',
         views.get_stats,
         name='pootle-xhr-stats'),
-
-    url(r'^xhr/units/?$',
-        views.get_units,
-        name='pootle-xhr-units'),
 
     url(r'^xhr/units/(?P<uid>[0-9]+)/?$',
         views.submit,
@@ -56,3 +53,10 @@ urlpatterns = [
         views.toggle_qualitycheck,
         name='pootle-xhr-units-checks-toggle'),
 ]
+
+urlpatterns = (
+    [url(r'^unit/(?P<uid>[0-9]+)/?$',
+         views.permalink_redirect,
+         name='pootle-unit-permalink')]
+    + get_units_urlpatterns
+    + unit_xhr_urlpatterns)
