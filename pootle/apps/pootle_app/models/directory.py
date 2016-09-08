@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
                                      to_tp_relative_path)
@@ -65,6 +66,10 @@ class Directory(models.Model, CachedTreeItem):
         default_permissions = ()
         app_label = "pootle_app"
 
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
+
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
@@ -83,6 +88,7 @@ class Directory(models.Model, CachedTreeItem):
 
     @property
     def has_vfolders(self):
+        return False
         return ('virtualfolder' in settings.INSTALLED_APPS and
                 self.vf_treeitems.count() > 0)
 
@@ -290,7 +296,6 @@ class Directory(models.Model, CachedTreeItem):
             return translation_project.real_path + path_prefix
 
     def delete(self, *args, **kwargs):
-        self.clear_all_cache(parents=False, children=False)
 
         self.initialize_children()
         for item in self.children:
@@ -307,8 +312,3 @@ class Directory(models.Model, CachedTreeItem):
 
         self.obsolete = True
         self.save()
-        self.clear_all_cache(parents=False, children=False)
-
-        # Clear stats cache for sibling VirtualFolderTreeItems as well.
-        for vfolder_treeitem in self.vfolder_treeitems:
-            vfolder_treeitem.clear_all_cache(parents=False, children=False)

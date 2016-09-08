@@ -15,9 +15,11 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.cache import make_method_key
+from pootle.core.delegate import data_tool
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import language_dir, tr_lang
@@ -107,6 +109,10 @@ class Language(models.Model, TreeItem):
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
+
     @property
     def pootle_path(self):
         return '/%s/' % self.code
@@ -189,10 +195,6 @@ class Language(models.Model, TreeItem):
         return self.directory.pootle_path
 
     # # # /TreeItem
-
-    def get_stats_for_user(self, user):
-        self.set_children(self.get_children_for_user(user))
-        return self.get_stats()
 
     def get_children_for_user(self, user, select_related=None):
         return self.translationproject_set.for_user(

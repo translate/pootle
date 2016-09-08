@@ -109,7 +109,7 @@ class Command(PootleCommand):
                 self._dump_stats(child, res,
                                  stop_level=stop_level)
 
-        res[key] = (item.get_stats(include_children=False))
+        res[key] = (item.data_tool.get_stats())
 
         if res[key]['lastaction']:
             if 'id' in res[key]['lastaction']:
@@ -127,10 +127,10 @@ class Command(PootleCommand):
         else:
             last_updated_id = None
 
-        out = u"%s  %s,%s,%s,%s,%s,%s,%s,%s" % \
+        out = u"%s  %s,%s,%s,%s,%s,%s,%s" % \
               (key, res[key]['total'], res[key]['translated'],
                res[key]['fuzzy'], res[key]['suggestions'],
-               res[key]['critical'], res[key]['is_dirty'],
+               res[key]['critical'],
                last_action_id, last_updated_id)
 
         self.stdout.write(out)

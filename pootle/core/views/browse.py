@@ -35,7 +35,7 @@ class PootleBrowseView(PootleDetailView):
 
     @property
     def stats(self):
-        return self.object.get_stats()
+        return self.object.data_tool.get_stats()
 
     @property
     def has_vfolders(self):

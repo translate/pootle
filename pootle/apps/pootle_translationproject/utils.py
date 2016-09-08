@@ -90,8 +90,6 @@ class TPTool(object):
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
-        if update_cache:
-            cloned.mark_all_dirty()
         cloned.update(cloned.deserialize(store.serialize()))
         cloned.state = store.state
         cloned.filetype = store.filetype
@@ -144,15 +142,9 @@ class TPTool(object):
         self.check_tp(directory.translation_project)
         self.check_tp(parent.translation_project)
         for store in directory.child_stores.all():
-            if update_cache:
-                store.clear_all_cache(parents=False, children=False)
             store.parent = parent
-            if update_cache:
-                store.mark_all_dirty()
             store.save()
         for subdir in directory.child_dirs.all():
-            if update_cache:
-                subdir.clear_all_cache(parents=False, children=False)
             subdir.parent = parent
             subdir.save()
             self.set_parents(subdir, subdir, update_cache=update_cache)
@@ -198,7 +190,7 @@ class TPTool(object):
 
     def update_store(self, source, target):
         """Update a target Store from a given source Store"""
-        source_revision = target.get_max_unit_revision() + 1
+        source_revision = target.data.max_unit_revision + 1
         differ = StoreDiff(target, source, source_revision)
         diff = differ.diff()
         if diff is None:

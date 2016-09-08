@@ -21,7 +21,6 @@ from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
 from pootle_store.unit.results import GroupedResults, StoreResults
 from virtualfolder.helpers import extract_vfolder_from_path
-from virtualfolder.models import VirtualFolderTreeItem
 
 
 def get_max_and_order_fields(sort_by):
@@ -63,10 +62,7 @@ def calculate_search_results(kwargs, user):
 
     vfolder = None
     if 'virtualfolder' in settings.INSTALLED_APPS:
-        vfolder, pootle_path = extract_vfolder_from_path(
-            pootle_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
+        vfolder, pootle_path = extract_vfolder_from_path(pootle_path)
     qs = (
         Unit.objects.get_translatable(user=user, **resolve(pootle_path).kwargs)
                     .order_by("store", "index"))

@@ -35,7 +35,6 @@ from pootle_misc.forms import make_search_form
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
-from virtualfolder.models import VirtualFolderTreeItem
 
 
 def _test_translate_view(project, request, response, kwargs, settings):
@@ -65,9 +64,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
             editor_extends="projects/base.html",
             check_categories=get_qualitycheck_schema(),
             previous_url=get_previous_url(request),
-            display_priority=(
-                VirtualFolderTreeItem.objects.filter(
-                    pootle_path__startswith=pootle_path).exists()),
+            display_priority=False,
             cantranslate=check_permission("translate", request),
             cansuggest=check_permission("suggest", request),
             canreview=check_permission("review", request),
@@ -151,7 +148,7 @@ def _test_browse_view(project, request, response, kwargs):
         table=table,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        stats=obj.get_stats(),
+        stats=obj.data_tool.get_stats(children=True),
     )
     sidebar = get_sidebar_announcements_context(
         request, (project, ))
@@ -254,7 +251,7 @@ def test_view_projects_browse(client, request_users):
         object=obj,
         table=table,
         browser_extends="projects/all/base.html",
-        stats=obj.get_stats(),
+        stats=obj.data_tool.get_stats(),
         checks=get_qualitycheck_list(obj),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),

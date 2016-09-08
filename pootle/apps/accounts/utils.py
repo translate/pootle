@@ -17,6 +17,8 @@ from django.db.models import Count
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
+from pootle.core.contextmanagers import keep_data
+from pootle.core.signals import update_data
 from pootle_store.constants import FUZZY, UNTRANSLATED
 from pootle_store.util import SuggestionStates
 
@@ -52,12 +54,13 @@ def write_stdout(start_msg, end_msg="DONE\n", fail_msg="FAILED\n"):
         def method_wrapper(self, *args, **kwargs):
             sys.stdout.write(start_msg % self.__dict__)
             try:
-                f(self, *args, **kwargs)
+                result = f(self, *args, **kwargs)
             except Exception as e:
                 sys.stdout.write(fail_msg % self.__dict__)
                 logger.exception(e)
                 raise e
             sys.stdout.write(end_msg % self.__dict__)
+            return result
         return method_wrapper
     return class_wrapper
 
@@ -165,19 +168,24 @@ class UserPurger(object):
         - Delete any remaining submissions and suggestions.
         """
 
-        self.remove_units_created()
-        self.revert_units_edited()
-        self.revert_units_reviewed()
-        self.revert_units_commented()
-        self.revert_units_state_changed()
+        stores = set()
+        with keep_data():
+            result = self.remove_units_created()
+            stores |= result
+            stores |= self.revert_units_edited()
+            stores |= self.revert_units_reviewed()
+            stores |= self.revert_units_commented()
+            stores |= self.revert_units_state_changed()
 
-        # Delete remaining submissions.
-        logger.debug("Deleting remaining submissions for: %s", self.user)
-        self.user.submission_set.all().delete()
+            # Delete remaining submissions.
+            logger.debug("Deleting remaining submissions for: %s", self.user)
+            self.user.submission_set.all().delete()
 
-        # Delete remaining suggestions.
-        logger.debug("Deleting remaining suggestions for: %s", self.user)
-        self.user.suggestions.all().delete()
+            # Delete remaining suggestions.
+            logger.debug("Deleting remaining suggestions for: %s", self.user)
+            self.user.suggestions.all().delete()
+        for store in stores:
+            update_data.send(store.__class__, instance=store)
 
     @write_stdout(" * Removing units created by: %(user)s... ")
     def remove_units_created(self):
@@ -185,24 +193,27 @@ class UserPurger(object):
         activity.
         """
 
+        stores = set()
         # Delete units created by user without submissions by others.
         for unit in self.user.get_units_created().iterator():
-
+            stores.add(unit.store)
             # Find submissions by other users on this unit.
             other_subs = unit.submission_set.exclude(submitter=self.user)
 
             if not other_subs.exists():
                 unit.delete()
                 logger.debug("Unit deleted: %s", repr(unit))
+        return stores
 
     @write_stdout(" * Reverting unit comments by: %(user)s... ")
     def revert_units_commented(self):
         """Revert comments made by user on units to previous comment or else
         just remove the comment.
         """
-
+        stores = set()
         # Revert unit comments where self.user is latest commenter.
         for unit in self.user.commented.iterator():
+            stores.add(unit.store)
 
             # Find comments by other self.users
             comments = unit.get_comments().exclude(submitter=self.user)
@@ -224,13 +235,16 @@ class UserPurger(object):
             # Increment revision
             unit._comment_updated = True
             unit.save()
+        return stores
 
     @write_stdout(" * Reverting units edited by: %(user)s... ")
     def revert_units_edited(self):
         """Revert unit edits made by a user to previous edit.
         """
+        stores = set()
         # Revert unit target where user is the last submitter.
         for unit in self.user.submitted.iterator():
+            stores.add(unit)
 
             # Find the last submission by different user that updated the
             # unit.target.
@@ -253,15 +267,18 @@ class UserPurger(object):
             # Increment revision
             unit._target_updated = True
             unit.save()
+        return stores
 
     @write_stdout(" * Reverting units reviewed by: %(user)s... ")
     def revert_units_reviewed(self):
         """Revert reviews made by user on suggestions to previous state.
         """
 
+        stores = set()
         # Revert reviews by this user.
         for review in self.user.get_suggestion_reviews().iterator():
             suggestion = review.suggestion
+            stores.add(suggestion.unit.store)
             if suggestion.user == self.user:
                 # If the suggestion was also created by this user then remove
                 # both review and suggestion.
@@ -281,6 +298,7 @@ class UserPurger(object):
             review.delete()
 
         for unit in self.user.reviewed.iterator():
+            stores.add(unit.store)
             reviews = unit.get_suggestion_reviews().exclude(
                 submitter=self.user)
             if reviews.exists():
@@ -296,17 +314,19 @@ class UserPurger(object):
                 unit._target_updated = True
                 logger.debug("Unit reviewed_by removed: %s", repr(unit))
             unit.save()
+        return stores
 
     @write_stdout(" * Reverting unit state changes by: %(user)s... ")
     def revert_units_state_changed(self):
         """Revert unit edits made by a user to previous edit.
         """
-
+        stores = set()
         # Delete orphaned submissions.
         self.user.submission_set.filter(unit__isnull=True).delete()
 
         for submission in self.user.get_unit_states_changed().iterator():
             unit = submission.unit
+            stores.add(unit.store)
 
             # We have to get latest by pk as on mysql precision is not to
             # microseconds - so creation_time can be ambiguous
@@ -333,6 +353,7 @@ class UserPurger(object):
                 unit._state_updated = True
                 unit.save()
                 logger.debug("Unit state reverted: %s", repr(unit))
+        return stores
 
 
 def verify_user(user):

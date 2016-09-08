@@ -119,8 +119,12 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
 
     @property
     def stats(self):
-        return self.object.get_stats_for_user(
-            self.request.user)
+        if isinstance(self.object, Project):
+            return self.object.data_tool.get_stats(
+                children=True)
+        else:
+            return self.object.data_tool.get_stats(
+                user=self.request.user, children=True)
 
     @property
     def pootle_path(self):

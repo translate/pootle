@@ -484,7 +484,7 @@ def permalink_redirect(request, unit):
 @permission_required('view')
 @get_resource
 def get_qualitycheck_stats(request, *args, **kwargs):
-    failing_checks = request.resource_obj.get_checks()
+    failing_checks = request.resource_obj.data_tool.get_checks()
     return JsonResponse(failing_checks if failing_checks is not None else {})
 
 
@@ -493,16 +493,16 @@ def get_qualitycheck_stats(request, *args, **kwargs):
 @permission_required('view')
 @get_resource
 def get_stats(request, *args, **kwargs):
-    stats = request.resource_obj.get_stats()
+    stats = request.resource_obj.data_tool.get_stats()
 
     if (isinstance(request.resource_obj, Directory) and
         'virtualfolder' in settings.INSTALLED_APPS):
         stats['vfolders'] = {}
 
-        for vfolder_treeitem in request.resource_obj.vf_treeitems.iterator():
-            if request.user.is_superuser or vfolder_treeitem.is_visible:
-                stats['vfolders'][vfolder_treeitem.code] = \
-                    vfolder_treeitem.get_stats(include_children=False)
+        # for vfolder_treeitem in request.resource_obj.vf_treeitems.iterator():
+        #    if request.user.is_superuser or vfolder_treeitem.is_visible:
+        #        stats['vfolders'][vfolder_treeitem.code] = \
+        #            vfolder_treeitem.get_stats(include_children=False)
 
     return JsonResponse(stats)
 

@@ -267,7 +267,7 @@ class StoreSyncer(object):
 
     def sync(self, update_structure=False, conservative=True,
              user=None, only_newer=True):
-        last_revision = self.store.get_max_unit_revision()
+        last_revision = self.store.data.max_unit_revision
 
         # TODO only_newer -> not force
         if only_newer and not self.update_newer(last_revision):

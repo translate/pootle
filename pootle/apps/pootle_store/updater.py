@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.functional import cached_property
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.log import log
 from pootle.core.models import Revision
 
@@ -213,7 +214,10 @@ class StoreUpdater(object):
         units = self.target_store.unit_set.filter(**filter_by)
         count = units.count()
         if count:
-            units.update(revision=Revision.incr())
+            # we update after here to trigger a stats update
+            # for the store after doing Unit.objects.update()
+            with update_data_after(self.target_store):
+                units.update(revision=Revision.incr())
         return count
 
     def units(self, uids):
@@ -251,12 +255,12 @@ class StoreUpdater(object):
             else:
                 self.target_store.state = old_state
             has_changed = any(x > 0 for x in changes.values())
-            self.target_store.save(update_cache=has_changed)
+            self.target_store.save()
             if has_changed:
                 log(u"[update] %s units in %s [revision: %d]"
                     % (get_change_str(changes),
                        self.target_store.pootle_path,
-                       self.target_store.get_max_unit_revision()))
+                       self.target_store.data.max_unit_revision))
         return update_revision, changes
 
     def update_from_diff(self, store, store_revision,
@@ -271,10 +275,11 @@ class StoreUpdater(object):
                 self.target_store.update_index(start=start, delta=delta)
 
             # Add new units
-            for unit, new_unit_index in to_change["add"]:
-                self.target_store.addunit(
-                    unit, new_unit_index, user=user,
-                    update_revision=update_revision)
+            with update_data_after(self.target_store):
+                for unit, new_unit_index in to_change["add"]:
+                    self.target_store.addunit(
+                        unit, new_unit_index, user=user,
+                        update_revision=update_revision)
             changes["added"] = len(to_change["add"])
 
             # Obsolete units
@@ -308,7 +313,7 @@ class StoreUpdater(object):
             return changed
 
         if overwrite:
-            store_revision = self.target_store.get_max_unit_revision()
+            store_revision = self.target_store.data.max_unit_revision
         else:
             store_revision = self.target_store.last_sync_revision or 0
 
@@ -332,17 +337,20 @@ class StoreUpdater(object):
                 logging.info(u"[update] unsynced %d units in %s "
                              "[revision: %d]", update_unsynced,
                              self.target_store.pootle_path, update_revision)
-        self.target_store.save(update_cache=False)
+        self.target_store.save()
         return changed
 
     def update_units(self, update):
         update_count = 0
         suggestion_count = 0
-        for unit in self.units(update.uids):
-            updated, suggested = self.unit_updater_class(
-                unit, update).update_unit()
-            if updated:
-                update_count += 1
-            if suggested:
-                suggestion_count += 1
+        if not update.uids:
+            return update_count, suggestion_count
+        with update_data_after(self.target_store):
+            for unit in self.units(update.uids):
+                updated, suggested = self.unit_updater_class(
+                    unit, update).update_unit()
+                if updated:
+                    update_count += 1
+                if suggested:
+                    suggestion_count += 1
         return update_count, suggestion_count

@@ -14,13 +14,13 @@ import pytest
 
 from pytest_pootle.factories import VirtualFolderDBFactory
 
-from pootle_store.constants import OBSOLETE, TRANSLATED
 from pootle_store.models import Store, Unit
-from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
+from virtualfolder.utils import VirtualFolderPathMatcher
+from virtualfolder.models import VirtualFolder, VFData
 
 
 @pytest.mark.django_db
-def test_vfolder_directory_clash(af_vfolder_test_browser_defines_po):
+def test_vfolder_directory_clash(project0, language0, subdir0):
     """Tests that the creation of a virtual folder fails if it clashes with
     some already existing directory.
 
@@ -28,24 +28,22 @@ def test_vfolder_directory_clash(af_vfolder_test_browser_defines_po):
     """
 
     vfolder_item = {
-        'name': "browser",
-        'location': "/af/vfolder_test/",
+        'name': subdir0.name,
+        'project': project0,
+        'language': language0,
         'priority': 4,
         'is_public': True,
-        'filter_rules': "browser/defines.po",
+        'filter_rules': subdir0.child_stores.first().name,
     }
     vfolder = VirtualFolder(**vfolder_item)
-
     with pytest.raises(ValidationError) as excinfo:
         vfolder.save()
-
-    assert (u"Problem adding virtual folder 'browser' with location "
-            u"'/af/vfolder_test/': VirtualFolderTreeItem clashes with "
-            u"Directory /af/vfolder_test/browser/") in str(excinfo.value)
+    message = u"Problem adding virtual folder '%s'" % subdir0.name
+    assert message in excinfo.value.message
 
 
 @pytest.mark.django_db
-def test_vfolder_priority_not_greater_than_zero():
+def test_vfolder_priority_not_greater_than_zero(project0, language0):
     """Tests that the creation of a virtual folder fails if the provided
     priority is not greater than zero.
     """
@@ -53,7 +51,8 @@ def test_vfolder_priority_not_greater_than_zero():
     # Test priority less than zero.
     vfolder_item = {
         'name': "whatever",
-        'location': "/af/vfolder_test/",
+        'project': project0,
+        'language': language0,
         'priority': -3,
         'is_public': True,
         'filter_rules': "browser/defines.po",
@@ -76,69 +75,15 @@ def test_vfolder_priority_not_greater_than_zero():
 
 
 @pytest.mark.django_db
-def test_vfolder_root_location():
-    """Tests that the creation of a virtual folder fails if it uses location /
-    instead of /{LANG}/{PROJ}/.
-    """
-
-    vfolder_item = {
-        'name': "whatever",
-        'location': "/",
-        'priority': 4,
-        'is_public': True,
-        'filter_rules': "browser/defines.po",
-    }
-    vfolder = VirtualFolder(**vfolder_item)
-
-    with pytest.raises(ValidationError) as excinfo:
-        vfolder.clean_fields()
-
-    assert (u'The "/" location is not allowed. Use "/{LANG}/{PROJ}/" instead.'
-            in str(excinfo.value))
-
-
-@pytest.mark.django_db
-def test_vfolder_location_starts_with_projects():
-    """Tests that the creation of a virtual folder fails if it uses a location
-    that starts with /projects/.
-    """
-
-    # Test just /projects/ location.
-    vfolder_item = {
-        'name': "whatever",
-        'location': "/projects/",
-        'priority': 4,
-        'is_public': True,
-        'filter_rules': "browser/defines.po",
-    }
-    vfolder = VirtualFolder(**vfolder_item)
-
-    with pytest.raises(ValidationError) as excinfo:
-        vfolder.clean_fields()
-
-    assert (u'Locations starting with "/projects/" are not allowed. Use '
-            u'"/{LANG}/" instead.') in str(excinfo.value)
-
-    # Test /projects/tutorial/ location.
-    vfolder_item['location'] = "/projects/tutorial/"
-    vfolder = VirtualFolder(**vfolder_item)
-
-    with pytest.raises(ValidationError) as excinfo:
-        vfolder.clean_fields()
-
-    assert (u'Locations starting with "/projects/" are not allowed. Use '
-            u'"/{LANG}/" instead.') in str(excinfo.value)
-
-
-@pytest.mark.django_db
-def test_vfolder_with_no_filter_rules():
+def test_vfolder_with_no_filter_rules(project0, language0):
     """Tests that the creation of a virtual folder fails if it doesn't have any
     filter rules.
     """
 
     vfolder_item = {
         'name': "whatever",
-        'location': "/af/vfolder_test/",
+        'project': project0,
+        'language': language0,
         'priority': 4,
         'is_public': True,
         'filter_rules': "",
@@ -152,60 +97,12 @@ def test_vfolder_with_no_filter_rules():
 
 
 @pytest.mark.django_db
-def test_vfolder_membership():
+def __test_vfolder_unit_priorities():
+    # TODO: should priority be a store thing?
 
-    vfolder = VirtualFolderDBFactory(filter_rules="store0.po")
-
-    live_units = Unit.objects.filter(state__gt=OBSOLETE)
-
-    expected_units = live_units.filter(store__name="store0.po")
-
-    # check default vfolder membership
-    assert (
-        sorted(vfolder.units.values_list("pk", flat=True))
-        == sorted(expected_units.values_list("pk", flat=True)))
-
-    vfolder.location = "/language0/{PROJ}/"
-    vfolder.save()
-
-    expected_units = live_units.filter(
-        store__translation_project__language__code="language0",
-        store__name="store0.po")
-
-    # check vfolder membership after changing the location
-    assert (
-        sorted(vfolder.units.values_list("pk", flat=True))
-        == sorted(expected_units.values_list("pk", flat=True)))
-
-    obsolete_unit = (
-        Unit.objects.filter(
-            state=OBSOLETE,
-            store__translation_project__language__code="language0",
-            store__name="store0.po"))[0]
-
-    # obsolete unit is not in the vfolder
-    assert obsolete_unit not in vfolder.units.all()
-
-    obsolete_unit.state = TRANSLATED
-    obsolete_unit.save()
-
-    # unobsoleted unit is in the vfolder
-    assert obsolete_unit in vfolder.units.all()
-
-    to_obsolete = vfolder.units.all()[0]
-    to_obsolete.state = OBSOLETE
-    to_obsolete.save()
-
-    # obsoleted unit is not in the vfolder
-    assert to_obsolete not in vfolder.units.all()
-
-
-@pytest.mark.django_db
-def test_vfolder_store_priorities():
-
-    # remove the default vfolders and update units to reset priorities
+    # remove the default vfolders and reset units priorities
     VirtualFolder.objects.all().delete()
-    [store.save() for store in Store.objects.all()]
+    Unit.objects.all().update(priority=1)
 
     assert all(
         priority == 1
@@ -272,45 +169,55 @@ def test_vfolder_store_priorities():
 @pytest.mark.django_db
 def test_virtualfolder_repr():
     vf = VirtualFolderDBFactory(filter_rules="store0.po")
+    name = vf.name
+    if vf.language:
+        ("%s, language=%s"
+         % (name, vf.language.code))
+    if vf.project:
+        ("%s, project=%s"
+         % (name, vf.project.code))
     assert (
-        "<VirtualFolder: %s: %s>" % (vf.name, vf.location)
+        "<VirtualFolder: %s>" % name
         == repr(vf))
 
 
+@pytest.mark.pootle_vfolders
 @pytest.mark.django_db
-def test_virtualfoldertreeitem_repr():
-    vfti = VirtualFolderTreeItem.objects.first()
-    assert (
-        "<VirtualFolderTreeItem: %s>" % vfti.pootle_path
-        == repr(vfti))
-
-
-@pytest.mark.django_db
-def test_vfti_rm():
-    original_vftis = VirtualFolderTreeItem.objects.values_list("pk", flat=True)
-
-    vf0 = VirtualFolder.objects.first()
-    vf0_vftis = list(vf0.vf_treeitems.values_list("pk", flat=True))
-
-    vf0.delete()
-    new_vftis = VirtualFolderTreeItem.objects.values_list("pk", flat=True)
-    assert new_vftis
-
-    # Ensure only the other vftis exist.
-    assert set(original_vftis) - set(vf0_vftis) == set(new_vftis)
-
-    # Ensure that there are no vftis left when all VirtualFolders have been
-    # deleted.
-    VirtualFolder.objects.all().delete()
-    assert not VirtualFolderTreeItem.objects.exists()
+def __test_vfolder_pseudo_membership():
+    vf = VirtualFolder.objects.first()
+    # data = vf.data_tool.updater.store_data
+    vf.data_tool.update()
 
 
 @pytest.mark.django_db
 def test_vfolder_calc_priority(settings, store0):
     vf = VirtualFolderDBFactory(
-        filter_rules=store0.name)
+        filter_rules="/%s" % store0.name)
     vf.priority = 5
+    vf.project = store0.translation_project.project
+    vf.language = store0.translation_project.language
     vf.save()
     assert store0.calculate_priority() == 5.0
     settings.INSTALLED_APPS.remove("virtualfolder")
     assert store0.calculate_priority() == 1.0
+
+
+@pytest.mark.pootle_vfolders
+@pytest.mark.django_db
+def test_vfolder_data_repr():
+    vf0 = VirtualFolder.objects.first()
+    vf_data = VFData.objects.create(vf=vf0)
+    assert (
+        repr(vf_data)
+        == "<VFData: %s>" % vf0)
+
+
+@pytest.mark.pootle_vfolders
+@pytest.mark.django_db
+def test_vfolder_path_matcher(vfolder0):
+    assert isinstance(
+        vfolder0.path_matcher,
+        VirtualFolderPathMatcher)
+    assert (
+        list(vfolder0.path_matcher.filter_rules)
+        == [x.strip() for x in vfolder0.filter_rules.split(",")])

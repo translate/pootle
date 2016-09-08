@@ -26,7 +26,7 @@ def test_get_qc_stats_store(client, request_users, settings):
         "/xhr/stats/checks/?path=%s" % store.pootle_path,
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     result = json.loads(response.content)
-    checks = store.get_checks() or {}
+    checks = store.data_tool.get_checks() or {}
     for k, v in result.items():
         assert checks[k] == v
 
@@ -47,7 +47,7 @@ def test_get_qc_stats_directory(client, request_users, settings):
         "/xhr/stats/checks/?path=%s" % directory.pootle_path,
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     result = json.loads(response.content)
-    checks = directory.get_checks() or {}
+    checks = directory.data_tool.get_checks() or {}
     for k, v in result.items():
         assert checks[k] == v
 
@@ -67,6 +67,6 @@ def test_get_qc_stats_tp(client, request_users, settings):
         "/xhr/stats/checks/?path=%s" % tp.pootle_path,
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     result = json.loads(response.content)
-    checks = tp.get_checks() or {}
+    checks = tp.data_tool.get_checks() or {}
     for k, v in result.items():
         assert checks[k] == v
