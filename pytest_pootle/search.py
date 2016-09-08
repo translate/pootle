@@ -8,7 +8,6 @@
 
 from itertools import groupby
 
-from django.conf import settings
 from django.core.urlresolvers import resolve
 from django.db.models import Max
 
@@ -20,8 +19,6 @@ from pootle_store.constants import ALLOWED_SORTS, SIMPLY_SORTED
 from pootle_store.models import Unit
 from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
 from pootle_store.unit.results import GroupedResults, StoreResults
-from virtualfolder.helpers import extract_vfolder_from_path
-from virtualfolder.models import VirtualFolderTreeItem
 
 
 def get_max_and_order_fields(sort_by):
@@ -47,6 +44,7 @@ def calculate_search_results(kwargs, user):
     sfields = kwargs.get("sfields")
     soptions = kwargs.get("soptions", [])
     sort = kwargs.get("sort", None)
+    vfolder = kwargs.get("vfolder", None)
     language_code, project_code, dir_path_, filename = (
         split_pootle_path(kwargs["pootle_path"]))
     uids = [
@@ -61,12 +59,6 @@ def calculate_search_results(kwargs, user):
     if month:
         month = get_date_interval(month)
 
-    vfolder = None
-    if 'virtualfolder' in settings.INSTALLED_APPS:
-        vfolder, pootle_path = extract_vfolder_from_path(
-            pootle_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
     path_kwargs = {
         k: v
         for k, v
