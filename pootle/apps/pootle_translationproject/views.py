@@ -365,48 +365,13 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
     def request_path(self):
         return "/%(language_code)s/%(project_code)s/%(dir_path)s" % self.kwargs
 
-    @cached_property
-    def extracted_path(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return None, self.request_path
-
-        from virtualfolder.helpers import extract_vfolder_from_path
-        from virtualfolder.models import VirtualFolderTreeItem
-        return extract_vfolder_from_path(
-            self.request_path,
-            vfti=VirtualFolderTreeItem.objects.select_related(
-                "directory", "vfolder"))
-
     @property
     def display_vfolder_priority(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return False
-        vfolder = self.extracted_path[0]
-        if vfolder:
-            return False
         return self.object.has_vfolders
 
     @property
-    def resource_path(self):
-        vfolder = self.extracted_path[0]
-        path = ""
-        if vfolder:
-            path = "%s/" % vfolder.name
-        return (
-            "%s%s"
-            % (path,
-               self.object.pootle_path.replace(self.ctx_path, "")))
-
-    @property
     def path(self):
-        return self.extracted_path[1]
-
-    @property
-    def vfolder_pk(self):
-        vfolder = self.extracted_path[0]
-        if vfolder:
-            return vfolder.pk
-        return ""
+        return self.request_path
 
 
 class TPTranslateStoreView(TPStoreMixin, TPTranslateBaseView):
