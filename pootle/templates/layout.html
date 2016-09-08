@@ -31,6 +31,7 @@
       MARKUP_FILTER: '{{ settings.POOTLE_MARKUP_FILTER }}',
       SOCIAL_AUTH_PROVIDERS: {{ SOCIAL_AUTH_PROVIDERS|to_js }},
     };
+    PTL.unitApiRoot = '{{ unit_api_root }}';
     </script>
 
     {% assets "js_vendor" %}

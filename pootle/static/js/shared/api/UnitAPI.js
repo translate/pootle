@@ -8,10 +8,11 @@
 
 import fetch from 'utils/fetch';
 
+window.PTL = window.PTL || {};
 
 const UnitAPI = {
 
-  apiRoot: '/xhr/units/',
+  apiRoot: PTL.unitApiRoot,
 
   fetchUnits(body) {
     return fetch({
