@@ -10,8 +10,6 @@ import logging
 import os
 from collections import OrderedDict
 
-from sortedm2m.fields import SortedManyToManyField
-
 from translate.filters import checks
 from translate.lang.data import langcode_re
 
@@ -26,6 +24,8 @@ from django.dispatch import receiver
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
+
+from sortedm2m.fields import SortedManyToManyField
 
 from pootle.core.cache import make_method_key
 from pootle.core.delegate import filetype_tool, lang_mapper, tp_tool
