@@ -119,10 +119,6 @@ class DBSearchBackend(object):
         search = kwargs['search']
         sfields = kwargs['sfields']
         user = kwargs['user']
-        vfolder = kwargs["vfolder"]
-
-        if vfolder is not None:
-            qs = qs.filter(vfolders=vfolder)
 
         if self.unit_filter:
             qs = UnitSearchFilter().filter(
