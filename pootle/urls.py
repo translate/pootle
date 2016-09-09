@@ -13,7 +13,13 @@ from django.views.generic import TemplateView
 from pootle.core.delegate import url_patterns
 
 
-urlpatterns = [
+urlpatterns = []
+
+# Allow url handlers to be overriden by plugins
+for delegate_urls in url_patterns.gather().values():
+    urlpatterns += delegate_urls
+
+urlpatterns += [
     # Allauth
     url(r'^accounts/', include('accounts.urls')),
     url(r'^accounts/', include('allauth.urls')),
