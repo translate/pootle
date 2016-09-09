@@ -42,6 +42,7 @@ def test_get_edit_unit(project0_nongnu, client, request_users, settings):
     src_lang = unit.store.translation_project.project.source_language
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
     altsrcs = find_altsrcs(unit, alt_src_langs, store=store, project=project)
+    altsrcs = {x.id: x.data for x in altsrcs}
 
     assert result["is_obsolete"] is False
     assert result["sources"] == {src_lang.code: unit.source}
