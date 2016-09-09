@@ -41,7 +41,8 @@ from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
-    get_all_pootle_paths, get_editor_filter, split_pootle_path)
+    get_all_pootle_paths, get_editor_filter, split_pootle_path,
+    to_tp_relative_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
@@ -1209,7 +1210,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         `/af/project/dir1/dir2/file.po`, `store.path` will return
         `dir1/dir2/file.po`.
         """
-        return self.pootle_path.split(u'/', 2)[-1]
+        return to_tp_relative_path(self.pootle_path)
 
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
