@@ -8,7 +8,6 @@
 
 from functools import wraps
 
-from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.db import connection
@@ -132,15 +131,7 @@ def set_resource(request, path_obj, dir_path, filename):
 
     is_404 = False
 
-    vfolder = None
     clean_pootle_path = pootle_path
-    if 'virtualfolder' in settings.INSTALLED_APPS:
-        from virtualfolder.helpers import extract_vfolder_from_path
-        # Get a clean pootle path for retrieving the directory or store.
-        # A clean pootle path is a pootle path without any virtual folder name on
-        # it. For example /af/test_vfolders/browser/chrome/ is the corresponding
-        # clean pootle path for /af/test_vfolders/browser/vfolder8/chrome/
-        vfolder, clean_pootle_path = extract_vfolder_from_path(pootle_path)
 
     if filename:
         pootle_path = pootle_path + filename
@@ -180,7 +171,6 @@ def set_resource(request, path_obj, dir_path, filename):
     request.store = store
     request.directory = directory
     request.pootle_path = pootle_path
-    request.current_vfolder = getattr(vfolder, 'pk', '')
 
     request.resource_obj = store or (directory if dir_path else path_obj)
     request.resource_path = resource_path
