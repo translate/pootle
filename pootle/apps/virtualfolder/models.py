@@ -29,7 +29,16 @@ class VirtualFolder(models.Model):
 
     # any changes to the `name` field may require updating the schema
     # see migration 0003_case_sensitive_schema.py
-    name = models.CharField(_('Name'), blank=False, max_length=70)
+    name = models.CharField(
+        _('Name'),
+        blank=False,
+        unique=True,
+        max_length=70)
+    title = models.CharField(
+        _('Title'),
+        blank=True,
+        null=True,
+        max_length=255)
 
     # any changes to the `location` field may require updating the schema
     # see migration 0003_case_sensitive_schema.py
