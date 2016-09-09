@@ -594,7 +594,6 @@ PTL.editor = {
       this.displayObsoleteMsg();
     }
 
-    utils.highlightRWNodes('.js-translation-text');
     highlightSuggestionsDiff(currentUnit);
 
     // set direction of the comment body

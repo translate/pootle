@@ -11,6 +11,8 @@ import React from 'react';
 
 import { t } from 'utils/i18n';
 
+import { highlightRW } from '../../utils';
+
 
 const UnitSource = React.createClass({
 
@@ -38,6 +40,7 @@ const UnitSource = React.createClass({
         <div
           className="translation-text js-translation-text"
           data-string={sourceValue}
+          dangerouslySetInnerHTML={{ __html: highlightRW(sourceValue) }}
           {...props}
         ></div>
       </div>
