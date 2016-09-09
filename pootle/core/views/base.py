@@ -88,7 +88,8 @@ class PootleDetailView(GatherContextMixin, DetailView):
             'resource_path_parts': get_path_parts(self.resource_path),
             'translate_url': self.translate_url,
             'export_url': self.export_url,
-            'browse_url': self.browse_url}
+            'browse_url': self.browse_url,
+            'unit_api_root': "/xhr/units/"}
 
 
 class PootleJSON(PootleJSONMixin, PootleDetailView):
