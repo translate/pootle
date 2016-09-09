@@ -131,18 +131,15 @@ def set_resource(request, path_obj, dir_path, filename):
 
     is_404 = False
 
-    clean_pootle_path = pootle_path
-
     if filename:
         pootle_path = pootle_path + filename
-        clean_pootle_path = clean_pootle_path + filename
         resource_path = resource_path + filename
 
         try:
             store = Store.objects.live().select_related(
                 'translation_project',
                 'parent',
-            ).get(pootle_path=clean_pootle_path)
+            ).get(pootle_path=pootle_path)
             directory = store.parent
         except Store.DoesNotExist:
             is_404 = True
@@ -151,14 +148,14 @@ def set_resource(request, path_obj, dir_path, filename):
         if dir_path:
             try:
                 directory = Directory.objects.live().get(
-                    pootle_path=clean_pootle_path)
+                    pootle_path=pootle_path)
             except Directory.DoesNotExist:
                 is_404 = True
         else:
             directory = obj_directory
 
     if is_404:  # Try parent directory
-        language_code, project_code = split_pootle_path(clean_pootle_path)[:2]
+        language_code, project_code = split_pootle_path(pootle_path)[:2]
         if not filename:
             dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
 
