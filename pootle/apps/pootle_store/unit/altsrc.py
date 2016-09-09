@@ -14,11 +14,6 @@ from .proxy import UnitProxy
 
 class AltSrcUnitProxy(UnitProxy):
     @property
-    def store_path(self):
-        """Returns just the path part omitting language and project codes."""
-        return self.unit["store__pootle_path"].split(u'/', 2)[-1]
-
-    @property
     def language_code(self):
         return self.unit["store__translation_project__language__code"]
 
@@ -38,7 +33,6 @@ class AltSrcUnitProxy(UnitProxy):
     def data(self):
         return dict(
             id=self.id,
-            store_path=self.store_path,
             language_code=self.language_code,
             language_name=self.language_name,
             language_direction=self.language_direction,
@@ -55,7 +49,6 @@ class AltSrcUnits(object):
         "id",
         "source_f",
         "target_f",
-        "store__pootle_path",
         "store__translation_project__language__code",
         "store__translation_project__language__fullname",
         "store__translation_project__language__nplurals",

@@ -47,6 +47,9 @@ def absolute_real_path(p):
 def find_altsrcs(unit, alt_src_langs, store=None, project=None):
     from pootle_store.models import Unit
 
+    if not alt_src_langs:
+        return []
+
     store = store or unit.store
     project = project or store.translation_project.project
 
@@ -56,11 +59,15 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
         store__translation_project__language__in=alt_src_langs,
         state=TRANSLATED)
 
-    altsrcs = AltSrcUnits(altsrcs_qs).units
     if project.get_treestyle() == 'nongnu':
-        altsrcs = filter(lambda x: x.store_path == store.path, altsrcs)
+        language_regex = '(%s)' % '|'.join([x.code for x in alt_src_langs])
+        pootle_path = "/%s/%s/%s$" % (
+            language_regex,
+            project.code,
+            store.path)
+        altsrcs_qs = altsrcs_qs.filter(store__pootle_path__regex=pootle_path)
 
-    return altsrcs
+    return AltSrcUnits(altsrcs_qs).units
 
 
 def get_change_str(changes):
