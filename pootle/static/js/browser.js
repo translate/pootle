@@ -65,9 +65,15 @@ function navigateTo(languageCode, projectCode, resource) {
   if (projectCode === '' || projChanged) {
     newResource = '';
   }
-
-  const parts = ['', newLanguageCode, projectCode, action, newResource];
-  const urlParts = parts.filter((p, i) => i === 0 || p !== '');
+  let urlParts = [];
+  if (resource.substr(0, 2) === '++') {
+    urlParts = resource.split('/');
+    urlParts.splice(2, 0, newLanguageCode, projectCode, action);
+    urlParts.splice(0, 0, '');
+  } else {
+    const parts = ['', newLanguageCode, projectCode, action, newResource];
+    urlParts = parts.filter((p, i) => i === 0 || p !== '');
+  }
 
   if (!newResource) {
     urlParts.push('');
