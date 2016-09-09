@@ -92,6 +92,16 @@ def tp0(language0, project0):
 
 
 @pytest.fixture
+def tp1(language1, project1):
+    """Returns the tp created by language1 and project1 fixtures."""
+    from pootle_translationproject.models import TranslationProject
+
+    return TranslationProject.objects.get(
+        language=language1,
+        project=project1)
+
+
+@pytest.fixture
 def no_tp_tool_(request):
     start_receivers = tp_tool.receivers
     tp_tool.receivers = []

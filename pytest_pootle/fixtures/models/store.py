@@ -573,6 +573,11 @@ def store0(tp0):
 
 
 @pytest.fixture
+def store1(tp1):
+    return tp1.stores.get(name="store1.po")
+
+
+@pytest.fixture
 def ordered_po(test_fs, tp0):
     """Create a store with ordered units."""
     from pytest_pootle.factories import StoreDBFactory
