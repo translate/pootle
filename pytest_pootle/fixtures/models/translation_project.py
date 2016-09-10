@@ -57,12 +57,6 @@ def russian_tutorial(russian, tutorial):
 
 
 @pytest.fixture
-def afrikaans_vfolder_test(afrikaans, vfolder_project):
-    """Require Afrikaans Virtual Folder Test."""
-    return _require_tp(afrikaans, vfolder_project)
-
-
-@pytest.fixture
 def tp_checker_tests(request, english, checkers):
     from pytest_pootle.factories import ProjectDBFactory
 

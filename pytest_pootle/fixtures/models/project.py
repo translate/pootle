@@ -64,22 +64,6 @@ def project_bar(english):
 
 
 @pytest.fixture
-def vfolder_project(english, settings):
-    """Require `vfolder_test` test project."""
-    import pytest_pootle
-
-    shutil.copytree(
-        os.path.join(
-            os.path.dirname(pytest_pootle.__file__),
-            "data", "po", "vfolder_test"),
-        os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY,
-            "vfolder_test"))
-
-    return _require_project('vfolder_test', 'Virtual Folder Test', english)
-
-
-@pytest.fixture
 def project0():
     """project0 Project"""
     from pootle_project.models import Project
