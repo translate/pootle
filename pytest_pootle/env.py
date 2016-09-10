@@ -473,6 +473,8 @@ class PootleTestEnv(object):
         from django.apps import apps
 
         from pootle.core.utils.db import set_mysql_collation_for_column
+        from pootle_language.models import Language
+        from pootle_project.models import Project
 
         cursor = connection.cursor()
 
@@ -493,24 +495,25 @@ class PootleTestEnv(object):
             "name",
             "utf8_bin",
             "varchar(70)")
-        set_mysql_collation_for_column(
-            apps,
-            cursor,
-            "virtualfolder.VirtualFolder",
-            "location",
-            "utf8_bin",
-            "varchar(255)")
 
+        project0 = Project.objects.get(code="project0")
+        language0 = Language.objects.get(code="language0")
         VirtualFolderDBFactory(filter_rules="store0.po")
         VirtualFolderDBFactory(filter_rules="store1.po")
-        VirtualFolderDBFactory(
-            location='/{LANG}/project0/',
+        vf = VirtualFolderDBFactory(
+            all_languages=True,
             is_public=False,
             filter_rules="store0.po")
-        VirtualFolderDBFactory(
-            location='/{LANG}/project0/',
+        vf.projects.add(project0)
+        vf.save()
+        vf = VirtualFolderDBFactory(
+            all_languages=True,
             is_public=False,
             filter_rules="store1.po")
-        VirtualFolderDBFactory(
-            location='/language0/project0/',
+        vf.projects.add(project0)
+        vf.save()
+        vf = VirtualFolderDBFactory(
             filter_rules="subdir0/store4.po")
+        vf.languages.add(language0)
+        vf.projects.add(project0)
+        vf.save()

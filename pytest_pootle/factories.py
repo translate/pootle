@@ -208,11 +208,9 @@ class VirtualFolderDBFactory(factory.django.DjangoModelFactory):
 
     class Meta(object):
         model = 'virtualfolder.VirtualFolder'
-        django_get_or_create = ("location", "is_public", "filter_rules")
 
     priority = 2
     is_public = True
-    location = "/{LANG}/{PROJ}/"
 
     @factory.lazy_attribute
     def name(self):
