@@ -72,7 +72,7 @@ def calculate_search_results(kwargs, user):
         Unit.objects.get_translatable(user=user, **path_kwargs)
                     .order_by("store", "index"))
     if vfolder is not None:
-        qs = qs.filter(vfolders=vfolder)
+        qs = qs.filter(store__vfolders=vfolder)
     # if "filter" is present in request vars...
     if unit_filter:
         # filter the results accordingly
