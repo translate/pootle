@@ -20,7 +20,6 @@ from pootle.i18n.gettext import ugettext as _
 from pootle_misc.util import ajax_required
 from pootle_store.forms import UnitSearchForm
 from pootle_store.unit.results import GroupedResults
-from pootle_store.views import UnitEditJSON
 from pootle_translationproject.views import TPTranslateView
 
 from .models import VirtualFolder
@@ -91,7 +90,3 @@ def get_vfolder_units(request, **kwargs):
          'end': end,
          'total': total,
          'unitGroups': GroupedResults(units_qs).data})
-
-
-class VFolderUnitEditJSON(UnitEditJSON):
-    pass
