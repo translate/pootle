@@ -156,7 +156,7 @@ def _get_critical_checks_snippet(request, unit):
 
 
 @ajax_required
-def get_units(request):
+def get_units(request, **kwargs_):
     """Gets source and target texts and its metadata.
 
     :return: A JSON-encoded string containing the source and target texts
@@ -191,7 +191,7 @@ def get_units(request):
 
 @ajax_required
 @get_unit_context('view')
-def get_more_context(request, unit):
+def get_more_context(request, unit, **kwargs_):
     """Retrieves more context units.
 
     :return: An object in JSON notation that contains the source and target
@@ -209,7 +209,7 @@ def get_more_context(request, unit):
 @ajax_required
 @require_http_methods(['POST', 'DELETE'])
 @get_unit_context('translate')
-def comment(request, unit):
+def comment(request, unit, **kwargs_):
     """Dispatches the comment action according to the HTTP verb."""
     if request.method == 'DELETE':
         return delete_comment(request, unit)
@@ -217,7 +217,7 @@ def comment(request, unit):
         return save_comment(request, unit)
 
 
-def delete_comment(request, unit):
+def delete_comment(request, unit, **kwargs_):
     """Deletes a comment by blanking its contents and records a new
     submission.
     """
@@ -509,7 +509,7 @@ def get_stats(request, *args, **kwargs):
 
 @ajax_required
 @get_unit_context('translate')
-def submit(request, unit):
+def submit(request, unit, **kwargs_):
     """Processes translation submissions and stores them in the database.
 
     :return: An object in JSON notation that contains the previous and last
@@ -589,7 +589,7 @@ def submit(request, unit):
 
 @ajax_required
 @get_unit_context('suggest')
-def suggest(request, unit):
+def suggest(request, unit, **kwargs_):
     """Processes translation suggestions and stores them in the database.
 
     :return: An object in JSON notation that contains the previous and last
@@ -630,7 +630,7 @@ def suggest(request, unit):
 
 @ajax_required
 @require_http_methods(['POST', 'DELETE'])
-def manage_suggestion(request, uid, sugg_id):
+def manage_suggestion(request, uid, sugg_id, **kwargs_):
     """Dispatches the suggestion action according to the HTTP verb."""
     if request.method == 'DELETE':
         return reject_suggestion(request, uid, sugg_id)
@@ -671,7 +671,7 @@ def handle_suggestion_comment(request, suggestion, unit, comment, action):
 
 
 @get_unit_context()
-def reject_suggestion(request, unit, suggid):
+def reject_suggestion(request, unit, suggid, **kwargs_):
     try:
         sugg = unit.suggestion_set.get(id=suggid)
     except ObjectDoesNotExist:
@@ -699,7 +699,7 @@ def reject_suggestion(request, unit, suggid):
 
 
 @get_unit_context('review')
-def accept_suggestion(request, unit, suggid):
+def accept_suggestion(request, unit, suggid, **kwargs_):
     try:
         suggestion = unit.suggestion_set.get(id=suggid)
     except ObjectDoesNotExist:
@@ -722,7 +722,7 @@ def accept_suggestion(request, unit, suggid):
 
 @ajax_required
 @get_unit_context('review')
-def toggle_qualitycheck(request, unit, check_id):
+def toggle_qualitycheck(request, unit, check_id, **kwargs_):
     try:
         unit.toggle_qualitycheck(check_id, 'mute' in request.POST, request.user)
     except ObjectDoesNotExist:
