@@ -14,8 +14,7 @@ import pytest
 
 from pytest_pootle.factories import VirtualFolderDBFactory
 
-from pootle_store.constants import OBSOLETE, TRANSLATED
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
 
 
@@ -152,52 +151,34 @@ def test_vfolder_with_no_filter_rules():
 
 
 @pytest.mark.django_db
-def test_vfolder_membership():
+def test_vfolder_membership(tp0, store0):
+    tp0_stores = ",".join(
+        p[len(tp0.pootle_path):]
+        for p in tp0.stores.values_list("pootle_path", flat=True))
+    vf0 = VirtualFolder.objects.create(
+        name="vf0",
+        title="the vf0",
+        location=tp0.pootle_path,
+        filter_rules=store0.name)
+    assert vf0.stores.count() == 1
+    assert vf0.stores.first() == store0
 
-    vfolder = VirtualFolderDBFactory(filter_rules="store0.po")
-
-    live_units = Unit.objects.filter(state__gt=OBSOLETE)
-
-    expected_units = live_units.filter(store__name="store0.po")
-
-    # check default vfolder membership
+    vf1 = VirtualFolder.objects.create(
+        name="vf1",
+        title="the vf1",
+        location=tp0.pootle_path,
+        filter_rules=tp0_stores)
     assert (
-        sorted(vfolder.units.values_list("pk", flat=True))
-        == sorted(expected_units.values_list("pk", flat=True)))
-
-    vfolder.location = "/language0/{PROJ}/"
-    vfolder.save()
-
-    expected_units = live_units.filter(
-        store__translation_project__language__code="language0",
-        store__name="store0.po")
-
-    # check vfolder membership after changing the location
-    assert (
-        sorted(vfolder.units.values_list("pk", flat=True))
-        == sorted(expected_units.values_list("pk", flat=True)))
-
-    obsolete_unit = (
-        Unit.objects.filter(
-            state=OBSOLETE,
-            store__translation_project__language__code="language0",
-            store__name="store0.po"))[0]
-
-    # obsolete unit is not in the vfolder
-    assert obsolete_unit not in vfolder.units.all()
-
-    obsolete_unit.state = TRANSLATED
-    obsolete_unit.save()
-
-    # unobsoleted unit is in the vfolder
-    assert obsolete_unit in vfolder.units.all()
-
-    to_obsolete = vfolder.units.all()[0]
-    to_obsolete.state = OBSOLETE
-    to_obsolete.save()
-
-    # obsoleted unit is not in the vfolder
-    assert to_obsolete not in vfolder.units.all()
+        list(vf1.stores.order_by("pk"))
+        == list(tp0.stores.order_by("pk")))
+    store_name = vf1.filter_rules.split(",")[0]
+    vf1.filter_rules = ",".join(vf1.filter_rules.split(",")[1:])
+    store = vf1.stores.get(name=store_name)
+    vf1.save()
+    assert store not in vf1.stores.all()
+    vf1.filter_rules = ",".join([store_name, vf1.filter_rules])
+    vf1.save()
+    assert store in vf1.stores.all()
 
 
 @pytest.mark.django_db
@@ -212,10 +193,10 @@ def test_vfolder_store_priorities():
         for priority
         in Store.objects.values_list("priority", flat=True))
 
-    vfolder0 = VirtualFolderDBFactory(filter_rules="store0.po")
+    vfolder0 = VirtualFolderDBFactory(filter_rules="store0.po", name="FOO")
     vfolder0.priority = 3
     vfolder0.save()
-    vfolder0_stores = vfolder0.units.values_list("store", flat=True).distinct()
+    vfolder0_stores = vfolder0.stores.values_list("pk", flat=True)
     assert all(
         priority == 3
         for priority
@@ -229,7 +210,7 @@ def test_vfolder_store_priorities():
 
     vfolder0.filter_rules = "store1.po"
     vfolder0.save()
-    vfolder0_stores = vfolder0.units.values_list("store", flat=True).distinct()
+    vfolder0_stores = vfolder0.stores.values_list("pk", flat=True)
     assert all(
         priority == 3
         for priority
@@ -246,7 +227,7 @@ def test_vfolder_store_priorities():
         filter_rules="store1.po")
     vfolder1.priority = 4
     vfolder1.save()
-    vfolder1_stores = vfolder1.units.values_list("store", flat=True).distinct()
+    vfolder1_stores = vfolder1.stores.values_list("pk", flat=True)
 
     assert all(
         priority == 4.0
