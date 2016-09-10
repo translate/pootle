@@ -6,14 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from pootle_store.constants import OBSOLETE
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 
 from .models import VirtualFolder, VirtualFolderTreeItem
-from .signals import vfolder_post_save
 
 
 def update_vfolder_tree(vf, store):
@@ -31,32 +29,32 @@ def update_vfolder_tree(vf, store):
         vfolder_treeitem.update_all_cache()
 
 
-def add_unit_to_vfolders(unit):
+def add_store_to_vfolders(store):
     """For a given Unit check for membership of any VirtualFolders
     """
-    pootle_path = unit.store.pootle_path
+    pootle_path = store.pootle_path
 
     for vf in VirtualFolder.objects.iterator():
-        unit_added = False
+        store_added = False
         for location in vf.all_locations:
             if not pootle_path.startswith(location):
                 continue
 
             for filename in vf.filter_rules.split(","):
                 if pootle_path == "".join([location, filename]):
-                    vf.units.add(unit)
-                    unit_added = True
+                    vf.stores.add(store)
+                    store_added = True
                     break
 
-            if unit_added:
+            if store_added:
                 break
 
-        if unit_added:
-            update_vfolder_tree(vf, unit.store)
+        if store_added:
+            update_vfolder_tree(vf, store)
 
 
-@receiver(pre_save, sender=VirtualFolder)
-def vfolder_unit_priority_presave_handler(**kwargs):
+@receiver(post_save, sender=VirtualFolder)
+def vfolder_save_handler(sender, instance, created, **kwargs):
     """Remove Units from VirtualFolder when vfolder changes
 
     - Check the original VirtualFolder object's locations
@@ -65,91 +63,33 @@ def vfolder_unit_priority_presave_handler(**kwargs):
       locations and reset Unit priority
     - Update VirtualFolderTree for any Stores that may have been affected
     """
-    instance = kwargs["instance"]
-    if instance.id is None:
-        return
-
-    original = VirtualFolder.objects.get(pk=instance.pk)
-
-    original_locations = set()
-    new_locations = set()
-
-    for location in original.all_locations:
-        for filename in original.filter_rules.split(","):
-            original_locations.add("".join([location, filename]))
-
+    locations = set()
     for location in instance.all_locations:
         for filename in instance.filter_rules.split(","):
-            new_locations.add("".join([location, filename]))
+            locations.add("".join([location, filename]))
 
-    removed_locations = original_locations - new_locations
-
-    stores_affected = set()
-    for location in removed_locations:
-        # reindex these units without this vfolder
-        removed_units = (
-            Unit.objects.filter(store__pootle_path__startswith=location,
-                                vfolders=original))
-        for unit in removed_units.iterator():
-            unit.vfolders.remove(original)
-            stores_affected.add(unit.store)
-
-    for store in stores_affected:
-        update_vfolder_tree(original, store)
+    stores_we_want = Store.objects.none()
+    for location in locations:
+        stores_we_want = stores_we_want | Store.objects.filter(
+            pootle_path__startswith=location)
+    to_remove = list(
+        instance.stores.exclude(
+            pk__in=stores_we_want.values_list("pk", flat=True)))
+    to_add = list(
+        stores_we_want.exclude(
+            pk__in=instance.stores.values_list("pk", flat=True)))
+    instance.stores.remove(*to_remove)
+    instance.stores.add(*to_add)
+    for store in to_add:
+        update_vfolder_tree(instance, store)
+    for store in to_remove:
+        store.set_priority()
+    for store in stores_we_want:
         store.set_priority()
 
 
-@receiver(vfolder_post_save, sender=VirtualFolder)
-def vfolder_unit_priority_handler(**kwargs):
-    """Set Unit priorities for VirtualFolder members on change
-    """
-    instance = kwargs["instance"]
-    stores = Store.objects.filter(
-        id__in=instance.units.values_list("store_id").distinct())
-    for store in stores:
-        store.set_priority()
-
-
-@receiver(pre_save, sender=Unit)
-def vfolder_unit_resurrected(**kwargs):
-    """Update Unit VirtualFolder membership when Unit is *un*obsoleted
-    """
-    instance = kwargs["instance"]
-    if instance.state == OBSOLETE:
-        return
-    try:
-        Unit.objects.get(pk=instance.pk, state=OBSOLETE)
-    except Unit.DoesNotExist:
-        return
-    add_unit_to_vfolders(instance)
-
-
-@receiver(pre_save, sender=Unit)
-def vfolder_unit_obsoleted(**kwargs):
-    """Update Unit VirtualFolder membership when Unit is obsoleted
-    """
-    instance = kwargs["instance"]
-    if instance.state != OBSOLETE:
-        return
-    try:
-        Unit.objects.get(pk=instance.pk, state__gt=OBSOLETE)
-    except Unit.DoesNotExist:
-        return
-
-    # grab the pk of any vfolder_treeitems
-    vfolder_treeitems = instance.store.parent_vf_treeitems.values_list("pk")
-
-    # clear Unit vfolder membership and update priority
-    instance.vfolders.clear()
-
-    # update the vfolder treeitems
-    vf_qs = VirtualFolderTreeItem.objects.filter(pk__in=vfolder_treeitems)
-    for vfolder_treeitem in vf_qs.iterator():
-        vfolder_treeitem.update_all_cache()
-
-
-@receiver(post_save, sender=Unit)
-def vfolder_unit_postsave_handler(**kwargs):
+@receiver(post_save, sender=Store)
+def vfolder_store_postsave_handler(**kwargs):
     """Match VirtualFolders to Unit and update Unit.priority
 
     - If unit was newly created, then check vfolders for membership
@@ -159,10 +99,5 @@ def vfolder_unit_postsave_handler(**kwargs):
     instance = kwargs["instance"]
     created = kwargs.get("created", False)
     if created:
-        add_unit_to_vfolders(instance)
-
-
-@receiver(post_save, sender=Store)
-def vfolder_store_postsave_handler(**kwargs):
-    instance = kwargs["instance"]
+        add_store_to_vfolders(instance)
     instance.set_priority()
