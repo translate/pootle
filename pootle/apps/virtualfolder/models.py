@@ -194,19 +194,19 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         return self.pootle_path
 
     def save(self, *args, **kwargs):
-        self.pootle_path = self.vfolder.get_adjusted_pootle_path(
-            self.directory.pootle_path
-        )
+        parts = split_pootle_path(self.directory.pootle_path)
+        path_parts = ["", parts[0], parts[1], self.vfolder.name]
+        if parts[2]:
+            path_parts.append(parts[2].strip("/"))
+        path_parts.append(parts[3])
+        self.pootle_path = "/".join(path_parts)
 
         # Trigger the creation of the whole parent tree up to the vfolder
-        # adjusted location.
-        if (self.directory.pootle_path.count('/') >
-                self.vfolder.location.count('/')):
-            parent = VirtualFolderTreeItem.objects.get_or_create(
+        # tp
+        if self.directory.pootle_path.count('/') > 3:
+            self.parent = VirtualFolderTreeItem.objects.get_or_create(
                 directory=self.directory.parent,
-                vfolder=self.vfolder,
-            )[0]
-            self.parent = parent
+                vfolder=self.vfolder)[0]
 
         super(VirtualFolderTreeItem, self).save(*args, **kwargs)
 
@@ -269,6 +269,6 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         don't want to mess with regular CachedTreeItem stats.
         """
         return [p for p in get_all_pootle_paths(self.get_cachekey())
-                if p.count('/') > self.vfolder.location.count('/')]
+                if p.count('/') > 3]
 
     # # # /TreeItem
