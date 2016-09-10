@@ -11,10 +11,7 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
-from pootle.core.mixins import CachedTreeItem
-from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -90,129 +87,9 @@ class VirtualFolder(models.Model):
         self.name = self.name.lower()
         super(VirtualFolder, self).save(*args, **kwargs)
 
-    def delete(self, *args, **kwargs):
-        self.vf_treeitems.all().delete()
-
-        super(VirtualFolder, self).delete(*args, **kwargs)
-
     def clean_fields(self):
         """Validate virtual folder fields."""
         if self.priority <= 0:
             raise ValidationError(u'Priority must be greater than zero.')
         if not self.filter_rules:
             raise ValidationError(u'Some filtering rule must be specified.')
-
-
-class VirtualFolderTreeItemManager(models.Manager):
-    use_for_related_fields = True
-
-    def live(self):
-        """Filter VirtualFolderTreeItems with non-obsolete directories."""
-        return self.filter(directory__obsolete=False)
-
-
-class VirtualFolderTreeItem(models.Model, CachedTreeItem):
-
-    directory = models.ForeignKey(
-        Directory,
-        related_name='vf_treeitems',
-        db_index=True,
-    )
-    vfolder = models.ForeignKey(
-        VirtualFolder,
-        related_name='vf_treeitems',
-        db_index=True,
-    )
-    parent = models.ForeignKey(
-        'VirtualFolderTreeItem',
-        related_name='child_vf_treeitems',
-        null=True,
-        db_index=True,
-    )
-    # any changes to the `pootle_path` field may require updating the schema
-    # see migration 0003_case_sensitive_schema.py
-    pootle_path = models.CharField(
-        max_length=255,
-        null=False,
-        unique=True,
-        db_index=True,
-        editable=False,
-    )
-    stores = models.ManyToManyField(
-        Store,
-        db_index=True,
-        related_name='parent_vf_treeitems',
-    )
-
-    objects = VirtualFolderTreeItemManager()
-
-    class Meta(object):
-        unique_together = ('directory', 'vfolder')
-
-    # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
-
-    def __unicode__(self):
-        return self.pootle_path
-
-    def save(self, *args, **kwargs):
-        parts = split_pootle_path(self.directory.pootle_path)
-        path_parts = ["", parts[0], parts[1], self.vfolder.name]
-        if parts[2]:
-            path_parts.append(parts[2].strip("/"))
-        path_parts.append(parts[3])
-        self.pootle_path = "/".join(path_parts)
-
-        # Trigger the creation of the whole parent tree up to the vfolder
-        # tp
-        if self.directory.pootle_path.count('/') > 3:
-            self.parent = VirtualFolderTreeItem.objects.get_or_create(
-                directory=self.directory.parent,
-                vfolder=self.vfolder)[0]
-
-        super(VirtualFolderTreeItem, self).save(*args, **kwargs)
-
-        # Relate immediate child stores for this item's directory that have
-        # units in this item's vfolder.
-        self.stores = self.directory.child_stores.filter(
-            vfolders=self.vfolder
-        ).distinct()
-
-    def delete(self, *args, **kwargs):
-        self.clear_all_cache(parents=False, children=False)
-
-        for vfolder_treeitem in self.child_vf_treeitems.iterator():
-            # Store children are deleted by the regular folders.
-            vfolder_treeitem.delete()
-
-        super(VirtualFolderTreeItem, self).delete(*args, **kwargs)
-
-    # # # TreeItem
-
-    def can_be_updated(self):
-        return not self.directory.obsolete
-
-    def get_cachekey(self):
-        return self.pootle_path
-
-    def get_parents(self):
-        if self.parent:
-            return [self.parent]
-
-        return []
-
-    def get_children(self):
-        result = [store for store in self.stores.live().iterator()]
-        result.extend([vfolder_treeitem for vfolder_treeitem
-                       in self.child_vf_treeitems.live().iterator()])
-        return result
-
-    def all_pootle_paths(self):
-        """Get cache_key for all parents up to virtual folder location.
-
-        We only return the paths for the VirtualFolderTreeItem tree since we
-        don't want to mess with regular CachedTreeItem stats.
-        """
-        return [p for p in get_all_pootle_paths(self.get_cachekey())
-                if p.count('/') > 3]
-
-    # # # /TreeItem
