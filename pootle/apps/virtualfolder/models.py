@@ -19,10 +19,7 @@ from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.constants import OBSOLETE
-from pootle_store.models import Store, Unit
-
-from .signals import vfolder_post_save
+from pootle_store.models import Store
 
 
 class VirtualFolder(models.Model):
@@ -71,11 +68,6 @@ class VirtualFolder(models.Model):
         blank=True,
         help_text=_('Use this to provide more information or instructions. '
                     'Allowed markup: %s', get_markup_filter_display_name()),
-    )
-    units = models.ManyToManyField(
-        Unit,
-        db_index=True,
-        related_name='vfolders',
     )
     stores = models.ManyToManyField(
         Store,
@@ -131,73 +123,7 @@ class VirtualFolder(models.Model):
         self.clean_fields()
 
         self.name = self.name.lower()
-
-        if self.pk is None:
-            projects = set()
-        else:
-            # If this is an already existing vfolder, keep a list of the
-            # projects it was related to.
-            projects = set(Project.objects.filter(
-                translationproject__stores__unit__vfolders=self
-            ).distinct().values_list('code', flat=True))
-
         super(VirtualFolder, self).save(*args, **kwargs)
-
-        # Clean any existing relationship between units and this vfolder.
-        self.units.clear()
-
-        # Recreate relationships between this vfolder and units.
-        vfolder_stores_set = set()
-
-        for location in self.all_locations:
-            for filename in self.filter_rules.split(","):
-                vf_file = "".join([location, filename])
-
-                qs = Store.objects.live().filter(pootle_path=vf_file)
-
-                if qs.exists():
-                    self.units.add(*qs[0].units.all())
-                    vfolder_stores_set.add(qs[0])
-                else:
-                    if not vf_file.endswith("/"):
-                        vf_file += "/"
-
-                    if Directory.objects.filter(pootle_path=vf_file).exists():
-                        qs = Unit.objects.filter(
-                            state__gt=OBSOLETE,
-                            store__pootle_path__startswith=vf_file
-                        )
-                        self.units.add(*qs)
-                        vfolder_stores_set.update(Store.objects.filter(
-                            pootle_path__startswith=vf_file
-                        ))
-
-        # For each store create all VirtualFolderTreeItem tree structure up to
-        # its adjusted vfolder location.
-        for store in vfolder_stores_set:
-            try:
-                VirtualFolderTreeItem.objects.get_or_create(
-                    directory=store.parent,
-                    vfolder=self,
-                )
-            except ValidationError:
-                # If there is some problem, e.g. a clash with a directory,
-                # delete the virtual folder and all its related items, and
-                # reraise the exception.
-                self.delete()
-                raise
-
-        # Get the set of projects whose resources cache must be invalidated.
-        # This includes the projects the projects it was previously related to
-        # for the already existing vfolders.
-        projects.update(Project.objects.filter(
-            translationproject__stores__unit__vfolders=self
-        ).distinct().values_list('code', flat=True))
-
-        # Send the signal. This is used to invalidate the cached resources for
-        # all the related projects.
-        vfolder_post_save.send(sender=self.__class__, instance=self,
-                               projects=list(projects))
 
     def delete(self, *args, **kwargs):
         self.vf_treeitems.all().delete()
@@ -394,7 +320,7 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         # Relate immediate child stores for this item's directory that have
         # units in this item's vfolder.
         self.stores = self.directory.child_stores.filter(
-            unit__vfolders=self.vfolder
+            vfolders=self.vfolder
         ).distinct()
 
     def delete(self, *args, **kwargs):
