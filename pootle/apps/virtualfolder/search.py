@@ -18,4 +18,4 @@ class VFolderDBSearchBackend(DBSearchBackend):
 
     def filter_qs(self, qs):
         filtered = super(VFolderDBSearchBackend, self).filter_qs(qs)
-        return filtered.filter(vfolders=self.vfolder)
+        return filtered.filter(store__vfolders=self.vfolder)
