@@ -9,6 +9,7 @@
 from django import forms
 from django.core.urlresolvers import reverse
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import search_backend
@@ -67,7 +68,9 @@ def get_vfolder_units(request, **kwargs):
     """
     search_form = UnitSearchForm(request.GET, user=request.user)
 
-    vfolder = VirtualFolder.objects.get(name=kwargs.get("vfolder_name"))
+    vfolder = get_object_or_404(
+        VirtualFolder,
+        name=kwargs.get("vfolder_name"))
 
     if not search_form.is_valid():
         errors = search_form.errors.as_data()
