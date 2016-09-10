@@ -302,9 +302,6 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
             self.directory.pootle_path
         )
 
-        # Force validation of fields.
-        self.clean_fields()
-
         # Trigger the creation of the whole parent tree up to the vfolder
         # adjusted location.
         if (self.directory.pootle_path.count('/') >
@@ -331,15 +328,6 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
             vfolder_treeitem.delete()
 
         super(VirtualFolderTreeItem, self).delete(*args, **kwargs)
-
-    def clean_fields(self):
-        """Validate virtual folder tree item fields."""
-        if Directory.objects.filter(pootle_path=self.pootle_path).exists():
-            msg = (u"Problem adding virtual folder '%s' with location '%s': "
-                   u"VirtualFolderTreeItem clashes with Directory %s" %
-                   (self.vfolder.name, self.vfolder.location,
-                    self.pootle_path))
-            raise ValidationError(msg)
 
     def get_translate_url(self, **kwargs):
         split_parts = list(split_pootle_path(self.pootle_path))
