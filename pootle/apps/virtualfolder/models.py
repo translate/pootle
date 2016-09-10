@@ -81,44 +81,6 @@ class VirtualFolder(models.Model):
     def path_matcher(self):
         return path_matcher.get(self.__class__)(self)
 
-    @property
-    def all_locations(self):
-        """Return a list with all the locations this virtual folder applies.
-
-        If the virtual folder location has no {LANG} nor {PROJ} placeholders
-        then the list only contains its location. If any of the placeholders is
-        present, then they get expanded to match all the existing languages and
-        projects.
-        """
-        if "{LANG}/{PROJ}" in self.location:
-            locations = []
-            for lang in Language.objects.all():
-                temp = self.location.replace("{LANG}", lang.code)
-                for proj in Project.objects.all():
-                    locations.append(temp.replace("{PROJ}", proj.code))
-            return locations
-        elif "{LANG}" in self.location:
-            try:
-                project = Project.objects.get(code=self.location.split("/")[2])
-                languages = project.languages.iterator()
-            except Exception:
-                languages = Language.objects.iterator()
-
-            return [self.location.replace("{LANG}", lang.code)
-                    for lang in languages]
-        elif "{PROJ}" in self.location:
-            try:
-                projects = Project.objects.filter(
-                    translationproject__language__code=self.location.split("/")[1]
-                ).iterator()
-            except Exception:
-                projects = Project.objects.iterator()
-
-            return [self.location.replace("{PROJ}", proj.code)
-                    for proj in projects]
-
-        return [self.location]
-
     def __unicode__(self):
         return self.name
 
@@ -140,70 +102,6 @@ class VirtualFolder(models.Model):
             raise ValidationError(u'Priority must be greater than zero.')
         if not self.filter_rules:
             raise ValidationError(u'Some filtering rule must be specified.')
-
-    def get_adjusted_location(self, pootle_path):
-        """Return the virtual folder location adjusted to the given path.
-
-        The virtual folder location might have placeholders, which affect the
-        actual filenames since those have to be concatenated to the virtual
-        folder location.
-        """
-        count = self.location.count("/")
-
-        if pootle_path.count("/") < count:
-            raise ValueError("%s is not applicable in %s" % (self,
-                                                             pootle_path))
-
-        pootle_path_parts = pootle_path.strip("/").split("/")
-        location_parts = self.location.strip("/").split("/")
-
-        try:
-            if (location_parts[0] != pootle_path_parts[0] and
-                location_parts[0] != "{LANG}"):
-                raise ValueError("%s is not applicable in %s" % (self,
-                                                                 pootle_path))
-
-            if (location_parts[1] != pootle_path_parts[1] and
-                location_parts[1] != "{PROJ}"):
-                raise ValueError("%s is not applicable in %s" % (self,
-                                                                 pootle_path))
-        except IndexError:
-            pass
-
-        return "/".join(pootle_path.split("/")[:count])
-
-    def get_adjusted_pootle_path(self, pootle_path):
-        """Adjust the given pootle path to this virtual folder.
-
-        The provided pootle path is converted to a path that includes the
-        virtual folder name in the right place.
-
-        For example a virtual folder named vfolder8, with a location
-        /{LANG}/firefox/browser/ in a path
-        /af/firefox/browser/chrome/overrides/ gets converted to
-        /af/firefox/browser/vfolder8/chrome/overrides/
-        """
-        count = self.location.count('/')
-
-        if pootle_path.count('/') < count:
-            # The provided pootle path is above the virtual folder location.
-            path_parts = pootle_path.rstrip('/').split('/')
-            pootle_path = '/'.join(path_parts +
-                                   self.location.split('/')[len(path_parts):])
-
-        if count < 3:
-            # If the virtual folder location is not long as a translation
-            # project pootle path then the returned adjusted location is too
-            # short, meaning that the returned translate URL will have the
-            # virtual folder name as the project or language code.
-            path_parts = pootle_path.split('/')
-            return '/'.join(path_parts[:3] + [self.name] + path_parts[3:])
-
-        # If the virtual folder location is as long as a TP pootle path and
-        # the provided pootle path isn't above the virtual folder location.
-        lead = self.get_adjusted_location(pootle_path)
-        trail = pootle_path.replace(lead, '').lstrip('/')
-        return '/'.join([lead, self.name, trail])
 
 
 class VirtualFolderTreeItemManager(models.Manager):
