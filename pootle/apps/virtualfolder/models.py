@@ -40,14 +40,6 @@ class VirtualFolder(models.Model):
         null=True,
         max_length=255)
 
-    # any changes to the `location` field may require updating the schema
-    # see migration 0003_case_sensitive_schema.py
-    location = models.CharField(
-        _('Location'),
-        blank=False,
-        max_length=255,
-        help_text=_('Root path where this virtual folder is applied.'),
-    )
     filter_rules = models.TextField(
         # Translators: This is a noun.
         _('Filter'),
@@ -84,9 +76,6 @@ class VirtualFolder(models.Model):
         Language,
         db_index=True,
         related_name='vfolders')
-
-    class Meta(object):
-        unique_together = ('name', 'location')
 
     @cached_property
     def path_matcher(self):
@@ -131,7 +120,7 @@ class VirtualFolder(models.Model):
         return [self.location]
 
     def __unicode__(self):
-        return ": ".join([self.name, self.location])
+        return self.name
 
     def save(self, *args, **kwargs):
         # Force validation of fields.
@@ -149,14 +138,6 @@ class VirtualFolder(models.Model):
         """Validate virtual folder fields."""
         if self.priority <= 0:
             raise ValidationError(u'Priority must be greater than zero.')
-
-        elif self.location == "/":
-            raise ValidationError(u'The "/" location is not allowed. Use '
-                                  u'"/{LANG}/{PROJ}/" instead.')
-        elif self.location.startswith("/projects/"):
-            raise ValidationError(u'Locations starting with "/projects/" are '
-                                  u'not allowed. Use "/{LANG}/" instead.')
-
         if not self.filter_rules:
             raise ValidationError(u'Some filtering rule must be specified.')
 
