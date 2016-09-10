@@ -101,3 +101,41 @@ def test_views_vf_get_units(get_vfolder_units_views):
                 assert (
                     [u["id"] for u in result_data["units"]]
                     == [u["id"] for u in data["units"]])
+
+
+@pytest.mark.pootle_vfolders
+@pytest.mark.django_db
+def test_views_vf_get_units_bad(request, client, vfolder0):
+
+    response = client.get(
+        reverse(
+            "vfolder-pootle-xhr-units",
+            kwargs=dict(vfolder_name="NO_SUCH_VFOLDER")),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 404
+
+    # path not set
+    response = client.get(
+        reverse(
+            "vfolder-pootle-xhr-units",
+            kwargs=dict(vfolder_name=vfolder0.name)),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 400
+
+    # path too long
+    response = client.get(
+        "%s?path=%s"
+        % (reverse("vfolder-pootle-xhr-units",
+                   kwargs=dict(vfolder_name=vfolder0.name)),
+           ("x" * 3000)),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 400
+
+    # unrecognized path
+    response = client.get(
+        "%s?path=%s"
+        % (reverse("vfolder-pootle-xhr-units",
+                   kwargs=dict(vfolder_name=vfolder0.name)),
+           ("x" * 100)),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 404
