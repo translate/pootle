@@ -212,7 +212,7 @@ class UserPurger(object):
                 # translator_comment, commented_by, and commented_on
                 last_comment = comments.latest('pk')
                 unit.translator_comment = last_comment.new_value
-                unit.commented_by = last_comment.submitter
+                unit.commented_by_id = last_comment.submitter_id
                 unit.commented_on = last_comment.creation_time
                 logger.debug("Unit comment reverted: %s", repr(unit))
             else:
@@ -239,7 +239,7 @@ class UserPurger(object):
             if edits.exists():
                 last_edit = edits.latest("pk")
                 unit.target_f = last_edit.new_value
-                unit.submitted_by = last_edit.submitter
+                unit.submitted_by_id = last_edit.submitter_id
                 unit.submitted_on = last_edit.creation_time
                 logger.debug("Unit edit reverted: %s", repr(unit))
             else:
@@ -262,12 +262,12 @@ class UserPurger(object):
         # Revert reviews by this user.
         for review in self.user.get_suggestion_reviews().iterator():
             suggestion = review.suggestion
-            if suggestion.user == self.user:
+            if suggestion.user_id == self.user.id:
                 # If the suggestion was also created by this user then remove
                 # both review and suggestion.
                 suggestion.delete()
                 logger.debug("Suggestion removed: %s", (suggestion))
-            elif suggestion.reviewer == self.user:
+            elif suggestion.reviewer_id == self.user.id:
                 # If the suggestion is showing as reviewed by the user, then
                 # set the suggestion back to pending and update
                 # reviewer/review_time.
@@ -285,7 +285,7 @@ class UserPurger(object):
                 submitter=self.user)
             if reviews.exists():
                 previous_review = reviews.latest('pk')
-                unit.reviewed_by = previous_review.submitter
+                unit.reviewed_by_id = previous_review.submitter_id
                 unit.reviewed_on = previous_review.creation_time
                 logger.debug("Unit reviewed_by reverted: %s", repr(unit))
             else:
