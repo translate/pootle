@@ -68,10 +68,12 @@ class VirtualFolder(models.Model):
         Store,
         db_index=True,
         related_name='vfolders')
+    all_projects = models.BooleanField(default=False)
     projects = models.ManyToManyField(
         Project,
         db_index=True,
         related_name='vfolders')
+    all_languages = models.BooleanField(default=False)
     languages = models.ManyToManyField(
         Language,
         db_index=True,
