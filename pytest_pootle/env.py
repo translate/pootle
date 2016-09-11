@@ -474,15 +474,6 @@ class PootleTestEnv(object):
 
         cursor = connection.cursor()
 
-        # VirtualFolderTreeItem
-        set_mysql_collation_for_column(
-            apps,
-            cursor,
-            "virtualfolder.VirtualFolderTreeItem",
-            "pootle_path",
-            "utf8_bin",
-            "varchar(255)")
-
         # VirtualFolder
         set_mysql_collation_for_column(
             apps,
