@@ -31,11 +31,11 @@ class FormatRegistry(object):
         else:
             template_ext = ext
         try:
-            filetype = Format.objects.get(name=name)
+            filetype = self.format_qs.get(name=name)
         except Format.DoesNotExist:
             filetype = None
         if not filetype:
-            filetype = Format.objects.create(
+            filetype = self.format_qs.create(
                 name=name, extension=ext, template_extension=template_ext)
         if filetype.extension != ext:
             filetype.extension = ext
@@ -62,10 +62,15 @@ class FormatRegistry(object):
         if "formats" in self.__dict__:
             del self.__dict__["formats"]
 
+    @property
+    def format_qs(self):
+        return Format.objects.select_related(
+            "extension", "template_extension")
+
     @cached_property
     def formats(self):
         formats = OrderedDict()
-        for filetype in Format.objects.filter(enabled=True):
+        for filetype in self.format_qs.filter(enabled=True):
             formats[filetype.name] = dict(
                 pk=filetype.pk,
                 name=filetype.name,
