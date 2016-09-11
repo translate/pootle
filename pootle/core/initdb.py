@@ -283,19 +283,39 @@ class InitDB(object):
         from translate.lang import data, factory
 
         # import languages from toolkit
+        languages = []
+        directories = []
+        existing_lang_codes = Language.objects.values_list(
+            "code", flat=True)
         for code in data.languages.keys():
+            if code in existing_lang_codes:
+                continue
+            directory = Directory(
+                parent=Directory.objects.root,
+                pootle_path="/%s/" % code,
+                name=code)
+            directories.append(directory)
+        if directories:
+            Directory.objects.bulk_create(directories)
+        directories = {
+            directory.name: directory
+            for directory
+            in Directory.objects.filter(
+                parent=Directory.objects.root)}
+        for code in data.languages.keys():
+            if code in existing_lang_codes:
+                continue
+            tk_lang = factory.getlanguage(code)
+            criteria = {
+                'code': code,
+                'fullname': tk_lang.fullname,
+                'nplurals': tk_lang.nplurals,
+                'pluralequation': tk_lang.pluralequation}
             try:
-                tk_lang = factory.getlanguage(code)
-                criteria = {
-                    'code': code,
-                    'fullname': tk_lang.fullname,
-                    'nplurals': tk_lang.nplurals,
-                    'pluralequation': tk_lang.pluralequation,
-                }
-                try:
-                    criteria['specialchars'] = tk_lang.specialchars
-                except AttributeError:
-                    pass
-                self._create_object(Language, **criteria)
-            except:
+                criteria['specialchars'] = tk_lang.specialchars
+            except AttributeError:
                 pass
+            criteria["directory"] = directories[code]
+            languages.append(Language(**criteria))
+        if languages:
+            Language.objects.bulk_create(languages)
