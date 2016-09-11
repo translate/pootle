@@ -920,6 +920,7 @@ class Unit(models.Model, base.TranslationUnit):
         try:
             suggestion = Suggestion.objects.pending().get(
                 unit=self,
+
                 user=user,
                 target_f=translation,
             )
@@ -983,6 +984,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.store.mark_dirty(CachedMethods.WORDCOUNT_STATS)
         create_subs[SubmissionFields.TARGET] = [old_target, self.target]
 
+        subs_created = []
         for field in create_subs:
             kwargs = {
                 'creation_time': current_time,
@@ -998,8 +1000,9 @@ class Unit(models.Model, base.TranslationUnit):
             if field == SubmissionFields.TARGET:
                 kwargs['suggestion'] = suggestion
 
-            sub = Submission(**kwargs)
-            sub.save()
+            subs_created.append(Submission(**kwargs))
+        if subs_created:
+            self.submission_set.add(*subs_created)
 
         # FIXME: remove such a dependency on `ScoreLog`
         # Update current unit instance's attributes
@@ -1405,21 +1408,21 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if submission_type is None:
             submission_type = SubmissionTypes.SYSTEM
 
-        # Create Submission after unit saved
-        # FIXME: we can store these objects in a list and
-        # `bulk_create()` them in a single go
+        subs_created = []
         for field in create_subs:
-            Submission.objects.create(
-                creation_time=current_time,
-                translation_project_id=self.translation_project_id,
-                submitter=user,
-                unit=unit,
-                store_id=self.id,
-                field=field,
-                type=submission_type,
-                old_value=create_subs[field][0],
-                new_value=create_subs[field][1]
-            )
+            subs_created.append(
+                Submission(
+                    creation_time=current_time,
+                    translation_project_id=self.translation_project_id,
+                    submitter=user,
+                    unit=unit,
+                    store_id=self.id,
+                    field=field,
+                    type=submission_type,
+                    old_value=create_subs[field][0],
+                    new_value=create_subs[field][1]))
+        if subs_created:
+            unit.submission_set.add(*subs_created)
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS,
