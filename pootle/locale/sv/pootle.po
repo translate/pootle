@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-12 19:51+0000\n"
+"PO-Revision-Date: 2016-09-03 08:33+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1471031519.000000\n"
+"X-POOTLE-MTIME: 1472891620.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -251,6 +251,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Du kan inte ta bort en filtyp från ett projekt, om det finns lagringar i den "
+"filtypen ('%s')"
 
 #: apps/pootle_app/forms.py:98
 msgid "Password"
@@ -680,9 +682,8 @@ msgid "Plurr format"
 msgstr "Plurr-format"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ platshållare"
+msgstr "Plurr-platshållare"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -743,9 +744,9 @@ msgid "Language"
 msgstr "Språk"
 
 #: apps/pootle_project/models.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\" kan inte användas som en projekt-kod"
+msgstr "\"%(code)s\" kan inte användas som en projekt-kod"
 
 #: apps/pootle_project/models.py:183
 msgid ""
@@ -959,12 +960,11 @@ msgstr "Misslyckades med att behandla förslag."
 
 #: apps/pootle_store/views.py:647
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Förslag avvisades med kommentar"
 
 #: apps/pootle_store/views.py:651
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Förslaget accepterades."
+msgstr "Förslag godkändes med kommentar"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -2243,11 +2243,15 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "accepted with the following comment:"
 msgstr ""
+"Förslag #%(suggestion_id)s som skickats in av dig för %(unit_url)s har "
+"godkänts med följande kommentar:"
 
 #: templates/editor/email/suggestion_accepted_with_comment.txt:7
 #: templates/editor/email/suggestion_rejected_with_comment.txt:7
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Vi hoppas att denna återkoppling kommer att hjälpa dig att förbättra dina "
+"framtida bidrag."
 
 #: templates/editor/email/suggestion_rejected_with_comment.txt:2
 #, python-format
@@ -2255,6 +2259,8 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "rejected with the following comment:"
 msgstr ""
+"Förslag #%(suggestion_id)s som skickats in av dig för %(unit_url)s har "
+"avvisats med följande kommentar:"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2425,9 +2431,8 @@ msgid "Insert this symbol into the editor"
 msgstr "Lägg till den här symbolen i redigeringsprogrammet"
 
 #: templates/editor/units/edit.html:259
-#, fuzzy
 msgid "Insert space symbol into the editor"
-msgstr "Lägg till den här symbolen i redigeringsprogrammet"
+msgstr "Infoga symbolen mellanslag i redigeringsprogrammet"
 
 #: templates/editor/units/edit.html:295
 msgid "User suggestions"

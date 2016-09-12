@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-07-20 15:45+0000\n"
-"Last-Translator: Claude <claude@2xlibre.net>\n"
+"PO-Revision-Date: 2016-09-06 14:02+0000\n"
+"Last-Translator: vasilvestre <vasilvestre@laposte.net>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469029556.000000\n"
+"X-POOTLE-MTIME: 1473170543.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Des problèmes sont survenues durant l'envoie du mail de confirmation. "
+"Veuillez réessayer plus tard."
 
 #: apps/accounts/forms.py:31
 msgid ""
@@ -38,6 +40,8 @@ msgstr ""
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Votre utilisateur à l'air d'avoir disparu. Veuillez reporter ce problème aux "
+"propriétaires du site."
 
 #: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -47,10 +51,11 @@ msgstr "Utilisateur"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Requis. 30 characters ou moins. Les lettres, numéros et @/./+/-/_ caractères"
 
 #: apps/accounts/models.py:68
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Entrez un nom d'utilisateur valide."
 
 #: apps/accounts/models.py:72
 msgid "Email Address"

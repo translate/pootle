@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-11 11:59+0000\n"
+"PO-Revision-Date: 2016-08-31 16:32+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470916751.000000\n"
+"X-POOTLE-MTIME: 1472661171.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -745,9 +745,9 @@ msgid "Language"
 msgstr "Dil"
 
 #: apps/pootle_project/models.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\", proje kodu olarak kullanılamaz"
+msgstr "\"%(code)s\", bir proje kodu olarak kullanılamaz"
 
 #: apps/pootle_project/models.py:183
 msgid ""
@@ -962,12 +962,11 @@ msgstr "Öneriyi işlemek başarısız."
 
 #: apps/pootle_store/views.py:647
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Öneri yorum ile reddedildi"
 
 #: apps/pootle_store/views.py:651
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Öneri kabul edildi."
+msgstr "Öneri yorum ile kabul edildi"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -2260,11 +2259,14 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "accepted with the following comment:"
 msgstr ""
+"%(unit_url)s için sizin tarafınızdan gönderilen öneri #%(suggestion_id)s, "
+"aşağıdaki yorum ile kabul edildi:"
 
 #: templates/editor/email/suggestion_accepted_with_comment.txt:7
 #: templates/editor/email/suggestion_rejected_with_comment.txt:7
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Umarız bu geri bildirim ileriki katkılarınızı artırmada yardımcı olacak."
 
 #: templates/editor/email/suggestion_rejected_with_comment.txt:2
 #, python-format
@@ -2272,6 +2274,8 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "rejected with the following comment:"
 msgstr ""
+"%(unit_url)s için sizin tarafınızdan gönderilen öneri #%(suggestion_id)s, "
+"aşağıdaki yorum ile reddedildi:"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2442,9 +2446,8 @@ msgid "Insert this symbol into the editor"
 msgstr "Düzenleyici içine bu sembolü ekle"
 
 #: templates/editor/units/edit.html:259
-#, fuzzy
 msgid "Insert space symbol into the editor"
-msgstr "Düzenleyici içine bu sembolü ekle"
+msgstr "Düzenleyici içine boşluk sembolü ekle"
 
 #: templates/editor/units/edit.html:295
 msgid "User suggestions"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-07-27 04:15+0000\n"
-"Last-Translator: Андрій <andriykopanytsia@gmail.com>\n"
+"PO-Revision-Date: 2016-09-08 11:33+0000\n"
+"Last-Translator: ta2-1 <taras.semenenko@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469592934.000000\n"
+"X-POOTLE-MTIME: 1473334391.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -920,10 +920,10 @@ msgid "A year ago"
 msgstr "Рік тому"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Рік тому"
+msgstr[0] "%s рік тому"
 msgstr[1] "%s роки тому"
 msgstr[2] "%s років тому"
 
@@ -936,7 +936,7 @@ msgstr "Тиждень тому"
 #, fuzzy, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Тиждень тому"
+msgstr[0] "%s тиждень тому"
 msgstr[1] "%s тижні тому"
 msgstr[2] "%s тижнів тому"
 
@@ -946,12 +946,12 @@ msgid "Yesterday"
 msgstr "Вчора"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Рік тому"
-msgstr[1] "%s роки тому"
-msgstr[2] "%s років тому"
+msgstr[0] "%s день тому"
+msgstr[1] "%s дні тому"
+msgstr[2] "%s днів тому"
 
 #: static/js/utils.js:177
 #, fuzzy
@@ -959,23 +959,22 @@ msgid "An hour ago"
 msgstr "Годину тому"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Годину тому"
+msgstr[0] "%s годину тому"
 msgstr[1] "%s години тому"
 msgstr[2] "%s годин тому"
 
 #: static/js/utils.js:181
-#, fuzzy
 msgid "A minute ago"
 msgstr "Хвилину тому"
 
 #: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Хвилину тому"
+msgstr[0] "%s хвилину тому"
 msgstr[1] "%s хвилини тому"
 msgstr[2] "%s хвилин тому"
 

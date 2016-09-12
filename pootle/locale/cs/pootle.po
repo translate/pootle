@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-11 19:08+0000\n"
+"PO-Revision-Date: 2016-09-01 16:41+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470942497.000000\n"
+"X-POOTLE-MTIME: 1472748102.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -750,9 +750,9 @@ msgid "Language"
 msgstr "Jazyk"
 
 #: apps/pootle_project/models.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\" nelze použít jako kód projektu"
+msgstr "„%(code)s“ nelze použít jako kód projektu"
 
 #: apps/pootle_project/models.py:183
 msgid ""
@@ -968,12 +968,11 @@ msgstr "Zpracování návrhu se nezdařilo."
 
 #: apps/pootle_store/views.py:647
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Návrh byl odmítnut s komentářem"
 
 #: apps/pootle_store/views.py:651
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Přijaté návrhy"
+msgstr "Návrh byl přijat s komentářem"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -2250,11 +2249,15 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "accepted with the following comment:"
 msgstr ""
+"Váš návrh #%(suggestion_id)s zadaný pro řetězec %(unit_url)s byl přijat s "
+"následujícím komentářem:"
 
 #: templates/editor/email/suggestion_accepted_with_comment.txt:7
 #: templates/editor/email/suggestion_rejected_with_comment.txt:7
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Doufáme, že tato zpětná odezva pomůže zlepšit kvalitu vašich budoucích "
+"příspěvků."
 
 #: templates/editor/email/suggestion_rejected_with_comment.txt:2
 #, python-format
@@ -2262,6 +2265,8 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "rejected with the following comment:"
 msgstr ""
+"Váš návrh #%(suggestion_id)s zadaný pro řetězec %(unit_url)s byl odmítnut s "
+"následujícím komentářem:"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2436,9 +2441,8 @@ msgid "Insert this symbol into the editor"
 msgstr "Vložit symbol do pole editoru"
 
 #: templates/editor/units/edit.html:259
-#, fuzzy
 msgid "Insert space symbol into the editor"
-msgstr "Vložit symbol do pole editoru"
+msgstr "Vložit symbol mezery do pole editoru"
 
 #: templates/editor/units/edit.html:295
 msgid "User suggestions"

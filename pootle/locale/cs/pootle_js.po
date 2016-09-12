@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-11 19:05+0000\n"
+"PO-Revision-Date: 2016-09-01 16:43+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470942307.000000\n"
+"X-POOTLE-MTIME: 1472748207.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -531,9 +531,8 @@ msgid "More..."
 msgstr "Podrobnosti..."
 
 #: static/js/browser/components/Stats.js:67
-#, fuzzy
 msgid "Contributors, 30 Days"
-msgstr "Největší přispěvatelé za posledních 30 dní"
+msgstr "Přispěvatelé, 30 dní"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
@@ -773,64 +772,52 @@ msgstr "Zadejte text pro vyhledávání"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "odstranil překlad pro %(sourceString)s"
+msgstr "%(user)s odstranil překlad pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr "přijal návrh pro %(sourceString)s"
+msgstr "%(user)s přijal návrh pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
-#, fuzzy
 msgid "%(user)s uploaded file"
-msgstr "nahrál soubor"
+msgstr "%(user)s nahrál soubor"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr "obnovil kontrolu %(check)s pro %(sourceString)s"
+msgstr "%(user)s potlačil kontrolu %(check)s pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr "obnovil kontrolu %(check)s pro %(sourceString)s"
+msgstr "%(user)s obnovil kontrolu %(check)s pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr "přidal návrh pro %(sourceString)s"
+msgstr "%(user)s přidal návrh pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr "odmítl návrh pro %(sourceString)s"
+msgstr "%(user)s odmítl návrh pro %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "%(user)s translated %(sourceString)s"
-msgstr "přeložil %(sourceString)s"
+msgstr "%(user)s přeložil %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "%(user)s edited %(sourceString)s"
-msgstr "upravil %(sourceString)s"
+msgstr "%(user)s upravil %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "%(user)s pre-translated %(sourceString)s"
-msgstr "předběžně přeložil %(sourceString)s"
+msgstr "%(user)s předběžně přeložil %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy
 msgid "%(user)s reviewed %(sourceString)s"
-msgstr "zkontroloval %(sourceString)s"
+msgstr "%(user)s zkontroloval %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "označil jako vyžadující úpravu %(sourceString)s"
+msgstr "%(user)s označil jako vyžadující úpravu %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
@@ -917,7 +904,7 @@ msgstr "Před rokem"
 #, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Před rokem"
+msgstr[0] "Před %s rokem"
 msgstr[1] "Před %s roky"
 msgstr[2] "Před %s roky"
 
@@ -929,7 +916,7 @@ msgstr "Před týdnem"
 #, python-format, javascript-format
 msgid "%s week ago"
 msgid_plural "%s weeks ago"
-msgstr[0] "Před týdnem"
+msgstr[0] "Před %s týdnem"
 msgstr[1] "Před %s týdny"
 msgstr[2] "Před %s týdny"
 
@@ -941,7 +928,7 @@ msgstr "Včera"
 #, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Včera"
+msgstr[0] "Před %s dnem"
 msgstr[1] "Před %s dny"
 msgstr[2] "Před %s dny"
 
@@ -953,7 +940,7 @@ msgstr "Před hodinou"
 #, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Před hodinou"
+msgstr[0] "Před %s hodinou"
 msgstr[1] "Před %s hodinami"
 msgstr[2] "Před %s hodinami"
 
@@ -965,7 +952,7 @@ msgstr "Před minutou"
 #, python-format, javascript-format
 msgid "%s minute ago"
 msgid_plural "%s minutes ago"
-msgstr[0] "Před minutou"
+msgstr[0] "Před %s minutou"
 msgstr[1] "Před %s minutami"
 msgstr[2] "Před %s minutami"
 

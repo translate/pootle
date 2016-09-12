@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-29 10:10+0000\n"
-"Last-Translator: demo <demo@mailinator.com>\n"
+"PO-Revision-Date: 2016-09-01 21:53+0000\n"
+"Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1472465438.000000\n"
+"X-POOTLE-MTIME: 1472766795.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -250,7 +250,7 @@ msgid "Source Language"
 msgstr "Brontaal"
 
 #: apps/pootle_app/forms.py:78
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
@@ -752,9 +752,9 @@ msgid "Language"
 msgstr "Taal"
 
 #: apps/pootle_project/models.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "'%s' kan niet als projectcode worden gebruikt"
+msgstr "'%(code)s' kan niet als projectcode worden gebruikt"
 
 #: apps/pootle_project/models.py:183
 msgid ""
@@ -809,7 +809,7 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: apps/pootle_project/views.py:270
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
@@ -969,12 +969,11 @@ msgstr "Verwerken van suggestie mislukt."
 
 #: apps/pootle_store/views.py:647
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Suggestie afgewezen met opmerking"
 
 #: apps/pootle_store/views.py:651
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Suggestie aanvaard."
+msgstr "Suggestie geaccepteerd met opmerking"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -2260,11 +2259,14 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "accepted with the following comment:"
 msgstr ""
+"Suggestie #%(suggestion_id)s die door u voor %(unit_url)s is ingediend, is "
+"geaccepteerd met de volgende opmerking:"
 
 #: templates/editor/email/suggestion_accepted_with_comment.txt:7
 #: templates/editor/email/suggestion_rejected_with_comment.txt:7
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"We hopen dat deze feedback u helpt uw toekomstige bijdragen te verbeteren."
 
 #: templates/editor/email/suggestion_rejected_with_comment.txt:2
 #, python-format
@@ -2272,6 +2274,8 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "rejected with the following comment:"
 msgstr ""
+"Suggestie #%(suggestion_id)s die door u voor %(unit_url)s is ingediend, is "
+"afgewezen met de volgende opmerking:"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2444,9 +2448,8 @@ msgid "Insert this symbol into the editor"
 msgstr "Dit symbool in de editor invoegen"
 
 #: templates/editor/units/edit.html:259
-#, fuzzy
 msgid "Insert space symbol into the editor"
-msgstr "Dit symbool in de editor invoegen"
+msgstr "Spatiesymbool in de editor invoegen"
 
 #: templates/editor/units/edit.html:295
 msgid "User suggestions"

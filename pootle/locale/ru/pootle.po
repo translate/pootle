@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-01 16:04+0000\n"
+"PO-Revision-Date: 2016-09-01 19:44+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1470067463.000000\n"
+"X-POOTLE-MTIME: 1472759081.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -253,6 +253,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Вы не можете удалить тип файла из проекта, если для него есть хранилище "
+"('%s')"
 
 #: apps/pootle_app/forms.py:98
 msgid "Password"
@@ -746,9 +748,9 @@ msgid "Language"
 msgstr "Язык"
 
 #: apps/pootle_project/models.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\" не может быть использовано как код проекта"
+msgstr "\"%(code)s\" не может быть использован как код проекта"
 
 #: apps/pootle_project/models.py:183
 msgid ""
@@ -964,12 +966,11 @@ msgstr "Не удалось обработать предложение."
 
 #: apps/pootle_store/views.py:647
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Предложение перевода отклонено с комментарием"
 
 #: apps/pootle_store/views.py:651
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Предложение перевода принято."
+msgstr "Предложение перевода принято с комментарием"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -1712,22 +1713,22 @@ msgstr "Подтверждение почтового адреса в Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Мы получили запрос на сброс вашего пароля."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Чтобы активировать учётную запись, перейдите по этой ссылке:"
+msgstr "Чтобы сбросить свой пароль, перейдите по этой ссылке:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Если вы не желаете сбрасывать ваш пароль, то просто проигнорируйте это "
+"письмо."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Ошибка сброса пароля."
+msgstr "Сброс пароля для Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2253,11 +2254,14 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "accepted with the following comment:"
 msgstr ""
+"Предложение перевода #%(suggestion_id)s отправленное вами для %(unit_url)s "
+"было одобрено со следующим комментарием:"
 
 #: templates/editor/email/suggestion_accepted_with_comment.txt:7
 #: templates/editor/email/suggestion_rejected_with_comment.txt:7
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Мы надеемся, что этот отзыв поможет вам улучшить ваши следующие правки."
 
 #: templates/editor/email/suggestion_rejected_with_comment.txt:2
 #, python-format
@@ -2265,6 +2269,8 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "rejected with the following comment:"
 msgstr ""
+"Предложение перевода #%(suggestion_id)s отправленное вами для %(unit_url)s "
+"было отклонено со следующим комментарием:"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2444,9 +2450,8 @@ msgid "Insert this symbol into the editor"
 msgstr "Вставьте этот символ в редактор"
 
 #: templates/editor/units/edit.html:259
-#, fuzzy
 msgid "Insert space symbol into the editor"
-msgstr "Вставьте этот символ в редактор"
+msgstr "Вставьте символ пробела в редактор"
 
 #: templates/editor/units/edit.html:295
 msgid "User suggestions"

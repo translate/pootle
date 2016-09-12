@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-07-27 13:16+0000\n"
+"PO-Revision-Date: 2016-09-09 16:05+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469625370.000000\n"
+"X-POOTLE-MTIME: 1473437118.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -249,6 +249,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Nid oes modd i chi dynnu math o ffeil o'r Project, os oes yna Storfeydd o'r "
+"math yna o ffeil ('%s')"
 
 #: apps/pootle_app/forms.py:98
 msgid "Password"
@@ -297,23 +299,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Mae gwallau yn y ffurflen. Adolygwch y broblem isod."
 
 #: apps/pootle_format/abstracts.py:34
-#, fuzzy
 msgid "Format name"
-msgstr "Enw cyntaf"
+msgstr "Enw'r fformat"
 
 #: apps/pootle_format/abstracts.py:39
 msgid "Format title"
-msgstr ""
+msgstr "Teitl y fformat"
 
 #: apps/pootle_format/abstracts.py:43
-#, fuzzy
 msgid "Enabled"
-msgstr "Analluogwyd"
+msgstr "Galluogwyd"
 
 #: apps/pootle_format/abstracts.py:45
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Fformat Android"
+msgstr "Fformat uniaith"
 
 #: apps/pootle_language/models.py:67 apps/pootle_project/models.py:189
 msgid "Code"
@@ -681,9 +680,8 @@ msgid "Plurr format"
 msgstr "Fformat Plurr"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ dalfan"
+msgstr "Dalfannau plurr"
 
 #. Translators: This is the name of a filter
 #: apps/pootle_misc/forms.py:90 core/helpers.py:52
@@ -744,9 +742,9 @@ msgid "Language"
 msgstr "Iaith"
 
 #: apps/pootle_project/models.py:176
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "Nid oes modd defnyddio \"%s\" fel cod project"
+msgstr "Nid oes modd defnyddio \"%(code)s\" fel cod project"
 
 #: apps/pootle_project/models.py:183
 msgid ""
@@ -963,12 +961,11 @@ msgstr "Methu prosesu'r awgrym."
 
 #: apps/pootle_store/views.py:647
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Gwrthodwyd yr awgrym gyda sylw"
 
 #: apps/pootle_store/views.py:651
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Awgrymiadau wedi eu Derbyn"
+msgstr "Derbyniwyd yr awgrym gyda sylw"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -1669,7 +1666,6 @@ msgid "About This Pootle Server"
 msgstr "Y Gweinydd Pootle Yma"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1681,7 +1677,7 @@ msgstr ""
 "timau i gyfieithu a rheoli cyfieithiadau. Mae'r offeryn cymunedol yma yn "
 "Feddalwedd Rhydd a gall unrhyw dîm ei defnyddio a chyfrannu tuag at gymuned "
 "Pootle. Mae rhagor i'w weld ar <a href=\"http://pootle.translatehouse.org/"
-"\"><i class=\"icon-external-link\"></i> wefan y project</a>."
+"\">gwefan y project</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1716,22 +1712,20 @@ msgstr "E-bost cadarnhau Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Rydym wedi derbyn cais i ailosod eich cyfrinair."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "I agor eich cyfrif, dilynwch y ddolen:"
+msgstr "I ailosod eich cyfrinair, dilynwch y ddolen:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr ""
+msgstr "Os nad ydych am ailosod eich cyfrinair, gallwch anwybyddu'r neges hon."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Methodd Ailosod Eich Cyfrinair."
+msgstr "E-bost ailosod cyfrinair Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2259,11 +2253,15 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "accepted with the following comment:"
 msgstr ""
+"Mae awgrym #%(suggestion_id)s gyflwynwyd gennych chi ar gyfer %(unit_url)s "
+"wedi ei dderbyn gyda'r sylw canlynol:"
 
 #: templates/editor/email/suggestion_accepted_with_comment.txt:7
 #: templates/editor/email/suggestion_rejected_with_comment.txt:7
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Rydym yn gobeithio y bydd yr adborth hwn yn eich cynorthwyo i wella eich "
+"cyfraniadau yn y dyfodol."
 
 #: templates/editor/email/suggestion_rejected_with_comment.txt:2
 #, python-format
@@ -2271,6 +2269,8 @@ msgid ""
 "Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
 "rejected with the following comment:"
 msgstr ""
+"Mae awgrym #%(suggestion_id)s gyflwynwyd gennych chi ar gyfer %(unit_url)s "
+"wedi ei wrthod gyda'r sylw canlynol:"
 
 #: templates/editor/export_view.html:6 templates/languages/_nav.html:18
 #: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
@@ -2443,9 +2443,8 @@ msgid "Insert this symbol into the editor"
 msgstr "Mewnosod y symbol hwn i'r golygydd"
 
 #: templates/editor/units/edit.html:259
-#, fuzzy
 msgid "Insert space symbol into the editor"
-msgstr "Mewnosod y symbol hwn i'r golygydd"
+msgstr "Mewnosod symbol bwlch i'r golygydd"
 
 #: templates/editor/units/edit.html:295
 msgid "User suggestions"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-12 19:48+0000\n"
+"PO-Revision-Date: 2016-09-03 08:34+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1471031321.000000\n"
+"X-POOTLE-MTIME: 1472891678.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -525,9 +525,8 @@ msgid "More..."
 msgstr "Mer..."
 
 #: static/js/browser/components/Stats.js:67
-#, fuzzy
 msgid "Contributors, 30 Days"
-msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
+msgstr "Bidragsgivare, 30 dagar"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
@@ -662,7 +661,7 @@ msgstr "Neka"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s via filöverföring"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287
@@ -767,64 +766,52 @@ msgstr "Skriv för att söka"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "tog bort översättning för %(sourceString)s"
+msgstr "%(user)s tog bort översättning för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr "godkände förslag för %(sourceString)s"
+msgstr "%(user)s godkände förslag för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
-#, fuzzy
 msgid "%(user)s uploaded file"
-msgstr "Uppladdad fil"
+msgstr "%(user)s laddade upp fil"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr "använd %(check)s för %(sourceString)s"
+msgstr "%(user)s använde %(check)s för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr "använd %(check)s för %(sourceString)s"
+msgstr "%(user)s tog bort %(check)s för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr "lade till förslag för %(sourceString)s"
+msgstr "%(user)s lade till förslag för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr "avvisade förslag för %(sourceString)s"
+msgstr "%(user)s avvisade förslag för %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "%(user)s translated %(sourceString)s"
-msgstr "översatte %(sourceString)s"
+msgstr "%(user)s översatte %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "%(user)s edited %(sourceString)s"
-msgstr "redigerade %(sourceString)s"
+msgstr "%(user)s redigerade %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "%(user)s pre-translated %(sourceString)s"
-msgstr "översatte %(sourceString)s"
+msgstr "%(user)s förhandsöversatte %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy
 msgid "%(user)s reviewed %(sourceString)s"
-msgstr "granskade %(sourceString)s"
+msgstr "%(user)s granskade %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "markerad för kontroll %(sourceString)s"
+msgstr "%(user)s markerade för kontroll %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"

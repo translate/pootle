@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-08-01 16:04+0000\n"
+"PO-Revision-Date: 2016-09-01 19:16+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1470067478.000000\n"
+"X-POOTLE-MTIME: 1472757385.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -167,9 +167,8 @@ msgid "Quality Checks"
 msgstr "Проверки качества"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Тип файла"
+msgstr "Типы файлов"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -534,7 +533,7 @@ msgstr "Больше..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Участники, 30 дней"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
@@ -774,64 +773,52 @@ msgstr "Введите поисковый запрос"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "удалил перевод для %(sourceString)s"
+msgstr "%(user)s удалил перевод для %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr "принял предложение для %(sourceString)s"
+msgstr "%(user)s принял предложение для %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
-#, fuzzy
 msgid "%(user)s uploaded file"
-msgstr "загрузил файл"
+msgstr "%(user)s загрузил файл"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr "включил %(check)s для %(sourceString)s"
+msgstr "%(user)s выключил %(check)s для %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr "включил %(check)s для %(sourceString)s"
+msgstr "%(user)s включил %(check)s для %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr "добавил предложение для %(sourceString)s"
+msgstr "%(user)s добавил предложение для %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr "отклонил предложение для %(sourceString)s"
+msgstr "%(user)s отклонил предложение для %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "%(user)s translated %(sourceString)s"
-msgstr "перевел %(sourceString)s"
+msgstr "%(user)s перевел %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "%(user)s edited %(sourceString)s"
-msgstr "изменил %(sourceString)s"
+msgstr "%(user)s изменил %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "%(user)s pre-translated %(sourceString)s"
-msgstr "предварительно перевел %(sourceString)s"
+msgstr "%(user)s предварительно перевел %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy
 msgid "%(user)s reviewed %(sourceString)s"
-msgstr "отрецензировал %(sourceString)s"
+msgstr "%(user)s отрецензировал %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "отметил как неточную %(sourceString)s"
+msgstr "%(user)s отметил неточным %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"

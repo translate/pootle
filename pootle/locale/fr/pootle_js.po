@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2016-07-20 16:04+0000\n"
-"Last-Translator: Claude <claude@2xlibre.net>\n"
+"PO-Revision-Date: 2016-09-06 14:00+0000\n"
+"Last-Translator: vasilvestre <vasilvestre@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469030665.000000\n"
+"X-POOTLE-MTIME: 1473170420.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -502,6 +502,8 @@ msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Se connecter depuis un service extérieur pour la première fois vous créera "
+"automatiquement un compte."
 
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
@@ -533,13 +535,12 @@ msgid "Social Verification"
 msgstr "Vérification sociale"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Plus"
+msgstr "Plus..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Contributeurs, 30 jours"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
@@ -564,6 +565,8 @@ msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"Vous avez des changements non sauvegardés dans ce string. Naviguer ailleurs "
+"supprimera vos changements."
 
 #: static/js/editor/app.js:353
 msgid ""
@@ -779,9 +782,8 @@ msgstr "Saisir pour rechercher"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "traduction supprimée pour %(sourceString)s"
+msgstr "%(users)s a supprimé la traduction pour %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
 #, fuzzy
@@ -843,9 +845,8 @@ msgid "disabled"
 msgstr "désactivé"
 
 #: static/js/stats.js:60
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Félicitations, vous avez parcouru tous les éléments"
+msgstr "Félicitations! Vous avez complété cette tâche !"
 
 #: static/js/stats.js:456
 msgid "Collapse details"
@@ -923,10 +924,10 @@ msgid "A year ago"
 msgstr "Il y a un an"
 
 #: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s year ago"
 msgid_plural "%s years ago"
-msgstr[0] "Il y a un an"
+msgstr[0] "Il y a %s an"
 msgstr[1] "Il y a %s ans"
 
 #: static/js/utils.js:171
@@ -942,27 +943,25 @@ msgstr[0] "Il y a une semaine"
 msgstr[1] "Il y a %s semaines"
 
 #: static/js/utils.js:174
-#, fuzzy
 msgid "Yesterday"
 msgstr "Hier"
 
 #: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s day ago"
 msgid_plural "%s days ago"
-msgstr[0] "Il y a un an"
-msgstr[1] "Il y a %s ans"
+msgstr[0] "il y a % jour"
+msgstr[1] "il y a %s jours"
 
 #: static/js/utils.js:177
-#, fuzzy
 msgid "An hour ago"
 msgstr "Il y a une heure"
 
 #: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s hour ago"
 msgid_plural "%s hours ago"
-msgstr[0] "Il y a une heure"
+msgstr[0] "Il y a %s heure"
 msgstr[1] "Il y a %s heures"
 
 #: static/js/utils.js:181
@@ -1012,6 +1011,10 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Nous avons trouvé un utilisateur avec <span>%s</span> adresse mail dans nos "
+"systèmes. Veuillez nous fournir le mot de passe pour finir l'inscription à "
+"la procédure. C'est une procédure unique qui va établir un lien entre votre "
+"Pootle et %s comptes."
 
 #: static/js/browser.js:261
 msgid "All Languages"
@@ -1031,7 +1034,7 @@ msgstr "Projet / Langue"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Suggéré"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"

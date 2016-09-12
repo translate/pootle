@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-08-30 09:46+0100\n"
-"PO-Revision-Date: 2014-07-17 15:19+0000\n"
-"Last-Translator: seaman <s-agor@hotmail.com>\n"
+"PO-Revision-Date: 2016-09-10 12:49+0000\n"
+"Last-Translator: NajneenRejwana <najneenrejwana13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
@@ -18,31 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1405610385.000000\n"
+"X-POOTLE-MTIME: 1473511759.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr ""
+msgstr "সফলভাবে সংরক্ষিত হয়েছে।"
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr ""
+msgstr "সফলভাবে মুছে ফেলা হয়েছে।"
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
-msgstr ""
+msgstr "মুছে ফেলা"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
-#, fuzzy
 msgid "Add Language"
-msgstr "সব ভাষা"
+msgstr " ভাষা যুক্ত করুন"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল করা"
 
 #: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
