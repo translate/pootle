@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2016-08-30 00:13+0000\n"
 "Last-Translator: Manuela <manuela.silva@sky.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -562,7 +562,7 @@ msgstr "Mostrar desativados"
 msgid "Hide disabled"
 msgstr "Ocultar desativados"
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -570,7 +570,7 @@ msgstr ""
 "Tem alterações não guardadas nesta linha. Se sair da mesma, estas serão "
 "ignoradas."
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -578,7 +578,7 @@ msgstr ""
 "Ir para a linha seguinte (Ctrl+.)<br/><br/>Também:<br/>Página seguinte: Ctrl"
 "+Shift+.<br/>Última página: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -587,77 +587,77 @@ msgstr ""
 "+Shift+,<br/>Primeira página: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Sugestões pendentes para %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Sugestões aceites para %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Sugestões rejeitadas para %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Submissões de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Submissões substituídas para %s"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "Ocorreu um erro ao ligar ao servidor."
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr "Não encontrado"
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "Erro de servidor"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "Parece que o servidor está desligado. Tente mais tarde."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr "Esta linha já não existe."
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr "Voltar para a navegação"
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr "Recarregar página"
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "Nenhum resultado."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr "algum utilizador anónimo"
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr "alguém"
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "Traduções similares"
 
@@ -847,6 +847,35 @@ msgstr "marcada como, deve ser revista ${sourceString}"
 msgid "disabled"
 msgstr "desativado"
 
+#: static/js/shared/utils/relativeTime.js:18
+msgid "A year ago"
+msgstr "Há um ano"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "Há um minuto"
+
+#: static/js/shared/utils/relativeTime.js:34
+msgid "A week ago"
+msgstr "Há uma semana"
+
+#: static/js/shared/utils/relativeTime.js:42
+msgid "Yesterday"
+msgstr "Ontem"
+
+#: static/js/shared/utils/relativeTime.js:50
+msgid "An hour ago"
+msgstr "Há uma hora"
+
+#: static/js/shared/utils/relativeTime.js:58
+msgid "A minute ago"
+msgstr "Há um minuto"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "Há uns segundos"
+
 #: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "Parabéns! Concluiu esta tarefa!"
@@ -920,65 +949,6 @@ msgstr ""
 "Porque é que faz parte do nosso projeto de tradução? Descreva-se, e inspire "
 "as outras pessoas!"
 
-#: static/js/utils.js:168
-msgid "A year ago"
-msgstr "Há um ano"
-
-#: static/js/utils.js:168
-#, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "Há um ano"
-msgstr[1] "Há %s anos"
-
-#: static/js/utils.js:171
-msgid "A week ago"
-msgstr "Há uma semana"
-
-#: static/js/utils.js:171
-#, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "Há uma semana"
-msgstr[1] "Há %s semanas"
-
-#: static/js/utils.js:174
-msgid "Yesterday"
-msgstr "Ontem"
-
-#: static/js/utils.js:174
-#, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "Há um dia"
-msgstr[1] "Há %s dias"
-
-#: static/js/utils.js:177
-msgid "An hour ago"
-msgstr "Há uma hora"
-
-#: static/js/utils.js:177
-#, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "Há uma hora"
-msgstr[1] "Há %s horas"
-
-#: static/js/utils.js:181
-msgid "A minute ago"
-msgstr "Há um minuto"
-
-#: static/js/utils.js:181
-#, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "Há um minuto"
-msgstr[1] "Há %s minutos"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "Há uns segundos"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr "Endereço de e-mail"
@@ -1015,15 +985,15 @@ msgstr ""
 "procedimento único, que irá estabelecer uma associação entre o seu Pootle e "
 "as contas de %s."
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Todos os idiomas"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "Todos os projetos"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 msgid "Entire Project"
 msgstr "Projeto Completo"
 
@@ -1153,7 +1123,7 @@ msgstr "Menos"
 msgid "Show"
 msgstr "Mostrar"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1162,7 +1132,7 @@ msgstr ""
 "Traduzido por %(fullname)s no &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo;projeto %(time_ago)s"
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1170,6 +1140,31 @@ msgid ""
 msgstr ""
 "Traduzido por %(fullname)s no &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo;"
+
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "Há um ano"
+#~ msgstr[1] "Há %s anos"
+
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "Há uma semana"
+#~ msgstr[1] "Há %s semanas"
+
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "Há um dia"
+#~ msgstr[1] "Há %s dias"
+
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "Há uma hora"
+#~ msgstr[1] "Há %s horas"
+
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "Há um minuto"
+#~ msgstr[1] "Há %s minutos"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "removeu ${check} para ${sourceString}"

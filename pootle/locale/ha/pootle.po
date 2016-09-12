@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2010-07-30 08:50+0200\n"
 "Last-Translator: admin <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:16
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:30 core/browser.py:16
 msgid "Name"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgstr ""
 msgid "Please enter your message"
 msgstr ""
 
-#: apps/contact/views.py:34 templates/layout.html:102
+#: apps/contact/views.py:34 templates/layout.html:103
 msgid "Contact Us"
 msgstr ""
 
@@ -439,7 +439,7 @@ msgstr ""
 msgid "GConf values"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:58 core/utils/stats.py:28
+#: apps/pootle_misc/checks.py:58 core/utils/stats.py:29
 msgid "Fuzzy"
 msgstr ""
 
@@ -535,7 +535,7 @@ msgid "Unchanged"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:82 apps/pootle_store/constants.py:66
-#: core/helpers.py:48 core/utils/stats.py:29 templates/editor/_filters.html:9
+#: core/helpers.py:48 core/utils/stats.py:30 templates/editor/_filters.html:9
 #, fuzzy
 msgid "Untranslated"
 msgstr "Fassara"
@@ -686,23 +686,23 @@ msgstr "Nemi"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:484
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:442
 msgid "Exact Match"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:490
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:448
 msgid "Source Text"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:491
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:449
 msgid "Target Text"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:492
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:450
 msgid "Comments"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:493
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:451
 msgid "Locations"
 msgstr ""
 
@@ -727,7 +727,7 @@ msgstr ""
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:54
+#: apps/pootle_profile/views.py:55
 msgid "Select one or more languages"
 msgstr ""
 
@@ -803,7 +803,7 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr ""
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:111
 msgid "Source"
 msgstr ""
 
@@ -823,12 +823,12 @@ msgstr ""
 msgid "Obsolete"
 msgstr ""
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:257
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:215
 #: core/helpers.py:49 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr ""
 
-#: apps/pootle_store/constants.py:68 core/helpers.py:47 core/utils/stats.py:27
+#: apps/pootle_store/constants.py:68 core/helpers.py:47 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
 #, fuzzy
 msgid "Translated"
@@ -846,117 +846,118 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr ""
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:669
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:685
 msgid "Insufficient rights to access review mode."
 msgstr ""
 
-#: apps/pootle_store/forms.py:146
-#: apps/pootle_store/templatetags/store_tags.py:165
-#: apps/pootle_store/templatetags/store_tags.py:182
-#: apps/pootle_store/templatetags/store_tags.py:189
-#: apps/pootle_store/templatetags/store_tags.py:211
+#: apps/pootle_store/forms.py:104
+#: apps/pootle_store/templatetags/store_tags.py:46
+#: apps/pootle_store/templatetags/store_tags.py:63
+#: apps/pootle_store/templatetags/store_tags.py:70
+#: apps/pootle_store/templatetags/store_tags.py:83
 #, fuzzy, python-format
 msgid "Plural Form %d"
 msgstr "Jinsin jam'i"
 
-#: apps/pootle_store/forms.py:304
+#: apps/pootle_store/forms.py:262
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:314
+#: apps/pootle_store/forms.py:272
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:336
+#: apps/pootle_store/forms.py:294
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:397
+#: apps/pootle_store/forms.py:355
 msgid "Translator comment"
 msgstr ""
 
-#: apps/pootle_store/models.py:118
+#: apps/pootle_store/models.py:120
 msgid "Pending"
 msgstr ""
 
-#: apps/pootle_store/models.py:119
+#: apps/pootle_store/models.py:121
 #, fuzzy
 msgid "Accepted"
 msgstr "Ka yadda"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:122
 #, fuzzy
 msgid "Rejected"
 msgstr "Maida"
 
-#: apps/pootle_store/models.py:1149
+#: apps/pootle_store/models.py:1147
 msgid "Path"
 msgstr ""
 
-#: apps/pootle_store/templatetags/store_tags.py:156
-#: apps/pootle_store/templatetags/store_tags.py:160
+#: apps/pootle_store/templatetags/store_tags.py:37
+#: apps/pootle_store/templatetags/store_tags.py:41
 msgid "Singular"
 msgstr "mufuraɗi"
 
-#: apps/pootle_store/templatetags/store_tags.py:157
-#: apps/pootle_store/templatetags/store_tags.py:161
+#: apps/pootle_store/templatetags/store_tags.py:38
+#: apps/pootle_store/templatetags/store_tags.py:42
 msgid "Plural"
 msgstr "Jam'i"
 
-#: apps/pootle_store/unit/timeline.py:48
+#: apps/pootle_store/unit/timeline.py:47
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Dubi Shawarwari"
 
-#: apps/pootle_store/unit/timeline.py:49
+#: apps/pootle_store/unit/timeline.py:48
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Dubi Shawarwari"
 
-#: apps/pootle_store/unit/timeline.py:57
+#: apps/pootle_store/unit/timeline.py:56
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Dubi Shawarwari"
 
-#: apps/pootle_store/unit/timeline.py:62
+#: apps/pootle_store/unit/timeline.py:61
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Dubi Shawarwari"
 
-#: apps/pootle_store/unit/timeline.py:68
+#: apps/pootle_store/unit/timeline.py:67
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Dubi Shawarwari"
 
-#: apps/pootle_store/views.py:181
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:79
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:183 core/decorators.py:44
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:81
+#: core/decorators.py:43
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:238
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:273
+#: apps/pootle_store/views.py:270
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:571
+#: apps/pootle_store/views.py:587
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:612
+#: apps/pootle_store/views.py:628
 msgid "Failed to process suggestion."
 msgstr ""
 
-#: apps/pootle_store/views.py:647
+#: apps/pootle_store/views.py:663
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:651
+#: apps/pootle_store/views.py:667
 msgid "Suggestion accepted with comment"
 msgstr ""
 
@@ -983,8 +984,8 @@ msgid "Effective from"
 msgstr ""
 
 #: apps/reports/models.py:31 apps/reports/models.py:55
-#: templates/editor/export_view.html:106
-#: templates/translation_projects/terminology/manage.html:35
+#: templates/editor/export_view.html:112
+#: templates/translation_projects/terminology/manage.html:40
 #: templates/user/settings.html:28
 msgid "Translation"
 msgstr "Fassara"
@@ -1019,16 +1020,16 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: apps/reports/models.py:67 apps/virtualfolder/models.py:61
+#: apps/reports/models.py:67 apps/virtualfolder/models.py:67
 msgid "Description"
 msgstr "Kwatance"
 
-#: apps/reports/views.py:324
+#: apps/reports/views.py:323
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:403
+#: apps/reports/views.py:402
 msgid "Invalid request method"
 msgstr ""
 
@@ -1047,7 +1048,7 @@ msgstr ""
 msgid "Virtual Path"
 msgstr ""
 
-#: apps/staticpages/models.py:43
+#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:35
 msgid "Title"
 msgstr ""
 
@@ -1100,41 +1101,41 @@ msgstr ""
 msgid "Text is missing"
 msgstr ""
 
-#: apps/virtualfolder/models.py:37
+#: apps/virtualfolder/models.py:43
 msgid "Location"
 msgstr ""
 
-#: apps/virtualfolder/models.py:40
+#: apps/virtualfolder/models.py:46
 msgid "Root path where this virtual folder is applied."
 msgstr ""
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:44
+#: apps/virtualfolder/models.py:50
 msgid "Filter"
 msgstr ""
 
-#: apps/virtualfolder/models.py:46
+#: apps/virtualfolder/models.py:52
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
 
-#: apps/virtualfolder/models.py:50 core/browser.py:21
+#: apps/virtualfolder/models.py:56 core/browser.py:21
 msgid "Priority"
 msgstr ""
 
-#: apps/virtualfolder/models.py:52
+#: apps/virtualfolder/models.py:58
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 
-#: apps/virtualfolder/models.py:56
+#: apps/virtualfolder/models.py:62
 msgid "Is public?"
 msgstr ""
 
-#: apps/virtualfolder/models.py:58
+#: apps/virtualfolder/models.py:64
 msgid "Whether this virtual folder is public or not."
 msgstr ""
 
-#: apps/virtualfolder/models.py:63
+#: apps/virtualfolder/models.py:69
 #, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1454,7 +1455,7 @@ msgstr ""
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: core/browser.py:44 core/utils/stats.py:26
+#: core/browser.py:44 core/utils/stats.py:27
 #: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr ""
@@ -1488,11 +1489,11 @@ msgstr "Koma babban shafinmu"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:322 core/views.py:104
+#: core/decorators.py:309 core/views/decorators.py:69
 msgid "Insufficient rights to access this page."
 msgstr ""
 
-#: core/decorators.py:335 core/views.py:115
+#: core/decorators.py:322 core/views/mixins.py:26
 #, fuzzy
 msgid "You do not have rights to administer Pootle."
 msgstr "Baka da hurumin jirkita wannan aikin"
@@ -1567,7 +1568,7 @@ msgstr "Dubi Shawarwari"
 msgid "Can perform administrative tasks"
 msgstr ""
 
-#: core/views.py:159
+#: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr ""
 
@@ -1613,7 +1614,7 @@ msgstr ""
 msgid "Terms of Service"
 msgstr ""
 
-#: templates/about.html:7 templates/layout.html:170
+#: templates/about.html:7 templates/layout.html:171
 msgid "About"
 msgstr ""
 
@@ -1683,7 +1684,7 @@ msgid "Registration is currently disabled. Please try again later."
 msgstr ""
 
 #: templates/admin/_generic_formset.html:22
-#: templates/translation_projects/terminology/manage.html:49
+#: templates/translation_projects/terminology/manage.html:54
 #, fuzzy
 msgid "Save Changes"
 msgstr "Adana chanje-chanje"
@@ -1917,7 +1918,7 @@ msgid "Save"
 msgstr ""
 
 #: templates/admin/staticpages/_form.html:7
-#: templates/translation_projects/terminology/manage.html:36
+#: templates/translation_projects/terminology/manage.html:41
 msgid "Delete"
 msgstr ""
 
@@ -2207,21 +2208,21 @@ msgstr ""
 msgid "Export View"
 msgstr ""
 
-#: templates/editor/export_view.html:7 templates/editor/export_view.html:98
+#: templates/editor/export_view.html:7 templates/editor/export_view.html:104
 #, fuzzy
 msgid "All Projects"
 msgstr "Dukkannin Ayyuka"
 
-#: templates/editor/export_view.html:8 templates/editor/export_view.html:99
+#: templates/editor/export_view.html:8 templates/editor/export_view.html:105
 #, fuzzy
 msgid "All Languages"
 msgstr "Dukkanin Yarurruka"
 
-#: templates/editor/export_view.html:143
+#: templates/editor/export_view.html:152
 msgid "No strings."
 msgstr ""
 
-#: templates/editor/export_view.html:149
+#: templates/editor/export_view.html:158
 #, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
@@ -2275,132 +2276,132 @@ msgstr ""
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:143
+#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:151
 msgid "Copy into translation"
 msgstr ""
 
-#: templates/editor/units/edit.html:138
+#: templates/editor/units/edit.html:145
 msgid "Report a problem with this string"
 msgstr ""
 
-#: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:275
+#: templates/editor/units/edit.html:175 templates/editor/units/edit.html:186
+#: templates/editor/units/edit.html:295
 msgid "Submit"
 msgstr "Aika"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:176
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:167 templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:181 templates/editor/units/edit.html:187
 msgid "Suggest"
 msgstr "bada shawara"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:182
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:172
+#: templates/editor/units/edit.html:186
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:187
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:178
+#: templates/editor/units/edit.html:192
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:200
+#: templates/editor/units/edit.html:220
 msgid "Show Timeline"
 msgstr ""
 
-#: templates/editor/units/edit.html:202
+#: templates/editor/units/edit.html:222
 msgid "Add Comment"
 msgstr ""
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:224
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:214
+#: templates/editor/units/edit.html:234
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
-#: templates/editor/units/edit.html:224
+#: templates/editor/units/edit.html:244
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:227
+#: templates/editor/units/edit.html:247
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:230
+#: templates/editor/units/edit.html:250
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:233
+#: templates/editor/units/edit.html:253
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:236
+#: templates/editor/units/edit.html:256
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:239
+#: templates/editor/units/edit.html:259
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:242
+#: templates/editor/units/edit.html:262
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:245
+#: templates/editor/units/edit.html:265
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:248
+#: templates/editor/units/edit.html:268
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:255
+#: templates/editor/units/edit.html:275
 msgid "Insert this symbol into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:259
+#: templates/editor/units/edit.html:279
 msgid "Insert space symbol into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:295
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "User suggestions"
 msgstr "Dubi Shawarwari"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:332
 #, fuzzy
 msgid "More options"
 msgstr "Zaɓi gaba ɗaya"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:334
 #, fuzzy
 msgid "Less options"
 msgstr "Zaɓi gaba ɗaya"
 
-#: templates/editor/units/edit.html:319
+#: templates/editor/units/edit.html:339
 msgid "Accept suggestion"
 msgstr ""
 
-#: templates/editor/units/edit.html:324
+#: templates/editor/units/edit.html:344
 msgid "Reject suggestion"
 msgstr ""
 
-#: templates/editor/units/edit.html:330
+#: templates/editor/units/edit.html:350
 msgid "Remove suggestion"
 msgstr ""
 
-#: templates/editor/units/edit.html:350
+#: templates/editor/units/edit.html:372
 msgid "A long time ago"
 msgstr ""
 
@@ -2446,21 +2447,21 @@ msgstr ""
 msgid "Timeline"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:32
+#: templates/editor/units/xhr_timeline.html:35
 msgid "Last comment removed"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:38
+#: templates/editor/units/xhr_timeline.html:41
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:42
+#: templates/editor/units/xhr_timeline.html:45
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:54
+#: templates/editor/units/xhr_timeline.html:57
 msgid "Unit created"
 msgstr ""
 
@@ -2543,42 +2544,42 @@ msgstr ""
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr ""
 
-#: templates/layout.html:82
+#: templates/layout.html:83
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:83
+#: templates/layout.html:84
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 
-#: templates/layout.html:92
+#: templates/layout.html:93
 msgid "skip to navigation"
 msgstr ""
 
-#: templates/layout.html:113
+#: templates/layout.html:114
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:114 templates/user/settings.html:4
+#: templates/layout.html:115 templates/user/settings.html:4
 #: templates/user/settings.html.py:7
 msgid "Settings"
 msgstr ""
 
-#: templates/layout.html:115 templates/user/profile.html:68
+#: templates/layout.html:116 templates/user/profile.html:68
 #: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:117
+#: templates/layout.html:118
 msgid "Admin"
 msgstr ""
 
-#: templates/layout.html:120
+#: templates/layout.html:121
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:124
+#: templates/layout.html:125
 msgid "Sign In"
 msgstr ""
 
@@ -2652,7 +2653,7 @@ msgstr "Kwatance"
 msgid "Details..."
 msgstr ""
 
-#: templates/translation_projects/terminology/_term_edit.html:31
+#: templates/translation_projects/terminology/_term_edit.html:32
 msgid "Translator Comments"
 msgstr ""
 
@@ -2660,17 +2661,17 @@ msgstr ""
 msgid "Manage Terminology"
 msgstr ""
 
-#: templates/translation_projects/terminology/manage.html:34
+#: templates/translation_projects/terminology/manage.html:39
 msgid "Term"
 msgstr ""
 
-#: templates/translation_projects/terminology/manage.html:58
+#: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
 msgstr ""
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
-#: templates/translation_projects/terminology/manage.html:62
+#: templates/translation_projects/terminology/manage.html:67
 msgid ""
 "In order to use the terminology feature, make sure to add a terminology file "
 "to your translation project. The terminology file must be named 'pootle-"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2016-08-31 16:25+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,7 +548,7 @@ msgstr "Göster etkisizleştirildi"
 msgid "Hide disabled"
 msgstr "Gizle etkisizleştirildi"
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -556,7 +556,7 @@ msgstr ""
 "Bu satırda kaydedilmemiş değişiklikleriniz var. Buradan ayrılmak bu "
 "değişiklikleri yoksayacak."
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -564,7 +564,7 @@ msgstr ""
 "Sonraki satıra git (Ctrl+.)<br/><br/>Ayrıca:<br/>Sonraki sayfa: Ctrl+Shift+."
 "<br/>Son sayfa: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -573,77 +573,77 @@ msgstr ""
 "<br/>İlk sayfa: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s kullanıcısının bekleyen önerileri"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s kullanıcısının kabul edilen önerileri"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s kullanıcısının reddedilen önerileri"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s kullanıcısının sunuşları"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s kullanıcısının üzerine yazılan sunuşları"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "Sunucuya bağlanırken hata oldu"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr "Bulunamadı"
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "Sunucu hatası"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "Sunucu kapalı görünüyor. Daha sonra tekrar deneyin."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr "Bu satır artık mevcut değil."
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr "Gözatmaya geri dön"
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr "Sayfayı yeniden yükle"
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "Sonuç yok."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr "bazı isimsiz kullanıcılar"
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr "birisi"
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "Benzer çeviriler"
 
@@ -821,6 +821,35 @@ msgstr "%(user)s, %(sourceString)s çalışma gerekli olarak işaretledi"
 msgid "disabled"
 msgstr "etkisizleştirildi"
 
+#: static/js/shared/utils/relativeTime.js:18
+msgid "A year ago"
+msgstr "Bir yıl önce"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "Bir dakika önce"
+
+#: static/js/shared/utils/relativeTime.js:34
+msgid "A week ago"
+msgstr "Bir hafta önce"
+
+#: static/js/shared/utils/relativeTime.js:42
+msgid "Yesterday"
+msgstr "Dün"
+
+#: static/js/shared/utils/relativeTime.js:50
+msgid "An hour ago"
+msgstr "Bir saat önce"
+
+#: static/js/shared/utils/relativeTime.js:58
+msgid "A minute ago"
+msgstr "Bir dakika önce"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "Birkaç saniye önce"
+
 #: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "Tebrikler! Bu görevi tamamladınız!"
@@ -894,60 +923,6 @@ msgstr ""
 "Çeviri projemizin neden bir parçasısınız? Kendinizi tanıtın, diğerlerine "
 "ilham verin!"
 
-#: static/js/utils.js:168
-msgid "A year ago"
-msgstr "Bir yıl önce"
-
-#: static/js/utils.js:168
-#, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "%s yıl önce"
-
-#: static/js/utils.js:171
-msgid "A week ago"
-msgstr "Bir hafta önce"
-
-#: static/js/utils.js:171
-#, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "%s hafta önce"
-
-#: static/js/utils.js:174
-msgid "Yesterday"
-msgstr "Dün"
-
-#: static/js/utils.js:174
-#, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "%s gün önce"
-
-#: static/js/utils.js:177
-msgid "An hour ago"
-msgstr "Bir saat önce"
-
-#: static/js/utils.js:177
-#, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "%s saat önce"
-
-#: static/js/utils.js:181
-msgid "A minute ago"
-msgstr "Bir dakika önce"
-
-#: static/js/utils.js:181
-#, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "%s dakika önce"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "Birkaç saniye önce"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr "ePosta Adresi"
@@ -983,15 +958,15 @@ msgstr ""
 "yapma işlemini tamamlamak için parola girin. Bu, Pootle ve %s hesaplarınız "
 "arasında bir bağlantı kuracak olan tek seferlik bir işlemdir."
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Tüm Diller"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "Tüm Projeler"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 msgid "Entire Project"
 msgstr "Bütün Proje"
 
@@ -1121,7 +1096,7 @@ msgstr "Daha az"
 msgid "Show"
 msgstr "Göster"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1130,7 +1105,7 @@ msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
 "%(time_ago)s %(fullname)s tarafından çevrilmiş"
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1138,6 +1113,26 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
 "%(fullname)s tarafından çevrilmiş"
+
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "%s yıl önce"
+
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "%s hafta önce"
+
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "%s gün önce"
+
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "%s saat önce"
+
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "%s dakika önce"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "%(sourceString)s için %(check)s sesini kapattı"

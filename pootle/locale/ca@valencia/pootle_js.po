@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2013-11-03 11:44+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -529,96 +529,96 @@ msgstr ""
 msgid "Hide disabled"
 msgstr ""
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suggeriments pendents de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suggeriments acceptats de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suggeriments rebutjats de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Enviaments de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Enviaments sobreescrits de %s"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "S'ha produït un error en connectar amb el servidor"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "Error del servidor"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "Pareix que el servidor no funciona. Proveu-ho més tard."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "No s'ha trobat cap resultat."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "Traduccions semblants"
 
@@ -807,6 +807,40 @@ msgstr "Suggeriments acceptats de %s"
 msgid "disabled"
 msgstr ""
 
+#: static/js/shared/utils/relativeTime.js:18
+#, fuzzy
+msgid "A year ago"
+msgstr "Fa un any"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "Fa un minut"
+
+#: static/js/shared/utils/relativeTime.js:34
+#, fuzzy
+msgid "A week ago"
+msgstr "Fa 1 setmana"
+
+#: static/js/shared/utils/relativeTime.js:42
+#, fuzzy
+msgid "Yesterday"
+msgstr "Ahir"
+
+#: static/js/shared/utils/relativeTime.js:50
+#, fuzzy
+msgid "An hour ago"
+msgstr "Fa una hora"
+
+#: static/js/shared/utils/relativeTime.js:58
+#, fuzzy
+msgid "A minute ago"
+msgstr "Fa un minut"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "Fa uns quants segons"
+
 #: static/js/stats.js:60
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
@@ -877,70 +911,6 @@ msgid ""
 "others!"
 msgstr ""
 
-#: static/js/utils.js:168
-#, fuzzy
-msgid "A year ago"
-msgstr "Fa un any"
-
-#: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "Fa un any"
-msgstr[1] "Fa %s anys"
-
-#: static/js/utils.js:171
-#, fuzzy
-msgid "A week ago"
-msgstr "Fa 1 setmana"
-
-#: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "Fa 1 setmana"
-msgstr[1] "Fa %s setmanes"
-
-#: static/js/utils.js:174
-#, fuzzy
-msgid "Yesterday"
-msgstr "Ahir"
-
-#: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "Fa un any"
-msgstr[1] "Fa %s anys"
-
-#: static/js/utils.js:177
-#, fuzzy
-msgid "An hour ago"
-msgstr "Fa una hora"
-
-#: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "Fa una hora"
-msgstr[1] "Fa %s hores"
-
-#: static/js/utils.js:181
-#, fuzzy
-msgid "A minute ago"
-msgstr "Fa un minut"
-
-#: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "Fa un minut"
-msgstr[1] "Fa %s minuts"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "Fa uns quants segons"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr ""
@@ -971,15 +941,15 @@ msgid ""
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Tots els idiomes"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "Tots els projectes"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 #, fuzzy
 msgid "Entire Project"
 msgstr "Tots els projectes"
@@ -1110,19 +1080,49 @@ msgstr "Menys"
 msgid "Show"
 msgstr "Mostra"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "Fa un any"
+#~ msgstr[1] "Fa %s anys"
+
+#, fuzzy
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "Fa 1 setmana"
+#~ msgstr[1] "Fa %s setmanes"
+
+#, fuzzy
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "Fa un any"
+#~ msgstr[1] "Fa %s anys"
+
+#, fuzzy
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "Fa una hora"
+#~ msgstr[1] "Fa %s hores"
+
+#, fuzzy
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "Fa un minut"
+#~ msgstr[1] "Fa %s minuts"
 
 #~ msgid "Unknown error"
 #~ msgstr "S'ha produït un error desconegut"

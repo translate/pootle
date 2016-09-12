@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2015-11-25 15:57+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -544,7 +544,7 @@ msgstr "چەكلەنگەن"
 msgid "Hide disabled"
 msgstr "چەكلەنگەن"
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -552,7 +552,7 @@ msgstr ""
 "بۇ تىزىقتا تېخى ساقلىمىغان ئۆزگەرتىشىڭىز بار. ئايرىلسىڭىز بۇ سانلىق "
 "مەلۇماتلار يوقىلىدۇ."
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -560,7 +560,7 @@ msgstr ""
 "كېيىنكى تىزىققا يۆتكىلىشتە (Ctrl+.)<br/><br/> يەنە: <br/>كېيىنكى بەت: Ctrl"
 "+Shift+.<br/>ئاخىرقى بەت: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -569,77 +569,77 @@ msgstr ""
 "+Shift+,<br/>بىرىنچى بەت: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s نىڭ كۈتۈۋاتقان تەكلىپلىرى"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s نىڭ قوبۇل قىلىنغان تەكلىپلىرى"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s نىڭ رەت قىلىنغان تەكلىپلىرى"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s نىڭ تاپشۇرغانلىرى"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s نىڭ قاپلىۋەتكەن تاپشۇرغانلىرى"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "مۇلازىمېتىرغا باغلانغاندا خاتالىق كۆرۈلدى"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr "تېپىلمىدى"
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "مۇلازىمېتىر خاتالىقى"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "مۇلازىمېتىر تاقالغاندەك تۇرىدۇ. سەل تۇرۇپ قايتا سىناڭ."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr "بۇ تىزىق ئەمدى مەۋجۇد ئەمەس."
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr "كۆز يۈگۈرتۈشكە قايت"
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr "بەتنى قايتا يۈكلە"
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "نەتىجە يوق."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr "بەزى ئاتسىز ئىشلەتكۈچى"
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr "بىرسى"
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "ئوخشايدىغان تەرجىمىلەر"
 
@@ -830,6 +830,40 @@ msgstr "${sourceString} نىڭ تەرجىمىسىنى چىقىرىۋەتتى"
 msgid "disabled"
 msgstr "چەكلەنگەن"
 
+#: static/js/shared/utils/relativeTime.js:18
+#, fuzzy
+msgid "A year ago"
+msgstr "%s يىل ئىلگىرى"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "%s مىنۇت ئىلگىرى"
+
+#: static/js/shared/utils/relativeTime.js:34
+#, fuzzy
+msgid "A week ago"
+msgstr "%s ھەپتە ئىلگىرى"
+
+#: static/js/shared/utils/relativeTime.js:42
+#, fuzzy
+msgid "Yesterday"
+msgstr "%s كۈن ئىلگىرى"
+
+#: static/js/shared/utils/relativeTime.js:50
+#, fuzzy
+msgid "An hour ago"
+msgstr "%s سائەت ئىلگىرى"
+
+#: static/js/shared/utils/relativeTime.js:58
+#, fuzzy
+msgid "A minute ago"
+msgstr "%s مىنۇت ئىلگىرى"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "بىر قانچە سېكۇنت ئىلگىرى"
+
 #: static/js/stats.js:60
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
@@ -904,65 +938,6 @@ msgstr ""
 "سىز نېمە ئۈچۈن تەرجىمە قۇرۇلۇشىمىزنىڭ بىر ئەزاسى بولدىڭىز؟ ئۆزىڭىزنى "
 "تونۇشتۇرۇڭ، باشقىلارنى رىغبەتلەندۈرۈڭ!"
 
-#: static/js/utils.js:168
-#, fuzzy
-msgid "A year ago"
-msgstr "%s يىل ئىلگىرى"
-
-#: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "%s يىل ئىلگىرى"
-
-#: static/js/utils.js:171
-#, fuzzy
-msgid "A week ago"
-msgstr "%s ھەپتە ئىلگىرى"
-
-#: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "%s ھەپتە ئىلگىرى"
-
-#: static/js/utils.js:174
-#, fuzzy
-msgid "Yesterday"
-msgstr "%s كۈن ئىلگىرى"
-
-#: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "%s يىل ئىلگىرى"
-
-#: static/js/utils.js:177
-#, fuzzy
-msgid "An hour ago"
-msgstr "%s سائەت ئىلگىرى"
-
-#: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "%s سائەت ئىلگىرى"
-
-#: static/js/utils.js:181
-#, fuzzy
-msgid "A minute ago"
-msgstr "%s مىنۇت ئىلگىرى"
-
-#: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "%s مىنۇت ئىلگىرى"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "بىر قانچە سېكۇنت ئىلگىرى"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr "تورخەت ئادرېسى"
@@ -998,15 +973,15 @@ msgstr ""
 "كىرىشنى تاماملاش ئۈچۈن ئىمنى تەمىنلەڭ. بۇ Pootle ۋە %s ھېسابات ئارىسىدا "
 "ئۇلانما قۇرۇشتىكى بىر قېتىملىق جەريان."
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "بارلىق تىللار"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "ھەممە قۇرۇلۇشلار"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 msgid "Entire Project"
 msgstr "پۈتكۈل قۇرۇلۇش"
 
@@ -1134,7 +1109,7 @@ msgstr "تېخىمۇ ئاز"
 msgid "Show"
 msgstr "كۆرسەت"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1143,7 +1118,7 @@ msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; قۇرۇلۇشىدا "
 "%(time_ago)s دە %(fullname)s  تەرجىمە قىلدى"
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1151,6 +1126,31 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; قۇرۇلۇشىدا "
 "%(fullname)s تەرجىمە قىلدى"
+
+#, fuzzy
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "%s يىل ئىلگىرى"
+
+#, fuzzy
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "%s ھەپتە ئىلگىرى"
+
+#, fuzzy
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "%s يىل ئىلگىرى"
+
+#, fuzzy
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "%s سائەت ئىلگىرى"
+
+#, fuzzy
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "%s مىنۇت ئىلگىرى"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

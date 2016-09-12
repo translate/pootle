@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2015-08-25 20:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -529,13 +529,13 @@ msgstr "óvirkt"
 msgid "Hide disabled"
 msgstr "óvirkt"
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -543,7 +543,7 @@ msgstr ""
 "Fara á næsta streng (Ctrl+.)<br/><br/>Einnig:<br/>Næsta síða: Ctrl+Shift+."
 "<br/>Síðasta síða: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -552,77 +552,77 @@ msgstr ""
 "<br/>Fyrsta síða: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s ókláraðar uppástungur"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s viðurkenndar uppástungur"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s uppástungum sem hefur verið hafnað"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s uppástungur"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s yfirskrifaðar uppástungur"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "Villa við að tengjast þjóni"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr "Fannst ekki"
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "Villa frá þjóni"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "Þjónninn virðist vera niðri. Vinsamlega reyndu síðar."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr "Fara aftur í vafur"
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr "Endurlesa síðu"
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "Engar niðurstöður."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr "einhver nafnlaus notandi"
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr "einhver"
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "Svipaðar þýðingar"
 
@@ -812,6 +812,46 @@ msgstr "%s viðurkenndar uppástungur"
 msgid "disabled"
 msgstr "óvirkt"
 
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#: static/js/shared/utils/relativeTime.js:18
+#, fuzzy
+msgid "A year ago"
+msgstr "Fyrir %s ári"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "Fyrir %s mínútu"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#: static/js/shared/utils/relativeTime.js:34
+#, fuzzy
+msgid "A week ago"
+msgstr "Fyrir %s viku"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#: static/js/shared/utils/relativeTime.js:42
+#, fuzzy
+msgid "Yesterday"
+msgstr "Fyrir %s degi"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#: static/js/shared/utils/relativeTime.js:50
+#, fuzzy
+msgid "An hour ago"
+msgstr "Fyrir %s klukkustund"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#: static/js/shared/utils/relativeTime.js:58
+#, fuzzy
+msgid "A minute ago"
+msgstr "Fyrir %s mínútu"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "Fyrir nokkrum sekúndum"
+
 #: static/js/stats.js:60
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
@@ -882,80 +922,6 @@ msgid ""
 "others!"
 msgstr ""
 
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:168
-#, fuzzy
-msgid "A year ago"
-msgstr "Fyrir %s ári"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "Fyrir %s ári"
-msgstr[1] "Fyrir %s árum"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:171
-#, fuzzy
-msgid "A week ago"
-msgstr "Fyrir %s viku"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "Fyrir %s viku"
-msgstr[1] "Fyrir %s vikum"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:174
-#, fuzzy
-msgid "Yesterday"
-msgstr "Fyrir %s degi"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "Fyrir %s ári"
-msgstr[1] "Fyrir %s árum"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:177
-#, fuzzy
-msgid "An hour ago"
-msgstr "Fyrir %s klukkustund"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "Fyrir %s klukkustund"
-msgstr[1] "Fyrir %s klukkustundum"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:181
-#, fuzzy
-msgid "A minute ago"
-msgstr "Fyrir %s mínútu"
-
-# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
-#: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "Fyrir %s mínútu"
-msgstr[1] "Fyrir %s mínútum"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "Fyrir nokkrum sekúndum"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr ""
@@ -987,15 +953,15 @@ msgid ""
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Öll tungumál"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "Öll verkefni"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 msgid "Entire Project"
 msgstr "Allt verkefnið"
 
@@ -1125,7 +1091,7 @@ msgstr "Minna"
 msgid "Show"
 msgstr "Sýna"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, fuzzy, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1134,7 +1100,7 @@ msgstr ""
 "Þýtt af %(fullname)s í &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; verkefninu"
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
@@ -1142,6 +1108,41 @@ msgid ""
 msgstr ""
 "Þýtt af %(fullname)s í &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; verkefninu"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#, fuzzy
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "Fyrir %s ári"
+#~ msgstr[1] "Fyrir %s árum"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#, fuzzy
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "Fyrir %s viku"
+#~ msgstr[1] "Fyrir %s vikum"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#, fuzzy
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "Fyrir %s ári"
+#~ msgstr[1] "Fyrir %s árum"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#, fuzzy
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "Fyrir %s klukkustund"
+#~ msgstr[1] "Fyrir %s klukkustundum"
+
+# Not sure this is correct. The singular translation should be used when the number ends with 1 (except if it's ending with 11) as can be seen in the plural form definition for Icelandic. I'm just not sure that the %s will be replaced in the singular form since it's not defined in the msg_id.
+#, fuzzy
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "Fyrir %s mínútu"
+#~ msgstr[1] "Fyrir %s mínútum"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

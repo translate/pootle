@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2016-06-04 15:12+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -530,97 +530,97 @@ msgstr "Vis avslått"
 msgid "Hide disabled"
 msgstr "Gøym avslått"
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Avventande forslag frå %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Godtekne forslag frå %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Avviste forslag frå %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Bidrag frå %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Overskrivne bidrag frå %s"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "Feil ved tilkopling til tenaren"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr "Ikkje funne"
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "Tenarfeil"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "Tenaren ser ut til å vere nede. Prøv igjen seinare."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr "Denne strengen finst ikkje lenger."
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 #, fuzzy
 msgid "Go back to browsing"
 msgstr "Gå tilbake til oversikt"
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr "Oppdater sida"
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "Ingen treff."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr "einkvan anonym brukar"
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr "nokon"
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "Liknande omsetjingar"
 
@@ -809,6 +809,40 @@ msgstr "Godtekne forslag frå %s"
 msgid "disabled"
 msgstr "avslått"
 
+#: static/js/shared/utils/relativeTime.js:18
+#, fuzzy
+msgid "A year ago"
+msgstr "Eitt år sidan"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "Eitt minutt sidan"
+
+#: static/js/shared/utils/relativeTime.js:34
+#, fuzzy
+msgid "A week ago"
+msgstr "Ei veke sidan"
+
+#: static/js/shared/utils/relativeTime.js:42
+#, fuzzy
+msgid "Yesterday"
+msgstr "I går"
+
+#: static/js/shared/utils/relativeTime.js:50
+#, fuzzy
+msgid "An hour ago"
+msgstr "EIn time sidan"
+
+#: static/js/shared/utils/relativeTime.js:58
+#, fuzzy
+msgid "A minute ago"
+msgstr "Eitt minutt sidan"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "Nokre sekundar sidan"
+
 #: static/js/stats.js:60
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulerar! Du har fullført denne oppgåva!"
@@ -880,70 +914,6 @@ msgstr ""
 "Kvifor deltek du i omsetjingsprosjektet vårt? Beskriv deg sjølv, inspirer "
 "andre!"
 
-#: static/js/utils.js:168
-#, fuzzy
-msgid "A year ago"
-msgstr "Eitt år sidan"
-
-#: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "Eitt år sidan"
-msgstr[1] "%s år sidan"
-
-#: static/js/utils.js:171
-#, fuzzy
-msgid "A week ago"
-msgstr "Ei veke sidan"
-
-#: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "Ei veke sidan"
-msgstr[1] "%s veker sidan"
-
-#: static/js/utils.js:174
-#, fuzzy
-msgid "Yesterday"
-msgstr "I går"
-
-#: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "Eitt år sidan"
-msgstr[1] "%s år sidan"
-
-#: static/js/utils.js:177
-#, fuzzy
-msgid "An hour ago"
-msgstr "EIn time sidan"
-
-#: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "EIn time sidan"
-msgstr[1] "%s timar sidan"
-
-#: static/js/utils.js:181
-#, fuzzy
-msgid "A minute ago"
-msgstr "Eitt minutt sidan"
-
-#: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "Eitt minutt sidan"
-msgstr[1] "%s minutt sidan"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "Nokre sekundar sidan"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr "E-postdresse"
@@ -974,15 +944,15 @@ msgid ""
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Alle språk"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "Alle prosjekt"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 msgid "Entire Project"
 msgstr "Heile prosjektet"
 
@@ -1112,19 +1082,49 @@ msgstr "Mindre"
 msgid "Show"
 msgstr "Vis"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "Eitt år sidan"
+#~ msgstr[1] "%s år sidan"
+
+#, fuzzy
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "Ei veke sidan"
+#~ msgstr[1] "%s veker sidan"
+
+#, fuzzy
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "Eitt år sidan"
+#~ msgstr[1] "%s år sidan"
+
+#, fuzzy
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "EIn time sidan"
+#~ msgstr[1] "%s timar sidan"
+
+#, fuzzy
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "Eitt minutt sidan"
+#~ msgstr[1] "%s minutt sidan"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

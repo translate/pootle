@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2013-11-09 01:55+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -542,98 +542,98 @@ msgstr ""
 msgid "Hide disabled"
 msgstr ""
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Na molaidhean aig %s a tha ri dhèiligeadh"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Na molaidhean aig %s a chaidh a ghabhail ris"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Na molaidhean aig %s a chaidh a dhiùltadh"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Na chuir %s ann"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Na chuir %s ann is a chaidh a sgrìobhadh thairis air"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "Thachair mearachd fhad 's a bha sinn a' ceangal ris an fhrithealaiche"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "Mearachd an fhrithealaiche"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr ""
 "Tha coltas gu bheil am frithealaiche sìos. Feuch ris a-rithist an ceann "
 "greis."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "Chan eil toradh ann."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "Eadar-theangachaidhean a tha coltach ris"
 
@@ -822,6 +822,40 @@ msgstr "Na molaidhean aig %s a chaidh a ghabhail ris"
 msgid "disabled"
 msgstr ""
 
+#: static/js/shared/utils/relativeTime.js:18
+#, fuzzy
+msgid "A year ago"
+msgstr "Bliadhna air ais"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "Mionaid air ais"
+
+#: static/js/shared/utils/relativeTime.js:34
+#, fuzzy
+msgid "A week ago"
+msgstr "Seachdain air ais"
+
+#: static/js/shared/utils/relativeTime.js:42
+#, fuzzy
+msgid "Yesterday"
+msgstr "An-dè"
+
+#: static/js/shared/utils/relativeTime.js:50
+#, fuzzy
+msgid "An hour ago"
+msgstr "Uair a thìde air ais"
+
+#: static/js/shared/utils/relativeTime.js:58
+#, fuzzy
+msgid "A minute ago"
+msgstr "Mionaid air ais"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "Diog no dhà air ais"
+
 #: static/js/stats.js:60
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
@@ -892,80 +926,6 @@ msgid ""
 "others!"
 msgstr ""
 
-#: static/js/utils.js:168
-#, fuzzy
-msgid "A year ago"
-msgstr "Bliadhna air ais"
-
-#: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "Bliadhna air ais"
-msgstr[1] "%s bhliadhna air ais"
-msgstr[2] "%s bliadhna air ais"
-msgstr[3] "%s bliadhna air ais"
-
-#: static/js/utils.js:171
-#, fuzzy
-msgid "A week ago"
-msgstr "Seachdain air ais"
-
-#: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "Seachdain air ais"
-msgstr[1] "%s sheachdain air ais"
-msgstr[2] "%s seachdainean air ais"
-msgstr[3] "%s seachdain air ais"
-
-#: static/js/utils.js:174
-#, fuzzy
-msgid "Yesterday"
-msgstr "An-dè"
-
-#: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "Bliadhna air ais"
-msgstr[1] "%s bhliadhna air ais"
-msgstr[2] "%s bliadhna air ais"
-msgstr[3] "%s bliadhna air ais"
-
-#: static/js/utils.js:177
-#, fuzzy
-msgid "An hour ago"
-msgstr "Uair a thìde air ais"
-
-#: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "Uair a thìde air ais"
-msgstr[1] "%s uair a thìde air ais"
-msgstr[2] "%s uairean a thìde air ais"
-msgstr[3] "%s uair a thìde air ais"
-
-#: static/js/utils.js:181
-#, fuzzy
-msgid "A minute ago"
-msgstr "Mionaid air ais"
-
-#: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "Mionaid air ais"
-msgstr[1] "%s mhionaid air ais"
-msgstr[2] "%s mionaidean air ais"
-msgstr[3] "%s mionaid air ais"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "Diog no dhà air ais"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr ""
@@ -996,15 +956,15 @@ msgid ""
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Na h-uile cànan"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "Na h-uile pròiseact"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 #, fuzzy
 msgid "Entire Project"
 msgstr "Na h-uile pròiseact"
@@ -1139,19 +1099,59 @@ msgstr "Nas lugha"
 msgid "Show"
 msgstr "Seall"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "Bliadhna air ais"
+#~ msgstr[1] "%s bhliadhna air ais"
+#~ msgstr[2] "%s bliadhna air ais"
+#~ msgstr[3] "%s bliadhna air ais"
+
+#, fuzzy
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "Seachdain air ais"
+#~ msgstr[1] "%s sheachdain air ais"
+#~ msgstr[2] "%s seachdainean air ais"
+#~ msgstr[3] "%s seachdain air ais"
+
+#, fuzzy
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "Bliadhna air ais"
+#~ msgstr[1] "%s bhliadhna air ais"
+#~ msgstr[2] "%s bliadhna air ais"
+#~ msgstr[3] "%s bliadhna air ais"
+
+#, fuzzy
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "Uair a thìde air ais"
+#~ msgstr[1] "%s uair a thìde air ais"
+#~ msgstr[2] "%s uairean a thìde air ais"
+#~ msgstr[3] "%s uair a thìde air ais"
+
+#, fuzzy
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "Mionaid air ais"
+#~ msgstr[1] "%s mhionaid air ais"
+#~ msgstr[2] "%s mionaidean air ais"
+#~ msgstr[3] "%s mionaid air ais"
 
 #~ msgid "Unknown error"
 #~ msgstr "Mearachd neo-aithnichte"

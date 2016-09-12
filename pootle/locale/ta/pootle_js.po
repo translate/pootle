@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2014-09-01 10:16+0000\n"
 "Last-Translator: அருண் குமார் - <thangam.arunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -529,96 +529,96 @@ msgstr ""
 msgid "Hide disabled"
 msgstr ""
 
-#: static/js/editor/app.js:308 static/js/editor/app.js:637
+#: static/js/editor/app.js:318 static/js/editor/app.js:641
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:353
+#: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:359
+#: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:494
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s நிலுவையிலுள்ள பரிந்துரைகள்"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s ஏற்றுக்கொள்ளப்பட்ட பரிந்துரைகள்"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s நிராகரிக்கப்பட்ட பரிந்துரைகள்"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s சமர்பிப்புகள்"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s மேலெழுதப்பட்ட சமர்பிப்புகள்"
 
-#: static/js/editor/app.js:1096
+#: static/js/editor/app.js:1114
 msgid "Error while connecting to the server"
 msgstr "செயலியுடன் இணைக்கும் போது பிழை"
 
-#: static/js/editor/app.js:1100
+#: static/js/editor/app.js:1118
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1120
 msgid "Server error"
 msgstr "செயலியில் பிழை"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1122
 msgid "The server seems down. Try again later."
 msgstr "செயலி இயங்கவில்லை. பிறகு முயற்சிக்கவும்."
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1131
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1132
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1116
+#: static/js/editor/app.js:1134
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:1874 static/js/editor/app.js:629
+#: static/js/editor/app.js:1899 static/js/editor/app.js:633
 msgid "No results."
 msgstr "முடிவுகள் இல்லை."
 
-#: static/js/editor/app.js:2211
+#: static/js/editor/app.js:2235
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2213
+#: static/js/editor/app.js:2237
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2231 static/js/editor/app.js:2280
+#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
 msgid "Similar translations"
 msgstr "ஒத்த மொழிபெயர்ப்புக்கள்."
 
@@ -807,6 +807,40 @@ msgstr "%s ஏற்றுக்கொள்ளப்பட்ட பரி�
 msgid "disabled"
 msgstr ""
 
+#: static/js/shared/utils/relativeTime.js:18
+#, fuzzy
+msgid "A year ago"
+msgstr "ஒரு வருடத்திற்கு முன்"
+
+#: static/js/shared/utils/relativeTime.js:26
+#, fuzzy
+msgid "A month ago"
+msgstr "ஒரு நிமிடத்திற்கு முன்"
+
+#: static/js/shared/utils/relativeTime.js:34
+#, fuzzy
+msgid "A week ago"
+msgstr "ஒரு வாரம் முன்"
+
+#: static/js/shared/utils/relativeTime.js:42
+#, fuzzy
+msgid "Yesterday"
+msgstr "நேற்று"
+
+#: static/js/shared/utils/relativeTime.js:50
+#, fuzzy
+msgid "An hour ago"
+msgstr "ஒரு மணி நேரத்திற்கு முன்"
+
+#: static/js/shared/utils/relativeTime.js:58
+#, fuzzy
+msgid "A minute ago"
+msgstr "ஒரு நிமிடத்திற்கு முன்"
+
+#: static/js/shared/utils/relativeTime.js:64
+msgid "A few seconds ago"
+msgstr "ஒரு சில வினாடிகளுக்கு முன்"
+
 #: static/js/stats.js:60
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
@@ -877,70 +911,6 @@ msgid ""
 "others!"
 msgstr ""
 
-#: static/js/utils.js:168
-#, fuzzy
-msgid "A year ago"
-msgstr "ஒரு வருடத்திற்கு முன்"
-
-#: static/js/utils.js:168
-#, fuzzy, python-format, javascript-format
-msgid "%s year ago"
-msgid_plural "%s years ago"
-msgstr[0] "ஒரு வருடத்திற்கு முன்"
-msgstr[1] "%s வருடங்களுக்கு முன்"
-
-#: static/js/utils.js:171
-#, fuzzy
-msgid "A week ago"
-msgstr "ஒரு வாரம் முன்"
-
-#: static/js/utils.js:171
-#, fuzzy, python-format, javascript-format
-msgid "%s week ago"
-msgid_plural "%s weeks ago"
-msgstr[0] "ஒரு வாரம் முன்"
-msgstr[1] "%s வாரங்களுக்கு முன்"
-
-#: static/js/utils.js:174
-#, fuzzy
-msgid "Yesterday"
-msgstr "நேற்று"
-
-#: static/js/utils.js:174
-#, fuzzy, python-format, javascript-format
-msgid "%s day ago"
-msgid_plural "%s days ago"
-msgstr[0] "ஒரு வருடத்திற்கு முன்"
-msgstr[1] "%s வருடங்களுக்கு முன்"
-
-#: static/js/utils.js:177
-#, fuzzy
-msgid "An hour ago"
-msgstr "ஒரு மணி நேரத்திற்கு முன்"
-
-#: static/js/utils.js:177
-#, fuzzy, python-format, javascript-format
-msgid "%s hour ago"
-msgid_plural "%s hours ago"
-msgstr[0] "ஒரு மணி நேரத்திற்கு முன்"
-msgstr[1] "%s மணிநேரங்களுக்கு முன்"
-
-#: static/js/utils.js:181
-#, fuzzy
-msgid "A minute ago"
-msgstr "ஒரு நிமிடத்திற்கு முன்"
-
-#: static/js/utils.js:181
-#, fuzzy, python-format, javascript-format
-msgid "%s minute ago"
-msgid_plural "%s minutes ago"
-msgstr[0] "ஒரு நிமிடத்திற்கு முன்"
-msgstr[1] "%s நிமிடங்களுக்கு முன்"
-
-#: static/js/utils.js:189
-msgid "A few seconds ago"
-msgstr "ஒரு சில வினாடிகளுக்கு முன்"
-
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
 msgstr ""
@@ -971,15 +941,15 @@ msgid ""
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
 
-#: static/js/browser.js:261
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "அனைத்து மொழிகளும்"
 
-#: static/js/browser.js:265
+#: static/js/browser.js:271
 msgid "All Projects"
 msgstr "அனைத்து திட்டங்களும்"
 
-#: static/js/browser.js:269
+#: static/js/browser.js:275
 #, fuzzy
 msgid "Entire Project"
 msgstr "அனைத்து திட்டங்களும்"
@@ -1110,19 +1080,49 @@ msgstr "குறைவு"
 msgid "Show"
 msgstr "காட்டு"
 
-#: templates/editor/units/xhr_tm.html:15
+#: templates/editor/units/xhr_tm.html:17
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 
-#: templates/editor/units/xhr_tm.html:18
+#: templates/editor/units/xhr_tm.html:20
 #, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%s year ago"
+#~ msgid_plural "%s years ago"
+#~ msgstr[0] "ஒரு வருடத்திற்கு முன்"
+#~ msgstr[1] "%s வருடங்களுக்கு முன்"
+
+#, fuzzy
+#~ msgid "%s week ago"
+#~ msgid_plural "%s weeks ago"
+#~ msgstr[0] "ஒரு வாரம் முன்"
+#~ msgstr[1] "%s வாரங்களுக்கு முன்"
+
+#, fuzzy
+#~ msgid "%s day ago"
+#~ msgid_plural "%s days ago"
+#~ msgstr[0] "ஒரு வருடத்திற்கு முன்"
+#~ msgstr[1] "%s வருடங்களுக்கு முன்"
+
+#, fuzzy
+#~ msgid "%s hour ago"
+#~ msgid_plural "%s hours ago"
+#~ msgstr[0] "ஒரு மணி நேரத்திற்கு முன்"
+#~ msgstr[1] "%s மணிநேரங்களுக்கு முன்"
+
+#, fuzzy
+#~ msgid "%s minute ago"
+#~ msgid_plural "%s minutes ago"
+#~ msgstr[0] "ஒரு நிமிடத்திற்கு முன்"
+#~ msgstr[1] "%s நிமிடங்களுக்கு முன்"
 
 #~ msgid "Unknown error"
 #~ msgstr "தெரியாத பிழை"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-08-30 09:46+0100\n"
+"POT-Creation-Date: 2016-09-12 20:15+0100\n"
 "PO-Revision-Date: 2015-06-08 15:43+0000\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,7 +145,7 @@ msgstr "Yhteenveto"
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:32 core/browser.py:16
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:30 core/browser.py:16
 msgid "Name"
 msgstr "Nimi"
 
@@ -169,7 +169,7 @@ msgstr "Viesti"
 msgid "Please enter your message"
 msgstr ""
 
-#: apps/contact/views.py:34 templates/layout.html:102
+#: apps/contact/views.py:34 templates/layout.html:103
 msgid "Contact Us"
 msgstr "Ota yhteyttä"
 
@@ -448,7 +448,7 @@ msgstr "Funktiot"
 msgid "GConf values"
 msgstr "GConf-arvot"
 
-#: apps/pootle_misc/checks.py:58 core/utils/stats.py:28
+#: apps/pootle_misc/checks.py:58 core/utils/stats.py:29
 msgid "Fuzzy"
 msgstr "Sumea"
 
@@ -543,7 +543,7 @@ msgid "Unchanged"
 msgstr "Ei muutettu"
 
 #: apps/pootle_misc/checks.py:82 apps/pootle_store/constants.py:66
-#: core/helpers.py:48 core/utils/stats.py:29 templates/editor/_filters.html:9
+#: core/helpers.py:48 core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Kääntämättömät"
 
@@ -696,23 +696,23 @@ msgstr "Haku"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Haku (Ctrl+Shift+S)<br/>Kirjoita hakusana ja paina Enter etsiäksesi"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:484
+#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:442
 msgid "Exact Match"
 msgstr "Tarkalleen sama"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:490
+#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:448
 msgid "Source Text"
 msgstr "Lähdeteksti"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:491
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:449
 msgid "Target Text"
 msgstr "Kohdeteksti"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:492
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:450
 msgid "Comments"
 msgstr "Kommentit"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:493
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:451
 msgid "Locations"
 msgstr "Sijainnit"
 
@@ -737,7 +737,7 @@ msgstr "Viimeinen (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:54
+#: apps/pootle_profile/views.py:55
 msgid "Select one or more languages"
 msgstr "Valitse yksi tai useampi kieli"
 
@@ -816,7 +816,7 @@ msgstr "Käännösprojekti päivitettiin viimeisimmistä mallineista."
 msgid "Translation project (%s) has been deleted"
 msgstr "Käännösprojektin tiedostot on tutkittu uudelleen."
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:105
+#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:111
 msgid "Source"
 msgstr "Lähde"
 
@@ -836,12 +836,12 @@ msgstr "Kommentti"
 msgid "Obsolete"
 msgstr "Vanhentunut"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:257
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:215
 #: core/helpers.py:49 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Keskeneräinen"
 
-#: apps/pootle_store/constants.py:68 core/helpers.py:47 core/utils/stats.py:27
+#: apps/pootle_store/constants.py:68 core/helpers.py:47 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Käännetty"
@@ -859,116 +859,117 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Ei käyttöoikeuksia tähän käännösprojektiin."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:669
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:685
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tälle sivulle."
 
-#: apps/pootle_store/forms.py:146
-#: apps/pootle_store/templatetags/store_tags.py:165
-#: apps/pootle_store/templatetags/store_tags.py:182
-#: apps/pootle_store/templatetags/store_tags.py:189
-#: apps/pootle_store/templatetags/store_tags.py:211
+#: apps/pootle_store/forms.py:104
+#: apps/pootle_store/templatetags/store_tags.py:46
+#: apps/pootle_store/templatetags/store_tags.py:63
+#: apps/pootle_store/templatetags/store_tags.py:70
+#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "Monikon muoto %d"
 
-#: apps/pootle_store/forms.py:304
+#: apps/pootle_store/forms.py:262
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:314
+#: apps/pootle_store/forms.py:272
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr ""
 
-#: apps/pootle_store/forms.py:336
+#: apps/pootle_store/forms.py:294
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:397
+#: apps/pootle_store/forms.py:355
 msgid "Translator comment"
 msgstr "Kääntäjän kommentit"
 
-#: apps/pootle_store/models.py:118
+#: apps/pootle_store/models.py:120
 msgid "Pending"
 msgstr "Odottaa hyväksymistä"
 
-#: apps/pootle_store/models.py:119
+#: apps/pootle_store/models.py:121
 msgid "Accepted"
 msgstr "Hyväksytty"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:122
 msgid "Rejected"
 msgstr "Hylätty"
 
-#: apps/pootle_store/models.py:1149
+#: apps/pootle_store/models.py:1147
 msgid "Path"
 msgstr "Polku"
 
-#: apps/pootle_store/templatetags/store_tags.py:156
-#: apps/pootle_store/templatetags/store_tags.py:160
+#: apps/pootle_store/templatetags/store_tags.py:37
+#: apps/pootle_store/templatetags/store_tags.py:41
 msgid "Singular"
 msgstr "Yksikkö"
 
-#: apps/pootle_store/templatetags/store_tags.py:157
-#: apps/pootle_store/templatetags/store_tags.py:161
+#: apps/pootle_store/templatetags/store_tags.py:38
+#: apps/pootle_store/templatetags/store_tags.py:42
 msgid "Plural"
 msgstr "Monikko"
 
-#: apps/pootle_store/unit/timeline.py:48
+#: apps/pootle_store/unit/timeline.py:47
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Hyväksy ehdotus"
 
-#: apps/pootle_store/unit/timeline.py:49
+#: apps/pootle_store/unit/timeline.py:48
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Hylkää ehdotus"
 
-#: apps/pootle_store/unit/timeline.py:57
+#: apps/pootle_store/unit/timeline.py:56
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Hyväksy ehdotus"
 
-#: apps/pootle_store/unit/timeline.py:62
+#: apps/pootle_store/unit/timeline.py:61
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Hylkää ehdotus"
 
-#: apps/pootle_store/unit/timeline.py:68
+#: apps/pootle_store/unit/timeline.py:67
 #, fuzzy
 msgid "Added suggestion"
 msgstr "%d ehdotus"
 
-#: apps/pootle_store/views.py:181
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:79
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:183 core/decorators.py:44
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:81
+#: core/decorators.py:43
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:238
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:273
+#: apps/pootle_store/views.py:270
 msgid "Comment submission failed."
 msgstr "Kommentin lähetys epäonnistui."
 
-#: apps/pootle_store/views.py:571
+#: apps/pootle_store/views.py:587
 msgid "Failed to process submission."
 msgstr "Kommentin käsittely epäonnistui."
 
-#: apps/pootle_store/views.py:612
+#: apps/pootle_store/views.py:628
 msgid "Failed to process suggestion."
 msgstr "Ehdotuksen käsittely epäonnistui."
 
-#: apps/pootle_store/views.py:647
+#: apps/pootle_store/views.py:663
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:651
+#: apps/pootle_store/views.py:667
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Ehdotus hyväksytty."
@@ -996,8 +997,8 @@ msgid "Effective from"
 msgstr ""
 
 #: apps/reports/models.py:31 apps/reports/models.py:55
-#: templates/editor/export_view.html:106
-#: templates/translation_projects/terminology/manage.html:35
+#: templates/editor/export_view.html:112
+#: templates/translation_projects/terminology/manage.html:40
 #: templates/user/settings.html:28
 msgid "Translation"
 msgstr "Käännös"
@@ -1032,16 +1033,16 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: apps/reports/models.py:67 apps/virtualfolder/models.py:61
+#: apps/reports/models.py:67 apps/virtualfolder/models.py:67
 msgid "Description"
 msgstr "Kuvaus"
 
-#: apps/reports/views.py:324
+#: apps/reports/views.py:323
 #, python-format
 msgid "User %s not found"
 msgstr ""
 
-#: apps/reports/views.py:403
+#: apps/reports/views.py:402
 msgid "Invalid request method"
 msgstr ""
 
@@ -1062,7 +1063,7 @@ msgstr "Onko tämä sivu käytössä vai ei."
 msgid "Virtual Path"
 msgstr ""
 
-#: apps/staticpages/models.py:43
+#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:35
 msgid "Title"
 msgstr "Otsikko"
 
@@ -1119,44 +1120,44 @@ msgstr ""
 msgid "Text is missing"
 msgstr "Seuraava merkkijono"
 
-#: apps/virtualfolder/models.py:37
+#: apps/virtualfolder/models.py:43
 #, fuzzy
 msgid "Location"
 msgstr "Sijainnit"
 
-#: apps/virtualfolder/models.py:40
+#: apps/virtualfolder/models.py:46
 msgid "Root path where this virtual folder is applied."
 msgstr ""
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:44
+#: apps/virtualfolder/models.py:50
 #, fuzzy
 msgid "Filter"
 msgstr "Suodata"
 
-#: apps/virtualfolder/models.py:46
+#: apps/virtualfolder/models.py:52
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
 
-#: apps/virtualfolder/models.py:50 core/browser.py:21
+#: apps/virtualfolder/models.py:56 core/browser.py:21
 msgid "Priority"
 msgstr "Tärkeysaste"
 
-#: apps/virtualfolder/models.py:52
+#: apps/virtualfolder/models.py:58
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 
-#: apps/virtualfolder/models.py:56
+#: apps/virtualfolder/models.py:62
 msgid "Is public?"
 msgstr ""
 
-#: apps/virtualfolder/models.py:58
+#: apps/virtualfolder/models.py:64
 #, fuzzy
 msgid "Whether this virtual folder is public or not."
 msgstr "Onko tämä sivu käytössä vai ei."
 
-#: apps/virtualfolder/models.py:63
+#: apps/virtualfolder/models.py:69
 #, fuzzy, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1479,7 +1480,7 @@ msgstr "Tilanne"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
-#: core/browser.py:44 core/utils/stats.py:26
+#: core/browser.py:44 core/utils/stats.py:27
 #: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Yhteensä"
@@ -1512,11 +1513,11 @@ msgstr "Takaisin pääsivulle"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:322 core/views.py:104
+#: core/decorators.py:309 core/views/decorators.py:69
 msgid "Insufficient rights to access this page."
 msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tälle sivulle."
 
-#: core/decorators.py:335 core/views.py:115
+#: core/decorators.py:322 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Sinulla ei ole Pootlen hallintaoikeuksia."
 
@@ -1591,7 +1592,7 @@ msgstr "Tarkasta ehdotuksia"
 msgid "Can perform administrative tasks"
 msgstr "Djangon ylläpito"
 
-#: core/views.py:159
+#: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr ""
 
@@ -1640,7 +1641,7 @@ msgstr "Käyttöehdot"
 msgid "Terms of Service"
 msgstr "Palveluehdot"
 
-#: templates/about.html:7 templates/layout.html:170
+#: templates/about.html:7 templates/layout.html:171
 msgid "About"
 msgstr "Tietoja"
 
@@ -1725,7 +1726,7 @@ msgid "Registration is currently disabled. Please try again later."
 msgstr ""
 
 #: templates/admin/_generic_formset.html:22
-#: templates/translation_projects/terminology/manage.html:49
+#: templates/translation_projects/terminology/manage.html:54
 msgid "Save Changes"
 msgstr "Tallenna muutokset"
 
@@ -1966,7 +1967,7 @@ msgid "Save"
 msgstr "Tallenna"
 
 #: templates/admin/staticpages/_form.html:7
-#: templates/translation_projects/terminology/manage.html:36
+#: templates/translation_projects/terminology/manage.html:41
 msgid "Delete"
 msgstr "Poista"
 
@@ -2264,19 +2265,19 @@ msgstr ""
 msgid "Export View"
 msgstr ""
 
-#: templates/editor/export_view.html:7 templates/editor/export_view.html:98
+#: templates/editor/export_view.html:7 templates/editor/export_view.html:104
 msgid "All Projects"
 msgstr "Kaikki projektit"
 
-#: templates/editor/export_view.html:8 templates/editor/export_view.html:99
+#: templates/editor/export_view.html:8 templates/editor/export_view.html:105
 msgid "All Languages"
 msgstr "Kaikki kielet"
 
-#: templates/editor/export_view.html:143
+#: templates/editor/export_view.html:152
 msgid "No strings."
 msgstr "Ei merkkijonoja."
 
-#: templates/editor/export_view.html:149
+#: templates/editor/export_view.html:158
 #, python-format
 msgid ""
 "We displayed the first unit out of %(total_count)s. Please refine your "
@@ -2331,133 +2332,133 @@ msgstr ""
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:143
+#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:151
 msgid "Copy into translation"
 msgstr "Kopioi käännökseen"
 
-#: templates/editor/units/edit.html:138
+#: templates/editor/units/edit.html:145
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "Ilmoita lähdemerkkijonossa olevasta ongelmasta"
 
-#: templates/editor/units/edit.html:161 templates/editor/units/edit.html:172
-#: templates/editor/units/edit.html:275
+#: templates/editor/units/edit.html:175 templates/editor/units/edit.html:186
+#: templates/editor/units/edit.html:295
 msgid "Submit"
 msgstr "Lähetä"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:176
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Lähetä käännös ja siirry seuraavaan merkkijonoon (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:167 templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:181 templates/editor/units/edit.html:187
 msgid "Suggest"
 msgstr "Ehdota"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:182
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Ehdota käännöstä ja siirry seuraavaan merkkijonoon (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:172
+#: templates/editor/units/edit.html:186
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Vaihda käännöstilaan (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:173
+#: templates/editor/units/edit.html:187
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Vaihda ehdotustilaan (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:178
+#: templates/editor/units/edit.html:192
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Merkitse merkkijono keskeneräiseksi (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:200
+#: templates/editor/units/edit.html:220
 msgid "Show Timeline"
 msgstr "Näytä aikajana"
 
-#: templates/editor/units/edit.html:202
+#: templates/editor/units/edit.html:222
 msgid "Add Comment"
 msgstr "Lisää kommentti"
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:224
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:214
+#: templates/editor/units/edit.html:234
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "tarkastanut <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:224
+#: templates/editor/units/edit.html:244
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "Liitä RLM (oikealta vasemmalle -merkki) muokkaimeen"
 
-#: templates/editor/units/edit.html:227
+#: templates/editor/units/edit.html:247
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Liitä LRM (vasemmalta oikealle -merkki) muokkaimeen"
 
-#: templates/editor/units/edit.html:230
+#: templates/editor/units/edit.html:250
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Liitä RLE (oikealta vasemmalle -upotus) muokkaimeen"
 
-#: templates/editor/units/edit.html:233
+#: templates/editor/units/edit.html:253
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Liitä LRE (vasemmalta oikealle -upotus) muokkaimeen"
 
-#: templates/editor/units/edit.html:236
+#: templates/editor/units/edit.html:256
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Liitä RLO (oikealta vasemmalle -sivuutus) muokkaimeen"
 
-#: templates/editor/units/edit.html:239
+#: templates/editor/units/edit.html:259
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Liitä LRO (vasemmalta oikealle -sivuutus) muokkaimeen"
 
-#: templates/editor/units/edit.html:242
+#: templates/editor/units/edit.html:262
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Liitä PDF (Pop Directional Format ) muokkaimeen"
 
-#: templates/editor/units/edit.html:245
+#: templates/editor/units/edit.html:265
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Liitä ZWJ (leveydetön yhdistävä merkki) muokkaimeen"
 
-#: templates/editor/units/edit.html:248
+#: templates/editor/units/edit.html:268
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Liitä ZWNJ (leveydetön erottava merkki) muokkaimeen"
 
-#: templates/editor/units/edit.html:255
+#: templates/editor/units/edit.html:275
 msgid "Insert this symbol into the editor"
 msgstr "Liitä tämä symboli muokkaimeen"
 
-#: templates/editor/units/edit.html:259
+#: templates/editor/units/edit.html:279
 #, fuzzy
 msgid "Insert space symbol into the editor"
 msgstr "Liitä tämä symboli muokkaimeen"
 
-#: templates/editor/units/edit.html:295
+#: templates/editor/units/edit.html:315
 msgid "User suggestions"
 msgstr "Käyttäjien ehdotukset"
 
-#: templates/editor/units/edit.html:312
+#: templates/editor/units/edit.html:332
 #, fuzzy
 msgid "More options"
 msgstr "Vaihda asetuksia"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:334
 #, fuzzy
 msgid "Less options"
 msgstr "Vaihda asetuksia"
 
-#: templates/editor/units/edit.html:319
+#: templates/editor/units/edit.html:339
 msgid "Accept suggestion"
 msgstr "Hyväksy ehdotus"
 
-#: templates/editor/units/edit.html:324
+#: templates/editor/units/edit.html:344
 msgid "Reject suggestion"
 msgstr "Hylkää ehdotus"
 
-#: templates/editor/units/edit.html:330
+#: templates/editor/units/edit.html:350
 msgid "Remove suggestion"
 msgstr "Poista ehdotus"
 
-#: templates/editor/units/edit.html:350
+#: templates/editor/units/edit.html:372
 msgid "A long time ago"
 msgstr ""
 
@@ -2507,21 +2508,21 @@ msgstr ""
 msgid "Timeline"
 msgstr "Aikajana"
 
-#: templates/editor/units/xhr_timeline.html:32
+#: templates/editor/units/xhr_timeline.html:35
 msgid "Last comment removed"
 msgstr ""
 
-#: templates/editor/units/xhr_timeline.html:38
+#: templates/editor/units/xhr_timeline.html:41
 #, fuzzy, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr "<a href=\"%(url)s\">%(num)d sanaa</a>"
 
-#: templates/editor/units/xhr_timeline.html:42
+#: templates/editor/units/xhr_timeline.html:45
 #, fuzzy, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr "<a href=\"%(url)s\">%(num)d sanaa</a>"
 
-#: templates/editor/units/xhr_timeline.html:54
+#: templates/editor/units/xhr_timeline.html:57
 msgid "Unit created"
 msgstr ""
 
@@ -2614,43 +2615,43 @@ msgstr ""
 msgid "Below you can add, edit, and delete the permissions for this language."
 msgstr "Täällä voit määritellä tämän kielen käyttöoikeudet."
 
-#: templates/layout.html:82
+#: templates/layout.html:83
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:83
+#: templates/layout.html:84
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Aseta JavaScript käyttöön selaimesi asetuksista ja lataa sivu uudelleen."
 
-#: templates/layout.html:92
+#: templates/layout.html:93
 msgid "skip to navigation"
 msgstr "siirry navigointiin"
 
-#: templates/layout.html:113
+#: templates/layout.html:114
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:114 templates/user/settings.html:4
+#: templates/layout.html:115 templates/user/settings.html:4
 #: templates/user/settings.html.py:7
 msgid "Settings"
 msgstr "Asetukset"
 
-#: templates/layout.html:115 templates/user/profile.html:68
+#: templates/layout.html:116 templates/user/profile.html:68
 #: templates/user/stats.html:46 templates/user/stats.html.py:50
 msgid "Statistics"
 msgstr ""
 
-#: templates/layout.html:117
+#: templates/layout.html:118
 msgid "Admin"
 msgstr "Hallinta"
 
-#: templates/layout.html:120
+#: templates/layout.html:121
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:124
+#: templates/layout.html:125
 msgid "Sign In"
 msgstr ""
 
@@ -2727,7 +2728,7 @@ msgstr "Kuvaus..."
 msgid "Details..."
 msgstr "Lisätietoja..."
 
-#: templates/translation_projects/terminology/_term_edit.html:31
+#: templates/translation_projects/terminology/_term_edit.html:32
 msgid "Translator Comments"
 msgstr "Kääntäjän kommentit"
 
@@ -2735,17 +2736,17 @@ msgstr "Kääntäjän kommentit"
 msgid "Manage Terminology"
 msgstr "Terminologian hallinta"
 
-#: templates/translation_projects/terminology/manage.html:34
+#: templates/translation_projects/terminology/manage.html:39
 msgid "Term"
 msgstr "Termi"
 
-#: templates/translation_projects/terminology/manage.html:58
+#: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
 msgstr ""
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
-#: templates/translation_projects/terminology/manage.html:62
+#: templates/translation_projects/terminology/manage.html:67
 msgid ""
 "In order to use the terminology feature, make sure to add a terminology file "
 "to your translation project. The terminology file must be named 'pootle-"
