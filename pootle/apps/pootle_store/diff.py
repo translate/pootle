@@ -32,6 +32,27 @@ class UnitDiffProxy(UnitProxy):
     def __ne__(self, other):
         return not self == other
 
+    def hasplural(self):
+        return (
+            self.source is not None
+            and (len(self.source.strings) > 1
+                 or getattr(self.source, "plural", None)))
+
+    def getnotes(self, origin=None):
+        return self.unit.get("%s_comment" % origin, "")
+
+    def getcontext(self):
+        return self.unit["context"]
+
+    def isfuzzy(self):
+        return self.unit["state"] == FUZZY
+
+    def isobsolete(self):
+        return self.unit["state"] == OBSOLETE
+
+    def getid(self):
+        return self.unit["unitid"]
+
 
 class DBUnit(UnitDiffProxy):
     pass
@@ -50,6 +71,9 @@ class FileUnit(UnitDiffProxy):
     @property
     def target(self):
         return multistring_to_python(self.unit["target"])
+
+    def hasplural(self):
+        return self.unit["hasplural"]
 
 
 class DiffableStore(object):
@@ -92,6 +116,7 @@ class DiffableStore(object):
             "source": unit.source,
             "target": unit.target,
             "state": state,
+            "hasplural": unit.hasplural(),
             "developer_comment": unit.getnotes(origin="developer"),
             "translator_comment": unit.getnotes(origin="translator")}
 
@@ -271,12 +296,16 @@ class StoreDiff(object):
     def get_units_to_add(self):
         offset = 0
         to_add = []
+        proxy = (
+            isinstance(self.source_store, models.Model)
+            and DBUnit or FileUnit)
+
         for (insert_at, uids_add, next_index_, delta) in self.insert_points:
             for index, uid in enumerate(uids_add):
-                source_unit = self.source_store.findid(uid)
-                if source_unit and source_unit.getid() not in self.target_units:
+                source_unit = self.source_units.get(uid)
+                if source_unit and uid not in self.target_units:
                     new_unit_index = insert_at + index + 1 + offset
-                    to_add += [(source_unit, new_unit_index)]
+                    to_add += [(proxy(source_unit), new_unit_index)]
             if delta > 0:
                 offset += delta
         return to_add
