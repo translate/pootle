@@ -11,6 +11,7 @@ import os
 import pytest
 
 from translate.filters import checks
+from translate.misc.multistring import multistring
 
 from django.db import IntegrityError
 
@@ -266,6 +267,9 @@ def _test_tp_match(source_tp, target_tp):
             assert unit.source == updated_unit.source
             assert unit.target == updated_unit.target
             assert unit.state == updated_unit.state
+            assert unit.getcontext() == updated_unit.getcontext()
+            assert unit.getlocations() == updated_unit.getlocations()
+            assert unit.hasplural() == updated_unit.hasplural()
     for store in target_tp.stores.live():
         source_path = (
             "/%s/%s"
@@ -296,8 +300,16 @@ def test_tp_tool_update(po_directory, tp0, templates):
     tp0.stores.first().delete()
     tp0.stores.first().units.first().delete()
     unit = tp0.stores.first().units.first()
+    unit.source = multistring(["NEW TARGET", "NEW TARGETS"])
     unit.target = "NEW TARGET"
+    unit.context = "something-else"
     unit.save()
+    newunit = unit.__class__()
+    newunit.source = multistring(["OTHER NEW TARGET", "OTHER NEW TARGETS"])
+    newunit.target = "OTHER NEW TARGET"
+    newunit.context = "something-else-again"
+    unit.store.addunit(newunit)
+
     tp0_tool.update_from_tp(tp0, new_tp)
     _test_tp_match(tp0, new_tp)
 
