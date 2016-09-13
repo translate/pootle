@@ -10,6 +10,8 @@ import copy
 
 import pytest
 
+from .language import language0
+
 
 TEST_USERS = {
     'nobody': dict(
@@ -28,7 +30,8 @@ TEST_USERS = {
         email="admin@poot.le"),
     'member': dict(
         fullname='Member',
-        password=''),
+        password='',
+        alt_src_lang=language0),
     'member2': dict(
         fullname='Member2',
         password='')}
@@ -47,7 +50,7 @@ def site_users(request):
 
 
 def _require_user(username, fullname, password=None,
-                  is_superuser=False, email=None):
+                  is_superuser=False, email=None, alt_src_lang=None):
     """Helper to get/create a new user."""
     from accounts.utils import verify_user
     from django.contrib.auth import get_user_model
@@ -70,6 +73,8 @@ def _require_user(username, fullname, password=None,
         user.save()
         if email:
             verify_user(user)
+    if alt_src_lang is not None:
+        user.alt_src_langs.add(alt_src_lang())
 
     return user
 

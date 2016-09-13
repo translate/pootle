@@ -404,7 +404,8 @@ def test_apiview_get_multi_m2m(rf):
     response = view(request)
     response_data = json.loads(response.content)
 
-    for model in response_data["models"]:
+    for model in [x for x in response_data["models"]
+                  if x['username'] in ['foo0', 'foo1']]:
         assert model['alt_src_langs'] == []
 
     user0.alt_src_langs.add(LanguageDBFactory(code="alt1"))

@@ -25,7 +25,8 @@ def test_get_edit_unit(project0_nongnu, client, request_users, settings):
             username=user.username,
             password=request_users["password"])
 
-    unit = Unit.objects.get_translatable(user).first()
+    unit = Unit.objects.get_translatable(user,
+                                         language_code='language1').first()
     store = unit.store
     filetype = unit.store.filetype.name
     directory = store.parent
