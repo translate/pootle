@@ -326,9 +326,6 @@ class Submission(models.Model):
         scorelogs_created = []
         for score in ScoreLog.get_scorelogs(submission=self):
             if 'action_code' in score and score['user'] is not None:
-                if not isinstance(score["user"], models.Model):
-                    score["user_id"] = score["user"]
-                    del score["user"]
                 scorelogs_created.append(ScoreLog(**score))
         if scorelogs_created:
             self.scorelog_set.add(*scorelogs_created)
@@ -418,16 +415,14 @@ class ScoreLog(models.Model):
             'submission': submission,
         }
 
-        translator = submission.unit.submitted_by_id
+        translator_id = submission.unit.submitted_by_id
         if submission.unit.reviewed_by_id:
-            reviewer = submission.unit.reviewed_by_id
+            reviewer_id = submission.unit.reviewed_by_id
         else:
-            reviewer = translator
+            reviewer_id = translator_id
 
         previous_translator_score = score_dict.copy()
-        previous_translator_score['user'] = translator
         previous_reviewer_score = score_dict.copy()
-        previous_reviewer_score['user'] = reviewer
         submitter_score = score_dict.copy()
         submitter_score['user'] = submission.submitter
         suggester_score = score_dict.copy()
@@ -449,8 +444,8 @@ class ScoreLog(models.Model):
                     previous_reviewer_score['action_code'] = \
                         TranslationActionCodes.REVIEW_PENALTY
                 else:
-                    if (reviewer is not None and
-                        submission.submitter_id == reviewer):
+                    if (reviewer_id is not None and
+                        submission.submitter_id == reviewer_id):
                         submitter_score['action_code'] = \
                             TranslationActionCodes.EDITED_OWN
                     else:
@@ -490,6 +485,14 @@ class ScoreLog(models.Model):
                 TranslationActionCodes.SUGG_REVIEWED_REJECTED
             suggester_score['action_code'] = \
                 TranslationActionCodes.SUGG_REJECTED
+
+        if 'action_code' in previous_translator_score:
+            previous_translator_score['user'] = submission.unit.submitted_by
+        if 'action_code' in previous_reviewer_score:
+            if submission.unit.reviewed_by_id:
+                previous_reviewer_score['user'] = submission.unit.reviewed_by
+            else:
+                previous_reviewer_score['user'] = submission.unit.submitted_by
 
         return [submitter_score, previous_translator_score,
                 previous_reviewer_score, suggester_score]
