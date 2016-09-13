@@ -27,6 +27,7 @@ def test_get_edit_unit(project0_nongnu, client, request_users, settings):
 
     unit = Unit.objects.get_translatable(user).first()
     store = unit.store
+    filetype = unit.store.filetype.name
     directory = store.parent
     translation_project = store.translation_project
     project = translation_project.project
@@ -48,6 +49,7 @@ def test_get_edit_unit(project0_nongnu, client, request_users, settings):
     assert response.context["unit"] == unit
     assert response.context["priority"] == store.priority
     assert response.context["store"] == store
+    assert response.context["filetype"] == filetype
     assert response.context["directory"] == directory
     assert response.context["project"] == project
     assert response.context["language"] == language
