@@ -320,10 +320,18 @@ class Submission(models.Model):
     def save(self, *args, **kwargs):
         super(Submission, self).save(*args, **kwargs)
 
-        if self.needs_scorelog():
-            for score in ScoreLog.get_scorelogs(submission=self):
-                if 'action_code' in score and score['user'] is not None:
-                    ScoreLog.objects.create(**score)
+        if not self.needs_scorelog():
+            return
+
+        scorelogs_created = []
+        for score in ScoreLog.get_scorelogs(submission=self):
+            if 'action_code' in score and score['user'] is not None:
+                if not isinstance(score["user"], models.Model):
+                    score["user_id"] = score["user"]
+                    del score["user"]
+                scorelogs_created.append(ScoreLog(**score))
+        if scorelogs_created:
+            self.scorelog_set.add(*scorelogs_created)
 
 
 class TranslationActionCodes(object):
@@ -410,9 +418,9 @@ class ScoreLog(models.Model):
             'submission': submission,
         }
 
-        translator = submission.unit.submitted_by
-        if submission.unit.reviewed_by:
-            reviewer = submission.unit.reviewed_by
+        translator = submission.unit.submitted_by_id
+        if submission.unit.reviewed_by_id:
+            reviewer = submission.unit.reviewed_by_id
         else:
             reviewer = translator
 
@@ -442,7 +450,7 @@ class ScoreLog(models.Model):
                         TranslationActionCodes.REVIEW_PENALTY
                 else:
                     if (reviewer is not None and
-                        submission.submitter.id == reviewer.id):
+                        submission.submitter_id == reviewer):
                         submitter_score['action_code'] = \
                             TranslationActionCodes.EDITED_OWN
                     else:
@@ -575,7 +583,7 @@ class ScoreLog(models.Model):
                 # translation was added.
                 s = Submission.objects.get(
                     unit__id=self.submission.unit_id,
-                    submitter__id=self.submission.unit.submitted_by_id,
+                    submitter_id=self.submission.unit.submitted_by_id,
                     creation_time=self.submission.unit.submitted_on,
                     field=SubmissionFields.TARGET,
                     type=SubmissionTypes.NORMAL
