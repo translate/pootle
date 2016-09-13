@@ -11,22 +11,19 @@ import json
 import pytest
 
 from pootle_app.models.permissions import check_user_permission
-from pootle_store.models import Unit
 from pootle_store.util import find_altsrcs
 from pootle_store.views import get_alt_src_langs
 
 
 @pytest.mark.django_db
-def test_get_edit_unit(project0_nongnu, client, request_users, settings):
-
+def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
+                       request_users, settings):
     user = request_users["user"]
     if user.username != "nobody":
         client.login(
             username=user.username,
             password=request_users["password"])
-
-    unit = Unit.objects.get_translatable(user,
-                                         language_code='language1').first()
+    unit = get_edit_unit
     store = unit.store
     filetype = unit.store.filetype.name
     directory = store.parent
@@ -44,10 +41,11 @@ def test_get_edit_unit(project0_nongnu, client, request_users, settings):
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
     altsrcs = find_altsrcs(unit, alt_src_langs, store=store, project=project)
     altsrcs = {x.id: x.data for x in altsrcs}
+    sources = {altsrcs[x]['language_code']: altsrcs[x]['target'] for x in altsrcs}
+    sources[src_lang.code] = unit.source
 
     assert result["is_obsolete"] is False
-    assert result["sources"] == {src_lang.code: unit.source}
-
+    assert result["sources"] == sources
     assert response.context["unit"] == unit
     assert response.context["priority"] == store.priority
     assert response.context["store"] == store
