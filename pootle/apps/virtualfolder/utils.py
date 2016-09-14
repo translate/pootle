@@ -8,41 +8,11 @@
 
 from fnmatch import fnmatch
 
-from pootle.core.url_helpers import split_pootle_path
 from pootle_data.utils import RelatedStoresDataTool
 from pootle_fs.utils import PathFilter
 from pootle_store.models import Store
 
-from .models import VirtualFolder, VirtualFolderTreeItem
-
-
-def update_vfolder_tree(vf, store):
-    """For a given VirtualFolder and Store update the VirtualFolderTreeItem
-    """
-    # Create missing VirtualFolderTreeItem tree structure for affected Stores
-    # after adding or unobsoleting Units.
-    created = False
-    try:
-        vfolder_treeitem = (
-            VirtualFolderTreeItem.objects.select_related("directory").get(
-                directory=store.parent, vfolder=vf))
-    except VirtualFolderTreeItem.DoesNotExist:
-        parts = split_pootle_path(store.parent.pootle_path)
-        path_parts = ["", parts[0], parts[1], vf.name]
-        if parts[2]:
-            path_parts.append(parts[2].strip("/"))
-        path_parts.append(parts[3])
-        pootle_path = "/".join(path_parts)
-        vfolder_treeitem = (
-            VirtualFolderTreeItem.objects.create(
-                pootle_path=pootle_path,
-                directory=store.parent,
-                vfolder=vf))
-        created = True
-    if not created:
-        # The VirtualFolderTreeItem already existed, so
-        # calculate again the stats up to the root.
-        vfolder_treeitem.update_all_cache()
+from .models import VirtualFolder
 
 
 class VirtualFolderFinder(object):
@@ -76,8 +46,6 @@ class VirtualFolderFinder(object):
         if to_add:
             self.store.vfolders.add(*to_add)
             self.store.set_priority()
-        for vf in to_add:
-            update_vfolder_tree(vf, self.store)
 
 
 class VirtualFolderPathMatcher(object):
@@ -212,7 +180,6 @@ class VirtualFolderPathMatcher(object):
         """
         added, removed = self.add_and_remove_stores()
         for store in added:
-            update_vfolder_tree(self.vf, store)
             if store.priority < self.vf.priority:
                 store.set_priority(priority=self.vf.priority)
         for store in removed:
