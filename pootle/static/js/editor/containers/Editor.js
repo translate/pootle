@@ -121,7 +121,7 @@ const Editor = React.createClass({
         >
           {(this.props.targetNplurals > 1) &&
             <div className="subheader">
-              { t('Plural form %(number)s', { number: i }) }
+              { t('Plural form %(index)s', { index: i }) }
             </div>
           }
           <this.props.textareaComponent
