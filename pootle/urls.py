@@ -42,6 +42,7 @@ urlpatterns += [
     url(r'', include('pootle_profile.urls')),
 
     # Pootle URLs
+    url(r'', include('duedates.urls')),
     url(r'', include('staticpages.urls')),
     url(r'^help/quality-checks/',
         TemplateView.as_view(template_name="help/quality_checks.html"),
