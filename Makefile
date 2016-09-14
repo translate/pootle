@@ -94,7 +94,12 @@ put-translations:
 linguas:
 	@${SRC_DIR}/tools/make-LINGUAS.sh 80 > ${SRC_DIR}/locale/LINGUAS
 
-lint: lint-js lint-css
+lint: lint-python lint-js lint-css
+
+lint-python:
+	flake8 --config=setup.cfg && \
+	pydocstyle && \
+	isort --check-only --diff
 
 lint-js:
 	cd ${JS_DIR} \
