@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-12 20:15+0100\n"
+"POT-Creation-Date: 2016-09-14 16:13+0100\n"
 "PO-Revision-Date: 2016-09-01 16:41+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -862,7 +862,7 @@ msgstr "Pro zadávání návrhů nemáte dostatečná oprávnění."
 msgid "Insufficient rights to access translation mode."
 msgstr "Pro zadávání překladů nemáte dostatečná oprávnění."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:685
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:686
 msgid "Insufficient rights to access review mode."
 msgstr "Pro provádění kontrol nemáte dostatečná oprávnění."
 
@@ -959,19 +959,19 @@ msgstr "Odstranění komentáře se nezdařilo."
 msgid "Comment submission failed."
 msgstr "Odeslání komentáře se nezdařilo."
 
-#: apps/pootle_store/views.py:587
+#: apps/pootle_store/views.py:588
 msgid "Failed to process submission."
 msgstr "Zpracování překladu se nezdařilo."
 
-#: apps/pootle_store/views.py:628
+#: apps/pootle_store/views.py:629
 msgid "Failed to process suggestion."
 msgstr "Zpracování návrhu se nezdařilo."
 
-#: apps/pootle_store/views.py:663
+#: apps/pootle_store/views.py:664
 msgid "Suggestion rejected with comment"
 msgstr "Návrh byl odmítnut s komentářem"
 
-#: apps/pootle_store/views.py:667
+#: apps/pootle_store/views.py:668
 msgid "Suggestion accepted with comment"
 msgstr "Návrh byl přijat s komentářem"
 
@@ -2347,129 +2347,129 @@ msgstr "Kliknutím otevřete obrázek ve vyskakovacím okně"
 msgid "Screenshots..."
 msgstr "Snímky obrazovky..."
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
 msgid "Copy into translation"
 msgstr "Kopírovat do překladu"
 
-#: templates/editor/units/edit.html:145
+#: templates/editor/units/edit.html:133
 msgid "Report a problem with this string"
 msgstr "Nahlásit chybu v řetězci"
 
-#: templates/editor/units/edit.html:175 templates/editor/units/edit.html:186
-#: templates/editor/units/edit.html:295
+#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:276
 msgid "Submit"
 msgstr "Odeslat"
 
-#: templates/editor/units/edit.html:176
+#: templates/editor/units/edit.html:152
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Odeslat překlad a přejít na další řetězec (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:181 templates/editor/units/edit.html:187
+#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
 msgid "Suggest"
 msgstr "Navrhnout"
 
-#: templates/editor/units/edit.html:182
+#: templates/editor/units/edit.html:158
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Navrhnout překlad a přejít na další řetězec (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:186
+#: templates/editor/units/edit.html:162
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Přepnout do režimu překladu (Ctrl+Shift+Mezerník)"
 
-#: templates/editor/units/edit.html:187
+#: templates/editor/units/edit.html:163
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Přepnout do režimu návrhu (Ctrl+Shift+Mezerník)"
 
-#: templates/editor/units/edit.html:192
+#: templates/editor/units/edit.html:168
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Označit jako řetězec vyžadující další zpracování (Ctrl+Mezerník)"
 
-#: templates/editor/units/edit.html:220
+#: templates/editor/units/edit.html:201
 msgid "Show Timeline"
 msgstr "Zobrazit časovou osu"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:203
 msgid "Add Comment"
 msgstr "Přidat komentář"
 
-#: templates/editor/units/edit.html:224
+#: templates/editor/units/edit.html:205
 msgid "Raw View"
 msgstr "Neformátované zobrazení"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:215
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "zkontroloval <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:244
+#: templates/editor/units/edit.html:225
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "Vložit RLM (Right-To-Left Mark)"
 
-#: templates/editor/units/edit.html:247
+#: templates/editor/units/edit.html:228
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "Vložit LRM (Left-To-Right Mark)"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:231
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "Vložit RLE (Right-To-Left Embedding)"
 
-#: templates/editor/units/edit.html:253
+#: templates/editor/units/edit.html:234
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "Vložit LRE (Left-To-Right Embedding)"
 
-#: templates/editor/units/edit.html:256
+#: templates/editor/units/edit.html:237
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "Vložit RLO (Right-To-Left Override)"
 
-#: templates/editor/units/edit.html:259
+#: templates/editor/units/edit.html:240
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "Vložit LRO (Left-To-Right Override)"
 
-#: templates/editor/units/edit.html:262
+#: templates/editor/units/edit.html:243
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "Vložit PDF (Pop Directional Format )"
 
-#: templates/editor/units/edit.html:265
+#: templates/editor/units/edit.html:246
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Vložit ZWJ (Zero Width Joiner)"
 
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:249
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Vložit ZWNJ (Zero Width Non Joiner)"
 
-#: templates/editor/units/edit.html:275
+#: templates/editor/units/edit.html:256
 msgid "Insert this symbol into the editor"
 msgstr "Vložit symbol do pole editoru"
 
-#: templates/editor/units/edit.html:279
+#: templates/editor/units/edit.html:260
 msgid "Insert space symbol into the editor"
 msgstr "Vložit symbol mezery do pole editoru"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "Uživatelské návrhy"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:313
 msgid "More options"
 msgstr "Další možnosti"
 
-#: templates/editor/units/edit.html:334
+#: templates/editor/units/edit.html:315
 msgid "Less options"
 msgstr "Méně možností"
 
-#: templates/editor/units/edit.html:339
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "Přijmout návrh"
 
-#: templates/editor/units/edit.html:344
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "Odmítnout návrh"
 
-#: templates/editor/units/edit.html:350
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "Odstranit návrh"
 
-#: templates/editor/units/edit.html:372
+#: templates/editor/units/edit.html:353
 msgid "A long time ago"
 msgstr "Velmi dávno"
 

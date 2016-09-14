@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-12 20:15+0100\n"
+"POT-Creation-Date: 2016-09-14 16:13+0100\n"
 "PO-Revision-Date: 2016-07-20 15:16+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,7 +548,7 @@ msgstr "Mostrar desativados"
 msgid "Hide disabled"
 msgstr "Ocultar desativados"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:641
+#: static/js/editor/app.js:318 static/js/editor/app.js:640
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -603,47 +603,47 @@ msgstr "Submissões de %s"
 msgid "%s's overwritten submissions"
 msgstr "Submissões substituídas para %s"
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1113
 msgid "Error while connecting to the server"
 msgstr "Ocorreu um erro ao ligar ao servidor"
 
-#: static/js/editor/app.js:1118
+#: static/js/editor/app.js:1117
 msgid "Not found"
 msgstr "Não encontrado"
 
-#: static/js/editor/app.js:1120
+#: static/js/editor/app.js:1119
 msgid "Server error"
 msgstr "Erro no servidor"
 
-#: static/js/editor/app.js:1122
+#: static/js/editor/app.js:1121
 msgid "The server seems down. Try again later."
 msgstr "Parece que o servidor está desligado. Tente mais tarde."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1130
 msgid "This string no longer exists."
 msgstr "Esta string não existe mais."
 
-#: static/js/editor/app.js:1132
+#: static/js/editor/app.js:1131
 msgid "Go back to browsing"
 msgstr "Voltar para a navegação"
 
-#: static/js/editor/app.js:1134
+#: static/js/editor/app.js:1133
 msgid "Reload page"
 msgstr "Recarregar página"
 
-#: static/js/editor/app.js:1899 static/js/editor/app.js:633
+#: static/js/editor/app.js:1898 static/js/editor/app.js:632
 msgid "No results."
 msgstr "Nenhum resultado."
 
-#: static/js/editor/app.js:2235
+#: static/js/editor/app.js:2234
 msgid "some anonymous user"
 msgstr "algum usuário anônimo"
 
-#: static/js/editor/app.js:2237
+#: static/js/editor/app.js:2236
 msgid "someone"
 msgstr "alguém"
 
-#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
+#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
 msgid "Similar translations"
 msgstr "Traduções similares"
 
@@ -663,9 +663,17 @@ msgstr "Aceitar"
 msgid "Reject"
 msgstr "Rejeitar"
 
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s via envio de arquivo"
+
+#: static/js/editor/containers/Editor.js:124
+msgid "Plural form %(number)s"
+msgstr ""
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287

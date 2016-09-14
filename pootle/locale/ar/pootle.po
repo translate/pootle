@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-12 20:15+0100\n"
+"POT-Creation-Date: 2016-09-14 16:13+0100\n"
 "PO-Revision-Date: 2016-07-28 16:02+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -855,7 +855,7 @@ msgstr "صلاحيّاتك غير كافية للنّفاذ إلى وضع الا
 msgid "Insufficient rights to access translation mode."
 msgstr "صلاحيّاتك غير كافية للنّفاذ إلى وضع التّرجمة."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:685
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:686
 msgid "Insufficient rights to access review mode."
 msgstr "صلاحيّاتك غير كافية للنّفاذ إلى وضع المراجعة."
 
@@ -951,19 +951,19 @@ msgstr "فشلت إزالة التّعليق."
 msgid "Comment submission failed."
 msgstr "فشل إيداع التّعليق."
 
-#: apps/pootle_store/views.py:587
+#: apps/pootle_store/views.py:588
 msgid "Failed to process submission."
 msgstr "فشل إيداع التّرجمة."
 
-#: apps/pootle_store/views.py:628
+#: apps/pootle_store/views.py:629
 msgid "Failed to process suggestion."
 msgstr "فشلت معالجة الاقتراح."
 
-#: apps/pootle_store/views.py:663
+#: apps/pootle_store/views.py:664
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:667
+#: apps/pootle_store/views.py:668
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "قبل الاقتراح."
@@ -2322,130 +2322,130 @@ msgstr "انقر لفتح الصّورة في منبثقة"
 msgid "Screenshots..."
 msgstr "لقطات الشّاشة..."
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
 msgid "Copy into translation"
 msgstr "انسخ والصق كترجمة"
 
-#: templates/editor/units/edit.html:145
+#: templates/editor/units/edit.html:133
 msgid "Report a problem with this string"
 msgstr "أبلغ عن مشكلة بهذا المقطع"
 
-#: templates/editor/units/edit.html:175 templates/editor/units/edit.html:186
-#: templates/editor/units/edit.html:295
+#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:276
 msgid "Submit"
 msgstr "أرسل"
 
-#: templates/editor/units/edit.html:176
+#: templates/editor/units/edit.html:152
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "أرسل التّرجمة وانتقل إلى المقطع التّالي (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:181 templates/editor/units/edit.html:187
+#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
 msgid "Suggest"
 msgstr "اقترح"
 
-#: templates/editor/units/edit.html:182
+#: templates/editor/units/edit.html:158
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "اقترح التّرجمة وانتقل إلى المقطع التّالي (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:186
+#: templates/editor/units/edit.html:162
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "انتقل إلى وضع التّرجمة (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:187
+#: templates/editor/units/edit.html:163
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "انتقل إلى وضع الاقتراح (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:192
+#: templates/editor/units/edit.html:168
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "علّم هذا المقطع لاحتياجه إلى المزيد من العمل (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:220
+#: templates/editor/units/edit.html:201
 msgid "Show Timeline"
 msgstr "أظهر التّأريخ"
 
-#: templates/editor/units/edit.html:222
+#: templates/editor/units/edit.html:203
 msgid "Add Comment"
 msgstr "أضف تعليقًا"
 
-#: templates/editor/units/edit.html:224
+#: templates/editor/units/edit.html:205
 msgid "Raw View"
 msgstr "منظور الخام"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:215
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "راجعها <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:244
+#: templates/editor/units/edit.html:225
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr "أدخل علامة يمين إلى يسار في المحرّر (RLM)"
 
-#: templates/editor/units/edit.html:247
+#: templates/editor/units/edit.html:228
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr "أدخل علامة يسار إلى يمين في المحرّر (LRM)"
 
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:231
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr "أدخل علامة غرس يمين إلى يسار في المحرّر (RLE)"
 
-#: templates/editor/units/edit.html:253
+#: templates/editor/units/edit.html:234
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr "أدخل علامة غرس يسار إلى يمين في المحرّر (LRE)"
 
-#: templates/editor/units/edit.html:256
+#: templates/editor/units/edit.html:237
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr "أدخل علامة تخطّي يمين إلى يسار في المحرّر (RLO)"
 
-#: templates/editor/units/edit.html:259
+#: templates/editor/units/edit.html:240
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr "أدخل علامة تخطّي يسار إلى يمين في المحرّر (LRO)"
 
-#: templates/editor/units/edit.html:262
+#: templates/editor/units/edit.html:243
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "أدخل علامة إيقاف تنسيق الاتّجاه (PDF) في المحرّر"
 
-#: templates/editor/units/edit.html:265
+#: templates/editor/units/edit.html:246
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "أدخل علامة واصل صفريّ العرض (ZWJ) في المحرّر"
 
-#: templates/editor/units/edit.html:268
+#: templates/editor/units/edit.html:249
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "أدخل علامة فاصل صفريّ العرض (ZWNJ) في المحرّر"
 
-#: templates/editor/units/edit.html:275
+#: templates/editor/units/edit.html:256
 msgid "Insert this symbol into the editor"
 msgstr "أدخل هذا الرّمز في المحرّر"
 
-#: templates/editor/units/edit.html:279
+#: templates/editor/units/edit.html:260
 #, fuzzy
 msgid "Insert space symbol into the editor"
 msgstr "أدخل هذا الرّمز في المحرّر"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "اقتراحات المستخدم"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:313
 msgid "More options"
 msgstr "خيارات أخرى"
 
-#: templates/editor/units/edit.html:334
+#: templates/editor/units/edit.html:315
 msgid "Less options"
 msgstr "خيارات أقل"
 
-#: templates/editor/units/edit.html:339
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "اقبل الاقتراح"
 
-#: templates/editor/units/edit.html:344
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "ارفض الاقتراح"
 
-#: templates/editor/units/edit.html:350
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "احذف الاقتراح"
 
-#: templates/editor/units/edit.html:372
+#: templates/editor/units/edit.html:353
 msgid "A long time ago"
 msgstr "منذ زمن مضى"
 

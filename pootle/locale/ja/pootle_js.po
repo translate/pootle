@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-12 20:15+0100\n"
+"POT-Creation-Date: 2016-09-14 16:13+0100\n"
 "PO-Revision-Date: 2016-08-06 12:09+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -533,7 +533,7 @@ msgstr "無効なものを表示"
 msgid "Hide disabled"
 msgstr "無効なものを隠す"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:641
+#: static/js/editor/app.js:318 static/js/editor/app.js:640
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -586,47 +586,47 @@ msgstr "%s の提出"
 msgid "%s's overwritten submissions"
 msgstr "%s の上書きする提出"
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1113
 msgid "Error while connecting to the server"
 msgstr "サーバーに接続する際にエラーが発生しました"
 
-#: static/js/editor/app.js:1118
+#: static/js/editor/app.js:1117
 msgid "Not found"
 msgstr "見つかりませんでした"
 
-#: static/js/editor/app.js:1120
+#: static/js/editor/app.js:1119
 msgid "Server error"
 msgstr "サーバー エラー"
 
-#: static/js/editor/app.js:1122
+#: static/js/editor/app.js:1121
 msgid "The server seems down. Try again later."
 msgstr "サーバーが停止しているようです。後でもう一度試してください。"
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1130
 msgid "This string no longer exists."
 msgstr "この文字列は存在しません。"
 
-#: static/js/editor/app.js:1132
+#: static/js/editor/app.js:1131
 msgid "Go back to browsing"
 msgstr "ブラウジングへ戻る"
 
-#: static/js/editor/app.js:1134
+#: static/js/editor/app.js:1133
 msgid "Reload page"
 msgstr "ページを再読み込み"
 
-#: static/js/editor/app.js:1899 static/js/editor/app.js:633
+#: static/js/editor/app.js:1898 static/js/editor/app.js:632
 msgid "No results."
 msgstr "該当するものはありません。"
 
-#: static/js/editor/app.js:2235
+#: static/js/editor/app.js:2234
 msgid "some anonymous user"
 msgstr "匿名ユーザ"
 
-#: static/js/editor/app.js:2237
+#: static/js/editor/app.js:2236
 msgid "someone"
 msgstr "誰か"
 
-#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
+#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
 msgid "Similar translations"
 msgstr "類似翻訳"
 
@@ -646,9 +646,17 @@ msgstr "受諾"
 msgid "Reject"
 msgstr "拒否"
 
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s にファイルをアップロード"
+
+#: static/js/editor/containers/Editor.js:124
+msgid "Plural form %(number)s"
+msgstr ""
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287

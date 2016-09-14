@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-12 20:15+0100\n"
+"POT-Creation-Date: 2016-09-14 16:13+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -566,7 +566,7 @@ msgstr "Taispeáin díchumasaithe"
 msgid "Hide disabled"
 msgstr "Folaigh díchumasaithe"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:641
+#: static/js/editor/app.js:318 static/js/editor/app.js:640
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -621,48 +621,48 @@ msgstr "Aistriúcháin de chuid %s"
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1113
 msgid "Error while connecting to the server"
 msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
-#: static/js/editor/app.js:1118
+#: static/js/editor/app.js:1117
 msgid "Not found"
 msgstr "Gan aimsiú"
 
-#: static/js/editor/app.js:1120
+#: static/js/editor/app.js:1119
 msgid "Server error"
 msgstr "Earráid fhreastalaí"
 
-#: static/js/editor/app.js:1122
+#: static/js/editor/app.js:1121
 msgid "The server seems down. Try again later."
 msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1130
 msgid "This string no longer exists."
 msgstr "Níl an teaghrán seo ann a thuilleadh."
 
-#: static/js/editor/app.js:1132
+#: static/js/editor/app.js:1131
 msgid "Go back to browsing"
 msgstr "Brabhsáil"
 
-#: static/js/editor/app.js:1134
+#: static/js/editor/app.js:1133
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:1899 static/js/editor/app.js:633
+#: static/js/editor/app.js:1898 static/js/editor/app.js:632
 msgid "No results."
 msgstr "Gan torthaí."
 
-#: static/js/editor/app.js:2235
+#: static/js/editor/app.js:2234
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2237
+#: static/js/editor/app.js:2236
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
+#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
@@ -682,9 +682,17 @@ msgstr "Glac Leis"
 msgid "Reject"
 msgstr "Diúltaigh"
 
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
 msgstr "Uaslódáilte %(timeSince) ó shin"
+
+#: static/js/editor/containers/Editor.js:124
+msgid "Plural form %(number)s"
+msgstr ""
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287

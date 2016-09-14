@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-12 20:15+0100\n"
+"POT-Creation-Date: 2016-09-14 16:13+0100\n"
 "PO-Revision-Date: 2016-09-12 20:47+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -551,7 +551,7 @@ msgstr "Показывать отключенные"
 msgid "Hide disabled"
 msgstr "Спрятать отключенные"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:641
+#: static/js/editor/app.js:318 static/js/editor/app.js:640
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -606,47 +606,47 @@ msgstr "Предложения %s"
 msgid "%s's overwritten submissions"
 msgstr "Измененные предложения %s"
 
-#: static/js/editor/app.js:1114
+#: static/js/editor/app.js:1113
 msgid "Error while connecting to the server"
 msgstr "Ошибка при соединении с сервером"
 
-#: static/js/editor/app.js:1118
+#: static/js/editor/app.js:1117
 msgid "Not found"
 msgstr "Не найдено"
 
-#: static/js/editor/app.js:1120
+#: static/js/editor/app.js:1119
 msgid "Server error"
 msgstr "Ошибка сервера"
 
-#: static/js/editor/app.js:1122
+#: static/js/editor/app.js:1121
 msgid "The server seems down. Try again later."
 msgstr "Кажется, сервер не работает. Попробуйте повторить позже."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1130
 msgid "This string no longer exists."
 msgstr "Эта строка больше не существует."
 
-#: static/js/editor/app.js:1132
+#: static/js/editor/app.js:1131
 msgid "Go back to browsing"
 msgstr "Вернуться к просмотру"
 
-#: static/js/editor/app.js:1134
+#: static/js/editor/app.js:1133
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
-#: static/js/editor/app.js:1899 static/js/editor/app.js:633
+#: static/js/editor/app.js:1898 static/js/editor/app.js:632
 msgid "No results."
 msgstr "Нет результатов."
 
-#: static/js/editor/app.js:2235
+#: static/js/editor/app.js:2234
 msgid "some anonymous user"
 msgstr "анонимный пользователь"
 
-#: static/js/editor/app.js:2237
+#: static/js/editor/app.js:2236
 msgid "someone"
 msgstr "кто-то"
 
-#: static/js/editor/app.js:2255 static/js/editor/app.js:2304
+#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
 msgid "Similar translations"
 msgstr "Похожие переводы"
 
@@ -666,9 +666,17 @@ msgstr "Принять"
 msgid "Reject"
 msgstr "Отклонить"
 
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s с загрузки файла"
+
+#: static/js/editor/containers/Editor.js:124
+msgid "Plural form %(number)s"
+msgstr ""
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287
