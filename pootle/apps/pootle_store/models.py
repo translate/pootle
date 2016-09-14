@@ -1624,13 +1624,12 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         """
         pootle_paths = super(Store, self).all_pootle_paths()
         if 'virtualfolder' in settings.INSTALLED_APPS:
-            vftis = self.parent_vf_treeitems.values_list(
-                "vfolder__location", "pootle_path")
-            for location, pootle_path in vftis:
+            vftis = self.parent_vf_treeitems
+            for pootle_path in vftis.values_list("pootle_path", flat=True):
                 pootle_paths.extend(
                     [p for p
                      in get_all_pootle_paths(pootle_path)
-                     if p.count('/') > location.count('/')])
+                     if p.count('/') > 3])
         return pootle_paths
 
     # # # /TreeItem
