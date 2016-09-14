@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-12 20:15+0100\n"
-"PO-Revision-Date: 2016-09-03 08:34+0000\n"
+"PO-Revision-Date: 2016-09-12 21:40+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1472891678.000000\n"
+"X-POOTLE-MTIME: 1473716412.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -822,9 +822,8 @@ msgid "A year ago"
 msgstr "Ett år sedan"
 
 #: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
 msgid "A month ago"
-msgstr "En minut sedan"
+msgstr "En månad sedan"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
