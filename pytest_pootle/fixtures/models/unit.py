@@ -18,3 +18,16 @@ def unit_syncer(store0):
     unit = store0.units.filter(state=TRANSLATED).first()
     ttk = getclass(store0)
     return unit, ttk.UnitClass
+
+
+@pytest.fixture
+def unit_plural(store0):
+    from pootle_store.constants import TRANSLATED
+    from ...factories import UnitDBFactory
+
+    return UnitDBFactory(
+        store=store0,
+        state=TRANSLATED,
+        source=["%d day ago", "%d days ago"],
+        target=["%d dag gelede", "%d dae gelede"]
+    )

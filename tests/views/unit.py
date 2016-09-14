@@ -12,6 +12,8 @@ from django.http import Http404
 
 from pytest_pootle.utils import create_api_request
 
+from translate.misc.multistring import multistring
+
 from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
@@ -239,3 +241,36 @@ def test_toggle_quality_check(rf, admin):
     response = toggle_qualitycheck(request, unit.id, qc.id)
     assert response.status_code == 200
     assert QualityCheck.objects.get(id=qc.id).false_positive is False
+
+
+@pytest.mark.django_db
+def test_submit_unit_plural(client, unit_plural, request_users, settings):
+    """Tests translation can be applied after suggestion is accepted."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    url = '/xhr/units/%d/' % unit_plural.id
+    target = [
+        "%s" % unit_plural.target.strings[0],
+        "%s changed" % unit_plural.target.strings[1]
+    ]
+    response = client.post(
+        url,
+        {
+            'target_f_0': target[0],
+            'target_f_1': target[1],
+        },
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+    )
+
+    if check_permission('translate', response.wsgi_request):
+        assert response.status_code == 200
+        changed = Unit.objects.get(id=unit_plural.id)
+        assert changed.target == multistring(target)
+
+    else:
+        assert response.status_code == 403
