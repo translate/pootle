@@ -78,6 +78,8 @@ class LanguageDBFactory(factory.django.DjangoModelFactory):
         model = 'pootle_language.Language'
         django_get_or_create = ("code", )
 
+    nplurals = 2
+
     @factory.lazy_attribute
     def code(self):
         from pootle_language.models import Language
