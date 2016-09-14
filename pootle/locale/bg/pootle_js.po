@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-07-02 02:36+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -836,30 +836,72 @@ msgstr "изключено"
 msgid "A year ago"
 msgstr "Преди година"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Преди година"
+msgstr[1] "Преди %s години"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Преди минута"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Преди минута"
+msgstr[1] "Преди минута"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Преди седмица"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Преди седмица"
+msgstr[1] "Преди %s седмици"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Вчера"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Преди година"
+msgstr[1] "Преди %s години"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Преди час"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Преди час"
+msgstr[1] "Преди %s часа"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Преди минута"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Преди минута"
+msgstr[1] "Преди %s минути"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1122,36 +1164,6 @@ msgid ""
 msgstr ""
 "Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Преди година"
-#~ msgstr[1] "Преди %s години"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Преди седмица"
-#~ msgstr[1] "Преди %s седмици"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Преди година"
-#~ msgstr[1] "Преди %s години"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Преди час"
-#~ msgstr[1] "Преди %s часа"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Преди минута"
-#~ msgstr[1] "Преди %s минути"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-09-13 08:41+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -830,25 +830,61 @@ msgstr "etkisizleştirildi"
 msgid "A year ago"
 msgstr "Bir yıl önce"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "%s yıl önce"
+
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "Bir ay önce"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Bir ay önce"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Bir hafta önce"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "%s hafta önce"
+
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Dün"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "%s gün önce"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Bir saat önce"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "%s saat önce"
+
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Bir dakika önce"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "%s dakika önce"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1117,26 +1153,6 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
 "%(fullname)s tarafından çevrilmiş"
-
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "%s yıl önce"
-
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "%s hafta önce"
-
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "%s gün önce"
-
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "%s saat önce"
-
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "%s dakika önce"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "%(sourceString)s için %(check)s sesini kapattı"

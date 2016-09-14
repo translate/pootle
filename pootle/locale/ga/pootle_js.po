@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -862,30 +862,90 @@ msgstr "díchumasaithe"
 msgid "A year ago"
 msgstr "Bliain amháin ó shin"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Bliain amháin ó shin"
+msgstr[1] "%s bhliain ó shin"
+msgstr[2] "%s bliana ó shin"
+msgstr[3] "%s mbliana ó shin"
+msgstr[4] "%s bliain ó shin"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Nóiméad amháin ó shin"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Nóiméad amháin ó shin"
+msgstr[1] "Nóiméad amháin ó shin"
+msgstr[2] "Nóiméad amháin ó shin"
+msgstr[3] "Nóiméad amháin ó shin"
+msgstr[4] "Nóiméad amháin ó shin"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Seachtain amháin ó shin"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Seachtain amháin ó shin"
+msgstr[1] "%s sheachtain ó shin"
+msgstr[2] "%s seachtaine ó shin"
+msgstr[3] "%s seachtaine ó shin"
+msgstr[4] "%s seachtain ó shin"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Inné"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Bliain amháin ó shin"
+msgstr[1] "%s bhliain ó shin"
+msgstr[2] "%s bliana ó shin"
+msgstr[3] "%s mbliana ó shin"
+msgstr[4] "%s bliain ó shin"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Uair an chloig ó shin"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Uair an chloig ó shin"
+msgstr[1] "%s uair an chloig ó shin"
+msgstr[2] "%s huaire an chloig ó shin"
+msgstr[3] "%s n-uaire an chloig ó shin"
+msgstr[4] "%s uair an chloig ó shin"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Nóiméad amháin ó shin"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Nóiméad amháin ó shin"
+msgstr[1] "%s nóiméad ó shin"
+msgstr[2] "%s nóiméad ó shin"
+msgstr[3] "%s nóiméad ó shin"
+msgstr[4] "%s nóiméad ó shin"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1161,51 +1221,6 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Bliain amháin ó shin"
-#~ msgstr[1] "%s bhliain ó shin"
-#~ msgstr[2] "%s bliana ó shin"
-#~ msgstr[3] "%s mbliana ó shin"
-#~ msgstr[4] "%s bliain ó shin"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Seachtain amháin ó shin"
-#~ msgstr[1] "%s sheachtain ó shin"
-#~ msgstr[2] "%s seachtaine ó shin"
-#~ msgstr[3] "%s seachtaine ó shin"
-#~ msgstr[4] "%s seachtain ó shin"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Bliain amháin ó shin"
-#~ msgstr[1] "%s bhliain ó shin"
-#~ msgstr[2] "%s bliana ó shin"
-#~ msgstr[3] "%s mbliana ó shin"
-#~ msgstr[4] "%s bliain ó shin"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Uair an chloig ó shin"
-#~ msgstr[1] "%s uair an chloig ó shin"
-#~ msgstr[2] "%s huaire an chloig ó shin"
-#~ msgstr[3] "%s n-uaire an chloig ó shin"
-#~ msgstr[4] "%s uair an chloig ó shin"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Nóiméad amháin ó shin"
-#~ msgstr[1] "%s nóiméad ó shin"
-#~ msgstr[2] "%s nóiméad ó shin"
-#~ msgstr[3] "%s nóiméad ó shin"
-#~ msgstr[4] "%s nóiméad ó shin"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "balbhaíodh %(check)s ar %(sourceString)s"

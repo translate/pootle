@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2015-01-12 12:04+0000\n"
 "Last-Translator: chTest2 <10dsbh+977iq48o103ek@grr.la>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -818,30 +818,84 @@ msgstr ""
 msgid "A year ago"
 msgstr "Pred %s letom"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Pred %s letom"
+msgstr[1] "Pred %s letoma"
+msgstr[2] "Pred %s leti"
+msgstr[3] "Pred %s leti"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Pred minuto"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Pred minuto"
+msgstr[1] "Pred minuto"
+msgstr[2] "Pred minuto"
+msgstr[3] "Pred minuto"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Pred %s tednom"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Pred %s tednom"
+msgstr[1] "Pred %s tednoma"
+msgstr[2] "Pred %s tedni"
+msgstr[3] "Pred %s tedni"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Včeraj"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Pred %s letom"
+msgstr[1] "Pred %s letoma"
+msgstr[2] "Pred %s leti"
+msgstr[3] "Pred %s leti"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Pred eno uro"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Pred eno uro"
+msgstr[1] "Pred dvema urama"
+msgstr[2] "Pred %s urami"
+msgstr[3] "Pred %s urami"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Pred minuto"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Pred minuto"
+msgstr[1] "Pred dvema minutama"
+msgstr[2] "Pred %s minutami"
+msgstr[3] "Pred %s minutami"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1102,46 +1156,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Pred %s letom"
-#~ msgstr[1] "Pred %s letoma"
-#~ msgstr[2] "Pred %s leti"
-#~ msgstr[3] "Pred %s leti"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Pred %s tednom"
-#~ msgstr[1] "Pred %s tednoma"
-#~ msgstr[2] "Pred %s tedni"
-#~ msgstr[3] "Pred %s tedni"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Pred %s letom"
-#~ msgstr[1] "Pred %s letoma"
-#~ msgstr[2] "Pred %s leti"
-#~ msgstr[3] "Pred %s leti"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Pred eno uro"
-#~ msgstr[1] "Pred dvema urama"
-#~ msgstr[2] "Pred %s urami"
-#~ msgstr[3] "Pred %s urami"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Pred minuto"
-#~ msgstr[1] "Pred dvema minutama"
-#~ msgstr[2] "Pred %s minutami"
-#~ msgstr[3] "Pred %s minutami"
 
 #~ msgid "Unknown error"
 #~ msgstr "Neznana napaka"

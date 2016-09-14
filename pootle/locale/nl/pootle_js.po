@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-09-08 22:24+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -845,26 +845,68 @@ msgstr "uitgeschakeld"
 msgid "A year ago"
 msgstr "Een jaar geleden"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "%s jaar geleden"
+msgstr[1] "%s jaar geleden"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Een minuut geleden"
 
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Een minuut geleden"
+msgstr[1] "Een minuut geleden"
+
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Een week geleden"
+
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "%s week geleden"
+msgstr[1] "%s weken geleden"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Gisteren"
 
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "%s dag geleden"
+msgstr[1] "%s dagen geleden"
+
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Een uur geleden"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "%s uur geleden"
+msgstr[1] "%s uur geleden"
+
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Een minuut geleden"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "%s minuut geleden"
+msgstr[1] "%s minuten geleden"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1134,31 +1176,6 @@ msgid ""
 msgstr ""
 "Vertaald door %(fullname)s in project &lsquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rsquo;"
-
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "%s jaar geleden"
-#~ msgstr[1] "%s jaar geleden"
-
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "%s week geleden"
-#~ msgstr[1] "%s weken geleden"
-
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "%s dag geleden"
-#~ msgstr[1] "%s dagen geleden"
-
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "%s uur geleden"
-#~ msgstr[1] "%s uur geleden"
-
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "%s minuut geleden"
-#~ msgstr[1] "%s minuten geleden"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "heeft %(check)s voor %(sourceString)s verborgen"

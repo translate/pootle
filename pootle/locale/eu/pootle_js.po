@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2015-11-03 09:39+0000\n"
 "Last-Translator: Julen Ruiz Aizpuru <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -844,30 +844,72 @@ msgstr "desgaituta"
 msgid "A year ago"
 msgstr "Duela urtebete"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Duela urtebete"
+msgstr[1] "Duela %s urte"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Duela minutu bat"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Duela minutu bat"
+msgstr[1] "Duela minutu bat"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Duela astebete"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Duela astebete"
+msgstr[1] "Duela %s aste"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Atzo"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Duela urtebete"
+msgstr[1] "Duela %s urte"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Duela ordubete"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Duela ordubete"
+msgstr[1] "Duela %s ordu"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Duela minutu bat"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Duela minutu bat"
+msgstr[1] "Duela %s minutu"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1127,36 +1169,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Duela urtebete"
-#~ msgstr[1] "Duela %s urte"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Duela astebete"
-#~ msgstr[1] "Duela %s aste"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Duela urtebete"
-#~ msgstr[1] "Duela %s urte"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Duela ordubete"
-#~ msgstr[1] "Duela %s ordu"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Duela minutu bat"
-#~ msgstr[1] "Duela %s minutu"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

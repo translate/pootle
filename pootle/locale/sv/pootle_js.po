@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-09-12 21:40+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -826,25 +826,67 @@ msgstr "inaktiverad"
 msgid "A year ago"
 msgstr "Ett år sedan"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "%s år sedan"
+msgstr[1] "%s år sedan"
+
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "En månad sedan"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "En månad sedan"
+msgstr[1] "En månad sedan"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "En vecka sedan"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "%s vecka sedan"
+msgstr[1] "%s veckor sedan"
+
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Igår"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "%s dag sedan"
+msgstr[1] "%s dagar sedan"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "En timme sedan"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "%s timme sedan"
+msgstr[1] "%s timmar sedan"
+
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "En minut sedan"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "%s minut sedan"
+msgstr[1] "%s minuter sedan"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1113,31 +1155,6 @@ msgid ""
 msgstr ""
 "Översatt av %(fullname)s ii &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
-
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "%s år sedan"
-#~ msgstr[1] "%s år sedan"
-
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "%s vecka sedan"
-#~ msgstr[1] "%s veckor sedan"
-
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "%s dag sedan"
-#~ msgstr[1] "%s dagar sedan"
-
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "%s timme sedan"
-#~ msgstr[1] "%s timmar sedan"
-
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "%s minut sedan"
-#~ msgstr[1] "%s minuter sedan"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "ta bort %(check)s för %(sourceString)s"

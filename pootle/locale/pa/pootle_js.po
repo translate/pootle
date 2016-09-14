@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2015-08-01 21:45+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -818,30 +818,72 @@ msgstr ""
 msgid "A year ago"
 msgstr "ਇੱਕ ਸਾਲ ਪਹਿਲਾਂ"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "ਇੱਕ ਸਾਲ ਪਹਿਲਾਂ"
+msgstr[1] "%s ਸਾਲ ਪਹਿਲਾਂ"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ"
+msgstr[1] "ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "ਇੱਕ ਹਫ਼ਤਾ ਪਹਿਲਾਂ"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "ਇੱਕ ਹਫ਼ਤਾ ਪਹਿਲਾਂ"
+msgstr[1] "%s ਹਫ਼ਤੇ ਪਹਿਲਾਂ"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "ਕੱਲ੍ਹ"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "ਇੱਕ ਸਾਲ ਪਹਿਲਾਂ"
+msgstr[1] "%s ਸਾਲ ਪਹਿਲਾਂ"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "ਘੰਟਾ ਪਹਿਲਾਂ"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "ਘੰਟਾ ਪਹਿਲਾਂ"
+msgstr[1] "%s ਘੰਟੇ ਪਹਿਲਾਂ"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ"
+msgstr[1] "%s ਮਿੰਟ ਪਹਿਲਾਂ"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1100,36 +1142,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "ਇੱਕ ਸਾਲ ਪਹਿਲਾਂ"
-#~ msgstr[1] "%s ਸਾਲ ਪਹਿਲਾਂ"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "ਇੱਕ ਹਫ਼ਤਾ ਪਹਿਲਾਂ"
-#~ msgstr[1] "%s ਹਫ਼ਤੇ ਪਹਿਲਾਂ"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "ਇੱਕ ਸਾਲ ਪਹਿਲਾਂ"
-#~ msgstr[1] "%s ਸਾਲ ਪਹਿਲਾਂ"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "ਘੰਟਾ ਪਹਿਲਾਂ"
-#~ msgstr[1] "%s ਘੰਟੇ ਪਹਿਲਾਂ"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "ਇੱਕ ਮਿੰਟ ਪਹਿਲਾਂ"
-#~ msgstr[1] "%s ਮਿੰਟ ਪਹਿਲਾਂ"
 
 #~ msgid "Unknown error"
 #~ msgstr "ਅਣਜਾਣ ਗਲਤੀ"

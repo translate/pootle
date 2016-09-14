@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-09-08 11:33+0000\n"
 "Last-Translator: ta2-1 <taras.semenenko@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -851,29 +851,77 @@ msgstr "вимкнено"
 msgid "A year ago"
 msgstr "Рік тому"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "%s рік тому"
+msgstr[1] "%s роки тому"
+msgstr[2] "%s років тому"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Хвилину тому"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Хвилину тому"
+msgstr[1] "Хвилину тому"
+msgstr[2] "Хвилину тому"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Тиждень тому"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "%s тиждень тому"
+msgstr[1] "%s тижні тому"
+msgstr[2] "%s тижнів тому"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Вчора"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "%s день тому"
+msgstr[1] "%s дні тому"
+msgstr[2] "%s днів тому"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Годину тому"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "%s годину тому"
+msgstr[1] "%s години тому"
+msgstr[2] "%s годин тому"
+
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Хвилину тому"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "%s хвилину тому"
+msgstr[1] "%s хвилини тому"
+msgstr[2] "%s хвилин тому"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1144,37 +1192,6 @@ msgid ""
 msgstr ""
 "Перекладено %(fullname)s у проекті &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "%s рік тому"
-#~ msgstr[1] "%s роки тому"
-#~ msgstr[2] "%s років тому"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "%s тиждень тому"
-#~ msgstr[1] "%s тижні тому"
-#~ msgstr[2] "%s тижнів тому"
-
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "%s день тому"
-#~ msgstr[1] "%s дні тому"
-#~ msgstr[2] "%s днів тому"
-
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "%s годину тому"
-#~ msgstr[1] "%s години тому"
-#~ msgstr[2] "%s годин тому"
-
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "%s хвилину тому"
-#~ msgstr[1] "%s хвилини тому"
-#~ msgstr[2] "%s хвилин тому"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "прибрав %(check)s для %(sourceString)s"

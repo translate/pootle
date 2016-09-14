@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-07-23 21:46+0000\n"
 "Last-Translator: Halina Arendt <halare@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -823,30 +823,78 @@ msgstr ""
 msgid "A year ago"
 msgstr "Rok temu"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Rok temu"
+msgstr[1] "%s lata temu"
+msgstr[2] "%s lat temu"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Minutę temu"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Minutę temu"
+msgstr[1] "Minutę temu"
+msgstr[2] "Minutę temu"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Tydzień temu"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Tydzień temu"
+msgstr[1] "%s tygodnie temu"
+msgstr[2] "%s tygodni temu"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Wczoraj"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Rok temu"
+msgstr[1] "%s lata temu"
+msgstr[2] "%s lat temu"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Godzinę temu"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Godzinę temu"
+msgstr[1] "%s godziny temu"
+msgstr[2] "%s godzin temu"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Minutę temu"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Minutę temu"
+msgstr[1] "%s minuty temu"
+msgstr[2] "%s minut temu"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1105,41 +1153,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Rok temu"
-#~ msgstr[1] "%s lata temu"
-#~ msgstr[2] "%s lat temu"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Tydzień temu"
-#~ msgstr[1] "%s tygodnie temu"
-#~ msgstr[2] "%s tygodni temu"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Rok temu"
-#~ msgstr[1] "%s lata temu"
-#~ msgstr[2] "%s lat temu"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Godzinę temu"
-#~ msgstr[1] "%s godziny temu"
-#~ msgstr[2] "%s godzin temu"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Minutę temu"
-#~ msgstr[1] "%s minuty temu"
-#~ msgstr[2] "%s minut temu"
 
 #~ msgid "Unknown error"
 #~ msgstr "Nieznany błąd"

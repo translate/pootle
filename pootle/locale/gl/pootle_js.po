@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-08-30 15:22+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -826,26 +826,68 @@ msgstr "desactivado"
 msgid "A year ago"
 msgstr "Hai un ano"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Hai %s ano"
+msgstr[1] "Hai %s anos"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Hai un minuto"
 
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Hai un minuto"
+msgstr[1] "Hai un minuto"
+
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Hai unha semana"
+
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Hai %s semana"
+msgstr[1] "Hai %s semanas"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Onte"
 
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Hai %s día"
+msgstr[1] "Hai %s días"
+
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Hai unha hora"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Hai %s hora"
+msgstr[1] "Hai %s horas"
+
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Hai un minuto"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Hai %s minuto"
+msgstr[1] "Hai %s minutos"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1114,31 +1156,6 @@ msgid ""
 msgstr ""
 "Traducido por %(fullname)s no proxecto &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Hai %s ano"
-#~ msgstr[1] "Hai %s anos"
-
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Hai %s semana"
-#~ msgstr[1] "Hai %s semanas"
-
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Hai %s día"
-#~ msgstr[1] "Hai %s días"
-
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Hai %s hora"
-#~ msgstr[1] "Hai %s horas"
-
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Hai %s minuto"
-#~ msgstr[1] "Hai %s minutos"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "silenciou %(check)s para %(sourceString)s"

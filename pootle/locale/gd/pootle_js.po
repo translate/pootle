@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2013-11-09 01:55+0000\n"
 "Last-Translator: Michael <fios@akerbeltz.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -832,30 +832,84 @@ msgstr ""
 msgid "A year ago"
 msgstr "Bliadhna air ais"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Bliadhna air ais"
+msgstr[1] "%s bhliadhna air ais"
+msgstr[2] "%s bliadhna air ais"
+msgstr[3] "%s bliadhna air ais"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Mionaid air ais"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Mionaid air ais"
+msgstr[1] "Mionaid air ais"
+msgstr[2] "Mionaid air ais"
+msgstr[3] "Mionaid air ais"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Seachdain air ais"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Seachdain air ais"
+msgstr[1] "%s sheachdain air ais"
+msgstr[2] "%s seachdainean air ais"
+msgstr[3] "%s seachdain air ais"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "An-dè"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Bliadhna air ais"
+msgstr[1] "%s bhliadhna air ais"
+msgstr[2] "%s bliadhna air ais"
+msgstr[3] "%s bliadhna air ais"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Uair a thìde air ais"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Uair a thìde air ais"
+msgstr[1] "%s uair a thìde air ais"
+msgstr[2] "%s uairean a thìde air ais"
+msgstr[3] "%s uair a thìde air ais"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Mionaid air ais"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Mionaid air ais"
+msgstr[1] "%s mhionaid air ais"
+msgstr[2] "%s mionaidean air ais"
+msgstr[3] "%s mionaid air ais"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1117,46 +1171,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Bliadhna air ais"
-#~ msgstr[1] "%s bhliadhna air ais"
-#~ msgstr[2] "%s bliadhna air ais"
-#~ msgstr[3] "%s bliadhna air ais"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Seachdain air ais"
-#~ msgstr[1] "%s sheachdain air ais"
-#~ msgstr[2] "%s seachdainean air ais"
-#~ msgstr[3] "%s seachdain air ais"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Bliadhna air ais"
-#~ msgstr[1] "%s bhliadhna air ais"
-#~ msgstr[2] "%s bliadhna air ais"
-#~ msgstr[3] "%s bliadhna air ais"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Uair a thìde air ais"
-#~ msgstr[1] "%s uair a thìde air ais"
-#~ msgstr[2] "%s uairean a thìde air ais"
-#~ msgstr[3] "%s uair a thìde air ais"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Mionaid air ais"
-#~ msgstr[1] "%s mhionaid air ais"
-#~ msgstr[2] "%s mionaidean air ais"
-#~ msgstr[3] "%s mionaid air ais"
 
 #~ msgid "Unknown error"
 #~ msgstr "Mearachd neo-aithnichte"

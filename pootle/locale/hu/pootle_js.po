@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-09-14 08:58+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,25 +827,67 @@ msgstr "letiltva"
 msgid "A year ago"
 msgstr "Egy éve"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "%s éve"
+msgstr[1] "%s éve"
+
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "Egy hónapja"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Egy hónapja"
+msgstr[1] "Egy hónapja"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Egy hete"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "%s hete"
+msgstr[1] "%s hete"
+
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Tegnap"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "%s napja"
+msgstr[1] "%s napja"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Egy órája"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "%s órája"
+msgstr[1] "%s órája"
+
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Egy perce"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "%s perce"
+msgstr[1] "%s perce"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1113,31 +1155,6 @@ msgid ""
 msgstr ""
 "Fordította: %(fullname)s, itt: &bdquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
-
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "%s éve"
-#~ msgstr[1] "%s éve"
-
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "%s hete"
-#~ msgstr[1] "%s hete"
-
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "%s napja"
-#~ msgstr[1] "%s napja"
-
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "%s órája"
-#~ msgstr[1] "%s órája"
-
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "%s perce"
-#~ msgstr[1] "%s perce"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "%(check)s elnémítva ehhez: %(sourceString)s"

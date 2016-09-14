@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-07-20 16:05+0000\n"
 "Last-Translator: nikola_navezi <nikola_navezi@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,30 +827,78 @@ msgstr ""
 msgid "A year ago"
 msgstr "Пре годину дана"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Пре годину дана"
+msgstr[1] "Пре %s године"
+msgstr[2] "Пре %s година"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Пре минут"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Пре минут"
+msgstr[1] "Пре минут"
+msgstr[2] "Пре минут"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Пре недељу дана"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Пре недељу дана"
+msgstr[1] "Пре %s недеље"
+msgstr[2] "Пре %s недеља"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Јуче"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Пре годину дана"
+msgstr[1] "Пре %s године"
+msgstr[2] "Пре %s година"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Пре сат времена"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Пре сат времена"
+msgstr[1] "Пре %s сата"
+msgstr[2] "Пре %s сати"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Пре минут"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Пре минут"
+msgstr[1] "Пре %s минута"
+msgstr[2] "Пре %s минута"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1110,41 +1158,6 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Пре годину дана"
-#~ msgstr[1] "Пре %s године"
-#~ msgstr[2] "Пре %s година"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Пре недељу дана"
-#~ msgstr[1] "Пре %s недеље"
-#~ msgstr[2] "Пре %s недеља"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Пре годину дана"
-#~ msgstr[1] "Пре %s године"
-#~ msgstr[2] "Пре %s година"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Пре сат времена"
-#~ msgstr[1] "Пре %s сата"
-#~ msgstr[2] "Пре %s сати"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Пре минут"
-#~ msgstr[1] "Пре %s минута"
-#~ msgstr[2] "Пре %s минута"
 
 #~ msgid "Unknown error"
 #~ msgstr "Непозната грешка"

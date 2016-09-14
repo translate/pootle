@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-07-21 12:31+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -852,30 +852,96 @@ msgstr "معطّل"
 msgid "A year ago"
 msgstr "منذ أقلّ من سنة"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "منذ أقلّ من سنة"
+msgstr[1] "منذ سنة واحدة"
+msgstr[2] "منذ سنتين"
+msgstr[3] "منذ %s سنوات"
+msgstr[4] "منذ %s سنةً"
+msgstr[5] "منذ %s سنة"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "منذ أقلّ من دقيقة"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "منذ أقلّ من دقيقة"
+msgstr[1] "منذ أقلّ من دقيقة"
+msgstr[2] "منذ أقلّ من دقيقة"
+msgstr[3] "منذ أقلّ من دقيقة"
+msgstr[4] "منذ أقلّ من دقيقة"
+msgstr[5] "منذ أقلّ من دقيقة"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "منذ أقلّ من أسبوع"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "منذ أقلّ من أسبوع"
+msgstr[1] "منذ أسبوع واحد"
+msgstr[2] "منذ أسبوعين"
+msgstr[3] "منذ %s أسابيع"
+msgstr[4] "منذ %s أسبوعًا"
+msgstr[5] "منذ %s أسبوع"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "منذ أقلّ من يوم"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "منذ أقلّ من سنة"
+msgstr[1] "منذ سنة واحدة"
+msgstr[2] "منذ سنتين"
+msgstr[3] "منذ %s سنوات"
+msgstr[4] "منذ %s سنةً"
+msgstr[5] "منذ %s سنة"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "منذ أقلّ من ساعة"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "منذ أقلّ من ساعة"
+msgstr[1] "منذ ساعة"
+msgstr[2] "منذ ساعتين"
+msgstr[3] "منذ %s ساعات"
+msgstr[4] "منذ %s ساعةً"
+msgstr[5] "منذ %s ساعة"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "منذ أقلّ من دقيقة"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "منذ أقلّ من دقيقة"
+msgstr[1] "منذ دقيقة"
+msgstr[2] "منذ دقيقتين"
+msgstr[3] "منذ %s دقائق"
+msgstr[4] "منذ %s دقيقةً"
+msgstr[5] "منذ %s دقيقة"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1149,56 +1215,6 @@ msgid ""
 msgstr ""
 "ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo;"
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "منذ أقلّ من سنة"
-#~ msgstr[1] "منذ سنة واحدة"
-#~ msgstr[2] "منذ سنتين"
-#~ msgstr[3] "منذ %s سنوات"
-#~ msgstr[4] "منذ %s سنةً"
-#~ msgstr[5] "منذ %s سنة"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "منذ أقلّ من أسبوع"
-#~ msgstr[1] "منذ أسبوع واحد"
-#~ msgstr[2] "منذ أسبوعين"
-#~ msgstr[3] "منذ %s أسابيع"
-#~ msgstr[4] "منذ %s أسبوعًا"
-#~ msgstr[5] "منذ %s أسبوع"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "منذ أقلّ من سنة"
-#~ msgstr[1] "منذ سنة واحدة"
-#~ msgstr[2] "منذ سنتين"
-#~ msgstr[3] "منذ %s سنوات"
-#~ msgstr[4] "منذ %s سنةً"
-#~ msgstr[5] "منذ %s سنة"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "منذ أقلّ من ساعة"
-#~ msgstr[1] "منذ ساعة"
-#~ msgstr[2] "منذ ساعتين"
-#~ msgstr[3] "منذ %s ساعات"
-#~ msgstr[4] "منذ %s ساعةً"
-#~ msgstr[5] "منذ %s ساعة"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "منذ أقلّ من دقيقة"
-#~ msgstr[1] "منذ دقيقة"
-#~ msgstr[2] "منذ دقيقتين"
-#~ msgstr[3] "منذ %s دقائق"
-#~ msgstr[4] "منذ %s دقيقةً"
-#~ msgstr[5] "منذ %s دقيقة"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "كتم %(check)s لِ‍ %(sourceString)s"

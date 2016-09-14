@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:57+0100\n"
+"POT-Creation-Date: 2016-09-14 17:02+0100\n"
 "PO-Revision-Date: 2016-08-14 06:42+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -841,30 +841,72 @@ msgstr "o‘chirib qo‘yilgan"
 msgid "A year ago"
 msgstr "Bir yil oldin"
 
+#: static/js/shared/utils/relativeTime.js:20
+#, fuzzy
+msgid "%(count)s year ago"
+msgid_plural "%(count)s years ago"
+msgstr[0] "Bir yil oldin"
+msgstr[1] "%s yil oldin"
+
 #: static/js/shared/utils/relativeTime.js:26
 #, fuzzy
 msgid "A month ago"
 msgstr "Bir daqiqa oldin"
+
+#: static/js/shared/utils/relativeTime.js:28
+#, fuzzy
+msgid "%(count)s month ago"
+msgid_plural "%(count)s months ago"
+msgstr[0] "Bir daqiqa oldin"
+msgstr[1] "Bir daqiqa oldin"
 
 #: static/js/shared/utils/relativeTime.js:34
 #, fuzzy
 msgid "A week ago"
 msgstr "Bir hafta oldin"
 
+#: static/js/shared/utils/relativeTime.js:36
+#, fuzzy
+msgid "%(count)s week ago"
+msgid_plural "%(count)s weeks ago"
+msgstr[0] "Bir hafta oldin"
+msgstr[1] "%s hafta oldin"
+
 #: static/js/shared/utils/relativeTime.js:42
 #, fuzzy
 msgid "Yesterday"
 msgstr "Kecha"
+
+#: static/js/shared/utils/relativeTime.js:44
+#, fuzzy
+msgid "%(count)s day ago"
+msgid_plural "%(count)s days ago"
+msgstr[0] "Bir yil oldin"
+msgstr[1] "%s yil oldin"
 
 #: static/js/shared/utils/relativeTime.js:50
 #, fuzzy
 msgid "An hour ago"
 msgstr "Bir soat oldin"
 
+#: static/js/shared/utils/relativeTime.js:52
+#, fuzzy
+msgid "%(count)s hour ago"
+msgid_plural "%(count)s hours ago"
+msgstr[0] "Bir soat oldin"
+msgstr[1] "%s soat oldin"
+
 #: static/js/shared/utils/relativeTime.js:58
 #, fuzzy
 msgid "A minute ago"
 msgstr "Bir daqiqa oldin"
+
+#: static/js/shared/utils/relativeTime.js:60
+#, fuzzy
+msgid "%(count)s minute ago"
+msgid_plural "%(count)s minutes ago"
+msgstr[0] "Bir daqiqa oldin"
+msgstr[1] "%s daqiqa oldin"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
@@ -1131,36 +1173,6 @@ msgid ""
 msgstr ""
 "Tarjimon: %(fullname)s – &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
-
-#, fuzzy
-#~ msgid "%s year ago"
-#~ msgid_plural "%s years ago"
-#~ msgstr[0] "Bir yil oldin"
-#~ msgstr[1] "%s yil oldin"
-
-#, fuzzy
-#~ msgid "%s week ago"
-#~ msgid_plural "%s weeks ago"
-#~ msgstr[0] "Bir hafta oldin"
-#~ msgstr[1] "%s hafta oldin"
-
-#, fuzzy
-#~ msgid "%s day ago"
-#~ msgid_plural "%s days ago"
-#~ msgstr[0] "Bir yil oldin"
-#~ msgstr[1] "%s yil oldin"
-
-#, fuzzy
-#~ msgid "%s hour ago"
-#~ msgid_plural "%s hours ago"
-#~ msgstr[0] "Bir soat oldin"
-#~ msgstr[1] "%s soat oldin"
-
-#, fuzzy
-#~ msgid "%s minute ago"
-#~ msgid_plural "%s minutes ago"
-#~ msgstr[0] "Bir daqiqa oldin"
-#~ msgstr[1] "%s daqiqa oldin"
 
 #, fuzzy
 #~ msgid "muted %(check)s for %(sourceString)s"
