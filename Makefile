@@ -96,6 +96,8 @@ linguas:
 
 lint: lint-python lint-js lint-css
 
+lint-py: lint-python
+
 lint-python:
 	flake8 --config=setup.cfg && \
 	pydocstyle && \
