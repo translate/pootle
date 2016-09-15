@@ -10,8 +10,7 @@ import logging
 
 from translate.storage.factory import getclass
 
-from django.utils.translation import ugettext_lazy as _
-
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.permissions import check_user_permission
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import Store

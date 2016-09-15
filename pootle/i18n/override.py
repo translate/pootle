@@ -13,7 +13,6 @@ import os
 from translate.lang import data
 
 from django.utils import translation
-from django.utils.functional import lazy
 from django.utils.translation import LANGUAGE_SESSION_KEY, trans_real
 
 from pootle.i18n import gettext
@@ -102,18 +101,6 @@ def get_language_from_request(request, check_path=False):
     return settings.LANGUAGE_CODE
 
 
-def override_gettext(real_translation):
-    """Replace Django's translation functions with safe versions."""
-    translation.gettext = real_translation.gettext
-    translation.ugettext = real_translation.ugettext
-    translation.ngettext = real_translation.ngettext
-    translation.ungettext = real_translation.ungettext
-    translation.gettext_lazy = lazy(real_translation.gettext, str)
-    translation.ugettext_lazy = lazy(real_translation.ugettext, unicode)
-    translation.ngettext_lazy = lazy(real_translation.ngettext, str)
-    translation.ungettext_lazy = lazy(real_translation.ungettext, unicode)
-
-
 def get_language_bidi():
     """Override for Django's get_language_bidi that's aware of more RTL
     languages.
@@ -130,7 +117,3 @@ def hijack_translation():
 
     # Override django's inadequate bidi detection
     translation.get_language_bidi = get_language_bidi
-
-    # We hijack gettext functions to install the safe variable formatting
-    # override
-    override_gettext(gettext)

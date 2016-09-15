@@ -10,12 +10,12 @@ from collections import OrderedDict
 
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 
 from contact_form.forms import ContactForm as OriginalContactForm
 
 from pootle.core.forms import MathCaptchaForm
 from pootle.core.mail import send_mail
+from pootle.i18n.gettext import ugettext_lazy as _
 
 
 class ContactForm(MathCaptchaForm, OriginalContactForm):

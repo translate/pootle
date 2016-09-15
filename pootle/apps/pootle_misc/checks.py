@@ -14,7 +14,8 @@ from translate.filters.decorators import Category, cosmetic, critical
 from translate.lang import data
 
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+
+from pootle.i18n.gettext import ugettext_lazy as _
 
 from .util import import_func
 

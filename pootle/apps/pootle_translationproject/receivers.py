@@ -10,10 +10,10 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.dispatch import receiver
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext_lazy as _
 
 from pootle.core.mail import send_mail
 from pootle.core.url_helpers import urljoin
+from pootle.i18n.gettext import ugettext_lazy as _
 
 from .models import TranslationProject
 from .signals import tp_init_failed_async, tp_inited_async

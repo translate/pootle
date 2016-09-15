@@ -11,8 +11,8 @@ import urlparse
 
 from django import forms
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext_lazy as _
 
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
