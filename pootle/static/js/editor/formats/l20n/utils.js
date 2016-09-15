@@ -22,11 +22,13 @@ export function getL20nPlurals(values, nplurals) {
                           value.elements[0].expressions[0].expression.callee.name === 'PLURAL');
   if (hasL20nPlurals) {
     const unitValues = [];
+    const pluralForms = [];
     const variants = unitEntity.value.elements[0].expressions[0].variants;
     for (let i in variants) {
       unitValues.push(FTLASTSerializer.dumpPattern(variants[i].value));
+      pluralForms.push(FTLASTSerializer.dumpKeyword(variants[i].key))
     }
-    return {unitValues, unitEntity};
+    return {unitValues, pluralForms, unitEntity};
   }
   return false;
 }
