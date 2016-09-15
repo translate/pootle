@@ -8,7 +8,6 @@
 
 import io
 import os
-import shutil
 
 import six
 
@@ -45,8 +44,6 @@ from pootle_store.diff import DiffableStore, StoreDiff
 from pootle_store.models import Store
 from pootle_store.util import parse_pootle_revision
 from pootle_translationproject.models import TranslationProject
-
-from .unit import _update_translation
 
 
 def _update_from_upload_file(store, update_file,
@@ -221,60 +218,64 @@ def test_update_save_changed_units(project0_nongnu, store0):
 
 
 @pytest.mark.django_db
-def test_update_set_last_sync_revision(ru_update_set_last_sync_revision_po):
+def test_update_set_last_sync_revision(project0_nongnu, tp0, store0, test_fs):
     """Tests setting last_sync_revision after store creation.
     """
-    store = ru_update_set_last_sync_revision_po
+    unit = store0.units.first()
+    unit.target = "UPDATED TARGET"
+    unit.save()
+
+    store0.sync()
 
     # Store is already parsed and store.last_sync_revision should be equal to
     # max unit revision
-    assert store.last_sync_revision == store.get_max_unit_revision()
+    assert store0.last_sync_revision == store0.get_max_unit_revision()
 
     # store.last_sync_revision is not changed after empty update
-    saved_last_sync_revision = store.last_sync_revision
-    store.updater.update_from_disk()
-    assert store.last_sync_revision == saved_last_sync_revision
+    saved_last_sync_revision = store0.last_sync_revision
+    store0.updater.update_from_disk()
+    assert store0.last_sync_revision == saved_last_sync_revision
 
-    dir_path = os.path.join(store.translation_project.project.get_real_path(),
-                            store.translation_project.language.code)
-    copied_initial_filepath = os.path.join(
-        dir_path,
-        'update_set_last_sync_revision.po.temp'
-    )
-    shutil.copy(store.file.path, copied_initial_filepath)
-    updated_filepath = os.path.join(
-        dir_path,
-        'update_set_last_sync_revision_updated.po'
-    )
-    shutil.copy(updated_filepath, store.file.path)
+    orig = str(store0)
+    update_file = test_fs.open(
+        "data/po/tutorial/ru/update_set_last_sync_revision_updated.po",
+        "r")
+    with update_file as sourcef:
+        with open(store0.file.path, "wb") as targetf:
+            targetf.write(sourcef.read())
 
     # any non-empty update sets last_sync_revision to next global revision
     next_revision = Revision.get() + 1
-    store.updater.update_from_disk()
-    assert store.last_sync_revision == next_revision
+    store0.updater.update_from_disk()
+    assert store0.last_sync_revision == next_revision
 
     # store.last_sync_revision is not changed after empty update (even if it
     # has unsynced units)
     item_index = 0
     next_unit_revision = Revision.get() + 1
-    dbunit = _update_translation(store, item_index, {'target': u'first'},
-                                 sync=False)
+    dbunit = store0.units.first()
+    dbunit.target = "ANOTHER DB TARGET UPDATE"
+    dbunit.save()
     assert dbunit.revision == next_unit_revision
-    store.updater.update_from_disk()
-    assert store.last_sync_revision == next_revision
+
+    store0.updater.update_from_disk()
+    assert store0.last_sync_revision == next_revision
 
     # Non-empty update sets store.last_sync_revision to next global revision
     # (even the store has unsynced units).  There is only one unsynced unit in
     # this case so its revision should be set next to store.last_sync_revision
     next_revision = Revision.get() + 1
-    shutil.move(copied_initial_filepath, store.file.path)
-    store.updater.update_from_disk()
-    assert store.last_sync_revision == next_revision
+
+    with open(store0.file.path, "wb") as targetf:
+        targetf.write(orig)
+
+    store0.updater.update_from_disk()
+    assert store0.last_sync_revision == next_revision
     # Get unsynced unit in DB. Its revision should be greater
     # than store.last_sync_revision to allow to keep this change during
     # update from a file
-    dbunit = store.units[item_index]
-    assert dbunit.revision == store.last_sync_revision + 1
+    dbunit = store0.units[item_index]
+    assert dbunit.revision == store0.last_sync_revision + 1
 
 
 @pytest.mark.django_db
