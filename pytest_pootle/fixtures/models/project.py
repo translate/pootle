@@ -95,6 +95,7 @@ def project0_nongnu(project0_directory, project0, settings):
         os.makedirs(project_dir)
     for tp in project0.translationproject_set.all():
         tp.save()
+    return project0
 
 
 @pytest.fixture
