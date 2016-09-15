@@ -9,6 +9,17 @@
 import pytest
 
 
+VF_RULE_TESTS = [
+    "*",
+    "store.po",
+    "*/subdir0/*"]
+
+
+@pytest.fixture(params=VF_RULE_TESTS)
+def vf_rules(request):
+    return request.param
+
+
 @pytest.fixture
 def vfolder0():
     from virtualfolder.models import VirtualFolder
