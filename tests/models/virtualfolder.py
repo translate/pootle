@@ -16,7 +16,7 @@ from pytest_pootle.factories import VirtualFolderDBFactory
 
 from pootle_language.models import Language
 from pootle_store.models import Store
-from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem
+from virtualfolder.models import VirtualFolder, VirtualFolderTreeItem, VFData
 
 
 @pytest.mark.django_db
@@ -251,3 +251,11 @@ def test_vfolder_membership_new_store(tp0):
     assert Store.objects.get(pk=normal_store.pk).priority == 1.0
     vf0.delete()
     assert Store.objects.get(pk=wierd_store.pk).priority == 1.0
+
+
+@pytest.mark.pootle_vfolders
+@pytest.mark.django_db
+def test_vfdata_repr(vfolder0):
+    assert (
+        repr(VFData(vf=vfolder0))
+        == "<VFData: %s>" % vfolder0.name)
