@@ -50,5 +50,5 @@ export function getL20nEmptyPluralsEntity(localeCode) {
   const pluralFormsPattern = pluralForms.map((x) => `[${x}] val`).join('\n');
   const unit = `unit = { PLURAL($num) -> \n ${pluralFormsPattern} \n}`;
   const unitEntity = FTLASTParser.parseResource(unit)[0].body[0];
-  return { unitEntity, length: pluralForms.length };
+  return { unitEntity, pluralForms };
 }
