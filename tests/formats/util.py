@@ -13,48 +13,46 @@ from pytest_pootle.factories import ProjectDBFactory, TranslationProjectFactory
 from pootle.core.delegate import formats
 from pootle_format.exceptions import UnrecognizedFiletype
 from pootle_format.models import Format
-from pootle_project.models import Project
 from pootle_store.models import Store
 
 
 @pytest.mark.django_db
-def test_format_util():
+def test_format_util(project0):
 
-    project = Project.objects.get(code="project0")
-    filetype_tool = project.filetype_tool
-    assert list(filetype_tool.filetypes.all()) == list(project.filetypes.all())
+    filetype_tool = project0.filetype_tool
+    assert list(filetype_tool.filetypes.all()) == list(project0.filetypes.all())
 
-    assert filetype_tool.filetype_extensions == ["po"]
-    assert filetype_tool.template_extensions == ["pot"]
-    assert filetype_tool.valid_extensions == ["po", "pot"]
+    assert filetype_tool.filetype_extensions == [u"po"]
+    assert filetype_tool.template_extensions == [u"pot"]
+    assert filetype_tool.valid_extensions == [u"po", u"pot"]
 
     xliff = Format.objects.get(name="xliff")
-    project.filetypes.add(xliff)
-    assert filetype_tool.filetype_extensions == ["po", "xliff"]
-    assert filetype_tool.template_extensions == ["pot", "xliff"]
-    assert filetype_tool.valid_extensions == ["po", "xliff", "pot"]
+    project0.filetypes.add(xliff)
+    assert filetype_tool.filetype_extensions == [u"po", u"xliff"]
+    assert filetype_tool.template_extensions == [u"pot", u"xliff"]
+    assert filetype_tool.valid_extensions == [u"po", u"xliff", u"pot"]
 
 
 @pytest.mark.django_db
-def test_format_chooser():
-    project = Project.objects.get(code="project0")
+def test_format_chooser(project0):
     registry = formats.get()
     po = Format.objects.get(name="po")
     po2 = registry.register("special_po_2", "po")
     po3 = registry.register("special_po_3", "po")
     xliff = Format.objects.get(name="xliff")
-    project.filetypes.add(xliff)
-    project.filetypes.add(po2)
-    project.filetypes.add(po3)
-    filetype_tool = project.filetype_tool
-
-    assert filetype_tool.choose_filetype("foo.po") == po
+    project0.filetypes.add(xliff)
+    project0.filetypes.add(po2)
+    project0.filetypes.add(po3)
+    filetype_tool = project0.filetype_tool
+    from pootle.core.debug import debug_sql
+    with debug_sql():
+        assert filetype_tool.choose_filetype("foo.po") == po
     assert filetype_tool.choose_filetype("foo.pot") == po
     assert filetype_tool.choose_filetype("foo.xliff") == xliff
 
     # push po to the back of the queue
-    project.filetypes.remove(po)
-    project.filetypes.add(po)
+    project0.filetypes.remove(po)
+    project0.filetypes.add(po)
     assert filetype_tool.choose_filetype("foo.po") == po2
     assert filetype_tool.choose_filetype("foo.pot") == po
     assert filetype_tool.choose_filetype("foo.xliff") == xliff
