@@ -58,12 +58,6 @@ def italian():
 
 
 @pytest.fixture
-def russian():
-    """Require the Russian language."""
-    return _require_language('ru', 'Russian')
-
-
-@pytest.fixture
 def language0():
     """language0 Language"""
     from pootle_language.models import Language

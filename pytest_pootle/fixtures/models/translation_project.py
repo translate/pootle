@@ -51,12 +51,6 @@ def italian_tutorial(italian, tutorial):
 
 
 @pytest.fixture
-def russian_tutorial(russian, tutorial):
-    """Require Russian Tutorial."""
-    return _require_tp(russian, tutorial)
-
-
-@pytest.fixture
 def tp_checker_tests(request, english, checkers):
     from pytest_pootle.factories import ProjectDBFactory
 

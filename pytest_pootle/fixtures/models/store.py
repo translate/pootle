@@ -331,14 +331,6 @@ def issue_2401_po(po_directory, settings, afrikaans_tutorial):
 
 
 @pytest.fixture
-def ru_update_set_last_sync_revision_po(po_directory, settings, russian_tutorial):
-    """Require the /ru/tutorial/tutorial.po store."""
-    return _require_store(russian_tutorial,
-                          settings.POOTLE_TRANSLATION_DIRECTORY,
-                          'update_set_last_sync_revision.po')
-
-
-@pytest.fixture
 def store_po(tp0):
     """An empty Store in the /language0/project0 TP"""
     from pootle_translationproject.models import TranslationProject
