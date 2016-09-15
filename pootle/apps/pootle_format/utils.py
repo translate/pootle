@@ -29,14 +29,17 @@ class ProjectFiletypes(object):
 
     def choose_filetype(self, filename):
         ext = os.path.splitext(filename)[1][1:]
-        formats = self.project.filetypes.filter(
-            extension__name=ext)
-        if formats.exists():
-            return formats.first()
-        formats = self.project.filetypes.filter(
-            template_extension__name=ext)
-        if formats.count():
-            return formats.first()
+        filetypes = self.filetypes.select_related(
+            "extension", "template_extension")
+        filetypes = list(
+            filetypes.filter(extension__name=ext)
+            | filetypes.filter(template_extension__name=ext))
+        for filetype in filetypes:
+            if filetype.extension.name == ext:
+                return filetype
+        for filetype in filetypes:
+            if filetype.template_extension.name == ext:
+                return filetype
         raise self.unrecognized_file(filename)
 
     def unrecognized_file(self, filename):
@@ -72,10 +75,15 @@ class ProjectFiletypes(object):
     @property
     def valid_extensions(self):
         """this is the equiv of combining 2 sets"""
+        exts = []
+        template_exts = []
+        filetypes = self.filetypes.values_list(
+            "extension__name", "template_extension__name")
+        for ext, template_ext in filetypes.iterator():
+            exts.append(ext)
+            template_exts.append(template_ext)
         return list(
-            OrderedDict.fromkeys(
-                self.filetype_extensions
-                + self.template_extensions))
+            OrderedDict.fromkeys(exts + template_exts))
 
     def add_filetype(self, filetype):
         """Adds a filetype to a Project"""
