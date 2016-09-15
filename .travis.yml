@@ -11,8 +11,13 @@ cache:
   directories:
     - pootle/static/js/node_modules
     - pootle/assets
+    - $HOME/virtualenv/python2.7.9/bin
     - $HOME/virtualenv/python2.7.9/lib
     - $HOME/virtualenv/python2.7/bin
+before_install:
+    - cp -a $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/py/ $HOME/py-workaround/
+    - cp -a $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/_pytest/ $HOME/_pytest-workaround/
+    - cp -a $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/pytest.pyc $HOME/pytest_pyc-workaround
 install:
   - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then upgrade="--upgrade"; fi;
       pip install $upgrade
@@ -45,6 +50,14 @@ notifications:
     on_failure: always
     on_start: never
 before_cache:
+  # travis is so dumb - https://github.com/travis-ci/travis-ci/issues/4873
+  - pip uninstall py pytest -y
+  - pip install py==1.4.26 pytest==2.6.4
+  - rm -rf $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/py/
+  - rm -rf $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/_pytest/
+  - cp -a $HOME/py-workaround/ $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/py/
+  - cp -a  $HOME/pytest_pyc-workaround $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/pytest.pyc
+  - cp -a $HOME/_pytest-workaround/ $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/_pytest/
   # Force rebuilds by removing cache for 'master' and 'stable/*' builds
   - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then rm -rf pootle/static/js/node_modules/* pootle/assets/* pootle/assets/.webassets-cache;  fi
 services:
