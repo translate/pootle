@@ -78,7 +78,7 @@ def translations_directory(request):
     request.addfinalizer(rm_tmp_dir)
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def clear_cache():
     """Currently tests only use one cache so this clears all"""
 
