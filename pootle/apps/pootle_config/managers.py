@@ -29,7 +29,7 @@ class ConfigQuerySet(models.QuerySet):
     def base_qs(self):
         qs = self.__class__(self.model)
         qs.query_model = self.query_model
-        return qs
+        return qs.select_related("content_type")
 
     def append_config(self, key, value="", model=None):
         model = self.get_query_model(model)
