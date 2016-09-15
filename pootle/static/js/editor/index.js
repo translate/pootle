@@ -72,6 +72,8 @@ const ReactEditor = {
         id={this.props.unitId}
         values={this.props.sourceValues}
         hasPlurals={this.props.hasPlurals}
+        sourceLocaleCode={this.props.sourceLocaleCode}
+        sourceLocaleDir={this.props.sourceLocaleDir}
       />,
       this.sourceNode
     );
@@ -83,6 +85,8 @@ const ReactEditor = {
           id={unit.id}
           values={unit.target}
           hasPlurals={unit.has_plurals}
+          sourceLocaleCode={unit.language_code}
+          sourceLocaleDir={unit.language_direction}
         />,
         this.alternativeSourceNodes[i]
       );
