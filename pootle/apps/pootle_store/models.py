@@ -1268,8 +1268,11 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             return DEFAULT_PRIORITY
         return priority
 
-    def set_priority(self):
-        priority = self.calculate_priority()
+    def set_priority(self, priority=None):
+        priority = (
+            self.calculate_priority()
+            if priority is None
+            else priority)
 
         if priority != self.priority:
             Store.objects.filter(pk=self.pk).update(priority=priority)
