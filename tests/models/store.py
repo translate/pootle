@@ -57,6 +57,7 @@ def _update_from_upload_file(store, update_file,
         store.update(store.file.store)
     test_store = getclass(upload)(upload.read())
     store_revision = parse_pootle_revision(test_store)
+    test_store._FOO = 1
     store.update(test_store, store_revision=store_revision,
                  user=user, submission_type=submission_type)
 
