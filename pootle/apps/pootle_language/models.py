@@ -15,8 +15,10 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
+from django.utils.functional import cached_property
 
 from pootle.core.cache import make_method_key
+from pootle.core.delegate import data_tool
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import language_dir, tr_lang, ugettext_lazy as _
@@ -120,6 +122,10 @@ class Language(models.Model, TreeItem):
     class Meta(object):
         ordering = ['code']
         db_table = 'pootle_app_language'
+
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 

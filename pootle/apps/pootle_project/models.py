@@ -27,7 +27,7 @@ from django.utils.functional import cached_property
 from sortedm2m.fields import SortedManyToManyField
 
 from pootle.core.cache import make_method_key
-from pootle.core.delegate import filetype_tool, lang_mapper, tp_tool
+from pootle.core.delegate import data_tool, filetype_tool, lang_mapper, tp_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
 from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
@@ -326,6 +326,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         return user_projects
 
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
+
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @cached_property
@@ -565,6 +569,10 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
             self.pootle_path == other.pootle_path
             and list(self.get_children()) == list(other.get_children()))
 
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
+
     # # # TreeItem
 
     def _get_code(self, resource):
@@ -591,6 +599,10 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
     def __init__(self, resources, *args, **kwargs):
         self.directory = Directory.objects.projects
         super(ProjectSet, self).__init__(resources, self.directory.pootle_path)
+
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
 
     # # # TreeItem
 

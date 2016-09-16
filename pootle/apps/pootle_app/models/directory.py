@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
                                      to_tp_relative_path)
@@ -64,6 +65,10 @@ class Directory(models.Model, CachedTreeItem):
         ordering = ['name']
         default_permissions = ()
         app_label = "pootle_app"
+
+    @cached_property
+    def data_tool(self):
+        return data_tool.get(self.__class__)(self)
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
