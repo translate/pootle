@@ -12,4 +12,4 @@ msgstr ""
 
 #: Hello, world
 msgid "Hello, world"
-msgstr "Hèllö, wôrld"
+msgstr "Hèḽḽě, ŵôrḽḓ"

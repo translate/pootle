@@ -158,7 +158,7 @@ def test_update_with_non_ascii(store0, test_fs):
                        'tutorial_non_ascii.po']) as f:
         store = getclass(f)(f.read())
     store0.update(store)
-    assert store0.units[orig_units].target == "Hèllö, wôrld"
+    assert store0.units[orig_units].target == "Hèḽḽě, ŵôrḽḓ"
 
 
 @pytest.mark.django_db
