@@ -12,6 +12,7 @@ import React from 'react';
 import ReactRenderer from 'utils/ReactRenderer';
 import { q, qAll } from 'utils/dom';
 
+import EditorContainer from './containers/EditorContainer';
 import { loadFormatAdaptor } from './formats/FormatLoader';
 import { hasCRLF, normalize, denormalize } from './utils/normalizer';
 
@@ -61,8 +62,9 @@ const ReactEditor = {
     }
 
     this.editorInstance = ReactRenderer.render(
-      <this.formatAdaptor.editorComponent
+      <EditorContainer
         onChange={this.handleChange}
+        editorComponent={this.formatAdaptor.editorComponent}
         {...this.props}
         {...extraProps}
       />,

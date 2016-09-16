@@ -18,9 +18,8 @@ import { getAreaId } from '../utils';
 const Editor = React.createClass({
 
   propTypes: {
-    currentLocaleCode: React.PropTypes.string.isRequired,
-    currentLocaleDir: React.PropTypes.string.isRequired,
     initialValues: React.PropTypes.array,
+    values: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
@@ -31,71 +30,12 @@ const Editor = React.createClass({
     textareaComponent: React.PropTypes.func,
   },
 
-  // FIXME: move context to a higher-order component. It _cannot_ be done now
-  // because we need to access the component's state in a quite hackish and
-  // undesired way, and wrapping the component in a context provider would
-  // prevent us from doing so.
-  childContextTypes: {
-    currentLocaleCode: React.PropTypes.string,
-    currentLocaleDir: React.PropTypes.string,
-  },
-
   getDefaultProps() {
     return {
       initialValues: [],
       overrideValues: null,
       textareaComponent: RawFontTextarea,
     };
-  },
-
-  getInitialState() {
-    return {
-      values: this.props.initialValues,
-    };
-  },
-
-  getChildContext() {
-    return {
-      currentLocaleCode: this.props.currentLocaleCode,
-      currentLocaleDir: this.props.currentLocaleDir,
-    };
-  },
-
-  componentWillMount() {
-    this.shouldOverride = false;
-  },
-
-  componentDidMount() {
-    this.shouldOverride = false;
-  },
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.overrideValues) {
-      // FIXME: Using the second argument callback to `setState` to ensure the
-      // callback is run after re-rendering happened, so that the DOM-based
-      // editor can perform any operations safely. This is needed to allow
-      // interaction from the outside world. Remove ASAP.
-      this.shouldOverride = true;
-      this.setState({
-        values: nextProps.overrideValues,
-      }, () => {
-        this.shouldOverride = false;
-        this.props.onChange();
-      });
-    }
-  },
-
-  handleChange(i, value) {
-    const newValues = this.state.values.slice();
-    newValues[i] = value;
-
-    // FIXME: Using the second argument callback to `setState` to ensure the
-    // callback is run after re-rendering happened, so that the DOM-based
-    // editor can perform any operations safely. This is needed to allow
-    // interaction from the outside world. Remove ASAP.
-    this.setState({
-      values: newValues,
-    }, this.props.onChange);
   },
 
   render() {
@@ -110,7 +50,7 @@ const Editor = React.createClass({
       // capabilities that it should take the provided value into account to
       // keep it track in its internal history. This shouldn't be needed when
       // we remove the outside world interaction.
-      if (this.shouldOverride) {
+      if (this.props.overrideValues) {
         extraProps.overrideValue = this.props.overrideValues[i];
       }
 
@@ -129,8 +69,8 @@ const Editor = React.createClass({
             id={getAreaId(i)}
             initialValue={this.props.initialValues[i]}
             isDisabled={this.props.isDisabled}
-            onChange={(value) => this.handleChange(i, value)}
-            value={this.state.values[i]}
+            onChange={(value) => this.props.onChange(i, value)}
+            value={this.props.values[i]}
             {...extraProps}
           />
         </EditingArea>

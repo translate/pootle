@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import Editor from '../containers/Editor';
+import Editor from '../components/Editor';
 import UnitSource from '../components/UnitSource';
 
 
