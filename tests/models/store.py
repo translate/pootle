@@ -127,16 +127,14 @@ def test_sync(project0_nongnu, project0, store0):
 
 
 @pytest.mark.django_db
-def test_update_from_ts(en_tutorial_po, test_fs):
-    # Parse store
-    en_tutorial_po.updater.update_from_disk()
-    tp = en_tutorial_po.translation_project
-    with test_fs.open(['data', 'ts', tp.real_path, 'tutorial.ts']) as f:
+def test_update_from_ts(store0, test_fs):
+    store0.parsed = True
+    orig_units = store0.units.count()
+    with test_fs.open(['data', 'ts', 'tutorial', 'en', 'tutorial.ts']) as f:
         store = getclass(f)(f.read())
-    en_tutorial_po.update(store)
-
-    assert(not en_tutorial_po.units[1].hasplural())
-    assert(en_tutorial_po.units[2].hasplural())
+    store0.update(store)
+    assert(not store0.units[orig_units].hasplural())
+    assert(store0.units[orig_units + 1].hasplural())
 
 
 @pytest.mark.django_db
@@ -153,15 +151,14 @@ def test_update_ts_plurals(store_po, test_fs):
 
 
 @pytest.mark.django_db
-def test_update_with_non_ascii(en_tutorial_po, test_fs):
-    # Parse store
-    en_tutorial_po.updater.update_from_disk()
-    tp = en_tutorial_po.translation_project
-    with test_fs.open(['data', 'po', tp.real_path,
+def test_update_with_non_ascii(store0, test_fs):
+    store0.state = PARSED
+    orig_units = store0.units.count()
+    with test_fs.open(['data', 'po', 'tutorial', 'en',
                        'tutorial_non_ascii.po']) as f:
         store = getclass(f)(f.read())
-    en_tutorial_po.update(store)
-    assert en_tutorial_po.units[0].target == "Hèllö, wôrld"
+    store0.update(store)
+    assert store0.units[orig_units].target == "Hèllö, wôrld"
 
 
 @pytest.mark.django_db
@@ -279,46 +276,54 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0, test_fs):
 
 
 @pytest.mark.django_db
-def test_update_upload_defaults(en_tutorial_po, system):
+def test_update_upload_defaults(store0, system):
+    store0.state = PARSED
+    unit_source = store0.units.first().source
     update_store(
-        en_tutorial_po,
-        [("Hello, world", "Hello, world UPDATED")],
+        store0,
+        [(unit_source, "%s UPDATED" % unit_source)],
         user=system,
         store_revision=Revision.get() + 1)
-    assert en_tutorial_po.units[0].submitted_by == system
-    assert (en_tutorial_po.units[0].submission_set.first().type
-            == SubmissionTypes.SYSTEM)
+    assert store0.units[0].submitted_by == system
+    assert (
+        store0.units[0].submission_set.last().type
+        == SubmissionTypes.SYSTEM)
 
 
 @pytest.mark.django_db
-def test_update_upload_member_user(en_tutorial_po, member):
+def test_update_upload_member_user(store0, member):
+    store0.state = PARSED
+    unit_source = store0.units.first().source
     update_store(
-        en_tutorial_po,
-        [("Hello, world", "Hello, world UPDATED")],
+        store0,
+        [(unit_source, "%s UPDATED" % unit_source)],
         user=member,
         store_revision=Revision.get() + 1)
-    assert en_tutorial_po.units[0].submitted_by == member
+    assert store0.units[0].submitted_by == member
 
 
 @pytest.mark.django_db
-def test_update_upload_submission_type(en_tutorial_po):
+def test_update_upload_submission_type(store0):
+    store0.state = PARSED
+    unit_source = store0.units.first().source
     update_store(
-        en_tutorial_po,
-        [("Hello, world", "Hello, world UPDATED")],
+        store0,
+        [(unit_source, "%s UPDATED" % unit_source)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
-    assert (en_tutorial_po.units[0].submission_set.first().type
-            == SubmissionTypes.UPLOAD)
+    assert (
+        store0.units[0].submission_set.last().type
+        == SubmissionTypes.UPLOAD)
 
 
 @pytest.mark.django_db
-def test_update_upload_new_revision(en_tutorial_po):
+def test_update_upload_new_revision(store0):
     update_store(
-        en_tutorial_po,
+        store0,
         [("Hello, world", "Hello, world UPDATED")],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
-    assert en_tutorial_po.units[0].target == "Hello, world UPDATED"
+    assert store0.units[0].target == "Hello, world UPDATED"
 
 
 @pytest.mark.django_db
@@ -369,27 +374,32 @@ def test_update_upload_old_revision_unit_conflict(store0):
 
 
 @pytest.mark.django_db
-def test_update_upload_new_revision_new_unit(en_tutorial_po):
+def test_update_upload_new_revision_new_unit(store0):
     file_name = "pytest_pootle/data/po/tutorial/en/tutorial_update_new_unit.po"
-    _update_from_upload_file(en_tutorial_po, file_name)
+    store0.state = PARSED
+
+    _update_from_upload_file(store0, file_name)
 
     # the new unit has been added
-    assert en_tutorial_po.units[1].target == 'Goodbye, world'
+    assert store0.units.last().target == 'Goodbye, world'
 
 
 @pytest.mark.django_db
-def test_update_upload_old_revision_new_unit(en_tutorial_po):
+def test_update_upload_old_revision_new_unit(store0):
+    store0.units.delete()
+    store0.state = PARSED
 
     # load initial update
-    _update_from_upload_file(en_tutorial_po,
-                             "pytest_pootle/data/po/tutorial/en/tutorial_update.po")
+    _update_from_upload_file(
+        store0,
+        "pytest_pootle/data/po/tutorial/en/tutorial_update.po")
 
     # load old revision with new unit
     file_name = "pytest_pootle/data/po/tutorial/en/tutorial_update_old_unit.po"
-    _update_from_upload_file(en_tutorial_po, file_name)
+    _update_from_upload_file(store0, file_name)
 
     # the unit has been added because its not already obsoleted
-    assert len(en_tutorial_po.units) == 2
+    assert store0.units.count() == 2
 
 
 def _test_store_update_indexes(store, *test_args):
