@@ -8,9 +8,16 @@
 
 from pootle.core.delegate import data_tool, data_updater
 from pootle.core.plugin import getter
+from pootle_app.models import Directory
+from pootle_language.models import Language
+from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .directory_data import DirectoryDataTool
+from .language_data import LanguageDataTool
+from .project_data import (
+    ProjectDataTool, ProjectResourceDataTool, ProjectSetDataTool)
 from .store_data import StoreDataTool, StoreDataUpdater
 from .tp_data import TPDataTool, TPDataUpdater
 
@@ -33,3 +40,28 @@ def tp_data_tool_getter(**kwargs_):
 @getter(data_updater, sender=TPDataTool)
 def tp_data_tool_updater_getter(**kwargs_):
     return TPDataUpdater
+
+
+@getter(data_tool, sender=Project)
+def project_data_tool_getter(**kwargs_):
+    return ProjectDataTool
+
+
+@getter(data_tool, sender=ProjectSet)
+def project_set_data_tool_getter(**kwargs_):
+    return ProjectSetDataTool
+
+
+@getter(data_tool, sender=ProjectResource)
+def project_resource_data_tool_getter(**kwargs_):
+    return ProjectResourceDataTool
+
+
+@getter(data_tool, sender=Language)
+def language_data_tool_getter(**kwargs_):
+    return LanguageDataTool
+
+
+@getter(data_tool, sender=Directory)
+def directory_data_tool_getter(**kwargs_):
+    return DirectoryDataTool
