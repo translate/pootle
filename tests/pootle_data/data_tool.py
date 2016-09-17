@@ -9,7 +9,7 @@
 import pytest
 
 from pootle.core.delegate import data_tool
-from pootle_data.utils import StoreDataTool
+from pootle_data.store_data import StoreDataTool
 
 
 @pytest.mark.django_db

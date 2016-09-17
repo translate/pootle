@@ -10,7 +10,7 @@ import pytest
 
 from translate.filters.decorators import Category
 
-from pootle_data.utils import StoreDataTool
+from pootle_data.store_data import StoreDataTool
 from pootle_store.constants import (
     FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED)
 from pootle_store.models import Suggestion
