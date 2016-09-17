@@ -18,7 +18,7 @@ from django.dispatch import receiver
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
-from pootle.core.mixins import CachedMethods, CachedTreeItem
+from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -364,10 +364,6 @@ class TranslationProject(models.Model, CachedTreeItem):
                 store.updater.update_from_disk(overwrite=overwrite)
                 or changed)
 
-        # If this TP has no stores, cache should be updated forcibly.
-        if not changed and stores.count() == 0:
-            self.update_all_cache()
-
         return changed
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
@@ -449,7 +445,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             try:
                 termproject = TranslationProject.objects \
                     .get_terminology_project(self.language_id)
-                mtime = termproject.get_cached_value(CachedMethods.MTIME)
+                mtime = termproject.data.max_unit_mtime
                 terminology_stores = termproject.stores.live()
             except TranslationProject.DoesNotExist:
                 pass
@@ -458,10 +454,10 @@ class TranslationProject(models.Model, CachedTreeItem):
                 name__startswith='pootle-terminology')
             for store in local_terminology.iterator():
                 if mtime is None:
-                    mtime = store.get_cached_value(CachedMethods.MTIME)
+                    mtime = store.data.max_unit_mtime
                 else:
                     mtime = max(mtime,
-                                store.get_cached_value(CachedMethods.MTIME))
+                                store.data.max_unit_mtime)
 
             terminology_stores = terminology_stores | local_terminology
 

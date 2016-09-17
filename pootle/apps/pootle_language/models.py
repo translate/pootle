@@ -123,11 +123,11 @@ class Language(models.Model, TreeItem):
         ordering = ['code']
         db_table = 'pootle_app_language'
 
+    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
+
     @cached_property
     def data_tool(self):
         return data_tool.get(self.__class__)(self)
-
-    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
     def pootle_path(self):
