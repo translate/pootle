@@ -10,7 +10,7 @@ from pootle.core.delegate import data_tool
 from pootle.core.plugin import getter
 from pootle_store.models import Store
 
-from .utils import StoreDataTool
+from .store_data import StoreDataTool
 
 
 @getter(data_tool, sender=Store)
