@@ -34,9 +34,8 @@ def test_data_store(tp0):
         name="foo.po",
         parent=tp0.directory,
         translation_project=tp0)
-    data = StoreData.objects.create(store=store)
     assert (
-        repr(data)
+        repr(store.data)
         == '<StoreData: %s>' % store.pootle_path)
 
 
@@ -70,9 +69,8 @@ def test_data_tp(english):
     tp = TranslationProjectFactory(
         project=ProjectDBFactory(source_language=english),
         language=LanguageDBFactory())
-    data = TPData.objects.create(tp=tp)
     assert (
-        repr(data)
+        repr(tp.data)
         == '<TPData: %s>' % tp.pootle_path)
 
 
