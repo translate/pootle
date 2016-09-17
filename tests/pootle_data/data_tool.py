@@ -14,6 +14,8 @@ from pootle.core.delegate import data_tool
 from pootle_data.models import StoreData
 from pootle_data.store_data import StoreDataTool
 from pootle_data.utils import DataTool
+from pootle_store.constants import FUZZY, TRANSLATED
+from pootle_store.models import Unit
 
 
 @pytest.mark.django_db
@@ -165,3 +167,145 @@ def test_data_tool_tp_get_checks(tp0):
     assert (
         sorted(checks.items())
         == sorted(tp0.check_data.values_list("name", "count")))
+
+
+def _test_children_stats(stats, directory):
+    child_stores = directory.child_stores.live()
+    child_dirs = directory.child_dirs.live()
+    # same roots
+    children = (
+        list(child_stores.values_list("name", flat=True))
+        + list(child_dirs.values_list("name", flat=True)))
+    assert (
+        sorted(stats["children"].keys())
+        == (sorted(children)))
+
+    for store in child_stores:
+        _test_unit_stats(
+            stats["children"][store.name],
+            store.units)
+
+
+def _test_object_stats(stats, stores):
+    assert "children" not in stats
+    _test_unit_stats(
+        stats,
+        stores)
+
+
+def _test_unit_stats(stats, units):
+    wordcount = sum(
+        units.filter(state__gt=OBSOLETE).values_list(
+            "source_wordcount",
+            flat=True))
+    assert stats["total"] == wordcount
+    fuzzy_wordcount = sum(
+        units.filter(state=FUZZY).values_list(
+            "source_wordcount",
+            flat=True))
+    assert stats["fuzzy"] == fuzzy_wordcount
+    translated_wordcount = sum(
+        units.filter(state=TRANSLATED).values_list(
+            "source_wordcount",
+            flat=True))
+    assert stats["translated"] == translated_wordcount
+
+
+@pytest.mark.django_db
+def test_data_tp_stats(tp0):
+
+    # get the child directories
+    # child_dirs = tp0.directory.child_dirs.live()
+
+    _test_object_stats(
+        tp0.data_tool.get_stats(include_children=False),
+        Unit.objects.live().filter(
+            store__in=tp0.stores.live()))
+
+    # get the child stores
+    _test_children_stats(
+        tp0.data_tool.get_stats(),
+        tp0.directory)
+
+
+@pytest.mark.django_db
+def test_data_project_stats(project0):
+    _test_object_stats(
+        project0.data_tool.get_stats(include_children=False),
+        Unit.objects.live().filter(
+            store__translation_project__project=project0))
+    child_stats = project0.data_tool.get_stats()
+    assert (
+        len(child_stats["children"])
+        == project0.translationproject_set.count())
+    for tp in project0.translationproject_set.all():
+        stat_code = "%s-%s" % (tp.language.code, project0.code)
+        assert stat_code in child_stats["children"]
+        child = child_stats["children"][stat_code]
+        tp_stats = tp.data_tool.get_stats(include_children=False)
+        for k in ["fuzzy", "total", "translated", "suggestions", "critical"]:
+            assert child[k] == tp_stats[k]
+
+
+@pytest.mark.django_db
+def test_data_language_stats(language0, request_users):
+    user = request_users["user"]
+    units = Unit.objects.live()
+    units = units.filter(store__translation_project__language=language0)
+    if not user.is_superuser:
+        units = units.exclude(store__translation_project__project__disabled=True)
+    _test_object_stats(
+        language0.data_tool.get_stats(include_children=False, user=user),
+        units)
+    language0.data_tool.get_stats(user=user)
+
+
+@pytest.mark.django_db
+def test_data_directory_stats(subdir0):
+    _test_object_stats(
+        subdir0.data_tool.get_stats(include_children=False),
+        Unit.objects.live().filter(
+            store__pootle_path__startswith=subdir0.pootle_path))
+    # get the child stores
+    _test_children_stats(
+        subdir0.data_tool.get_stats(),
+        subdir0)
+
+
+@pytest.mark.django_db
+def test_data_project_directory_stats(project_dir_resources0):
+    pd0 = project_dir_resources0
+    units = Unit.objects.none()
+    for directory in pd0.children:
+        units |= Unit.objects.live().filter(
+            store__pootle_path__startswith=directory.pootle_path)
+    _test_object_stats(
+        pd0.data_tool.get_stats(include_children=False),
+        units)
+    pd0.data_tool.get_stats()
+
+
+@pytest.mark.django_db
+def test_data_project_store_stats(project_store_resources0):
+    units = Unit.objects.none()
+    for store in project_store_resources0.children:
+        units |= Unit.objects.live().filter(
+            store__pootle_path=(
+                "%s%s"
+                % (store.parent.pootle_path,
+                   store.name)))
+    _test_object_stats(
+        project_store_resources0.data_tool.get_stats(include_children=False),
+        units)
+    project_store_resources0.data_tool.get_stats()
+
+
+@pytest.mark.django_db
+def test_data_project_set_stats(project_set):
+
+    units = Unit.objects.live()
+    stats = project_set.data_tool.get_stats(include_children=False)
+    _test_object_stats(
+        stats,
+        units)
+    project_set.data_tool.get_stats()
