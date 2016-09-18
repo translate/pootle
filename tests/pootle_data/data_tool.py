@@ -43,13 +43,6 @@ def test_data_tool_base_tool():
 def test_data_tool_store_get_stats(store0):
     stats = store0.data_tool.get_stats()
 
-    # TODO: remove when old stats are removed
-    old_stats = store0.get_stats()
-
-    assert (
-        sorted(old_stats.keys())
-        == sorted(stats.keys()))
-
     assert stats["translated"] == store0.data.translated_words
     assert stats["fuzzy"] == store0.data.fuzzy_words
     assert stats["total"] == store0.data.total_words
@@ -74,13 +67,6 @@ def test_data_tool_store_get_stats(store0):
 @pytest.mark.django_db
 def test_data_tool_store_get_checks(store0):
     checks = store0.data_tool.get_checks()
-    old_checks = store0._get_checks()
-
-    # TODO: remove when old_checks are removed
-    assert (
-        sorted(checks.items())
-        == sorted(old_checks["checks"].items()))
-
     assert (
         sorted(checks.items())
         == sorted(store0.check_data.values_list("name", "count")))
@@ -89,12 +75,6 @@ def test_data_tool_store_get_checks(store0):
 @pytest.mark.django_db
 def test_data_tool_tp_get_stats(tp0):
     stats = tp0.data_tool.get_stats(include_children=False)
-
-    # TODO: remove when old stats are removed
-    old_stats = tp0.get_stats(include_children=False)
-    assert (
-        sorted(old_stats.keys())
-        == sorted(stats.keys()))
 
     assert "children" not in stats
     assert stats["translated"] == tp0.data.translated_words
@@ -120,12 +100,6 @@ def test_data_tool_tp_get_stats(tp0):
 @pytest.mark.django_db
 def test_data_tool_tp_get_stats_with_children(tp0):
     stats = tp0.data_tool.get_stats()
-
-    # TODO: remove when old stats are removed
-    old_stats = tp0.get_stats()
-    assert (
-        sorted(old_stats.keys())
-        == sorted(stats.keys()))
 
     assert stats["translated"] == tp0.data.translated_words
     assert stats["fuzzy"] == tp0.data.fuzzy_words
