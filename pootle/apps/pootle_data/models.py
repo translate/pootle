@@ -27,8 +27,12 @@ class StoreData(AbstractPootleData):
 
 class StoreChecksData(AbstractPootleChecksData):
 
-    class Meta(object):
+    class Meta(AbstractPootleChecksData.Meta):
         db_table = "pootle_store_check_data"
+        unique_together = ["store", "category", "name"]
+        index_together = (
+            [AbstractPootleChecksData.Meta.index_together]
+            + [["store", "category", "name"]])
 
     store = models.ForeignKey(
         "pootle_store.Store",
@@ -55,8 +59,12 @@ class TPData(AbstractPootleData):
 
 class TPChecksData(AbstractPootleChecksData):
 
-    class Meta(object):
+    class Meta(AbstractPootleChecksData.Meta):
         db_table = "pootle_tp_check_data"
+        unique_together = ["tp", "category", "name"]
+        index_together = (
+            [AbstractPootleChecksData.Meta.index_together]
+            + [["tp", "category", "name"]])
 
     tp = models.ForeignKey(
         "pootle_translationproject.TranslationProject",
