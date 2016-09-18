@@ -24,10 +24,27 @@ class DataTool(object):
         self.context = context
 
     @property
+    def children_stats(self):
+        return {}
+
+    @property
+    def object_stats(self):
+        return {}
+
+    @property
     def updater(self):
         updater = data_updater.get(self.__class__)
         if updater:
             return updater(self)
+
+    def get_checks(self):
+        return {}
+
+    def get_stats(self, include_children=True, user=None):
+        stats = self.object_stats
+        if include_children:
+            stats["children"] = {}
+        return stats
 
     def update(self, **kwargs):
         if self.updater:
