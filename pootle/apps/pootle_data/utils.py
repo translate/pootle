@@ -151,30 +151,26 @@ class DataUpdater(object):
         existing_checks = self.model.check_data.values_list(
             "pk", "category", "name", "count")
         for pk, category, name, count in existing_checks:
-            checks[category] = checks.get("category", {})
-            checks[category][name] = (pk, count)
+            checks[(category, name)] = (pk, count)
         to_update = []
         to_add = []
-        to_delete = []
         for check in store_data["checks"]:
             category = check["category"]
             name = check["name"]
             count = check["count"]
             check_exists = (
-                checks.get(category)
-                and checks[category].get(name))
+                checks.get((category, name)))
             if not check_exists:
                 to_add.append(check)
                 continue
-            elif checks[category][name][1] != count:
-                to_update.append(checks[category][name])
-            del checks[category][name]
-            if not len(checks[category]):
-                del checks[category]
-        for category, info in checks.items():
-            for name in info.keys():
-                to_delete.append((category, name))
+            elif checks[(category, name)][1] != count:
+                to_update.append((checks[(category, name)][0], count))
+            del checks[(category, name)]
+        for category, name in checks.keys():
+            # bulk delete?
+            self.model.check_data.filter(category=category, name=name).delete()
         for pk, count in to_update:
+            # bulk update?
             check = self.model.check_data.get(pk=pk)
             check.count = count
             check.save()
