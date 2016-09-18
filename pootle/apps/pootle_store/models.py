@@ -1002,7 +1002,7 @@ class Unit(models.Model, base.TranslationUnit):
 
             subs_created.append(Submission(**kwargs))
         if subs_created:
-            self.submission_set.add(*subs_created)
+            self.submission_set.add(*subs_created, bulk=False)
 
         # FIXME: remove such a dependency on `ScoreLog`
         # Update current unit instance's attributes
@@ -1411,7 +1411,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     old_value=create_subs[field][0],
                     new_value=create_subs[field][1]))
         if subs_created:
-            unit.submission_set.add(*subs_created)
+            unit.submission_set.add(*subs_created, bulk=False)
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS,

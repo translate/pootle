@@ -328,7 +328,7 @@ class Submission(models.Model):
             if 'action_code' in score and score['user'] is not None:
                 scorelogs_created.append(ScoreLog(**score))
         if scorelogs_created:
-            self.scorelog_set.add(*scorelogs_created)
+            self.scorelog_set.add(*scorelogs_created, bulk=False)
 
 
 class TranslationActionCodes(object):
