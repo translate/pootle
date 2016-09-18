@@ -19,7 +19,7 @@ from pootle_store.util import SuggestionStates
 from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.models import QualityCheck, Unit
 
-from .data_updater_store import _calc_word_counts
+from .data_updater_store import _calc_word_counts, _calculate_checks
 
 
 @pytest.mark.django_db
@@ -277,3 +277,34 @@ def test_data_tp_qc_stats(tp0):
         store_data["critical_checks"]
         == tp0.data.critical_checks
         == check_count + unit_critical - 1)
+
+
+@pytest.mark.django_db
+def test_data_tp_checks(tp0):
+    units = Unit.objects.filter(
+        state__gt=OBSOLETE,
+        store__translation_project=tp0)
+    qc_qs = QualityCheck.objects
+    qc_qs = (
+        qc_qs.filter(unit__store__translation_project=tp0)
+             .filter(unit__state__gt=UNTRANSLATED)
+             .exclude(false_positive=True))
+    checks = _calculate_checks(qc_qs.all())
+    check_data = tp0.check_data.all().values_list("category", "name", "count")
+    assert len(check_data) == len(checks)
+    for (category, name), count in checks.items():
+        assert (category, name, count) in check_data
+    unit = units.exclude(
+        qualitycheck__isnull=True,
+        qualitycheck__name__in=["xmltags", "endpunc"]).first()
+    unit.target = "<foo></bar>;"
+    unit.save()
+    # TODO: remove when signals land
+    unit.store.data_tool.updater.update()
+    # TODO: remove when signals land
+    tp0.data_tool.update()
+    checks = _calculate_checks(qc_qs.all())
+    check_data = tp0.check_data.all().values_list("category", "name", "count")
+    assert len(check_data) == len(checks)
+    for (category, name), count in checks.items():
+        assert (category, name, count) in check_data
