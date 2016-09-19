@@ -18,10 +18,12 @@ from pootle_store.models import Store
 @pytest.fixture
 def no_update_data_(request):
     receivers = update_data.receivers
+    receivers_cache = update_data.sender_receivers_cache.copy()
     update_data.receivers = []
 
     def _reset_update_data():
         update_data.receivers = receivers
+        update_data.sender_receivers_cache = receivers_cache
 
     request.addfinalizer(_reset_update_data)
 
