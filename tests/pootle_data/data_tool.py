@@ -157,3 +157,11 @@ def test_data_tool_tp_get_stats_with_children(tp0):
             assert (
                 dir_stats[k]
                 == store_data.aggregate(**{k: Sum(v)})[k])
+
+
+@pytest.mark.django_db
+def test_data_tool_tp_get_checks(tp0):
+    checks = tp0.data_tool.get_checks()
+    assert (
+        sorted(checks.items())
+        == sorted(tp0.check_data.values_list("name", "count")))
