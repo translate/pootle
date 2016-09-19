@@ -16,13 +16,6 @@ class AbstractPootleData(models.Model):
     class Meta(object):
         abstract = True
 
-    # last unit updated
-    last_updated_unit = models.OneToOneField(
-        "pootle_store.Unit",
-        db_index=True,
-        null=True,
-        blank=True,
-        related_name="last_updated_for_%(class)s")
     # last untranslated unit created
     last_created_unit = models.OneToOneField(
         "pootle_store.Unit",
