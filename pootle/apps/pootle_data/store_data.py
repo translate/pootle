@@ -24,15 +24,9 @@ class StoreDataTool(DataTool):
 
     @property
     def object_stats(self):
-        mapping = dict(
-            total_words="total",
-            fuzzy_words="fuzzy",
-            translated_words="translated",
-            critical_checks="critical",
-            pending_suggestions="suggestions")
         stats = {
             v: getattr(self.context.data, k)
-            for k, v in mapping.items()}
+            for k, v in self.stats_mapping.items()}
         stats["is_dirty"] = False
         stats["children"] = {}
         stats["lastaction"] = (

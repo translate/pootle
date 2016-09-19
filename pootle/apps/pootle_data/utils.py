@@ -20,6 +20,13 @@ SUM_FIELDS = (
 
 class DataTool(object):
 
+    stats_mapping = dict(
+        total_words="total",
+        fuzzy_words="fuzzy",
+        translated_words="translated",
+        critical_checks="critical",
+        pending_suggestions="suggestions")
+
     def __init__(self, context):
         self.context = context
 
