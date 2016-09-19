@@ -41,7 +41,7 @@ def get_top_scorers_data(top_scorers, chunk_size):
             suggested=scorer['suggested'],
             translated=scorer['translated'],
             reviewed=scorer['reviewed'],
-            email=scorer['user'].email,
+            email=scorer['user'].email_hash,
             display_name=scorer['user'].display_name,
             username=scorer['user'].username,
         ) for scorer in top_scorers[:chunk_size]
