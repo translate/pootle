@@ -14,10 +14,12 @@ from pootle.core.signals import update_data
 @contextmanager
 def suppress_signal(signal):
     handlers = signal.receivers
+    receiver_cache = signal.sender_receivers_cache.copy()
     signal.receivers = []
     try:
         yield
     finally:
+        signal.sender_receivers_cache = receiver_cache
         signal.receivers = handlers
 
 
