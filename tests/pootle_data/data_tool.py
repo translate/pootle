@@ -10,6 +10,7 @@ import pytest
 
 from pootle.core.delegate import data_tool
 from pootle_data.store_data import StoreDataTool
+from pootle_data.utils import DataTool
 
 
 @pytest.mark.django_db
@@ -18,6 +19,19 @@ def test_data_tool_store(store0):
     assert data_tool.get(store0.__class__) is StoreDataTool
     assert isinstance(store0.data_tool, StoreDataTool)
     assert store0.data_tool.context is store0
+
+
+@pytest.mark.django_db
+def test_data_tool_base_tool():
+    foo = object()
+    base_tool = DataTool(foo)
+    assert base_tool.context is foo
+    assert base_tool.get_stats() == dict(children={})
+    assert base_tool.get_stats(include_children=False) == {}
+    assert base_tool.get_checks() == {}
+    assert base_tool.object_stats == {}
+    assert base_tool.children_stats == {}
+    assert base_tool.updater is None
 
 
 @pytest.mark.django_db
@@ -50,3 +64,18 @@ def test_data_tool_store_get_stats(store0):
     assert (
         sorted(stats["lastupdated"].items())
         == sorted(last_updated_info.items()))
+
+
+@pytest.mark.django_db
+def test_data_tool_store_get_checks(store0):
+    checks = store0.data_tool.get_checks()
+    old_checks = store0._get_checks()
+
+    # TODO: remove when old_checks are removed
+    assert (
+        sorted(checks.items())
+        == sorted(old_checks["checks"].items()))
+
+    assert (
+        sorted(checks.items())
+        == sorted(store0.check_data.values_list("name", "count")))
