@@ -8,6 +8,8 @@
 
 import pytest
 
+from hashlib import md5
+
 from pootle.core.utils.stats import get_top_scorers_data
 
 
@@ -16,6 +18,7 @@ class MockUser(object):
         self.email = email
         self.display_name = display_name
         self.username = username
+        self.email_hash = md5(email).hexdigest()
 
 
 TEST_TOP_SCORERS = [
@@ -56,7 +59,7 @@ def test_get_top_scorers_data(top_scorers, chunk_size):
             suggested=x['suggested'],
             translated=x['translated'],
             reviewed=x['reviewed'],
-            email=x['user'].email,
+            email=x['user'].email_hash,
             display_name=x['user'].display_name,
             username=x['user'].username,
         )
