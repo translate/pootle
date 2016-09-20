@@ -11,10 +11,10 @@ import pytest
 from django.db.models import Sum
 
 from pootle.core.delegate import data_tool
-from pootle_data.models import StoreData
+from pootle_data.models import StoreChecksData, StoreData, TPChecksData
 from pootle_data.store_data import StoreDataTool
 from pootle_data.utils import DataTool
-from pootle_store.constants import FUZZY, TRANSLATED
+from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import Unit
 
 
@@ -302,10 +302,59 @@ def test_data_project_store_stats(project_store_resources0):
 
 @pytest.mark.django_db
 def test_data_project_set_stats(project_set):
-
-    units = Unit.objects.live()
+    units = Unit.objects.live().exclude(
+        store__translation_project__project__disabled=True)
     stats = project_set.data_tool.get_stats(include_children=False)
     _test_object_stats(
         stats,
         units)
     project_set.data_tool.get_stats()
+
+
+def _calculate_check_data(check_data):
+    data = {}
+    for check in check_data.iterator():
+        data[check.name] = data.get(check.name, 0) + check.count
+    return data
+
+
+@pytest.mark.django_db
+def test_data_tool_project_get_checks(project0):
+    assert (
+        project0.data_tool.get_checks()
+        == _calculate_check_data(
+            TPChecksData.objects.filter(tp__project=project0)))
+
+
+@pytest.mark.django_db
+def test_data_tool_directory_get_checks(subdir0):
+    assert (
+        subdir0.data_tool.get_checks()
+        == _calculate_check_data(
+            StoreChecksData.objects.filter(
+                store__pootle_path__startswith=subdir0.pootle_path)))
+
+
+@pytest.mark.django_db
+def test_data_tool_language_get_checks(language0, request_users):
+    user = request_users["user"]
+    check_data = TPChecksData.objects.filter(tp__language=language0)
+    if not user.is_superuser:
+        check_data = check_data.exclude(
+            tp__project__disabled=True)
+    assert (
+        language0.data_tool.get_checks(user=user)
+        == _calculate_check_data(check_data))
+
+
+@pytest.mark.django_db
+def test_data_project_directory_get_checks(project_dir_resources0):
+    pd0 = project_dir_resources0
+    checks_data = StoreChecksData.objects.none()
+    for directory in pd0.children:
+        checks_data |= StoreChecksData.objects.filter(
+            store__state__gt=OBSOLETE,
+            store__pootle_path__startswith=directory.pootle_path)
+    assert (
+        sorted(pd0.data_tool.get_checks().items())
+        == sorted(_calculate_check_data(checks_data).items()))
