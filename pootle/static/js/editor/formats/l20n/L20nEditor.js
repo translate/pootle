@@ -47,6 +47,7 @@ const L20nEditor = React.createClass({
       hasL20nPlurals: false,
       pluralInitialValues: [],
       pluralForms: [],
+      isRichModeEnabled: false,
     };
   },
 
@@ -93,15 +94,25 @@ const L20nEditor = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    const l20nPlurals = getL20nPlurals(this.state.values, nextProps.targetNplurals);
-    if (l20nPlurals) {
-      this.hasL20nPlurals = true;
-      this.l20nUnitEntity = l20nPlurals.unitEntity;
+    if (nextProps.isRichModeEnabled) {
       this.setState({
-        values: l20nPlurals.unitValues,
-        targetNplurals: l20nPlurals.unitValues.length,
-        hasL20nPlurals: true,
+        values: nextProps.values,
+        targetNplurals: 1,
+        hasPlurals: nextProps.values.length > 1,
+        isRichModeEnabled: nextProps.isRichModeEnabled,
       });
+    } else {
+      const l20nPlurals = getL20nPlurals(this.state.values, nextProps.targetNplurals);
+      if (l20nPlurals) {
+        this.hasL20nPlurals = true;
+        this.l20nUnitEntity = l20nPlurals.unitEntity;
+        this.setState({
+          values: l20nPlurals.unitValues,
+          targetNplurals: l20nPlurals.unitValues.length,
+          hasL20nPlurals: true,
+          isRichModeEnabled: nextProps.isRichModeEnabled,
+        });
+      }
     }
   },
 
@@ -109,7 +120,7 @@ const L20nEditor = React.createClass({
     const newValues = this.state.values.slice();
     newValues[i] = value;
 
-    if (this.state.hasL20nPlurals) {
+    if (this.state.hasL20nPlurals && !this.state.isRichModeEnabled) {
       try {
         const newL20nValues = dumpL20nPlurals(newValues, this.l20nUnitEntity);
         this.setState({ values: newValues }, () => this.props.onChange(0, newL20nValues[0]));
@@ -147,7 +158,7 @@ const L20nEditor = React.createClass({
           isDisabled={this.props.isDisabled}
           key={i}
         >
-          {this.state.hasL20nPlurals &&
+          {this.state.hasL20nPlurals && !this.state.isRichModeEnabled &&
             <div className="subheader">
               { this.getPluralFormName(i) }
             </div>

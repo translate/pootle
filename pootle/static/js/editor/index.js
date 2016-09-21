@@ -67,6 +67,7 @@ const ReactEditor = {
       <EditorContainer
         onChange={this.handleChange}
         editorComponent={this.formatAdaptor.editorComponent}
+        editorProps={this.formatAdaptor.getProps(this.props)}
         {...this.props}
         {...extraProps}
       />,
