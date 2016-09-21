@@ -71,7 +71,7 @@ const RawFontTextarea = React.createClass({
   componentDidMount() {
     this.mousetrap = new Mousetrap(ReactDOM.findDOMNode(this.refs.textarea));
     this.mousetrap.bind(UNDO_SHORTCUT, this.handleUndo);
-    this.mousetrap.bind(REDO_SHORTCUT, this.props.onRedo);
+    this.mousetrap.bind(REDO_SHORTCUT, this.handleRedo);
 
     this.isComposing = false;
     this.isDirty = false;
