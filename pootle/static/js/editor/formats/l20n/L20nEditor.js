@@ -113,7 +113,7 @@ const L20nEditor = React.createClass({
         const newL20nValues = dumpL20nPlurals(newValues, this.l20nUnitEntity);
         this.setState({ values: newValues }, () => this.props.onChange(0, newL20nValues[0]));
       } catch (e) {
-        if (e instanceof Error) {
+        if (e.name === 'L20nEditorError') {
           this.setState({ values: newValues });
         } else {
           throw e;

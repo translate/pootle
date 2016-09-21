@@ -10,7 +10,7 @@ import { FTLASTParser, FTLASTSerializer, getPluralForms } from 'l20n';
 
 
 export function getL20nPlurals(values, nplurals) {
-  if (nplurals !== 1 || values.length !== 1) {
+  if (nplurals !== 1 || values.length !== 1 || values[0] === '') {
     return false;
   }
   const unitEntity = FTLASTParser.parseResource('unit = ' + values[0])[0].body[0];
@@ -36,12 +36,23 @@ export function getL20nPlurals(values, nplurals) {
 
 export function dumpL20nPlurals(values, l20nUnitEntity) {
   const variants = l20nUnitEntity.value.elements[0].expressions[0].variants;
+
+  if (values.every(value => value === '')) {
+    return '';
+  } else if (values.some(value => value === '')) {
+    throw new L20nEditorError('All plural forms should be filled.')
+  }
   for (let i in values) {
     const value = values[i];
     const pfEntity = FTLASTParser.parseResource('unit = ' + value);
     variants[i].value = pfEntity[0].body[0].value;
   }
-  return [FTLASTSerializer.dumpPattern(l20nUnitEntity.value)];
+
+  try {
+    return [FTLASTSerializer.dumpPattern(l20nUnitEntity.value)];
+  } catch (e) {
+    throw new L20nEditorError(e.message)
+  }
 }
 
 
@@ -52,3 +63,16 @@ export function getL20nEmptyPluralsEntity(localeCode) {
   const unitEntity = FTLASTParser.parseResource(unit)[0].body[0];
   return { unitEntity, pluralForms };
 }
+
+
+class L20nEditorError extends Error {
+   constructor(message, id) {
+     super();
+     this.name = 'L20nEditorError';
+     this.message = message;
+     this.id = id;
+   }
+}
+
+
+export { L20nEditorError as L20nEditorError }
