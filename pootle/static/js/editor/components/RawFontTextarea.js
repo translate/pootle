@@ -69,7 +69,7 @@ const RawFontTextarea = React.createClass({
   },
 
   componentDidMount() {
-    this.mousetrap = new Mousetrap(ReactDOM.findDOMNode(this.refs.textarea));
+    this.mousetrap = new Mousetrap(ReactDOM.findDOMNode(this._textarea));
     this.mousetrap.bind(UNDO_SHORTCUT, this.handleUndo);
     this.mousetrap.bind(REDO_SHORTCUT, this.handleRedo);
 
@@ -97,7 +97,7 @@ const RawFontTextarea = React.createClass({
      * the positioning of the caret.
      */
 
-    const node = ReactDOM.findDOMNode(this.refs.textarea);
+    const node = ReactDOM.findDOMNode(this._textarea);
     const { selectionStart } = node;
     const { selectionEnd } = node;
     const { value } = node;
@@ -291,7 +291,13 @@ const RawFontTextarea = React.createClass({
         onCopy={this.handleCopyCut}
         onCut={this.handleCopyCut}
         onKeyDown={this.handleKeyDown}
-        ref="textarea"
+        ref={(textarea) => {
+          if (textarea !== null) {
+            // `textarea` doesn't hold the actual DOM textarea; it is a
+            // component, hence using `ReactDOM.findDOMNode` here.
+            this._textarea = ReactDOM.findDOMNode(textarea);
+          }
+        }}
         style={style}
         value={undefined}
       />
