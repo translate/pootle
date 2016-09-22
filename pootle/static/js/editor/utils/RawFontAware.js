@@ -6,7 +6,9 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import { CHARACTERS, SYMBOLS } from './font';
+import _ from 'underscore';
+
+import { CHARACTERS, SYMBOLS, BASE_MAP, FULL_MAP } from './font';
 
 var RAW_MODE = true; // emulate "Raw" mode with full conversion logic
 
@@ -15,11 +17,12 @@ const KEY_RIGHT = 39;
 const KEY_DELETE = 46;
 const KEY_LETTER_F = 70;
 
-var RAW_BASE = "\u0000\u0007\u0008\u0009\u000B\u000C\u001B\u00A0\u000D";
-var SYM_BASE = "\u2400\u2407\u2408\u2409\u240B\u240C\u241B\u2423\u240D";
+const RAW_BASE = Object.keys(BASE_MAP).join('');
+const SYM_BASE = Object.keys(_.invert(BASE_MAP)).join('');
 
-var RAW_FULL = RAW_BASE+"\u061C\u200B\u200C\u200D\u200E\u200F\u202A\u202B\u202C\u202D\u202E\u2060\u2066\u2067\u2068\u2069";
-var SYM_FULL = SYM_BASE+"\uF000\uF001\uF002\uF003\uF004\uF005\uF006\uF007\uF008\uF009\uF00A\uF00B\uF00C\uF00D\uF00E\uF00F";
+const RAW_FULL = Object.keys(FULL_MAP).join('');
+const SYM_FULL = Object.keys(_.invert(FULL_MAP)).join('');
+
 
 // note: escapeUnicode() wrapper is needed for IE only;
 // on modern browsers, this wrapper can be dropped
