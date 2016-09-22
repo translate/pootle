@@ -7,7 +7,7 @@
 tox>=2.3
 
 # Databases
-MySQL-python>=1.2.1p2
+mysqlclient>=1.3.3
 psycopg2>=2.4.5
 
 # Test coverage

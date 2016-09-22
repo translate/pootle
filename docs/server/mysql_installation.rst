@@ -48,18 +48,18 @@ Debian-based system:
 
 .. _mysql_installation#install-bindings:
 
-Installing MySQL Python bindings
---------------------------------
+Installing MySQL Python driver
+------------------------------
 
 Once you have
 :ref:`set up and activated your virtual environment <installation#setup-environment>`,
-you will need to install the MySQL bindings.
+you will need to install the MySQL driver.
 
 You can do so as follows:
 
 .. code-block:: console
 
-  (env) $ pip install MySQL-python
+  (env) $ pip install mysqlclient
 
 
 .. _mysql_installation#init-config:

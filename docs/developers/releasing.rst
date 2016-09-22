@@ -306,7 +306,7 @@ the new release using:
     $ mkvirtualenv test-pootle-release
     (test-pootle-release)$ pip install --upgrade pip
     (test-pootle-release)$ pip install dist/Pootle-$version.tar.bz2
-    (test-pootle-release)$ pip install MySQL-python
+    (test-pootle-release)$ pip install mysqlclient
     (test-pootle-release)$ pootle init
 
 
