@@ -47,8 +47,8 @@ export function dumpL20nPlurals(values, l20nUnitEntity) {
     throw new L20nEditorError('All plural forms should be filled.')
   }
   for (let i in values) {
-    const value = values[i];
-    const pfEntity = FTLASTParser.parseResource('unit = ' + value);
+    const pfEntity = FTLASTParser.parseResource('unit = val');
+    pfEntity[0].body[0].value.elements[0].value = values[i];
     variants[i].value = pfEntity[0].body[0].value;
   }
 
