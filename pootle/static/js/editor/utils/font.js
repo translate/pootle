@@ -108,8 +108,6 @@ export const REGULAR_MAP_REV_HL = assign({}, _.invert(REGULAR_MAP_COMMON), {
 });
 
 
-const NEWLINE_CHARACTERS = [CHARACTERS.LF, CHARACTERS.CR];
-
 const NEWLINE_SYMBOLS = [SYMBOLS.LF, SYMBOLS.CR];
 
 
@@ -196,39 +194,7 @@ export function unapplyFontFilter(value, mode = 'regular') {
 }
 
 
-/* Helper to determine whether a character refers to a newline character */
-export function isNewlineCharacter(char) {
-  return NEWLINE_CHARACTERS.indexOf(char) !== -1;
-}
-
-
-/* Helper to determine whether a character refers to our newline symbol */
-export function isNewlineSymbol(char) {
-  return NEWLINE_SYMBOLS.indexOf(char) !== -1;
-}
-
-
-/* Counts the number of newline characters present in `value` */
-export function countNewlineCharacter(value) {
-  return (value.match(makeCodePointRegex(NEWLINE_CHARACTERS)) || []).length;
-}
-
-
 /* Counts the number of newline symbols present in `value` */
 export function countNewlineSymbol(value) {
   return (value.match(makeCodePointRegex(NEWLINE_SYMBOLS)) || []).length;
-}
-
-
-/* Removes newline characters from the `value` string */
-export function removeNewlineChar(value) {
-  return value.replace(makeCodePointRegex(NEWLINE_CHARACTERS), '');
-}
-
-
-/* Converts newline symbols into the characters they refer to */
-export function convertNewlineSymbolToChar(value) {
-  return value
-    .replace(NEWLINE_SYMBOLS[0], NEWLINE_CHARACTERS[0])
-    .replace(NEWLINE_SYMBOLS[1], NEWLINE_CHARACTERS[1]);
 }
