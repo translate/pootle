@@ -14,6 +14,8 @@ import EditingArea from '../../components/EditingArea';
 import RawFontTextarea from '../../components/RawFontTextarea';
 import { getAreaId } from '../../utils';
 
+import L20nCodeMirror from './L20nCodeMirror';
+
 import {
   dumpL20nPlurals,
   getL20nEmptyPluralsEntity,
@@ -48,6 +50,7 @@ const L20nEditor = React.createClass({
       pluralInitialValues: [],
       pluralForms: [],
       isRichModeEnabled: false,
+      textareaComponent: this.props.textareaComponent,
     };
   },
 
@@ -93,6 +96,10 @@ const L20nEditor = React.createClass({
     }
   },
 
+  handleCMCreate(cm) {
+    this.codemirror = cm;
+  },
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.isRichModeEnabled) {
       this.setState({
@@ -100,17 +107,24 @@ const L20nEditor = React.createClass({
         targetNplurals: 1,
         hasPlurals: nextProps.values.length > 1,
         isRichModeEnabled: nextProps.isRichModeEnabled,
+        textareaComponent: L20nCodeMirror,
       });
     } else {
       const l20nPlurals = getL20nPlurals(this.state.values, nextProps.targetNplurals);
       if (l20nPlurals) {
         this.hasL20nPlurals = true;
         this.l20nUnitEntity = l20nPlurals.unitEntity;
+        if (this.codemirror !== undefined) {
+          this.codemirror.toTextArea();
+          this.codemirror = undefined;
+        }
         this.setState({
           values: l20nPlurals.unitValues,
           targetNplurals: l20nPlurals.unitValues.length,
+          pluralForms: l20nPlurals.pluralForms,
           hasL20nPlurals: true,
           isRichModeEnabled: nextProps.isRichModeEnabled,
+          textareaComponent: this.props.textareaComponent,
         });
       }
     }
@@ -140,7 +154,6 @@ const L20nEditor = React.createClass({
     if (this.state.pluralForms.length === this.state.values.length) {
       return t('Plural form [%(name)s]', { name: this.state.pluralForms[index] });
     }
-    return t('Plural form %(index)s', { index });
   },
 
   render() {
@@ -163,7 +176,7 @@ const L20nEditor = React.createClass({
               { this.getPluralFormName(i) }
             </div>
           }
-          <this.props.textareaComponent
+          <this.state.textareaComponent
             autoFocus={i === 0}
             id={getAreaId(i)}
             initialValue={initialValues[i]}
@@ -171,6 +184,7 @@ const L20nEditor = React.createClass({
             onChange={(value) => this.handleChange(i, value)}
             value={this.state.values[i]}
             {...extraProps}
+            onCMCreate={this.handleCMCreate}
           />
         </EditingArea>
       );

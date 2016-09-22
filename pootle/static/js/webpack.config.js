@@ -122,7 +122,7 @@ plugins.push.apply(plugins, [
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new webpack.ContextReplacementPlugin(
     /codemirror[\/\\]mode$/,
-    /htmlmixed|markdown|rst|textile/
+    /javascript|htmlmixed|markdown|rst|textile/
   ),
   new webpack.ProvidePlugin({
     'window.Backbone': 'backbone',

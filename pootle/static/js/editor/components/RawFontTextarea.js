@@ -299,7 +299,7 @@ const RawFontTextarea = React.createClass({
           }
         }}
         style={style}
-        value={undefined}
+        value={applyFontFilter(this.props.value, this.getMode())}
       />
     );
   },
