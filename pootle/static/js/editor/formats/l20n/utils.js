@@ -26,7 +26,11 @@ export function getL20nPlurals(values, nplurals) {
     const variants = unitEntity.value.elements[0].expressions[0].variants;
     for (let i in variants) {
       unitValues.push(FTLASTSerializer.dumpPattern(variants[i].value));
-      pluralForms.push(FTLASTSerializer.dumpKeyword(variants[i].key))
+      let key = FTLASTSerializer.dumpKeyword(variants[i].key);
+      if (variants[i].default) {
+        key = `${key}, default`;
+      }
+      pluralForms.push(key);
     }
     return {unitValues, pluralForms, unitEntity};
   }
