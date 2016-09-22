@@ -93,7 +93,7 @@ const Undoable = (Component) => React.createClass({
   render() {
     return (
       <Component
-        {...this.state}
+        value={this.state.value}
         {...this.props}
         onChange={this.handleChange}
         onUndo={this.handleUndo}
