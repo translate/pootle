@@ -10,8 +10,8 @@ import assign from 'object-assign';
 import Mousetrap from 'mousetrap';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import _ from 'underscore';
 
-import Undoable from 'components/Undoable';
 import AutosizeTextarea from 'components/AutosizeTextarea';
 
 import {
@@ -51,8 +51,7 @@ const RawFontTextarea = React.createClass({
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
     onChange: React.PropTypes.func.isRequired,
-    onUndo: React.PropTypes.func.isRequired,
-    onRedo: React.PropTypes.func.isRequired,
+    overrideValue: React.PropTypes.any,
     style: React.PropTypes.object,
     value: React.PropTypes.string.isRequired,
   },
@@ -68,6 +67,17 @@ const RawFontTextarea = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      done: [],
+      undone: [],
+    };
+  },
+
+  componentWillMount() {
+    this.saveSnapshot = _.debounce(this.saveSnapshot, 300, true);
+  },
+
   componentDidMount() {
     this.mousetrap = new Mousetrap(ReactDOM.findDOMNode(this._textarea));
     this.mousetrap.bind(UNDO_SHORTCUT, this.handleUndo);
@@ -75,6 +85,16 @@ const RawFontTextarea = React.createClass({
 
     this.isComposing = false;
     this.isDirty = false;
+  },
+
+  componentWillReceiveProps(nextProps) {
+    // FIXME: this is a hack to support external components adding items right
+    // away to the history of changes. It should be removed in the future, once
+    // `Editor` is free of outside world interactions.
+    if (nextProps.overrideValue &&
+        this.props.overrideValue !== nextProps.overrideValue) {
+      this.saveSnapshot(this.props.value);
+    }
   },
 
   shouldComponentUpdate(nextProps) {
@@ -122,6 +142,13 @@ const RawFontTextarea = React.createClass({
     this.mousetrap.unbind(REDO_SHORTCUT);
   },
 
+  saveSnapshot(value) {
+    this.setState((prevState) => ({
+      done: [...prevState.done, value],
+      undone: [],
+    }));
+  },
+
   /*
    * Returns the offset to be applied on top of the normally-calculated caret
    * position.
@@ -154,6 +181,7 @@ const RawFontTextarea = React.createClass({
   _handleChange(newValue) {
     const cleanValue = unapplyFontFilter(newValue, this.getMode());
     this.isDirty = true;
+    this.saveSnapshot(this.props.value);
     this.props.onChange(cleanValue);
   },
 
@@ -166,12 +194,36 @@ const RawFontTextarea = React.createClass({
 
   handleUndo(e) {
     e.preventDefault();
-    this.props.onUndo();
+    if (this.state.done.length === 0) {
+      return;
+    }
+
+    const currentValue = this.props.value;
+    const done = this.state.done.slice();
+    const newValue = done.slice(-1)[0];
+    this.props.onChange(newValue);
+
+    this.setState((prevState) => ({
+      done: done.slice(0, -1),
+      undone: [...prevState.undone, currentValue],
+    }));
   },
 
   handleRedo(e) {
     e.preventDefault();
-    this.props.onRedo();
+    if (this.state.undone.length === 0) {
+      return;
+    }
+
+    const currentValue = this.props.value;
+    const undone = this.state.undone.slice();
+    const newValue = undone.slice(-1)[0];
+    this.props.onChange(newValue);
+
+    this.setState((prevState) => ({
+      done: [...prevState.done, currentValue],
+      undone: undone.slice(0, -1),
+    }));
   },
 
   handleKeyDown(e) {
@@ -307,4 +359,4 @@ const RawFontTextarea = React.createClass({
 });
 
 
-export default new Undoable(RawFontTextarea);
+export default RawFontTextarea;
