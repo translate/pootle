@@ -46,11 +46,11 @@ const Undoable = (Component) => React.createClass({
       return;
     }
 
-    this.setState({
-      undo: [...this.state.undo, this.state.current],
+    this.setState((prevState) => ({
+      undo: [...prevState.undo, prevState.current],
       current: value,
       redo: [],
-    });
+    }));
   },
 
   handleChange(newValue) {
@@ -67,11 +67,11 @@ const Undoable = (Component) => React.createClass({
     const newValue = undo.slice(-1)[0];
     this.props.onChange(newValue);
 
-    this.setState({
+    this.setState((prevState) => ({
       undo: undo.slice(0, -1),
       current: newValue,
-      redo: [...this.state.redo, this.state.current],
-    });
+      redo: [...prevState.redo, prevState.current],
+    }));
   },
 
   handleRedo() {
@@ -83,11 +83,11 @@ const Undoable = (Component) => React.createClass({
     const newValue = redo.slice(-1)[0];
     this.props.onChange(newValue);
 
-    this.setState({
-      undo: [...this.state.undo, this.state.current],
+    this.setState((prevState) => ({
+      undo: [...prevState.undo, prevState.current],
       current: newValue,
-      redo: this.state.redo.slice(0, -1),
-    });
+      redo: prevState.redo.slice(0, -1),
+    }));
   },
 
   render() {
