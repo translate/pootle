@@ -26,7 +26,7 @@ from pootle_app.project_tree import (does_not_exist, init_store_from_template,
 from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
-from pootle_project.models import Project
+from pootle_project.models import Project, PROJECT_CHECKERS
 from pootle_store.constants import PARSED
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
@@ -221,7 +221,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             checkerclasses = [import_func(settings.POOTLE_QUALITY_CHECKER)]
         else:
             checkerclasses = [
-                checks.projectcheckers.get(self.project.checkstyle,
+                PROJECT_CHECKERS.get(self.project.checkstyle,
                                            checks.StandardChecker)
             ]
 
