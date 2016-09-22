@@ -262,6 +262,8 @@ const RawFontTextarea = React.createClass({
 
   handleComposition(e) {
     if (e.type === 'compositionend') {
+      // XXX: calling change handler to work around Chrome's changed behavior
+      this._handleChange(e.target.value);
       this.isComposing = false;
     } else {
       this.isComposing = true;
