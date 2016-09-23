@@ -19,7 +19,7 @@ import L20nCodeMirror from './L20nCodeMirror';
 import {
   dumpL20nPlurals,
   getL20nEmptyPluralsEntity,
-  getL20nPlurals
+  getL20nData,
 } from './utils';
 
 
@@ -42,6 +42,13 @@ const L20nEditor = React.createClass({
     currentLocaleCode: React.PropTypes.string,
   },
 
+  getDefaultProps() {
+    return {
+      initialValues: [],
+      textareaComponent: RawFontTextarea,
+    };
+  },
+
   getInitialState() {
     return {
       values: this.props.initialValues,
@@ -54,33 +61,18 @@ const L20nEditor = React.createClass({
     };
   },
 
-  getDefaultProps() {
-    return {
-      initialValues: [],
-      textareaComponent: RawFontTextarea,
-    };
-  },
-
   componentWillMount() {
-    const l20nPlurals = getL20nPlurals(
+    this.shouldUpdateValuesInChildren = false;
+    const l20nData = getL20nData(
       this.props.initialValues,
       this.props.targetNplurals
     );
-    if (l20nPlurals) {
-      this.l20nUnitEntity = l20nPlurals.unitEntity;
-      this.setState({
-        pluralInitialValues: l20nPlurals.unitValues,
-        values: l20nPlurals.unitValues,
-        targetNplurals: l20nPlurals.unitValues.length,
-        pluralForms: l20nPlurals.pluralForms,
-        hasL20nPlurals: true,
-      });
-    } else {
-      const l20nSourcePlurals = getL20nPlurals(
+    if (l20nData.isEmpty) {
+      const l20nSourceData = getL20nData(
         this.props.sourceValues,
         this.props.sourceValues.length
       );
-      if (l20nSourcePlurals) {
+      if (l20nSourceData.hasL20nPlurals) {
         this.hasL20nPlurals = true;
         const l20nEmptyEntity = getL20nEmptyPluralsEntity(this.context.currentLocaleCode);
         this.l20nUnitEntity = l20nEmptyEntity.unitEntity;
@@ -92,42 +84,94 @@ const L20nEditor = React.createClass({
           targetNplurals: l20nEmptyEntity.pluralForms.length,
           hasL20nPlurals: true,
         });
+      } else if (!l20nSourceData.hasSimpleValue) {
+        this.setState({
+          isRichModeEnabled: true,
+          textareaComponent: L20nCodeMirror,
+        });
       }
+    } else if (l20nData.hasL20nPlurals) {
+      this.l20nUnitEntity = l20nData.unitEntity;
+      this.setState({
+        pluralInitialValues: l20nData.unitValues,
+        values: l20nData.unitValues,
+        targetNplurals: l20nData.unitValues.length,
+        pluralForms: l20nData.pluralForms,
+        hasL20nPlurals: true,
+      });
+    } else if (!l20nData.hasSimpleValue) {
+      this.setState({
+        isRichModeEnabled: true,
+        textareaComponent: L20nCodeMirror,
+      });
     }
-  },
-
-  handleCMCreate(cm) {
-    this.codemirror = cm;
   },
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isRichModeEnabled) {
-      this.setState({
-        values: nextProps.values,
-        targetNplurals: 1,
-        hasPlurals: nextProps.values.length > 1,
-        isRichModeEnabled: nextProps.isRichModeEnabled,
-        textareaComponent: L20nCodeMirror,
-      });
+      if (!this.state.isRichModeEnabled) {
+        this.setState({
+          values: nextProps.values,
+          targetNplurals: 1,
+          hasPlurals: nextProps.values.length > 1,
+          isRichModeEnabled: nextProps.isRichModeEnabled,
+          textareaComponent: L20nCodeMirror,
+        });
+      }
     } else {
-      const l20nPlurals = getL20nPlurals(this.state.values, nextProps.targetNplurals);
-      if (l20nPlurals) {
-        this.hasL20nPlurals = true;
-        this.l20nUnitEntity = l20nPlurals.unitEntity;
+      const l20nData = getL20nData(this.state.values, nextProps.targetNplurals);
+      if (l20nData.isEmpty) {
         if (this.codemirror !== undefined) {
           this.codemirror.toTextArea();
           this.codemirror = undefined;
         }
         this.setState({
-          values: l20nPlurals.unitValues,
-          targetNplurals: l20nPlurals.unitValues.length,
-          pluralForms: l20nPlurals.pluralForms,
-          hasL20nPlurals: true,
-          isRichModeEnabled: nextProps.isRichModeEnabled,
+          isRichModeEnabled: false,
           textareaComponent: this.props.textareaComponent,
+        });
+      } else if (nextProps.isRichModeEnabled === false
+                 && this.props.isRichModeEnabled
+                 && l20nData.hasL20nPlurals) {
+        if (this.codemirror !== undefined) {
+          this.codemirror.toTextArea();
+          this.codemirror = undefined;
+        }
+        this.hasL20nPlurals = true;
+        this.l20nUnitEntity = l20nData.unitEntity;
+        this.shouldUpdateValuesInChildren = true;
+        this.setState({
+          values: l20nData.unitValues,
+          pluralInitialValues: l20nData.unitValues,
+          targetNplurals: l20nData.unitValues.length,
+          pluralForms: l20nData.pluralForms,
+          hasL20nPlurals: true,
+          isRichModeEnabled: false,
+          textareaComponent: this.props.textareaComponent,
+        }, () => {
+          this.shouldUpdateValuesInChildren = false;
+        });
+      } else if (l20nData.hasSimpleValue) {
+        this.setState({
+          isRichModeEnabled: false,
+          hasL20nPlurals: false,
+          textareaComponent: this.props.textareaComponent,
+        });
+      } else {
+        // rich mode can't be switched off
+        this.setState({
+          hasL20nPlurals: false,
+          isRichModeEnabled: true,
+          textareaComponent: L20nCodeMirror,
         });
       }
     }
+  },
+
+  getPluralFormName(index) {
+    if (this.state.pluralForms.length === this.state.values.length) {
+      return t('Plural form [%(name)s]', { name: this.state.pluralForms[index] });
+    }
+    return '';
   },
 
   handleChange(i, value) {
@@ -150,10 +194,8 @@ const L20nEditor = React.createClass({
     }
   },
 
-  getPluralFormName(index) {
-    if (this.state.pluralForms.length === this.state.values.length) {
-      return t('Plural form [%(name)s]', { name: this.state.pluralForms[index] });
-    }
+  handleCMCreate(cm) {
+    this.codemirror = cm;
   },
 
   render() {
@@ -185,6 +227,7 @@ const L20nEditor = React.createClass({
             value={this.state.values[i]}
             {...extraProps}
             onCMCreate={this.handleCMCreate}
+            shouldUpdateValue={this.shouldUpdateValuesInChildren}
           />
         </EditingArea>
       );
@@ -200,5 +243,3 @@ const L20nEditor = React.createClass({
 
 
 export default L20nEditor;
-
-
