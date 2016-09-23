@@ -8,13 +8,21 @@
 
 
 /**
+ * Math.trunc. Included inline to avoid extra polyfills.
+ */
+function trunc(value) {
+  return (value > 0 ? Math.floor : Math.ceil)(value);
+}
+
+
+/**
  * A version of `Math.trunc` which returns absolute values.
  *
  * @param {Number} number - the number to truncate.
  * @return {Number} - positive integer
  */
 function absTrunc(number) {
-  const truncated = Math.trunc(number);
+  const truncated = trunc(number);
   return truncated < 0 ? truncated * -1 : truncated;
 }
 
