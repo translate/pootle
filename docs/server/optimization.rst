@@ -21,11 +21,8 @@ Database Backends
 You should really switch to a real database backend in production environments.
 Adjust the :setting:`DATABASES` setting accordingly.
 
-`MySQL-python <http://mysql-python.sourceforge.net/>`_
-  MySQL adapter for Python.
-
-`Psycopg2 <http://initd.org/psycopg/>`_
-  PostgreSQL adapter for Python.
+* :doc:`MySQL <mysql_installation>`
+* :doc:`PostgreSQL <postgresql_installation>`
 
 
 Web Servers
