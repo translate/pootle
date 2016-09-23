@@ -14,6 +14,19 @@ import { t } from 'utils/i18n';
 import { highlightRW } from '../../utils';
 
 
+const InnerDiv = ({ sourceValue }) => (
+  <div
+    dangerouslySetInnerHTML={
+      { __html: highlightRW(sourceValue) }
+    }
+  />
+);
+
+InnerDiv.propTypes = {
+  sourceValue: React.PropTypes.string.isRequired,
+};
+
+
 const UnitSource = React.createClass({
 
   propTypes: {
@@ -23,6 +36,13 @@ const UnitSource = React.createClass({
     hasPlurals: React.PropTypes.bool.isRequired,
     sourceLocaleCode: React.PropTypes.string,
     sourceLocaleDir: React.PropTypes.string,
+    innerComponent: React.PropTypes.func,
+  },
+
+  getDefaultProps() {
+    return {
+      innerComponent: InnerDiv,
+    };
   },
 
   getPluralFormName(index) {
@@ -48,9 +68,10 @@ const UnitSource = React.createClass({
         <div
           className="translation-text js-translation-text"
           data-string={sourceValue}
-          dangerouslySetInnerHTML={{ __html: highlightRW(sourceValue) }}
           {...props}
-        ></div>
+        >
+          <this.props.innerComponent sourceValue={sourceValue} />
+        </div>
       </div>
     );
   },
