@@ -7,14 +7,6 @@ Welcome to the new Pootle 2.7.3
 Bugfix release for 2.7.2.
 
 
-2.7.3 vs 2.7.3b1
-================
-
-Changes since 2.7.3b1:
-
-- Several critical security fixes that prevent potential XSS attacks
-
-
 Major Changes
 =============
 
