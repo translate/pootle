@@ -24,25 +24,11 @@ const RAW_FULL = Object.keys(FULL_MAP).join('');
 const SYM_FULL = Object.keys(_.invert(FULL_MAP)).join('');
 
 
-// note: escapeUnicode() wrapper is needed for IE only;
-// on modern browsers, this wrapper can be dropped
-// in favor of "u" RegExp modifier ("g" => "ug")
-var reRawBase = new RegExp("["+escapeUnicode(RAW_BASE)+"]", "g");
-var reSymBase = new RegExp("["+escapeUnicode(SYM_BASE)+"]", "g");
+const reRawBase = new RegExp(`[${RAW_BASE}]`, 'g');
+const reSymBase = new RegExp(`[${SYM_BASE}]`, 'g');
 
-var reRawFull = new RegExp("["+escapeUnicode(RAW_FULL)+"]", "g");
-var reSymFull = new RegExp("["+escapeUnicode(SYM_FULL)+"]", "g");
-
-
-function escapeUnicodeSymbol(symbol) {
-  const charCode = ('0000' + symbol.charCodeAt(0).toString(16)).substr(-4);
-  return `\\u${charCode}`;
-}
-
-
-function escapeUnicode(value) {
-  return value.replace(/[\u007F-\uFFFF]/g, escapeUnicodeSymbol);
-}
+const reRawFull = new RegExp(`[${RAW_FULL}]`, 'g');
+const reSymFull = new RegExp(`[${SYM_FULL}]`, 'g');
 
 
 function spaceReplacer(match) {
