@@ -1,10 +1,10 @@
-=================================
-Welcome to the new Pootle 2.8.0b3
-=================================
+============================================
+Pootle 2.8 release notes - UNDER DEVELOPMENT
+============================================
 
-*Released on 22 July 2016*
+*Not yet released*
 
-This is the third beta of 2.8.0, our next major Pootle release.
+Welcome to Pootle 2.8!
 
 If you want to try it, check one of the following:
 
@@ -30,7 +30,7 @@ Major Changes
 
 Below we provide much more detail.  These are by no means exhaustive, view the
 `git log
-<https://github.com/translate/pootle/compare/2.7.6...2.8.0b3>`_ for complete
+<https://github.com/translate/pootle/compare/2.7.6...master>`_ for complete
 information.
 
 
