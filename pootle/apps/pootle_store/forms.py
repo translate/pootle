@@ -136,7 +136,7 @@ class MultiStringFormField(forms.MultiValueField):
         self.widget = MultiStringWidget(nplurals=nplurals, attrs=attrs,
                                         textarea=textarea)
         self.hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
-        fields = [forms.CharField() for i_ in range(nplurals)]
+        fields = [forms.CharField(strip=False) for i_ in range(nplurals)]
         super(MultiStringFormField, self).__init__(fields=fields,
                                                    *args, **kwargs)
 
