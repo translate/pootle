@@ -39,13 +39,6 @@ Changes
 
 These are by no means exhaustive, check the git log for more details
 
-2.5.0 vs 2.5.0-rc1
-------------------
-Changes from 2.5.0 RC1 to 2.5.0 final release:
-
-- Correct all Right-to-Left rendering issues
-- Minor fixes: update translations, fixes to lightbox and some documentation
-  corrections
 
 User Experience
 ---------------
