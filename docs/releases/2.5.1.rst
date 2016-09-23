@@ -46,15 +46,6 @@ for more details.
 - API -- an initial Pootle API is in place (disabled by default).
 
 
-Changes since 2.5.1-rc1
------------------------
-- Goals: more efficient cache flushing mechanism, sites with large projects
-  took very long to submit new translations.
-- LDAP: explicit import of ldap.filter
-- Tags: restrict accepted taggit versions to those that will work with Pootle's
-  use of tags.
-
-
 Important server admin changes
 ------------------------------
 - The minimum required Python version is now 2.6.x. While Django 1.4.x supports
