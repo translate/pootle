@@ -14,8 +14,7 @@ import _ from 'underscore';
 
 import AutosizeTextarea from 'components/AutosizeTextarea';
 
-import { applyFontFilter } from '../utils';
-import { mountTextarea, unmountTextarea, getValue, setValue } from '../utils/RawFontAware';
+import { RawFontAware } from '../utils/RawFontAware';
 
 
 const UNDO_SHORTCUT = 'mod+z';
@@ -63,14 +62,18 @@ const RawFontTextarea = React.createClass({
     this.mousetrap.bind(UNDO_SHORTCUT, this.handleUndo);
     this.mousetrap.bind(REDO_SHORTCUT, this.handleRedo);
 
-    mountTextarea(this._textareaNode);
+    const { isRawMode } = this.props;
+    this.rawFont = new RawFontAware(this._textareaNode, { isRawMode });
 
     this.isDirty = false;
   },
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.isRawMode !== nextProps.isRawMode) {
+      this.rawFont.setMode({ isRawMode: nextProps.isRawMode });
+    }
     if (this.props.value !== nextProps.value) {
-      setValue(this._textareaNode, nextProps.value);
+      this.rawFont.setValue(nextProps.value);
     }
 
     // FIXME: this is a hack to support external components adding items right
@@ -101,7 +104,7 @@ const RawFontTextarea = React.createClass({
     this.mousetrap.unbind(UNDO_SHORTCUT);
     this.mousetrap.unbind(REDO_SHORTCUT);
 
-    unmountTextarea(this._textareaNode);
+    this.rawFont.destroy();
   },
 
   saveSnapshot(value) {
@@ -111,13 +114,8 @@ const RawFontTextarea = React.createClass({
     }));
   },
 
-  getMode() {
-    return this.props.isRawMode ? 'raw' : 'regular';
-  },
-
   handleChange() {
-    // TODO: pass mode `this.getMode()`
-    const newValue = getValue(this._textareaNode);
+    const newValue = this.rawFont.getValue();
     this.isDirty = true;
     this.saveSnapshot(this.props.value);
     this.props.onChange(newValue);
@@ -168,7 +166,7 @@ const RawFontTextarea = React.createClass({
       <AutosizeTextarea
         autoFocus={this.props.autoFocus}
         className="translation focusthis js-translation-area"
-        defaultValue={applyFontFilter(this.props.initialValue, this.getMode())}
+        defaultValue={this.props.initialValue}
         dir={this.context.currentLocaleDir}
         disabled={this.props.isDisabled}
         id={this.props.id}

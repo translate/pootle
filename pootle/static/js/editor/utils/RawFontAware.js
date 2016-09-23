@@ -10,8 +10,6 @@ import _ from 'underscore';
 
 import { CHARACTERS, SYMBOLS, BASE_MAP, FULL_MAP } from './font';
 
-var RAW_MODE = true; // emulate "Raw" mode with full conversion logic
-
 const KEY_BACKSPACE = 8;
 const KEY_RIGHT = 39;
 const KEY_DELETE = 46;
@@ -72,260 +70,265 @@ function replaceBaseRawChar(match) {
 }
 
 
-function sym2raw(value) {
-  // LF + newlines to regular newlines
-  value = value.replace(/\u240A\n/g, CHARACTERS.LF);
-  // orphaned LF to newlines as well
-  value = value.replace(/\u240A/g, CHARACTERS.LF);
-  // space dots to regular spaces
-  value = value.replace(/\u2420/g, CHARACTERS.SPACE);
-  // other symbols
-  value = RAW_MODE ?
-    value.replace(reSymFull, replaceFullSymbol) :
-    value.replace(reSymBase, replaceBaseSymbol);
+export class RawFontAware {
 
-  return value;
-}
+  constructor(element, { isRawMode = false } = {}) {
+    this.element = element;
+    this.isRawMode = isRawMode;
 
+    this.setValue(element.defaultValue);
+    this.update();
 
-function raw2sym(value) {
-  // in RAW_MODE, replace all spaces;
-  // otherwise, replace two or more spaces in a row
-  s = RAW_MODE ?
-    s.replace(/ /g, spaceReplacer):
-    s.replace(/ {2,}/g, spaceReplacer);
-  // leading line spaces
-  value = value.replace(/\n /g, leadingSpaceReplacer);
-  // trailing line spaces
-  value = value.replace(/ \n/g, trailingSpaceReplacer);
-  // single leading document space
-  value = value.replace(/^ /, spaceReplacer);
-  // single trailing document space
-  value = value.replace(/ $/, spaceReplacer);
-  // regular newlines to LF + newlines
-  value = value.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
-  // other symbols
-  value = RAW_MODE ?
-    value.replace(reRawFull, replaceFullRawChar) :
-    value.replace(reRawBase, replaceBaseRawChar);
-
-  return value;
-}
-
-
-export function getSelection(element) {
-  return {
-    selectionStart: element.selectionStart,
-    selectionEnd: element.selectionEnd,
-  };
-}
-
-
-function adjustSelection(element, moveRight) {
-  var start = element.selectionStart;
-  var end = element.selectionEnd;
-  var value = element.value;
-
-  var charBefore = value.substr(end-1, 1);
-  var charAfter = value.substr(end, 1);
-  var insideLF = charBefore == SYMBOLS.LF && charAfter == CHARACTERS.LF;
-  var selection = value.substring(start, end);
-
-  // if newline is selected via mouse double-click,
-  // expand the selection to include the preceding LF symbol
-  if (selection == CHARACTERS.LF && value.substr(start-1, 1) == SYMBOLS.LF) {
-    element.selectionStart = element.selectionStart - 1;
-    return;
+    element.addEventListener('input', (e) => this.onInput(e));
+    element.addEventListener('keydown', (e) => this.onKeyDown(e));
+    element.addEventListener('mousedown', (e) => this.onMouseDown(e));
+    element.addEventListener('mouseup', (e) => this.onMouseUp(e));
+    element.addEventListener('copy', (e) => this.onCopyOrCut(e));
+    element.addEventListener('cut', (e) => this.onCopyOrCut(e));
+    element.addEventListener('compositionstart', () => this.onCompositionStart());
+    element.addEventListener('compositionend', () => this.onCompositionEnd());
   }
 
-  // if caret is placed between LF symbol and newline,
-  // move it one symbol to the right or to the left
-  // depending on the keyCode
-  if (insideLF) {
-    element.selectionEnd = moveRight ? end + 1 : end - 1;
+  destroy() {
+    const { element } = this;
+
+    element.removeEventListener('input', this.onInput);
+    element.removeEventListener('keydown', this.onKeyDown);
+    element.removeEventListener('mousedown', this.onMouseDown);
+    element.removeEventListener('mouseup', this.onMouseUp);
+    element.removeEventListener('copy', this.onCopyOrCut);
+    element.removeEventListener('cut', this.onCopyOrCut);
+    element.removeEventListener('compositionstart', this.onCompositionStart);
+    element.removeEventListener('compositionend', this.onCompositionEnd);
+
+    this.element = null;
+  }
+
+  setMode({ isRawMode = false } = {}) {
+    this.isRawMode = isRawMode;
+    this.update();
+  }
+
+  getValue() {
+    return this.sym2raw(this.element.value);
+  }
+
+  setValue(value) {
+    this.element.value = this.raw2sym(value);
+    return this.getValue();
+  }
+
+  update(insertValue) {
+    const { element } = this;
+
+    var start = element.selectionStart;
+    var end = element.selectionEnd;
+    var value = element.value;
+    var adjustedStart = insertValue !== undefined ? start : end;
+    var sBefore = value.substring(0, adjustedStart);
+    var sAfter = value.substring(end);
+    insertValue = insertValue || '';
+    var sBeforeNormalized = this.raw2sym(this.sym2raw(sBefore + insertValue));
+    var offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
+    var newValue = this.raw2sym(this.sym2raw(sBefore + insertValue + sAfter));
+    if (value == newValue) return;
+    element.value = newValue;
+    element.selectionEnd = end + offset;
     if (start == end) {
-      element.selectionStart = element.selectionEnd;
+      element.selectionStart = end + offset;
     }
   }
-}
 
+  raw2sym(value) {
+    // in raw mode, replace all spaces;
+    // otherwise, replace two or more spaces in a row
+    value = this.isRawMode ?
+      value.replace(/ /g, spaceReplacer):
+      value.replace(/ {2,}/g, spaceReplacer);
+    // leading line spaces
+    value = value.replace(/\n /g, leadingSpaceReplacer);
+    // trailing line spaces
+    value = value.replace(/ \n/g, trailingSpaceReplacer);
+    // single leading document space
+    value = value.replace(/^ /, spaceReplacer);
+    // single trailing document space
+    value = value.replace(/ $/, spaceReplacer);
+    // regular newlines to LF + newlines
+    value = value.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
+    // other symbols
+    value = this.isRawMode ?
+      value.replace(reRawFull, replaceFullRawChar) :
+      value.replace(reRawBase, replaceBaseRawChar);
 
-function onMouseDown(e) {
-  // request selection adjustment after
-  // the mousedown event is processed
-  // (because now selectionStart/End are not updated yet,
-  // even though the caret is already repositioned)
-  var self = this;
-  setTimeout(function() {
-    adjustSelection(self);
-  }, 0);
-}
+    return value;
+  }
 
+  sym2raw(value) {
+    // LF + newlines to regular newlines
+    value = value.replace(/\u240A\n/g, CHARACTERS.LF);
+    // orphaned LF to newlines as well
+    value = value.replace(/\u240A/g, CHARACTERS.LF);
+    // space dots to regular spaces
+    value = value.replace(/\u2420/g, CHARACTERS.SPACE);
+    // other symbols
+    value = this.isRawMode ?
+      value.replace(reSymFull, replaceFullSymbol) :
+      value.replace(reSymBase, replaceBaseSymbol);
 
-function onMouseUp(e) {
-  adjustSelection(this);
-}
+    return value;
+  }
 
+  onMouseDown(e) {
+    // request selection adjustment after
+    // the mousedown event is processed
+    // (because now selectionStart/End are not updated yet,
+    // even though the caret is already repositioned)
+    setTimeout(() => {
+      this.adjustSelection();
+    }, 0);
+  }
 
-function onKeyDown(e) {
-  // request selection adjustment
-  // after the keydown event is processed
+  onMouseUp(e) {
+    this.adjustSelection();
+  }
 
-  // On Mac, there's a Control+F alternative to pressing right arrow.
-  // Also avoid triggering the behavior for pressing the end key (Cmd+Right).
-  var moveRight = (e.keyCode == KEY_RIGHT && !e.metaKey) || (e.ctrlKey && e.keyCode == KEY_LETTER_F);
+  onKeyDown(e) {
+    const { target } = e;
+    // request selection adjustment
+    // after the keydown event is processed
 
-  var self = this;
-  setTimeout(function() {
-    adjustSelection(self, moveRight);
-  }, 0);
+    // on Mac, there's a Control+F alternative to pressing right arrow
+    // On Mac, there's a Control+F alternative to pressing right arrow.
+    // Also avoid triggering the behavior for pressing the end key (Cmd+Right).
+    var moveRight = (
+      (e.keyCode == KEY_RIGHT && !e.metaKey) ||
+      (e.ctrlKey && e.keyCode == KEY_LETTER_F)
+    );
 
-  var start = this.selectionStart;
-  var end = this.selectionEnd;
-  var value = this.value;
+    setTimeout(() => {
+      this.adjustSelection(moveRight);
+    }, 0);
 
-  // IE11 sometimes has start/end set past the actual string length,
-  // so adjust the selection to be able to get proper charBefore/charAfter values
-  if (start > value.length) start = value.length;
-  if (end > value.length) end = value.length;
+    var start = target.selectionStart;
+    var end = target.selectionEnd;
+    var value = target.value;
 
-  var charBefore = value.substr(end-1, 1);
-  var charAfter = value.substr(end, 1);
+    // IE11 sometimes has start/end set past the actual string length,
+    // so adjust the selection to be able to get proper charBefore/charAfter values
+    if (start > value.length) start = value.length;
+    if (end > value.length) end = value.length;
 
-  if (start == end) {
-    // when there's no selection and Delete key is pressed
-    // before LF symbol, select two characters to the right
-    // to delete them in one step
-    if (e.keyCode == KEY_DELETE && charAfter == SYMBOLS.LF) {
-      this.selectionEnd = end + 2;
+    var charBefore = value.substr(end-1, 1);
+    var charAfter = value.substr(end, 1);
+
+    if (start == end) {
+      // when there's no selection and Delete key is pressed
+      // before LF symbol, select two characters to the right
+      // to delete them in one step
+      if (e.keyCode == KEY_DELETE && charAfter == SYMBOLS.LF) {
+        target.selectionEnd = end + 2;
+        return;
+      }
+
+      // when there's no selection and Backspace key is pressed
+      // after newline character, select two characters to the left
+      // to delete them in one step
+      if (e.keyCode == KEY_BACKSPACE && charBefore == CHARACTERS.LF) {
+        target.selectionStart = start - 2;
+      }
+    }
+  }
+
+  onCopyOrCut(e) {
+    const { target } = e;
+    // on cut or copy, we want to have raw text in clipboard
+    // (without special characters) for interoperability
+    // with other applications and parts of the UI
+
+    // cancel the default event
+    e.preventDefault();
+
+    // get selection, convert it and put into clipboard
+    var start = target.selectionStart;
+    var end = target.selectionEnd;
+    var selection = this.sym2raw(target.value.substring(start, end))
+
+    // IE11 uses `Text` instead of `text/plain` content type
+    // and global window.clipboardData instead of e.clipboardData
+    if (e.clipboardData) {
+      e.clipboardData.setData('text/plain', selection);
+    } else {
+      window.clipboardData.setData('Text', selection);
+    }
+
+    // replace current selection with the empty string
+    // (otherwise with the default event being cancelled
+    // the selection won't be deleted)
+    if (e.type == 'cut') {
+      this.insertAtCaret('');
+    }
+  }
+
+  onInput(e) {
+    if (!this.isComposing) {
+      this.update();
+    }
+    this.requestUpdate = false;
+  }
+
+  onCompositionStart() {
+    this.isComposing = true;
+  }
+
+  onCompositionEnd() {
+    this.isComposing = false;
+    // This event is fired after `input` one on Chrome 53+, so in order to
+    // actually update the textarea, we need to do this explicitly;
+    // for other browsers this means that updateTextarea() would run twice and not
+    // in the desired order; so we request this update *after* the default `input`
+    // event is processed, and will only run updateTextarea() if it wasn't
+    // processed by the native `input` event (on browsers other than Chrome).
+    this.requestUpdate = true;
+    setTimeout(() => {
+      if (self.requestUpdate) {
+        this.update();
+      }
+    }, 0);
+  }
+
+  adjustSelection(moveRight) {
+    const { element } = this;
+
+    var start = element.selectionStart;
+    var end = element.selectionEnd;
+    var value = element.value;
+
+    var charBefore = value.substr(end-1, 1);
+    var charAfter = value.substr(end, 1);
+    var insideLF = charBefore == SYMBOLS.LF && charAfter == CHARACTERS.LF;
+    var selection = value.substring(start, end);
+
+    // if newline is selected via mouse double-click,
+    // expand the selection to include the preceding LF symbol
+    if (selection == CHARACTERS.LF && value.substr(start-1, 1) == SYMBOLS.LF) {
+      element.selectionStart = element.selectionStart - 1;
       return;
     }
 
-    // when there's no selection and Backspace key is pressed
-    // after newline character, select two characters to the left
-    // to delete them in one step
-    if (e.keyCode == KEY_BACKSPACE && charBefore == CHARACTERS.LF) {
-      this.selectionStart = start - 2;
+    // if caret is placed between LF symbol and newline,
+    // move it one symbol to the right or to the left
+    // depending on the keyCode
+    if (insideLF) {
+      element.selectionEnd = moveRight ? end + 1 : end - 1;
+      if (start == end) {
+        element.selectionStart = element.selectionEnd;
+      }
     }
   }
-}
 
-
-function onCopyOrCut(e) {
-  // on cut or copy, we want to have raw text in clipboard
-  // (without special characters) for interoperability
-  // with other applications and parts of the UI
-
-  // cancel the default event
-  e.preventDefault();
-
-  // get selection, convert it and put into clipboard
-  var start = this.selectionStart;
-  var end = this.selectionEnd;
-  var selection = sym2raw(this.value.substring(start, end))
-
-  // IE11 uses `Text` instead of `text/plain` content type
-  // and global window.clipboardData instead of e.clipboardData
-  if (e.clipboardData) {
-    e.clipboardData.setData('text/plain', selection);
-  } else {
-    window.clipboardData.setData('Text', selection);
+  insertAtCaret(value) {
+    this.update(value);
+    return this.getValue();
   }
 
-  // replace current selection with the empty string
-  // (otherwise with the default event being cancelled
-  // the selection won't be deleted)
-  if (e.type == 'cut') insertAtCaret(e.target, '');
-}
-
-
-export function updateTextarea(element, insertValue) {
-  var start = element.selectionStart;
-  var end = element.selectionEnd;
-  var value = element.value;
-  var adjustedStart = insertValue !== undefined ? start : end;
-  var sBefore = value.substring(0, adjustedStart);
-  var sAfter = value.substring(end);
-  insertValue = insertValue || '';
-  var sBeforeNormalized = raw2sym(sym2raw(sBefore + insertValue));
-  var offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
-  var newValue = raw2sym(sym2raw(sBefore + insertValue + sAfter));
-  if (value == newValue) return;
-  element.value = newValue;
-  element.selectionEnd = end + offset;
-  if (start == end) {
-    element.selectionStart = end + offset;
-  }
-}
-
-
-function onInput() {
-  if (!this.isComposing) {
-    updateTextarea(this);
-  }
-  this.requestUpdate = false;
-}
-
-
-function onCompositionStart() {
-  this.isComposing = true;
-}
-
-
-function onCompositionEnd() {
-  this.isComposing = false;
-  // This event is fired after `input` one on Chrome 53+, so in order to
-  // actually update the textarea, we need to do this explicitly;
-  // for other browsers this means that updateTextarea() would run twice and not
-  // in the desired order; so we request this update *after* the default `input`
-  // event is processed, and will only run updateTextarea() if it wasn't
-  // processed by the native `input` event (on browsers other than Chrome).
-  self.requestUpdate = true;
-  setTimeout(() => {
-    if (self.requestUpdate) {
-      updateTextarea(this);
-    }
-  }, 0);
-}
-
-
-export function mountTextarea(element) {
-  updateTextarea(element);
-  element.addEventListener('input', onInput);
-  element.addEventListener('keydown', onKeyDown);
-  element.addEventListener('mousedown', onMouseDown);
-  element.addEventListener('mouseup', onMouseUp);
-  element.addEventListener('copy', onCopyOrCut);
-  element.addEventListener('cut', onCopyOrCut);
-  element.addEventListener('compositionstart', onCompositionStart);
-  element.addEventListener('compositionend', onCompositionEnd);
-}
-
-
-export function unmountTextarea(element) {
-  element.removeEventListener('input', onInput);
-  element.removeEventListener('keydown', onKeyDown);
-  element.removeEventListener('mousedown', onMouseDown);
-  element.removeEventListener('mouseup', onMouseUp);
-  element.removeEventListener('copy', onCopyOrCut);
-  element.removeEventListener('cut', onCopyOrCut);
-  element.removeEventListener('compositionstart', onCompositionStart);
-  element.removeEventListener('compositionend', onCompositionEnd);
-}
-
-
-export function getValue(element) {
-  return sym2raw(element.value);
-}
-
-
-export function setValue(element, value) {
-  element.value = raw2sym(value);
-  return getValue(element);
-}
-
-
-function insertAtCaret(element, value) {
-  updateTextarea(element, value);
-  return getValue(element);
 }
