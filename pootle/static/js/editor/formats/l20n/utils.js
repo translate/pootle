@@ -48,7 +48,7 @@ function setL20nPlurals(data) {
     const variants = data.unitEntity.value.elements[0].expressions[0].variants;
     for (let i = 0; i < variants.length; i++) {
       unitValues.push(variants[i].value.source);
-      let key = variants[i].key.name;
+      let key = FTLASTSerializer.dumpExpression(variants[i].key);
       if (variants[i].default) {
         key = `${key}, default`;
       }
