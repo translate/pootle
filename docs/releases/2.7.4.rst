@@ -4,8 +4,7 @@ Welcome to the new Pootle 2.7.4
 
 *Released on 19 May 2016*
 
-Bugfix release for 2.7.3. This release is meant as the latest stable release of
-the 2.7 series.
+Bugfix release for 2.7.3.
 
 
 2.7.4 vs 2.7.3
