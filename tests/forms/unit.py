@@ -211,6 +211,7 @@ def test_multistringwidget_decompress_multistrings(value):
 
 @pytest.mark.parametrize('value', [
     [u'foo\\bar'],
+    [u"\t foo\\bar\n"],
     [u'foö\r\nbär'],
     [u'foö\\r\\nbär'],
     [u'foö\r\n\\r\\nbär', u'bär\r\n\\r\\nbäz'],
