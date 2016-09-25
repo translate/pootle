@@ -30,7 +30,7 @@ const reSymFull = new RegExp(`[${SYM_FULL}]`, 'g');
 
 
 function spaceReplacer(match) {
-  return Array(match.length+1).join(SYMBOLS.SPACE);
+  return Array(match.length + 1).join(SYMBOLS.SPACE);
 }
 
 
@@ -45,7 +45,7 @@ function trailingSpaceReplacer(match) {
 
 
 function mapSymbol(symbol, source, target) {
-  var i = source.indexOf(symbol);
+  const i = source.indexOf(symbol);
   return i >= 0 ? target.charAt(i) : symbol;
 }
 
@@ -118,23 +118,25 @@ export class RawFontAware {
     return this.getValue();
   }
 
-  update(insertValue) {
+  update(insertValue = '') {
     const { element } = this;
 
-    var start = element.selectionStart;
-    var end = element.selectionEnd;
-    var value = element.value;
-    var adjustedStart = insertValue !== undefined ? start : end;
-    var sBefore = value.substring(0, adjustedStart);
-    var sAfter = value.substring(end);
-    insertValue = insertValue || '';
-    var sBeforeNormalized = this.raw2sym(this.sym2raw(sBefore + insertValue));
-    var offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
-    var newValue = this.raw2sym(this.sym2raw(sBefore + insertValue + sAfter));
-    if (value == newValue) return;
+    const start = element.selectionStart;
+    const end = element.selectionEnd;
+    const { value } = element;
+    const adjustedStart = insertValue !== '' ? start : end;
+    const sBefore = value.substring(0, adjustedStart);
+    const sAfter = value.substring(end);
+    const sBeforeNormalized = this.raw2sym(this.sym2raw(sBefore + insertValue));
+    const offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
+    const newValue = this.raw2sym(this.sym2raw(sBefore + insertValue + sAfter));
+    if (value === newValue) {
+      return;
+    }
+
     element.value = newValue;
     element.selectionEnd = end + offset;
-    if (start == end) {
+    if (start === end) {
       element.selectionStart = end + offset;
     }
   }
@@ -142,43 +144,43 @@ export class RawFontAware {
   raw2sym(value) {
     // in raw mode, replace all spaces;
     // otherwise, replace two or more spaces in a row
-    value = this.isRawMode ?
-      value.replace(/ /g, spaceReplacer):
+    let newValue = this.isRawMode ?
+      value.replace(/ /g, spaceReplacer) :
       value.replace(/ {2,}/g, spaceReplacer);
     // leading line spaces
-    value = value.replace(/\n /g, leadingSpaceReplacer);
+    newValue = newValue.replace(/\n /g, leadingSpaceReplacer);
     // trailing line spaces
-    value = value.replace(/ \n/g, trailingSpaceReplacer);
+    newValue = newValue.replace(/ \n/g, trailingSpaceReplacer);
     // single leading document space
-    value = value.replace(/^ /, spaceReplacer);
+    newValue = newValue.replace(/^ /, spaceReplacer);
     // single trailing document space
-    value = value.replace(/ $/, spaceReplacer);
+    newValue = newValue.replace(/ $/, spaceReplacer);
     // regular newlines to LF + newlines
-    value = value.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
+    newValue = newValue.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
     // other symbols
-    value = this.isRawMode ?
-      value.replace(reRawFull, replaceFullRawChar) :
-      value.replace(reRawBase, replaceBaseRawChar);
+    newValue = this.isRawMode ?
+      newValue.replace(reRawFull, replaceFullRawChar) :
+      newValue.replace(reRawBase, replaceBaseRawChar);
 
-    return value;
+    return newValue;
   }
 
   sym2raw(value) {
     // LF + newlines to regular newlines
-    value = value.replace(/\u240A\n/g, CHARACTERS.LF);
+    let newValue = value.replace(/\u240A\n/g, CHARACTERS.LF);
     // orphaned LF to newlines as well
-    value = value.replace(/\u240A/g, CHARACTERS.LF);
+    newValue = newValue.replace(/\u240A/g, CHARACTERS.LF);
     // space dots to regular spaces
-    value = value.replace(/\u2420/g, CHARACTERS.SPACE);
+    newValue = newValue.replace(/\u2420/g, CHARACTERS.SPACE);
     // other symbols
-    value = this.isRawMode ?
-      value.replace(reSymFull, replaceFullSymbol) :
-      value.replace(reSymBase, replaceBaseSymbol);
+    newValue = this.isRawMode ?
+      newValue.replace(reSymFull, replaceFullSymbol) :
+      newValue.replace(reSymBase, replaceBaseSymbol);
 
-    return value;
+    return newValue;
   }
 
-  onMouseDown(e) {
+  onMouseDown() {
     // request selection adjustment after
     // the mousedown event is processed
     // (because now selectionStart/End are not updated yet,
@@ -188,44 +190,46 @@ export class RawFontAware {
     }, 0);
   }
 
-  onMouseUp(e) {
+  onMouseUp() {
     this.adjustSelection();
   }
 
   onKeyDown(e) {
     const { target } = e;
-    // request selection adjustment
-    // after the keydown event is processed
+    // request selection adjustment after the keydown event is processed
 
-    // on Mac, there's a Control+F alternative to pressing right arrow
     // On Mac, there's a Control+F alternative to pressing right arrow.
     // Also avoid triggering the behavior for pressing the end key (Cmd+Right).
-    var moveRight = (
-      (e.keyCode == KEY_RIGHT && !e.metaKey) ||
-      (e.ctrlKey && e.keyCode == KEY_LETTER_F)
+    const moveRight = (
+      (e.keyCode === KEY_RIGHT && !e.metaKey) ||
+      (e.ctrlKey && e.keyCode === KEY_LETTER_F)
     );
 
     setTimeout(() => {
       this.adjustSelection(moveRight);
     }, 0);
 
-    var start = target.selectionStart;
-    var end = target.selectionEnd;
-    var value = target.value;
+    let start = target.selectionStart;
+    let end = target.selectionEnd;
+    const { value } = target;
 
     // IE11 sometimes has start/end set past the actual string length,
     // so adjust the selection to be able to get proper charBefore/charAfter values
-    if (start > value.length) start = value.length;
-    if (end > value.length) end = value.length;
+    if (start > value.length) {
+      start = value.length;
+    }
+    if (end > value.length) {
+      end = value.length;
+    }
 
-    var charBefore = value.substr(end-1, 1);
-    var charAfter = value.substr(end, 1);
+    const charBefore = value.substr(end - 1, 1);
+    const charAfter = value.substr(end, 1);
 
-    if (start == end) {
+    if (start === end) {
       // when there's no selection and Delete key is pressed
       // before LF symbol, select two characters to the right
       // to delete them in one step
-      if (e.keyCode == KEY_DELETE && charAfter == SYMBOLS.LF) {
+      if (e.keyCode === KEY_DELETE && charAfter === SYMBOLS.LF) {
         target.selectionEnd = end + 2;
         return;
       }
@@ -233,25 +237,24 @@ export class RawFontAware {
       // when there's no selection and Backspace key is pressed
       // after newline character, select two characters to the left
       // to delete them in one step
-      if (e.keyCode == KEY_BACKSPACE && charBefore == CHARACTERS.LF) {
+      if (e.keyCode === KEY_BACKSPACE && charBefore === CHARACTERS.LF) {
         target.selectionStart = start - 2;
       }
     }
   }
 
   onCopyOrCut(e) {
-    const { target } = e;
-    // on cut or copy, we want to have raw text in clipboard
-    // (without special characters) for interoperability
-    // with other applications and parts of the UI
-
-    // cancel the default event
+    // on cut or copy, we want to have raw text in clipboard (without special
+    // characters) for interoperability with other applications and parts of the
+    // UI
     e.preventDefault();
 
+    const { target } = e;
+
     // get selection, convert it and put into clipboard
-    var start = target.selectionStart;
-    var end = target.selectionEnd;
-    var selection = this.sym2raw(target.value.substring(start, end))
+    const start = target.selectionStart;
+    const end = target.selectionEnd;
+    const selection = this.sym2raw(target.value.substring(start, end));
 
     // IE11 uses `Text` instead of `text/plain` content type
     // and global window.clipboardData instead of e.clipboardData
@@ -264,12 +267,12 @@ export class RawFontAware {
     // replace current selection with the empty string
     // (otherwise with the default event being cancelled
     // the selection won't be deleted)
-    if (e.type == 'cut') {
+    if (e.type === 'cut') {
       this.insertAtCaret('');
     }
   }
 
-  onInput(e) {
+  onInput() {
     if (!this.isComposing) {
       this.update();
     }
@@ -299,18 +302,18 @@ export class RawFontAware {
   adjustSelection(moveRight) {
     const { element } = this;
 
-    var start = element.selectionStart;
-    var end = element.selectionEnd;
-    var value = element.value;
+    const start = element.selectionStart;
+    const end = element.selectionEnd;
+    const { value } = element;
 
-    var charBefore = value.substr(end-1, 1);
-    var charAfter = value.substr(end, 1);
-    var insideLF = charBefore == SYMBOLS.LF && charAfter == CHARACTERS.LF;
-    var selection = value.substring(start, end);
+    const charBefore = value.substr(end - 1, 1);
+    const charAfter = value.substr(end, 1);
+    const insideLF = charBefore === SYMBOLS.LF && charAfter === CHARACTERS.LF;
+    const selection = value.substring(start, end);
 
     // if newline is selected via mouse double-click,
     // expand the selection to include the preceding LF symbol
-    if (selection == CHARACTERS.LF && value.substr(start-1, 1) == SYMBOLS.LF) {
+    if (selection === CHARACTERS.LF && value.substr(start - 1, 1) === SYMBOLS.LF) {
       element.selectionStart = element.selectionStart - 1;
       return;
     }
@@ -320,7 +323,7 @@ export class RawFontAware {
     // depending on the keyCode
     if (insideLF) {
       element.selectionEnd = moveRight ? end + 1 : end - 1;
-      if (start == end) {
+      if (start === end) {
         element.selectionStart = element.selectionEnd;
       }
     }
