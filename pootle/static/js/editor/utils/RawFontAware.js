@@ -6,68 +6,12 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import _ from 'underscore';
-
-import { CHARACTERS, SYMBOLS, BASE_MAP, FULL_MAP } from './font';
+import { CHARACTERS, SYMBOLS, raw2sym, sym2raw } from './font';
 
 const KEY_BACKSPACE = 8;
 const KEY_RIGHT = 39;
 const KEY_DELETE = 46;
 const KEY_LETTER_F = 70;
-
-const RAW_BASE = Object.keys(BASE_MAP).join('');
-const SYM_BASE = Object.keys(_.invert(BASE_MAP)).join('');
-
-const RAW_FULL = Object.keys(FULL_MAP).join('');
-const SYM_FULL = Object.keys(_.invert(FULL_MAP)).join('');
-
-
-const reRawBase = new RegExp(`[${RAW_BASE}]`, 'g');
-const reSymBase = new RegExp(`[${SYM_BASE}]`, 'g');
-
-const reRawFull = new RegExp(`[${RAW_FULL}]`, 'g');
-const reSymFull = new RegExp(`[${SYM_FULL}]`, 'g');
-
-
-function spaceReplacer(match) {
-  return Array(match.length + 1).join(SYMBOLS.SPACE);
-}
-
-
-function leadingSpaceReplacer(match) {
-  return CHARACTERS.LF + spaceReplacer(match.substring(1));
-}
-
-
-function trailingSpaceReplacer(match) {
-  return spaceReplacer(match.substring(1)) + CHARACTERS.LF;
-}
-
-
-function mapSymbol(symbol, source, target) {
-  const i = source.indexOf(symbol);
-  return i >= 0 ? target.charAt(i) : symbol;
-}
-
-
-function replaceFullSymbol(match) {
-  return mapSymbol(match, SYM_FULL, RAW_FULL);
-}
-
-
-function replaceBaseSymbol(match) {
-  return mapSymbol(match, SYM_BASE, RAW_BASE);
-}
-
-
-function replaceFullRawChar(match) {
-  return mapSymbol(match, RAW_FULL, SYM_FULL);
-}
-
-
-function replaceBaseRawChar(match) {
-  return mapSymbol(match, RAW_BASE, SYM_BASE);
-}
 
 
 export class RawFontAware {
@@ -142,42 +86,11 @@ export class RawFontAware {
   }
 
   raw2sym(value) {
-    // in raw mode, replace all spaces;
-    // otherwise, replace two or more spaces in a row
-    let newValue = this.isRawMode ?
-      value.replace(/ /g, spaceReplacer) :
-      value.replace(/ {2,}/g, spaceReplacer);
-    // leading line spaces
-    newValue = newValue.replace(/\n /g, leadingSpaceReplacer);
-    // trailing line spaces
-    newValue = newValue.replace(/ \n/g, trailingSpaceReplacer);
-    // single leading document space
-    newValue = newValue.replace(/^ /, spaceReplacer);
-    // single trailing document space
-    newValue = newValue.replace(/ $/, spaceReplacer);
-    // regular newlines to LF + newlines
-    newValue = newValue.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
-    // other symbols
-    newValue = this.isRawMode ?
-      newValue.replace(reRawFull, replaceFullRawChar) :
-      newValue.replace(reRawBase, replaceBaseRawChar);
-
-    return newValue;
+    return raw2sym(value, { isRawMode: this.isRawMode });
   }
 
   sym2raw(value) {
-    // LF + newlines to regular newlines
-    let newValue = value.replace(/\u240A\n/g, CHARACTERS.LF);
-    // orphaned LF to newlines as well
-    newValue = newValue.replace(/\u240A/g, CHARACTERS.LF);
-    // space dots to regular spaces
-    newValue = newValue.replace(/\u2420/g, CHARACTERS.SPACE);
-    // other symbols
-    newValue = this.isRawMode ?
-      newValue.replace(reSymFull, replaceFullSymbol) :
-      newValue.replace(reSymBase, replaceBaseSymbol);
-
-    return newValue;
+    return sym2raw(value, { isRawMode: this.isRawMode });
   }
 
   onMouseDown() {

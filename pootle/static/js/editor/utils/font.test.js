@@ -9,10 +9,10 @@
 import expect from 'expect';
 import { describe, it } from 'mocha';
 
-import { CHARACTERS, SYMBOLS, applyFontFilter, unapplyFontFilter } from './font';
+import { CHARACTERS, SYMBOLS, raw2sym, sym2raw } from './font';
 
 
-describe('applyFontFilter (regular mode)', () => {
+describe('raw2sym (regular mode)', () => {
   const tests = [
     {
       description: 'nothing without special characters',
@@ -99,7 +99,7 @@ describe('applyFontFilter (regular mode)', () => {
   describe('conversion', () => {
     tests.forEach((test) => {
       it(`converts ${test.description}`, () => {
-        expect(applyFontFilter(test.input)).toEqual(test.expected);
+        expect(raw2sym(test.input)).toEqual(test.expected);
       });
     });
   });
@@ -107,14 +107,14 @@ describe('applyFontFilter (regular mode)', () => {
   describe('round-tripping', () => {
     tests.forEach((test) => {
       it(`roundtrips ${test.description}`, () => {
-        expect(unapplyFontFilter(applyFontFilter(test.input))).toEqual(test.input);
+        expect(sym2raw(raw2sym(test.input))).toEqual(test.input);
       });
     });
   });
 });
 
 
-describe('applyFontFilter (raw mode)', () => {
+describe('raw2sym (raw mode)', () => {
   const tests = [
     {
       description: 'nothing without special characters',
@@ -157,7 +157,7 @@ describe('applyFontFilter (raw mode)', () => {
   describe('conversion', () => {
     tests.forEach((test) => {
       it(`converts ${test.description}`, () => {
-        expect(applyFontFilter(test.input, 'raw')).toEqual(test.expected);
+        expect(raw2sym(test.input, { isRawMode: true })).toEqual(test.expected);
       });
     });
   });
@@ -165,7 +165,7 @@ describe('applyFontFilter (raw mode)', () => {
   describe('round-tripping', () => {
     tests.forEach((test) => {
       it(`roundtrips ${test.description}`, () => {
-        expect(unapplyFontFilter(applyFontFilter(test.input, 'raw'), 'raw'))
+        expect(sym2raw(raw2sym(test.input, { isRawMode: true }), { isRawMode: true }))
           .toEqual(test.input);
       });
     });

@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-export { countNewlineSymbol, applyFontFilter, unapplyFontFilter } from './font';
+export { countNewlineSymbol } from './font';
 export { decodeEntities } from './html';
 export {
   highlightPunctuation, highlightEscapes, highlightHtml, highlightSymbols, nl2br,

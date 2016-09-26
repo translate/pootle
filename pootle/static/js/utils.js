@@ -13,9 +13,10 @@ import 'jquery-select2';
 import { qAll } from 'utils/dom';
 
 import {
-  applyFontFilter, highlightPunctuation, highlightEscapes, highlightHtml,
+  highlightPunctuation, highlightEscapes, highlightHtml,
   highlightSymbols, nl2br,
 } from './editor/utils';
+import { raw2sym } from './editor/utils/font';
 
 
 /* Gets current URL's hash */
@@ -105,7 +106,7 @@ export function highlightRO(text) {
     nl2br(
       highlightEscapes(
         highlightHtml(
-          applyFontFilter(
+          raw2sym(
             // FIXME: CRLF => LF replacement happens here because highlighting
             // currently happens via many DOM sources, and this ensures the less
             // error-prone behavior. This won't be needed when the entire editor
@@ -126,7 +127,7 @@ export function highlightRW(text) {
         highlightPunctuation(
           highlightEscapes(
             highlightHtml(
-              applyFontFilter(
+              raw2sym(
                 // FIXME: CRLF => LF replacement happens here because highlighting
                 // currently happens via many DOM sources, and this ensures the less
                 // error-prone behavior. This won't be needed when the entire editor

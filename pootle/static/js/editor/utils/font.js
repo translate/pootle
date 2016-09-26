@@ -123,11 +123,6 @@ const REGULAR_MAP_COMMON = {
   [CHARACTERS.NBSP]: SYMBOLS.NBSP,
 };
 
-const REGULAR_MAP = assign({}, REGULAR_MAP_COMMON, {
-  [CHARACTERS.LF]: `${SYMBOLS.LF}${CHARACTERS.LF}`,
-  [CHARACTERS.CR]: `${SYMBOLS.CR}${CHARACTERS.CR}`,
-});
-
 const REGULAR_MAP_REV = assign({}, _.invert(REGULAR_MAP_COMMON), {
   [SYMBOLS.LF]: '',
   [SYMBOLS.CR]: '',
@@ -143,90 +138,112 @@ export const REGULAR_MAP_REV_HL = assign({}, _.invert(REGULAR_MAP_COMMON), {
 const NEWLINE_SYMBOLS = [SYMBOLS.LF, SYMBOLS.CR];
 
 
-const RAW_MAP_COMMON = {
-  [CHARACTERS.SPACE]: SYMBOLS.SPACE,
-
-  [CHARACTERS.ALM]: SYMBOLS.ALM,
-  [CHARACTERS.ZWS]: SYMBOLS.ZWS,
-  [CHARACTERS.ZWNJ]: SYMBOLS.ZWNJ,
-  [CHARACTERS.ZWJ]: SYMBOLS.ZWJ,
-  [CHARACTERS.LRM]: SYMBOLS.LRM,
-  [CHARACTERS.RLM]: SYMBOLS.RLM,
-  [CHARACTERS.LRE]: SYMBOLS.LRE,
-  [CHARACTERS.RLE]: SYMBOLS.RLE,
-  [CHARACTERS.PDF]: SYMBOLS.PDF,
-  [CHARACTERS.LRO]: SYMBOLS.LRO,
-  [CHARACTERS.RLO]: SYMBOLS.RLO,
-  [CHARACTERS.WJ]: SYMBOLS.WJ,
-  [CHARACTERS.LRI]: SYMBOLS.LRI,
-  [CHARACTERS.RLI]: SYMBOLS.RLI,
-  [CHARACTERS.FSI]: SYMBOLS.FSI,
-  [CHARACTERS.PDI]: SYMBOLS.PDI,
-};
-
-const RAW_MAP = assign({}, REGULAR_MAP, RAW_MAP_COMMON);
-
-const RAW_MAP_REV = assign({}, REGULAR_MAP_REV, _.invert(RAW_MAP_COMMON));
-
-
 /* Helper to create a regexp for a group of code points */
 function makeCodePointRegex(codePointList) {
   return new RegExp(`[${codePointList.join('')}]`, 'g');
 }
 
 
-const REGULAR_MODE_PATTERN = makeCodePointRegex(Object.keys(REGULAR_MAP));
 export const REGULAR_MODE_PATTERN_REV = makeCodePointRegex(Object.keys(REGULAR_MAP_REV));
-
-const RAW_MODE_PATTERN = makeCodePointRegex(Object.keys(RAW_MAP));
-const RAW_MODE_PATTERN_REV = makeCodePointRegex(Object.keys(RAW_MAP_REV));
-
-
-/* Applies the mapping table for `mode` mode to `value. */
-export function applyFontFilter(value, mode = 'regular') {
-  // Map characters to mode
-  const pattern = mode !== 'raw' ? REGULAR_MODE_PATTERN : RAW_MODE_PATTERN;
-  const newValue = value.replace(pattern, (match) => RAW_MAP[match]);
-
-  if (mode === 'raw') {
-    return newValue;
-  }
-
-  /*
-   * Replace extra spaces with the whitespace symbol.
-   * This will consider any leading/trailing spaces at the beginning and end of
-   * lines, as well as two or more consecutive whitespace characters at any
-   * position.
-   */
-  return newValue.replace(
-    /^\u0020+|\u0020+$|\u0020+(?=\u2420$)|\u0020+(?=\u240A$)|\u0020{2,}/mg,
-    (match) => new Array(match.length + 1).join(SYMBOLS.SPACE)
-  );
-}
-
-
-/* Reverts the mapping table for `mode` mode from `value. */
-export function unapplyFontFilter(value, mode = 'regular') {
-  // Unmap characters from mode.
-  // There's a special case here: since browsers normalize textarea values to
-  // `\n`, any `\r` will always be reported as `\n`, hence we need to detect if
-  // there's an explicit [CR] symbol followed by a `\n`, in which we need to
-  // convert the `\n` back to `\r`. Sigh.
-  const pattern = mode !== 'raw' ? REGULAR_MODE_PATTERN_REV : RAW_MODE_PATTERN_REV;
-  const newValue = value
-    .replace(/\u240D\u000A/g, `${SYMBOLS.CR}${CHARACTERS.CR}`)
-    .replace(pattern, (match) => RAW_MAP_REV[match]);
-
-  if (mode === 'raw') {
-    return newValue;
-  }
-
-  // Remove extra spacing symbols added in `applyFontFilter`.
-  return newValue.replace(/\u2420/g, CHARACTERS.SPACE);
-}
 
 
 /* Counts the number of newline symbols present in `value` */
 export function countNewlineSymbol(value) {
   return (value.match(makeCodePointRegex(NEWLINE_SYMBOLS)) || []).length;
+}
+
+
+const RAW_BASE = Object.keys(BASE_MAP).join('');
+const SYM_BASE = Object.keys(_.invert(BASE_MAP)).join('');
+
+const RAW_FULL = Object.keys(FULL_MAP).join('');
+const SYM_FULL = Object.keys(_.invert(FULL_MAP)).join('');
+
+
+const reRawBase = new RegExp(`[${RAW_BASE}]`, 'g');
+const reSymBase = new RegExp(`[${SYM_BASE}]`, 'g');
+
+const reRawFull = new RegExp(`[${RAW_FULL}]`, 'g');
+const reSymFull = new RegExp(`[${SYM_FULL}]`, 'g');
+
+
+function spaceReplacer(match) {
+  return Array(match.length + 1).join(SYMBOLS.SPACE);
+}
+
+
+function leadingSpaceReplacer(match) {
+  return CHARACTERS.LF + spaceReplacer(match.substring(1));
+}
+
+
+function trailingSpaceReplacer(match) {
+  return spaceReplacer(match.substring(1)) + CHARACTERS.LF;
+}
+
+
+function mapSymbol(symbol, source, target) {
+  const i = source.indexOf(symbol);
+  return i >= 0 ? target.charAt(i) : symbol;
+}
+
+
+function replaceFullSymbol(match) {
+  return mapSymbol(match, SYM_FULL, RAW_FULL);
+}
+
+
+function replaceBaseSymbol(match) {
+  return mapSymbol(match, SYM_BASE, RAW_BASE);
+}
+
+
+function replaceFullRawChar(match) {
+  return mapSymbol(match, RAW_FULL, SYM_FULL);
+}
+
+
+function replaceBaseRawChar(match) {
+  return mapSymbol(match, RAW_BASE, SYM_BASE);
+}
+
+
+export function raw2sym(value, { isRawMode = false } = {}) {
+  // in raw mode, replace all spaces;
+  // otherwise, replace two or more spaces in a row
+  let newValue = isRawMode ?
+    value.replace(/ /g, spaceReplacer) :
+    value.replace(/ {2,}/g, spaceReplacer);
+  // leading line spaces
+  newValue = newValue.replace(/\n /g, leadingSpaceReplacer);
+  // trailing line spaces
+  newValue = newValue.replace(/ \n/g, trailingSpaceReplacer);
+  // single leading document space
+  newValue = newValue.replace(/^ /, spaceReplacer);
+  // single trailing document space
+  newValue = newValue.replace(/ $/, spaceReplacer);
+  // regular newlines to LF + newlines
+  newValue = newValue.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
+  // other symbols
+  newValue = isRawMode ?
+    newValue.replace(reRawFull, replaceFullRawChar) :
+    newValue.replace(reRawBase, replaceBaseRawChar);
+
+  return newValue;
+}
+
+
+export function sym2raw(value, { isRawMode = false } = {}) {
+  // LF + newlines to regular newlines
+  let newValue = value.replace(/\u240A\n/g, CHARACTERS.LF);
+  // orphaned LF to newlines as well
+  newValue = newValue.replace(/\u240A/g, CHARACTERS.LF);
+  // space dots to regular spaces
+  newValue = newValue.replace(/\u2420/g, CHARACTERS.SPACE);
+  // other symbols
+  newValue = isRawMode ?
+    newValue.replace(reSymFull, replaceFullSymbol) :
+    newValue.replace(reSymBase, replaceBaseSymbol);
+
+  return newValue;
 }
