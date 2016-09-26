@@ -1,6 +1,6 @@
 # Base requirements
 
-Django>=1.9.9,<1.10  # rq.filter: >=1.9,<1.10
+Django>=1.9.10,<1.10  # rq.filter: >=1.9,<1.10
 
 # Django apps
 django-allauth==0.27.0

@@ -15,7 +15,7 @@ If you want to try it, check one of the following:
 Changes in Requirements
 =======================
 
-- Django>=1.9.9,<1.10
+- Django>=1.9.10,<1.10
 - zlib1g-dev required for lxml
 - MySQL support uses mysqlclient instead of MySQLdb
 
