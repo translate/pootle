@@ -160,11 +160,11 @@ const RAW_FULL = Object.keys(FULL_MAP).join('');
 const SYM_FULL = Object.keys(_.invert(FULL_MAP)).join('');
 
 
-const reRawBase = new RegExp(`[${RAW_BASE}]`, 'g');
-const reSymBase = new RegExp(`[${SYM_BASE}]`, 'g');
+const RE_RAW_BASE = new RegExp(`[${RAW_BASE}]`, 'g');
+const RE_SYM_BASE = new RegExp(`[${SYM_BASE}]`, 'g');
 
-const reRawFull = new RegExp(`[${RAW_FULL}]`, 'g');
-const reSymFull = new RegExp(`[${SYM_FULL}]`, 'g');
+const RE_RAW_FULL = new RegExp(`[${RAW_FULL}]`, 'g');
+const RE_SYM_FULL = new RegExp(`[${SYM_FULL}]`, 'g');
 
 
 function spaceReplacer(match) {
@@ -226,8 +226,8 @@ export function raw2sym(value, { isRawMode = false } = {}) {
   newValue = newValue.replace(/\n/g, `${SYMBOLS.LF}${CHARACTERS.LF}`);
   // other symbols
   newValue = isRawMode ?
-    newValue.replace(reRawFull, replaceFullRawChar) :
-    newValue.replace(reRawBase, replaceBaseRawChar);
+    newValue.replace(RE_RAW_FULL, replaceFullRawChar) :
+    newValue.replace(RE_RAW_BASE, replaceBaseRawChar);
 
   return newValue;
 }
@@ -242,8 +242,8 @@ export function sym2raw(value, { isRawMode = false } = {}) {
   newValue = newValue.replace(/\u2420/g, CHARACTERS.SPACE);
   // other symbols
   newValue = isRawMode ?
-    newValue.replace(reSymFull, replaceFullSymbol) :
-    newValue.replace(reSymBase, replaceBaseSymbol);
+    newValue.replace(RE_SYM_FULL, replaceFullSymbol) :
+    newValue.replace(RE_SYM_BASE, replaceBaseSymbol);
 
   return newValue;
 }
