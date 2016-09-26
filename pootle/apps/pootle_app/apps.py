@@ -8,7 +8,7 @@
 
 """
 Pootle App Config
-See https://docs.djangoproject.com/en/1.8/ref/applications/
+See https://docs.djangoproject.com/en/1.9/ref/applications/
 """
 
 from django.apps import AppConfig
