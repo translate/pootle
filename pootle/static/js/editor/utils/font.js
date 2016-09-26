@@ -112,44 +112,26 @@ export const FULL_MAP = assign({}, BASE_MAP, {
 });
 
 
-const REGULAR_MAP_COMMON = {
-  [CHARACTERS.NULL]: SYMBOLS.NULL,
-  [CHARACTERS.BELL]: SYMBOLS.BELL,
-  [CHARACTERS.BS]: SYMBOLS.BS,
-  [CHARACTERS.TAB]: SYMBOLS.TAB,
-  [CHARACTERS.VT]: SYMBOLS.VT,
-  [CHARACTERS.FF]: SYMBOLS.FF,
-  [CHARACTERS.ESC]: SYMBOLS.ESC,
-  [CHARACTERS.NBSP]: SYMBOLS.NBSP,
-};
-
-const REGULAR_MAP_REV = assign({}, _.invert(REGULAR_MAP_COMMON), {
+const BASE_MAP_REV = assign({}, _.invert(BASE_MAP), {
   [SYMBOLS.LF]: '',
   [SYMBOLS.CR]: '',
 });
 
 // Only for highlight purposes
-export const REGULAR_MAP_REV_HL = assign({}, _.invert(REGULAR_MAP_COMMON), {
+export const BASE_MAP_REVERSE_HL = assign({}, BASE_MAP_REV, {
   [SYMBOLS.LF]: CHARACTERS.LF,
   [SYMBOLS.CR]: CHARACTERS.CR,
 });
 
 
-const NEWLINE_SYMBOLS = [SYMBOLS.LF, SYMBOLS.CR];
-
-
-/* Helper to create a regexp for a group of code points */
-function makeCodePointRegex(codePointList) {
-  return new RegExp(`[${codePointList.join('')}]`, 'g');
-}
-
-
-export const REGULAR_MODE_PATTERN_REV = makeCodePointRegex(Object.keys(REGULAR_MAP_REV));
+export const RE_BASE_REVERSE = new RegExp(
+  `[${Object.keys(BASE_MAP_REV).join('')}]`, 'g'
+);
 
 
 /* Counts the number of newline symbols present in `value` */
 export function countNewlineSymbol(value) {
-  return (value.match(makeCodePointRegex(NEWLINE_SYMBOLS)) || []).length;
+  return (value.match(new RegExp(`[${SYMBOLS.LF}${SYMBOLS.CR}]`)) || []).length;
 }
 
 

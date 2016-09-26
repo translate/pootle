@@ -6,7 +6,7 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import { REGULAR_MAP_REV_HL, REGULAR_MODE_PATTERN_REV } from './font';
+import { BASE_MAP_REVERSE_HL, RE_BASE_REVERSE } from './font';
 
 
 /* eslint-disable no-irregular-whitespace */
@@ -79,7 +79,7 @@ export function highlightHtml(text, className = '') {
 
 export function highlightSymbols(text, className = '') {
   function replace(match) {
-    const charCode = REGULAR_MAP_REV_HL[match].charCodeAt().toString(16);
+    const charCode = BASE_MAP_REVERSE_HL[match].charCodeAt().toString(16);
     const zeros = '0'.repeat(4 - charCode.length);
     const codePoint = `\\u${zeros}${charCode.toUpperCase()}`;
     return (
@@ -87,5 +87,5 @@ export function highlightSymbols(text, className = '') {
     );
   }
 
-  return text.replace(REGULAR_MODE_PATTERN_REV, replace);
+  return text.replace(RE_BASE_REVERSE, replace);
 }
