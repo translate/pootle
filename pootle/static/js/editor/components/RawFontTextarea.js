@@ -64,28 +64,27 @@ const RawFontTextarea = React.createClass({
     const { isRawMode } = this.props;
     this.rawFont = new RawFontAware(this._textareaNode, { isRawMode });
     this.previousSnapshot = this.rawFont.setValue(this.props.initialValue);
-
-    this.isDirty = false;
   },
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isRawMode !== nextProps.isRawMode) {
       this.rawFont.setMode({ isRawMode: nextProps.isRawMode });
+      this.rawFont.update();
     }
   },
 
-  shouldComponentUpdate(nextProps) {
-    // Avoid unnecessary re-renders when the undo stack saves snapshots but
-    // Only value and mode changes should re-render the textarea — otherwise
-    // there are many unnecessary re-renders when the undo stack saves snapshots.
+  shouldComponentUpdate(nextProps, nextState) {
+    // The textarea being uncontrolled, there is almost never the need to
+    // re-render it. The exception is performing undo/redo operations: these
+    // alter the contents of the textarea and since we make use of the
+    // autosizing capabilities of `AutosizeTextarea`, we need to allow the
+    // re-render.
+    // If this implementation ever becomes a measured cause of slowness and the
+    // undo/redo stack also grows, consider using immutable data structures.
     return (
-      this.isDirty ||
-      this.props.isRawMode !== nextProps.isRawMode
+      !_.isEqual(this.state.done, nextState.done) &&
+      !_.isEqual(this.state.undone, nextState.undone)
     );
-  },
-
-  componentDidUpdate() {
-    this._textareaNode.focus();
   },
 
   componentWillUnmount() {
@@ -107,7 +106,6 @@ const RawFontTextarea = React.createClass({
   },
 
   handleChange() {
-    this.isDirty = true;
     this.saveSnapshot(this.previousSnapshot);
     this.props.onChange();
   },
