@@ -76,12 +76,6 @@ const EditorContainer = React.createClass({
     }
   },
 
-  // TODO: check `handleChange`/`onChange` is called as part of `setState`
-  // callbacks in children
-  handleChange() {
-    this.props.onChange();
-  },
-
   getStateValues() {
     return qAll('.js-translation-area').map(
       (element) => sym2raw(element.value, { isRawMode: this.props.isRawMode })
@@ -107,7 +101,7 @@ const EditorContainer = React.createClass({
         targetNplurals={this.props.targetNplurals}
         textareaComponent={this.props.textareaComponent}
         initialValues={this.props.initialValues}
-        onChange={this.handleChange}
+        onChange={this.props.onChange}
         sourceValues={this.props.sourceValues}
         {...extraProps}
       />
