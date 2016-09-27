@@ -71,7 +71,10 @@ const EditorContainer = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
+    // FIXME: this might not be needed after all :)
     if (nextProps.overrideValues) {
+      // TODO: check `handleChange`/`onChange` is called as part of `setState`
+      // callbacks in children
       // FIXME: Using the second argument callback to `setState` to ensure the
       // callback is run after re-rendering happened, so that the DOM-based
       // editor can perform any operations safely. This is needed to allow
@@ -86,6 +89,8 @@ const EditorContainer = React.createClass({
     }
   },
 
+  // TODO: check `handleChange`/`onChange` is called as part of `setState`
+  // callbacks in children
   handleChange(i, value) {
     const newValues = this.state.values.slice();
     newValues[i] = value;
@@ -100,6 +105,7 @@ const EditorContainer = React.createClass({
   },
 
   render() {
+    // FIXME: this might not be needed after all :)
     // FIXME: this is a hack to let the underlying component with undo
     // capabilities that it should take the provided value into account to
     // keep it track in its internal history. This shouldn't be needed when

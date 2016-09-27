@@ -72,10 +72,12 @@ const RawFontTextarea = React.createClass({
     if (this.props.isRawMode !== nextProps.isRawMode) {
       this.rawFont.setMode({ isRawMode: nextProps.isRawMode });
     }
+    // FIXME: this might not be needed after all :)
     if (this.props.value !== nextProps.value) {
       this.rawFont.setValue(nextProps.value);
     }
 
+    // FIXME: this might not be needed after all :)
     // FIXME: this is a hack to support external components adding items right
     // away to the history of changes. It should be removed in the future, once
     // `Editor` is free of outside world interactions.
@@ -107,6 +109,8 @@ const RawFontTextarea = React.createClass({
     this.rawFont.destroy();
   },
 
+  // FIXME: let's rename value to something else; it'll be an object with the
+  // value and selection information, so not a plain value
   saveSnapshot(value) {
     this.setState((prevState) => ({
       done: [...prevState.done, value],
@@ -117,6 +121,7 @@ const RawFontTextarea = React.createClass({
   handleChange() {
     const newValue = this.rawFont.getValue();
     this.isDirty = true;
+    // FIXME: instead of this.props.value this will use the class property
     this.saveSnapshot(this.props.value);
     this.props.onChange(newValue);
   },
@@ -130,8 +135,11 @@ const RawFontTextarea = React.createClass({
     const currentValue = this.props.value;
     const done = this.state.done.slice();
     const newValue = done.slice(-1)[0];
+    // FIXME: this probably needs to be moved to the `setState` callback
     this.props.onChange(newValue);
 
+    // FIXME: after setting state, we need to update the DOM via our helper to
+    // reflect the new state of things
     this.setState((prevState) => ({
       done: done.slice(0, -1),
       undone: [...prevState.undone, currentValue],
@@ -147,8 +155,11 @@ const RawFontTextarea = React.createClass({
     const currentValue = this.props.value;
     const undone = this.state.undone.slice();
     const newValue = undone.slice(-1)[0];
+    // FIXME: this probably needs to be moved to the `setState` callback
     this.props.onChange(newValue);
 
+    // FIXME: after setting state, we need to update the DOM via our helper to
+    // reflect the new state of things
     this.setState((prevState) => ({
       done: [...prevState.done, currentValue],
       undone: undone.slice(0, -1),

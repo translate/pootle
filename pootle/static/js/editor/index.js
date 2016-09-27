@@ -36,6 +36,7 @@ const ReactEditor = {
   setProps(props) {
     // Overriding values is a one-time thing: take it into account only if it
     // was passed explicitly.
+    // FIXME: this might not be needed after all :)
     const overrideProps = (
       props.hasOwnProperty('overrideValues') ? {} : { overrideValues: null }
     );

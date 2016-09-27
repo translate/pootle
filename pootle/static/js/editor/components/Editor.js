@@ -46,6 +46,7 @@ const Editor = React.createClass({
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
       }
+      // FIXME: this might not be needed after all :)
       // FIXME: this is a hack to let the underlying component with undo
       // capabilities that it should take the provided value into account to
       // keep it track in its internal history. This shouldn't be needed when
