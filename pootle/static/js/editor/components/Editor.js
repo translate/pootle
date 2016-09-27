@@ -23,7 +23,6 @@ const Editor = React.createClass({
     isRawMode: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
-    overrideValues: React.PropTypes.array,
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
     textareaComponent: React.PropTypes.func,
@@ -32,7 +31,6 @@ const Editor = React.createClass({
   getDefaultProps() {
     return {
       initialValues: [],
-      overrideValues: null,
       textareaComponent: RawFontTextarea,
     };
   },
@@ -44,14 +42,6 @@ const Editor = React.createClass({
       const extraProps = {};
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
-      }
-      // FIXME: this might not be needed after all :)
-      // FIXME: this is a hack to let the underlying component with undo
-      // capabilities that it should take the provided value into account to
-      // keep it track in its internal history. This shouldn't be needed when
-      // we remove the outside world interaction.
-      if (this.props.overrideValues) {
-        extraProps.overrideValue = this.props.overrideValues[i];
       }
 
       editingAreas.push(

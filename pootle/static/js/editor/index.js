@@ -15,6 +15,7 @@ import { q, qAll } from 'utils/dom';
 import EditorContainer from './containers/EditorContainer';
 import { loadFormatAdaptor } from './formats/FormatLoader';
 import { hasCRLF, normalize, denormalize } from './utils/normalizer';
+import { insertAtCaret, setValue } from './utils/RawFontAware';
 
 
 const ReactEditor = {
@@ -34,13 +35,7 @@ const ReactEditor = {
   },
 
   setProps(props) {
-    // Overriding values is a one-time thing: take it into account only if it
-    // was passed explicitly.
-    // FIXME: this might not be needed after all :)
-    const overrideProps = (
-      props.hasOwnProperty('overrideValues') ? {} : { overrideValues: null }
-    );
-    this.props = assign(this.props, props, overrideProps);
+    this.props = assign(this.props, props);
 
     /*           ,
      *  __  _.-"` `'-.
@@ -53,13 +48,8 @@ const ReactEditor = {
      * \__/;      '-.
      */
     const extraProps = {};
-    if (this.hasCRLF) {
-      if (props.hasOwnProperty('overrideValues')) {
-        extraProps.overrideValues = normalize(props.overrideValues);
-      }
-      if (props.hasOwnProperty('initialValues')) {
-        extraProps.initialValues = normalize(props.initialValues);
-      }
+    if (this.hasCRLF && props.hasOwnProperty('initialValues')) {
+      extraProps.initialValues = normalize(props.initialValues);
     }
 
     this.editorInstance = ReactRenderer.render(
@@ -119,6 +109,39 @@ const ReactEditor = {
 
   handleChange() {
     PTL.editor.onTextareaChange();
+  },
+
+  // FIXME: the following are ad-hoc methods for "communication". We should
+  // rather drill holes in some other way, e.g. using Redux.
+
+  /**
+   * Sets a new textarea value.
+   */
+  setValueFor(indexOrElement, value) {
+    const textareas = this.editorInstance.getAreas();
+    const index = (
+      typeof indexOrElement === 'object' ?
+        textareas.indexOf(indexOrElement) :
+        indexOrElement
+    );
+    setValue(textareas[index], value,
+             { isRawMode: this.props.isRawMode, triggerChange: true });
+    textareas[index].focus();
+  },
+
+  /**
+   * Inserts a value in the current caret position.
+   */
+  insertAtCaretFor(indexOrElement, value) {
+    const textareas = this.editorInstance.getAreas();
+    const index = (
+      typeof indexOrElement === 'object' ?
+        textareas.indexOf(indexOrElement) :
+        indexOrElement
+    );
+    insertAtCaret(textareas[index], value, { isRawMode: this.props.isRawMode,
+                  triggerChange: true });
+    textareas[index].focus();
   },
 
 };

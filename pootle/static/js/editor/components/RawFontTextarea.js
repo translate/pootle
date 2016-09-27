@@ -30,7 +30,6 @@ const RawFontTextarea = React.createClass({
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
     onChange: React.PropTypes.func.isRequired,
-    overrideValue: React.PropTypes.any,
     style: React.PropTypes.object,
   },
 

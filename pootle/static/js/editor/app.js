@@ -48,7 +48,6 @@ import search from '../search';
 import utils from '../utils';
 import {
   decodeEntities, escapeUnsafeRegexSymbols, getAreaId, makeRegexForMultipleWords,
-  countNewlineSymbol,
 } from './utils';
 
 import ReactEditor from './index';
@@ -687,14 +686,11 @@ PTL.editor = {
       $el.text()
     );
 
-    let newValues;
     if (action === 'overwrite') {
-      newValues = this.updateFocusedValue(text);
+      ReactEditor.setValueFor(this.focused || 0, text);
     } else {
-      newValues = this.updateFocusedValue(text, { overwrite: false });
+      ReactEditor.insertAtCaretFor(this.focused || 0, text);
     }
-
-    ReactEditor.setProps({ overrideValues: newValues });
   },
 
   copyTMText(e) {
@@ -709,7 +705,9 @@ PTL.editor = {
   /* Copies source text(s) into the target textarea(s)*/
   copyOriginal(languageCode) {
     const sources = this.units.getCurrent().get('sources')[languageCode];
-    ReactEditor.setProps({ overrideValues: sources.slice() });
+    for (let i = 0; i < sources.length; i++) {
+      ReactEditor.setValueFor(i, sources[i]);
+    }
 
     this.goFuzzy();
   },
@@ -727,42 +725,6 @@ PTL.editor = {
     commentInput.focus();
     commentInput.value = text;
   },
-
-  /*
-   * Updates the current value state for the focused element and returns it.
-   *
-   * @param {string} value The new value to be set
-   * @param {boolean} overwrite Whether to overwrite the current value entirely
-   *    or not. If not, it will be appended on the existing caret position
-   *    (if text is selected, overwrites the selection).
-   */
-  updateFocusedValue(value, { overwrite = true } = {}) {
-    const newValues = ReactEditor.stateValues.slice();
-    const targetIndex = qAll('.js-translation-area').indexOf(this.focused);
-
-    let newValue = value;
-    if (!overwrite && newValues[targetIndex] !== '') {
-      const { selectionStart } = this.focused;
-      const { selectionEnd } = this.focused;
-      const areaValue = this.focused.value;
-
-      // FIXME: the conditional logic is needed to support CRLF line endings.
-      // Please do remove once Pootle provides normalized LF endings.
-      let start = selectionStart;
-      let end = selectionEnd;
-      if (!ReactEditor.hasCRLF) {
-        start = start - countNewlineSymbol(areaValue.slice(0, selectionStart));
-        end = end - countNewlineSymbol(areaValue.slice(0, selectionEnd));
-      }
-
-      const currentValue = newValues[targetIndex];
-      newValue = currentValue.slice(0, start) + value
-        + currentValue.slice(end, currentValue.length);
-    }
-    newValues[targetIndex] = newValue;
-    return newValues;
-  },
-
 
   /*
    * Fuzzying / unfuzzying functions
@@ -2221,7 +2183,7 @@ PTL.editor = {
         // save unit editor state to restore it after autofill changes
         const isUnitDirty = this.isUnitDirty;
         const text = results[0].target;
-        ReactEditor.setProps({ values: this.updateFocusedValue(text) });
+        ReactEditor.setValueFor(this.focused || 0, text);
         this.goFuzzy();
         this.isUnitDirty = isUnitDirty;
       }
@@ -2368,7 +2330,9 @@ PTL.editor = {
 
   processAcceptSuggestion(data, suggId, skipToNext) {
     if (data.newtargets !== undefined) {
-      ReactEditor.setProps({ overrideValues: data.newtargets.slice() });
+      for (let i = 0; i < data.newtargets.length; i++) {
+        ReactEditor.setValueFor(i, data.newtargets[i]);
+      }
     }
     this.updateUnitDefaultProperties();
 
@@ -2440,9 +2404,7 @@ PTL.editor = {
       return false;
     }
 
-    ReactEditor.setProps({
-      overrideValues: this.updateFocusedValue(decodeEntities(translation)),
-    });
+    ReactEditor.setValueFor(this.focused || 0, decodeEntities(translation));
 
     // Save a copy of the resulting text in the DOM for further
     // similarity comparisons

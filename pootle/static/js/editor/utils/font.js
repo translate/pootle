@@ -129,12 +129,6 @@ export const RE_BASE_REVERSE = new RegExp(
 );
 
 
-/* Counts the number of newline symbols present in `value` */
-export function countNewlineSymbol(value) {
-  return (value.match(new RegExp(`[${SYMBOLS.LF}${SYMBOLS.CR}]`)) || []).length;
-}
-
-
 const RAW_BASE = Object.keys(BASE_MAP).join('');
 const SYM_BASE = Object.keys(_.invert(BASE_MAP)).join('');
 

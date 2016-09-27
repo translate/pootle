@@ -26,7 +26,6 @@ const EditorContainer = React.createClass({
     isRawMode: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
-    overrideValues: React.PropTypes.array,
     sourceValues: React.PropTypes.array,
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
@@ -46,7 +45,6 @@ const EditorContainer = React.createClass({
   getDefaultProps() {
     return {
       initialValues: [],
-      overrideValues: null,
       textareaComponent: RawFontTextarea,
       editorComponent: Editor,
     };
@@ -65,34 +63,20 @@ const EditorContainer = React.createClass({
 
   componentDidMount() {
     this.shouldOverride = false;
+    this.areas = qAll('.js-translation-area');
   },
 
-  componentWillReceiveProps(nextProps) {
-    // FIXME: this might not be needed after all :)
-    if (nextProps.overrideValues) {
-      // TODO: check `handleChange`/`onChange` is called as part of `setState`
-      // callbacks in children
-      this.props.onChange();
-    }
+  getAreas() {
+    return this.areas;
   },
 
   getStateValues() {
-    return qAll('.js-translation-area').map(
+    return this.areas.map(
       (element) => sym2raw(element.value, { isRawMode: this.props.isRawMode })
     );
   },
 
   render() {
-    // FIXME: this might not be needed after all :)
-    // FIXME: this is a hack to let the underlying component with undo
-    // capabilities that it should take the provided value into account to
-    // keep it track in its internal history. This shouldn't be needed when
-    // we remove the outside world interaction.
-    const extraProps = {};
-    if (this.shouldOverride) {
-      extraProps.overrideValues = this.props.overrideValues;
-    }
-
     return (
       <this.props.editorComponent
         isDisabled={this.props.isDisabled}
@@ -103,7 +87,6 @@ const EditorContainer = React.createClass({
         initialValues={this.props.initialValues}
         onChange={this.props.onChange}
         sourceValues={this.props.sourceValues}
-        {...extraProps}
       />
     );
   },
