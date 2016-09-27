@@ -63,6 +63,7 @@ const RawFontTextarea = React.createClass({
 
     const { isRawMode } = this.props;
     this.rawFont = new RawFontAware(this._textareaNode, { isRawMode });
+    this.previousSnapshot = this.rawFont.setValue(this.props.initialValue);
 
     this.isDirty = false;
   },
@@ -100,14 +101,14 @@ const RawFontTextarea = React.createClass({
     this.setState((prevState) => ({
       done: [...prevState.done, value],
       undone: [],
-    }));
+    }), () => {
+      this.previousSnapshot = this.rawFont.getValue();
+    });
   },
 
   handleChange() {
     this.isDirty = true;
-    // FIXME: instead of this.props.value this will use the class property
-    this.saveSnapshot(this.props.value);
-    this.props.onChange(newValue);
+    this.saveSnapshot(this.previousSnapshot);
     this.props.onChange();
   },
 
@@ -120,15 +121,14 @@ const RawFontTextarea = React.createClass({
     const currentValue = this.rawFont.getValue();
     const done = this.state.done.slice();
     const newValue = done.slice(-1)[0];
-    // FIXME: this probably needs to be moved to the `setState` callback
-    this.props.onChange(newValue);
 
-    // FIXME: after setting state, we need to update the DOM via our helper to
-    // reflect the new state of things
     this.setState((prevState) => ({
       done: done.slice(0, -1),
       undone: [...prevState.undone, currentValue],
-    }));
+    }), () => {
+      this.previousSnapshot = this.rawFont.setValue(newValue);
+      this.props.onChange();
+    });
   },
 
   handleRedo(e) {
@@ -140,15 +140,14 @@ const RawFontTextarea = React.createClass({
     const currentValue = this.rawFont.getValue();
     const undone = this.state.undone.slice();
     const newValue = undone.slice(-1)[0];
-    // FIXME: this probably needs to be moved to the `setState` callback
-    this.props.onChange(newValue);
 
-    // FIXME: after setting state, we need to update the DOM via our helper to
-    // reflect the new state of things
     this.setState((prevState) => ({
       done: [...prevState.done, currentValue],
       undone: undone.slice(0, -1),
-    }));
+    }), () => {
+      this.previousSnapshot = this.rawFont.setValue(newValue);
+      this.props.onChange();
+    });
   },
 
   render() {

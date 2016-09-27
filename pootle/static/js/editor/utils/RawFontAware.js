@@ -20,9 +20,6 @@ export class RawFontAware {
     this.element = element;
     this.isRawMode = isRawMode;
 
-    this.setValue(element.defaultValue);
-    this.update();
-
     element.addEventListener('input', (e) => this.onInput(e));
     element.addEventListener('keydown', (e) => this.onKeyDown(e));
     element.addEventListener('mousedown', (e) => this.onMouseDown(e));
