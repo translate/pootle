@@ -14,19 +14,40 @@ const KEY_DELETE = 46;
 const KEY_LETTER_F = 70;
 
 
+function triggerEvent(element, eventName) {
+  let event;
+  try {
+    event = new Event(eventName, { bubbles: true });
+  } catch (e) {
+    event = document.createEvent('HTMLEvents');
+    event.initEvent('input', true, false);
+  }
+  element.dispatchEvent(event);
+}
+
+
 function getValue(element, { isRawMode = false } = {}) {
   return sym2raw(element.value, { isRawMode });
 }
 
 
-export function setValue(element, value, { isRawMode = false } = {}) {
+export function setValue(
+  element, value, { isRawMode = false, triggerChange = false } = {}
+) {
   // eslint-disable-next-line no-param-reassign
   element.value = raw2sym(value, { isRawMode });
+
+  if (triggerChange) {
+    triggerEvent(element, 'input');
+  }
+
   return getValue(element, { isRawMode });
 }
 
 
-function update(element, insertValue = '', { isRawMode = false } = {}) {
+function update(
+  element, insertValue = '', { isRawMode = false, triggerChange = false } = {}
+) {
   const start = element.selectionStart;
   const end = element.selectionEnd;
   const { value } = element;
@@ -55,11 +76,16 @@ function update(element, insertValue = '', { isRawMode = false } = {}) {
   }
   /* eslint-enable no-param-reassign */
 
+  if (triggerChange) {
+    triggerEvent(element, 'input');
+  }
 }
 
 
-export function insertAtCaret(element, value, { isRawMode = false } = {}) {
-  update(element, value, { isRawMode });
+export function insertAtCaret(
+  element, value, { isRawMode = false, triggerChange = false } = {}
+) {
+  update(element, value, { isRawMode, triggerChange });
   return getValue(element, { isRawMode });
 }
 
