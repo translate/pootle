@@ -46,22 +46,23 @@ export function setValue(
 
 
 function update(
-  element, insertValue = '', { isRawMode = false, triggerChange = false } = {}
+  element, insertValue = null, { isRawMode = false, triggerChange = false } = {}
 ) {
   const start = element.selectionStart;
   const end = element.selectionEnd;
   const { value } = element;
+  const valueToInsert = insertValue || '';
 
-  const adjustedStart = insertValue !== '' ? start : end;
+  const adjustedStart = insertValue !== null ? start : end;
   const sBefore = value.substring(0, adjustedStart);
   const sAfter = value.substring(end);
   const sBeforeNormalized = raw2sym(
-    sym2raw(sBefore + insertValue, { isRawMode }),
+    sym2raw(sBefore + valueToInsert, { isRawMode }),
     { isRawMode }
   );
   const offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
   const newValue = raw2sym(
-    sym2raw(sBefore + insertValue + sAfter, { isRawMode }),
+    sym2raw(sBefore + valueToInsert + sAfter, { isRawMode }),
     { isRawMode }
   );
   if (value === newValue) {
@@ -76,7 +77,7 @@ function update(
   }
   /* eslint-enable no-param-reassign */
 
-  if (triggerChange) {
+  if (triggerChange || insertValue !== null) {
     triggerEvent(element, 'input');
   }
 }
@@ -133,7 +134,7 @@ export class RawFontAware {
     return setValue(this.element, value, { isRawMode: this.isRawMode });
   }
 
-  update(insertValue = '') {
+  update(insertValue = null) {
     update(this.element, insertValue, { isRawMode: this.isRawMode });
   }
 
