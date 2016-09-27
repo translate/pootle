@@ -100,6 +100,7 @@ const ReactEditor = {
   // FIXME: this additional layer of state tracking is only kept to allow
   // interaction from the outside world. Remove ASAP.
   get stateValues() {
+    const stateValues = this.editorInstance.getStateValues();
     /*           ,
      *  __  _.-"` `'-.
      * /||\'._ __{}_(  CUSTOMS CHECK: if any CRLF => LF conversion was done
@@ -111,9 +112,9 @@ const ReactEditor = {
      * \__/;      '-.
      */
     if (this.hasCRLF) {
-      return denormalize(this.editorInstance.state.values);
+      return denormalize(stateValues);
     }
-    return this.editorInstance.state.values;
+    return stateValues;
   },
 
   handleChange() {

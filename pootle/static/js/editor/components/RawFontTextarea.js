@@ -32,7 +32,6 @@ const RawFontTextarea = React.createClass({
     onChange: React.PropTypes.func.isRequired,
     overrideValue: React.PropTypes.any,
     style: React.PropTypes.object,
-    value: React.PropTypes.string.isRequired,
   },
 
   contextTypes: {
@@ -72,19 +71,6 @@ const RawFontTextarea = React.createClass({
     if (this.props.isRawMode !== nextProps.isRawMode) {
       this.rawFont.setMode({ isRawMode: nextProps.isRawMode });
     }
-    // FIXME: this might not be needed after all :)
-    if (this.props.value !== nextProps.value) {
-      this.rawFont.setValue(nextProps.value);
-    }
-
-    // FIXME: this might not be needed after all :)
-    // FIXME: this is a hack to support external components adding items right
-    // away to the history of changes. It should be removed in the future, once
-    // `Editor` is free of outside world interactions.
-    if (nextProps.overrideValue &&
-        this.props.overrideValue !== nextProps.overrideValue) {
-      this.saveSnapshot(this.props.value);
-    }
   },
 
   shouldComponentUpdate(nextProps) {
@@ -93,7 +79,6 @@ const RawFontTextarea = React.createClass({
     // there are many unnecessary re-renders when the undo stack saves snapshots.
     return (
       this.isDirty ||
-      this.props.value !== nextProps.value ||
       this.props.isRawMode !== nextProps.isRawMode
     );
   },
@@ -119,11 +104,11 @@ const RawFontTextarea = React.createClass({
   },
 
   handleChange() {
-    const newValue = this.rawFont.getValue();
     this.isDirty = true;
     // FIXME: instead of this.props.value this will use the class property
     this.saveSnapshot(this.props.value);
     this.props.onChange(newValue);
+    this.props.onChange();
   },
 
   handleUndo(e) {
@@ -132,7 +117,7 @@ const RawFontTextarea = React.createClass({
       return;
     }
 
-    const currentValue = this.props.value;
+    const currentValue = this.rawFont.getValue();
     const done = this.state.done.slice();
     const newValue = done.slice(-1)[0];
     // FIXME: this probably needs to be moved to the `setState` callback
@@ -152,7 +137,7 @@ const RawFontTextarea = React.createClass({
       return;
     }
 
-    const currentValue = this.props.value;
+    const currentValue = this.rawFont.getValue();
     const undone = this.state.undone.slice();
     const newValue = undone.slice(-1)[0];
     // FIXME: this probably needs to be moved to the `setState` callback

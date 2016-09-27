@@ -8,8 +8,11 @@
 
 import React from 'react';
 
+import { qAll } from 'utils/dom';
+
 import Editor from '../components/Editor';
 import RawFontTextarea from '../components/RawFontTextarea';
+import { sym2raw } from '../utils/font';
 
 
 const EditorContainer = React.createClass({
@@ -49,12 +52,6 @@ const EditorContainer = React.createClass({
     };
   },
 
-  getInitialState() {
-    return {
-      values: this.props.initialValues,
-    };
-  },
-
   getChildContext() {
     return {
       currentLocaleCode: this.props.currentLocaleCode,
@@ -75,33 +72,20 @@ const EditorContainer = React.createClass({
     if (nextProps.overrideValues) {
       // TODO: check `handleChange`/`onChange` is called as part of `setState`
       // callbacks in children
-      // FIXME: Using the second argument callback to `setState` to ensure the
-      // callback is run after re-rendering happened, so that the DOM-based
-      // editor can perform any operations safely. This is needed to allow
-      // interaction from the outside world. Remove ASAP.
-      this.shouldOverride = true;
-      this.setState({
-        values: nextProps.overrideValues,
-      }, () => {
-        this.shouldOverride = false;
-        this.props.onChange();
-      });
+      this.props.onChange();
     }
   },
 
   // TODO: check `handleChange`/`onChange` is called as part of `setState`
   // callbacks in children
-  handleChange(i, value) {
-    const newValues = this.state.values.slice();
-    newValues[i] = value;
+  handleChange() {
+    this.props.onChange();
+  },
 
-    // FIXME: Using the second argument callback to `setState` to ensure the
-    // callback is run after re-rendering happened, so that the DOM-based
-    // editor can perform any operations safely. This is needed to allow
-    // interaction from the outside world. Remove ASAP.
-    this.setState({
-      values: newValues,
-    }, this.props.onChange);
+  getStateValues() {
+    return qAll('.js-translation-area').map(
+      (element) => sym2raw(element.value, { isRawMode: this.props.isRawMode })
+    );
   },
 
   render() {
@@ -123,7 +107,6 @@ const EditorContainer = React.createClass({
         targetNplurals={this.props.targetNplurals}
         textareaComponent={this.props.textareaComponent}
         initialValues={this.props.initialValues}
-        values={this.state.values}
         onChange={this.handleChange}
         sourceValues={this.props.sourceValues}
         {...extraProps}

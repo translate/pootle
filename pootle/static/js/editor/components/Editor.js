@@ -19,7 +19,6 @@ const Editor = React.createClass({
 
   propTypes: {
     initialValues: React.PropTypes.array,
-    values: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
@@ -70,8 +69,7 @@ const Editor = React.createClass({
             id={getAreaId(i)}
             initialValue={this.props.initialValues[i]}
             isDisabled={this.props.isDisabled}
-            onChange={(value) => this.props.onChange(i, value)}
-            value={this.props.values[i]}
+            onChange={this.props.onChange}
             {...extraProps}
           />
         </EditingArea>
