@@ -47,7 +47,6 @@ export class RawFontAware {
 
   setMode({ isRawMode = false } = {}) {
     this.isRawMode = isRawMode;
-    this.update();
   }
 
   getValue() {
