@@ -14,6 +14,56 @@ const KEY_DELETE = 46;
 const KEY_LETTER_F = 70;
 
 
+function getValue(element, { isRawMode = false } = {}) {
+  return sym2raw(element.value, { isRawMode });
+}
+
+
+export function setValue(element, value, { isRawMode = false } = {}) {
+  // eslint-disable-next-line no-param-reassign
+  element.value = raw2sym(value, { isRawMode });
+  return getValue(element, { isRawMode });
+}
+
+
+function update(element, insertValue = '', { isRawMode = false } = {}) {
+  const start = element.selectionStart;
+  const end = element.selectionEnd;
+  const { value } = element;
+
+  const adjustedStart = insertValue !== '' ? start : end;
+  const sBefore = value.substring(0, adjustedStart);
+  const sAfter = value.substring(end);
+  const sBeforeNormalized = raw2sym(
+    sym2raw(sBefore + insertValue, { isRawMode }),
+    { isRawMode }
+  );
+  const offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
+  const newValue = raw2sym(
+    sym2raw(sBefore + insertValue + sAfter, { isRawMode }),
+    { isRawMode }
+  );
+  if (value === newValue) {
+    return;
+  }
+
+  /* eslint-disable no-param-reassign */
+  element.value = newValue;
+  element.selectionEnd = end + offset;
+  if (start === end) {
+    element.selectionStart = end + offset;
+  }
+  /* eslint-enable no-param-reassign */
+
+}
+
+
+export function insertAtCaret(element, value, { isRawMode = false } = {}) {
+  update(element, value, { isRawMode });
+  return getValue(element, { isRawMode });
+}
+
+
 export class RawFontAware {
 
   constructor(element, { isRawMode = false } = {}) {
@@ -50,35 +100,15 @@ export class RawFontAware {
   }
 
   getValue() {
-    return this.sym2raw(this.element.value);
+    return getValue(this.element);
   }
 
   setValue(value) {
-    this.element.value = this.raw2sym(value);
-    return this.getValue();
+    return setValue(this.element, value, { isRawMode: this.isRawMode });
   }
 
   update(insertValue = '') {
-    const { element } = this;
-
-    const start = element.selectionStart;
-    const end = element.selectionEnd;
-    const { value } = element;
-    const adjustedStart = insertValue !== '' ? start : end;
-    const sBefore = value.substring(0, adjustedStart);
-    const sAfter = value.substring(end);
-    const sBeforeNormalized = this.raw2sym(this.sym2raw(sBefore + insertValue));
-    const offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
-    const newValue = this.raw2sym(this.sym2raw(sBefore + insertValue + sAfter));
-    if (value === newValue) {
-      return;
-    }
-
-    element.value = newValue;
-    element.selectionEnd = end + offset;
-    if (start === end) {
-      element.selectionStart = end + offset;
-    }
+    update(this.element, insertValue, { isRawMode: this.isRawMode });
   }
 
   raw2sym(value) {
@@ -239,8 +269,7 @@ export class RawFontAware {
   }
 
   insertAtCaret(value) {
-    this.update(value);
-    return this.getValue();
+    return insertAtCaret(this.element, value);
   }
 
 }
