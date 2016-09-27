@@ -149,6 +149,9 @@ Changes in settings
   This restricts how many units are shown in export views.
 - :setting:`POOTLE_SEARCH_BACKEND` was added, to allow configuring the search
   backend to be used.
+- Changed the default value for `ACCOUNT_SESSION_REMEMBER
+  <https://django-allauth.readthedocs.io/en/latest/configuration.html>`_ so now
+  sessions are always remembered.  
 
 
 Credits
