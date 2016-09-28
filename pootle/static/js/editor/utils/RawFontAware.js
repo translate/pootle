@@ -134,6 +134,22 @@ export class RawFontAware {
     return setValue(this.element, value, { isRawMode: this.isRawMode });
   }
 
+  getSnapshot() {
+    return {
+      selectionStart: this.element.selectionStart,
+      selectionEnd: this.element.selectionEnd,
+      value: this.getValue(),
+    };
+  }
+
+  setSnapshot(snapshot) {
+    const { element } = this;
+    this.setValue(snapshot.value);
+    element.selectionStart = snapshot.selectionStart || element.value.length;
+    element.selectionEnd = snapshot.selectionEnd || element.value.length;
+    return this.getSnapshot();
+  }
+
   update(insertValue = null) {
     update(this.element, insertValue, { isRawMode: this.isRawMode });
   }

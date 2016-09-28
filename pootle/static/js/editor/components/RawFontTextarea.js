@@ -62,7 +62,9 @@ const RawFontTextarea = React.createClass({
 
     const { isRawMode } = this.props;
     this.rawFont = new RawFontAware(this._textareaNode, { isRawMode });
-    this.previousSnapshot = this.rawFont.setValue(this.props.initialValue);
+    this.previousSnapshot = this.rawFont.setSnapshot({
+      value: this.props.initialValue,
+    });
   },
 
   componentWillReceiveProps(nextProps) {
@@ -93,14 +95,12 @@ const RawFontTextarea = React.createClass({
     this.rawFont.destroy();
   },
 
-  // FIXME: let's rename value to something else; it'll be an object with the
-  // value and selection information, so not a plain value
-  saveSnapshot(value) {
+  saveSnapshot(snapshot) {
     this.setState((prevState) => ({
-      done: [...prevState.done, value],
+      done: [...prevState.done, snapshot],
       undone: [],
     }), () => {
-      this.previousSnapshot = this.rawFont.getValue();
+      this.previousSnapshot = this.rawFont.getSnapshot();
     });
   },
 
@@ -115,15 +115,13 @@ const RawFontTextarea = React.createClass({
       return;
     }
 
-    const currentValue = this.rawFont.getValue();
-    const done = this.state.done.slice();
-    const newValue = done.slice(-1)[0];
+    const newSnapshot = this.state.done.slice(-1)[0];
 
     this.setState((prevState) => ({
-      done: done.slice(0, -1),
-      undone: [...prevState.undone, currentValue],
+      done: prevState.done.slice(0, -1),
+      undone: [...prevState.undone, this.rawFont.getSnapshot()],
     }), () => {
-      this.previousSnapshot = this.rawFont.setValue(newValue);
+      this.previousSnapshot = this.rawFont.setSnapshot(newSnapshot);
       this.props.onChange();
     });
   },
@@ -134,15 +132,13 @@ const RawFontTextarea = React.createClass({
       return;
     }
 
-    const currentValue = this.rawFont.getValue();
-    const undone = this.state.undone.slice();
-    const newValue = undone.slice(-1)[0];
+    const newSnapshot = this.state.undone.slice(-1)[0];
 
     this.setState((prevState) => ({
-      done: [...prevState.done, currentValue],
-      undone: undone.slice(0, -1),
+      done: [...prevState.done, this.rawFont.getSnapshot()],
+      undone: prevState.undone.slice(0, -1),
     }), () => {
-      this.previousSnapshot = this.rawFont.setValue(newValue);
+      this.previousSnapshot = this.rawFont.setSnapshot(newSnapshot);
       this.props.onChange();
     });
   },
