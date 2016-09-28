@@ -8,7 +8,7 @@
 
 import glob
 import os
-
+import importlib
 
 WORKING_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -18,6 +18,12 @@ def working_path(filename):
     ``WORKING_DIR``.
     """
     return os.path.join(WORKING_DIR, filename)
+
+
+def app_path(app_name):
+    """Return an absolute path for installed :param:`app_name`"""
+    app_module = importlib.import_module(app_name)
+    return os.path.dirname(app_module.__file__)
 
 
 conf_files_path = os.path.join(WORKING_DIR, 'settings', '*.conf')
