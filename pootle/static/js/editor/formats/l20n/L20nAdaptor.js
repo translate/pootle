@@ -16,7 +16,7 @@ const L20nAdaptor = {
   unitSourceComponent: L20nSource,
   editorModeButton: L20nEditorMode,
   getProps(props) {
-    return { isRichModeEnabled: props.isRichModeEnabled };
+    return { enableRichMode: props.enableRichMode };
   },
 };
 

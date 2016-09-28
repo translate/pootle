@@ -31,7 +31,7 @@ const L20nSource = React.createClass({
 
   propTypes: {
     values: React.PropTypes.array.isRequired,
-    isRichModeEnabled: React.PropTypes.bool,
+    enableRichMode: React.PropTypes.bool,
     sourceLocaleCode: React.PropTypes.string,
   },
 
@@ -51,15 +51,19 @@ const L20nSource = React.createClass({
         pluralForms: l20nData.pluralForms,
         hasPlurals: true,
       });
-    } else if (!l20nData.hasSimpleValue) {
+    } else if (l20nData.hasSimpleValue) {
       this.setState({
-        applyFontFilterEnabled: false,
+        values: l20nData.unitValues,
+      });
+    } else {
+      this.setState({
+        isRichModeEnabled: true,
       });
     }
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isRichModeEnabled) {
+    if (nextProps.enableRichMode) {
       this.setState({
         values: nextProps.values,
         hasPlurals: nextProps.values.length > 1,
@@ -74,7 +78,12 @@ const L20nSource = React.createClass({
           hasPlurals: true,
           isRichModeEnabled: false,
         });
-      } else if (!l20nData.hasSimpleValue) {
+      } else if (l20nData.hasSimpleValue) {
+        this.setState({
+          values: l20nData.unitValues,
+          isRichModeEnabled: false,
+        });
+      } else {
         this.setState({
           isRichModeEnabled: true,
         });

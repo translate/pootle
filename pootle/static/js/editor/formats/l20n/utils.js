@@ -21,6 +21,14 @@ class L20nEditorError extends Error {
 }
 
 
+function getTextElementL20nEntity(value) {
+  const textElementResource = FTLASTParser.parseResource('unit = value');
+  textElementResource[0].body[0].value.elements[0].value = value;
+
+  return textElementResource[0].body[0];
+}
+
+
 function parseL20nValue(value) {
   try {
     const unitEntity = FTLASTParser.parseResource(`unit = ${value}`)[0].body[0];
@@ -66,6 +74,9 @@ function setSimpleValue(data) {
                     value.elements.length === 1 &&
                     value.elements[0].type === 'TextElement');
 
+  if (hasSimpleValue) {
+    assign(data, { unitValues: [value.source] });
+  }
   assign(data, { hasSimpleValue });
   return hasSimpleValue;
 }
@@ -99,10 +110,20 @@ export function dumpL20nPlurals(values, l20nUnitEntity) {
     throw new L20nEditorError('All plural forms should be filled.');
   }
   for (let i = 0; i < values.length; i++) {
-    const pfEntity = FTLASTParser.parseResource('unit = val');
-    pfEntity[0].body[0].value.elements[0].value = values[i];
-    variants[i].value = pfEntity[0].body[0].value;
+    const textElementEntity = getTextElementL20nEntity(values[i]);
+    variants[i].value = textElementEntity.value;
   }
+
+  try {
+    return [FTLASTSerializer.dumpPattern(l20nUnitEntity.value)];
+  } catch (e) {
+    throw new L20nEditorError(e.message);
+  }
+}
+
+
+export function dumpL20nValue(value) {
+  const l20nUnitEntity = getTextElementL20nEntity(value);
 
   try {
     return [FTLASTSerializer.dumpPattern(l20nUnitEntity.value)];

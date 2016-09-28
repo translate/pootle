@@ -27,7 +27,7 @@ const L20nEditorMode = React.createClass({
     const isEnabled = !this.state.isEnabled;
     this.setState({ isEnabled });
     if (this.props.onChange) {
-      this.props.onChange({ isRichModeEnabled: isEnabled });
+      this.props.onChange({ enableRichMode: isEnabled });
     }
   },
 

@@ -102,7 +102,7 @@ const ReactEditor = {
     if (this.formatAdaptor.editorModeButton) {
       ReactRenderer.render(
         <this.formatAdaptor.editorModeButton
-          onChange={this.onEditorModeChange.bind(this)}
+          onChange={this.onEditorModeChange}
         />,
         this.editorModeNode
       );
@@ -110,7 +110,7 @@ const ReactEditor = {
   },
 
   onEditorModeChange(options) {
-    this.setProps(options);
+    ReactEditor.setProps(options);
   },
 
   // FIXME: this additional layer of state tracking is only kept to allow

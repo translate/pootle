@@ -18,6 +18,7 @@ import L20nCodeMirror from './L20nCodeMirror';
 
 import {
   dumpL20nPlurals,
+  dumpL20nValue,
   getL20nEmptyPluralsEntity,
   getL20nData,
 } from './utils';
@@ -29,7 +30,7 @@ const L20nEditor = React.createClass({
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
-    isRichModeEnabled: React.PropTypes.bool,
+    enableRichMode: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
     sourceValues: React.PropTypes.array.isRequired,
@@ -54,9 +55,9 @@ const L20nEditor = React.createClass({
       values: this.props.initialValues,
       targetNplurals: this.props.targetNplurals,
       hasL20nPlurals: false,
+      isRichModeEnabled: false,
       pluralInitialValues: [],
       pluralForms: [],
-      isRichModeEnabled: false,
       textareaComponent: this.props.textareaComponent,
     };
   },
@@ -108,18 +109,18 @@ const L20nEditor = React.createClass({
   },
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isRichModeEnabled) {
+    if (nextProps.enableRichMode) {
       if (!this.state.isRichModeEnabled) {
         this.setState({
           values: nextProps.values,
           targetNplurals: 1,
           hasPlurals: nextProps.values.length > 1,
-          isRichModeEnabled: nextProps.isRichModeEnabled,
+          isRichModeEnabled: true,
           textareaComponent: L20nCodeMirror,
         });
       }
     } else {
-      const l20nData = getL20nData(this.state.values, nextProps.targetNplurals);
+      const l20nData = getL20nData(nextProps.values, nextProps.targetNplurals);
       if (l20nData.isEmpty) {
         if (this.codemirror !== undefined) {
           this.codemirror.toTextArea();
@@ -129,9 +130,7 @@ const L20nEditor = React.createClass({
           isRichModeEnabled: false,
           textareaComponent: this.props.textareaComponent,
         });
-      } else if (nextProps.isRichModeEnabled === false
-                 && this.props.isRichModeEnabled
-                 && l20nData.hasL20nPlurals) {
+      } else if (l20nData.hasL20nPlurals) {
         if (this.codemirror !== undefined) {
           this.codemirror.toTextArea();
           this.codemirror = undefined;
@@ -160,7 +159,7 @@ const L20nEditor = React.createClass({
         // rich mode can't be switched off
         this.setState({
           hasL20nPlurals: false,
-          isRichModeEnabled: true,
+          isRichModeEnabled: false,
           textareaComponent: L20nCodeMirror,
         });
       }
@@ -190,7 +189,11 @@ const L20nEditor = React.createClass({
         }
       }
     } else {
-      this.setState({ values: newValues }, () => this.props.onChange(i, newValues[i]));
+      let value = newValues[i];
+      if (!this.state.isRichModeEnabled) {
+        value = dumpL20nValue(value);
+      }
+      this.setState({ values: newValues }, () => this.props.onChange(i, value));
     }
   },
 
@@ -207,7 +210,13 @@ const L20nEditor = React.createClass({
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
       }
-
+      // FIXME: this is a hack to let the underlying component with undo
+      // capabilities that it should take the provided value into account to
+      // keep it track in its internal history. This shouldn't be needed when
+      // we remove the outside world interaction.
+      if (this.props.overrideValues) {
+        extraProps.overrideValue = this.props.overrideValues[i];
+      }
       editingAreas.push(
         <EditingArea
           isDisabled={this.props.isDisabled}
