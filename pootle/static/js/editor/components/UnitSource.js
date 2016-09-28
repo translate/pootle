@@ -14,14 +14,43 @@ import { t } from 'utils/i18n';
 import { highlightRW } from '../../utils';
 
 
+const InnerDiv = ({ sourceValue }) => (
+  <div
+    dangerouslySetInnerHTML={
+      { __html: highlightRW(sourceValue) }
+    }
+  />
+);
+
+InnerDiv.propTypes = {
+  sourceValue: React.PropTypes.string.isRequired,
+};
+
+
 const UnitSource = React.createClass({
 
   propTypes: {
     id: React.PropTypes.number.isRequired,
     values: React.PropTypes.array.isRequired,
+    getPluralFormName: React.PropTypes.func,
     hasPlurals: React.PropTypes.bool.isRequired,
     sourceLocaleCode: React.PropTypes.string,
     sourceLocaleDir: React.PropTypes.string,
+    innerComponent: React.PropTypes.func,
+  },
+
+  getDefaultProps() {
+    return {
+      innerComponent: InnerDiv,
+    };
+  },
+
+  getPluralFormName(index) {
+    if (this.props.getPluralFormName !== undefined) {
+      return this.props.getPluralFormName(index);
+    }
+
+    return t('Plural form %(index)s', { index });
   },
 
   createItem(sourceValue, index) {
@@ -29,20 +58,20 @@ const UnitSource = React.createClass({
       lang: this.props.sourceLocaleCode,
       dir: this.props.sourceLocaleDir,
     };
-
     return (
       <div key={`source-value-${index}`}>
         {this.props.hasPlurals &&
          <div
            className="plural-form-label"
-         >{t('Plural form %(index)s', { index })}</div>
+         >{ this.getPluralFormName(index) }</div>
         }
         <div
           className="translation-text js-translation-text"
           data-string={sourceValue}
-          dangerouslySetInnerHTML={{ __html: highlightRW(sourceValue) }}
           {...props}
-        ></div>
+        >
+          <this.props.innerComponent sourceValue={sourceValue} />
+        </div>
       </div>
     );
   },

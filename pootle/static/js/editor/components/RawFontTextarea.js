@@ -55,6 +55,7 @@ const RawFontTextarea = React.createClass({
     onRedo: React.PropTypes.func.isRequired,
     style: React.PropTypes.object,
     value: React.PropTypes.string.isRequired,
+    shouldUpdateValue: React.PropTypes.bool,
   },
 
   contextTypes: {
@@ -65,6 +66,7 @@ const RawFontTextarea = React.createClass({
   getDefaultProps() {
     return {
       initialValue: '',
+      shouldUpdateValue: false,
     };
   },
 
@@ -274,6 +276,8 @@ const RawFontTextarea = React.createClass({
       margin: '0 0 0.5em 0',
       padding: '0.3em',
     }, this.props.style);
+    const value = this.props.shouldUpdateValue ?
+      applyFontFilter(this.props.value, this.getMode()) : undefined;
 
     return (
       <AutosizeTextarea
@@ -299,7 +303,7 @@ const RawFontTextarea = React.createClass({
           }
         }}
         style={style}
-        value={undefined}
+        value={value}
       />
     );
   },

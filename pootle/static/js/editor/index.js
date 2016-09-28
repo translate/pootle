@@ -23,6 +23,8 @@ const ReactEditor = {
     this.node = q('.js-mount-editor');
     this.sourceNode = q('.js-mount-editor-original-src');
     this.alternativeSourceNodes = qAll('.js-mount-editor-alt-src');
+    this.editorModeNode = q('.js-mount-format-editor-toolbar');
+
     this.props = {};
     this.hasCRLF = props.sourceValues.some(hasCRLF);
 
@@ -65,6 +67,7 @@ const ReactEditor = {
       <EditorContainer
         onChange={this.handleChange}
         editorComponent={this.formatAdaptor.editorComponent}
+        editorProps={this.formatAdaptor.getProps(this.props)}
         {...this.props}
         {...extraProps}
       />,
@@ -77,6 +80,7 @@ const ReactEditor = {
         hasPlurals={this.props.hasPlurals}
         sourceLocaleCode={this.props.sourceLocaleCode}
         sourceLocaleDir={this.props.sourceLocaleDir}
+        {...this.formatAdaptor.getProps(this.props)}
       />,
       this.sourceNode
     );
@@ -90,10 +94,23 @@ const ReactEditor = {
           hasPlurals={unit.has_plurals}
           sourceLocaleCode={unit.language_code}
           sourceLocaleDir={unit.language_direction}
+          {...this.formatAdaptor.getProps(this.props)}
         />,
         this.alternativeSourceNodes[i]
       );
     }
+    if (this.formatAdaptor.editorModeButton) {
+      ReactRenderer.render(
+        <this.formatAdaptor.editorModeButton
+          onChange={this.onEditorModeChange}
+        />,
+        this.editorModeNode
+      );
+    }
+  },
+
+  onEditorModeChange(options) {
+    ReactEditor.setProps(options);
   },
 
   // FIXME: this additional layer of state tracking is only kept to allow

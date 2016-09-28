@@ -26,6 +26,7 @@ const CodeMirror = React.createClass({
     onChange: React.PropTypes.func,
     placeholder: React.PropTypes.string,
     value: React.PropTypes.string,
+    onCMCreate: React.PropTypes.func,
   },
 
   getDefaultProps() {
@@ -46,6 +47,9 @@ const CodeMirror = React.createClass({
       });
 
       this.codemirror.on('change', this.handleChange);
+      if (this.props.onCMCreate !== undefined) {
+        this.props.onCMCreate(this.codemirror);
+      }
     });
   },
 

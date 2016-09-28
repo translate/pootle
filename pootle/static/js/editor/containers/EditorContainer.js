@@ -29,6 +29,7 @@ const EditorContainer = React.createClass({
     targetNplurals: React.PropTypes.number.isRequired,
     textareaComponent: React.PropTypes.func,
     editorComponent: React.PropTypes.func,
+    editorProps: React.PropTypes.object,
   },
 
   // FIXME: move context to a higher-order component. It _cannot_ be done now
@@ -46,6 +47,7 @@ const EditorContainer = React.createClass({
       overrideValues: null,
       textareaComponent: RawFontTextarea,
       editorComponent: Editor,
+      editorProps: {},
     };
   },
 
@@ -120,6 +122,7 @@ const EditorContainer = React.createClass({
         values={this.state.values}
         onChange={this.handleChange}
         sourceValues={this.props.sourceValues}
+        {...this.props.editorProps}
         {...extraProps}
       />
     );
