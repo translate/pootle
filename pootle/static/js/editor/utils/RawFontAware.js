@@ -163,10 +163,9 @@ export class RawFontAware {
   }
 
   onMouseDown() {
-    // request selection adjustment after
-    // the mousedown event is processed
-    // (because now selectionStart/End are not updated yet,
-    // even though the caret is already repositioned)
+    // Request selection adjustment after the mousedown event is processed
+    // (because now selectionStart/End are not updated yet, even though the
+    // caret is already repositioned).
     setTimeout(() => {
       this.adjustSelection();
     }, 0);
@@ -178,7 +177,6 @@ export class RawFontAware {
 
   onKeyDown(e) {
     const { target } = e;
-    // request selection adjustment after the keydown event is processed
 
     // On Mac, there's a Control+F alternative to pressing right arrow.
     // Also avoid triggering the behavior for pressing the end key (Cmd+Right).
@@ -187,6 +185,7 @@ export class RawFontAware {
       (e.ctrlKey && e.keyCode === KEY_LETTER_F)
     );
 
+    // Request selection adjustment after the keydown event is processed
     setTimeout(() => {
       this.adjustSelection(moveRight);
     }, 0);
@@ -195,8 +194,8 @@ export class RawFontAware {
     let end = target.selectionEnd;
     const { value } = target;
 
-    // IE11 sometimes has start/end set past the actual string length,
-    // so adjust the selection to be able to get proper charBefore/charAfter values
+    // IE11 sometimes has start/end set past the actual string length, so adjust
+    // the selection to be able to get proper charBefore/charAfter values.
     if (start > value.length) {
       start = value.length;
     }
@@ -208,17 +207,15 @@ export class RawFontAware {
     const charAfter = value.substr(end, 1);
 
     if (start === end) {
-      // when there's no selection and Delete key is pressed
-      // before LF symbol, select two characters to the right
-      // to delete them in one step
+      // When there's no selection and Delete key is pressed before LF symbol,
+      // select two characters to the right to delete them in one step
       if (e.keyCode === KEY_DELETE && charAfter === SYMBOLS.LF) {
         target.selectionEnd = end + 2;
         return;
       }
 
-      // when there's no selection and Backspace key is pressed
-      // after newline character, select two characters to the left
-      // to delete them in one step
+      // When there's no selection and Backspace key is pressed after newline
+      // character, select two characters to the left to delete them in one step
       if (e.keyCode === KEY_BACKSPACE && charBefore === CHARACTERS.LF) {
         target.selectionStart = start - 2;
       }
@@ -226,14 +223,13 @@ export class RawFontAware {
   }
 
   onCopyOrCut(e) {
-    // on cut or copy, we want to have raw text in clipboard (without special
+    // On cut or copy, we want to have raw text in clipboard (without special
     // characters) for interoperability with other applications and parts of the
     // UI
     e.preventDefault();
 
     const { target } = e;
 
-    // get selection, convert it and put into clipboard
     const start = target.selectionStart;
     const end = target.selectionEnd;
     const selection = this.sym2raw(target.value.substring(start, end));
@@ -246,9 +242,8 @@ export class RawFontAware {
       window.clipboardData.setData('Text', selection);
     }
 
-    // replace current selection with the empty string
-    // (otherwise with the default event being cancelled
-    // the selection won't be deleted)
+    // Replace current selection with the empty string (otherwise with the
+    // default event being cancelled the selection won't be deleted)
     if (e.type === 'cut') {
       this.insertAtCaret('');
     }
@@ -293,16 +288,15 @@ export class RawFontAware {
     const insideLF = charBefore === SYMBOLS.LF && charAfter === CHARACTERS.LF;
     const selection = value.substring(start, end);
 
-    // if newline is selected via mouse double-click,
-    // expand the selection to include the preceding LF symbol
+    // If newline is selected via mouse double-click, expand the selection to
+    // include the preceding LF symbol
     if (selection === CHARACTERS.LF && value.substr(start - 1, 1) === SYMBOLS.LF) {
       element.selectionStart = element.selectionStart - 1;
       return;
     }
 
-    // if caret is placed between LF symbol and newline,
-    // move it one symbol to the right or to the left
-    // depending on the keyCode
+    // If caret is placed between LF symbol and newline, move it one symbol to
+    // the right or to the left depending on the keyCode
     if (insideLF) {
       element.selectionEnd = moveRight ? end + 1 : end - 1;
       if (start === end) {
