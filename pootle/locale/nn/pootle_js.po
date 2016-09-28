@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 17:02+0100\n"
+"POT-Creation-Date: 2016-09-28 17:16+0100\n"
 "PO-Revision-Date: 2016-06-04 15:12+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -624,6 +624,11 @@ msgstr "nokon"
 msgid "Similar translations"
 msgstr "Liknande omsetjingar"
 
+#: static/js/editor/components/Editor.js:64
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
 msgstr ""
@@ -639,11 +644,6 @@ msgstr "Godkjenn"
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
 msgstr "Avvis"
-
-#: static/js/editor/components/UnitSource.js:38
-#: static/js/editor/containers/Editor.js:124
-msgid "Plural form %(index)s"
-msgstr ""
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"

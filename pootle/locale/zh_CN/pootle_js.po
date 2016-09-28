@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 17:02+0100\n"
+"POT-Creation-Date: 2016-09-28 17:16+0100\n"
 "PO-Revision-Date: 2016-07-29 10:40+0000\n"
 "Last-Translator: chanson <84365252@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -624,6 +624,11 @@ msgstr "某人"
 msgid "Similar translations"
 msgstr "类似的翻译"
 
+#: static/js/editor/components/Editor.js:64
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
 msgstr ""
@@ -639,11 +644,6 @@ msgstr "接受"
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
 msgstr "拒绝"
-
-#: static/js/editor/components/UnitSource.js:38
-#: static/js/editor/containers/Editor.js:124
-msgid "Plural form %(index)s"
-msgstr ""
 
 #: static/js/editor/components/UploadTimeSince.js:34
 #, fuzzy

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 16:13+0100\n"
+"POT-Creation-Date: 2016-09-28 17:16+0100\n"
 "PO-Revision-Date: 2016-08-21 19:51+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1471809113.000000\n"
 
-#: apps/accounts/adapter.py:64
+#: apps/accounts/adapter.py:65
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -28,13 +28,13 @@ msgstr ""
 "Tasdiqlash xatini jo‘natishga urinilayotganda muammolar yuz berdi. Keyinroq "
 "urinib ko‘ring."
 
-#: apps/accounts/forms.py:31
+#: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
 "Kirayotganingizda xatolik yuz berdi. Tizim administratori bilan bog‘laning"
 
-#: apps/accounts/forms.py:58
+#: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
@@ -60,7 +60,7 @@ msgstr "To‘g‘ri foydalanuvchi nomini kiriting."
 msgid "Email Address"
 msgstr "E-pochta manzili"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:74
+#: apps/accounts/models.py:73 apps/pootle_language/models.py:90
 #: apps/pootle_project/models.py:194
 msgid "Full Name"
 msgstr "To‘liq ismi"
@@ -106,11 +106,11 @@ msgstr "Muqobil manba tillar"
 msgid "Rate"
 msgstr "Baholash"
 
-#: apps/accounts/models.py:96 apps/reports/forms.py:31
+#: apps/accounts/models.py:96 apps/reports/forms.py:32
 msgid "Review Rate"
 msgstr "Baholashga fikr bildirish"
 
-#: apps/accounts/models.py:97 apps/reports/forms.py:36
+#: apps/accounts/models.py:97 apps/reports/forms.py:37
 msgid "Hourly Rate"
 msgstr "Soat bo‘yicha bahosi"
 
@@ -118,7 +118,7 @@ msgstr "Soat bo‘yicha bahosi"
 msgid "Score"
 msgstr "Tezligi"
 
-#: apps/accounts/models.py:99 apps/reports/forms.py:20
+#: apps/accounts/models.py:99 apps/reports/forms.py:21
 msgid "Currency"
 msgstr "Pul birligi"
 
@@ -154,7 +154,7 @@ msgstr "Mavzusi"
 msgid "Please enter your message summary"
 msgstr "Xabar mavzusini kiriting"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:30 core/browser.py:16
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:34 core/browser.py:16
 msgid "Name"
 msgstr "Nomi"
 
@@ -215,29 +215,29 @@ msgstr "Kompyuterdan tarjimalarni yuklash"
 msgid "Upload as %(user)s"
 msgstr "%(user)s sifatida yuklash"
 
-#: apps/import_export/utils.py:29
+#: apps/import_export/utils.py:28
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 "Mos kelmaydigan fayl turi: '%s',hozirda faqat PO fayllar qo‘llab-"
 "quvvatlanadi\n"
 
-#: apps/import_export/utils.py:35
+#: apps/import_export/utils.py:34
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "'%s' fayli X-Pootle-Path bosh qatorida yo‘q\n"
 
-#: apps/import_export/utils.py:40
+#: apps/import_export/utils.py:39
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "'%s' fayli yo‘q yoki X-Pootle-Revision bosh sahifasi noto‘g‘ri\n"
 
-#: apps/import_export/utils.py:48
+#: apps/import_export/utils.py:47
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "'%s' yaratilmadi. Loyiha/Til? (%s) qoldirib ketilgan"
 
-#: apps/import_export/utils.py:65
+#: apps/import_export/utils.py:64
 msgid "There was an error uploading your file"
 msgstr "Faylni yuklashda xatolik yuz bergan"
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Password"
 msgstr "Parol"
 
-#: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:27
+#: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "To‘g‘ri Linkedin foydalanuvchi profili URL manzilini kiriting."
 
@@ -303,27 +303,27 @@ msgstr "Ushbu loyihada fayllar yo‘q."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Shaklda xatolar mavjud. Quyidagi muammolarni ko‘rib chiqing."
 
-#: apps/pootle_format/abstracts.py:34
+#: apps/pootle_format/abstracts.py:35
 msgid "Format name"
 msgstr "Format nomi"
 
-#: apps/pootle_format/abstracts.py:39
+#: apps/pootle_format/abstracts.py:40
 msgid "Format title"
 msgstr "Format sarlavhasi"
 
-#: apps/pootle_format/abstracts.py:43
+#: apps/pootle_format/abstracts.py:44
 msgid "Enabled"
 msgstr "Yoqib qo‘yilgan"
 
-#: apps/pootle_format/abstracts.py:45
+#: apps/pootle_format/abstracts.py:46
 msgid "Monolingual format"
 msgstr "Bir tillik format"
 
-#: apps/pootle_language/models.py:67 apps/pootle_project/models.py:189
+#: apps/pootle_language/models.py:83 apps/pootle_project/models.py:189
 msgid "Code"
 msgstr "Kod"
 
-#: apps/pootle_language/models.py:68
+#: apps/pootle_language/models.py:84
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -333,18 +333,18 @@ msgstr ""
 "bilan kiritilgan bo‘lishi mumkin. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Batafsil ma’lumot</a>"
 
-#: apps/pootle_language/models.py:77 templates/languages/_nav.html:31
+#: apps/pootle_language/models.py:93 templates/languages/_nav.html:31
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Maxsus belgilar"
 
-#: apps/pootle_language/models.py:78
+#: apps/pootle_language/models.py:94
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Foydalanuvchilar yozish uchun qiynalib topadigan har qanday belgini kiriting"
 
-#: apps/pootle_language/models.py:82
+#: apps/pootle_language/models.py:98
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -354,367 +354,367 @@ msgstr ""
 "translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms."
 "html\">sahifamiz</a>ga tashrif buyuring."
 
-#: apps/pootle_language/models.py:88
+#: apps/pootle_language/models.py:104
 msgid "Unknown"
 msgstr "Noma’lum"
 
-#: apps/pootle_language/models.py:92
+#: apps/pootle_language/models.py:108
 msgid "Number of Plurals"
 msgstr "Ko‘pliklar soni"
 
-#: apps/pootle_language/models.py:95
+#: apps/pootle_language/models.py:111
 msgid "Plural Equation"
 msgstr "Ko‘plik darajasi"
 
-#: apps/pootle_misc/checks.py:33 core/browser.py:54
+#: apps/pootle_misc/checks.py:34 core/browser.py:54
 msgid "Critical"
 msgstr "Jiddiy"
 
-#: apps/pootle_misc/checks.py:34
+#: apps/pootle_misc/checks.py:35
 msgid "Cosmetic"
 msgstr "Kosmetik"
 
-#: apps/pootle_misc/checks.py:35
+#: apps/pootle_misc/checks.py:36
 msgid "Functional"
 msgstr "Xususiyatli"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:37
 msgid "Extraction"
 msgstr "Ajratishlar"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:38
 msgid "Other"
 msgstr "Boshqa"
 
-#: apps/pootle_misc/checks.py:41
+#: apps/pootle_misc/checks.py:42
 msgid "Accelerators"
 msgstr "Tezlatgichlar"
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:43
 msgid "Acronyms"
 msgstr "Qisqartma so‘zlar"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:44
 msgid "Blank"
 msgstr "Bo‘sh"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:45
 msgid "Brackets"
 msgstr "Qavatlar"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:46
 msgid "Compendium conflict"
 msgstr "Ziddiyatlar yig‘indisi"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:47
 msgid "Translator credits"
 msgstr "Tarjimon kreditlari"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:48
 msgid "Dialog sizes"
 msgstr "Oyna hajmi"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:49
 msgid "Double quotes"
 msgstr "Qo‘shtirnoqlar"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Double spaces"
 msgstr "Ikki marta bo‘sh joy qoldirilgan"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "Repeated word"
 msgstr "Takrorlangan so‘z"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "E-mail"
 msgstr "E-pochta"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "Ending punctuation"
 msgstr "Tinish belgisi tugashi"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Ending whitespace"
 msgstr "Bo‘sh joy bilan tugash"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "Escapes"
 msgstr "Pastga tushirishlar"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "File paths"
 msgstr "Fayl yo‘llari"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "Functions"
 msgstr "Funksiya"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:58
 msgid "GConf values"
 msgstr "GConf qiymatlari"
 
-#: apps/pootle_misc/checks.py:58 core/utils/stats.py:29
+#: apps/pootle_misc/checks.py:59 core/utils/stats.py:29
 msgid "Fuzzy"
 msgstr "Noaniq"
 
-#: apps/pootle_misc/checks.py:59
+#: apps/pootle_misc/checks.py:60
 msgid "Old KDE comment"
 msgstr "Eski KDE mulohazasi"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Long"
 msgstr "Uzun"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Must translate words"
 msgstr "Tarjima qilinishi kerak bo‘lgan so‘zlar"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Newlines"
 msgstr "Yangi qatordagi belgilar"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Number of plurals"
 msgstr "Ko‘pliklar soni"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Don't translate words"
 msgstr "So‘zlarni tarjima qilmang"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Numbers"
 msgstr "Raqamlar"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "Options"
 msgstr "Moslamalar"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "Punctuation spacing"
 msgstr "Tinish belgilarining joylashuvi"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 msgid "Pure punctuation"
 msgstr "Tinish belgilari o‘zgartirilmagan"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 msgid "Python brace placeholders"
 msgstr "Python qavsli o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Number of sentences"
 msgstr "So‘zlar soni"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Short"
 msgstr "Qisqa"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Simple capitalization"
 msgstr "Oddiy katta harf"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Simple plural(s)"
 msgstr "Oddiy ko‘plik"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Single quotes"
 msgstr "Yakka qo‘shtirnoqlar"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Starting capitalization"
 msgstr "Bosh harf bilan boshlangan"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting punctuation"
 msgstr "Tinish belgisi bilan boshlangan"
 
-#: apps/pootle_misc/checks.py:78
+#: apps/pootle_misc/checks.py:79
 msgid "Starting whitespace"
 msgstr "Bo‘sh joy tashlab boshlangan"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:80
+#: apps/pootle_misc/checks.py:81
 msgid "Tabs"
 msgstr "Ichki oynalar"
 
-#: apps/pootle_misc/checks.py:81
+#: apps/pootle_misc/checks.py:82
 msgid "Unchanged"
 msgstr "O‘zgartirilmagan"
 
-#: apps/pootle_misc/checks.py:82 apps/pootle_store/constants.py:66
+#: apps/pootle_misc/checks.py:83 apps/pootle_store/constants.py:66
 #: core/helpers.py:48 core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Tarjima qilinmagan"
 
-#: apps/pootle_misc/checks.py:83
+#: apps/pootle_misc/checks.py:84
 msgid "URLs"
 msgstr "URL’lar"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "Valid characters"
 msgstr "To‘g‘ri belgilar"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Placeholders"
 msgstr "To‘ldiruvchilar"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "Valid XML"
 msgstr "To‘g‘ri XML"
 
-#: apps/pootle_misc/checks.py:87
+#: apps/pootle_misc/checks.py:88
 msgid "XML tags"
 msgstr "XML teglar"
 
-#: apps/pootle_misc/checks.py:89
+#: apps/pootle_misc/checks.py:90
 msgid "Broken HTML Entities"
 msgstr "HTML subyektlar buzilgan"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Java format"
 msgstr "Java formati"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Template format"
 msgstr "Shablon formati"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Mustache placeholders"
 msgstr "Soqolli o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholder pairs"
 msgstr "O‘zgaruvchilar juftligi soqoli"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "Mustache like placeholder pairs"
 msgstr "Soqolga o‘xshash o‘zgaruvchilar juftligi"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "C format placeholders"
 msgstr "C formatidagi o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "Non printable"
 msgstr "Chop etib bo‘lmaydi"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Unbalanced tag braces"
 msgstr "Beqaror teg qavslari"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Changed attributes"
 msgstr "O‘zgartirilgan atributlar"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Unescaped ampersands"
 msgstr "Chiqmagan ampersand belgisi"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Incorrectly escaped ampersands"
 msgstr "Noto‘g‘ri chiqish ampersand belgisi"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Whitespaces"
 msgstr "Bo‘sh joylar"
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Date format"
 msgstr "Sananing ko‘rinishi"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Uppercase placeholders"
 msgstr "Katta harfli o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Percent sign placeholders"
 msgstr "Foiz belgili o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:106
+#: apps/pootle_misc/checks.py:107
 msgid "Percent sign closure placeholders"
 msgstr "Foiz belgisiga yaqin o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:108
 msgid "$ placeholders"
 msgstr "$ o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:109
 msgid "$ closure placeholders"
 msgstr "$ yopiladigan o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:110
 msgid "Java-encoded unicode"
 msgstr "Java-shifrlangan yunikod"
 
-#: apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:111
 msgid "Objective-C format"
 msgstr "Obyectiv-C formati"
 
-#: apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:112
 msgid "Android format"
 msgstr "Android formati"
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Tags differ"
 msgstr "Teglar farq qiladi"
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Curly braces"
 msgstr "Buriluvchan qavs"
 
-#: apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:115
 msgid "Potential unwanted placeholders"
 msgstr "Potensial darajada xohlanmagan o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:116
 msgid "Double quotes in tags"
 msgstr "Teglar ichidagi qo‘shtirnoqlar"
 
-#: apps/pootle_misc/checks.py:116
+#: apps/pootle_misc/checks.py:117
 msgid "Percent brace placeholders"
 msgstr "Qavs o‘zgaruvchilar foizi"
 
-#: apps/pootle_misc/checks.py:117
+#: apps/pootle_misc/checks.py:118
 msgid "Plurr format"
 msgstr "Plurr formati"
 
-#: apps/pootle_misc/checks.py:118
+#: apps/pootle_misc/checks.py:119
 msgid "Plurr placeholders"
 msgstr "Plurr o‘zgaruvchilar"
 
 #. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:90 core/helpers.py:52
+#: apps/pootle_misc/forms.py:91 core/helpers.py:52
 msgid "Search"
 msgstr "Izlash"
 
-#: apps/pootle_misc/forms.py:91
+#: apps/pootle_misc/forms.py:92
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 "Qidiring (Ctrl+Shift+S)<br/>Qidirish uchun yozing va Enter tugmasini bosing"
 
-#: apps/pootle_misc/forms.py:99 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:100 apps/pootle_store/forms.py:442
 msgid "Exact Match"
 msgstr "Aniq mos"
 
-#: apps/pootle_misc/forms.py:106 apps/pootle_store/forms.py:448
+#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:448
 msgid "Source Text"
 msgstr "Manba matn"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:449
+#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:449
 msgid "Target Text"
 msgstr "Mo‘ljaldagi matn"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:450
+#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:450
 msgid "Comments"
 msgstr "Izohlar"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:451
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:451
 msgid "Locations"
 msgstr "Manzillar"
 
@@ -990,51 +990,51 @@ msgstr "Tarjima loyihasi asosiy sahifasi"
 msgid "Translation project (%s) creation failed"
 msgstr "Tarjima loyihasi asosiy sahifasi"
 
-#: apps/reports/forms.py:26
+#: apps/reports/forms.py:27
 msgid "Translation Rate"
 msgstr "Tarjima tezligi"
 
-#: apps/reports/forms.py:41
+#: apps/reports/forms.py:42
 msgid "Effective from"
 msgstr "Ushbudan samarali"
 
-#: apps/reports/models.py:31 apps/reports/models.py:55
+#: apps/reports/models.py:32 apps/reports/models.py:56
 #: templates/editor/export_view.html:112
 #: templates/translation_projects/terminology/manage.html:40
 #: templates/user/settings.html:28
 msgid "Translation"
 msgstr "Tarjima"
 
-#: apps/reports/models.py:32 apps/reports/models.py:56
+#: apps/reports/models.py:33 apps/reports/models.py:57
 #: templates/admin/detailed_reports.html:233
 msgid "Review"
 msgstr "Ko‘rib chiqish"
 
-#: apps/reports/models.py:33
+#: apps/reports/models.py:34
 msgid "Suggestion"
 msgstr "Tavsiya"
 
-#: apps/reports/models.py:57
+#: apps/reports/models.py:58
 msgid "Hourly Work"
 msgstr "Soatbay ish"
 
-#: apps/reports/models.py:58
+#: apps/reports/models.py:59
 msgid "Correction"
 msgstr "To‘g‘rilash"
 
-#: apps/reports/models.py:62
+#: apps/reports/models.py:63
 msgid "Type"
 msgstr "Turi"
 
-#: apps/reports/models.py:64
+#: apps/reports/models.py:65
 msgid "Amount"
 msgstr "Miqdori"
 
-#: apps/reports/models.py:66
+#: apps/reports/models.py:67
 msgid "Date"
 msgstr "Sana"
 
-#: apps/reports/models.py:67 apps/virtualfolder/models.py:67
+#: apps/reports/models.py:68 apps/virtualfolder/models.py:63
 msgid "Description"
 msgstr "Ta’rifi"
 
@@ -1047,7 +1047,7 @@ msgstr "%s foydalanuvchi topilmadi"
 msgid "Invalid request method"
 msgstr "So‘rov uslubi noto‘g‘ri"
 
-#: apps/staticpages/forms.py:58
+#: apps/staticpages/forms.py:59
 #, python-format
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
@@ -1064,7 +1064,7 @@ msgstr "Ushbu sahifa faol yoki nofaol bo‘lgan."
 msgid "Virtual Path"
 msgstr "Virtual yo‘l"
 
-#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:35
+#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:39
 msgid "Title"
 msgstr "Sarlavha"
 
@@ -1119,43 +1119,35 @@ msgstr ""
 msgid "Text is missing"
 msgstr "Matn kiritilmagan"
 
-#: apps/virtualfolder/models.py:43
-msgid "Location"
-msgstr "Manzil"
-
-#: apps/virtualfolder/models.py:46
-msgid "Root path where this virtual folder is applied."
-msgstr "Ushbu virtual jild qabul qilinadigan asosiy yo‘l."
-
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:50
+#: apps/virtualfolder/models.py:46
 msgid "Filter"
 msgstr "Filtr"
 
-#: apps/virtualfolder/models.py:52
+#: apps/virtualfolder/models.py:48
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr "Ushbu virtual jildda siqilganlarni aytuvchi filterlash qoidalari."
 
-#: apps/virtualfolder/models.py:56 core/browser.py:21
+#: apps/virtualfolder/models.py:52 core/browser.py:21
 msgid "Priority"
 msgstr "Muhimligi"
 
-#: apps/virtualfolder/models.py:58
+#: apps/virtualfolder/models.py:54
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 "Muhimligini ko‘rsatuvchi raqam. Yuqori muhimlik darajasi uning juda ham "
 "muhimligini bildiradi."
 
-#: apps/virtualfolder/models.py:62
+#: apps/virtualfolder/models.py:58
 msgid "Is public?"
 msgstr "Ommaviymi?"
 
-#: apps/virtualfolder/models.py:64
+#: apps/virtualfolder/models.py:60
 msgid "Whether this virtual folder is public or not."
 msgstr "Ushbu jild ommaviy bo‘lganda yoki bo‘lmaganda."
 
-#: apps/virtualfolder/models.py:69
+#: apps/virtualfolder/models.py:65
 #, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1470,33 +1462,35 @@ msgstr ""
 msgid "Remove the 'admin' user or change its password."
 msgstr "'admin' foydalanuvchisini olib tashlang yoki parolini o‘zgartiring."
 
-#: checks.py:401
-msgid "Database connection does not implement on_commit."
+#: checks.py:400
+#, fuzzy
+msgid "Database connection uses transaction_hooks."
 msgstr "Ma’lumotlar bazasiga ulanish on_commit amalga oshmadi."
 
-#: checks.py:402
+#: checks.py:401
+#, fuzzy
 msgid ""
-"Set the DATABASES['default']['ENGINE'] to use a backend from "
-"transaction_hooks.backends."
+"Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
+"db.backends."
 msgstr ""
 "transaction_hooks.backends ma’lumotlar bazasini hisoblash uchun "
 "DATABASES['default']['ENGINE'] sozlamasini o‘rnating."
 
-#: checks.py:422
+#: checks.py:421
 msgid "Email server is not available."
 msgstr "E-pochta serveri mavjud emas."
 
-#: checks.py:423
+#: checks.py:422
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "E-pochta sozlamalarini ko‘rib chiqing va e-pochta serveri ishlayotganligiga "
 "ishonch hosil qiling."
 
-#: checks.py:445
+#: checks.py:444
 msgid "Revision is missing or has an incorrect value."
 msgstr "Qayta ko‘rilmagan yoki qiymati noto‘g‘ri."
 
-#: checks.py:446
+#: checks.py:445
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Qayta ko‘rishni hisoblagichni tiklash uchun `revision --restore` buyrug‘ini "
@@ -1765,25 +1759,25 @@ msgid "Info"
 msgstr "Ma’lumot"
 
 #: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
-#: templates/admin/users.html:4 templates/admin/users.html.py:7
+#: templates/admin/users.html:4 templates/admin/users.html:7
 #: templates/user/base.html:4
 msgid "Users"
 msgstr "Foydalanuvchilar"
 
 #: templates/admin/_tabs.html:16 templates/admin/languages.html:4
-#: templates/admin/languages.html.py:7 templates/projects/_nav.html:28
+#: templates/admin/languages.html:7 templates/projects/_nav.html:28
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:28
 msgid "Languages"
 msgstr "Tillar"
 
 #: templates/admin/_tabs.html:21 templates/admin/projects.html:4
-#: templates/admin/projects.html.py:7 templates/projects/base.html:5
+#: templates/admin/projects.html:7 templates/projects/base.html:5
 msgid "Projects"
 msgstr "Loyihalar"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
-#: templates/admin/permissions.html.py:7 templates/languages/_nav.html:26
+#: templates/admin/permissions.html:7 templates/languages/_nav.html:26
 #: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
 #: templates/projects/admin/permissions.html:7
 #: templates/projects/all/_nav.html:33
@@ -1798,11 +1792,11 @@ msgid "Static Pages"
 msgstr "Statik sahifalar"
 
 #: templates/admin/_tabs.html:36 templates/admin/reports.html:45
-#: templates/admin/reports.html.py:48
+#: templates/admin/reports.html:48
 msgid "Reports"
 msgstr "Hisobotlar"
 
-#: templates/admin/base.html:4 templates/admin/base.html.py:7
+#: templates/admin/base.html:4 templates/admin/base.html:7
 msgid "Administration"
 msgstr "Boshqarish"
 
@@ -2132,7 +2126,7 @@ msgstr "kamroq…"
 msgid "Updates"
 msgstr "Narxlar"
 
-#: templates/browser/index.html:82 templates/browser/index.html.py:92
+#: templates/browser/index.html:82 templates/browser/index.html:92
 #, fuzzy
 msgid "Last action:"
 msgstr "So‘nggi faoliyat"
@@ -2198,7 +2192,7 @@ msgstr "Foydalanuvchi hech qanday hissa qo‘shmagan."
 msgid "Top contributors:"
 msgstr "Eng ko‘p hissa qo‘shuvchilar"
 
-#: templates/core/captcha.html:4 templates/core/captcha.html.py:7
+#: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:8
 msgid "Are You Human?"
 msgstr "Siz insonmisiz?"
@@ -2368,7 +2362,7 @@ msgid "Report a problem with this string"
 msgstr "Ushbu qatordagi muammo haqida xabar berish"
 
 #: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
-#: templates/editor/units/edit.html:276
+#: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "Jo‘natish"
 
@@ -2397,104 +2391,104 @@ msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 "Ushbu qatorni uzoq ishlashni talab qiladi sifatida belgilash (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:201
+#: templates/editor/units/edit.html:202
 msgid "Show Timeline"
 msgstr "Vaqt qatorini ko‘rsatish"
 
-#: templates/editor/units/edit.html:203
+#: templates/editor/units/edit.html:204
 msgid "Add Comment"
 msgstr "Izoh qoldirish"
 
-#: templates/editor/units/edit.html:205
+#: templates/editor/units/edit.html:206
 msgid "Raw View"
 msgstr "Qator ko‘rinishi"
 
-#: templates/editor/units/edit.html:215
+#: templates/editor/units/edit.html:216
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 "<a href=\"%(profile_url)s\">%(qayta ko‘rib chiquvchi)</a> tomonidan ko‘rib "
 "chiqilgan"
 
-#: templates/editor/units/edit.html:225
+#: templates/editor/units/edit.html:226
 msgid "Insert RLM (Right-To-Left Mark) into the editor"
 msgstr ""
 "Tahrirlagichga RLM (Right-To-Left Mark - chapdan o‘ngga belgisi)ni kiritish"
 
-#: templates/editor/units/edit.html:228
+#: templates/editor/units/edit.html:229
 msgid "Insert LRM (Left-To-Right Mark) into the editor"
 msgstr ""
 "Tahrirlagichga LRM (Left-To-Right Mark - o‘ngdan chapga belgisi)ni kiritish"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:232
 msgid "Insert RLE (Right-To-Left Embedding) into the editor"
 msgstr ""
 "Tahrirlagichga RLM (Right-To-Left Mark - o‘ngdan chapga belgisi)ni kiritish"
 
-#: templates/editor/units/edit.html:234
+#: templates/editor/units/edit.html:235
 msgid "Insert LRE (Left-To-Right Embedding) into the editor"
 msgstr ""
 "Tahrirlagichga LRM (Left-To-Right Mark - chapdan o‘ngga belgisi)ni kiritish"
 
-#: templates/editor/units/edit.html:237
+#: templates/editor/units/edit.html:238
 msgid "Insert RLO (Right-To-Left Override) into the editor"
 msgstr ""
 "Tahrirlagichga RLO (Right-To-Left – o‘ngdan chapga ustidan yozish)ni kiritish"
 
-#: templates/editor/units/edit.html:240
+#: templates/editor/units/edit.html:241
 msgid "Insert LRO (Left-To-Right Override) into the editor"
 msgstr ""
 "Tahrirlagichga LRO (Left-To-Right Override - chapgdan o‘ngga belgisi)ni "
 "kiritish"
 
-#: templates/editor/units/edit.html:243
+#: templates/editor/units/edit.html:244
 msgid "Insert PDF (Pop Directional Format ) into the editor"
 msgstr "PDF (Pop Directional Format )ni tahrirlagichga kiriting"
 
-#: templates/editor/units/edit.html:246
+#: templates/editor/units/edit.html:247
 msgid "Insert ZWJ (Zero Width Joiner) into the editor"
 msgstr "Tahrirlagichga ZWJ (Zero Width Joiner)ni kiriting"
 
-#: templates/editor/units/edit.html:249
+#: templates/editor/units/edit.html:250
 msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
 msgstr "Tahrirlagichga ZWNJ (Zero Width Non Joiner)ni kiriting"
 
-#: templates/editor/units/edit.html:256
+#: templates/editor/units/edit.html:257
 msgid "Insert this symbol into the editor"
 msgstr "Tahrirlagichga belgi kiritish"
 
-#: templates/editor/units/edit.html:260
+#: templates/editor/units/edit.html:261
 #, fuzzy
 msgid "Insert space symbol into the editor"
 msgstr "Tahrirlagichga belgi kiritish"
 
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:297
 msgid "User suggestions"
 msgstr "Foydalanuvchi tavsiyalari"
 
-#: templates/editor/units/edit.html:313
+#: templates/editor/units/edit.html:314
 #, fuzzy
 msgid "More options"
 msgstr "To‘g‘rilash"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:316
 #, fuzzy
 msgid "Less options"
 msgstr "Manzillar"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:321
 msgid "Accept suggestion"
 msgstr "Tavsiyani qabul qilish"
 
-#: templates/editor/units/edit.html:325
+#: templates/editor/units/edit.html:326
 msgid "Reject suggestion"
 msgstr "Tavsiyani rad qilish"
 
-#: templates/editor/units/edit.html:331
+#: templates/editor/units/edit.html:332
 msgid "Remove suggestion"
 msgstr "Tavsiyani olib tashlash"
 
-#: templates/editor/units/edit.html:353
+#: templates/editor/units/edit.html:354
 msgid "A long time ago"
 msgstr "Ancha vaqtlar oldin"
 
@@ -2561,7 +2555,7 @@ msgstr ""
 msgid "Unit created"
 msgstr "Qism yaratildi"
 
-#: templates/errors/400.html:4 templates/errors/400.html.py:11
+#: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
 msgstr "Yomon so‘rov"
 
@@ -2573,7 +2567,7 @@ msgstr "Xato: 400"
 msgid "The operation is not permitted."
 msgstr "Jarayonga ruxsat berilmadi."
 
-#: templates/errors/403.html:4 templates/errors/403.html.py:8
+#: templates/errors/403.html:4 templates/errors/403.html:8
 msgid "Permission Denied"
 msgstr "Ruxsat rad etildi"
 
@@ -2581,7 +2575,7 @@ msgstr "Ruxsat rad etildi"
 msgid "You don't seem to have permissions to access this page."
 msgstr "Ushbu sahifaga kirish  uchun sizda yetarlicha huquq yo‘q."
 
-#: templates/errors/404.html:4 templates/errors/404.html.py:8
+#: templates/errors/404.html:4 templates/errors/404.html:8
 msgid "Page Not Found"
 msgstr "Sahifa topilmadi"
 
@@ -2589,7 +2583,7 @@ msgstr "Sahifa topilmadi"
 msgid "We're sorry, but the requested page could not be found."
 msgstr "Kechirasiz, so‘ralgan sahifa topilmadi."
 
-#: templates/errors/500.html:4 templates/errors/500.html.py:8
+#: templates/errors/500.html:4 templates/errors/500.html:8
 msgid "Server Error"
 msgstr "Server xatoligi"
 
@@ -2610,7 +2604,7 @@ msgstr ""
 "Agar sizga yordam kerak bo‘lsa, ushbu xatoga <strong>%(ref)s</strong> "
 "sifatida yondashishingiz mumkin."
 
-#: templates/errors/db.html:4 templates/errors/db.html.py:8
+#: templates/errors/db.html:4 templates/errors/db.html:8
 msgid "Database Error"
 msgstr "Ma’lumotlar bazasida xatolik"
 
@@ -2669,12 +2663,12 @@ msgid "Public Profile"
 msgstr "Ommaviy profil"
 
 #: templates/layout.html:115 templates/user/settings.html:4
-#: templates/user/settings.html.py:7
+#: templates/user/settings.html:7
 msgid "Settings"
 msgstr "Sozlamalar"
 
 #: templates/layout.html:116 templates/user/profile.html:68
-#: templates/user/stats.html:46 templates/user/stats.html.py:50
+#: templates/user/stats.html:46 templates/user/stats.html:50
 msgid "Statistics"
 msgstr "Statistika"
 
@@ -2841,7 +2835,7 @@ msgstr ""
 "Mening %(server_title)s bo‘yicha amalga oshirgan tarimalarim: %(score)s ta "
 "so‘z  "
 
-#: templates/user/profile.html:31 templates/user/profile.html.py:43
+#: templates/user/profile.html:31 templates/user/profile.html:43
 msgid "Tweet this!"
 msgstr "Twitter tamog‘ida xabar qoldirish!"
 
@@ -2966,6 +2960,12 @@ msgstr "Kirish"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Eng ko‘p hissa qo‘shuvchilar"
+
+#~ msgid "Location"
+#~ msgstr "Manzil"
+
+#~ msgid "Root path where this virtual folder is applied."
+#~ msgstr "Ushbu virtual jild qabul qilinadigan asosiy yo‘l."
 
 #~ msgid "Files"
 #~ msgstr "Fayllar"

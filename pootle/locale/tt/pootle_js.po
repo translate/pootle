@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-14 17:02+0100\n"
+"POT-Creation-Date: 2016-09-28 17:16+0100\n"
 "PO-Revision-Date: 2014-04-01 17:38+0000\n"
 "Last-Translator: Динар <qdinar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -616,6 +616,11 @@ msgstr ""
 msgid "Similar translations"
 msgstr "Охшаш тәрҗемәләр"
 
+#: static/js/editor/components/Editor.js:64
+#: static/js/editor/components/UnitSource.js:38
+msgid "Plural form %(index)s"
+msgstr ""
+
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
 msgstr ""
@@ -630,11 +635,6 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
-
-#: static/js/editor/components/UnitSource.js:38
-#: static/js/editor/containers/Editor.js:124
-msgid "Plural form %(index)s"
 msgstr ""
 
 #: static/js/editor/components/UploadTimeSince.js:34
