@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2016-09-13 08:41+0000\n"
+"PO-Revision-Date: 2016-09-14 18:53+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473756063.000000\n"
+"X-POOTLE-MTIME: 1473879190.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -666,7 +666,7 @@ msgstr "Reddet"
 #: static/js/editor/components/UnitSource.js:38
 #: static/js/editor/containers/Editor.js:124
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Çoğul formu %(index)s"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
@@ -831,60 +831,54 @@ msgid "A year ago"
 msgstr "Bir yıl önce"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "%s yıl önce"
+msgstr[0] "%(count)s yıl önce"
 
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "Bir ay önce"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Bir ay önce"
+msgstr[0] "%(count)s ay önce"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Bir hafta önce"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "%s hafta önce"
+msgstr[0] "%(count)s hafta önce"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Dün"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "%s gün önce"
+msgstr[0] "%(count)s gün önce"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Bir saat önce"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "%s saat önce"
+msgstr[0] "%(count)s saat önce"
 
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Bir dakika önce"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "%s dakika önce"
+msgstr[0] "%(count)s dakika önce"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"

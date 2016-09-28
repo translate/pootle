@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2014-06-08 13:23+0000\n"
+"PO-Revision-Date: 2016-09-26 14:00+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -18,31 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1402233799.000000\n"
+"X-POOTLE-MTIME: 1474898424.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr ""
+msgstr "విజయవంతంగా భద్రమయ్యింది."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr ""
+msgstr "విజయవంతంగా తొలగించబడింది."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
-msgstr ""
+msgstr "తొలగించు"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
-#, fuzzy
 msgid "Add Language"
-msgstr "అన్ని భాషలు"
+msgstr "భాషను చేర్చు"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr ""
+msgstr "రద్దుచేయి"
 
 #: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
@@ -86,36 +85,36 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr ""
+msgstr "పూర్తి పేరు"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr ""
+msgstr "ప్రత్యేక అక్షరాలు"
 
 #: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
-msgstr ""
+msgstr "బహువచనాల సంఖ్య"
 
 #: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "బహువచన సమీకరణం"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
 #: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
-msgstr ""
+msgstr "భద్రపరచు"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
 #: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
-msgstr ""
+msgstr "అవలోకనం"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 #: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
-msgstr ""
+msgstr "అనుమతులు"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -161,7 +160,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:84
 msgid "File types"
-msgstr ""
+msgstr "దస్త్ర రకాలు"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -190,7 +189,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
-msgstr ""
+msgstr "భాషలు"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -246,7 +245,7 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "వాడుకరి పేరు"
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
@@ -258,7 +257,7 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:100
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr ""
+msgstr "సంకేతపదం"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
@@ -267,7 +266,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "ఈమెయిలు"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
@@ -276,7 +275,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
-msgstr ""
+msgstr "ట్విట్టర్"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
@@ -294,7 +293,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "వెబ్‌సైటు"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
@@ -315,15 +314,15 @@ msgstr ""
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
-msgstr ""
+msgstr "అమరికలు"
 
 #: static/js/admin/components/User/UserForm.js:162
 msgid "Statistics"
-msgstr ""
+msgstr "గణాంకాలు"
 
 #: static/js/admin/components/User/UserForm.js:163
 msgid "Reports"
-msgstr ""
+msgstr "నివేదికలు"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
@@ -361,7 +360,7 @@ msgstr ""
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "మమ్మల్ని సంప్రదించండి"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
@@ -421,7 +420,7 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:108
 msgid "I forgot my password"
-msgstr ""
+msgstr "నా సంకేతపదం మర్చిపోయాను"
 
 #: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:119
@@ -436,7 +435,7 @@ msgstr ""
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
-msgstr ""
+msgstr "సాంఘిక సేవలు"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
@@ -519,7 +518,7 @@ msgstr ""
 
 #: static/js/browser/components/TopContributorsTable.js:31
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
@@ -616,7 +615,7 @@ msgstr ""
 
 #: static/js/editor/app.js:2236
 msgid "someone"
-msgstr ""
+msgstr "ఎవరో"
 
 #: static/js/editor/app.js:2254 static/js/editor/app.js:2303
 msgid "Similar translations"
@@ -632,11 +631,11 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "అంగీకరించు"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "తిరస్కరించు"
 
 #: static/js/editor/components/UnitSource.js:38
 #: static/js/editor/containers/Editor.js:124
@@ -654,63 +653,63 @@ msgstr ""
 
 #: static/js/reports/app.js:289
 msgid "Jan"
-msgstr ""
+msgstr "జన"
 
 #: static/js/reports/app.js:290
 msgid "Feb"
-msgstr ""
+msgstr "ఫిబ్ర"
 
 #: static/js/reports/app.js:291
 msgid "Mar"
-msgstr ""
+msgstr "మార్చి"
 
 #: static/js/reports/app.js:292
 msgid "Apr"
-msgstr ""
+msgstr "ఏప్రి"
 
 #: static/js/reports/app.js:293
 msgid "May"
-msgstr ""
+msgstr "మే"
 
 #: static/js/reports/app.js:294
 msgid "Jun"
-msgstr ""
+msgstr "జూన్"
 
 #: static/js/reports/app.js:295
 msgid "Jul"
-msgstr ""
+msgstr "జూలై"
 
 #: static/js/reports/app.js:296
 msgid "Aug"
-msgstr ""
+msgstr "ఆగ"
 
 #: static/js/reports/app.js:297
 msgid "Sep"
-msgstr ""
+msgstr "సెప్టెం"
 
 #: static/js/reports/app.js:298
 msgid "Oct"
-msgstr ""
+msgstr "అక్టో"
 
 #: static/js/reports/app.js:299
 msgid "Nov"
-msgstr ""
+msgstr "నవం"
 
 #: static/js/reports/app.js:300
 msgid "Dec"
-msgstr ""
+msgstr "డిసెం"
 
 #: static/js/reports/app.js:303
 msgid "Sun"
-msgstr ""
+msgstr "ఆది"
 
 #: static/js/reports/app.js:304
 msgid "Mon"
-msgstr ""
+msgstr "సోమ"
 
 #: static/js/reports/app.js:305
 msgid "Tue"
-msgstr ""
+msgstr "మంగళ"
 
 #: static/js/reports/app.js:306
 msgid "Wed"
@@ -838,7 +837,6 @@ msgstr[0] "ఒక వారం క్రితం"
 msgstr[1] "%s వారాల క్రితం"
 
 #: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
 msgid "Yesterday"
 msgstr "నిన్న"
 
@@ -850,7 +848,6 @@ msgstr[0] "ఒక సంవత్సరం క్రితం"
 msgstr[1] "%s సంవత్సరాల క్రితం"
 
 #: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
 msgid "An hour ago"
 msgstr "ఒక గంట క్రితం"
 
@@ -862,7 +859,6 @@ msgstr[0] "ఒక గంట క్రితం"
 msgstr[1] "%s గంటల క్రితం"
 
 #: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
 msgid "A minute ago"
 msgstr "ఒక నిమిషం క్రితం"
 
@@ -922,15 +918,15 @@ msgstr ""
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
-msgstr ""
+msgstr "మీ పూర్తి పేరు"
 
 #: static/js/user/components/UserProfileForm.js:83
 msgid "Avatar"
-msgstr ""
+msgstr "అవతారం"
 
 #: static/js/user/components/UserProfileForm.js:94
 msgid "Your Twitter username"
-msgstr ""
+msgstr "మీ ట్విట్టర్ వాడుకరి పేరు"
 
 #: static/js/user/components/UserProfileForm.js:103
 msgid "Your LinkedIn profile URL"
@@ -948,7 +944,7 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr ""
+msgstr "ఈమెయిలు చిరునామా"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
@@ -991,7 +987,7 @@ msgstr "అన్ని ప్రాజెక్టులు"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "ప్రాజెక్టు / భాష"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
@@ -1023,8 +1019,8 @@ msgstr ""
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s పదం"
+msgstr[1] "%s పదాలు"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -1049,7 +1045,7 @@ msgstr ""
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "చర్య"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
@@ -1071,8 +1067,8 @@ msgstr ""
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s గంట"
+msgstr[1] "%s గంటలు"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
@@ -1084,7 +1080,7 @@ msgstr ""
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "సారాంశం"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"

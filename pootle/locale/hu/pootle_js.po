@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2016-09-14 08:58+0000\n"
+"PO-Revision-Date: 2016-09-15 08:48+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473843487.000000\n"
+"X-POOTLE-MTIME: 1473929334.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -663,7 +663,7 @@ msgstr "Elutasítás"
 #: static/js/editor/components/UnitSource.js:38
 #: static/js/editor/containers/Editor.js:124
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "%(index)s. többes alak"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
@@ -828,66 +828,60 @@ msgid "A year ago"
 msgstr "Egy éve"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "%s éve"
-msgstr[1] "%s éve"
+msgstr[0] "%(count)s éve"
+msgstr[1] "%(count)s éve"
 
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "Egy hónapja"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Egy hónapja"
-msgstr[1] "Egy hónapja"
+msgstr[0] "%(count)s hónapja"
+msgstr[1] "%(count)s hónapja"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Egy hete"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "%s hete"
-msgstr[1] "%s hete"
+msgstr[0] "%(count)s hete"
+msgstr[1] "%(count)s hete"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Tegnap"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "%s napja"
-msgstr[1] "%s napja"
+msgstr[0] "%(count)s napja"
+msgstr[1] "%(count)s napja"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Egy órája"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "%s órája"
-msgstr[1] "%s órája"
+msgstr[0] "%(count)s órája"
+msgstr[1] "%(count)s órája"
 
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Egy perce"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "%s perce"
-msgstr[1] "%s perce"
+msgstr[0] "%(count)s perce"
+msgstr[1] "%(count)s perce"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"

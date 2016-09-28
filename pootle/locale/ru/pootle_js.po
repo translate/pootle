@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2016-09-12 20:47+0000\n"
+"PO-Revision-Date: 2016-09-15 10:58+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473713235.000000\n"
+"X-POOTLE-MTIME: 1473937084.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -669,7 +669,7 @@ msgstr "Отклонить"
 #: static/js/editor/components/UnitSource.js:38
 #: static/js/editor/containers/Editor.js:124
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Форма #%(index)s"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
@@ -834,72 +834,66 @@ msgid "A year ago"
 msgstr "Год назад"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "%s год назад"
-msgstr[1] "%s года назад"
-msgstr[2] "%s лет назад"
+msgstr[0] "%(count)s год назад"
+msgstr[1] "%(count)s года назад"
+msgstr[2] "%(count)s лет назад"
 
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "Месяц назад"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Месяц назад"
-msgstr[1] "Месяц назад"
-msgstr[2] "Месяц назад"
+msgstr[0] "%(count)s месяц назад"
+msgstr[1] "%(count)s месяца назад"
+msgstr[2] "%(count)s месяцев назад"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Неделю назад"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "%s неделю назад"
-msgstr[1] "%s недели назад"
-msgstr[2] "%s недель назад"
+msgstr[0] "%(count)s неделю назад"
+msgstr[1] "%(count)s недели назад"
+msgstr[2] "%(count)s недель назад"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Вчера"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "%s год назад"
-msgstr[1] "%s года назад"
-msgstr[2] "%s лет назад"
+msgstr[0] "%(count)s день назад"
+msgstr[1] "%(count)s дня назад"
+msgstr[2] "%(count)s дней назад"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Час назад"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "%s час назад"
-msgstr[1] "%s часа назад"
-msgstr[2] "%s часов назад"
+msgstr[0] "%(count)s час назад"
+msgstr[1] "%(count)s часа назад"
+msgstr[2] "%(count)s часов назад"
 
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Минуту назад"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "%s минуту назад"
-msgstr[1] "%s минуты назад"
-msgstr[2] "%s минут назад"
+msgstr[0] "%(count)s минуту назад"
+msgstr[1] "%(count)s минуты назад"
+msgstr[2] "%(count)s минут назад"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"

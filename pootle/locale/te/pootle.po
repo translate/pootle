@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 16:13+0100\n"
-"PO-Revision-Date: 2016-07-20 15:51+0000\n"
+"PO-Revision-Date: 2016-09-26 13:49+0000\n"
 "Last-Translator: Veeven <veeven@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: te\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469029893.000000\n"
+"X-POOTLE-MTIME: 1474897785.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -47,7 +47,7 @@ msgstr ""
 
 #: apps/accounts/models.py:68
 msgid "Enter a valid username."
-msgstr ""
+msgstr "సరైన వాడుకరి పేరుని ఇవ్వండి."
 
 #: apps/accounts/models.py:72
 msgid "Email Address"
@@ -962,7 +962,7 @@ msgstr "అంగీకరించిన సలహాలు"
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
-msgstr ""
+msgstr "ఈ పదం ఈ దస్త్రంలో ఇప్పటికే ఉంది."
 
 #: apps/pootle_translationproject/receivers.py:38
 #, fuzzy, python-format
@@ -1009,7 +1009,7 @@ msgstr ""
 
 #: apps/reports/models.py:62
 msgid "Type"
-msgstr ""
+msgstr "రకం"
 
 #: apps/reports/models.py:64
 msgid "Amount"
@@ -1120,7 +1120,7 @@ msgstr ""
 
 #: apps/virtualfolder/models.py:56 core/browser.py:21
 msgid "Priority"
-msgstr ""
+msgstr "ప్రాధాన్యత"
 
 #: apps/virtualfolder/models.py:58
 msgid ""
@@ -1461,7 +1461,7 @@ msgstr "మొత్తం"
 
 #: core/browser.py:49
 msgid "Last updated"
-msgstr ""
+msgstr "చివరి మార్పు"
 
 #. Translators: The number of suggestions pending review
 #: core/browser.py:60 templates/browser/_actions.html:24
@@ -1731,7 +1731,7 @@ msgstr ""
 #: templates/admin/_tabs.html:36 templates/admin/reports.html:45
 #: templates/admin/reports.html.py:48
 msgid "Reports"
-msgstr ""
+msgstr "నివేదికలు"
 
 #: templates/admin/base.html:4 templates/admin/base.html.py:7
 msgid "Administration"
@@ -1751,7 +1751,7 @@ msgstr ""
 
 #: templates/admin/dashboard.html:35
 msgid "Status"
-msgstr ""
+msgstr "స్థితి"
 
 #: templates/admin/dashboard.html:42
 msgid "Pending jobs"
@@ -1880,9 +1880,8 @@ msgid "Daily activity"
 msgstr ""
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "వాడుకరులు"
+msgstr "వాడుకరి"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
@@ -1898,11 +1897,11 @@ msgstr ""
 
 #: templates/admin/reports/paid_task_form.html:23
 msgid "words"
-msgstr ""
+msgstr "పదాలు"
 
 #: templates/admin/reports/paid_task_form.html:24
 msgid "hours"
-msgstr ""
+msgstr "గంటలు"
 
 #: templates/admin/reports/paid_task_form.html:35
 msgid "Add record"
@@ -2015,7 +2014,7 @@ msgstr "అనువాదం లోనికి కాపీచేయి"
 
 #: templates/browser/_actions.html:45
 msgid "View all"
-msgstr ""
+msgstr "అన్నీ చూడండి"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
@@ -2058,14 +2057,12 @@ msgid "Updates"
 msgstr "తాజకరించు"
 
 #: templates/browser/index.html:82 templates/browser/index.html.py:92
-#, fuzzy
 msgid "Last action:"
-msgstr "చివరి కలాపం"
+msgstr "చివరి చర్య:"
 
 #: templates/browser/index.html:88
-#, fuzzy
 msgid "Translations"
-msgstr "అనువాదం"
+msgstr "అనువాదాలు"
 
 #: templates/browser/index.html:133
 #, python-format
@@ -2157,15 +2154,15 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "ముఖ్యమైనవి ముందు"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
-msgstr ""
+msgstr "కొత్తవి ముందు"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "పాతవి ముందు"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
@@ -2246,21 +2243,19 @@ msgstr ""
 
 #: templates/editor/units/edit.html:20
 msgid "Priority:"
-msgstr ""
+msgstr "ప్రాథాన్యత:"
 
 #: templates/editor/units/edit.html:27
 msgid "Context:"
 msgstr "సందర్భం:"
 
 #: templates/editor/units/edit.html:37
-#, fuzzy
 msgid "Locations:"
-msgstr "ప్రాంతాలు"
+msgstr "ప్రాంతాలు:"
 
 #: templates/editor/units/edit.html:53
-#, fuzzy
 msgid "Terminology:"
-msgstr "పదజాలం"
+msgstr "పదజాలం:"
 
 #: templates/editor/units/edit.html:56
 msgid "Insert the translated term into the editor"
@@ -2381,14 +2376,12 @@ msgid "User suggestions"
 msgstr "వాడుకరి సలహాలు"
 
 #: templates/editor/units/edit.html:313
-#, fuzzy
 msgid "More options"
-msgstr "ఎంపికలు మార్చండి"
+msgstr "మరిన్ని ఎంపికలు"
 
 #: templates/editor/units/edit.html:315
-#, fuzzy
 msgid "Less options"
-msgstr "ఎంపికలు మార్చండి"
+msgstr "తక్కువ ఎంపికలు"
 
 #: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
@@ -2404,7 +2397,7 @@ msgstr "సలహాని తొలగించు"
 
 #: templates/editor/units/edit.html:353
 msgid "A long time ago"
-msgstr ""
+msgstr "చాలా కాలం క్రితం"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
@@ -2443,11 +2436,11 @@ msgstr ""
 
 #: templates/editor/units/xhr_comment.html:16
 msgid "Last comment:"
-msgstr ""
+msgstr "చివరి వ్యాఖ్య:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "కాలరేఖ"
 
 #: templates/editor/units/xhr_timeline.html:35
 msgid "Last comment removed"
@@ -2740,13 +2733,12 @@ msgid ""
 msgstr ""
 
 #: templates/user/profile.html:60
-#, fuzzy
 msgid "Latest activity:"
-msgstr "చివరి కలాపం"
+msgstr "చివరి కలాపం:"
 
 #: templates/user/profile.html:78
 msgid "My Website"
-msgstr ""
+msgstr "నా వెబ్‌సైటు"
 
 #: templates/user/profile.html:84
 msgid "My LinkedIn Profile"

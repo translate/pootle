@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 16:13+0100\n"
-"PO-Revision-Date: 2016-08-31 16:32+0000\n"
+"PO-Revision-Date: 2016-09-14 18:55+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1472661171.000000\n"
+"X-POOTLE-MTIME: 1473879357.000000\n"
 
 #: apps/accounts/adapter.py:64
 msgid ""
@@ -2815,7 +2815,7 @@ msgstr "Skor:"
 #: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
-msgstr "%(server_title)s sitesindeki şu anki skorum %(score)s "
+msgstr "%(server_title)s sitesindeki şu anki puanım %(score)s "
 
 #: templates/user/profile.html:31 templates/user/profile.html.py:43
 msgid "Tweet this!"

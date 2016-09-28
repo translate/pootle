@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2016-08-30 15:22+0000\n"
+"PO-Revision-Date: 2016-09-14 19:16+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1472570573.000000\n"
+"X-POOTLE-MTIME: 1473880575.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -662,7 +662,7 @@ msgstr "Rexeitar"
 #: static/js/editor/components/UnitSource.js:38
 #: static/js/editor/containers/Editor.js:124
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Forma plural %(index)s"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
@@ -827,67 +827,60 @@ msgid "A year ago"
 msgstr "Hai un ano"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "Hai %s ano"
-msgstr[1] "Hai %s anos"
+msgstr[0] "Hai %(count)s ano"
+msgstr[1] "Hai %(count)s anos"
 
 #: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
 msgid "A month ago"
-msgstr "Hai un minuto"
+msgstr "Hai un mes"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Hai un minuto"
-msgstr[1] "Hai un minuto"
+msgstr[0] "Hai %(count)s mes"
+msgstr[1] "Hai %(count)s meses"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "Hai unha semana"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "Hai %s semana"
-msgstr[1] "Hai %s semanas"
+msgstr[0] "Hai %(count)s semana"
+msgstr[1] "Hai %(count)s semanas"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Onte"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "Hai %s día"
-msgstr[1] "Hai %s días"
+msgstr[0] "Hai %(count)s día"
+msgstr[1] "Hai %(count)s días"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "Hai unha hora"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "Hai %s hora"
-msgstr[1] "Hai %s horas"
+msgstr[0] "Hai %(count)s hora"
+msgstr[1] "Hai %(count)s horas"
 
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "Hai un minuto"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "Hai %s minuto"
-msgstr[1] "Hai %s minutos"
+msgstr[0] "Hai %(count)s minuto"
+msgstr[1] "Hai %(count)s minutos"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"

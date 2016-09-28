@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2015-07-11 20:06+0000\n"
+"PO-Revision-Date: 2016-09-28 16:02+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1436645186.000000\n"
+"X-POOTLE-MTIME: 1475078561.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -167,9 +167,8 @@ msgid "Quality Checks"
 msgstr "Kokybės testai"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Failų tipas"
+msgstr "Failų tipai"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -248,13 +247,13 @@ msgstr ""
 "jei norite redaguoti."
 
 #: static/js/admin/components/User/UserForm.js:47
-#, fuzzy
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"Pastaba: pašalinus naudotoją, jo (jos) pasiūlymai ir vertimai bus priskirti "
-"anoniminiam naudotojui (nobody)."
+"Pastaba: pašalinus naudotoją, jo (jos) indėlis šioje svetainėje (pvz., "
+"komentarai, pasiūlymai ir vertimai) bus priskirtas anoniminiam naudotojui "
+"(nobody)."
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
@@ -341,14 +340,14 @@ msgstr "Ataskaitos"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Čia bus rodoma peržiūra."
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
-"Adresu <span>%s</span> išsiųstas elektroninis laiškas su specialiu saitu."
+"Adresu <span>%s</span> išsiųstas elektroninis laiškas su specialiu saitu"
 
 #: static/js/auth/components/AccountActivation.js:37
 msgid ""
@@ -382,7 +381,7 @@ msgstr "Susisiekite su mumis"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "El. pašto patvirtinimo saitas negalioja arba paseno."
 
 #: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
@@ -514,7 +513,7 @@ msgstr "Paskyros aktyvinimas"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr ""
+msgstr "El. pašto patvirtinimas"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
@@ -530,9 +529,8 @@ msgid "Social Verification"
 msgstr "Socialinio tinklo paskyros patvirtinimas"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Daugiau"
+msgstr "Daugiau…"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-14 17:02+0100\n"
-"PO-Revision-Date: 2016-09-12 21:40+0000\n"
+"PO-Revision-Date: 2016-09-14 16:31+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473716412.000000\n"
+"X-POOTLE-MTIME: 1473870676.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -662,7 +662,7 @@ msgstr "Neka"
 #: static/js/editor/components/UnitSource.js:38
 #: static/js/editor/containers/Editor.js:124
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Pluralform %(index)s"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
@@ -827,66 +827,60 @@ msgid "A year ago"
 msgstr "Ett år sedan"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "%s år sedan"
-msgstr[1] "%s år sedan"
+msgstr[0] "%(count)s år sedan"
+msgstr[1] "%(count)s år sedan"
 
 #: static/js/shared/utils/relativeTime.js:26
 msgid "A month ago"
 msgstr "En månad sedan"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "En månad sedan"
-msgstr[1] "En månad sedan"
+msgstr[0] "%(count)s månad sedan"
+msgstr[1] "%(count)s månader sedan"
 
 #: static/js/shared/utils/relativeTime.js:34
 msgid "A week ago"
 msgstr "En vecka sedan"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "%s vecka sedan"
-msgstr[1] "%s veckor sedan"
+msgstr[0] "%(count)s vecka sedan"
+msgstr[1] "%(count)s veckor sedan"
 
 #: static/js/shared/utils/relativeTime.js:42
 msgid "Yesterday"
 msgstr "Igår"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "%s dag sedan"
-msgstr[1] "%s dagar sedan"
+msgstr[0] "%(count)s dag sedan"
+msgstr[1] "%(count)s dagar sedan"
 
 #: static/js/shared/utils/relativeTime.js:50
 msgid "An hour ago"
 msgstr "En timme sedan"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "%s timme sedan"
-msgstr[1] "%s timmar sedan"
+msgstr[0] "%(count)s timme sedan"
+msgstr[1] "%(count)s timmar sedan"
 
 #: static/js/shared/utils/relativeTime.js:58
 msgid "A minute ago"
 msgstr "En minut sedan"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "%s minut sedan"
-msgstr[1] "%s minuter sedan"
+msgstr[0] "%(count)s minut sedan"
+msgstr[1] "%(count)s minuter sedan"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
