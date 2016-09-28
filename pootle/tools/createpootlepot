@@ -52,9 +52,6 @@ find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xg
 sed -i"" -e "s/charset=CHARSET/charset=UTF-8/" $DJANGO_JS_POT
 find static/js -name "*.js" |  egrep -v "(node_modules|\.bundle\.js)" | xargs xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 --add-comments=Translators
 
-# For .jsx we use Python so that variables are at least marked.
-xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 --add-comments=Translators $(find static/js -name "*.jsx")
-
 # Extract localisable content from HTML pages used by JS
 xgettext --join-existing --output=$DJANGO_JS_POT --language=Python --from-code=utf-8 --add-comments=Translators $(find templates -name "*.html")
 
