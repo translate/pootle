@@ -55,6 +55,7 @@ PROJECT_CHECKERS = {
     "creativecommons": checks.CCLicenseChecker,
     "drupal": checks.DrupalChecker,
     "terminology": checks.TermChecker,
+    "l20n": checks.L20nChecker,
 }
 
 
