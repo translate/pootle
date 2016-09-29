@@ -27,6 +27,6 @@ rq>=0.5.5,<=0.6.0
 scandir==1.3
 
 # Translate Toolkit
-translate-toolkit==2.0.0b5
+translate-toolkit==2.0.0b6
 # If you want to use Translate Toolkit 'master'
 #-e git://github.com/translate/translate.git#egg=translate-toolkit
