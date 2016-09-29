@@ -153,6 +153,11 @@ function leadingSpaceReplacer(match) {
 }
 
 
+function surroundingSpaceReplacer(match) {
+  return match.substring(0).replace(/ +/g, spaceReplacer);
+}
+
+
 function trailingSpaceReplacer(match) {
   return spaceReplacer(match.substring(1)) + CHARACTERS.LF;
 }
@@ -194,6 +199,10 @@ export function raw2sym(value, { isRawMode = false } = {}) {
   newValue = newValue.replace(/\n /g, leadingSpaceReplacer);
   // trailing line spaces
   newValue = newValue.replace(/ \n/g, trailingSpaceReplacer);
+  // space before TAB or NBSP
+  newValue = newValue.replace(/ [\t\u00A0]/g, surroundingSpaceReplacer);
+  // space after TAB or NBSP
+  newValue = newValue.replace(/[\t\u00A0] /g, surroundingSpaceReplacer);
   // single leading document space
   newValue = newValue.replace(/^ /, spaceReplacer);
   // single trailing document space

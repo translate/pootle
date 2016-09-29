@@ -63,6 +63,16 @@ describe('raw2sym (regular mode)', () => {
         `${SYMBOLS.SPACE}${SYMBOLS.SPACE}${SYMBOLS.SPACE}${SYMBOLS.SPACE}`
       ),
     },
+    {
+      description: 'whitespace around [NBSP]',
+      input: `foo ${CHARACTERS.NBSP} bar`,
+      expected: `foo${SYMBOLS.SPACE}${SYMBOLS.NBSP}${SYMBOLS.SPACE}bar`,
+    },
+    {
+      description: 'whitespace around [TAB]',
+      input: `foo ${CHARACTERS.TAB} bar`,
+      expected: `foo${SYMBOLS.SPACE}${SYMBOLS.TAB}${SYMBOLS.SPACE}bar`,
+    },
 
     {
       description: 'new line at end of line',
