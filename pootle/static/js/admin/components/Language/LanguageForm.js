@@ -99,6 +99,7 @@ const LanguageForm = React.createClass({
         {model.id &&
           <ul className="action-links">
             <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>
+            <li><a href={model.getTeamUrl()}>{gettext('Team')}</a></li>
             <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
           </ul>}
         </div>

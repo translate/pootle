@@ -30,6 +30,7 @@ const actionMap = {
   'admin-permissions': 'admin/permissions',
   'admin-characters': 'admin/characters',
   'admin-languages': 'admin/languages',
+  'admin-team': 'admin/team',
   'admin-terminology': 'terminology',
 };
 

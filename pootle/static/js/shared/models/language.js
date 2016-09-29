@@ -37,6 +37,10 @@ export const Language = Backbone.Model.extend({
     return l(['', this.get('code'), ''].join('/'));
   },
 
+  getTeamUrl() {
+    return l(['', this.get('code'), 'admin', 'team', ''].join('/'));
+  },
+
   getPermissionsUrl() {
     return l(['', this.get('code'), 'admin', 'permissions', ''].join('/'));
   },
