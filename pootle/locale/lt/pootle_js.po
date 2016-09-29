@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-28 17:16+0100\n"
-"PO-Revision-Date: 2016-09-28 16:02+0000\n"
+"PO-Revision-Date: 2016-09-28 17:00+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1475078561.000000\n"
+"X-POOTLE-MTIME: 1475082047.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -533,32 +533,34 @@ msgid "More..."
 msgstr "Daugiau…"
 
 #: static/js/browser/components/Stats.js:67
+#, fuzzy
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Talkininkai, 30 dienų"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 msgid "#%(position)s"
-msgstr ""
+msgstr "Nr. %(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 #, fuzzy
 msgid "Show disabled"
-msgstr "išjungta"
+msgstr "Rodyti išjungtus"
 
 #: static/js/browser/components/VisibilityToggle.js:54
 #, fuzzy
 msgid "Hide disabled"
-msgstr "išjungta"
+msgstr "Nerodyti išjungtų"
 
 #: static/js/editor/app.js:318 static/js/editor/app.js:640
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"Yra neįrašytų šios eilutės pataisymų. Jei pereisite kitur, juos prarasite."
 
 #: static/js/editor/app.js:363
 msgid ""
@@ -624,7 +626,6 @@ msgid "The server seems down. Try again later."
 msgstr "Panašu, kad serveris išjungtas. Pabandykite vėliau."
 
 #: static/js/editor/app.js:1130
-#, fuzzy
 msgid "This string no longer exists."
 msgstr "Ši eilutė nebeegzistuoja."
 
@@ -655,109 +656,108 @@ msgstr "Panašūs vertimai"
 #: static/js/editor/components/Editor.js:64
 #: static/js/editor/components/UnitSource.js:38
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "%(index)s-oji skaitos forma"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Jei reikia, galite priimamą pasiūlymą pataisyti"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Galite įrašyti komentarą (jis bus matomas viešai)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "Priimti"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "Atmesti"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s įkėlė failą"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%b %d d., %a"
 
 #: static/js/reports/app.js:289
 msgid "Jan"
-msgstr ""
+msgstr "Sau"
 
 #: static/js/reports/app.js:290
 msgid "Feb"
-msgstr ""
+msgstr "Vas"
 
 #: static/js/reports/app.js:291
 msgid "Mar"
-msgstr ""
+msgstr "Kov"
 
 #: static/js/reports/app.js:292
 msgid "Apr"
-msgstr ""
+msgstr "Bal"
 
 #: static/js/reports/app.js:293
 msgid "May"
-msgstr ""
+msgstr "Geg"
 
 #: static/js/reports/app.js:294
 msgid "Jun"
-msgstr ""
+msgstr "Bir"
 
 #: static/js/reports/app.js:295
 msgid "Jul"
-msgstr ""
+msgstr "Lie"
 
 #: static/js/reports/app.js:296
 msgid "Aug"
-msgstr ""
+msgstr "Rgp"
 
 #: static/js/reports/app.js:297
 msgid "Sep"
-msgstr ""
+msgstr "Rgs"
 
 #: static/js/reports/app.js:298
 msgid "Oct"
-msgstr ""
+msgstr "Spa"
 
 #: static/js/reports/app.js:299
-#, fuzzy
 msgid "Nov"
-msgstr "Ne"
+msgstr "Lap"
 
 #: static/js/reports/app.js:300
 msgid "Dec"
-msgstr ""
+msgstr "Grd"
 
 #: static/js/reports/app.js:303
 msgid "Sun"
-msgstr ""
+msgstr "Sekm."
 
 #: static/js/reports/app.js:304
 msgid "Mon"
-msgstr ""
+msgstr "Pirm."
 
 #: static/js/reports/app.js:305
 msgid "Tue"
-msgstr ""
+msgstr "Antr."
 
 #: static/js/reports/app.js:306
 msgid "Wed"
-msgstr ""
+msgstr "Treč."
 
 #: static/js/reports/app.js:307
 msgid "Thu"
-msgstr ""
+msgstr "Ketv."
 
 #: static/js/reports/app.js:308
 msgid "Fri"
-msgstr ""
+msgstr "Penkt."
 
 #: static/js/reports/app.js:309
 msgid "Sat"
-msgstr ""
+msgstr "Šešt."
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -776,160 +776,136 @@ msgid "Select..."
 msgstr "Parinkti…"
 
 #: static/js/shared/components/FormSelectInput.js:44
-#, fuzzy
 msgid "Type to search"
-msgstr "Rašykite paieškai"
+msgstr "Užklausa paieškai"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s pašalino eilutės vertimą: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy
 msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s patvirtino pasiūlytą vertimą eilutei: $(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s įkėlė failą"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy
 msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s išjungė testą „%(check)s“ eilutei: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s įjungė testą „%(check)s“ eilutei: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy
 msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s pasiūlė vertimą eilutei: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy
 msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s atmetė pasiūlytą vertimą eilutei: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy
 msgid "%(user)s translated %(sourceString)s"
-msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s išvertė eilutę: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy
 msgid "%(user)s edited %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s pataisė vertimą eilutei: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy
 msgid "%(user)s pre-translated %(sourceString)s"
-msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s preliminariai išvertė eilutę: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
 #, fuzzy
 msgid "%(user)s reviewed %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s peržiūrėjo vertimą eilutei: %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
+msgstr "%(user)s pažymėjo kaip neužbaigtą vertimą eilutei: %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
 msgstr "išjungta"
 
 #: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
 msgid "A year ago"
-msgstr "Prieš %s metus"
+msgstr "Prieš metus"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "Prieš %s metus"
-msgstr[1] "Prieš %s metus"
-msgstr[2] "Prieš %s metų"
+msgstr[0] "Prieš %(count)s metus"
+msgstr[1] "Prieš %(count)s metus"
+msgstr[2] "Prieš %(count)s metų"
 
 #: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
 msgid "A month ago"
-msgstr "Prieš %s minutę"
+msgstr "Prieš mėnesį"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Prieš %s minutę"
-msgstr[1] "Prieš %s minutę"
-msgstr[2] "Prieš %s minutę"
+msgstr[0] "Prieš %(count)s mėnesį"
+msgstr[1] "Prieš %(count)s mėnesius"
+msgstr[2] "Prieš %(count)s mėnesių"
 
 #: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
 msgid "A week ago"
-msgstr "Prieš %s savaitę"
+msgstr "Prieš savaitę"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "Prieš %s savaitę"
-msgstr[1] "Prieš %s savaites"
-msgstr[2] "Prieš %s savaičių"
+msgstr[0] "Prieš %(count)s savaitę"
+msgstr[1] "Prieš %(count)s savaites"
+msgstr[2] "Prieš %(count)s savaičių"
 
 #: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
 msgid "Yesterday"
-msgstr "Prieš %s dieną"
+msgstr "Vakar"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "Prieš %s metus"
-msgstr[1] "Prieš %s metus"
-msgstr[2] "Prieš %s metų"
+msgstr[0] "Prieš %(count)s dieną"
+msgstr[1] "Prieš %(count)s dienas"
+msgstr[2] "Prieš %(count)s dienų"
 
 #: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
 msgid "An hour ago"
-msgstr "Prieš %s valandą"
+msgstr "Prieš valandą"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "Prieš %s valandą"
-msgstr[1] "Prieš %s valandas"
-msgstr[2] "Prieš %s valandų"
+msgstr[0] "Prieš %(count)s valandą"
+msgstr[1] "Prieš %(count)s valandas"
+msgstr[2] "Prieš %(count)s valandų"
 
 #: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
 msgid "A minute ago"
-msgstr "Prieš %s minutę"
+msgstr "Prieš minutę"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "Prieš %s minutę"
-msgstr[1] "Prieš %s minutes"
-msgstr[2] "Prieš %s minučių"
+msgstr[0] "Prieš %(count)s minutę"
+msgstr[1] "Prieš %(count)s minutes"
+msgstr[2] "Prieš %(count)s minučių"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
 msgstr "Prieš kelias sekundes"
 
 #: static/js/stats.js:60
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Sveikiname, Jūs peržiūrėjote visas eilutes."
+msgstr "Sveikiname, ši užduotis atlikta!"
 
 #: static/js/stats.js:456
 msgid "Collapse details"
@@ -1002,26 +978,27 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr ""
+msgstr "El. pašto adresas"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Įveskite savo elektroninio pašto adresą, kad gautumėte laišką su asmeniniu "
+"slaptažodžio atkūrimo saitu."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
-msgstr ""
+msgstr "Ačiū, ne"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
-#, fuzzy
 msgid "Send Email"
-msgstr "Pakartotinai išsiųsti laišką"
+msgstr "Siųsti laišką"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Naujų naudotojų paskyrų kūrimas uždraustas."
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -1030,6 +1007,9 @@ msgid ""
 "password to finish the sign in procedure. This is a one-off procedure, which "
 "will establish a link between your Pootle and %s accounts."
 msgstr ""
+"Šioje sistemoje aptiktas esamas naudotojas, kurio el. paštas – <span>%s</"
+"span>. Įveskite šio naudotojo slaptažodį, kad užbaigtumėte prisijungimą. Tai "
+"– vienkartinis veiksmas, susiesiantis jūsų „Pootle“ ir „%s“ paskyras."
 
 #: static/js/browser.js:267
 msgid "All Languages"

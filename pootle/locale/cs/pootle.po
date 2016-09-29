@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-28 17:16+0100\n"
-"PO-Revision-Date: 2016-09-01 16:41+0000\n"
+"PO-Revision-Date: 2016-09-29 08:47+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1472748102.000000\n"
+"X-POOTLE-MTIME: 1475138873.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1451,18 +1451,16 @@ msgid "Remove the 'admin' user or change its password."
 msgstr "Odstraňte uživatele ‚admin‘, nebo změňte jeho heslo."
 
 #: checks.py:400
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "Databázové spojení nepodporuje on_commit."
+msgstr "Databázové spojení používá transaction_hooks."
 
 #: checks.py:401
-#, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"Nastavte DATABASES['default']['ENGINE'] pro použití back-endu z "
-"transaction_hooks.backends."
+"Nastavte DATABASES['default']['ENGINE'] pro použití Django back-endu z "
+"django.db.backends."
 
 #: checks.py:421
 msgid "Email server is not available."
