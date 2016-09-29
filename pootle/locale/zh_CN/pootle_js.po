@@ -543,7 +543,7 @@ msgstr ""
 
 #: static/js/editor/app.js:369
 msgid ""
-"Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
+"Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 "转到上一个字符串 (Ctrl+.)<br/><br/>也可以：<br/>上一页：Ctrl+Shift+,<br/>第一"

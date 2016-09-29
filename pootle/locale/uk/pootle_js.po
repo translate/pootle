@@ -574,10 +574,10 @@ msgstr ""
 
 #: static/js/editor/app.js:369
 msgid ""
-"Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
+"Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Перейти до попереднього рядка (Ctrl+,)<br/><br/>Також:</br>Попередня "
+"Перейти до попереднього рядка (Ctrl+,)<br/><br/>Також:<br/>Попередня "
 "сторінка: Ctrl+Shift+,<br/>Перша сторінка: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username

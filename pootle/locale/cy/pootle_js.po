@@ -563,10 +563,10 @@ msgstr ""
 
 #: static/js/editor/app.js:369
 msgid ""
-"Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
+"Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Ewch i'r llinyn blaenorol (Ctrl+,)<br/><br/>Hefyd:</br>Tudalen flaenorol: "
+"Ewch i'r llinyn blaenorol (Ctrl+,)<br/><br/>Hefyd:<br/>Tudalen flaenorol: "
 "Ctrl+Shift+,<br/>Tudalen gyntaf: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username

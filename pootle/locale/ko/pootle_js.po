@@ -556,10 +556,10 @@ msgstr ""
 
 #: static/js/editor/app.js:369
 msgid ""
-"Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
+"Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"이전의 문자열로 돌아가기(Ctrl+,)<br/><br/>또는:</br>이전 페이지: Ctrl+Shift+,"
+"이전의 문자열로 돌아가기(Ctrl+,)<br/><br/>또는:<br/>이전 페이지: Ctrl+Shift+,"
 "<br/>첫 페이지: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username

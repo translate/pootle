@@ -542,10 +542,10 @@ msgstr ""
 
 #: static/js/editor/app.js:369
 msgid ""
-"Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
+"Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Eya mothalading o fetilego (Ctrl+,)<br/><br/>Gape:</br>Letlakala le "
+"Eya mothalading o fetilego (Ctrl+,)<br/><br/>Gape:<br/>Letlakala le "
 "fetilego: Ctrl+Shift+,<br/>Letlakala la mathomo: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username

@@ -5070,10 +5070,10 @@ msgstr "Topbydraers"
 #~ msgstr "vertaling"
 
 #~ msgid ""
-#~ "This site is running:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %s/"
+#~ "This site is running:<br/>Pootle %s<br/>jToolkit %s</br>Python %s (on %s/"
 #~ "%s)"
 #~ msgstr ""
-#~ "Hierdie webwerf loop:<br/>Pootle %s</br>jToolkit %s</br>Python %s (op %s/"
+#~ "Hierdie webwerf loop:<br/>Pootle %s<br/>jToolkit %s</br>Python %s (op %s/"
 #~ "%s)"
 
 #~ msgid "copy"

@@ -5542,10 +5542,10 @@ msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
 #~ msgstr "Ta bort projekt"
 
 #~ msgid ""
-#~ "This site is running:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %s/"
+#~ "This site is running:<br/>Pootle %s<br/>jToolkit %s</br>Python %s (on %s/"
 #~ "%s)"
 #~ msgstr ""
-#~ "Detta webbplats kör:<br/>Pootle %s</br>jToolkit %s</br>Python %s (på %s/"
+#~ "Detta webbplats kör:<br/>Pootle %s<br/>jToolkit %s</br>Python %s (på %s/"
 #~ "%s)"
 
 #~ msgid "No goal"

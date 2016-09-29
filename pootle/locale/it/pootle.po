@@ -5351,10 +5351,10 @@ msgstr "Migliori contributori"
 #~ msgstr "traduzione"
 
 #~ msgid ""
-#~ "This site is running:<br/>Pootle %s</br>jToolkit %s</br>Python %s (on %s/"
+#~ "This site is running:<br/>Pootle %s<br/>jToolkit %s</br>Python %s (on %s/"
 #~ "%s)"
 #~ msgstr ""
-#~ "Questo sito fa girare:<br/>Pootle %s</br>jToolkit %s</br>Python %s (su %s/"
+#~ "Questo sito fa girare:<br/>Pootle %s<br/>jToolkit %s</br>Python %s (su %s/"
 #~ "%s)"
 
 #~ msgid "copy"

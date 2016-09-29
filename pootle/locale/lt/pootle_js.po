@@ -572,10 +572,10 @@ msgstr ""
 
 #: static/js/editor/app.js:369
 msgid ""
-"Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: Ctrl"
+"Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Eiti į ankstesnę eilutę (Vald+,)<br/><br/>Taip pat:</br>Ankstesnis puslapis "
+"Eiti į ankstesnę eilutę (Vald+,)<br/><br/>Taip pat:<br/>Ankstesnis puslapis "
 "– Vald+Lyg2+,<br/>Pirmas puslapis – Vald+Lyg2+Prad"
 
 #. Translators: '%s' is a username
