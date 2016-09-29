@@ -193,7 +193,7 @@ export function raw2sym(value, { isRawMode = false } = {}) {
   // in raw mode, replace all spaces;
   // otherwise, replace two or more spaces in a row
   let newValue = isRawMode ?
-    value.replace(/ /g, spaceReplacer) :
+    value.replace(/ +/g, spaceReplacer) :
     value.replace(/ {2,}/g, spaceReplacer);
   // leading line spaces
   newValue = newValue.replace(/\n /g, leadingSpaceReplacer);
