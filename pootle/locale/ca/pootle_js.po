@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-28 17:16+0100\n"
+"POT-Creation-Date: 2016-09-29 13:38+0100\n"
 "PO-Revision-Date: 2016-09-18 11:03+0000\n"
 "Last-Translator: jordis <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,7 +262,7 @@ msgstr "Actiu"
 #: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:104
 #: static/js/auth/components/SignUpForm.js:101
-#: static/js/auth/components/SocialVerification.js:100
+#: static/js/auth/components/SocialVerification.js:99
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
 msgstr "Contrasenya"
@@ -437,18 +437,18 @@ msgid "Sign up as a new user"
 msgstr "Enregistra'm com a un usuari nou"
 
 #: static/js/auth/components/SignInForm.js:113
-#: static/js/auth/components/SocialVerification.js:108
+#: static/js/auth/components/SocialVerification.js:107
 msgid "I forgot my password"
 msgstr "He oblidat la contrasenya"
 
 #: static/js/auth/components/SignInForm.js:124
-#: static/js/auth/components/SocialVerification.js:119
+#: static/js/auth/components/SocialVerification.js:118
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
 msgstr "Inicia la sessió"
 
 #: static/js/auth/components/SignInPanel.js:47
-#: static/js/auth/components/SocialVerification.js:73
+#: static/js/auth/components/SocialVerification.js:74
 msgid "Signed in. Redirecting..."
 msgstr "S'ha iniciat la sessió. S'està redirigint..."
 
@@ -535,10 +535,12 @@ msgid "Contributors, 30 Days"
 msgstr "Col·laboradors, 30 dies"
 
 #: static/js/browser/components/TopContributorsTable.js:17
+#, python-format
 msgid "+%(score)s"
 msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
+#, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
@@ -651,6 +653,7 @@ msgstr "Traduccions semblants"
 
 #: static/js/editor/components/Editor.js:64
 #: static/js/editor/components/UnitSource.js:38
+#, python-format
 msgid "Plural form %(index)s"
 msgstr ""
 
@@ -671,6 +674,7 @@ msgid "Reject"
 msgstr "Rebutja"
 
 #: static/js/editor/components/UploadTimeSince.js:34
+#, python-format
 msgid "%(timeSince)s via file upload"
 msgstr ""
 
@@ -778,50 +782,62 @@ msgstr "Escriviu per a cercar"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
+#, python-format
 msgid "%(user)s removed translation for %(sourceString)s"
 msgstr "%(user)s ha eliminat la traducció de %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
+#, python-format
 msgid "%(user)s accepted suggestion for %(sourceString)s"
 msgstr "%(user)s ha acceptat la traducció de %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s ha pujat un fitxer"
 
 #: static/js/shared/components/UserEvent.js:103
+#, python-format
 msgid "%(user)s muted %(check)s for %(sourceString)s"
 msgstr "%(user)s ha silenciat la comprovació %(check)s de %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
 msgstr "%(user)s ha activat la comprovació %(check)s de %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
+#, python-format
 msgid "%(user)s added suggestion for %(sourceString)s"
 msgstr "%(user)s ha afegit un suggeriment de %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
+#, python-format
 msgid "%(user)s rejected suggestion for %(sourceString)s"
 msgstr "%(user)s ha rebutjat el suggeriment de %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
+#, python-format
 msgid "%(user)s translated %(sourceString)s"
 msgstr "%(user)s ha traduït %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
+#, python-format
 msgid "%(user)s edited %(sourceString)s"
 msgstr "%(user)s ha editat %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
+#, python-format
 msgid "%(user)s pre-translated %(sourceString)s"
 msgstr "%(user)s ha pretraduït %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
+#, python-format
 msgid "%(user)s reviewed %(sourceString)s"
 msgstr "%(user)s ha revisat %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
+#, python-format
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "%(user)s ha marcat que cal revisar %(sourceString)s"
 
@@ -834,6 +850,7 @@ msgid "A year ago"
 msgstr "Fa un any"
 
 #: static/js/shared/utils/relativeTime.js:20
+#, python-format
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
 msgstr[0] "Fa %(count)s any"
@@ -844,6 +861,7 @@ msgid "A month ago"
 msgstr "Fa un mes"
 
 #: static/js/shared/utils/relativeTime.js:28
+#, python-format
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
 msgstr[0] "Fa %(count)s mes"
@@ -854,6 +872,7 @@ msgid "A week ago"
 msgstr "Fa una setmana"
 
 #: static/js/shared/utils/relativeTime.js:36
+#, python-format
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
 msgstr[0] "Fa %(count)s setmana"
@@ -864,6 +883,7 @@ msgid "Yesterday"
 msgstr "Ahir"
 
 #: static/js/shared/utils/relativeTime.js:44
+#, python-format
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
 msgstr[0] "Fa %(count)s dia"
@@ -874,6 +894,7 @@ msgid "An hour ago"
 msgstr "Fa una hora"
 
 #: static/js/shared/utils/relativeTime.js:52
+#, python-format
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
 msgstr[0] "Fa %(count)s hora"
@@ -884,6 +905,7 @@ msgid "A minute ago"
 msgstr "Fa un minut"
 
 #: static/js/shared/utils/relativeTime.js:60
+#, python-format
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
 msgstr[0] "Fa %(count)s minut"
@@ -991,11 +1013,12 @@ msgid "Creating new user accounts is prohibited."
 msgstr "S'ha prohibit la creació de comptes d'usuari."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"We found a user with <span>%s</span> email in our system. Please provide the "
-"password to finish the sign in procedure. This is a one-off procedure, which "
-"will establish a link between your Pootle and %s accounts."
+"We found a user with <span>%(email)s</span> email in our system. Please "
+"provide the password to finish the sign in procedure. This is a one-off "
+"procedure, which will establish a link between your Pootle and %(provider)s "
+"accounts."
 msgstr ""
 "Hem trobat un usuari al nostre sistema amb l'adreça de correu <span>%s</"
 "span>. Indiqueu la contrasenya per a finalitzar el procès d'inici de sessió. "
