@@ -9,6 +9,7 @@
 import assign from 'object-assign';
 import React from 'react';
 
+import { t } from 'utils/i18n';
 import FormElement from 'components/FormElement';
 import FormMixin from 'mixins/FormMixin';
 
@@ -76,14 +77,12 @@ const SocialVerification = React.createClass({
     const { errors } = this.state;
     const { formData } = this.state;
 
-    const verificationMsg = interpolate(
-      gettext(
-        'We found a user with <span>%s</span> email in our system. Please ' +
-        'provide the password to finish the sign in procedure. This is a ' +
-        'one-off procedure, which will establish a link between your ' +
-        'Pootle and %s accounts.'
-      ),
-      [this.props.email, this.props.providerName]
+    const verificationMsg = t(
+      'We found a user with <span>%(email)s</span> email in our system. ' +
+      'Please provide the password to finish the sign in procedure. This ' +
+      'is a one-off procedure, which will establish a link between your ' +
+      'Pootle and %(provider)s accounts.',
+      { email: this.props.email, provider: this.props.providerName }
     );
 
     return (
