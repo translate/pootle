@@ -366,7 +366,7 @@ PTL.editor = {
       );
       this.$navPrev.attr('title',
         gettext(
-          'Go to the previous string (Ctrl+,)<br/><br/>Also:</br>Previous page: ' +
+          'Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: ' +
           'Ctrl+Shift+,<br/>First page: Ctrl+Shift+Home'
         )
       );
