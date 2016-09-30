@@ -12,7 +12,7 @@ import React from 'react';
 import ReactRenderer from 'utils/ReactRenderer';
 import { q, qAll } from 'utils/dom';
 
-import EditorContainer from './containers/EditorContainer';
+import Editor from './containers/Editor';
 import { loadFormatAdaptor } from './formats/FormatLoader';
 import { hasCRLF, normalize, denormalize } from './utils/normalizer';
 import { insertAtCaret, setValue } from './utils/RawFontAware';
@@ -53,7 +53,7 @@ const ReactEditor = {
     }
 
     this.editorInstance = ReactRenderer.render(
-      <EditorContainer
+      <Editor
         onChange={this.handleChange}
         editorComponent={this.formatAdaptor.editorComponent}
         {...this.props}
