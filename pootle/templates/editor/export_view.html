@@ -1,4 +1,4 @@
-{% load core assets i18n locale store_tags %}
+{% load core assets i18n locale staticfiles store_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
 <head>
@@ -8,8 +8,13 @@
     {% if language %}{{ language.name }}{% else %}{% trans "All Languages" %}{% endif %} | 
     {{ settings.POOTLE_TITLE }}</title>
   <style type="text/css">
+    @font-face {
+      font-family: 'Raw';
+      src: url('{% static "fonts/raw.woff" %}') format('woff');
+    }
+
     html {
-      font-family: sans-serif;
+      font-family: 'Raw', sans-serif;
       font-size: 15px;
       background-color: #fff;
       color: #130f30;
