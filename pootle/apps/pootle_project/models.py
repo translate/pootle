@@ -179,6 +179,14 @@ def validate_not_reserved(value):
         )
 
 
+def validate_project_checker(value):
+    if value not in PROJECT_CHECKERS.keys():
+        raise ValidationError(
+            _('"%(code)s" cannot be used as a project checker'),
+            params={'code': value},
+        )
+
+
 class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     code_help_text = _('A short code for the project. This should only '
@@ -194,15 +202,11 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     fullname = models.CharField(max_length=255, null=False, blank=False,
                                 verbose_name=_("Full Name"))
 
-    checker_choices = [
-        (checker, checker)
-        for checker
-        in sorted(PROJECT_CHECKERS.keys())]
     checkstyle = models.CharField(
         max_length=50,
         default='standard',
         null=False,
-        choices=checker_choices,
+        validators=[validate_project_checker],
         verbose_name=_('Quality Checks'))
 
     filetypes = SortedManyToManyField(Format)
