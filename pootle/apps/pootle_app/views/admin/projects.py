@@ -13,7 +13,7 @@ from pootle.core.views import APIView
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_language.models import Language
-from pootle_project.models import Project
+from pootle_project.models import PROJECT_CHECKERS, Project
 
 
 __all__ = ('ProjectAdminView', 'ProjectAPIView')
@@ -36,10 +36,15 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
             filetypes.append(
                 [info["pk"], info["display_title"]])
 
+        project_checker_choices = [
+            (checker, checker)
+            for checker
+            in sorted(PROJECT_CHECKERS.keys())]
+
         return {
             'page': 'admin-projects',
             'form_choices': {
-                'checkstyle': Project.checker_choices,
+                'checkstyle': project_checker_choices,
                 'filetypes': filetypes,
                 'source_language': language_choices,
                 'treestyle': Project.treestyle_choices,

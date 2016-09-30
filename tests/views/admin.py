@@ -20,7 +20,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
 from pootle_language.models import Language
-from pootle_project.models import Project
+from pootle_project.models import PROJECT_CHECKERS, Project
 from pootle_translationproject.models import TranslationProject
 
 
@@ -252,10 +252,14 @@ def test_admin_view_projects(client, request_users, english):
     for info in formats.get().values():
         filetypes.append(
             [info["pk"], info["display_title"]])
+    project_checker_choices = [
+        (checker, checker)
+        for checker
+        in sorted(PROJECT_CHECKERS.keys())]
     expected = {
         'page': 'admin-projects',
         'form_choices': {
-            'checkstyle': Project.checker_choices,
+            'checkstyle': project_checker_choices,
             'filetypes': filetypes,
             'source_language': language_choices,
             'treestyle': Project.treestyle_choices,

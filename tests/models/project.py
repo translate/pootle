@@ -119,6 +119,14 @@ def test_project_save_no_code(project0):
 
 
 @pytest.mark.django_db
+def test_project_save_wrong_checker(project0):
+    """Test that an existing project can't be removed its code."""
+    project0.checkstyle = "foobar"
+    with pytest.raises(ValidationError):
+        project0.save()
+
+
+@pytest.mark.django_db
 def test_project_save_no_fullname(project0):
     """Test that an existing project can't be removed its fullname."""
     project0.fullname = ""
