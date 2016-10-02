@@ -134,6 +134,16 @@ describe('highlightHtml', () => {
         `&amp;nbsp;${HL_START}&lt;/i&gt;${HL_END}${HL_START}&lt;/b&gt;${HL_END}`
       ),
     },
+    {
+      description: 'HTML tags which contain $ between delimiters',
+      input: "<a href='$url$'>",
+      expected: `${HL_START}&lt;a href='$url$'&gt;${HL_END}`,
+    },
+    {
+      description: 'HTML tags which contain %s between delimiters',
+      input: '<a href="%s">',
+      expected: `${HL_START}&lt;a href="%s"&gt;${HL_END}`,
+    },
   ];
 
   tests.forEach((test) => {

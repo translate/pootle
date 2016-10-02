@@ -7,6 +7,7 @@
  */
 
 import { BASE_MAP_REVERSE_HL, RE_BASE_REVERSE } from './font';
+import { escapeRegexReplacementSymbols } from './search';
 
 
 /* eslint-disable no-irregular-whitespace */
@@ -64,9 +65,10 @@ export function highlightHtml(text, className = '') {
     let replaced = submap[match];
 
     if (replaced === undefined) {
+      const remainder = match.slice(1, match.length - 1);
       replaced = htmlHl.replace(
         /%s/,
-        highlightHtml(match.slice(1, match.length - 1))
+        escapeRegexReplacementSymbols(highlightHtml(remainder))
       );
     }
 

@@ -21,6 +21,17 @@ export function escapeUnsafeRegexSymbols(s) {
 }
 
 
+/**
+ * Escape unsafe regular expression replacement symbols: $
+ *
+ * When providing a replacement string for a regular expression, the dollar
+ * character plays a special role. We escape it here.
+ */
+export function escapeRegexReplacementSymbols(s) {
+  return s.replace(/\$/g, '$$$$');
+}
+
+
 /*
  * Make regular expression using every word in input string.
  *
