@@ -22,7 +22,7 @@ jsonfield==1.0.3
 lxml>=3.5,<=3.6.4
 python-dateutil==2.5.3
 python-levenshtein==0.12.0
-pytz==2016.6.1
+pytz==2016.7
 rq>=0.5.5,<=0.6.0
 scandir==1.3
 
