@@ -106,7 +106,7 @@ const RawFontTextarea = React.createClass({
 
   handleChange() {
     this.saveSnapshot(this.previousSnapshot);
-    this.props.onChange();
+    this.props.onChange(this.rawFont.getValue());
   },
 
   handleUndo(e) {
@@ -122,7 +122,7 @@ const RawFontTextarea = React.createClass({
       undone: [...prevState.undone, this.rawFont.getSnapshot()],
     }), () => {
       this.previousSnapshot = this.rawFont.setSnapshot(newSnapshot);
-      this.props.onChange();
+      this.props.onChange(this.rawFont.getValue());
     });
   },
 
@@ -139,7 +139,7 @@ const RawFontTextarea = React.createClass({
       undone: prevState.undone.slice(0, -1),
     }), () => {
       this.previousSnapshot = this.rawFont.setSnapshot(newSnapshot);
-      this.props.onChange();
+      this.props.onChange(this.rawFont.getValue());
     });
   },
 
