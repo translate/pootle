@@ -62,12 +62,7 @@ const EditorContainer = React.createClass({
     };
   },
 
-  componentWillMount() {
-    this.shouldOverride = false;
-  },
-
   componentDidMount() {
-    this.shouldOverride = false;
     this.areas = qAll('.js-translation-area');
   },
 
