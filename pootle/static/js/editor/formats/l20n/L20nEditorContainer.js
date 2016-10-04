@@ -14,6 +14,8 @@ import { qAll } from 'utils/dom';
 import Editor from '../../components/Editor';
 import RawFontTextarea from '../../components/RawFontTextarea';
 
+import L20nCodeMirror from './L20nCodeMirror';
+
 import {
   dumpL20nPlurals,
   dumpL20nValue,
@@ -170,6 +172,8 @@ const L20nEditorContainer = React.createClass({
 
   render() {
     const targetNplurals = this.state.hasL20nPlurals ? this.l20nInitialValues.length : 1;
+    const textareaComponent = this.state.isRichModeEnabled ? L20nCodeMirror
+                                                           : this.props.textareaComponent;
     return (
       <this.props.editorComponent
         getPluralFormName={this.getPluralFormName}
@@ -182,7 +186,7 @@ const L20nEditorContainer = React.createClass({
         sourceValues={this.props.sourceValues}
         style={this.props.style}
         targetNplurals={targetNplurals}
-        textareaComponent={this.props.textareaComponent}
+        textareaComponent={textareaComponent}
         values={this.state.l20nValues}
       />
     );
