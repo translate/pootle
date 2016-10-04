@@ -6,12 +6,12 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import Editor from '../components/Editor';
+import EditorContainer from '../containers/EditorContainer';
 import UnitSource from '../components/UnitSource';
 
 
 const FormatAdaptor = {
-  editorComponent: Editor,
+  editorComponent: EditorContainer,
   unitSourceComponent: UnitSource,
 };
 
