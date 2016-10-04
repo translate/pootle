@@ -18,6 +18,7 @@ import { getAreaId } from '../utils';
 const Editor = React.createClass({
 
   propTypes: {
+    getPluralFormName: React.PropTypes.func,
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
@@ -36,6 +37,14 @@ const Editor = React.createClass({
     };
   },
 
+  getPluralFormName(index) {
+    if (this.props.getPluralFormName !== undefined) {
+      return this.props.getPluralFormName(index);
+    }
+
+    return t('Plural form %(index)s', { index });
+  },
+
   render() {
     const editingAreas = [];
 
@@ -52,7 +61,7 @@ const Editor = React.createClass({
         >
           {(this.props.targetNplurals > 1) &&
             <div className="subheader">
-              { t('Plural form %(index)s', { index: i }) }
+              { this.getPluralFormName(i) }
             </div>
           }
           <this.props.textareaComponent
