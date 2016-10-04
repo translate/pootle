@@ -26,6 +26,7 @@ const Editor = React.createClass({
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
     textareaComponent: React.PropTypes.func,
+    values: React.PropTypes.array,
   },
 
   getDefaultProps() {
@@ -59,7 +60,8 @@ const Editor = React.createClass({
             id={getAreaId(i)}
             initialValue={this.props.initialValues[i]}
             isDisabled={this.props.isDisabled}
-            onChange={this.props.onChange}
+            onChange={(value) => this.props.onChange(i, value)}
+            value={this.props.values[i]}
             {...extraProps}
           />
         </EditingArea>

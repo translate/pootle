@@ -12,7 +12,6 @@ import { qAll } from 'utils/dom';
 
 import Editor from '../components/Editor';
 import RawFontTextarea from '../components/RawFontTextarea';
-import { sym2raw } from '../utils/font';
 
 
 const EditorContainer = React.createClass({
@@ -50,6 +49,12 @@ const EditorContainer = React.createClass({
     };
   },
 
+  getInitialState() {
+    return {
+      values: this.props.initialValues,
+    };
+  },
+
   getChildContext() {
     return {
       currentLocaleCode: this.props.currentLocaleCode,
@@ -71,9 +76,15 @@ const EditorContainer = React.createClass({
   },
 
   getStateValues() {
-    return this.areas.map(
-      (element) => sym2raw(element.value, { isRawMode: this.props.isRawMode })
-    );
+    return this.state.values;
+  },
+
+  handleChange(i, value) {
+    const newValues = this.state.values.slice();
+    newValues[i] = value;
+    this.setState({
+      values: newValues,
+    }, this.props.onChange);
   },
 
   render() {
@@ -85,8 +96,9 @@ const EditorContainer = React.createClass({
         targetNplurals={this.props.targetNplurals}
         textareaComponent={this.props.textareaComponent}
         initialValues={this.props.initialValues}
-        onChange={this.props.onChange}
+        onChange={this.handleChange}
         sourceValues={this.props.sourceValues}
+        values={this.state.values}
       />
     );
   },
