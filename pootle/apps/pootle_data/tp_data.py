@@ -65,12 +65,12 @@ class TPDataUpdater(DataUpdater):
     @property
     def store_data_qs(self):
         return StoreData.objects.filter(
-            store__translation_project=self.tool.context)
+            store__translation_project_id=self.tool.context.id)
 
     @property
     def store_check_data_qs(self):
         return StoreChecksData.objects.filter(
-            store__translation_project=self.tool.context)
+            store__translation_project_id=self.tool.context.id)
 
     def get_last_created_unit(self, **kwargs):
         return self.get_aggregate_data(
