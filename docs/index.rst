@@ -12,6 +12,6 @@ their own documentation.
 - `Translate Toolkit Documentation
   <http://docs.translatehouse.org/projects/translate-toolkit/en/latest/>`_
 
-- :ref:`Django Documentation <django:index>`
+- :ref:`Django Documentation <django:index-first-steps>`
 
 .. include:: contents.rst.inc
