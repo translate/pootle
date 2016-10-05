@@ -96,7 +96,8 @@ class StoreDataUpdater(DataUpdater):
 
     def get_last_created_unit(self, **kwargs):
         order_by = ("-creation_time", "-revision", "-id")
-        units = self.store.units.filter(creation_time__isnull=False)
+        units = self.store.unit_set.filter(
+            state__gt=OBSOLETE, creation_time__isnull=False)
         return units.order_by(*order_by).values_list("id", flat=True).first()
 
     def get_critical_checks(self, **kwargs):
