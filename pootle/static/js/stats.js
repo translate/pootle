@@ -142,11 +142,6 @@ const stats = {
     this.updateUI();
   },
 
-  refreshStats() {
-    this.dirtyBackoff = 1;
-    this.updateDirty();
-  },
-
   updateProgressbar($td, item) {
     const translated = nicePercentage(item.translated, item.total, 100);
     const fuzzy = nicePercentage(item.fuzzy, item.total, 0);
@@ -269,8 +264,6 @@ const stats = {
       return false;
     }
 
-    const dirtyStylesEnabled = this.retries >= this.statsRefreshAttemptsCount;
-    $td.parent().toggleClass('dirty', item.is_dirty && dirtyStylesEnabled);
     this.updateItemStats($td, item.total);
 
     const isFullRatio = item.total === 0 || item.total === null;
@@ -313,19 +306,7 @@ const stats = {
 
     const $table = $('#content table.stats');
     const $vfoldersTable = $('#content .vfolders table.stats');
-    const dirtySelector = '#top-stats, #translate-actions, #autorefresh-notice';
     const now = parseInt(Date.now() / 1000, 10);
-    const dirtyStatsRefreshEnabled = this.retries < this.statsRefreshAttemptsCount;
-
-    $(dirtySelector).toggleClass('dirty', !!data.is_dirty && !dirtyStatsRefreshEnabled);
-    if (!!data.is_dirty) {
-      if (dirtyStatsRefreshEnabled) {
-        this.dirtyBackoff = Math.pow(2, this.retries);
-        this.dirtyBackoffId = setInterval(() => this.updateDirty({ hideSpin: true }), 1000);
-      } else {
-        $('.js-stats-refresh').show();
-      }
-    }
 
     this.updateProgressbar($('#progressbar'), data);
     this.updateAction($('#js-action-view-all'), data.total);
@@ -408,30 +389,12 @@ const stats = {
     }
   },
 
-  updateDirty({ hideSpin = false } = {}) {
-    if (--this.dirtyBackoff === 0) {
-      $('.js-stats-refresh').hide();
-      clearInterval(this.dirtyBackoffId);
-      setTimeout(() => {
-        if (this.retries < 5) {
-          this.retries++;
-        }
-        this.loadStats({ hideSpin });
-      }, 250);
-    }
-  },
-
   load(methodName, { hideSpin = false } = {}) {
     if (!hideSpin) {
       $('body').spin();
     }
     return StatsAPI[methodName](this.pootlePath)
       .always(() => $('body').spin(false));
-  },
-
-  loadStats({ hideSpin = false } = {}) {
-    return this.load('getStats', { hideSpin })
-      .done((data) => this.setState({ data }));
   },
 
   loadChecks() {
