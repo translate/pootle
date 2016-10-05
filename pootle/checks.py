@@ -19,7 +19,7 @@ TTK_MINIMUM_REQUIRED_VERSION = (1, 13, 0)
 DJANGO_MINIMUM_REQUIRED_VERSION = (1, 9, 10)
 
 # Minimum lxml version required for Pootle to run.
-LXML_MINIMUM_REQUIRED_VERSION = (3, 0, 0, 0)
+LXML_MINIMUM_REQUIRED_VERSION = (3, 5, 0, 0)
 
 # Minimum Redis server version required.
 # Initially set to some minimums based on:
