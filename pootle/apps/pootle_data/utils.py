@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
+from django.db.models import Sum
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_updater
@@ -14,7 +15,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
 
-from .models import StoreData
+from .models import StoreData, StoreChecksData, TPChecksData, TPData
 
 
 SUM_FIELDS = (
@@ -259,29 +260,6 @@ class RelatedStoresDataTool(DataTool):
         + SubmissionProxy.info_fields)
 
     @property
-    def data_model(self):
-        return StoreData.objects
-
-    @property
-    def dir_path(self):
-        return split_pootle_path(self.context.pootle_path)[2]
-
-    @property
-    def object_stats(self):
-        stats = {
-            k[:-5]: v
-            for k, v
-            in self.stat_data.aggregate(*self.aggregate_sum_fields).items()}
-        stats = {
-            self.stats_mapping.get(k, k): v
-            for k, v
-            in stats.items()}
-        stats["lastaction"] = None
-        stats["lastupdated"] = None
-        stats["suggestions"] = None
-        return stats
-
-    @property
     def aggregate_sum_fields(self):
         return list(
             models.Sum(f)
@@ -296,12 +274,94 @@ class RelatedStoresDataTool(DataTool):
             in self.max_fields)
 
     @property
+    def all_checks_data(self):
+        return self.filter_data(self.checks_data_model)
+
+    @property
+    def all_children_stats(self):
+        return self.get_children_stats(self.all_child_stats_qs)
+
+    @property
+    def all_child_stats_qs(self):
+        """Aggregates grouped sum/max fields"""
+        return self.annotate_fields(self.all_stat_data)
+
+    @property
+    def all_object_stats(self):
+        return self.get_object_stats(self.all_stat_data)
+
+    @property
+    def all_stat_data(self):
+        return self.filter_data(self.data_model)
+
+    @property
     def child_stats_qs(self):
         """Aggregates grouped sum/max fields"""
-        return (
-            self.stat_data.values(*self.group_by)
-                          .annotate(*(self.aggregate_sum_fields
-                                      + self.aggregate_max_fields)))
+        return self.annotate_fields(self.stat_data)
+
+    @property
+    def data_model(self):
+        return StoreData.objects
+
+    @property
+    def dir_path(self):
+        return split_pootle_path(self.context.pootle_path)[2]
+
+    @property
+    def checks_data(self):
+        return self.filter_accessible(self.all_checks_data)
+
+    @property
+    def checks_data_model(self):
+        return StoreChecksData.objects
+
+    @property
+    def children_stats(self):
+        """For a given object returns stats for each of the objects
+        immediate descendants
+        """
+        return self.get_children_stats(self.child_stats_qs)
+
+    @property
+    def filename(self):
+        return split_pootle_path(self.context.pootle_path)[3]
+
+    @property
+    def object_stats(self):
+        return self.get_object_stats(self.stat_data)
+
+    @property
+    def project_code(self):
+        return split_pootle_path(self.context.pootle_path)[1]
+
+    @property
+    def stat_data(self):
+        return self.filter_accessible(self.all_stat_data)
+
+    def filter_accessible(self, qs):
+        return qs.exclude(
+            store__translation_project__project__disabled=True)
+
+    def filter_data(self, qs):
+        return qs
+
+    def add_last_updated_info(self, stat_data, children):
+        updated = self.get_updated_for_children(stat_data, children)
+        for k, v in children.items():
+            children[k]["lastupdated"] = updated.get(
+                children[k]["last_created_unit__pk"])
+
+    def add_submission_info(self, stat_data, children):
+        """For a given qs.values of child stats data, updates the values
+        with submission info
+        """
+        subs = self.get_submissions_for_children(stat_data, children)
+        for child in children.values():
+            if child["last_submission__pk"]:
+                sub = subs[child["last_submission__pk"]]
+                lastaction = self.get_info_for_sub(sub)
+                child["last_submission"] = lastaction
+                child["lastaction"] = lastaction
 
     def aggregate_children(self, stats):
         """For a stats dictionary containing children qs.values, aggregate the
@@ -318,26 +378,27 @@ class RelatedStoresDataTool(DataTool):
         stats.update(agg)
         return stats
 
-    @property
-    def children_stats(self):
-        """For a given object returns stats for each of the objects
-        immediate descendants
-        """
-        children = {}
-        for child in self.child_stats_qs.iterator():
-            self.add_child_stats(children, child)
-        self.add_submission_info(children)
-        return children
+    def annotate_fields(self, stat_data):
+        return (
+            stat_data.values(*self.group_by)
+                     .annotate(*(self.aggregate_sum_fields
+                                 + self.aggregate_max_fields)))
 
-    def add_submission_info(self, children):
-        """For a given qs.values of child stats data, updates the values
-        with submission info
-        """
-        subs = self.get_submissions_for_children(children)
-        for child in children.values():
-            if child["last_submission__pk"]:
-                sub = subs[child["last_submission__pk"]]
-                child["last_submission"] = self.get_info_for_sub(sub)
+    def get_checks(self, user=None):
+        checks_data = (
+            self.all_checks_data
+            if self.show_all_to(user)
+            else self.checks_data)
+        return dict(
+            checks_data.values_list("name").annotate(Sum("count")))
+
+    def get_children_stats(self, qs):
+        children = {}
+        for child in qs.iterator():
+            self.add_child_stats(children, child)
+        self.add_submission_info(qs, children)
+        self.add_last_updated_info(qs, children)
+        return children
 
     def get_info_for_sub(self, sub):
         """Uses a SubmissionProxy to turn the member of a qs.values
@@ -345,21 +406,6 @@ class RelatedStoresDataTool(DataTool):
         """
         return SubmissionProxy(
             sub, prefix="last_submission__").get_submission_info()
-
-    def get_submissions_for_children(self, children):
-        """For a given qs.values of children returns a qs.values
-        of related last_submission data
-        """
-        last_submissions = [
-            v["last_submission__pk"]
-            for v in children.values()]
-        stores_with_subs = (
-            self.stat_data.filter(last_submission_id__in=last_submissions))
-        subs = stores_with_subs.values(
-            *["last_submission__%s" % field
-              for field
-              in self.submission_fields])
-        return {sub["last_submission__pk"]: sub for sub in subs}
 
     def get_root_child_path(self, child):
         """For a given child returns the label for its root node (ie the parent
@@ -371,17 +417,46 @@ class RelatedStoresDataTool(DataTool):
         """Get stats for an object. If include_children is set it will
         also return stats for each of the immediate descendants.
         """
-
         if include_children:
             stats = {}
-            stats["children"] = self.children_stats
+            stats["children"] = (
+                self.all_children_stats
+                if self.show_all_to(user)
+                else self.children_stats)
             self.aggregate_children(stats)
         else:
-            stats = self.object_stats
+            stats = (
+                self.all_object_stats
+                if self.show_all_to(user)
+                else self.object_stats)
         stats["is_dirty"] = False
         stats["lastaction"] = self.get_lastaction(**stats)
         stats["lastupdated"] = self.get_lastupdated(**stats)
         return stats
+
+    def get_submissions_for_children(self, stat_data, children):
+        """For a given qs.values of children returns a qs.values
+        of related last_submission data
+        """
+        last_submissions = [
+            v["last_submission__pk"]
+            for v in children.values()]
+        stores_with_subs = (
+            stat_data.filter(last_submission__pk__in=last_submissions))
+        subs = stores_with_subs.values(
+            *["last_submission__%s" % field
+              for field
+              in self.submission_fields])
+        return {sub["last_submission__pk"]: sub for sub in subs}
+
+    def get_updated_for_children(self, stat_data, children):
+        last_created_units = set(
+            [v["last_created_unit__pk"] for v in children.values()])
+        return {
+            unit.pk: unit.get_last_updated_info()
+            for unit
+            in Unit.objects.select_related(
+                "store").filter(pk__in=last_created_units)}
 
     def add_child_stats(self, children, child, root=None, use_aggregates=True):
         """For a child member of children qs.values, add the childs stats to aggregate
@@ -424,3 +499,41 @@ class RelatedStoresDataTool(DataTool):
             and Unit.objects.select_related(
                 "store").get(pk=kwargs["lastcreated"]).get_last_updated_info()
             or None)
+
+    def get_object_stats(self, stat_data):
+        stats = {
+            k[:-5]: v
+            for k, v
+            in stat_data.aggregate(*self.aggregate_sum_fields).items()}
+        stats = {
+            self.stats_mapping.get(k, k): v
+            for k, v
+            in stats.items()}
+        stats["lastaction"] = None
+        stats["lastupdated"] = None
+        stats["suggestions"] = None
+        return stats
+
+    def show_all_to(self, user):
+        return user and user.is_superuser
+
+
+class RelatedTPsDataTool(RelatedStoresDataTool):
+
+    group_by = (
+        "tp__language__code",
+        "tp__project__code")
+
+    @property
+    def data_model(self):
+        return TPData.objects
+
+    def filter_accessible(self, qs):
+        return qs.exclude(tp__project__disabled=True)
+
+    @property
+    def checks_data_model(self):
+        return TPChecksData.objects
+
+    def get_root_child_path(self, child):
+        return "-".join(child[field] for field in self.group_by)
