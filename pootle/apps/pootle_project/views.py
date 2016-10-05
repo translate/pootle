@@ -118,11 +118,6 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
         'suggestions', 'critical', 'last-updated', 'activity']
 
     @property
-    def stats(self):
-        return self.object.get_stats_for_user(
-            self.request.user)
-
-    @property
     def pootle_path(self):
         return self.object.pootle_path
 

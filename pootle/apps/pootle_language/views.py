@@ -66,10 +66,6 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
 
-    @property
-    def stats(self):
-        return self.object.get_stats_for_user(self.request.user)
-
     @cached_property
     def items(self):
         return [
