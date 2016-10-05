@@ -8,24 +8,39 @@
 
 import React from 'react';
 
+import { qAll } from 'utils/dom';
 import { t } from 'utils/i18n';
 
 import EditingArea from '../components/EditingArea';
 import RawFontTextarea from '../components/RawFontTextarea';
 import { getAreaId } from '../utils';
+import { sym2raw } from '../utils/font';
 
 
 const Editor = React.createClass({
 
   propTypes: {
+    currentLocaleCode: React.PropTypes.string.isRequired,
+    currentLocaleDir: React.PropTypes.string.isRequired,
+
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
     // FIXME: needed to allow interaction from the outside world. Remove ASAP.
     onChange: React.PropTypes.func.isRequired,
+    sourceValues: React.PropTypes.array,
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
     textareaComponent: React.PropTypes.func,
+  },
+
+  // FIXME: move context to a higher-order component. It _cannot_ be done now
+  // because we need to access the component's state in a quite hackish and
+  // undesired way, and wrapping the component in a context provider would
+  // prevent us from doing so.
+  childContextTypes: {
+    currentLocaleCode: React.PropTypes.string,
+    currentLocaleDir: React.PropTypes.string,
   },
 
   getDefaultProps() {
@@ -33,6 +48,27 @@ const Editor = React.createClass({
       initialValues: [],
       textareaComponent: RawFontTextarea,
     };
+  },
+
+  getChildContext() {
+    return {
+      currentLocaleCode: this.props.currentLocaleCode,
+      currentLocaleDir: this.props.currentLocaleDir,
+    };
+  },
+
+  componentDidMount() {
+    this.areas = qAll('.js-translation-area');
+  },
+
+  getAreas() {
+    return this.areas;
+  },
+
+  getStateValues() {
+    return this.areas.map(
+      (element) => sym2raw(element.value, { isRawMode: this.props.isRawMode })
+    );
   },
 
   render() {
