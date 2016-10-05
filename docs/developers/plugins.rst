@@ -55,8 +55,8 @@ Application file structure
 Creating a plugin application
 -----------------------------
 
-Your application requires a `Django application configuration
-<https://docs.djangoproject.com/es/1.9/ref/applications/#for-application-authors>`_
+Your application requires a :ref:`Django application configuration
+<django:configuring-applications-ref>`
 
 For an application named ``pootle_custom`` you need to add lines similar to the
 following in the :file:`__init__.py`:
@@ -153,9 +153,8 @@ Add a file called :file:`getters.py` with the following:
 Setting up a receiver
 ---------------------
 
-Pootle uses the `django.core.signals
-<https://docs.djangoproject.com/en/1.9/topics/signals/#connecting-receiver-functions>`_
-module to handle events.
+Pootle uses the :ref:`django.core.signals
+<django:connecting-receiver-functions>` module to handle events.
 
 The following is an example of a ``receiver`` that emits a log warning whenever
 a ``Store`` cache is expired.
