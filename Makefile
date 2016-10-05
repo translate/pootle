@@ -94,13 +94,15 @@ put-translations:
 linguas:
 	@${SRC_DIR}/tools/make-LINGUAS.sh 80 > ${SRC_DIR}/locale/LINGUAS
 
-lint: lint-python lint-js lint-css
+lint: lint-python lint-js lint-css lint-docs
+
+lint-docs:
+	pydocstyle
 
 lint-py: lint-python
 
 lint-python:
 	flake8 --config=setup.cfg && \
-	pydocstyle && \
 	isort --check-only --diff && \
 	pylint --rcfile=.pylint-travisrc pootle tests pytest_pootle
 
