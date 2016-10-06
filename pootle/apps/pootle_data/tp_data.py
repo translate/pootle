@@ -93,11 +93,6 @@ class TPDataTool(RelatedStoresDataTool):
     """Retrieves aggregate stats for a TP"""
 
     group_by = ("store__pootle_path", )
-    max_fields = ("last_submission__pk", )
-
-    @property
-    def data_model(self):
-        return StoreData.objects
 
     def get_root_child_path(self, child):
         remainder = child["store__pootle_path"].replace(

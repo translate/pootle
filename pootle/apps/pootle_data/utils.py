@@ -15,7 +15,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
 
-from .models import StoreData, StoreChecksData, TPChecksData, TPData
+from .models import StoreChecksData, StoreData, TPChecksData, TPData
 
 
 SUM_FIELDS = (
