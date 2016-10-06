@@ -24,6 +24,8 @@ LANGCODE_RE = re.compile("^[a-z]{2,}([_-]([a-z]{2,}|[0-9]{3}))*(@[a-z0-9]+)?$",
 
 class LanguageForm(forms.ModelForm):
 
+    specialchars = forms.CharField(strip=False)
+
     class Meta(object):
         model = Language
         fields = ('id', 'code', 'fullname', 'specialchars', 'nplurals',

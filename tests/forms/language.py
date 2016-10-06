@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) Pootle contributors.
+#
+# This file is a part of the Pootle project. It is distributed under the GPL3
+# or later license. See the LICENSE file for a copy of the license and the
+# AUTHORS file for copyright and authorship information.
+
+import pytest
+
+from pootle_app.forms import LanguageForm
+
+
+@pytest.mark.parametrize('specialchars', [
+    ' abcde ',
+    ' ab cd',
+    ' abcde',
+    'abcde ',
+    ' a b c d e ',
+    ' a b c d e ',
+])
+@pytest.mark.django_db
+def test_clean_specialchars_whitespace(specialchars):
+    """Tests whitespace is accepted in special characters."""
+    form_data = {
+        'code': 'foo',
+        'fullname': 'Foo',
+        'checkstyle': 'foo',
+        'nplurals': '2',
+        'specialchars': specialchars,
+    }
+    form = LanguageForm(form_data)
+    assert form.is_valid()
+    assert ' ' in form.cleaned_data['specialchars']
