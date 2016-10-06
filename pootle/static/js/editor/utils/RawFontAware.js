@@ -10,7 +10,9 @@ import { CHARACTERS, SYMBOLS, raw2sym, sym2raw } from './font';
 
 const KEY_BACKSPACE = 8;
 const KEY_RIGHT = 39;
+const KEY_LEFT = 37;
 const KEY_DELETE = 46;
+const KEY_LETTER_B = 66;
 const KEY_LETTER_F = 70;
 
 
@@ -93,9 +95,10 @@ export function insertAtCaret(
 
 export class RawFontAware {
 
-  constructor(element, { isRawMode = false } = {}) {
+  constructor(element, { isRawMode = false, isRtlMode = false } = {}) {
     this.element = element;
     this.isRawMode = isRawMode;
+    this.isRtlMode = isRtlMode;
 
     element.addEventListener('input', (e) => this.onInput(e));
     element.addEventListener('keydown', (e) => this.onKeyDown(e));
@@ -136,8 +139,9 @@ export class RawFontAware {
     this.deferTimer = setTimeout(f, 0);
   }
 
-  setMode({ isRawMode = false } = {}) {
+  setMode({ isRawMode = false, isRtlMode = false } = {}) {
     this.isRawMode = isRawMode;
+    this.isRtlMode = isRtlMode;
   }
 
   getValue() {
@@ -192,16 +196,26 @@ export class RawFontAware {
   onKeyDown(e) {
     const { target } = e;
 
-    // On Mac, there's a Control+F alternative to pressing right arrow.
-    // Also avoid triggering the behavior for pressing the end key (Cmd+Right).
-    const moveRight = (
-      (e.keyCode === KEY_RIGHT && !e.metaKey) ||
-      (e.ctrlKey && e.keyCode === KEY_LETTER_F)
-    );
+    // On Mac, there's a Control+B/F alternative to pressing left/right arrow.
+    // Also avoid triggering the behavior for pressing the end key
+    // (Cmd+Right/Left).
+    let moveForward;
+
+    if (this.isRtlMode) {
+      moveForward = (
+        (e.keyCode === KEY_LEFT && !e.metaKey) ||
+        (e.ctrlKey && e.keyCode === KEY_LETTER_B)
+      );
+    } else {
+      moveForward = (
+        (e.keyCode === KEY_RIGHT && !e.metaKey) ||
+        (e.ctrlKey && e.keyCode === KEY_LETTER_F)
+      );
+    }
 
     // Request selection adjustment after the keydown event is processed
     this.defer(() => {
-      this.adjustSelection(moveRight);
+      this.adjustSelection(moveForward);
     });
 
     let start = target.selectionStart;
@@ -290,7 +304,7 @@ export class RawFontAware {
     });
   }
 
-  adjustSelection(moveRight) {
+  adjustSelection(moveForward) {
     const { element } = this;
 
     const start = element.selectionStart;
@@ -312,7 +326,7 @@ export class RawFontAware {
     // If caret is placed between LF symbol and newline, move it one symbol to
     // the right or to the left depending on the keyCode
     if (insideLF) {
-      element.selectionEnd = moveRight ? end + 1 : end - 1;
+      element.selectionEnd = moveForward ? end + 1 : end - 1;
       if (start === end) {
         element.selectionStart = element.selectionEnd;
       }
