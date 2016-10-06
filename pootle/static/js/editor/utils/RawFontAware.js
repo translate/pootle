@@ -28,8 +28,8 @@ function triggerEvent(element, eventName) {
 }
 
 
-function getValue(element, { isRawMode = false } = {}) {
-  return sym2raw(element.value, { isRawMode });
+function getValue(element) {
+  return sym2raw(element.value);
 }
 
 
@@ -43,7 +43,7 @@ export function setValue(
     triggerEvent(element, 'input');
   }
 
-  return getValue(element, { isRawMode });
+  return getValue(element);
 }
 
 
@@ -59,12 +59,12 @@ function update(
   const sBefore = value.substring(0, adjustedStart);
   const sAfter = value.substring(end);
   const sBeforeNormalized = raw2sym(
-    sym2raw(sBefore + valueToInsert, { isRawMode }),
+    sym2raw(sBefore + valueToInsert),
     { isRawMode }
   );
   const offset = sBeforeNormalized.length - sBefore.length - (end - adjustedStart);
   const newValue = raw2sym(
-    sym2raw(sBefore + valueToInsert + sAfter, { isRawMode }),
+    sym2raw(sBefore + valueToInsert + sAfter),
     { isRawMode }
   );
   if (value === newValue) {
@@ -89,7 +89,7 @@ export function insertAtCaret(
   element, value, { isRawMode = false, triggerChange = false } = {}
 ) {
   update(element, value, { isRawMode, triggerChange });
-  return getValue(element, { isRawMode });
+  return getValue(element);
 }
 
 
@@ -181,7 +181,7 @@ export class RawFontAware {
   }
 
   sym2raw(value) {
-    return sym2raw(value, { isRawMode: this.isRawMode });
+    return sym2raw(value);
   }
 
   onMouseDown() {

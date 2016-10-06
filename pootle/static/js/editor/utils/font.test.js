@@ -175,7 +175,7 @@ describe('raw2sym (raw mode)', () => {
   describe('round-tripping', () => {
     tests.forEach((test) => {
       it(`roundtrips ${test.description}`, () => {
-        expect(sym2raw(raw2sym(test.input, { isRawMode: true }), { isRawMode: true }))
+        expect(sym2raw(raw2sym(test.input, { isRawMode: true })))
           .toEqual(test.input);
       });
     });
