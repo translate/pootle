@@ -5,7 +5,7 @@
 -r _docs.txt
 -r _lint.txt
 
-django-debug-toolbar>=1.4
-django-extensions
-glue>=0.2.8.1
-ipython
+django-debug-toolbar==1.6
+django-extensions==1.7.4
+glue==0.11.1
+ipython==5.1.0
