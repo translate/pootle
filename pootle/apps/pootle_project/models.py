@@ -8,6 +8,7 @@
 
 import logging
 import os
+import shutil
 from collections import OrderedDict
 
 from translate.filters import checks
@@ -422,9 +423,17 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         self.directory = Directory.objects.projects \
                                           .get_or_make_subdir(self.code)
 
+        create_fs_directory = (self.treestyle == 'pootle_fs'
+                               and not os.path.exists(self.local_fs_path))
+        if create_fs_directory:
+            os.makedirs(self.local_fs_path)
+
         super(Project, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
+        if os.path.exists(self.local_fs_path):
+            shutil.rmtree(self.local_fs_path)
+
         directory = self.directory
 
         # Just doing a plain delete will collect all related objects in memory
