@@ -144,6 +144,10 @@ export class RawFontAware {
     this.isRtlMode = isRtlMode;
   }
 
+  focus() {
+    this.element.focus();
+  }
+
   getValue() {
     return getValue(this.element);
   }

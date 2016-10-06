@@ -93,6 +93,10 @@ const RawFontTextarea = React.createClass({
     );
   },
 
+  componentDidUpdate() {
+    this.rawFont.focus();
+  },
+
   componentWillUnmount() {
     this.mousetrap.unbind(UNDO_SHORTCUT);
     this.mousetrap.unbind(REDO_SHORTCUT);
