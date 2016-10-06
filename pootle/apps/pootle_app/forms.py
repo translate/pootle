@@ -8,6 +8,7 @@
 
 import re
 import urlparse
+from collections import OrderedDict
 
 from django import forms
 from django.contrib.auth import get_user_model
@@ -39,6 +40,13 @@ class LanguageForm(forms.ModelForm):
             )
 
         return self.cleaned_data["code"]
+
+    def clean_specialchars(self):
+        """Ensures inputted characters are unique."""
+        chars = self.cleaned_data['specialchars']
+        return u''.join(
+            OrderedDict((char, None) for char in list(chars)).keys()
+        )
 
 
 class ProjectForm(forms.ModelForm):

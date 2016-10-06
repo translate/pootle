@@ -32,3 +32,23 @@ def test_clean_specialchars_whitespace(specialchars):
     form = LanguageForm(form_data)
     assert form.is_valid()
     assert ' ' in form.cleaned_data['specialchars']
+
+
+@pytest.mark.parametrize('specialchars, count_char', [
+    (' abcde     ', ' '),
+    (' aaaaaaaaaa', 'a'),
+    ('āéĩøøøøøøü', u'ø'),
+])
+@pytest.mark.django_db
+def test_clean_specialchars_unique(specialchars, count_char):
+    """Tests special characters are unique."""
+    form_data = {
+        'code': 'foo',
+        'fullname': 'Foo',
+        'checkstyle': 'foo',
+        'nplurals': '2',
+        'specialchars': specialchars,
+    }
+    form = LanguageForm(form_data)
+    assert form.is_valid()
+    assert form.cleaned_data['specialchars'].count(count_char) == 1
