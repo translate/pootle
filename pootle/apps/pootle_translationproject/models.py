@@ -506,6 +506,9 @@ def scan_languages(**kwargs):
     if not instance.filetypes.all().exists():
         instance.filetypes.add(Format.objects.get(name="po"))
 
+    if instance.treestyle == 'none':
+        return
+
     for language in Language.objects.iterator():
         tp = create_translation_project(language, instance)
         if tp is not None:
