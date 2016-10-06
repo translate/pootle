@@ -63,3 +63,7 @@ update your translations as follows:
    These files will now contain the latest translations from Pootle users.
 #. Use :ref:`pot2po <toolkit:pot2po>` or similar to update the translations.
 #. Use :djadmin:`update_stores` to push the updated translations to Pootle.
+
+
+A detailed example can be found in :ref:`Updating strings for existing project
+<project_setup#updating-strings>`.
