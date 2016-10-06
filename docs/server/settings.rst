@@ -287,6 +287,17 @@ Configuration settings for applications used by Pootle.
     rejecting suggestions and penalty for the rejected suggestion.
 
 
+.. setting:: POOTLE_FS_WORKING_PATH
+
+``POOTLE_FS_WORKING_PATH``
+  Default: ``working_path('pootle_fs')``
+
+  .. versionadded:: 2.8
+
+  The directory Pootle_fs uses to keep temporary data when handling the
+  projects.
+
+
 60-translation.conf
 ^^^^^^^^^^^^^^^^^^^
 

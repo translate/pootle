@@ -152,6 +152,7 @@ Changes in settings
 - Changed the default value for `ACCOUNT_SESSION_REMEMBER
   <https://django-allauth.readthedocs.io/en/latest/configuration.html>`_ so now
   sessions are always remembered.  
+- Added a new :setting:`POOTLE_FS_WORKING_PATH` setting.
 
 
 Credits
