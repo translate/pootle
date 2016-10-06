@@ -207,14 +207,8 @@ class PootleTestEnv(object):
     def setup_fs(self):
         from pytest_pootle.utils import add_store_fs
 
-        from django.conf import settings
-
         from pootle_project.models import Project
         from pootle_fs.utils import FSPlugin
-
-        settings.POOTLE_FS_WORKING_PATH = os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY, "__fs_working_dir__")
-        os.mkdir(settings.POOTLE_FS_WORKING_PATH)
 
         project = Project.objects.get(code="project0")
         project.config["pootle_fs.fs_type"] = "localfs"
