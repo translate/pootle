@@ -148,6 +148,8 @@ const ProjectForm = React.createClass({
             <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>
             <li><a href={model.getLanguagesUrl()}>{gettext('Languages')}</a></li>
             <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
+         {model.attributes.treestyle === 'pootle_fs' &&
+          <li><a href={model.getFSUrl()}>{gettext('Filesystems')}</a></li>}
           </ul>}
         </div>
       {this.props.onDelete &&
