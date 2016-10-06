@@ -47,7 +47,7 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
     assert "po" in project.filetypes.values_list("name", flat=True)
     assert project.checkstyle == "standard"
     assert project.source_language.code == "en"
-    assert project.treestyle == "none"
+    assert project.treestyle == 'pootle_fs'
 
     assert project.config.get('pootle_fs.fs_type') == 'localfs'
     assert project.config.get('pootle_fs.fs_url') == fs_path

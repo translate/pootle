@@ -38,7 +38,7 @@ def test_sync_stores_project_tree_none(capfd):
     store.file = store.name
     store.state = PARSED
     store.save()
-    project.treestyle = "none"
+    project.treestyle = 'pootle_fs'
     project.save()
     capfd.readouterr()
     call_command("sync_stores", "--project", project.code, "--force", "--overwrite")

@@ -315,7 +315,7 @@ def test_project_create_with_none_treestyle(english, templates, settings):
         code="foo",
         fullname="bar",
         source_language=english,
-        treestyle="none")
+        treestyle='pootle_fs')
     assert not os.path.exists(
         os.path.join(
             settings.POOTLE_TRANSLATION_DIRECTORY,

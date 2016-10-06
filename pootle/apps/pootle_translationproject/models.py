@@ -267,7 +267,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                                       .get_or_make_subdir(self.project.code)
         self.pootle_path = self.directory.pootle_path
 
-        if self.project.treestyle != "none":
+        if self.project.treestyle != 'pootle_fs':
             from pootle_app.project_tree import get_translation_project_dir
             self.abs_real_path = get_translation_project_dir(
                 self.language, self.project, self.file_style, make_dirs=not
@@ -506,7 +506,7 @@ def scan_languages(**kwargs):
     if not instance.filetypes.all().exists():
         instance.filetypes.add(Format.objects.get(name="po"))
 
-    if instance.treestyle == 'none':
+    if instance.treestyle == 'pootle_fs':
         return
 
     for language in Language.objects.iterator():

@@ -216,7 +216,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         ('auto', _('Automatic detection of gnu/non-gnu file layouts (slower)')),
         ('gnu', _('GNU style: files named by language code')),
         ('nongnu', _('Non-GNU: Each language in its own directory')),
-        ('none', _('Allow pootle_fs to manage filesystems')),
+        ('pootle_fs', _('Allow pootle_fs to manage filesystems')),
     )
     treestyle = models.CharField(max_length=20, default='auto',
                                  choices=treestyle_choices,
@@ -414,7 +414,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         self.full_clean()
 
         requires_translation_directory = (
-            self.treestyle != "none"
+            self.treestyle != 'pootle_fs'
             and not self.disabled
             and not self.directory_exists_on_disk())
         if requires_translation_directory:

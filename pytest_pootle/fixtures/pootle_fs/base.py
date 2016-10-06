@@ -36,7 +36,7 @@ def project_fs_empty(english, tmpdir, settings):
     project = ProjectDBFactory(
         source_language=english,
         code="project_fs_empty",
-        treestyle="none")
+        treestyle='pootle_fs')
     settings.POOTLE_FS_PATH = str(tmpdir)
     repo_path = os.path.join(str(tmpdir), "__src__")
     if not os.path.exists(repo_path):

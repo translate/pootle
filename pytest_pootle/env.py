@@ -297,7 +297,7 @@ class PootleTestEnv(object):
             # add 2 projects
             project = ProjectDBFactory(
                 source_language=source_language,
-                treestyle="none")
+                treestyle='pootle_fs')
             project.filetypes.add(po)
 
     def setup_terminology(self):

@@ -42,7 +42,7 @@ class Command(PootleCommand):
         """
         :return: flag if child stores should be updated
         """
-        if translation_project.project.treestyle == "none":
+        if translation_project.project.treestyle == 'pootle_fs':
             return
         if translation_project.directory_exists_on_disk():
             translation_project.update_from_disk(

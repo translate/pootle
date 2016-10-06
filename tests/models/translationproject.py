@@ -165,7 +165,7 @@ def test_tp_checker(po_directory, tp_checker_tests):
 def test_tp_create_with_none_treestyle(po_directory, english, templates, settings):
     project = ProjectDBFactory(
         source_language=english,
-        treestyle="none")
+        treestyle='pootle_fs')
     language = LanguageDBFactory()
     TranslationProjectFactory(
         language=templates, project=project)
