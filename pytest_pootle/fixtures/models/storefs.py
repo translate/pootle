@@ -23,14 +23,14 @@ TRANSLATION_PATHS = OrderedDict(
 
 
 @pytest.fixture
-def pootle_fs_path(settings, tmpdir):
-    settings.POOTLE_FS_PATH = str(tmpdir)
+def pootle_fs_working_path(settings, tmpdir):
+    settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     return str(tmpdir)
 
 
 @pytest.fixture
-def fs_src(pootle_fs_path):
-    src_path = os.path.join(pootle_fs_path, "__src__")
+def fs_src(pootle_fs_working_path):
+    src_path = os.path.join(pootle_fs_working_path, "__src__")
     os.mkdir(src_path)
     return src_path
 

@@ -21,7 +21,7 @@ def project_fs(tmpdir, settings):
     project.config["pootle_fs.fs_url"] = new_url
     plugin = FSPlugin(project)
     os.makedirs(new_url)
-    settings.POOTLE_FS_PATH = str(tmpdir)
+    settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     return plugin
 
 
@@ -37,7 +37,7 @@ def project_fs_empty(english, tmpdir, settings):
         source_language=english,
         code="project_fs_empty",
         treestyle='pootle_fs')
-    settings.POOTLE_FS_PATH = str(tmpdir)
+    settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     repo_path = os.path.join(str(tmpdir), "__src__")
     if not os.path.exists(repo_path):
         os.mkdir(repo_path)

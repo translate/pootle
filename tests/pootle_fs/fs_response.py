@@ -136,8 +136,8 @@ def _test_fs_response(expected=2, **kwargs):
 
 @pytest.mark.django_db
 def test_fs_response_path_items(settings, tmpdir):
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_response_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir),
+                                                   "fs_response_test")
     project = Project.objects.get(code="project0")
     fs_untracked = []
     for i in range(0, 2):
@@ -152,8 +152,8 @@ def test_fs_response_path_items(settings, tmpdir):
 
 @pytest.mark.django_db
 def test_fs_response_store_items(settings, tmpdir):
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_response_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir),
+                                                   "fs_response_test")
     project = Project.objects.get(code="project0")
 
     pootle_untracked = []
@@ -170,8 +170,8 @@ def test_fs_response_store_items(settings, tmpdir):
 
 @pytest.mark.django_db
 def test_fs_response_store_fs_items(settings, tmpdir):
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_response_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir),
+                                                   "fs_response_test")
     project = Project.objects.get(code="project0")
     fs_ahead = []
     for i in range(0, 2):
@@ -189,8 +189,8 @@ def test_fs_response_store_fs_items(settings, tmpdir):
 
 @pytest.mark.django_db
 def test_fs_response_store_fs_no_store_items(settings, tmpdir):
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_response_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir),
+                                                   "fs_response_test")
     project = Project.objects.get(code="project0")
     fs_staged = []
     for i in range(0, 2):

@@ -31,10 +31,8 @@ def test_wrap_store_fs_bad(settings, tmpdir):
 
 @pytest.mark.django_db
 def test_wrap_store_fs(settings, tmpdir):
-    """Add a store_fs for a store that doesnt exist yet
-    """
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_file_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    """Add a store_fs for a store that doesnt exist yet"""
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
     project = Project.objects.get(code="project0")
     pootle_path = "/language0/%s/example.po" % project.code
     fs_path = "/some/fs/example.po"
@@ -45,7 +43,7 @@ def test_wrap_store_fs(settings, tmpdir):
     assert (
         fs_file.file_path
         == os.path.join(
-            pootle_fs_path, project.code,
+            settings.POOTLE_FS_WORKING_PATH, project.code,
             store_fs.path.strip("/")))
     assert fs_file.file_exists is False
     assert fs_file.latest_hash is None
@@ -72,8 +70,7 @@ def test_wrap_store_fs(settings, tmpdir):
 
 @pytest.mark.django_db
 def test_wrap_store_fs_with_store(settings, tmpdir, tp0_store):
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_file_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
     fs_path = "/some/fs/example.po"
     store_fs = StoreFS.objects.create(
         path=fs_path,
@@ -83,7 +80,7 @@ def test_wrap_store_fs_with_store(settings, tmpdir, tp0_store):
     assert (
         fs_file.file_path
         == os.path.join(
-            pootle_fs_path, project.code,
+            settings.POOTLE_FS_WORKING_PATH, project.code,
             store_fs.path.strip("/")))
     assert fs_file.file_exists is False
     assert fs_file.latest_hash is None
@@ -99,8 +96,7 @@ def test_wrap_store_fs_with_store(settings, tmpdir, tp0_store):
 
 @pytest.mark.django_db
 def test_wrap_store_fs_with_file(settings, tmpdir, tp0_store, test_fs):
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_file_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
     project = Project.objects.get(code="project0")
     pootle_path = "/language0/%s/example.po" % project.code
     fs_path = "/some/fs/example.po"

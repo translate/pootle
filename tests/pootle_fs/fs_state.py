@@ -47,7 +47,7 @@ def _test_state(plugin, pootle_path, fs_path, state_type, paths=None):
 
 @pytest.mark.django_db
 def test_fs_state_instance(settings, english):
-    settings.POOTLE_FS_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
     project = ProjectDBFactory(source_language=english)
     plugin = DummyPlugin(project)
     state = ProjectFSState(plugin)

@@ -93,7 +93,7 @@ def dummyfs(settings, no_fs_plugins, no_fs_files):
         return FSFile
 
     project = Project.objects.get(code="project0")
-    settings.POOTLE_FS_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
     project.config["pootle_fs.fs_type"] = "dummyfs"
     return FSPlugin(project)
 
@@ -136,7 +136,7 @@ def dummyfs_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
         return FSChangedFile
 
     project = Project.objects.get(code="project0")
-    settings.POOTLE_FS_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
     project.config["pootle_fs.fs_type"] = "dummyfs"
     return FSPlugin(project)
 
@@ -151,7 +151,7 @@ def dummyfs_plugin_no_stores(settings, no_complex_po_,
     from pootle_project.models import Project
     from pootle_store.models import Store
 
-    settings.POOTLE_FS_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.fs_type"] = "dummyfs"
     stores = Store.objects.filter(
@@ -202,7 +202,7 @@ def dummyfs_plugin_no_files(settings, no_complex_po_,
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
 
-    settings.POOTLE_FS_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
 
     class NoFilesDummyPlugin(DummyPlugin):
 

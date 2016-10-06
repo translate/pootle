@@ -17,8 +17,7 @@ def store_fs_file(settings, tmpdir, test_fs):
     from pootle_fs.models import StoreFS
     from pootle_project.models import Project
 
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_file_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
     project = Project.objects.get(code="project0")
     pootle_path = "/language0/%s/example.po" % project.code
     fs_path = "/some/fs/example.po"
@@ -39,8 +38,7 @@ def store_fs_file_store(settings, tmpdir, tp0_store, test_fs):
     from pootle_fs.files import FSFile
     from pootle_fs.models import StoreFS
 
-    pootle_fs_path = os.path.join(str(tmpdir), "fs_file_test")
-    settings.POOTLE_FS_PATH = pootle_fs_path
+    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
     fs_path = "/some/fs/example.po"
     store_fs = StoreFS.objects.create(
         path=fs_path,

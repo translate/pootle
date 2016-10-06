@@ -25,7 +25,7 @@ def test_init_fs_project_cmd_bad_lang(capsys):
 
 @pytest.mark.django_db
 def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
-    settings.POOTLE_FS_PATH = str(tmpdir)
+    settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
     tr_path = "<language_code>/<filename>.<ext>"
     call_command(
@@ -60,7 +60,7 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
 
 @pytest.mark.django_db
 def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir):
-    settings.POOTLE_FS_PATH = str(tmpdir)
+    settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
     tr_path = "<language_code>/<filename>.<ext>"
     call_command("init_fs_project", "foo", fs_path, tr_path)

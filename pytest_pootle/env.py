@@ -212,9 +212,9 @@ class PootleTestEnv(object):
         from pootle_project.models import Project
         from pootle_fs.utils import FSPlugin
 
-        settings.POOTLE_FS_PATH = os.path.join(
+        settings.POOTLE_FS_WORKING_PATH = os.path.join(
             settings.POOTLE_TRANSLATION_DIRECTORY, "__fs_working_dir__")
-        os.mkdir(settings.POOTLE_FS_PATH)
+        os.mkdir(settings.POOTLE_FS_WORKING_PATH)
 
         project = Project.objects.get(code="project0")
         project.config["pootle_fs.fs_type"] = "localfs"
