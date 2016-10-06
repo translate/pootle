@@ -75,6 +75,22 @@ describe('raw2sym (regular mode)', () => {
     },
 
     {
+      description: 'whitespace before punctuation (!)',
+      input: 'foo ! Bar',
+      expected: `foo${SYMBOLS.SPACE}! Bar`,
+    },
+    {
+      description: 'whitespace before punctuation (?)',
+      input: 'foo ? Bar',
+      expected: `foo${SYMBOLS.SPACE}? Bar`,
+    },
+    {
+      description: 'whitespace before punctuation (:)',
+      input: 'foo : Bar',
+      expected: `foo${SYMBOLS.SPACE}: Bar`,
+    },
+
+    {
       description: 'new line at end of line',
       input: `one${CHARACTERS.LF}`,
       expected: `one${SYMBOLS.LF}${CHARACTERS.LF}`,

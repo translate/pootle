@@ -197,6 +197,8 @@ export function raw2sym(value, { isRawMode = false } = {}) {
   newValue = newValue.replace(/ [\t\u00A0]/g, surroundingSpaceReplacer);
   // space after TAB or NBSP
   newValue = newValue.replace(/[\t\u00A0] /g, surroundingSpaceReplacer);
+  // space before punctuation
+  newValue = newValue.replace(/ [:!?]/g, surroundingSpaceReplacer);
   // single leading document space
   newValue = newValue.replace(/^ /, spaceReplacer);
   // single trailing document space
