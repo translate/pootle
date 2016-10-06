@@ -259,7 +259,7 @@ setup(
         "Topic :: Text Processing :: Linguistic"
     ],
     zip_safe=False,
-    packages=find_packages(exclude=['deploy*']),
+    packages=find_packages(),
     include_package_data=True,
 
     entry_points={
