@@ -83,8 +83,9 @@ const RawFontTextarea = React.createClass({
     // If this implementation ever becomes a measured cause of slowness and the
     // undo/redo stack also grows, consider using immutable data structures.
     return (
-      !_.isEqual(this.state.done, nextState.done) &&
-      !_.isEqual(this.state.undone, nextState.undone)
+      this.isRawMode !== nextProps.isRawMode ||
+      (!_.isEqual(this.state.done, nextState.done) &&
+       !_.isEqual(this.state.undone, nextState.undone))
     );
   },
 
