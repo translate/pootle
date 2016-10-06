@@ -137,7 +137,6 @@ const SYM_FULL = Object.keys(_.invert(FULL_MAP)).join('');
 
 
 const RE_RAW_BASE = new RegExp(`[${RAW_BASE}]`, 'g');
-const RE_SYM_BASE = new RegExp(`[${SYM_BASE}]`, 'g');
 
 const RE_RAW_FULL = new RegExp(`[${RAW_FULL}]`, 'g');
 const RE_SYM_FULL = new RegExp(`[${SYM_FULL}]`, 'g');
@@ -171,11 +170,6 @@ function mapSymbol(symbol, source, target) {
 
 function replaceFullSymbol(match) {
   return mapSymbol(match, SYM_FULL, RAW_FULL);
-}
-
-
-function replaceBaseSymbol(match) {
-  return mapSymbol(match, SYM_BASE, RAW_BASE);
 }
 
 
@@ -218,7 +212,7 @@ export function raw2sym(value, { isRawMode = false } = {}) {
 }
 
 
-export function sym2raw(value, { isRawMode = false } = {}) {
+export function sym2raw(value) {
   // LF + newlines to regular newlines
   let newValue = value.replace(/\u240A\n/g, CHARACTERS.LF);
   // orphaned LF to newlines as well
@@ -226,9 +220,7 @@ export function sym2raw(value, { isRawMode = false } = {}) {
   // space dots to regular spaces
   newValue = newValue.replace(/\u2420/g, CHARACTERS.SPACE);
   // other symbols
-  newValue = isRawMode ?
-    newValue.replace(RE_SYM_FULL, replaceFullSymbol) :
-    newValue.replace(RE_SYM_BASE, replaceBaseSymbol);
+  newValue = newValue.replace(RE_SYM_FULL, replaceFullSymbol);
 
   return newValue;
 }
