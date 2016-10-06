@@ -8,4 +8,4 @@ mysqlclient>=1.3.3
 # psycopg2>=2.4.5
 
 # Logging
-raven
+raven>=5.27.0
