@@ -143,25 +143,6 @@ INSTALLED_APPS += ['django_extensions']
 
 
 #
-# Django debug toolbar
-#
-# Check its README for further configuration options:
-# https://github.com/django-debug-toolbar/django-debug-toolbar/blob/master/README.rst
-INSTALLED_APPS += ['debug_toolbar']
-
-MIDDLEWARE_CLASSES += [
-  'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
-
-DEBUG_TOOLBAR_CONFIG = {
-    # Toolbar options
-    'SHOW_COLLAPSED': True,
-    # Panel options
-    'INTERCEPT_REDIRECTS': False,
-}
-
-
-#
 # Translation
 #
 
