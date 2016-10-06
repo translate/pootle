@@ -893,6 +893,267 @@ and the process will start a watchdog to track any client-side scripts for
 changes. Use this only when developing Pootle.
 
 
+.. _commands#pootle-fs:
+
+Pootle FS
+---------
+
+
+.. django-admin:: fs
+
+fs
+^^
+
+To interact with Pootle FS we use multiple subcommands:
+
+* Admin:
+
+  * :djadmin:`info` - Display filesystem info
+  * :djadmin:`state` - Show current state
+
+* Action:
+
+  * :djadmin:`fetch` - Add a file from the filesystem to Pootle
+  * :djadmin:`add` - Add a store from Pootle to the filesystem
+  * :djadmin:`merge` - Handle conflicts in stores and files
+  * :djadmin:`rm` - Remove a store and file from both Pootle and the filesystem
+  * :djadmin:`unstage` - Revert a staged action
+
+* Execute:
+
+  * :djadmin:`sync` - Execute staged actions
+
+
+.. note:: The **action** staging commands require that you run
+   :djadmin:sync in order to actually perform the staged actions.
+
+
+.. _commands#pootle-fs-common-options:
+
+Common options
+^^^^^^^^^^^^^^
+
+Pootle FS **action** and **execution** subcommands take the :option:`-p` and
+:option:`-P` options which allow you to specify a glob to limit which files or
+stores are affected by the command.
+
+.. django-admin-option:: -p --fs_path
+
+  Only affect files whose filesystem path matches a given glob. 
+  
+
+  .. code-block:: console
+
+     (env) $ pootle fs add --fs_path MYPROJECT/af/directory/file.po MYPROJECT
+
+
+  .. note:: The path should be relative to the Pootle FS URL setting for the
+     project.
+
+
+.. django-admin-option:: -P --pootle_path
+
+  Only affect files whose Pootle path matches a given glob.
+
+  .. code-block:: console
+
+     (env) $ pootle fs add --pootle_path /af/MYPROJECT/directory/file.po MYPROJECT
+
+
+  .. note:: Keep in mind that Pootle paths always start with `/`.
+
+
+.. _commands#pootle-fs-subcommands:
+
+Pootle FS subcommands
+^^^^^^^^^^^^^^^^^^^^^
+
+
+.. django-admin:: add
+
+fs add
+++++++
+
+.. versionadded:: 2.8.0
+
+
+Stage for adding any new or changed stores from Pootle to the filesystem:
+
+.. code-block:: console
+
+   (env) $ pootle fs add MYPROJECT
+
+
+This command is the functional opposite of the :djadmin:`fetch` command.
+
+.. django-admin-option:: --force
+
+  Conflicting files on the filesystem will be staged to be overwritten by the
+  Pootle store.
+
+  .. code-block:: console
+
+     (env) $ pootle fs add --force MYPROJECT
+
+
+.. django-admin:: fetch
+
+fs fetch
+++++++++
+
+.. versionadded:: 2.8.0
+
+
+Stage for fetching any new or changed files from the filesystem to Pootle:
+
+.. code-block:: console
+
+   (env) $ pootle fs fetch MYPROJECT
+
+
+This command is the functional opposite of the :djadmin:`add` command.
+
+.. django-admin-option:: --force
+
+  Conflicting stores in Pootle to be overwritten with the filesystem file.
+
+  .. code-block:: console
+
+     (env) $ pootle fs fetch --force MYPROJECT
+
+
+.. django-admin:: info
+
+fs info
++++++++
+
+.. versionadded:: 2.8.0
+
+Retrieve the filesystem info for a project.
+
+.. code-block:: console
+
+   (env) $ pootle fs info MYPROJECT
+
+
+.. django-admin:: merge
+
+fs merge
+++++++++
+
+.. versionadded:: 2.8.0
+
+Stage for merging any stores/files that have either been:
+
+1. Independently added both on the filesystem and on Pootle, or
+2. That have been updated both in Pootle and filesystem.
+
+When merging, if there are conflicts in any specific translation unit the
+default behavior is to keep the filesystem version and convert the Pootle
+version into a suggestion.
+
+Suggestions can then we reviewed by translators to ensure any corrections are
+correctly incorporated.
+
+When there are no conflicts in unit :djadmin:`merge` will handle the merge
+without user input:
+
+.. code-block:: console
+
+   (env) $ pootle fs merge MYPROJECT
+
+
+.. django-admin-option:: --pootle-wins
+
+  Alter the default conflict resolution of filesystem winning to instead use
+  the Pootle version as the correct translation and converting the filesystem
+  version into a suggestion.
+
+  .. code-block:: console
+
+    (env) $ pootle fs merge --pootle-wins MYPROJECT
+
+
+.. django-admin:: rm
+
+fs rm
++++++
+
+.. versionadded:: 2.8.0
+
+Remove any matched:
+
+- Store that do not have a corresponding file in filesystem.
+- File that do not have a corresponding store in Pootle.
+
+.. code-block:: console
+
+   (env) $ pootle fs rm MYPROJECT
+
+
+.. django-admin-option:: --force
+
+  Stage for removal conflicting/untracked files and/or stores.
+
+  .. code-block:: console
+
+    (env) $ pootle fs rm --force MYPROJECT
+
+
+.. django-admin:: state
+
+fs state
+++++++++
+
+.. versionadded:: 2.8.0
+
+List the status of stores in Pootle and files on the filesystem.
+
+.. code-block:: console
+
+   (env) $ pootle fs state MYPROJECT
+
+
+.. django-admin-option:: -t --type
+
+  Restrict to specified :ref:`Pootle FS status <pootle_fs_statuses>`.
+
+  .. code-block:: console
+
+     (env) $ pootle fs state -t pootle_staged MYPROJECT
+
+
+.. django-admin:: sync
+
+fs sync
++++++++
+
+.. versionadded:: 2.8.0
+
+Commit any staged changes, effectively synchronizing the filesystem and Pootle.
+This command is run after other Pootle FS commands have been used to stage
+changes.
+
+.. code-block:: console
+
+   (env) $ pootle fs sync MYPROJECT
+
+
+.. django-admin:: unstage
+
+fs unstage
+++++++++++
+
+.. versionadded:: 2.8.0
+
+Unstage any staged Pootle FS actions. This allows you to remove any staged
+actions which you might have added erroneously.
+
+.. code-block:: console
+
+   (env) $ pootle fs unstage MYPROJECT
+
+
 .. _commands#user-management:
 
 Managing users
