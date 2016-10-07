@@ -413,7 +413,7 @@ class RelatedStoresDataTool(DataTool):
         """
         return child[self.group_by[0]]
 
-    def get_stats(self, include_children=True, user=None):
+    def get_stats(self, include_children=True, aggregate=True, user=None):
         """Get stats for an object. If include_children is set it will
         also return stats for each of the immediate descendants.
         """
@@ -423,7 +423,8 @@ class RelatedStoresDataTool(DataTool):
                 self.all_children_stats
                 if self.show_all_to(user)
                 else self.children_stats)
-            self.aggregate_children(stats)
+            if aggregate:
+                self.aggregate_children(stats)
         else:
             stats = (
                 self.all_object_stats
