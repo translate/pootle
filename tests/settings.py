@@ -113,10 +113,3 @@ try:
         INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
 except NameError:
     INSTALLED_APPS = ["pootle_fs"]
-
-
-try:
-    if "debug_toolbar" in INSTALLED_APPS:
-        INSTALLED_APPS.remove("debug_toolbar")
-except NameError:
-    pass
