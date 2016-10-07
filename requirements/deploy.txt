@@ -3,9 +3,10 @@
 -r base.txt
 
 # Database
-mysqlclient>=1.3.3
+# MySQL
+-r _db_mysql.txt
 # Uncomment for PostgreSQL
-# psycopg2>=2.4.5
+# -r _db_postgresql.txt
 
 # Logging
 raven>=5.27.0

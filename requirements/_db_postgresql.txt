@@ -1,0 +1,4 @@
+# PostgreSQL Database
+
+# https://docs.djangoproject.com/en/1.9/ref/databases/#postgresql-notes
+psycopg2>=2.4.5,<=2.6.2
