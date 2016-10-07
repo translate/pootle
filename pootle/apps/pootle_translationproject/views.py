@@ -17,7 +17,7 @@ from django.utils.lru_cache import lru_cache
 
 from import_export.views import handle_upload_form
 from pootle.core.browser import (
-    get_parent, get_table_headings, make_directory_item, make_store_item)
+    get_parent, make_directory_item, make_store_item)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import (
@@ -266,18 +266,22 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def items(self):
+        dirs_with_vfolders = []
         if 'virtualfolder' in settings.INSTALLED_APPS:
-            from virtualfolder.helpers import vftis_for_child_dirs
+            stores = self.tp.stores.filter(
+                pootle_path__startswith=self.object.pootle_path)
+            vf_stores = stores.filter(
+                vfolders__isnull=False).exclude(parent=self.object)
             dirs_with_vfolders = set(
-                vftis_for_child_dirs(self.object).values_list(
-                    "directory__pk", flat=True))
-        else:
-            dirs_with_vfolders = []
+                path.replace(self.object.pootle_path, "").split("/")[0]
+                for path
+                in vf_stores.values_list(
+                    "pootle_path", flat=True))
         directories = [
             make_directory_item(
                 child,
                 **(dict(sort="priority")
-                   if child.pk in dirs_with_vfolders
+                   if child.name in dirs_with_vfolders
                    else {}))
             for child in self.object.children
             if isinstance(child, Directory)]
@@ -292,59 +296,27 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
         return self.object.has_vfolders
 
     @cached_property
-    def vfolders(self):
-        from virtualfolder.helpers import make_vfolder_treeitem_dict
-        vftis = self.object.vf_treeitems
-        if not self.has_admin_access:
-            vftis = vftis.filter(vfolder__is_public=True)
-        return [
-            make_vfolder_treeitem_dict(vfolder_treeitem)
-            for vfolder_treeitem
-            in vftis.order_by('-vfolder__priority').select_related("vfolder")
-            if (self.has_admin_access
-                or vfolder_treeitem.is_visible)]
-
-    @cached_property
-    def vfolder_data(self):
-        ctx = {}
+    def vfolders_view(self):
         if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return {}
-        if len(self.vfolders) > 0:
-            table_fields = [
-                'name', 'priority', 'progress', 'total',
-                'need-translation', 'suggestions', 'critical',
-                'last-updated', 'activity']
-            ctx.update({
-                'vfolders': {
-                    'id': 'vfolders',
-                    'fields': table_fields,
-                    'headings': get_table_headings(table_fields),
-                    'items': self.vfolders}})
-        return ctx
+            return
+        from virtualfolder.delegate import vfolders_data_view
 
-    @cached_property
-    def vfolder_stats(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return {}
-        stats = {"vfolders": {}}
-        for vfolder_treeitem in self.vfolders or []:
-            stats['vfolders'][
-                vfolder_treeitem['code']] = vfolder_treeitem["stats"]
-            del vfolder_treeitem["stats"]
-        return stats
+        return vfolders_data_view.get(self.object.__class__)(
+            self.object, self.request.user)
 
     @cached_property
     def stats(self):
-        stats = self.vfolder_stats
-        if stats and stats["vfolders"]:
-            stats.update(self.object.get_stats())
-        else:
-            stats = self.object.get_stats()
+        stats = (
+            {}
+            if not self.vfolders_view
+            else self.vfolders_view.stats)
+        stats.update(self.object.data_tool.get_stats(user=self.request.user))
         return stats
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
-        ctx.update(self.vfolder_data)
+        if self.vfolders_view:
+            ctx.update(self.vfolders_view.table_data)
         return ctx
 
 
