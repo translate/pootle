@@ -4,13 +4,13 @@
 -r _docs.txt
 -r _lint.txt
 
-tox>=2.3.1
+tox==2.3.1
 
 # Databases
 -r _db_mysql.txt
 -r _db_postgresql.txt
 
 # Test coverage
-codecov>=2.0.5
-coverage>=4.2
-coveralls>=1.1
+codecov==2.0.5
+coverage==4.2
+coveralls==1.1
