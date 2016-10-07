@@ -12,17 +12,40 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils.functional import cached_property
 
+from pootle.core.browser import get_table_headings
 from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse
-from pootle.core.url_helpers import get_path_parts
+from pootle.core.url_helpers import get_path_parts, split_pootle_path
 from pootle.i18n.gettext import ugettext as _
 from pootle_misc.util import ajax_required
 from pootle_store.forms import UnitSearchForm
 from pootle_store.unit.results import GroupedResults
 from pootle_translationproject.views import TPTranslateView
 
+from .delegate import vfolders_data_tool
 from .models import VirtualFolder
+
+
+def make_vfolder_dict(context, vf, stats):
+    lang_code, proj_code = split_pootle_path(context.pootle_path)[:2]
+    base_url = reverse(
+        "pootle-vfolder-tp-translate",
+        kwargs=dict(
+            vfolder_name=vf,
+            language_code=lang_code,
+            project_code=proj_code))
+    return {
+        'href_all': base_url,
+        'href_todo': "%s#filter=incomplete" % base_url,
+        'href_sugg': "%s#filter=suggestions" % base_url,
+        'href_critical': "%s#filter=checks&category=critical" % base_url,
+        'title': stats["title"],
+        'code': vf,
+        'priority': stats.get("priority"),
+        'is_grayed': not stats["isVisible"],
+        'stats': stats,
+        'icon': 'vfolder'}
 
 
 class VFolderTPTranslateView(TPTranslateView):
@@ -90,3 +113,48 @@ def get_vfolder_units(request, **kwargs):
          'end': end,
          'total': total,
          'unitGroups': GroupedResults(units_qs).data})
+
+
+class VFoldersDataView(object):
+
+    def __init__(self, context, user):
+        self.context = context
+        self.user = user
+
+    @property
+    def vfolder_data_tool(self):
+        return vfolders_data_tool.get(self.context.__class__)(self.context)
+
+    @property
+    def table_fields(self):
+        return [
+            'name', 'priority', 'progress', 'total',
+            'need-translation', 'suggestions', 'critical',
+            'last-updated', 'activity']
+
+    @cached_property
+    def table_data(self):
+        ctx = {}
+        if len(self.all_stats) > 0:
+            ctx.update({
+                'vfolders': {
+                    'id': 'vfolders',
+                    'fields': self.table_fields,
+                    'headings': get_table_headings(self.table_fields),
+                    'items': self.table_items}})
+        return ctx
+
+    @cached_property
+    def all_stats(self):
+        return self.vfolder_data_tool.get_stats(user=self.user)
+
+    @cached_property
+    def stats(self):
+        return dict(vfolders=self.all_stats)
+
+    @property
+    def table_items(self):
+        return [
+            make_vfolder_dict(self.context, *vf)
+            for vf
+            in self.all_stats.items()]
