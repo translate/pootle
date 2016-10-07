@@ -32,8 +32,8 @@ from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
-from virtualfolder.helpers import (
-    make_vfolder_treeitem_dict, vftis_for_child_dirs)
+from virtualfolder.delegate import vfolders_data_view
+from virtualfolder.helpers import vftis_for_child_dirs
 from virtualfolder.models import VirtualFolder
 
 
@@ -65,23 +65,12 @@ def _test_browse_view(tp, request, response, kwargs):
         vftis = obj.vf_treeitems.select_related("vfolder")
         if not ctx["has_admin_access"]:
             vftis = vftis.filter(vfolder__is_public=True)
-        vfolders = [
-            make_vfolder_treeitem_dict(vfolder_treeitem)
-            for vfolder_treeitem
-            in vftis.order_by('-vfolder__priority')
-            if (ctx["has_admin_access"]
-                or vfolder_treeitem.is_visible)]
-        stats = {"vfolders": {}}
-        for vfolder_treeitem in vfolders or []:
-            stats['vfolders'][
-                vfolder_treeitem['code']] = vfolder_treeitem["stats"]
-            del vfolder_treeitem["stats"]
-        if stats["vfolders"]:
-            stats.update(obj.get_stats())
-        else:
-            stats = obj.get_stats()
+        vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
+        stats = vf_view.stats
+        vfolders = stats["vfolders"]
+        stats.update(obj.data_tool.get_stats(user=request.user))
     else:
-        stats = obj.get_stats()
+        stats = obj.data_tool.get_stats(user=request.user)
         vfolders = None
 
     filters = {}
@@ -152,9 +141,7 @@ def _test_browse_view(tp, request, response, kwargs):
     if vfolders:
         for vfolder in ctx["vfolders"]["items"]:
             assert (vfolder["is_grayed"] and not ctx["has_admin_access"]) is False
-        assert (
-            ctx["vfolders"]["items"]
-            == vfolders)
+        assert ctx["vfolders"]["items"] == vf_view.table_items
 
     assert (('display_download' in ctx and ctx['display_download']) ==
             (request.user.is_authenticated()

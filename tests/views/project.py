@@ -151,7 +151,7 @@ def _test_browse_view(project, request, response, kwargs):
         table=table,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        stats=obj.get_stats(),
+        stats=obj.data_tool.get_stats(user=request.user),
     )
     sidebar = get_sidebar_announcements_context(
         request, (project, ))
@@ -254,7 +254,7 @@ def test_view_projects_browse(client, request_users):
         object=obj,
         table=table,
         browser_extends="projects/all/base.html",
-        stats=obj.get_stats(),
+        stats=obj.data_tool.get_stats(user=request.user),
         checks=get_qualitycheck_list(obj),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),

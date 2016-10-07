@@ -69,7 +69,7 @@ def _test_browse_view(language, request, response, kwargs):
         translation_states=get_translation_states(language),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        stats=language.get_stats_for_user(request.user),
+        stats=language.data_tool.get_stats(user=request.user)
     )
     sidebar = get_sidebar_announcements_context(
         request, (language, ))

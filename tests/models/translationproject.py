@@ -109,7 +109,7 @@ def test_tp_empty_stats(project0_nongnu, project0, templates):
     assert list(tp.stores.all()) == []
 
     # Check if zero stats is calculated and available.
-    stats = tp.get_stats()
+    stats = tp.data_tool.get_stats()
     assert stats['total'] == 0
     assert stats['translated'] == 0
     assert stats['fuzzy'] == 0
@@ -125,7 +125,7 @@ def test_tp_stats_created_from_template(po_directory, tutorial, templates):
     tp.init_from_templates()
 
     assert tp.stores.all().count() == 1
-    stats = tp.get_stats()
+    stats = tp.data_tool.get_stats()
     assert stats['total'] == 2  # there are 2 words in test template
     assert stats['translated'] == 0
     assert stats['fuzzy'] == 0
