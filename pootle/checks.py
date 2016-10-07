@@ -430,11 +430,16 @@ def check_email_server_is_alive(app_configs=None, **kwargs):
 
 @checks.register('data')
 def check_revision(app_configs=None, **kwargs):
+    from redis.exceptions import ConnectionError
+
     from pootle.core.models import Revision
     from pootle_store.models import Unit
 
     errors = []
-    revision = Revision.get()
+    try:
+        revision = Revision.get()
+    except (ConnectionError):
+        return errors
     try:
         max_revision = Unit.max_revision()
     except (OperationalError, ProgrammingError):
