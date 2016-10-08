@@ -132,6 +132,7 @@ Command changes and additions
 - :djadmin:`config` was added to get, set, list, append and clear configuration
   settings.
 - :djadmin:`init_fs_project` was added.
+- Removed ``refresh_stats`` and ``clear_stats`` commands.
 
 
 Changes in settings

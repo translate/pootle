@@ -37,18 +37,18 @@ repeated to indicate multiple languages or projects. If you use both options
 together it will only match the files that match both languages and projects
 selected.
 
-For example, to *refresh_stats* for the tutorial project only, run:
+For example, to *calculate_checks* for the tutorial project only, run:
 
 .. code-block:: console
 
-    $ pootle refresh_stats --project=tutorial
+    $ pootle calculate_checks --project=tutorial
 
-To only refresh a the Zulu and Basque language files within the tutorial
+To only calculate the Zulu and Basque language files within the tutorial
 project, run:
 
 .. code-block:: console
 
-    $ pootle refresh_stats --project=tutorial --language=zu --language=eu
+    $ pootle calculate_checks --project=tutorial --language=zu --language=eu
 
 
 Running commands with --no-rq option
@@ -66,12 +66,12 @@ This can be useful for running pootle commands in bash scripts or automating
 installation/upgrade/migration. It can also be useful for debugging otherwise
 asynchronous jobs.
 
-For example, to run :djadmin:`refresh_stats` in the command process and wait
+For example, to run :djadmin:`calculate_checks` in the command process and wait
 for the process to terminate:
 
 .. code-block:: console
 
-    $ pootle refresh_stats --no-rq
+    $ pootle calculate_checks --no-rq
 
 It is *not* generally safe to run commands in this mode if you have RQ workers
 active at the same time, as there is a risk that they conflict with other jobs
@@ -82,25 +82,6 @@ dispatched to the workers.
 If there are RQ workers running, the command will ask for confirmation before
 proceeding. This can be overridden using the :option:`--noinput` flag, in
 which case the command will run even if there are.
-
-
-.. django-admin:: refresh_stats
-
-refresh_stats
-^^^^^^^^^^^^^
-
-Refreshes all calculated statistics ensuring that they are up-to-date.
-
-A background process will create a task for every file to make sure calculated
-statistics data is up to date. When the task for a file completes then further
-tasks will be created for the files parents.
-
-.. note:: Files in disabled projects are processed.
-
-This command allows statistics to be updated when using multiple RQ workers.
-
-.. warning:: Please note that the actual translations **must be in Pootle**
-   before running this command. :djadmin:`update_stores` will pull them in.
 
 
 .. django-admin:: retry_failed_jobs
@@ -155,23 +136,6 @@ Multiple checks can be specifed in one run as well:
 .. code-block:: console
 
     $ pootle calculate_checks --check=date_format --check=accelerators
-
-
-.. django-admin:: clear_stats
-
-clear_stats
-^^^^^^^^^^^
-
-.. versionadded:: 2.7
-
-Clear stats cache data.
-
-Make use of :djadmin:`clear_stats` in cases where you want to remove all stats
-data. Such a case may be where you want to recalculate stats after a change
-to checks or wordcount calculations.  While it should be fine to run
-:djadmin:`refresh_stats` or :djadmin:`calculate_checks`, by first running
-:djadmin:`clear_stats` you can be sure that the stats are calculated from
-scratch.
 
 
 .. django-admin:: flush_cache
@@ -1075,6 +1039,26 @@ Deprecated commands
 The following are commands that have been removed or deprecated:
 
 
+.. django-admin:: refresh_stats
+
+refresh_stats
+^^^^^^^^^^^^^
+
+.. removed:: 2.8
+
+With the new stats infrastructure this is not needed anymore.
+
+
+.. django-admin:: clear_stats
+
+clear_stats
+^^^^^^^^^^^
+
+.. removed:: 2.8
+
+With the new stats infrastructure this is not needed anymore.
+
+
 .. django-admin:: last_change_id
 
 last_change_id
@@ -1144,9 +1128,9 @@ to have executed periodically without user intervention.
 
 For the full details on how to configure cron, read your platform documentation
 (for example ``man crontab``). Here is an example that runs the
-:djadmin:`refresh_stats` command daily at 02:00 AM::
+:djadmin:`calculate_checks` command daily at 02:00 AM::
 
-    00 02 * * * www-data /var/www/sites/pootle/manage.py refresh_stats
+    00 02 * * * www-data /var/www/sites/pootle/manage.py calculate_checks
 
 Test your command with the parameters you want from the command line. Insert it
 in the cron table, and ensure that it is executed as the correct user (the same

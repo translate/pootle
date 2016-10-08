@@ -193,25 +193,22 @@ data upgrade by running. This needs to be done in a few steps:
    (env) $ pootle migrate
 
 
-.. _upgrading#refresh-stats:
+.. _upgrading#refresh-checks:
 
-Refreshing checks and stats
----------------------------
+Refreshing checks
+-----------------
 
-You must now update the translation checks and populate the Redis cache with
-statistical data. You will need to have an :ref:`RQ worker running 
-<installation#running-rqworker>` to complete this.
+You must now update the translation checks. You will need to have an
+:ref:`RQ worker running <installation#running-rqworker>` to complete this.
 
 .. code-block:: console
 
    (env) $ pootle calculate_checks
-   (env) $ pootle refresh_stats
 
 This command will dispatch jobs to the RQ worker and may take some time.
 
-If you wish to run :djadmin:`calculate_checks` and :djadmin:`refresh_stats` in
-the foreground without using the RQ worker you can use the :option:`--no-rq`
-option.
+If you wish to run :djadmin:`calculate_checks` in the foreground without using
+the RQ worker you can use the :option:`--no-rq` option.
 
 
 .. _upgrading#drop-cached-snippets:

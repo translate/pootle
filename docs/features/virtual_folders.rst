@@ -70,17 +70,10 @@ know how to craft a JSON file that fits your needs.
 
 .. _virtual_folders#stats:
 
-Calculating virtual folders stats
----------------------------------
+Virtual folders stats
+---------------------
 
-To calculate the translation stats of virtual folders use the
-:djadmin:`refresh_stats` management command. Virtual folder stats will be
-calculated along regular directories and files stats.
-
-After the initial calculation no extra runs will be required unless virtual
-folders are changed by a run of the :djadmin:`add_vfolders` management command.
-Changes introduced due to translation through the editor will automatically
-update the stats without intervention.
+Translation stats of virtual folders are automatically calculated.
 
 
 .. _virtual_folders#translate:

@@ -5,8 +5,8 @@ RQ Job Queues
 
 Pootle makes use of RQ to manage background jobs.
 
-Currently statistics are calculated using background jobs and we expect more
-components to use it in future.
+Some tasks are performed using background jobs and we expect more components to
+use it in future.
 
 The RQ queue is managed by Redis and it is setup in the `RQ_QUEUES
 <https://github.com/ui/django-rq#installation>`_ and :setting:`CACHES`
@@ -111,63 +111,6 @@ Now remove the list of failed jobs:
 .. code-block:: console
 
    $ redis-cli -n 2 DEL "rq:queue:failed"
-
-
-Do not forget to **restart the workers**.
-
-
-Dirty statistics
-----------------
-
-When we count stats with :djadmin:`refresh_stats` Pootle will track a dirty
-count so that it knows when the counts for that part of the tree is complete.
-
-When debugging a situation where the counts aren't completing it is helpful to
-see the dirty counts.  To retrieve these use:
-
-.. code-block:: console
-
-   $ redis-cli -n 2 zrank "pootle:dirty:treeitems" "/projects/terminology/"
-
-Or to get a complete list for the server, including the scores:
-
-.. code-block:: console
-
-   $ redis-cli -n 2 zrange "pootle:dirty:treeitems" 0 -1 withscores
-
-The banner that shows that stats are being calculated is displayed when
-``pootle:refresh:stats`` is present.  Only remove this if you are confident
-that all else is good and that the stats are fine or to be generated again.
-
-.. code-block:: console
-
-   $ redis-cli -n 2 del pootle:refresh:stats
-
-
-Delete dirty counts
-+++++++++++++++++++
-
-Sometimes statistics are correctly calculated, but the banner telling that
-stats are being refreshed doesn't dissappear. This usually happens because some
-job failed to complete and thus it didn't decrease the dirty counts.
-
-Make sure that there are no pending jobs or jobs being run since those could
-have increased the dirty counts. Re-run failed jobs if any.
-
-In order to delete all the dirty counts you must **stop the workers**.
-
-Remove the ``lastjob`` info for all dirty items:
-
-.. code-block:: console
-
-   $ redis-cli -n 2 ZRANGEBYSCORE "pootle:dirty:treeitems" 1 10000 | perl -nE 'chomp; s/\/$//; s/^\///; s/\//./g; `redis-cli -n 2 DEL pootle:stats:lastjob:$_`'
-
-
-Now remove the dirty items:
-
-.. code-block:: console
-
-   $ redis-cli -n 2 ZRANGEBYSCORE "pootle:dirty:treeitems" 1 10000 | perl -nE 'chomp; `redis-cli -n 2 ZREM pootle:dirty:treeitems $_`'
 
 
 Do not forget to **restart the workers**.

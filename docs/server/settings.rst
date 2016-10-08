@@ -474,9 +474,8 @@ Translation environment configuration settings.
 
   Adding a custom function allows you to alter how words are counted.
 
-  .. warning:: Changing this function requires that you run
-     :djadmin:`refresh_stats --calculate-wordcount <refresh_stats>` to
-     recalculate the associated wordcounts.
+  .. warning:: Changing this function requires that you recalculate the
+     associated wordcounts.
 
 
 .. setting:: POOTLE_EXPORT_VIEW_LIMIT
