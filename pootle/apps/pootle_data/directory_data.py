@@ -18,8 +18,7 @@ class DirectoryDataTool(RelatedStoresDataTool):
         return qs.filter(
             store__parent__pootle_path__startswith=self.context.pootle_path)
 
-    @property
-    def children_stats(self):
+    def get_children_stats(self, qs):
         children = {}
         for child in self.child_stats_qs.iterator():
             self.add_child_stats(children, child)
