@@ -1,0 +1,47 @@
+{% extends "admin/base_app.html" %}
+{% load core i18n %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Projects" %}</li>
+{% endblock %}
+
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block section_body %}
+<div id="content">
+  <div id="pootle-fs-project-admin" class="settings-container">
+    <div class="hd">
+      <h2>{% blocktrans with project_code=project.code %}Filesystem configuration: {{ project_code }}{% endblocktrans %}</h2>
+    </div>
+    <div class="config-content">
+      <form method="POST" class="pootle-fs-config-form">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<div class="centered" style="text-align: center">
+	  <input type="submit" class="btn" value="{% trans 'Update filesystem configuration' %}" />
+	</div>
+	<p>
+	  {% blocktrans %}Translation paths should be of the format:{% endblocktrans %}
+	  <blockquote style="text-align: center">
+	    <code>
+	      `/path/to/translation/files/&lt;language_code&gt;/&lt;dir_path&gt;/&lt;filename&gt;.&lt;ext&gt;`
+	    </code>
+	  </blockquote>
+	</p>
+	<p>
+	  {% blocktrans %}Only `&lt;language_code&gt;` is required, although it must end with `.&lt;ext&gt;`{% endblocktrans %}
+	</p>
+	<p>
+	  {% blocktrans %}If you are using the localfs backend the translation path will be combined with the path specified in
+	  backend URL{% endblocktrans %}
+	</p>
+	<p>
+	  {% blocktrans %}For other backends the translation path will be relative to the root of the repository.{% endblocktrans %}
+	</p>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% endblock %}
