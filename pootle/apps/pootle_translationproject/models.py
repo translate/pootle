@@ -388,10 +388,6 @@ class TranslationProject(models.Model, CachedTreeItem):
     def get_parents(self):
         return [self.project]
 
-    def clear_all_cache(self, children=True, parents=True):
-        super(TranslationProject, self).clear_all_cache(children=children,
-                                                        parents=parents)
-
     # # # /TreeItem
 
     def directory_exists_on_disk(self):
