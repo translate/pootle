@@ -290,7 +290,7 @@ Configuration settings for applications used by Pootle.
 .. setting:: POOTLE_FS_WORKING_PATH
 
 ``POOTLE_FS_WORKING_PATH``
-  Default: ``working_path('pootle_fs')``
+  Default: ``working_path('tmp/pootle_fs')``
 
   .. versionadded:: 2.8
 
