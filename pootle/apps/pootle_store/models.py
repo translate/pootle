@@ -42,8 +42,7 @@ from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
-    get_all_pootle_paths, get_editor_filter, split_pootle_path,
-    to_tp_relative_path)
+    get_editor_filter, split_pootle_path, to_tp_relative_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.timezone import datetime_min, make_aware
@@ -1522,14 +1521,8 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def get_parents(self):
         if self.parent.is_translationproject():
-            parents = [self.translation_project]
-        else:
-            parents = [self.parent]
-
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            parents.extend(self.parent_vf_treeitems.all())
-
-        return parents
+            return [self.translation_project]
+        return [self.parent]
 
     def get_cachekey(self):
         return self.pootle_path
@@ -1627,20 +1620,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             unit__store=self, unit__state__gt=OBSOLETE,
             state=SuggestionStates.PENDING
         ).count()
-
-    def all_pootle_paths(self):
-        """Get cache_key for all parents (to the Language and Project)
-        of current TreeItem
-        """
-        pootle_paths = super(Store, self).all_pootle_paths()
-        if 'virtualfolder' in settings.INSTALLED_APPS:
-            vftis = self.parent_vf_treeitems
-            for pootle_path in vftis.values_list("pootle_path", flat=True):
-                pootle_paths.extend(
-                    [p for p
-                     in get_all_pootle_paths(pootle_path)
-                     if p.count('/') > 3])
-        return pootle_paths
 
     # # # /TreeItem
 
