@@ -357,11 +357,16 @@ class RelatedStoresDataTool(DataTool):
         """
         subs = self.get_submissions_for_children(stat_data, children)
         for child in children.values():
-            if child["last_submission__pk"]:
+            add_sub_info = (
+                child["last_submission__pk"]
+                and subs.get(child["last_submission__pk"]))
+            if add_sub_info:
                 sub = subs[child["last_submission__pk"]]
                 lastaction = self.get_info_for_sub(sub)
                 child["last_submission"] = lastaction
                 child["lastaction"] = lastaction
+            else:
+                child["last_submission"] = dict(creation_time=0)
 
     def aggregate_children(self, stats):
         """For a stats dictionary containing children qs.values, aggregate the
