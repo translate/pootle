@@ -25,7 +25,8 @@ from pootle.core.delegate import search_backend
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME,
     get_filter_name, get_sidebar_announcements_context)
-from pootle.core.url_helpers import get_previous_url, get_path_parts
+from pootle.core.url_helpers import (
+    get_previous_url, get_path_parts, split_pootle_path)
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
 from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
@@ -33,7 +34,6 @@ from pootle_misc.forms import make_search_form
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
 from virtualfolder.delegate import vfolders_data_view
-from virtualfolder.helpers import vftis_for_child_dirs
 from virtualfolder.models import VirtualFolder
 
 
@@ -62,9 +62,6 @@ def _test_browse_view(tp, request, response, kwargs):
         obj = Store.objects.get(
             pootle_path=pootle_path)
     if not kwargs.get("filename"):
-        vftis = obj.vf_treeitems.select_related("vfolder")
-        if not ctx["has_admin_access"]:
-            vftis = vftis.filter(vfolder__is_public=True)
         vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
         stats = vf_view.stats
         vfolders = stats["vfolders"]
@@ -76,14 +73,17 @@ def _test_browse_view(tp, request, response, kwargs):
     filters = {}
     if vfolders:
         filters['sort'] = 'priority'
-
-    dirs_with_vfolders = vftis_for_child_dirs(obj).values_list(
-        "directory__pk", flat=True)
+    dirs_with_vfolders = set(
+        split_pootle_path(path)[2].split("/")[0]
+        for path
+        in tp.stores.filter(
+            vfolders__isnull=False).values_list(
+            "pootle_path", flat=True))
     directories = [
         make_directory_item(
             child,
             **(dict(sort="priority")
-               if child.pk in dirs_with_vfolders
+               if child.name in dirs_with_vfolders
                else {}))
         for child in obj.get_children()
         if isinstance(child, Directory)]
@@ -150,6 +150,7 @@ def _test_browse_view(tp, request, response, kwargs):
 
 def _test_translate_view(tp, request, response, kwargs, settings):
     ctx = response.context
+    obj = ctx["object"]
     kwargs["project_code"] = tp.project.code
     kwargs["language_code"] = tp.language.code
     resource_path = "%(dir_path)s%(filename)s" % kwargs
@@ -170,8 +171,10 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     else:
         vfolder = None
         current_vfolder_pk = ""
-        display_priority = (
-            not kwargs['filename'] and ctx['object'].has_vfolders)
+        display_priority = False
+        if not kwargs["filename"]:
+            vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
+            display_priority = vf_view.has_data
         unit_api_root = "/xhr/units/"
     assertions = dict(
         page="translate",
