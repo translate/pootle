@@ -35,7 +35,6 @@ from pootle_misc.forms import make_search_form
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.forms import UnitExportForm
 from pootle_store.models import Store, Unit
-from virtualfolder.models import VirtualFolderTreeItem
 
 
 def _test_translate_view(project, request, response, kwargs, settings):
@@ -51,6 +50,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
     resource_path = (
         "%(dir_path)s%(filename)s" % kwargs)
     pootle_path = "%s%s" % (ctx_path, resource_path)
+    display_priority = False
     view_context_test(
         ctx,
         **dict(
@@ -65,9 +65,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
             editor_extends="projects/base.html",
             check_categories=get_qualitycheck_schema(),
             previous_url=get_previous_url(request),
-            display_priority=(
-                VirtualFolderTreeItem.objects.filter(
-                    pootle_path__startswith=pootle_path).exists()),
+            display_priority=display_priority,
             cantranslate=check_permission("translate", request),
             cansuggest=check_permission("suggest", request),
             canreview=check_permission("review", request),
