@@ -119,7 +119,7 @@ class TPDataTool(RelatedStoresDataTool):
 
     def get_lastupdated(self, **kwargs):
         return (
-            self.context.data
+            self.context.data.last_created_unit
             and self.context.data.last_created_unit.get_last_updated_info()
             or None)
 
