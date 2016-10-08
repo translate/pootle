@@ -36,15 +36,7 @@ class Command(BaseCommand):
             dest='flush_rqdata',
             default=False,
             help=("Flush revision counter and all RQ data (queues, pending or "
-                  "failed jobs, refresh_stats optimisation data). "
-                  "Revision counter is restores automatically. "),
-        )
-        parser.add_argument(
-            '--stats',
-            action='store_true',
-            dest='flush_stats',
-            default=False,
-            help='Flush stats cache data.',
+                  "failed jobs). Revision counter is restores automatically."),
         )
         parser.add_argument(
             '--all',
@@ -55,18 +47,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, **options):
-        if (not options['flush_stats'] and not options['flush_rqdata'] and
+        if (not options['flush_rqdata'] and
             not options['flush_django_cache'] and not options['flush_all']):
             raise CommandError("No options were provided. Use one of "
-                               "--django-cache, --rqdata, --stats or --all.")
+                               "--django-cache, --rqdata or --all.")
 
         self.stdout.write('Flushing cache...')
-
-        if options['flush_stats'] or options['flush_all']:
-            # Delete all stats cache data.
-            r_con = get_redis_connection('stats')
-            r_con.flushdb()
-            self.stdout.write('All stats data removed.')
 
         if options['flush_rqdata'] or options['flush_all']:
             # Flush all rq data, dirty counter and restore Pootle revision

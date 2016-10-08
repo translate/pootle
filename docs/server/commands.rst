@@ -183,8 +183,7 @@ flush_cache
 
 Flush cache.
 
-.. warning:: You must first **stop the workers** if you flush `stats`
-   or `redis` cache.
+.. warning:: You must first **stop the workers** if you flush `redis` cache.
 
 .. django-admin-option:: --django-cache
 
@@ -194,18 +193,12 @@ Django templates, project permissions etc.
 .. django-admin-option:: --rqdata
 
 Use the :option:`--rqdata` to flush all data contained in ``redis`` cache:
-pending jobs, dirty flags, revision (which will be automatically restored),
-all data from queues.
-
-.. django-admin-option:: --stats
-
-Use the :option:`--stats` to flush all stats data only (it works faster than
-:djadmin:`clear_stats` but it requires stopping the worker).
+pending jobs, revision (which will be automatically restored), all data from
+queues.
 
 .. django-admin-option:: --all
 
-Use the :option:`--all` to flush all caches (``default``, ``redis``, ``stats``)
-data.
+Use the :option:`--all` to flush all caches (``default``, ``redis``) data.
 
 
 .. django-admin:: refresh_scores
