@@ -9,9 +9,9 @@
 from translate.storage import poheader
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Max
 from django.utils import timezone
 
-from pootle.core.mixins import CachedMethods
 from pootle.core.utils import dateformat
 from pootle.core.utils.timezone import datetime_min
 from pootle.core.utils.version import get_major_minor_version
@@ -86,7 +86,7 @@ class PoStoreSyncer(StoreSyncer):
     def update_store_header(self, **kwargs):
         super(PoStoreSyncer, self).update_store_header(**kwargs)
         user = kwargs.get("user")
-        mtime = self.store.get_cached_value(CachedMethods.MTIME)
+        mtime = self.store.units.aggregate(mtime=Max("mtime"))["mtime"]
         if mtime is None or mtime == datetime_min:
             mtime = timezone.now()
         user_displayname = None
