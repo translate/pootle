@@ -34,10 +34,6 @@ def import_func(path):
     return func
 
 
-def dictsum(x, y):
-    return dict((n, x.get(n, 0)+y.get(n, 0)) for n in set(x) | set(y))
-
-
 def ajax_required(f):
     """Check that the request is an AJAX request.
 
