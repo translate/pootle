@@ -186,6 +186,15 @@ class TPDirectoryMixin(TPMixin):
             "project_code": self.project.code,
             "dir_path": self.dir_path}
 
+    @cached_property
+    def vfolders_data_view(self):
+        if 'virtualfolder' not in settings.INSTALLED_APPS:
+            return
+        from virtualfolder.delegate import vfolders_data_view
+
+        return vfolders_data_view.get(self.object.__class__)(
+            self.object, self.request.user)
+
 
 class TPStoreMixin(TPMixin):
     model = Store
@@ -293,30 +302,21 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def has_vfolders(self):
-        return self.object.has_vfolders
-
-    @cached_property
-    def vfolders_view(self):
-        if 'virtualfolder' not in settings.INSTALLED_APPS:
-            return
-        from virtualfolder.delegate import vfolders_data_view
-
-        return vfolders_data_view.get(self.object.__class__)(
-            self.object, self.request.user)
+        return self.stats["vfolders"] and True or False
 
     @cached_property
     def stats(self):
         stats = (
             {}
-            if not self.vfolders_view
-            else self.vfolders_view.stats)
+            if not self.vfolders_data_view
+            else self.vfolders_data_view.stats)
         stats.update(self.object.data_tool.get_stats(user=self.request.user))
         return stats
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
-        if self.vfolders_view:
-            ctx.update(self.vfolders_view.table_data)
+        if self.vfolders_data_view:
+            ctx.update(self.vfolders_data_view.table_data)
         return ctx
 
 
@@ -337,9 +337,9 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
     def request_path(self):
         return "/%(language_code)s/%(project_code)s/%(dir_path)s" % self.kwargs
 
-    @property
+    @cached_property
     def display_vfolder_priority(self):
-        return self.object.has_vfolders
+        return self.vfolders_data_view.has_data
 
     @property
     def path(self):
