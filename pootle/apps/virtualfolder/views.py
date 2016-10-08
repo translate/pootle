@@ -158,3 +158,10 @@ class VFoldersDataView(object):
             make_vfolder_dict(self.context, *vf)
             for vf
             in self.all_stats.items()]
+
+    @cached_property
+    def has_data(self):
+        return (
+            self.vfolder_data_tool.all_stat_data.exists()
+            if self.vfolder_data_tool.show_all_to(self.user)
+            else self.vfolder_data_tool.stat_data.exists())
