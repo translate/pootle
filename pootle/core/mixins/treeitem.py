@@ -219,69 +219,6 @@ class TreeItem(object):
     def get_critical_url(self, **kwargs):
         return self.get_translate_url(check_category='critical', **kwargs)
 
-    def get_stats(self, include_children=True):
-        """get stats for self and - optionally - for children"""
-        self.initialize_children()
-        result = {
-            'total': None,
-            'translated': None,
-            'fuzzy': None,
-            'suggestions': None,
-            'lastaction': None,
-            'critical': None,
-            'lastupdated': None,
-            'is_dirty': self.is_dirty(),
-        }
-
-        try:
-            result.update(self._calc(CachedMethods.WORDCOUNT_STATS))
-        except NoCachedStats:
-            pass
-
-        try:
-            result['suggestions'] = self._calc(CachedMethods.SUGGESTIONS)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['lastaction'] = self._calc(CachedMethods.LAST_ACTION)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['critical'] = self.get_error_unit_count()
-        except NoCachedStats:
-            pass
-
-        try:
-            result['lastupdated'] = self._calc(CachedMethods.LAST_UPDATED)
-        except NoCachedStats:
-            pass
-
-        if include_children:
-            result['children'] = {}
-            for item in self.children:
-                code = (self._get_code(item)
-                        if hasattr(self, '_get_code')
-                        else item.code)
-                result['children'][code] = \
-                    item.get_stats(include_children=False)
-
-        return result
-
-    def get_error_unit_count(self):
-        check_stats = self._calc(CachedMethods.CHECKS)
-        if check_stats is not None:
-            return check_stats.get('unit_critical_error_count', 0)
-
-        return None
-
-    def get_checks(self):
-        try:
-            return self._calc(CachedMethods.CHECKS)['checks']
-        except NoCachedStats:
-            return None
-
 
 class CachedTreeItem(TreeItem):
     def __init__(self, *args, **kwargs):
@@ -320,67 +257,6 @@ class CachedTreeItem(TreeItem):
             raise NoCachedStats(msg)
 
         return result
-
-    def get_checks(self):
-        try:
-            return self.get_cached(CachedMethods.CHECKS)['checks']
-        except NoCachedStats:
-            return None
-
-    def get_stats(self, include_children=True):
-        """get stats for self and - optionally - for children"""
-        if include_children:
-            self.initialize_children()
-        result = {
-            'total': None,
-            'translated': None,
-            'fuzzy': None,
-            'suggestions': None,
-            'lastaction': None,
-            'critical': None,
-            'lastupdated': None,
-            'is_dirty': self.is_dirty(),
-        }
-
-        try:
-            result.update(self.get_cached(CachedMethods.WORDCOUNT_STATS))
-        except NoCachedStats:
-            pass
-
-        try:
-            result['suggestions'] = self.get_cached(CachedMethods.SUGGESTIONS)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['lastaction'] = self.get_cached(CachedMethods.LAST_ACTION)
-        except NoCachedStats:
-            pass
-
-        try:
-            result['critical'] = self.get_error_unit_count()
-        except NoCachedStats:
-            pass
-
-        try:
-            result['lastupdated'] = self.get_cached(CachedMethods.LAST_UPDATED)
-        except NoCachedStats:
-            pass
-
-        if include_children:
-            result['children'] = {}
-            for item in self.children:
-                code = (self._get_code(item)
-                        if hasattr(self, '_get_code')
-                        else item.code)
-                result['children'][code] = \
-                    item.get_stats(include_children=False)
-
-        return result
-
-    def get_error_unit_count(self):
-        check_stats = self.get_cached(CachedMethods.CHECKS)
-        return check_stats.get('unit_critical_error_count', 0)
 
     def is_dirty(self):
         """Checks if current TreeItem is registered as dirty"""

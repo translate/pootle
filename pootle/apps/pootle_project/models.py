@@ -466,11 +466,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     # # # /TreeItem
 
-    def get_stats_for_user(self, user):
-        self.set_children(self.get_children_for_user(user))
-
-        return self.get_stats()
-
     def get_children_for_user(self, user, select_related=None):
         """Returns children translation projects for a specific `user`."""
         return (
@@ -581,20 +576,10 @@ class ProjectResource(VirtualResource, ProjectURLMixin):
     def data_tool(self):
         return data_tool.get(self.__class__)(self)
 
-    # # # TreeItem
-
-    def _get_code(self, resource):
-        return split_pootle_path(resource.pootle_path)[0]
-
-    # # # /TreeItem
-
     def get_children_for_user(self, user, select_related=None):
         if select_related:
             return self.children.select_related(*select_related)
         return self.children
-
-    def get_stats_for_user(self, user):
-        return self.get_stats()
 
 
 class ProjectSet(VirtualResource, ProjectURLMixin):
@@ -611,13 +596,6 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
     @cached_property
     def data_tool(self):
         return data_tool.get(self.__class__)(self)
-
-    # # # TreeItem
-
-    def _get_code(self, project):
-        return project.code
-
-    # # # /TreeItem
 
 
 @receiver([post_delete, post_save])

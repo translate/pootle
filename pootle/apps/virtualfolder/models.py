@@ -7,15 +7,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
-from pootle.core.mixins import CachedMethods, CachedTreeItem
-from pootle.core.mixins.treeitem import NoCachedStats
-from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
-                                     split_pootle_path)
+from pootle.core.mixins import CachedTreeItem
+from pootle.core.url_helpers import get_all_pootle_paths, split_pootle_path
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models import Directory
 from pootle_language.models import Language
@@ -152,42 +149,6 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
     class Meta(object):
         unique_together = ('directory', 'vfolder')
 
-    # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
-
-    @property
-    def is_visible(self):
-        return (self.vfolder.is_public and
-                (self.has_critical_errors or self.has_suggestions or
-                 (self.vfolder.priority >= 1 and
-                  not self.is_fully_translated)))
-
-    @property
-    def has_critical_errors(self):
-        try:
-            return self.get_error_unit_count() > 0
-        except NoCachedStats:
-            return False
-
-    @property
-    def has_suggestions(self):
-        try:
-            return self.get_cached(CachedMethods.SUGGESTIONS) > 0
-        except NoCachedStats:
-            return False
-
-    @property
-    def is_fully_translated(self):
-        try:
-            wordcount_stats = self.get_cached(CachedMethods.WORDCOUNT_STATS)
-        except NoCachedStats:
-            return False
-
-        return wordcount_stats['total'] == wordcount_stats['translated']
-
-    @property
-    def code(self):
-        return self.pk
-
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
@@ -225,16 +186,6 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
 
         super(VirtualFolderTreeItem, self).delete(*args, **kwargs)
 
-    def get_translate_url(self, **kwargs):
-        split_parts = list(split_pootle_path(self.pootle_path))
-        parts = [self.vfolder.name] + split_parts[:2]
-        parts.append(split_parts[2][len(self.vfolder.name) + 1:])
-        url = reverse(
-            "pootle-vfolder-tp-translate",
-            args=parts)
-        return u''.join(
-            [url, get_editor_filter(**kwargs)])
-
     # # # TreeItem
 
     def can_be_updated(self):
@@ -253,13 +204,6 @@ class VirtualFolderTreeItem(models.Model, CachedTreeItem):
         result = [store for store in self.stores.live().iterator()]
         result.extend([vfolder_treeitem for vfolder_treeitem
                        in self.child_vf_treeitems.live().iterator()])
-        return result
-
-    def get_stats(self, include_children=True):
-        result = super(VirtualFolderTreeItem, self).get_stats(
-            include_children=include_children
-        )
-        result['isVisible'] = self.is_visible
         return result
 
     def all_pootle_paths(self):
