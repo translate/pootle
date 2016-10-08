@@ -74,7 +74,9 @@ class FSPlugin(object):
         fs_type = project.config.get("pootle_fs.fs_type")
         fs_url = project.config.get("pootle_fs.fs_url")
         if not fs_type or not fs_url:
-            raise NotConfiguredError()
+            missing_key = "pootle_fs.fs_url" if fs_type else "pootle_fs.fs_type"
+            raise NotConfiguredError('Missing "%s" in project configuration.' %
+                                     missing_key)
         try:
             self.plugin = plugins[fs_type](self.project)
         except KeyError:
