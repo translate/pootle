@@ -476,3 +476,49 @@ html[dir="rtl"] .admin-content .item-delete input
 {
     padding: 0.5em;
 }
+
+form.pootle-fs-config-form input,
+form.pootle-fs-config-form select
+{
+    font-size: 1.2em;
+}
+
+form.pootle-fs-config-form input[type='text']
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form.pootle-fs-config-form p
+{
+    margin: 1em;
+}
+
+form.pootle-fs-config-form label
+{
+    font-size: 1.2em;
+    display: block;
+}
+
+form.pootle-fs-config-form span.helptext
+{
+    font-size: 1em;
+    display: block;
+}
+
+form.pootle-fs-config-form
+{
+    margin: 0;
+    padding: 1em;
+    background: #eee;
+}
+
+#pootle-fs-project-admin .config-content
+{
+    padding: 1px;
+    background: #aaa;
+    width: 50%;
+}
