@@ -9,10 +9,12 @@
 from pootle.core.delegate import response, state
 from pootle.core.plugin import getter
 
-from .delegate import fs_file, fs_finder, fs_matcher, fs_resources
+from .delegate import (
+    fs_file, fs_finder, fs_matcher, fs_resources,
+    fs_translation_path_validator, fs_url_validator)
 from .files import FSFile
-from .finder import TranslationFileFinder
-from .localfs import LocalFSPlugin
+from .finder import TranslationFileFinder, TranslationPathValidator
+from .localfs import LocalFSPlugin, LocalFSUrlValidator
 from .matcher import FSPathMatcher
 from .resources import FSProjectResources
 from .response import ProjectFSResponse
@@ -47,3 +49,13 @@ def fs_finder_getter(**kwargs_):
 @getter(fs_matcher, sender=LocalFSPlugin)
 def fs_matcher_getter(**kwargs_):
     return FSPathMatcher
+
+
+@getter(fs_url_validator, sender=LocalFSPlugin)
+def fs_url_validator_getter(**kwargs_):
+    return LocalFSUrlValidator
+
+
+@getter(fs_translation_path_validator)
+def fs_translation_path_validator_getter(**kwargs_):
+    return TranslationPathValidator

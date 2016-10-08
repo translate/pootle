@@ -13,6 +13,8 @@ fs_file = Getter()
 fs_finder = Getter()
 fs_matcher = Getter()
 fs_resources = Getter()
+fs_translation_path_validator = Getter()
+fs_url_validator = Getter()
 
 # File system plugins such as git/mercurial/localfs
 fs_plugins = Provider()

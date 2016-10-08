@@ -10,6 +10,8 @@ import logging
 
 import dirsync
 
+from django import forms
+
 from .plugin import Plugin
 
 
@@ -35,3 +37,12 @@ class LocalFSPlugin(Plugin):
             create=True,
             purge=True,
             logger=logging.getLogger(dirsync.__name__))
+
+
+class LocalFSUrlValidator(object):
+
+    help_text = "Enter an absolute path to a directory on your filesystem"
+
+    def validate(self, url):
+        if not url.startswith("/"):
+            raise forms.ValidationError(self.help_text)
