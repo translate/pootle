@@ -10,9 +10,13 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 
-from pootle.core.delegate import language_team
+from pootle.core.delegate import language_team, review
+from pootle.core.forms import FormtableForm
 from pootle.core.views.widgets import TableSelectMultiple
 from pootle.i18n.gettext import ugettext_lazy as _
+from pootle_store.constants import OBSOLETE, STATES_MAP
+from pootle_store.models import Suggestion, SuggestionStates
+from pootle_translationproject.models import TranslationProject
 
 from .models import Language
 
@@ -39,14 +43,9 @@ class LanguageTeamBaseAdminForm(forms.Form):
     def language_team(self):
         return language_team.get(self.language.__class__)(self.language)
 
-    def should_save(self):
-        rm_members = [
-            self.cleaned_data["rm_%ss" % role]
-            for role in self.language_team.roles]
-        return (
-            (self.cleaned_data["new_member"]
-             and self.cleaned_data["role"])
-            or any(rm_members))
+
+class LanguageTeamFormtableForm(FormtableForm, LanguageTeamBaseAdminForm):
+    pass
 
 
 class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
@@ -125,6 +124,13 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
                 forms.ValidationError(
                     "Role is required when adding a new member"))
 
+    def should_save(self):
+        return (
+            self.cleaned_data["new_member"] and self.cleaned_data["role"]
+            or any(
+                self.cleaned_data["rm_%ss" % role]
+                for role in self.language_team.roles))
+
     def save(self):
         if self.cleaned_data["new_member"] and self.cleaned_data["role"]:
             self.language_team.add_member(
@@ -135,3 +141,116 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
                 if self.cleaned_data["rm_%ss" % role]:
                     for user in self.cleaned_data["rm_%ss" % role]:
                         self.language_team.remove_member(user)
+
+
+class LanguageSuggestionAdminForm(LanguageTeamFormtableForm):
+    action_field = "actions"
+    search_field = "suggestions"
+    action_choices = (
+        ("", "----"),
+        ("reject", _("Reject")),
+        ("accept", _("Accept")))
+    filter_suggester = forms.ChoiceField(
+        choices=(),
+        required=False,
+        widget=forms.Select(
+            attrs={'class': 'js-select2 select2-language'}))
+    filter_state = forms.ChoiceField(
+        required=False,
+        choices=(
+            [("", "-----")]
+            + [(k, v)
+               for k, v
+               in STATES_MAP.items() if k != OBSOLETE]),
+        widget=forms.Select(
+            attrs={'class': 'js-select2 select2-language'}))
+    filter_tp = forms.ModelChoiceField(
+        label=_("Project"),
+        required=False,
+        queryset=TranslationProject.objects.none(),
+        widget=forms.Select(
+            attrs={'class': 'js-select2'}))
+    suggestions = forms.ModelMultipleChoiceField(
+        widget=TableSelectMultiple(
+            item_attrs=[
+                "unit_link",
+                "unit_state",
+                "unit",
+                "target_f",
+                "user",
+                "creation_time",
+                "project"]),
+        required=False,
+        queryset=Suggestion.objects.select_related(
+            "unit",
+            "unit__store",
+            "unit__store__translation_project",
+            "unit__store__translation_project__project").none())
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user")
+        self.language = kwargs.pop("language")
+        super(LanguageSuggestionAdminForm, self).__init__(*args, **kwargs)
+        self.fields["filter_suggester"].choices = self.filter_suggester_choices
+        self.fields["filter_tp"].queryset = self.filter_tp_qs
+        self.fields["suggestions"].queryset = self.suggestions_qs
+
+    @property
+    def filter_suggester_choices(self):
+        suggesters = list(
+            (username,
+             ("%s (%s)" % (fullname, username)
+              if fullname.strip()
+              else username))
+            for username, fullname
+            in sorted(self.language_team.users_with_suggestions))
+        return [("", "-----")] + suggesters
+
+    @property
+    def suggestions_qs(self):
+        return self.language_team.suggestions.select_related("unit", "user").filter(
+            unit__store__translation_project__project__disabled=False)
+
+    @property
+    def filter_tp_qs(self):
+        tps = self.language.translationproject_set.exclude(
+            project__disabled=True)
+        tps = tps.filter(
+            stores__unit__suggestion__state=SuggestionStates.PENDING)
+        return tps.order_by("project__code").distinct()
+
+    @property
+    def suggestions_to_save(self):
+        if not self.is_valid():
+            return []
+        return (
+            self.fields["suggestions"].queryset
+            if self.cleaned_data["select_all"]
+            else self.cleaned_data["suggestions"])
+
+    @property
+    def suggestions_review(self):
+        if not self.is_valid():
+            return
+        return review.get(Suggestion)(self.suggestions_to_save, self.user)
+
+    def save(self):
+        return (
+            self.suggestions_review.accept(
+                comment=self.cleaned_data["comment"])
+            if self.cleaned_data["actions"] == "accept"
+            else self.suggestions_review.reject(
+                comment=self.cleaned_data["comment"]))
+
+    def search(self):
+        searched = super(LanguageSuggestionAdminForm, self).search()
+        if self.cleaned_data.get("filter_suggester"):
+            searched = searched.filter(
+                user__username=self.cleaned_data["filter_suggester"])
+        if self.cleaned_data.get("filter_tp"):
+            searched = searched.filter(
+                unit__store__translation_project=self.cleaned_data["filter_tp"])
+        if self.cleaned_data.get("filter_state"):
+            searched = searched.filter(
+                unit__state=self.cleaned_data["filter_state"])
+        return searched
