@@ -13,7 +13,7 @@ from django.core.urlresolvers import reverse
 from pootle.core.delegate import language_team
 from pootle.core.views.widgets import TableSelectMultiple
 from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_store.models import Suggestion
+from pootle_store.models import Suggestion, Unit
 
 from .models import Language
 
@@ -158,3 +158,11 @@ class LanguageSuggestionAdminForm(LanguageTeamBaseAdminForm):
         super(LanguageSuggestionAdminForm, self).__init__(*args, **kwargs)
         self.fields["suggester"].choices = self.language_team.users_with_suggestions
         self.fields["suggestions"].choices = self.language_team.suggestions.all()
+
+
+class LanguageUnitAdminForm(forms.Form):
+    page = forms.IntegerField()
+    units = forms.ModelMultipleChoiceField(
+        widget=TableSelectMultiple(item_attrs=["id", "unit"]),
+        required=False,
+        queryset=Unit.objects.none())
