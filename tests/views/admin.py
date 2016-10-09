@@ -8,6 +8,7 @@
 
 import pytest
 
+from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils.safestring import mark_safe
 
@@ -17,6 +18,7 @@ from pytest_pootle.factories import LanguageDBFactory
 from pootle.core.delegate import formats
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
+from pootle.core.views.admin import PootleAdminFormView, PootleAdminView
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
 from pootle_language.models import Language
@@ -25,6 +27,32 @@ from pootle_translationproject.models import TranslationProject
 
 
 ADMIN_URL = reverse_lazy('pootle-admin')
+
+
+@pytest.mark.django_db
+def test_core_admin_view(request_users, rf):
+    request = rf.get("/foo/bar")
+    request.user = request_users["user"]
+    if not request.user.is_superuser:
+        with pytest.raises(PermissionDenied):
+            PootleAdminView.as_view()(request)
+    else:
+        with pytest.raises(ImproperlyConfigured):
+            # no template
+            assert PootleAdminView.as_view()(request)
+
+
+@pytest.mark.django_db
+def test_core_admin_form_view(request_users, rf):
+    request = rf.get("/foo/bar")
+    request.user = request_users["user"]
+    if not request.user.is_superuser:
+        with pytest.raises(PermissionDenied):
+            PootleAdminFormView.as_view()(request)
+    else:
+        with pytest.raises(TypeError):
+            # no form
+            assert PootleAdminFormView.as_view()(request)
 
 
 def _test_admin_view(response, project):
