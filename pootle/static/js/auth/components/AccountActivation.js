@@ -29,13 +29,18 @@ const AccountActivation = React.createClass({
 
     if (this.props.signUpEmail) {
       emailLinkMsg = interpolate(
-        gettext('We have sent an email containing the special link to <span>%s</span>'),
+        gettext(
+          'We have sent an email containing the special link to ' +
+          '<span>%s</span>. Please check your spam folder if you do not see' +
+          ' the email.'
+        ),
         [this.props.signUpEmail]
       );
     } else {
       emailLinkMsg = gettext(
         'We have sent an email containing the special link to the address ' +
-        'used to register this account.'
+        'used to register this account. Please check your spam folder if ' +
+        'you do not see the email.'
       );
     }
 
