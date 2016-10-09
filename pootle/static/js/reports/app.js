@@ -39,6 +39,8 @@ PTL.reports = {
   init(opts) {
     _.defaults(this, opts);
 
+    moment.locale(PTL.reports.locale);
+
     /* Compile templates */
     const showSummary = (!PTL.reports.freeUserReport &&
                          (PTL.reports.ownReport || PTL.reports.adminReport));

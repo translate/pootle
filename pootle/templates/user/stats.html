@@ -37,6 +37,7 @@
       userName: "{{ object.username }}",
       detailedUrl: "{% url 'pootle-user-detailed-stats' object.username %}",
       addPaidTaskUrl: "{% url 'pootle-user-add-paid-task' object.username %}",
+      locale: "{{ LANGUAGE_CODE }}",
     });
   });
 </script>
