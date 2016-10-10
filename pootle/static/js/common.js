@@ -9,7 +9,7 @@
 import 'backbone-safesync';
 import $ from 'jquery';
 import 'jquery-magnific-popup';
-import 'jquery-select2';
+import 'select2';
 import 'jquery-tipsy';
 import Spinner from 'spin';
 
@@ -107,6 +107,7 @@ PTL.common = {
     $('.js-select2').select2({
       width: 'resolve',
     });
+    $('.select2-selection__rendered').removeAttr('title');
 
     // Set CSRF token for XHR requests (jQuery-specific)
     $.ajaxSetup({
@@ -159,36 +160,5 @@ PTL.common = {
       const target = $(this).attr('href') || $(this).data('target');
       $(target).toggle();
     });
-
-    /* Sorts language names within select elements */
-    const ids = ['id_languages', 'id_alt_src_langs', '-language',
-                 '-source_language'];
-
-    $.each(ids, (i, id) => {
-      const $selects = $(`select[id$="${id}"]`);
-
-      $.each($selects, (j, select) => {
-        const $select = $(select);
-        const options = $('option', $select);
-        let selected;
-
-        if (options.length) {
-          if (!$select.is('[multiple]')) {
-            selected = $(':selected', $select);
-          }
-
-          const opsArray = $.makeArray(options);
-          opsArray.sort((a, b) => utils.strCmp($(a).text(), $(b).text()));
-
-          options.remove();
-          $select.append($(opsArray));
-
-          if (!$select.is('[multiple]')) {
-            $select.get(0).selectedIndex = $(opsArray).index(selected);
-          }
-        }
-      });
-    });
   },
-
 };

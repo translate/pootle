@@ -7,7 +7,7 @@
  */
 
 import $ from 'jquery';
-import 'jquery-select2';
+import 'select2';
 import _ from 'underscore';
 
 import cookie from 'utils/cookie';
@@ -122,7 +122,7 @@ function handleNavDropDownSelectClick() {
     if (openInNewTab) {
       window.open(href, '_blank');
       // Reset drop-down to its original value
-      $select.select2('val', $select.data('initial-code'));
+      $select.val($select.data('initial-code')).trigger('change.select2');
     } else {
       window.location.href = href;
     }
@@ -150,7 +150,7 @@ function handleBeforeNavDropDownResourceSelect(e) {
   if ($select.val() === '') {
     $select.select2('close');
   } else {
-    $select.select2('val', '');
+    $select.val('').trigger('change.select2');
     $select.select2('close');
     handleNavDropDownSelectClick();
   }
@@ -161,7 +161,6 @@ function makeNavDropdown(selector, opts, handleSelectClick, handleBeforeSelect) 
   const defaults = {
     allowClear: true,
     dropdownAutoWidth: true,
-    dropdownCssClass: 'breadcrumb-dropdown',
     width: 'off',
   };
   const options = $.extend({}, defaults, opts);
@@ -192,12 +191,6 @@ function fixResourcePathBreadcrumbGeometry() {
 
 
 function fixDropdowns() {
-  // We can't use `e.persisted` here. See bug 2949 for reference
-  const selectors = [sel.navigation, sel.language, sel.project, sel.resource];
-  for (let i = 0; i < selectors.length; i++) {
-    const $el = $(selectors[i]);
-    $el.select2('val', $el.data('initial-code'));
-  }
   fixResourcePathBreadcrumbGeometry();
   $(sel.breadcrumbs).css('visibility', 'visible');
 }
@@ -219,33 +212,6 @@ function formatResult(text, term) {
   ].join('');
 }
 
-function formatResource(path, container, query) {
-  const $el = $(path.element);
-  if ($el.prop('disabled')) {
-    return '';
-  }
-
-  const t = `/${path.text.trim()}`;
-  return [
-    '<span class="', $el.data('icon'), '">',
-    '<i class="icon-', $el.data('icon'), '"></i>',
-    '<span class="text">', formatResult(t, query.term), '</span>',
-    '</span>',
-  ].join('');
-}
-
-
-function formatProject(path, container, query) {
-  const state = path.element[0].dataset.state;
-
-  return `<span class="text project-${state}">${formatResult(path.text, query.term)}</span>`;
-}
-
-
-function formatLanguage(path, container, query) {
-  return formatResult(path.text, query.term);
-}
-
 
 function removeCtxEntries(results, container, query) {
   if (query.term) {
@@ -256,25 +222,78 @@ function removeCtxEntries(results, container, query) {
 
 
 const browser = {
-
   init() {
     $(window).on('pageshow', fixDropdowns);
+    const searchQuery = { term: '' };
+    const formatProject = (item) => {
+      const $el = $(item.element);
+      const state = $el.data('state');
+      const formatted = formatResult(item.text, searchQuery.term);
+      const result = `<span class="text project-${state}">${formatted}</span>`;
+      return $(result);
+    };
+
+    const formatLanguage = (item) => {
+      const result = $([
+        '<span class="result">',
+        formatResult(item.text, searchQuery.term),
+        '</span>'].join(''));
+      return result;
+    };
+
+    const templateResultNav = (item) => {
+      if ($(item.element).hasClass('admin')) {
+        return $(['<span class="result admin">', item.text, '</span>'].join(''));
+      } else if (item.text) {
+        return $(['<span class="result">', item.text, '</span>'].join(''));
+      }
+      return item.text;
+    };
+    const formatResource = (item) => {
+      const $el = $(item.element);
+      if ($el.prop('disabled')) {
+        return '';
+      }
+      const t = `/${item.text.trim()}`;
+      return $([
+        '<span class="', $el.data('icon'), '">',
+        '<i class="icon-', $el.data('icon'), '"></i>',
+        '<span class="text">', formatResult(t, searchQuery.term), '</span>',
+        '</span>',
+      ].join(''));
+    };
+    const termMatcher = (query, match) => {
+      if (!(query.term)) {
+        searchQuery.term = '';
+        return match;
+      }
+      searchQuery.term = query.term;
+      if (match.text.toUpperCase().indexOf(query.term.toUpperCase()) !== -1) {
+        return match;
+      }
+      return null;
+    };
 
     makeNavDropdown(sel.navigation, {
+      allowClear: false,
       minimumResultsForSearch: -1,
+      templateResult: templateResultNav,
     }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.language, {
       placeholder: gettext('All Languages'),
-      formatResult: formatLanguage,
+      templateResult: formatLanguage,
+      matcher: termMatcher,
     }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.project, {
       placeholder: gettext('All Projects'),
-      formatResult: formatProject,
+      templateResult: formatProject,
+      matcher: termMatcher,
     }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.resource, {
       placeholder: gettext('Entire Project'),
-      formatResult: formatResource,
       sortResults: removeCtxEntries,
+      templateResult: formatResource,
+      matcher: termMatcher,
     }, handleNavDropDownSelectClick, handleBeforeNavDropDownResourceSelect);
 
     /* Adjust breadcrumb layout on window resize */

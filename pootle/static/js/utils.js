@@ -8,7 +8,7 @@
 
 import $ from 'jquery';
 
-import 'jquery-select2';
+import 'select2';
 
 import { qAll } from 'utils/dom';
 
@@ -179,11 +179,10 @@ export function makeSelectableInput(selector, options, onChange, onSelecting) {
   if (!$el.length) {
     return;
   }
-
   $el.select2(options);
-
   $el.on('change', onChange);
   $el.on('select2-selecting', onSelecting);
+  $('.select2-selection__rendered').removeAttr('title');
 }
 
 

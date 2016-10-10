@@ -66,10 +66,10 @@ const filterSelectOpts = {
   dropdownAutoWidth: true,
   width: 'off',
 };
+
 const sortSelectOpts = assign({
   minimumResultsForSearch: -1,
 }, filterSelectOpts);
-
 
 const mtProviders = [];
 
@@ -88,7 +88,6 @@ function highlightSuggestionsDiff(currentUnit) {
 function _refreshChecksSnippet(newChecks) {
   const $checks = $('.js-unit-checks');
   const focusedArea = $('.focusthis')[0];
-
   $checks.html(newChecks).show();
   utils.blinkClass($checks, 'blink', 4, 200);
   focusedArea.focus();
@@ -173,6 +172,8 @@ PTL.editor = {
     /* Select2 */
     this.$filterStatus.select2(filterSelectOpts);
     this.$filterSortBy.select2(sortSelectOpts);
+    // hack - prevent tooltips
+    $('.select2-selection__rendered').removeAttr('title');
 
     /* Screenshot images */
     $('#editor').on('click', '.js-dev-img', function displayScreenshot(e) {
@@ -545,7 +546,7 @@ PTL.editor = {
       this.preventNavigation = true;
 
       const filterValue = this.filter === 'search' ? 'all' : this.filter;
-      this.$filterStatus.select2('val', filterValue);
+      this.$filterStatus.val(filterValue).trigger('change.select2');
 
       if (this.filter === 'checks') {
         // if the checks selector is empty (i.e. the 'change' event was not fired
@@ -555,11 +556,14 @@ PTL.editor = {
         }
       }
 
-      this.$filterSortBy.select2('val', this.sortBy);
+      this.$filterSortBy.val(this.sortBy).trigger('change.select2');
 
       if (this.filter === 'search') {
         this.$filterChecksWrapper.hide();
       }
+
+      // hack - prevent tooltips
+      $('.select2-selection__rendered').removeAttr('title');
 
       // re-enable normal event handling
       this.preventNavigation = false;
@@ -1854,11 +1858,12 @@ PTL.editor = {
         }
       });
 
-      $checks.select2(filterSelectOpts).select2('val', selectedValue);
+      $checks.select2(filterSelectOpts);
+      $checks.val(selectedValue).trigger('change.select2');
       this.$filterChecksWrapper.css('display', 'inline-block');
     } else { // No results
       this.displayMsg({ body: gettext('No results.') });
-      this.$filterStatus.select2('val', this.filter);
+      this.$filterStatus.val(this.filter);
     }
   },
 
