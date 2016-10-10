@@ -14,7 +14,9 @@
     <option value=""></option>
     {% endif %}
     {% for lang_code, lang_name in ALL_LANGUAGES.items %}
-    <option value="{{ lang_code }}">{{ lang_name }}</option>
+    <option
+       value="{{ lang_code }}"
+       {% if lang_code == language.code %}selected="selected"{% endif %}>{{ lang_name }}</option>
     {% endfor %}
   </select>
 </li>
@@ -24,8 +26,9 @@
     <option value=""></option>
     {% for proj_code, proj in ALL_PROJECTS.items %}
     <option
-      value="{{ proj_code }}"
-      data-state="{{ proj.disabled|yesno:'disabled,enabled' }}">
+       value="{{ proj_code }}"
+       data-state="{{ proj.disabled|yesno:'disabled,enabled' }}"
+       {% if proj_code == project.code %}selected="selected"{% endif %}>
       {{ proj.fullname }}
     </option>
     {% endfor %}
@@ -41,6 +44,7 @@
     {% if resource_path_parts %}
     {% for res in resource_path_parts %}
     <option value="ctx-{{ res }}"
+      {% if resource_path == res %}selected="selected"{% endif %}
       {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
       data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
       {{ res }}
@@ -50,6 +54,7 @@
     {% endif %}
     {% for res in project.resources %}
     <option value="{{ res }}"
+      {% if resource_path == res %}selected="selected"{% endif %}	    
       {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
       data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
       {{ res }}

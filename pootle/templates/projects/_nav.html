@@ -1,35 +1,42 @@
 {% load i18n %}
 <option
-  value="browse"
-  data-href="{{ browse_url }}">
+   {% if page == 'browse' %}selected="selected"{% endif %}
+   value="browse"
+   data-href="{{ browse_url }}">
   {% trans "Browse" %}
 </option>
 {% if has_admin_access or language %}
 <option
-  value="translate"
-  data-href="{{ translate_url }}">
+   {% if page == 'translate' %}selected="selected"{% endif %}
+   value="translate"
+   data-href="{{ translate_url }}">
   {% trans "Translate" %}
 </option>
 {% endif %}
 {% if page == 'translate' %}
 <option disabled></option>
 <option
-  value="export" class="js-export-view"
-  data-new-tab="true"
-  data-export-url="{{ export_url }}">
+   {% if page == 'export' %}selected="selected"{% endif %}
+   value="export" class="js-export-view"
+   data-new-tab="true"
+   data-export-url="{{ export_url }}">
   {% trans "Export View" %}
 </option>
 {% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
 <option
-  value="admin-languages" class="admin"
-  data-href="{% url 'pootle-project-admin-languages' project.code %}">
+   {% if page == 'admin-languages' %}selected="selected"{% endif %}
+   value="admin-languages"
+   class="admin"
+   data-href="{% url 'pootle-project-admin-languages' project.code %}">
   {% trans "Languages" %}
 </option>
 <option
-  value="admin-permissions" class="admin"
-  data-href="{% url 'pootle-project-admin-permissions' project.code %}">
+   {% if page == 'admin-permissions' %}selected="selected"{% endif %}
+   value="admin-permissions"
+   class="admin"
+   data-href="{% url 'pootle-project-admin-permissions' project.code %}">
   {% trans "Permissions" %}
 </option>
 {% endif %}
