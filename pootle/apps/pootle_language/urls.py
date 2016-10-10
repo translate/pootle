@@ -11,7 +11,7 @@ from django.conf.urls import url
 from .views import (
     LanguageBrowseView, LanguageSuggestionAdminView,
     LanguageTeamAdminFormView, LanguageTeamAdminNewMembersJSON,
-    LanguageTranslateView,
+    LanguageTranslateView, LanguageUnitAdminView,
     language_characters_admin)
 
 
@@ -34,6 +34,9 @@ urlpatterns = [
     url(r'(?P<language_code>[^/]*)/admin/suggestions/',
         LanguageSuggestionAdminView.as_view(),
         name='pootle-language-admin-suggestions'),
+    url(r'(?P<language_code>[^/]*)/admin/units/',
+        LanguageUnitAdminView.as_view(),
+        name='pootle-language-admin-units'),
     url(r'^(?P<language_code>[^/]*)/admin/characters/$',
         language_characters_admin,
         name='pootle-language-admin-characters')]
