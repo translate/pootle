@@ -16,13 +16,13 @@ from pootle.i18n.gettext import ugettext_lazy as _
 class GroupedModelChoiceIterator(ModelChoiceIterator):
     def __init__(self, field):
         self.field = field
-        self.querysets = field.querysets
+        self.choice_groups = field.choice_groups
 
     def __iter__(self):
         if self.field.empty_label is not None:
             yield (u'', self.field.empty_label)
 
-        for title, queryset in self.querysets:
+        for title, queryset in self.choice_groups:
             if title is not None:
                 yield (title, [self.choice(choice) for choice in queryset])
             else:
@@ -33,12 +33,12 @@ class GroupedModelChoiceIterator(ModelChoiceIterator):
 class GroupedModelChoiceField(forms.ModelChoiceField):
     """A `ModelChoiceField` with grouping capabilities.
 
-    :param querysets: List of tuples including the `title` and `queryset` of
+    :param choice_groups: List of tuples including the `title` and `queryset` of
         each individual choice group.
     """
 
-    def __init__(self, querysets, *args, **kwargs):
-        self.querysets = querysets
+    def __init__(self, choice_groups, *args, **kwargs):
+        self.choice_groups = choice_groups
         super(GroupedModelChoiceField, self).__init__(*args, **kwargs)
 
     def _get_choices(self):
