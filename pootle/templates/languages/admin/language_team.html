@@ -1,0 +1,156 @@
+{% extends "languages/base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Language team" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block section_body %}
+<div id="content">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div id="pootle-fs-project-admin" class="settings-container">
+      <div class="config-content">
+	<div class="config-content-panel">
+	  <h3>{% blocktrans %}Member admin{% endblocktrans %}</h3>
+	  <div class="padded centered">
+	    <div class="padded aligned-left">
+	      <h4>{{form.new_member.label }}</h4>
+	      {{ form.new_member }}
+	      {{ form.new_member.errors }}
+	    </div>
+	    <div class="padded aligned-left">
+	      <h4>{{form.role.label }}</h4>
+	      {{ form.role }}
+	      {{ form.role.errors }}
+	    </div>
+	    <div class="padded">
+	      <input type="submit" class="btn" value="{% trans 'Add team member' %}">
+	    </div>
+	  </div>
+	</div>
+	<div class="config-content-panel">
+	  <h4>{{ form.rm_admins.label }}</h4>
+	  <div class="padded">
+	    <table>
+	      {{ form.rm_admins }}
+	      {{ form.rm_admins.errors }}
+	    </table>
+	    <div class="padded centered">
+	      <input
+		 type="submit"
+		 class="btn"
+		 name="action"
+		 value="{% trans 'Remove selected' %}" />
+	    </div>
+	  </div>
+	</div>
+	<div class="config-content-panel">
+	  <h4>{{ form.rm_reviewers.label }}</h4>
+	  <div class="padded">
+	    <table>
+	      {{ form.rm_reviewers }}
+	      {{ form.rm_reviewers.errors }}
+	    </table>
+	    <div class="padded centered">
+	      <input
+		 type="submit"
+		 class="btn"
+		 name="action"
+		 value="{% trans 'Remove selected' %}" />
+	    </div>
+	  </div>
+	</div>
+	<div class="config-content-panel">
+	  <h4>{{ form.rm_submitters.label }}</h4>
+	  <div class="padded">
+	    <table>
+	      {{ form.rm_submitters }}
+	      {{ form.rm_submitters.errors }}
+	    </table>
+	    <div class="padded centered">
+	      <input
+		 type="submit"
+		 class="btn"
+		 name="action"
+		 value="{% trans 'Remove selected' %}" />
+	    </div>
+	  </div>
+	</div>
+	<div class="config-content-panel">
+	  <h4>{{ form.rm_members.label }}</h4>
+	  <div class="padded">
+	    <table>
+	      {{ form.rm_members }}
+	      {{ form.rm_members.errors }}
+	    </table>
+	    <div class="padded centered">
+	      <input
+		 type="submit"
+		 class="btn"
+		 name="action"
+		 value="{% trans 'Remove selected' %}" />
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div class="config-content">
+	<div class="config-content-panel">
+	  <h3>{% blocktrans %}Projects{% endblocktrans %}</h3>
+	  <div class="padded">
+	    <ul>
+	      {% for tp in tps %}
+	      <li class="padded-half">
+		<a href="{% url 'pootle-tp-browse' language_code=tp.language.code project_code=tp.project.code dir_path='' %}">
+		  {{ tp.project.fullname }}
+		</a>
+	      </li>
+	      {% endfor %}
+	    </ul>
+	  </div>
+	</div>
+	<div class="config-content-panel">
+	  <h3>{% blocktrans %}Unit admin{% endblocktrans %}</h3>
+	  <div class="padded">
+	    <ul>
+	      <li class="padded-half">
+		{% blocktrans %}Critical:{% endblocktrans %}
+		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=checks&category=critical">
+		  {{ stats.critical }}
+		</a>
+	      </li>
+	      <li class="padded-half">
+		{% blocktrans %}Total words:{% endblocktrans %}
+		<a href="{% url 'pootle-language-translate' language_code=language.code %}">
+		  {{ stats.total }}
+		</a>
+	      </li>
+	      <li class="padded-half">
+		{% blocktrans %}Translated:{% endblocktrans %}
+		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=translated">
+		  {{ stats.translated }}
+		</a>
+	      </li>
+	      <li class="padded-half">
+		{% blocktrans %}Needs work:{% endblocktrans %}
+		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=fuzzy">
+		  {{ stats.fuzzy }}
+		</a>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+	<div class="config-content-panel">
+	  <h3>{% blocktrans %}Suggestion admin{% endblocktrans %}</h3>
+	  <div class="padded">
+	    <p>
+	      {% blocktrans %}There are {{ suggestions.count }} suggestions pending{% endblocktrans %}
+	    </p>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+{% endblock %}
