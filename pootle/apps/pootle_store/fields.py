@@ -16,6 +16,8 @@ from translate.misc.multistring import multistring
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 
+from pootle.core.utils.multistring import parse_multistring
+
 
 # # # # # # # # # String # # # # # # # # # # # # # # #
 
@@ -65,15 +67,7 @@ def to_python(value):
     elif isinstance(value, multistring):
         return value
     elif isinstance(value, basestring):
-        strings = value.split(SEPARATOR)
-        if strings[-1] == PLURAL_PLACEHOLDER:
-            strings = strings[:-1]
-            plural = True
-        else:
-            plural = len(strings) > 1
-        ms = multistring(strings, encoding="UTF-8")
-        ms.plural = plural
-        return ms
+        return parse_multistring(value)
     elif isinstance(value, dict):
         return multistring([val for __, val in sorted(value.items())],
                            encoding="UTF-8")
