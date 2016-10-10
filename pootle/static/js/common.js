@@ -109,6 +109,46 @@ PTL.common = {
     });
     $('.select2-selection__rendered').removeAttr('title');
 
+    const processData = (params) => {
+      const result = {
+        q: params.term,
+        page: params.page,
+      };
+      return result;
+    };
+
+    const processResults = (data) => {
+      const results = {
+        results: $.map(data.items, (result) => {
+          const item = {
+            id: result.id,
+            text: result.username,
+          };
+          return item;
+        }),
+      };
+      return results;
+    };
+
+    $(document).ready(() => {
+      $('.js-select2-remote').each((i, item) => {
+        const $item = $(item);
+        const select2Url = $(item).data('select2-url');
+        $item.select2({
+          ajax: {
+            url: select2Url,
+            dataType: 'json',
+            delay: 250,
+            data: processData,
+            processResults,
+          },
+          cache: true,
+          minimumInputLength: 2,
+          width: '23em',
+        });
+      });
+    });
+
     // Set CSRF token for XHR requests (jQuery-specific)
     $.ajaxSetup({
       traditional: true,
