@@ -21,9 +21,13 @@ from pootle.core.views.formtable import FormTable
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n.gettext import tr_lang
 
+from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
+from pootle_store.models import QualityCheck, Unit
+
+
 from .forms import (
     LanguageSpecialCharsForm, LanguageSuggestionAdminForm, LanguageTeamAdminForm,
-    LanguageTeamNewMemberSearchForm)
+    LanguageTeamNewMemberSearchForm, LanguageUnitAdminForm)
 from .models import Language
 
 
@@ -138,6 +142,11 @@ class SuggestionFormTable(FormTable):
     header_template = "languages/admin/includes/suggestions_header.html"
 
 
+class UnitFormTable(FormTable):
+    row_field = "units"
+    header_template = "languages/admin/includes/units_header.html"
+
+
 class LanguageSuggestionAdminView(LanguageTeamBaseAdminView):
     template_name = 'languages/admin/language_team_suggestions.html'
     form_class = LanguageSuggestionAdminForm
@@ -181,6 +190,56 @@ class LanguageSuggestionAdminView(LanguageTeamBaseAdminView):
         if not self.request.POST:
             kwargs["data"] = self.default_form_kwargs
         return kwargs
+
+
+class LanguageUnitAdminView(LanguageTeamBaseAdminView):
+    template_name = 'languages/admin/language_team_units.html'
+
+    def get_context_data(self, **kwargs):
+        language = get_object_or_404(
+            Language,
+            code=self.kwargs["language_code"])
+        units = Unit.objects.filter(
+            state__gt=OBSOLETE,
+            store__translation_project__language=language)
+        units = units.order_by("-creation_time")
+        page = 1
+        reviewers = set(units.values_list(
+            "reviewed_by__username",
+            "reviewed_by__full_name"))
+        submitters = set(units.values_list(
+            "submitted_by__username",
+            "submitted_by__full_name"))
+        checks = QualityCheck.objects.filter(unit__in=units)
+        checks = set(checks.values_list("name", flat=True))
+        states = [
+            (TRANSLATED, "translated"),
+            (FUZZY, "fuzzy"),
+            (UNTRANSLATED, "untranslated")]
+
+        if self.request.GET:
+            form = LanguageUnitAdminForm(self.request.GET)
+            if form.is_valid():
+                page = form.cleaned_data["page"]
+        else:
+            form = LanguageUnitAdminForm()
+        paginator = Paginator(units, 10)
+        units = paginator.page(page)
+        return dict(
+            paginator=paginator,
+            reviewers=reviewers,
+            submitters=submitters,
+            checks=checks,
+            states=states,
+            units=units,
+            formtable=UnitFormTable(
+                form,
+                columns=(
+                    "Source",
+                    "Suggestion",
+                    "Suggested by",
+                    "Suggested at"),
+                page=page))
 
 
 class LanguageTeamAdminFormView(LanguageTeamBaseAdminView):
