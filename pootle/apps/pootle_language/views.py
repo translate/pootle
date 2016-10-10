@@ -6,22 +6,27 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
+from django.utils.safestring import mark_safe
 
 from pootle.core.browser import make_project_item
-from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.decorators import (
+    get_object_or_404, get_path_obj, permission_required)
 from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle.core.views.admin import PootleFormView
 from pootle.core.views.decorators import requires_permission, set_permissions
+from pootle.core.views.formtable import Formtable
 from pootle.core.views.mixins import PootleJSONMixin
-from pootle.i18n.gettext import tr_lang
+from pootle.i18n.gettext import tr_lang, ugettext_lazy as _
+from pootle_store.constants import STATES_MAP
 
 from .forms import (
-    LanguageSpecialCharsForm, LanguageTeamAdminForm,
+    LanguageSpecialCharsForm, LanguageSuggestionAdminForm, LanguageTeamAdminForm,
     LanguageTeamNewMemberSearchForm)
 from .models import Language
 
@@ -120,6 +125,50 @@ def language_characters_admin(request, language):
     return render(request, 'languages/admin/characters.html', ctx)
 
 
+class SuggestionFormtable(Formtable):
+    row_field = "suggestions"
+    filters_template = "languages/admin/includes/suggestions_header.html"
+
+    @property
+    def messages(self):
+        return self.kwargs.get("messages", [])
+
+
+class SuggestionDisplay(object):
+
+    def __init__(self, suggestion):
+        self.__suggestion__ = suggestion
+
+    @property
+    def unit(self):
+        return self.__suggestion__.unit.source_f
+
+    @property
+    def project(self):
+        tp = self.__suggestion__.unit.store.translation_project
+        return mark_safe(
+            "<a href='%s'>%s</a>"
+            % (tp.get_absolute_url(),
+               tp.project.code))
+
+    @property
+    def unit_state(self):
+        return STATES_MAP[self.__suggestion__.unit.state]
+
+    @property
+    def unit_link(self):
+        return mark_safe(
+            "<a href='%s'>#%s</a>"
+            % (self.__suggestion__.unit.get_translate_url(),
+               self.__suggestion__.unit.id))
+
+    def __getattr__(self, k):
+        try:
+            return getattr(self.__suggestion__, k)
+        except AttributeError:
+            return self.__getattribute__(k)
+
+
 class PootleLanguageAdminFormView(PootleFormView):
 
     @property
@@ -133,7 +182,7 @@ class PootleLanguageAdminFormView(PootleFormView):
         return super(
             PootleLanguageAdminFormView, self).dispatch(request, *args, **kwargs)
 
-    @property
+    @cached_property
     def language(self):
         return get_object_or_404(
             Language.objects.select_related("directory"),
@@ -147,6 +196,77 @@ class PootleLanguageAdminFormView(PootleFormView):
     @property
     def success_kwargs(self):
         return dict(language_code=self.language.code)
+
+
+class LanguageSuggestionAdminView(PootleLanguageAdminFormView):
+    template_name = 'languages/admin/language_team_suggestions.html'
+    form_class = LanguageSuggestionAdminForm
+    success_url_pattern = "pootle-language-admin-suggestions"
+    formtable_columns = (
+        _("Unit"),
+        _("State"),
+        _("Source"),
+        _("Suggestion"),
+        _("Suggested by"),
+        _("Suggested at"),
+        _("Project"))
+
+    @property
+    def default_form_kwargs(self):
+        return dict(
+            page_no=1,
+            results_per_page=10)
+
+    def add_success_message(self, form):
+        count = (
+            form.fields["suggestions"].queryset.count()
+            if form.cleaned_data["select_all"]
+            else len(form.cleaned_data["suggestions"]))
+        reject_and_notify = (
+            form.cleaned_data["actions"] == "reject"
+            and form.cleaned_data["comment"])
+        accept_and_notify = (
+            form.cleaned_data["actions"] == "accept"
+            and form.cleaned_data["comment"])
+        if reject_and_notify:
+            message = _(
+                "Rejected %s suggestions with comment. Users will be notified",
+                count)
+        elif accept_and_notify:
+            message = _(
+                "Accepted %s suggestions with comment. Users will be notified",
+                count)
+        elif form.cleaned_data["actions"] == "reject":
+            message = _("Rejected %s suggestions", count)
+        else:
+            message = _("Accepted %s suggestions", count)
+        messages.success(self.request, message)
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            LanguageSuggestionAdminView, self).get_context_data(**kwargs)
+        context["page"] = "admin-suggestions"
+        context["language"] = self.language
+        form = context["form"]
+        form.is_valid()
+        batch = form.batch()
+        form.fields["suggestions"].choices = [
+            (item.id, SuggestionDisplay(item))
+            for item in
+            batch.object_list]
+        context["formtable"] = SuggestionFormtable(
+            form,
+            columns=self.formtable_columns,
+            page=batch,
+            messages=messages.get_messages(self.request))
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super(LanguageSuggestionAdminView, self).get_form_kwargs()
+        if not self.request.POST:
+            kwargs["data"] = self.default_form_kwargs
+        kwargs["user"] = self.request.user
+        return kwargs
 
 
 class LanguageTeamAdminFormView(PootleLanguageAdminFormView):
