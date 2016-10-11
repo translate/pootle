@@ -513,12 +513,23 @@ form.pootle-fs-config-form
 {
     margin: 0;
     padding: 1em;
-    background: #eee;
 }
 
 #pootle-fs-project-admin .config-content
 {
-    padding: 1px;
-    background: #aaa;
     width: 50%;
+    float: left;
+}
+
+#pootle-fs-project-admin .config-content-panel
+{
+    padding: 1em;
+    border: solid #aaa 1px;
+    margin: 1em;
+    background: #eee;
+}
+
+#pootle-fs-project-admin .config-content-panel h3
+{
+    background: transparent;
 }
