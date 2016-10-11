@@ -11,7 +11,10 @@ from django import forms
 
 class UploadForm(forms.Form):
     file = forms.FileField(required=True)
-    user_id = forms.ChoiceField(required=False)
+    user_id = forms.ChoiceField(
+        required=False,
+        widget=forms.Select(
+            attrs={'class': 'js-select2'}))
 
     def __init__(self, *args, **kwargs):
         self.uploader_list = kwargs.pop("uploader_list", [])
