@@ -111,8 +111,8 @@ function navigateTo(languageCode, projectCode, resource) {
 }
 
 
-function handleNavDropDownSelectClick() {
-  const $select = $(this);
+function handleNavDropDownSelectClick(e) {
+  const $select = $(e.target);
   const $opt = $select.find('option:selected');
   const href = $opt.data('href');
 
@@ -146,18 +146,18 @@ function handleBeforeNavDropDownResourceSelect(e) {
   }
 
   e.preventDefault();
-  const $select = $(this);
+  const $select = $(e.target);
   if ($select.val() === '') {
     $select.select2('close');
   } else {
     $select.select2('val', '');
     $select.select2('close');
-    handleNavDropDownSelectClick();
+    handleNavDropDownSelectClick(e);
   }
 }
 
 
-function makeNavDropdown(selector, opts, handleSelectClick, handleBeforeSelect) {
+function makeNavDropdown(selector, opts) {
   const defaults = {
     allowClear: true,
     dropdownAutoWidth: true,
@@ -168,9 +168,7 @@ function makeNavDropdown(selector, opts, handleSelectClick, handleBeforeSelect) 
 
   return utils.makeSelectableInput(
     selector,
-    options,
-    handleSelectClick,
-    handleBeforeSelect
+    options
   );
 }
 
@@ -262,11 +260,11 @@ const browser = {
 
     makeNavDropdown(sel.navigation, {
       minimumResultsForSearch: -1,
-    }, handleNavDropDownSelectClick);
+    })
     makeNavDropdown(sel.language, {
       placeholder: gettext('All Languages'),
       formatResult: formatLanguage,
-    }, handleNavDropDownSelectClick);
+    })
     makeNavDropdown(sel.project, {
       placeholder: gettext('All Projects'),
       formatResult: formatProject,
@@ -275,8 +273,12 @@ const browser = {
       placeholder: gettext('Entire Project'),
       formatResult: formatResource,
       sortResults: removeCtxEntries,
-    }, handleNavDropDownSelectClick, handleBeforeNavDropDownResourceSelect);
-
+    })
+    $(sel.breadcrumbs).on("change", "select",
+                          handleNavDropDownSelectClick)
+    $(sel.breadcrumbs).on('select2-selecting',
+			  sel.resource,
+			  handleBeforeNavDropDownResourceSelect);
     /* Adjust breadcrumb layout on window resize */
     $(window).on('resize', () => {
       fixResourcePathBreadcrumbGeometry();
