@@ -15,35 +15,66 @@
       <h2>{% blocktrans with project_code=project.code %}Filesystem configuration: {{ project_code }}{% endblocktrans %}</h2>
     </div>
     <div class="config-content">
-      <form method="POST" class="pootle-fs-config-form">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<div class="centered" style="text-align: center">
-	  <input type="submit" class="btn" value="{% trans 'Update filesystem configuration' %}" />
-	</div>
-	<p>
-	  {% blocktrans %}Translation paths should be of the format:{% endblocktrans %}
-	  <blockquote style="text-align: center">
-	    <code>
-	      `/path/to/translation/files/&lt;language_code&gt;/&lt;dir_path&gt;/&lt;filename&gt;.&lt;ext&gt;`
-	    </code>
-	  </blockquote>
-	</p>
-	<p>
-	  {% blocktrans %}Only `&lt;language_code&gt;` is required, although it must end with `.&lt;ext&gt;`{% endblocktrans %}
-	</p>
-	<p>
-	  {% blocktrans %}If you are using the localfs backend the translation path will be combined with the path specified in
-	  backend URL{% endblocktrans %}
-	</p>
-	<p>
-	  {% blocktrans %}For other backends the translation path will be relative to the root of the repository.{% endblocktrans %}
-	</p>
-      </form>
+      <div class="config-content-panel">
+	<h3>{% blocktrans %}Backend configuration{% endblocktrans %}</h3>
+	<form method="POST" class="pootle-fs-config-form">
+	  {% csrf_token %}
+	  {{ form.as_p }}
+	  <div class="centered">
+	    <input type="submit" class="btn" value="{% trans 'Update filesystem configuration' %}" />
+	  </div>
+	  <p>
+	    {% blocktrans %}Translation paths should be of the format:{% endblocktrans %}
+	    <blockquote class="centered">
+	      <code>
+		`/path/to/translation/files/&lt;language_code&gt;/&lt;dir_path&gt;/&lt;filename&gt;.&lt;ext&gt;`
+	      </code>
+	    </blockquote>
+	  </p>
+	  <p>
+	    {% blocktrans %}Only `&lt;language_code&gt;` is required, although it must end with `.&lt;ext&gt;`{% endblocktrans %}
+	  </p>
+	  <p>
+	    {% blocktrans %}If you are using the localfs backend the translation path will be combined with the path specified in
+	    backend URL{% endblocktrans %}
+	  </p>
+	  <p>
+	    {% blocktrans %}For other backends the translation path will be relative to the root of the repository.{% endblocktrans %}
+	  </p>
+	</form>
+      </div>
     </div>
     <div class="config-content">
-      Language mapping configuration
-      
+      <div class="config-content-panel">
+	<h3>{% blocktrans %}Language mapping configuration{% endblocktrans %}</h3>
+
+	<form method="post" action___="{{ lang_mapping_formset_action }}">
+	  {% csrf_token %}
+	  {{ lang_mapping_formset.management_form }}
+	  {% for error in lang_mapping_formset.non_form_errors %}
+	  <div class="error padding-top padding-bottom">{{ error }}</div>
+	  {% endfor %}
+	  <table>
+	    <tr>
+	      <th class="aligned-right">{% blocktrans %}Remove{% endblocktrans %}</th>
+	      <th>{% blocktrans %}Pootle code{% endblocktrans %}</th>
+	      <th>{% blocktrans %}Filesystem code{% endblocktrans %}</th>
+	    </tr>
+	    {% for form in lang_mapping_formset %}
+	    <tr>
+	      <td class="aligned-right padding-half-right">{% if form.initial %}{{ form.remove }}{% else %}Add{% endif %}</td>
+	      <td>{{ form.pootle_code }} {{ form.pootle_code.errors }}</td>
+	      <td>{{ form.fs_code }}</td>
+	    </tr>
+	    {% endfor %}
+	    <tr>
+	      <td colspan="3" class="centered">
+		<input type="submit" class="btn" value="{% trans 'Update' %}" />
+	      </td>
+	    </tr>
+	  </table>
+	</form>
+      </div>
     </div>
   </div>
 </div>
