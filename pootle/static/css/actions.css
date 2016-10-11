@@ -208,10 +208,6 @@ html[dir="rtl"] #translate-filters .breadcrumb
     margin-right: 2em;
 }
 
-#translate-filters .breadcrumb .select2-container
-{
-    top: 0;
-}
 
 #translate-filters .breadcrumb .select2-container .select2-choice
 {

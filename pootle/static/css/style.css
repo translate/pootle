@@ -2321,16 +2321,6 @@ h2:lang(zh) a
 
 
 /*
- * Import-export styling
- */
-
-.upload-form span
-{
-    margin-left: 18px;
-}
-
-
-/*
  * Django messages placeholder
  */
 .messages
