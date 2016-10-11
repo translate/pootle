@@ -1,6 +1,6 @@
 # MySQL Database
 
-# mysqlclient is the recommeneded version drive for MySQL
+# mysqlclient is the recommended driver for MySQL
 # Ref https://docs.djangoproject.com/en/1.9/ref/databases/#mysql-db-api-drivers
 
 # Recommended versions https://docs.djangoproject.com/en/1.9/ref/databases/#id9
