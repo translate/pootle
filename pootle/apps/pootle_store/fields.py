@@ -16,25 +16,11 @@ from translate.misc.multistring import multistring
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
 
-from pootle.core.utils.multistring import parse_multistring
+from pootle.core.utils.multistring import (parse_multistring,
+                                           unparse_multistring)
 
 
 # # # # # # # # # String # # # # # # # # # # # # # # #
-
-SEPARATOR = "__%$%__%$%__%$%__"
-PLURAL_PLACEHOLDER = "__%POOTLE%_$NUMEROUS$__"
-
-
-def list_empty(strings):
-    """check if list is exclusively made of empty strings.
-
-    useful for detecting empty multistrings and storing them as a
-    simple empty string in db.
-    """
-    for string in strings:
-        if len(string) > 0:
-            return False
-    return True
 
 
 def to_db(value):
@@ -43,21 +29,8 @@ def to_db(value):
     """
     if value is None:
         return None
-    elif isinstance(value, multistring):
-        if list_empty(value.strings):
-            return ''
-        else:
-            strings = list(value.strings)
-            if len(strings) == 1 and getattr(value, "plural", False):
-                strings.append(PLURAL_PLACEHOLDER)
-            return SEPARATOR.join(strings)
-    elif isinstance(value, list):
-        if list_empty(value):
-            return ''
-        else:
-            return SEPARATOR.join(value)
-    else:
-        return value
+
+    return unparse_multistring(value)
 
 
 def to_python(value):

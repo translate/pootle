@@ -44,6 +44,7 @@ from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
+from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_format.models import Format
@@ -55,8 +56,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, NEW, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
-from .fields import (PLURAL_PLACEHOLDER, SEPARATOR, MultiStringField,
-                     TranslationStoreField)
+from .fields import MultiStringField, TranslationStoreField
 from .managers import StoreManager, SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
