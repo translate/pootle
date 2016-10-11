@@ -1,0 +1,4 @@
+# pootle_fs requirements
+
+# If you want to use pootle_fs git plugin
+#-e git+https://github.com/translate/pootle_fs_git@pootle_fs_cleanups#egg=pootle-fs-git
