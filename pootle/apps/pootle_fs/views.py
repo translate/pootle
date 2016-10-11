@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from pootle.core.views.admin import PootleAdminFormView
 from pootle_project.models import Project
 
-from .forms import ProjectFSAdminForm
+from .forms import LangMappingFormSet, ProjectFSAdminForm
 
 
 class ProjectFSAdminView(PootleAdminFormView):
@@ -21,7 +21,23 @@ class ProjectFSAdminView(PootleAdminFormView):
     def get_context_data(self, **kwargs):
         context = super(ProjectFSAdminView, self).get_context_data(**kwargs)
         context["project"] = self.project
+        context["lang_mapping_formset"] = self.get_lang_mapping_formset()
         return context
+
+    def get_lang_mapping_formset(self):
+        formset_data = {
+            k: v for k, v
+            in self.request.POST.items()
+            if k.startswith("lang-mapping")}
+        formset_kwargs = dict(project=self.project, prefix="lang-mapping")
+        if formset_data:
+            formset_kwargs["data"] = formset_data
+        formset = LangMappingFormSet(**formset_kwargs)
+        if formset_data and formset.is_valid():
+            formset.save()
+            del formset_kwargs["data"]
+            formset = LangMappingFormSet(**formset_kwargs)
+        return formset
 
     @property
     def project(self):
@@ -30,6 +46,15 @@ class ProjectFSAdminView(PootleAdminFormView):
     def get_form_kwargs(self, **kwargs):
         kwargs = super(ProjectFSAdminView, self).get_form_kwargs(**kwargs)
         kwargs.update(dict(project=self.project))
+        kwargs["prefix"] = "fs-config"
+        kwargs["data"] = {
+            k: v for k, v
+            in kwargs.get("data", {}).items()
+            if k.startswith("fs-config")}
+        if not kwargs["data"]:
+            del kwargs["data"]
+            if kwargs.get("files") is not None:
+                del kwargs["files"]
         return kwargs
 
     def form_valid(self, form):
