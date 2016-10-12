@@ -2,43 +2,10 @@
 
 {% load i18n assets store_tags %}
 
-{% block css %}
-{{ block.super }}
-{% assets "css_reports" %}
-<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-{% endassets %}
-{% endblock css %}
-
 {% block scripts_extra %}
 {{ block.super }}
-{% assets "js_reports" %}
-<script type="text/javascript" src="{{ ASSET_URL }}"></script>
-{% endassets %}
-
 <script id="language_user_activity" type="text/template">
 {% include_raw "admin/xhr_language_user_activity.html" %}
-</script>
-{% if object.rate > 0 and object.username == request.user.username %}
-  <script id="summary" type="text/template">
-  {% include_raw "admin/xhr_summary_report.html" %}
-  </script>
-  <script id="paid-tasks" type="text/template">
-  {% include_raw "admin/xhr_paid_tasks_report.html" %}
-  </script>
-{% endif %}
-
-<script type="text/javascript">
-  $(function () {
-    PTL.reports.init({
-      serverTime: "{{ now }}",
-      freeUserReport: {% if object.rate == 0 %}true{% else %}false{% endif %},
-      ownReport: {% if object.username == request.user.username %}true{% else %}false{% endif %},
-      adminReport: false,
-      userName: "{{ object.username }}",
-      detailedUrl: "{% url 'pootle-user-detailed-stats' object.username %}",
-      addPaidTaskUrl: "{% url 'pootle-user-add-paid-task' object.username %}",
-    });
-  });
 </script>
 
 {% endblock scripts_extra %}
@@ -60,13 +27,5 @@
       <h2>{% trans 'Daily activity' %}</h2>
       <div id="daily-chart"></div>
     </div>
-    {% if object.rate > 0 and object.username == request.user.username %}
-      <div id="forms">
-        {% include "user/reports/user_rates_widget.html" %}
-        {% include "admin/reports/paid_task_form.html" %}
-      </div>
-      <div id="reports-paid-tasks"></div>
-      <div id="reports-summary"></div>
-    {% endif %}
   </div>
 {% endblock %}
