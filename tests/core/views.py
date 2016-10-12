@@ -17,6 +17,7 @@ from pytest_pootle.factories import LanguageDBFactory, UserFactory
 from pytest_pootle.utils import create_api_request
 
 from pootle.core.views import APIView
+from pootle.core.views.widgets import TableSelectMultiple
 from accounts.models import User
 
 
@@ -426,3 +427,206 @@ def test_apiview_get_multi_m2m(rf):
             == list(
                 str(l) for l
                 in user.alt_src_langs.values_list("pk", flat=True)))
+
+
+@pytest.mark.django_db
+def test_widget_table_select_multiple_dict():
+    choices = (
+        ("foo", dict(id="foo", title="Foo")),
+        ("bar", dict(id="bar", title="Bar")),
+        ("baz", dict(id="baz", title="Baz")))
+    widget = TableSelectMultiple(item_attrs=["id"], choices=choices)
+    rendered = widget.render("a-field", None)
+    for i, (name, choice) in enumerate(choices):
+        assert (
+            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+             % name)
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=["id"], choices=choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=["id", "title"], choices=choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) in rendered
+
+
+@pytest.mark.django_db
+def test_widget_table_select_multiple_objects():
+    choices = (
+        ("foo", dict(id="foo", title="Foo")),
+        ("bar", dict(id="bar", title="Bar")),
+        ("baz", dict(id="baz", title="Baz")))
+
+    class Dummy(object):
+
+        def __init__(self, **kwargs):
+            for k, v in kwargs.items():
+                setattr(self, k, v)
+
+    object_choices = tuple(
+        (name, Dummy(**choice)) for name, choice in choices)
+    widget = TableSelectMultiple(item_attrs=["id"], choices=object_choices)
+    rendered = widget.render("a-field", None)
+    for i, (name, choice) in enumerate(choices):
+        assert (
+            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+             % name)
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=["id"], choices=object_choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=["id", "title"], choices=object_choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) in rendered
+
+
+@pytest.mark.django_db
+def test_widget_table_select_multiple_callable():
+    choices = (
+        ("foo", dict(id="foo", title="Foo")),
+        ("bar", dict(id="bar", title="Bar")),
+        ("baz", dict(id="baz", title="Baz")))
+
+    def _get_id(attr):
+        return "xx%s" % attr["id"]
+
+    def _get_title(attr):
+        return "xx%s" % attr["title"]
+
+    widget = TableSelectMultiple(item_attrs=[_get_id], choices=choices)
+    rendered = widget.render("a-field", None)
+    for i, (name, choice) in enumerate(choices):
+        assert (
+            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+             % name)
+            in rendered)
+        assert ('<td>xx%s</td>' % choice["id"]) in rendered
+        assert ('<td>xx%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=[_get_id], choices=choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>xx%s</td>' % choice["id"]) in rendered
+        assert ('<td>xx%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=[_get_id, _get_title], choices=choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>xx%s</td>' % choice["id"]) in rendered
+        assert ('<td>xx%s</td>' % choice["title"]) in rendered
+
+
+@pytest.mark.django_db
+def test_widget_table_select_multiple_object_methods():
+    choices = (
+        ("foo", dict(id="foo", title="Foo")),
+        ("bar", dict(id="bar", title="Bar")),
+        ("baz", dict(id="baz", title="Baz")))
+
+    class Dummy(object):
+
+        def get_id(self):
+            return self.kwargs["id"]
+
+        def get_title(self):
+            return self.kwargs["title"]
+
+        def __init__(self, **kwargs):
+            self.kwargs = kwargs
+            for k in kwargs.keys():
+                setattr(self, k, getattr(self, "get_%s" % k))
+
+    object_choices = tuple(
+        (name, Dummy(**choice)) for name, choice in choices)
+    widget = TableSelectMultiple(item_attrs=["id"], choices=object_choices)
+    rendered = widget.render("a-field", None)
+    for i, (name, choice) in enumerate(choices):
+        assert (
+            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+             % name)
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=["id"], choices=object_choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) not in rendered
+    widget = TableSelectMultiple(item_attrs=["id", "title"], choices=object_choices)
+    rendered = widget.render("a-field", choices[0])
+    for i, (name, choice) in enumerate(choices):
+        checked = ""
+        if i == 0:
+            checked = ' checked="checked"'
+        assert (
+            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+             % (checked, name))
+            in rendered)
+        assert ('<td>%s</td>' % choice["title"]) in rendered
+
+
+@pytest.mark.django_db
+def test_widget_table_select_id_attr():
+    choices = (
+        ("foo", dict(id="foo", title="Foo")),
+        ("bar", dict(id="bar", title="Bar")),
+        ("baz", dict(id="baz", title="Baz")))
+    widget = TableSelectMultiple(item_attrs=["id"], choices=choices)
+    rendered = widget.render("a-field", None, attrs=dict(id="special-id"))
+    for i, (name, choice) in enumerate(choices):
+        assert (
+            ('<td><input id="special-id_%s" name="a-field" '
+             'type="checkbox" value="%s" /></td>'
+             % (i, name))
+            in rendered)
