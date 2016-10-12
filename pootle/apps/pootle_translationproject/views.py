@@ -20,8 +20,7 @@ from pootle.core.browser import (
     get_parent, make_directory_item, make_store_item)
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
-from pootle.core.views import (
-    PootleBrowseView, PootleExportView, PootleTranslateView)
+from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (
     check_permission, get_matching_permissions)
@@ -161,7 +160,6 @@ class TPMixin(object):
 class TPDirectoryMixin(TPMixin):
     model = Directory
     browse_url_path = "pootle-tp-browse"
-    export_url_path = "pootle-tp-export"
     translate_url_path = "pootle-tp-translate"
 
     @property
@@ -199,7 +197,6 @@ class TPDirectoryMixin(TPMixin):
 class TPStoreMixin(TPMixin):
     model = Store
     browse_url_path = "pootle-tp-store-browse"
-    export_url_path = "pootle-tp-store-export"
     translate_url_path = "pootle-tp-store-translate"
     is_store = True
 
@@ -323,7 +320,6 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 class TPTranslateBaseView(PootleTranslateView):
     translate_url_path = "pootle-tp-translate"
     browse_url_path = "pootle-tp-browse"
-    export_url_path = "pootle-tp-export"
     template_extends = 'translation_projects/base.html'
 
     @property
@@ -347,19 +343,4 @@ class TPTranslateView(TPDirectoryMixin, TPTranslateBaseView):
 
 
 class TPTranslateStoreView(TPStoreMixin, TPTranslateBaseView):
-    pass
-
-
-class TPExportBaseView(PootleExportView):
-
-    @property
-    def source_language(self):
-        return self.project.source_language
-
-
-class TPExportView(TPDirectoryMixin, TPExportBaseView):
-    pass
-
-
-class TPExportStoreView(TPStoreMixin, TPExportBaseView):
     pass

@@ -36,8 +36,6 @@ from .form_fields import (
 from .models import Suggestion, Unit
 
 
-EXPORT_VIEW_QUERY_LIMIT = 10000
-
 UNIT_SEARCH_FILTER_CHOICES = (
     ("all", "all"),
     ("translated", "translated"),
@@ -515,15 +513,3 @@ class UnitSearchForm(forms.Form):
         if can_view_path:
             return self.cleaned_data["path"]
         raise forms.ValidationError("Unrecognized path")
-
-
-class UnitExportForm(UnitSearchForm):
-
-    path = forms.CharField(
-        max_length=2048,
-        required=False)
-
-    default_count = None
-
-    def clean_path(self):
-        return self.cleaned_data.get("path", "/") or "/"

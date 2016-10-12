@@ -9,7 +9,7 @@
 from django.conf.urls import url
 
 from .views import (
-    TPBrowseStoreView, TPBrowseView, TPExportStoreView, TPExportView,
+    TPBrowseStoreView, TPBrowseView,
     TPTranslateStoreView, TPTranslateView, admin_permissions)
 
 
@@ -29,16 +29,6 @@ urlpatterns = [
         r'translate/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)$',
         TPTranslateStoreView.as_view(),
         name='pootle-tp-store-translate'),
-
-    # Export view
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'export-view/(?P<dir_path>(.*/)*)?$',
-        TPExportView.as_view(),
-        name='pootle-tp-export'),
-    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
-        r'export-view/(?P<dir_path>(.*/)*)(?P<filename>.*\.*)$',
-        TPExportStoreView.as_view(),
-        name='pootle-tp-store-export'),
 
     # Browser
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'

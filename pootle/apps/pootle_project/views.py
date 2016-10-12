@@ -25,8 +25,7 @@ from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
-    PootleAdminView, PootleBrowseView, PootleExportView,
-    PootleTranslateView)
+    PootleAdminView, PootleBrowseView, PootleTranslateView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
@@ -42,7 +41,6 @@ from .models import Project, ProjectResource, ProjectSet
 class ProjectMixin(object):
     model = Project
     browse_url_path = "pootle-project-browse"
-    export_url_path = "pootle-project-export"
     translate_url_path = "pootle-project-translate"
     template_extends = 'projects/base.html'
 
@@ -161,10 +159,6 @@ class ProjectTranslateView(ProjectMixin, PootleTranslateView):
     @property
     def pootle_path(self):
         return self.object.pootle_path
-
-
-class ProjectExportView(ProjectMixin, PootleExportView):
-    source_language = "en"
 
 
 class ProjectAdminView(PootleAdminView):
@@ -315,7 +309,6 @@ def project_admin_permissions(request, project):
 class ProjectsMixin(object):
     template_extends = 'projects/all/base.html'
     browse_url_path = "pootle-projects-browse"
-    export_url_path = "pootle-projects-export"
     translate_url_path = "pootle-projects-translate"
 
     @lru_cache()
@@ -366,7 +359,3 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
 
 class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):
     required_permission = "administrate"
-
-
-class ProjectsExportView(ProjectsMixin, PootleExportView):
-    source_language = "en"

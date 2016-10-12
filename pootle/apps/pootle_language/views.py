@@ -14,8 +14,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.browser import make_project_item
 from pootle.core.decorators import get_path_obj, permission_required
-from pootle.core.views import (
-    PootleBrowseView, PootleTranslateView, PootleExportView)
+from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle.i18n.gettext import tr_lang
 from pootle_app.views.admin.permissions import admin_permissions
 
@@ -26,7 +25,6 @@ from .models import Language
 class LanguageMixin(object):
     model = Language
     browse_url_path = "pootle-language-browse"
-    export_url_path = "pootle-language-export"
     translate_url_path = "pootle-language-translate"
     template_extends = 'languages/base.html'
 
@@ -87,11 +85,6 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
 
 class LanguageTranslateView(LanguageMixin, PootleTranslateView):
     url_pattern_name = "pootle-language-translate"
-
-
-class LanguageExportView(LanguageMixin, PootleExportView):
-    url_pattern_name = "pootle-language-export"
-    source_language = "en"
 
 
 @get_path_obj
