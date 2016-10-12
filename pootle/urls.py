@@ -23,10 +23,6 @@ urlpatterns += [
     # Allauth
     url(r'^accounts/', include('accounts.urls')),
     url(r'^accounts/', include('allauth.urls')),
-
-    # Reports
-    url(r'^admin/reports/', include('reports.urls')),
-    url(r'', include('reports.profile_urls')),
 ]
 
 # XXX should be autodiscovered
