@@ -626,7 +626,6 @@ PTL.editor = {
     this.keepState = false;
     this.isLoading = false;
     this.hideActivity();
-    this.updateExportLink();
     helpers.updateRelativeDates();
   },
 
@@ -1021,15 +1020,6 @@ PTL.editor = {
     } else {
       this.doSuggestMode();
     }
-  },
-
-  updateExportLink() {
-    const $exportOpt = $('.js-export-view');
-    const baseUrl = $exportOpt.data('export-url');
-    const hash = utils.getHash().replace(/&?unit=\d+/, '');
-    const exportLink = hash ? `${baseUrl}?${hash}` : baseUrl;
-
-    $exportOpt.data('href', exportLink);
   },
 
   /*
