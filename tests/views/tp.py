@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import json
-from itertools import groupby
 from urllib import unquote
 
 import pytest
@@ -21,18 +20,15 @@ from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import (
     get_parent, get_table_headings, make_directory_item, make_store_item)
-from pootle.core.delegate import search_backend
 from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME,
-    get_filter_name, get_sidebar_announcements_context)
+    SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
 from pootle.core.url_helpers import (
     get_previous_url, get_path_parts, split_pootle_path)
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
 from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
-from pootle_store.forms import UnitExportForm
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 from virtualfolder.delegate import vfolders_data_view
 from virtualfolder.models import VirtualFolder
 
@@ -201,39 +197,6 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     view_context_test(ctx, **assertions)
 
 
-def _test_export_view(tp, request, response, kwargs, settings):
-    ctx = response.context
-    filter_name, filter_extra = get_filter_name(request.GET)
-    form_data = request.GET.copy()
-    form_data["path"] = request.path.replace("export-view/", "")
-    search_form = UnitExportForm(
-        form_data, user=request.user)
-    assert search_form.is_valid()
-    total, start_, end_, units_qs = search_backend.get(Unit)(
-        request.user, **search_form.cleaned_data).search()
-    units_qs = units_qs.select_related('store')
-    assertions = {}
-    if total > settings.POOTLE_EXPORT_VIEW_LIMIT:
-        units_qs = units_qs[:settings.POOTLE_EXPORT_VIEW_LIMIT]
-        assertions.update(
-            {'unit_total_count': total,
-             'displayed_unit_count': settings.POOTLE_EXPORT_VIEW_LIMIT})
-    unit_groups = [
-        (path, list(units))
-        for path, units
-        in groupby(
-            units_qs,
-            lambda x: x.store.pootle_path)]
-    assertions.update(
-        dict(project=tp.project,
-             language=tp.language,
-             source_language=tp.project.source_language,
-             filter_name=filter_name,
-             filter_extra=filter_extra,
-             unit_groups=unit_groups))
-    view_context_test(ctx, **assertions)
-
-
 @pytest.mark.pootle_vfolders
 @pytest.mark.django_db
 def test_views_tp(tp_views, settings):
@@ -242,8 +205,6 @@ def test_views_tp(tp_views, settings):
         _test_browse_view(tp, request, response, kwargs)
     elif test_type == "translate":
         _test_translate_view(tp, request, response, kwargs, settings)
-    else:
-        _test_export_view(tp, request, response, kwargs, settings)
 
 
 @pytest.mark.django_db
