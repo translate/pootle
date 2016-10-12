@@ -172,8 +172,7 @@ GET_VFOLDER_UNITS_TESTS = OrderedDict(
 
 LANGUAGE_VIEW_TESTS = OrderedDict(
     (("browse", {}),
-     ("translate", {}),
-     ("export", {})))
+     ("translate", {})))
 
 PROJECT_VIEW_TESTS = OrderedDict(
     (("browse", {}),
@@ -190,15 +189,6 @@ PROJECT_VIEW_TESTS = OrderedDict(
      ("translate_store",
       {"filename": "store0.po"}),
      ("translate_directory_store",
-      {"dir_path": "subdir0/",
-       "filename": "store3.po"}),
-     ("export", {}),
-     ("export_limit", {"export_limit": True}),
-     ("export_directory",
-      {"dir_path": "subdir0/"}),
-     ("export_store",
-      {"filename": "store0.po"}),
-     ("export_directory_store",
       {"dir_path": "subdir0/",
        "filename": "store3.po"})))
 
@@ -220,16 +210,7 @@ TP_VIEW_TESTS = OrderedDict(
       {"dir_path": "subdir0/",
        "filename": "store3.po"}),
      ("translate_no_vfolders_in_subdir",
-      {"dir_path": "subdir0/subdir1/"}),
-     ("export", {}),
-     ("export_limit", {"export_limit": True}),
-     ("export_directory",
-      {"dir_path": "subdir0/"}),
-     ("export_store",
-      {"filename": "store0.po"}),
-     ("export_directory_store",
-      {"dir_path": "subdir0/",
-       "filename": "store3.po"})))
+      {"dir_path": "subdir0/subdir1/"})))
 
 VFOLDER_VIEW_TESTS = OrderedDict(
     (("translate_vfolder",
@@ -298,10 +279,6 @@ def project_views(request, client, request_users, settings):
     from pootle_project.models import Project
 
     test_kwargs = PROJECT_VIEW_TESTS[request.param].copy()
-    if test_kwargs.get("export_limit"):
-        settings.POOTLE_EXPORT_VIEW_LIMIT = 10
-        del test_kwargs["export_limit"]
-
     user = request_users["user"]
     client.login(
         username=user.username,
@@ -322,11 +299,6 @@ def tp_views(request, client, request_users, settings):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
 
-    test_kwargs = TP_VIEW_TESTS[request.param].copy()
-    if test_kwargs.get("export_limit"):
-        settings.POOTLE_EXPORT_VIEW_LIMIT = 10
-        del test_kwargs["export_limit"]
-
     tp_view_test_names = request.param
     user = request_users["user"]
 
@@ -338,6 +310,7 @@ def tp_views(request, client, request_users, settings):
         "language_code": tp.language.code,
         "dir_path": "",
         "filename": ""}
+    test_kwargs = TP_VIEW_TESTS[request.param].copy()
     kwargs.update(test_kwargs)
     client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     if kwargs.get("filename"):
@@ -430,7 +403,7 @@ def tp_uploads(request, client):
     return tp, response.wsgi_request, response, kwargs, errors
 
 
-@pytest.fixture(params=("browse", "translate", "export"))
+@pytest.fixture(params=("browse", "translate"))
 def view_types(request):
     """List of possible view types."""
     return request.param
