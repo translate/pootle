@@ -145,8 +145,6 @@ Changes in settings
 - :setting:`POOTLE_TM_SERVER` now accepts a ``MIN_SIMILARITY`` parameter, to
   filter out results which might be irrelevant. To learn more, check the
   documenation on :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>`.
-- :setting:`POOTLE_EXPORT_VIEW_LIMIT` was added, with a default value of 10000.
-  This restricts how many units are shown in export views.
 - :setting:`POOTLE_SEARCH_BACKEND` was added, to allow configuring the search
   backend to be used.
 - Changed the default value for `ACCOUNT_SESSION_REMEMBER
