@@ -23,19 +23,12 @@ from .mixins import GatherContextMixin, PootleJSONMixin
 class PootleDetailView(GatherContextMixin, DetailView):
     translate_url_path = ""
     browse_url_path = ""
-    export_url_path = ""
     resource_path = ""
 
     @property
     def browse_url(self):
         return reverse(
             self.browse_url_path,
-            kwargs=self.url_kwargs)
-
-    @property
-    def export_url(self):
-        return reverse(
-            self.export_url_path,
             kwargs=self.url_kwargs)
 
     @cached_property
@@ -87,7 +80,6 @@ class PootleDetailView(GatherContextMixin, DetailView):
             'resource_path': self.resource_path,
             'resource_path_parts': get_path_parts(self.resource_path),
             'translate_url': self.translate_url,
-            'export_url': self.export_url,
             'browse_url': self.browse_url,
             'unit_api_root': "/xhr/units/"}
 
