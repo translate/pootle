@@ -50,14 +50,6 @@ export const User = Backbone.Model.extend({
     return l(`/user/${this.get('username')}/settings/`);
   },
 
-  getStatsUrl() {
-    return l(`/user/${this.get('username')}/stats/`);
-  },
-
-  getReportsUrl() {
-    return l(`/admin/reports/#username=${this.get('username')}`);
-  },
-
   isMeta() {
     return metaUsers.indexOf(this.get('username')) !== -1;
   },
