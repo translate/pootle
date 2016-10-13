@@ -16,6 +16,7 @@ from pootle.core.delegate import context_data
 from pootle.i18n.gettext import ugettext as _
 
 from ..http import JsonResponse, JsonResponseBadRequest
+from .decorators import requires_permission, set_permissions
 
 
 class SuperuserRequiredMixin(object):
@@ -28,6 +29,19 @@ class SuperuserRequiredMixin(object):
 
         return super(SuperuserRequiredMixin, self).dispatch(request, *args,
                                                             **kwargs)
+
+
+class LanguageAdminMixin(object):
+
+    @property
+    def permission_context(self):
+        return self.language.directory
+
+    @set_permissions
+    @requires_permission("administrate")
+    def dispatch(self, request, *args, **kwargs):
+        # get funky with the request 8/
+        return super(LanguageAdminMixin, self).dispatch(request, *args, **kwargs)
 
 
 class UserObjectMixin(object):
