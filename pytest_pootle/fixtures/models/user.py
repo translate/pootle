@@ -41,7 +41,13 @@ TEST_USERS = {
     scope="session",
     params=["nobody", "admin", "member", "member2"])
 def request_users(request):
-    return copy.deepcopy(TEST_USERS[request.param])
+    from django.core.cache import cache
+    from django.utils.encoding import iri_to_uri
+
+    test_user = copy.deepcopy(TEST_USERS[request.param])
+    key = iri_to_uri('Permissions:%s' % test_user["user"].username)
+    cache.delete(key)
+    return test_user
 
 
 @pytest.fixture(scope="session", params=TEST_USERS.keys())
