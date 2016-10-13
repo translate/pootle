@@ -41,10 +41,6 @@ export const Language = Backbone.Model.extend({
     return l(['', this.get('code'), 'admin', 'team', ''].join('/'));
   },
 
-  getPermissionsUrl() {
-    return l(['', this.get('code'), 'admin', 'permissions', ''].join('/'));
-  },
-
   getFieldChoices(fieldName) {
     if (this.fieldChoices && this.fieldChoices.hasOwnProperty(fieldName)) {
       return this.fieldChoices[fieldName].map((field) => ({

@@ -18,7 +18,6 @@ from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle.core.views.admin import PootleLanguageAdminFormView
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n.gettext import tr_lang
-from pootle_app.views.admin.permissions import admin_permissions
 
 from .forms import (
     LanguageSpecialCharsForm, LanguageTeamAdminForm,
@@ -89,26 +88,6 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
 
 class LanguageTranslateView(LanguageMixin, PootleTranslateView):
     url_pattern_name = "pootle-language-translate"
-
-
-@get_path_obj
-@permission_required('administrate')
-def language_admin(request, language):
-    ctx = {
-        'page': 'admin-permissions',
-
-        'browse_url': reverse('pootle-language-browse', kwargs={
-            'language_code': language.code,
-        }),
-        'translate_url': reverse('pootle-language-translate', kwargs={
-            'language_code': language.code,
-        }),
-
-        'language': language,
-        'directory': language.directory,
-    }
-    return admin_permissions(request, language.directory,
-                             'languages/admin/permissions.html', ctx)
 
 
 @get_path_obj
