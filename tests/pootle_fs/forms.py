@@ -6,14 +6,19 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 import pytest
+
+from pytest_pootle.factories import LanguageDBFactory
 
 from django import forms
 
 from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins, fs_url_validator
 from pootle_fs.finder import TranslationPathValidator
-from pootle_fs.forms import ProjectFSAdminForm
+from pootle_fs.forms import LangMappingFormSet, ProjectFSAdminForm
+from pootle_language.models import Language
 
 
 @pytest.mark.django_db
@@ -137,3 +142,157 @@ def test_form_fs_project_bad(no_fs_plugins, project0):
             fs_url="/good/path"))
     assert not form.is_valid()
     assert form.errors.keys() == ["translation_path"]
+
+
+def _get_management_data(formset):
+    management_form = formset.management_form
+    data = {}
+    for i in 'TOTAL_FORMS', 'INITIAL_FORMS', 'MIN_NUM_FORMS', 'MAX_NUM_FORMS':
+        data['%s-%s' % (management_form.prefix, i)] = management_form[i].value()
+    return data
+
+
+@pytest.mark.django_db
+def test_formset_fs_project_lang_mapper(project0, language0, language1):
+    formset = LangMappingFormSet(project=project0)
+    assert formset.project == project0
+    assert not formset.forms[0].fields["pootle_code"].initial
+    assert formset.forms[0].initial == {}
+
+    # add a mapping
+    data = _get_management_data(formset)
+    data["form-0-pootle_code"] = language0.code
+    data["form-0-fs_code"] = "FOO"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert formset.is_valid()
+    assert formset.forms[0].project == project0
+    assert (
+        formset.forms[0].cleaned_data
+        == dict(remove=False, pootle_code=language0, fs_code="FOO"))
+    assert (
+        formset.cleaned_mapping
+        == OrderedDict([(u'FOO', u'language0')]))
+    formset.save()
+    assert (
+        project0.config["pootle.core.lang_mapping"]
+        == OrderedDict([(u'FOO', u'language0')]))
+
+    # add another mapping
+    formset = LangMappingFormSet(project=project0)
+    data = _get_management_data(formset)
+    assert data['form-INITIAL_FORMS'] == 1
+    assert formset.initial == [{'fs_code': u'FOO', 'pootle_code': u'language0'}]
+    data["form-0-pootle_code"] = language0.code
+    data["form-0-fs_code"] = "FOO"
+    data["form-1-pootle_code"] = language1.code
+    data["form-1-fs_code"] = "BAR"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert formset.is_valid()
+    assert (
+        formset.forms[1].cleaned_data
+        == dict(remove=False, pootle_code=language1, fs_code="BAR"))
+    # language0 is excluded from other fields choices
+    assert (
+        sorted(
+            formset.forms[1].fields[
+                "pootle_code"].queryset.values_list("code", flat=True))
+        == sorted(
+            Language.objects.exclude(
+                code=language0.code).values_list("code", flat=True)))
+    formset.save()
+    assert (
+        project0.config["pootle.core.lang_mapping"]
+        == OrderedDict([(u'FOO', u'language0'), (u'BAR', 'language1')]))
+
+    # update the first
+    formset = LangMappingFormSet(project=project0)
+    languageX = LanguageDBFactory()
+    data = _get_management_data(formset)
+    data["form-0-pootle_code"] = languageX.code
+    data["form-0-fs_code"] = "FOO"
+    data["form-1-pootle_code"] = language1.code
+    data["form-1-fs_code"] = "BAR"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert formset.is_valid()
+    assert (
+        formset.forms[0].cleaned_data
+        == dict(remove=False, pootle_code=languageX, fs_code="FOO"))
+    formset.save()
+    assert (
+        project0.config["pootle.core.lang_mapping"]
+        == OrderedDict([(u'FOO', languageX.code), (u'BAR', 'language1')]))
+
+    # remove the second
+    formset = LangMappingFormSet(project=project0)
+    languageX = LanguageDBFactory()
+    data = _get_management_data(formset)
+    data["form-0-pootle_code"] = languageX.code
+    data["form-0-fs_code"] = "FOO"
+    data["form-1-pootle_code"] = language1.code
+    data["form-1-fs_code"] = "BAR"
+    data["form-1-remove"] = True
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert formset.is_valid()
+    assert (
+        formset.forms[1].cleaned_data
+        == dict(remove=True, pootle_code=language1, fs_code="BAR"))
+    formset.save()
+    assert (
+        project0.config["pootle.core.lang_mapping"]
+        == OrderedDict([(u'FOO', languageX.code)]))
+
+
+@pytest.mark.django_db
+def test_formset_fs_project_lang_mapper_bad(project0, language0, language1):
+    formset = LangMappingFormSet(project=project0)
+    assert formset.project == project0
+    assert not formset.forms[0].fields["pootle_code"].initial
+    assert formset.forms[0].initial == {}
+
+    # add a mapping with bad pootle_code
+    data = _get_management_data(formset)
+    data["form-0-pootle_code"] = "DOES NOT EXIST"
+    data["form-0-fs_code"] = "FOO"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert not formset.is_valid()
+    assert not formset.forms[0].is_valid()
+
+    # add a mapping succesfully
+    data["form-0-pootle_code"] = language0.code
+    data["form-0-fs_code"] = "FOO"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    formset.save()
+
+    # add a mapping with duplicate pootle_code
+    data = _get_management_data(LangMappingFormSet(project=project0))
+    data["form-0-pootle_code"] = language0.code
+    data["form-0-fs_code"] = "FOO"
+    data["form-1-pootle_code"] = language0.code
+    data["form-1-fs_code"] = "BAR"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert not formset.is_valid()
+
+    # add a mapping with duplicate fs_code
+    data = _get_management_data(LangMappingFormSet(project=project0))
+    data["form-0-pootle_code"] = language0.code
+    data["form-0-fs_code"] = "FOO"
+    data["form-1-pootle_code"] = language1.code
+    data["form-1-fs_code"] = "FOO"
+    formset = LangMappingFormSet(
+        project=project0,
+        data=data)
+    assert not formset.is_valid()
