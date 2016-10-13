@@ -2336,3 +2336,52 @@ h2:lang(zh) a
 {
     margin-left: 0.5em;
 }
+
+
+.centered
+{
+    text-align: center;
+}
+
+.aligned-right
+{
+    text-align: right;
+}
+
+.error
+{
+    color: red;
+    font-weight: bold;
+}
+
+.padding-top
+{
+    padding-top: 1em;
+}
+
+.padding-bottom
+{
+    padding-bottom: 1em;
+}
+
+.padding-left
+{
+    padding-left: 1em;
+}
+
+
+.padding-right
+{
+    padding-right: 1em;
+}
+
+.padding-half-left
+{
+    padding-left: 0.5em;
+}
+
+
+.padding-half-right
+{
+    padding-right: 0.5em;
+}
