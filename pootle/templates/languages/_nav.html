@@ -14,6 +14,13 @@
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
 <option
+   {% if page == 'admin-team' %}selected="selected"{% endif %}   
+   value="admin-team"
+   class="admin"
+   data-href="{% url 'pootle-language-admin-team' language.code %}">
+  {% trans "Team" %}
+</option>
+<option
    {% if page == 'admin-permissions' %}selected="selected"{% endif %}   
    value="admin-permissions"
    class="admin"
