@@ -1,0 +1,4 @@
+{% load core i18n fs_tags %}
+
+<h3>{% blocktrans %}{{ title }}{% endblocktrans %}</h3>
+{% formtable rows=rows actions=actions paginator=paginator form_class=form_class form_method=form_method filter_rows=filter_rows headers=headers %}

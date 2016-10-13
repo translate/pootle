@@ -1,0 +1,27 @@
+{% extends "admin/base_app.html" %}
+{% load core i18n fs_tags %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Projects" %}</li>
+{% endblock %}
+
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block section_body %}
+<div id="content">
+  <div id="pootle-fs-project-admin" class="settings-container">
+    {% fs_state_header project form.fs form.state page_name fetch_form %}
+    {% if formtable.rows %}
+    <div class="padded">
+      {% formtable formtable %}
+    </div>
+    {% else %}
+    <div class="padded biggest align-centered">
+      {{ formtable.empty_message }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% endblock %}
