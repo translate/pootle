@@ -290,12 +290,15 @@ Configuration settings for applications used by Pootle.
 .. setting:: POOTLE_FS_WORKING_PATH
 
 ``POOTLE_FS_WORKING_PATH``
-  Default: ``working_path('tmp/pootle_fs')``
+  Default: ``working_path('.pootle_fs/tmp/')``
 
   .. versionadded:: 2.8
 
   The directory Pootle_fs uses to keep temporary data when handling the
   projects.
+
+  .. warning:: This directory can potentially get very large, so you need to
+     place it somewhere with plenty of room.
 
 
 60-translation.conf

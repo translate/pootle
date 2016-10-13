@@ -16,8 +16,8 @@
 !/pootle/translations/tutorial/
 !/pootle/translations/templates/
 
-# /pootle/tmp/pootle_fs/
-/pootle/tmp/pootle_fs/*/
+# /pootle/.pootle_fs/
+/pootle/.pootle_fs/*/
 
 # /pootle/static/translations/*
 /pootle/static/translations/
