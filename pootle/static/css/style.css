@@ -2348,40 +2348,114 @@ h2:lang(zh) a
     text-align: right;
 }
 
+.aligned-left
+{
+    text-align: left;
+}
+
 .error
 {
     color: red;
     font-weight: bold;
 }
 
-.padding-top
+.padded
+{
+    padding: 1em;
+}
+
+
+.padded-top
 {
     padding-top: 1em;
 }
 
-.padding-bottom
+.padded-bottom
 {
     padding-bottom: 1em;
 }
 
-.padding-left
+.padded-left
 {
     padding-left: 1em;
 }
 
 
-.padding-right
+.padded-right
 {
     padding-right: 1em;
 }
 
-.padding-half-left
+.padded-half
+{
+    padding: 0.5em;
+}
+
+
+.padded-half-left
 {
     padding-left: 0.5em;
 }
 
 
-.padding-half-right
+.padded-half-right
 {
     padding-right: 0.5em;
+}
+
+form.pootle-fs-config-form input,
+form.pootle-fs-config-form select
+{
+    font-size: 1.2em;
+}
+
+form.pootle-fs-config-form input[type='text']
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form.pootle-fs-config-form p
+{
+    margin: 1em;
+}
+
+form.pootle-fs-config-form label
+{
+    font-size: 1.2em;
+    display: block;
+}
+
+form.pootle-fs-config-form span.helptext
+{
+    font-size: 1em;
+    display: block;
+}
+
+form.pootle-fs-config-form
+{
+    margin: 0;
+    padding: 1em;
+}
+
+#pootle-fs-project-admin .config-content
+{
+    width: 50%;
+    float: left;
+}
+
+#pootle-fs-project-admin .config-content-panel
+{
+    padding: 1em;
+    border: solid #aaa 1px;
+    margin: 1em;
+    background: #eee;
+}
+
+#pootle-fs-project-admin .config-content-panel h3
+{
+    background: transparent;
 }
