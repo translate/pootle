@@ -8,7 +8,7 @@
 
 from django.views.generic import FormView, TemplateView
 
-from pootle.core.views.mixins import SuperuserRequiredMixin
+from pootle.core.views.mixins import LanguageAdminMixin, SuperuserRequiredMixin
 
 
 class PootleAdminView(SuperuserRequiredMixin, TemplateView):
@@ -16,4 +16,12 @@ class PootleAdminView(SuperuserRequiredMixin, TemplateView):
 
 
 class PootleAdminFormView(SuperuserRequiredMixin, FormView):
+    pass
+
+
+class PootleLanguageAdminView(LanguageAdminMixin, TemplateView):
+    pass
+
+
+class PootleLanguageAdminFormView(LanguageAdminMixin, FormView):
     pass
