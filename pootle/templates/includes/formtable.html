@@ -1,0 +1,96 @@
+{% load i18n %}
+<form {% for k, v in formtable.form_attrs.items %}{{ k }}="{{ v }}" {% endfor %}>
+  {% csrf_token %}
+  {% for field in formtable.form.hidden_fields %}
+  {{ field }}
+  {% endfor %}
+  <table {% for k, v in formtable.table_attrs.items %}{{ k }}="{{ v }}" {% endfor %}>
+    <thead>
+      <tr>
+	<th class"row-select-placeholder"></th>
+	<th colspan="{{ formtable.colspan }}">
+	  <div class="aligned-center pagination">
+	    <div class="pagination-left">
+	      {% if formtable.page.has_previous %}
+	      <a href="?page={{ formtable.page.previous_page_number }}">&lt;&lt;&lt;</a>
+	      {% else %}
+	      <span class="disabled">&lt;&lt;&lt;</span>
+	      {% endif %}
+	    </div>
+	    <div class="pagination-center">
+	      <span class="pagination-info js-pagination-page-no">
+		Page {{ formtable.form.page }} of {{ formtable.page.paginator.num_pages }}.
+	      </span>
+	      <span class="pagination-info js-pagination-items-per-page">
+		{% blocktrans %}Showing{% endblocktrans %} {{ formtable.form.results_per_page }} {{ formtable.form.results_per_page.label }}
+	      </span>
+	    </div>
+	    <div class="pagination-right">
+	      {% if formtable.page.has_next %}
+	      <a href="?page={{ formtable.page.next_page_number }}">&gt;&gt;&gt;</a>
+	      {% else %}
+	      <span class="disabled">&gt;&gt;&gt;</span>
+	      {% endif %}
+	    </div>
+	    </div>
+	  </div>
+	</th>
+      </tr>
+      <tr>
+	<th>
+	</th>
+	<th colspan="{{ formtable.colspan }}">
+	  {{ formtable.filters }}
+	</th>
+      </tr>
+      {% if formtable.messages %}
+      <tr>
+	<th>
+	</th>
+	<th colspan="{{ formtable.colspan }}">
+	  <ul class="messages">
+	    {% for message in formtable.messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	  </ul>
+	</th>
+      </tr>
+      {% endif %}
+      <tr>
+	<th>
+	</th>
+	{% for header in formtable.columns %}
+	<th>
+	  {{ header }}
+	  <span class="js-sort-by sort-by">
+	    <a class="disabled sort-up" href="#">▴</a><a class="disabled sort-down" href="#">▾</a>
+	  </span>
+	</th>
+	{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {{ formtable.rows }}
+    </tbody>
+    <tfoot>
+      <tr>
+	<td></td>
+	<td colspan="{{ formtable.colspan }}">
+	  <input type="checkbox" class="js-formtable-select-visible">{% blocktrans %}Select all{% endblocktrans %}
+	  <input type="checkbox" class="js-formtable-select-all">{% blocktrans %}Select all including those not shown{% endblocktrans %}
+	</td>
+      </tr>
+      <tr>
+	<td></td>
+	<td colspan="{{ formtable.colspan }}">
+	  {{ formtable.actions.label }}
+	  {{ formtable.actions }}
+
+	  {{ formtable.form.comment.label }}
+	  {{ formtable.form.comment }}
+	  <input type="submit" class="btn" value="Go" />
+	</td>
+      </tr>
+    </tfoot>
+  </table>
+</form>
