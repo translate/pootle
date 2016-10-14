@@ -63,9 +63,8 @@ class LanguageTeam(object):
 
     @property
     def non_members(self):
-        return self._get_members(
-            exclude_perms=[
-                "administrate", "suggest", "translate", "review"])
+        return User.objects.exclude(
+            pk__in=self._get_members("suggest").values_list("id", flat=True))
 
     @property
     def suggestions(self):
@@ -83,16 +82,17 @@ class LanguageTeam(object):
                 "user__full_name"))
 
     def _get_members(self, perm=None, exclude_perms=()):
-        users = User.objects
-        if perm:
-            users = (
-                users.exclude(permissionset__isnull=True)
-                     .filter(
-                         permissionset__positive_permissions__codename=perm,
-                         permissionset__directory=self.language.directory))
-        if exclude_perms:
-            users = (
-                users.exclude(
-                    permissionset__positive_permissions__codename__in=exclude_perms,
-                    permissionset__directory=self.language.directory))
-        return users
+        all_perms = tuple([perm]) + tuple(exclude_perms)
+        permission_sets = self.language.directory.permission_sets.filter(
+            positive_permissions__codename__in=all_perms)
+        permissions = permission_sets.values_list(
+            "positive_permissions__codename", "user")
+        members = set()
+        not_members = set()
+        for (permission, user) in permissions:
+            if permission == perm:
+                members.add(user)
+            if permission in exclude_perms:
+                not_members.add(user)
+        return User.objects.filter(
+            pk__in=members - not_members).order_by("username")
