@@ -52,7 +52,7 @@
 	  {% csrf_token %}
 	  {{ lang_mapping_formset.management_form }}
 	  {% for error in lang_mapping_formset.non_form_errors %}
-	  <div class="error padding-top padding-bottom">{{ error }}</div>
+	  <div class="error padded-top padded-bottom">{{ error }}</div>
 	  {% endfor %}
 	  <table>
 	    <tr>
@@ -62,7 +62,7 @@
 	    </tr>
 	    {% for form in lang_mapping_formset %}
 	    <tr>
-	      <td class="aligned-right padding-half-right">{% if form.initial %}{{ form.remove }}{% else %}Add{% endif %}</td>
+	      <td class="aligned-right padded-half-right">{% if form.initial %}{{ form.remove }}{% else %}Add{% endif %}</td>
 	      <td>{{ form.pootle_code }} {{ form.pootle_code.errors }}</td>
 	      <td>{{ form.fs_code }}</td>
 	    </tr>
