@@ -139,6 +139,7 @@
 	      </li>
 	    </ul>
 	    <div class="padded centered">
+
 	      <a href="{% url 'pootle-language-admin-units' language_code=language.code%}"
 		 class="btn">
 		{% blocktrans %}Manage your units{% endblocktrans %}
@@ -153,8 +154,11 @@
 	      {% blocktrans %}There are {{ suggestions.count }} suggestions pending{% endblocktrans %}
 	    </p>
 	  </div>
-	  <div style="padding: 1em; text-align: center">
-	    <a href="{{ links.suggestion_admin }}" class="btn">Manage your suggestions</a>
+	  <div class="padded centered">
+	    <a href="{% url 'pootle-language-admin-suggestions' language_code=language.code%}"
+	       class="btn">
+	      {% blocktrans %}Manage your suggestions{% endblocktrans %}
+	    </a>
 	  </div>
 	</div>
       </div>

@@ -1,0 +1,11 @@
+{% extends "admin/base_app.html" %}
+{% load core i18n %}
+
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block section_body %}
+<h1>Units</h1>
+{% formtable formtable %}
+{% endblock %}
+{% endblock %}
