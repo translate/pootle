@@ -439,7 +439,8 @@ def test_widget_table_select_multiple_dict():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -450,7 +451,8 @@ def test_widget_table_select_multiple_dict():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -461,7 +463,8 @@ def test_widget_table_select_multiple_dict():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) in rendered
@@ -486,7 +489,8 @@ def test_widget_table_select_multiple_objects():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -497,7 +501,8 @@ def test_widget_table_select_multiple_objects():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -508,7 +513,8 @@ def test_widget_table_select_multiple_objects():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) in rendered
@@ -531,7 +537,8 @@ def test_widget_table_select_multiple_callable():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>xx%s</td>' % choice["id"]) in rendered
@@ -543,7 +550,8 @@ def test_widget_table_select_multiple_callable():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>xx%s</td>' % choice["id"]) in rendered
@@ -555,7 +563,8 @@ def test_widget_table_select_multiple_callable():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>xx%s</td>' % choice["id"]) in rendered
@@ -588,7 +597,8 @@ def test_widget_table_select_multiple_object_methods():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td><input name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -599,7 +609,8 @@ def test_widget_table_select_multiple_object_methods():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -610,7 +621,8 @@ def test_widget_table_select_multiple_object_methods():
         if i == 0:
             checked = ' checked="checked"'
         assert (
-            ('<td><input%s name="a-field" type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input%s name="a-field" '
+             'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) in rendered
@@ -626,7 +638,7 @@ def test_widget_table_select_id_attr():
     rendered = widget.render("a-field", None, attrs=dict(id="special-id"))
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td><input id="special-id_%s" name="a-field" '
+            ('<td class="row-select"><input id="special-id_%s" name="a-field" '
              'type="checkbox" value="%s" /></td>'
              % (i, name))
             in rendered)
