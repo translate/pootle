@@ -1,0 +1,15 @@
+{% load i18n %}
+<div class="padded-half align-centered">
+  <span class="aligned-left">
+    {{ formtable.form.filter_tp.label }} {{ formtable.form.filter_tp}}
+  </span>
+  <span class="aligned-left">
+    {{ formtable.form.filter_suggester.label }} {{ formtable.form.filter_suggester }}
+  </span>
+  <span class="aligned-left">
+    {{ formtable.form.filter_state.label }} {{ formtable.form.filter_state }}
+  </span>
+</div>
+<div class="padded-half align-centered">
+  <input type="submit" value="{% trans 'Filter suggestions' %}" class="btn" />
+</div>

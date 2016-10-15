@@ -1,0 +1,16 @@
+{% extends "languages/base.html" %}
+
+{% load core i18n %}
+
+{% block title %}{% trans "Suggestions" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block section_body %}
+<h1>{% trans 'Suggestions' %}</h1>
+<div class="config-content">
+  <div class="padded">
+    {% formtable formtable %}
+  </div>
+</div>
+{% endblock %}
+{% endblock %}

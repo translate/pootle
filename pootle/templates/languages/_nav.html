@@ -1,12 +1,12 @@
 {% load i18n %}
 <option
-   {% if page == 'browse' %}selected="selected"{% endif %}   
+   {% if page == 'browse' %}selected="selected"{% endif %}
    value="browse"
    data-href="{{ browse_url }}">
   {% trans "Browse" %}
 </option>
 <option
-   {% if page == 'translate' %}selected="selected"{% endif %}   
+   {% if page == 'translate' %}selected="selected"{% endif %}
    value="translate"
    data-href="{{ translate_url }}">
   {% trans "Translate" %}
@@ -14,14 +14,21 @@
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
 <option
-   {% if page == 'admin-team' %}selected="selected"{% endif %}   
+   {% if page == 'admin-team' %}selected="selected"{% endif %}
    value="admin-team"
    class="admin"
    data-href="{% url 'pootle-language-admin-team' language.code %}">
   {% trans "Team" %}
 </option>
 <option
-   {% if page == 'admin-characters' %}selected="selected"{% endif %}   
+   {% if page == 'admin-suggestions' %}selected="selected"{% endif %}
+   value="admin-suggestions"
+   class="admin"
+   data-href="{% url 'pootle-language-admin-suggestions' language.code %}">
+  {% trans "Suggestions" %}
+</option>
+<option
+   {% if page == 'admin-characters' %}selected="selected"{% endif %}
    value="admin-characters"
    class="admin"
    data-href="{% url 'pootle-language-admin-characters' language.code %}">
