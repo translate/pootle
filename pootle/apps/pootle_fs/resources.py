@@ -12,6 +12,7 @@ from django.db.models import F, Max
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
+from pootle_store.constants import POOTLE_WINS
 from pootle_store.models import Store
 
 from .apps import PootleFSConfig
@@ -47,7 +48,7 @@ class FSProjectResources(object):
     @property
     def tracked(self):
         return StoreFS.objects.filter(
-            project=self.project).select_related("store")
+            project=self.project)
 
     @property
     def synced(self):
@@ -63,7 +64,7 @@ class FSProjectResources(object):
 
     @property
     def trackable_stores(self):
-        return self.stores.exclude(obsolete=True).filter(fs__isnull=True)
+        return self.stores.exclude(obsolete=True).filter(fs__isnull=True).order_by()
 
 
 class FSProjectStateResources(object):
@@ -90,6 +91,13 @@ class FSProjectStateResources(object):
             qs.exclude(staged_for_removal=True)
               .exclude(staged_for_merge=True))
 
+    def _obsolete_stores(self):
+        return list(
+            self.resources.stores.filter(
+                obsolete=True).values_list("id", flat=True))
+    obsolete_stores = persistent_property(
+        _obsolete_stores, key_attr="pootle_cache_key")
+
     @persistent_property
     def found_file_matches(self):
         return sorted(self.context.find_translations(
@@ -100,6 +108,45 @@ class FSProjectStateResources(object):
     found_file_paths = persistent_property(
         _found_file_paths,
         key_attr="fs_revision")
+
+    def _staged_store_exists(self):
+        return list(
+            self.unsynced
+                .exclude(store__isnull=True)
+                .exclude(store__obsolete=True))
+    staged_store_exists = persistent_property(
+        _staged_store_exists, key_attr="fs_cache_key")
+
+    @persistent_property
+    def unsynced_fs_wins(self):
+        unsynced = self.unsynced
+        res = []
+        missing_file_paths = self.missing_file_paths
+        for _s in unsynced.exclude(resolve_conflict=POOTLE_WINS).iterator():
+            if _s.path not in missing_file_paths:
+                res.append(_s)
+        return res
+
+    def _synced_not_missing_fs(self):
+        synced = self.synced
+        res = []
+        for _s in synced.iterator():
+            if _s.path not in self.missing_file_paths:
+                res.append(_s)
+        return res
+    synced_not_missing_fs = persistent_property(
+        _synced_not_missing_fs, key_attr="match_cache_key")
+
+    def _synced_missing_fs(self):
+        synced = self.synced
+        res = []
+        missing_file_paths = self.missing_file_paths
+        for _s in synced.iterator():
+            if _s.path in missing_file_paths:
+                res.append(_s)
+        return res
+    synced_missing_fs = persistent_property(
+        _synced_missing_fs, key_attr="match_cache_key")
 
     @cached_property
     def resources(self):
@@ -127,19 +174,23 @@ class FSProjectStateResources(object):
         return self.storefs_filter.filtered(
             self._exclude_staged(self.resources.synced))
 
+    @persistent_property
+    def filtered_stores(self):
+        return list(
+            self.store_filter.filtered(self.resources.trackable_stores))
+
     @cached_property
     def trackable_stores(self):
         """Stores that are not currently tracked but could be"""
         _trackable = []
-        stores = self.store_filter.filtered(self.resources.trackable_stores)
-        for store in stores:
+        for store in self.filtered_stores:
             fs_path = self.match_fs_path(
                 self.context.get_fs_path(store.pootle_path))
             if fs_path:
                 _trackable.append((store, fs_path))
         return _trackable
 
-    @cached_property
+    @persistent_property
     def trackable_store_paths(self):
         """Dictionary of pootle_path, fs_path for trackable Stores"""
         return {
@@ -149,9 +200,9 @@ class FSProjectStateResources(object):
 
     @persistent_property
     def missing_file_paths(self):
-        return [
-            path for path in self.tracked_paths.keys()
-            if path not in self.found_file_paths]
+        return (
+            set(self.tracked_paths.keys())
+            - set(self.found_file_paths))
 
     @cached_property
     def tracked(self):
@@ -174,13 +225,13 @@ class FSProjectStateResources(object):
             self._exclude_staged(
                 self.resources.unsynced))
 
-    @cached_property
+    @property
     def pootle_changed(self):
         """StoreFS queryset of tracked resources where the Store has changed
         since it was last synced.
         """
         return (
-            self.synced.exclude(store_id__isnull=True)
+            self.synced.exclude(store__isnull=True)
                        .exclude(store__obsolete=True)
                        .annotate(max_revision=Max("store__unit__revision"))
                        .exclude(last_sync_revision=F("max_revision")))
