@@ -11,6 +11,7 @@ from fnmatch import fnmatch
 from django.db.models import F, Max
 from django.utils.functional import cached_property
 
+from pootle.core.decorators import persistent_property
 from pootle_store.models import Store
 
 from .models import StoreFS
@@ -77,11 +78,20 @@ class FSProjectStateResources(object):
               .exclude(staged_for_merge=True))
 
     @cached_property
+    def cache_key(self):
+        if self.context.latest_hash is None:
+            return
+        return (
+            "%s/%s"
+            % (self.context.project.data_tool.max_unit_revision,
+               self.context.latest_hash))
+
+    @persistent_property
     def found_file_matches(self):
         return sorted(self.context.find_translations(
             fs_path=self.fs_path, pootle_path=self.pootle_path))
 
-    @cached_property
+    @persistent_property
     def found_file_paths(self):
         return [x[1] for x in self.found_file_matches]
 
@@ -123,7 +133,7 @@ class FSProjectStateResources(object):
                 _trackable.append((store, fs_path))
         return _trackable
 
-    @cached_property
+    @persistent_property
     def trackable_store_paths(self):
         """Dictionary of pootle_path, fs_path for trackable Stores"""
         return {
@@ -131,7 +141,7 @@ class FSProjectStateResources(object):
             for store, fs_path
             in self.trackable_stores}
 
-    @cached_property
+    @persistent_property
     def missing_file_paths(self):
         return [
             path for path in self.tracked_paths.keys()
@@ -142,7 +152,7 @@ class FSProjectStateResources(object):
         """StoreFS queryset of tracked resources"""
         return self.storefs_filter.filtered(self.resources.tracked)
 
-    @cached_property
+    @persistent_property
     def tracked_paths(self):
         """Dictionary of fs_path, path for tracked StoreFS"""
         return dict(self.tracked.values_list("path", "pootle_path"))
