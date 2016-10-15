@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint .",
     "stylelint": "stylelint --config=stylelint.json ../css/**/*.css **/*.css",
-    "test": "mocha --compilers js:babel-register './{,!(node_modules)/**/}*.test.js'"
+    "test": "mocha --compilers js:babel-register \"./{,!(node_modules)/**/}*.test.js\""
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
