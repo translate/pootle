@@ -1,0 +1,32 @@
+<form method="{{ formtable.form_method }}" class="{{ formtable.form_class }}" action="{{ formtable.form_action }}">
+  {% csrf_token %}
+  {% for field in formtable.form.hidden_fields %}
+  {{ field }}
+  {% endfor %}  
+  <table>
+    <thead>
+      {{ formtable.header_rows }}
+      <tr>
+	<th>
+	</th>
+	{% for header in formtable.columns %}
+	<th>
+	  {{ header }}
+	</th>
+	{% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {{ formtable.rows }}
+    </tbody>
+    <tfoot>
+      <tr>
+	<td colspan="3">
+	  With selected
+	  {{ formtable.actions }}
+	  <input type="submit" class="btn" value="Go" />
+	</td>
+      </tr>
+    </tfoot>
+  </table>
+</form>

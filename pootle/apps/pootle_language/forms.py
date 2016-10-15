@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from pootle.core.delegate import language_team
 from pootle.core.views.widgets import TableSelectMultiple
 from pootle.i18n.gettext import ugettext_lazy as _
+from pootle_store.models import Suggestion, Unit
 
 from .models import Language
 
@@ -127,3 +128,41 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
                 if self.cleaned_data["rm_%ss" % role]:
                     for user in self.cleaned_data["rm_%ss" % role]:
                         self.language_team.remove_member(user)
+
+
+class LanguageSuggestionAdminForm(LanguageTeamBaseAdminForm):
+    page = forms.IntegerField(widget=forms.HiddenInput)
+    results_per_page = forms.IntegerField(
+        initial=10, min_value=0, max_value=100)
+    suggester = forms.ChoiceField(
+        required=False,
+        choices=[],
+        widget=forms.Select(
+            attrs={'class': 'js-select2 select2-language'}))
+    suggestions = forms.ModelMultipleChoiceField(
+        widget=TableSelectMultiple(item_attrs=["id", "unit"]),
+        required=False,
+        queryset=Suggestion.objects.none())
+    update_actions = forms.ChoiceField(
+        required=False,
+        widget=forms.Select(attrs={'class': 'js-select2'}),
+        choices=(
+            ("", "----"),
+            ("reject", "Reject"),
+            ("accept", "Accept")))
+    comment = forms.CharField(
+        required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.language = kwargs.pop("language")
+        super(LanguageSuggestionAdminForm, self).__init__(*args, **kwargs)
+        self.fields["suggester"].choices = self.language_team.users_with_suggestions
+        self.fields["suggestions"].choices = self.language_team.suggestions.all()
+
+
+class LanguageUnitAdminForm(forms.Form):
+    page = forms.IntegerField()
+    units = forms.ModelMultipleChoiceField(
+        widget=TableSelectMultiple(item_attrs=["id", "unit"]),
+        required=False,
+        queryset=Unit.objects.none())

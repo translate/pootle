@@ -30,3 +30,8 @@ def to_js(value):
 def docs_url(path_name):
     """Returns the absolute URL to `path_name` in the RTD docs."""
     return get_docs_url(path_name)
+
+
+@register.inclusion_tag('includes/formtable.html')
+def formtable(formtable):
+    return dict(formtable=formtable)
