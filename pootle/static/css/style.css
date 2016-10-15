@@ -2338,7 +2338,7 @@ h2:lang(zh) a
 }
 
 
-.centered
+.align-centered
 {
     text-align: center;
 }
@@ -2447,7 +2447,7 @@ form.pootle-fs-config-form
     float: left;
 }
 
-#pootle-fs-project-admin .config-content-panel
+.config-content-panel
 {
     padding: 1em;
     border: solid #aaa 1px;
@@ -2458,4 +2458,133 @@ form.pootle-fs-config-form
 #pootle-fs-project-admin .config-content-panel h3
 {
     background: transparent;
+}
+
+.centered
+{
+    margin: auto;
+}
+
+.bigger
+{
+    font-size: 1.5em;
+}
+
+.biggest
+{
+    font-size: 2em;
+}
+
+
+.pagination
+{
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 2.4em;
+}
+
+.pagination .pagination-right
+{
+    position: absolute;
+    width: 5em;
+    right: 0;
+    height: 2.4em;
+    text-align: right;
+    padding: 0.3em;
+}
+
+.pagination .pagination-center
+{
+    width: 100%;
+    position: absolute;
+    padding: 0 5em;
+    box-sizing: border-box;
+    height: 2.4em;
+    text-align: center;
+}
+
+.pagination .pagination-center .pagination-info
+{
+    margin-left: 2em;
+}
+
+.pagination .pagination-center input
+{
+    padding: 0.3em 0.1em;
+    width: 5em;
+    background: #efefef;
+    border: solid #cfcfcf 1px;
+    height: 2em;
+}
+
+
+.pagination .pagination-left
+{
+    position: absolute;
+    left: 0;
+    width: 5em;
+    height: 2.4em;
+    padding: 0.3em;
+}
+
+form.formtable .disabled
+{
+    opacity: 0.5;
+}
+
+form.formtable .sort-by a
+{
+    color: #777;
+    margin-left: 0.2em;
+}
+
+form.formtable .sort-by
+{
+    margin-left: 0.4em;
+}
+
+
+form.formtable input[type="checkbox"]
+{
+    margin: 3px 4px;
+    vertical-align: middle;
+}
+
+form.formtable tbody tr:hover
+{
+    background: #ececec;
+}
+
+
+form.formtable table
+{
+    border: solid #ccc 1px;
+    background: #fefefe;
+    border-collapse: separate;
+    border-spacing: 1px;
+    font-size: 0.8em;
+}
+
+form.formtable th,
+form.formtable tfoot td
+{
+    background: #efefef;
+}
+
+form.formtable th,
+form.formtable td
+{
+    padding: 0.2em;
+}
+
+form.formtable .messages
+{
+    margin: 0;
+}
+
+form.formtable td.row-select,
+form.formtable th.row-select-placeholder
+{
+    width: 1px;
 }
