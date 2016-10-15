@@ -23,6 +23,7 @@ from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .cache import get_cache
 from .exceptions import Http400
 from .url_helpers import split_pootle_path
 
@@ -324,3 +325,53 @@ def admin_required(func):
         return func(request, *args, **kwargs)
 
     return wrapped
+
+
+class persistent_property(object):
+    """
+    Similar to cached_property, except it caches in the memory cache rather
+    than on the instance if possible.
+
+    By default it will look on the class for an attribute `cache_key` to get
+    the class cache_key. The attribute can be changed by setting the `key_attr`
+    parameter in the decorator.
+
+    The class cache_key is combined with the name of the decorated property
+    to get the final cache_key for the property.
+
+    If no cache_key attribute is present or returns None, it will use instance
+    caching by default. This behaviour can be switched off by setting
+    `always_cache` to False in the decorator.
+    """
+
+    def __init__(self, func, name=None, key_attr=None, always_cache=True):
+        self.func = func
+        self.__doc__ = getattr(func, '__doc__')
+        self.name = name or func.__name__
+        self.key_attr = key_attr or "cache_key"
+        self.always_cache = always_cache
+
+    def _get_cache_key(self, instance):
+        cache_key = getattr(instance, self.key_attr, None)
+        if cache_key:
+            return "%s/%s" % (cache_key, self.name)
+
+    def __get__(self, instance, cls=None):
+        if instance is None:
+            return self
+        cache_key = self._get_cache_key(instance)
+        if cache_key:
+            cache = get_cache()
+            cached = cache.get(cache_key)
+            if cached is not None:
+                # cache hit
+                return cached
+            # cache miss
+            res = self.func(instance)
+            cache.set(cache_key, res)
+            return res
+        elif self.always_cache:
+            # no cache_key, use instance caching
+            res = instance.__dict__[self.name] = self.func(instance)
+            return res
+        return self.func(instance)
