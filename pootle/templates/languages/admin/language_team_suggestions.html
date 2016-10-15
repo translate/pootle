@@ -1,0 +1,15 @@
+{% extends "admin/base_app.html" %}
+{% load core i18n %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Languages" %}</li>
+{% endblock %}
+
+{% block title %}{% trans "Languages" %} | {{ block.super }}{% endblock %}
+
+{% block content %}
+{% block section_body %}
+<h1>Suggestions</h1>
+{% formtable formtable %}
+{% endblock %}
+{% endblock %}
