@@ -1,7 +1,7 @@
 from django.forms import CheckboxInput, SelectMultiple
 from django.utils.encoding import force_unicode
 from django.utils.html import escape
-from django.utils.safestring import mark_safe
+from django.utils.safestring import SafeText, mark_safe
 
 
 class TableSelectMultiple(SelectMultiple):
@@ -56,7 +56,7 @@ class TableSelectMultiple(SelectMultiple):
                 check_test=lambda value: value in str_values)
             option_value = force_unicode(option_value)
             rendered_cb = cb.render(name, option_value)
-            output.append(u'<tr><td>%s</td>' % rendered_cb)
+            output.append(u'<tr><td class="row-select">%s</td>' % rendered_cb)
             for attr in self.item_attrs:
                 if callable(attr):
                     content = attr(item)
@@ -67,6 +67,8 @@ class TableSelectMultiple(SelectMultiple):
                         content = getattr(item, attr)
                 else:
                     content = item[attr]
-                output.append(u'<td>%s</td>' % escape(content))
+                if not isinstance(content, SafeText):
+                    content = escape(content)
+                output.append(u'<td>%s</td>' % content)
             output.append(u'</tr>')
         return mark_safe(u'\n'.join(output))
