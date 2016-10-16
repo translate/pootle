@@ -12,6 +12,8 @@ from .utils import RelatedStoresDataTool, RelatedTPsDataTool
 class ProjectDataTool(RelatedTPsDataTool):
     """Retrieves aggregate stats for a Project"""
 
+    cache_key_name = "project"
+
     def filter_data(self, qs):
         return qs.filter(tp__project=self.context)
 

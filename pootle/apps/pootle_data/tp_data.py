@@ -133,3 +133,7 @@ class TPDataTool(RelatedStoresDataTool):
 
     def get_checks(self, **kwargs):
         return dict(self.context.check_data.values_list("name", "count"))
+
+    @property
+    def max_unit_revision(self):
+        return self.context.data.max_unit_revision

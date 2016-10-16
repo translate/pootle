@@ -6,6 +6,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.db.models import Max
+
+from pootle_translationproject.models import TranslationProject
+
 from .utils import RelatedStoresDataTool
 
 
@@ -13,6 +17,14 @@ class DirectoryDataTool(RelatedStoresDataTool):
     """Retrieves aggregate stats for a Directory"""
 
     group_by = ("store__parent__pootle_path", )
+    cache_key_name = "directory"
+
+    @property
+    def max_unit_revision(self):
+        try:
+            return self.context.translationproject.data_tool.max_unit_revision
+        except TranslationProject.DoesNotExist:
+            return self.all_stat_data.aggregate(rev=Max("max_unit_revision"))["rev"]
 
     def filter_data(self, qs):
         return qs.filter(

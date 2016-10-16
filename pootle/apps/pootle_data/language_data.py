@@ -12,5 +12,7 @@ from .utils import RelatedTPsDataTool
 class LanguageDataTool(RelatedTPsDataTool):
     """Retrieves aggregate stats for a Language"""
 
+    cache_key_name = "language"
+
     def filter_data(self, qs):
         return qs.filter(tp__language=self.context)
