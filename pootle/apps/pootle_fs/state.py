@@ -200,11 +200,11 @@ class ProjectFSState(State):
     def state_fs_staged(self):
         staged = (
             self.resources.unsynced
-                          .filter(path__in=self.resources.found_file_paths)
+                          .exclude(path__in=self.resources.missing_file_paths)
                           .exclude(resolve_conflict=POOTLE_WINS)
             | self.resources.synced
                             .filter(Q(store__isnull=True) | Q(store__obsolete=True))
-                            .filter(path__in=self.resources.found_file_paths)
+                            .exclude(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=SOURCE_WINS))
         for store_fs in staged.iterator():
             store_fs.project = self.project
@@ -214,7 +214,7 @@ class ProjectFSState(State):
     def state_fs_ahead(self):
         fs_changed = (
             self.resources.synced
-                          .filter(path__in=self.resources.found_file_paths))
+                          .exclude(path__in=self.resources.missing_file_paths))
         for store_fs in fs_changed.iterator():
             store_fs.project = self.project
             pootle_changed, fs_changed = self._get_changes(store_fs.file)
@@ -230,7 +230,7 @@ class ProjectFSState(State):
     def state_fs_removed(self):
         removed = (
             self.resources.synced
-                          .exclude(path__in=self.resources.found_file_paths)
+                          .filter(path__in=self.resources.missing_file_paths)
                           .exclude(resolve_conflict=POOTLE_WINS)
                           .exclude(store_id__isnull=True)
                           .exclude(store__obsolete=True))
@@ -277,7 +277,7 @@ class ProjectFSState(State):
             | self.resources.synced
                             .exclude(store__obsolete=True)
                             .exclude(store__isnull=True)
-                            .exclude(path__in=self.resources.found_file_paths)
+                            .filter(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=POOTLE_WINS))
         for store_fs in staged.iterator():
             store_fs.project = self.project
@@ -288,7 +288,7 @@ class ProjectFSState(State):
         removed = (
             self.resources.synced
                           .filter(Q(store__obsolete=True) | Q(store__isnull=True))
-                          .exclude(path__in=self.resources.found_file_paths))
+                          .filter(path__in=self.resources.missing_file_paths))
         for store_fs in removed.iterator():
             store_fs.project = self.project
             yield dict(store_fs=store_fs)
@@ -298,7 +298,7 @@ class ProjectFSState(State):
         synced = (
             self.resources.synced
                           .exclude(resolve_conflict=SOURCE_WINS)
-                          .filter(path__in=self.resources.found_file_paths)
+                          .exclude(path__in=self.resources.missing_file_paths)
                           .filter(Q(store__isnull=True) | Q(store__obsolete=True)))
         for store_fs in synced.iterator():
             store_fs.project = self.project
