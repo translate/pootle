@@ -7,9 +7,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Max, Sum
 from django.utils.functional import cached_property
 
+from pootle.core.decorators import persistent_property
 from pootle.core.delegate import data_updater
 from pootle.core.url_helpers import split_pootle_path
 from pootle_statistics.proxy import SubmissionProxy
@@ -277,7 +278,7 @@ class RelatedStoresDataTool(DataTool):
     def all_checks_data(self):
         return self.filter_data(self.checks_data_model)
 
-    @property
+    @persistent_property
     def all_children_stats(self):
         return self.get_children_stats(self.all_child_stats_qs)
 
@@ -286,7 +287,7 @@ class RelatedStoresDataTool(DataTool):
         """Aggregates grouped sum/max fields"""
         return self.annotate_fields(self.all_stat_data)
 
-    @property
+    @persistent_property
     def all_object_stats(self):
         return self.get_object_stats(self.all_stat_data)
 
@@ -295,9 +296,21 @@ class RelatedStoresDataTool(DataTool):
         return self.filter_data(self.data_model)
 
     @property
+    def cache_key(self):
+        return (
+            'pootle_data.%s.%s.%s'
+            % (self.cache_key_name,
+               self.context_name,
+               self.max_unit_revision))
+
+    @property
     def child_stats_qs(self):
         """Aggregates grouped sum/max fields"""
         return self.annotate_fields(self.stat_data)
+
+    @property
+    def context_name(self):
+        self.context.code
 
     @property
     def data_model(self):
@@ -315,7 +328,7 @@ class RelatedStoresDataTool(DataTool):
     def checks_data_model(self):
         return StoreChecksData.objects
 
-    @property
+    @persistent_property
     def children_stats(self):
         """For a given object returns stats for each of the objects
         immediate descendants
@@ -327,6 +340,11 @@ class RelatedStoresDataTool(DataTool):
         return split_pootle_path(self.context.pootle_path)[3]
 
     @property
+    def max_unit_revision(self):
+        return self.all_stat_data.aggregate(
+            rev=Max("max_unit_revision"))["rev"]
+
+    @persistent_property
     def object_stats(self):
         return self.get_object_stats(self.stat_data)
 
