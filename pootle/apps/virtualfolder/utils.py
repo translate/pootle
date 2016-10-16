@@ -188,13 +188,17 @@ class VirtualFolderPathMatcher(object):
 
 
 class DirectoryVFDataTool(RelatedStoresDataTool):
-    group_by = (
-        "store__vfolders__name", )
+    group_by = ("store__vfolders__name", )
+    cache_key_name = "vfolder"
+
+    @property
+    def context_name(self):
+        return self.context.name
 
     def filter_data(self, qs):
         return (
             qs.filter(store__pootle_path__startswith=self.context.pootle_path)
-              .exclude(store__vfolders__isnull=True))
+              .filter(store__vfolders__gt=0))
 
     def vfolder_is_visible(self, vfolder, vfolder_stats):
         return (
