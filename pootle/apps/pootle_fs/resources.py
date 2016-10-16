@@ -132,6 +132,12 @@ class FSProjectStateResources(object):
             in self.trackable_stores}
 
     @cached_property
+    def missing_file_paths(self):
+        return [
+            path for path in self.tracked_paths.keys()
+            if path not in self.found_file_paths]
+
+    @cached_property
     def tracked(self):
         """StoreFS queryset of tracked resources"""
         return self.storefs_filter.filtered(self.resources.tracked)
