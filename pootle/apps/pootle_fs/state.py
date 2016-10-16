@@ -151,12 +151,16 @@ class ProjectFSState(State):
 
     @property
     def state_fs_untracked(self):
+        tracked_fs_paths = self.resources.tracked_paths.keys()
+        tracked_pootle_paths = self.resources.tracked_paths.values()
+        trackable_fs_paths = self.resources.trackable_store_paths.values()
+        trackable_pootle_paths = self.resources.trackable_store_paths.keys()
         for pootle_path, fs_path in self.resources.found_file_matches:
             fs_untracked = (
-                fs_path not in self.resources.tracked_paths.keys()
-                and pootle_path not in self.resources.tracked_paths.values()
-                and fs_path not in self.resources.trackable_store_paths.values()
-                and pootle_path not in self.resources.trackable_store_paths.keys())
+                fs_path not in tracked_fs_paths
+                and pootle_path not in tracked_pootle_paths
+                and fs_path not in trackable_fs_paths
+                and pootle_path not in trackable_pootle_paths)
             if fs_untracked:
                 yield dict(
                     pootle_path=pootle_path,
