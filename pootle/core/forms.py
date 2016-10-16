@@ -151,3 +151,26 @@ class MathCaptchaForm(forms.Form):
         else:
             self.reset_captcha()
         return super(MathCaptchaForm, self).clean()
+
+
+class PaginatingForm(forms.Form):
+    page = forms.IntegerField(
+        initial=1, min_value=1, max_value=100)
+    results_per_page = forms.IntegerField(
+        initial=10,
+        min_value=0,
+        max_value=100,
+        widget=forms.NumberInput(attrs=dict(step=10)))
+
+
+class FormWithActionsMixin(forms.Form):
+    pass
+
+
+class FormtableForm(PaginatingForm, FormWithActionsMixin):
+    action_choices = ()
+    actions = forms.ChoiceField(
+        required=False,
+        label=_("With selected"),
+        widget=forms.Select(attrs={'class': 'js-select2'}),
+        choices=action_choices)
