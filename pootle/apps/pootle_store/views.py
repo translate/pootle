@@ -25,10 +25,9 @@ from django.views.decorators.http import require_http_methods
 
 from pootle.core.decorators import (get_path_obj, get_resource,
                                     permission_required)
-from pootle.core.delegate import search_backend
+from pootle.core.delegate import review, search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
-from pootle.core.mail import send_mail
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
 from pootle.i18n.gettext import ugettext as _
@@ -42,7 +41,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 
 from .decorators import get_unit_context
 from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
-from .models import Unit
+from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
 from .unit.timeline import Timeline
@@ -620,58 +619,26 @@ def manage_suggestion(request, uid, sugg_id, **kwargs_):
         return accept_suggestion(request, uid, sugg_id)
 
 
-def handle_suggestion_comment(request, suggestion, unit, comment, action):
-    kwargs = {
-        'comment': comment,
-        'user': request.user,
-    }
-    comment_form = UnsecuredCommentForm(suggestion, kwargs)
-    if comment_form.is_valid():
-        comment_form.save()
-
-        if (action not in ("accepted", "rejected") or
-            not settings.POOTLE_EMAIL_FEEDBACK_ENABLED):
-
-            return
-
-        ctx = {
-            'suggestion_id': suggestion.id,
-            'unit_url': request.build_absolute_uri(unit.get_translate_url()),
-            'comment': comment,
-        }
-        if action == "rejected":
-            message = loader.render_to_string(
-                'editor/email/suggestion_rejected_with_comment.txt', ctx)
-            subject = _(u"Suggestion rejected with comment")
-        else:
-            message = loader.render_to_string(
-                'editor/email/suggestion_accepted_with_comment.txt', ctx)
-            subject = _(u"Suggestion accepted with comment")
-
-        send_mail(subject, message, from_email=None,
-                  recipient_list=[suggestion.user.email], fail_silently=True)
-
-
 @get_unit_context()
 def reject_suggestion(request, unit, suggid, **kwargs_):
     try:
-        sugg = unit.suggestion_set.get(id=suggid)
+        suggestion = unit.suggestion_set.get(id=suggid)
     except ObjectDoesNotExist:
         raise Http404
 
     # In order to be able to reject a suggestion, users have to either:
     # 1. Have `review` rights, or
     # 2. Be the author of the suggestion being rejected
-    if (not check_permission('review', request) and
-        (request.user.is_anonymous() or request.user != sugg.user)):
-        raise PermissionDenied(_('Insufficient rights to access review mode.'))
-
-    unit.reject_suggestion(sugg, request.translation_project, request.user)
-    r_data = QueryDict(request.body)
-    if "comment" in r_data and r_data["comment"]:
-        handle_suggestion_comment(request, sugg, unit, r_data["comment"],
-                                  "rejected")
-
+    has_permission = (
+        check_permission('review', request)
+        or (not request.user.is_anonymous()
+            and request.user == suggestion.user))
+    if not has_permission:
+        raise PermissionDenied(
+            _('Insufficient rights to access review mode.'))
+    review.get(Suggestion)(
+        [suggestion],
+        request.user).reject(QueryDict(request.body).get("comment"))
     json = {
         'udbid': unit.id,
         'sugid': suggid,
@@ -686,12 +653,8 @@ def accept_suggestion(request, unit, suggid, **kwargs_):
         suggestion = unit.suggestion_set.get(id=suggid)
     except ObjectDoesNotExist:
         raise Http404
-
-    unit.accept_suggestion(suggestion, request.translation_project, request.user)
-    if "comment" in request.POST and request.POST["comment"]:
-        handle_suggestion_comment(request, suggestion, unit,
-                                  request.POST["comment"], "accepted")
-
+    review.get(Suggestion)(
+        [suggestion], request.user).accept(request.POST.get("comment"))
     json = {
         'udbid': unit.id,
         'sugid': suggid,
