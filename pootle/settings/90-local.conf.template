@@ -36,6 +36,10 @@ ALLOWED_HOSTS = [
     #'${your_server}',
 ]
 
+# Set this to a canonical url for your site *without trailing slash*
+# This will be used when deriving urls to send out emails
+# If you use the `django.contrib.sites` framework set this to blank
+POOTLE_CANONICAL_URL = "http://localhost"
 
 #
 # Backends
