@@ -72,7 +72,11 @@ class LanguageTeam(object):
             state=SuggestionStates.PENDING,
             unit__state__gt=OBSOLETE,
             unit__store__translation_project__language=self.language)
-        return suggestions.order_by("-creation_time")
+        return suggestions.select_related(
+            "unit",
+            "unit__store",
+            "unit__store__translation_project",
+            "unit__store__translation_project__project").order_by("-creation_time")
 
     @property
     def users_with_suggestions(self):
