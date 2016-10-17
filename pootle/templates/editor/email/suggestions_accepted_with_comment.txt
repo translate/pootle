@@ -3,7 +3,7 @@
 
 {{ comment }}
 
-{% for suggestion in suggestion %}
+{% for suggestion in suggestions %}
  - #{{ suggestion.id }} {{ suggestion.unit_url }}
 {% endfor %}
 
