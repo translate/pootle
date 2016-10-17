@@ -11,6 +11,8 @@ Pootle App Config
 See https://docs.djangoproject.com/en/1.9/ref/applications/
 """
 
+import importlib
+
 from django.apps import AppConfig
 from django.core import checks
 
@@ -25,3 +27,4 @@ class PootleConfig(AppConfig):
 
     def ready(self):
         checks.register(deprecation.check_deprecated_settings, "settings")
+        importlib.import_module("pootle_app.getters")
