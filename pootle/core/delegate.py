@@ -28,6 +28,7 @@ data_tool = Getter()
 data_updater = Getter()
 
 language_team = Getter()
+site = Getter()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
