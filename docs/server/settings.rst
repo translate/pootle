@@ -145,6 +145,18 @@ Site-specific settings.
   rejects their suggestions providing some comment for the suggester.
 
 
+.. setting:: POOTLE_CANONICAL_URL
+
+``POOTLE_CANONICAL_URL``
+  Default: ``http://localhost``
+
+  .. versionadded:: 2.8
+
+  Canonical URL, **without trailing slash**, used when deriving the URLs to
+  send out emails. If you use the ``django.contrib.sites`` framework set this
+  to blank string.
+
+
 40-apps.conf
 ^^^^^^^^^^^^
 
