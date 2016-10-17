@@ -142,7 +142,40 @@ PTL.common = {
       }
     });
 
+    const updateFormtable = ($formtable) => {
+      $formtable.find('.js-formtable-messages').each(function () {
+        $(this).show();
+        $(this).find('ul.messages').each(function () {
+          $(this).html(['<li>', gettext('Updating data'), '</li>'].join(''));
+        });
+      });
+    };
+
+    $('form.formtable').on('submit', function () {
+      updateFormtable($(this));
+    });
+
+    $('form.formtable').on('click', '.js-pagination-next a', function (e) {
+      const $formtable = $(this).parents('form.formtable');
+      e.preventDefault();
+      $formtable.find('.js-pagination-page-no input').each(function () {
+        $(this).val(parseInt($(this).val(), 10) + 1);
+      });
+      $formtable.submit();
+    });
+
+    $('form.formtable').on('click', '.js-pagination-previous a', function (e) {
+      const $formtable = $(this).parents('form.formtable');
+      e.preventDefault();
+      $formtable.find('.js-pagination-page-no input').each(function () {
+        $(this).val(parseInt($(this).val(), 10) - 1);
+        $formtable.submit();
+      });
+    });
+
     $('.js-select2').select2({
+      minimumResultsForSearch: 10,
+      dropdownAutoWidth: true,
       width: 'resolve',
     });
     $('.select2-selection__rendered').removeAttr('title');
