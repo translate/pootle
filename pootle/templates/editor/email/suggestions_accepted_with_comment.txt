@@ -1,0 +1,10 @@
+{% load i18n %}
+{% filter wordwrap:70 %}{% blocktrans %}The following suggestions submitted by you have been accepted with the comment:{% endblocktrans %}{% endfilter %}
+
+{{ comment }}
+
+{% for suggestion in suggestion %}
+ - #{{ suggestion_id }} {{ unit_url }}
+{% endfor %}
+
+{% filter wordwrap:70 %}{% blocktrans %}We hope this feedback will help you improve your future contributions.{% endblocktrans %}{% endfilter %}
