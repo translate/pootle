@@ -2526,6 +2526,7 @@ form.pootle-fs-config-form
     width: 5em;
     height: 2.4em;
     padding: 0.3em;
+    z-index: 1000;
 }
 
 form.formtable .disabled
@@ -2564,6 +2565,7 @@ form.formtable table
     border-collapse: separate;
     border-spacing: 1px;
     font-size: 0.8em;
+    width: 100%;
 }
 
 form.formtable th,
@@ -2587,4 +2589,28 @@ form.formtable td.row-select,
 form.formtable th.row-select-placeholder
 {
     width: 1px;
+}
+
+form.formtable textarea
+{
+    vertical-align: top;
+    padding: 0.5em;
+    font-size: 0.8rem;
+    margin-bottom: 0.5em;
+}
+
+form.formtable tfoot .select2-container,
+form.formtable tfoot textarea
+{
+    margin-right: 1em;
+}
+
+form.formtable tfoot .formtable-select td
+{
+    padding: 0.5em;
+}
+
+form.formtable tfoot .formtable-actions td
+{
+    padding: 1em;
 }
