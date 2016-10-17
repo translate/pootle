@@ -104,33 +104,42 @@ PTL.common = {
     });
     setInterval($.fn.tipsy.revalidate, 1000);
 
-    $('table.pootle-table').on('click', '.js-formtable-select-visible', function () {
+    $('form.formtable').on('click', '.js-formtable-select-visible', function () {
       const check = $(this).is(':checked');
-      const $table = $(this).parents('table.pootle-table');
-      $table.find('tbody td.row-select input[type="checkbox"]').each(function () {
+      const $formtable = $(this).parents('form.formtable');
+      $formtable.find('tbody td.row-select input[type="checkbox"]').each(function () {
         $(this).prop('checked', check);
       });
       if (!check) {
-        $table.find('input[type="checkbox"].js-formtable-select-all').each(function () {
+        $formtable.find('input[type="checkbox"].js-formtable-select-all').each(function () {
           $(this).prop('checked', false);
         });
       }
     });
 
-    $('table.pootle-table').on('click', '.js-formtable-select-all', function () {
+    $('form.formtable').on('click', '.js-formtable-select-all', function () {
       const check = $(this).is(':checked');
-      const $table = $(this).parents('table.pootle-table');
-      $table.find('tbody td.row-select input[type="checkbox"]').each(function () {
+      const $formtable = $(this).parents('form.formtable');
+      $formtable.find('tbody td.row-select input[type="checkbox"]').each(function () {
         $(this).prop('checked', check);
       });
-      $table.find('input[type="checkbox"].js-formtable-select-visible').each(function () {
+      $formtable.find('input[type="checkbox"].js-formtable-select-visible').each(function () {
         $(this).prop('checked', check);
       });
     });
 
-    const paginationSelectors = '.js-pagination-page-no input, .js-pagination-items-per-page';
+    const paginationSelectors = '.js-pagination-page-no input, .js-pagination-items-per-page input';
     $('form.formtable').on('change', paginationSelectors, function () {
-      $(this).parents('form.formtable').submit();
+      const $formtable = $(this).parents('form.formtable');
+      let submit = true;
+      $formtable.find(paginationSelectors).each(function () {
+        if (!($(this).is(':valid'))) {
+          submit = false;
+        }
+      });
+      if (submit) {
+        $(this).parents('form.formtable').submit();
+      }
     });
 
     $('.js-select2').select2({
