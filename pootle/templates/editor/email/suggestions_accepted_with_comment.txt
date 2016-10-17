@@ -4,7 +4,7 @@
 {{ comment }}
 
 {% for suggestion in suggestion %}
- - #{{ suggestion_id }} {{ unit_url }}
+ - #{{ suggestion.id }} {{ suggestion.unit_url }}
 {% endfor %}
 
 {% filter wordwrap:70 %}{% blocktrans %}We hope this feedback will help you improve your future contributions.{% endblocktrans %}{% endfilter %}
