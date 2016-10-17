@@ -41,6 +41,14 @@ class Formtable(object):
         return self.kwargs.get("columns", ())
 
     @property
+    def comment(self):
+        return self.form[self.form.comment_field]
+
+    @property
+    def sort_columns(self):
+        return self.kwargs.get("sort_columns", ())
+
+    @property
     def colspan(self):
         return len(self.columns)
 
