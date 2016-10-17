@@ -452,3 +452,41 @@ def check_revision(app_configs=None, **kwargs):
         ))
 
     return errors
+
+
+@checks.register()
+def check_canonical_url(app_configs=None, **kwargs):
+    from django.conf import settings
+    from django.contrib.sites.models import Site
+
+    errors = []
+    no_canonical_error = checks.Critical(
+        _("No canonical URL provided and default site set to example.com."),
+        hint=_(
+            "Set the `POOTLE_CANONICAL_URL` in settings or update the "
+            "default site if you are using django.contrib.sites."),
+        id="pootle.C018")
+    localhost_canonical_warning = checks.Warning(
+        _("Canonical URL is set to http://localhost."),
+        hint=_(
+            "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your "
+            "site or leave it empty if you are using `django.contrib.sites`."),
+        id="pootle.W020")
+    try:
+        contrib_site = Site.objects.get_current()
+    except (ProgrammingError, OperationalError):
+        if "django.contrib.sites" in settings.INSTALLED_APPS:
+            return []
+        contrib_site = None
+    uses_sites = (
+        not settings.POOTLE_CANONICAL_URL
+        and contrib_site)
+    if uses_sites:
+        site = Site.objects.get_current()
+        if site.domain == "example.com":
+            errors.append(no_canonical_error)
+    elif not settings.POOTLE_CANONICAL_URL:
+        errors.append(no_canonical_error)
+    elif settings.POOTLE_CANONICAL_URL == "http://localhost":
+        errors.append(localhost_canonical_warning)
+    return errors
