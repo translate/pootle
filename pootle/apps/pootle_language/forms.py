@@ -39,6 +39,16 @@ class LanguageTeamBaseAdminForm(forms.Form):
     def language_team(self):
         return language_team.get(self.language.__class__)(self.language)
 
+    @property
+    def should_save(self):
+        rm_members = [
+            self.cleaned_data["rm_%ss" % role]
+            for role in self.language_team.roles]
+        return (
+            (self.cleaned_data["new_member"]
+             and self.cleaned_data["role"])
+            or any(rm_members))
+
 
 class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
     q = forms.CharField(max_length=255)
@@ -57,7 +67,6 @@ class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
 
 
 class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
-
     rm_admins = forms.ModelMultipleChoiceField(
         label=_("Admins"),
         widget=TableSelectMultiple(item_attrs=["username"]),

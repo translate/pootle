@@ -15,7 +15,8 @@ from django.utils.lru_cache import lru_cache
 from pootle.core.browser import make_project_item
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.views import PootleBrowseView, PootleTranslateView
-from pootle.core.views.admin import PootleLanguageAdminFormView
+from pootle.core.views.admin import PootleFormView
+from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n.gettext import tr_lang
 
@@ -119,25 +120,39 @@ def language_characters_admin(request, language):
     return render(request, 'languages/admin/characters.html', ctx)
 
 
-class LanguageTeamBaseAdminView(PootleLanguageAdminFormView):
+class PootleLanguageAdminFormView(PootleFormView):
+
+    @property
+    def permission_context(self):
+        return self.language.directory
+
+    @set_permissions
+    @requires_permission("administrate")
+    def dispatch(self, request, *args, **kwargs):
+        # get funky with the request 8/
+        return super(
+            PootleLanguageAdminFormView, self).dispatch(request, *args, **kwargs)
 
     @property
     def language(self):
-        return get_object_or_404(Language, code=self.kwargs["language_code"])
+        return get_object_or_404(
+            Language.objects.select_related("directory"),
+            code=self.kwargs["language_code"])
 
     def get_form_kwargs(self):
-        kwargs = super(LanguageTeamBaseAdminView, self).get_form_kwargs()
+        kwargs = super(PootleLanguageAdminFormView, self).get_form_kwargs()
         kwargs["language"] = self.language
         return kwargs
 
+    @property
+    def success_kwargs(self):
+        return dict(language_code=self.language.code)
 
-class LanguageTeamAdminFormView(LanguageTeamBaseAdminView):
+
+class LanguageTeamAdminFormView(PootleLanguageAdminFormView):
     form_class = LanguageTeamAdminForm
     template_name = "languages/admin/language_team.html"
-
-    def form_valid(self, form):
-        form.save()
-        return super(LanguageTeamAdminFormView, self).form_valid(form)
+    success_url_pattern = "pootle-language-admin-team"
 
     def get_context_data(self, **kwargs):
         context = super(LanguageTeamAdminFormView, self).get_context_data(**kwargs)
@@ -158,14 +173,8 @@ class LanguageTeamAdminFormView(LanguageTeamBaseAdminView):
             kwargs=dict(language_code=self.language.code))
         return context
 
-    @property
-    def success_url(self):
-        return reverse(
-            "pootle-language-admin-team",
-            kwargs=dict(language_code=self.language.code))
 
-
-class LanguageTeamAdminNewMembersJSON(PootleJSONMixin, LanguageTeamBaseAdminView):
+class LanguageTeamAdminNewMembersJSON(PootleJSONMixin, PootleLanguageAdminFormView):
     form_class = LanguageTeamNewMemberSearchForm
 
     def get_context_data(self, **kwargs):
