@@ -427,13 +427,14 @@ Tag and branch the release
 --------------------------
 
 You should only tag once you are happy with your release as there are some
-things that we can't undo. You can safely branch for a ``stable/`` branch
-before you tag.
+things that we can't undo.
+
+You can safely branch, if required, for a ``stable/`` branch before you tag.
 
 .. code-block:: console
 
-    $ git checkout -b stable/2.6.0
-    $ git push origin stable/2.6.0
+    $ git checkout -b stable/2.6.x
+    $ git push origin stable/2.6.x
     $ git tag -a 2.6.0 -m "Tag version 2.6.0"
     $ git push --tags
 
@@ -448,8 +449,8 @@ published on Read The Docs.
 
 Use the admin pages to flag a version that should be published.  When we have
 branched the stable release we use the branch rather then the tag i.e.
-``stable/2.5.0`` rather than ``2.5.0`` as that allows any fixes of
-documentation for the ``2.5.0`` release to be immediately available.
+``stable/2.5.x`` rather than ``2.5.0`` as that allows any fixes of
+documentation for the ``2.5`` releases to be immediately available.
 
 Change all references to docs in the Pootle code to point to the branched
 version as apposed to the latest version.
