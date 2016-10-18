@@ -78,5 +78,9 @@ class Formtable(object):
         return self.kwargs.get("method", "POST")
 
     @property
+    def select_all(self):
+        return self.form[self.form.select_all_field]
+
+    @property
     def table_css_class(self):
         return 'pootle-table centered'
