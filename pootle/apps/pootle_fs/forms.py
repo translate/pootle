@@ -19,6 +19,7 @@ from .delegate import (
 
 
 class ProjectFSAdminForm(forms.Form):
+    should_save = True
     fs_type = forms.ChoiceField(
         label=_("Filesystem backend"),
         help_text=_("Select a backend filesystem"),
