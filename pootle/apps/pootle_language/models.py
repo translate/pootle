@@ -207,9 +207,6 @@ class Language(models.Model, TreeItem):
     def get_children(self):
         return self.translationproject_set.live()
 
-    def get_cachekey(self):
-        return self.directory.pootle_path
-
     # # # /TreeItem
 
     def get_children_for_user(self, user, select_related=None):

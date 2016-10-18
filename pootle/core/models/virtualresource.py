@@ -38,7 +38,4 @@ class VirtualResource(TreeItem):
     def get_children(self):
         return self.resources
 
-    def get_cachekey(self):
-        return self.pootle_path
-
     # # # /TreeItem

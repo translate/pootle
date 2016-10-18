@@ -58,10 +58,6 @@ class TreeItem(object):
         """This method will be overridden in descendants"""
         return []
 
-    def get_cachekey(self):
-        """This method will be overridden in descendants"""
-        raise NotImplementedError('`get_cachekey()` not implemented')
-
     def initialize_children(self):
         if not self.initialized:
             self._children = self.get_children()
