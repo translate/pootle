@@ -7,7 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from .dirtyfields import DirtyFieldsMixin
-from .treeitem import TreeItem, CachedTreeItem, CachedMethods
+from .treeitem import TreeItem, CachedTreeItem
 
 
-__all__ = ('DirtyFieldsMixin', 'TreeItem', 'CachedTreeItem', 'CachedMethods')
+__all__ = ('DirtyFieldsMixin', 'TreeItem', 'CachedTreeItem')
