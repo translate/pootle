@@ -257,6 +257,12 @@ setup(
     install_requires=parse_requirements('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
 
+    extras_require={
+        'dev': parse_requirements('requirements/dev.txt', recurse=True),
+        'mysql': parse_requirements('requirements/_db_mysql.txt'),
+        'postgresql': parse_requirements('requirements/_db_postgresql.txt'),
+    },
+
     platforms=["any"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",

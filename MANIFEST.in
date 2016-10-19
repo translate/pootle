@@ -1,6 +1,5 @@
 include AUTHORS INSTALL LICENSE README.rst CONTRIBUTING.rst
-include requirements/base.txt
-include requirements/tests.txt
+recursive-include requirements *.txt
 include pootle/dbs/README
 include pootle/log/README
 include pootle/.pootle_fs/tmp/README
