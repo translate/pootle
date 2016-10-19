@@ -15,8 +15,9 @@ from translate.storage.pypo import pounit
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
+from pootle.core.delegate import review
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
-from pootle_store.models import Unit
+from pootle_store.models import Suggestion, Unit
 from pootle_store.syncer import UnitSyncer
 
 
@@ -187,35 +188,35 @@ def test_add_suggestion(store0, system):
     suggestion_text = 'foo bar baz'
 
     initial_suggestions = len(untranslated_unit.get_suggestions())
+    suggestions = review.get(Suggestion)()
 
     # Empty suggestion is not recorded
-    sugg, added = untranslated_unit.add_suggestion('')
+    sugg, added = suggestions.add(untranslated_unit, "")
     assert sugg is None
     assert not added
 
     # Existing translation can't be added as a suggestion
-    sugg, added = translated_unit.add_suggestion(translated_unit.target)
+    sugg, added = suggestions.add(translated_unit, translated_unit.target)
     assert sugg is None
     assert not added
 
     # Add new suggestion
-    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    sugg, added = suggestions.add(untranslated_unit, suggestion_text)
     assert sugg is not None
     assert added
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
     # Already-suggested text can't be suggested again
-    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    sugg, added = suggestions.add(untranslated_unit, suggestion_text)
     assert sugg is not None
     assert not added
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
     # Removing a suggestion should allow suggesting the same text again
-    tp = untranslated_unit.store.translation_project
-    untranslated_unit.reject_suggestion(sugg, tp, system)
+    review.get(Suggestion)([sugg], system).reject()
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions
 
-    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    sugg, added = suggestions.add(untranslated_unit, suggestion_text)
     assert sugg is not None
     assert added
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
@@ -224,36 +225,36 @@ def test_add_suggestion(store0, system):
 @pytest.mark.django_db
 def test_accept_suggestion_changes_state(issue_2401_po, system):
     """Tests that accepting a suggestion will change the state of the unit."""
-    tp = issue_2401_po.translation_project
+    suggestions = review.get(Suggestion)()
 
     # First test with an untranslated unit
     unit = issue_2401_po.units[0]
     assert unit.state == UNTRANSLATED
 
-    suggestion, created_ = unit.add_suggestion('foo')
+    suggestion, created_ = suggestions.add(unit, "foo")
     assert unit.state == UNTRANSLATED
 
-    unit.accept_suggestion(suggestion, tp, system)
+    review.get(Suggestion)([suggestion], system).accept()
     assert unit.state == TRANSLATED
 
     # Let's try with a translated unit now
     unit = issue_2401_po.units[1]
     assert unit.state == TRANSLATED
 
-    suggestion, created_ = unit.add_suggestion('bar')
+    suggestion, created_ = suggestions.add(unit, "bar")
     assert unit.state == TRANSLATED
 
-    unit.accept_suggestion(suggestion, tp, system)
+    review.get(Suggestion)([suggestion], system).accept()
     assert unit.state == TRANSLATED
 
     # And finally a fuzzy unit
     unit = issue_2401_po.units[2]
     assert unit.state == FUZZY
 
-    suggestion, created_ = unit.add_suggestion('baz')
+    suggestion, created_ = suggestions.add(unit, "baz")
     assert unit.state == FUZZY
 
-    unit.accept_suggestion(suggestion, tp, system)
+    review.get(Suggestion)([suggestion], system).accept()
     assert unit.state == TRANSLATED
 
 
@@ -265,18 +266,17 @@ def test_accept_suggestion_update_wordcount(it_tutorial_po, system):
 
     # Parse store
     it_tutorial_po.update(it_tutorial_po.file.store)
+    suggestions = review.get(Suggestion)()
 
     untranslated_unit = it_tutorial_po.units[0]
     suggestion_text = 'foo bar baz'
 
-    sugg, added = untranslated_unit.add_suggestion(suggestion_text)
+    sugg, added = suggestions.add(untranslated_unit, suggestion_text)
     assert sugg is not None
     assert added
     assert len(untranslated_unit.get_suggestions()) == 1
     assert untranslated_unit.state == UNTRANSLATED
-    untranslated_unit.accept_suggestion(sugg,
-                                        it_tutorial_po.translation_project,
-                                        system)
+    review.get(Suggestion)([sugg], system).accept()
     assert untranslated_unit.state == TRANSLATED
 
 
