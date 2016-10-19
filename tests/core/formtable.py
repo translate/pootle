@@ -10,14 +10,15 @@ import pytest
 
 from django.template import Context, Template
 
-from pootle.core.forms import FormtableForm
 from pootle.core.views.formtable import Formtable
+
+from .forms import DummyFormtableForm
 
 
 @pytest.mark.django
 def test_formtable():
 
-    form = FormtableForm()
+    form = DummyFormtableForm()
     formtable = Formtable(form)
 
     assert formtable.actions_field == "actions"
@@ -52,7 +53,7 @@ def _render_template(string, context=None):
 @pytest.mark.django
 def test_formtable_inclusion_tag():
 
-    form = FormtableForm()
+    form = DummyFormtableForm()
     formtable = Formtable(form)
     rendered = _render_template(
         "{% load core %}{% formtable formtable %}",
