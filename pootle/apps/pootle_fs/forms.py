@@ -34,6 +34,10 @@ class ProjectFSAdminForm(forms.Form):
             "The translation path mapping for your filesystem"))
 
     @property
+    def should_save(self):
+        return self.is_valid()
+
+    @property
     def fs_type_choices(self):
         return (
             (plugin_type, plugin.name or plugin.fs_type)
