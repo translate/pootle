@@ -276,7 +276,7 @@ checkout run:
 .. code-block:: console
 
     $ mkvirtualenv build-pootle-release
-    (build-pootle-release)$ nvm install 0.12  # Use nodejs 0.12
+    (build-pootle-release)$ nvm install stable
     (build-pootle-release)$ pip install --upgrade pip
     (build-pootle-release)$ pip install -r requirements/build.txt
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
