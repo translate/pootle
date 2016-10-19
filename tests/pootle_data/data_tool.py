@@ -222,6 +222,28 @@ def test_data_project_stats(project0):
 
 
 @pytest.mark.django_db
+def test_data_cache_keys(language0, project0, subdir0):
+
+    assert 'pootle_data.%s.%s.%s' % (
+        language0.data_tool.cache_key_name,
+        language0.code,
+        language0.data_tool.max_unit_revision
+    ) == language0.data_tool.cache_key
+
+    assert 'pootle_data.%s.%s.%s' % (
+        project0.data_tool.cache_key_name,
+        project0.code,
+        project0.data_tool.max_unit_revision
+    ) == project0.data_tool.cache_key
+
+    assert 'pootle_data.%s.%s.%s' % (
+        subdir0.data_tool.cache_key_name,
+        subdir0.pootle_path,
+        subdir0.data_tool.max_unit_revision
+    ) == subdir0.data_tool.cache_key
+
+
+@pytest.mark.django_db
 def test_data_language_stats(language0, request_users):
     user = request_users["user"]
     units = Unit.objects.live()

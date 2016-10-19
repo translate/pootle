@@ -20,6 +20,10 @@ class DirectoryDataTool(RelatedStoresDataTool):
     cache_key_name = "directory"
 
     @property
+    def context_name(self):
+        return self.context.pootle_path
+
+    @property
     def max_unit_revision(self):
         try:
             return self.context.translationproject.data_tool.max_unit_revision
