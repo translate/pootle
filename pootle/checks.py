@@ -490,3 +490,36 @@ def check_canonical_url(app_configs=None, **kwargs):
     elif settings.POOTLE_CANONICAL_URL == "http://localhost":
         errors.append(localhost_canonical_warning)
     return errors
+
+
+@checks.register()
+def check_pootle_fs_working_dir(app_configs=None, **kwargs):
+    import os
+
+    from django.conf import settings
+
+    missing_setting_error = checks.Critical(
+        _("POOTLE_FS_WORKING_PATH setting is not set."),
+        id="pootle.C019",
+    )
+    missing_directory_error = checks.Critical(
+        _("Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."),
+        hint=_("Create the directory pointed by `POOTLE_FS_WORKING_PATH` "
+               "setting."),
+        id="pootle.C020",
+    )
+    not_writable_directory_error = checks.Critical(
+        _("Path pointed to by POOTLE_FS_WORKING_PATH is not writable by "
+          "Pootle."),
+        hint=_("Add the write permission to the `POOTLE_FS_WORKING_PATH` "
+               "directory using 'chmod +w'"),
+        id="pootle.C021",
+    )
+    errors = []
+    if not settings.POOTLE_FS_WORKING_PATH:
+        errors.append(missing_setting_error)
+    elif not os.path.exists(settings.POOTLE_FS_WORKING_PATH):
+        errors.append(missing_directory_error)
+    elif not os.access(settings.POOTLE_FS_WORKING_PATH, os.W_OK):
+        errors.append(not_writable_directory_error)
+    return errors
