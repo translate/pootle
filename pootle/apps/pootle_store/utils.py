@@ -6,13 +6,22 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.template import loader
+from django.utils import timezone
 
 from pootle.core.delegate import site
 from pootle.core.mail import send_mail
 from pootle.i18n.gettext import ugettext as _
 from pootle_comment.forms import UnsecuredCommentForm
+from pootle_statistics.models import (
+    Submission, SubmissionFields, SubmissionTypes)
+
+from .constants import FUZZY, TRANSLATED
+from .models import Suggestion, SuggestionStates
 
 
 class SuggestionsReview(object):
@@ -21,7 +30,7 @@ class SuggestionsReview(object):
     reject_email_template = 'editor/email/suggestions_rejected_with_comment.txt'
     reject_email_subject = _(u"Suggestion rejected with comment")
 
-    def __init__(self, suggestions, reviewer):
+    def __init__(self, suggestions=None, reviewer=None):
         self.suggestions = suggestions
         self.reviewer = reviewer
 
@@ -40,12 +49,158 @@ class SuggestionsReview(object):
                 dict(comment=comment,
                      user=self.reviewer)).save()
 
+    def add(self, unit, translation, user=None, touch=True,
+            similarity=None, mt_similarity=None):
+        """Adds a new suggestion to the unit.
+
+        :param translation: suggested translation text
+        :param user: user who is making the suggestion. If it's ``None``,
+            the ``system`` user will be used.
+        :param touch: whether to update the unit's timestamp after adding
+            the suggestion or not.
+        :param similarity: human similarity for the new suggestion.
+        :param mt_similarity: MT similarity for the new suggestion.
+
+        :return: a tuple ``(suggestion, created)`` where ``created`` is a
+            boolean indicating if the suggestion was successfully added.
+            If the suggestion already exists it's returned as well.
+        """
+        if not filter(None, translation):
+            return (None, False)
+
+        if translation == unit.target:
+            return (None, False)
+
+        if user is None:
+            User = get_user_model()
+            user = User.objects.get_system_user()
+
+        try:
+            suggestion = Suggestion.objects.pending().get(
+                unit=unit,
+                user=user,
+                target_f=translation,
+            )
+            return (suggestion, False)
+        except Suggestion.DoesNotExist:
+            suggestion = Suggestion(
+                unit=unit,
+                user=user,
+                state=SuggestionStates.PENDING,
+                creation_time=timezone.now(),
+            )
+            suggestion.target = translation
+            suggestion.save()
+
+            sub = Submission(
+                creation_time=suggestion.creation_time,
+                translation_project=unit.store.translation_project,
+                submitter=user,
+                unit=unit,
+                store=unit.store,
+                type=SubmissionTypes.SUGG_ADD,
+                suggestion=suggestion,
+                similarity=similarity,
+                mt_similarity=mt_similarity,
+            )
+            sub.save()
+
+            if touch:
+                unit.save()
+
+        return (suggestion, True)
+
+    def accept_suggestion(self, suggestion):
+        unit = suggestion.unit
+        translation_project = unit.store.translation_project
+
+        # Save for later
+        old_state = unit.state
+        old_target = unit.target
+
+        # Update some basic attributes so we can create submissions. Note
+        # these do not conflict with `ScoreLog`'s interests, so it's safe
+        unit.target = suggestion.target
+        if unit.state == FUZZY:
+            unit.state = TRANSLATED
+
+        if suggestion.user_id is not None:
+            suggestion_user = suggestion.user
+        else:
+            User = get_user_model()
+            suggestion_user = User.objects.get_nobody_user()
+
+        current_time = timezone.now()
+        suggestion.state = SuggestionStates.ACCEPTED
+        suggestion.reviewer = self.reviewer
+        suggestion.review_time = current_time
+        suggestion.save()
+
+        create_subs = OrderedDict()
+        if old_state != unit.state:
+            create_subs[SubmissionFields.STATE] = [old_state, unit.state]
+        create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
+
+        subs_created = []
+        for field in create_subs:
+            kwargs = {
+                'creation_time': current_time,
+                'translation_project': translation_project,
+                'submitter': self.reviewer,
+                'unit': unit,
+                'store': unit.store,
+                'field': field,
+                'type': SubmissionTypes.SUGG_ACCEPT,
+                'old_value': create_subs[field][0],
+                'new_value': create_subs[field][1],
+            }
+            if field == SubmissionFields.TARGET:
+                kwargs['suggestion'] = suggestion
+
+            subs_created.append(Submission(**kwargs))
+        if subs_created:
+            unit.submission_set.add(*subs_created, bulk=False)
+
+        # FIXME: remove such a dependency on `ScoreLog`
+        # Update current unit instance's attributes
+        # important to set these attributes after saving Submission
+        # because in the `ScoreLog` we need to access the unit's certain
+        # attributes before it was saved
+        unit.submitted_by = suggestion_user
+        unit.submitted_on = current_time
+        unit.reviewed_by = self.reviewer
+        unit.reviewed_on = unit.submitted_on
+        unit._log_user = self.reviewer
+
+        # Update timestamp
+        unit.save()
+
+    def reject_suggestion(self, suggestion):
+        unit = suggestion.unit
+        translation_project = unit.store.translation_project
+
+        suggestion.state = SuggestionStates.REJECTED
+        suggestion.review_time = timezone.now()
+        suggestion.reviewer = self.reviewer
+        suggestion.save()
+
+        sub = Submission(
+            creation_time=suggestion.review_time,
+            translation_project=translation_project,
+            submitter=self.reviewer,
+            unit=unit,
+            store=unit.store,
+            type=SubmissionTypes.SUGG_REJECT,
+            suggestion=suggestion,
+        )
+        sub.save()
+
+        # Update timestamp
+        unit.save()
+
     def accept_suggestions(self):
         for suggestion in self.suggestions:
-            suggestion.unit.accept_suggestion(
-                suggestion,
-                suggestion.unit.store.translation_project,
-                self.reviewer)
+            self.accept_suggestion(suggestion)
 
     def accept(self, comment=""):
         self.accept_suggestions()
@@ -79,10 +234,7 @@ class SuggestionsReview(object):
 
     def reject_suggestions(self):
         for suggestion in self.suggestions:
-            suggestion.unit.reject_suggestion(
-                suggestion,
-                suggestion.unit.store.translation_project,
-                self.reviewer)
+            self.reject_suggestion(suggestion)
 
     def reject(self, comment=""):
         self.reject_suggestions()
