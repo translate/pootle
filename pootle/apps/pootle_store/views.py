@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import copy
-
 from translate.lang import data
 
 from django import forms
@@ -500,7 +498,6 @@ def submit(request, unit, **kwargs_):
 
     translation_project = request.translation_project
     language = translation_project.language
-    old_unit = copy.copy(unit)
 
     if unit.hasplural():
         snplurals = len(unit.source.strings)
@@ -516,8 +513,7 @@ def submit(request, unit, **kwargs_):
     if form.is_valid():
         suggestion = form.cleaned_data['suggestion']
         if suggestion:
-            old_unit.accept_suggestion(suggestion,
-                                       request.translation_project, request.user)
+            review.get(Suggestion)([suggestion], request.user).accept()
             if form.cleaned_data['comment']:
                 kwargs = dict(
                     comment=form.cleaned_data['comment'],
@@ -595,12 +591,12 @@ def suggest(request, unit, **kwargs_):
             # HACKISH: django 1.2 stupidly modifies instance on model form
             # validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
-            unit.add_suggestion(
+            review.get(Suggestion)().add_suggestion(
+                unit,
                 form.cleaned_data['target_f'],
                 user=request.user,
                 similarity=form.cleaned_data['similarity'],
-                mt_similarity=form.cleaned_data['mt_similarity'],
-            )
+                mt_similarity=form.cleaned_data['mt_similarity'])
 
             json['user_score'] = request.user.public_score
 

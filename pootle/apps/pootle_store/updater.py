@@ -13,11 +13,13 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 
 from pootle.core.contextmanagers import update_data_after
+from pootle.core.delegate import review
 from pootle.core.log import log
 from pootle.core.models import Revision
 
 from .constants import OBSOLETE, PARSED, POOTLE_WINS
 from .diff import StoreDiff
+from .models import Suggestion
 from .util import get_change_str
 
 
@@ -147,11 +149,17 @@ class UnitUpdater(object):
         return self.unit.target != self.original.target
 
     def create_suggestion(self):
+        suggestion_review = review.get(Suggestion)()
         return bool(
-            self.unit.add_suggestion(self.newunit.target, self.update.user)[1]
+            suggestion_review.add(
+                self.unit,
+                self.newunit.target,
+                self.update.user)[1]
             if self.update.resolve_conflict == POOTLE_WINS
-            else self.unit.add_suggestion(
-                self.original.target, self.original.submitter)[1])
+            else suggestion_review.add(
+                self.unit,
+                self.original.target,
+                self.original.submitter)[1])
 
     def record_submission(self):
         self.unit.store.record_submissions(
