@@ -16,6 +16,7 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
+from pootle.core.delegate import review
 from pootle_data.store_data import StoreDataTool, StoreDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
@@ -216,7 +217,8 @@ def test_data_store_util_suggestion_count(store0, member):
         suggestion__state=SuggestionStates.PENDING).first()
     unit_suggestion_count = unit.suggestion_set.filter(
         state=SuggestionStates.PENDING).count()
-    suggestion, created_ = unit.add_suggestion(
+    sugg, added = review.get(Suggestion)().add(
+        unit,
         "Another suggestion for %s" % (unit.target or unit.source),
         user=member,
         touch=False)

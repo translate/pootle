@@ -8,12 +8,17 @@
 
 import pytest
 
+from pootle.core.delegate import review
+from pootle_store.models import Suggestion
+
 
 @pytest.mark.django_db
 def test_hash(store0):
     """Tests that target hash changes when suggestion is modified"""
     unit = store0.units[0]
-    suggestion, created_ = unit.add_suggestion("gras")
+    suggestions = review.get(Suggestion)()
+
+    suggestion, created_ = suggestions.add(unit, "gras")
 
     first_hash = suggestion.target_hash
     suggestion.translator_comment = "my nice comment"

@@ -19,11 +19,13 @@ from pytest_pootle.fixtures.models.store import (_create_submission_and_suggesti
 
 import accounts
 
+from pootle.core.delegate import review
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet, check_user_permission
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.constants import FUZZY, TRANSLATED
+from pootle_store.models import Suggestion
 from pootle_translationproject.models import TranslationProject
 
 
@@ -39,18 +41,13 @@ def _make_evil_member_updates(store, evil_member):
     evil_units = [
         ("Hello, world", "Hello, world EVIL"),
         ("Goodbye, world", "Goodbye, world EVIL")]
-    unit = store.units[0]
-    unit.reject_suggestion(member_suggestion,
-                           store.units[0].store.translation_project,
-                           evil_member)
+    review.get(Suggestion)([member_suggestion], evil_member).reject()
     _create_submission_and_suggestion(store,
                                       evil_member,
                                       units=evil_units,
                                       suggestion="EVIL SUGGESTION")
     evil_suggestion = store.units[0].get_suggestions().first()
-    store.units[0].accept_suggestion(evil_suggestion,
-                                     store.units[0].store.translation_project,
-                                     evil_member)
+    review.get(Suggestion)([evil_suggestion], evil_member).accept()
     _create_comment_on_unit(store.units[0], evil_member, "EVIL COMMENT")
 
 

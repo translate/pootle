@@ -19,6 +19,7 @@ from django.template import RequestContext, loader
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
+from pootle.core.delegate import review
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_comment import get_model as get_comment_model
 from pootle_comment.forms import UnsecuredCommentForm
@@ -285,7 +286,7 @@ def test_timeline_view_unit_with_suggestion(client, request_users,
     unit = suggestion.unit
     unit.state = FUZZY
     unit.save()
-    unit.accept_suggestion(suggestion, unit.store.translation_project, admin)
+    review.get(Suggestion)([suggestion], admin).accept()
     _timeline_test(
         client,
         request_users,
@@ -320,7 +321,7 @@ def test_timeline_view_unit_with_suggestion_and_comment(client, request_users,
     unit = suggestion.unit
     unit.state = FUZZY
     unit.save()
-    unit.accept_suggestion(suggestion, unit.store.translation_project, admin)
+    review.get(Suggestion)([suggestion], admin).accept()
     form = UnsecuredCommentForm(suggestion, dict(
         comment='This is a comment!',
         user=admin,
