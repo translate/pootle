@@ -99,7 +99,7 @@ class Command(PootleCommand):
             self._dump_stats(prj, res, stop_level=stop_level)
 
     def _dump_stats(self, item, res, stop_level):
-        key = item.get_cachekey()
+        key = item.pootle_path
         item.initialize_children()
 
         if stop_level != 0 and item.children:

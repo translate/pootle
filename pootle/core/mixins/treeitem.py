@@ -8,36 +8,8 @@
 
 import logging
 
-from pootle.core.cache import get_cache
 
-
-__all__ = ('TreeItem', 'CachedTreeItem', 'CachedMethods')
-
-
-logger = logging.getLogger('stats')
-cache = get_cache('stats')
-
-
-class NoCachedStats(Exception):
-    pass
-
-
-class CachedMethods(object):
-    """Cached method names."""
-
-    CHECKS = 'get_checks'
-    WORDCOUNT_STATS = 'get_wordcount_stats'
-    LAST_ACTION = 'get_last_action'
-    SUGGESTIONS = 'get_suggestion_count'
-    MTIME = 'get_mtime'
-    LAST_UPDATED = 'get_last_updated'
-
-    # Check refresh_stats command when add a new CachedMethod
-
-    @classmethod
-    def get_all(cls):
-        return [getattr(cls, x) for x in
-                filter(lambda x: x[:2] != '__' and x != 'get_all', dir(cls))]
+__all__ = ('TreeItem', 'CachedTreeItem')
 
 
 class TreeItem(object):
@@ -57,10 +29,6 @@ class TreeItem(object):
     def get_parents(self):
         """This method will be overridden in descendants"""
         return []
-
-    def get_cachekey(self):
-        """This method will be overridden in descendants"""
-        raise NotImplementedError('`get_cachekey()` not implemented')
 
     def initialize_children(self):
         if not self.initialized:

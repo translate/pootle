@@ -378,9 +378,6 @@ class TranslationProject(models.Model, CachedTreeItem):
     def get_children(self):
         return self.directory.children
 
-    def get_cachekey(self):
-        return self.pootle_path
-
     def get_parents(self):
         return [self.project]
 
