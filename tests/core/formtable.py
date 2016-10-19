@@ -40,6 +40,7 @@ def test_formtable():
     assert formtable.table_css_class == 'pootle-table centered'
     assert formtable.table_attrs == {'class': formtable.table_css_class}
     assert formtable.rows == []
+    assert formtable.sort_columns == ()
 
 
 def _render_template(string, context=None):
