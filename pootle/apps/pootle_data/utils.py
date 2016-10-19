@@ -310,7 +310,7 @@ class RelatedStoresDataTool(DataTool):
 
     @property
     def context_name(self):
-        self.context.code
+        return self.context.code
 
     @property
     def data_model(self):
