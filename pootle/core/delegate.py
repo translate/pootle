@@ -29,6 +29,8 @@ data_updater = Getter()
 
 language_team = Getter()
 review = Getter()
+revision = Getter()
+revision_updater = Getter()
 site = Getter()
 
 
