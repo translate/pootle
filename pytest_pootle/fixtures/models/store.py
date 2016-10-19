@@ -227,8 +227,9 @@ def _require_store(tp, po_dir, name):
 def _create_submission_and_suggestion(store, user,
                                       units=None,
                                       suggestion="SUGGESTION"):
-
+    from pootle.core.delegate import review
     from pootle.core.models import Revision
+    from pootle_store.models import Suggestion
 
     # Update store as user
     if units is None:
@@ -241,7 +242,7 @@ def _create_submission_and_suggestion(store, user,
 
     # Add a suggestion
     unit = store.units[0]
-    unit.add_suggestion(suggestion, user=user)
+    review.get(Suggestion)().add(unit, suggestion, user)
     return unit
 
 

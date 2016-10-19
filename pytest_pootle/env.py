@@ -393,9 +393,10 @@ class PootleTestEnv(object):
         submissions.update(creation_time=update_time)
 
     def _add_submissions(self, unit, created):
+        from pootle.core.delegate import review
         from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED, FUZZY, OBSOLETE
-        from pootle_store.models import Unit
+        from pootle_store.models import Suggestion, Unit
 
         from django.contrib.auth import get_user_model
         from django.utils import timezone
@@ -411,7 +412,9 @@ class PootleTestEnv(object):
         first_modified = created + relativedelta(months=unit.index, days=10)
 
         # add suggestion at first_modified
-        suggestion, created_ = unit.add_suggestion(
+        suggestion_review = review.get(Suggestion)
+        suggestion, created_ = suggestion_review().add(
+            unit,
             "Suggestion for %s" % (unit.target or unit.source),
             user=member,
             touch=False)
@@ -420,18 +423,17 @@ class PootleTestEnv(object):
         # accept the suggestion 7 days later if not untranslated
         next_time = first_modified + timedelta(days=7)
         if original_state == UNTRANSLATED:
-            unit.reject_suggestion(
-                suggestion, unit.store.translation_project, admin)
+            suggestion_review([suggestion], reviewer=admin).reject()
         else:
-            unit.accept_suggestion(
-                suggestion, unit.store.translation_project, admin)
+            suggestion_review([suggestion], reviewer=admin).accept()
             Unit.objects.filter(pk=unit.pk).update(
                 submitted_on=next_time, mtime=next_time)
         self._update_submission_times(
             unit, next_time, first_modified)
 
         # add another suggestion as different user 7 days later
-        suggestion2_, created_ = unit.add_suggestion(
+        suggestion2_, created_ = suggestion_review().add(
+            unit,
             "Suggestion 2 for %s" % (unit.target or unit.source),
             user=member2,
             touch=False)
