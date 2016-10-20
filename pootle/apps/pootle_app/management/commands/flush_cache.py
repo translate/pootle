@@ -39,6 +39,13 @@ class Command(BaseCommand):
                   "failed jobs). Revision counter is restores automatically."),
         )
         parser.add_argument(
+            '--lru',
+            action='store_true',
+            dest='flush_lru',
+            default=False,
+            help="Flush lru cache.",
+        )
+        parser.add_argument(
             '--all',
             action='store_true',
             dest='flush_all',
@@ -48,9 +55,12 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         if (not options['flush_rqdata'] and
-            not options['flush_django_cache'] and not options['flush_all']):
+            not options['flush_lru'] and
+            not options['flush_django_cache'] and
+            not options['flush_all']):
             raise CommandError("No options were provided. Use one of "
-                               "--django-cache, --rqdata or --all.")
+                               "--django-cache, --rqdata, --lru "
+                               "or --all.")
 
         self.stdout.write('Flushing cache...')
 
@@ -67,3 +77,8 @@ class Command(BaseCommand):
             r_con = get_redis_connection('default')
             r_con.flushdb()
             self.stdout.write('All default Django cache data removed.')
+
+        if options['flush_lru'] or options['flush_all']:
+            r_con = get_redis_connection('lru')
+            r_con.flushdb()
+            self.stdout.write('All lru cache data removed.')
