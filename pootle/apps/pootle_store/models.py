@@ -306,6 +306,7 @@ class Unit(models.Model, base.TranslationUnit):
         source_updated = kwargs.pop("source_updated", None) or self._source_updated
         target_updated = kwargs.pop("target_updated", None) or self._target_updated
         state_updated = kwargs.pop("state_updated", None) or self._state_updated
+        suggestions_updated = kwargs.pop("suggestions_updated", None)
         auto_translated = (
             kwargs.pop("auto_translated", None)
             or self._auto_translated)
@@ -349,9 +350,14 @@ class Unit(models.Model, base.TranslationUnit):
         # since that change doesn't require further sync but note that
         # auto_translated units require further sync
         revision = kwargs.pop('revision', None)
+        increment_revision = (
+            target_updated
+            or state_updated
+            or comment_updated
+            or suggestions_updated)
         if revision is not None and not auto_translated:
             self.revision = revision
-        elif target_updated or state_updated or comment_updated:
+        elif increment_revision:
             self.revision = Revision.incr()
 
         if not created and action:
