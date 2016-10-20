@@ -27,7 +27,7 @@ const sel = {
 const actionMap = {
   browse: '',
   translate: 'translate',
-  'admin-permissions': 'admin/permissions',
+  'admin-permissions': 'admin/team',
   'admin-characters': 'admin/characters',
   'admin-languages': 'admin/languages',
   'admin-team': 'admin/team',
