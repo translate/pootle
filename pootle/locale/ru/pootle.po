@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-28 17:16+0100\n"
-"PO-Revision-Date: 2016-09-15 21:49+0000\n"
-"Last-Translator: afan <afan@mail.ru>\n"
+"PO-Revision-Date: 2016-09-29 22:54+0000\n"
+"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1473976184.000000\n"
+"X-POOTLE-MTIME: 1475189661.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1452,18 +1452,16 @@ msgid "Remove the 'admin' user or change its password."
 msgstr "Удалите пользователя 'admin' или смените ему пароль."
 
 #: checks.py:400
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "Соединение с БД не реализует вызов on_commit."
+msgstr "Соединение с БД использует transaction_hooks."
 
 #: checks.py:401
-#, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"Установите DATABASES['default']['ENGINE'] на использование бэкэнда из "
-"transaction_hooks.backends."
+"Установите DATABASES['default']['ENGINE'] на использование бэкэнда из django."
+"db.backends."
 
 #: checks.py:421
 msgid "Email server is not available."

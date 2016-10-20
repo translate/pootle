@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-28 17:16+0100\n"
-"PO-Revision-Date: 2016-07-20 23:04+0000\n"
-"Last-Translator: miles <miles@filmsi.net>\n"
+"PO-Revision-Date: 2016-10-07 16:20+0000\n"
+"Last-Translator: Hugo65 <janezkranjski505@yahoo.com>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469055845.000000\n"
+"X-POOTLE-MTIME: 1475857227.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -110,7 +110,7 @@ msgstr ""
 
 #: apps/accounts/models.py:97 apps/reports/forms.py:37
 msgid "Hourly Rate"
-msgstr ""
+msgstr "Urna postavka"
 
 #: apps/accounts/models.py:98
 msgid "Score"
@@ -166,7 +166,7 @@ msgstr "E-poštni naslov"
 
 #: apps/contact/forms.py:39
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Vnesite vaš elektronski naslov."
 
 #: apps/contact/forms.py:42
 msgid "Message"
@@ -193,7 +193,7 @@ msgstr "Prenesite datoteko XLIFF za nepovezano prevajanje"
 #: apps/import_export/templates/browser/index.html:12
 #, fuzzy
 msgid "Download for offline translation"
-msgstr "Prenesite datoteko XLIFF za nepovezano prevajanje"
+msgstr "Prenesite datoteko za nepovezano prevajanje"
 
 #: apps/import_export/templates/browser/index.html:16
 #, fuzzy
@@ -319,7 +319,7 @@ msgstr ""
 
 #: apps/pootle_format/abstracts.py:44
 msgid "Enabled"
-msgstr ""
+msgstr "Omogočeno"
 
 #: apps/pootle_format/abstracts.py:46
 #, fuzzy

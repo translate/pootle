@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-29 13:38+0100\n"
-"PO-Revision-Date: 2016-09-15 10:58+0000\n"
+"PO-Revision-Date: 2016-09-29 22:55+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473937084.000000\n"
+"X-POOTLE-MTIME: 1475189730.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -1019,16 +1019,16 @@ msgid "Creating new user accounts is prohibited."
 msgstr "Создание новых учетных записей отключено."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Мы нашли пользователя с электронной почтой <span>%s</span> в нашей системе. "
-"Пожалуйста, введите пароль, чтобы завершить процедуру входа. Эта процедура "
-"свяжет учетную запись в Pootle и %s."
+"Мы нашли пользователя с электронной почтой <span>%(email)s</span> в нашей "
+"системе. Пожалуйста, введите пароль, чтобы завершить процедуру входа. Эта "
+"процедура свяжет учетные записи Pootle и %(provider)s."
 
 #: static/js/browser.js:267
 msgid "All Languages"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-29 13:38+0100\n"
-"PO-Revision-Date: 2016-09-14 19:33+0000\n"
+"PO-Revision-Date: 2016-09-29 14:41+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473881591.000000\n"
+"X-POOTLE-MTIME: 1475160092.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -1018,17 +1018,17 @@ msgid "Creating new user accounts is prohibited."
 msgstr "Vytváření nových uživatelských účtů je zakázáno."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Nalezli jsme v našem systému uživatele s e-mailem <span>%s</span>. Pro "
-"dokončení procesu přihlášení zadejte jeho heslo. Toto je jednorázový "
-"požadavek, který vytvoří propojení mezi vaším účtem na Pootle serveru a %s "
-"účtem."
+"Nalezli jsme v našem systému uživatele s e-mailem <span>%(email)s</span>. "
+"Pro dokončení procesu přihlášení zadejte jeho heslo. Toto je jednorázový "
+"požadavek, který vytvoří propojení mezi vaším účtem na Pootle serveru a "
+"%(provider)s účtem."
 
 #: static/js/browser.js:267
 msgid "All Languages"

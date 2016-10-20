@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-29 13:38+0100\n"
-"PO-Revision-Date: 2016-09-14 19:16+0000\n"
+"PO-Revision-Date: 2016-09-29 13:25+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473880575.000000\n"
+"X-POOTLE-MTIME: 1475155515.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -1006,16 +1006,17 @@ msgid "Creating new user accounts is prohibited."
 msgstr "A creación de novas contas de usuario está prohibida."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Atopouse un usuario neste sistema co correo-e <span>%s</span>. Forneza o "
-"contrasinal para rematar o inicio de sesión. Este procedemento realizarase "
-"unha única vez e asociará as súas contas de Pootle e %s."
+"Atopouse un usuario neste sistema co correo-e <span>%(email)s</span>. "
+"Forneza o contrasinal para rematar o inicio de sesión. Este procedemento "
+"realizarase unha única vez e asociará as súas contas de Pootle e "
+"%(provider)s."
 
 #: static/js/browser.js:267
 msgid "All Languages"

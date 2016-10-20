@@ -9,248 +9,256 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-29 13:38+0100\n"
-"PO-Revision-Date: 2013-10-28 17:55+0000\n"
-"Last-Translator: Chrisitan <christian@tellnes.no>\n"
+"PO-Revision-Date: 2016-10-15 12:20+0000\n"
+"Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1382982951.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1476534018.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr ""
+msgstr "Lagret."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr ""
+msgstr "Slettet."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
-msgstr ""
+msgstr "Slett"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
-#, fuzzy
 msgid "Add Language"
-msgstr "Alle språk"
+msgstr "Legg til språk"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(counts)s språk samsvarer med din spørring."
+msgstr[1] "%(counts)s språk samsvarer med din spørring."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det finnes %(cont)s språk."
+msgstr[1] "Det finnes %(cont)s språk. Nedenfor finner du de nyligst tillagte."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr ""
+msgstr "Søk i språk"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
-msgstr ""
+msgstr "Finn språk etter navn, kode"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "Rediger språk"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
+"Bruk søkefunksjonen til å finne språket, klikk så på språket for å redigere."
 
 #: static/js/admin/components/Language/LanguageForm.js:54
 #: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: static/js/admin/components/Language/LanguageForm.js:61
 #: static/js/admin/components/Project/ProjectForm.js:63
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr ""
+msgstr "Fullt navn"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr ""
+msgstr "Spesialtegn"
 
 #: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
-msgstr ""
+msgstr "Antall flertallsformer"
 
 #: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr ""
+msgstr "Flertallsformel"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
 #: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
 #: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
-msgstr ""
+msgstr "Oversikt"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 #: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
-msgstr ""
+msgstr "Tilganger"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
-#, fuzzy
 msgid "Add Project"
-msgstr "Alle prosjekter"
+msgstr "Legg til prosjekt"
 
 #: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s prosjekt samsvarer med din spørring."
+msgstr[1] "%(count)s prosjekter samsvarer med din spørring."
 
 #: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Det finnes %(count)s prosjekt."
 msgstr[1] ""
+"Det finnes %(count)s prosjekter. Nedenfor finner du de sist tillagte."
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
-msgstr ""
+msgstr "Søk i prosjekter"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Finn prosjekt etter navn, kode"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr ""
+msgstr "Rediger prosjekt"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Bruk søkefunksjonen for å finne prosjektet, klikk så på et prosjektet for å "
+"redigere."
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
-msgstr ""
+msgstr "Kvalitetssjekk"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
 msgid "File types"
-msgstr ""
+msgstr "Filtyper"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr ""
+msgstr "Stil for prosjekttre"
 
 #: static/js/admin/components/Project/ProjectForm.js:104
-#, fuzzy
 msgid "Source Language"
-msgstr "Alle språk"
+msgstr "Kildespråk"
 
 #: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
-msgstr ""
+msgstr "Ignorer filer"
 
 #: static/js/admin/components/Project/ProjectForm.js:119
+#, fuzzy
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Kontakt for tekststrengfeil"
 
+# Could this be explained?
 #: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Prefiks for skjermbildesøk"
 
 #: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
-msgstr ""
+msgstr "Avskrudd"
 
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
-msgstr ""
+msgstr "Språk"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
-msgstr ""
+msgstr "Last flere"
 
 #: static/js/admin/components/Search.js:93
 msgid "Loading..."
-msgstr ""
+msgstr "Laster…"
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr ""
+msgstr "Legg til bruker"
 
 #: static/js/admin/components/User/UserController.js:59
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s bruker samsvarer med ditt søk."
+msgstr[1] "%(count)s brukere samsvarer med ditt søk."
 
 #: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det er %(count)s bruker."
+msgstr[1] "Det er %(count)s brukere. Nedenfor er de mest nylig tillagte."
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr ""
+msgstr "Søk i brukere"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Finn bruker etter navn, e-post, egenskaper"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr ""
+msgstr "Rediger bruker"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Bruk søkefunksjonen til å finne brukeren, klikk så på brukeren for å "
+"redigere."
 
 #: static/js/admin/components/User/UserForm.js:47
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
+"Merk: Når du sletter en bruker vil deres bidrag til siden, f.eks. "
+"kommentarer, forslag og oversettelser bli kreditert den anonyme brukeren "
+"(ingen)."
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Brukernavn"
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:104
@@ -258,327 +266,345 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:99
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr ""
+msgstr "Passord"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr ""
+msgstr "Sett et nytt passord"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "E-post"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
-msgstr ""
+msgstr "Administrator"
 
 #: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
-msgstr ""
+msgstr "Twitter-brukernavn"
 
 #: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:127
 msgid "LinkedIn profile URL"
-msgstr ""
+msgstr "Nettadresse til LinkedIn-profil"
 
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "Nettside"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
-msgstr ""
+msgstr "Nettadresse til hjemmeside"
 
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr ""
+msgstr "Kort bio"
 
 #: static/js/admin/components/User/UserForm.js:144
+#, fuzzy
 msgid "Personal description"
-msgstr ""
+msgstr "Egenbeskrivelse"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
-msgstr ""
+msgstr "Offentlig profil"
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: static/js/admin/components/User/UserForm.js:162
 msgid "Statistics"
-msgstr ""
+msgstr "Statistikk"
 
 #: static/js/admin/components/User/UserForm.js:163
 msgid "Reports"
-msgstr ""
+msgstr "Rapporter"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Forhåndsvisning vil bli vist her."
 
 #: static/js/auth/components/AccountActivation.js:32
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format, javascript-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
 msgstr ""
+"En e-post som inneholder den spesielle lenken har blitt sendt til <span>%s</"
+"span>"
 
 #: static/js/auth/components/AccountActivation.js:37
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account."
 msgstr ""
+"En e-post som inneholder den spesielle lenken har blitt sendt til adressen "
+"brukeren oppga i registreringen av denne kontoen."
 
 #: static/js/auth/components/AccountActivation.js:42
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Din konto må aktiveres."
 
 #: static/js/auth/components/AccountActivation.js:44
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Følg den lenken for å fortsette kontopprettelse."
 
 #: static/js/auth/components/AccountActivation.js:59
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Din konto er inaktiv fordi en administrator deaktiverte den."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontakt oss"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "Denne e-postbekreftelseslenken er utløpt eller ugyldig."
 
 #: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Tilbakestillingslenken for passordet var ikke gyldig, muligvis siden den "
+"allerede kan ha blitt brukt. Forespør en ny tilbakestilling."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr ""
+msgstr "Tilbakestill passord"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Passord endret, logger inn…"
 
 #: static/js/auth/components/PasswordResetForm.js:125
 #: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
-msgstr ""
+msgstr "Gjenta passord"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
-msgstr ""
+msgstr "Sett nytt passord"
 
 #: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Etter at du endrer ditt passord vil bli logget inn automatisk."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:24
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Sender epost til %s…"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
+msgstr "Følg den lenken for å fortsette prosessen med å tilbakestille passord."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Fikk du ikke e-posten? Sjekk at den ikke feilaktig ble filtrert ut som spam, "
+"eller ved å forespørre ny kopi av e-posten."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
-msgstr ""
+msgstr "Send e-post på ny"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Lag ny konto"
 
 #: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:107
 msgid "I forgot my password"
-msgstr ""
+msgstr "Passordet mitt, det husker jeg ikke"
 
 #: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:118
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
-msgstr ""
+msgstr "Logg inn"
 
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:74
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Innlogget. Omdirigerer…"
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
-msgstr ""
+msgstr "Sosiale tjenester"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
-msgstr ""
+msgstr "Innlogging / Passord"
 
 #: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
-msgstr ""
+msgstr "Lag konto"
 
 #: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Logg inn som eksisterende bruker"
 
 #: static/js/auth/components/SocialAuthError.js:30
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "En feil inntraff i forsøk på å logge inn via %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr ""
+msgstr "En feil inntraff under forsøk på å logge inn via din sosiale konto."
 
 #: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
-msgstr ""
+msgstr "Prøv igjen"
 
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Logg inn med %s"
 
 #: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Innlogging med en ekstern tjeneste vil lage en konto til deg første gang du "
+"logger inn."
 
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
-msgstr ""
+msgstr "Logg inn med…"
 
 #: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
-msgstr ""
+msgstr "Inaktiv konto"
 
 #: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
-msgstr ""
+msgstr "Kontoaktivering"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr ""
+msgstr "E-postbekreftelse"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Tilbakestill ditt passord"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr ""
+msgstr "Oida…"
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr ""
+msgstr "Sosial bekreftelse"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Mer"
+msgstr "Mer…"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Bidrag, 30 dager"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
-msgstr ""
+msgstr "Vis avskrudde"
 
 #: static/js/browser/components/VisibilityToggle.js:54
 msgid "Hide disabled"
-msgstr ""
+msgstr "Gjem avskrudde"
 
 #: static/js/editor/app.js:318 static/js/editor/app.js:640
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"Du har ulagrede endringer i denne tekststrengen. Å navigere bort herfra vil "
+"forkaste de endringene."
 
 #: static/js/editor/app.js:363
+#, fuzzy
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Gå til neste streng (Ctrl+.)<br/><br/>Also:<br/>Neste side: Ctrl+Shift+.<br/"
+">Forrige side: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:369
+#, fuzzy
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Gå til forrige streng (Ctrl+,)<br/><br/>Also:<br/>Forrige side: Ctrl+Shift+,"
+"<br/>Første side: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:494
-#, python-format, javascript-format
+#, fuzzy, python-format, javascript-format
 msgid "%s's pending suggestions"
-msgstr ""
+msgstr "%ss ventende forslag"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:497
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
-msgstr ""
+msgstr "%ss godtatte forslag"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:500
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
-msgstr ""
+msgstr "%ss avslåtte forslag"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
-msgstr ""
+msgstr "%ss innsendelser"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
 #: static/js/editor/app.js:507
-#, python-format, javascript-format
+#, fuzzy, python-format, javascript-format
 msgid "%s's overwritten submissions"
-msgstr ""
+msgstr "%ss overskrevede innsendelser"
 
 #: static/js/editor/app.js:1113
 msgid "Error while connecting to the server"
@@ -586,7 +612,7 @@ msgstr "Feil ved tilkopling til tjeneren"
 
 #: static/js/editor/app.js:1117
 msgid "Not found"
-msgstr ""
+msgstr "Ikke funnet"
 
 #: static/js/editor/app.js:1119
 msgid "Server error"
@@ -598,15 +624,15 @@ msgstr "Tjeneren virker frakoblet. Prøv igjen senere."
 
 #: static/js/editor/app.js:1130
 msgid "This string no longer exists."
-msgstr ""
+msgstr "Denne strengen finnes ikke lenger."
 
 #: static/js/editor/app.js:1131
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Gå tilbake til surfing"
 
 #: static/js/editor/app.js:1133
 msgid "Reload page"
-msgstr ""
+msgstr "Gjeninnlast side"
 
 #: static/js/editor/app.js:1898 static/js/editor/app.js:632
 msgid "No results."
@@ -614,11 +640,11 @@ msgstr "Ingen resultater."
 
 #: static/js/editor/app.js:2234
 msgid "some anonymous user"
-msgstr ""
+msgstr "en anonym bruker"
 
 #: static/js/editor/app.js:2236
 msgid "someone"
-msgstr ""
+msgstr "noen"
 
 #: static/js/editor/app.js:2254 static/js/editor/app.js:2303
 msgid "Similar translations"
@@ -628,245 +654,242 @@ msgstr "Lignende oversettelser"
 #: static/js/editor/components/UnitSource.js:38
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Flertallsform %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Rediger forslaget før du godtar det, hvis nødvendig"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
+#, fuzzy
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Gi ytterligere kommentar (vil bli synlig offentlig)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "Godta"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "Avvis"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%s(timeSince)s via filopplasting"
 
 #. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
 #: static/js/reports/app.js:287
+#, fuzzy
 msgid "%b %d, %a"
-msgstr ""
+msgstr "%a %d %b"
 
 #: static/js/reports/app.js:289
 msgid "Jan"
-msgstr ""
+msgstr "Jan"
 
 #: static/js/reports/app.js:290
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: static/js/reports/app.js:291
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: static/js/reports/app.js:292
 msgid "Apr"
-msgstr ""
+msgstr "Apr"
 
 #: static/js/reports/app.js:293
 msgid "May"
-msgstr ""
+msgstr "Mai"
 
 #: static/js/reports/app.js:294
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: static/js/reports/app.js:295
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: static/js/reports/app.js:296
 msgid "Aug"
-msgstr ""
+msgstr "Aug"
 
 #: static/js/reports/app.js:297
 msgid "Sep"
-msgstr ""
+msgstr "Sep"
 
 #: static/js/reports/app.js:298
 msgid "Oct"
-msgstr ""
+msgstr "Okt"
 
 #: static/js/reports/app.js:299
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: static/js/reports/app.js:300
 msgid "Dec"
-msgstr ""
+msgstr "Des"
 
 #: static/js/reports/app.js:303
 msgid "Sun"
-msgstr ""
+msgstr "Søn"
 
 #: static/js/reports/app.js:304
 msgid "Mon"
-msgstr ""
+msgstr "Man"
 
 #: static/js/reports/app.js:305
 msgid "Tue"
-msgstr ""
+msgstr "Tir"
 
 #: static/js/reports/app.js:306
 msgid "Wed"
-msgstr ""
+msgstr "Ons"
 
 #: static/js/reports/app.js:307
 msgid "Thu"
-msgstr ""
+msgstr "Tor"
 
 #: static/js/reports/app.js:308
 msgid "Fri"
-msgstr ""
+msgstr "Fre"
 
 #: static/js/reports/app.js:309
 msgid "Sat"
-msgstr ""
+msgstr "Lør"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
-msgstr ""
+msgstr "Tøm alle"
 
 #: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
-msgstr ""
+msgstr "Tøm verdi"
 
 #: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
-msgstr ""
+msgstr "Ingen resultater funnet"
 
 #: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
-msgstr ""
+msgstr "Velg…"
 
 #: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
-msgstr ""
+msgstr "Skriv for å søke"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr ""
+msgstr "%(user)s fjernet oversettelse for %(sourceStrings)s"
 
 #: static/js/shared/components/UserEvent.js:99
 #, python-format
 msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr ""
+msgstr "%(user)s godtok forslag for %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s lastet opp fil"
 
 #: static/js/shared/components/UserEvent.js:103
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "%(user)s fortiet %(check)s i %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr ""
+msgstr "%(user)s gitt muligheten til å snakke %(check)s i %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr ""
+msgstr "%(user)s la til forslag for %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr ""
+msgstr "%(user)s avslo forslag for %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
 #, python-format
 msgid "%(user)s translated %(sourceString)s"
-msgstr ""
+msgstr "%(user)s oversatte %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s edited %(sourceString)s"
-msgstr ""
+msgstr "%(user)s redigerte %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s pre-translated %(sourceString)s"
-msgstr ""
+msgstr "%(user)s forhåndsoversatte %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s reviewed %(sourceString)s"
-msgstr ""
+msgstr "%(user)s korrekturleste %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, python-format
+#, fuzzy, python-format
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr ""
+msgstr "%(user)s markerte som Trenger arbeid %(sourceString)s"
 
 #: static/js/shared/models/project.js:58
 msgid "disabled"
-msgstr ""
+msgstr "avskrudd"
 
 #: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
 msgid "A year ago"
 msgstr "Ett år siden"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "Ett år siden"
-msgstr[1] "% år siden"
+msgstr[0] "%(count)s år siden"
+msgstr[1] "%(count)s år siden"
 
 #: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
 msgid "A month ago"
-msgstr "Ett minutt siden"
+msgstr "En måned siden"
 
 #: static/js/shared/utils/relativeTime.js:28
 #, fuzzy, python-format
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Ett minutt siden"
-msgstr[1] "Ett minutt siden"
+msgstr[0] "%(count)s måned siden"
+msgstr[1] "%(count)s måneder siden"
 
 #: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
 msgid "A week ago"
-msgstr "1 uke siden"
+msgstr "En uke siden"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "1 uke siden"
-msgstr[1] "% uker siden"
+msgstr[0] "%(count)s uke siden"
+msgstr[1] "%(count)s uker siden"
 
 #: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
 msgid "Yesterday"
 msgstr "I går"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "Ett år siden"
-msgstr[1] "% år siden"
+msgstr[0] "%(count)s dag siden"
+msgstr[1] "%(count)s dager siden"
 
 #: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
 msgid "An hour ago"
 msgstr "En time siden"
 
@@ -908,27 +931,27 @@ msgstr "Utvid detaljer"
 
 #: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Rediger min offentlige profil"
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr ""
+msgstr "Min offentlige profil"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
-msgstr ""
+msgstr "Forkast endringer."
 
 #: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: static/js/user/components/UserProfileEdit.js:119
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Ulagrede endringer. Ønsker du å forkaste dem?"
 
 #: static/js/user/components/UserProfileForm.js:59
 #, python-format
@@ -936,63 +959,73 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"For å sette eller endre avatar for din e-postadresse (%(emails)s), gå til "
+"gravatar.com."
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
-msgstr ""
+msgstr "Ditt fulle navn"
 
 #: static/js/user/components/UserProfileForm.js:83
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: static/js/user/components/UserProfileForm.js:94
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Ditt Twitter-brukernavn"
 
 #: static/js/user/components/UserProfileForm.js:103
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "Nettadresse til din LinkedIn-profil"
 
 #: static/js/user/components/UserProfileForm.js:111
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "Nettadresse til din hjemmeside/blogg"
 
 #: static/js/user/components/UserProfileForm.js:120
+#, fuzzy
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Hvorfor er du en del av vårt oversettelsesprosjekt? Beskriv deg selv, "
+"inspirer andre!"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr ""
+msgstr "E-postadresse"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Skriv inn din e-postadresse, og du vil få tilsendt en melding med en "
+"spesiell lenke for å tilbakestille ditt passord."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
-msgstr ""
+msgstr "Nei takk"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
-msgstr ""
+msgstr "Send e-post"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Opprettelse av nye kontoer nektes."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
+"En bruker med e-posten <span>%(email)s</span> ble funnet i systemet. Angi "
+"passordet for å fullføre innloggingen. Dette er et engangstiltak, som vil "
+"etablere en lenke mellom din Pootle og %(provider)s kontoer."
 
 #: static/js/browser.js:267
 msgid "All Languages"
@@ -1005,27 +1038,29 @@ msgstr "Alle prosjekter"
 #: static/js/browser.js:275
 #, fuzzy
 msgid "Entire Project"
-msgstr "Alle prosjekter"
+msgstr "Hele prosjektet"
 
 #: templates/admin/xhr_language_user_activity.html:6
+#, fuzzy
 msgid "Project / Language"
-msgstr ""
+msgstr "Prosjekt / Språk"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Foreslått"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr ""
+msgstr "Oversatt"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr ""
+msgstr "Korrekturlest"
 
 #: templates/admin/xhr_language_user_activity.html:10
+#, fuzzy
 msgid "Score Change"
-msgstr ""
+msgstr "Poengendring"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -1041,81 +1076,84 @@ msgstr ""
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%ord"
+msgstr[1] "%ord"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Ingen aktivitet over en gitt tidsperiode"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Velg en gyldig bruker."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Registrerte oppgaver"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
+#, fuzzy
 msgid "Datetime"
-msgstr ""
+msgstr "Dato og tidspunkt"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
+#, fuzzy
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Handling"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Mengde"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Takst"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Delsum"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s time"
+msgstr[1] "%s timer"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
-msgstr ""
+msgstr "Fjern oppgave"
 
 #: templates/admin/xhr_paid_tasks_report.html:43
 msgid "Comment on it"
-msgstr ""
+msgstr "Kommenter det"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Sammendrag"
 
 #: templates/admin/xhr_summary_report.html:6
+#, fuzzy
 msgid "Period"
-msgstr ""
+msgstr "Periode"
 
 #: templates/admin/xhr_summary_report.html:38
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(registrerte oppgaver)"
 
 #: templates/admin/xhr_summary_report.html:46
-#, python-format
+#, fuzzy, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Totale (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -1139,6 +1177,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
+"Oversatt av %(fullname)s i &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo;-prosjektet %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
 #, python-format
@@ -1146,6 +1186,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Oversatt av %(fullname)s i &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo;-prosjektet"
 
 #~ msgid "Unknown error"
 #~ msgstr "Ukjent feil"

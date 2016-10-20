@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-28 17:16+0100\n"
-"PO-Revision-Date: 2016-08-30 15:25+0000\n"
+"PO-Revision-Date: 2016-10-08 14:24+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1472570702.000000\n"
+"X-POOTLE-MTIME: 1475936652.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1457,18 +1457,16 @@ msgid "Remove the 'admin' user or change its password."
 msgstr "Retire o usuario 'admin' ou cambie o seu contrasinal."
 
 #: checks.py:400
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "A conexión á base de datos non implementa on_commit."
+msgstr "A conexión á base de datos usa transaction_hooks."
 
 #: checks.py:401
-#, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
 "Indique en DATABASES['default']['ENGINE'] un dos motores de base de datos de "
-"transaction_hooks.backends."
+"django.db.backends."
 
 #: checks.py:421
 msgid "Email server is not available."
@@ -1582,7 +1580,7 @@ msgstr "Os meus envíos sobrescritos"
 
 #: core/helpers.py:57
 msgid "Overwritten submissions"
-msgstr "Os meus envíos sobrescritos"
+msgstr "Envíos sobrescritos"
 
 #: core/initdb.py:136
 msgid "Can access a project"

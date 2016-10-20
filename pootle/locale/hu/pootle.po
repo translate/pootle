@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-28 17:16+0100\n"
-"PO-Revision-Date: 2016-08-31 12:57+0000\n"
-"Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
+"PO-Revision-Date: 2016-10-03 13:47+0000\n"
+"Last-Translator: meskobalazs <meskobalazs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1472648228.000000\n"
+"X-POOTLE-MTIME: 1475502447.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1451,18 +1451,16 @@ msgid "Remove the 'admin' user or change its password."
 msgstr "Törölje az „admin” felhasználót, vagy változtassa meg a jelszavát."
 
 #: checks.py:400
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "Az adatbázis-kapcsolat nem valósítja meg az on_commit hívást."
+msgstr "Az adatbázis-kapcsolat transaction_hooks modult használ."
 
 #: checks.py:401
-#, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"Állítsa be a DATABASES['default']['ENGINE'] értékét a transaction_hooks."
-"backends egyik háttérprogramjára."
+"Állítsa be a DATABASES['default']['ENGINE'] értékét a django.db.backends "
+"egyik Django háttérprogramjára."
 
 #: checks.py:421
 msgid "Email server is not available."

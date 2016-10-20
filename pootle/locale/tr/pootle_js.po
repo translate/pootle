@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-09-29 13:38+0100\n"
-"PO-Revision-Date: 2016-09-14 18:53+0000\n"
+"PO-Revision-Date: 2016-09-30 11:47+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473879190.000000\n"
+"X-POOTLE-MTIME: 1475236079.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -1004,16 +1004,17 @@ msgid "Creating new user accounts is prohibited."
 msgstr "Yeni kullanıcı hesapları oluşturma yasaklanmıştır."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Sistemimizde <span>%s</span> epostası ile bir kullanıcı bulduk. Lütfen giriş "
-"yapma işlemini tamamlamak için parola girin. Bu, Pootle ve %s hesaplarınız "
-"arasında bir bağlantı kuracak olan tek seferlik bir işlemdir."
+"Sistemimizde <span>%(email)s</span> epostası ile bir kullanıcı bulduk. "
+"Lütfen giriş yapma işlemini tamamlamak için parola girin. Bu, Pootle ve "
+"%(provider)s hesaplarınız arasında bir bağlantı kuracak olan tek seferlik "
+"bir işlemdir."
 
 #: static/js/browser.js:267
 msgid "All Languages"
