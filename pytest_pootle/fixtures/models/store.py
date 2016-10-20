@@ -285,8 +285,7 @@ def _mark_unit_fuzzy(unit, user):
     )
     sub.save()
     unit.markfuzzy()
-    unit._state_updated = True
-    unit.save()
+    unit.save(state_updated=True)
 
 
 def _make_member_updates(store, member):

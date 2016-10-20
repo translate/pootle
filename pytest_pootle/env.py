@@ -458,11 +458,15 @@ class PootleTestEnv(object):
             current_time = timezone.now() - timedelta(days=14)
 
             unit.target_f = "Updated %s" % old_target
-            unit._target_updated = True
             unit.store.record_submissions(
-                unit, old_target, old_state,
-                current_time, member, SubmissionTypes.NORMAL)
-            unit.save()
+                unit,
+                old_target,
+                old_state,
+                current_time,
+                member,
+                SubmissionTypes.NORMAL,
+                target_updated=True)
+            unit.save(target_updated=True)
 
     def setup_vfolders(self):
         from pytest_pootle.factories import VirtualFolderDBFactory

@@ -19,13 +19,15 @@ def anon_submission_unit(nobody, store0):
     old_target = unit.target
     old_state = unit.state
     unit.target_f = "Updated %s" % old_target
-    unit._target_updated = True
-
     unit.store.record_submissions(
-        unit, old_target, old_state,
-        timezone.now(), anon,
-        SubmissionTypes.NORMAL)
-    unit.save()
+        unit,
+        old_target,
+        old_state,
+        timezone.now(),
+        anon,
+        SubmissionTypes.NORMAL,
+        target_updated=True)
+    unit.save(target_updated=True)
 
 
 @pytest.fixture

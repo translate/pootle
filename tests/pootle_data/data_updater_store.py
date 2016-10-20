@@ -57,7 +57,7 @@ def test_data_store_util_wordcount(store0):
     # make a translated unit fuzzy
     unit = store0.units.filter(state=TRANSLATED).first()
     unit.state = FUZZY
-    unit.save()
+    unit.save(state_updated=True)
     updated_stats = _calc_word_counts(store0.units)
     update_data = store0.data_tool.updater.get_store_data()
     for k in WORDCOUNT_KEYS:
@@ -86,7 +86,7 @@ def test_data_store_util_max_unit_revision(store0):
         == original_revision)
     unit = store0.units.first()
     unit.target = "SOMETHING ELSE"
-    unit.save()
+    unit.save(target_updated=True)
     update_data = store0.data_tool.updater.get_store_data()
     assert update_data["max_unit_revision"] == unit.revision
     assert store0.data.max_unit_revision == unit.revision
@@ -109,7 +109,7 @@ def test_data_store_util_max_unit_mtime(store0):
         == original_mtime)
     unit = store0.units.first()
     unit.target = "SOMETHING ELSE"
-    unit.save()
+    unit.save(target_updated=True)
     update_data = store0.data_tool.updater.get_store_data()
     assert (
         update_data["max_unit_mtime"].replace(microsecond=0)
@@ -217,7 +217,6 @@ def test_data_store_util_suggestion_count(store0, member):
     assert (
         unit.suggestion_set.filter(state=SuggestionStates.PENDING).count()
         == unit_suggestion_count + 1)
-
     store0.data.refresh_from_db()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
@@ -252,7 +251,7 @@ def test_data_store_critical_checks(store0):
         qualitycheck__isnull=True,
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
-    unit.save()
+    unit.save(target_updated=True)
     unit_critical = unit.qualitycheck_set.filter(
         category=Category.CRITICAL).count()
 
@@ -340,7 +339,7 @@ def test_data_store_updater_checks(store0):
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     original_unit_target = unit.target
     unit.target = "<foo></bar>;"
-    unit.save()
+    unit.save(target_updated=True)
     checks = _calculate_checks(qc_qs.all())
     check_data = store0.check_data.all().values_list("category", "name", "count")
 
@@ -349,7 +348,7 @@ def test_data_store_updater_checks(store0):
         assert (category, name, count) in check_data
 
     unit.target = original_unit_target
-    unit.save()
+    unit.save(target_updated=True)
 
     check_data = store0.check_data.all().values_list("category", "name", "count")
 
