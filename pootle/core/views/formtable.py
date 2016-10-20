@@ -57,6 +57,14 @@ class Formtable(object):
         return self.kwargs.get("page", ())
 
     @property
+    def page_no(self):
+        return self.form[self.form.page_field]
+
+    @property
+    def results_per_page(self):
+        return self.form[self.form.per_page_field]
+
+    @property
     def rows(self):
         return (
             self.form[self.row_field]
