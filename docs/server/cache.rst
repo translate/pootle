@@ -28,8 +28,9 @@ Named Caches
 ------------
 Pootle is configured with a these named caches:
 
-- ``'default'`` -- all non specified cache data and all cache data.
-- ``'stats'`` --  all cached data related to overview stats.
+- ``'default'`` -- all non specified cache data and all Django cache data.
+- ``'redis'`` --  all RQ data related and revision counter.
+- ``'lru'`` --  all lru cache data.
 
 In large installations you may want to setup separate caches to improve cache
 performance.  You can then setup caching parameters for each cache separately.
