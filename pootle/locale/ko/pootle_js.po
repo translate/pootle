@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-29 13:38+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,9 +112,8 @@ msgid "Overview"
 msgstr "개요"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
-msgstr "권한"
+msgid "Team"
+msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -190,6 +189,15 @@ msgstr "사용 안 함"
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "언어"
+
+#: static/js/admin/components/Project/ProjectForm.js:150
+msgid "Permissions"
+msgstr "권한"
+
+#: static/js/admin/components/Project/ProjectForm.js:152
+#, fuzzy
+msgid "Filesystems"
+msgstr "파일 형식"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -318,41 +326,36 @@ msgstr "공개 프로파일"
 msgid "Settings"
 msgstr "설정"
 
-#: static/js/admin/components/User/UserForm.js:162
-msgid "Statistics"
-msgstr "통계"
-
-#: static/js/admin/components/User/UserForm.js:163
-msgid "Reports"
-msgstr "보고서"
-
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
 msgstr "미리보기가 여기에 표시될 것입니다."
 
-#: static/js/auth/components/AccountActivation.js:32
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>"
+#: static/js/auth/components/AccountActivation.js:33
+#, fuzzy, python-format, javascript-format
+msgid ""
+"We have sent an email containing the special link to <span>%s</span>. Please "
+"check your spam folder if you do not see the email."
 msgstr "<span>%s</span>로 특별한 링크가 포함된 이메일을 보냈습니다."
 
-#: static/js/auth/components/AccountActivation.js:37
+#: static/js/auth/components/AccountActivation.js:41
+#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
-"register this account."
+"register this account. Please check your spam folder if you do not see the "
+"email."
 msgstr ""
 "해당 계정으로 등록하실 때 사용하신 주소로 특별한 링크가 포함된 이메일을 보냈"
 "습니다."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
 msgstr "해당 계정을 활성화 시켜 주세요."
 
-#: static/js/auth/components/AccountActivation.js:44
+#: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
 msgstr "계정 생성을 진행하시려면 그 링크를 따라가 주세요."
 
-#: static/js/auth/components/AccountActivation.js:59
+#: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -540,7 +543,23 @@ msgstr "사용 안 함"
 msgid "Hide disabled"
 msgstr "사용 안 함"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:640
+#: static/js/browser.js:284
+msgid "All Languages"
+msgstr "모든 언어"
+
+#: static/js/browser.js:289
+msgid "All Projects"
+msgstr "모든 프로젝트"
+
+#: static/js/browser.js:294
+msgid "Entire Project"
+msgstr "전체 프로젝트"
+
+#: static/js/common.js:149
+msgid "Updating data"
+msgstr ""
+
+#: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -595,53 +614,53 @@ msgstr "%s의 제안"
 msgid "%s's overwritten submissions"
 msgstr "%s 덮여쓰여진 제출"
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "서버연결 중 오류 발생"
 
-#: static/js/editor/app.js:1117
+#: static/js/editor/app.js:1073
 msgid "Not found"
 msgstr "찾지 못함"
 
-#: static/js/editor/app.js:1119
+#: static/js/editor/app.js:1075
 msgid "Server error"
 msgstr "서버 오류"
 
-#: static/js/editor/app.js:1121
+#: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
 msgstr "서버가 다운됐습니다. 나중에 다시 시도하세요."
 
 # unit : 단위, 단일체, 장치, 학점, 부대, 교외전차, 편성 단위
-#: static/js/editor/app.js:1130
+#: static/js/editor/app.js:1086
 msgid "This string no longer exists."
 msgstr "이 문자열은 더 이상 존재하지 않습니다."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1087
 msgid "Go back to browsing"
 msgstr "검색하기로 돌아가기"
 
-#: static/js/editor/app.js:1133
+#: static/js/editor/app.js:1089
 msgid "Reload page"
 msgstr "페이지 다시 불러오기"
 
-#: static/js/editor/app.js:1898 static/js/editor/app.js:632
+#: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
 msgstr "결과 없음."
 
-#: static/js/editor/app.js:2234
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "몇명의 익명 사용자"
 
-#: static/js/editor/app.js:2236
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "누군가"
 
-#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "유사한 번역"
 
-#: static/js/editor/components/Editor.js:64
-#: static/js/editor/components/UnitSource.js:38
+#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -665,88 +684,6 @@ msgstr ""
 #: static/js/editor/components/UploadTimeSince.js:34
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr ""
-
-#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:287
-msgid "%b %d, %a"
-msgstr ""
-
-#: static/js/reports/app.js:289
-msgid "Jan"
-msgstr ""
-
-#: static/js/reports/app.js:290
-msgid "Feb"
-msgstr ""
-
-#: static/js/reports/app.js:291
-msgid "Mar"
-msgstr ""
-
-#: static/js/reports/app.js:292
-msgid "Apr"
-msgstr ""
-
-#: static/js/reports/app.js:293
-msgid "May"
-msgstr ""
-
-#: static/js/reports/app.js:294
-msgid "Jun"
-msgstr ""
-
-#: static/js/reports/app.js:295
-msgid "Jul"
-msgstr ""
-
-#: static/js/reports/app.js:296
-msgid "Aug"
-msgstr ""
-
-#: static/js/reports/app.js:297
-msgid "Sep"
-msgstr ""
-
-#: static/js/reports/app.js:298
-msgid "Oct"
-msgstr ""
-
-#: static/js/reports/app.js:299
-#, fuzzy
-msgid "Nov"
-msgstr "아니요"
-
-#: static/js/reports/app.js:300
-msgid "Dec"
-msgstr ""
-
-#: static/js/reports/app.js:303
-msgid "Sun"
-msgstr ""
-
-#: static/js/reports/app.js:304
-msgid "Mon"
-msgstr ""
-
-#: static/js/reports/app.js:305
-msgid "Tue"
-msgstr ""
-
-#: static/js/reports/app.js:306
-msgid "Wed"
-msgstr ""
-
-#: static/js/reports/app.js:307
-msgid "Thu"
-msgstr ""
-
-#: static/js/reports/app.js:308
-msgid "Fri"
-msgstr ""
-
-#: static/js/reports/app.js:309
-msgid "Sat"
 msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:39
@@ -830,7 +767,7 @@ msgstr "${sourceString}로 검토 됨"
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "${sourceString} 작업필요함으로 표시 됨"
 
-#: static/js/shared/models/project.js:58
+#: static/js/shared/models/project.js:62
 msgid "disabled"
 msgstr "사용 안 함"
 
@@ -908,11 +845,11 @@ msgstr "몇 초 전"
 msgid "Congratulations! You have completed this task!"
 msgstr "축하합니다! 이 작업을 완료하셨습니다!"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Collapse details"
 msgstr "세부사항 접기"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Expand details"
 msgstr "세부사항 보기"
 
@@ -997,6 +934,11 @@ msgstr "아니요, 괜찮습니다"
 msgid "Send Email"
 msgstr "Email 보내기"
 
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
+msgstr "<span>%s</span>로 특별한 링크가 포함된 이메일을 보냈습니다."
+
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "새 사용자 계정생성이 금지되었습니다."
@@ -1012,18 +954,6 @@ msgstr ""
 "시스템에서 email이 <span>%s</span> 인 사용자를 찾았습니다. 가입절차를 마치기 "
 "위해서 암호를 규정 하십시오. 당신의 Pootle 와 %s 계정간에 연걸 설정을 위한, "
 "절차 중 하나 입니다."
-
-#: static/js/browser.js:267
-msgid "All Languages"
-msgstr "모든 언어"
-
-#: static/js/browser.js:271
-msgid "All Projects"
-msgstr "모든 프로젝트"
-
-#: static/js/browser.js:275
-msgid "Entire Project"
-msgstr "전체 프로젝트"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1166,6 +1096,16 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\"> 의 %(fullname)s %(project)s</span>&rdquo; 프"
 "로젝트에 의해 번역됨"
+
+#~ msgid "Statistics"
+#~ msgstr "통계"
+
+#~ msgid "Reports"
+#~ msgstr "보고서"
+
+#, fuzzy
+#~ msgid "Nov"
+#~ msgstr "아니요"
 
 #, fuzzy
 #~ msgid "muted %(check)s for %(sourceString)s"

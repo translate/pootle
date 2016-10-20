@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-29 13:38+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2015-11-25 15:57+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,9 +112,8 @@ msgid "Overview"
 msgstr "قىسقىچە بايان"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
-msgstr "ھوقۇقلار"
+msgid "Team"
+msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -190,6 +189,15 @@ msgstr "چەكلەنگەن"
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "تىللار"
+
+#: static/js/admin/components/Project/ProjectForm.js:150
+msgid "Permissions"
+msgstr "ھوقۇقلار"
+
+#: static/js/admin/components/Project/ProjectForm.js:152
+#, fuzzy
+msgid "Filesystems"
+msgstr "ھۆججەت تىپى"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -320,41 +328,36 @@ msgstr "ئاممىۋى سەپلىمە ھۆججەت"
 msgid "Settings"
 msgstr "تەڭشەكلەر"
 
-#: static/js/admin/components/User/UserForm.js:162
-msgid "Statistics"
-msgstr "ستاتىستىكا"
-
-#: static/js/admin/components/User/UserForm.js:163
-msgid "Reports"
-msgstr "دوكلات"
-
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
 msgstr "ئالدىن كۆزىتىش بۇ جايدا كۆرسىتىلىدۇ."
 
-#: static/js/auth/components/AccountActivation.js:32
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>"
+#: static/js/auth/components/AccountActivation.js:33
+#, fuzzy, python-format, javascript-format
+msgid ""
+"We have sent an email containing the special link to <span>%s</span>. Please "
+"check your spam folder if you do not see the email."
 msgstr ""
 "بىز بىر پارچە تورخەت ئەۋەتتۇق، خەتتە <span>%s</span> نىڭ ئۇلانمىسى بار."
 
-#: static/js/auth/components/AccountActivation.js:37
+#: static/js/auth/components/AccountActivation.js:41
+#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
-"register this account."
+"register this account. Please check your spam folder if you do not see the "
+"email."
 msgstr ""
 "ھېسابات خەتلىتىش ئۇلانمىسىنى ئۆز ئىچىگە ئالغان ئادرېس بار تورخەت ئەۋەتتۇق."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
 msgstr "ھېساباتىڭىزنى ئاكتىپلاش زۆرۈر."
 
-#: static/js/auth/components/AccountActivation.js:44
+#: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
 msgstr "بۇ ئۇلانمىنى چېكىپ ھېسابات قۇرۇشنى داۋاملاشتۇرۇڭ."
 
-#: static/js/auth/components/AccountActivation.js:59
+#: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -546,7 +549,23 @@ msgstr "چەكلەنگەن"
 msgid "Hide disabled"
 msgstr "چەكلەنگەن"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:640
+#: static/js/browser.js:284
+msgid "All Languages"
+msgstr "بارلىق تىللار"
+
+#: static/js/browser.js:289
+msgid "All Projects"
+msgstr "ھەممە قۇرۇلۇشلار"
+
+#: static/js/browser.js:294
+msgid "Entire Project"
+msgstr "پۈتكۈل قۇرۇلۇش"
+
+#: static/js/common.js:149
+msgid "Updating data"
+msgstr ""
+
+#: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -601,52 +620,52 @@ msgstr "%s نىڭ تاپشۇرغانلىرى"
 msgid "%s's overwritten submissions"
 msgstr "%s نىڭ قاپلىۋەتكەن تاپشۇرغانلىرى"
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "مۇلازىمېتىرغا باغلانغاندا خاتالىق كۆرۈلدى"
 
-#: static/js/editor/app.js:1117
+#: static/js/editor/app.js:1073
 msgid "Not found"
 msgstr "تېپىلمىدى"
 
-#: static/js/editor/app.js:1119
+#: static/js/editor/app.js:1075
 msgid "Server error"
 msgstr "مۇلازىمېتىر خاتالىقى"
 
-#: static/js/editor/app.js:1121
+#: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
 msgstr "مۇلازىمېتىر تاقالغاندەك تۇرىدۇ. سەل تۇرۇپ قايتا سىناڭ."
 
-#: static/js/editor/app.js:1130
+#: static/js/editor/app.js:1086
 msgid "This string no longer exists."
 msgstr "بۇ تىزىق ئەمدى مەۋجۇد ئەمەس."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1087
 msgid "Go back to browsing"
 msgstr "كۆز يۈگۈرتۈشكە قايت"
 
-#: static/js/editor/app.js:1133
+#: static/js/editor/app.js:1089
 msgid "Reload page"
 msgstr "بەتنى قايتا يۈكلە"
 
-#: static/js/editor/app.js:1898 static/js/editor/app.js:632
+#: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
 msgstr "نەتىجە يوق."
 
-#: static/js/editor/app.js:2234
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "بەزى ئاتسىز ئىشلەتكۈچى"
 
-#: static/js/editor/app.js:2236
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "بىرسى"
 
-#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "ئوخشايدىغان تەرجىمىلەر"
 
-#: static/js/editor/components/Editor.js:64
-#: static/js/editor/components/UnitSource.js:38
+#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -670,88 +689,6 @@ msgstr ""
 #: static/js/editor/components/UploadTimeSince.js:34
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr ""
-
-#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:287
-msgid "%b %d, %a"
-msgstr ""
-
-#: static/js/reports/app.js:289
-msgid "Jan"
-msgstr ""
-
-#: static/js/reports/app.js:290
-msgid "Feb"
-msgstr ""
-
-#: static/js/reports/app.js:291
-msgid "Mar"
-msgstr ""
-
-#: static/js/reports/app.js:292
-msgid "Apr"
-msgstr ""
-
-#: static/js/reports/app.js:293
-msgid "May"
-msgstr ""
-
-#: static/js/reports/app.js:294
-msgid "Jun"
-msgstr ""
-
-#: static/js/reports/app.js:295
-msgid "Jul"
-msgstr ""
-
-#: static/js/reports/app.js:296
-msgid "Aug"
-msgstr ""
-
-#: static/js/reports/app.js:297
-msgid "Sep"
-msgstr ""
-
-#: static/js/reports/app.js:298
-msgid "Oct"
-msgstr ""
-
-#: static/js/reports/app.js:299
-#, fuzzy
-msgid "Nov"
-msgstr "ياق"
-
-#: static/js/reports/app.js:300
-msgid "Dec"
-msgstr ""
-
-#: static/js/reports/app.js:303
-msgid "Sun"
-msgstr ""
-
-#: static/js/reports/app.js:304
-msgid "Mon"
-msgstr ""
-
-#: static/js/reports/app.js:305
-msgid "Tue"
-msgstr ""
-
-#: static/js/reports/app.js:306
-msgid "Wed"
-msgstr ""
-
-#: static/js/reports/app.js:307
-msgid "Thu"
-msgstr ""
-
-#: static/js/reports/app.js:308
-msgid "Fri"
-msgstr ""
-
-#: static/js/reports/app.js:309
-msgid "Sat"
 msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:39
@@ -835,7 +772,7 @@ msgstr "${sourceString} نىڭ تەرجىمىسىنى چىقىرىۋەتتى"
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "${sourceString} نىڭ تەرجىمىسىنى چىقىرىۋەتتى"
 
-#: static/js/shared/models/project.js:58
+#: static/js/shared/models/project.js:62
 msgid "disabled"
 msgstr "چەكلەنگەن"
 
@@ -914,11 +851,11 @@ msgstr "بىر قانچە سېكۇنت ئىلگىرى"
 msgid "Congratulations! You have completed this task!"
 msgstr "مۇبارەك بولسۇن، سىز ھەممە تۈرلەرنى كۆرۈپ چىقتىڭىز."
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Collapse details"
 msgstr "تەپسىلاتىنى قاتلا"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Expand details"
 msgstr "تەپسىلاتىنى ياي"
 
@@ -1003,6 +940,12 @@ msgstr "ياق، رەھمەت"
 msgid "Send Email"
 msgstr "تورخەت يوللا"
 
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
+msgstr ""
+"بىز بىر پارچە تورخەت ئەۋەتتۇق، خەتتە <span>%s</span> نىڭ ئۇلانمىسى بار."
+
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "يېڭى ئىشلەتكۈچىنى خەتلىتىش چەكلەنگەن."
@@ -1018,18 +961,6 @@ msgstr ""
 "سىستېمىمىزدا <span>%s</span> تورخەت ئادرېسى بار ئىشلەتكۈچى بايقالدى. تىزىمغا "
 "كىرىشنى تاماملاش ئۈچۈن ئىمنى تەمىنلەڭ. بۇ Pootle ۋە %s ھېسابات ئارىسىدا "
 "ئۇلانما قۇرۇشتىكى بىر قېتىملىق جەريان."
-
-#: static/js/browser.js:267
-msgid "All Languages"
-msgstr "بارلىق تىللار"
-
-#: static/js/browser.js:271
-msgid "All Projects"
-msgstr "ھەممە قۇرۇلۇشلار"
-
-#: static/js/browser.js:275
-msgid "Entire Project"
-msgstr "پۈتكۈل قۇرۇلۇش"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1172,6 +1103,16 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; قۇرۇلۇشىدا "
 "%(fullname)s تەرجىمە قىلدى"
+
+#~ msgid "Statistics"
+#~ msgstr "ستاتىستىكا"
+
+#~ msgid "Reports"
+#~ msgstr "دوكلات"
+
+#, fuzzy
+#~ msgid "Nov"
+#~ msgstr "ياق"
 
 #~ msgid "%s second"
 #~ msgid_plural "%s seconds"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-29 13:38+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2016-09-29 13:25+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,9 +114,8 @@ msgid "Overview"
 msgstr "Vista xeral"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
-msgstr "Permisos"
+msgid "Team"
+msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -192,6 +191,15 @@ msgstr "Desactivado"
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Idiomas"
+
+#: static/js/admin/components/Project/ProjectForm.js:150
+msgid "Permissions"
+msgstr "Permisos"
+
+#: static/js/admin/components/Project/ProjectForm.js:152
+#, fuzzy
+msgid "Filesystems"
+msgstr "Tipos de ficheiro"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -322,43 +330,38 @@ msgstr "Perfil público"
 msgid "Settings"
 msgstr "Preferencias"
 
-#: static/js/admin/components/User/UserForm.js:162
-msgid "Statistics"
-msgstr "Estatísticas"
-
-#: static/js/admin/components/User/UserForm.js:163
-msgid "Reports"
-msgstr "Informes"
-
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
 msgstr "A vista previa mostrarase aquí."
 
-#: static/js/auth/components/AccountActivation.js:32
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>"
+#: static/js/auth/components/AccountActivation.js:33
+#, fuzzy, python-format, javascript-format
+msgid ""
+"We have sent an email containing the special link to <span>%s</span>. Please "
+"check your spam folder if you do not see the email."
 msgstr ""
 "Enviouse unha mensaxe de correo electrónico coa ligazón especial a <span>%s</"
 "span>"
 
-#: static/js/auth/components/AccountActivation.js:37
+#: static/js/auth/components/AccountActivation.js:41
+#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
-"register this account."
+"register this account. Please check your spam folder if you do not see the "
+"email."
 msgstr ""
 "Enviouse unha mensaxe de correo electrónico coa ligazón especial ao enderezo "
 "empregado para rexistrar esta conta."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
 msgstr "A súa conta precisa ser activada."
 
-#: static/js/auth/components/AccountActivation.js:44
+#: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
 msgstr "Visite esa ligazón para continuar coa creación da conta."
 
-#: static/js/auth/components/AccountActivation.js:59
+#: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -546,7 +549,23 @@ msgstr "Mostrar os desactivados"
 msgid "Hide disabled"
 msgstr "Ocultar os desactivados"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:640
+#: static/js/browser.js:284
+msgid "All Languages"
+msgstr "Todos os idiomas"
+
+#: static/js/browser.js:289
+msgid "All Projects"
+msgstr "Todos os proxectos"
+
+#: static/js/browser.js:294
+msgid "Entire Project"
+msgstr "Todo o proxecto"
+
+#: static/js/common.js:149
+msgid "Updating data"
+msgstr ""
+
+#: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -601,52 +620,52 @@ msgstr "Envíos de %s"
 msgid "%s's overwritten submissions"
 msgstr "Envíos sobrescritos de %s"
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Produciuse un erro ao conectar co servidor"
 
-#: static/js/editor/app.js:1117
+#: static/js/editor/app.js:1073
 msgid "Not found"
 msgstr "Non atopado"
 
-#: static/js/editor/app.js:1119
+#: static/js/editor/app.js:1075
 msgid "Server error"
 msgstr "Erro do servidor"
 
-#: static/js/editor/app.js:1121
+#: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
 msgstr "Parece ser que o servidor está caído. Probe de novo máis tarde."
 
-#: static/js/editor/app.js:1130
+#: static/js/editor/app.js:1086
 msgid "This string no longer exists."
 msgstr "Esta cadea xa non existe."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1087
 msgid "Go back to browsing"
 msgstr "Volver á navegación"
 
-#: static/js/editor/app.js:1133
+#: static/js/editor/app.js:1089
 msgid "Reload page"
 msgstr "Recargar a páxina"
 
-#: static/js/editor/app.js:1898 static/js/editor/app.js:632
+#: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
 msgstr "Sen resultados."
 
-#: static/js/editor/app.js:2234
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "algún usuario anónimo"
 
-#: static/js/editor/app.js:2236
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "alguén"
 
-#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "Traducións semellantes"
 
-#: static/js/editor/components/Editor.js:64
-#: static/js/editor/components/UnitSource.js:38
+#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "Forma plural %(index)s"
@@ -671,87 +690,6 @@ msgstr "Rexeitar"
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s mediante envío"
-
-#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:287
-msgid "%b %d, %a"
-msgstr "%a de %d de %b"
-
-#: static/js/reports/app.js:289
-msgid "Jan"
-msgstr "Xan"
-
-#: static/js/reports/app.js:290
-msgid "Feb"
-msgstr "Feb"
-
-#: static/js/reports/app.js:291
-msgid "Mar"
-msgstr "Mar"
-
-#: static/js/reports/app.js:292
-msgid "Apr"
-msgstr "Abr"
-
-#: static/js/reports/app.js:293
-msgid "May"
-msgstr "Mai"
-
-#: static/js/reports/app.js:294
-msgid "Jun"
-msgstr "Xuñ"
-
-#: static/js/reports/app.js:295
-msgid "Jul"
-msgstr "Xul"
-
-#: static/js/reports/app.js:296
-msgid "Aug"
-msgstr "Ago"
-
-#: static/js/reports/app.js:297
-msgid "Sep"
-msgstr "Set"
-
-#: static/js/reports/app.js:298
-msgid "Oct"
-msgstr "Out"
-
-#: static/js/reports/app.js:299
-msgid "Nov"
-msgstr "Nov"
-
-#: static/js/reports/app.js:300
-msgid "Dec"
-msgstr "Dec"
-
-#: static/js/reports/app.js:303
-msgid "Sun"
-msgstr "Dom"
-
-#: static/js/reports/app.js:304
-msgid "Mon"
-msgstr "Lun"
-
-#: static/js/reports/app.js:305
-msgid "Tue"
-msgstr "Mar"
-
-#: static/js/reports/app.js:306
-msgid "Wed"
-msgstr "Mér"
-
-#: static/js/reports/app.js:307
-msgid "Thu"
-msgstr "Xov"
-
-#: static/js/reports/app.js:308
-msgid "Fri"
-msgstr "Ven"
-
-#: static/js/reports/app.js:309
-msgid "Sat"
-msgstr "Sáb"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -834,7 +772,7 @@ msgstr "%(user)s revisou %(sourceString)s"
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "%(user)s marcou %(sourceString)s como que precisa máis traballo"
 
-#: static/js/shared/models/project.js:58
+#: static/js/shared/models/project.js:62
 msgid "disabled"
 msgstr "desactivado"
 
@@ -912,12 +850,12 @@ msgstr "Hai uns segundos"
 msgid "Congratulations! You have completed this task!"
 msgstr "Parabéns! Completou esta tarefa!"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Collapse details"
 msgstr "Ocultar os detalles"
 
 # resposta
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Expand details"
 msgstr "Mostrar os detalles"
 
@@ -1001,6 +939,13 @@ msgstr "Non, grazas"
 msgid "Send Email"
 msgstr "Enviar mensaxe de correo electrónico"
 
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
+msgstr ""
+"Enviouse unha mensaxe de correo electrónico coa ligazón especial a <span>%s</"
+"span>"
+
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "A creación de novas contas de usuario está prohibida."
@@ -1017,18 +962,6 @@ msgstr ""
 "Forneza o contrasinal para rematar o inicio de sesión. Este procedemento "
 "realizarase unha única vez e asociará as súas contas de Pootle e "
 "%(provider)s."
-
-#: static/js/browser.js:267
-msgid "All Languages"
-msgstr "Todos os idiomas"
-
-#: static/js/browser.js:271
-msgid "All Projects"
-msgstr "Todos os proxectos"
-
-#: static/js/browser.js:275
-msgid "Entire Project"
-msgstr "Todo o proxecto"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1173,6 +1106,72 @@ msgid ""
 msgstr ""
 "Traducido por %(fullname)s no proxecto &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Statistics"
+#~ msgstr "Estatísticas"
+
+#~ msgid "Reports"
+#~ msgstr "Informes"
+
+#~ msgid "%b %d, %a"
+#~ msgstr "%a de %d de %b"
+
+#~ msgid "Jan"
+#~ msgstr "Xan"
+
+#~ msgid "Feb"
+#~ msgstr "Feb"
+
+#~ msgid "Mar"
+#~ msgstr "Mar"
+
+#~ msgid "Apr"
+#~ msgstr "Abr"
+
+#~ msgid "May"
+#~ msgstr "Mai"
+
+#~ msgid "Jun"
+#~ msgstr "Xuñ"
+
+#~ msgid "Jul"
+#~ msgstr "Xul"
+
+#~ msgid "Aug"
+#~ msgstr "Ago"
+
+#~ msgid "Sep"
+#~ msgstr "Set"
+
+#~ msgid "Oct"
+#~ msgstr "Out"
+
+#~ msgid "Nov"
+#~ msgstr "Nov"
+
+#~ msgid "Dec"
+#~ msgstr "Dec"
+
+#~ msgid "Sun"
+#~ msgstr "Dom"
+
+#~ msgid "Mon"
+#~ msgstr "Lun"
+
+#~ msgid "Tue"
+#~ msgstr "Mar"
+
+#~ msgid "Wed"
+#~ msgstr "Mér"
+
+#~ msgid "Thu"
+#~ msgstr "Xov"
+
+#~ msgid "Fri"
+#~ msgstr "Ven"
+
+#~ msgid "Sat"
+#~ msgstr "Sáb"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "silenciou %(check)s para %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-29 13:38+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -120,9 +120,8 @@ msgid "Overview"
 msgstr "Foramharc"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
-msgstr "Ceadanna"
+msgid "Team"
+msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -205,6 +204,15 @@ msgstr "Díchumasaithe"
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Teangacha"
+
+#: static/js/admin/components/Project/ProjectForm.js:150
+msgid "Permissions"
+msgstr "Ceadanna"
+
+#: static/js/admin/components/Project/ProjectForm.js:152
+#, fuzzy
+msgid "Filesystems"
+msgstr "Cineál Comhaid"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -341,43 +349,38 @@ msgstr "Próifíl Phoiblí"
 msgid "Settings"
 msgstr "Socruithe"
 
-#: static/js/admin/components/User/UserForm.js:162
-msgid "Statistics"
-msgstr "Staitisticí"
-
-#: static/js/admin/components/User/UserForm.js:163
-msgid "Reports"
-msgstr "Tuairiscí"
-
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
 msgstr "Taispeánfar réamhamharc anseo."
 
-#: static/js/auth/components/AccountActivation.js:32
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>"
+#: static/js/auth/components/AccountActivation.js:33
+#, fuzzy, python-format, javascript-format
+msgid ""
+"We have sent an email containing the special link to <span>%s</span>. Please "
+"check your spam folder if you do not see the email."
 msgstr ""
 "Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</"
 "span>"
 
-#: static/js/auth/components/AccountActivation.js:37
+#: static/js/auth/components/AccountActivation.js:41
+#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
-"register this account."
+"register this account. Please check your spam folder if you do not see the "
+"email."
 msgstr ""
 "Sheolamar ríomhphost leis an nasc speisialta chuig an seoladh ríomhphoist "
 "atá ceangailte leis an gcuntas seo."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
 msgstr "Ní mór duit do chuntas a ghníomhachtú."
 
-#: static/js/auth/components/AccountActivation.js:44
+#: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
 msgstr "Cliceáil an nasc sin chun an cuntas a chruthú."
 
-#: static/js/auth/components/AccountActivation.js:59
+#: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -568,7 +571,23 @@ msgstr "Taispeáin díchumasaithe"
 msgid "Hide disabled"
 msgstr "Folaigh díchumasaithe"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:640
+#: static/js/browser.js:284
+msgid "All Languages"
+msgstr "Gach Teanga"
+
+#: static/js/browser.js:289
+msgid "All Projects"
+msgstr "Gach Tionscadal"
+
+#: static/js/browser.js:294
+msgid "Entire Project"
+msgstr "An Tionscadal Ar Fad"
+
+#: static/js/common.js:149
+msgid "Updating data"
+msgstr ""
+
+#: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -623,53 +642,53 @@ msgstr "Aistriúcháin de chuid %s"
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
-#: static/js/editor/app.js:1117
+#: static/js/editor/app.js:1073
 msgid "Not found"
 msgstr "Gan aimsiú"
 
-#: static/js/editor/app.js:1119
+#: static/js/editor/app.js:1075
 msgid "Server error"
 msgstr "Earráid fhreastalaí"
 
-#: static/js/editor/app.js:1121
+#: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
 msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
-#: static/js/editor/app.js:1130
+#: static/js/editor/app.js:1086
 msgid "This string no longer exists."
 msgstr "Níl an teaghrán seo ann a thuilleadh."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1087
 msgid "Go back to browsing"
 msgstr "Brabhsáil"
 
-#: static/js/editor/app.js:1133
+#: static/js/editor/app.js:1089
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:1898 static/js/editor/app.js:632
+#: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
 msgstr "Gan torthaí."
 
-#: static/js/editor/app.js:2234
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2236
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
-#: static/js/editor/components/Editor.js:64
-#: static/js/editor/components/UnitSource.js:38
+#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -694,87 +713,6 @@ msgstr "Diúltaigh"
 #, fuzzy, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "Uaslódáilte %(timeSince) ó shin"
-
-#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:287
-msgid "%b %d, %a"
-msgstr "%a %d %b"
-
-#: static/js/reports/app.js:289
-msgid "Jan"
-msgstr "Ean"
-
-#: static/js/reports/app.js:290
-msgid "Feb"
-msgstr "Fea"
-
-#: static/js/reports/app.js:291
-msgid "Mar"
-msgstr "Már"
-
-#: static/js/reports/app.js:292
-msgid "Apr"
-msgstr "Aib"
-
-#: static/js/reports/app.js:293
-msgid "May"
-msgstr "Bea"
-
-#: static/js/reports/app.js:294
-msgid "Jun"
-msgstr "Mei"
-
-#: static/js/reports/app.js:295
-msgid "Jul"
-msgstr "Iúl"
-
-#: static/js/reports/app.js:296
-msgid "Aug"
-msgstr "Lún"
-
-#: static/js/reports/app.js:297
-msgid "Sep"
-msgstr "MFó"
-
-#: static/js/reports/app.js:298
-msgid "Oct"
-msgstr "DFó"
-
-#: static/js/reports/app.js:299
-msgid "Nov"
-msgstr "Samh"
-
-#: static/js/reports/app.js:300
-msgid "Dec"
-msgstr "Nol"
-
-#: static/js/reports/app.js:303
-msgid "Sun"
-msgstr "Domh"
-
-#: static/js/reports/app.js:304
-msgid "Mon"
-msgstr "Luan"
-
-#: static/js/reports/app.js:305
-msgid "Tue"
-msgstr "Máir"
-
-#: static/js/reports/app.js:306
-msgid "Wed"
-msgstr "Céad"
-
-#: static/js/reports/app.js:307
-msgid "Thu"
-msgstr "Déar"
-
-#: static/js/reports/app.js:308
-msgid "Fri"
-msgstr "Aoin"
-
-#: static/js/reports/app.js:309
-msgid "Sat"
-msgstr "Sath"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -857,7 +795,7 @@ msgstr "rinneadh athbhreithniú ar %(sourceString)s"
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "marcáladh gur gá %(sourceString)s a dheimhniú"
 
-#: static/js/shared/models/project.js:58
+#: static/js/shared/models/project.js:62
 msgid "disabled"
 msgstr "díchumasaithe"
 
@@ -959,11 +897,11 @@ msgstr "Cúpla soicind ó shin"
 msgid "Congratulations! You have completed this task!"
 msgstr "Comhghairdeas! Chríochnaigh tú an tasc seo!"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Collapse details"
 msgstr "Folaigh mionsonraí"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Expand details"
 msgstr "Taispeáin mionsonraí"
 
@@ -1048,6 +986,13 @@ msgstr "Níl, GRMA"
 msgid "Send Email"
 msgstr "Seol Ríomhphost"
 
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
+msgstr ""
+"Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</"
+"span>"
+
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "Níl cead agat cuntais nua a chruthú."
@@ -1064,18 +1009,6 @@ msgstr ""
 "Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní bheidh sé "
 "ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle "
 "agus do chuntas %s."
-
-#: static/js/browser.js:267
-msgid "All Languages"
-msgstr "Gach Teanga"
-
-#: static/js/browser.js:271
-msgid "All Projects"
-msgstr "Gach Tionscadal"
-
-#: static/js/browser.js:275
-msgid "Entire Project"
-msgstr "An Tionscadal Ar Fad"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1226,6 +1159,72 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Statistics"
+#~ msgstr "Staitisticí"
+
+#~ msgid "Reports"
+#~ msgstr "Tuairiscí"
+
+#~ msgid "%b %d, %a"
+#~ msgstr "%a %d %b"
+
+#~ msgid "Jan"
+#~ msgstr "Ean"
+
+#~ msgid "Feb"
+#~ msgstr "Fea"
+
+#~ msgid "Mar"
+#~ msgstr "Már"
+
+#~ msgid "Apr"
+#~ msgstr "Aib"
+
+#~ msgid "May"
+#~ msgstr "Bea"
+
+#~ msgid "Jun"
+#~ msgstr "Mei"
+
+#~ msgid "Jul"
+#~ msgstr "Iúl"
+
+#~ msgid "Aug"
+#~ msgstr "Lún"
+
+#~ msgid "Sep"
+#~ msgstr "MFó"
+
+#~ msgid "Oct"
+#~ msgstr "DFó"
+
+#~ msgid "Nov"
+#~ msgstr "Samh"
+
+#~ msgid "Dec"
+#~ msgstr "Nol"
+
+#~ msgid "Sun"
+#~ msgstr "Domh"
+
+#~ msgid "Mon"
+#~ msgstr "Luan"
+
+#~ msgid "Tue"
+#~ msgstr "Máir"
+
+#~ msgid "Wed"
+#~ msgstr "Céad"
+
+#~ msgid "Thu"
+#~ msgstr "Déar"
+
+#~ msgid "Fri"
+#~ msgstr "Aoin"
+
+#~ msgid "Sat"
+#~ msgstr "Sath"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "balbhaíodh %(check)s ar %(sourceString)s"

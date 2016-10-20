@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-29 13:38+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2015-09-29 13:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,9 +116,8 @@ msgid "Overview"
 msgstr "Επισκόπηση"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
-msgstr "Δικαιώματα"
+msgid "Team"
+msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -196,6 +195,15 @@ msgstr "Απενεργοποιημένο"
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Γλώσσες"
+
+#: static/js/admin/components/Project/ProjectForm.js:150
+msgid "Permissions"
+msgstr "Δικαιώματα"
+
+#: static/js/admin/components/Project/ProjectForm.js:152
+#, fuzzy
+msgid "Filesystems"
+msgstr "Τύπος αρχείου"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -329,45 +337,40 @@ msgstr "Δημόσια κατατομή"
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: static/js/admin/components/User/UserForm.js:162
-msgid "Statistics"
-msgstr "Στατιστικά"
-
-#: static/js/admin/components/User/UserForm.js:163
-msgid "Reports"
-msgstr "Αναφορές"
-
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
 msgstr ""
 
-#: static/js/auth/components/AccountActivation.js:32
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>"
+#: static/js/auth/components/AccountActivation.js:33
+#, fuzzy, python-format, javascript-format
+msgid ""
+"We have sent an email containing the special link to <span>%s</span>. Please "
+"check your spam folder if you do not see the email."
 msgstr ""
 "Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς το <span>%s</"
 "span>"
 
-#: static/js/auth/components/AccountActivation.js:37
+#: static/js/auth/components/AccountActivation.js:41
+#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
-"register this account."
+"register this account. Please check your spam folder if you do not see the "
+"email."
 msgstr ""
 "Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς τη διεύθυνση "
 "που χρησιμοποιήθηκε για την καταχώριση αυτού του λογαριασμού."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
 msgstr "Ο λογαριασμός χρειάζεται ενεργοποίηση."
 
-#: static/js/auth/components/AccountActivation.js:44
+#: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
 msgstr ""
 "Παρακαλούμε ακολουθήστε αυτόν τον σύνδεσμο για να συνεχίσετε με τη "
 "δημιουργία του λογαριασμού."
 
-#: static/js/auth/components/AccountActivation.js:59
+#: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -565,7 +568,23 @@ msgstr "ανενεργό"
 msgid "Hide disabled"
 msgstr "ανενεργό"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:640
+#: static/js/browser.js:284
+msgid "All Languages"
+msgstr "Όλες οι γλώσσες"
+
+#: static/js/browser.js:289
+msgid "All Projects"
+msgstr "Όλα τα έργα"
+
+#: static/js/browser.js:294
+msgid "Entire Project"
+msgstr "Το συνολικό έργο"
+
+#: static/js/common.js:149
+msgid "Updating data"
+msgstr ""
+
+#: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -620,52 +639,52 @@ msgstr "Υποβολές του %s"
 msgid "%s's overwritten submissions"
 msgstr "Αντικατασταθείσες υποβολές του %s"
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετητή"
 
-#: static/js/editor/app.js:1117
+#: static/js/editor/app.js:1073
 msgid "Not found"
 msgstr "Δε βρέθηκε"
 
-#: static/js/editor/app.js:1119
+#: static/js/editor/app.js:1075
 msgid "Server error"
 msgstr "Σφάλμα εξυπηρετητή"
 
-#: static/js/editor/app.js:1121
+#: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
 msgstr "Ο εξυπηρετητής φαίνεται ανενεργός. Δοκιμάστε αργότερα."
 
-#: static/js/editor/app.js:1130
+#: static/js/editor/app.js:1086
 msgid "This string no longer exists."
 msgstr "Αυτή η συμβολοσειρά δεν υπάρχει πια."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1087
 msgid "Go back to browsing"
 msgstr "Επιστροφή στην περιήγηση"
 
-#: static/js/editor/app.js:1133
+#: static/js/editor/app.js:1089
 msgid "Reload page"
 msgstr "Επαναφόρτωση της σελίδας"
 
-#: static/js/editor/app.js:1898 static/js/editor/app.js:632
+#: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
 msgstr "Κανένα αποτέλεσμα."
 
-#: static/js/editor/app.js:2234
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "κάποιος ανώνυμος χρήστης"
 
-#: static/js/editor/app.js:2236
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "κάποιος"
 
-#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "Παρόμοιες μεταφράσεις"
 
-#: static/js/editor/components/Editor.js:64
-#: static/js/editor/components/UnitSource.js:38
+#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -689,88 +708,6 @@ msgstr ""
 #: static/js/editor/components/UploadTimeSince.js:34
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr ""
-
-#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:287
-msgid "%b %d, %a"
-msgstr ""
-
-#: static/js/reports/app.js:289
-msgid "Jan"
-msgstr ""
-
-#: static/js/reports/app.js:290
-msgid "Feb"
-msgstr ""
-
-#: static/js/reports/app.js:291
-msgid "Mar"
-msgstr ""
-
-#: static/js/reports/app.js:292
-msgid "Apr"
-msgstr ""
-
-#: static/js/reports/app.js:293
-msgid "May"
-msgstr ""
-
-#: static/js/reports/app.js:294
-msgid "Jun"
-msgstr ""
-
-#: static/js/reports/app.js:295
-msgid "Jul"
-msgstr ""
-
-#: static/js/reports/app.js:296
-msgid "Aug"
-msgstr ""
-
-#: static/js/reports/app.js:297
-msgid "Sep"
-msgstr ""
-
-#: static/js/reports/app.js:298
-msgid "Oct"
-msgstr ""
-
-#: static/js/reports/app.js:299
-#, fuzzy
-msgid "Nov"
-msgstr "Όχι"
-
-#: static/js/reports/app.js:300
-msgid "Dec"
-msgstr ""
-
-#: static/js/reports/app.js:303
-msgid "Sun"
-msgstr ""
-
-#: static/js/reports/app.js:304
-msgid "Mon"
-msgstr ""
-
-#: static/js/reports/app.js:305
-msgid "Tue"
-msgstr ""
-
-#: static/js/reports/app.js:306
-msgid "Wed"
-msgstr ""
-
-#: static/js/reports/app.js:307
-msgid "Thu"
-msgstr ""
-
-#: static/js/reports/app.js:308
-msgid "Fri"
-msgstr ""
-
-#: static/js/reports/app.js:309
-msgid "Sat"
 msgstr ""
 
 #: static/js/shared/components/FormSelectInput.js:39
@@ -854,7 +791,7 @@ msgstr "αφαιρεμένη μετάφραση για τη ${συμβολοσε
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "προστέθηκε πρόταση για τη ${συμβολοσειρά προέλευσης}"
 
-#: static/js/shared/models/project.js:58
+#: static/js/shared/models/project.js:62
 msgid "disabled"
 msgstr "ανενεργό"
 
@@ -939,11 +876,11 @@ msgstr "Λίγα δευτερόλεπτα πριν"
 msgid "Congratulations! You have completed this task!"
 msgstr "Συγχαρητήρια, διασχίσατε όλα τα στοιχεία"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Collapse details"
 msgstr "Σύμπτυξη λεπτομερειών"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Expand details"
 msgstr "Επέκταση λεπτομερειών"
 
@@ -1028,6 +965,13 @@ msgstr "Όχι, ευχαριστώ."
 msgid "Send Email"
 msgstr "Αποστολή μηνύματος"
 
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
+msgstr ""
+"Έχουμε στείλει ένα μήνυμα που περιέχει τον ειδικό σύνδεσμο προς το <span>%s</"
+"span>"
+
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "Η δημιουργία νέων λογαριασμών χρήστη απαγορεύεται."
@@ -1044,18 +988,6 @@ msgstr ""
 "μας. Παρακαλούμε, δώστε τον κωδικό πρόσβασης για να ολοκληρώσετε τη "
 "διαδικασία σύνδεσης. Αυτή είναι μια διεργασία μια κι έξω, που θα "
 "δημιουργήσει έναν σύνδεσμο μεταξύ του Pootle σας και των %s λογαριασμών."
-
-#: static/js/browser.js:267
-msgid "All Languages"
-msgstr "Όλες οι γλώσσες"
-
-#: static/js/browser.js:271
-msgid "All Projects"
-msgstr "Όλα τα έργα"
-
-#: static/js/browser.js:275
-msgid "Entire Project"
-msgstr "Το συνολικό έργο"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1200,6 +1132,16 @@ msgid ""
 msgstr ""
 "Μεταφράστηκε από τον %(fullname)s στα &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo; έργο"
+
+#~ msgid "Statistics"
+#~ msgstr "Στατιστικά"
+
+#~ msgid "Reports"
+#~ msgstr "Αναφορές"
+
+#, fuzzy
+#~ msgid "Nov"
+#~ msgstr "Όχι"
 
 #, fuzzy
 #~ msgid "muted %(check)s for %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-28 17:16+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2016-09-30 11:48+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,8 +61,8 @@ msgstr "Geçerli bir kullanıcı adı girin."
 msgid "Email Address"
 msgstr "Eposta Adresi"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:90
-#: apps/pootle_project/models.py:194
+#: apps/accounts/models.py:73 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Tam Adı"
 
@@ -105,11 +105,11 @@ msgstr "Alternatif Kaynak Diller"
 msgid "Rate"
 msgstr "Oran"
 
-#: apps/accounts/models.py:96 apps/reports/forms.py:32
+#: apps/accounts/models.py:96
 msgid "Review Rate"
 msgstr "İnceleme Oranı"
 
-#: apps/accounts/models.py:97 apps/reports/forms.py:37
+#: apps/accounts/models.py:97
 msgid "Hourly Rate"
 msgstr "Saatlik Oran"
 
@@ -117,7 +117,7 @@ msgstr "Saatlik Oran"
 msgid "Score"
 msgstr "Skor"
 
-#: apps/accounts/models.py:99 apps/reports/forms.py:21
+#: apps/accounts/models.py:99
 msgid "Currency"
 msgstr "Para Birimi"
 
@@ -153,7 +153,7 @@ msgstr "Özet"
 msgid "Please enter your message summary"
 msgstr "Lütfen ileti özetinizi girin"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:34 core/browser.py:16
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Ad"
 
@@ -239,15 +239,15 @@ msgstr "'%s' oluşturulamadı. Proje/Dil eksik mi? (%s)"
 msgid "There was an error uploading your file"
 msgstr "Dosyanız gönderilirken bir hata oldu"
 
-#: apps/pootle_app/forms.py:36
+#: apps/pootle_app/forms.py:39
 msgid "Language code does not follow the ISO convention"
 msgstr "Dil kodu ISO düzenini izlemiyor"
 
-#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:222
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
 msgid "Source Language"
 msgstr "Kaynak Dil"
 
-#: apps/pootle_app/forms.py:78
+#: apps/pootle_app/forms.py:88
 #, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
@@ -256,11 +256,11 @@ msgstr ""
 "Bir Projeden gelen bir dosya türünü, bu dosya türünün ('%s') Depoları varsa "
 "silemezsiniz"
 
-#: apps/pootle_app/forms.py:98
+#: apps/pootle_app/forms.py:108
 msgid "Password"
 msgstr "Parola"
 
-#: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
+#: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "Lütfen geçerli bir LinkedIn kullanıcı profili URL'si girin."
 
@@ -298,7 +298,7 @@ msgstr "İzinleri Geri Al"
 msgid "No files in this project."
 msgstr "Bu projede dosya yok."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:183
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:172
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Formda hatalar var. Lütfen aşağıdan sorunları inceleyin."
 
@@ -318,11 +318,71 @@ msgstr "Etkinleştirildi"
 msgid "Monolingual format"
 msgstr "Tek dilli biçim"
 
-#: apps/pootle_language/models.py:83 apps/pootle_project/models.py:189
+#: apps/pootle_fs/forms.py:24
+msgid "Filesystem backend"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:25
+msgid "Select a backend filesystem"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:30
+msgid "Backend URL or path"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:32
+msgid "The URL or path to your translation files"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:35
+msgid "The translation path mapping for your filesystem"
+msgstr ""
+
+#: apps/pootle_language/forms.py:23
+#, fuzzy
+msgid "Member"
+msgstr "Sayı"
+
+#: apps/pootle_language/forms.py:24
+#, fuzzy
+msgid "Submitter"
+msgstr "Gönder"
+
+#: apps/pootle_language/forms.py:25
+#, fuzzy
+msgid "Reviewer"
+msgstr "İncele"
+
+#: apps/pootle_language/forms.py:26
+#, fuzzy
+msgid "Administrator"
+msgstr "Yönetim"
+
+#: apps/pootle_language/forms.py:71
+#, fuzzy
+msgid "Admins"
+msgstr "Yönetici"
+
+#: apps/pootle_language/forms.py:77
+#, fuzzy
+msgid "Reviewers"
+msgstr "İncelemeler"
+
+#: apps/pootle_language/forms.py:82
+#, fuzzy
+msgid "Submitters"
+msgstr "Gönder"
+
+#: apps/pootle_language/forms.py:87
+#, fuzzy
+msgid "Members"
+msgstr "Sayı"
+
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
 msgstr "Kod"
 
-#: apps/pootle_language/models.py:84
+#: apps/pootle_language/models.py:86
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -332,17 +392,17 @@ msgstr ""
 "tarafından takip ediliyordur. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Daha fazla bilgi</a>"
 
-#: apps/pootle_language/models.py:93 templates/languages/_nav.html:31
+#: apps/pootle_language/models.py:95 templates/languages/_nav.html:28
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Özel Karakterler"
 
-#: apps/pootle_language/models.py:94
+#: apps/pootle_language/models.py:96
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "Kullanıcıların yazmayı zor bulacağı herhangi bir özel karakter girin"
 
-#: apps/pootle_language/models.py:98
+#: apps/pootle_language/models.py:100
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -352,15 +412,15 @@ msgstr ""
 "org/projects/localization-guide/en/latest/l10n/pluralforms.html\">sayfamızı</"
 "a> ziyaret edin."
 
-#: apps/pootle_language/models.py:104
+#: apps/pootle_language/models.py:106
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#: apps/pootle_language/models.py:108
+#: apps/pootle_language/models.py:110
 msgid "Number of Plurals"
 msgstr "Çoğulların Sayısı"
 
-#: apps/pootle_language/models.py:111
+#: apps/pootle_language/models.py:113
 msgid "Plural Equation"
 msgstr "Çoğul Eşitliği"
 
@@ -546,7 +606,7 @@ msgid "Unchanged"
 msgstr "Değiştirilmemiş"
 
 #: apps/pootle_misc/checks.py:83 apps/pootle_store/constants.py:66
-#: core/helpers.py:48 core/utils/stats.py:30 templates/editor/_filters.html:9
+#: core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Çevrilmemiş"
 
@@ -686,32 +746,31 @@ msgstr "Plurr biçimi"
 msgid "Plurr placeholders"
 msgstr "Plurr yer tutucuları"
 
-#. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:91 core/helpers.py:52
+#: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Ara"
 
-#: apps/pootle_misc/forms.py:92
+#: apps/pootle_misc/forms.py:102
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Ara (Ctrl+Shift+S)<br/>Aramak için yazın ve Enter'a basın"
 
-#: apps/pootle_misc/forms.py:100 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:437
 msgid "Exact Match"
 msgstr "Tam Eşleşme"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:448
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:443
 msgid "Source Text"
 msgstr "Kaynak Metin"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:449
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:444
 msgid "Target Text"
 msgstr "Hedef Metin"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:450
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:445
 msgid "Comments"
 msgstr "Yorumlar"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:451
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:446
 msgid "Locations"
 msgstr "Yerleri"
 
@@ -744,12 +803,17 @@ msgstr "Bir ya da daha fazla dil seçin"
 msgid "Language"
 msgstr "Dil"
 
-#: apps/pootle_project/models.py:176
+#: apps/pootle_project/models.py:178
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\", bir proje kodu olarak kullanılamaz"
 
-#: apps/pootle_project/models.py:183
+#: apps/pootle_project/models.py:186
+#, fuzzy, python-format
+msgid "\"%(code)s\" cannot be used as a project checker"
+msgstr "\"%(code)s\", bir proje kodu olarak kullanılamaz"
+
+#: apps/pootle_project/models.py:193
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -757,51 +821,52 @@ msgstr ""
 "Proje için kısa kod. Bu sadece ASCII karakterleri, sayıları ve alttan çizgi "
 "(_) karakterini içerebilir."
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:211
 msgid "Quality Checks"
 msgstr "Kalite Kontrolleri"
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:217
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Gnu/gnu olmayan dosya düzenlerini otomatik algılama (yavaş)"
 
-#: apps/pootle_project/models.py:212
+#: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
 msgstr "GNU stili: dosyalar dil koduyla adlandırılır"
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:219
 msgid "Non-GNU: Each language in its own directory"
 msgstr "GNU olmayan: Her dil kendi dizinindedir"
 
-#: apps/pootle_project/models.py:214
-msgid "Allow pootle_fs to manage filesystems"
+#: apps/pootle_project/models.py:220
+#, fuzzy
+msgid "Allow Pootle FS to manage filesystems"
 msgstr "Dosya sistemlerini yönetmesi için pootle_fs'ye izin ver"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
 msgstr "Proje Ağacı Stili"
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:232
 msgid "Ignore Files"
 msgstr "Dosyaları Yoksay"
 
-#: apps/pootle_project/models.py:231
+#: apps/pootle_project/models.py:237
 msgid "Errors Report Email"
 msgstr "Hatalar Raporu Epostası"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:238
 msgid "An email address where issues with the source text can be reported."
 msgstr "Kaynak metin ile sorunları olan bir eposta adresi rapor edilebilir."
 
-#: apps/pootle_project/models.py:236
+#: apps/pootle_project/models.py:242
 msgid "Screenshot Search Prefix"
 msgstr "Ekran Görüntüsü Arama Öneki"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:247
 msgid "Disabled"
 msgstr "Etkisizleştirildi"
 
-#: apps/pootle_project/views.py:270
+#: apps/pootle_project/views.py:259
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -810,12 +875,12 @@ msgstr ""
 "Çeviri projesi (%s) oluşturuldu. Şimdi dosya şablonlarından depolarını "
 "güncelliyoruz."
 
-#: apps/pootle_project/views.py:277
+#: apps/pootle_project/views.py:266
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Çeviri projesi (%s) silindi"
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:111
+#: apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Kaynak"
 
@@ -835,12 +900,12 @@ msgstr "Yorum"
 msgid "Obsolete"
 msgstr "Eskimiş"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:215
-#: core/helpers.py:49 templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:212
+#: templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Çalışma gerekli"
 
-#: apps/pootle_store/constants.py:68 core/helpers.py:47 core/utils/stats.py:28
+#: apps/pootle_store/constants.py:68 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Çevrilmiş"
@@ -857,11 +922,11 @@ msgstr "Öneri kipine erişmek için yetersiz haklar."
 msgid "Insufficient rights to access translation mode."
 msgstr "Çeviri kipine erişmek için yetersiz haklar."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:686
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:634
 msgid "Insufficient rights to access review mode."
 msgstr "İnceleme kipine erişmek için yetersiz haklar."
 
-#: apps/pootle_store/forms.py:104
+#: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -870,19 +935,19 @@ msgstr "İnceleme kipine erişmek için yetersiz haklar."
 msgid "Plural Form %d"
 msgstr "Çoğul Biçim %d"
 
-#: apps/pootle_store/forms.py:262
+#: apps/pootle_store/forms.py:258
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr "`similarity` değeri [0..1] aralığında olmalıdır"
 
-#: apps/pootle_store/forms.py:272
+#: apps/pootle_store/forms.py:268
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "`mt_similarity` değeri [0..1] aralığında olmalıdır"
 
-#: apps/pootle_store/forms.py:294
+#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Çalışma gerekli işareti temizlenmek zorundadır"
 
-#: apps/pootle_store/forms.py:355
+#: apps/pootle_store/forms.py:350
 msgid "Translator comment"
 msgstr "Çevirmen yorumu"
 
@@ -898,7 +963,7 @@ msgstr "Kabul Edildi"
 msgid "Rejected"
 msgstr "Reddedildi"
 
-#: apps/pootle_store/models.py:1147
+#: apps/pootle_store/models.py:969
 msgid "Path"
 msgstr "Yol"
 
@@ -936,38 +1001,38 @@ msgstr "%(author)s kullanıcısından gelen öneri reddedildi: %(comment)s"
 msgid "Added suggestion"
 msgstr "Öneri eklendi"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:79
-msgid "Path too long."
-msgstr "Yol çok uzun."
+#: apps/pootle_store/utils.py:32
+msgid "Suggestion accepted with comment"
+msgstr "Öneri yorum ile kabul edildi"
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:81
-#: core/decorators.py:43
-msgid "Arguments missing."
-msgstr "Bağımsız değişkenler eksik."
-
-#: apps/pootle_store/views.py:235
-msgid "Failed to remove comment."
-msgstr "Yorumu kaldırma başarısız."
-
-#: apps/pootle_store/views.py:270
-msgid "Comment submission failed."
-msgstr "Yorum sunuşu başarısız oldu."
-
-#: apps/pootle_store/views.py:588
-msgid "Failed to process submission."
-msgstr "Sunuşu işlemek başarısız."
-
-#: apps/pootle_store/views.py:629
-msgid "Failed to process suggestion."
-msgstr "Öneriyi işlemek başarısız."
-
-#: apps/pootle_store/views.py:664
+#: apps/pootle_store/utils.py:34
 msgid "Suggestion rejected with comment"
 msgstr "Öneri yorum ile reddedildi"
 
-#: apps/pootle_store/views.py:668
-msgid "Suggestion accepted with comment"
-msgstr "Öneri yorum ile kabul edildi"
+#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:102
+msgid "Path too long."
+msgstr "Yol çok uzun."
+
+#: apps/pootle_store/views.py:177 apps/virtualfolder/views.py:104
+#: core/decorators.py:44
+msgid "Arguments missing."
+msgstr "Bağımsız değişkenler eksik."
+
+#: apps/pootle_store/views.py:232
+msgid "Failed to remove comment."
+msgstr "Yorumu kaldırma başarısız."
+
+#: apps/pootle_store/views.py:267
+msgid "Comment submission failed."
+msgstr "Yorum sunuşu başarısız oldu."
+
+#: apps/pootle_store/views.py:564
+msgid "Failed to process submission."
+msgstr "Sunuşu işlemek başarısız."
+
+#: apps/pootle_store/views.py:605
+msgid "Failed to process suggestion."
+msgstr "Öneriyi işlemek başarısız."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -982,63 +1047,6 @@ msgstr "Çeviri projesi (%s) oluşturuldu"
 #, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Çeviri projesi (%s) oluşturma başarısız oldu"
-
-#: apps/reports/forms.py:27
-msgid "Translation Rate"
-msgstr "Çeviri Oranı"
-
-#: apps/reports/forms.py:42
-msgid "Effective from"
-msgstr "Etkin olma"
-
-#: apps/reports/models.py:32 apps/reports/models.py:56
-#: templates/editor/export_view.html:112
-#: templates/translation_projects/terminology/manage.html:40
-#: templates/user/settings.html:28
-msgid "Translation"
-msgstr "Çeviri"
-
-#: apps/reports/models.py:33 apps/reports/models.py:57
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "İncele"
-
-#: apps/reports/models.py:34
-msgid "Suggestion"
-msgstr "Öneri"
-
-#: apps/reports/models.py:58
-msgid "Hourly Work"
-msgstr "Saatlik Çalışma"
-
-#: apps/reports/models.py:59
-msgid "Correction"
-msgstr "Düzeltme"
-
-#: apps/reports/models.py:63
-msgid "Type"
-msgstr "Tür"
-
-#: apps/reports/models.py:65
-msgid "Amount"
-msgstr "Miktar"
-
-#: apps/reports/models.py:67
-msgid "Date"
-msgstr "Tarih"
-
-#: apps/reports/models.py:68 apps/virtualfolder/models.py:63
-msgid "Description"
-msgstr "Açıklama"
-
-#: apps/reports/views.py:323
-#, python-format
-msgid "User %s not found"
-msgstr "Kullanıcı %s bulunamadı"
-
-#: apps/reports/views.py:402
-msgid "Invalid request method"
-msgstr "Geçersiz istek yöntemi"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1057,7 +1065,7 @@ msgstr "Bu sayfanın aktif olup olmadığı."
 msgid "Virtual Path"
 msgstr "Sanal Yol"
 
-#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:39
+#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:32
 msgid "Title"
 msgstr "Başlık"
 
@@ -1113,34 +1121,38 @@ msgid "Text is missing"
 msgstr "Metin eksik"
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:46
+#: apps/virtualfolder/models.py:39
 msgid "Filter"
 msgstr "Süzgeç"
 
-#: apps/virtualfolder/models.py:48
+#: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
 "Bu sanal klasörün içerdiklerinin depolanmasını söyleyen süzme kuralları."
 
-#: apps/virtualfolder/models.py:52 core/browser.py:21
+#: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
 msgstr "Öncelik"
 
-#: apps/virtualfolder/models.py:54
+#: apps/virtualfolder/models.py:47
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
 "Önemi belirten sayı. Büyük olan öncelik çok önemli olduğu anlamına gelir."
 
-#: apps/virtualfolder/models.py:58
+#: apps/virtualfolder/models.py:51
 msgid "Is public?"
 msgstr "Ortak mı?"
 
-#: apps/virtualfolder/models.py:60
+#: apps/virtualfolder/models.py:53
 msgid "Whether this virtual folder is public or not."
 msgstr "Bu sanal klasörün ortak olup olmadığı."
 
-#: apps/virtualfolder/models.py:65
+#: apps/virtualfolder/models.py:56
+msgid "Description"
+msgstr "Açıklama"
+
+#: apps/virtualfolder/models.py:58
 #, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1479,15 +1491,58 @@ msgstr ""
 "ePosta ayarlarınızı gözden geçirin ve eposta sunucunuzun çalıştığından emin "
 "olun."
 
-#: checks.py:444
+#: checks.py:449
 msgid "Revision is missing or has an incorrect value."
 msgstr "Gözden geçirme eksik ya da yanlış bir değere sahip."
 
-#: checks.py:445
+#: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Gözden geçirme sayacını sıfırlamak için `revision --restore` komutunu "
 "çalıştırın."
+
+#: checks.py:464
+msgid "No canonical URL provided and default site set to example.com."
+msgstr ""
+
+#: checks.py:466
+msgid ""
+"Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
+"are using django.contrib.sites."
+msgstr ""
+
+#: checks.py:470
+msgid "Canonical URL is set to http://localhost."
+msgstr ""
+
+#: checks.py:472
+msgid ""
+"Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
+"leave it empty if you are using `django.contrib.sites`."
+msgstr ""
+
+#: checks.py:502
+#, fuzzy
+msgid "POOTLE_FS_WORKING_PATH setting is not set."
+msgstr "POOTLE_CONTACT_EMAIL ayarlı değil."
+
+#: checks.py:506
+msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
+msgstr ""
+
+#: checks.py:507
+msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
+msgstr ""
+
+#: checks.py:512
+msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
+msgstr ""
+
+#: checks.py:514
+msgid ""
+"Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
+"'chmod +w'"
+msgstr ""
 
 #: core/browser.py:26
 msgid "Project"
@@ -1515,7 +1570,7 @@ msgstr "Son güncelleme"
 msgid "Suggestions"
 msgstr "Öneriler"
 
-#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:37
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Tamamlanmadı"
@@ -1532,58 +1587,54 @@ msgstr "Dile geri dön"
 msgid "Back to parent folder"
 msgstr "Ana klasöre geri git"
 
-#: core/decorators.py:309 core/views/decorators.py:69
+#: core/decorators.py:310 core/views/decorators.py:69
 msgid "Insufficient rights to access this page."
 msgstr "Bu sayfaya erişmek için yetersiz haklar."
 
-#: core/decorators.py:322 core/views/mixins.py:26
+#: core/decorators.py:323 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle'ı yönetme haklarına sahip değilsiniz."
 
-#: core/forms.py:116
+#: core/forms.py:117
 msgid "Time to answer has expired"
 msgstr "Yanıtlama zamanı süresi doldu"
 
-#: core/forms.py:135
+#: core/forms.py:136
 msgid "Enter a number"
 msgstr "Bir numara girin"
 
-#: core/forms.py:150
+#: core/forms.py:151
 msgid "Incorrect"
 msgstr "Yanlış"
 
-#: core/helpers.py:34
-msgid "User missing"
-msgstr "Kullanıcı eksik"
+#: core/forms.py:180
+msgid "With selected"
+msgstr ""
 
-#. Translators: This refers to "All strings"
-#: core/helpers.py:46 templates/browser/_actions.html:50
-#: templates/editor/_filters.html:6
-msgid "All"
-msgstr "Tümü"
+#: core/forms.py:184
+msgid "Reject"
+msgstr "Reddet"
 
-#: core/helpers.py:53 templates/editor/_filters.html:18
-msgid "Checks"
-msgstr "Kontroller"
+#: core/forms.py:185
+msgid "Accept"
+msgstr "Kabul Et"
 
-#: core/helpers.py:54 templates/editor/_filters.html:13
-msgid "My submissions"
-msgstr "Sunuşlarım"
+#: core/forms.py:187
+#, fuzzy
+msgid "Add comment"
+msgstr "Yorum Ekle"
 
-#: core/helpers.py:55 templates/admin/dashboard.html:13
-msgid "Submissions"
-msgstr "Sunuşlar"
+#: core/forms.py:193
+msgid "Select all matching filter criteria, including those not shown"
+msgstr ""
 
-#. Translators: This is a type of filtering criterion that
-#. selects the strings that have been submitted by me at some point
-#. in time but have been overwritten by other users.
-#: core/helpers.py:56 templates/editor/_filters.html:17
-msgid "My overwritten submissions"
-msgstr "Üzerine yazılmış sunuşlarım"
+#: core/forms.py:210
+msgid "You must specify an action to take"
+msgstr ""
 
-#: core/helpers.py:57
-msgid "Overwritten submissions"
-msgstr "Üzerine yazılmış sunuşlar"
+#: core/forms.py:212
+msgid "FormtableForm must specify a valid search_field"
+msgstr ""
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1659,7 +1710,7 @@ msgstr "Kullanım Şartları"
 msgid "Terms of Service"
 msgstr "Hizmet Şartları"
 
-#: templates/about.html:7 templates/layout.html:171
+#: templates/about.html:7 templates/layout.html:170
 msgid "About"
 msgstr "Hakkında"
 
@@ -1757,23 +1808,25 @@ msgid "Users"
 msgstr "Kullanıcılar"
 
 #: templates/admin/_tabs.html:16 templates/admin/languages.html:4
-#: templates/admin/languages.html:7 templates/projects/_nav.html:28
+#: templates/admin/languages.html:7 templates/projects/_nav.html:23
 #: templates/projects/admin/languages.html:7
-#: templates/projects/all/_nav.html:28
+#: templates/projects/all/_nav.html:19
 msgid "Languages"
 msgstr "Diller"
 
-#: templates/admin/_tabs.html:21 templates/admin/projects.html:4
-#: templates/admin/projects.html:7 templates/projects/base.html:5
+#: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
+#: templates/admin/project_fs.html:8 templates/admin/projects.html:4
+#: templates/admin/projects.html:7
+#: templates/languages/admin/language_team.html:99
+#: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projeler"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
-#: templates/admin/permissions.html:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
+#: templates/admin/permissions.html:7 templates/projects/_nav.html:30
 #: templates/projects/admin/permissions.html:7
-#: templates/projects/all/_nav.html:33
-#: templates/translation_projects/_nav.html:31
+#: templates/projects/all/_nav.html:24
+#: templates/translation_projects/_nav.html:29
 #: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
 msgstr "İzinler"
@@ -1783,11 +1836,6 @@ msgstr "İzinler"
 msgid "Static Pages"
 msgstr "Sabit Sayfalar"
 
-#: templates/admin/_tabs.html:36 templates/admin/reports.html:45
-#: templates/admin/reports.html:48
-msgid "Reports"
-msgstr "Raporlar"
-
 #: templates/admin/base.html:4 templates/admin/base.html:7
 msgid "Administration"
 msgstr "Yönetim"
@@ -1795,6 +1843,10 @@ msgstr "Yönetim"
 #: templates/admin/dashboard.html:7
 msgid "Server Statistics"
 msgstr "Sunucu İstatistikleri"
+
+#: templates/admin/dashboard.html:13
+msgid "Submissions"
+msgstr "Sunuşlar"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
@@ -1885,6 +1937,10 @@ msgstr "Alt eylemler"
 msgid "Raw Translation"
 msgstr "Ham Çeviri"
 
+#: templates/admin/detailed_reports.html:233
+msgid "Review"
+msgstr "İncele"
+
 #: templates/admin/detailed_reports.html:250
 #: templates/admin/detailed_reports.html:309
 msgid "registered tasks"
@@ -1919,7 +1975,6 @@ msgstr ""
 "düzenleyebilir ve silebilirsiniz."
 
 #: templates/admin/permissions.html:14
-#: templates/languages/admin/permissions.html:11
 #: templates/projects/admin/permissions.html:13
 #: templates/translation_projects/admin/permissions.html:11
 msgid ""
@@ -1933,9 +1988,64 @@ msgstr ""
 "belirlenmedikçe, varsayılan haklara sahip tüm oturum açmış kullanıcıları "
 "ifade eder."
 
-#: templates/admin/reports.html:58 templates/user/stats.html:60
-msgid "Daily activity"
-msgstr "Günlük etkinlik"
+#: templates/admin/project_fs.html:15
+#, python-format
+msgid "Filesystem configuration: %(project_code)s"
+msgstr ""
+
+#: templates/admin/project_fs.html:19
+msgid "Backend configuration"
+msgstr ""
+
+#: templates/admin/project_fs.html:24
+msgid "Update filesystem configuration"
+msgstr ""
+
+#: templates/admin/project_fs.html:27
+msgid "Translation paths should be of the format:"
+msgstr ""
+
+#: templates/admin/project_fs.html:35
+msgid ""
+"Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
+"ext&gt;`"
+msgstr ""
+
+#: templates/admin/project_fs.html:38
+msgid ""
+"If you are using the localfs backend the translation path will be combined "
+"with the path specified in\n"
+"\t    backend URL"
+msgstr ""
+
+#: templates/admin/project_fs.html:42
+msgid ""
+"For other backends the translation path will be relative to the root of the "
+"repository."
+msgstr ""
+
+#: templates/admin/project_fs.html:49
+#, fuzzy
+msgid "Language mapping configuration"
+msgstr "%(language)s dili bilgisi"
+
+#: templates/admin/project_fs.html:59
+msgid "Remove"
+msgstr "Kaldır"
+
+#: templates/admin/project_fs.html:60
+#, fuzzy
+msgid "Pootle code"
+msgstr "Pootle Tanıtım"
+
+#: templates/admin/project_fs.html:61
+msgid "Filesystem code"
+msgstr ""
+
+#: templates/admin/project_fs.html:72
+#, fuzzy
+msgid "Update"
+msgstr "Güncellemeler"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2075,6 +2185,11 @@ msgstr "Çeviriye devam et"
 msgid "View all"
 msgstr "Tümünü göster"
 
+#. Translators: This refers to "All strings"
+#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+msgid "All"
+msgstr "Tümü"
+
 #: templates/browser/_progressbar.html:3
 #, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
@@ -2206,6 +2321,21 @@ msgstr "Gözatmaya geri dön"
 msgid "My suggestions"
 msgstr "Önerilerim"
 
+#: templates/editor/_filters.html:13
+msgid "My submissions"
+msgstr "Sunuşlarım"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: templates/editor/_filters.html:17
+msgid "My overwritten submissions"
+msgstr "Üzerine yazılmış sunuşlarım"
+
+#: templates/editor/_filters.html:18
+msgid "Checks"
+msgstr "Kontroller"
+
 #: templates/editor/_filters.html:23
 msgid "Select type"
 msgstr "Tür seçin"
@@ -2246,63 +2376,33 @@ msgstr "Toplam satır"
 msgid "Go to the next string (Ctrl+Down)"
 msgstr "Sonraki satıra git (Ctrl+Down)"
 
-#: templates/editor/email/suggestion_accepted_with_comment.txt:2
-#, python-format
+#: templates/editor/email/suggestions_accepted_with_comment.txt:2
+#, fuzzy
 msgid ""
-"Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
-"accepted with the following comment:"
+"The following suggestions submitted by you have been accepted with the "
+"comment:"
 msgstr ""
 "%(unit_url)s için sizin tarafınızdan gönderilen öneri #%(suggestion_id)s, "
 "aşağıdaki yorum ile kabul edildi:"
 
-#: templates/editor/email/suggestion_accepted_with_comment.txt:7
-#: templates/editor/email/suggestion_rejected_with_comment.txt:7
+#: templates/editor/email/suggestions_accepted_with_comment.txt:10
+#: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
 "Umarız bu geri bildirim ileriki katkılarınızı artırmada yardımcı olacak."
 
-#: templates/editor/email/suggestion_rejected_with_comment.txt:2
-#, python-format
+#: templates/editor/email/suggestions_rejected_with_comment.txt:2
+#, fuzzy
 msgid ""
-"Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
-"rejected with the following comment:"
+"The following suggestions submitted by you have been rejected with the "
+"comment:"
 msgstr ""
 "%(unit_url)s için sizin tarafınızdan gönderilen öneri #%(suggestion_id)s, "
 "aşağıdaki yorum ile reddedildi:"
 
-#: templates/editor/export_view.html:6 templates/languages/_nav.html:18
-#: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
-#: templates/translation_projects/_nav.html:18
-msgid "Export View"
-msgstr "Görünümü Dışa Aktar"
-
-#: templates/editor/export_view.html:7 templates/editor/export_view.html:104
-msgid "All Projects"
-msgstr "Tüm Projeler"
-
-#: templates/editor/export_view.html:8 templates/editor/export_view.html:105
-msgid "All Languages"
-msgstr "Tüm Diller"
-
-#: templates/editor/export_view.html:152
-msgid "No strings."
-msgstr "Satırlar yok."
-
-#: templates/editor/export_view.html:158
-#, python-format
-msgid ""
-"We displayed the first unit out of %(total_count)s. Please refine your "
-"search."
-msgid_plural ""
-"We displayed the first %(unit_count)s units out of %(total_count)s. Please "
-"refine your search."
-msgstr[0] ""
-"Toplam %(total_count)s birimin ilk %(unit_count)s birimini görüntüledik. "
-"Lütfen aradığınızı daraltın."
-
-#: templates/editor/main.html:4 templates/languages/_nav.html:10
-#: templates/projects/_nav.html:11 templates/projects/all/_nav.html:11
-#: templates/translation_projects/_nav.html:10
+#: templates/editor/main.html:4 templates/languages/_nav.html:12
+#: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
+#: templates/translation_projects/_nav.html:13
 msgid "Translate"
 msgstr "Çevir"
 
@@ -2607,16 +2707,81 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Bildirilen hata:"
 
-#: templates/languages/_nav.html:5 templates/projects/_nav.html:5
+#: templates/includes/formtable.html:25
+#, fuzzy
+msgid "Showing"
+msgstr "Süzmeyi göster"
+
+#: templates/includes/formtable.html:81
+#, fuzzy
+msgid "Select all"
+msgstr "Çoklu Seç"
+
+#: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
-#: templates/translation_projects/_nav.html:5
+#: templates/translation_projects/_nav.html:6
 msgid "Browse"
 msgstr "Gözat"
 
-#: templates/languages/admin/permissions.html:9
-msgid "Below you can add, edit, and delete the permissions for this language."
+#: templates/languages/_nav.html:21
+msgid "Team"
 msgstr ""
-"Aşağıdan bu dil için izinleri ekleyebilir, düzenleyebilir ve silebilirsiniz."
+
+#: templates/languages/admin/language_team.html:5
+#, fuzzy
+msgid "Language team"
+msgstr "Dil İsmi"
+
+#: templates/languages/admin/language_team.html:15
+msgid "Member admin"
+msgstr ""
+
+#: templates/languages/admin/language_team.html:28
+msgid "Add team member"
+msgstr ""
+
+#: templates/languages/admin/language_team.html:44
+#: templates/languages/admin/language_team.html:60
+#: templates/languages/admin/language_team.html:76
+#: templates/languages/admin/language_team.html:92
+#, fuzzy
+msgid "Remove selected"
+msgstr "Kullanıcıyı Sil"
+
+#: templates/languages/admin/language_team.html:113
+#, fuzzy
+msgid "Unit admin"
+msgstr "Django site yöneticisi"
+
+#: templates/languages/admin/language_team.html:117
+#, fuzzy
+msgid "Critical:"
+msgstr "Kritik"
+
+#: templates/languages/admin/language_team.html:123
+#, fuzzy
+msgid "Total words:"
+msgstr "Toplam Kelime"
+
+#: templates/languages/admin/language_team.html:129
+#, fuzzy
+msgid "Translated:"
+msgstr "Çevrilmiş"
+
+#: templates/languages/admin/language_team.html:135
+#, fuzzy
+msgid "Needs work:"
+msgstr "Çalışma gerekli"
+
+#: templates/languages/admin/language_team.html:144
+#, fuzzy
+msgid "Suggestion admin"
+msgstr "Öneri %d:"
+
+#: templates/languages/admin/language_team.html:147
+#, python-format
+msgid "There are %(suggestions.count)s suggestions pending"
+msgstr ""
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"
@@ -2642,20 +2807,15 @@ msgstr "Ortak Profil"
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: templates/layout.html:116 templates/user/profile.html:68
-#: templates/user/stats.html:46 templates/user/stats.html:50
-msgid "Statistics"
-msgstr "İstatistikler"
-
-#: templates/layout.html:118
+#: templates/layout.html:117
 msgid "Admin"
 msgstr "Yönetici"
 
-#: templates/layout.html:121
+#: templates/layout.html:120
 msgid "Sign out"
 msgstr "Çıkış yap"
 
-#: templates/layout.html:125
+#: templates/layout.html:124
 msgid "Sign In"
 msgstr "Giriş Yap"
 
@@ -2723,7 +2883,7 @@ msgstr "Hayır teşekkürler. Çıkış yap"
 msgid "Continue"
 msgstr "Devam"
 
-#: templates/translation_projects/_nav.html:26
+#: templates/translation_projects/_nav.html:22
 msgid "Terminology"
 msgstr "Terminoloji"
 
@@ -2754,6 +2914,11 @@ msgstr "Terminolojiyi Yönet"
 #: templates/translation_projects/terminology/manage.html:39
 msgid "Term"
 msgstr "Terim"
+
+#: templates/translation_projects/terminology/manage.html:40
+#: templates/user/settings.html:28
+msgid "Translation"
+msgstr "Çeviri"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
@@ -2844,15 +3009,15 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "En son etkinlik:"
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:72
 msgid "My Website"
 msgstr "Web Sitem"
 
-#: templates/user/profile.html:84
+#: templates/user/profile.html:78
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn Profilim"
 
-#: templates/user/profile.html:93
+#: templates/user/profile.html:87
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -2860,7 +3025,7 @@ msgstr ""
 "Sizin hakkınızda konuşan diğer kişileri gösterin<br/>ve ortak profilinizin "
 "muhteşem görünmesini sağlayın!"
 
-#: templates/user/profile.html:103
+#: templates/user/profile.html:97
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -2868,7 +3033,7 @@ msgstr ""
 "Bazı çeviriler isimsiz gönüllüler tarafından sağlanır. Bu kişiler, bu özel "
 "meta-hesap altında kayıtlıdır."
 
-#: templates/user/profile.html:105
+#: templates/user/profile.html:99
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2912,6 +3077,14 @@ msgstr ""
 msgid "Reset Password"
 msgstr "Parolayı Sıfırla"
 
+#: templates/user/stats.html:13 templates/user/stats.html:17
+msgid "Statistics"
+msgstr "İstatistikler"
+
+#: templates/user/stats.html:27
+msgid "Daily activity"
+msgstr "Günlük etkinlik"
+
 #: templates/welcome.html:4
 msgid "Welcome"
 msgstr "Hoş geldiniz"
@@ -2931,6 +3104,73 @@ msgstr "Giriş yap"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
+
+#~ msgid "Translation Rate"
+#~ msgstr "Çeviri Oranı"
+
+#~ msgid "Effective from"
+#~ msgstr "Etkin olma"
+
+#~ msgid "Suggestion"
+#~ msgstr "Öneri"
+
+#~ msgid "Hourly Work"
+#~ msgstr "Saatlik Çalışma"
+
+#~ msgid "Correction"
+#~ msgstr "Düzeltme"
+
+#~ msgid "Type"
+#~ msgstr "Tür"
+
+#~ msgid "Amount"
+#~ msgstr "Miktar"
+
+#~ msgid "Date"
+#~ msgstr "Tarih"
+
+#~ msgid "User %s not found"
+#~ msgstr "Kullanıcı %s bulunamadı"
+
+#~ msgid "Invalid request method"
+#~ msgstr "Geçersiz istek yöntemi"
+
+#~ msgid "User missing"
+#~ msgstr "Kullanıcı eksik"
+
+#~ msgid "Overwritten submissions"
+#~ msgstr "Üzerine yazılmış sunuşlar"
+
+#~ msgid "Reports"
+#~ msgstr "Raporlar"
+
+#~ msgid "Export View"
+#~ msgstr "Görünümü Dışa Aktar"
+
+#~ msgid "All Projects"
+#~ msgstr "Tüm Projeler"
+
+#~ msgid "All Languages"
+#~ msgstr "Tüm Diller"
+
+#~ msgid "No strings."
+#~ msgstr "Satırlar yok."
+
+#~ msgid ""
+#~ "We displayed the first unit out of %(total_count)s. Please refine your "
+#~ "search."
+#~ msgid_plural ""
+#~ "We displayed the first %(unit_count)s units out of %(total_count)s. "
+#~ "Please refine your search."
+#~ msgstr[0] ""
+#~ "Toplam %(total_count)s birimin ilk %(unit_count)s birimini görüntüledik. "
+#~ "Lütfen aradığınızı daraltın."
+
+#~ msgid ""
+#~ "Below you can add, edit, and delete the permissions for this language."
+#~ msgstr ""
+#~ "Aşağıdan bu dil için izinleri ekleyebilir, düzenleyebilir ve "
+#~ "silebilirsiniz."
 
 #~ msgid "Location"
 #~ msgstr "Konum"
@@ -3565,9 +3805,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ "Açıklama ve talimatlar ön sayfa ve hakkında sayfasında gösterilir. "
 #~ "Geçerli HTML kullanıldığına emin olun."
 
-#~ msgid "Reviews"
-#~ msgstr "İncelemeler"
-
 #~ msgid "anonymous users"
 #~ msgstr "isimsiz kullanıcı"
 
@@ -3872,9 +4109,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #~ msgid "Show tags"
 #~ msgstr "Etiketleri göster"
-
-#~ msgid "Show filtering"
-#~ msgstr "Süzmeyi göster"
 
 #~ msgid "Filter using one or more tags"
 #~ msgstr "Bir ya da daha fazla etiket kullanarak süz"
@@ -4242,9 +4476,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #~ msgid "%(project)s project information"
 #~ msgstr "%(project)s projesi bilgisi"
-
-#~ msgid "%(language)s language information"
-#~ msgstr "%(language)s dili bilgisi"
 
 #~ msgid "Upload File"
 #~ msgstr "Dosya Gönder"
@@ -4829,9 +5060,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ msgid "Files and Subfolders"
 #~ msgstr "Dosyalar ve Altklasörler"
 
-#~ msgid "Pootle Demo"
-#~ msgstr "Pootle Tanıtım"
-
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2>This is a demo installation of Pootle.</h2>\n"
@@ -4972,9 +5200,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #~ msgid "Untranslated words"
 #~ msgstr "Çevrilmemiş kelime"
-
-#~ msgid "Total Words"
-#~ msgstr "Toplam Kelime"
 
 #~ msgid "Imported %(count)d unit from %(store)s"
 #~ msgid_plural "Imported %(count)d units from %(store)s"
@@ -5322,9 +5547,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ msgid "Current Translation:"
 #~ msgstr "Şu Anki Çeviri:"
 
-#~ msgid "Suggestion %d:"
-#~ msgstr "Öneri %d:"
-
 #~ msgid "Suggestion by %s:"
 #~ msgstr "Öneriyi yapan %s:"
 
@@ -5352,20 +5574,11 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ msgid "Related"
 #~ msgstr "İlgili"
 
-#~ msgid "Accept"
-#~ msgstr "Kabul Et"
-
-#~ msgid "Reject"
-#~ msgstr "Reddet"
-
 #~ msgid "No suggestion data given."
 #~ msgstr "Verilmiş öneri verisi yok."
 
 #~ msgid "Last"
 #~ msgstr "Son"
-
-#~ msgid "Django site admin"
-#~ msgstr "Django site yöneticisi"
 
 #~ msgid "Input Height"
 #~ msgstr "Girdi Yüksekliği"
@@ -5460,9 +5673,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ msgid "Activate New User"
 #~ msgstr "Yeni Kullanıcıyı Etkinleştir"
 
-#~ msgid "Remove User"
-#~ msgstr "Kullanıcıyı Sil"
-
 #~ msgid "Existing languages"
 #~ msgstr "Mevcut diller"
 
@@ -5489,9 +5699,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #~ msgid "Rights"
 #~ msgstr "Haklar"
-
-#~ msgid "Remove"
-#~ msgstr "Kaldır"
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
@@ -5556,9 +5763,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #~ msgid "Language Code"
 #~ msgstr "Dil Kodu"
-
-#~ msgid "Language Name"
-#~ msgstr "Dil İsmi"
 
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
@@ -5635,9 +5839,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #~ msgid "Set Goal"
 #~ msgstr "Hedef Ayarla"
-
-#~ msgid "Select Multiple"
-#~ msgstr "Çoklu Seç"
 
 #~ msgid "Assign To"
 #~ msgstr "Atanacak:"

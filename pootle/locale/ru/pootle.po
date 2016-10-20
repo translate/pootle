@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-28 17:16+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2016-09-29 22:54+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -61,8 +61,8 @@ msgstr "Введите корректное имя пользователя."
 msgid "Email Address"
 msgstr "Адрес электронной почты"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:90
-#: apps/pootle_project/models.py:194
+#: apps/accounts/models.py:73 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Имя и фамилия"
 
@@ -106,11 +106,11 @@ msgstr "Альтернативный язык исходников"
 msgid "Rate"
 msgstr "Тариф"
 
-#: apps/accounts/models.py:96 apps/reports/forms.py:32
+#: apps/accounts/models.py:96
 msgid "Review Rate"
 msgstr "Тариф на рецензию"
 
-#: apps/accounts/models.py:97 apps/reports/forms.py:37
+#: apps/accounts/models.py:97
 msgid "Hourly Rate"
 msgstr "Почасовой тариф"
 
@@ -118,7 +118,7 @@ msgstr "Почасовой тариф"
 msgid "Score"
 msgstr "Счет"
 
-#: apps/accounts/models.py:99 apps/reports/forms.py:21
+#: apps/accounts/models.py:99
 msgid "Currency"
 msgstr "Валюта"
 
@@ -154,7 +154,7 @@ msgstr "Статус"
 msgid "Please enter your message summary"
 msgstr "Введите тему сообщения"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:34 core/browser.py:16
+#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Название"
 
@@ -239,15 +239,15 @@ msgstr "Невозможно создать '%s'. Отсутствует Про�
 msgid "There was an error uploading your file"
 msgstr "Произошла ошибка при загрузке файла"
 
-#: apps/pootle_app/forms.py:36
+#: apps/pootle_app/forms.py:39
 msgid "Language code does not follow the ISO convention"
 msgstr "Код языка не совпадает с обозначением, принятым ISO"
 
-#: apps/pootle_app/forms.py:44 apps/pootle_project/models.py:222
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
 msgid "Source Language"
 msgstr "Язык источника"
 
-#: apps/pootle_app/forms.py:78
+#: apps/pootle_app/forms.py:88
 #, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
@@ -256,11 +256,11 @@ msgstr ""
 "Вы не можете удалить тип файла из проекта, если для него есть хранилище "
 "('%s')"
 
-#: apps/pootle_app/forms.py:98
+#: apps/pootle_app/forms.py:108
 msgid "Password"
 msgstr "Пароль"
 
-#: apps/pootle_app/forms.py:133 apps/pootle_profile/forms.py:28
+#: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "Пожалуйста, введите корректную ссылку на профиль в LinkedIn."
 
@@ -299,7 +299,7 @@ msgstr "Отозвать права"
 msgid "No files in this project."
 msgstr "В этом проекте нет файлов."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:183
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:172
 msgid "There are errors in the form. Please review the problems below."
 msgstr "В этой форме имеются ошибки. Просмотрите и исправьте их."
 
@@ -319,11 +319,71 @@ msgstr "Включено"
 msgid "Monolingual format"
 msgstr "Одноязычный формат"
 
-#: apps/pootle_language/models.py:83 apps/pootle_project/models.py:189
+#: apps/pootle_fs/forms.py:24
+msgid "Filesystem backend"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:25
+msgid "Select a backend filesystem"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:30
+msgid "Backend URL or path"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:32
+msgid "The URL or path to your translation files"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:35
+msgid "The translation path mapping for your filesystem"
+msgstr ""
+
+#: apps/pootle_language/forms.py:23
+#, fuzzy
+msgid "Member"
+msgstr "Числа"
+
+#: apps/pootle_language/forms.py:24
+#, fuzzy
+msgid "Submitter"
+msgstr "Зафиксировать"
+
+#: apps/pootle_language/forms.py:25
+#, fuzzy
+msgid "Reviewer"
+msgstr "Проверка"
+
+#: apps/pootle_language/forms.py:26
+#, fuzzy
+msgid "Administrator"
+msgstr "Администрирование"
+
+#: apps/pootle_language/forms.py:71
+#, fuzzy
+msgid "Admins"
+msgstr "Администратор"
+
+#: apps/pootle_language/forms.py:77
+#, fuzzy
+msgid "Reviewers"
+msgstr "Проверено"
+
+#: apps/pootle_language/forms.py:82
+#, fuzzy
+msgid "Submitters"
+msgstr "Зафиксировать"
+
+#: apps/pootle_language/forms.py:87
+#, fuzzy
+msgid "Members"
+msgstr "Числа"
+
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
 msgstr "Код"
 
-#: apps/pootle_language/models.py:84
+#: apps/pootle_language/models.py:86
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -333,19 +393,19 @@ msgstr ""
 "(_) кодом страны по ISO 3166. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Дополнительная информация</a>"
 
-#: apps/pootle_language/models.py:93 templates/languages/_nav.html:31
+#: apps/pootle_language/models.py:95 templates/languages/_nav.html:28
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Специальные символы"
 
-#: apps/pootle_language/models.py:94
+#: apps/pootle_language/models.py:96
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Введите любые спецсимволы, которые могут вызвать у пользователей трудности "
 "при наборе"
 
-#: apps/pootle_language/models.py:98
+#: apps/pootle_language/models.py:100
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -355,15 +415,15 @@ msgstr ""
 "\"http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/"
 "pluralforms.html\">посетите нашу документацию</a>."
 
-#: apps/pootle_language/models.py:104
+#: apps/pootle_language/models.py:106
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: apps/pootle_language/models.py:108
+#: apps/pootle_language/models.py:110
 msgid "Number of Plurals"
 msgstr "Число форм множественного числа"
 
-#: apps/pootle_language/models.py:111
+#: apps/pootle_language/models.py:113
 msgid "Plural Equation"
 msgstr "Выражение для формы множественного числа"
 
@@ -549,7 +609,7 @@ msgid "Unchanged"
 msgstr "Без изменений"
 
 #: apps/pootle_misc/checks.py:83 apps/pootle_store/constants.py:66
-#: core/helpers.py:48 core/utils/stats.py:30 templates/editor/_filters.html:9
+#: core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Не переведено"
 
@@ -689,32 +749,31 @@ msgstr "Формат Plurr"
 msgid "Plurr placeholders"
 msgstr "Заполнитель множественного числа"
 
-#. Translators: This is the name of a filter
-#: apps/pootle_misc/forms.py:91 core/helpers.py:52
+#: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Поиск"
 
-#: apps/pootle_misc/forms.py:92
+#: apps/pootle_misc/forms.py:102
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Поиск (Ctrl+Shift+S)<br/>Наберите и нажмите Enter для поиска"
 
-#: apps/pootle_misc/forms.py:100 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:437
 msgid "Exact Match"
 msgstr "Точное совпадение"
 
-#: apps/pootle_misc/forms.py:107 apps/pootle_store/forms.py:448
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:443
 msgid "Source Text"
 msgstr "Исходный текст"
 
-#: apps/pootle_misc/forms.py:108 apps/pootle_store/forms.py:449
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:444
 msgid "Target Text"
 msgstr "Целевой текст"
 
-#: apps/pootle_misc/forms.py:109 apps/pootle_store/forms.py:450
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:445
 msgid "Comments"
 msgstr "Комментарии"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:451
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:446
 msgid "Locations"
 msgstr "Местонахождения"
 
@@ -747,12 +806,17 @@ msgstr "Выберите один или несколько языков"
 msgid "Language"
 msgstr "Язык"
 
-#: apps/pootle_project/models.py:176
+#: apps/pootle_project/models.py:178
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" не может быть использован как код проекта"
 
-#: apps/pootle_project/models.py:183
+#: apps/pootle_project/models.py:186
+#, fuzzy, python-format
+msgid "\"%(code)s\" cannot be used as a project checker"
+msgstr "\"%(code)s\" не может быть использован как код проекта"
+
+#: apps/pootle_project/models.py:193
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -760,52 +824,53 @@ msgstr ""
 "Короткое кодовое название проекта. Может содержать только ASCII символы, "
 "цифры и знак подчёркивания (_)."
 
-#: apps/pootle_project/models.py:205
+#: apps/pootle_project/models.py:211
 msgid "Quality Checks"
 msgstr "Проверка качества"
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:217
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Автоматическое определение gnu и не gnu разметок проекта (медленнее)"
 
-#: apps/pootle_project/models.py:212
+#: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
 msgstr "Стиль GNU: файлы именуются по коду языка"
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:219
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Не GNU-стиль: каждый язык в своей директории"
 
-#: apps/pootle_project/models.py:214
-msgid "Allow pootle_fs to manage filesystems"
+#: apps/pootle_project/models.py:220
+#, fuzzy
+msgid "Allow Pootle FS to manage filesystems"
 msgstr "Разрешить pootle_fs управлять файловой системой"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
 msgstr "Дерево проекта"
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:232
 msgid "Ignore Files"
 msgstr "Игнорировать файлы"
 
-#: apps/pootle_project/models.py:231
+#: apps/pootle_project/models.py:237
 msgid "Errors Report Email"
 msgstr "Электронная почта для ошибок"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:238
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Адрес электронной почты, куда можно сообщать о проблемах с исходным текстом."
 
-#: apps/pootle_project/models.py:236
+#: apps/pootle_project/models.py:242
 msgid "Screenshot Search Prefix"
 msgstr "Префикс для поиска снимков экрана"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:247
 msgid "Disabled"
 msgstr "Отключено"
 
-#: apps/pootle_project/views.py:270
+#: apps/pootle_project/views.py:259
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -814,12 +879,12 @@ msgstr ""
 "Проект (%s) был создан. Сейчас происходит обновление хранилища проекта из "
 "шаблона."
 
-#: apps/pootle_project/views.py:277
+#: apps/pootle_project/views.py:266
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Проект (%s) был удален"
 
-#: apps/pootle_statistics/models.py:63 templates/editor/export_view.html:111
+#: apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Источник"
 
@@ -839,12 +904,12 @@ msgstr "Комментарий"
 msgid "Obsolete"
 msgstr "Устаревшее"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:215
-#: core/helpers.py:49 templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:212
+#: templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Необходима доработка"
 
-#: apps/pootle_store/constants.py:68 core/helpers.py:47 core/utils/stats.py:28
+#: apps/pootle_store/constants.py:68 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
 msgid "Translated"
 msgstr "Переведено"
@@ -861,11 +926,11 @@ msgstr "Недостаточно прав для доступа к режиму 
 msgid "Insufficient rights to access translation mode."
 msgstr "Недостаточно прав для доступа к режиму перевода."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:686
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:634
 msgid "Insufficient rights to access review mode."
 msgstr "Недостаточно прав для доступа к режиму одобрения предложений."
 
-#: apps/pootle_store/forms.py:104
+#: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -874,19 +939,19 @@ msgstr "Недостаточно прав для доступа к режиму 
 msgid "Plural Form %d"
 msgstr "Форма множественного числа %d"
 
-#: apps/pootle_store/forms.py:262
+#: apps/pootle_store/forms.py:258
 msgid "Value of `similarity` should be in in the [0..1] range"
 msgstr "Значение `similarity` должно быть в диапазоне [0..1]"
 
-#: apps/pootle_store/forms.py:272
+#: apps/pootle_store/forms.py:268
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
 msgstr "Значение `mt_similarity` должно быть в диапазоне [0..1]"
 
-#: apps/pootle_store/forms.py:294
+#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Флаг неточного перевода должен быть снят"
 
-#: apps/pootle_store/forms.py:355
+#: apps/pootle_store/forms.py:350
 msgid "Translator comment"
 msgstr "Комментарий переводчика"
 
@@ -902,7 +967,7 @@ msgstr "Принято"
 msgid "Rejected"
 msgstr "Отказано"
 
-#: apps/pootle_store/models.py:1147
+#: apps/pootle_store/models.py:969
 msgid "Path"
 msgstr "Путь"
 
@@ -940,38 +1005,38 @@ msgstr "Отклонено предложение от %(author)s с комме�
 msgid "Added suggestion"
 msgstr "Добавить предложение"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:79
-msgid "Path too long."
-msgstr "Путь слишком длинный."
+#: apps/pootle_store/utils.py:32
+msgid "Suggestion accepted with comment"
+msgstr "Предложение перевода принято с комментарием"
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:81
-#: core/decorators.py:43
-msgid "Arguments missing."
-msgstr "Параметры пропущены."
-
-#: apps/pootle_store/views.py:235
-msgid "Failed to remove comment."
-msgstr "Не удалось удалить комментарий."
-
-#: apps/pootle_store/views.py:270
-msgid "Comment submission failed."
-msgstr "Не удалось отправить комментарий."
-
-#: apps/pootle_store/views.py:588
-msgid "Failed to process submission."
-msgstr "Не удалось обработать данные."
-
-#: apps/pootle_store/views.py:629
-msgid "Failed to process suggestion."
-msgstr "Не удалось обработать предложение."
-
-#: apps/pootle_store/views.py:664
+#: apps/pootle_store/utils.py:34
 msgid "Suggestion rejected with comment"
 msgstr "Предложение перевода отклонено с комментарием"
 
-#: apps/pootle_store/views.py:668
-msgid "Suggestion accepted with comment"
-msgstr "Предложение перевода принято с комментарием"
+#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:102
+msgid "Path too long."
+msgstr "Путь слишком длинный."
+
+#: apps/pootle_store/views.py:177 apps/virtualfolder/views.py:104
+#: core/decorators.py:44
+msgid "Arguments missing."
+msgstr "Параметры пропущены."
+
+#: apps/pootle_store/views.py:232
+msgid "Failed to remove comment."
+msgstr "Не удалось удалить комментарий."
+
+#: apps/pootle_store/views.py:267
+msgid "Comment submission failed."
+msgstr "Не удалось отправить комментарий."
+
+#: apps/pootle_store/views.py:564
+msgid "Failed to process submission."
+msgstr "Не удалось обработать данные."
+
+#: apps/pootle_store/views.py:605
+msgid "Failed to process suggestion."
+msgstr "Не удалось обработать предложение."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -986,63 +1051,6 @@ msgstr "Создан проект (%s)"
 #, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Не удалось создать проект (%s)"
-
-#: apps/reports/forms.py:27
-msgid "Translation Rate"
-msgstr "Тариф на перевод"
-
-#: apps/reports/forms.py:42
-msgid "Effective from"
-msgstr "Действительно с"
-
-#: apps/reports/models.py:32 apps/reports/models.py:56
-#: templates/editor/export_view.html:112
-#: templates/translation_projects/terminology/manage.html:40
-#: templates/user/settings.html:28
-msgid "Translation"
-msgstr "Перевод"
-
-#: apps/reports/models.py:33 apps/reports/models.py:57
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Проверка"
-
-#: apps/reports/models.py:34
-msgid "Suggestion"
-msgstr "Предложение"
-
-#: apps/reports/models.py:58
-msgid "Hourly Work"
-msgstr "Почасовая работа"
-
-#: apps/reports/models.py:59
-msgid "Correction"
-msgstr "Исправление"
-
-#: apps/reports/models.py:63
-msgid "Type"
-msgstr "Тип"
-
-#: apps/reports/models.py:65
-msgid "Amount"
-msgstr "Количество"
-
-#: apps/reports/models.py:67
-msgid "Date"
-msgstr "Дата"
-
-#: apps/reports/models.py:68 apps/virtualfolder/models.py:63
-msgid "Description"
-msgstr "Описание"
-
-#: apps/reports/views.py:323
-#, python-format
-msgid "User %s not found"
-msgstr "Пользователь %s не найден"
-
-#: apps/reports/views.py:402
-msgid "Invalid request method"
-msgstr "Неверный метод запроса"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1060,7 +1068,7 @@ msgstr "Активна страница или нет."
 msgid "Virtual Path"
 msgstr "Виртуальный путь"
 
-#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:39
+#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:32
 msgid "Title"
 msgstr "Название"
 
@@ -1118,33 +1126,37 @@ msgid "Text is missing"
 msgstr "Текст пропущен"
 
 #. Translators: This is a noun.
-#: apps/virtualfolder/models.py:46
+#: apps/virtualfolder/models.py:39
 msgid "Filter"
 msgstr "Фильтр"
 
-#: apps/virtualfolder/models.py:48
+#: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
 "Правила фильтрации, которые говорят, что хранит этот виртуальный каталог."
 
-#: apps/virtualfolder/models.py:52 core/browser.py:21
+#: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
 msgstr "Приоритет"
 
-#: apps/virtualfolder/models.py:54
+#: apps/virtualfolder/models.py:47
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr "Число обозначает важность. Чем больше приоритет, тем выше важность."
 
-#: apps/virtualfolder/models.py:58
+#: apps/virtualfolder/models.py:51
 msgid "Is public?"
 msgstr "Публичный?"
 
-#: apps/virtualfolder/models.py:60
+#: apps/virtualfolder/models.py:53
 msgid "Whether this virtual folder is public or not."
 msgstr "Виден виртуальный каталог для всех или нет."
 
-#: apps/virtualfolder/models.py:65
+#: apps/virtualfolder/models.py:56
+msgid "Description"
+msgstr "Описание"
+
+#: apps/virtualfolder/models.py:58
 #, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
@@ -1473,13 +1485,56 @@ msgstr ""
 "Проверьте настройки электронной почты и убедитесь, что сервер электронной "
 "почты работает."
 
-#: checks.py:444
+#: checks.py:449
 msgid "Revision is missing or has an incorrect value."
 msgstr "Ревизия не найдена или имеет некорректное значение."
 
-#: checks.py:445
+#: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "Запустите `revision --restore` чтобы восстановить счётчик ревизий."
+
+#: checks.py:464
+msgid "No canonical URL provided and default site set to example.com."
+msgstr ""
+
+#: checks.py:466
+msgid ""
+"Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
+"are using django.contrib.sites."
+msgstr ""
+
+#: checks.py:470
+msgid "Canonical URL is set to http://localhost."
+msgstr ""
+
+#: checks.py:472
+msgid ""
+"Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
+"leave it empty if you are using `django.contrib.sites`."
+msgstr ""
+
+#: checks.py:502
+#, fuzzy
+msgid "POOTLE_FS_WORKING_PATH setting is not set."
+msgstr "Переменная POOTLE_CONTACT_EMAIL не задана."
+
+#: checks.py:506
+msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
+msgstr ""
+
+#: checks.py:507
+msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
+msgstr ""
+
+#: checks.py:512
+msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
+msgstr ""
+
+#: checks.py:514
+msgid ""
+"Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
+"'chmod +w'"
+msgstr ""
 
 #: core/browser.py:26
 msgid "Project"
@@ -1507,7 +1562,7 @@ msgstr "Последнее изменение"
 msgid "Suggestions"
 msgstr "Предложений переводов"
 
-#: core/browser.py:65 core/helpers.py:50 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:37
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Незавершено"
@@ -1524,58 +1579,54 @@ msgstr "Перейти к языку"
 msgid "Back to parent folder"
 msgstr "Перейти на уровень выше"
 
-#: core/decorators.py:309 core/views/decorators.py:69
+#: core/decorators.py:310 core/views/decorators.py:69
 msgid "Insufficient rights to access this page."
 msgstr "Недостаточно прав для доступа к этой странице."
 
-#: core/decorators.py:322 core/views/mixins.py:26
+#: core/decorators.py:323 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "У вас нет прав для администрирования Pootle."
 
-#: core/forms.py:116
+#: core/forms.py:117
 msgid "Time to answer has expired"
 msgstr "Время для ответа истекло"
 
-#: core/forms.py:135
+#: core/forms.py:136
 msgid "Enter a number"
 msgstr "Введите число"
 
-#: core/forms.py:150
+#: core/forms.py:151
 msgid "Incorrect"
 msgstr "Неверно"
 
-#: core/helpers.py:34
-msgid "User missing"
-msgstr "Пользователь не найден"
+#: core/forms.py:180
+msgid "With selected"
+msgstr ""
 
-#. Translators: This refers to "All strings"
-#: core/helpers.py:46 templates/browser/_actions.html:50
-#: templates/editor/_filters.html:6
-msgid "All"
-msgstr "Все"
+#: core/forms.py:184
+msgid "Reject"
+msgstr "Отказаться"
 
-#: core/helpers.py:53 templates/editor/_filters.html:18
-msgid "Checks"
-msgstr "Проверки"
+#: core/forms.py:185
+msgid "Accept"
+msgstr "Принять"
 
-#: core/helpers.py:54 templates/editor/_filters.html:13
-msgid "My submissions"
-msgstr "Мои переводы"
+#: core/forms.py:187
+#, fuzzy
+msgid "Add comment"
+msgstr "Добавить комментарий"
 
-#: core/helpers.py:55 templates/admin/dashboard.html:13
-msgid "Submissions"
-msgstr "Опубликовано"
+#: core/forms.py:193
+msgid "Select all matching filter criteria, including those not shown"
+msgstr ""
 
-#. Translators: This is a type of filtering criterion that
-#. selects the strings that have been submitted by me at some point
-#. in time but have been overwritten by other users.
-#: core/helpers.py:56 templates/editor/_filters.html:17
-msgid "My overwritten submissions"
-msgstr "Мои перезаписанные предложения"
+#: core/forms.py:210
+msgid "You must specify an action to take"
+msgstr ""
 
-#: core/helpers.py:57
-msgid "Overwritten submissions"
-msgstr "Перезаписанные предложения"
+#: core/forms.py:212
+msgid "FormtableForm must specify a valid search_field"
+msgstr ""
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1650,7 +1701,7 @@ msgstr "Условия использования"
 msgid "Terms of Service"
 msgstr "Условия обслуживания"
 
-#: templates/about.html:7 templates/layout.html:171
+#: templates/about.html:7 templates/layout.html:170
 msgid "About"
 msgstr "О сайте"
 
@@ -1749,23 +1800,25 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: templates/admin/_tabs.html:16 templates/admin/languages.html:4
-#: templates/admin/languages.html:7 templates/projects/_nav.html:28
+#: templates/admin/languages.html:7 templates/projects/_nav.html:23
 #: templates/projects/admin/languages.html:7
-#: templates/projects/all/_nav.html:28
+#: templates/projects/all/_nav.html:19
 msgid "Languages"
 msgstr "Языки"
 
-#: templates/admin/_tabs.html:21 templates/admin/projects.html:4
-#: templates/admin/projects.html:7 templates/projects/base.html:5
+#: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
+#: templates/admin/project_fs.html:8 templates/admin/projects.html:4
+#: templates/admin/projects.html:7
+#: templates/languages/admin/language_team.html:99
+#: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Проекты"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
-#: templates/admin/permissions.html:7 templates/languages/_nav.html:26
-#: templates/languages/admin/permissions.html:5 templates/projects/_nav.html:33
+#: templates/admin/permissions.html:7 templates/projects/_nav.html:30
 #: templates/projects/admin/permissions.html:7
-#: templates/projects/all/_nav.html:33
-#: templates/translation_projects/_nav.html:31
+#: templates/projects/all/_nav.html:24
+#: templates/translation_projects/_nav.html:29
 #: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
 msgstr "Права доступа"
@@ -1775,11 +1828,6 @@ msgstr "Права доступа"
 msgid "Static Pages"
 msgstr "Статические страницы"
 
-#: templates/admin/_tabs.html:36 templates/admin/reports.html:45
-#: templates/admin/reports.html:48
-msgid "Reports"
-msgstr "Отчеты"
-
 #: templates/admin/base.html:4 templates/admin/base.html:7
 msgid "Administration"
 msgstr "Администрирование"
@@ -1787,6 +1835,10 @@ msgstr "Администрирование"
 #: templates/admin/dashboard.html:7
 msgid "Server Statistics"
 msgstr "Статистика сервера"
+
+#: templates/admin/dashboard.html:13
+msgid "Submissions"
+msgstr "Опубликовано"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
@@ -1877,6 +1929,10 @@ msgstr "Поддействия"
 msgid "Raw Translation"
 msgstr "Сырой перевод"
 
+#: templates/admin/detailed_reports.html:233
+msgid "Review"
+msgstr "Проверка"
+
 #: templates/admin/detailed_reports.html:250
 #: templates/admin/detailed_reports.html:309
 msgid "registered tasks"
@@ -1911,7 +1967,6 @@ msgstr ""
 "сервера Pootle."
 
 #: templates/admin/permissions.html:14
-#: templates/languages/admin/permissions.html:11
 #: templates/projects/admin/permissions.html:13
 #: templates/translation_projects/admin/permissions.html:11
 msgid ""
@@ -1926,9 +1981,64 @@ msgstr ""
 "выполнившие вход в систему, кроме прав, которые были назначены им "
 "индивидуально."
 
-#: templates/admin/reports.html:58 templates/user/stats.html:60
-msgid "Daily activity"
-msgstr "Дневная активность"
+#: templates/admin/project_fs.html:15
+#, python-format
+msgid "Filesystem configuration: %(project_code)s"
+msgstr ""
+
+#: templates/admin/project_fs.html:19
+msgid "Backend configuration"
+msgstr ""
+
+#: templates/admin/project_fs.html:24
+msgid "Update filesystem configuration"
+msgstr ""
+
+#: templates/admin/project_fs.html:27
+msgid "Translation paths should be of the format:"
+msgstr ""
+
+#: templates/admin/project_fs.html:35
+msgid ""
+"Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
+"ext&gt;`"
+msgstr ""
+
+#: templates/admin/project_fs.html:38
+msgid ""
+"If you are using the localfs backend the translation path will be combined "
+"with the path specified in\n"
+"\t    backend URL"
+msgstr ""
+
+#: templates/admin/project_fs.html:42
+msgid ""
+"For other backends the translation path will be relative to the root of the "
+"repository."
+msgstr ""
+
+#: templates/admin/project_fs.html:49
+#, fuzzy
+msgid "Language mapping configuration"
+msgstr "Информация о языках %(language)s"
+
+#: templates/admin/project_fs.html:59
+msgid "Remove"
+msgstr "Удалить"
+
+#: templates/admin/project_fs.html:60
+#, fuzzy
+msgid "Pootle code"
+msgstr "Демонстрация Pootle"
+
+#: templates/admin/project_fs.html:61
+msgid "Filesystem code"
+msgstr ""
+
+#: templates/admin/project_fs.html:72
+#, fuzzy
+msgid "Update"
+msgstr "Обновления"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2069,6 +2179,11 @@ msgstr "Продолжить перевод"
 msgid "View all"
 msgstr "Показать все"
 
+#. Translators: This refers to "All strings"
+#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+msgid "All"
+msgstr "Все"
+
 #: templates/browser/_progressbar.html:3
 #, python-format
 msgid "<span class=\"value translated\">0</span>%% translated"
@@ -2201,6 +2316,21 @@ msgstr "Вернуться к просмотру"
 msgid "My suggestions"
 msgstr "Мои предложения переводов"
 
+#: templates/editor/_filters.html:13
+msgid "My submissions"
+msgstr "Мои переводы"
+
+#. Translators: This is a type of filtering criterion that
+#. selects the strings that have been submitted by me at some point
+#. in time but have been overwritten by other users.
+#: templates/editor/_filters.html:17
+msgid "My overwritten submissions"
+msgstr "Мои перезаписанные предложения"
+
+#: templates/editor/_filters.html:18
+msgid "Checks"
+msgstr "Проверки"
+
 #: templates/editor/_filters.html:23
 msgid "Select type"
 msgstr "Выбрать тип"
@@ -2241,69 +2371,33 @@ msgstr "Всего строк"
 msgid "Go to the next string (Ctrl+Down)"
 msgstr "Переход на следующую строку (Ctrl+Down)"
 
-#: templates/editor/email/suggestion_accepted_with_comment.txt:2
-#, python-format
+#: templates/editor/email/suggestions_accepted_with_comment.txt:2
+#, fuzzy
 msgid ""
-"Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
-"accepted with the following comment:"
+"The following suggestions submitted by you have been accepted with the "
+"comment:"
 msgstr ""
 "Предложение перевода #%(suggestion_id)s отправленное вами для %(unit_url)s "
 "было одобрено со следующим комментарием:"
 
-#: templates/editor/email/suggestion_accepted_with_comment.txt:7
-#: templates/editor/email/suggestion_rejected_with_comment.txt:7
+#: templates/editor/email/suggestions_accepted_with_comment.txt:10
+#: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
 "Мы надеемся, что этот отзыв поможет вам улучшить ваши следующие правки."
 
-#: templates/editor/email/suggestion_rejected_with_comment.txt:2
-#, python-format
+#: templates/editor/email/suggestions_rejected_with_comment.txt:2
+#, fuzzy
 msgid ""
-"Suggestion #%(suggestion_id)s submitted by you for %(unit_url)s has been "
-"rejected with the following comment:"
+"The following suggestions submitted by you have been rejected with the "
+"comment:"
 msgstr ""
 "Предложение перевода #%(suggestion_id)s отправленное вами для %(unit_url)s "
 "было отклонено со следующим комментарием:"
 
-#: templates/editor/export_view.html:6 templates/languages/_nav.html:18
-#: templates/projects/_nav.html:20 templates/projects/all/_nav.html:20
-#: templates/translation_projects/_nav.html:18
-msgid "Export View"
-msgstr "Экспортированный вид"
-
-#: templates/editor/export_view.html:7 templates/editor/export_view.html:104
-msgid "All Projects"
-msgstr "Все проекты"
-
-#: templates/editor/export_view.html:8 templates/editor/export_view.html:105
-msgid "All Languages"
-msgstr "Все языки"
-
-#: templates/editor/export_view.html:152
-msgid "No strings."
-msgstr "Нет строк."
-
-#: templates/editor/export_view.html:158
-#, python-format
-msgid ""
-"We displayed the first unit out of %(total_count)s. Please refine your "
-"search."
-msgid_plural ""
-"We displayed the first %(unit_count)s units out of %(total_count)s. Please "
-"refine your search."
-msgstr[0] ""
-"Отображен первый сегмент из %(total_count)s. Пожалуйста, уточните критерии "
-"поиска."
-msgstr[1] ""
-"Отображены первые %(unit_count)s сегмента из %(total_count)s. Пожалуйста, "
-"уточните критерии поиска."
-msgstr[2] ""
-"Отображены первые %(unit_count)s сегментов из %(total_count)s. Пожалуйста, "
-"уточните критерии поиска."
-
-#: templates/editor/main.html:4 templates/languages/_nav.html:10
-#: templates/projects/_nav.html:11 templates/projects/all/_nav.html:11
-#: templates/translation_projects/_nav.html:10
+#: templates/editor/main.html:4 templates/languages/_nav.html:12
+#: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
+#: templates/translation_projects/_nav.html:13
 msgid "Translate"
 msgstr "Перевод"
 
@@ -2611,17 +2705,81 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Была получена ошибка:"
 
-#: templates/languages/_nav.html:5 templates/projects/_nav.html:5
+#: templates/includes/formtable.html:25
+#, fuzzy
+msgid "Showing"
+msgstr "Показать назначения"
+
+#: templates/includes/formtable.html:81
+#, fuzzy
+msgid "Select all"
+msgstr "Выбрать несколько"
+
+#: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
-#: templates/translation_projects/_nav.html:5
+#: templates/translation_projects/_nav.html:6
 msgid "Browse"
 msgstr "Обзор"
 
-#: templates/languages/admin/permissions.html:9
-msgid "Below you can add, edit, and delete the permissions for this language."
+#: templates/languages/_nav.html:21
+msgid "Team"
 msgstr ""
-"Ниже вы можете добавить, редактировать или удалять права доступа для этого "
-"языка."
+
+#: templates/languages/admin/language_team.html:5
+#, fuzzy
+msgid "Language team"
+msgstr "Название языка"
+
+#: templates/languages/admin/language_team.html:15
+msgid "Member admin"
+msgstr ""
+
+#: templates/languages/admin/language_team.html:28
+msgid "Add team member"
+msgstr ""
+
+#: templates/languages/admin/language_team.html:44
+#: templates/languages/admin/language_team.html:60
+#: templates/languages/admin/language_team.html:76
+#: templates/languages/admin/language_team.html:92
+#, fuzzy
+msgid "Remove selected"
+msgstr "Удалить пользователя"
+
+#: templates/languages/admin/language_team.html:113
+#, fuzzy
+msgid "Unit admin"
+msgstr "Администратор Django"
+
+#: templates/languages/admin/language_team.html:117
+#, fuzzy
+msgid "Critical:"
+msgstr "Критические"
+
+#: templates/languages/admin/language_team.html:123
+#, fuzzy
+msgid "Total words:"
+msgstr "Всего слов"
+
+#: templates/languages/admin/language_team.html:129
+#, fuzzy
+msgid "Translated:"
+msgstr "Переведено"
+
+#: templates/languages/admin/language_team.html:135
+#, fuzzy
+msgid "Needs work:"
+msgstr "Необходима доработка"
+
+#: templates/languages/admin/language_team.html:144
+#, fuzzy
+msgid "Suggestion admin"
+msgstr "Предложение %d:"
+
+#: templates/languages/admin/language_team.html:147
+#, python-format
+msgid "There are %(suggestions.count)s suggestions pending"
+msgstr ""
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"
@@ -2646,20 +2804,15 @@ msgstr "Публичный профиль"
 msgid "Settings"
 msgstr "Настройки"
 
-#: templates/layout.html:116 templates/user/profile.html:68
-#: templates/user/stats.html:46 templates/user/stats.html:50
-msgid "Statistics"
-msgstr "Статистика"
-
-#: templates/layout.html:118
+#: templates/layout.html:117
 msgid "Admin"
 msgstr "Администратор"
 
-#: templates/layout.html:121
+#: templates/layout.html:120
 msgid "Sign out"
 msgstr "Выйти"
 
-#: templates/layout.html:125
+#: templates/layout.html:124
 msgid "Sign In"
 msgstr "Войти"
 
@@ -2725,7 +2878,7 @@ msgstr "Нет, спасибо. Выйти."
 msgid "Continue"
 msgstr "Продолжить"
 
-#: templates/translation_projects/_nav.html:26
+#: templates/translation_projects/_nav.html:22
 msgid "Terminology"
 msgstr "Терминология"
 
@@ -2756,6 +2909,11 @@ msgstr "Управление терминологией"
 #: templates/translation_projects/terminology/manage.html:39
 msgid "Term"
 msgstr "Термин"
+
+#: templates/translation_projects/terminology/manage.html:40
+#: templates/user/settings.html:28
+msgid "Translation"
+msgstr "Перевод"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
@@ -2843,22 +3001,22 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "Последняя активность:"
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:72
 msgid "My Website"
 msgstr "Мой веб-сайт"
 
-#: templates/user/profile.html:84
+#: templates/user/profile.html:78
 msgid "My LinkedIn Profile"
 msgstr "Мой профиль на LinkedIn"
 
-#: templates/user/profile.html:93
+#: templates/user/profile.html:87
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 "Расскажите остальным о себе,<br/>украсьте тем самым свой публичный профиль!"
 
-#: templates/user/profile.html:103
+#: templates/user/profile.html:97
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -2866,7 +3024,7 @@ msgstr ""
 "Некоторые переводы были предоставлены анонимными волонтерами. Они будут "
 "учтены под специальной учетной записью."
 
-#: templates/user/profile.html:105
+#: templates/user/profile.html:99
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -2910,6 +3068,14 @@ msgstr ""
 msgid "Reset Password"
 msgstr "Сбросить пароль"
 
+#: templates/user/stats.html:13 templates/user/stats.html:17
+msgid "Statistics"
+msgstr "Статистика"
+
+#: templates/user/stats.html:27
+msgid "Daily activity"
+msgstr "Дневная активность"
+
 #: templates/welcome.html:4
 msgid "Welcome"
 msgstr "Добро пожаловать"
@@ -2929,6 +3095,79 @@ msgstr "Войти"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Топ переводчиков за последние 30 дней"
+
+#~ msgid "Translation Rate"
+#~ msgstr "Тариф на перевод"
+
+#~ msgid "Effective from"
+#~ msgstr "Действительно с"
+
+#~ msgid "Suggestion"
+#~ msgstr "Предложение"
+
+#~ msgid "Hourly Work"
+#~ msgstr "Почасовая работа"
+
+#~ msgid "Correction"
+#~ msgstr "Исправление"
+
+#~ msgid "Type"
+#~ msgstr "Тип"
+
+#~ msgid "Amount"
+#~ msgstr "Количество"
+
+#~ msgid "Date"
+#~ msgstr "Дата"
+
+#~ msgid "User %s not found"
+#~ msgstr "Пользователь %s не найден"
+
+#~ msgid "Invalid request method"
+#~ msgstr "Неверный метод запроса"
+
+#~ msgid "User missing"
+#~ msgstr "Пользователь не найден"
+
+#~ msgid "Overwritten submissions"
+#~ msgstr "Перезаписанные предложения"
+
+#~ msgid "Reports"
+#~ msgstr "Отчеты"
+
+#~ msgid "Export View"
+#~ msgstr "Экспортированный вид"
+
+#~ msgid "All Projects"
+#~ msgstr "Все проекты"
+
+#~ msgid "All Languages"
+#~ msgstr "Все языки"
+
+#~ msgid "No strings."
+#~ msgstr "Нет строк."
+
+#~ msgid ""
+#~ "We displayed the first unit out of %(total_count)s. Please refine your "
+#~ "search."
+#~ msgid_plural ""
+#~ "We displayed the first %(unit_count)s units out of %(total_count)s. "
+#~ "Please refine your search."
+#~ msgstr[0] ""
+#~ "Отображен первый сегмент из %(total_count)s. Пожалуйста, уточните "
+#~ "критерии поиска."
+#~ msgstr[1] ""
+#~ "Отображены первые %(unit_count)s сегмента из %(total_count)s. Пожалуйста, "
+#~ "уточните критерии поиска."
+#~ msgstr[2] ""
+#~ "Отображены первые %(unit_count)s сегментов из %(total_count)s. "
+#~ "Пожалуйста, уточните критерии поиска."
+
+#~ msgid ""
+#~ "Below you can add, edit, and delete the permissions for this language."
+#~ msgstr ""
+#~ "Ниже вы можете добавить, редактировать или удалять права доступа для "
+#~ "этого языка."
 
 #~ msgid "Location"
 #~ msgstr "Местонахождение"
@@ -3498,9 +3737,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ "Описание и инструкции, отображаемые на заглавной странице и странице с "
 #~ "информацией о проекте. Используйте корректный HTML код."
 
-#~ msgid "Reviews"
-#~ msgstr "Проверено"
-
 #~ msgid "anonymous users"
 #~ msgstr "анонимные пользователи"
 
@@ -4033,9 +4269,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ msgid "%(project)s project information"
 #~ msgstr "%(project)s информация о проекте "
 
-#~ msgid "%(language)s language information"
-#~ msgstr "Информация о языках %(language)s"
-
 #~ msgid "Upload File"
 #~ msgstr "Загрузить файл"
 
@@ -4552,9 +4785,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ msgid "Files and Subfolders"
 #~ msgstr "Файлы и вложенные папки"
 
-#~ msgid "Pootle Demo"
-#~ msgstr "Демонстрация Pootle"
-
 #~ msgid ""
 #~ "<div dir=\"ltr\" lang=\"en\">\n"
 #~ "<h2>This is a demo installation of Pootle.</h2>\n"
@@ -4652,9 +4882,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 
 #~ msgid "Untranslated words"
 #~ msgstr "Не переведено слов"
-
-#~ msgid "Total Words"
-#~ msgstr "Всего слов"
 
 #~ msgid "Imported %(count)d unit from %(store)s"
 #~ msgid_plural "Imported %(count)d units from %(store)s"
@@ -4918,9 +5145,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ msgid "Current Translation:"
 #~ msgstr "Текущий перевод:"
 
-#~ msgid "Suggestion %d:"
-#~ msgstr "Предложение %d:"
-
 #~ msgid "Suggestion by %s:"
 #~ msgstr "Предложение от %s:"
 
@@ -4948,20 +5172,11 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ msgid "Related"
 #~ msgstr "Связанные"
 
-#~ msgid "Accept"
-#~ msgstr "Принять"
-
-#~ msgid "Reject"
-#~ msgstr "Отказаться"
-
 #~ msgid "No suggestion data given."
 #~ msgstr "Предложение перевода не имеет данных."
 
 #~ msgid "Last"
 #~ msgstr "Последний"
-
-#~ msgid "Django site admin"
-#~ msgstr "Администратор Django"
 
 #~ msgid "Input Height"
 #~ msgstr "Высота окна ввода"
@@ -5056,9 +5271,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ msgid "Activate New User"
 #~ msgstr "Активировать нового пользователя"
 
-#~ msgid "Remove User"
-#~ msgstr "Удалить пользователя"
-
 #~ msgid "Existing languages"
 #~ msgstr "Существующие языки"
 
@@ -5084,9 +5296,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 
 #~ msgid "Rights"
 #~ msgstr "Права"
-
-#~ msgid "Remove"
-#~ msgstr "Удалить"
 
 #~ msgid ""
 #~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
@@ -5152,9 +5361,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 
 #~ msgid "Language Code"
 #~ msgstr "Код языка"
-
-#~ msgid "Language Name"
-#~ msgstr "Название языка"
 
 #~ msgid "%d language, average %d%% translated"
 #~ msgid_plural "%d languages, average %d%% translated"
@@ -5231,9 +5437,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 #~ msgid "Set Goal"
 #~ msgstr "Установить задачу"
 
-#~ msgid "Select Multiple"
-#~ msgstr "Выбрать несколько"
-
 #~ msgid "Assign To"
 #~ msgstr "Назначить"
 
@@ -5257,9 +5460,6 @@ msgstr "Топ переводчиков за последние 30 дней"
 
 #~ msgid "Hide Goals"
 #~ msgstr "Скрыть задачи"
-
-#~ msgid "Show Assigns"
-#~ msgstr "Показать назначения"
 
 #~ msgid "Hide Assigns"
 #~ msgstr "Скрыть назначения"

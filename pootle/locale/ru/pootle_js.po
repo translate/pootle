@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-09-29 13:38+0100\n"
+"POT-Creation-Date: 2016-10-20 14:11+0100\n"
 "PO-Revision-Date: 2016-09-29 22:55+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,9 +117,8 @@ msgid "Overview"
 msgstr "Общая информация"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
-msgstr "Права доступа"
+msgid "Team"
+msgstr ""
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -197,6 +196,15 @@ msgstr "Выключено"
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
 msgstr "Языки"
+
+#: static/js/admin/components/Project/ProjectForm.js:150
+msgid "Permissions"
+msgstr "Права доступа"
+
+#: static/js/admin/components/Project/ProjectForm.js:152
+#, fuzzy
+msgid "Filesystems"
+msgstr "Типы файлов"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -329,41 +337,36 @@ msgstr "Публичный профиль"
 msgid "Settings"
 msgstr "Настройки"
 
-#: static/js/admin/components/User/UserForm.js:162
-msgid "Statistics"
-msgstr "Статистика"
-
-#: static/js/admin/components/User/UserForm.js:163
-msgid "Reports"
-msgstr "Отчеты"
-
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
 msgstr "Предпросмотр отображается здесь."
 
-#: static/js/auth/components/AccountActivation.js:32
-#: static/js/auth/components/RequestPasswordResetSent.js:44
-#, python-format, javascript-format
-msgid "We have sent an email containing the special link to <span>%s</span>"
+#: static/js/auth/components/AccountActivation.js:33
+#, fuzzy, python-format, javascript-format
+msgid ""
+"We have sent an email containing the special link to <span>%s</span>. Please "
+"check your spam folder if you do not see the email."
 msgstr "Мы отправили письмо, содержащее специальную ссылку, на <span>%s</span>"
 
-#: static/js/auth/components/AccountActivation.js:37
+#: static/js/auth/components/AccountActivation.js:41
+#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
-"register this account."
+"register this account. Please check your spam folder if you do not see the "
+"email."
 msgstr ""
 "Мы отправили письмо, содержащее специальную ссылку, на адрес, который "
 "использовался при регистрации учетной записи."
 
-#: static/js/auth/components/AccountActivation.js:42
+#: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
 msgstr "Ваша учетная запись требует активации."
 
-#: static/js/auth/components/AccountActivation.js:44
+#: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
 msgstr "Пожалуйста, проследуйте по этой ссылке для создания учетной записи."
 
-#: static/js/auth/components/AccountActivation.js:59
+#: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
@@ -553,7 +556,23 @@ msgstr "Показывать отключенные"
 msgid "Hide disabled"
 msgstr "Спрятать отключенные"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:640
+#: static/js/browser.js:284
+msgid "All Languages"
+msgstr "Все языки"
+
+#: static/js/browser.js:289
+msgid "All Projects"
+msgstr "Все проекты"
+
+#: static/js/browser.js:294
+msgid "Entire Project"
+msgstr "Весь проект"
+
+#: static/js/common.js:149
+msgid "Updating data"
+msgstr ""
+
+#: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -608,52 +627,52 @@ msgstr "Предложения %s"
 msgid "%s's overwritten submissions"
 msgstr "Измененные предложения %s"
 
-#: static/js/editor/app.js:1113
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Ошибка при соединении с сервером"
 
-#: static/js/editor/app.js:1117
+#: static/js/editor/app.js:1073
 msgid "Not found"
 msgstr "Не найдено"
 
-#: static/js/editor/app.js:1119
+#: static/js/editor/app.js:1075
 msgid "Server error"
 msgstr "Ошибка сервера"
 
-#: static/js/editor/app.js:1121
+#: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
 msgstr "Кажется, сервер не работает. Попробуйте повторить позже."
 
-#: static/js/editor/app.js:1130
+#: static/js/editor/app.js:1086
 msgid "This string no longer exists."
 msgstr "Эта строка больше не существует."
 
-#: static/js/editor/app.js:1131
+#: static/js/editor/app.js:1087
 msgid "Go back to browsing"
 msgstr "Вернуться к просмотру"
 
-#: static/js/editor/app.js:1133
+#: static/js/editor/app.js:1089
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
-#: static/js/editor/app.js:1898 static/js/editor/app.js:632
+#: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
 msgstr "Нет результатов."
 
-#: static/js/editor/app.js:2234
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "анонимный пользователь"
 
-#: static/js/editor/app.js:2236
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "кто-то"
 
-#: static/js/editor/app.js:2254 static/js/editor/app.js:2303
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "Похожие переводы"
 
-#: static/js/editor/components/Editor.js:64
-#: static/js/editor/components/UnitSource.js:38
+#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "Форма #%(index)s"
@@ -678,87 +697,6 @@ msgstr "Отклонить"
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s с загрузки файла"
-
-#. Translators: renders as 'Jul 1, Fri'. Reorder if necessary.
-#: static/js/reports/app.js:287
-msgid "%b %d, %a"
-msgstr "%b %d, %a"
-
-#: static/js/reports/app.js:289
-msgid "Jan"
-msgstr "янв"
-
-#: static/js/reports/app.js:290
-msgid "Feb"
-msgstr "фев"
-
-#: static/js/reports/app.js:291
-msgid "Mar"
-msgstr "мар"
-
-#: static/js/reports/app.js:292
-msgid "Apr"
-msgstr "апр"
-
-#: static/js/reports/app.js:293
-msgid "May"
-msgstr "май"
-
-#: static/js/reports/app.js:294
-msgid "Jun"
-msgstr "июн"
-
-#: static/js/reports/app.js:295
-msgid "Jul"
-msgstr "июл"
-
-#: static/js/reports/app.js:296
-msgid "Aug"
-msgstr "авг"
-
-#: static/js/reports/app.js:297
-msgid "Sep"
-msgstr "сен"
-
-#: static/js/reports/app.js:298
-msgid "Oct"
-msgstr "окт"
-
-#: static/js/reports/app.js:299
-msgid "Nov"
-msgstr "ноя"
-
-#: static/js/reports/app.js:300
-msgid "Dec"
-msgstr "дек"
-
-#: static/js/reports/app.js:303
-msgid "Sun"
-msgstr "вс"
-
-#: static/js/reports/app.js:304
-msgid "Mon"
-msgstr "пн"
-
-#: static/js/reports/app.js:305
-msgid "Tue"
-msgstr "вт"
-
-#: static/js/reports/app.js:306
-msgid "Wed"
-msgstr "ср"
-
-#: static/js/reports/app.js:307
-msgid "Thu"
-msgstr "чт"
-
-#: static/js/reports/app.js:308
-msgid "Fri"
-msgstr "пт"
-
-#: static/js/reports/app.js:309
-msgid "Sat"
-msgstr "сб"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -841,7 +779,7 @@ msgstr "%(user)s отрецензировал %(sourceString)s"
 msgid "%(user)s marked as needs work %(sourceString)s"
 msgstr "%(user)s отметил неточным %(sourceString)s"
 
-#: static/js/shared/models/project.js:58
+#: static/js/shared/models/project.js:62
 msgid "disabled"
 msgstr "выключено"
 
@@ -925,11 +863,11 @@ msgstr "Несколько секунд назад"
 msgid "Congratulations! You have completed this task!"
 msgstr "Поздравляем! Вы выполнили это задание!"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Collapse details"
 msgstr "Свернуть подробности"
 
-#: static/js/stats.js:456
+#: static/js/stats.js:419
 msgid "Expand details"
 msgstr "Показать подробности"
 
@@ -1014,6 +952,11 @@ msgstr "Нет, спасибо"
 msgid "Send Email"
 msgstr "Отправить Email"
 
+#: static/js/auth/components/RequestPasswordResetSent.js:44
+#, python-format
+msgid "We have sent an email containing the special link to <span>%s</span>"
+msgstr "Мы отправили письмо, содержащее специальную ссылку, на <span>%s</span>"
+
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "Создание новых учетных записей отключено."
@@ -1029,18 +972,6 @@ msgstr ""
 "Мы нашли пользователя с электронной почтой <span>%(email)s</span> в нашей "
 "системе. Пожалуйста, введите пароль, чтобы завершить процедуру входа. Эта "
 "процедура свяжет учетные записи Pootle и %(provider)s."
-
-#: static/js/browser.js:267
-msgid "All Languages"
-msgstr "Все языки"
-
-#: static/js/browser.js:271
-msgid "All Projects"
-msgstr "Все проекты"
-
-#: static/js/browser.js:275
-msgid "Entire Project"
-msgstr "Весь проект"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
@@ -1187,6 +1118,72 @@ msgid ""
 msgstr ""
 "Переведено %(fullname)s в проекте &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Statistics"
+#~ msgstr "Статистика"
+
+#~ msgid "Reports"
+#~ msgstr "Отчеты"
+
+#~ msgid "%b %d, %a"
+#~ msgstr "%b %d, %a"
+
+#~ msgid "Jan"
+#~ msgstr "янв"
+
+#~ msgid "Feb"
+#~ msgstr "фев"
+
+#~ msgid "Mar"
+#~ msgstr "мар"
+
+#~ msgid "Apr"
+#~ msgstr "апр"
+
+#~ msgid "May"
+#~ msgstr "май"
+
+#~ msgid "Jun"
+#~ msgstr "июн"
+
+#~ msgid "Jul"
+#~ msgstr "июл"
+
+#~ msgid "Aug"
+#~ msgstr "авг"
+
+#~ msgid "Sep"
+#~ msgstr "сен"
+
+#~ msgid "Oct"
+#~ msgstr "окт"
+
+#~ msgid "Nov"
+#~ msgstr "ноя"
+
+#~ msgid "Dec"
+#~ msgstr "дек"
+
+#~ msgid "Sun"
+#~ msgstr "вс"
+
+#~ msgid "Mon"
+#~ msgstr "пн"
+
+#~ msgid "Tue"
+#~ msgstr "вт"
+
+#~ msgid "Wed"
+#~ msgstr "ср"
+
+#~ msgid "Thu"
+#~ msgstr "чт"
+
+#~ msgid "Fri"
+#~ msgstr "пт"
+
+#~ msgid "Sat"
+#~ msgstr "сб"
 
 #~ msgid "muted %(check)s for %(sourceString)s"
 #~ msgstr "заглушил %(check)s для %(sourceString)s"
