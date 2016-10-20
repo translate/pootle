@@ -34,7 +34,6 @@ class ProjectFSAdminForm(forms.Form):
         help_text=_(
             "The translation path mapping for your filesystem"))
 
-    @property
     def should_save(self):
         return self.is_valid()
 

@@ -39,7 +39,6 @@ class LanguageTeamBaseAdminForm(forms.Form):
     def language_team(self):
         return language_team.get(self.language.__class__)(self.language)
 
-    @property
     def should_save(self):
         rm_members = [
             self.cleaned_data["rm_%ss" % role]
