@@ -2353,7 +2353,7 @@ h2:lang(zh) a
     text-align: left;
 }
 
-.error
+.msg-error
 {
     color: red;
     font-weight: bold;

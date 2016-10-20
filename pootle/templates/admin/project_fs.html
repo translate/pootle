@@ -52,7 +52,7 @@
 	  {% csrf_token %}
 	  {{ lang_mapping_formset.management_form }}
 	  {% for error in lang_mapping_formset.non_form_errors %}
-	  <div class="error padded-top padded-bottom">{{ error }}</div>
+	  <div class="msg-error padded-top padded-bottom">{{ error }}</div>
 	  {% endfor %}
 	  <table>
 	    <tr>
