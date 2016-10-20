@@ -267,7 +267,8 @@ def run_app(project, default_settings_path, settings_template,
     # ImproperlyConfigured error on trying to run any pootle commands
     # NB: it may be possible to remove this when #4006 is fixed
     caches = settings.CACHES.keys()
-    if "stats" not in caches or "redis" not in caches:
+    # FIXME prefer pootle.core.cache::PERSISTANT_STORE
+    if "redis" not in caches:
         sys.stdout.write("\nYou need to configure the CACHES setting, "
                          "or to use the defaults remove CACHES from %s\n\n"
                          "Once you have fixed the CACHES setting you should "
