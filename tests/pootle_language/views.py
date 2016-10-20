@@ -10,10 +10,22 @@ import json
 
 import pytest
 
+from django import forms
 from django.core.urlresolvers import reverse
 
 from pootle.core.delegate import language_team
+from pootle.core.forms import FormtableForm
 from pootle_language.forms import LanguageTeamAdminForm
+from pootle_language.views import SuggestionDisplay, SuggestionFormtable
+from pootle_store.constants import STATES_MAP
+from pootle_store.models import Unit
+
+
+class DummyFormtableForm(FormtableForm):
+    search_field = "units"
+    units = forms.ModelMultipleChoiceField(
+        Unit.objects.order_by("id"),
+        required=False)
 
 
 @pytest.mark.django_db
@@ -135,3 +147,45 @@ def test_view_language_team_admin_post(client, language0, request_users,
     team.update_permissions()
     assert search_member not in team.members
     assert response.status_code == 302
+
+
+# TODO: move me to somewhere suggestion related
+@pytest.mark.django_db
+def test_display_language_suggestion(language0):
+    team = language_team.get()(language0)
+    suggestion = team.suggestions.first()
+    display = SuggestionDisplay(suggestion)
+    assert display.__suggestion__ is suggestion
+    assert (
+        display.project
+        == ("<a href='%s'>%s</a>"
+            % (suggestion.unit.store.translation_project.pootle_path,
+               suggestion.unit.store.translation_project.project.code)))
+    assert display.unit == display.__suggestion__.unit.source
+    assert (
+        display.unit_link
+        == ("<a href='%s'>#%s</a>"
+            % (suggestion.unit.get_translate_url(),
+               suggestion.unit.id)))
+    assert (
+        str(display.unit_state)
+        == STATES_MAP[suggestion.unit.state])
+    assert (
+        display.state
+        == suggestion.state)
+
+    with pytest.raises(AttributeError):
+        display.DOES_NOT_EXIST
+
+
+@pytest.mark.django_db
+def test_formtable_language_team_suggestions(language0):
+    formtable = SuggestionFormtable(DummyFormtableForm())
+    assert formtable.row_field == "suggestions"
+    assert (
+        formtable.filters_template
+        == "languages/admin/includes/suggestions_header.html")
+    assert formtable.messages == []
+
+    formtable = SuggestionFormtable(DummyFormtableForm(), messages=["FOO"])
+    assert formtable.messages == ["FOO"]

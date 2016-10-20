@@ -8,11 +8,16 @@
 
 import pytest
 
+from django.core import mail
 from django.core.urlresolvers import reverse
 
+from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.forms import (
+    LanguageSuggestionAdminForm,
     LanguageTeamAdminForm, LanguageTeamNewMemberSearchForm)
 from pootle_language.teams import LanguageTeam
+from pootle_store.constants import FUZZY, OBSOLETE
+from pootle_store.models import SuggestionStates
 
 
 @pytest.mark.django_db
@@ -101,3 +106,193 @@ def test_form_language_admin_bad(language0, member):
         language=language0,
         data=dict(new_member=member.id))
     assert form.errors["role"]
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions(language0, admin):
+    form = LanguageSuggestionAdminForm(
+        language=language0, user=admin)
+    suggesters = list(
+        (username,
+         ("%s (%s)" % (fullname, username)
+          if fullname.strip()
+          else username))
+        for username, fullname
+        in sorted(form.language_team.users_with_suggestions))
+    assert (
+        form.filter_suggester_choices
+        == [("", "-----")] + suggesters)
+    suggestions = form.language_team.suggestions.filter(
+        unit__store__translation_project__project__disabled=False)
+    assert (
+        list(form.suggestions_qs.values_list("id", flat=True))
+        == list(
+            suggestions.values_list("id", flat=True)))
+    tps = form.language.translationproject_set.exclude(
+        project__disabled=True)
+    tps = tps.filter(
+        stores__unit__suggestion__state=SuggestionStates.PENDING)
+    assert (
+        list(form.filter_tp_qs.values_list("id"))
+        == list(tps.order_by("project__code").distinct().values_list("id")))
+    assert (
+        list(form.fields["filter_suggester"].choices)
+        == list(form.filter_suggester_choices))
+    assert (
+        list(form.fields["filter_tp"].queryset)
+        == list(form.filter_tp_qs))
+    assert (
+        list(form.fields["suggestions"].queryset)
+        == list(form.suggestions_qs))
+    assert (
+        form.fields["actions"].choices
+        == [("", "----"),
+            ("reject", _("Reject")),
+            ("accept", _("Accept"))])
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions_save(language0, admin):
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin)
+    suggestions = form.language_team.suggestions[:3]
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(
+            actions="accept",
+            suggestions=list(
+                suggestions.values_list(
+                    "id", flat=True))))
+    assert form.is_valid()
+    assert (
+        list(form.suggestions_to_save)
+        == list(suggestions))
+    form.save()
+    for suggestion in form.suggestions_to_save:
+        assert suggestion.state == "accepted"
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions_save_all(language0, tp0, admin):
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(
+            actions="reject",
+            select_all=True,
+            filter_tp=tp0.id))
+    assert (
+        list(form.suggestions_to_save)
+        == list(
+            form.language_team.suggestions.filter(
+                unit__store__translation_project=tp0)))
+    form.save()
+    for suggestion in form.suggestions_to_save:
+        assert suggestion.state == "rejected"
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions_search(language0, tp0, admin):
+    form = LanguageSuggestionAdminForm(language=language0, user=admin)
+    team = form.language_team
+    suggester = team.users_with_suggestions.pop()[0]
+    suggestions = form.language_team.suggestions.filter(
+        unit__store__translation_project__project__disabled=False)
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(filter_suggester=suggester))
+    assert form.is_valid()
+    assert (
+        list(form.search())
+        == list(suggestions.filter(user__username=suggester)))
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(filter_tp=tp0.id))
+    assert form.is_valid()
+    assert (
+        list(form.search())
+        == list(suggestions.filter(unit__store__translation_project=tp0)))
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(filter_state=FUZZY))
+    assert form.is_valid()
+    assert (
+        list(form.search())
+        == list(suggestions.filter(unit__state=FUZZY)))
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions_bad(language0, tp0, admin):
+    with pytest.raises(KeyError):
+        LanguageSuggestionAdminForm(language=language0)
+    with pytest.raises(KeyError):
+        LanguageSuggestionAdminForm(user=admin)
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(filter_tp=tp0.id, filter_state=OBSOLETE))
+    assert not form.is_valid()
+    assert (
+        list(form.batch().paginator.object_list)
+        == list(
+            form.language_team.suggestions.filter(
+                unit__store__translation_project=tp0)))
+    assert not form.suggestions_review
+    assert not form.suggestions_to_save
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions_accept_comment(language0, tp0, admin,
+                                                  member2_with_email):
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(
+            actions="accept",
+            comment="no thanks",
+            select_all=True,
+            filter_tp=tp0.id))
+    assert (
+        list(form.suggestions_to_save)
+        == list(
+            form.language_team.suggestions.filter(
+                unit__store__translation_project=tp0)))
+    form.save()
+    for suggestion in form.suggestions_to_save:
+        assert suggestion.state == "accepted"
+    assert len(mail.outbox) == 1
+    message = mail.outbox[0].message()
+    for suggestion in form.suggestions_to_save:
+        assert ("#%s" % suggestion.id) in str(message)
+    assert "accept" in mail.outbox[0].subject.lower()
+
+
+@pytest.mark.django_db
+def test_form_language_suggestions_reject_comment(language0, tp0, admin,
+                                                  member2_with_email):
+    form = LanguageSuggestionAdminForm(
+        language=language0,
+        user=admin,
+        data=dict(
+            actions="reject",
+            comment="no thanks",
+            select_all=True,
+            filter_tp=tp0.id))
+    assert (
+        list(form.suggestions_to_save)
+        == list(
+            form.language_team.suggestions.filter(
+                unit__store__translation_project=tp0)))
+    form.save()
+    for suggestion in form.suggestions_to_save:
+        assert suggestion.state == "rejected"
+    assert len(mail.outbox) == 1
+    message = mail.outbox[0].message()
+    for suggestion in form.suggestions_to_save:
+        assert ("#%s" % suggestion.id) in str(message)
+    assert "reject" in mail.outbox[0].subject.lower()
