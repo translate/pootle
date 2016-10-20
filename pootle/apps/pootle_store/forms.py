@@ -226,7 +226,6 @@ def unit_form_factory(language, snplurals=None, request=None):
             self.request = kwargs.pop('request', None)
             super(UnitForm, self).__init__(*args, **kwargs)
             self._updated_fields = []
-
             self.fields['target_f'].widget.attrs['data-translation-aid'] = \
                 self['target_f'].value()
 
@@ -242,7 +241,7 @@ def unit_form_factory(language, snplurals=None, request=None):
             value = self.cleaned_data['target_f']
 
             if self.instance.target != multistring(value or [u'']):
-                self.instance._target_updated = True
+                self.cleaned_data["target_updated"] = True
                 self._updated_fields.append((SubmissionFields.TARGET,
                                             to_db(self.instance.target),
                                             to_db(value)))
@@ -293,9 +292,9 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             if new_target:
                 if old_state == UNTRANSLATED:
-                    self.instance._save_action = TRANSLATION_ADDED
+                    self.cleaned_data["save_action"] = TRANSLATION_ADDED
                 else:
-                    self.instance._save_action = TRANSLATION_CHANGED
+                    self.cleaned_data["save_action"] = TRANSLATION_CHANGED
 
                 if is_fuzzy:
                     new_state = FUZZY
@@ -304,19 +303,28 @@ def unit_form_factory(language, snplurals=None, request=None):
             else:
                 new_state = UNTRANSLATED
                 if old_state > FUZZY:
-                    self.instance._save_action = TRANSLATION_DELETED
+                    self.cleaned_data["save_action"] = TRANSLATION_DELETED
 
             if old_state not in [new_state, OBSOLETE]:
-                self.instance._state_updated = True
+                self.cleaned_data["state_updated"] = True
                 self._updated_fields.append((SubmissionFields.STATE,
-                                            old_state, new_state))
+                                             old_state, new_state))
 
                 self.cleaned_data['state'] = new_state
             else:
-                self.instance._state_updated = False
+                self.cleaned_data["state_updated"] = False
                 self.cleaned_data['state'] = old_state
 
             return super(UnitForm, self).clean()
+
+        def save(self, *args, **kwargs):
+            kwargs["commit"] = False
+            unit = super(UnitForm, self).save(*args, **kwargs)
+            unit.save(
+                action=self.cleaned_data.get("save_action"),
+                state_updated=self.cleaned_data.get("state_updated"),
+                target_updated=self.cleaned_data.get("target_updated"))
+            return unit
 
     return UnitForm
 
