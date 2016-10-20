@@ -303,6 +303,16 @@ class Unit(models.Model, base.TranslationUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+        source_updated = kwargs.pop("source_updated", None) or self._source_updated
+        target_updated = kwargs.pop("target_updated", None) or self._target_updated
+        state_updated = kwargs.pop("state_updated", None) or self._state_updated
+        auto_translated = (
+            kwargs.pop("auto_translated", None)
+            or self._auto_translated)
+        comment_updated = (
+            kwargs.pop("comment_updated", None)
+            or self._comment_updated)
+        action = kwargs.pop("action", None) or getattr(self, "_save_action", None)
 
         if not hasattr(self, '_log_user'):
             User = get_user_model()
@@ -310,29 +320,26 @@ class Unit(models.Model, base.TranslationUnit):
         user = kwargs.pop("user", self._log_user)
 
         if created:
-            self._save_action = UNIT_ADDED
+            action = UNIT_ADDED
 
-        if self._source_updated:
+        if source_updated:
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_length = len(self.source_f)
             self.update_wordcount(auto_translate=True)
 
-        if self._target_updated:
+        if target_updated:
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-
-                    if not hasattr(self, '_save_action'):
-                        self._save_action = TRANSLATION_ADDED
+                    action = action or TRANSLATION_ADDED
                 else:
-                    if not hasattr(self, '_save_action'):
-                        self._save_action = TRANSLATION_CHANGED
+                    action = action or TRANSLATION_CHANGED
             else:
-                self._save_action = TRANSLATION_DELETED
+                action = TRANSLATION_DELETED
                 # if it was TRANSLATED then set to UNTRANSLATED
                 if self.state > FUZZY:
                     self.state = UNTRANSLATED
@@ -342,22 +349,24 @@ class Unit(models.Model, base.TranslationUnit):
         # since that change doesn't require further sync but note that
         # auto_translated units require further sync
         revision = kwargs.pop('revision', None)
-        if revision is not None and not self._auto_translated:
+        if revision is not None and not auto_translated:
             self.revision = revision
-        elif (self._target_updated or
-              self._state_updated or
-              self._comment_updated):
+        elif target_updated or state_updated or comment_updated:
             self.revision = Revision.incr()
 
-        if not created and hasattr(self, '_save_action'):
-            action_log(user=self._log_user, action=self._save_action,
-                       lang=self.store.translation_project.language.code,
-                       unit=self.id, translation=self.target_f,
-                       path=self.store.pootle_path)
-
-        if (self._state_updated and self.state == TRANSLATED and
-            self._save_action == TRANSLATION_CHANGED and
-            not self._target_updated):
+        if not created and action:
+            action_log(
+                user=self._log_user,
+                action=action,
+                lang=self.store.translation_project.language.code,
+                unit=self.id,
+                translation=self.target_f,
+                path=self.store.pootle_path)
+        was_fuzzy = (
+            state_updated and self.state == TRANSLATED
+            and action == TRANSLATION_CHANGED
+            and not target_updated)
+        if was_fuzzy:
             # set reviewer data if FUZZY has been removed only and
             # translation hasn't been updated
             self.reviewed_on = timezone.now()
@@ -376,15 +385,17 @@ class Unit(models.Model, base.TranslationUnit):
 
         super(Unit, self).save(*args, **kwargs)
 
-        if hasattr(self, '_save_action') and self._save_action == UNIT_ADDED:
-            action_log(user=self._log_user, action=self._save_action,
-                       lang=self.store.translation_project.language.code,
-                       unit=self.id, translation=self.target_f,
-                       path=self.store.pootle_path)
-
+        if action and action == UNIT_ADDED:
+            action_log(
+                user=self._log_user,
+                action=action,
+                lang=self.store.translation_project.language.code,
+                unit=self.id,
+                translation=self.target_f,
+                path=self.store.pootle_path)
             self.add_initial_submission(user=user)
 
-        if self._source_updated or self._target_updated:
+        if source_updated or target_updated:
             if not (created and self.state == UNTRANSLATED):
                 self.update_qualitychecks()
             if self.istranslated():
@@ -514,21 +525,28 @@ class Unit(models.Model, base.TranslationUnit):
             User = get_user_model()
             user = User.objects.get_system_user()
 
-        if (self.source != unit.source or
-            len(self.source.strings) != stringcount(unit.source) or
-            self.hasplural() != unit.hasplural()):
-
+        update_source = (
+            self.source != unit.source
+            or (len(self.source.strings)
+                != stringcount(unit.source))
+            or (self.hasplural()
+                != unit.hasplural()))
+        if update_source:
             if unit.hasplural() and len(unit.source.strings) == 1:
                 self.source = [unit.source, PLURAL_PLACEHOLDER]
             else:
                 self.source = unit.source
-
             changed = True
 
-        if (self.target != unit.target or
-            len(self.target.strings) != stringcount(unit.target)):
+        update_target = (
+            self.target != unit.target
+            or (len(self.target.strings)
+                != stringcount(unit.target)))
+        if update_target:
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
+            self.submitted_by = user
+            self.submitted_on = timezone.now()
 
             if filter(None, self.target_f.strings) or notempty:
                 # FIXME: we need to do this cause we discard nplurals for empty
@@ -842,8 +860,6 @@ class Unit(models.Model, base.TranslationUnit):
         self._save_action = UNIT_RESURRECTED
 
     def istranslated(self):
-        if self._target_updated and not self.isfuzzy():
-            return bool(filter(None, self.target_f.strings))
         return self.state >= TRANSLATED
 
 # # # # # # # # # # # Suggestions # # # # # # # # # # # # # # # # #
@@ -1158,36 +1174,34 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             or syncers.get("default"))
         return syncer_class(self)
 
-    def record_submissions(self, unit, old_target, old_state, current_time,
-                           user, submission_type=None):
+    def record_submissions(self, unit, old_target, old_state, current_time, user,
+                           submission_type=None, **kwargs):
         """Records all applicable submissions for `unit`.
 
         EXTREME HAZARD: this relies on implicit `._<field>_updated` members
         being available in `unit`. Let's look into replacing such members with
         something saner (#3895).
         """
+        state_updated = kwargs.get("state_updated") or unit._state_updated
+        target_updated = kwargs.get("target_updated") or unit._target_updated
+        comment_updated = kwargs.get("comment_updated") or unit._comment_updated
+
         create_subs = OrderedDict()
 
-        # FIXME: extreme implicit hazard
-        if unit._state_updated:
+        if state_updated:
             create_subs[SubmissionFields.STATE] = [
                 old_state,
-                unit.state,
-            ]
+                unit.state]
 
-        # FIXME: extreme implicit hazard
-        if unit._target_updated:
+        if target_updated:
             create_subs[SubmissionFields.TARGET] = [
                 old_target,
-                unit.target_f,
-            ]
+                unit.target_f]
 
-        # FIXME: extreme implicit hazard
-        if unit._comment_updated:
+        if comment_updated:
             create_subs[SubmissionFields.COMMENT] = [
                 '',
-                unit.translator_comment or '',
-            ]
+                unit.translator_comment or '']
 
         if submission_type is None:
             submission_type = SubmissionTypes.SYSTEM
@@ -1259,9 +1273,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
         newunit = self.UnitClass(store=self, index=index)
         newunit.update(unit, user=user)
-        if newunit._target_updated or newunit.istranslated():
-            newunit.submitted_by = user
-            newunit.submitted_on = timezone.now()
 
         if self.id:
             newunit.save(revision=update_revision, user=user)
