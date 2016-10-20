@@ -25,7 +25,7 @@ class PootleFormView(FormView):
             kwargs=self.success_kwargs)
 
     def form_valid(self, form):
-        if form.should_save:
+        if form.should_save():
             form.save()
             self.add_success_message(form)
             return super(PootleFormView, self).form_valid(form)
