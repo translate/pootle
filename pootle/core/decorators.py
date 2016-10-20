@@ -361,7 +361,7 @@ class persistent_property(object):
             return self
         cache_key = self._get_cache_key(instance)
         if cache_key:
-            cache = get_cache()
+            cache = get_cache('lru')
             cached = cache.get(cache_key)
             if cached is not None:
                 # cache hit

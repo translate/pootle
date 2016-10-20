@@ -176,7 +176,7 @@ def check_settings(app_configs=None, **kwargs):
                 id="pootle.C004",
             ))
 
-    redis_cache_aliases = ("default", "redis", "stats")
+    redis_cache_aliases = ("default", "redis", "lru")
     redis_locations = set()
     for alias in redis_cache_aliases:
         if alias in settings.CACHES:
@@ -185,7 +185,7 @@ def check_settings(app_configs=None, **kwargs):
     if len(redis_locations) < len(redis_cache_aliases):
         errors.append(checks.Critical(
             _("Distinct django_redis.cache.RedisCache configurations "
-              "are required for `default`, `redis` and `stats`."),
+              "are required for `default`, `redis` and `lru`."),
             hint=_("Double-check your CACHES settings"),
             id="pootle.C017",
         ))
