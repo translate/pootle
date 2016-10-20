@@ -8,14 +8,11 @@
 
 import logging
 
-from pootle.core.cache import get_cache
-
 
 __all__ = ('TreeItem', 'CachedTreeItem', 'CachedMethods')
 
 
 logger = logging.getLogger('stats')
-cache = get_cache('stats')
 
 
 class NoCachedStats(Exception):

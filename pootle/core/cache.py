@@ -13,7 +13,7 @@ from django.core.cache.backends.base import InvalidCacheBackendError
 from django.core.exceptions import ImproperlyConfigured
 
 
-PERSISTENT_STORES = ('redis', 'stats')
+PERSISTENT_STORES = ('redis',)
 
 
 def make_method_key(model, method, key):
