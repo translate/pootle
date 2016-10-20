@@ -19,10 +19,10 @@
 	    </div>
 	    <div class="pagination-center">
 	      <span class="pagination-info js-pagination-page-no">
-		Page {{ formtable.form.page }} of {{ formtable.page.paginator.num_pages }}.
+		Page {{ formtable.page_no }} of {{ formtable.page.paginator.num_pages }}.
 	      </span>
 	      <span class="pagination-info js-pagination-items-per-page">
-		{% blocktrans %}Showing{% endblocktrans %} {{ formtable.form.results_per_page }} {{ formtable.form.results_per_page.label }}
+		{% blocktrans %}Showing{% endblocktrans %} {{ formtable.results_per_page }} {{ formtable.form.results_per_page.label }}
 	      </span>
 	    </div>
 	    <div class="pagination-right js-pagination-next">
