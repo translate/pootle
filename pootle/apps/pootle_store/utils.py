@@ -24,6 +24,9 @@ from .constants import FUZZY, TRANSLATED
 from .models import Suggestion, SuggestionStates
 
 
+User = get_user_model()
+
+
 class SuggestionsReview(object):
     accept_email_template = 'editor/email/suggestions_accepted_with_comment.txt'
     accept_email_subject = _(u"Suggestion accepted with comment")
@@ -65,50 +68,46 @@ class SuggestionsReview(object):
             boolean indicating if the suggestion was successfully added.
             If the suggestion already exists it's returned as well.
         """
-        if not filter(None, translation):
+        dont_add = (
+            not filter(None, translation)
+            or translation == unit.target)
+        if dont_add:
             return (None, False)
-
-        if translation == unit.target:
-            return (None, False)
-
-        if user is None:
-            User = get_user_model()
-            user = User.objects.get_system_user()
-
+        user = user or User.objects.get_system_user()
         try:
             suggestion = Suggestion.objects.pending().get(
                 unit=unit,
                 user=user,
-                target_f=translation,
-            )
+                target_f=translation)
             return (suggestion, False)
         except Suggestion.DoesNotExist:
-            suggestion = Suggestion(
+            suggestion = Suggestion.objects.create(
                 unit=unit,
                 user=user,
                 state=SuggestionStates.PENDING,
-                creation_time=timezone.now(),
-            )
-            suggestion.target = translation
-            suggestion.save()
-
-            sub = Submission(
-                creation_time=suggestion.creation_time,
-                translation_project=unit.store.translation_project,
-                submitter=user,
-                unit=unit,
-                store=unit.store,
-                type=SubmissionTypes.SUGG_ADD,
-                suggestion=suggestion,
+                target=translation,
+                creation_time=timezone.now())
+            self.create_submission(
+                suggestion,
+                SubmissionTypes.SUGG_ADD,
+                user,
                 similarity=similarity,
-                mt_similarity=mt_similarity,
-            )
-            sub.save()
-
+                mt_similarity=mt_similarity).save()
             if touch:
                 unit.save()
-
         return (suggestion, True)
+
+    def create_submission(self, suggestion, suggestion_type, user, **kwargs):
+        return Submission(
+            creation_time=kwargs.get("creation_time", suggestion.creation_time),
+            translation_project=suggestion.unit.store.translation_project,
+            submitter=user,
+            unit=suggestion.unit,
+            store=suggestion.unit.store,
+            type=suggestion_type,
+            suggestion=suggestion,
+            similarity=kwargs.get("similarity"),
+            mt_similarity=kwargs.get("mt_similarity"))
 
     def accept_suggestion(self, suggestion):
         unit = suggestion.unit
@@ -124,23 +123,15 @@ class SuggestionsReview(object):
         if unit.state == FUZZY:
             unit.state = TRANSLATED
 
-        if suggestion.user_id is not None:
-            suggestion_user = suggestion.user
-        else:
-            User = get_user_model()
-            suggestion_user = User.objects.get_nobody_user()
-
         current_time = timezone.now()
         suggestion.state = SuggestionStates.ACCEPTED
         suggestion.reviewer = self.reviewer
         suggestion.review_time = current_time
         suggestion.save()
-
         create_subs = OrderedDict()
         if old_state != unit.state:
             create_subs[SubmissionFields.STATE] = [old_state, unit.state]
         create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
-
         subs_created = []
         for field in create_subs:
             kwargs = {
@@ -166,37 +157,27 @@ class SuggestionsReview(object):
         # important to set these attributes after saving Submission
         # because in the `ScoreLog` we need to access the unit's certain
         # attributes before it was saved
-        unit.submitted_by = suggestion_user
+        # THIS NEEDS TO GO ^^
+        unit.submitted_by = (
+            suggestion.user
+            if suggestion.user_id is not None
+            else User.objects.get_nobody_user())
         unit.submitted_on = current_time
         unit.reviewed_by = self.reviewer
         unit.reviewed_on = unit.submitted_on
         unit._log_user = self.reviewer
-
-        # Update timestamp
         unit.save()
 
     def reject_suggestion(self, suggestion):
-        unit = suggestion.unit
-        translation_project = unit.store.translation_project
-
         suggestion.state = SuggestionStates.REJECTED
         suggestion.review_time = timezone.now()
         suggestion.reviewer = self.reviewer
         suggestion.save()
-
-        sub = Submission(
-            creation_time=suggestion.review_time,
-            translation_project=translation_project,
-            submitter=self.reviewer,
-            unit=unit,
-            store=unit.store,
-            type=SubmissionTypes.SUGG_REJECT,
-            suggestion=suggestion,
-        )
-        sub.save()
-
-        # Update timestamp
-        unit.save()
+        self.create_submission(
+            suggestion,
+            SubmissionTypes.SUGG_REJECT,
+            self.reviewer,
+            creation_time=suggestion.review_time).save()
 
     def accept_suggestions(self):
         for suggestion in self.suggestions:
