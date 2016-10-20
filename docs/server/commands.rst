@@ -160,9 +160,14 @@ Use the :option:`--rqdata` to flush all data contained in ``redis`` cache:
 pending jobs, revision (which will be automatically restored), all data from
 queues.
 
+.. django-admin-option:: --lru
+
+Use the :option:`--lru` to flush all lru cache data contained
+in ``lru`` cache.
+
 .. django-admin-option:: --all
 
-Use the :option:`--all` to flush all caches (``default``, ``redis``) data.
+Use the :option:`--all` to flush all caches (``default``, ``redis``, ``lru``) data.
 
 
 .. django-admin:: refresh_scores
