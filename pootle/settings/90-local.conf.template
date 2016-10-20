@@ -86,10 +86,10 @@ DATABASES = {
 #        'LOCATION': 'redis://127.0.0.1:6379/2',
 #        'TIMEOUT': None,
 #    },
-#    'stats': {
+#    'lru': {
 #        'BACKEND': 'django_redis.cache.RedisCache',
 #        'LOCATION': 'redis://127.0.0.1:6379/3',
-#        'TIMEOUT': None,
+#        'TIMEOUT': 604800,  # 1 week
 #    },
 #    'exports': {
 #        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
