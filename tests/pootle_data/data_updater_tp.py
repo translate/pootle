@@ -55,13 +55,10 @@ def test_data_tp_util_wordcount(tp0):
     unit.state = FUZZY
     unit.save()
     updated_stats = _calc_word_counts(units.all())
-    # TODO: remove with signals
-    unit.store.data_tool.update()
     update_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     for k in WORDCOUNT_KEYS:
         assert update_data[k] == updated_stats[k]
-    # TODO: remove with signals
-    tp0.data_tool.update()
     for k in WORDCOUNT_KEYS:
         assert getattr(tp0.data, k) == updated_stats[k]
     assert (
@@ -90,12 +87,9 @@ def test_data_tp_util_max_unit_revision(tp0):
     unit = units.first()
     unit.target = "SOMETHING ELSE"
     unit.save()
-    # TODO: remove with signals
-    unit.store.data_tool.update()
     update_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert update_data["max_unit_revision"] == unit.revision
-    # TODO: remove with signals
-    tp0.data_tool.update()
     assert tp0.data.max_unit_revision == unit.revision
 
     # if you pass the unit it always gives the unit.revision
@@ -119,11 +113,8 @@ def test_data_tp_updater_last_created(tp0):
         == original_created_unit.id)
     original_created_unit.creation_time = None
     original_created_unit.save()
-    # TODO: remove when signals land
-    original_created_unit.store.data_tool.update()
-    # TODO: remove when signals land
-    tp0.data_tool.update()
     update_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert(
         update_data["last_created_unit"]
         == tp0.data.last_created_unit_id
@@ -156,11 +147,9 @@ def test_data_tp_util_last_submission(tp0):
         == original_submission.id)
     original_submission.type = SubmissionTypes.UNIT_CREATE
     original_submission.save()
-    # TODO: remove when signals land
-    original_submission.store.data_tool.update()
-    # TODO: remove when signals land
-    tp0.data_tool.update()
+    original_submission.unit.store.data_tool.update()
     update_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert(
         update_data["last_submission"]
         == tp0.data.last_submission_id
@@ -190,6 +179,7 @@ def test_data_tp_util_suggestion_count(tp0, member):
         state=SuggestionStates.PENDING)
     original_suggestion_count = suggestions.count()
     update_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert(
         update_data["pending_suggestions"]
         == tp0.data.pending_suggestions
@@ -205,17 +195,13 @@ def test_data_tp_util_suggestion_count(tp0, member):
     sugg, added = review.get(Suggestion)().add(
         unit,
         "Another suggestion for %s" % (unit.target or unit.source),
-        user=member,
-        touch=False)
+        user=member)
     # unit now has an extra suggestion
     assert (
         unit.suggestion_set.filter(state=SuggestionStates.PENDING).count()
         == unit_suggestion_count + 1)
-    # TODO: remove when signals land
-    unit.store.data_tool.update()
-    # TODO: remove when signals land
-    tp0.data_tool.update()
     update_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert(
         update_data["pending_suggestions"]
         == tp0.data.pending_suggestions
@@ -254,13 +240,10 @@ def test_data_tp_qc_stats(tp0):
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
     unit.save()
-    # TODO: remove when signals land
-    unit.store.data_tool.update()
-    # TODO: remove when signals land
-    tp0.data_tool.update()
     unit_critical = unit.qualitycheck_set.filter(
         category=Category.CRITICAL).count()
     store_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert (
         store_data["critical_checks"]
         == tp0.data.critical_checks
@@ -272,11 +255,8 @@ def test_data_tp_qc_stats(tp0):
     other_qc.save()
     # trigger refresh
     unit.save()
-    # TODO: remove when signals land
-    unit.store.data_tool.update()
-    # TODO: remove when signals land
-    tp0.data_tool.update()
     store_data = tp0.data_tool.updater.get_store_data()
+    tp0.data.refresh_from_db()
     assert (
         store_data["critical_checks"]
         == tp0.data.critical_checks
@@ -303,10 +283,6 @@ def test_data_tp_checks(tp0):
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
     unit.save()
-    # TODO: remove when signals land
-    unit.store.data_tool.updater.update()
-    # TODO: remove when signals land
-    tp0.data_tool.update()
     checks = _calculate_checks(qc_qs.all())
     check_data = tp0.check_data.all().values_list("category", "name", "count")
     assert len(check_data) == len(checks)

@@ -62,8 +62,6 @@ def test_data_store_util_wordcount(store0):
     update_data = store0.data_tool.updater.get_store_data()
     for k in WORDCOUNT_KEYS:
         assert update_data[k] == updated_stats[k]
-    # TODO: remove with signals
-    store0.data_tool.update()
     for k in WORDCOUNT_KEYS:
         assert getattr(store0.data, k) == updated_stats[k]
     assert (
@@ -91,8 +89,6 @@ def test_data_store_util_max_unit_revision(store0):
     unit.save()
     update_data = store0.data_tool.updater.get_store_data()
     assert update_data["max_unit_revision"] == unit.revision
-    # TODO: remove with signals
-    store0.data_tool.update()
     assert store0.data.max_unit_revision == unit.revision
 
     # if you pass the unit it always gives the unit.revision
@@ -118,8 +114,6 @@ def test_data_store_util_max_unit_mtime(store0):
     assert (
         update_data["max_unit_mtime"].replace(microsecond=0)
         == unit.mtime.replace(microsecond=0))
-    # TODO: remove with signals
-    store0.data_tool.update()
     assert (
         store0.data.max_unit_mtime.replace(microsecond=0)
         == unit.mtime.replace(microsecond=0))
@@ -145,8 +139,6 @@ def test_data_store_updater_last_created(store0):
         == original_created_unit.id)
     original_created_unit.creation_time = None
     original_created_unit.save()
-    # TODO: remove when signals land
-    store0.data_tool.update()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
         update_data["last_created_unit"]
@@ -178,8 +170,7 @@ def test_data_store_util_last_submission(store0):
         == original_submission.id)
     original_submission.type = SubmissionTypes.UNIT_CREATE
     original_submission.save()
-    # TODO: remove when signals land
-    store0.data_tool.update()
+    store0.data_tool.updater.update()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
         update_data["last_submission"]
@@ -220,14 +211,14 @@ def test_data_store_util_suggestion_count(store0, member):
     sugg, added = review.get(Suggestion)().add(
         unit,
         "Another suggestion for %s" % (unit.target or unit.source),
-        user=member,
-        touch=False)
+        user=member)
+
     # unit now has an extra suggestion
     assert (
         unit.suggestion_set.filter(state=SuggestionStates.PENDING).count()
         == unit_suggestion_count + 1)
-    # TODO: remove when signals land
-    store0.data_tool.update()
+
+    store0.data.refresh_from_db()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
         update_data["pending_suggestions"]
@@ -262,8 +253,6 @@ def test_data_store_critical_checks(store0):
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
     unit.save()
-    # TODO: remove when signals land
-    store0.data_tool.update()
     unit_critical = unit.qualitycheck_set.filter(
         category=Category.CRITICAL).count()
 
@@ -278,8 +267,6 @@ def test_data_store_critical_checks(store0):
     other_qc.save()
     # trigger refresh
     unit.save()
-    # TODO: remove when signals land
-    store0.data_tool.update()
     assert (
         store0.data.critical_checks
         == check_count + unit_critical - 1)
@@ -354,8 +341,6 @@ def test_data_store_updater_checks(store0):
     original_unit_target = unit.target
     unit.target = "<foo></bar>;"
     unit.save()
-    # TODO: remove when signals land
-    store0.data_tool.updater.update()
     checks = _calculate_checks(qc_qs.all())
     check_data = store0.check_data.all().values_list("category", "name", "count")
 
@@ -365,8 +350,6 @@ def test_data_store_updater_checks(store0):
 
     unit.target = original_unit_target
     unit.save()
-    # TODO: remove when signals land
-    store0.data_tool.updater.update()
 
     check_data = store0.check_data.all().values_list("category", "name", "count")
 
