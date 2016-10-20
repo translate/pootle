@@ -15,6 +15,7 @@ from django.conf import settings
 from django.core import management
 
 import syspath_override  # noqa
+from pootle.core.cache import PERSISTENT_STORES
 
 
 #: Length for the generated :setting:`SECRET_KEY`
@@ -267,14 +268,14 @@ def run_app(project, default_settings_path, settings_template,
     # ImproperlyConfigured error on trying to run any pootle commands
     # NB: it may be possible to remove this when #4006 is fixed
     caches = settings.CACHES.keys()
-    # FIXME prefer pootle.core.cache::PERSISTANT_STORE
-    if "redis" not in caches:
-        sys.stdout.write("\nYou need to configure the CACHES setting, "
-                         "or to use the defaults remove CACHES from %s\n\n"
-                         "Once you have fixed the CACHES setting you should "
-                         "run 'pootle check' again\n\n"
-                         % args.config)
-        sys.exit(2)
+    for cache in PERSISTENT_STORES:
+        if cache not in caches:
+            sys.stdout.write("\nYou need to configure the CACHES setting, "
+                             "or to use the defaults remove CACHES from %s\n\n"
+                             "Once you have fixed the CACHES setting you should "
+                             "run 'pootle check' again\n\n"
+                             % args.config)
+            sys.exit(2)
 
     # Set synchronous mode
     if args.no_rq:
