@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -16,6 +17,7 @@ from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
                                      to_tp_relative_path)
 from pootle_misc.baseurl import l
+from pootle_revision.models import Revision
 
 
 class DirectoryManager(models.Manager):
@@ -55,6 +57,7 @@ class Directory(models.Model, CachedTreeItem):
     pootle_path = models.CharField(max_length=255, null=False, db_index=True,
                                    unique=True, default='/')
     obsolete = models.BooleanField(default=False)
+    revisions = GenericRelation(Revision)
 
     is_dir = True
 
