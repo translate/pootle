@@ -59,7 +59,7 @@ You can do so as follows:
 
 .. code-block:: console
 
-  (env) $ pip install mysqlclient
+  (env) $ pip install Pootle[mysql]
 
 
 .. _mysql_installation#init-config:

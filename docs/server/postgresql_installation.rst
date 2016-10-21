@@ -56,7 +56,7 @@ You can do so as follows:
 
 .. code-block:: console
 
-  (env) $ pip install psycopg2
+  (env) $ pip install Pootle[postgresql]
 
 
 .. _postgresql_installation#init-config:
