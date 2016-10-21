@@ -11,18 +11,17 @@ Install the Pootle FS plugins
 -----------------------------
 
 Pootle FS provides support for different VCS systems through plugins, so in
-order to work with a specific VCS it is necessary to install its plugin:
+order to work with a specific VCS it is necessary to install its plugin.  For
+examples for Git:
 
-- In :file:`requirements/_pootle_fs.txt` uncomment the lines for the required
-  VCS plugins that you want to enable.
-- Run the following command:
+- Install the plugin:
 
   .. code-block:: console
 
-    (env) $ pip install -r requirements/_pootle_fs.txt
+    (env) $ pip install Pootle[git]
 
 
-- In your settings add the plugin apps to ``INSTALLED_APPS``, e.g. for ``git``:
+- Add the plugin to :setting:`INSTALLED_APPS`:
 
   .. code-block:: python
 

@@ -259,8 +259,11 @@ setup(
 
     extras_require={
         'dev': parse_requirements('requirements/dev.txt', recurse=True),
+        # Database dependencies
         'mysql': parse_requirements('requirements/_db_mysql.txt'),
         'postgresql': parse_requirements('requirements/_db_postgresql.txt'),
+        # Pootle FS plugins
+        'git': parse_requirements('requirements/_pootle_fs_git.txt'),
     },
 
     platforms=["any"],
