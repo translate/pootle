@@ -8,6 +8,8 @@
 
 from fnmatch import fnmatch
 
+from django.db.models import Max
+
 from pootle_data.utils import RelatedStoresDataTool
 from pootle_fs.utils import PathFilter
 from pootle_store.models import Store
@@ -194,6 +196,13 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
     @property
     def context_name(self):
         return self.context.name
+
+    @property
+    def max_unit_revision(self):
+        return VirtualFolder.stores.through.objects.filter(
+            store__translation_project=self.context.translation_project,
+            store__pootle_path__startswith=self.context.pootle_path).aggregate(
+                rev=Max("store__data__max_unit_revision"))
 
     def filter_data(self, qs):
         return (
