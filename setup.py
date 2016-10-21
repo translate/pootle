@@ -31,7 +31,7 @@ def check_pep440_versions():
              "'pip install --upgrade pip'")
 
 
-def parse_requirements(file_name):
+def parse_requirements(file_name, recurse=False):
     """Parses a pip requirements file and returns a list of packages.
 
     Use the result of this function in the ``install_requires`` field.
@@ -41,7 +41,13 @@ def parse_requirements(file_name):
     for line in open(file_name, 'r').read().split('\n'):
         # Ignore comments, blank lines and included requirements files
         if re.match(r'(\s*#)|(\s*$)|'
-                    '((-r|--allow-external|--allow-unverified) .*$)', line):
+                    '((--allow-external|--allow-unverified) .*$)', line):
+            continue
+        if re.match(r'-r .*$', line):
+            if recurse:
+                requirements.extend(parse_requirements(
+                    'requirements/' +
+                    re.sub(r'-r\s*(.*[.]txt)$', r'\1', line), recurse))
             continue
 
         if re.match(r'\s*-e\s+', line):
