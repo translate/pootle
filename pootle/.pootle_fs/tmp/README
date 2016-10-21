@@ -1,5 +1,6 @@
-This directory (pootle_fs) is the working directory for pootle_fs.
+This directory is the working directory for Pootle FS.
 
-WARNING: Do NEVER touch anything on this directory.
+WARNING: Do not edit anything on this directory.
 
-WARNING: This directory can potentially get very large, so you need to place it somewhere with plenty of room.
+WARNING: This directory can potentially get very large, so place it somewhere
+with plenty of room.
