@@ -9,7 +9,7 @@ Testing
    coverage will include JavaScript code too.
 
 Pootle tests use the full-featured `pytest testing tool
-<http://pytest.org/latest/>`_ and its integration with Django via
+<http://docs.pytest.org/en/latest/>`_ and its integration with Django via
 `pytest-django <https://pytest-django.readthedocs.io/en/latest/>`_.
 
 The entire test suite can be executed from a checkout by running ``make
@@ -31,8 +31,8 @@ requirements into your virtualenv first (*requirements/tests.txt*).
     ``False``, the static assets need to be collected before running the view
     tests. You can run ``make assets`` for building them.
 
-The ``py.test`` runner command offers several options which are extended
-by plugins as well. Check `its documentation <http://pytest.org/latest/>`_
+The ``py.test`` runner command offers several options which are extended by
+plugins as well. Check `its documentation <http://docs.pytest.org/en/latest/>`_
 for further details.
 
 
@@ -51,14 +51,14 @@ Writing new tests is easy. Just write a function whose name starts with
 ``test_`` and place it in an appropriate module under the *tests/*
 subdirectory.
 
-You'll need to use plain Python assertions in test functions. Check
-pytest's documentation for `more information on assertions
-<http://pytest.org/latest/assert.html>`_.
+You'll need to use plain Python assertions in test functions. Check pytest's
+documentation for `more information on assertions
+<http://docs.pytest.org/en/latest/assert.html>`_.
 
 In order to use a fixture, you simply need to reference its name as a
 function argument. Pytest does the rest of the magic. There are `other
 ways to reference and use fixtures
-<http://pytest.org/latest/fixture.html>`_ as well, but most of the time
+<http://docs.pytest.org/en/latest/fixture.html>`_ as well, but most of the time
 you'll find yourself passing them as function arguments.
 
 What to Test
