@@ -9,7 +9,6 @@ recursive-exclude docs/_themes/.git *
 exclude docs/_themes/.gitignore
 recursive-include pootle/assets *
 recursive-include pootle/locale *
-prune pootle/locale/*/.translation_index
 prune pootle/translations
 recursive-include pootle/translations/tutorial *.po *.pot
 recursive-include pootle/translations/terminology *.po
