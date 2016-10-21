@@ -132,27 +132,20 @@ Time to clone Pootle's source code repository. The main repository lives under
     (env-name) $ git clone https://github.com/translate/pootle.git
 
 
-Next, install Pootle software dependencies.  The requirements are stored in the
-:file:`requirements` directory. The :file:`requirements/dev.txt` requirements
-will install some extra packages to aid development.
+Install Pootle and its development dependencies into your virtualenv.  This
+makes it easy to run Pootle locally and is needed for various development
+actitivies. The ``[dev]`` target will install some extra packages to aid
+development (you can examine these in :file:`requirements/dev.txt`).
 
 
 .. code-block:: console
 
-    (env-name) $ cd pootle
-    (env-name) $ pip install -r requirements/dev.txt
+    (env-name) $ pip install -e .[dev]
 
 
 .. note:: Some requirements may depend on external packages.  For these you may
    need to install extra packages on your system in order to complete their
    installation.
-
-Now, install Pootle itself into your virtualenv.  This makes it easy to run
-Pootle locally and is needed for various development actitivies.
-
-.. code-block:: console
-
-    (env-name) $ pip install -e .
 
 
 With all the dependencies installed within the virtual environment, Pootle is
