@@ -50,8 +50,8 @@ Speed-ups and Extras
 
 `raven <https://raven.readthedocs.io/en/latest/>`_
   Enables logging server exceptions to a `Sentry server
-  <https://docs.getsentry.com/hosted/>`_. If installed and configured,
-  Pootle will automatically use the raven client.
+  <https://docs.sentry.io/>`_. If installed and configured, Pootle will
+  automatically use the raven client.
 
 
 .. _optimization#tips:
