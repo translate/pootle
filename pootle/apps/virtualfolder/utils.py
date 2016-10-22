@@ -10,6 +10,7 @@ from fnmatch import fnmatch
 
 from django.db.models import Max
 
+from pootle.core.decorators import persistent_property
 from pootle_data.utils import RelatedStoresDataTool
 from pootle_fs.utils import PathFilter
 from pootle_store.models import Store
@@ -216,9 +217,15 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
             or (vfolder.priority >= 1
                 and vfolder_stats["total"] != vfolder_stats["translated"]))
 
-    def get_stats(self, user=None):
-        stats = super(self.__class__, self).get_stats(
-            user=user, aggregate=False).get("children") or {}
+    @persistent_property
+    def all_vf_stats(self):
+        return self.get_vf_stats(self.all_children_stats, show_all=True)
+
+    @persistent_property
+    def vf_stats(self):
+        return self.get_vf_stats(self.children_stats)
+
+    def get_vf_stats(self, stats, show_all=False):
         vfolders = {
             vf.name: vf
             for vf
@@ -229,10 +236,15 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
             stats[k]["isVisible"] = (
                 vfolder.is_public
                 and self.vfolder_is_visible(vfolder, v))
-            if not stats[k]["isVisible"] and not self.show_all_to(user):
+            if not stats[k]["isVisible"] and not show_all:
                 del stats[k]
                 continue
             stats[k]["name"] = k
             stats[k]["code"] = k
             stats[k]["title"] = k
         return stats
+
+    def get_stats(self, user=None):
+        if self.show_all_to(user):
+            return self.all_vf_stats
+        return self.vf_stats
