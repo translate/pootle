@@ -9,6 +9,7 @@
 from django.db.models import Max, Sum
 from django.db.models.functions import Coalesce
 
+from pootle.core.delegate import revision
 from pootle_data.models import StoreChecksData, StoreData
 
 from .utils import DataUpdater, RelatedStoresDataTool
@@ -93,11 +94,21 @@ class TPDataTool(RelatedStoresDataTool):
     """Retrieves aggregate stats for a TP"""
 
     group_by = ("store__pootle_path", )
+    cache_key_name = "directory"
 
     def get_root_child_path(self, child):
         remainder = child["store__pootle_path"].replace(
             "%s%s" % (self.context.pootle_path, self.dir_path), "")
         return remainder.split("/")[0]
+
+    @property
+    def rev_cache_key(self):
+        return revision.get(self.context.directory.__class__)(
+            self.context.directory).get(key="stats")
+
+    @property
+    def context_name(self):
+        return self.context.pootle_path.strip("/").replace("/", ".")
 
     @property
     def object_stats(self):

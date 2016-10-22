@@ -11,7 +11,7 @@ from django.db.models import Max, Sum
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import data_updater
+from pootle.core.delegate import data_updater, revision
 from pootle.core.url_helpers import split_pootle_path
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
@@ -274,9 +274,11 @@ class RelatedStoresDataTool(DataTool):
             for f
             in self.max_fields)
 
-    @property
+    @persistent_property
     def all_checks_data(self):
-        return self.filter_data(self.checks_data_model)
+        return dict(
+            self.filter_data(self.checks_data_model).values_list(
+                "name").annotate(Sum("count")))
 
     @persistent_property
     def all_children_stats(self):
@@ -296,12 +298,17 @@ class RelatedStoresDataTool(DataTool):
         return self.filter_data(self.data_model)
 
     @property
+    def rev_cache_key(self):
+        return revision.get(
+            self.context.__class__)(self.context).get(key="stats")
+
+    @property
     def cache_key(self):
         return (
             'pootle_data.%s.%s.%s'
             % (self.cache_key_name,
                self.context_name,
-               self.max_unit_revision))
+               self.rev_cache_key))
 
     @property
     def child_stats_qs(self):
@@ -322,7 +329,10 @@ class RelatedStoresDataTool(DataTool):
 
     @property
     def checks_data(self):
-        return self.filter_accessible(self.all_checks_data)
+        return dict(
+            self.filter_accessible(
+                self.filter_data(self.checks_data_model).values_list(
+                    "name").annotate(Sum("count"))))
 
     @property
     def checks_data_model(self):
@@ -408,12 +418,10 @@ class RelatedStoresDataTool(DataTool):
                                  + self.aggregate_max_fields)))
 
     def get_checks(self, user=None):
-        checks_data = (
+        return (
             self.all_checks_data
             if self.show_all_to(user)
             else self.checks_data)
-        return dict(
-            checks_data.values_list("name").annotate(Sum("count")))
 
     def get_children_stats(self, qs):
         children = {}
@@ -436,18 +444,33 @@ class RelatedStoresDataTool(DataTool):
         """
         return child[self.group_by[0]]
 
+    @persistent_property
+    def aggregated_children_stats(self):
+        stats = dict(children=self.children_stats)
+        self.aggregate_children(stats)
+        return stats
+
+    @persistent_property
+    def all_aggregated_children_stats(self):
+        stats = dict(children=self.all_children_stats)
+        self.aggregate_children(stats)
+        return stats
+
     def get_stats(self, include_children=True, aggregate=True, user=None):
         """Get stats for an object. If include_children is set it will
         also return stats for each of the immediate descendants.
         """
         if include_children:
-            stats = {}
-            stats["children"] = (
-                self.all_children_stats
-                if self.show_all_to(user)
-                else self.children_stats)
             if aggregate:
-                self.aggregate_children(stats)
+                stats = (
+                    self.all_aggregated_children_stats
+                    if self.show_all_to(user)
+                    else self.aggregated_children_stats)
+            else:
+                stats = (
+                    self.all_children_stats
+                    if self.show_all_to(user)
+                    else self.children_stats)
         else:
             stats = (
                 self.all_object_stats
