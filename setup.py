@@ -264,6 +264,8 @@ setup(
         'postgresql': parse_requirements('requirements/_db_postgresql.txt'),
         # Pootle FS plugins
         'git': parse_requirements('requirements/_pootle_fs_git.txt'),
+        # Markdown
+        'markdown': parse_requirements('requirements/_markup_markdown.txt'),
     },
 
     platforms=["any"],

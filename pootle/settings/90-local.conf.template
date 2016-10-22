@@ -191,8 +191,9 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 # - The second element should be a dictionary of keyword arguments that will be
 #   passed to the markup function.
 #
-# IMPORTANT: If you want to use one of these markup filters you must install on
-# your own the required packages.
+# IMPORTANT: If you want to use one of these markup filters you must install
+# the required packages as follows:
+#   `pip install Pootle[markdown]`
 #
 # Examples:
 #    POOTLE_MARKUP_FILTER = (None, {})
