@@ -159,7 +159,7 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 #
 # Examples:
 #    POOTLE_MARKUP_FILTER = (None, {})
-#    POOTLE_MARKUP_FILTER = ('markdown', {'safe_mode': 'escape'})
+#    POOTLE_MARKUP_FILTER = ('markdown', {})
 #    POOTLE_MARKUP_FILTER = ('restructuredtext', {
 #                                'settings_overrides': {
 #                                    'report_level': 'quiet',

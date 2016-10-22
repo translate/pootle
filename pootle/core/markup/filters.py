@@ -105,7 +105,7 @@ def apply_markup_filter(text):
     So, for example, to use Markdown with safe mode turned on (safe
     mode removes raw HTML), put this in your settings file::
 
-        POOTLE_MARKUP_FILTER = ('markdown', { 'safe_mode': 'escape' })
+        POOTLE_MARKUP_FILTER = ('markdown', {})
 
     Currently supports Textile, Markdown and reStructuredText, using
     names identical to the template filters found in
@@ -131,8 +131,9 @@ def apply_markup_filter(text):
             html = textile.textile(text, **markup_kwargs)
 
         elif markup_filter_name == 'markdown':
+            import bleach
             import markdown
-            html = markdown.markdown(text, **markup_kwargs)
+            html = bleach.clean(markdown.markdown(text, **markup_kwargs))
 
         elif markup_filter_name == 'restructuredtext':
             from docutils import core
