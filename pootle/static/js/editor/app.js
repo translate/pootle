@@ -2306,8 +2306,11 @@ PTL.editor = {
     suggId, { requestData = {}, isSuggestionChanged = false } = {}
   ) {
     if (isSuggestionChanged) {
-      const area = q('.js-translation-area');
-      area.value = decodeEntities(requestData.translation);
+      // hack: this is a revert due to broken suggestion ui
+      // most likely the ReactEditor state shoud be set elsewhere
+      const area = $('.js-translation-area');
+      area.val(decodeEntities(requestData.translation));
+      ReactEditor.setValueFor(area[0], area.val());
       this.undoFuzzyBox();
       this.handleSubmit(requestData.comment);
     } else {
