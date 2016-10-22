@@ -158,10 +158,7 @@ class SuggestionsReview(object):
         # because in the `ScoreLog` we need to access the unit's certain
         # attributes before it was saved
         # THIS NEEDS TO GO ^^
-        unit.submitted_by = (
-            suggestion.user
-            if suggestion.user_id is not None
-            else User.objects.get_nobody_user())
+        unit.submitted_by = suggestion.user
         unit.submitted_on = current_time
         unit.reviewed_by = self.reviewer
         unit.reviewed_on = unit.submitted_on
