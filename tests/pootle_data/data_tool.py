@@ -10,10 +10,13 @@ import pytest
 
 from django.db.models import Sum
 
-from pootle.core.delegate import data_tool
+from pootle.core.delegate import data_tool, revision
+from pootle_app.models import Directory
 from pootle_data.models import StoreChecksData, StoreData, TPChecksData
 from pootle_data.store_data import StoreDataTool
 from pootle_data.utils import DataTool
+from pootle_language.models import Language
+from pootle_project.models import Project
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import Unit
 
@@ -227,19 +230,19 @@ def test_data_cache_keys(language0, project0, subdir0):
     assert 'pootle_data.%s.%s.%s' % (
         language0.data_tool.cache_key_name,
         language0.code,
-        language0.data_tool.max_unit_revision
+        revision.get(Language)(language0).get(key="stats")
     ) == language0.data_tool.cache_key
 
     assert 'pootle_data.%s.%s.%s' % (
         project0.data_tool.cache_key_name,
         project0.code,
-        project0.data_tool.max_unit_revision
+        revision.get(Project)(project0).get(key="stats")
     ) == project0.data_tool.cache_key
 
     assert 'pootle_data.%s.%s.%s' % (
         subdir0.data_tool.cache_key_name,
         subdir0.pootle_path,
-        subdir0.data_tool.max_unit_revision
+        revision.get(Directory)(subdir0).get(key="stats")
     ) == subdir0.data_tool.cache_key
 
 
