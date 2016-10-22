@@ -586,12 +586,12 @@ def suggest(request, unit, **kwargs_):
     form = form_class(request.POST, instance=unit, request=request)
 
     if form.is_valid():
-        if form.instance._target_updated:
+        if form.cleaned_data.get("target_updated"):
             # TODO: Review if this hackish method is still necessary
             # HACKISH: django 1.2 stupidly modifies instance on model form
             # validation, reload unit from db
             unit = Unit.objects.get(id=unit.id)
-            review.get(Suggestion)().add_suggestion(
+            review.get(Suggestion)().add(
                 unit,
                 form.cleaned_data['target_f'],
                 user=request.user,
