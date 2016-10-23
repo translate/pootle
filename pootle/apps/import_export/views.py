@@ -14,6 +14,7 @@ from zipfile import ZipFile, is_zipfile
 from django.contrib.auth import get_user_model
 from django.http import Http404, HttpResponse
 
+from pootle.core.delegate import language_team
 from pootle_app.models.permissions import check_permission
 from pootle_store.models import Store
 
@@ -69,19 +70,16 @@ def handle_upload_form(request, tp):
     valid_extensions = tp.project.filetype_tool.valid_extensions
     if "po" not in valid_extensions:
         return {}
-    project = tp.project
     language = tp.language
+    team = language_team.get(tp.language.__class__)(language)
+
     uploader_list = [(request.user.id, request.user.display_name), ]
     if check_permission('administrate', request):
         User = get_user_model()
         uploader_list = [
             (user.id, user.display_name)
             for user
-            in User.objects.get_users_with_permission(
-                "translate",
-                project,
-                language,
-                tp=tp)]
+            in (team.submitters | team.reviewers | team.admins | team.superusers)]
 
     if request.method == "POST" and "file" in request.FILES:
         upload_form = UploadForm(
