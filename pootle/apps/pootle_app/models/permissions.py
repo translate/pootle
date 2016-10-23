@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -25,13 +26,13 @@ def get_pootle_permission(codename):
     return Permission.objects.get(content_type=content_type, codename=codename)
 
 
-def get_permissions_by_username(username, directory):
+def get_permissions_by_user(user, directory):
     pootle_path = directory.pootle_path
     path_parts = filter(None, pootle_path.split('/'))
     try:
-        permissionset = PermissionSet.objects.filter(
-            directory__in=directory.trail(only_dirs=False),
-            user__username=username).order_by('-directory__pootle_path')[0]
+        permissionset = user.permissionset_set.select_related("directory").filter(
+            directory__in=directory.trail(
+                only_dirs=False)).order_by('-directory__pootle_path')[0]
     except IndexError:
         permissionset = None
 
@@ -49,9 +50,8 @@ def get_permissions_by_username(username, directory):
         # level permission
         try:
             project_path = '/projects/%s/' % path_parts[1]
-            permissionset = PermissionSet.objects.get(
-                directory__pootle_path=project_path,
-                user__username=username)
+            permissionset = user.permissionset_set.select_related("directory").get(
+                directory__pootle_path=project_path)
         except PermissionSet.DoesNotExist:
             pass
 
@@ -62,20 +62,23 @@ def get_permissions_by_username(username, directory):
 
 
 def get_matching_permissions(user, directory, check_default=True):
+    User = get_user_model()
+
     if user.is_authenticated():
-        permissions = get_permissions_by_username(user.username,
-                                                  directory)
+        permissions = get_permissions_by_user(user, directory)
         if permissions is not None:
             return permissions
 
         if not check_default:
             return {}
 
-        permissions = get_permissions_by_username('default', directory)
+        permissions = get_permissions_by_user(
+            User.objects.get_default_user(), directory)
         if permissions is not None:
             return permissions
 
-    permissions = get_permissions_by_username('nobody', directory)
+    permissions = get_permissions_by_user(
+        User.objects.get_nobody_user(), directory)
 
     return permissions
 
