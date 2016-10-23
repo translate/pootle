@@ -67,6 +67,7 @@ class Directory(models.Model, CachedTreeItem):
         ordering = ['name']
         default_permissions = ()
         app_label = "pootle_app"
+        index_together = ["obsolete", "pootle_path"]
 
     @cached_property
     def data_tool(self):
