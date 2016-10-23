@@ -30,10 +30,10 @@ def get_pootle_permission(codename):
 def get_permissions_by_username(username, directory):
     pootle_path = directory.pootle_path
     path_parts = filter(None, pootle_path.split('/'))
-    key = iri_to_uri('Permissions:%s' % username)
+    key = iri_to_uri('Permissions:%s:%s' % (pootle_path, username))
     permissions_cache = cache.get(key, {})
 
-    if pootle_path not in permissions_cache:
+    if permissions_cache == {}:
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
@@ -55,13 +55,13 @@ def get_permissions_by_username(username, directory):
                 pass
 
         if permissionset:
-            permissions_cache[pootle_path] = permissionset.to_dict()
+            permissions_cache = permissionset.to_dict()
         else:
-            permissions_cache[pootle_path] = None
+            permissions_cache = None
 
         cache.set(key, permissions_cache, settings.POOTLE_CACHE_TIMEOUT)
 
-    return permissions_cache[pootle_path]
+    return permissions_cache
 
 
 def get_matching_permissions(user, directory, check_default=True):
