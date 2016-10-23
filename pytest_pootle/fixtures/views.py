@@ -366,6 +366,8 @@ def bad_views(request, client):
     ("admin", "member2", {}),
 ])
 def tp_uploads(request, client):
+    from pootle.core.delegate import language_team
+    from pootle_language.models import Language
     from pootle_translationproject.models import TranslationProject
     from pootle_store.models import Store
     from django.contrib.auth import get_user_model
@@ -380,6 +382,7 @@ def tp_uploads(request, client):
         "dir_path": "",
         "filename": store.name}
     password = TEST_USERS[submitter_name]['password']
+    language_team.get(Language)(tp.language).add_member(uploader, "submitter")
     client.login(username=submitter_name, password=password)
     updated_units = [
         (unit.source_f, "%s UPDATED" % unit.target_f)
