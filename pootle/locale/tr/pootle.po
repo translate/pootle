@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-09-30 11:48+0000\n"
+"PO-Revision-Date: 2016-10-21 20:26+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1475236138.000000\n"
+"X-POOTLE-MTIME: 1477081569.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -320,63 +320,55 @@ msgstr "Tek dilli biçim"
 
 #: apps/pootle_fs/forms.py:24
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Dosya sistemi arka ucu"
 
 #: apps/pootle_fs/forms.py:25
 msgid "Select a backend filesystem"
-msgstr ""
+msgstr "Bir arka uç dosya sistemi seçin"
 
 #: apps/pootle_fs/forms.py:30
 msgid "Backend URL or path"
-msgstr ""
+msgstr "Arka uç URL'si veya yolu"
 
 #: apps/pootle_fs/forms.py:32
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "Çeviri dosyalarınıza giden URL veya yol"
 
 #: apps/pootle_fs/forms.py:35
 msgid "The translation path mapping for your filesystem"
-msgstr ""
+msgstr "Dosya sisteminiz için çeviri yolu eşlemesi"
 
 #: apps/pootle_language/forms.py:23
-#, fuzzy
 msgid "Member"
-msgstr "Sayı"
+msgstr "Üye"
 
 #: apps/pootle_language/forms.py:24
-#, fuzzy
 msgid "Submitter"
-msgstr "Gönder"
+msgstr "Gönderen"
 
 #: apps/pootle_language/forms.py:25
-#, fuzzy
 msgid "Reviewer"
-msgstr "İncele"
+msgstr "İnceleyen"
 
 #: apps/pootle_language/forms.py:26
-#, fuzzy
 msgid "Administrator"
-msgstr "Yönetim"
-
-#: apps/pootle_language/forms.py:71
-#, fuzzy
-msgid "Admins"
 msgstr "Yönetici"
 
+#: apps/pootle_language/forms.py:71
+msgid "Admins"
+msgstr "Yöneticiler"
+
 #: apps/pootle_language/forms.py:77
-#, fuzzy
 msgid "Reviewers"
-msgstr "İncelemeler"
+msgstr "İnceleyenler"
 
 #: apps/pootle_language/forms.py:82
-#, fuzzy
 msgid "Submitters"
-msgstr "Gönder"
+msgstr "Gönderenler"
 
 #: apps/pootle_language/forms.py:87
-#, fuzzy
 msgid "Members"
-msgstr "Sayı"
+msgstr "Üyeler"
 
 #: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
@@ -809,9 +801,9 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\", bir proje kodu olarak kullanılamaz"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "\"%(code)s\", bir proje kodu olarak kullanılamaz"
+msgstr "\"%(code)s\", bir proje kontrolcüsü olarak kullanılamaz"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -838,9 +830,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "GNU olmayan: Her dil kendi dizinindedir"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Dosya sistemlerini yönetmesi için pootle_fs'ye izin ver"
+msgstr "Dosya sistemlerini yönetmesi için Pootle DS'ne izin ver"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1503,46 +1494,53 @@ msgstr ""
 
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
-msgstr ""
+msgstr "Kurallı URL verilmedi ve varsayılan site ornek.com olarak ayarlandı."
 
 #: checks.py:466
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Eğer django.contrib.sites kullanıyorsanız ayarlarda `POOTLE_CANONICAL_URL` "
+"parametresini ayarlayın veya varsayılan boyutu güncelleyin."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Kurallı URL, http://localhost olarak ayarlandı."
 
 #: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Eğer `django.contrib.sites` kullanıyorsanız siteniz için "
+"`POOTLE_CANONICAL_URL` parametresini uygun bir değere ayarlayın ya da boş "
+"bırakın."
 
 #: checks.py:502
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "POOTLE_CONTACT_EMAIL ayarlı değil."
+msgstr "POOTLE_FS_WORKING_PATH ayarı ayarlı değil."
 
 #: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "POOTLE_FS_WORKING_PATH tarafından gösterilen yol mevcut değil."
 
 #: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
+msgstr "`POOTLE_FS_WORKING_PATH` ayarı tarafından gösterilen dizini oluşturun."
 
 #: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"POOTLE_FS_WORKING_PATH tarafından gösterilen yol, Pootle tarafından "
+"yazılabilir değil."
 
 #: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"'chmod +w' kullanarak `POOTLE_FS_WORKING_PATH` dizinine yazma izni ekleyin"
 
 #: core/browser.py:26
 msgid "Project"
@@ -1609,7 +1607,7 @@ msgstr "Yanlış"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Seçilen ile"
 
 #: core/forms.py:184
 msgid "Reject"
@@ -1620,21 +1618,20 @@ msgid "Accept"
 msgstr "Kabul Et"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
-msgstr "Yorum Ekle"
+msgstr "Yorum ekle"
 
 #: core/forms.py:193
 msgid "Select all matching filter criteria, including those not shown"
-msgstr ""
+msgstr "Tüm eşleşen süzme ölçütlerini seçin, bu gösterilmeyenler dahil"
 
 #: core/forms.py:210
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Gerçekleştirmek için bir eylem belirlemek zorundasınız"
 
 #: core/forms.py:212
 msgid "FormtableForm must specify a valid search_field"
-msgstr ""
+msgstr "Formtablosu Formu geçerli bir search_field belirlemek zorunda"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1991,25 +1988,27 @@ msgstr ""
 #: templates/admin/project_fs.html:15
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Dosya sistemi yapılandırması: %(project_code)s"
 
 #: templates/admin/project_fs.html:19
 msgid "Backend configuration"
-msgstr ""
+msgstr "Arka uç yapılandırması"
 
 #: templates/admin/project_fs.html:24
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Dosya sistemi yapılandırmasını güncelle"
 
 #: templates/admin/project_fs.html:27
 msgid "Translation paths should be of the format:"
-msgstr ""
+msgstr "Çeviri yolları şu biçimde olmalıdır:"
 
 #: templates/admin/project_fs.html:35
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Sadece `&lt;language_code&gt;` gerekir, `.&lt;ext&gt;` ile bitmek zorunda "
+"olmasına rağmen"
 
 #: templates/admin/project_fs.html:38
 msgid ""
@@ -2025,27 +2024,24 @@ msgid ""
 msgstr ""
 
 #: templates/admin/project_fs.html:49
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "%(language)s dili bilgisi"
+msgstr "Dil eşlemesi yapılandırması"
 
 #: templates/admin/project_fs.html:59
 msgid "Remove"
 msgstr "Kaldır"
 
 #: templates/admin/project_fs.html:60
-#, fuzzy
 msgid "Pootle code"
-msgstr "Pootle Tanıtım"
+msgstr "Pootle kodu"
 
 #: templates/admin/project_fs.html:61
 msgid "Filesystem code"
-msgstr ""
+msgstr "Dosya sistemi kodu"
 
 #: templates/admin/project_fs.html:72
-#, fuzzy
 msgid "Update"
-msgstr "Güncellemeler"
+msgstr "Güncelle"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2377,13 +2373,11 @@ msgid "Go to the next string (Ctrl+Down)"
 msgstr "Sonraki satıra git (Ctrl+Down)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
 msgstr ""
-"%(unit_url)s için sizin tarafınızdan gönderilen öneri #%(suggestion_id)s, "
-"aşağıdaki yorum ile kabul edildi:"
+"Sizin tarafınızdan gönderilen aşağıdaki öneriler yorum ile kabul edildi:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2392,13 +2386,10 @@ msgstr ""
 "Umarız bu geri bildirim ileriki katkılarınızı artırmada yardımcı olacak."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
-"%(unit_url)s için sizin tarafınızdan gönderilen öneri #%(suggestion_id)s, "
-"aşağıdaki yorum ile reddedildi:"
+msgstr "Sizin tarafınızdan gönderilen aşağıdaki öneriler yorum ile reddedildi:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2708,14 +2699,12 @@ msgid "The reported error was:"
 msgstr "Bildirilen hata:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Süzmeyi göster"
+msgstr "Gösteriliyor"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Çoklu Seç"
+msgstr "Tümünü seç"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2725,63 +2714,55 @@ msgstr "Gözat"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Takım"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Dil İsmi"
+msgstr "Dil takımı"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Üye yöneticisi"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Takım üyesi ekle"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Kullanıcıyı Sil"
+msgstr "Seçileni kaldır"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Django site yöneticisi"
+msgstr "Birim yöneticisi"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Kritik"
+msgstr "Kritik:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Toplam Kelime"
+msgstr "Toplam kelime:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Çevrilmiş"
+msgstr "Çevrilmiş:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Çalışma gerekli"
+msgstr "Çalışma gerekli:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Öneri %d:"
+msgstr "Öneri yöneticisi"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Bekleyen %(suggestions.count)s öneri var"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-10-08 14:24+0000\n"
+"PO-Revision-Date: 2016-10-21 08:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1475936652.000000\n"
+"X-POOTLE-MTIME: 1477038614.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -320,63 +320,55 @@ msgstr "Formato monolingüe"
 
 #: apps/pootle_fs/forms.py:24
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Infraestrutura de sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:25
 msgid "Select a backend filesystem"
-msgstr ""
+msgstr "Seleccione unha infraestrutura de sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:30
 msgid "Backend URL or path"
-msgstr ""
+msgstr "URL ou ruta da infraestrutura"
 
 #: apps/pootle_fs/forms.py:32
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "O URL ou ruta ao ficheiros de tradución"
 
 #: apps/pootle_fs/forms.py:35
 msgid "The translation path mapping for your filesystem"
-msgstr ""
+msgstr "A asociación de ruta de tradución para o sistema de ficheiros"
 
 #: apps/pootle_language/forms.py:23
-#, fuzzy
 msgid "Member"
-msgstr "Números"
+msgstr "Membro"
 
 #: apps/pootle_language/forms.py:24
-#, fuzzy
 msgid "Submitter"
-msgstr "Enviar"
+msgstr "Tradutor"
 
 #: apps/pootle_language/forms.py:25
-#, fuzzy
 msgid "Reviewer"
-msgstr "Revisión"
+msgstr "Revisor"
 
 #: apps/pootle_language/forms.py:26
-#, fuzzy
 msgid "Administrator"
-msgstr "Administración"
+msgstr "Administrador"
 
 #: apps/pootle_language/forms.py:71
-#, fuzzy
 msgid "Admins"
-msgstr "Administración"
+msgstr "Administradores"
 
 #: apps/pootle_language/forms.py:77
-#, fuzzy
 msgid "Reviewers"
-msgstr "Revisións"
+msgstr "Revisores"
 
 #: apps/pootle_language/forms.py:82
-#, fuzzy
 msgid "Submitters"
-msgstr "Enviar"
+msgstr "Tradutores"
 
 #: apps/pootle_language/forms.py:87
-#, fuzzy
 msgid "Members"
-msgstr "Números"
+msgstr "Membros"
 
 #: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
@@ -811,9 +803,10 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Non é posíbel empregar «%(code)s» como un código de proxecto"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "Non é posíbel empregar «%(code)s» como un código de proxecto"
+msgstr ""
+"Non é posíbel empregar «%(code)s» como comprobador de calidade do proxecto"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -841,9 +834,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Non-GNU: cada idioma no seu propio cartafol"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Permitir que pootle_fs xestione os sistemas de ficheiros"
+msgstr "Permitir que pootle FS xestione os sistemas de ficheiros"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1501,45 +1493,51 @@ msgstr "Execute `revision --restore` para restaurar o contador de revisión."
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Non se forneceu ningún URL canónico e o sitio predefinido é example.com."
 
 #: checks.py:466
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Defina «POOTLE_CANONICAL_URL» na configuración ou actualice o sitio "
+"predefinido se está empregando django.contrib.sites."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "O URL canónico está definido como http://localhost."
 
 #: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Defina un valor axeitado para o seu sitio en «POOTLE_CANONICAL_URL» ou "
+"déixea en branco se está empregando django.contrib.sites."
 
 #: checks.py:502
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "POOTLE_CONTACT_EMAIL non está definido."
+msgstr "POOTLE_FS_WORKING_PATH non está definido."
 
 #: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "A ruta indicada en POOTLE_FS_WORKING_PATH non existe."
 
 #: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
+msgstr "Cree o directorio indicado por «POOTLE_FS_WORKING_PATH»."
 
 #: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
-msgstr ""
+msgstr "Pootle non pode escribir na ruta indicada en POOTLE_FS_WORKING_PATH."
 
 #: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Engada o permiso de escritura ao directorio indicado en "
+"«POOTLE_FS_WORKING_PATH» mediante 'chmod +w'"
 
 #: core/browser.py:26
 msgid "Project"
@@ -1606,7 +1604,7 @@ msgstr "Incorrecto"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Coa selección"
 
 #: core/forms.py:184
 msgid "Reject"
@@ -1617,21 +1615,22 @@ msgid "Accept"
 msgstr "Aceptar"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "Engadir comentario"
 
 #: core/forms.py:193
 msgid "Select all matching filter criteria, including those not shown"
 msgstr ""
+"Seleccionar todos os criterios de filtrado coincidentes , incluídos os que "
+"non se mostran"
 
 #: core/forms.py:210
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Debe especificar unha acción a realizar"
 
 #: core/forms.py:212
 msgid "FormtableForm must specify a valid search_field"
-msgstr ""
+msgstr "FormtableForm debe especificar un search_field correcto"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1987,25 +1986,27 @@ msgstr ""
 #: templates/admin/project_fs.html:15
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Configuración do sistema de ficheiros: %(project_code)s"
 
 #: templates/admin/project_fs.html:19
 msgid "Backend configuration"
-msgstr ""
+msgstr "Configuración da infraestrutura"
 
 #: templates/admin/project_fs.html:24
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Actualizar a configuración do sistema de ficheiros"
 
 #: templates/admin/project_fs.html:27
 msgid "Translation paths should be of the format:"
-msgstr ""
+msgstr "As rutas de tradución deben ter o formato:"
 
 #: templates/admin/project_fs.html:35
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Requírese que `&lt;language_code&gt;` estea presente e que remate con `.&lt;"
+"ext&gt;`"
 
 #: templates/admin/project_fs.html:38
 msgid ""
@@ -2013,35 +2014,36 @@ msgid ""
 "with the path specified in\n"
 "\t    backend URL"
 msgstr ""
+"Se está empregando a infraestrutura «localfs» a ruta de tradución "
+"combinarase coa ruta especificada no URL de infraestrutura."
 
 #: templates/admin/project_fs.html:42
 msgid ""
 "For other backends the translation path will be relative to the root of the "
 "repository."
 msgstr ""
+"Para outras infraestruturas a ruta de tradución debe ser relativa á raíz do "
+"repositorio."
 
 #: templates/admin/project_fs.html:49
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Información do idioma %(language)s"
+msgstr "Configuración da asociación de idiomas"
 
 #: templates/admin/project_fs.html:59
 msgid "Remove"
 msgstr "Eliminar"
 
 #: templates/admin/project_fs.html:60
-#, fuzzy
 msgid "Pootle code"
-msgstr "Demostración de Pootle"
+msgstr "Código de Pootle"
 
 #: templates/admin/project_fs.html:61
 msgid "Filesystem code"
-msgstr ""
+msgstr "Código do sistema de ficheiros"
 
 #: templates/admin/project_fs.html:72
-#, fuzzy
 msgid "Update"
-msgstr "Actualizacións"
+msgstr "Actualizar"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2376,13 +2378,12 @@ msgid "Go to the next string (Ctrl+Down)"
 msgstr "Ir á seguinte cadea (Ctrl+Abaixo)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
 msgstr ""
-"A suxestión #%(suggestion_id)s enviada por vostede para %(unit_url)s "
-"aceptouse co seguinte comentario:"
+"As seguintes suxestións enviadas por vostede aceptáronse co seguinte "
+"comentario:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2392,13 +2393,12 @@ msgstr ""
 "futuras."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
 msgstr ""
-"A suxestión #%(suggestion_id)s enviada por vostede para %(unit_url)s "
-"rexeitouse co seguinte comentario:"
+"As seguintes suxestións enviadas por vostede rexeitáronse co seguinte "
+"comentario:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2711,14 +2711,12 @@ msgid "The reported error was:"
 msgstr "O erro sobre o que se informou é:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Mostrar o filtrado"
+msgstr "Mostrando"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Selección múltiple"
+msgstr "Seleccionar todo"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2728,63 +2726,55 @@ msgstr "Navegación"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Equipo"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Nome do idioma"
+msgstr "Equipo do idioma"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Administración de membros"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Engadir membro ao equipo"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Eliminar usuario"
+msgstr "Retirar seleccionados"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Administrador do sitio Django"
+msgstr "Administración de traducións"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Críticos"
+msgstr "Críticos:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Total de palabras"
+msgstr "Total de palabras:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Traducidas"
+msgstr "Traducidas:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Precisa traballo"
+msgstr "Precisan traballo:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Suxestión %d:"
+msgstr "Administración de suxestións"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Hai %(suggestions.count)s suxestións pendentes"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"

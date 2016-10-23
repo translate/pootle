@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-09-29 13:25+0000\n"
+"PO-Revision-Date: 2016-10-21 08:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1475155515.000000\n"
+"X-POOTLE-MTIME: 1477038614.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -115,7 +115,7 @@ msgstr "Vista xeral"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Equipo"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -197,9 +197,8 @@ msgid "Permissions"
 msgstr "Permisos"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "Tipos de ficheiro"
+msgstr "Sistemas de ficheiros"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -335,23 +334,23 @@ msgid "Preview will be displayed here."
 msgstr "A vista previa mostrarase aquí."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
 msgstr ""
 "Enviouse unha mensaxe de correo electrónico coa ligazón especial a <span>%s</"
-"span>"
+"span>. Comprobe o seu cartafol de spam se non ve a mensaxe."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
 "Enviouse unha mensaxe de correo electrónico coa ligazón especial ao enderezo "
-"empregado para rexistrar esta conta."
+"empregado para rexistrar esta conta. Comprobe o seu cartafol de spam se non "
+"ve a mensaxe."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -563,7 +562,7 @@ msgstr "Todo o proxecto"
 
 #: static/js/common.js:149
 msgid "Updating data"
-msgstr ""
+msgstr "Actualizando os datos"
 
 #: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""

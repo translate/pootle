@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-09-29 08:47+0000\n"
+"PO-Revision-Date: 2016-10-20 17:19+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1475138873.000000\n"
+"X-POOTLE-MTIME: 1476983992.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -322,63 +322,55 @@ msgstr "Jednojazyčný formát"
 
 #: apps/pootle_fs/forms.py:24
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Back-end systému souborů"
 
 #: apps/pootle_fs/forms.py:25
 msgid "Select a backend filesystem"
-msgstr ""
+msgstr "Vyberte back-end systému souborů"
 
 #: apps/pootle_fs/forms.py:30
 msgid "Backend URL or path"
-msgstr ""
+msgstr "Adresa nebo cesta back-endu"
 
 #: apps/pootle_fs/forms.py:32
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "Adresa nebo cesta k překladovým souborům"
 
 #: apps/pootle_fs/forms.py:35
 msgid "The translation path mapping for your filesystem"
-msgstr ""
+msgstr "Přiřazení cesty překladu pro váš systém souborů"
 
 #: apps/pootle_language/forms.py:23
-#, fuzzy
 msgid "Member"
-msgstr "Čísla"
+msgstr "Člen"
 
 #: apps/pootle_language/forms.py:24
-#, fuzzy
 msgid "Submitter"
-msgstr "Odeslat"
+msgstr "Přispěvatel"
 
 #: apps/pootle_language/forms.py:25
-#, fuzzy
 msgid "Reviewer"
-msgstr "Zkontrolovat"
+msgstr "Korektor"
 
 #: apps/pootle_language/forms.py:26
-#, fuzzy
 msgid "Administrator"
-msgstr "Správa"
-
-#: apps/pootle_language/forms.py:71
-#, fuzzy
-msgid "Admins"
 msgstr "Správce"
 
+#: apps/pootle_language/forms.py:71
+msgid "Admins"
+msgstr "Správci"
+
 #: apps/pootle_language/forms.py:77
-#, fuzzy
 msgid "Reviewers"
-msgstr "Kontroly"
+msgstr "Korektoři"
 
 #: apps/pootle_language/forms.py:82
-#, fuzzy
 msgid "Submitters"
-msgstr "Odeslat"
+msgstr "Přispěvatelé"
 
 #: apps/pootle_language/forms.py:87
-#, fuzzy
 msgid "Members"
-msgstr "Čísla"
+msgstr "Členové"
 
 #: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
@@ -814,9 +806,9 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "„%(code)s“ nelze použít jako kód projektu"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "„%(code)s“ nelze použít jako kód projektu"
+msgstr "„%(code)s“ nelze použít jako kontrolor projektu"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -843,9 +835,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Jiný než GNU: Každý jazyk má vlastní adresář"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Povolit správu systému souborů prostřednictvím pootle_fs"
+msgstr "Povolit správu systémů souborů prostřednictvím Pootle FS"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1495,45 +1486,52 @@ msgstr "Pro obnovení čítače revizí spusťte `revision --restore`."
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Nebyla zadána žádná kanonická adresa a jako výchozí stránka je nastavena "
+"example.com."
 
 #: checks.py:466
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Nastavte v nastavení `POOTLE_CANONICAL_URL`, nebo pokud používáte django."
+"contrib.sites aktualizujte výchozí stránku."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Kanonická adresa je nastavena na http://localhost."
 
 #: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Nastavte proměnnou `POOTLE_CANONICAL_URL` na odpovídající hodnotu, nebo ji "
+"ponechte prázdnou pokud používáte `django.contrib.sites`."
 
 #: checks.py:502
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "Není nastaveno POOTLE_CONTACT_EMAIL."
+msgstr "Není nastaveno POOTLE_FS_WORKING_PATH."
 
 #: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "Cesta nastavená v POOTLE_FS_WORKING_PATH neexistuje."
 
 #: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
+msgstr "Vytvořte adresář nastavený v `POOTLE_FS_WORKING_PATH`."
 
 #: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
-msgstr ""
+msgstr "Pootle nemůže zapisovat do cesty nastavené v POOTLE_FS_WORKING_PATH."
 
 #: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Nastavte pro adresář nastavený v `POOTLE_FS_WORKING_PATH` právo zápisu "
+"pomocí 'chmod +w'"
 
 #: core/browser.py:26
 msgid "Project"
@@ -1600,7 +1598,7 @@ msgstr "Chybný"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "S vybranými"
 
 #: core/forms.py:184
 msgid "Reject"
@@ -1611,21 +1609,21 @@ msgid "Accept"
 msgstr "Přijmout"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "Přidat komentář"
 
 #: core/forms.py:193
 msgid "Select all matching filter criteria, including those not shown"
 msgstr ""
+"Vybrat odpovídající podmínky filtru, včetně těch které nejsou zobrazeny"
 
 #: core/forms.py:210
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Musíte určit akci kterou chcete provést"
 
 #: core/forms.py:212
 msgid "FormtableForm must specify a valid search_field"
-msgstr ""
+msgstr "FormtableForm musí obsahovat platné search_field"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1980,25 +1978,27 @@ msgstr ""
 #: templates/admin/project_fs.html:15
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Nastavení systému souborů: %(project_code)s"
 
 #: templates/admin/project_fs.html:19
 msgid "Backend configuration"
-msgstr ""
+msgstr "Nastavení back-endu"
 
 #: templates/admin/project_fs.html:24
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Aktualizovat nastavení systému souborů"
 
 #: templates/admin/project_fs.html:27
 msgid "Translation paths should be of the format:"
-msgstr ""
+msgstr "Cesty překladu by měly používat formát:"
 
 #: templates/admin/project_fs.html:35
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Jedinou povinnou proměnnou v cestě je `&lt;language_code&gt;`, ale navíc "
+"musí být ukončena `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:38
 msgid ""
@@ -2006,35 +2006,37 @@ msgid ""
 "with the path specified in\n"
 "\t    backend URL"
 msgstr ""
+"Pokud používáte back-end localfs, bude cesta překladu zkombinována s cestou "
+"nastavenou v\n"
+"\tAdrese back-endu"
 
 #: templates/admin/project_fs.html:42
 msgid ""
 "For other backends the translation path will be relative to the root of the "
 "repository."
 msgstr ""
+"Pro ostatní back-endy bude cesta překladu relativní ke kořenové složce "
+"úložiště."
 
 #: templates/admin/project_fs.html:49
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Informace o jazyku %(language)s"
+msgstr "Nastavení přiřazení jazyka"
 
 #: templates/admin/project_fs.html:59
 msgid "Remove"
 msgstr "Odstranit"
 
 #: templates/admin/project_fs.html:60
-#, fuzzy
 msgid "Pootle code"
-msgstr "Pootle Demo"
+msgstr "Kód Pootle"
 
 #: templates/admin/project_fs.html:61
 msgid "Filesystem code"
-msgstr ""
+msgstr "Kód systému souborů"
 
 #: templates/admin/project_fs.html:72
-#, fuzzy
 msgid "Update"
-msgstr "Aktualizace"
+msgstr "Aktualizovat"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2367,13 +2369,10 @@ msgid "Go to the next string (Ctrl+Down)"
 msgstr "Přejít na další řetězec (Ctrl+Down)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
-"Váš návrh #%(suggestion_id)s zadaný pro řetězec %(unit_url)s byl přijat s "
-"následujícím komentářem:"
+msgstr "Váš následující návrh byl přijat s komentářem:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2383,13 +2382,10 @@ msgstr ""
 "příspěvků."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
-"Váš návrh #%(suggestion_id)s zadaný pro řetězec %(unit_url)s byl odmítnut s "
-"následujícím komentářem:"
+msgstr "Váš následující návrh byl odmítnut s komentářem:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2697,14 +2693,12 @@ msgid "The reported error was:"
 msgstr "Nahlášena byla chyba:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Zobrazit filtrování"
+msgstr "Zobrazeno"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Vybrat více"
+msgstr "Vybrat vše"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2714,63 +2708,55 @@ msgstr "Procházet"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Tým"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Název jazyka"
+msgstr "Tým jazyka"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Správa členů"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Přidat člena týmu"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Odebrat uživatele"
+msgstr "Odebrat vybrané"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Položka vytvořena"
+msgstr "Správa jednotek"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Kritické"
+msgstr "Kritické:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Celkem slov"
+msgstr "Celkem slov:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Přeloženo"
+msgstr "Přeloženo:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Potřebuje upravit"
+msgstr "Potřebuje upravit:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Návrh %d:"
+msgstr "Správa návrhů"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Na zpracování čeká %(suggestions.count)s návrhů"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"
