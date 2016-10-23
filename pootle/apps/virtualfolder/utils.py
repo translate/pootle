@@ -196,7 +196,7 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
 
     @property
     def context_name(self):
-        return self.context.name
+        return self.context.pootle_path
 
     @property
     def max_unit_revision(self):
