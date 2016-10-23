@@ -85,6 +85,10 @@ class LanguageTeam(object):
                 "user__username",
                 "user__full_name"))
 
+    @property
+    def superusers(self):
+        return User.objects.filter(is_superuser=True)
+
     def _get_members(self, perm=None, exclude_perms=()):
         all_perms = tuple([perm]) + tuple(exclude_perms)
         permission_sets = self.language.directory.permission_sets.filter(
