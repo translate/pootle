@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django_redis import get_redis_connection
+
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -27,13 +29,35 @@ def get_pootle_permission(codename):
     return Permission.objects.get(content_type=content_type, codename=codename)
 
 
+class PermissionCache(object):
+    def __init__(self, client):
+        self.cache = client
+        self.connection = client.get_client()
+
+    def exists(self, key):
+        return self.connection.hexists(self.cache.make_key(key))
+
+    def hget(self, key, name):
+        value = self.connection.hget(self.cache.make_key(key), name)
+        return self.cache.decode(value)
+
+    def hset(self, key, name, value, ttl):
+        nvalue = self.cache.encode(value)
+        nkey = self.cache.make_key(key)
+        self.connection.hset(nkey, name, nvalue)
+        self.connection.expire(nkey, ttl)
+
+perm_cache = PermissionCache(cache.client)
+
+
 def get_permissions_by_username(username, directory):
     pootle_path = directory.pootle_path
     path_parts = filter(None, pootle_path.split('/'))
-    key = iri_to_uri('Permissions:%s:%s' % (pootle_path, username))
-    permissions_cache = cache.get(key, {})
+    key = iri_to_uri('Permissions:%s' % username)
 
-    if permissions_cache == {}:
+    if perm_cache.hexists(key, pootle_path):
+        permissions_cache = perm_cache.hget(key, pootle_path)
+    else:
         try:
             permissionset = PermissionSet.objects.filter(
                 directory__in=directory.trail(only_dirs=False),
@@ -59,7 +83,7 @@ def get_permissions_by_username(username, directory):
         else:
             permissions_cache = None
 
-        cache.set(key, permissions_cache, settings.POOTLE_CACHE_TIMEOUT)
+        perm_cache.hset(key, pootle_path, permissions_cache, settings.POOTLE_CACHE_TIMEOUT)
 
     return permissions_cache
 
