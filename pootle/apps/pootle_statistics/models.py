@@ -163,6 +163,7 @@ class SubmissionManager(BaseSubmissionManager):
 class Submission(models.Model):
     class Meta(object):
         ordering = ["creation_time", "pk"]
+        index_together = ["submitter", "creation_time", "id"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
 
