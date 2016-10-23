@@ -22,8 +22,7 @@ from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle_app.models import Directory
-from pootle_app.models.permissions import (
-    check_permission, get_matching_permissions)
+from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_language.models import Language
 from pootle_store.models import Store
@@ -240,15 +239,19 @@ class TPBrowseBaseView(PootleBrowseView):
             {'parent': get_parent(self.object)})
         return ctx
 
-    def get_upload_widget(self):
-        ctx = {}
-        has_upload = (
+    @property
+    def can_upload(self):
+        return (
             "import_export" in settings.INSTALLED_APPS
             and self.request.user.is_authenticated()
-            and check_permission('translate', self.request))
-        if has_upload:
-            if "po" in self.project.filetype_tool.valid_extensions:
-                ctx.update(handle_upload_form(self.request, self.tp))
+            and (self.request.user.is_superuser
+                 or "translate" in self.request.permissions
+                 or "administrate" in self.request.permissions))
+
+    def get_upload_widget(self):
+        ctx = {}
+        if self.can_upload:
+            ctx.update(handle_upload_form(self.request, self.tp))
             ctx.update(
                 {'display_download': True,
                  'has_sidebar': True})
