@@ -169,6 +169,7 @@ class TPDirectoryMixin(TPMixin):
             "parent",
             "%stranslationproject" % tp_prefix,
             "%stranslationproject__language" % tp_prefix,
+            "%stranslationproject__language__directory" % tp_prefix,
             "%stranslationproject__project" % tp_prefix]
 
     @lru_cache()
