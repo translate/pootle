@@ -126,10 +126,12 @@ def test_view_language_team_admin_post(client, language0, request_users,
         response = client.post(
             admin_url,
             data=dict(new_member=search_member.id, role="member"))
+    team.update_permissions()
     assert search_member in team.members
     assert response.status_code == 302
     response = client.post(
         admin_url,
         data=dict(rm_members=[search_member.id]))
+    team.update_permissions()
     assert search_member not in team.members
     assert response.status_code == 302
