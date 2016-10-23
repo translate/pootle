@@ -42,9 +42,10 @@ def set_permissions(f):
 
     @functools.wraps(f)
     def method_wrapper(self, request, *args, **kwargs):
-        request.permissions = get_matching_permissions(
-            request.user,
-            self.permission_context) or []
+        if not hasattr(request, "permissions"):
+            request.permissions = get_matching_permissions(
+                request.user,
+                self.permission_context) or []
         return f(self, request, *args, **kwargs)
     return method_wrapper
 
