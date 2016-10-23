@@ -84,6 +84,7 @@ class ProjectMixin(object):
             if self.kwargs['dir_path'].count("/"):
                 tp_prefix = "parent__" * self.kwargs['dir_path'].count("/")
                 dirs = dirs.select_related(
+                    "parent",
                     "%stranslationproject" % tp_prefix,
                     "%stranslationproject__language" % tp_prefix)
             resources = (
@@ -140,7 +141,6 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
             if (self.kwargs['dir_path']
                 or self.kwargs['filename'])
             else make_language_item)
-
         items = [
             item_func(item)
             for item
