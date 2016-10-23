@@ -9,9 +9,7 @@
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from django.core.cache import cache
 from django.db import models
-from django.utils.encoding import iri_to_uri
 
 
 def get_permission_contenttype():
@@ -30,38 +28,37 @@ def get_pootle_permission(codename):
 def get_permissions_by_username(username, directory):
     pootle_path = directory.pootle_path
     path_parts = filter(None, pootle_path.split('/'))
-    key = iri_to_uri('Permissions:%s' % username)
-    permissions_cache = cache.get(key, {})
+    try:
+        permissionset = PermissionSet.objects.filter(
+            directory__in=directory.trail(only_dirs=False),
+            user__username=username).order_by('-directory__pootle_path')[0]
+    except IndexError:
+        permissionset = None
 
-    if pootle_path not in permissions_cache:
+    check_project_permissions = (
+        (len(path_parts) > 1
+         and path_parts[0] != 'projects'
+         and (permissionset is None
+              or len(
+                  filter(
+                      None,
+                      permissionset.directory.pootle_path.split('/'))) < 2)))
+
+    if check_project_permissions:
+        # Active permission at language level or higher, check project
+        # level permission
         try:
-            permissionset = PermissionSet.objects.filter(
-                directory__in=directory.trail(only_dirs=False),
-                user__username=username).order_by('-directory__pootle_path')[0]
-        except IndexError:
-            permissionset = None
+            project_path = '/projects/%s/' % path_parts[1]
+            permissionset = PermissionSet.objects.get(
+                directory__pootle_path=project_path,
+                user__username=username)
+        except PermissionSet.DoesNotExist:
+            pass
 
-        if (len(path_parts) > 1 and path_parts[0] != 'projects' and
-            (permissionset is None or
-            len(filter(None, permissionset.directory.pootle_path.split('/'))) < 2)):
-            # Active permission at language level or higher, check project
-            # level permission
-            try:
-                project_path = '/projects/%s/' % path_parts[1]
-                permissionset = PermissionSet.objects.get(
-                    directory__pootle_path=project_path,
-                    user__username=username)
-            except PermissionSet.DoesNotExist:
-                pass
-
-        if permissionset:
-            permissions_cache[pootle_path] = permissionset.to_dict()
-        else:
-            permissions_cache[pootle_path] = None
-
-        cache.set(key, permissions_cache, settings.POOTLE_CACHE_TIMEOUT)
-
-    return permissions_cache[pootle_path]
+    if permissionset:
+        return permissionset.to_dict()
+    else:
+        return None
 
 
 def get_matching_permissions(user, directory, check_default=True):
@@ -143,17 +140,3 @@ class PermissionSet(models.Model):
     def to_dict(self):
         permissions_iterator = self.positive_permissions.iterator()
         return dict((perm.codename, perm) for perm in permissions_iterator)
-
-    def save(self, *args, **kwargs):
-        super(PermissionSet, self).save(*args, **kwargs)
-        # FIXME: can we use `post_save` signals or invalidate caches in model
-        # managers, please?
-        key = iri_to_uri('Permissions:%s' % self.user.username)
-        cache.delete(key)
-
-    def delete(self, *args, **kwargs):
-        super(PermissionSet, self).delete(*args, **kwargs)
-        # FIXME: can we use `post_delete` signals or invalidate caches in model
-        # managers, please?
-        key = iri_to_uri('Permissions:%s' % self.user.username)
-        cache.delete(key)
