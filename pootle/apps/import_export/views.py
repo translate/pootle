@@ -66,10 +66,12 @@ def export(request):
 
 def handle_upload_form(request, tp):
     """Process the upload form."""
+    valid_extensions = tp.project.filetype_tool.valid_extensions
+    if "po" not in valid_extensions:
+        return {}
     project = tp.project
     language = tp.language
     uploader_list = [(request.user.id, request.user.display_name), ]
-    valid_extensions = project.filetype_tool.valid_extensions
     if check_permission('administrate', request):
         User = get_user_model()
         uploader_list = [
