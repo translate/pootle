@@ -1327,9 +1327,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             return [self.translation_project]
         return [self.parent]
 
-    def get_cachekey(self):
-        return self.pootle_path
-
     # # # /TreeItem
 
 

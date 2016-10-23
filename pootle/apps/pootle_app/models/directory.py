@@ -195,9 +195,6 @@ class Directory(models.Model, CachedTreeItem):
         else:
             return []
 
-    def get_cachekey(self):
-        return self.pootle_path
-
     # # # /TreeItem
 
     def get_relative(self, path):
