@@ -73,11 +73,15 @@ class User(AbstractBaseUser):
     full_name = models.CharField(_('Full Name'), max_length=255, blank=True)
 
     is_active = models.BooleanField(
-        _('Active'), default=True,
+        _('Active'),
+        default=True,
+        db_index=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
     is_superuser = models.BooleanField(
-        _('Superuser Status'), default=False,
+        _('Superuser Status'),
+        default=False,
+        db_index=True,
         help_text=_('Designates that this user has all permissions without '
                     'explicitly assigning them.'))
 
