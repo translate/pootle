@@ -47,6 +47,7 @@ class LanguageTeam(object):
         permission_set = self.get_permission_set(user, create=True)
         for permission in self.get_permissions_for_role(role):
             permission_set.positive_permissions.add(permission)
+        self.update_permissions()
 
     def get_permissions_for_role(self, role):
         return Permission.objects.filter(codename__in=self.roles[role])
@@ -61,6 +62,7 @@ class LanguageTeam(object):
 
     def remove_member(self, user):
         self.get_permission_set(user).delete()
+        self.update_permissions()
 
     @property
     def non_members(self):
@@ -106,3 +108,7 @@ class LanguageTeam(object):
                 not_members.add(user)
         return User.objects.filter(
             pk__in=members - not_members).order_by("username")
+
+    def update_permissions(self):
+        if "permissions" in self.__dict__:
+            del self.__dict__["permissions"]
