@@ -64,20 +64,22 @@ def export(request):
         return download(f.getvalue(), "%s.zip" % (prefix), "application/zip")
 
 
-def handle_upload_form(request, project, language):
+def handle_upload_form(request, tp):
     """Process the upload form."""
+    project = tp.project
+    language = tp.language
     uploader_list = [(request.user.id, request.user.display_name), ]
     valid_extensions = project.filetype_tool.valid_extensions
     if check_permission('administrate', request):
         User = get_user_model()
         uploader_list = [
             (user.id, user.display_name)
-            for user in User.objects.get_users_with_permission(
+            for user
+            in User.objects.get_users_with_permission(
                 "translate",
                 project,
-                language
-            )
-        ]
+                language,
+                tp=tp)]
 
     if request.method == "POST" and "file" in request.FILES:
         upload_form = UploadForm(

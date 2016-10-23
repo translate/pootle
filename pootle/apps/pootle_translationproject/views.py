@@ -247,10 +247,7 @@ class TPBrowseBaseView(PootleBrowseView):
             and check_permission('translate', self.request))
         if has_upload:
             if "po" in self.project.filetype_tool.valid_extensions:
-                ctx.update(handle_upload_form(
-                    self.request,
-                    self.project,
-                    self.language))
+                ctx.update(handle_upload_form(self.request, self.tp))
             ctx.update(
                 {'display_download': True,
                  'has_sidebar': True})
