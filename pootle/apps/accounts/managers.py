@@ -82,13 +82,17 @@ class UserManager(BaseUserManager):
     def meta_users(self):
         return self.get_queryset().filter(username__in=self.META_USERS)
 
-    def get_users_with_permission(self, permission_code, project, language):
+    def get_users_with_permission(self, permission_code, project, language,
+                                  tp=None):
         default = self.get_default_user()
 
-        directory = TranslationProject.objects.get(
-            project=project,
-            language=language
-        ).directory
+        tp = (
+            tp
+            or TranslationProject.objects.get(
+                project=project,
+                language=language))
+
+        directory = tp.directory
 
         if check_user_permission(default, permission_code, directory):
             return self.hide_meta().filter(is_active=True)
@@ -97,13 +101,10 @@ class UserManager(BaseUserManager):
             permissionset__positive_permissions__codename=permission_code
         )
 
-        language_path = language.directory.pootle_path
-        project_path = project.directory.pootle_path
-
         user_filter &= (
             Q(permissionset__directory__pootle_path=directory.pootle_path)
-            | Q(permissionset__directory__pootle_path=language_path)
-            | Q(permissionset__directory__pootle_path=project_path)
+            | Q(permissionset__directory__pootle_path=language.pootle_path)
+            | Q(permissionset__directory__pootle_path=project.pootle_path)
         )
         user_filter |= Q(is_superuser=True)
 
