@@ -8,6 +8,7 @@
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
+from django.utils.functional import cached_property
 
 from pootle_store.constants import OBSOLETE
 from pootle_store.models import Suggestion, SuggestionStates
@@ -89,15 +90,16 @@ class LanguageTeam(object):
     def superusers(self):
         return User.objects.filter(is_superuser=True)
 
+    @cached_property
+    def permissions(self):
+        return self.language.directory.permission_sets.values_list(
+            "positive_permissions__codename",
+            "user")
+
     def _get_members(self, perm=None, exclude_perms=()):
-        all_perms = tuple([perm]) + tuple(exclude_perms)
-        permission_sets = self.language.directory.permission_sets.filter(
-            positive_permissions__codename__in=all_perms)
-        permissions = permission_sets.values_list(
-            "positive_permissions__codename", "user")
         members = set()
         not_members = set()
-        for (permission, user) in permissions:
+        for (permission, user) in self.permissions:
             if permission == perm:
                 members.add(user)
             if permission in exclude_perms:
