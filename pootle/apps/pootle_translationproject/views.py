@@ -167,6 +167,7 @@ class TPDirectoryMixin(TPMixin):
         tp_prefix = (
             "parent__" * self.kwargs.get("dir_path", "").count("/"))
         return [
+            "parent",
             "%stranslationproject" % tp_prefix,
             "%stranslationproject__language" % tp_prefix,
             "%stranslationproject__project" % tp_prefix]
