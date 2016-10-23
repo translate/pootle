@@ -12,10 +12,11 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
+from .directory import Directory
+
 
 def get_permission_contenttype():
-    content_type = ContentType.objects.filter(app_label='pootle_app',
-                                              model="directory")[0]
+    content_type = ContentType.objects.get_for_model(Directory)
     return content_type
 
 
