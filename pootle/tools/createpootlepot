@@ -41,7 +41,7 @@ ignore="\
 	--ignore custom \
 	"
 
-django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js -e py,txt,html,conf -l templates
+django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js --extension py,txt,html,conf --locale templates
 
 # JavaScript extraction
 
