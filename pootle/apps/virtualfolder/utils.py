@@ -207,7 +207,8 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
 
     def filter_data(self, qs):
         return (
-            qs.filter(store__pootle_path__startswith=self.context.pootle_path)
+            qs.filter(store__translation_project=self.context.translation_project)
+              .filter(store__pootle_path__startswith=self.context.pootle_path)
               .filter(store__vfolders__gt=0))
 
     def vfolder_is_visible(self, vfolder, vfolder_stats):

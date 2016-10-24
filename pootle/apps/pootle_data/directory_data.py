@@ -32,6 +32,7 @@ class DirectoryDataTool(RelatedStoresDataTool):
 
     def filter_data(self, qs):
         return qs.filter(
+            store__translation_project=self.context.translation_project,
             store__parent__pootle_path__startswith=self.context.pootle_path)
 
     def get_children_stats(self, qs):
