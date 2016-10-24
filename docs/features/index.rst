@@ -6,7 +6,7 @@ Features
 
 .. _features#pootle_fs:
 
-Pootle_fs
+Pootle FS
 ---------
 
 .. toctree::
