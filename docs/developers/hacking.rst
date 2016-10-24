@@ -43,7 +43,7 @@ Once you have the basic requirements in place, you will need to install
 Pootle's dependencies, which come in shape of Python packages. Instead of
 installing them system-wide, we recommend using `virtualenv
 <https://virtualenv.pypa.io/en/latest/>`_ (and `virtualenvwrapper
-<https://bitbucket.org/dhellmann/virtualenvwrapper>`_ for easing the
+<https://virtualenvwrapper.readthedocs.io/en/latest/>`_ for easing the
 management of multiple virtualenvs). This way you can install all the
 dependencies at specific versions without interfering with system-wide
 packages. You can test on different Python/Django versions in parallel as well.
@@ -56,8 +56,11 @@ Detailed setup
 
 For installing the dependencies in an isolated environment, we will use
 virtualenv -- more specifically virtualenvwrapper, which eases the process of
-managing and switching between multiple virtual environments. Installing
-virtualenwrapper will pull in virtualenv as a dependency.
+managing and switching between multiple virtual environments. Install
+virtualenwrapper as follows for bash (examine `platform specific installation
+instructions
+<https://virtualenvwrapper.readthedocs.io/en/latest/install.html>`_ for other
+environments):
 
 .. code-block:: console
 
@@ -65,7 +68,7 @@ virtualenwrapper will pull in virtualenv as a dependency.
 
 
 virtualenvwrapper will need to be configured in order to specify where to store
-the created environments.
+the created environments:
 
 .. code-block:: console
 
@@ -80,7 +83,7 @@ the created environments.
 
 
 Now that the commands provided by virtualenv and virtualenvwrapper are
-available, we can start creating our virtual environment.
+available, we can create our virtual environment.
 
 .. code-block:: console
 
@@ -88,25 +91,34 @@ available, we can start creating our virtual environment.
 
 
 Replace ``<env-name>`` with a meaningful name that describes the environment
-you are creating. :command:`mkvirtualenv` accepts any options that
-:command:`virtualenv` accepts. We could for example specify to use the Python
-2.6 interpreter by passing the `-p python2.6
-<https://virtualenv.pypa.io/en/latest/reference/#cmdoption--python>`_
-option.
+you are creating. :ref:`mkvirtualenv <virtualenvwrapper:command-mkvirtualenv>`
+accepts any options that :command:`virtualenv` accepts. We could for example
+specify to use the Python 2.6 interpreter by passing the `-p python2.6
+<https://virtualenv.pypa.io/en/latest/reference/#cmdoption--python>`_ option.
 
-.. note:: After running :command:`mkvirtualenv`, the newly created environment
-   is activated. To deactivate it just run:
+.. note:: After running :ref:`mkvirtualenv
+   <virtualenvwrapper:command-mkvirtualenv>`, the newly created environment is
+   activated. To deactivate it just run:
 
    .. code-block:: console
 
       (env-name) $ deactivate
 
 
-   To activate a virtual environment again simply run:
+   To activate a virtual environment again use :ref:`workon
+   <virtualenvwrapper:command-workon>` as follows:
 
    .. code-block:: console
 
       $ workon <env-name>
+
+
+First, upgrade the version of :command:`pip` and :command:`setuptools` as
+follows:
+
+.. code-block:: console
+
+   (env-name) $ pip install --upgrade pip setuptools
 
 
 Time to clone Pootle's source code repository. The main repository lives under
@@ -120,10 +132,9 @@ Time to clone Pootle's source code repository. The main repository lives under
     (env-name) $ git clone https://github.com/translate/pootle.git
 
 
-Next, install Pootle software dependencies using :command:`pip`.  The
-requirements are stored in the :file:`requirements` directory. The
-:file:`dev.txt` requirements will install some extra packages to aid
-development.
+Next, install Pootle software dependencies.  The requirements are stored in the
+:file:`requirements` directory. The :file:`requirements/dev.txt` requirements
+will install some extra packages to aid development.
 
 
 .. code-block:: console
@@ -136,8 +147,8 @@ development.
    need to install extra packages on your system in order to complete their
    installation.
 
-Install Pootle into your virtualenv.  This makes it easy to run Pootle locally
-and is needed for various development actitivies.
+Now, install Pootle itself into your virtualenv.  This makes it easy to run
+Pootle locally and is needed for various development actitivies.
 
 .. code-block:: console
 
@@ -154,7 +165,7 @@ this file and rename it by removing the *.sample* extension:
 
 .. code-block:: console
 
-    (env-name) $ cp pootle/settings/90-dev-local.conf.sample pootle/settings/90-dev-local.conf
+    (env-name) $ cp pootle/settings/90-dev-local.conf.sample ~/.pootle/pootle.conf
 
 
 .. note:: To learn more about how settings work in Pootle read the
@@ -166,8 +177,8 @@ schema and add initial data.
 
 .. code-block:: console
 
-    (env-name) $ python manage.py migrate
-    (env-name) $ python manage.py initdb
+    (env-name) $ pootle migrate
+    (env-name) $ pootle initdb
 
 
 Now ensure that you have built the assets by following the instructions for
@@ -177,12 +188,12 @@ Finally, run the development server.
 
 .. code-block:: console
 
-    (env-name) $ python manage.py runserver
+    (env-name) $ pootle runserver
 
 
 Once all is done, you can start the development server anytime by enabling the
-virtual environment (using the :command:`workon` command) and running the
-:djadmin:`manage.py runserver <runserver>` command.
+virtual environment (using the :ref:`workon <virtualenvwrapper:command-workon>`
+command) and running the :djadmin:`manage.py runserver <runserver>` command.
 
 
 Happy hacking!!
