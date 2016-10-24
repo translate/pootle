@@ -93,7 +93,7 @@ available, we can create our virtual environment.
 Replace ``<env-name>`` with a meaningful name that describes the environment
 you are creating. :ref:`mkvirtualenv <virtualenvwrapper:command-mkvirtualenv>`
 accepts any options that :command:`virtualenv` accepts. We could for example
-specify to use the Python 2.6 interpreter by passing the `-p python2.6
+specify to use the Python 3.3 interpreter by passing the `-p python3.3
 <https://virtualenv.pypa.io/en/latest/reference/#cmdoption--python>`_ option.
 
 .. note:: After running :ref:`mkvirtualenv
