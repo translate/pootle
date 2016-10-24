@@ -200,7 +200,7 @@ def check_settings(app_configs=None, **kwargs):
         # We don't bother warning about sqlite in DEBUG mode.
         errors.append(checks.Warning(
             _("The sqlite database backend is unsupported"),
-            hint=_("Set your default database engine to postgresql_psycopg2 "
+            hint=_("Set your default database engine to postgresql "
                    "or mysql"),
             id="pootle.W006",
         ))
