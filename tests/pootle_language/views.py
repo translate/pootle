@@ -11,11 +11,13 @@ import json
 import pytest
 
 from django import forms
+from django.core import mail
 from django.core.urlresolvers import reverse
 
 from pootle.core.delegate import language_team
 from pootle.core.forms import FormtableForm
-from pootle_language.forms import LanguageTeamAdminForm
+from pootle_language.forms import (
+    LanguageSuggestionAdminForm, LanguageTeamAdminForm)
 from pootle_language.views import SuggestionDisplay, SuggestionFormtable
 from pootle_store.constants import STATES_MAP
 from pootle_store.models import Unit
@@ -189,3 +191,103 @@ def test_formtable_language_team_suggestions(language0):
 
     formtable = SuggestionFormtable(DummyFormtableForm(), messages=["FOO"])
     assert formtable.messages == ["FOO"]
+
+
+@pytest.mark.django_db
+def test_view_admin_language_team_suggestion(client, language0, request_users):
+    user = request_users["user"]
+    team = language_team.get(language0.__class__)(language0)
+    admin_url = reverse(
+        'pootle-language-admin-suggestions',
+        kwargs=dict(language_code=language0.code))
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(admin_url)
+    if not user.is_superuser:
+        assert response.status_code == 403
+        if user.is_anonymous():
+            return
+        team.add_member(user, "admin")
+        response = client.get(admin_url)
+    assert response.context["language"] == language0
+    assert response.context["page"] == "admin-suggestions"
+    formtable = response.context["formtable"]
+    assert isinstance(formtable, SuggestionFormtable)
+    assert isinstance(formtable.form, LanguageSuggestionAdminForm)
+    assert formtable.form.user == response.wsgi_request.user
+    assert formtable.form.language == language0
+    assert formtable.form.data == dict(
+        page_no=1,
+        results_per_page=10)
+    assert (
+        [x[0] for x in formtable.form.fields["suggestions"].choices]
+        == [item.id
+            for item in
+            formtable.form.batch().object_list])
+    assert isinstance(
+        formtable.form.fields["suggestions"].choices[0][1],
+        SuggestionDisplay)
+
+
+@pytest.mark.django_db
+def test_view_admin_language_suggestion_post(client, language0, request_users):
+    user = request_users["user"]
+    team = language_team.get(language0.__class__)(language0)
+    admin_url = reverse(
+        'pootle-language-admin-suggestions',
+        kwargs=dict(language_code=language0.code))
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    suggestion = team.suggestions.first()
+    data = dict(
+        actions="accept",
+        suggestions=[suggestion.id])
+    response = client.post(admin_url, data=data)
+    if not user.is_superuser:
+        if user.is_anonymous():
+            assert response.status_code == 402
+            return
+        assert response.status_code == 403
+        team.add_member(user, "admin")
+        response = client.post(admin_url, data=data)
+    assert response.status_code == 302
+    suggestion.refresh_from_db()
+    assert suggestion.state == "accepted"
+    assert len(mail.outbox) == 0
+
+    # reject
+    suggestion = team.suggestions.first()
+    data = dict(
+        actions="reject",
+        suggestions=[suggestion.id])
+    response = client.post(admin_url, data=data)
+    assert response.status_code == 302
+    suggestion.refresh_from_db()
+    assert suggestion.state == "rejected"
+    assert len(mail.outbox) == 0
+
+    # reject with comment
+    suggestion = team.suggestions.first()
+    data = dict(
+        actions="accept",
+        comment="ta very much!",
+        suggestions=[suggestion.id])
+    response = client.post(admin_url, data=data)
+    assert response.status_code == 302
+    suggestion.refresh_from_db()
+    assert suggestion.state == "accepted"
+    assert len(mail.outbox) == 1
+
+    # reject with comment
+    suggestion = team.suggestions.first()
+    data = dict(
+        actions="reject",
+        comment="no way!",
+        suggestions=[suggestion.id])
+    response = client.post(admin_url, data=data)
+    assert response.status_code == 302
+    suggestion.refresh_from_db()
+    assert suggestion.state == "rejected"
+    assert len(mail.outbox) == 2
