@@ -193,7 +193,7 @@ Finally, run the development server.
 
 Once all is done, you can start the development server anytime by enabling the
 virtual environment (using the :ref:`workon <virtualenvwrapper:command-workon>`
-command) and running the :djadmin:`manage.py runserver <runserver>` command.
+command) and running the :djadmin:`pootle runserver <runserver>` command.
 
 
 Happy hacking!!
