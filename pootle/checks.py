@@ -145,7 +145,7 @@ def check_redis(app_configs=None, **kwargs):
             if len(sys.argv) > 1 and sys.argv[1] in RQWORKER_WHITELIST:
                 errors.append(checks.Warning(
                     _("No RQ Worker running."),
-                    hint=_("Run new workers with manage.py rqworker"),
+                    hint=_("Run new workers with 'pootle rqworker'"),
                     id="pootle.W001",
                 ))
 

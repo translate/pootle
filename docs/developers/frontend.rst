@@ -38,7 +38,7 @@ Simply run:
 
 .. code-block:: console
 
-    (env) $ ./manage.py webpack --dev
+    (env) $ pootle webpack --dev
 
 
 This will make sure to build all the necessary scripts and create the
@@ -49,7 +49,7 @@ For creating a production-ready build, use:
 
 .. code-block:: console
 
-    (env) $ ./manage.py webpack
+    (env) $ pootle webpack
 
 
 This will also run the output through

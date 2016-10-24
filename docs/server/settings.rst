@@ -96,8 +96,8 @@ Backend and caching settings.
 
   .. versionadded:: 2.7
 
-  The directory where Pootle writes event logs to. These are high-level
-  logs of events on store/unit changes and manage.py commands executed
+  The directory where Pootle writes event logs to. These are high-level logs of
+  events on store/unit changes and :command:`pootle` commands executed.
 
 
 30-site.conf

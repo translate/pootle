@@ -241,7 +241,7 @@ For documenting several things, Pootle defines custom Sphinx roles.
   E.g. ``|icon:icon-google-translate|`` will insert this
   |icon:icon-google-translate| icon.
 
-- Pootle manage.py commands::
+- Pootle and Django commands::
 
     .. django-admin:: sync_stores
 

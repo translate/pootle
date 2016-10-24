@@ -17,7 +17,8 @@ will run:
 .. note::
 
   If you run Pootle from a repository checkout you can use the *manage.py* file
-  found in the root of the repository.
+  found in the root of the repository.  Note that this approach is deprecated
+  and may not be supported in future.
 
 
 .. _commands#managing_pootle_projects:
