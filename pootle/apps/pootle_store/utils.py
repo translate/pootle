@@ -163,7 +163,7 @@ class SuggestionsReview(object):
         unit.reviewed_by = self.reviewer
         unit.reviewed_on = unit.submitted_on
         unit._log_user = self.reviewer
-        unit.save(suggestions_updated=True)
+        unit.save()
 
     def reject_suggestion(self, suggestion):
         suggestion.state = SuggestionStates.REJECTED
@@ -175,7 +175,6 @@ class SuggestionsReview(object):
             SubmissionTypes.SUGG_REJECT,
             self.reviewer,
             creation_time=suggestion.review_time).save()
-        suggestion.unit.save(suggestions_updated=True)
 
     def accept_suggestions(self):
         for suggestion in self.suggestions:
