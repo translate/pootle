@@ -16,9 +16,10 @@ from pootle_data.models import StoreChecksData, StoreData, TPChecksData
 from pootle_data.store_data import StoreDataTool
 from pootle_data.utils import DataTool
 from pootle_language.models import Language
-from pootle_project.models import Project
+from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import Unit
+from virtualfolder.delegate import vfolders_data_tool
 
 
 @pytest.mark.django_db
@@ -224,26 +225,55 @@ def test_data_project_stats(project0):
             assert child[k] == tp_stats[k]
 
 
+@pytest.mark.pootle_vfolders
 @pytest.mark.django_db
-def test_data_cache_keys(language0, project0, subdir0):
-
-    assert 'pootle_data.%s.%s.%s' % (
-        language0.data_tool.cache_key_name,
-        language0.code,
-        revision.get(Language)(language0).get(key="stats")
-    ) == language0.data_tool.cache_key
-
-    assert 'pootle_data.%s.%s.%s' % (
-        project0.data_tool.cache_key_name,
-        project0.code,
-        revision.get(Project)(project0).get(key="stats")
-    ) == project0.data_tool.cache_key
-
-    assert 'pootle_data.%s.%s.%s' % (
-        subdir0.data_tool.cache_key_name,
-        subdir0.pootle_path,
-        revision.get(Directory)(subdir0).get(key="stats")
-    ) == subdir0.data_tool.cache_key
+def test_data_cache_keys(language0, project0, subdir0, vfolder0):
+    # language
+    assert (
+        'pootle_data.%s.%s.%s'
+        % (language0.data_tool.cache_key_name,
+           language0.code,
+           revision.get(Language)(language0).get(key="stats"))
+        == language0.data_tool.cache_key)
+    # project
+    assert (
+        'pootle_data.%s.%s.%s'
+        % (project0.data_tool.cache_key_name,
+           project0.code,
+           revision.get(Project)(project0).get(key="stats"))
+        == project0.data_tool.cache_key)
+    # directory
+    assert (
+        'pootle_data.%s.%s.%s'
+        % (subdir0.data_tool.cache_key_name,
+           subdir0.pootle_path,
+           revision.get(Directory)(subdir0).get(key="stats"))
+        == subdir0.data_tool.cache_key)
+    # projectresource
+    resource_path = "%s%s" % (project0.pootle_path, subdir0.path)
+    projectresource = ProjectResource(Directory.objects.none(), resource_path)
+    assert (
+        'pootle_data.%s.%s.%s'
+        % (projectresource.data_tool.cache_key_name,
+           resource_path,
+           revision.get(ProjectResource)(projectresource).get(key="stats"))
+        == projectresource.data_tool.cache_key)
+    # projectset
+    projectset = ProjectSet(Project.objects.all())
+    assert (
+        'pootle_data.%s.%s.%s'
+        % (projectset.data_tool.cache_key_name,
+           "ALL",
+           revision.get(ProjectSet)(projectset).get(key="stats"))
+        == projectset.data_tool.cache_key)
+    # vfolders
+    vfdata = vfolders_data_tool.get(Directory)(subdir0)
+    assert (
+        'pootle_data.%s.%s.%s'
+        % (vfdata.cache_key_name,
+           subdir0.pootle_path,
+           revision.get(subdir0.__class__)(subdir0).get(key="stats"))
+        == vfdata.cache_key)
 
 
 @pytest.mark.django_db
