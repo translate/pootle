@@ -11,6 +11,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 import subprocess
 
 from django.conf import settings
+from django.contrib.staticfiles.finders import AppDirectoriesFinder
 from django.core.management.base import BaseCommand, CommandError
 
 from pootle_misc.baseurl import l
@@ -52,6 +53,15 @@ class Command(BaseCommand):
         default_static_dir = os.path.join(settings.WORKING_DIR, 'static')
         custom_static_dirs = filter(lambda x: x != default_static_dir,
                                     settings.STATICFILES_DIRS)
+
+        finder = AppDirectoriesFinder()
+        for app_name in finder.storages:
+            location = finder.storages[app_name].location
+            add_new_custom_dir = (location != default_static_dir
+                                  and location not in custom_static_dirs)
+            if add_new_custom_dir:
+                custom_static_dirs.append(location)
+
         default_js_dir = os.path.join(default_static_dir, 'js')
 
         webpack_config_file = os.path.join(default_js_dir, 'webpack.config.js')
