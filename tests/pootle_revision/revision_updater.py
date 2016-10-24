@@ -75,6 +75,7 @@ def test_revision_unit_updater_parent_paths():
             u"/foo2/",
             u"/foo2/bar/",
             u"/foo2/bar/path/",
+            u"/projects/",
             u"/projects/bar/",
             u"/projects/bar2/"])
 
