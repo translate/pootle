@@ -31,6 +31,7 @@ const actionMap = {
   'admin-characters': 'admin/characters',
   'admin-languages': 'admin/languages',
   'admin-team': 'admin/team',
+  'admin-suggestions': 'admin/suggestions',
   'admin-terminology': 'terminology',
 };
 
