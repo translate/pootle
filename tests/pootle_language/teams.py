@@ -159,7 +159,7 @@ def test_language_team_suggestions(language0):
         unit__store__translation_project__language=language0)
     assert (
         list(team.suggestions)
-        == list(suggestions.order_by("-creation_time")))
+        == list(suggestions.order_by("-creation_time", "-pk")))
     # there should be some suggestions in the env
     assert team.suggestions
     assert (
