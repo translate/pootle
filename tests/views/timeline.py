@@ -15,7 +15,7 @@ import pytest
 from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.template import RequestContext, loader
+from django.template import loader
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
@@ -208,8 +208,7 @@ def _calculate_timeline(request, unit):
     entries_group.reverse()
     context['entries_group'] = entries_group
     t = loader.get_template('editor/units/xhr_timeline.html')
-    c = RequestContext(request, context)
-    return t.render(c)
+    return t.render(context, request)
 
 
 def _timeline_test(client, request_user, unit):

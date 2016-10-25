@@ -13,7 +13,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import Http404, QueryDict
 from django.shortcuts import redirect
-from django.template import RequestContext, loader
+from django.template import loader
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
@@ -149,7 +149,7 @@ def _get_critical_checks_snippet(request, unit):
         'unit': unit,
     }
     template = loader.get_template('editor/units/xhr_checks.html')
-    return template.render(RequestContext(request, ctx))
+    return template.render(ctx, request)
 
 
 @ajax_required
@@ -260,9 +260,8 @@ def save_comment(request, unit):
             'cansuggest': check_user_permission(user, 'suggest', directory),
         }
         t = loader.get_template('editor/units/xhr_comment.html')
-        c = RequestContext(request, ctx)
 
-        return JsonResponse({'comment': t.render(c)})
+        return JsonResponse({'comment': t.render(ctx, request)})
 
     return JsonResponseBadRequest({'msg': _("Comment submission failed.")})
 
@@ -372,8 +371,7 @@ class UnitEditJSON(PootleUnitJSON):
         return loader.get_template('editor/units/edit.html')
 
     def render_edit_template(self, context):
-        return self.get_edit_template().render(
-            RequestContext(self.request, context))
+        return self.get_edit_template().render(context, self.request)
 
     def get_source_nplurals(self):
         if self.object.hasplural():

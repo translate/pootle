@@ -10,7 +10,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.shortcuts import redirect, render
-from django.template import RequestContext
 from django.template.loader import get_template
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
@@ -200,7 +199,7 @@ def display_page(request, virtual_path):
 
 def _get_rendered_agreement(request, form):
     template = get_template('staticpages/agreement.html')
-    return template.render(RequestContext(request, {'form': form}))
+    return template.render({'form': form}, request)
 
 
 @ajax_required
