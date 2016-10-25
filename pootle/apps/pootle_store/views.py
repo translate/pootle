@@ -556,6 +556,7 @@ def submit(request, unit, **kwargs_):
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
         json['user_score'] = request.user.public_score
+        json['newtargets'] = [target for target in form.instance.target.strings]
 
         return JsonResponse(json)
 
