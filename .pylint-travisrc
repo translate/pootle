@@ -10,7 +10,7 @@
 # 4. We don't include anything that the devs can't agree on in terms of linting
 
 [MASTER]
-ignore=migrations
+ignore=migrations,.eggs
 
 [MESSAGES CONTROL]
 disable=all
