@@ -49,7 +49,7 @@ class TranslationFileFinder(object):
         """
         file_root = self.translation_mapping.split("<")[0]
         if not file_root.endswith("/"):
-            file_root = "/".join(file_root.split("/")[:-1])
+            file_root = os.sep.join(file_root.split("/")[:-1])
         return file_root.rstrip("/")
 
     def match(self, file_path):
@@ -106,9 +106,9 @@ class TranslationFileFinder(object):
                 path = path.replace("<dir_path>", "")
         local_path = path.replace(self.file_root, "")
         if "//" in local_path:
-            path = os.path.join(
+            path = "/".join([
                 self.file_root,
-                local_path.replace("//", "/").lstrip("/"))
+                local_path.replace("//", "/").lstrip("/")])
         return path
 
     def _ext_re(self):
@@ -175,7 +175,10 @@ class TranslationMappingValidator(object):
                 "patterns to match in the translation mapping")
 
     def validate_path(self):
-        bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
+        if os.path.sep == "\\":
+            bad_chars = re.search("[^\w\\\:\-\.]+", self.stripped_path)
+        else:
+            bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
         if bad_chars:
             raise ValueError(
                 "Invalid character in translation_mapping '%s'"
