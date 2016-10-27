@@ -21,7 +21,7 @@ from .utils import FSPlugin
 
 class AbstractStoreFS(models.Model):
     project = models.ForeignKey(
-        Project, related_name='store_fs')
+        Project, related_name='store_fs', on_delete=models.CASCADE)
     pootle_path = models.CharField(max_length=255, blank=False)
     path = models.CharField(max_length=255, blank=False)
     store = models.ForeignKey(

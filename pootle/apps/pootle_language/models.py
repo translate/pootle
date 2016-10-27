@@ -114,7 +114,7 @@ class Language(models.Model, TreeItem):
         help_text=plurals_help_text)
 
     directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-                                     editable=False)
+                                     editable=False, on_delete=models.CASCADE)
 
     objects = models.Manager()
     live = LiveLanguageManager()

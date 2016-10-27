@@ -158,10 +158,13 @@ class TranslationProjectManager(models.Manager):
 
 class TranslationProject(models.Model, CachedTreeItem):
 
-    language = models.ForeignKey(Language, db_index=True)
-    project = models.ForeignKey(Project, db_index=True)
+    language = models.ForeignKey(
+        Language, db_index=True, on_delete=models.CASCADE)
+    project = models.ForeignKey(
+        Project, db_index=True, on_delete=models.CASCADE)
     real_path = models.FilePathField(editable=False, null=True, blank=True)
-    directory = models.OneToOneField(Directory, db_index=True, editable=False)
+    directory = models.OneToOneField(
+        Directory, db_index=True, editable=False, on_delete=models.CASCADE)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
                                    db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,

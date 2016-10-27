@@ -129,9 +129,11 @@ class PermissionSet(models.Model):
         unique_together = ('user', 'directory')
         app_label = "pootle_app"
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True,
+                             on_delete=models.CASCADE)
     directory = models.ForeignKey('pootle_app.Directory', db_index=True,
-                                  related_name='permission_sets')
+                                  related_name='permission_sets',
+                                  on_delete=models.CASCADE)
     positive_permissions = models.ManyToManyField(
         Permission, db_index=True, related_name='permission_sets_positive')
     negative_permissions = models.ManyToManyField(

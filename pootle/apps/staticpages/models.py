@@ -142,8 +142,9 @@ class StaticPage(AbstractPage):
 class Agreement(models.Model):
     """Tracks who agreed a specific legal document and when."""
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    document = models.ForeignKey(LegalPage)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    document = models.ForeignKey(LegalPage, on_delete=models.CASCADE)
     agreed_on = models.DateTimeField(
         default=now,
         editable=False,

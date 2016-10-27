@@ -80,7 +80,8 @@ class QualityCheck(models.Model):
     """Database cache of results of qualitychecks on unit."""
 
     name = models.CharField(max_length=64, db_index=True)
-    unit = models.ForeignKey("pootle_store.Unit", db_index=True)
+    unit = models.ForeignKey("pootle_store.Unit", db_index=True,
+                             on_delete=models.CASCADE)
     category = models.IntegerField(null=False, default=Category.NO_CATEGORY)
     message = models.TextField()
     false_positive = models.BooleanField(default=False, db_index=True)
@@ -108,11 +109,13 @@ class Suggestion(models.Model, base.TranslationUnit):
 
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
-    unit = models.ForeignKey('pootle_store.Unit')
+    unit = models.ForeignKey('pootle_store.Unit', on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
-                             related_name='suggestions', db_index=True)
+                             related_name='suggestions', db_index=True,
+                             on_delete=models.CASCADE)
     reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                 related_name='reviews', db_index=True)
+                                 related_name='reviews', db_index=True,
+                                 on_delete=models.CASCADE)
 
     translator_comment_f = models.TextField(null=True, blank=True)
 
@@ -189,7 +192,8 @@ def stringcount(string):
 
 
 class Unit(models.Model, base.TranslationUnit):
-    store = models.ForeignKey("pootle_store.Store", db_index=True)
+    store = models.ForeignKey("pootle_store.Store", db_index=True,
+                              on_delete=models.CASCADE)
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True,
@@ -224,17 +228,20 @@ class Unit(models.Model, base.TranslationUnit):
 
     # unit translator
     submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                     db_index=True, related_name='submitted')
+                                     db_index=True, related_name='submitted',
+                                     on_delete=models.CASCADE)
     submitted_on = models.DateTimeField(db_index=True, null=True)
 
     commented_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                     db_index=True, related_name='commented')
+                                     db_index=True, related_name='commented',
+                                     on_delete=models.CASCADE)
     commented_on = models.DateTimeField(db_index=True, null=True)
 
     # reviewer: who has accepted suggestion or removed FUZZY
     # None if translation has been submitted by approved translator
     reviewed_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                    db_index=True, related_name='reviewed')
+                                    db_index=True, related_name='reviewed',
+                                    on_delete=models.CASCADE)
     reviewed_on = models.DateTimeField(db_index=True, null=True)
 
     objects = UnitManager()
@@ -947,21 +954,18 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     file = TranslationStoreField(max_length=255, storage=fs, db_index=True,
                                  null=False, editable=False)
 
-    parent = models.ForeignKey('pootle_app.Directory',
-                               related_name='child_stores', db_index=True,
-                               editable=False)
+    parent = models.ForeignKey(
+        'pootle_app.Directory', related_name='child_stores', db_index=True,
+        editable=False, on_delete=models.CASCADE)
 
     translation_project_fk = 'pootle_translationproject.TranslationProject'
-    translation_project = models.ForeignKey(translation_project_fk,
-                                            related_name='stores',
-                                            db_index=True, editable=False)
+    translation_project = models.ForeignKey(
+        translation_project_fk, related_name='stores', db_index=True,
+        editable=False, on_delete=models.CASCADE)
 
     filetype = models.ForeignKey(
-        Format,
-        related_name='stores',
-        null=True,
-        blank=True,
-        db_index=True)
+        Format, related_name='stores', null=True, blank=True, db_index=True,
+        on_delete=models.CASCADE)
     is_template = models.BooleanField(default=False)
 
     # any changes to the `pootle_path` field may require updating the schema

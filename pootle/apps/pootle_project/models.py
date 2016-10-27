@@ -225,14 +225,15 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     source_language = models.ForeignKey(
         'pootle_language.Language', db_index=True,
-        verbose_name=_('Source Language'))
+        verbose_name=_('Source Language'), on_delete=models.CASCADE)
 
     ignoredfiles = models.CharField(
         max_length=255, blank=True, null=False, default="",
         verbose_name=_('Ignore Files'))
 
-    directory = models.OneToOneField('pootle_app.Directory', db_index=True,
-                                     editable=False)
+    directory = models.OneToOneField(
+        'pootle_app.Directory', db_index=True, editable=False,
+        on_delete=models.CASCADE)
     report_email = models.EmailField(
         max_length=254, blank=True, verbose_name=_("Errors Report Email"),
         help_text=_('An email address where issues with the source text '

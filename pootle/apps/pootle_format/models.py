@@ -24,9 +24,10 @@ class Format(AbstractFormat):
         unique_together = ["title", "extension"]
 
     extension = models.ForeignKey(
-        FileExtension, related_name="formats")
+        FileExtension, related_name="formats", on_delete=models.CASCADE)
     template_extension = models.ForeignKey(
-        FileExtension, related_name="template_formats")
+        FileExtension, related_name="template_formats",
+        on_delete=models.CASCADE)
 
     def __str__(self):
         return (

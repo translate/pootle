@@ -168,18 +168,20 @@ class Submission(models.Model):
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
-        'pootle_translationproject.TranslationProject', db_index=True
-    )
+        'pootle_translationproject.TranslationProject',
+        db_index=True, on_delete=models.CASCADE)
     submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                  db_index=True)
+                                  db_index=True, on_delete=models.CASCADE)
     suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
-                                   null=True, db_index=True)
+                                   null=True, db_index=True,
+                                   on_delete=models.CASCADE)
     unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
-                             db_index=True)
+                             db_index=True, on_delete=models.CASCADE)
     quality_check = models.ForeignKey('pootle_store.QualityCheck', blank=True,
-                                      null=True, db_index=True)
+                                      null=True, db_index=True,
+                                      on_delete=models.CASCADE)
     store = models.ForeignKey('pootle_store.Store', blank=True, null=True,
-                              db_index=True)
+                              db_index=True, on_delete=models.CASCADE)
 
     #: The field in the unit that changed
     field = models.IntegerField(null=True, blank=True, db_index=True)
@@ -381,7 +383,8 @@ class ScoreLogManager(models.Manager):
 
 class ScoreLog(models.Model):
     creation_time = models.DateTimeField(db_index=True, null=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
+                             on_delete=models.CASCADE)
     # current user’s new translation rate
     rate = models.FloatField(null=False, default=0)
     # current user’s review rate
@@ -393,7 +396,8 @@ class ScoreLog(models.Model):
     # the final calculated score delta for the action
     score_delta = models.FloatField(null=False)
     action_code = models.IntegerField(null=False)
-    submission = models.ForeignKey(Submission, null=False)
+    submission = models.ForeignKey(Submission, null=False,
+                                   on_delete=models.CASCADE)
     translated_wordcount = models.PositiveIntegerField(null=True)
 
     objects = ScoreLogManager()
