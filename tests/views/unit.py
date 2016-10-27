@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import json
 import pytest
 
 from django.http import Http404
@@ -88,6 +89,12 @@ def test_submit_with_suggestion_and_comment(client, request_users, settings):
 
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
+
+        content = json.loads(response.content)
+
+        assert content['user_score'] == response.wsgi_request.user.public_score
+        assert content['checks'] is None
+
         accepted_suggestion = Suggestion.objects.get(id=sugg.id)
         updated_unit = Unit.objects.get(id=unit.id)
 
