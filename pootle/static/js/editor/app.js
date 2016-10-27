@@ -1622,7 +1622,7 @@ PTL.editor = {
     }
 
     const unit = this.units.getCurrent();
-    unit.setTranslation(ReactEditor.stateValues);
+    unit.setTranslation(data.newtargets);
     unit.set('isfuzzy', this.isFuzzy());
 
     const hasCriticalChecks = !!data.checks;
