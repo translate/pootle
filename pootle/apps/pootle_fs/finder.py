@@ -60,8 +60,7 @@ class TranslationFileFinder(object):
         if not match:
             return
         matched = match.groupdict()
-        matched["dir_path"] = (
-            matched.get("dir_path", "").strip("/"))
+        matched["dir_path"] = matched.get("dir_path", "").strip("/")
         if not matched.get("filename"):
             matched["filename"] = os.path.splitext(
                 os.path.basename(file_path))[0]
@@ -102,8 +101,7 @@ class TranslationFileFinder(object):
                     .replace("<filename>", filename))
         if "<dir_path>" in path:
             if dir_path and dir_path.strip("/"):
-                path = path.replace(
-                    "<dir_path>", "/%s/" % dir_path.strip("/"))
+                path = path.replace("<dir_path>", "/%s/" % dir_path.strip("/"))
             else:
                 path = path.replace("<dir_path>", "")
         local_path = path.replace(self.file_root, "")
