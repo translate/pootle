@@ -1,0 +1,7 @@
+# Appveyor testing https://ci.appveyor.com/project/translate/pootle
+
+-r tests.txt
+-r _docs.txt
+-r _lint.txt
+
+tox==2.4.1

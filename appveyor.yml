@@ -1,0 +1,68 @@
+# Useful references:
+# https://packaging.python.org/appveyor/
+# https://github.com/pytest-dev/pytest/blob/master/appveyor.yml
+
+version: '{branch}-{build}'
+
+environment:
+
+  # Test against this version of Node.js
+  # We're using nvm on Travis to install latest stable
+  nodejs_version: "7.0.0"
+
+  matrix:
+
+    # For Python versions available on Appveyor, see
+    # http://www.appveyor.com/docs/installed-software#python
+
+    - PYTHON: "C:\\Python27"
+      TOXENV: "py27-django19-sqlite"
+      POOTLE_CMD: "%PYTHON%\\Scripts\\pootle"
+
+install:
+  # Installation
+  - "%PYTHON%\\python.exe -m pip install lxml==3.6.0"
+  - "%PYTHON%\\python.exe -m pip install -r requirements/base.txt -r requirements/appveyor.txt -e ."
+  # Get the latest stable version of Node.js or io.js
+  - ps: Install-Product node $env:nodejs_version
+  - npm --version
+  - node --version
+  # Asset building
+  - "%POOTLE_CMD% init"
+  - cd pootle\static\js
+  - npm cache clear
+    # Needs --force to bypass cache on Appveyor, see
+    # https://github.com/npm/npm/issues/9696
+  - npm install --force
+  - cd ..\..\..
+  - "%POOTLE_CMD% compilejsi18n"
+  - "%POOTLE_CMD% webpack --extra=--display-error-details -v 3"
+  - mkdir pootle\assets
+  # These mkdir's are a hack to get collectstatics to work
+  - mkdir pootle\static\js\1
+  - mkdir pootle\static\js\2
+  - mkdir pootle\static\js\3
+  - mkdir pootle\static\js\4
+  - mkdir pootle\static\js\5
+  - "%POOTLE_CMD% collectstatic --noinput --clear -i node_modules -i .tox -i docs"
+  - "%POOTLE_CMD% assets build"
+  #- chmod 664 ${ASSETS_DIR}.webassets-cache/*
+
+before_test:
+  - choco install redis-64
+  - redis-server --service-install
+  - redis-server --service-start
+
+build: off
+
+test_script:
+  # Put your test command here.
+  # Note that you must use the environment variable %PYTHON% to refer to
+  # the interpreter you're using - Appveyor does not do anything special
+  # to put the Python evrsion you want to use on PATH.
+  # - "%PYTHON%\\python.exe -m tox -e %TOXENV%"
+  #- "%PYTHON%\\python.exe -m py.test --maxfail=20"
+  - "%PYTHON%\\python.exe -m py.test --junit-xml=junit-results.xml"
+  # upload results to AppVeyor
+  - ps: $wc = New-Object 'System.Net.WebClient'
+  - ps: '$wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\junit-results.xml))'
