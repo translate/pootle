@@ -15,11 +15,11 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.core.cache import cache
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
-from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Case, ProtectedError, Q, Sum, When
 from django.forms.models import model_to_dict
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache

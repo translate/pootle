@@ -13,7 +13,7 @@ from urllib import unquote
 import pytest
 
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pytest_pootle.suite import view_context_test
 

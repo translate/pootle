@@ -7,8 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.generic import TemplateView
 
 from pootle.i18n.override import get_lang_from_http_header

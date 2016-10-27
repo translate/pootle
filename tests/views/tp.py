@@ -15,7 +15,7 @@ import pytest
 from pytest_pootle.suite import view_context_test
 
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission

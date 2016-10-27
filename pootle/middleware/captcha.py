@@ -9,9 +9,9 @@
 import re
 
 from django.conf import settings
-from django.core.urlresolvers import resolve
 from django.http import Http404
 from django.shortcuts import render
+from django.urls import resolve
 
 from pootle.core.forms import MathCaptchaForm
 

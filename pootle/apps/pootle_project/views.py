@@ -9,10 +9,10 @@
 import locale
 
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.forms.models import modelformset_factory
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import escape
 from django.utils.lru_cache import lru_cache

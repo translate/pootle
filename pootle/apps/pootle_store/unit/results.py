@@ -8,7 +8,7 @@
 
 from itertools import groupby
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import language_dir

@@ -13,7 +13,7 @@ from collections import OrderedDict
 
 import pytest
 
-from django.core.urlresolvers import resolve
+from django.urls import resolve
 
 from pootle_fs.finder import TranslationFileFinder
 from pootle_fs.matcher import FSPathMatcher

@@ -8,8 +8,8 @@
 
 from itertools import groupby
 
-from django.core.urlresolvers import resolve
 from django.db.models import Max
+from django.urls import resolve
 
 from pootle.core.dateparse import parse_datetime
 from pootle.core.url_helpers import split_pootle_path

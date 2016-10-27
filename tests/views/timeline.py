@@ -13,9 +13,9 @@ import json
 import pytest
 
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.template import loader
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 

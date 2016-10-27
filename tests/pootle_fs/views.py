@@ -13,7 +13,7 @@ import pytest
 
 from pytest_pootle.fixtures.models.user import TEST_USERS
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pootle_fs.forms import LangMappingFormSet, ProjectFSAdminForm
 

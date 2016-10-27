@@ -7,9 +7,9 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 from django.utils.safestring import mark_safe

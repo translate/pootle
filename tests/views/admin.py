@@ -9,7 +9,7 @@
 import pytest
 
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
-from django.core.urlresolvers import reverse_lazy, reverse
+from django.urls import reverse_lazy, reverse
 from django.utils.safestring import mark_safe
 
 from pytest_pootle.fixtures.models.user import TEST_USERS
