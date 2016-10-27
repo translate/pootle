@@ -13,7 +13,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from django.core.urlresolvers import set_script_prefix
+from django.urls import set_script_prefix
 from django.utils.encoding import force_unicode
 
 from django_rq.queues import get_failed_queue

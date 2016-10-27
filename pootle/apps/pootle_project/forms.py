@@ -8,9 +8,9 @@
 
 from django import forms
 from django.conf import settings
-from django.core.urlresolvers import set_script_prefix
 from django.db import connection
 from django.forms.models import BaseModelFormSet
+from django.urls import set_script_prefix
 from django.utils.encoding import force_unicode
 
 from django_rq.queues import get_queue

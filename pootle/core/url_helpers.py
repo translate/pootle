@@ -11,7 +11,7 @@ import re
 import urllib
 import urlparse
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 def split_pootle_path(pootle_path):

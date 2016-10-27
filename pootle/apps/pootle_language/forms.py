@@ -8,7 +8,7 @@
 
 from django import forms
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pootle.core.delegate import language_team, review
 from pootle.core.forms import FormtableForm

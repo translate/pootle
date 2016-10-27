@@ -16,7 +16,7 @@ import pytest
 from dateutil.relativedelta import relativedelta
 
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pytest_pootle.fixtures.models.user import TEST_USERS
 from pytest_pootle.utils import create_store, get_test_uids

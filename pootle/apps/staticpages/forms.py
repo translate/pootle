@@ -7,7 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django import forms
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from pootle.i18n.gettext import ugettext_lazy as _

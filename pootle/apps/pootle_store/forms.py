@@ -12,7 +12,7 @@ from translate.misc.multistring import multistring
 
 from django import forms
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import Resolver404, resolve
+from django.urls import Resolver404, resolve
 from django.utils import timezone
 from django.utils.translation import get_language
 

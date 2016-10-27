@@ -6,8 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
+from django.urls import reverse
 
 from allauth.account.views import LoginView
 from allauth.socialaccount.helpers import _add_social_account

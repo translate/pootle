@@ -12,7 +12,7 @@ import pytest
 
 from django import forms
 from django.core import mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pootle.core.browser import make_project_item
 from pootle.core.delegate import language_team

@@ -9,8 +9,8 @@
 from itertools import groupby
 
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
 from django.db.models import Q
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe

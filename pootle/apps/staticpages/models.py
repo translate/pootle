@@ -8,10 +8,10 @@
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
+from django.urls import reverse
 from django.utils.timezone import now
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name

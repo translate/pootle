@@ -12,7 +12,7 @@ import pytest
 
 from pytest_pootle.search import calculate_search_results
 
-from django.core.urlresolvers import resolve, reverse
+from django.urls import resolve, reverse
 
 
 @pytest.mark.django_db

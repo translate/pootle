@@ -7,9 +7,9 @@
 # AUTHORS file for copyright and authorship information.
 
 from django import forms
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils.functional import cached_property
 
 from pootle.core.browser import get_table_headings

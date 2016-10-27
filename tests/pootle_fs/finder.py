@@ -12,7 +12,7 @@ import sys
 
 import pytest
 
-from django.core.urlresolvers import resolve
+from django.urls import resolve
 
 from pootle_fs.finder import TranslationFileFinder
 from pootle_store.models import Store

@@ -9,9 +9,9 @@
 import functools
 
 from django.conf import settings
-from django.core.urlresolvers import resolve, reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import resolve, reverse
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 

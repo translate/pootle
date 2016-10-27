@@ -9,7 +9,7 @@
 import pytest
 
 from django.core import mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.forms import (

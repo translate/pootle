@@ -7,10 +7,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse_lazy
 from django.http import Http404
 from django.shortcuts import redirect, render
 from django.template.loader import get_template
+from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 

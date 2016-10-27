@@ -11,10 +11,10 @@ import logging
 from translate.misc.lru import LRUCachingDict
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
