@@ -14,7 +14,6 @@ from django.core.exceptions import PermissionDenied
 from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseForbidden, HttpResponseServerError
-from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.utils.encoding import force_unicode
 
@@ -83,8 +82,7 @@ def handle_exception(request, exception, template_name):
             ctx['fserror'] = msg
 
         return HttpResponseServerError(
-            render_to_string(template_name, ctx,
-                             RequestContext(request))
+            render_to_string(template_name, context=ctx, request=request)
         )
     except:
         # Let's not confuse things by throwing an exception here
@@ -122,8 +120,8 @@ class ErrorPagesMiddleware(object):
                 ctx["login_message"] = login_msg
 
             return HttpResponseForbidden(
-                render_to_string('errors/403.html', ctx,
-                                 RequestContext(request)))
+                render_to_string('errors/403.html', context=ctx,
+                                 request=request))
         elif (exception.__class__.__name__ in
                 ('OperationalError', 'ProgrammingError', 'DatabaseError')):
             # HACKISH: Since exceptions thrown by different databases do not
