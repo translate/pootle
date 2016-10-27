@@ -48,10 +48,30 @@ def to_python(value):
         return multistring(value, encoding="UTF-8")
 
 
+class CastOnAssignDescriptor(object):
+    """
+    A property descriptor which ensures that `field.to_python()` is called on
+    _every_ assignment to the field.  This used to be provided by the
+    `django.db.models.subclassing.Creator` class, which in turn was used by the
+    deprecated-in-Django-1.10 `SubfieldBase` class, hence the reimplementation
+    here.
+    """
+
+    def __init__(self, field):
+        self.field = field
+
+    def __get__(self, obj, type=None):
+        if obj is None:
+            return self
+        return obj.__dict__[self.field.name]
+
+    def __set__(self, obj, value):
+        obj.__dict__[self.field.name] = self.field.to_python(value)
+
+
 class MultiStringField(models.Field):
     description = \
         "a field imitating translate.misc.multistring used for plurals"
-    __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
         super(MultiStringField, self).__init__(*args, **kwargs)
@@ -60,6 +80,9 @@ class MultiStringField(models.Field):
         return "TextField"
 
     def to_python(self, value):
+        return to_python(value)
+
+    def from_db_value(self, value, expression, connection, context):
         return to_python(value)
 
     def get_prep_value(self, value):
@@ -71,6 +94,10 @@ class MultiStringField(models.Field):
             value = self.get_prep_value(value)
         return super(MultiStringField, self).get_prep_lookup(lookup_type,
                                                              value)
+
+    def contribute_to_class(self, cls, name):
+        super(MultiStringField, self).contribute_to_class(cls, name)
+        setattr(cls, name, CastOnAssignDescriptor(self))
 
 
 # # # # # # # # # File # # # # # # # # # # # # # # # #
