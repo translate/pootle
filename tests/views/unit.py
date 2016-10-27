@@ -92,6 +92,7 @@ def test_submit_with_suggestion_and_comment(client, request_users, settings):
 
         content = json.loads(response.content)
 
+        assert content['newtargets'] == [edited_target]
         assert content['user_score'] == response.wsgi_request.user.public_score
         assert content['checks'] is None
 
