@@ -29,8 +29,8 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255, verbose_name='Format title', db_index=True)),
                 ('enabled', models.BooleanField(default=True, verbose_name='Enabled')),
                 ('monolingual', models.BooleanField(default=False, verbose_name='Monolingual format')),
-                ('extension', models.ForeignKey(related_name='formats', to='pootle_format.FileExtension')),
-                ('template_extension', models.ForeignKey(related_name='template_formats', to='pootle_format.FileExtension')),
+                ('extension', models.ForeignKey(related_name='formats', to='pootle_format.FileExtension', on_delete=models.CASCADE)),
+                ('template_extension', models.ForeignKey(related_name='template_formats', to='pootle_format.FileExtension', on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,

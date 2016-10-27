@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=64, db_index=True)),
                 ('category', models.IntegerField(default=0, db_index=True)),
                 ('count', models.IntegerField(default=0, db_index=True)),
-                ('store', models.ForeignKey(related_name='check_data', to='pootle_store.Store')),
+                ('store', models.ForeignKey(related_name='check_data', to='pootle_store.Store', on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'pootle_store_check_data',
@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=64, db_index=True)),
                 ('category', models.IntegerField(default=0, db_index=True)),
                 ('count', models.IntegerField(default=0, db_index=True)),
-                ('tp', models.ForeignKey(related_name='check_data', to='pootle_translationproject.TranslationProject')),
+                ('tp', models.ForeignKey(related_name='check_data', to='pootle_translationproject.TranslationProject', on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'pootle_tp_check_data',

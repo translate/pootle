@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='directory',
             name='parent',
-            field=models.ForeignKey(related_name='child_dirs', blank=True, to='pootle_app.Directory', null=True),
+            field=models.ForeignKey(related_name='child_dirs', blank=True, to='pootle_app.Directory', null=True, on_delete=models.CASCADE),
         ),
     ]

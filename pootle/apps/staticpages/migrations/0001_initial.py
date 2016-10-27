@@ -52,8 +52,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('agreed_on', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('document', models.ForeignKey(to='staticpages.LegalPage')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('document', models.ForeignKey(to='staticpages.LegalPage', on_delete=models.CASCADE)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },

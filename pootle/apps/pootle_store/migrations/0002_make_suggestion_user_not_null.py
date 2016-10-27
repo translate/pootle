@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='suggestion',
             name='user',
-            field=models.ForeignKey(related_name='suggestions', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(related_name='suggestions', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

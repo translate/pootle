@@ -28,8 +28,8 @@ class Migration(migrations.Migration):
                 ('screenshot_search_prefix', models.URLField(null=True, verbose_name='Screenshot Search Prefix', blank=True)),
                 ('creation_time', models.DateTimeField(db_index=True, auto_now_add=True, null=True)),
                 ('disabled', models.BooleanField(default=False, verbose_name='Disabled')),
-                ('directory', models.OneToOneField(editable=False, to='pootle_app.Directory')),
-                ('source_language', models.ForeignKey(verbose_name='Source Language', to='pootle_language.Language')),
+                ('directory', models.OneToOneField(editable=False, to='pootle_app.Directory', on_delete=models.CASCADE)),
+                ('source_language', models.ForeignKey(verbose_name='Source Language', to='pootle_language.Language', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['code'],

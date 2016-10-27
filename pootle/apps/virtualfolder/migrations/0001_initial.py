@@ -39,10 +39,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('pootle_path', models.CharField(unique=True, max_length=255, editable=False, db_index=True)),
-                ('directory', models.ForeignKey(related_name='vf_treeitems', to='pootle_app.Directory')),
-                ('parent', models.ForeignKey(related_name='child_vf_treeitems', to='virtualfolder.VirtualFolderTreeItem', null=True)),
+                ('directory', models.ForeignKey(related_name='vf_treeitems', to='pootle_app.Directory', on_delete=models.CASCADE)),
+                ('parent', models.ForeignKey(related_name='child_vf_treeitems', to='virtualfolder.VirtualFolderTreeItem', null=True, on_delete=models.CASCADE)),
                 ('stores', models.ManyToManyField(related_name='parent_vf_treeitems', to=b'pootle_store.Store', db_index=True)),
-                ('vfolder', models.ForeignKey(related_name='vf_treeitems', to='virtualfolder.VirtualFolder')),
+                ('vfolder', models.ForeignKey(related_name='vf_treeitems', to='virtualfolder.VirtualFolder', on_delete=models.CASCADE)),
             ],
             options={
             },

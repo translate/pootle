@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('pootle_path', models.CharField(unique=True, max_length=255, db_index=True)),
                 ('obsolete', models.BooleanField(default=False)),
-                ('parent', models.ForeignKey(related_name='child_dirs', to='pootle_app.Directory', null=True)),
+                ('parent', models.ForeignKey(related_name='child_dirs', to='pootle_app.Directory', null=True, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['name'],
@@ -32,10 +32,10 @@ class Migration(migrations.Migration):
             name='PermissionSet',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('directory', models.ForeignKey(related_name='permission_sets', to='pootle_app.Directory')),
+                ('directory', models.ForeignKey(related_name='permission_sets', to='pootle_app.Directory', on_delete=models.CASCADE)),
                 ('negative_permissions', models.ManyToManyField(related_name='permission_sets_negative', to=b'auth.Permission', db_index=True)),
                 ('positive_permissions', models.ManyToManyField(related_name='permission_sets_positive', to=b'auth.Permission', db_index=True)),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },

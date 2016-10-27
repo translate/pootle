@@ -22,9 +22,9 @@ class Migration(migrations.Migration):
                 ('pootle_path', models.CharField(unique=True, max_length=255, editable=False, db_index=True)),
                 ('creation_time', models.DateTimeField(db_index=True, auto_now_add=True, null=True)),
                 ('disabled', models.BooleanField(default=False)),
-                ('directory', models.OneToOneField(editable=False, to='pootle_app.Directory')),
-                ('language', models.ForeignKey(to='pootle_language.Language')),
-                ('project', models.ForeignKey(to='pootle_project.Project')),
+                ('directory', models.OneToOneField(editable=False, to='pootle_app.Directory', on_delete=models.CASCADE)),
+                ('language', models.ForeignKey(to='pootle_language.Language', on_delete=models.CASCADE)),
+                ('project', models.ForeignKey(to='pootle_project.Project', on_delete=models.CASCADE)),
             ],
             options={
                 'db_table': 'pootle_app_translationproject',

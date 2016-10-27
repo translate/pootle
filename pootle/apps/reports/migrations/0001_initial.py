@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('rate', models.FloatField(default=0)),
                 ('datetime', models.DateTimeField(verbose_name='Date', db_index=True)),
                 ('description', models.TextField(null=True, verbose_name='Description')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },

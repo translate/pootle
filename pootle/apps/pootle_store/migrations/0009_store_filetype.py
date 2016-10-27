@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='store',
             name='filetype',
-            field=models.ForeignKey(related_name='stores', blank=True, to='pootle_format.Format', null=True),
+            field=models.ForeignKey(related_name='stores', blank=True, to='pootle_format.Format', null=True, on_delete=models.CASCADE),
         ),
     ]
