@@ -47,7 +47,7 @@ def test_formtable():
 def _render_template(string, context=None):
     context = context or {}
     context = Context(context)
-    return Template(string).render(context)
+    return Template(string).render(context=context)
 
 
 @pytest.mark.django

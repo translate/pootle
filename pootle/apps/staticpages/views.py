@@ -199,7 +199,7 @@ def display_page(request, virtual_path):
 
 def _get_rendered_agreement(request, form):
     template = get_template('staticpages/agreement.html')
-    return template.render({'form': form}, request)
+    return template.render(context={'form': form}, request=request)
 
 
 @ajax_required

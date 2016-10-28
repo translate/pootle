@@ -147,7 +147,7 @@ def _get_critical_checks_snippet(request, unit):
         'unit': unit,
     }
     template = loader.get_template('editor/units/xhr_checks.html')
-    return template.render(ctx, request)
+    return template.render(context=ctx, request=request)
 
 
 @ajax_required
@@ -259,7 +259,8 @@ def save_comment(request, unit):
         }
         t = loader.get_template('editor/units/xhr_comment.html')
 
-        return JsonResponse({'comment': t.render(ctx, request)})
+        return JsonResponse({'comment': t.render(context=ctx,
+                                                 request=request)})
 
     return JsonResponseBadRequest({'msg': _("Comment submission failed.")})
 
@@ -340,7 +341,7 @@ class UnitTimelineJSON(PootleUnitJSON):
             'timeline': self.render_timeline(context)}
 
     def render_timeline(self, context):
-        return loader.get_template(self.template_name).render(context)
+        return loader.get_template(self.template_name).render(context=context)
 
     def get_entries_group_data(self, context):
         result = []
@@ -367,7 +368,8 @@ class UnitEditJSON(PootleUnitJSON):
         return loader.get_template('editor/units/edit.html')
 
     def render_edit_template(self, context):
-        return self.get_edit_template().render(context, self.request)
+        return self.get_edit_template().render(context=context,
+                                               request=self.request)
 
     def get_source_nplurals(self):
         if self.object.hasplural():
