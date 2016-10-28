@@ -13,11 +13,11 @@ import pytest
 
 CONTRIBUTORS_KWARGS = dict(
     noargs={},
-    projects=dict(project_codes=["project0"]),
-    languages=dict(language_codes=["language0"]),
+    projects=dict(project_codes=[u"project0"]),
+    languages=dict(language_codes=[u"language0"]),
     projects_and_languages=dict(
-        project_codes=["project0"],
-        language_codes=["language0"]),
+        project_codes=[u"project0"],
+        language_codes=[u"language0"]),
     since=dict(since="2000-11-10"),
     until=dict(until="2000-11-10"),
     since_and_until=dict(since="2000-11-10", until="2000-11-10"),
