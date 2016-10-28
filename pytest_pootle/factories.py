@@ -115,7 +115,6 @@ class ProjectDBFactory(factory.django.DjangoModelFactory):
         # returns an incrementing index relative to the tp
         return 'Project %s' % Project.objects.count()
 
-    pootle_path = factory.LazyAttribute(lambda p: "/projects/%s" % p.code)
     checkstyle = "standard"
     treestyle = 'pootle_fs'
 
