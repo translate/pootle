@@ -309,7 +309,7 @@ class ProjectsMixin(object):
     def get_object(self):
         user_projects = (
             Project.objects.for_user(self.request.user)
-                           .select_related("directory__pootle_path"))
+                           .select_related("directory"))
         return ProjectSet(user_projects)
 
     @property
