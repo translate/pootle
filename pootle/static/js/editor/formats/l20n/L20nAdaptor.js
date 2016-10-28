@@ -6,18 +6,14 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-.CodeMirror
-{
-    font-size: 1.25em;
-    border: 1px solid #dadada;
-    height: auto;
-    min-height: 50px;
-}
+import L20nEditorContainer from './L20nEditorContainer';
+import L20nSource from './L20nSource';
 
-.CodeMirror .CodeMirror-placeholder
-{
-    font-family: sans-serif;
-    font-size: 0.8em;
-    font-style: italic;
-    color: #999;
-}
+
+const L20nAdaptor = {
+  editorComponent: L20nEditorContainer,
+  unitSourceComponent: L20nSource,
+};
+
+
+export default L20nAdaptor;
