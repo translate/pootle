@@ -36,8 +36,8 @@ class Command(BaseCommand):
         )
         parser.add_argument(
             'translation_mapping',
-            help='Translation path "<language_code>/<filename>.<ext>"',
-            metavar='TRANSLATION_PATH'
+            help='Translation mapping "<language_code>/<filename>.<ext>"',
+            metavar='TRANSLATION_MAPPING'
         )
         parser.add_argument(
             '-n', '--name',

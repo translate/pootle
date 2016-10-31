@@ -11,7 +11,7 @@ import pytest
 from django.core.exceptions import ValidationError
 
 from pootle_fs.delegate import fs_translation_mapping_validator, fs_url_validator
-from pootle_fs.finder import TranslationPathValidator
+from pootle_fs.finder import TranslationMappingValidator
 from pootle_fs.localfs import LocalFSPlugin, LocalFSUrlValidator
 
 
@@ -27,4 +27,4 @@ def test_validator_localfs():
 @pytest.mark.django_db
 def test_validator_translation_mapping():
     validator = fs_translation_mapping_validator.get()("asdf")
-    assert isinstance(validator, TranslationPathValidator)
+    assert isinstance(validator, TranslationMappingValidator)

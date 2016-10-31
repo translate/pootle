@@ -32,7 +32,7 @@ class TranslationFileFinder(object):
     path_mapping = PATH_MAPPING
 
     def __init__(self, translation_mapping, path_filters=None, extensions=None):
-        TranslationPathValidator(translation_mapping).validate()
+        TranslationMappingValidator(translation_mapping).validate()
         self.translation_mapping = translation_mapping
         if extensions:
             self.extensions = extensions
@@ -44,7 +44,7 @@ class TranslationFileFinder(object):
 
     @cached_property
     def file_root(self):
-        """The deepest directory that can be used from the translation path
+        """The deepest directory that can be used from the translation mapping
         before the <tags>.
         """
         file_root = self.translation_mapping.split("<")[0]
@@ -137,7 +137,7 @@ class TranslationFileFinder(object):
         return r"%s%s" % (regex, filter_regex)
 
 
-class TranslationPathValidator(object):
+class TranslationMappingValidator(object):
 
     validators = (
         "absolute", "lang_code", "ext", "match_tags", "path")
@@ -148,17 +148,18 @@ class TranslationPathValidator(object):
     def validate_absolute(self):
         if self.path != os.path.abspath(self.path):
             raise ValueError(
-                "Translation path should be absolute")
+                "Translation mapping should be absolute")
 
     def validate_lang_code(self):
         if "<language_code>" not in self.path:
             raise ValueError(
-                "Translation path must contain a <language_code> pattern to match.")
+                "Translation mapping must contain a <language_code> pattern "
+                "to match.")
 
     def validate_ext(self):
         if not self.path.endswith(".<ext>"):
             raise ValueError(
-                "Translation path must end with <ext>.")
+                "Translation mapping must end with <ext>.")
 
     @cached_property
     def stripped_path(self):
@@ -171,7 +172,7 @@ class TranslationPathValidator(object):
         if "<" in self.stripped_path or ">" in self.stripped_path:
             raise ValueError(
                 "Only <language_code>, <dir_path>, <filename> and <ext> are valid "
-                "patterns to match in the translation path")
+                "patterns to match in the translation mapping")
 
     def validate_path(self):
         bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)

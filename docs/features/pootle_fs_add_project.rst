@@ -48,7 +48,7 @@ is outlined here:
     stored on the local filesystem.
   - Set the *Backend URL or path* to point to the translation files on Pootle's
     local filesystem, e.g. ``/path/to/translations/MYPROJECT/``
-  - Set the *Translation path* mapping for your project, for example
+  - Set the *Translation mapping* for your project, for example
     ``/<language_code>/<dir_path>/<filename>.<ext>``
 
   .. note:: If you are setting up Pootle FS for a VCS then configure as

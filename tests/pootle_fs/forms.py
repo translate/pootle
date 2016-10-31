@@ -16,7 +16,7 @@ from django import forms
 
 from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins, fs_url_validator
-from pootle_fs.finder import TranslationPathValidator
+from pootle_fs.finder import TranslationMappingValidator
 from pootle_fs.forms import LangMappingFormSet, ProjectFSAdminForm
 from pootle_language.models import Language
 
@@ -58,7 +58,7 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
             fs_type="dummy2",
             translation_mapping="/some/path/to/<language_code>/<filename>.<ext>"))
     assert form.is_valid()
-    assert form.fs_path_validator is TranslationPathValidator
+    assert form.fs_path_validator is TranslationMappingValidator
     fs_type_choices = list(
         (plugin_type, plugin.name or plugin.fs_type)
         for plugin_type, plugin

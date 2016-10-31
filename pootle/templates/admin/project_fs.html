@@ -24,7 +24,7 @@
 	    <input type="submit" class="btn" value="{% trans 'Update filesystem configuration' %}" />
 	  </div>
 	  <p>
-	    {% blocktrans %}Translation paths should be of the format:{% endblocktrans %}
+	    {% blocktrans %}Translation mapping should be of the format:{% endblocktrans %}
 	    <blockquote class="centered">
 	      <code>
 		`/path/to/translation/files/&lt;language_code&gt;/&lt;dir_path&gt;/&lt;filename&gt;.&lt;ext&gt;`
@@ -35,11 +35,11 @@
 	    {% blocktrans %}Only `&lt;language_code&gt;` is required, although it must end with `.&lt;ext&gt;`{% endblocktrans %}
 	  </p>
 	  <p>
-	    {% blocktrans %}If you are using the localfs backend the translation path will be combined with the path specified in
+	    {% blocktrans %}If you are using the localfs backend the translation mapping will be combined with the path specified in
 	    backend URL{% endblocktrans %}
 	  </p>
 	  <p>
-	    {% blocktrans %}For other backends the translation path will be relative to the root of the repository.{% endblocktrans %}
+	    {% blocktrans %}For other backends the translation mapping will be relative to the root of the repository.{% endblocktrans %}
 	  </p>
 	</form>
       </div>

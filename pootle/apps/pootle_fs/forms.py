@@ -32,7 +32,7 @@ class ProjectFSAdminForm(forms.Form):
             "The URL or path to your translation files"))
     translation_mapping = forms.CharField(
         help_text=_(
-            "The translation path mapping for your filesystem"))
+            "The translation mapping for your filesystem"))
 
     def should_save(self):
         return self.is_valid()
