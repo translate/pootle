@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import sys
 
 import pytest
 
@@ -86,6 +87,8 @@ def test_update_tmserver_files_no_displayname(capfd, settings, tmpdir):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
+@pytest.mark.skipif(sys.platform == 'win32',
+                    reason="No Elasticsearch in Windows testing")
 def test_update_tmserver_files(capfd, settings, tmpdir):
     """Load TM from files"""
     settings.POOTLE_TM_SERVER = {
