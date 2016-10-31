@@ -22,7 +22,7 @@ from pootle.core.cache import PERSISTENT_STORES
 KEY_LENGTH = 50
 
 #: Default path for the settings file
-DEFAULT_SETTINGS_PATH = '~/.pootle/pootle.conf'
+DEFAULT_SETTINGS_PATH = os.path.join('~', '.pootle', 'pootle.conf')
 
 #: Template that will be used to initialize settings from
 SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.template'
