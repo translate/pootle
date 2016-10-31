@@ -11,7 +11,7 @@ from pootle.core.plugin import getter
 
 from .delegate import (
     fs_file, fs_finder, fs_matcher, fs_resources,
-    fs_translation_path_validator, fs_url_validator)
+    fs_translation_mapping_validator, fs_url_validator)
 from .files import FSFile
 from .finder import TranslationFileFinder, TranslationPathValidator
 from .localfs import LocalFSPlugin, LocalFSUrlValidator
@@ -56,6 +56,6 @@ def fs_url_validator_getter(**kwargs_):
     return LocalFSUrlValidator
 
 
-@getter(fs_translation_path_validator)
-def fs_translation_path_validator_getter(**kwargs_):
+@getter(fs_translation_mapping_validator)
+def fs_translation_mapping_validator_getter(**kwargs_):
     return TranslationPathValidator

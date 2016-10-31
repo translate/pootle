@@ -51,7 +51,8 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
 
     assert project.config.get('pootle_fs.fs_type') == 'localfs'
     assert project.config.get('pootle_fs.fs_url') == fs_path
-    assert project.config.get('pootle_fs.translation_paths')['default'] == tr_path
+    assert project.config.get(
+        'pootle_fs.translation_mappings')['default'] == tr_path
 
     assert project.translationproject_set.all().count() == 0
     state = FSPlugin(project).state()
@@ -70,7 +71,8 @@ def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir):
 
     assert project.config.get('pootle_fs.fs_type') == 'localfs'
     assert project.config.get('pootle_fs.fs_url') == fs_path
-    assert project.config.get('pootle_fs.translation_paths')['default'] == tr_path
+    assert project.config.get(
+        'pootle_fs.translation_mappings')['default'] == tr_path
 
     assert project.translationproject_set.all().count() > 0
     state = FSPlugin(project).state()

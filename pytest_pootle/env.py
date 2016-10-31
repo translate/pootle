@@ -202,7 +202,7 @@ class PootleTestEnv(object):
 
         project = Project.objects.get(code="project0")
         project.config["pootle_fs.fs_type"] = "localfs"
-        project.config["pootle_fs.translation_paths"] = {
+        project.config["pootle_fs.translation_mappings"] = {
             "default": "/<language_code>/<dir_path>/<filename>.<ext>"}
         project.config["pootle_fs.fs_url"] = "/tmp/path/for/setup"
         plugin = FSPlugin(project)

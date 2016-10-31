@@ -87,37 +87,37 @@ class DummyContext(object):
 @pytest.mark.django_db
 def test_matcher_instance(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
-    translation_path = "<language_code>/<dir_path>/<filename>.<ext>"
+    translation_mapping = "<language_code>/<dir_path>/<filename>.<ext>"
     project = Project.objects.get(code="project0")
     project.config[
-        "pootle_fs.translation_paths"] = dict(default=translation_path)
+        "pootle_fs.translation_mappings"] = dict(default=translation_mapping)
     context = DummyContext(project)
     matcher = FSPathMatcher(context)
     assert matcher.project == project
     assert matcher.root_directory == project.local_fs_path
-    assert matcher.translation_path == os.path.join(
-        project.local_fs_path, translation_path.lstrip("/"))
+    assert matcher.translation_mapping == os.path.join(
+        project.local_fs_path, translation_mapping.lstrip("/"))
 
 
 @pytest.mark.django_db
 def test_matcher_finder(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
     finder = matcher.get_finder()
     assert isinstance(finder, DummyFinder)
-    assert finder.translation_path == matcher.translation_path
+    assert finder.translation_mapping == matcher.translation_mapping
     finder = matcher.get_finder(fs_path="bar")
-    assert finder.translation_path == matcher.translation_path
+    assert finder.translation_mapping == matcher.translation_mapping
     assert finder.path_filters == ["bar"]
 
 
 @pytest.mark.django_db
 def test_matcher_get_lang():
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
     project.config["pootle.core.lang_mapping"] = {
         "upstream-language0": "language0"}
@@ -131,7 +131,7 @@ def test_matcher_get_lang():
 def test_matcher_make_pootle_path(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
     assert matcher.make_pootle_path() is None
@@ -165,7 +165,7 @@ def test_matcher_make_pootle_path(settings):
 def test_matcher_match_pootle_path(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
 
@@ -218,7 +218,7 @@ def test_matcher_match_pootle_path(settings):
 def test_matcher_relative_path(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
     assert matcher.relative_path("/foo/bar") is "/foo/bar"
@@ -252,7 +252,7 @@ def test_matcher_relative_path(settings):
 def test_matcher_matches(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/some/other/path/<language_code>/<dir_path>/<filename>.<ext>")
     matcher = FSPathMatcher(DummyContext(project))
     finder = matcher.get_finder()
@@ -270,7 +270,7 @@ def test_matcher_matches(settings):
 def test_matcher_matches_missing_langs(settings, caplog):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/some/other/path/<language_code>/<dir_path>/<filename>.<ext>")
     project.config["pootle.core.lang_mapping"] = {
         "language0": "language0-DOES_NOT_EXIST",
@@ -287,7 +287,7 @@ def test_matcher_matches_missing_langs(settings, caplog):
 def test_matcher_reverse_match(settings):
     settings.POOTLE_FS_WORKING_PATH = "/path/to"
     project = Project.objects.get(code="project0")
-    project.config["pootle_fs.translation_paths"] = dict(
+    project.config["pootle_fs.translation_mappings"] = dict(
         default="/<language_code>/<dir_path>/<filename>.<ext>")
     project.config["pootle.core.lang_mapping"] = {
         "upstream-foo": "foo"}

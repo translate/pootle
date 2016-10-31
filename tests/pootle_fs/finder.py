@@ -146,9 +146,9 @@ def test_finder_bad_paths(bad_finder_paths):
 @pytest.mark.django_db
 def test_finder_regex(finder_regexes):
     dir_path = "/some/path"
-    translation_path = os.path.join(dir_path, finder_regexes)
-    finder = TranslationFileFinder(translation_path)
-    path = translation_path
+    translation_mapping = os.path.join(dir_path, finder_regexes)
+    finder = TranslationFileFinder(translation_mapping)
+    path = translation_mapping
     for k, v in TranslationFileFinder.path_mapping:
         path = path.replace(k, v)
     path = os.path.splitext(path)

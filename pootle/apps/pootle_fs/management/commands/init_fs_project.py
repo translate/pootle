@@ -35,7 +35,7 @@ class Command(BaseCommand):
             help='FS url "filesystem_type+/repo/path/"'
         )
         parser.add_argument(
-            'translation_path',
+            'translation_mapping',
             help='Translation path "<language_code>/<filename>.<ext>"',
             metavar='TRANSLATION_PATH'
         )
@@ -108,8 +108,8 @@ class Command(BaseCommand):
 
         project.config['pootle_fs.fs_type'] = fs_type
         project.config['pootle_fs.fs_url'] = fs_url
-        project.config['pootle_fs.translation_paths'] = {
-            'default': options['translation_path']
+        project.config['pootle_fs.translation_mappings'] = {
+            'default': options['translation_mapping']
         }
 
         if options['sync']:

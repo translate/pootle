@@ -175,13 +175,13 @@ def finder_files(request):
 def fs_finder(test_fs, finder_files):
     from pootle_fs.finder import TranslationFileFinder
 
-    translation_path, expected = finder_files
+    translation_mapping, expected = finder_files
     test_filepath = test_fs.path("data/fs/example_fs")
 
     finder = TranslationFileFinder(
         os.path.join(
             test_filepath,
-            translation_path))
+            translation_mapping))
     expected = [
         (os.path.join(test_filepath, path), parsed)
         for path, parsed

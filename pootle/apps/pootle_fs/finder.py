@@ -31,9 +31,9 @@ class TranslationFileFinder(object):
     extensions = DEFAULT_EXTENSIONS
     path_mapping = PATH_MAPPING
 
-    def __init__(self, translation_path, path_filters=None, extensions=None):
-        TranslationPathValidator(translation_path).validate()
-        self.translation_path = translation_path
+    def __init__(self, translation_mapping, path_filters=None, extensions=None):
+        TranslationPathValidator(translation_mapping).validate()
+        self.translation_mapping = translation_mapping
         if extensions:
             self.extensions = extensions
         self.path_filters = path_filters
@@ -47,13 +47,13 @@ class TranslationFileFinder(object):
         """The deepest directory that can be used from the translation path
         before the <tags>.
         """
-        file_root = self.translation_path.split("<")[0]
+        file_root = self.translation_mapping.split("<")[0]
         if not file_root.endswith("/"):
             file_root = "/".join(file_root.split("/")[:-1])
         return file_root.rstrip("/")
 
     def match(self, file_path):
-        """For a given file_path find translation_path matches.
+        """For a given file_path find translation_mapping matches.
         If a match is found `file_path`, `matchdata` is returned.
         """
         match = self.regex.match(file_path)
@@ -94,7 +94,7 @@ class TranslationFileFinder(object):
         extension = extension.strip(".")
         path = (
             "%s.%s"
-            % (os.path.splitext(self.translation_path)[0], extension))
+            % (os.path.splitext(self.translation_mapping)[0], extension))
         if dir_path and "<dir_path>" not in path:
             return
         path = (path.replace("<language_code>", language_code)
@@ -119,7 +119,7 @@ class TranslationFileFinder(object):
                 for x in set(self.extensions)))
 
     def _parse_path_regex(self):
-        path = self.translation_path
+        path = self.translation_mapping
         for k, v in self.path_mapping:
             path = path.replace(k, v)
         return r"%s%s$" % (
@@ -177,7 +177,7 @@ class TranslationPathValidator(object):
         bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
         if bad_chars:
             raise ValueError(
-                "Invalid character in translation_path '%s'"
+                "Invalid character in translation_mapping '%s'"
                 % self.stripped_path[bad_chars.span()[0]:bad_chars.span()[1]])
 
     def validate(self):

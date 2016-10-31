@@ -75,7 +75,8 @@ def test_view_fs_project_admin_post_config(client, project0, request_users):
         admin_url,
         {'fs-config-fs_type': "localfs",
          'fs-config-fs_url': "/foo/bar",
-         'fs-config-translation_path': "/trans/<language_code>/<filename>.<ext>"})
+         'fs-config-translation_mapping': (
+             "/trans/<language_code>/<filename>.<ext>")})
     if not user.is_superuser:
         if user.is_anonymous():
             assert response.status_code == 402
@@ -86,7 +87,7 @@ def test_view_fs_project_admin_post_config(client, project0, request_users):
     assert response.get("location") == admin_url
     assert project0.config["pootle_fs.fs_type"] == "localfs"
     assert project0.config["pootle_fs.fs_url"] == "/foo/bar"
-    assert project0.config["pootle_fs.translation_paths"] == dict(
+    assert project0.config["pootle_fs.translation_mappings"] == dict(
         default="/trans/<language_code>/<filename>.<ext>")
 
 

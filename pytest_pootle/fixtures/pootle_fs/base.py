@@ -45,7 +45,7 @@ def project_fs_empty(english, tmpdir, settings):
     conf.set_config("pootle_fs.fs_type", "localfs")
     conf.set_config("pootle_fs.fs_url", repo_path)
     conf.set_config(
-        "pootle_fs.translation_paths",
+        "pootle_fs.translation_mappings",
         {"default": "/<language_code>/<dir_path>/<filename>.<ext>"})
     return FSPlugin(project)
 

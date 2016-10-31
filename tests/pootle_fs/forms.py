@@ -49,14 +49,14 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
 
     project0.config["pootle_fs.fs_type"] = "dummy1_plugin"
     project0.config["pootle_fs.fs_url"] = "/foo/bar"
-    project0.config["pootle_fs.translation_paths"] = dict(
+    project0.config["pootle_fs.translation_mappings"] = dict(
         default="/<language_code>/<filename>.<ext>")
     form = ProjectFSAdminForm(
         project=project0,
         data=dict(
             fs_url="/tmp/dummy2",
             fs_type="dummy2",
-            translation_path="/some/path/to/<language_code>/<filename>.<ext>"))
+            translation_mapping="/some/path/to/<language_code>/<filename>.<ext>"))
     assert form.is_valid()
     assert form.fs_path_validator is TranslationPathValidator
     fs_type_choices = list(
@@ -67,14 +67,14 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
     assert list(form.fields["fs_type"].choices) == fs_type_choices
     assert form.fields["fs_type"].initial == "dummy1_plugin"
     assert form.fields["fs_url"].initial == "/foo/bar"
-    assert form.fields["translation_path"].initial == (
+    assert form.fields["translation_mapping"].initial == (
         "/<language_code>/<filename>.<ext>")
     assert isinstance(
         form.fs_url_validator, DummyURLValidator)
     form.save()
     assert project0.config["pootle_fs.fs_type"] == "dummy2"
     assert project0.config["pootle_fs.fs_url"] == "/tmp/dummy2"
-    assert project0.config["pootle_fs.translation_paths"] == dict(
+    assert project0.config["pootle_fs.translation_mappings"] == dict(
         default="/some/path/to/<language_code>/<filename>.<ext>")
 
 
@@ -111,25 +111,25 @@ def test_form_fs_project_bad(no_fs_plugins, project0):
     assert not form.is_valid()
     assert (
         sorted(form.errors.keys())
-        == ['fs_type', 'fs_url', 'translation_path'])
+        == ['fs_type', 'fs_url', 'translation_mapping'])
     form = ProjectFSAdminForm(
         project=project0,
         data=dict(fs_type="DOES_NOT_EXIST"))
     assert not form.is_valid()
     assert (
         sorted(form.errors.keys())
-        == ['fs_type', 'fs_url', 'translation_path'])
+        == ['fs_type', 'fs_url', 'translation_mapping'])
     form = ProjectFSAdminForm(
         project=project0,
         data=dict(
             fs_type="DOES_NOT_EXIST",
             fs_url="foo/bar"))
     assert not form.is_valid()
-    assert sorted(form.errors.keys()) == ["fs_type", "translation_path"]
+    assert sorted(form.errors.keys()) == ["fs_type", "translation_mapping"]
     form = ProjectFSAdminForm(
         project=project0,
         data=dict(
-            translation_path="/good/path/<language_code>/<filename>.<ext>",
+            translation_mapping="/good/path/<language_code>/<filename>.<ext>",
             fs_type="dummy2",
             fs_url="DONT_SET_THIS"))
     assert not form.is_valid()
@@ -137,11 +137,11 @@ def test_form_fs_project_bad(no_fs_plugins, project0):
     form = ProjectFSAdminForm(
         project=project0,
         data=dict(
-            translation_path="/good/path/<NO_language_code>/<filename>.<ext>",
+            translation_mapping="/good/path/<NO_language_code>/<filename>.<ext>",
             fs_type="dummy2",
             fs_url="/good/path"))
     assert not form.is_valid()
-    assert form.errors.keys() == ["translation_path"]
+    assert form.errors.keys() == ["translation_mapping"]
 
 
 def _get_management_data(formset):

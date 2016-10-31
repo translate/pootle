@@ -45,7 +45,7 @@ def tp0_store(po_directory, settings, tp0, fs_src):
 
     conf["pootle_fs.fs_type"] = "localfs"
     conf["pootle_fs.fs_url"] = fs_src
-    conf["pootle_fs.translation_paths"] = OrderedDict(TRANSLATION_PATHS)
+    conf["pootle_fs.translation_mappings"] = OrderedDict(TRANSLATION_PATHS)
     return _require_store(
         tp0,
         settings.POOTLE_TRANSLATION_DIRECTORY, 'project0_fs.po')
