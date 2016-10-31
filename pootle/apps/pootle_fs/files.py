@@ -95,11 +95,6 @@ class FSFile(object):
     def store(self):
         return self.store_fs.store
 
-    def add(self):
-        logger.debug("Adding file: %s", self.path)
-        self.store_fs.resolve_conflict = POOTLE_WINS
-        self.store_fs.save()
-
     def create_store(self):
         """
         Creates a ```Store``` and if necessary the ```TranslationProject```
@@ -125,22 +120,6 @@ class FSFile(object):
         if self.store_fs.pk:
             self.store_fs.delete()
         self.remove_file()
-
-    def fetch(self):
-        """
-        Called when FS file is fetched
-        """
-        logger.debug("Fetching file: %s", self.path)
-        self.store_fs.resolve_conflict = SOURCE_WINS
-        self.store_fs.save()
-
-    def merge(self, pootle_wins):
-        if pootle_wins:
-            self.store_fs.resolve_conflict = POOTLE_WINS
-        else:
-            self.store_fs.resolve_conflict = SOURCE_WINS
-        self.store_fs.staged_for_merge = True
-        self.store_fs.save()
 
     def on_sync(self):
         """
@@ -189,22 +168,6 @@ class FSFile(object):
     def remove_file(self):
         if self.file_exists:
             os.unlink(self.file_path)
-
-    def rm(self):
-        self.store_fs.staged_for_removal = True
-        self.store_fs.save()
-
-    def unstage(self):
-        should_remove = (
-            not self.store_fs.last_sync_revision
-            and not self.store_fs.last_sync_hash)
-        self.store_fs.resolve_conflict = None
-        self.store_fs.staged_for_merge = False
-        self.store_fs.staged_for_removal = False
-        if should_remove:
-            self.store_fs.delete()
-        else:
-            self.store_fs.save()
 
     def deserialize(self):
         if not self.file_exists:
