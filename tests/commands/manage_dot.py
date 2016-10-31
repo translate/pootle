@@ -14,7 +14,7 @@ import pytest
 @pytest.mark.cmd
 def test_manage_noargs(capfd):
     """./manage.py with no args should give help"""
-    call(['./manage.py'])
+    call(['python', 'manage.py'])
     out, err = capfd.readouterr()
     assert "Available subcommands:" in out
 
@@ -22,6 +22,6 @@ def test_manage_noargs(capfd):
 @pytest.mark.cmd
 def test_manage_revision(capfd):
     """./manage.py revision, just to see that a simple command works."""
-    call(['./manage.py', 'revision'])
+    call(['python', 'manage.py', 'revision'])
     out, err = capfd.readouterr()
     assert out.rstrip().isnumeric()
