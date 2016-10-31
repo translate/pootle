@@ -12,6 +12,8 @@ other way, make sure to read through this part.
    contributing
    roadmap
    hacking
+   setup_linux
+   setup_windows
    frontend
    customization
    browsers
