@@ -196,7 +196,9 @@ class ProjectFSState(State):
         for v in self.__state__.values():
             if v:
                 has_changes.extend([p.pootle_path for p in v])
-        return self.resources.synced.exclude(pootle_path__in=has_changes)
+        unchanged = self.resources.synced.exclude(pootle_path__in=has_changes)
+        for store_fs in unchanged.iterator():
+            yield dict(store_fs=store_fs)
 
     @property
     def state_fs_staged(self):
