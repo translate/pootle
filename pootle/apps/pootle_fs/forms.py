@@ -18,6 +18,17 @@ from .delegate import (
     fs_plugins, fs_translation_mapping_validator, fs_url_validator)
 
 
+FS_CHOICES = (
+    ("gnu", _("GNU-style"), "/po/<language_code>.<ext>"),
+    ("non-gnu",
+     _("non GNU-style"),
+     "/<language_code>/<dir_path>/<filename>.<ext>"),
+    ("django",
+     _("Django-style"),
+     "/locale/<lang_code>/LC_MESSAGES/<filename>.<ext>"),
+    ("custom", _("Custom"), ""))
+
+
 class ProjectFSAdminForm(forms.Form):
 
     fs_type = forms.ChoiceField(
@@ -30,9 +41,17 @@ class ProjectFSAdminForm(forms.Form):
         label=_("Backend URL or path"),
         help_text=_(
             "The URL or path to your translation files"))
+    translation_mapping_presets = forms.ChoiceField(
+        required=False,
+        choices=(
+            [("", "-----"), ]
+            + [(x[0], x[1]) for x in FS_CHOICES]),
+        widget=forms.Select(
+            attrs={'class': 'js-select2 js-select-fs-mapping'}))
     translation_mapping = forms.CharField(
-        help_text=_(
-            "The translation mapping for your filesystem"))
+        help_text=_("The translation mapping for your filesystem"),
+        widget=forms.TextInput(
+            attrs={'class': 'js-select-fs-mapping-target'}))
 
     def should_save(self):
         return self.is_valid()

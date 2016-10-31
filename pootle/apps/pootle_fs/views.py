@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse
 from pootle.core.views.admin import PootleAdminFormView
 from pootle_project.models import Project
 
-from .forms import LangMappingFormSet, ProjectFSAdminForm
+from .forms import FS_CHOICES, LangMappingFormSet, ProjectFSAdminForm
 
 
 class ProjectFSAdminView(PootleAdminFormView):
@@ -22,6 +22,7 @@ class ProjectFSAdminView(PootleAdminFormView):
         context = super(ProjectFSAdminView, self).get_context_data(**kwargs)
         context["project"] = self.project
         context["lang_mapping_formset"] = self.get_lang_mapping_formset()
+        context["fs_choices"] = FS_CHOICES
         return context
 
     def get_lang_mapping_formset(self):
