@@ -15,10 +15,20 @@ from distutils.command.build import build as DistutilsBuild
 from distutils.core import Command
 from distutils.errors import DistutilsOptionError
 
+from pkg_resources import parse_version, require
 from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
 from pootle import __version__
+
+
+def check_pep440_versions():
+    if require('setuptools')[0].parsed_version < parse_version('8.0'):
+        exit("Incompatible version of 'setuptools'. Please run\n"
+             "'pip install --upgrade setuptools'")
+    if require('pip')[0].parsed_version < parse_version('6.0'):
+        exit("Incompatible version of 'pip'. Please run\n"
+             "'pip install --upgrade pip'")
 
 
 def parse_requirements(file_name):
@@ -221,6 +231,7 @@ class BuildChecksTemplatesCommand(Command):
         print("Checks templates written to %r" % (filename))
 
 
+check_pep440_versions()
 setup(
     name="Pootle",
     version=__version__,
