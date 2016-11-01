@@ -16,9 +16,10 @@ export function loadFormatAdaptor(options, onLoad) {
   const props = assign({}, options);
   delete props.fileType;
 
-  switch (options.fileType) {
-    default: {
-      onLoad(props, FormatAdaptor);
-    }
+  const loadFormat = PTL.editor.formats[options.fileType];
+  if (loadFormat !== undefined) {
+    loadFormat(props, onLoad);
+  } else {
+    onLoad(props, FormatAdaptor);
   }
 }

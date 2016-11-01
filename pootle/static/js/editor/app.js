@@ -111,6 +111,8 @@ PTL.editor = {
       assign(this.settings, options);
     }
 
+    this.formats = {};
+
     /* Cached elements */
     this.backToBrowserEl = q('.js-back-to-browser');
     this.$editorActivity = $('#js-editor-act');
@@ -2469,5 +2471,9 @@ PTL.editor = {
       this.suggestionFeedbackForm = undefined;
       this.isSuggestionFeedbackFormDirty = false;
     }
+  },
+
+  addFormats(formats) {
+    this.formats = assign(this.formats, formats);
   },
 };
