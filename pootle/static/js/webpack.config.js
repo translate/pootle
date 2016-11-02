@@ -15,6 +15,7 @@ var DEBUG = env !== 'production';
 var entries = {
   'admin/general': './admin/general/app.js',
   admin: './admin/app.js',
+  fs: './fs/app.js',
   user: './user/app.js',
   common: ['./common.js'],
   editor: ['./editor/app.js'],

@@ -33,6 +33,12 @@ js_admin_app = Bundle(
     output='js/admin/app.min.%(version)s.js')
 register('js_admin_app', js_admin_app)
 
+js_fs_app = Bundle(
+    'js/fs/app.bundle.js',
+    output='js/fs/app.min.%(version)s.js')
+register('js_fs_app', js_fs_app)
+
+
 js_user_app = Bundle(
     'js/user/app.bundle.js',
     output='js/user/app.min.%(version)s.js')

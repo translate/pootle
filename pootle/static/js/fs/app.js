@@ -9,7 +9,10 @@
 import $ from 'jquery';
 
 
-const fs = {
+window.PTL = window.PTL || {};
+
+
+PTL.fs = {
   init() {
     const choices = {};
     $.each($('.js-fs-preselect-choices dt'), function () {
@@ -25,5 +28,3 @@ const fs = {
     });
   },
 };
-
-export default fs;
