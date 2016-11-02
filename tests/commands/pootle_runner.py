@@ -20,7 +20,11 @@ def test_pootle_noargs(capfd):
     """Pootle no args should give help"""
     call(['pootle'])
     out, err = capfd.readouterr()
-    assert "Type 'pootle help <subcommand>'" in out
+    # Expected:
+    #   Type 'pootle help <subcommand>'
+    # but 'pootle' is 'pootle-script.py' on Windows
+    assert "Type 'pootle" in out
+    assert " help <subcommand>'" in out
 
 
 @pytest.mark.cmd
