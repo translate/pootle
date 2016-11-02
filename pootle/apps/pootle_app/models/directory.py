@@ -63,6 +63,11 @@ class Directory(models.Model, CachedTreeItem):
         null=True,
         blank=True,
         db_index=True)
+    tp_path = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        db_index=True)
     obsolete = models.BooleanField(default=False)
     revisions = GenericRelation(Revision)
 
@@ -135,6 +140,16 @@ class Directory(models.Model, CachedTreeItem):
     def clean(self):
         if self.parent is not None:
             self.pootle_path = self.parent.pootle_path + self.name + '/'
+        set_tp_path = (
+            self.parent is not None
+            and self.parent.parent is not None
+            and self.parent.name != "projects")
+        if set_tp_path:
+            self.tp_path = (
+                "/"
+                if self.parent.tp_path is None
+                else "/".join([self.parent.tp_path.rstrip("/"),
+                               self.name, ""]))
 
         if self.name == '' and self.parent is not None:
             raise ValidationError('Name can be empty only for root directory.')
