@@ -967,6 +967,13 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     # see migration 0007_case_sensitive_schema.py
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
                                    db_index=True, verbose_name=_("Path"))
+
+    tp_path = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name=_("Path"))
     # any changes to the `name` field may require updating the schema
     # see migration 0007_case_sensitive_schema.py
     name = models.CharField(max_length=128, null=False, editable=False,
