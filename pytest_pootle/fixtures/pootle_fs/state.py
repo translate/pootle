@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
 from collections import OrderedDict
 from fnmatch import fnmatch
 
@@ -73,7 +74,7 @@ class DummyPlugin(object):
         if dir_path:
             parts.append(dir_path.rstrip("/"))
         parts.append(filename)
-        return "/".join(parts)
+        return os.sep.join(parts)
 
 
 @pytest.fixture
@@ -93,7 +94,7 @@ def dummyfs(settings, no_fs_plugins, no_fs_files):
         return FSFile
 
     project = Project.objects.get(code="project0")
-    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
     project.config["pootle_fs.fs_type"] = "dummyfs"
     return FSPlugin(project)
 
@@ -136,7 +137,7 @@ def dummyfs_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
         return FSChangedFile
 
     project = Project.objects.get(code="project0")
-    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
     project.config["pootle_fs.fs_type"] = "dummyfs"
     return FSPlugin(project)
 
@@ -151,7 +152,7 @@ def dummyfs_plugin_no_stores(settings, no_complex_po_,
     from pootle_project.models import Project
     from pootle_store.models import Store
 
-    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.fs_type"] = "dummyfs"
     stores = Store.objects.filter(
@@ -202,7 +203,7 @@ def dummyfs_plugin_no_files(settings, no_complex_po_,
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
 
-    settings.POOTLE_FS_WORKING_PATH = "/tmp/foo/"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
 
     class NoFilesDummyPlugin(DummyPlugin):
 

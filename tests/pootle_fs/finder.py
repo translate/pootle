@@ -123,7 +123,7 @@ def test_finder_match_reverse_ext():
 # Parametrized: ROOT_PATHS
 @pytest.mark.django_db
 def test_finder_file_root(finder_root_paths):
-    dir_path = "/some/path"
+    dir_path = os.sep.join(['', 'some', 'path'])
     path, expected = finder_root_paths
     assert (
         TranslationFileFinder(
@@ -137,7 +137,7 @@ def test_finder_file_root(finder_root_paths):
 # Parametrized: BAD_FINDER_PATHS
 @pytest.mark.django_db
 def test_finder_bad_paths(bad_finder_paths):
-    dir_path = "/some/path"
+    dir_path = os.sep.join(['', 'some', 'path'])
     with pytest.raises(ValueError):
         TranslationFileFinder(os.path.join(dir_path, bad_finder_paths))
 
@@ -145,7 +145,7 @@ def test_finder_bad_paths(bad_finder_paths):
 # Parametrized: FINDER_REGEXES
 @pytest.mark.django_db
 def test_finder_regex(finder_regexes):
-    dir_path = "/some/path"
+    dir_path = os.sep.join(['', 'some', 'path'])
     translation_mapping = os.path.join(dir_path, finder_regexes)
     finder = TranslationFileFinder(translation_mapping)
     path = translation_mapping
@@ -159,7 +159,7 @@ def test_finder_regex(finder_regexes):
 # Parametrized: MATCHES
 @pytest.mark.django_db
 def test_finder_match(finder_matches):
-    dir_path = "/some/path"
+    dir_path = os.sep.join(['', 'some', 'path'])
     match_path, not_matching, matching = finder_matches
     finder = TranslationFileFinder(os.path.join(dir_path, match_path))
 

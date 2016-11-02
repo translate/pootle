@@ -86,7 +86,7 @@ class DummyContext(object):
 
 @pytest.mark.django_db
 def test_matcher_instance(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     translation_mapping = "<language_code>/<dir_path>/<filename>.<ext>"
     project = Project.objects.get(code="project0")
     project.config[
@@ -101,7 +101,7 @@ def test_matcher_instance(settings):
 
 @pytest.mark.django_db
 def test_matcher_finder(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/<language_code>/<dir_path>/<filename>.<ext>")
@@ -129,7 +129,7 @@ def test_matcher_get_lang():
 
 @pytest.mark.django_db
 def test_matcher_make_pootle_path(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
@@ -163,7 +163,7 @@ def test_matcher_make_pootle_path(settings):
 
 @pytest.mark.django_db
 def test_matcher_match_pootle_path(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
@@ -216,7 +216,7 @@ def test_matcher_match_pootle_path(settings):
 
 @pytest.mark.django_db
 def test_matcher_relative_path(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/path/to/<language_code>/<dir_path>/<filename>.<ext>")
@@ -250,7 +250,7 @@ def test_matcher_relative_path(settings):
 
 @pytest.mark.django_db
 def test_matcher_matches(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/some/other/path/<language_code>/<dir_path>/<filename>.<ext>")
@@ -268,7 +268,7 @@ def test_matcher_matches(settings):
 
 @pytest.mark.django_db
 def test_matcher_matches_missing_langs(settings, caplog):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/some/other/path/<language_code>/<dir_path>/<filename>.<ext>")
@@ -285,7 +285,7 @@ def test_matcher_matches_missing_langs(settings, caplog):
 
 @pytest.mark.django_db
 def test_matcher_reverse_match(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(
         default="/<language_code>/<dir_path>/<filename>.<ext>")
@@ -305,7 +305,7 @@ def test_matcher_reverse_match(settings):
 
 @pytest.mark.django_db
 def test_matcher_language_mapper(english, settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     matcher = FSPathMatcher(DummyContext(project))
     assert "pootle.core.lang_mapping" not in project.config
@@ -325,7 +325,7 @@ def test_matcher_language_mapper(english, settings):
 
 @pytest.mark.django_db
 def test_matcher_language_mapper_bad(settings):
-    settings.POOTLE_FS_WORKING_PATH = "/path/to"
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     language1 = Language.objects.get(code="language1")
     project.config["pootle.core.lang_mapping"] = TEST_LANG_MAPPING_BAD
