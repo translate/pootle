@@ -1,8 +1,19 @@
 {% extends "admin/base_app.html" %}
-{% load core i18n %}
+{% load core i18n assets %}
 
 {% block breadcrumbs %}
 {{ block.super }}<li>{% trans "Projects" %}</li>
+{% endblock %}
+
+{% block app_init %}
+{% assets 'js_fs_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+<script type="text/javascript">
+$(function() {
+  PTL.fs.init();
+});
+</script>
 {% endblock %}
 
 {% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}

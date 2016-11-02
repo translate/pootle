@@ -22,7 +22,6 @@ import browser from './browser';
 import captcha from './captcha';
 import contact from './contact';
 import dropdown from './dropdown';
-import fs from './fs';
 import helpers from './helpers';
 import score from './score';
 import search from './search';
@@ -66,7 +65,6 @@ PTL.captcha = captcha;
 PTL.cookie = cookie;
 PTL.contact = contact;
 PTL.dropdown = dropdown;
-PTL.fs = fs;
 PTL.score = score;
 PTL.search = search;
 PTL.stats = stats;
@@ -82,7 +80,6 @@ PTL.common = {
   init(opts) {
     PTL.auth.init();
     PTL.browser.init();
-    PTL.fs.init();
 
     $(window).load(() => {
       $('body').removeClass('preload');
