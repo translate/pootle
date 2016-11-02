@@ -53,8 +53,9 @@ class FSPathMatcher(object):
     def translation_mapping(self):
         return os.path.join(
             self.project.local_fs_path,
-            self.context.project.config[
-                "pootle_fs.translation_mappings"]["default"].lstrip("/"))
+            os.path.join(
+                *self.context.project.config[
+                    "pootle_fs.translation_mappings"]["default"].split("/")))
 
     def make_pootle_path(self, **matched):
         language_code = matched.get("language_code")
