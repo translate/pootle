@@ -32,7 +32,7 @@ class TranslationFileFinder(object):
     path_mapping = PATH_MAPPING
 
     def __init__(self, translation_mapping, path_filters=None, extensions=None):
-        TranslationMappingValidator(translation_mapping).validate()
+        TranslationMappingFinderValidator(translation_mapping).validate()
         self.translation_mapping = translation_mapping
         if extensions:
             self.extensions = extensions
