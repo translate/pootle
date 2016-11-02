@@ -184,3 +184,11 @@ class TranslationMappingValidator(object):
     def validate(self):
         for k in self.validators:
             getattr(self, "validate_%s" % k)()
+
+
+class TranslationMappingFinderValidator(TranslationMappingValidator):
+
+    def validate_absolute(self):
+        if self.path != os.path.abspath(self.path):
+            raise ValueError(
+                "Translation mapping '%s' should be absolute" % self.path)
