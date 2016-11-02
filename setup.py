@@ -31,7 +31,7 @@ def check_pep440_versions():
              "'pip install --upgrade pip'")
 
 
-def parse_requirements(file_name):
+def parse_requirements(file_name, recurse=False):
     """Parses a pip requirements file and returns a list of packages.
 
     Use the result of this function in the ``install_requires`` field.
@@ -41,7 +41,13 @@ def parse_requirements(file_name):
     for line in open(file_name, 'r').read().split('\n'):
         # Ignore comments, blank lines and included requirements files
         if re.match(r'(\s*#)|(\s*$)|'
-                    '((-r|--allow-external|--allow-unverified) .*$)', line):
+                    '((--allow-external|--allow-unverified) .*$)', line):
+            continue
+        if re.match(r'-r .*$', line):
+            if recurse:
+                requirements.extend(parse_requirements(
+                    'requirements/' +
+                    re.sub(r'-r\s*(.*[.]txt)$', r'\1', line), recurse))
             continue
 
         if re.match(r'\s*-e\s+', line):
@@ -251,6 +257,17 @@ setup(
     install_requires=parse_requirements('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
 
+    extras_require={
+        'dev': parse_requirements('requirements/dev.txt', recurse=True),
+        # Database dependencies
+        'mysql': parse_requirements('requirements/_db_mysql.txt'),
+        'postgresql': parse_requirements('requirements/_db_postgresql.txt'),
+        # Pootle FS plugins
+        'git': parse_requirements('requirements/_pootle_fs_git.txt'),
+        # Markdown
+        'markdown': parse_requirements('requirements/_markup_markdown.txt'),
+    },
+
     platforms=["any"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -260,7 +277,7 @@ setup(
         "Intended Audience :: End Users/Desktop",
         "Intended Audience :: Information Technology",
         "License :: OSI Approved :: "
-            "GNU General Public License v3 or later (GPLv3+)",
+        "GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
         "Operating System :: Microsoft :: Windows",
         "Operating System :: Unix",
