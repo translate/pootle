@@ -23,16 +23,19 @@ LXML_MINIMUM_REQUIRED_VERSION = (3, 5, 0, 0)
 
 # Minimum Redis server version required.
 # Initially set to some minimums based on:
-# 1. Ubuntu 14.04LTS (Trusty) version 2.8.4
+# 1. Ubuntu 16.04LTS (Xenial) version 3.0.6
+#    Ubuntu 14.04LTS (Trusty) version 2.8.4
 #    Ubuntu 12.04LTS (Precise) version 2.2.12
 #    Ubuntu 10.04LTS was too old for RQ
 #    See http://packages.ubuntu.com/search?keywords=redis-server
 # 2. RQ requires Redis >= 2.7.0, and
 #    See https://github.com/nvie/rq/blob/master/README.md
-# 3. Aligining with current Redis stable as best we can
-#    At time of writing, actual Redis stable is 3.0 series with 2.8 cosidered
-#    old stable.
-# 4. Wanting to insist on at least the latest stable that devs are using
+# 3. django-redis 4.x.y supports Redis >=2.8.x
+#    See http://niwinz.github.io/django-redis/latest/
+# 4. Aligning with current Redis stable as best we can
+#    At the time of writing, actual Redis stable is 3.0 series with 2.8
+#    cosidered old stable.
+# 5. Wanting to insist on at least the latest stable that devs are using
 #    The 2.8.* versions of Redis
 REDIS_MINIMUM_REQUIRED_VERSION = (2, 8, 4)
 
