@@ -146,9 +146,9 @@ class TranslationMappingValidator(object):
         self.path = path
 
     def validate_absolute(self):
-        if self.path != os.path.abspath(self.path):
+        if self.path[0] != '/':
             raise ValueError(
-                "Translation mapping '%s' should be absolute" % self.path)
+                "Translation mapping '%s' should start with '/'" % self.path)
 
     def validate_lang_code(self):
         if "<language_code>" not in self.path:
