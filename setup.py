@@ -60,6 +60,15 @@ def parse_requirements(file_name, recurse=False):
     return requirements
 
 
+def parse_dependency_links(file_name):
+    dependency_links = []
+    for line in open(file_name, 'r').read().split('\n'):
+        if re.match(r'\s*-e\s+', line):
+            dependency_links.append(re.sub(r'\s*-e\s+', '', line))
+
+    return dependency_links
+
+
 class PyTest(TestCommand):
 
     def finalize_options(self):
@@ -255,6 +264,7 @@ setup(
         __version__,
 
     install_requires=parse_requirements('requirements/base.txt'),
+    dependency_links=parse_dependency_links('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
 
     extras_require={
