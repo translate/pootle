@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
 from collections import OrderedDict
 
 import pytest
@@ -22,6 +23,8 @@ from pootle_language.models import Language
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_form_fs_project_admin(no_fs_plugins, project0):
 
     class Dummy1FSPlugin(object):
@@ -79,6 +82,8 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_form_fs_project_bad(no_fs_plugins, project0):
 
     class Dummy1FSPlugin(object):

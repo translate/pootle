@@ -7,6 +7,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
+
 import pytest
 
 from pytest_pootle.factories import ProjectDBFactory
@@ -60,6 +62,8 @@ def test_fs_state_instance(settings, english):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_fs_untracked(fs_path_qs, dummyfs_plugin_del_stores):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_del_stores
@@ -72,6 +76,8 @@ def test_fs_state_fs_untracked(fs_path_qs, dummyfs_plugin_del_stores):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_pootle_untracked(fs_path_qs, dummyfs_plugin_no_files):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_no_files
@@ -101,6 +107,8 @@ def test_fs_state_pootle_ahead(fs_path_qs, dummyfs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_fs_staged(fs_path_qs, dummyfs_plugin_del_stores):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_del_stores
@@ -112,6 +120,8 @@ def test_fs_state_fs_staged(fs_path_qs, dummyfs_plugin_del_stores):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_fs_staged_store_removed(fs_path_qs,
                                           dummyfs_plugin_del_stores):
     (qfilter, pootle_path, fs_path) = fs_path_qs
@@ -145,6 +155,8 @@ def test_fs_state_both_removed(fs_path_qs, dummyfs_plugin_no_files):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_pootle_removed(dummyfs_plugin_del_stores, fs_path_qs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_del_stores
@@ -152,6 +164,8 @@ def test_fs_state_pootle_removed(dummyfs_plugin_del_stores, fs_path_qs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_conflict_untracked(fs_path_qs, no_complex_po_, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
@@ -220,6 +234,8 @@ def test_fs_state_conflict(fs_path_qs, dummyfs_plugin_fs_changed):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_fs_ahead(fs_path_qs, dummyfs_plugin_fs_changed):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_fs_changed
@@ -227,6 +243,8 @@ def test_fs_state_fs_ahead(fs_path_qs, dummyfs_plugin_fs_changed):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_pootle_removed_obsolete(fs_path_qs,
                                           dummyfs_plugin_obs_stores):
     (qfilter, pootle_path, fs_path) = fs_path_qs

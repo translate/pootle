@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
+
 import pytest
 
 from django.core.management import call_command, CommandError
@@ -26,6 +28,8 @@ def test_init_fs_project_cmd_bad_lang(capsys):
 
 @pytest.mark.django_db
 @pytest.mark.cmd
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="broken on windows")
 def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
@@ -63,6 +67,8 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
 
 @pytest.mark.django_db
 @pytest.mark.cmd
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="broken on windows")
 def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir):
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")

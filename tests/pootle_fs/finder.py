@@ -8,6 +8,8 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import sys
+
 import pytest
 
 from django.core.urlresolvers import resolve
@@ -17,6 +19,8 @@ from pootle_store.models import Store
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_filepath():
 
     finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
@@ -26,6 +30,8 @@ def test_finder_match_filepath():
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_reverse():
     finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
     assert finder.reverse_match("foo") == "/path/to/foo.po"
@@ -38,6 +44,8 @@ def test_finder_match_reverse():
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_reverse_directory():
     finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
     assert finder.reverse_match("foo", dir_path="bar") is None
@@ -52,6 +60,8 @@ def test_finder_match_reverse_directory():
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_stores():
     TRANSLATION_PATH = "/path/to/<dir_path>/<language_code>/<filename>.<ext>"
     finder = TranslationFileFinder(TRANSLATION_PATH)
@@ -74,6 +84,8 @@ def test_finder_match_stores():
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_filters():
     finder = TranslationFileFinder(
         "/path/to/<dir_path>/<language_code>.<ext>",
@@ -105,6 +117,8 @@ def test_finder_filters():
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_reverse_ext():
 
     finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
@@ -122,6 +136,8 @@ def test_finder_match_reverse_ext():
 
 # Parametrized: ROOT_PATHS
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_file_root(finder_root_paths):
     dir_path = os.sep.join(['', 'some', 'path'])
     path, expected = finder_root_paths
@@ -144,6 +160,8 @@ def test_finder_bad_paths(bad_finder_paths):
 
 # Parametrized: FINDER_REGEXES
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_regex(finder_regexes):
     dir_path = os.sep.join(['', 'some', 'path'])
     translation_mapping = os.path.join(dir_path, finder_regexes)
@@ -158,6 +176,8 @@ def test_finder_regex(finder_regexes):
 
 # Parametrized: MATCHES
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match(finder_matches):
     dir_path = os.sep.join(['', 'some', 'path'])
     match_path, not_matching, matching = finder_matches
@@ -186,6 +206,8 @@ def test_finder_match(finder_matches):
 
 # Parametrized: FILES
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_find(fs_finder):
     finder, expected = fs_finder
     assert sorted(expected) == sorted(f for f in finder.find())

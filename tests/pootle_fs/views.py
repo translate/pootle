@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
 from collections import OrderedDict
 
 import pytest
@@ -63,6 +64,8 @@ def test_view_fs_project_admin_post(client, project0, request_users):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_view_fs_project_admin_post_config(client, project0, request_users):
     user = request_users["user"]
     admin_url = reverse(

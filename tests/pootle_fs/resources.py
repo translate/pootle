@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from fnmatch import fnmatch
+import sys
 
 import pytest
 
@@ -203,6 +204,8 @@ def test_fs_state_trackable_tracked(dummyfs, no_complex_po_):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_synced(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
@@ -243,6 +246,8 @@ def test_fs_state_synced_staged(dummyfs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_unsynced(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
@@ -287,6 +292,8 @@ def test_fs_state_unsynced_staged(dummyfs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_tracked(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
@@ -324,6 +331,8 @@ def test_fs_state_tracked_paths(fs_path_qs, dummyfs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_pootle_changed(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs

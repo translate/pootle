@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import sys
 from collections import OrderedDict
 
 import pytest
@@ -85,6 +86,8 @@ class DummyContext(object):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_matcher_instance(settings):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     translation_mapping = "<language_code>/<dir_path>/<filename>.<ext>"
@@ -100,6 +103,8 @@ def test_matcher_instance(settings):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_matcher_finder(settings):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
@@ -215,6 +220,8 @@ def test_matcher_match_pootle_path(settings):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_matcher_relative_path(settings):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
@@ -249,6 +256,8 @@ def test_matcher_relative_path(settings):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_matcher_matches(settings):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
@@ -267,6 +276,8 @@ def test_matcher_matches(settings):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_matcher_matches_missing_langs(settings, caplog):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
@@ -284,6 +295,8 @@ def test_matcher_matches_missing_langs(settings, caplog):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_matcher_reverse_match(settings):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
