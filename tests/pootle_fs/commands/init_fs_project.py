@@ -15,6 +15,7 @@ from pootle_project.models import Project
 
 
 @pytest.mark.django_db
+@pytest.mark.cmd
 def test_init_fs_project_cmd_bad_lang(capsys):
     fs_path = "/test/fs/path"
     tr_path = "<language_code>/<filename>.<ext>"
@@ -24,6 +25,7 @@ def test_init_fs_project_cmd_bad_lang(capsys):
 
 
 @pytest.mark.django_db
+@pytest.mark.cmd
 def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
@@ -60,6 +62,7 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
 
 
 @pytest.mark.django_db
+@pytest.mark.cmd
 def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir):
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
@@ -80,6 +83,7 @@ def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir):
 
 
 @pytest.mark.django_db
+@pytest.mark.cmd
 def test_init_fs_project_cmd_duplicated(capsys):
     fs_path = "/test/fs/path"
     tr_path = "<language_code>/<filename>.<ext>"
@@ -93,6 +97,7 @@ def test_init_fs_project_cmd_duplicated(capsys):
 
 
 @pytest.mark.django_db
+@pytest.mark.cmd
 def test_cmd_init_fs_project_bad_filetype(capsys):
     fs_path = "/test/fs/path"
     tr_path = "<language_code>/<filename>.<ext>"
