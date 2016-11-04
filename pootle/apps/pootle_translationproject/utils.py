@@ -53,6 +53,7 @@ class TPTool(object):
         self.check_tp(tp)
         self.check_no_tp(language)
         new_tp = self.create_tp(language)
+        new_tp.directory.tp = new_tp
         new_tp.directory.translationproject = new_tp
         self.clone_children(
             tp.directory,
@@ -77,7 +78,7 @@ class TPTool(object):
         Directory. Raises Exception if the target exists already.
         """
         target_dir = target_parent.child_dirs.create(
-            name=source_dir.name)
+            name=source_dir.name, tp=target_parent.translation_project)
         target_dir.parent = target_parent
         self.clone_children(
             source_dir,
