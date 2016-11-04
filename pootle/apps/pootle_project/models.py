@@ -31,8 +31,8 @@ from pootle.core.cache import make_method_key
 from pootle.core.delegate import data_tool, filetype_tool, lang_mapper, tp_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
-from pootle.core.url_helpers import (get_editor_filter, get_path_sortkey,
-                                     split_pootle_path, to_tp_relative_path)
+from pootle.core.url_helpers import (
+    get_editor_filter, get_path_sortkey, split_pootle_path)
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
@@ -392,10 +392,10 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             translation_project__project_id=self.pk)
         dirs = Directory.objects.live().order_by().filter(tp__project_id=self.pk)
         resources = sorted(
-            {to_tp_relative_path(pootle_path)
-             for pootle_path
-             in (set(stores.values_list("pootle_path", flat=True))
-                 | set(dirs.values_list("pootle_path", flat=True)))},
+            {tp_path[1:]
+             for tp_path
+             in (set(stores.values_list("tp_path", flat=True))
+                 | set(dirs.values_list("tp_path", flat=True)))},
             key=get_path_sortkey)
         cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
         return resources
