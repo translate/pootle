@@ -60,12 +60,7 @@ def find_altsrcs(unit, alt_src_langs, store=None, project=None):
         state=TRANSLATED)
 
     if project.get_treestyle() == 'nongnu':
-        language_regex = '(%s)' % '|'.join([x.code for x in alt_src_langs])
-        pootle_path = "/%s/%s/%s$" % (
-            language_regex,
-            project.code,
-            store.path)
-        altsrcs_qs = altsrcs_qs.filter(store__pootle_path__regex=pootle_path)
+        altsrcs_qs = altsrcs_qs.filter(store__tp_path=store.tp_path)
 
     return AltSrcUnits(altsrcs_qs).units
 
