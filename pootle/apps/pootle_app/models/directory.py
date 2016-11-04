@@ -88,22 +88,6 @@ class Directory(models.Model, CachedTreeItem):
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
-    def stores(self):
-        """Queryset with all descending stores."""
-        from pootle_store.models import Store
-        return Store.objects.live() \
-                            .filter(pootle_path__startswith=self.pootle_path)
-
-    @property
-    def is_template_project(self):
-        return self.pootle_path.startswith('/templates/')
-
-    @property
-    def is_root(self):
-        """Tell if this directory is the root directory."""
-        return self.pootle_path == '/'
-
-    @property
     def code(self):
         return self.name.replace('.', '-')
 
