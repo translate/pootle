@@ -14,8 +14,7 @@ from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
-from pootle.core.url_helpers import (get_editor_filter, split_pootle_path,
-                                     to_tp_relative_path)
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_misc.baseurl import l
 from pootle_revision.models import Revision
 
@@ -98,22 +97,14 @@ class Directory(models.Model, CachedTreeItem):
     @cached_property
     def path(self):
         """Returns just the path part omitting language and project codes."""
-        return to_tp_relative_path(self.pootle_path)
+        return self.tp_path
 
     @cached_property
     def translation_project(self):
         """Returns the translation project belonging to this directory."""
-        if self.is_language() or self.is_project():
-            return None
-
-        if self.is_translationproject():
-            return self.translationproject
-
-        aux_dir = self
-        while not aux_dir.is_translationproject() and aux_dir.parent is not None:
-            aux_dir = aux_dir.parent
-
-        return aux_dir.translationproject
+        if self.tp_id is not None:
+            return self.tp
+        return self.translationproject
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
