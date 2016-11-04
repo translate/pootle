@@ -998,7 +998,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     class Meta(object):
         ordering = ['pootle_path']
-        unique_together = ('parent', 'name')
+        unique_together = (
+            ('parent', 'name'),
+            ("obsolete", "translation_project", "tp_path"))
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
