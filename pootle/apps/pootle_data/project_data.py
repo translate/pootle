@@ -25,17 +25,20 @@ class ProjectResourceDataTool(RelatedStoresDataTool):
     @property
     def project_path(self):
         return (
-            "/%s/%s%s"
-            % (self.project_code,
-               self.dir_path,
+            "/%s%s"
+            % (self.project_code, self.tp_path))
+
+    @property
+    def tp_path(self):
+        return (
+            "/%s%s"
+            % (self.dir_path,
                self.filename))
 
     def filter_data(self, qs):
-        regex = r"^/[^/]*%s" % self.project_path
         return (
             qs.filter(store__translation_project__project__code=self.project_code)
-              .filter(store__pootle_path__contains=self.project_path)
-              .filter(store__pootle_path__regex=regex))
+              .filter(store__tp_path__startswith=self.tp_path))
 
     @property
     def context_name(self):
