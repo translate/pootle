@@ -167,7 +167,7 @@ class StoreManager(models.Manager):
                 parent = tp.directory
                 for child in dir_path.strip("/").split("/"):
                     parent, created = Directory.objects.get_or_create(
-                        name=child, parent=parent)
+                        tp=tp, name=child, parent=parent)
         else:
             parent = tp.directory
 

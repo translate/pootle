@@ -200,13 +200,13 @@ def create_or_resurrect_store(f, parent, name, translation_project):
     return store
 
 
-def create_or_resurrect_dir(name, parent):
+def create_or_resurrect_dir(tp, name, parent):
     """Create or resurrect a directory db item with given name and parent."""
     try:
         directory = Directory.objects.get(parent=parent, name=name)
         directory.obsolete = False
     except Directory.DoesNotExist:
-        directory = Directory(name=name, parent=parent)
+        directory = Directory(name=name, parent=parent, tp=tp)
     return directory
 
 
@@ -240,7 +240,8 @@ def add_files(translation_project, ignored_files, exts, relative_dir, db_dir,
     db_subdirs, new_db_subdirs_ = add_items(
         dir_set,
         existing_dirs,
-        lambda name: create_or_resurrect_dir(name=name, parent=db_dir),
+        lambda name: create_or_resurrect_dir(
+            tp=translation_project, name=name, parent=db_dir),
         db_dir,
     )
 

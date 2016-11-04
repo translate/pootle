@@ -318,7 +318,7 @@ class PootleTestEnv(object):
         tp_dir.obsolete = False
         tp_dir.save()
         self._add_stores(tp, n=(1, 1))
-        subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory)
+        subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory, tp=tp)
         self._add_stores(tp, n=(1, 1), parent=subdir0)
 
     def setup_subdirs(self):
@@ -327,8 +327,8 @@ class PootleTestEnv(object):
         from pootle_translationproject.models import TranslationProject
 
         for tp in TranslationProject.objects.all():
-            subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory)
-            subdir1 = DirectoryFactory(name="subdir1", parent=subdir0)
+            subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory, tp=tp)
+            subdir1 = DirectoryFactory(name="subdir1", parent=subdir0, tp=tp)
             self._add_stores(tp, n=(2, 1), parent=subdir0)
             self._add_stores(tp, n=(1, 1), parent=subdir1)
 
