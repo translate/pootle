@@ -1,3 +1,3 @@
 # Markup: Markdown filter for POOTLE_MARKUP_FILTER
-bleach==1.4.3
+bleach==1.5.0
 Markdown==2.6.7
