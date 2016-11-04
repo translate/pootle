@@ -273,10 +273,8 @@ class PootleUnitJSON(PootleJSON):
     @cached_property
     def permission_context(self):
         self.object = self.get_object()
-        tp_prefix = "parent__" * (self.pootle_path.count("/") - 3)
-        return Directory.objects.select_related(
-            "%stranslationproject__project"
-            % tp_prefix).get(pk=self.store.parent_id)
+        return Directory.objects.select_related("tp", "tp__project").get(
+            pk=self.store.parent_id)
 
     @property
     def pootle_path(self):

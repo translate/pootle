@@ -82,11 +82,10 @@ class ProjectMixin(object):
         if not self.kwargs["filename"]:
             dirs = Directory.objects.live()
             if self.kwargs['dir_path'].count("/"):
-                tp_prefix = "parent__" * self.kwargs['dir_path'].count("/")
                 dirs = dirs.select_related(
                     "parent",
-                    "%stranslationproject" % tp_prefix,
-                    "%stranslationproject__language" % tp_prefix)
+                    "tp",
+                    "tp__language")
             resources = (
                 dirs.exclude(pootle_path__startswith="/templates")
                     .filter(pootle_path__endswith=project_path)

@@ -137,7 +137,9 @@ class TPMixin(object):
 
     @cached_property
     def tp(self):
-        return self.object.translation_project
+        if not self.object.tp:
+            return self.object.translation_project
+        return self.object.tp
 
     @cached_property
     def project(self):
@@ -163,14 +165,12 @@ class TPDirectoryMixin(TPMixin):
 
     @property
     def object_related(self):
-        tp_prefix = (
-            "parent__" * self.kwargs.get("dir_path", "").count("/"))
         return [
             "parent",
-            "%stranslationproject" % tp_prefix,
-            "%stranslationproject__language" % tp_prefix,
-            "%stranslationproject__language__directory" % tp_prefix,
-            "%stranslationproject__project" % tp_prefix]
+            "tp",
+            "tp__language",
+            "tp__language__directory",
+            "tp__project"]
 
     @lru_cache()
     def get_object(self):
@@ -204,6 +204,10 @@ class TPStoreMixin(TPMixin):
     @property
     def permission_context(self):
         return self.get_object().parent
+
+    @cached_property
+    def tp(self):
+        return self.object.translation_project
 
     @property
     def dir_path(self):
