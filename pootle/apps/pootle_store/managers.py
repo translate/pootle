@@ -11,7 +11,7 @@ from django.db import models
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 
-from .constants import LANGUAGE_REGEX, OBSOLETE, PROJECT_REGEX
+from .constants import OBSOLETE
 from .util import SuggestionStates
 
 
@@ -77,25 +77,15 @@ class UnitManager(models.Manager):
         if not (dir_path or filename):
             return units_qs
 
-        pootle_path = "/%s/%s/%s%s" % (
-            language_code or LANGUAGE_REGEX,
-            project_code or PROJECT_REGEX,
+        tp_path = "/%s%s" % (
             dir_path or "",
             filename or "")
-        if language_code and project_code:
-            if filename:
-                return units_qs.filter(
-                    store__pootle_path=pootle_path)
-            else:
-                return units_qs.filter(
-                    store__pootle_path__startswith=pootle_path)
-        else:
-            # we need to use a regex in this case as lang or proj are not
-            # set
-            if filename:
-                pootle_path = "%s$" % pootle_path
+        if filename:
             return units_qs.filter(
-                store__pootle_path__regex=pootle_path)
+                store__tp_path=tp_path)
+        else:
+            return units_qs.filter(
+                store__tp_path__startswith=tp_path)
 
 
 class StoreManager(models.Manager):
