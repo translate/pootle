@@ -114,6 +114,9 @@ class StoreManager(models.Manager):
         kwargs["pootle_path"] = (
             "%s%s"
             % (kwargs["parent"].pootle_path, kwargs["name"]))
+        kwargs["tp_path"] = (
+            "%s%s"
+            % (kwargs["parent"].tp_path, kwargs["name"]))
         return super(StoreManager, self).create(*args, **kwargs)
 
     def get_or_create(self, *args, **kwargs):

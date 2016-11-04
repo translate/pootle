@@ -1057,6 +1057,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def save(self, *args, **kwargs):
         created = not self.id
         self.pootle_path = self.parent.pootle_path + self.name
+        self.tp_path = self.parent.tp_path + self.name
 
         # Force validation of fields.
         self.full_clean()
