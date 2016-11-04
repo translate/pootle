@@ -19,7 +19,7 @@
       page: 'staticpages',
       opts: {
         htmlName: '{{ form.body.html_name }}',
-        initialValue: '{{ form.initial.body.raw|escapejs }}',
+        initialValue: '{{ object.body.raw|escapejs }}',
         markup: PTL.settings.MARKUP_FILTER,
       }
     });
