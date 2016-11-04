@@ -389,9 +389,8 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             return resources
 
         stores = Store.objects.live().order_by().filter(
-            translation_project__project__pk=self.pk)
-        dirs = Directory.objects.live().order_by().filter(
-            pootle_path__regex=r"^/[^/]*/%s/" % self.code)
+            translation_project__project_id=self.pk)
+        dirs = Directory.objects.live().order_by().filter(tp__project_id=self.pk)
         resources = sorted(
             {to_tp_relative_path(pootle_path)
              for pootle_path
