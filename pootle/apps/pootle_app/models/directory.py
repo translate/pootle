@@ -56,6 +56,13 @@ class Directory(models.Model, CachedTreeItem):
     # see migration 0005_case_sensitive_schema.py
     pootle_path = models.CharField(max_length=255, null=False, db_index=True,
                                    unique=True, default='/')
+    tp = models.ForeignKey(
+        'pootle_translationproject.TranslationProject',
+        related_name='dirs',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        db_index=True)
     obsolete = models.BooleanField(default=False)
     revisions = GenericRelation(Revision)
 
@@ -221,8 +228,10 @@ class Directory(models.Model, CachedTreeItem):
             return self
 
     def get_or_make_subdir(self, child_name):
-        child_dir = Directory.objects.get_or_create(name=child_name,
-                                                    parent=self)[0]
+        child_dir = Directory.objects.get_or_create(
+            tp=self.tp,
+            name=child_name,
+            parent=self)[0]
         return child_dir
 
     def trail(self, only_dirs=True):
