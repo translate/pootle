@@ -73,14 +73,12 @@ class ProjectMixin(object):
         if not (self.kwargs["dir_path"] or self.kwargs["filename"]):
             return self.project
 
-        project_path = (
-            "/%s/%s%s"
-            % (self.project.code,
-               self.kwargs['dir_path'],
+        tp_path = (
+            "/%s%s"
+            % (self.kwargs['dir_path'],
                self.kwargs['filename']))
-        regex = r"^/[^/]*%s$" % project_path
         if not self.kwargs["filename"]:
-            dirs = Directory.objects.live()
+            dirs = Directory.objects.live().filter(tp__project=self.project)
             if self.kwargs['dir_path'].count("/"):
                 dirs = dirs.select_related(
                     "parent",
@@ -88,15 +86,13 @@ class ProjectMixin(object):
                     "tp__language")
             resources = (
                 dirs.exclude(pootle_path__startswith="/templates")
-                    .filter(pootle_path__endswith=project_path)
-                    .filter(pootle_path__regex=regex))
+                    .filter(tp_path=tp_path))
         else:
             resources = (
                 Store.objects.live()
                              .select_related("translation_project__language")
                              .filter(translation_project__project=self.project)
-                             .filter(pootle_path__endswith=project_path)
-                             .filter(pootle_path__regex=regex))
+                             .filter(tp_path=tp_path))
         if resources:
             return ProjectResource(
                 resources,
