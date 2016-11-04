@@ -147,7 +147,7 @@ def make_language_item(translation_project):
 
 
 def make_xlanguage_item(resource_obj):
-    translation_project = resource_obj.translation_project
+    translation_project = resource_obj.tp
     item = make_generic_item(resource_obj)
     item.update({
         'icon': 'language',

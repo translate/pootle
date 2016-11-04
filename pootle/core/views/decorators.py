@@ -24,7 +24,7 @@ def check_directory_permission(permission_codename, request, directory):
     if permission_codename == 'view':
         context = None
 
-        context = getattr(directory, "translation_project", None)
+        context = getattr(directory, "tp", None)
         if context is None:
             context = getattr(directory, "project", None)
 
