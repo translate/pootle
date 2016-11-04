@@ -53,10 +53,8 @@ def setup_store(pootle_path):
      dir_path, filename) = split_pootle_path(pootle_path)
     tp = TranslationProject.objects.get(
         language__code=lang_code, project__code=proj_code)
-    directory = tp.directory.get_relative(dir_path)
-
     return StoreDBFactory(
-        translation_project=tp, parent=directory, name=filename)
+        translation_project=tp, parent=tp.directory, name=filename)
 
 
 def create_store(pootle_path=None, store_revision=None, units=None):
