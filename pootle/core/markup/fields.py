@@ -119,6 +119,9 @@ class MarkupField(models.TextField):
 
         return value
 
+    def to_python(self, value):
+        return self.get_prep_value(value)
+
     def value_to_string(self, obj):
         value = self.value_from_object(obj)
         return self.get_prep_value(value)
