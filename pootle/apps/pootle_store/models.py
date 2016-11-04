@@ -1000,6 +1000,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         return self.name.replace('.', '-')
 
     @property
+    def tp(self):
+        return self.translation_project
+
+    @property
     def real_path(self):
         return self.file.name
 
