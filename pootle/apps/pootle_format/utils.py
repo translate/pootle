@@ -129,10 +129,8 @@ class ProjectFiletypes(object):
             and self.template_extensions
             or self.filetype_extensions)
         return (
-            r"^/%s/%s/%s\.%s$"
-            % (tp.language.code,
-               tp.project.code,
-               PathFilter().path_regex(matching).rstrip("$"),
+            r"^/%s\.%s$"
+            % (PathFilter().path_regex(matching).rstrip("$"),
                r"(%s)" % ("|".join(extensions))))
 
     def set_tp_filetype(self, tp, filetype, from_filetype=None, matching=None):
@@ -146,7 +144,7 @@ class ProjectFiletypes(object):
         stores = tp.stores.exclude(filetype=filetype)
         if matching:
             stores = stores.filter(
-                pootle_path__regex=self._tp_path_regex(tp, matching))
+                tp_path__regex=self._tp_path_regex(tp, matching))
         if from_filetype:
             stores = stores.filter(filetype=from_filetype)
         for store in stores.iterator():
