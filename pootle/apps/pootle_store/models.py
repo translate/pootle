@@ -241,12 +241,15 @@ class Unit(models.Model, base.TranslationUnit):
     simple_objects = models.Manager()
 
     class Meta(object):
-        unique_together = ('store', 'unitid_hash')
+        unique_together = (
+            ('store', 'unitid_hash'),
+            ("store", "state", "index", "unitid_hash"))
         get_latest_by = 'mtime'
         index_together = [
             ["store", "index"],
             ["store", "revision"],
-            ["store", "mtime"]]
+            ["store", "mtime"],
+            ["store", "state"]]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
@@ -998,6 +1001,9 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     class Meta(object):
         ordering = ['pootle_path']
+        index_together = [
+            ["translation_project", "is_template"],
+            ["translation_project", "pootle_path", "is_template", "filetype"]]
         unique_together = (
             ('parent', 'name'),
             ("obsolete", "translation_project", "tp_path"))
