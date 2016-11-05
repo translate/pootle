@@ -173,7 +173,9 @@ class TranslationProject(models.Model, CachedTreeItem):
     objects = TranslationProjectManager()
 
     class Meta(object):
-        unique_together = ('language', 'project')
+        unique_together = (
+            ('language', 'project'),
+            ('project', 'language'))
         db_table = 'pootle_app_translationproject'
 
     @cached_property
