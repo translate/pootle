@@ -10,17 +10,14 @@ from functools import wraps
 
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.db import connection
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 
 from pootle.i18n.gettext import ugettext as _
-from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
 from pootle_language.models import Language
-from pootle_project.models import Project, ProjectResource, ProjectSet
-from pootle_store.models import Store
+from pootle_project.models import Project, ProjectSet
 from pootle_translationproject.models import TranslationProject
 
 from .cache import get_cache
@@ -109,173 +106,6 @@ def get_path_obj(func):
         request.pootle_path = path_obj.pootle_path
 
         return func(request, path_obj, *args, **kwargs)
-
-    return wrapped
-
-
-def set_resource(request, path_obj, dir_path, filename):
-    """Loads :cls:`pootle_app.models.Directory` and
-    :cls:`pootle_store.models.Store` models and populates the
-    request object.
-
-    :param path_obj: A path-like object object.
-    :param dir_path: Path relative to the root of `path_obj`.
-    :param filename: Optional filename.
-    """
-    obj_directory = getattr(path_obj, 'directory', path_obj)
-    ctx_path = obj_directory.pootle_path
-    resource_path = dir_path
-    pootle_path = ctx_path + dir_path
-
-    directory = None
-    store = None
-
-    is_404 = False
-
-    if filename:
-        pootle_path = pootle_path + filename
-        resource_path = resource_path + filename
-
-        try:
-            store = Store.objects.live().select_related(
-                'translation_project',
-                'parent',
-            ).get(pootle_path=pootle_path)
-            directory = store.parent
-        except Store.DoesNotExist:
-            is_404 = True
-
-    if directory is None and not is_404:
-        if dir_path:
-            try:
-                directory = Directory.objects.live().get(
-                    pootle_path=pootle_path)
-            except Directory.DoesNotExist:
-                is_404 = True
-        else:
-            directory = obj_directory
-
-    if is_404:  # Try parent directory
-        language_code, project_code = split_pootle_path(pootle_path)[:2]
-        if not filename:
-            dir_path = dir_path[:dir_path[:-1].rfind('/') + 1]
-
-        url = reverse('pootle-tp-browse',
-                      args=[language_code, project_code, dir_path])
-        request.redirect_url = url
-
-        raise Http404
-
-    request.store = store
-    request.directory = directory
-    request.pootle_path = pootle_path
-
-    request.resource_obj = store or (directory if dir_path else path_obj)
-    request.resource_path = resource_path
-    request.ctx_obj = path_obj or request.resource_obj
-    request.ctx_path = ctx_path
-
-
-def set_project_resource(request, path_obj, dir_path, filename):
-    """Loads :cls:`pootle_app.models.Directory` and
-    :cls:`pootle_store.models.Store` models and populates the
-    request object.
-
-    This is the same as `set_resource` but operates at the project level
-    across all languages.
-
-    :param path_obj: A :cls:`pootle_project.models.Project` object.
-    :param dir_path: Path relative to the root of `path_obj`.
-    :param filename: Optional filename.
-    """
-    query_ctx_path = ''.join(['/%/', path_obj.code, '/'])
-    query_pootle_path = query_ctx_path + dir_path
-
-    obj_directory = getattr(path_obj, 'directory', path_obj)
-    ctx_path = obj_directory.pootle_path
-    resource_path = dir_path
-    pootle_path = ctx_path + dir_path
-
-    # List of TP paths available for user
-    user_tps = TranslationProject.objects.for_user(request.user)
-    user_tps = user_tps.filter(
-        project__code=path_obj.code,
-    ).values_list('pootle_path', flat=True)
-    user_tps = list(path for path in user_tps
-                    if not path.startswith('/templates/'))
-    user_tps_regex = '^%s' % u'|'.join(user_tps)
-    sql_regex = 'REGEXP'
-    if connection.vendor == 'postgresql':
-        sql_regex = '~'
-
-    if filename:
-        query_pootle_path = query_pootle_path + filename
-        pootle_path = pootle_path + filename
-        resource_path = resource_path + filename
-
-        resources = Store.objects.live().extra(
-            where=[
-                'pootle_store_store.pootle_path LIKE %s',
-                'pootle_store_store.pootle_path ' + sql_regex + ' %s',
-            ], params=[query_pootle_path, user_tps_regex]
-        ).select_related('translation_project__language')
-    else:
-        resources = Directory.objects.live().extra(
-            where=[
-                'pootle_app_directory.pootle_path LIKE %s',
-                'pootle_app_directory.pootle_path ' + sql_regex + ' %s',
-            ], params=[query_pootle_path, user_tps_regex]
-        ).select_related('parent')
-
-    if not resources.exists():
-        raise Http404
-
-    request.store = None
-    request.directory = None
-    request.pootle_path = pootle_path
-
-    request.resource_obj = ProjectResource(resources, pootle_path)
-    request.resource_path = resource_path
-    request.ctx_obj = path_obj or request.resource_obj
-    request.ctx_path = ctx_path
-
-
-def get_resource(func):
-    @wraps(func)
-    def wrapped(request, path_obj, dir_path, filename):
-        """Gets resources associated to the current context."""
-        try:
-            directory = getattr(path_obj, 'directory', path_obj)
-            if directory.is_project() and (dir_path or filename):
-                set_project_resource(request, path_obj, dir_path, filename)
-            else:
-                set_resource(request, path_obj, dir_path, filename)
-        except Http404:
-            if not request.is_ajax():
-                user_choice = request.COOKIES.get('user-choice', None)
-                url = None
-
-                if hasattr(request, 'redirect_url'):
-                    url = request.redirect_url
-                elif user_choice in ('language', 'resource',):
-                    project = (path_obj
-                               if isinstance(path_obj, Project)
-                               else path_obj.project)
-                    url = reverse('pootle-project-browse',
-                                  args=[project.code, dir_path, filename])
-
-                if url is not None:
-                    response = redirect(url)
-
-                    if user_choice in ('language', 'resource',):
-                        # XXX: should we rather delete this in a single place?
-                        response.delete_cookie('user-choice')
-
-                    return response
-
-            raise Http404
-
-        return func(request, path_obj, dir_path, filename)
 
     return wrapped
 
