@@ -57,30 +57,6 @@ def to_tp_relative_path(pootle_path):
     return u'/'.join(pootle_path.split(u'/')[3:])
 
 
-def get_all_pootle_paths(pootle_path):
-    """Get list of `pootle_path` for all parents."""
-    res = [pootle_path]
-
-    if pootle_path == '' or pootle_path[-1] != u'/':
-        pootle_path += u'/'
-
-    while True:
-        chunks = pootle_path.rsplit(u'/', 2)
-        slash_count = chunks[0].count(u'/')
-        pootle_path = chunks[0] + u'/'
-        if slash_count > 1:
-            res.append(pootle_path)
-        else:
-            if slash_count == 1 and pootle_path != u'/projects/':
-                # omit chunk[0] which is a language_code
-                # since language is inherited from a (non cached) TreeItem
-                # chunk[1] is a project_code
-                res.append(u'/projects/%s/' % chunks[1])
-            break
-
-    return res
-
-
 def get_path_sortkey(path):
     """Returns the sortkey to use for a `path`."""
     if path == '' or path.endswith('/'):

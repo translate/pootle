@@ -6,8 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.url_helpers import (get_all_pootle_paths, get_editor_filter,
-                                     split_pootle_path, urljoin)
+from pootle.core.url_helpers import (
+    get_editor_filter, split_pootle_path, urljoin)
 
 
 def test_urljoin():
@@ -23,19 +23,6 @@ def test_urljoin():
     assert urljoin(base, 'foo', 'bar/baz', 'blah') == base + 'foo/bar/baz/blah'
     assert urljoin(base, 'foo/', 'bar', 'baz/') == base + 'foo/bar/baz/'
     assert urljoin('', '', '/////foo') == '/foo'
-
-
-def test_get_all_pootle_paths():
-    """Tests all paths are properly extracted."""
-    assert get_all_pootle_paths('') == ['']
-    assert get_all_pootle_paths('/') == ['/']
-    assert get_all_pootle_paths('/projects/') == ['/projects/']
-    assert get_all_pootle_paths('/projects/tutorial/') == \
-        ['/projects/tutorial/']
-    assert get_all_pootle_paths('/pt/tutorial/') == \
-        ['/pt/tutorial/', '/projects/tutorial/']
-    assert get_all_pootle_paths('/pt/tutorial/tutorial.po') == \
-        ['/pt/tutorial/tutorial.po', '/pt/tutorial/', '/projects/tutorial/']
 
 
 def test_split_pootle_path():
