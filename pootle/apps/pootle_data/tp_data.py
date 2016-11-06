@@ -93,12 +93,12 @@ class TPDataUpdater(DataUpdater):
 class TPDataTool(RelatedStoresDataTool):
     """Retrieves aggregate stats for a TP"""
 
-    group_by = ("store__pootle_path", )
+    group_by = ("store__tp_path", )
     cache_key_name = "directory"
 
     def get_root_child_path(self, child):
-        remainder = child["store__pootle_path"].replace(
-            "%s%s" % (self.context.pootle_path, self.dir_path), "")
+        remainder = child["store__tp_path"].replace(
+            "/%s" % (self.dir_path), "", 1)
         return remainder.split("/")[0]
 
     @property
