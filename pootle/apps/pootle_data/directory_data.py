@@ -16,7 +16,7 @@ from .utils import RelatedStoresDataTool
 class DirectoryDataTool(RelatedStoresDataTool):
     """Retrieves aggregate stats for a Directory"""
 
-    group_by = ("store__parent__pootle_path", )
+    group_by = ("store__parent__tp_path", )
     cache_key_name = "directory"
 
     @property
@@ -33,7 +33,7 @@ class DirectoryDataTool(RelatedStoresDataTool):
     def filter_data(self, qs):
         return qs.filter(
             store__translation_project=self.context.translation_project,
-            store__parent__pootle_path__startswith=self.context.pootle_path)
+            store__parent__tp_path__startswith=self.context.tp_path)
 
     def get_children_stats(self, qs):
         children = {}
@@ -59,5 +59,5 @@ class DirectoryDataTool(RelatedStoresDataTool):
 
     def get_root_child_path(self, child):
         return (
-            child["store__parent__pootle_path"].replace(
-                self.context.pootle_path, "").split("/")[0])
+            child["store__parent__tp_path"].replace(
+                self.context.tp_path, "").split("/")[0])
