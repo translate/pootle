@@ -13,6 +13,7 @@ from django.utils.functional import cached_property
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import data_updater, revision
 from pootle.core.url_helpers import split_pootle_path
+from pootle_statistics.models import Submission
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
 
@@ -435,8 +436,7 @@ class RelatedStoresDataTool(DataTool):
         """Uses a SubmissionProxy to turn the member of a qs.values
         into submission_info
         """
-        return SubmissionProxy(
-            sub, prefix="last_submission__").get_submission_info()
+        return SubmissionProxy(sub).get_submission_info()
 
     def get_root_child_path(self, child):
         """For a given child returns the label for its root node (ie the parent
@@ -487,13 +487,12 @@ class RelatedStoresDataTool(DataTool):
         last_submissions = [
             v["last_submission__pk"]
             for v in children.values()]
-        stores_with_subs = (
-            stat_data.filter(last_submission__pk__in=last_submissions))
-        subs = stores_with_subs.values(
-            *["last_submission__%s" % field
+        subs = Submission.objects.filter(pk__in=last_submissions).order_by()
+        subs = subs.values(
+            *[field
               for field
               in self.submission_fields])
-        return {sub["last_submission__pk"]: sub for sub in subs}
+        return {sub["pk"]: sub for sub in subs}
 
     def get_updated_for_children(self, stat_data, children):
         last_created_units = set(
