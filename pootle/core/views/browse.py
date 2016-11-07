@@ -18,7 +18,7 @@ from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_translation_states)
 
 from .base import PootleDetailView
-from .display import ChecksDisplay
+from .display import ChecksDisplay, StatsDisplay
 
 
 class PootleBrowseView(PootleDetailView):
@@ -37,6 +37,20 @@ class PootleBrowseView(PootleDetailView):
         return self.request.path
 
     @property
+    def states(self):
+        states = get_translation_states(self.object)
+        stats = self.stats
+        for state in states:
+            if state["state"] == "untranslated":
+                stats[state["state"]] = state["count"] = (
+                    stats["total"] - stats["fuzzy"] - stats["translated"])
+            else:
+                stats[state["state"]] = state["count"] = stats[state["state"]]
+            state["percent"] = round(
+                (float(state["count"]) / stats["total"]) * 100, 1)
+        return states
+
+    @cached_property
     def stats(self):
         return self.object.data_tool.get_stats(user=self.request.user)
 
@@ -57,7 +71,16 @@ class PootleBrowseView(PootleDetailView):
 
     @property
     def disabled_items(self):
-        return filter(lambda item: item['is_disabled'], self.items)
+        return filter(lambda item: item.get('is_disabled'), self.items)
+
+    def add_child_stats(self, items):
+        stats = self.stats
+        for item in items:
+            if item["code"] in stats["children"]:
+                item["stats"] = stats["children"][item["code"]]
+            elif item["title"] in stats["children"]:
+                item["stats"] = stats["children"][item["title"]]
+        return items
 
     @property
     def table(self):
@@ -76,11 +99,25 @@ class PootleBrowseView(PootleDetailView):
             response.set_cookie(SIDEBAR_COOKIE_NAME, self.cookie_data)
         return response
 
+    @cached_property
+    def top_scorers(self):
+        User = get_user_model()
+        lang_code, proj_code = split_pootle_path(self.pootle_path)[:2]
+        return User.top_scorers(
+            project=proj_code,
+            language=lang_code,
+            limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1)
+
+    @property
+    def top_scorer_data(self):
+        return get_top_scorers_data(
+            self.top_scorers,
+            TOP_CONTRIBUTORS_CHUNK_SIZE)
+
     def get_context_data(self, *args, **kwargs):
         filters = {}
         can_translate = False
         can_translate_stats = False
-        User = get_user_model()
         if self.has_vfolders:
             filters['sort'] = 'priority'
 
@@ -103,33 +140,27 @@ class PootleBrowseView(PootleDetailView):
             url_action_fixcritical = None
             url_action_review = None
             url_action_view_all = None
+
         ctx, cookie_data_ = self.sidebar_announcements
         ctx.update(super(PootleBrowseView, self).get_context_data(*args, **kwargs))
-
-        lang_code, proj_code = split_pootle_path(self.pootle_path)[:2]
-        top_scorers = User.top_scorers(
-            project=proj_code,
-            language=lang_code,
-            limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1,
-        )
-
+        # we need to set table before deleting stats["children"]
+        table = self.table
+        stats = self.stats
+        del stats["children"]
         ctx.update(
             {'page': 'browse',
-             'stats': self.stats,
-             'translation_states': get_translation_states(self.object),
              'checks': self.checks,
+             'translation_states': self.states,
+             'stats': StatsDisplay(self.object, stats=stats).stats,
              'can_translate': can_translate,
              'can_translate_stats': can_translate_stats,
              'url_action_continue': url_action_continue,
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,
              'url_action_view_all': url_action_view_all,
-             'table': self.table,
+             'top_scorers': self.top_scorers,
+             'top_scorers_data': self.top_scorer_data,
+             'table': table,
              'is_store': self.is_store,
-             'top_scorers': top_scorers,
-             'top_scorers_data': get_top_scorers_data(
-                 top_scorers,
-                 TOP_CONTRIBUTORS_CHUNK_SIZE),
              'browser_extends': self.template_extends})
-
         return ctx
