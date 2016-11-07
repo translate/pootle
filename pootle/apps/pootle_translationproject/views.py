@@ -313,7 +313,10 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
             {}
             if not self.vfolders_data_view
             else self.vfolders_data_view.stats)
-        stats.update(self.object.data_tool.get_stats(user=self.request.user))
+        if self.object.tp_path == "/":
+            stats.update(self.object.tp.data_tool.get_stats(user=self.request.user))
+        else:
+            stats.update(self.object.data_tool.get_stats(user=self.request.user))
         return stats
 
     def get_context_data(self, *args, **kwargs):
