@@ -1,5 +1,5 @@
 {% load i18n locale %}
-{% load common_tags %}
+{% load common_tags profile_tags %}
 
 <table class="sortable stats" id="{{ table.id }}" lang="{{ LANGUAGE_CODE }}"
   dir="{% locale_dir %}" data-sort-cookie="browser-sorting-pref">
@@ -32,72 +32,68 @@
       </td>
       {% endif %}
 
-      {% if 'progress' in table.fields %}
-      <td class="stats-graph">
+      {% if 'progress' in table.fields %}      
+      <td class="stats-graph">	
+	{% if item.stats.total %}
         <div id="translated-ratio-{{ item.code|cssid }}" class="sortkey"></div>
         <div id="progressbar-{{ item.code|cssid }}">
-          {% include "browser/_progressbar.html" %}
+          {% progress_bar item.stats.total item.stats.fuzzy item.stats.translated %}
         </div>
+	{% endif %}
       </td>
       {% endif %}
 
       {% if 'total' in table.fields %}
       <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
         {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_all }}"></a>
+        <a class="stats-data non-zero" href="{{ item.href_all }}">{{ item.stats.total }}</a>
         {% else %}
-        <span class="stats-data non-zero"></span>
+        <span class="stats-data non-zero">{{ item.stats.total }}</span>
         {% endif %}
-        <span class="zero muted">0</span>
-        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'last-updated' in table.fields %}
       <td id="last-updated-{{ item.code|cssid }}" class="stats last-updated not-inited">
-        <span class="not-inited muted">—</span>
+        <span class="not-inited muted">{{ item.stats.lastaction }}</span>
       </td>
       {% endif %}
 
       {% if 'critical' in table.fields %}
-      <td id="critical-{{ item.code|cssid }}" class="stats-number critical not-inited">
-        {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_critical }}"></a>
+      <td id="critical-{{ item.code|cssid }}" class="stats-number critical{% if not item.stats.critical %} zero{% endif %}">
+        {% if can_translate and item.stats.critical %}
+        <a class="stats-data non-zero" href="{{ item.href }}translate/#filter=checks&category=critical">{{ item.stats.critical }}</a>
         {% else %}
-        <span class="stats-data non-zero"></span>
+        <span class="{% if item.stats.critical %}stats-data non-zero{% else %}zero muted{% endif %}">{{ item.stats.critical }}</span>
         {% endif %}
-        <span class="zero muted">0</span>
-        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'suggestions' in table.fields %}
-      <td id="suggestions-{{ item.code|cssid }}" class="stats-number suggestions not-inited">
-        {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_sugg }}"></a>
+      <td id="suggestions-{{ item.code|cssid }}" class="stats-number suggestions{% if not item.stats.suggestions %} zero{% endif %}">
+        {% if can_translate and item.stats.suggestions %}
+        <a class="stats-data non-zero" href="{{ item.href }}translate/#filter=suggestions">{{ item.stats.suggestions }}</a>
         {% else %}
-        <span class="stats-data non-zero"></span>
+        <span class="{% if item.stats.suggestions %}stats-data non-zero{% else %}zero muted{% endif %}">{{ item.stats.suggestions }}</span>
         {% endif %}
-        <span class="zero muted">0</span>
-        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
-
+      
       {% if 'need-translation' in table.fields %}
-      <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation not-inited">
-        {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_todo }}"></a>
+      <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation{% if not item.stats.incomplete %} zero{% endif %}">
+        {% if can_translate and item.stats.incomplete %}
+        <a class="stats-data non-zero" href="{{ item.href }}translate/#filter=incomplete">{{ item.stats.incomplete }}</a>
         {% else %}
-        <span class="stats-data non-zero"></span>
+        <span class="{% if item.stats.incomplete %}stats-data non-zero{% else %}zero muted{% endif %}">{{ item.stats.incomplete }}</span>
         {% endif %}
-        <span class="zero muted">0</span>
-        <span class="not-inited muted">—</span>
       </td>
       {% endif %}
 
       {% if 'activity' in table.fields %}
-      <td id="last-activity-{{ item.code|cssid }}" class="last-activity not-inited">
-        <span class="not-inited muted">—</span>
+      <td id="last-activity-{{ item.code|cssid }}" class="last-activity">
+        <a href="{{ item.stats.lastupdated.profile_url }}"><img src="{{ item.stats.lastupdated.grav }}" class="avatar" /></a>
+	<a href="{{ item.stats.lastupdated.profile_url }}">{{ item.stats.lastupdated.name }}</a>
+	{{ item.stats.lastupdated.at }}
       </td>
       {% endif %}
     </tr>

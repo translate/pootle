@@ -21,10 +21,10 @@
   <li class="js-filter-checks-wrapper hide">
     <select id="js-filter-checks">
       <option selected value="none">{% trans 'Select type' %}</option>
-      {% for item in check_categories %}
+      {% for category, item in checks.items %}
       <optgroup label="{{ item.title }}">
         {% for check in item.checks %}
-        <option value="{{ check.code }}" data-title="{{ check.title }}"></option>
+        <option value="{{ check.code }}" data-title="{{ check.title }}">{{ check.code }} ({{ check.count }})</option>
         {% endfor %}
       </optgroup>
       {% endfor %}
