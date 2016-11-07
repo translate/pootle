@@ -6,11 +6,15 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 from django.conf import settings
 
 from pootle.core.url_helpers import get_previous_url
 from pootle_app.models.permissions import check_permission
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import (
+    CATEGORY_IDS, check_names,
+    get_qualitycheck_schema, get_qualitychecks)
 from pootle_misc.forms import make_search_form
 
 from .base import PootleDetailView
@@ -18,6 +22,28 @@ from .base import PootleDetailView
 
 class PootleTranslateView(PootleDetailView):
     template_name = "editor/main.html"
+
+    @property
+    def checks(self):
+        check_data = self.object.data_tool.get_checks()
+        checks = get_qualitychecks()
+        schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
+        _checks = {}
+        for check, checkid in checks.items():
+            if check not in check_data:
+                continue
+            _checkid = schema[checkid]["name"]
+            _checks[_checkid] = _checks.get(
+                _checkid, dict(checks=[], title=schema[checkid]["title"]))
+            _checks[_checkid]["checks"].append(
+                dict(
+                    code=check,
+                    title=check_names[check],
+                    count=check_data[check]))
+        return OrderedDict(
+            (k, _checks[k])
+            for k in CATEGORY_IDS.keys()
+            if _checks.get(k))
 
     @property
     def ctx_path(self):
@@ -38,7 +64,7 @@ class PootleTranslateView(PootleDetailView):
              'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,
-             'check_categories': get_qualitycheck_schema(),
+             'checks': self.checks,
              'cantranslate': check_permission("translate", self.request),
              'cansuggest': check_permission("suggest", self.request),
              'canreview': check_permission("review", self.request),
