@@ -15,6 +15,19 @@ from django.contrib.auth import get_user_model
 register = template.Library()
 
 
+@register.inclusion_tag('browser/_progressbar.html')
+def progress_bar(total, fuzzy, translated):
+    if not total:
+        return dict(fuzzy=0, translated=0, untranslated=0)
+    untranslated = total - translated - fuzzy
+    return dict(
+        fuzzy=round((float(fuzzy)/total) * 100),
+        translated=round(
+            (float(translated)/total) * 100),
+        untranslated=round(
+            (float(untranslated)/total) * 100))
+
+
 @register.inclusion_tag('browser/_table.html')
 def display_table(table, can_translate):
     return {
