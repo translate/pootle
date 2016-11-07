@@ -143,13 +143,13 @@
 
 {% if vfolders %}
 <div class="browsing-table-wrapper bd vfolders" lang="{{ LANGUAGE_CODE }}">
-  {% display_table vfolders %}
+  {% display_table vfolders can_translate %}
 </div>
 {% endif %}
 
 {% if table %}
 <div class="browsing-table-wrapper bd" lang="{{ LANGUAGE_CODE }}">
-  {% display_table table %}
+  {% display_table table can_translate %}
 </div>
 {% endif %}
 {% endblock content %}

@@ -15,10 +15,10 @@ from django.contrib.auth import get_user_model
 register = template.Library()
 
 
-@register.inclusion_tag('browser/_table.html', takes_context=True)
-def display_table(context, table):
+@register.inclusion_tag('browser/_table.html')
+def display_table(table, can_translate):
     return {
-        'can_translate': context["can_translate"],
+        'can_translate': can_translate,
         'table': table,
     }
 
