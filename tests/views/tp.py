@@ -57,15 +57,18 @@ def _test_browse_view(tp, request, response, kwargs):
     else:
         obj = Store.objects.get(
             pootle_path=pootle_path)
+    if obj.tp_path == "/":
+        data_obj = obj.tp
+    else:
+        data_obj = obj
     if not kwargs.get("filename"):
         vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
         stats = vf_view.stats
         vfolders = stats["vfolders"]
-        stats.update(obj.data_tool.get_stats(user=request.user))
+        stats.update(data_obj.data_tool.get_stats(user=request.user))
     else:
-        stats = obj.data_tool.get_stats(user=request.user)
+        stats = data_obj.data_tool.get_stats(user=request.user)
         vfolders = None
-
     filters = {}
     if vfolders:
         filters['sort'] = 'priority'
