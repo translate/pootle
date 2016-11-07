@@ -13,20 +13,6 @@ const StatsAPI = {
 
   apiRoot: '/xhr/stats/',
 
-  getStats(path) {
-    return fetch({
-      body: { path },
-      url: this.apiRoot,
-    });
-  },
-
-  getChecks(path) {
-    return fetch({
-      body: { path },
-      url: `${this.apiRoot}checks/`,
-    });
-  },
-
   getTopContributors(path, { offset = 0 } = {}) {
     const body = { path, offset };
 
