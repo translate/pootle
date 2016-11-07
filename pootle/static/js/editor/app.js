@@ -28,7 +28,6 @@ import Levenshtein from 'levenshtein';
 import mousetrap from 'mousetrap';
 import assign from 'object-assign';
 
-import StatsAPI from 'api/StatsAPI';
 import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
 import diff from 'utils/diff';
@@ -1795,11 +1794,11 @@ PTL.editor = {
 
   /* Gets the failing check options for the current query */
   getCheckOptions() {
-    StatsAPI.getChecks(this.settings.pootlePath)
-      .then(
-        (data) => this.appendChecks(data),
-        this.error
-      );
+    const $checks = this.$filterChecks;
+    const selectedValue = this.checks[0] || 'none';
+    $checks.select2(filterSelectOpts);
+    $checks.val(selectedValue).trigger('change.select2');
+    this.$filterChecksWrapper.css('display', 'inline-block');
   },
 
   /* Loads units based on checks filtering */
@@ -1827,42 +1826,6 @@ PTL.editor = {
       $.history.load($.param(newHash));
     }
     return true;
-  },
-
-  /* Adds the failing checks to the UI */
-  appendChecks(checks) {
-    if (Object.keys(checks).length) {
-      const $checks = this.$filterChecks;
-      const selectedValue = this.checks[0] || 'none';
-
-      $checks.find('optgroup').each(function displayGroups() {
-        const $gr = $(this);
-        let empty = true;
-
-        $gr.find('option').each(function displayOptions() {
-          const $opt = $(this);
-          const value = $opt.val();
-
-          if (value in checks) {
-            empty = false;
-            $opt.text(`${$opt.data('title')}(${checks[value]})`);
-          } else {
-            $opt.remove();
-          }
-        });
-
-        if (empty) {
-          $gr.hide();
-        }
-      });
-
-      $checks.select2(filterSelectOpts);
-      $checks.val(selectedValue).trigger('change.select2');
-      this.$filterChecksWrapper.css('display', 'inline-block');
-    } else { // No results
-      this.displayMsg({ body: gettext('No results.') });
-      this.$filterStatus.val(this.filter);
-    }
   },
 
   filterSort() {
