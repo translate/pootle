@@ -12,7 +12,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import Http404, QueryDict
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.template import loader
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -21,11 +21,9 @@ from django.utils.translation import to_locale
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_http_methods
 
-from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.delegate import review, search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
-from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
 from pootle.i18n.gettext import ugettext as _
@@ -35,14 +33,12 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_language.models import Language
 from pootle_misc.util import ajax_required
-from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_translationproject.models import TranslationProject
 
 from .decorators import get_unit_context
 from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
-from .models import Store, Suggestion, Unit
+from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
 from .unit.timeline import Timeline
@@ -473,72 +469,6 @@ class UnitEditJSON(PootleUnitJSON):
 @get_unit_context('view')
 def permalink_redirect(request, unit):
     return redirect(request.build_absolute_uri(unit.get_translate_url()))
-
-
-@ajax_required
-@get_path_obj
-@permission_required('view')
-def get_qualitycheck_stats(request, *args, **kwargs):
-    pootle_path = request.GET.get('path', None)
-
-    if pootle_path is None:
-        raise Http400(_('Arguments missing.'))
-
-    (language_code, project_code,
-     dir_path, filename) = split_pootle_path(pootle_path)
-    if language_code and project_code:
-        tp = get_object_or_404(
-            TranslationProject,
-            language__code=language_code,
-            project__code=project_code)
-        tp_path = "/%s%s" % (dir_path, filename)
-        if filename:
-            resource = get_object_or_404(
-                Store,
-                translation_project=tp,
-                tp_path=tp_path)
-        elif tp_path != "/":
-            resource = get_object_or_404(
-                Directory,
-                tp=tp, tp_path=tp_path)
-        else:
-            resource = tp.directory
-    elif language_code:
-        resource = get_object_or_404(Language, code=language_code)
-    elif project_code:
-        project = get_object_or_404(Project, code=project_code)
-        if dir_path or filename:
-            tp_path = "/%s%s" % (dir_path, filename)
-            if not filename:
-                dirs = Directory.objects.live().filter(tp__project=project)
-                if dir_path.count("/"):
-                    dirs = dirs.select_related(
-                        "parent",
-                        "tp",
-                        "tp__language")
-                resources = (
-                    dirs.exclude(pootle_path__startswith="/templates")
-                        .filter(tp_path=tp_path))
-            else:
-                resources = (
-                    Store.objects.live()
-                                 .select_related("translation_project__language")
-                                 .filter(translation_project__project=project)
-                                 .filter(tp_path=tp_path))
-            if resources:
-                resource = ProjectResource(
-                    resources,
-                    ("/projects/%s%s"
-                     % (project.code, tp_path)))
-            else:
-                raise Http404
-        else:
-            resource = project
-    else:
-        resource = ProjectSet(
-            Project.objects.for_user(request.user).select_related("directory"))
-    failing_checks = resource.data_tool.get_checks()
-    return JsonResponse(failing_checks if failing_checks is not None else {})
 
 
 @ajax_required
