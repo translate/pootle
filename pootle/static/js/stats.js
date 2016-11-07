@@ -14,7 +14,6 @@ import 'jquery-utils';
 import assign from 'object-assign';
 import 'sorttable';
 
-import StatsAPI from 'api/StatsAPI';
 import LastUpdate from 'components/LastUpdate';
 import TimeSince from 'components/TimeSince';
 import UserEvent from 'components/UserEvent';
@@ -74,7 +73,6 @@ const stats = {
 
     this.pootlePath = options.pootlePath;
     this.isAdmin = options.isAdmin;
-    this.statsRefreshAttemptsCount = options.statsRefreshAttemptsCount;
 
     this.$extraDetails = $('#js-path-summary-more');
     this.$expandIcon = $('#js-expand-icon');
@@ -130,9 +128,7 @@ const stats = {
     );
 
     // Retrieve async data if needed
-    if (isExpanded) {
-      this.loadChecks();
-    } else {
+    if (!(isExpanded)) {
       this.updateUI();
     }
   },
@@ -160,35 +156,9 @@ const stats = {
     setTdWidth($td.find('td.untranslated'), untranslated);
   },
 
-  updateTranslationStats($tr, total, value, noTotalDefault) {
-    $tr.find('.stats-number .stats-data').html(value);
-    $tr.find('.stats-percentage span').html(
-      nicePercentage(value, total, noTotalDefault)
-    );
-    $tr.find('.stats-percentage').show();
-  },
-
   updateAction($action, count) {
     $action.toggleClass('non-zero', !(count === 0));
     $action.find('.counter').text(count !== null ? count : '—');
-  },
-
-  updateItemStats($td, count) {
-    if (count) {
-      $td.removeClass('zero');
-      $td.removeClass('not-inited');
-      $td.addClass('non-zero');
-      $td.find('.stats-data').html(count);
-    } else if (count === 0) {
-      $td.find('.stats-data').html('');
-      $td.addClass('zero');
-      $td.removeClass('not-inited');
-      $td.removeClass('non-zero');
-    } else {
-      $td.removeClass('zero');
-      $td.removeClass('non-zero');
-      $td.addClass('not-inited');
-    }
   },
 
   renderLastEvent(el, data) {
@@ -258,90 +228,15 @@ const stats = {
     }
   },
 
-  processTableItem(item, code, $table, $tdEl, now) {
-    let $td = $tdEl;
-    if (!$td.length) {
-      return false;
-    }
-
-    this.updateItemStats($td, item.total);
-
-    const isFullRatio = item.total === 0 || item.total === null;
-    const ratio = isFullRatio ? 1 : item.translated / item.total;
-    $table.find(`#translated-ratio-${code}`).text(ratio);
-
-    $td = $table.find(`#need-translation-${code}`);
-    const needTranslationCount = (item.total !== null ?
-                                  item.total - item.translated :
-                                  null);
-    this.updateItemStats($td, needTranslationCount);
-
-    $td = $table.find(`#suggestions-${code}`);
-    this.updateItemStats($td, item.suggestions);
-
-    $td = $table.find(`#progressbar-${code}`);
-    this.updateProgressbar($td, item);
-
-    if (item.lastaction) {
-      $td = $table.find(`#last-activity-${code}`);
-      $td.removeClass('not-inited');
-      this.renderLastEvent($td[0], item.lastaction);
-      $td.attr('sorttable_customkey', now - item.lastaction.mtime);
-    }
-
-    $td = $table.find(`#critical-${code}`);
-    this.updateItemStats($td, item.critical);
-
-    if (item.lastupdated) {
-      $td = $table.find(`#last-updated-${code}`);
-      $td.removeClass('not-inited');
-      this.renderLastUpdatedTime($td[0], item.lastupdated);
-      $td.attr('sorttable_customkey', now - item.lastupdated.creation_time);
-    }
-    return true;
-  },
-
   updateStatsUI() {
     const { data } = this.state;
 
     const $table = $('#content table.stats');
     const $vfoldersTable = $('#content .vfolders table.stats');
-    const now = parseInt(Date.now() / 1000, 10);
 
-    this.updateProgressbar($('#progressbar'), data);
-    this.updateAction($('#js-action-view-all'), data.total);
-    this.updateAction($('#js-action-continue'), data.total - data.translated);
-    this.updateAction($('#js-action-fix-critical'), data.critical);
-    this.updateAction($('#js-action-review'), data.suggestions);
-
-    this.updateTranslationStats($('#stats-total'),
-                                data.total, data.total, 100);
-    this.updateTranslationStats($('#stats-translated'),
-                                data.total, data.translated, 100);
-    this.updateTranslationStats($('#stats-fuzzy'),
-                                data.total, data.fuzzy, 0);
-
-    const untranslated = (data.total === null ?
-                          null :
-                          data.total - data.translated - data.fuzzy);
-    this.updateTranslationStats($('#stats-untranslated'),
-                                data.total, untranslated, 0);
     this.updateLastUpdates(data);
 
     if ($table.length) {
-      // this is a directory that contains subitems
-      for (const name in data.children) {
-        if (!data.children.hasOwnProperty(name)) {
-          continue;
-        }
-
-        const item = data.children[name];
-        const code = cssId(name);
-        const $td = $table.find(`#total-words-${code}`);
-
-        this.processTableItem(item, code, $table, $td, now);
-      }
-
       if ($vfoldersTable.length) {
         for (const name in data.vfolders) {
           if (!data.vfolders.hasOwnProperty(name)) {
@@ -353,9 +248,7 @@ const stats = {
           const $td = $vfoldersTable.find(`#total-words-${code}`);
 
           // Display only the virtual folders that must be displayed.
-          if (this.isAdmin || item.isVisible) {
-            this.processTableItem(item, code, $vfoldersTable, $td, now);
-          } else {
+          if (!(this.isAdmin || item.isVisible)) {
             // FIXME vfolders might be added or removed since they can become
             // completely translated or stop being completely translated, so
             // they might be displayable after the initial load of the
@@ -389,27 +282,10 @@ const stats = {
     }
   },
 
-  load(methodName, { hideSpin = false } = {}) {
-    if (!hideSpin) {
-      $('body').spin();
-    }
-    return StatsAPI[methodName](this.pootlePath)
-      .always(() => $('body').spin(false));
-  },
-
-  loadChecks() {
-    return this.load('getChecks')
-      .done((data) => this.setState({ isExpanded: true, checksData: data }));
-  },
-
   /* Path summary */
   toggleDetailedStats() {
-    if (this.state.checksData) {
-      this.setState({ isExpanded: !this.state.isExpanded });
-      this.navigate();
-    } else {
-      this.loadChecks().done(() => this.navigate());
-    }
+    this.setState({ isExpanded: !this.state.isExpanded });
+    this.navigate();
   },
 
   updateChecksToggleUI() {
@@ -426,31 +302,17 @@ const stats = {
 
   updateChecksUI() {
     const data = this.state.checksData;
-    let count = 0;
+    const count = 0;
 
     if (data === null || !Object.keys(data).length) {
       return;
     }
-
-    this.$extraDetails.find('.js-check').each(function updateCheck() {
-      const $check = $(this);
-      const code = $(this).data('code');
-      if (code in data) {
-        count++;
-        $check.toggle(count < 5);
-        $check.find('.check-count .check-data').html(data[code]);
-      } else {
-        $check.hide();
-      }
-    });
-
     $('.js-more-checks').addClass('collapsed').toggle(count >= 5);
     $('#js-stats-checks').show();
   },
 
   updateUI() {
     this.updateChecksToggleUI();
-    this.updateChecksUI();
     this.updateStatsUI();
   },
 
