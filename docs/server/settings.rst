@@ -229,6 +229,12 @@ Configuration settings for applications used by Pootle.
 
     POOTLE_MARKUP_FILTER = ('markdown', {})
 
+    POOTLE_MARKUP_FILTER = ('markdown', {
+                                'clean': {
+                                    'extra_tags': ['div'],
+                                },
+                            })
+
     POOTLE_MARKUP_FILTER = ('restructuredtext', {
                                 'settings_overrides': {
                                     'report_level': 'quiet',

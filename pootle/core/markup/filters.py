@@ -133,7 +133,23 @@ def apply_markup_filter(text):
         elif markup_filter_name == 'markdown':
             import bleach
             import markdown
-            html = bleach.clean(markdown.markdown(text, **markup_kwargs))
+
+            # See ALLOWED_TAGS in
+            # https://github.com/mozilla/bleach/blob/master/bleach/__init__.py
+            tags = bleach.ALLOWED_TAGS + [
+                u'h1', u'h2', u'h3', u'h4', u'h5',
+                u'p', u'pre',
+                u'img',
+                u'hr',
+            ]
+
+            tags_provided = ('clean' in markup_kwargs
+                             and 'extra_tags' in markup_kwargs['clean'])
+            if tags_provided:
+                tags += markup_kwargs['clean']['extra_tags']
+
+            html = bleach.clean(markdown.markdown(text, **markup_kwargs),
+                                tags=tags)
 
         elif markup_filter_name == 'restructuredtext':
             from docutils import core
