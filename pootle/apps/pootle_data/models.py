@@ -18,6 +18,7 @@ class StoreData(AbstractPootleData):
 
     store = models.OneToOneField(
         "pootle_store.Store",
+        on_delete=models.CASCADE,
         db_index=True,
         related_name="data")
 
@@ -36,6 +37,7 @@ class StoreChecksData(AbstractPootleChecksData):
 
     store = models.ForeignKey(
         "pootle_store.Store",
+        on_delete=models.CASCADE,
         db_index=True,
         related_name="check_data")
 
@@ -50,6 +52,7 @@ class TPData(AbstractPootleData):
 
     tp = models.OneToOneField(
         "pootle_translationproject.TranslationProject",
+        on_delete=models.CASCADE,
         db_index=True,
         related_name="data")
 
@@ -68,6 +71,7 @@ class TPChecksData(AbstractPootleChecksData):
 
     tp = models.ForeignKey(
         "pootle_translationproject.TranslationProject",
+        on_delete=models.CASCADE,
         db_index=True,
         related_name="check_data")
 
