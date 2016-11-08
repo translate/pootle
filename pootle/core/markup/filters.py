@@ -102,8 +102,8 @@ def apply_markup_filter(text):
           dictionary; some arguments may still be inferred as needed,
           however.
 
-    So, for example, to use Markdown with safe mode turned on (safe
-    mode removes raw HTML), put this in your settings file::
+    So, for example, to use Markdown with bleach cleaning turned on (cleaning
+    removes non-whitelisted HTML), put this in your settings file::
 
         POOTLE_MARKUP_FILTER = ('markdown', {})
 
