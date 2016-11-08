@@ -277,6 +277,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         else:
             self.abs_real_path = None
         super(TranslationProject, self).save(*args, **kwargs)
+        if self.directory.tp_id != self.pk:
+            self.directory.tp = self
+            self.directory.save()
 
     def delete(self, *args, **kwargs):
         directory = self.directory
