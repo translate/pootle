@@ -96,6 +96,7 @@ export const LiveEditor = React.createClass({
   loadRemotePreview() {
     fetch({
       url: '/xhr/preview/',
+      method: 'POST',
       body: {
         text: this.state.value,
       },
