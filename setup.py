@@ -50,14 +50,21 @@ def parse_requirements(file_name, recurse=False):
                     re.sub(r'-r\s*(.*[.]txt)$', r'\1', line), recurse))
             continue
 
-        if re.match(r'\s*-e\s+', line):
-            requirements.append(re.sub(r'\s*-e\s+.*#egg=(.*)$', r'\1', line))
-        elif re.match(r'\s*-f\s+', line):
+        if re.match(r'\s*-[ef]\s+', line):
             pass
         else:
             requirements.append(line)
 
     return requirements
+
+
+def parse_dependency_links(file_name):
+    dependency_links = []
+    for line in open(file_name, 'r').read().split('\n'):
+        if re.match(r'\s*-[ef]\s+', line):
+            dependency_links.append(re.sub(r'\s*-[ef]\s+', '', line))
+
+    return dependency_links
 
 
 class PyTest(TestCommand):
@@ -255,6 +262,7 @@ setup(
         __version__,
 
     install_requires=parse_requirements('requirements/base.txt'),
+    dependency_links=parse_dependency_links('requirements/base.txt'),
     tests_require=parse_requirements('requirements/tests.txt'),
 
     extras_require={
