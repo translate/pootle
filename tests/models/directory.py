@@ -107,3 +107,22 @@ def test_scan_empty_project_obsolete_dirs(project0_nongnu, store0):
         assert item.obsolete
 
     assert tp.directory.obsolete
+
+
+@pytest.mark.django_db
+def test_dir_get_or_make_subdir(project0, language0, tp0, subdir0):
+    foo = project0.directory.get_or_make_subdir("foo")
+    assert not foo.tp
+    assert foo == project0.directory.get_or_make_subdir("foo")
+
+    foo = language0.directory.get_or_make_subdir("foo")
+    assert not foo.tp
+    assert foo == language0.directory.get_or_make_subdir("foo")
+
+    foo = tp0.directory.get_or_make_subdir("foo")
+    assert foo.tp == tp0
+    assert foo == tp0.directory.get_or_make_subdir("foo")
+
+    foo = subdir0.get_or_make_subdir("foo")
+    assert foo.tp == subdir0.tp
+    assert foo == subdir0.get_or_make_subdir("foo")
