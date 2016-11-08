@@ -10,7 +10,7 @@
   {% block header_content %}
   <a id="js-path-summary" href="#">
     <div id="progressbar">
-      {% include "browser/_progressbar.html" %}
+      {% progress_bar stats.total stats.fuzzy stats.translated %}
     </div>
   </a>
   <div class="path-summary-more" id="js-path-summary-more">
@@ -32,12 +32,12 @@
                 <td id="stats-name">{{ item.title }}</td>
                 <td class="stats-number">
                   {% if can_translate_stats %}
-                  <a href="{{ item.url }}" class="stats-data"></a>
+                  <a href="{{ item.url }}" class="stats-data">{{ item.count }}</a>
                   {% else %}
-                  <span class="stats-data"></span>
+                  <span class="stats-data">{{ item.count }}</span>
                   {% endif %}
                 </td>
-                <td class="stats-percentage"><span></span>%</td>
+                <td class="stats-percentage"><span>{{ item.percent }}</span>%</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -53,10 +53,10 @@
                 <td class="check-name">
                   <a class="check-data" href="{{ check.url }}">{{ check.title }}</a>
                 </td>
-                <td class="check-count"><a class="check-data" href="{{ check.url }}">0</a></td>
+                <td class="check-count"><a class="check-data" href="{{ check.url }}">{{ check.count }}</a></td>
                 {% else %}
                 <td class="check-name"><span class="check-data">{{ check.title }}</span></td>
-                <td class="check-count"><span class="check-data">0</span></td>
+                <td class="check-count"><span class="check-data">{{ check.count }}</span></td>
                 {% endif %}
               </tr>
             {% endfor %}
@@ -80,7 +80,10 @@
             <div class="graph"></div>
             <div class="action-wrapper">
               <label>{% trans "Last action:" %}</label>
-              <div id="js-last-updated" class="last-updated"></div>
+              <div id="js-last-updated" class="last-updated">
+		{{ stats.lastupdated.at }}
+		<a href="{{ stats.lastupdated.url }}">{{ stats.lastupdated.source }}</a>
+	      </div>
             </div>
           </div>
         </div>
@@ -91,6 +94,8 @@
             <div class="action-wrapper">
               <label>{% trans "Last action:" %}</label>
               <div id="js-last-action" class="last-action"></div>
+	      <a href="{{ stats.lastaction.profile_url }}"><img src="{{ stats.lastaction.grav }}" class="avatar" /></a>
+	      {{ stats.lastaction.msg }}
             </div>
           </div>
         </div>
@@ -143,13 +148,13 @@
 
 {% if vfolders %}
 <div class="browsing-table-wrapper bd vfolders" lang="{{ LANGUAGE_CODE }}">
-  {% display_table vfolders %}
+  {% display_table vfolders can_translate %}
 </div>
 {% endif %}
 
 {% if table %}
 <div class="browsing-table-wrapper bd" lang="{{ LANGUAGE_CODE }}">
-  {% display_table table %}
+  {% display_table table can_translate %}
 </div>
 {% endif %}
 {% endblock content %}
@@ -158,16 +163,14 @@
 {{ block.super }}
 
 <script type="text/javascript">
-$(function () {
-  PTL.search.init();
+  $(function () {
+
   PTL.stats.init({
     pootlePath: "{{ pootle_path }}",
     hasDisabledItems: {{ table.disabled_items|yesno:"true,false" }},
     isAdmin: {{ has_admin_access|yesno:"true,false" }},
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
-    initialData: {{ stats|to_js }},
     topContributorsData: {{ top_scorers_data|to_js }},
-    statsRefreshAttemptsCount: {{ stats_refresh_attempts_count }},
     uiLocaleDir: '{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}',
   });
 });

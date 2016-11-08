@@ -19,10 +19,6 @@ get_units_urlpatterns = [
 unit_xhr_urlpatterns = [
 
     # XHR
-    url(r'^xhr/stats/checks/?$',
-        views.get_qualitycheck_stats,
-        name='pootle-xhr-stats-checks'),
-
     url(r'^xhr/units/(?P<uid>[0-9]+)/?$',
         views.submit,
         name='pootle-xhr-units-submit'),

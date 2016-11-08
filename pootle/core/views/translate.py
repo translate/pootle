@@ -32,13 +32,26 @@ class PootleTranslateView(PootleDetailView):
         return False
 
     def get_context_data(self, *args, **kwargs):
+        from pootle_misc.checks import get_qualitychecks
+
         ctx = super(PootleTranslateView, self).get_context_data(*args, **kwargs)
+        checks = get_qualitychecks()
+        schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
+        check_data = self.object.data_tool.get_checks()
+        _checks = {}
+        for check, cat in checks.items():
+            if check not in check_data:
+                continue
+            _checks[cat] = _checks.get(
+                cat, dict(checks=[], title=schema[cat]["title"]))
+            _checks[cat]["checks"].append(
+                dict(code=check, count=check_data[check]))
         ctx.update(
             {'page': 'translate',
              'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,
-             'check_categories': get_qualitycheck_schema(),
+             'checks': _checks,
              'cantranslate': check_permission("translate", self.request),
              'cansuggest': check_permission("suggest", self.request),
              'canreview': check_permission("review", self.request),
