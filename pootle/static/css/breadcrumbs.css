@@ -5,11 +5,39 @@
     font-size: 1.5em;
     font-weight: normal;
     font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
-    visibility: hidden;
     padding: 5px 0;
     height: 2em;
     display: table-cell;
     vertical-align: middle;
+}
+
+.breadcrumb li
+{
+    outline: none;
+    border: none;
+    display: inline-block;
+    float: left;
+    margin-left: 0.3em;
+}
+
+.breadcrumb li select
+{
+    border: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    vertical-align: middle;
+}
+
+.breadcrumb li select::-ms-expand
+{
+    display: none;
 }
 
 .browser .breadcrumb
@@ -67,4 +95,3 @@ html[dir="rtl"] .breadcrumb li
     margin-left: 0;
     content: normal;
 }
-
