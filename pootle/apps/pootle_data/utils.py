@@ -476,7 +476,6 @@ class RelatedStoresDataTool(DataTool):
                 self.all_object_stats
                 if self.show_all_to(user)
                 else self.object_stats)
-        stats["is_dirty"] = False
         stats["lastaction"] = self.get_lastaction(**stats)
         stats["lastupdated"] = self.get_lastupdated(**stats)
         return stats

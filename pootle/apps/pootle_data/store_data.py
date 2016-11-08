@@ -27,7 +27,6 @@ class StoreDataTool(DataTool):
         stats = {
             v: getattr(self.context.data, k)
             for k, v in self.stats_mapping.items()}
-        stats["is_dirty"] = False
         stats["children"] = {}
         stats["lastaction"] = (
             self.context.data.last_submission
