@@ -5,7 +5,7 @@ Pootle
    :alt: Join the chat at https://gitter.im/translate/pootle
    :target: https://gitter.im/translate/pootle
 
-.. image:: https://img.shields.io/travis/translate/pootle.svg?style=flat-square
+.. image:: https://img.shields.io/travis/translate/pootle/master.svg?style=flat-square
     :alt: Build Status
     :target: https://travis-ci.org/translate/pootle
 
