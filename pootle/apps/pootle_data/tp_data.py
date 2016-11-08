@@ -9,7 +9,9 @@
 from django.db.models import Max, Sum
 from django.db.models.functions import Coalesce
 
+from pootle.core.decorators import persistent_property
 from pootle.core.delegate import revision
+from pootle.local.dates import timesince
 from pootle_data.models import StoreChecksData, StoreData
 
 from .utils import DataUpdater, RelatedStoresDataTool
@@ -115,6 +117,8 @@ class TPDataTool(RelatedStoresDataTool):
         stats = {
             v: getattr(self.context.data, k)
             for k, v in self.stats_mapping.items()}
+        stats["lastaction"] = self.get_lastaction()
+        stats["lastupdated"] = self.get_lastupdated()
         return stats
 
     @property
@@ -139,13 +143,46 @@ class TPDataTool(RelatedStoresDataTool):
 
     def aggregate_children(self, stats):
         agg = dict(total=0, fuzzy=0, translated=0, critical=0, suggestions=0)
+        latest = dict(lastaction=None, lastupdated=None)
+        lastactionpk = None
+        lastupdatedtime = None
         for child in stats["children"].values():
             for k in agg.keys():
                 agg[k] += child[k]
+            if child["last_submission__pk"] > lastactionpk:
+                latest['lastaction'] = child["last_submission"]
+                lastactionpk = child["last_submission__pk"]
+            if child.get("lastupdated"):
+                if child["lastupdated"]["creation_time"] > lastupdatedtime:
+                    latest["lastupdated"] = child["lastupdated"]
+                    lastupdatedtime = child["lastupdated"]["creation_time"]
+                child["lastaction"] = timesince(
+                    child["lastupdated"]["creation_time"])
+                child["lastactiontime"] = child["lastupdated"]["creation_time"]
+            else:
+                child["lastaction"] = ""
+            child["incomplete"] = child["total"] - child["translated"]
+            child["untranslated"] = child["total"] - child["translated"]
+            if not child["last_submission"].get("email"):
+                continue
+            grav = (
+                'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
+                % (child["last_submission"]["email"], 20))
+            child["lastupdated"] = dict(
+                name=child["last_submission"]["displayname"],
+                at=timesince(child["last_submission"]["mtime"]),
+                grav=grav,
+                profile_url=child["last_submission"]["profile_url"])
         stats.update(agg)
+        stats.update(latest)
         return stats
 
-    def get_checks(self, **kwargs):
+    @persistent_property
+    def all_checks_data(self):
+        return dict(self.context.check_data.values_list("name", "count"))
+
+    @persistent_property
+    def checks_data(self):
         return dict(self.context.check_data.values_list("name", "count"))
 
     @property
