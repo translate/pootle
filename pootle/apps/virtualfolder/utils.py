@@ -11,6 +11,7 @@ from fnmatch import fnmatch
 from django.db.models import Max
 
 from pootle.core.decorators import persistent_property
+from pootle.local.dates import timesince
 from pootle_data.utils import RelatedStoresDataTool
 from pootle_fs.utils import PathFilter
 from pootle_store.models import Store
@@ -243,6 +244,25 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
             stats[k]["name"] = k
             stats[k]["code"] = k
             stats[k]["title"] = k
+            if stats[k].get("lastupdated"):
+                stats[k]["lastaction"] = timesince(
+                    stats[k]["lastupdated"]["creation_time"])
+                stats[k]["lastactiontime"] = (
+                    stats[k]["lastupdated"]["creation_time"])
+            else:
+                stats[k]["lastaction"] = ""
+            stats[k]["incomplete"] = stats[k]["total"] - stats[k]["translated"]
+            stats[k]["untranslated"] = stats[k]["total"] - stats[k]["translated"]
+            if not stats[k]["last_submission"].get("email"):
+                continue
+            grav = (
+                'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
+                % (stats[k]["last_submission"]["email"], 20))
+            stats[k]["lastupdated"] = dict(
+                name=stats[k]["last_submission"]["displayname"],
+                at=timesince(stats[k]["last_submission"]["mtime"]),
+                grav=grav,
+                profile_url=stats[k]["last_submission"]["profile_url"])
         return stats
 
     def get_stats(self, user=None):
