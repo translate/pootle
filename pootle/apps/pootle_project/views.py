@@ -144,8 +144,7 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
 
         items.sort(
             lambda x, y: locale.strcoll(x['title'], y['title']))
-
-        return items
+        return self.add_child_stats(items)
 
 
 class ProjectTranslateView(ProjectMixin, PootleTranslateView):
@@ -340,7 +339,7 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
             in self.object.children]
         items.sort(
             lambda x, y: locale.strcoll(x['title'], y['title']))
-        return items
+        return self.add_child_stats(items)
 
     @property
     def sidebar_announcements(self):

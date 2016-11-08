@@ -280,8 +280,10 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     def items(self):
         dirs_with_vfolders = []
         if 'virtualfolder' in settings.INSTALLED_APPS:
-            stores = self.tp.stores.filter(
-                pootle_path__startswith=self.object.pootle_path)
+            stores = self.tp.stores
+            if self.object.tp_path != "/":
+                stores = stores.filter(
+                    tp_path__startswith=self.object.tp_path)
             vf_stores = stores.filter(
                 vfolders__isnull=False).exclude(parent=self.object)
             dirs_with_vfolders = set(
@@ -301,7 +303,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
             make_store_item(child)
             for child in self.object.children
             if isinstance(child, Store)]
-        return directories + stores
+        return self.add_child_stats(directories + stores)
 
     @cached_property
     def has_vfolders(self):

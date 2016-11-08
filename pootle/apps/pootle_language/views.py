@@ -75,10 +75,9 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
 
     @cached_property
     def items(self):
-        return [
-            make_project_item(tp)
-            for tp in self.object.get_children_for_user(self.request.user)
-        ]
+        return self.add_child_stats(
+            [make_project_item(tp)
+             for tp in self.object.get_children_for_user(self.request.user)])
 
     @property
     def language(self):
