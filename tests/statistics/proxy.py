@@ -104,7 +104,7 @@ def test_submission_proxy_timeline_info(quality_check_submission):
     assert proxy.unit_state is None
     non_unit_fields = [
         'username', 'display_datetime', 'displayname',
-        'iso_datetime', 'mtime', 'type', 'email', 'profile_url']
+        'mtime', 'type', 'email', 'profile_url']
     proxy_info = proxy.get_submission_info()
     sub_info = quality_check_submission.get_submission_info()
     for k in non_unit_fields:

@@ -263,7 +263,6 @@ class Submission(models.Model):
             "displayname": displayuser.display_name,
             "username": displayuser.username,
             "display_datetime": dateformat.format(self.creation_time),
-            "iso_datetime": self.creation_time.isoformat(),
             "type": self.type,
             "mtime": int(dateformat.format(self.creation_time, 'U')),
         })

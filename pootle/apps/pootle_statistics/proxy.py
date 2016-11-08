@@ -191,7 +191,6 @@ class SubmissionProxy(object):
             "displayname": self.display_user.display_name,
             "username": self.display_user.username,
             "display_datetime": dateformat.format(self.creation_time),
-            "iso_datetime": self.creation_time.isoformat(),
             "type": self.type,
             "mtime": int(dateformat.format(self.creation_time, 'U'))}
 
