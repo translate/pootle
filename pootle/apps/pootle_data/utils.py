@@ -13,6 +13,7 @@ from django.utils.functional import cached_property
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import data_updater, revision
 from pootle.core.url_helpers import split_pootle_path
+from pootle.local.dates import timesince
 from pootle_statistics.models import Submission
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
@@ -61,11 +62,25 @@ class DataTool(object):
         stats = self.object_stats
         if include_children:
             stats["children"] = {}
+        if stats.get("total"):
+            stats["untranslated"] = stats["total"] - stats["translated"]
+            stats["incomplete"] = stats["total"] - stats["translated"]
         return stats
 
     def update(self, **kwargs):
         if self.updater:
             return self.updater.update(**kwargs)
+
+    def get_lastaction(self, **kwargs):
+        return kwargs["lastaction"]
+
+    def get_lastupdated(self, **kwargs):
+        lastupdated = (
+            kwargs.get("lastcreated")
+            and Unit.objects.select_related(
+                "store").get(pk=kwargs["lastcreated"]).get_last_updated_info()
+            or None)
+        return lastupdated
 
 
 class DataUpdater(object):
@@ -328,7 +343,7 @@ class RelatedStoresDataTool(DataTool):
     def dir_path(self):
         return split_pootle_path(self.context.pootle_path)[2]
 
-    @property
+    @persistent_property
     def checks_data(self):
         return dict(
             self.filter_accessible(
@@ -379,6 +394,7 @@ class RelatedStoresDataTool(DataTool):
         for k, v in children.items():
             children[k]["lastupdated"] = updated.get(
                 children[k]["last_created_unit__pk"])
+            del children[k]["last_created_unit__pk"]
 
     def add_submission_info(self, stat_data, children):
         """For a given qs.values of child stats data, updates the values
@@ -401,15 +417,43 @@ class RelatedStoresDataTool(DataTool):
         """For a stats dictionary containing children qs.values, aggregate the
         children to calculate the sum/max for the context
         """
-        agg = dict(total=0, fuzzy=0, translated=0, critical=0, suggestions=0)
+        agg = dict(
+            total=0, fuzzy=0, translated=0, critical=0, suggestions=0)
+        latest = dict(lastaction=None, lastupdated=None)
         lastactionpk = None
+        lastupdatedtime = None
         for child in stats["children"].values():
             for k in agg.keys():
                 agg[k] += child[k]
             if child["last_submission__pk"] > lastactionpk:
-                stats['lastaction'] = child["last_submission"]
+                latest['lastaction'] = child["last_submission"]
                 lastactionpk = child["last_submission__pk"]
+            if child.get("lastupdated"):
+                if child["lastupdated"]["creation_time"] > lastupdatedtime:
+                    latest["lastupdated"] = child["lastupdated"]
+                    lastupdatedtime = child["lastupdated"]["creation_time"]
+                child["lastaction"] = timesince(
+                    child["lastupdated"]["creation_time"])
+                child["lastactiontime"] = child["lastupdated"]["creation_time"]
+            else:
+                child["lastaction"] = ""
+            child["incomplete"] = child["total"] - child["translated"]
+            child["untranslated"] = child["total"] - child["translated"]
+            if not child["last_submission"].get("email"):
+                continue
+            grav = (
+                'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
+                % (child["last_submission"]["email"], 20))
+            child["lastupdated"] = dict(
+                name=child["last_submission"]["displayname"],
+                at=timesince(child["last_submission"]["mtime"]),
+                mtime=child["last_submission"]["mtime"],
+                grav=grav,
+                profile_url=child["last_submission"]["profile_url"])
+            del child["last_submission__pk"]
+            del child["last_submission"]
         stats.update(agg)
+        stats.update(latest)
         return stats
 
     def annotate_fields(self, stat_data):
@@ -476,8 +520,9 @@ class RelatedStoresDataTool(DataTool):
                 self.all_object_stats
                 if self.show_all_to(user)
                 else self.object_stats)
-        stats["lastaction"] = self.get_lastaction(**stats)
-        stats["lastupdated"] = self.get_lastupdated(**stats)
+        if stats.get("total") is not None:
+            stats["untranslated"] = stats["total"] - stats["translated"]
+            stats["incomplete"] = stats["total"] - stats["translated"]
         return stats
 
     def get_submissions_for_children(self, stat_data, children):
@@ -534,16 +579,6 @@ class RelatedStoresDataTool(DataTool):
             if update_max:
                 children[root][mapped_k] = child[child_k]
         return root
-
-    def get_lastaction(self, **kwargs):
-        return kwargs.get("lastaction")
-
-    def get_lastupdated(self, **kwargs):
-        return (
-            kwargs.get("lastcreated")
-            and Unit.objects.select_related(
-                "store").get(pk=kwargs["lastcreated"]).get_last_updated_info()
-            or None)
 
     def get_object_stats(self, stat_data):
         stats = {
