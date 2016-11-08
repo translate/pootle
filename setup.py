@@ -61,11 +61,18 @@ def parse_requirements(file_name, recurse=False):
     return requirements
 
 
-def parse_dependency_links(file_name):
+def parse_dependency_links(file_name, recurse=False):
     dependency_links = []
     for line in open(file_name, 'r').read().split('\n'):
         if re.match(r'\s*-e\s+', line):
             dependency_links.append(re.sub(r'\s*-e\s+', '', line))
+
+        if re.match(r'-r .*$', line):
+            if recurse:
+                dependency_links.extend(parse_dependency_links(
+                    'requirements/' +
+                    re.sub(r'-r\s*(.*[.]txt)$', r'\1', line), recurse))
+            continue
 
     return dependency_links
 
@@ -260,7 +267,7 @@ dependency_links += parse_dependency_links('requirements/tests.txt')
 
 extras_require = {}
 extras_require['dev'] = parse_requirements('requirements/dev.txt', recurse=True)
-dependency_links += parse_dependency_links('requirements/dev.txt')
+dependency_links += parse_dependency_links('requirements/dev.txt', recurse=True)
 # Database dependencies
 extras_require['mysql'] = parse_requirements('requirements/_db_mysql.txt')
 dependency_links += parse_dependency_links('requirements/_db_mysql.txt')
