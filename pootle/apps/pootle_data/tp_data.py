@@ -122,6 +122,9 @@ class TPDataTool(RelatedStoresDataTool):
         return self.data_model.filter(
             store__translation_project=self.context)
 
+    def filter_data(self, qs):
+        return qs.filter(store__translation_project=self.context)
+
     def get_lastaction(self, **kwargs):
         return (
             self.context.data.last_submission

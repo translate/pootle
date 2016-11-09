@@ -535,9 +535,6 @@ class RelatedStoresDataTool(DataTool):
                 children[root][mapped_k] = child[child_k]
         return root
 
-    def filter_data(self, qs):
-        return qs.filter(store__translation_project=self.context)
-
     def get_lastaction(self, **kwargs):
         return kwargs.get("lastaction")
 
