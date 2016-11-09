@@ -51,13 +51,30 @@ def parse_requirements(file_name, recurse=False):
             continue
 
         if re.match(r'\s*-e\s+', line):
-            requirements.append(re.sub(r'\s*-e\s+.*#egg=(.*)$', r'\1', line))
+            requirements.append(re.sub(r'\s*-e\s+.*#egg=([^\d]*)-([\.\d]*)$',
+                                       r'\1==\2', line))
         elif re.match(r'\s*-f\s+', line):
             pass
         else:
             requirements.append(line)
 
     return requirements
+
+
+def parse_dependency_links(file_name, recurse=False):
+    dependency_links = []
+    for line in open(file_name, 'r').read().split('\n'):
+        if re.match(r'\s*-e\s+', line):
+            dependency_links.append(re.sub(r'\s*-e\s+', '', line))
+
+        if re.match(r'-r .*$', line):
+            if recurse:
+                dependency_links.extend(parse_dependency_links(
+                    'requirements/' +
+                    re.sub(r'-r\s*(.*[.]txt)$', r'\1', line), recurse))
+            continue
+
+    return dependency_links
 
 
 class PyTest(TestCommand):
@@ -238,6 +255,32 @@ class BuildChecksTemplatesCommand(Command):
 
 
 check_pep440_versions()
+
+
+dependency_links = []
+
+install_requires = parse_requirements('requirements/base.txt'),
+dependency_links += parse_dependency_links('requirements/base.txt')
+
+tests_require = parse_requirements('requirements/tests.txt'),
+dependency_links += parse_dependency_links('requirements/tests.txt')
+
+extras_require = {}
+extras_require['dev'] = parse_requirements('requirements/dev.txt', recurse=True)
+dependency_links += parse_dependency_links('requirements/dev.txt', recurse=True)
+# Database dependencies
+extras_require['mysql'] = parse_requirements('requirements/_db_mysql.txt')
+dependency_links += parse_dependency_links('requirements/_db_mysql.txt')
+extras_require['postgresql'] = parse_requirements('requirements/_db_postgresql.txt')
+dependency_links += parse_dependency_links('requirements/_db_postgresql.txt')
+# Pootle FS plugins
+extras_require['git'] = parse_requirements('requirements/_pootle_fs_git.txt')
+dependency_links += parse_dependency_links('requirements/_pootle_fs_git.txt')
+# Markdown
+extras_require['markdown'] = parse_requirements('requirements/_markup_markdown.txt')
+dependency_links += parse_dependency_links('requirements/_markup_markdown.txt')
+
+
 setup(
     name="Pootle",
     version=__version__,
@@ -254,19 +297,11 @@ setup(
     download_url="https://github.com/translate/pootle/releases/tag/" +
         __version__,
 
-    install_requires=parse_requirements('requirements/base.txt'),
-    tests_require=parse_requirements('requirements/tests.txt'),
+    install_requires=install_requires,
+    dependency_links=dependency_links,
+    tests_require=tests_require,
 
-    extras_require={
-        'dev': parse_requirements('requirements/dev.txt', recurse=True),
-        # Database dependencies
-        'mysql': parse_requirements('requirements/_db_mysql.txt'),
-        'postgresql': parse_requirements('requirements/_db_postgresql.txt'),
-        # Pootle FS plugins
-        'git': parse_requirements('requirements/_pootle_fs_git.txt'),
-        # Markdown
-        'markdown': parse_requirements('requirements/_markup_markdown.txt'),
-    },
+    extras_require=extras_require,
 
     platforms=["any"],
     classifiers=[
