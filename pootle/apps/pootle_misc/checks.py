@@ -8,6 +8,7 @@
 
 import logging
 import re
+from collections import OrderedDict
 
 from translate.filters import checks
 from translate.filters.decorators import Category, cosmetic, critical
@@ -22,13 +23,13 @@ from .util import import_func
 
 re._MAXCACHE = 2000
 
-CATEGORY_IDS = {
-    'critical': Category.CRITICAL,
-    'cosmetic': Category.COSMETIC,
-    'functional': Category.FUNCTIONAL,
-    'extraction': Category.EXTRACTION,
-    'other': Category.NO_CATEGORY,
-}
+CATEGORY_IDS = OrderedDict(
+    [['critical', Category.CRITICAL],
+     ['functional', Category.FUNCTIONAL],
+     ['cosmetic', Category.COSMETIC],
+     ['extraction', Category.EXTRACTION],
+     ['other', Category.NO_CATEGORY]])
+
 CATEGORY_CODES = {v: k for k, v in CATEGORY_IDS.iteritems()}
 CATEGORY_NAMES = {
     Category.CRITICAL: _("Critical"),
