@@ -17,9 +17,9 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data,
                                      get_translation_states)
-from pootle_misc.checks import get_qualitycheck_list
 
 from .base import PootleDetailView
+from .display import ChecksDisplay
 
 
 class PootleBrowseView(PootleDetailView):
@@ -28,6 +28,10 @@ class PootleBrowseView(PootleDetailView):
     table_fields = None
     items = None
     is_store = False
+
+    @property
+    def checks(self):
+        return ChecksDisplay(self.object).checks_by_category
 
     @property
     def path(self):
@@ -116,7 +120,7 @@ class PootleBrowseView(PootleDetailView):
                  settings.POOTLE_STATS_REFRESH_ATTEMPTS_COUNT,
              'stats': self.stats,
              'translation_states': get_translation_states(self.object),
-             'checks': get_qualitycheck_list(self.object),
+             'checks': self.checks,
              'can_translate': can_translate,
              'can_translate_stats': can_translate_stats,
              'url_action_continue': url_action_continue,
