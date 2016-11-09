@@ -85,17 +85,13 @@ const stats = {
     });
     $(document).on('click', '.js-toggle-more-checks', (e) => {
       let count = 0;
-      const data = this.state.checksData;
       e.preventDefault();
       $('.js-check').each(function toggleCheck() {
         const $check = $(this);
-        const code = $check.data('code');
-        if (code in data) {
-          if (count >= 4) {
-            $check.toggle();
-          }
-          count++;
+        if (count >= 4) {
+          $check.toggle();
         }
+        count++;
       });
       $(e.target).parent().toggleClass('collapsed');
     });
@@ -128,18 +124,14 @@ const stats = {
       />,
       q('#js-mnt-top-contributors')
     );
-
-    // Retrieve async data if needed
-    if (isExpanded) {
-      this.loadChecks();
-    } else {
-      this.updateUI();
-    }
+    this.updateUI();
+    this.updateStatsUI();
   },
 
   setState(newState) {
     this.state = assign({}, this.state, newState);
     this.updateUI();
+    this.updateChecksToggleUI();
   },
 
   updateProgressbar($td, item) {
@@ -397,19 +389,12 @@ const stats = {
       .always(() => $('body').spin(false));
   },
 
-  loadChecks() {
-    return this.load('getChecks')
-      .done((data) => this.setState({ isExpanded: true, checksData: data }));
-  },
-
   /* Path summary */
   toggleDetailedStats() {
-    if (this.state.checksData) {
+    if (!(this.state.checksData)) {
       this.setState({ isExpanded: !this.state.isExpanded });
-      this.navigate();
-    } else {
-      this.loadChecks().done(() => this.navigate());
     }
+    this.navigate();
   },
 
   updateChecksToggleUI() {
@@ -425,23 +410,12 @@ const stats = {
   },
 
   updateChecksUI() {
-    const data = this.state.checksData;
     let count = 0;
-
-    if (data === null || !Object.keys(data).length) {
-      return;
-    }
 
     this.$extraDetails.find('.js-check').each(function updateCheck() {
       const $check = $(this);
-      const code = $(this).data('code');
-      if (code in data) {
-        count++;
-        $check.toggle(count < 5);
-        $check.find('.check-count .check-data').html(data[code]);
-      } else {
-        $check.hide();
-      }
+      count++;
+      $check.toggle(count < 5);
     });
 
     $('.js-more-checks').addClass('collapsed').toggle(count >= 5);
@@ -451,7 +425,6 @@ const stats = {
   updateUI() {
     this.updateChecksToggleUI();
     this.updateChecksUI();
-    this.updateStatsUI();
   },
 
   navigate() {
