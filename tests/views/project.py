@@ -27,7 +27,8 @@ from pootle.core.helpers import (
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
-from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
+from pootle.core.views.display import ChecksDisplay
+from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
@@ -126,7 +127,6 @@ def _test_browse_view(project, request, response, kwargs):
          url_action_fixcritical,
          url_action_review,
          url_action_view_all) = [None] * 4
-
     User = get_user_model()
     top_scorers = User.top_scorers(project=project.code, limit=10)
     assertions = dict(
@@ -141,7 +141,7 @@ def _test_browse_view(project, request, response, kwargs):
         url_action_review=url_action_review,
         url_action_view_all=url_action_view_all,
         translation_states=get_translation_states(obj),
-        checks=get_qualitycheck_list(obj),
+        checks=ChecksDisplay(obj).checks_by_category,
         table=table,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
@@ -213,7 +213,7 @@ def test_view_projects_browse(client, request_users):
         table=table,
         browser_extends="projects/all/base.html",
         stats=obj.data_tool.get_stats(user=request.user),
-        checks=get_qualitycheck_list(obj),
+        checks=ChecksDisplay(obj).checks_by_category,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
         translation_states=get_translation_states(obj),

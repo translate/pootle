@@ -26,7 +26,8 @@ from pootle.core.url_helpers import (
     get_previous_url, get_path_parts, split_pootle_path)
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
-from pootle_misc.checks import get_qualitycheck_list, get_qualitycheck_schema
+from pootle.core.views.display import ChecksDisplay
+from pootle_misc.checks import get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.models import Store
 from virtualfolder.delegate import vfolders_data_view
@@ -119,7 +120,7 @@ def _test_browse_view(tp, request, response, kwargs):
         resource_path=resource_path,
         resource_path_parts=get_path_parts(resource_path),
         translation_states=get_translation_states(obj),
-        checks=get_qualitycheck_list(obj),
+        checks=ChecksDisplay(obj).checks_by_category,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
         url_action_continue=obj.get_translate_url(
