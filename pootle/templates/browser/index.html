@@ -43,7 +43,7 @@
             </tbody>
           </table>
         </div>
-        <div id="js-stats-checks" class="hide stats-checks">
+        <div id="js-stats-checks" class="stats-checks">
           <h3>{% trans "Failing Checks" %}</h3>
           <div class="bd">
             <table>
@@ -53,10 +53,10 @@
                 <td class="check-name">
                   <a class="check-data" href="{{ check.url }}">{{ check.title }}</a>
                 </td>
-                <td class="check-count"><a class="check-data" href="{{ check.url }}">0</a></td>
+                <td class="check-count"><a class="check-data" href="{{ check.url }}">{{ check.count }}</a></td>
                 {% else %}
                 <td class="check-name"><span class="check-data">{{ check.title }}</span></td>
-                <td class="check-count"><span class="check-data">0</span></td>
+                <td class="check-count"><span class="check-data">{{ check.count }}</span></td>
                 {% endif %}
               </tr>
             {% endfor %}
