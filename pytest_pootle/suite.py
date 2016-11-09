@@ -17,6 +17,10 @@ def view_context_test(ctx, **assertions):
                 for i, check in enumerate(v[_k]["checks"]):
                     for __k, __v in check.items():
                         assert _v["checks"][i][__k] == __v
+        elif k in ["translation_states", "checks"] and ctx["page"] == "browse":
+            for i, cat in enumerate(ctx[k]):
+                for _k, _v in cat.items():
+                    assert str(ctx[k][i][_k]) == str(_v)
         elif k == "search_form":
             assert ctx[k].as_p() == v.as_p()
         elif k == "table":

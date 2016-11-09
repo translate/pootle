@@ -31,6 +31,7 @@ from pootle.core.views.display import ChecksDisplay
 from pootle_misc.checks import (
     CATEGORY_IDS, check_names,
     get_qualitychecks, get_qualitycheck_schema)
+from pootle.core.views.browse import StatsDisplay
 from pootle_misc.forms import make_search_form
 from pootle_store.models import Store
 from virtualfolder.delegate import vfolders_data_view
@@ -94,7 +95,12 @@ def _test_browse_view(tp, request, response, kwargs):
         make_store_item(child)
         for child in obj.get_children()
         if isinstance(child, Store)]
-
+    items = directories + stores
+    for item in items:
+        if item["code"] in stats["children"]:
+            item["stats"] = stats["children"][item["code"]]
+        elif item["title"] in stats["children"]:
+            item["stats"] = stats["children"][item["title"]]
     if not kwargs.get("filename"):
         table_fields = [
             'name', 'progress', 'total', 'need-translation',
@@ -103,10 +109,12 @@ def _test_browse_view(tp, request, response, kwargs):
             'id': 'tp',
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
-            'items': directories + stores}
+            'items': items}
     else:
         table = None
-
+    del stats["children"]
+    checks = ChecksDisplay(obj).checks_by_category
+    stats = StatsDisplay(obj, stats=stats).stats
     User = get_user_model()
     top_scorers = User.top_scorers(language=tp.language.code,
                                    project=tp.project.code, limit=11)
@@ -123,7 +131,7 @@ def _test_browse_view(tp, request, response, kwargs):
         resource_path=resource_path,
         resource_path_parts=get_path_parts(resource_path),
         translation_states=get_translation_states(obj),
-        checks=ChecksDisplay(obj).checks_by_category,
+        checks=checks,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
         url_action_continue=obj.get_translate_url(

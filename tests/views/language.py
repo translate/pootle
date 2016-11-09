@@ -23,6 +23,8 @@ from pootle.core.helpers import (
 from pootle.core.url_helpers import get_previous_url
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
+from pootle.core.views.browse import StatsDisplay
+from pootle.core.views.display import ChecksDisplay
 from pootle_misc.checks import (
     CATEGORY_IDS, check_names,
     get_qualitychecks, get_qualitycheck_schema)
@@ -41,12 +43,19 @@ def _test_browse_view(language, request, response, kwargs):
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
     user_tps = language.get_children_for_user(request.user)
+    stats = language.data_tool.get_stats(user=request.user)
     items = [make_project_item(tp) for tp in user_tps]
+    for item in items:
+        if item["code"] in stats["children"]:
+            item["stats"] = stats["children"][item["code"]]
     table = {
         'id': 'language',
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items}
+    del stats["children"]
+    checks = ChecksDisplay(language).checks_by_category
+    stats = StatsDisplay(language, stats=stats).stats
     top_scorers = get_user_model().top_scorers(language=language.code, limit=10)
     assertions = dict(
         page="browse",
@@ -67,8 +76,8 @@ def _test_browse_view(language, request, response, kwargs):
         translation_states=get_translation_states(language),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
-        stats=language.data_tool.get_stats(user=request.user)
-    )
+        checks=checks,
+        stats=stats)
     sidebar = get_sidebar_announcements_context(
         request, (language, ))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:
