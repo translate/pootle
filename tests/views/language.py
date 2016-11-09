@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import json
+from collections import OrderedDict
 from urllib import unquote
 
 import pytest
@@ -22,7 +23,9 @@ from pootle.core.helpers import (
 from pootle.core.url_helpers import get_previous_url
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
-from pootle_misc.checks import get_qualitychecks, get_qualitycheck_schema
+from pootle_misc.checks import (
+    CATEGORY_IDS, check_names,
+    get_qualitychecks, get_qualitycheck_schema)
 from pootle_misc.forms import make_search_form
 
 
@@ -79,13 +82,21 @@ def _test_translate_view(language, request, response, kwargs, settings):
     schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
     check_data = language.data_tool.get_checks()
     _checks = {}
-    for check, cat in checks.items():
+    for check, checkid in checks.items():
         if check not in check_data:
             continue
-        _checks[cat] = _checks.get(
-            cat, dict(checks=[], title=schema[cat]["title"]))
-        _checks[cat]["checks"].append(
-            dict(code=check, count=check_data[check]))
+        _checkid = schema[checkid]["name"]
+        _checks[_checkid] = _checks.get(
+            _checkid, dict(checks=[], title=schema[checkid]["title"]))
+        _checks[_checkid]["checks"].append(
+            dict(
+                code=check,
+                title=check_names[check],
+                count=check_data[check]))
+    _checks = OrderedDict(
+        (k, _checks[k])
+        for k in CATEGORY_IDS.keys()
+        if _checks.get(k))
     view_context_test(
         ctx,
         **dict(

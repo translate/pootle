@@ -30,7 +30,8 @@ from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
 from pootle.core.views.display import ChecksDisplay
 from pootle_misc.checks import (
-    CATEGORY_IDS, get_qualitychecks, get_qualitycheck_schema)
+    CATEGORY_IDS, check_names,
+    get_qualitychecks, get_qualitycheck_schema)
 from pootle_misc.forms import make_search_form
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
@@ -55,13 +56,17 @@ def _test_translate_view(project, request, response, kwargs, settings):
     schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
     check_data = ctx["object"].data_tool.get_checks()
     _checks = {}
-    for check, cat in checks.items():
+    for check, checkid in checks.items():
         if check not in check_data:
             continue
-        _checks[cat] = _checks.get(
-            cat, dict(checks=[], title=schema[cat]["title"]))
-        _checks[cat]["checks"].append(
-            dict(code=check, count=check_data[check]))
+        _checkid = schema[checkid]["name"]
+        _checks[_checkid] = _checks.get(
+            _checkid, dict(checks=[], title=schema[checkid]["title"]))
+        _checks[_checkid]["checks"].append(
+            dict(
+                code=check,
+                title=check_names[check],
+                count=check_data[check]))
     _checks = OrderedDict(
         (k, _checks[k])
         for k in CATEGORY_IDS.keys()
@@ -264,13 +269,17 @@ def test_view_projects_translate(client, settings, request_users):
     schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
     check_data = obj.data_tool.get_checks()
     _checks = {}
-    for check, cat in checks.items():
+    for check, checkid in checks.items():
         if check not in check_data:
             continue
-        _checks[cat] = _checks.get(
-            cat, dict(checks=[], title=schema[cat]["title"]))
-        _checks[cat]["checks"].append(
-            dict(code=check, count=check_data[check]))
+        _checkid = schema[checkid]["name"]
+        _checks[_checkid] = _checks.get(
+            _checkid, dict(checks=[], title=schema[checkid]["title"]))
+        _checks[_checkid]["checks"].append(
+            dict(
+                code=check,
+                title=check_names[check],
+                count=check_data[check]))
     _checks = OrderedDict(
         (k, _checks[k])
         for k in CATEGORY_IDS.keys()
