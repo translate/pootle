@@ -1,7 +1,7 @@
 # Base requirements
 
 # Note: also adjust pootle/checks::DJANGO_MINIMUM_REQUIRED_VERSION
-Django~=1.9.10  # rq.filter: <1.10
+Django~=1.9.11  # rq.filter: <1.10
 
 # Django apps
 django-allauth==0.28.0
