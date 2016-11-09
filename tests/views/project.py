@@ -8,6 +8,7 @@
 
 import json
 import locale
+from collections import OrderedDict
 from urllib import unquote
 
 import pytest
@@ -28,7 +29,8 @@ from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
 from pootle.core.views.display import ChecksDisplay
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import (
+    CATEGORY_IDS, get_qualitychecks, get_qualitycheck_schema)
 from pootle_misc.forms import make_search_form
 from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_store.models import Store
@@ -48,6 +50,22 @@ def _test_translate_view(project, request, response, kwargs, settings):
         "%(dir_path)s%(filename)s" % kwargs)
     pootle_path = "%s%s" % (ctx_path, resource_path)
     display_priority = False
+
+    checks = get_qualitychecks()
+    schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
+    check_data = ctx["object"].data_tool.get_checks()
+    _checks = {}
+    for check, cat in checks.items():
+        if check not in check_data:
+            continue
+        _checks[cat] = _checks.get(
+            cat, dict(checks=[], title=schema[cat]["title"]))
+        _checks[cat]["checks"].append(
+            dict(code=check, count=check_data[check]))
+    _checks = OrderedDict(
+        (k, _checks[k])
+        for k in CATEGORY_IDS.keys()
+        if _checks.get(k))
     view_context_test(
         ctx,
         **dict(
@@ -60,7 +78,7 @@ def _test_translate_view(project, request, response, kwargs, settings):
             resource_path=resource_path,
             resource_path_parts=get_path_parts(resource_path),
             editor_extends="projects/base.html",
-            check_categories=get_qualitycheck_schema(),
+            checks=_checks,
             previous_url=get_previous_url(request),
             display_priority=display_priority,
             cantranslate=check_permission("translate", request),
@@ -235,9 +253,28 @@ def test_view_projects_translate(client, settings, request_users):
     if not user.is_superuser:
         assert response.status_code == 403
         return
-
     ctx = response.context
     request = response.wsgi_request
+    user_projects = Project.accessible_by_user(request.user)
+    user_projects = (
+        Project.objects.for_user(request.user)
+                       .filter(code__in=user_projects))
+    obj = ProjectSet(user_projects)
+    checks = get_qualitychecks()
+    schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
+    check_data = obj.data_tool.get_checks()
+    _checks = {}
+    for check, cat in checks.items():
+        if check not in check_data:
+            continue
+        _checks[cat] = _checks.get(
+            cat, dict(checks=[], title=schema[cat]["title"]))
+        _checks[cat]["checks"].append(
+            dict(code=check, count=check_data[check]))
+    _checks = OrderedDict(
+        (k, _checks[k])
+        for k in CATEGORY_IDS.keys()
+        if _checks.get(k))
     assertions = dict(
         page="translate",
         has_admin_access=user.is_superuser,
@@ -248,7 +285,7 @@ def test_view_projects_translate(client, settings, request_users):
         resource_path="",
         resource_path_parts=[],
         editor_extends="projects/all/base.html",
-        check_categories=get_qualitycheck_schema(),
+        checks=_checks,
         previous_url=get_previous_url(request),
         display_priority=False,
         cantranslate=check_permission("translate", request),

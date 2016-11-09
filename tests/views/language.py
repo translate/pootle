@@ -22,7 +22,7 @@ from pootle.core.helpers import (
 from pootle.core.url_helpers import get_previous_url
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import get_qualitychecks, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 
 
@@ -75,6 +75,17 @@ def _test_browse_view(language, request, response, kwargs):
 
 def _test_translate_view(language, request, response, kwargs, settings):
     ctx = response.context
+    checks = get_qualitychecks()
+    schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
+    check_data = language.data_tool.get_checks()
+    _checks = {}
+    for check, cat in checks.items():
+        if check not in check_data:
+            continue
+        _checks[cat] = _checks.get(
+            cat, dict(checks=[], title=schema[cat]["title"]))
+        _checks[cat]["checks"].append(
+            dict(code=check, count=check_data[check]))
     view_context_test(
         ctx,
         **dict(
@@ -86,7 +97,7 @@ def _test_translate_view(language, request, response, kwargs, settings):
             resource_path="",
             resource_path_parts=[],
             editor_extends="languages/base.html",
-            check_categories=get_qualitycheck_schema(),
+            checks=_checks,
             previous_url=get_previous_url(request),
             display_priority=False,
             has_admin_access=check_permission('administrate', request),

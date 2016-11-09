@@ -27,7 +27,7 @@ from pootle.core.url_helpers import (
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
 from pootle.core.views.display import ChecksDisplay
-from pootle_misc.checks import get_qualitycheck_schema
+from pootle_misc.checks import get_qualitychecks, get_qualitycheck_schema
 from pootle_misc.forms import make_search_form
 from pootle_store.models import Store
 from virtualfolder.delegate import vfolders_data_view
@@ -155,6 +155,19 @@ def _test_translate_view(tp, request, response, kwargs, settings):
     kwargs["language_code"] = tp.language.code
     resource_path = "%(dir_path)s%(filename)s" % kwargs
     request_path = "%s%s" % (tp.pootle_path, resource_path)
+
+    checks = get_qualitychecks()
+    schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
+    check_data = obj.data_tool.get_checks()
+    _checks = {}
+    for check, cat in checks.items():
+        if check not in check_data:
+            continue
+        _checks[cat] = _checks.get(
+            cat, dict(checks=[], title=schema[cat]["title"]))
+        _checks[cat]["checks"].append(
+            dict(code=check, count=check_data[check]))
+
     if request.path.startswith("/++vfolder"):
         vfolder = VirtualFolder.objects.get(
             name=request.resolver_match.kwargs["vfolder_name"])
@@ -187,7 +200,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         resource_path=resource_path,
         resource_path_parts=get_path_parts(resource_path),
         editor_extends="translation_projects/base.html",
-        check_categories=get_qualitycheck_schema(),
+        checks=_checks,
         previous_url=get_previous_url(request),
         current_vfolder_pk=current_vfolder_pk,
         display_priority=display_priority,
