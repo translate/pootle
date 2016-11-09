@@ -10,7 +10,7 @@
   {% block header_content %}
   <a id="js-path-summary" href="#">
     <div id="progressbar">
-      {% include "browser/_progressbar.html" %}
+      {% progress_bar stats.total stats.fuzzy stats.translated %}
     </div>
   </a>
   <div class="path-summary-more" id="js-path-summary-more">
@@ -32,12 +32,12 @@
                 <td id="stats-name">{{ item.title }}</td>
                 <td class="stats-number">
                   {% if can_translate_stats %}
-                  <a href="{{ item.url }}" class="stats-data"></a>
+                  <a href="{{ item.url }}" class="stats-data">{{ item.count }}</a>
                   {% else %}
-                  <span class="stats-data"></span>
+                  <span class="stats-data">{{ item.count }}</span>
                   {% endif %}
                 </td>
-                <td class="stats-percentage"><span></span>%</td>
+                <td class="stats-percentage"><span>{{ item.percent }}</span>%</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -80,7 +80,10 @@
             <div class="graph"></div>
             <div class="action-wrapper">
               <label>{% trans "Last action:" %}</label>
-              <div id="js-last-updated" class="last-updated"></div>
+              <div id="js-last-updated" class="last-updated last-action">
+		<span class="extra-item-meta">{{ stats.lastupdated.at }}</span>
+		<a href="{{ stats.lastupdated.unit_url }}">{{ stats.lastupdated.source }}</a>
+	      </div>
             </div>
           </div>
         </div>
@@ -90,7 +93,10 @@
             <div class="graph"></div>
             <div class="action-wrapper">
               <label>{% trans "Last action:" %}</label>
-              <div id="js-last-action" class="last-action"></div>
+              <div id="js-last-action" class="last-action">
+		<a href="{{ stats.lastaction.profile_url }}"><img src="{{ stats.lastaction.grav }}" class="avatar" /></a>
+		{{ stats.lastaction.msg }} <span class="extra-item-meta">{{ stats.lastaction.at }}</span>
+	      </div>
             </div>
           </div>
         </div>
@@ -158,16 +164,14 @@
 {{ block.super }}
 
 <script type="text/javascript">
-$(function () {
-  PTL.search.init();
+  $(function () {
+
   PTL.stats.init({
     pootlePath: "{{ pootle_path }}",
     hasDisabledItems: {{ table.disabled_items|yesno:"true,false" }},
     isAdmin: {{ has_admin_access|yesno:"true,false" }},
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
-    initialData: {{ stats|to_js }},
     topContributorsData: {{ top_scorers_data|to_js }},
-    statsRefreshAttemptsCount: {{ stats_refresh_attempts_count }},
     uiLocaleDir: '{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}',
   });
 });

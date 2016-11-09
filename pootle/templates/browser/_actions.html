@@ -1,55 +1,65 @@
 {% load i18n %}
+{% if stats.total %}
 <ul>
+  {% if stats.critical %}
   <li id="js-action-fix-critical">
     {% if url_action_fixcritical %}
     <a class="fix-errors" href="{{ url_action_fixcritical }}">
       <span class="caption">{% trans 'Fix critical errors' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.critical }}</span>
     </a>
     {% else %}
     <span class="fix-errors">
       <span class="caption">{% trans 'Critical errors' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.critical }}</span>
     </span>
     {% endif %}
   </li>
+  {% endif %}
+  {% if stats.suggestions %}  
   <li id="js-action-review">
     {% if url_action_review %}
     <a class="review-suggestions" href="{{ url_action_review }}">
       <span class="caption">{% trans 'Review suggestions' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.suggestions }}</span>
     </a>
     {% else %}
     <span class="review-suggestions">
       <span class="caption">{% trans 'Suggestions' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.suggestions }}</span>
     </span>
     {% endif %}
   </li>
+  {% endif %}
+  {% if stats.incomplete %}    
   <li id="js-action-continue">
     {% if url_action_continue %}
     <a class="continue-translation" href="{{ url_action_continue }}">
       <span class="caption">{% trans 'Continue translation' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.incomplete }}</span>
     </a>
     {% else %}
     <span class="continue-translation">
       <span class="caption">{% trans 'Incomplete' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.incomplete }}</span>
     </span>
     {% endif %}
   </li>
+  {% endif %}
+  {% if stats.total %}    
   <li id="js-action-view-all">
     {% if url_action_view_all %}
     <a class="translation-complete"{% if url_action_view_all %} href="{{ url_action_view_all }}"{% endif %}>
       <span class="caption">{% trans 'View all' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.total }}</span>
     </a>
     {% else %}
     <span class="translation-complete">
       <span class="caption">{% trans 'All' %}</span>
-      <span class="counter">0</span>
+      <span class="counter">{{ stats.total }}</span>
     </span>
     {% endif %}
   </li>
+  {% endif %}  
 </ul>
+{% endif %}
