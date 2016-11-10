@@ -47,7 +47,7 @@ body.translate #actions
 
 #translate-actions li
 {
-    display: none;
+    display: inline-block;
     margin-left: 2em;
     margin-right: -0.5em;
     font-weight: bold;
