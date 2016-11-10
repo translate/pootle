@@ -36,10 +36,7 @@ def make_vfolder_dict(context, vf, stats):
             language_code=lang_code,
             project_code=proj_code))
     return {
-        'href_all': base_url,
-        'href_todo': "%s#filter=incomplete" % base_url,
-        'href_sugg': "%s#filter=suggestions" % base_url,
-        'href_critical': "%s#filter=checks&category=critical" % base_url,
+        'href_translate': base_url,
         'title': stats["title"],
         'code': vf,
         'priority': stats.get("priority"),
