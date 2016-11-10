@@ -27,7 +27,7 @@ $(function() {
     </div>
     <div class="config-content">
       <div class="config-content-panel">
-	<h3>{% blocktrans %}Backend configuration{% endblocktrans %}</h3>
+	<h3>{% trans "Backend configuration" %}</h3>
 	<form method="POST" class="pootle-fs-config-form">
 	  {% csrf_token %}
 	  {{ form.as_p }}
@@ -41,7 +41,7 @@ $(function() {
 	    <input type="submit" class="btn" value="{% trans 'Update filesystem configuration' %}" />
 	  </div>
 	  <p>
-	    {% blocktrans %}Translation mapping should be of the format:{% endblocktrans %}
+	    {% trans "Translation mapping should be of the format:" %}
 	    <blockquote class="centered">
 	      <code>
 		`/path/to/translation/files/&lt;language_code&gt;/&lt;dir_path&gt;/&lt;filename&gt;.&lt;ext&gt;`
@@ -49,21 +49,29 @@ $(function() {
 	    </blockquote>
 	  </p>
 	  <p>
-	    {% blocktrans %}Only `&lt;language_code&gt;` is required, although it must end with `.&lt;ext&gt;`{% endblocktrans %}
+	    {% blocktrans trimmed %}
+	    Only `&lt;language_code&gt;` is required, although it must end with
+	    `.&lt;ext&gt;`
+	    {% endblocktrans %}
 	  </p>
 	  <p>
-	    {% blocktrans %}If you are using the localfs backend the translation mapping will be combined with the path specified in
-	    backend URL{% endblocktrans %}
+	    {% blocktrans trimmed %}
+	    If you are using the localfs backend the translation mapping will be
+	    combined with the path specified in backend URL
+	    {% endblocktrans %}
 	  </p>
 	  <p>
-	    {% blocktrans %}For other backends the translation mapping will be relative to the root of the repository.{% endblocktrans %}
+	    {% blocktrans trimmed %}
+	    For other backends the translation mapping will be relative to the root
+	    of the repository.
+	    {% endblocktrans %}
 	  </p>
 	</form>
       </div>
     </div>
     <div class="config-content">
       <div class="config-content-panel">
-	<h3>{% blocktrans %}Language mapping configuration{% endblocktrans %}</h3>
+	<h3>{% trans "Language mapping configuration" %}</h3>
 
 	<form method="post" action___="{{ lang_mapping_formset_action }}">
 	  {% csrf_token %}
@@ -73,9 +81,9 @@ $(function() {
 	  {% endfor %}
 	  <table>
 	    <tr>
-	      <th class="aligned-right">{% blocktrans %}Remove{% endblocktrans %}</th>
-	      <th>{% blocktrans %}Pootle code{% endblocktrans %}</th>
-	      <th>{% blocktrans %}Filesystem code{% endblocktrans %}</th>
+	      <th class="aligned-right">{% trans "Remove" %}</th>
+	      <th>{% trans "Pootle code" %}</th>
+	      <th>{% trans "Filesystem code" %}</th>
 	    </tr>
 	    {% for form in lang_mapping_formset %}
 	    <tr>
