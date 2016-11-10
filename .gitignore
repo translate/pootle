@@ -1,3 +1,4 @@
+## Pootle ##
 # /docs/
 /docs/_build/
 /docs/icons.rst.inc
@@ -30,8 +31,6 @@
 
 # General
 *.bak
-*.pyc
-*.pyo
 *.prefs
 *.stats
 *.pending
@@ -96,3 +95,10 @@ manage
 .cache
 
 pytest_pootle/data/po/.tmp
+
+
+## Python ##
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
