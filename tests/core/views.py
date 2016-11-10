@@ -16,9 +16,20 @@ from django.http import Http404
 from pytest_pootle.factories import LanguageDBFactory, UserFactory
 from pytest_pootle.utils import create_api_request
 
-from pootle.core.views import APIView
-from pootle.core.views.widgets import TableSelectMultiple
 from accounts.models import User
+from pootle.core.views import APIView
+from pootle.core.views.display import StatsDisplay
+from pootle.core.views.widgets import TableSelectMultiple
+
+
+def _test_stats_display(obj):
+    stats = StatsDisplay(obj)
+    assert stats.context == obj
+    stat_data = obj.data_tool.get_stats()
+    assert stats.stat_data == stat_data.copy()
+    stats.add_lastaction_info(stat_data)
+    stats.add_lastupdated_info(stat_data)
+    assert stat_data == stats.stats
 
 
 class UserAPIView(APIView):
@@ -642,3 +653,58 @@ def test_widget_table_select_id_attr():
              'type="checkbox" value="%s" /></td>'
              % (i, name))
             in rendered)
+
+
+@pytest.mark.django_db
+def test_display_stats(tp0, subdir0, language0, store0):
+    _test_stats_display(tp0)
+    _test_stats_display(subdir0)
+    _test_stats_display(language0)
+    _test_stats_display(store0)
+
+
+@pytest.mark.django_db
+def test_display_stats_action_message(tp0):
+    action = dict(
+        profile_url="/profile/url",
+        unit_source="Some unit source",
+        unit_url="/unit/url",
+        displayname="Some user",
+        check_name="some-check",
+        checks_url="/checks/url",
+        check_display_name="Some check")
+    stats = StatsDisplay(tp0)
+
+    for i in [2, 3, 4, 6, 7, 8, 9]:
+        _action = action.copy()
+        _action["type"] = i
+        message = stats.get_action_message(_action)
+        assert (
+            ("<a href='%s' class='user-name'>%s</a>"
+             % (action["profile_url"], action["displayname"]))
+            in message)
+        if i != 4:
+            assert (
+                ("<a href='%s'>%s</a>"
+                 % (action["unit_url"], action["unit_source"]))
+                in message)
+        if i in [6, 7]:
+            assert (
+                ("<a href='%s'>%s</a>"
+                 % (action["checks_url"], action["check_display_name"]))
+                in message)
+
+    for i in [1, 5]:
+        for _i in [0, 1, 2, 3, 4, 5]:
+            _action = action.copy()
+            _action["type"] = i
+            _action["translation_action_type"] = _i
+            message = stats.get_action_message(_action)
+            assert (
+                ("<a href='%s' class='user-name'>%s</a>"
+                 % (action["profile_url"], action["displayname"]))
+                in message)
+            assert (
+                ("<a href='%s'>%s</a>"
+                 % (action["unit_url"], action["unit_source"]))
+                in message)
