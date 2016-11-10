@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-09-29 22:54+0000\n"
-"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
+"PO-Revision-Date: 2016-11-05 10:50+0000\n"
+"Last-Translator: Pavel Maryanov <acid@jack.kiev.ua>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1475189661.000000\n"
+"X-POOTLE-MTIME: 1478343037.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -333,51 +333,43 @@ msgstr ""
 
 #: apps/pootle_fs/forms.py:32
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "URL-адрес или путь к файлом переводов"
 
 #: apps/pootle_fs/forms.py:35
 msgid "The translation path mapping for your filesystem"
-msgstr ""
+msgstr "Сопоставление пути перевода для вашей файловой системе"
 
 #: apps/pootle_language/forms.py:23
-#, fuzzy
 msgid "Member"
-msgstr "Числа"
+msgstr "Участник"
 
 #: apps/pootle_language/forms.py:24
-#, fuzzy
 msgid "Submitter"
-msgstr "Зафиксировать"
+msgstr "Отправляющий"
 
 #: apps/pootle_language/forms.py:25
-#, fuzzy
 msgid "Reviewer"
-msgstr "Проверка"
+msgstr "Проверяющий"
 
 #: apps/pootle_language/forms.py:26
-#, fuzzy
 msgid "Administrator"
-msgstr "Администрирование"
-
-#: apps/pootle_language/forms.py:71
-#, fuzzy
-msgid "Admins"
 msgstr "Администратор"
 
+#: apps/pootle_language/forms.py:71
+msgid "Admins"
+msgstr "Администраторы"
+
 #: apps/pootle_language/forms.py:77
-#, fuzzy
 msgid "Reviewers"
-msgstr "Проверено"
+msgstr "Проверяющие"
 
 #: apps/pootle_language/forms.py:82
-#, fuzzy
 msgid "Submitters"
-msgstr "Зафиксировать"
+msgstr "Отправляющие"
 
 #: apps/pootle_language/forms.py:87
-#, fuzzy
 msgid "Members"
-msgstr "Числа"
+msgstr "Участники"
 
 #: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
@@ -812,9 +804,9 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" не может быть использован как код проекта"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "\"%(code)s\" не может быть использован как код проекта"
+msgstr "\"%(code)s\" нельзя использовать для проверки проекта"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -841,9 +833,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Не GNU-стиль: каждый язык в своей директории"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Разрешить pootle_fs управлять файловой системой"
+msgstr "Разрешить Pootle FS управлять файловыми системами"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1520,21 +1511,24 @@ msgstr "Переменная POOTLE_CONTACT_EMAIL не задана."
 
 #: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "Путь, заданный в параметре POOTLE_FS_WORKING_PATH , не существует."
 
 #: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
+msgstr "Создать каталог, указанный в параметре POOTLE_FS_WORKING_PATH."
 
 #: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Pootle не может выполнить запись в каталог, указанный в параметре "
+"POOTLE_FS_WORKING_PATH."
 
 #: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Добавьте права на запись в каталог POOTLE_FS_WORKING_PATH командой 'chmod +w'"
 
 #: core/browser.py:26
 msgid "Project"
@@ -1601,7 +1595,7 @@ msgstr "Неверно"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "С выбранным"
 
 #: core/forms.py:184
 msgid "Reject"
@@ -1612,7 +1606,6 @@ msgid "Accept"
 msgstr "Принять"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "Добавить комментарий"
 
@@ -2205,11 +2198,11 @@ msgstr "Раскрыть подробности"
 
 #: templates/browser/index.html:26
 msgid "Translation Statistics"
-msgstr "Статистика перевода"
+msgstr "Статистика переводов"
 
 #: templates/browser/index.html:47
 msgid "Failing Checks"
-msgstr "Проверки с ошибками"
+msgstr "Требующие проверки"
 
 #: templates/browser/index.html:66
 msgid "More..."
@@ -2951,7 +2944,7 @@ msgstr ""
 #: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
-"Вы можете установить или изменить свой аватар на сайте www.gravatar.com"
+"Вы можете установить или изменить свой аватар на веб-сайте www.gravatar.com"
 
 #: templates/user/profile.html:16
 msgid "Anonymous User"

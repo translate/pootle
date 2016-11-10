@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-10-08 07:20+0000\n"
+"PO-Revision-Date: 2016-10-25 07:34+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1475911245.000000\n"
+"X-POOTLE-MTIME: 1477380877.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -318,63 +318,55 @@ msgstr "Enspråkigt format"
 
 #: apps/pootle_fs/forms.py:24
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Backend för filsystem"
 
 #: apps/pootle_fs/forms.py:25
 msgid "Select a backend filesystem"
-msgstr ""
+msgstr "Välj ett backend för filsystemet"
 
 #: apps/pootle_fs/forms.py:30
 msgid "Backend URL or path"
-msgstr ""
+msgstr "Backend-URL eller sökväg"
 
 #: apps/pootle_fs/forms.py:32
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "URL eller sökvägen till översättningsfiler"
 
 #: apps/pootle_fs/forms.py:35
 msgid "The translation path mapping for your filesystem"
-msgstr ""
+msgstr "Mappning av översättningssökväg för ditt filsystem"
 
 #: apps/pootle_language/forms.py:23
-#, fuzzy
 msgid "Member"
-msgstr "Nummer"
+msgstr "Medlem"
 
 #: apps/pootle_language/forms.py:24
-#, fuzzy
 msgid "Submitter"
-msgstr "Skicka in"
+msgstr "Bidragare"
 
 #: apps/pootle_language/forms.py:25
-#, fuzzy
 msgid "Reviewer"
-msgstr "Granska"
+msgstr "Granskare"
 
 #: apps/pootle_language/forms.py:26
-#, fuzzy
 msgid "Administrator"
-msgstr "Administration"
-
-#: apps/pootle_language/forms.py:71
-#, fuzzy
-msgid "Admins"
 msgstr "Administratör"
 
+#: apps/pootle_language/forms.py:71
+msgid "Admins"
+msgstr "Administratörer"
+
 #: apps/pootle_language/forms.py:77
-#, fuzzy
 msgid "Reviewers"
-msgstr "Granskningar"
+msgstr "Granskare"
 
 #: apps/pootle_language/forms.py:82
-#, fuzzy
 msgid "Submitters"
-msgstr "Skicka in"
+msgstr "Bidragare"
 
 #: apps/pootle_language/forms.py:87
-#, fuzzy
 msgid "Members"
-msgstr "Nummer"
+msgstr "Medlemmar"
 
 #: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
@@ -808,9 +800,9 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" kan inte användas som en projekt-kod"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "\"%(code)s\" kan inte användas som en projekt-kod"
+msgstr "\"%(code)s\" kan inte användas som en projekt-kontroll"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -837,9 +829,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Icke-GNU: Varje språk i sin egna katalog"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Tillåt pootle_fs att hantera filsystem"
+msgstr "Tillåt Pootle FS att hantera filsystem"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1489,45 +1480,53 @@ msgstr "Kör `revision --restore` för att återställa revisionsräknaren."
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Ingen canonical URL har angetts och standardwebbplats satt till example.com."
 
 #: checks.py:466
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Sätt `POOTLE_CANONICAL_URL` i inställningar eller uppdatera "
+"standardwebbplats om du använder django.contrib.sites."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Canonical URL är satt till http://localhost."
 
 #: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Sätt `POOTLE_CANONICAL_URL` till ett lämpligt värde för din webbplats eller "
+"lämna det tomt om du använder `django.contrib.sites`."
 
 #: checks.py:502
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "POOTLE_CONTACT_EMAIL är inte satt."
+msgstr "POOTLE_FS_WORKING_PATH inställning är inte satt."
 
 #: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "Sökväg som pekas på av POOTLE_FS_WORKING PATH existerar inte."
 
 #: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
 msgstr ""
+"Skapa katalogen som indikeras av `POOTLE_FS_WORKING PATH` i inställningar."
 
 #: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Sökväg som pekas ut av POOTLE_FS_WORKING_PATH är inte skrivbar av Pootle."
 
 #: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Lägg till skrivrättigheter till `POOTLE_FS_WORKING PATH` katalog med 'chmod "
+"+w'"
 
 #: core/browser.py:26
 msgid "Project"
@@ -1594,7 +1593,7 @@ msgstr "Felaktigt"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Med utvalda"
 
 #: core/forms.py:184
 msgid "Reject"
@@ -1605,21 +1604,20 @@ msgid "Accept"
 msgstr "Godkänn"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "Lägg till kommentar"
 
 #: core/forms.py:193
 msgid "Select all matching filter criteria, including those not shown"
-msgstr ""
+msgstr "Välj alla matchande filterkriterier, inklusive de som inte visas"
 
 #: core/forms.py:210
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Du måste ange en åtgärd som ska vidtas"
 
 #: core/forms.py:212
 msgid "FormtableForm must specify a valid search_field"
-msgstr ""
+msgstr "FormtableForm måste ange en giltig search_field"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1973,25 +1971,27 @@ msgstr ""
 #: templates/admin/project_fs.html:15
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Filesystemskonfiguration: %(project_code)s"
 
 #: templates/admin/project_fs.html:19
 msgid "Backend configuration"
-msgstr ""
+msgstr "Backend-konfiguration"
 
 #: templates/admin/project_fs.html:24
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Uppdatera filsystemskonfiguration"
 
 #: templates/admin/project_fs.html:27
 msgid "Translation paths should be of the format:"
-msgstr ""
+msgstr "Översättningssökvägar bör vara av formatet:"
 
 #: templates/admin/project_fs.html:35
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Endast `&lt;language_code&gt;` krävs, även om det måste sluta med `.&lt;"
+"ext&gt;`"
 
 #: templates/admin/project_fs.html:38
 msgid ""
@@ -1999,35 +1999,37 @@ msgid ""
 "with the path specified in\n"
 "\t    backend URL"
 msgstr ""
+"Om du använder localfs backend kommer översättningssökvägen att kombineras "
+"med den sökväg som anges i\n"
+"\t    backend-URL"
 
 #: templates/admin/project_fs.html:42
 msgid ""
 "For other backends the translation path will be relative to the root of the "
 "repository."
 msgstr ""
+"För andra backend kommer översättningssökvägen vara relativ till roten av "
+"lagringsplatsen."
 
 #: templates/admin/project_fs.html:49
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "%(language)s språkinformation"
+msgstr "Mappning av språkkonfiguration"
 
 #: templates/admin/project_fs.html:59
 msgid "Remove"
 msgstr "Ta bort"
 
 #: templates/admin/project_fs.html:60
-#, fuzzy
 msgid "Pootle code"
-msgstr "Demo av Pootle"
+msgstr "Pootle-kod"
 
 #: templates/admin/project_fs.html:61
 msgid "Filesystem code"
-msgstr ""
+msgstr "Filsystem-kod"
 
 #: templates/admin/project_fs.html:72
-#, fuzzy
 msgid "Update"
-msgstr "Uppdateringar"
+msgstr "Uppdatera"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2361,13 +2363,10 @@ msgid "Go to the next string (Ctrl+Down)"
 msgstr "Gå till nästa sträng (Ctrl+Down)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
-"Förslag #%(suggestion_id)s som skickats in av dig för %(unit_url)s har "
-"godkänts med följande kommentar:"
+msgstr "Följande förslag inskickad av dig har godkänts med kommentaren:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2377,13 +2376,10 @@ msgstr ""
 "framtida bidrag."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
-"Förslag #%(suggestion_id)s som skickats in av dig för %(unit_url)s har "
-"avvisats med följande kommentar:"
+msgstr "Följande förslag inskickad av dig har fått avslag med kommentaren:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2691,14 +2687,12 @@ msgid "The reported error was:"
 msgstr "Den rapporterade felet var:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Visa tilldelningar"
+msgstr "Visar"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Välj flera"
+msgstr "Markera alla"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2708,63 +2702,55 @@ msgstr "Bläddra"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Grupp"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Språknamn"
+msgstr "Språkgrupp"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Medlem administratör"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Lägg till gruppmedlem"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Ta bort användare"
+msgstr "Ta bort markerad"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Enhet skapad"
+msgstr "Enhet administratör"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Kritiskt"
+msgstr "Kritiskt:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Totalt antal ord"
+msgstr "Totalt antal ord:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Översatta"
+msgstr "Översatt:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Behöver kontrolleras"
+msgstr "Behöver kontrolleras:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Förslag %d:"
+msgstr "Förslag administratör"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Det finns %(suggestions.count)s förslag som väntar"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"

@@ -9,22 +9,24 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2013-11-13 04:02+0000\n"
-"Last-Translator: Andika <andika@gmail.com>\n"
+"PO-Revision-Date: 2016-11-04 10:48+0000\n"
+"Last-Translator: z-fikar <zulfikar97@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1384315339.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1478256499.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Beberapa masalah dapat terjadi ketika mengirim surel konfirmasi. Coba lagi "
+"nanti."
 
 #: apps/accounts/forms.py:32
 msgid ""
@@ -44,10 +46,11 @@ msgstr "Nama pengguna"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Diperlukan. 30 karakter atau kurang. Huruf, angka dan karakter @/./+/-/_ "
 
 #: apps/accounts/models.py:68
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Masukkan nama pengguna yang benar."
 
 #: apps/accounts/models.py:72
 msgid "Email Address"
@@ -118,15 +121,15 @@ msgstr ""
 
 #: apps/accounts/models.py:102
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:104
 msgid "Website"
-msgstr ""
+msgstr "Situs Web"
 
 #: apps/accounts/models.py:105
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:106
 msgid "Short Bio"
@@ -151,7 +154,7 @@ msgstr "Nama"
 
 #: apps/contact/forms.py:35
 msgid "Please enter your name"
-msgstr ""
+msgstr "Silahkan masukkan nama anda"
 
 #: apps/contact/forms.py:38
 msgid "Email address"
@@ -277,14 +280,13 @@ msgid "All Users"
 msgstr "Semua Pengguna"
 
 #: apps/pootle_app/views/admin/permissions.py:92
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Ijin Pengguna"
+msgstr "Izin Pengguna"
 
 #: apps/pootle_app/views/admin/permissions.py:97
 #: apps/pootle_app/views/admin/permissions.py:106
 msgid "Select one or more permissions"
-msgstr "Pilih satu ijin atau lebih"
+msgstr "Pilih satu izin atau lebih"
 
 #: apps/pootle_app/views/admin/permissions.py:101
 msgid "Revoke Permissions"
@@ -292,7 +294,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/util.py:125
 msgid "No files in this project."
-msgstr "Tak ada berkas dalam projek ini."
+msgstr "Tak ada berkas dalam proyek ini."
 
 #: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:172
 msgid "There are errors in the form. Please review the problems below."
@@ -805,21 +807,21 @@ msgid "Language"
 msgstr "Bahasa"
 
 #: apps/pootle_project/models.py:178
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\" tak bisa dipakai sebagai kode projek"
+msgstr "\"%(code)s\" tak bisa dipakai sebagai kode proyek"
 
 #: apps/pootle_project/models.py:186
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "\"%s\" tak bisa dipakai sebagai kode projek"
+msgstr "\"%(code)s\" tak bisa dipakai sebagai kode proyek"
 
 #: apps/pootle_project/models.py:193
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"Kode pendek untuk projek. Ini hanya boleh memuat karater ASCII, angka, dan "
+"Kode pendek untuk proyek. Ini hanya boleh memuat karater ASCII, angka, dan "
 "karakter garis bawah (_)."
 
 #: apps/pootle_project/models.py:211
@@ -845,7 +847,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
-msgstr "Gaya Pohon Projek"
+msgstr "Gaya Pohon Proyek"
 
 #: apps/pootle_project/models.py:232
 msgid "Ignore Files"
@@ -875,12 +877,12 @@ msgstr ""
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "Projek penerjemahan telah dimutakhirkan terhadap templat terakhir."
+msgstr "Proyek penerjemahan telah dimutakhirkan terhadap templat terakhir."
 
 #: apps/pootle_project/views.py:266
 #, fuzzy, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Berkas projek penerjemahan telah dipindai ulang."
+msgstr "Berkas proyek penerjemahan telah dipindai ulang."
 
 #: apps/pootle_statistics/models.py:63
 msgid "Source"
@@ -1045,12 +1047,12 @@ msgstr "Istilah ini telah ada dalam berkas ini."
 #: apps/pootle_translationproject/receivers.py:38
 #, fuzzy, python-format
 msgid "Translation project (%s) created"
-msgstr "Halaman utama projek penerjemahan"
+msgstr "Halaman utama proyek penerjemahan"
 
 #: apps/pootle_translationproject/receivers.py:51
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Halaman utama projek penerjemahan"
+msgstr "Halaman utama proyek penerjemahan"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1081,7 +1083,7 @@ msgstr "Tampilkan Isi"
 #: apps/staticpages/models.py:48
 #, python-format
 msgid "Allowed markup: %s"
-msgstr "Markup yang diijinkan: %s"
+msgstr "Markup yang dizjinkan: %s"
 
 #: apps/staticpages/models.py:51 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
@@ -1162,7 +1164,7 @@ msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
 "Penjelasan dari sasaran ini. Ini berguna untuk memberikan lebih banyak "
-"informasi atau instruksi. Markup yang diijinkan: %s"
+"informasi atau instruksi. Markup yang diizinkan: %s"
 
 #: checks.py:63
 msgid ""
@@ -1513,7 +1515,7 @@ msgstr ""
 
 #: core/browser.py:26
 msgid "Project"
-msgstr "Projek"
+msgstr "Proyek"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1703,7 +1705,7 @@ msgstr ""
 "Perkakas komunitas ini adalah Perangkat Lunak Bebas, dan sebarang tim dapat "
 "memakainya dan menyumbang ke komunitas Pootle. Baca lebih lanjut pada <a "
 "href=\"http://pootle.translatehouse.org/\"><i class=\"icon-external-link"
-"\">situs web projek</a>."
+"\">situs web proyek</a>."
 
 #: templates/about.html:25
 #, fuzzy, python-format
@@ -1801,7 +1803,7 @@ msgstr "Proyek"
 #: templates/translation_projects/_nav.html:29
 #: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
-msgstr "Ijin"
+msgstr "Izin"
 
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
@@ -1949,7 +1951,7 @@ msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
-"Di sini Anda dapat menambah, menyunting, dan menghapus ijin bawaan dalam "
+"Di sini Anda dapat menambah, menyunting, dan menghapus izin bawaan dalam "
 "server Pootle ini."
 
 #: templates/admin/permissions.html:14
@@ -2626,12 +2628,11 @@ msgstr ""
 
 #: templates/errors/403.html:4 templates/errors/403.html:8
 msgid "Permission Denied"
-msgstr "Ijin Ditolak"
+msgstr "Izin Ditolak"
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
-msgstr "Anda tidak memiliki ijin untuk mengakses halaman ini."
+msgstr "Anda tidak memiliki izin untuk mengakses halaman ini."
 
 #: templates/errors/404.html:4 templates/errors/404.html:8
 msgid "Page Not Found"
@@ -2808,7 +2809,7 @@ msgstr ""
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
-msgstr "Projek penerjemahan telah dimutakhirkan terhadap templat terakhir."
+msgstr "Proyek penerjemahan telah dimutakhirkan terhadap templat terakhir."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
@@ -2821,7 +2822,7 @@ msgstr ""
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 "Di sini Anda dapat menambah, menyunting, atau menghapus bahasa-bahasa untuk "
-"projek ini."
+"proyek ini."
 
 #: templates/projects/admin/languages.html:14
 msgid ""
@@ -2832,7 +2833,7 @@ msgstr ""
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr ""
-"Di bawah, Anda dapat menambah, menyunting, dan menghapus ijin bagi projek "
+"Di bawah, Anda dapat menambah, menyunting, dan menghapus izin bagi proyek "
 "ini."
 
 #: templates/staticpages/_body.html:6
@@ -2871,7 +2872,7 @@ msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Di bawah, Anda dapat menambah, menyunting, dan menghapus ijin bagi projek "
+"Di bawah, Anda dapat menambah, menyunting, dan menghapus izin bagi proyek "
 "penerjemahan ini."
 
 #: templates/translation_projects/terminology/_term_edit.html:11

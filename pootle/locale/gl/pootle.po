@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-10-21 08:30+0000\n"
+"PO-Revision-Date: 2016-10-24 08:25+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1477038614.000000\n"
+"X-POOTLE-MTIME: 1477297505.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1621,7 +1621,7 @@ msgstr "Engadir comentario"
 #: core/forms.py:193
 msgid "Select all matching filter criteria, including those not shown"
 msgstr ""
-"Seleccionar todos os criterios de filtrado coincidentes , incluídos os que "
+"Seleccionar todos os criterios de filtrado coincidentes, incluídos os que "
 "non se mostran"
 
 #: core/forms.py:210

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2016-07-20 16:05+0000\n"
-"Last-Translator: nikola_navezi <nikola_navezi@yahoo.com>\n"
+"PO-Revision-Date: 2016-10-25 11:07+0000\n"
+"Last-Translator: mirosnik <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469030718.000000\n"
+"X-POOTLE-MTIME: 1477393651.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -36,7 +36,7 @@ msgstr "Обриши"
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
-msgstr "Додај Језик"
+msgstr "Додај језик"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
@@ -48,28 +48,26 @@ msgstr "Откажи"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] "%(count) језика исуњава ваш упит."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(count)s језик одговара вашем упиту."
+msgstr[1] "%(count)s језика одговарају вашем упиту."
+msgstr[2] "%(count)s језика одговара вашем упиту."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-"Постоји %(count) језика.Постоји %(count) језика. Испод су они најновије "
-"додати."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Постоји %(count)s језик."
+msgstr[1] "Постоје %(count)s језика. Испод су последњи додати."
+msgstr[2] "Постоји %(count)s језика. Испод су последњи додати."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr "Претражи Језике"
+msgstr "Претражи језике"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
-msgstr "Пронажи језик по имену, коду"
+msgstr "Пронађите језик према називу, коду"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
@@ -79,8 +77,8 @@ msgstr "Уреди језик"
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
 msgstr ""
-"Користите форму претраге да пронађете језик, затим притисните на језик за "
-"измену."
+"Користите образац претраге да нађете језик, затим кликните на језик за "
+"уређивање."
 
 #: static/js/admin/components/Language/LanguageForm.js:54
 #: static/js/admin/components/Project/ProjectForm.js:56
@@ -92,11 +90,11 @@ msgstr "Код"
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr "Име и Презиме"
+msgstr "Име и презиме"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr "Посебни Знакови"
+msgstr "Посебни знаци"
 
 #: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
@@ -104,7 +102,7 @@ msgstr "Број множина"
 
 #: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr "Једначење множина"
+msgstr "Једначина множина"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
 #: static/js/admin/components/Project/ProjectForm.js:144
@@ -120,64 +118,64 @@ msgstr "Претпреглед"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Тим"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
-#, fuzzy
 msgid "Add Project"
-msgstr "Сви пројекти"
+msgstr "Додај пројекат"
 
 #: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(count)s пројекат одговара вашем упиту."
+msgstr[1] "%(count)s пројекта одговарају вашем упиту."
+msgstr[2] "%(count)s пројеката одговара вашем упиту."
 
 #: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Постоји %(count)s пројекат."
+msgstr[1] "Постоје %(count)s пројекта. Испод су последњи додати."
+msgstr[2] "Постоји %(count)s пројеката. Испод су последњи додати."
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
-msgstr ""
+msgstr "Претражи пројекте"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Пронађите пројекат према називу, коду"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr ""
+msgstr "Уреди пројекат"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Користите образац претраге да нађете пројекат, затим кликните на пројекат за "
+"уређивање."
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
-msgstr ""
+msgstr "Провера квалитета"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
 msgid "File types"
-msgstr ""
+msgstr "Врсте датотека"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
 msgstr "Стил стабла пројекта"
 
 #: static/js/admin/components/Project/ProjectForm.js:104
-#, fuzzy
 msgid "Source Language"
-msgstr "Изворни Језик"
+msgstr "Изворни језик"
 
 #: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
@@ -193,7 +191,7 @@ msgstr "Предзнак претраге снимка екрана"
 
 #: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
-msgstr "Онемогућено"
+msgstr "Искључено"
 
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
@@ -201,11 +199,11 @@ msgstr "Језици"
 
 #: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
-msgstr ""
+msgstr "Овлашћења"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
 msgid "Filesystems"
-msgstr ""
+msgstr "Системи датотека"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -213,61 +211,65 @@ msgstr "Учитај Још"
 
 #: static/js/admin/components/Search.js:93
 msgid "Loading..."
-msgstr "Учитавање..."
+msgstr "Учитавам..."
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr ""
+msgstr "Додај корисника"
 
 #: static/js/admin/components/User/UserController.js:59
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(count)s корисник одговара вашем упиту."
+msgstr[1] "%(count)s корисника одговарају вашем упиту."
+msgstr[2] "%(count)s корисника одговара вашем упиту."
 
 #: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Постоји %(count)s корисник."
+msgstr[1] "Постоје %(count)s корисника. Испод су последњи додати."
+msgstr[2] "Постоји %(count)s корисника. Испод су последњи додати."
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr ""
+msgstr "Тражи кориснике"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Нађите корисника према имену, е-пошти, својствима"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr ""
+msgstr "Уреди корисника"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
 msgstr ""
+"Користите образац претраге да нађете корисника, затим кликните на корисника "
+"за уређивање."
 
 #: static/js/admin/components/User/UserForm.js:47
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
+"Напомена: када обришете корисника његови доприноси сајту, нпр. напомене, "
+"предлози и преводи се додељују непознатом кориснику (никоме)."
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Корисник"
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
-msgstr "Активно"
+msgstr "Активан"
 
 #: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:104
@@ -275,16 +277,16 @@ msgstr "Активно"
 #: static/js/auth/components/SocialVerification.js:99
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr "Шифра"
+msgstr "Лозинка"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr "Подеси нову лозинку"
+msgstr "Поставите нову лозинку"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr "Ел. пошта"
+msgstr "Е-пошта"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
@@ -297,7 +299,7 @@ msgstr "Твитер"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
-msgstr "Твитер корисничко име "
+msgstr "Корисничко име на Твитеру"
 
 #: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
@@ -311,32 +313,32 @@ msgstr "Путања Линкедин профила"
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "Веб сајт"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
-msgstr ""
+msgstr "Адреса личне веб странице"
 
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr ""
+msgstr "Кратка биографија"
 
 #: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
-msgstr ""
+msgstr "Лични опис"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
-msgstr ""
+msgstr "Јавни профил"
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
-msgstr ""
+msgstr "Подешавања"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr ""
+msgstr "Претпреглед се приказује овде."
 
 #: static/js/auth/components/AccountActivation.js:33
 #, python-format, javascript-format
@@ -344,6 +346,8 @@ msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
 msgstr ""
+"Послали смо е-пошту која садржи специјалну везу до <span>%s</span>. "
+"Проверите вашу фасциклу непожељне поште ако не видите поруку."
 
 #: static/js/auth/components/AccountActivation.js:41
 msgid ""
@@ -351,196 +355,205 @@ msgid ""
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
+"Послали смо е-пошту која садржи специјалну везу до адресе коришћене за "
+"регистровање овог налога. Проверите вашу фасциклу непожељне поште ако не "
+"видите поруку."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
-msgstr ""
+msgstr "Вашем налогу је потребна активација."
 
 #: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
-msgstr ""
+msgstr "Испратите ту везу да наставите са прављењем налога."
 
 #: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr ""
+msgstr "Ваш налог није активан јер га је искључио администратор."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr ""
+msgstr "Ступите у везу"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr ""
+msgstr "Ова веза потврђивања е-поште је истекла или није исправна."
 
 #: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Веза повраћаја лозинке је неисправна, вероватно зато што је већ искоришћена. "
+"Затражите нови повраћај лозинке."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr ""
+msgstr "Поврати лозинку"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
-msgstr ""
+msgstr "Лозинка је измењена, пријављујем се..."
 
 #: static/js/auth/components/PasswordResetForm.js:125
 #: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
-msgstr ""
+msgstr "Поонови лозинку"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
-msgstr ""
+msgstr "Постави нову лозинку"
 
 #: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
-msgstr ""
+msgstr "Након промене лозинке пријавићете се аутоматски."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:24
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr ""
+msgstr "Шаљем е-пошту „%s“..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
+msgstr "Испратите ту везу да наставите са поступком повраћаја лозинке."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
+"Нисте примили е-пшоту? Проверите да није пребачена у непожељну, или "
+"покушајте да атражите примерак е-поште."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
-msgstr ""
+msgstr "Поново пошаљи е-пошту"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
-msgstr ""
+msgstr "Пријавите се као нови корисник"
 
 #: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:107
 msgid "I forgot my password"
-msgstr ""
+msgstr "Заборавио сам лозинку"
 
 #: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:118
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
-msgstr ""
+msgstr "Пријави ме"
 
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:74
 msgid "Signed in. Redirecting..."
-msgstr ""
+msgstr "Пријављени сте. Преусмеравам..."
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
-msgstr ""
+msgstr "Друштвене услуге"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
-msgstr ""
+msgstr "Пријава / лозинка"
 
 #: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
-msgstr ""
+msgstr "Пријави ме"
 
 #: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
-msgstr ""
+msgstr "Пријавите се као постојећи корисник"
 
 #: static/js/auth/components/SocialAuthError.js:30
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr ""
+msgstr "Дошло је до грешке приликом покуша приајвљивања путем „%s“."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
 msgstr ""
+"Дошло је до грешке приликом покуша приајвљивања путем вашег друштвеног "
+"налога."
 
 #: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
-msgstr ""
+msgstr "Покушај опет"
 
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Пријави ме са „%s“"
 
 #: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
 msgstr ""
+"Пријављивање спољном услугом по први пут направиће налог за вас аутоматски."
 
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
-msgstr ""
+msgstr "Пријави ме са..."
 
 #: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
-msgstr ""
+msgstr "Налог није активан"
 
 #: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
-msgstr ""
+msgstr "Активирање налога"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr ""
+msgstr "Потврђивање е-поште"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Повратите лозинку"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr ""
+msgstr "Уупс..."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr ""
+msgstr "Друштвено потврђивање"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Више"
+msgstr "Још..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Доприносиоци, 30 дана"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
-msgstr ""
+msgstr "Прикажи искључене"
 
 #: static/js/browser/components/VisibilityToggle.js:54
 msgid "Hide disabled"
-msgstr ""
+msgstr "Сакриј искључене"
 
 #: static/js/browser.js:284
 msgid "All Languages"
@@ -551,31 +564,35 @@ msgid "All Projects"
 msgstr "Сви пројекти"
 
 #: static/js/browser.js:294
-#, fuzzy
 msgid "Entire Project"
-msgstr "Сви пројекти"
+msgstr "Читав пројекат"
 
 #: static/js/common.js:149
 msgid "Updating data"
-msgstr ""
+msgstr "Освежавам податке"
 
 #: static/js/editor/app.js:318 static/js/editor/app.js:642
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
+"Имате насачуване измене у овој нисци. Одлазак одавде ће одбацити ове измене."
 
 #: static/js/editor/app.js:363
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
+"Идите на следећу ниску (Ктрл+.)<br/><br/>Такође:<br/>Следећа страница: Ктрл"
+"+Помак+.<br/>Последња страница: Ктрл+Помак+Крај"
 
 #: static/js/editor/app.js:369
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
+"Идите на претходну ниску (Ктрл+.)<br/><br/>Такође:<br/>Претходна страница: "
+"Ктрл+Помак+.<br/>Прва страница: Ктрл+Помак+Почетак"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:494
@@ -599,26 +616,26 @@ msgstr "Одбијени предлози корисника %s"
 #: static/js/editor/app.js:503
 #, python-format, javascript-format
 msgid "%s's submissions"
-msgstr "Поднесци корисника %s"
+msgstr "Предаје корисника %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
 #: static/js/editor/app.js:507
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
-msgstr "Замењени поднесци корисника %s"
+msgstr "Замењене предаје корисника %s"
 
 #: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
-msgstr "Грешка при повезивању са сервером"
+msgstr "Грешка повезивања са сервером"
 
 #: static/js/editor/app.js:1073
 msgid "Not found"
-msgstr ""
+msgstr "Нисам нашао"
 
 #: static/js/editor/app.js:1075
 msgid "Server error"
-msgstr "Грешка у серверу"
+msgstr "Грешка сервера"
 
 #: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
@@ -626,15 +643,15 @@ msgstr "Сервер је пао. Покушајте касније."
 
 #: static/js/editor/app.js:1086
 msgid "This string no longer exists."
-msgstr ""
+msgstr "Ова ниска не постоји више."
 
 #: static/js/editor/app.js:1087
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Назад на разгледање"
 
 #: static/js/editor/app.js:1089
 msgid "Reload page"
-msgstr ""
+msgstr "Освежи страницу"
 
 #: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
@@ -642,11 +659,11 @@ msgstr "Нема резултата."
 
 #: static/js/editor/app.js:2191
 msgid "some anonymous user"
-msgstr ""
+msgstr "неки безимени корисник"
 
 #: static/js/editor/app.js:2193
 msgid "someone"
-msgstr ""
+msgstr "неко"
 
 #: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
@@ -656,200 +673,193 @@ msgstr "Слични преводи"
 #: static/js/editor/components/UnitSource.js:53
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Облик множине %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:82
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "Уредите предлог пре прихваћања, ако је потребно"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Доставите напомену по жељи (биће јавно видљива)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:104
 msgid "Accept"
-msgstr ""
+msgstr "Прихвати"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:108
 msgid "Reject"
-msgstr ""
+msgstr "Одбаци"
 
 #: static/js/editor/components/UploadTimeSince.js:34
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "%(timeSince)s путем отпремања датотеке"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
-msgstr ""
+msgstr "Очисти све"
 
 #: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
-msgstr ""
+msgstr "Очисти вредност"
 
 #: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
-msgstr ""
+msgstr "Нисам нашао резултате"
 
 #: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
-msgstr ""
+msgstr "Изабери..."
 
 #: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
-msgstr ""
+msgstr "Укуцајте да потражите"
 
 #: static/js/shared/components/UserEvent.js:97
 #: static/js/shared/components/UserEvent.js:118
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "Одбијени предлози корисника %s"
+msgstr "%(user)s је уклонио превод за %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је прихватио предлог за %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:101
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s је отпремио датотеку"
 
 #: static/js/shared/components/UserEvent.js:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је означио %(check)s за %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је одзначио %(check)s за %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је додао предлог за %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:109
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr "Одбијени предлози корисника %s"
+msgstr "%(user)s је одбио предлог за %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:112
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(sourceString)s"
-msgstr "Одбијени предлози корисника %s"
+msgstr "%(user)s је превео %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:114
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је уредио %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:116
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(sourceString)s"
-msgstr "Одбијени предлози корисника %s"
+msgstr "%(user)s је пре-превео %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:120
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је прегледао %(sourceString)s"
 
 #: static/js/shared/components/UserEvent.js:122
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "Прихваћени предлози корисника %s"
+msgstr "%(user)s је означио као потребно за рад %(sourceString)s"
 
 #: static/js/shared/models/project.js:62
 msgid "disabled"
-msgstr ""
+msgstr "искључено"
 
 #: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
 msgid "A year ago"
 msgstr "Пре годину дана"
 
 #: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s year ago"
 msgid_plural "%(count)s years ago"
-msgstr[0] "Пре годину дана"
-msgstr[1] "Пре %s године"
-msgstr[2] "Пре %s година"
+msgstr[0] "Пре %(count)s годину"
+msgstr[1] "Пре %(count)s године"
+msgstr[2] "Пре %(count)s година"
 
 #: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
 msgid "A month ago"
-msgstr "Пре минут"
+msgstr "Пре један минут"
 
 #: static/js/shared/utils/relativeTime.js:28
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s month ago"
 msgid_plural "%(count)s months ago"
-msgstr[0] "Пре минут"
-msgstr[1] "Пре минут"
-msgstr[2] "Пре минут"
+msgstr[0] "Пре %(count)s минут"
+msgstr[1] "Пре %(count)s минута"
+msgstr[2] "Пре %(count)s минута"
 
 #: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
 msgid "A week ago"
 msgstr "Пре недељу дана"
 
 #: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s week ago"
 msgid_plural "%(count)s weeks ago"
-msgstr[0] "Пре недељу дана"
-msgstr[1] "Пре %s недеље"
-msgstr[2] "Пре %s недеља"
+msgstr[0] "Пре %(count)s недељу"
+msgstr[1] "Пре %(count)s недеље"
+msgstr[2] "Пре %(count)s недеља"
 
 #: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
 msgid "Yesterday"
 msgstr "Јуче"
 
 #: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s day ago"
 msgid_plural "%(count)s days ago"
-msgstr[0] "Пре годину дана"
-msgstr[1] "Пре %s године"
-msgstr[2] "Пре %s година"
+msgstr[0] "Пре %(count)s дан"
+msgstr[1] "Пре %(count)s дана"
+msgstr[2] "Пре %(count)s дана"
 
 #: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
 msgid "An hour ago"
 msgstr "Пре сат времена"
 
 #: static/js/shared/utils/relativeTime.js:52
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s hour ago"
 msgid_plural "%(count)s hours ago"
-msgstr[0] "Пре сат времена"
-msgstr[1] "Пре %s сата"
-msgstr[2] "Пре %s сати"
+msgstr[0] "Пре %(count)s сат"
+msgstr[1] "Пре %(count)s сата"
+msgstr[2] "Пре %(count)s сати"
 
 #: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
 msgid "A minute ago"
-msgstr "Пре минут"
+msgstr "Пре једног минута"
 
 #: static/js/shared/utils/relativeTime.js:60
-#, fuzzy, python-format
+#, python-format
 msgid "%(count)s minute ago"
 msgid_plural "%(count)s minutes ago"
-msgstr[0] "Пре минут"
-msgstr[1] "Пре %s минута"
-msgstr[2] "Пре %s минута"
+msgstr[0] "Пре %(count)s минут"
+msgstr[1] "Пре %(count)s минута"
+msgstr[2] "Пре %(count)s минута"
 
 #: static/js/shared/utils/relativeTime.js:64
 msgid "A few seconds ago"
-msgstr "Пре неколико секунди"
+msgstr "Пре неколико секунде"
 
 #: static/js/stats.js:60
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Честитамо! Прешли сте све поруке."
+msgstr "Честитамо! Завршили сте овај задатак!"
 
 #: static/js/stats.js:419
 msgid "Collapse details"
@@ -857,31 +867,31 @@ msgstr "Скупи детаље"
 
 #: static/js/stats.js:419
 msgid "Expand details"
-msgstr "Прошири детаље"
+msgstr "Рашири детаље"
 
 #: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
-msgstr ""
+msgstr "Уреди мој јавни профил"
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr ""
+msgstr "Мој јавни профил"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
-msgstr ""
+msgstr "Одбаци измене."
 
 #: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: static/js/user/components/UserProfileEdit.js:119
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr ""
+msgstr "Имате несачуваних измена. Да ли желите да их одбаците?"
 
 #: static/js/user/components/UserProfileForm.js:59
 #, python-format
@@ -889,59 +899,65 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
+"Да поставите или да измените аватар за вашу адресу е-поште (%(email)s), "
+"идите на „gravatar.com“."
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
-msgstr ""
+msgstr "Ваше име и презиме"
 
 #: static/js/user/components/UserProfileForm.js:83
 msgid "Avatar"
-msgstr ""
+msgstr "Аватар"
 
 #: static/js/user/components/UserProfileForm.js:94
 msgid "Your Twitter username"
-msgstr ""
+msgstr "Ваше корисничко име на Твитеру"
 
 #: static/js/user/components/UserProfileForm.js:103
 msgid "Your LinkedIn profile URL"
-msgstr ""
+msgstr "Ваша адреса Линкедин профила"
 
 #: static/js/user/components/UserProfileForm.js:111
 msgid "Your Personal website/blog URL"
-msgstr ""
+msgstr "Адреса вашег личног веб сајта/блога"
 
 #: static/js/user/components/UserProfileForm.js:120
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
+"Зашто сте део нашег преводилачког пројекта? Опишите себе, дајте потстрека "
+"другима!"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr ""
+msgstr "Адреса е-поште"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
+"Упишите вашу адресу е-поште, а ми ћемо вам послати поруку са специјалном "
+"везо за повраћај ваше лозинке."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
-msgstr ""
+msgstr "Не, хвала"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
-msgstr ""
+msgstr "Пошаљи е-пошту"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr ""
+msgstr "Послали смо е-пошту које садржи специјалну везу до <span>%s</span>"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr ""
+msgstr "Прављење нових корисничких налога је забрањено."
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -951,26 +967,29 @@ msgid ""
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
+"Нашли смо корисника са е-поштом „<span>%(email)s</span>“ на нашем систему. "
+"Доставите лозинку да завршите поступак пријављивања. Ово је једнократан "
+"поступак, које ће успоставити везу између Поотла и налога „%(provider)s“."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr ""
+msgstr "Пројекат / језик"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr ""
+msgstr "Предложених"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr ""
+msgstr "Преведених"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr ""
+msgstr "Прегледаних"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "Промена резултата"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -986,83 +1005,83 @@ msgstr ""
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s реч"
+msgstr[1] "%s речи"
+msgstr[2] "%s речи"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "Нема забележене активности у датом периоду"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr ""
+msgstr "Изаберите исправног корисника."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr ""
+msgstr "Забележених задатака"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
-msgstr ""
+msgstr "Датум"
 
 #: templates/admin/xhr_paid_tasks_report.html:8
 msgid "Comment"
-msgstr ""
+msgstr "Напомена"
 
 #: templates/admin/xhr_paid_tasks_report.html:9
 #: templates/admin/xhr_summary_report.html:7
 msgid "Action"
-msgstr ""
+msgstr "Радња"
 
 #: templates/admin/xhr_paid_tasks_report.html:10
 #: templates/admin/xhr_summary_report.html:8
 msgid "Amount"
-msgstr ""
+msgstr "Износ"
 
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Стопа"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10
 msgid "Subtotal"
-msgstr ""
+msgstr "Укупно"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
 #, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%s сат"
+msgstr[1] "%s сата"
+msgstr[2] "%s сати"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
-msgstr ""
+msgstr "Уклони задатак"
 
 #: templates/admin/xhr_paid_tasks_report.html:43
 msgid "Comment on it"
-msgstr ""
+msgstr "Прокоментариши"
 
 #: templates/admin/xhr_summary_report.html:2
 msgid "Summary"
-msgstr ""
+msgstr "Сажетак"
 
 #: templates/admin/xhr_summary_report.html:6
 msgid "Period"
-msgstr ""
+msgstr "Период"
 
 #: templates/admin/xhr_summary_report.html:38
 msgid "(registered tasks)"
-msgstr ""
+msgstr "(забележених задатака)"
 
 #: templates/admin/xhr_summary_report.html:46
 #, python-format
 msgid "Total (%(currency)s)"
-msgstr ""
+msgstr "Укупно (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -1086,6 +1105,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
+"Превео је %(fullname)s у &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo; пројекат %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
 #, python-format
@@ -1093,6 +1114,8 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+"Превео је %(fullname)s у &ldquo;<span title=\"%(path)s\">%(project)s</"
+"span>&rdquo; пројекат"
 
 #~ msgid "Unknown error"
 #~ msgstr "Непозната грешка"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2014-12-18 06:49+0000\n"
-"Last-Translator: aggggha <agha.alwayson@gmail.com>\n"
+"PO-Revision-Date: 2016-11-04 10:15+0000\n"
+"Last-Translator: z-fikar <zulfikar97@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1418885388.000000\n"
+"X-POOTLE-MTIME: 1478254542.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -532,7 +532,7 @@ msgstr "Semua Bahasa"
 
 #: static/js/browser.js:289
 msgid "All Projects"
-msgstr "Semua Projek"
+msgstr "Semua Proyek"
 
 #: static/js/browser.js:294
 #, fuzzy
@@ -606,7 +606,7 @@ msgstr "Kesalahan server"
 
 #: static/js/editor/app.js:1077
 msgid "The server seems down. Try again later."
-msgstr "Nampaknya server mati. Coba lagi nanti."
+msgstr "Tampaknya server mati. Coba lagi nanti."
 
 #: static/js/editor/app.js:1086
 msgid "This string no longer exists."
@@ -622,7 +622,7 @@ msgstr ""
 
 #: static/js/editor/app.js:1855 static/js/editor/app.js:634
 msgid "No results."
-msgstr "Tiada hasil."
+msgstr "Tidak ada hasil."
 
 #: static/js/editor/app.js:2191
 msgid "some anonymous user"

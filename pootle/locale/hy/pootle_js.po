@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-10-20 14:11+0100\n"
-"PO-Revision-Date: 2014-01-28 17:16+0000\n"
-"Last-Translator: Hrant <hrant@freenet.am>\n"
+"PO-Revision-Date: 2016-10-25 10:15+0000\n"
+"Last-Translator: david@neuronation.de <david@neuronation.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1390929402.000000\n"
+"X-POOTLE-MTIME: 1477390551.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -59,7 +59,7 @@ msgstr[0] ""
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr ""
+msgstr "aaaaaaaa"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
