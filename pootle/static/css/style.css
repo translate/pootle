@@ -757,57 +757,6 @@ button.close
     -webkit-appearance: none;
 }
 
-/*
- * PAGE AUTOREFRESH NOTICE
- */
-
-#autorefresh-notice
-{
-    margin: 0.9em auto 0;
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    text-align: center;
-    pointer-events: none;
-}
-
-#autorefresh-notice span
-{
-    background: #fe9;
-    padding: 0.9em 1.5em;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 5px 5px;
-    border-top: 0;
-    padding-right: 3.7em;
-}
-
-html[dir="rtl"] #autorefresh-notice span
-{
-    padding: 0.9em 1.5em;
-    padding-left: 3.7em;
-}
-
-#autorefresh-notice .x
-{
-    margin-left: 1em;
-    font-size: 1.5em;
-    position: absolute;
-    top: -0.2em;
-    color: rgba(0, 0, 0, 0.4);
-}
-
-html[dir="rtl"] #autorefresh-notice .x
-{
-    margin-left: auto;
-    margin-right: 1em;
-}
-
-#autorefresh-notice.dirty span
-{
-    pointer-events: auto;
-}
 
 /*
  * PAGE BODY
