@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-10-24 16:13+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -549,15 +549,15 @@ msgstr "Visa inaktiverad"
 msgid "Hide disabled"
 msgstr "Dölj inaktiverad"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Alla språk"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Alla projekt"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Hela projektet"
 
@@ -565,7 +565,7 @@ msgstr "Hela projektet"
 msgid "Updating data"
 msgstr "Uppdaterar data"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -573,7 +573,7 @@ msgstr ""
 "Du har ändringar som inte sparats i strängen. Genom att navigera bort kastas "
 "dessa förändringar."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -581,7 +581,7 @@ msgstr ""
 "Gå till nästa sträng (Ctrl+.)<br/><br/>Också:<br/>Nästa sida: Ctrl+Shift+."
 "<br/>Sista sidan: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -590,77 +590,73 @@ msgstr ""
 "+Shift+,<br/>Första sidan: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s väntande förslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s godkända förslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s avvisade förslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s bidrag"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s överskrivna bidrag"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Fel i anslutningen till servern"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Hittades inte"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Ett fel inträffade på servern"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Servern tycks vara nere. Försök igen senare."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Strängen finns inte längre."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Gå tillbaks för att bläddra"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Ladda om sida"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Inga resultat."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "någon anonym användare"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "någon"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Liknande översättningar"
 
@@ -850,11 +846,11 @@ msgstr "Några sekunder sedan"
 msgid "Congratulations! You have completed this task!"
 msgstr "Grattis! Du har slutfört denna uppgift!"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Dölj detaljer"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Visa detaljer"
 
@@ -961,6 +957,10 @@ msgstr ""
 "Vi hittade en användare med e-post <span>%s</span> i vårt system. Ange "
 "lösenordet för att slutföra inloggningen. Detta är en engångsföreteelse, "
 "vilket kommer att skapa en länk mellan Pootle och %(provider)s konton."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Inga resultat."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"

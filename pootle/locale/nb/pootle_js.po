@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-10-15 12:20+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -552,15 +552,15 @@ msgstr "Vis avskrudde"
 msgid "Hide disabled"
 msgstr "Gjem avskrudde"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Alle språk"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Alle prosjekter"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 #, fuzzy
 msgid "Entire Project"
 msgstr "Hele prosjektet"
@@ -569,7 +569,7 @@ msgstr "Hele prosjektet"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -577,7 +577,7 @@ msgstr ""
 "Du har ulagrede endringer i denne tekststrengen. Å navigere bort herfra vil "
 "forkaste de endringene."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 #, fuzzy
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
@@ -586,7 +586,7 @@ msgstr ""
 "Gå til neste streng (Ctrl+.)<br/><br/>Also:<br/>Neste side: Ctrl+Shift+.<br/"
 ">Forrige side: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 #, fuzzy
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
@@ -596,77 +596,73 @@ msgstr ""
 "<br/>Første side: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, fuzzy, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%ss ventende forslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%ss godtatte forslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%ss avslåtte forslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%ss innsendelser"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, fuzzy, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%ss overskrevede innsendelser"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Feil ved tilkopling til tjeneren"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Ikke funnet"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Tjenerfeil"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Tjeneren virker frakoblet. Prøv igjen senere."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Denne strengen finnes ikke lenger."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Gå tilbake til surfing"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Gjeninnlast side"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Ingen resultater."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "en anonym bruker"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "noen"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Lignende oversettelser"
 
@@ -859,11 +855,11 @@ msgstr "Noen sekunder siden"
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulerer, du gikk gjennom alle gjenstandene"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Fold sammen detaljer"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Utvid detaljer"
 
@@ -971,6 +967,10 @@ msgstr ""
 "En bruker med e-posten <span>%(email)s</span> ble funnet i systemet. Angi "
 "passordet for å fullføre innloggingen. Dette er et engangstiltak, som vil "
 "etablere en lenke mellom din Pootle og %(provider)s kontoer."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Ingen resultater."
 
 #: templates/admin/xhr_language_user_activity.html:6
 #, fuzzy

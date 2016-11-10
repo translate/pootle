@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2015-09-29 13:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -568,15 +568,15 @@ msgstr "ανενεργό"
 msgid "Hide disabled"
 msgstr "ανενεργό"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Όλες οι γλώσσες"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Όλα τα έργα"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Το συνολικό έργο"
 
@@ -584,7 +584,7 @@ msgstr "Το συνολικό έργο"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -592,7 +592,7 @@ msgstr ""
 "Έχετε μη αποθηκευμένες αλλαγές σε αυτήν τη συμβολοσειρά. Η περιήγηση εκτός "
 "αυτής θα απορρίψει αυτές τις αλλαγές."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -600,7 +600,7 @@ msgstr ""
 "Μετάβαση στην επόμενη συμβολοσειρά (Ctrl+.)<br/><br/>Επίσης:<br/>Επόμενη "
 "σελίδα:Ctrl+Shift+.<br/>Τελευταία σελίδα:Last page: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -609,77 +609,73 @@ msgstr ""
 "br>Προηγούμενη σελίδα:Ctrl+Shift+,<br/>Πρώτη σελίδα: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Εκκρεμείς προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Αποδεκτές προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Απορριφθείσες προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Υποβολές του %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Αντικατασταθείσες υποβολές του %s"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετητή"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Δε βρέθηκε"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Σφάλμα εξυπηρετητή"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Ο εξυπηρετητής φαίνεται ανενεργός. Δοκιμάστε αργότερα."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Αυτή η συμβολοσειρά δεν υπάρχει πια."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Επιστροφή στην περιήγηση"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Επαναφόρτωση της σελίδας"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Κανένα αποτέλεσμα."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "κάποιος ανώνυμος χρήστης"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "κάποιος"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Παρόμοιες μεταφράσεις"
 
@@ -876,11 +872,11 @@ msgstr "Λίγα δευτερόλεπτα πριν"
 msgid "Congratulations! You have completed this task!"
 msgstr "Συγχαρητήρια, διασχίσατε όλα τα στοιχεία"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Σύμπτυξη λεπτομερειών"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Επέκταση λεπτομερειών"
 
@@ -988,6 +984,10 @@ msgstr ""
 "μας. Παρακαλούμε, δώστε τον κωδικό πρόσβασης για να ολοκληρώσετε τη "
 "διαδικασία σύνδεσης. Αυτή είναι μια διεργασία μια κι έξω, που θα "
 "δημιουργήσει έναν σύνδεσμο μεταξύ του Pootle σας και των %s λογαριασμών."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Κανένα αποτέλεσμα."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"

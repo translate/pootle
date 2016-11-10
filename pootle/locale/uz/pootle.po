@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-08-21 19:51+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgstr "To‘liq ismi"
 msgid "Active"
 msgstr "Faol"
 
-#: apps/accounts/models.py:77
+#: apps/accounts/models.py:79
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -78,11 +78,11 @@ msgstr ""
 "Ushbu foydalanuvchini faol sifatida  ko‘rinishi uchun qilingan. O‘chirilgan "
 "hisoblar o‘rniga buni olib tashlang."
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:82
 msgid "Superuser Status"
 msgstr "Super foydalanuvchi holati"
 
-#: apps/accounts/models.py:81
+#: apps/accounts/models.py:85
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -90,59 +90,59 @@ msgstr ""
 "Ushbu foydalanuvchi aniq ularni tayinlashsiz barcha huquqlarga ega "
 "ekanligini bildiradi."
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:88
 msgid "date joined"
 msgstr "qo‘shilgan sanasi"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:92
 msgid "Number of Rows"
 msgstr "Qatorlar soni"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:96
 msgid "Alternative Source Languages"
 msgstr "Muqobil manba tillar"
 
-#: apps/accounts/models.py:95 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:99 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Baholash"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:100
 msgid "Review Rate"
 msgstr "Baholashga fikr bildirish"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:101
 msgid "Hourly Rate"
 msgstr "Soat bo‘yicha bahosi"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:102
 msgid "Score"
 msgstr "Tezligi"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:103
 msgid "Currency"
 msgstr "Pul birligi"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:105
 msgid "Is employee?"
 msgstr "Ish beruvchimi?"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:106
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:104
+#: apps/accounts/models.py:108
 msgid "Website"
 msgstr "Veb sayt"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:109
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:110
 msgid "Short Bio"
 msgstr "Qisqacha biografiya"
 
-#: apps/accounts/models.py:355
+#: apps/accounts/models.py:359
 msgid "This email address already exists."
 msgstr "Bu e-pochta manzili allaqachon mavjud."
 
@@ -299,7 +299,7 @@ msgstr "Ruxsatlarni bekor qilish"
 msgid "No files in this project."
 msgstr "Ushbu loyihada fayllar yo‘q."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:172
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:167
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Shaklda xatolar mavjud. Quyidagi muammolarni ko‘rib chiqing."
 
@@ -319,65 +319,96 @@ msgstr "Yoqib qo‘yilgan"
 msgid "Monolingual format"
 msgstr "Bir tillik format"
 
+#: apps/pootle_fs/forms.py:22
+msgid "GNU-style"
+msgstr ""
+
 #: apps/pootle_fs/forms.py:24
-msgid "Filesystem backend"
+msgid "non GNU-style"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:25
-msgid "Select a backend filesystem"
+#: apps/pootle_fs/forms.py:27
+msgid "Django-style"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:30
-msgid "Backend URL or path"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:32
-msgid "The URL or path to your translation files"
+#: apps/pootle_fs/forms.py:29
+msgid "Custom"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:35
-msgid "The translation path mapping for your filesystem"
+msgid "Filesystem backend"
 msgstr ""
 
-#: apps/pootle_language/forms.py:23
+#: apps/pootle_fs/forms.py:36
+msgid "Select a backend filesystem"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:41
+msgid "Backend URL or path"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:43
+msgid "The URL or path to your translation files"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:52
+msgid "The translation mapping for your filesystem"
+msgstr ""
+
+#: apps/pootle_language/forms.py:27
 #, fuzzy
 msgid "Member"
 msgstr "Raqamlar"
 
-#: apps/pootle_language/forms.py:24
+#: apps/pootle_language/forms.py:28
 #, fuzzy
 msgid "Submitter"
 msgstr "Jo‘natish"
 
-#: apps/pootle_language/forms.py:25
+#: apps/pootle_language/forms.py:29
 #, fuzzy
 msgid "Reviewer"
 msgstr "Ko‘rib chiqish"
 
-#: apps/pootle_language/forms.py:26
+#: apps/pootle_language/forms.py:30
 #, fuzzy
 msgid "Administrator"
 msgstr "Boshqarish"
 
-#: apps/pootle_language/forms.py:71
+#: apps/pootle_language/forms.py:69
 #, fuzzy
 msgid "Admins"
 msgstr "Admin"
 
-#: apps/pootle_language/forms.py:77
+#: apps/pootle_language/forms.py:75
 #, fuzzy
 msgid "Reviewers"
 msgstr "Ko‘rib chiqish"
 
-#: apps/pootle_language/forms.py:82
+#: apps/pootle_language/forms.py:80
 #, fuzzy
 msgid "Submitters"
 msgstr "Jo‘natish"
 
-#: apps/pootle_language/forms.py:87
+#: apps/pootle_language/forms.py:85
 #, fuzzy
 msgid "Members"
 msgstr "Raqamlar"
+
+#: apps/pootle_language/forms.py:151 core/forms.py:184
+#, fuzzy
+msgid "Reject"
+msgstr "Rad qilindi"
+
+#: apps/pootle_language/forms.py:152 core/forms.py:185
+#, fuzzy
+msgid "Accept"
+msgstr "Qabul qilindi"
+
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: core/browser.py:26
+msgid "Project"
+msgstr "Loyiha"
 
 #: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
 msgid "Code"
@@ -393,7 +424,7 @@ msgstr ""
 "bilan kiritilgan bo‘lishi mumkin. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">Batafsil ma’lumot</a>"
 
-#: apps/pootle_language/models.py:95 templates/languages/_nav.html:28
+#: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
@@ -426,325 +457,371 @@ msgstr "Ko‘pliklar soni"
 msgid "Plural Equation"
 msgstr "Ko‘plik darajasi"
 
-#: apps/pootle_misc/checks.py:34 core/browser.py:54
+#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+msgid "Unit"
+msgstr "Qism"
+
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+msgid "State"
+msgstr "Holati"
+
+#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+msgid "Source"
+msgstr "Manba"
+
+#: apps/pootle_language/views.py:209
+msgid "Suggestion"
+msgstr "Tavsiya"
+
+#: apps/pootle_language/views.py:210
+#, fuzzy
+msgid "Suggested by"
+msgstr "Tavsiya qilish"
+
+#: apps/pootle_language/views.py:211
+#, fuzzy
+msgid "Suggested at"
+msgstr "Tavsiya qilish"
+
+#: apps/pootle_language/views.py:233
+#, fuzzy, python-format
+msgid "Rejected %s suggestions with comment. Users will be notified"
+msgstr "%s tavsiyasi qabul rad qilindi"
+
+#: apps/pootle_language/views.py:237
+#, fuzzy, python-format
+msgid "Accepted %s suggestions with comment. Users will be notified"
+msgstr "%s tavsiyasi qabul qilindi"
+
+#: apps/pootle_language/views.py:240
+#, fuzzy, python-format
+msgid "Rejected %s suggestions"
+msgstr "Tavsiyani rad qilish"
+
+#: apps/pootle_language/views.py:242
+#, fuzzy, python-format
+msgid "Accepted %s suggestions"
+msgstr "Tavsiyani qabul qilish"
+
+#: apps/pootle_misc/checks.py:35 core/browser.py:54
 msgid "Critical"
 msgstr "Jiddiy"
 
-#: apps/pootle_misc/checks.py:35
+#: apps/pootle_misc/checks.py:36
 msgid "Cosmetic"
 msgstr "Kosmetik"
 
-#: apps/pootle_misc/checks.py:36
+#: apps/pootle_misc/checks.py:37
 msgid "Functional"
 msgstr "Xususiyatli"
 
-#: apps/pootle_misc/checks.py:37
+#: apps/pootle_misc/checks.py:38
 msgid "Extraction"
 msgstr "Ajratishlar"
 
-#: apps/pootle_misc/checks.py:38
+#: apps/pootle_misc/checks.py:39
 msgid "Other"
 msgstr "Boshqa"
 
-#: apps/pootle_misc/checks.py:42
+#: apps/pootle_misc/checks.py:43
 msgid "Accelerators"
 msgstr "Tezlatgichlar"
 
-#: apps/pootle_misc/checks.py:43
+#: apps/pootle_misc/checks.py:44
 msgid "Acronyms"
 msgstr "Qisqartma so‘zlar"
 
-#: apps/pootle_misc/checks.py:44
+#: apps/pootle_misc/checks.py:45
 msgid "Blank"
 msgstr "Bo‘sh"
 
-#: apps/pootle_misc/checks.py:45
+#: apps/pootle_misc/checks.py:46
 msgid "Brackets"
 msgstr "Qavatlar"
 
-#: apps/pootle_misc/checks.py:46
+#: apps/pootle_misc/checks.py:47
 msgid "Compendium conflict"
 msgstr "Ziddiyatlar yig‘indisi"
 
-#: apps/pootle_misc/checks.py:47
+#: apps/pootle_misc/checks.py:48
 msgid "Translator credits"
 msgstr "Tarjimon kreditlari"
 
-#: apps/pootle_misc/checks.py:48
+#: apps/pootle_misc/checks.py:49
 msgid "Dialog sizes"
 msgstr "Oyna hajmi"
 
-#: apps/pootle_misc/checks.py:49
+#: apps/pootle_misc/checks.py:50
 msgid "Double quotes"
 msgstr "Qo‘shtirnoqlar"
 
-#: apps/pootle_misc/checks.py:50
+#: apps/pootle_misc/checks.py:51
 msgid "Double spaces"
 msgstr "Ikki marta bo‘sh joy qoldirilgan"
 
-#: apps/pootle_misc/checks.py:51
+#: apps/pootle_misc/checks.py:52
 msgid "Repeated word"
 msgstr "Takrorlangan so‘z"
 
-#: apps/pootle_misc/checks.py:52
+#: apps/pootle_misc/checks.py:53
 msgid "E-mail"
 msgstr "E-pochta"
 
-#: apps/pootle_misc/checks.py:53
+#: apps/pootle_misc/checks.py:54
 msgid "Ending punctuation"
 msgstr "Tinish belgisi tugashi"
 
-#: apps/pootle_misc/checks.py:54
+#: apps/pootle_misc/checks.py:55
 msgid "Ending whitespace"
 msgstr "Bo‘sh joy bilan tugash"
 
-#: apps/pootle_misc/checks.py:55
+#: apps/pootle_misc/checks.py:56
 msgid "Escapes"
 msgstr "Pastga tushirishlar"
 
-#: apps/pootle_misc/checks.py:56
+#: apps/pootle_misc/checks.py:57
 msgid "File paths"
 msgstr "Fayl yo‘llari"
 
-#: apps/pootle_misc/checks.py:57
+#: apps/pootle_misc/checks.py:58
 msgid "Functions"
 msgstr "Funksiya"
 
-#: apps/pootle_misc/checks.py:58
+#: apps/pootle_misc/checks.py:59
 msgid "GConf values"
 msgstr "GConf qiymatlari"
 
-#: apps/pootle_misc/checks.py:59 core/utils/stats.py:29
+#: apps/pootle_misc/checks.py:60 core/utils/stats.py:29
 msgid "Fuzzy"
 msgstr "Noaniq"
 
-#: apps/pootle_misc/checks.py:60
+#: apps/pootle_misc/checks.py:61
 msgid "Old KDE comment"
 msgstr "Eski KDE mulohazasi"
 
-#: apps/pootle_misc/checks.py:61
+#: apps/pootle_misc/checks.py:62
 msgid "Long"
 msgstr "Uzun"
 
-#: apps/pootle_misc/checks.py:62
+#: apps/pootle_misc/checks.py:63
 msgid "Must translate words"
 msgstr "Tarjima qilinishi kerak bo‘lgan so‘zlar"
 
-#: apps/pootle_misc/checks.py:63
+#: apps/pootle_misc/checks.py:64
 msgid "Newlines"
 msgstr "Yangi qatordagi belgilar"
 
-#: apps/pootle_misc/checks.py:64
+#: apps/pootle_misc/checks.py:65
 msgid "Number of plurals"
 msgstr "Ko‘pliklar soni"
 
-#: apps/pootle_misc/checks.py:65
+#: apps/pootle_misc/checks.py:66
 msgid "Don't translate words"
 msgstr "So‘zlarni tarjima qilmang"
 
-#: apps/pootle_misc/checks.py:66
+#: apps/pootle_misc/checks.py:67
 msgid "Numbers"
 msgstr "Raqamlar"
 
-#: apps/pootle_misc/checks.py:67
+#: apps/pootle_misc/checks.py:68
 msgid "Options"
 msgstr "Moslamalar"
 
-#: apps/pootle_misc/checks.py:68
+#: apps/pootle_misc/checks.py:69
 msgid "printf()"
 msgstr "printf()"
 
-#: apps/pootle_misc/checks.py:69
+#: apps/pootle_misc/checks.py:70
 msgid "Punctuation spacing"
 msgstr "Tinish belgilarining joylashuvi"
 
-#: apps/pootle_misc/checks.py:70
+#: apps/pootle_misc/checks.py:71
 msgid "Pure punctuation"
 msgstr "Tinish belgilari o‘zgartirilmagan"
 
-#: apps/pootle_misc/checks.py:71
+#: apps/pootle_misc/checks.py:72
 msgid "Python brace placeholders"
 msgstr "Python qavsli o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:72
+#: apps/pootle_misc/checks.py:73
 msgid "Number of sentences"
 msgstr "So‘zlar soni"
 
-#: apps/pootle_misc/checks.py:73
+#: apps/pootle_misc/checks.py:74
 msgid "Short"
 msgstr "Qisqa"
 
-#: apps/pootle_misc/checks.py:74
+#: apps/pootle_misc/checks.py:75
 msgid "Simple capitalization"
 msgstr "Oddiy katta harf"
 
-#: apps/pootle_misc/checks.py:75
+#: apps/pootle_misc/checks.py:76
 msgid "Simple plural(s)"
 msgstr "Oddiy ko‘plik"
 
-#: apps/pootle_misc/checks.py:76
+#: apps/pootle_misc/checks.py:77
 msgid "Single quotes"
 msgstr "Yakka qo‘shtirnoqlar"
 
-#: apps/pootle_misc/checks.py:77
+#: apps/pootle_misc/checks.py:78
 msgid "Starting capitalization"
 msgstr "Bosh harf bilan boshlangan"
 
-#: apps/pootle_misc/checks.py:78
+#: apps/pootle_misc/checks.py:79
 msgid "Starting punctuation"
 msgstr "Tinish belgisi bilan boshlangan"
 
-#: apps/pootle_misc/checks.py:79
+#: apps/pootle_misc/checks.py:80
 msgid "Starting whitespace"
 msgstr "Bo‘sh joy tashlab boshlangan"
 
 #. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:81
+#: apps/pootle_misc/checks.py:82
 msgid "Tabs"
 msgstr "Ichki oynalar"
 
-#: apps/pootle_misc/checks.py:82
+#: apps/pootle_misc/checks.py:83
 msgid "Unchanged"
 msgstr "O‘zgartirilmagan"
 
-#: apps/pootle_misc/checks.py:83 apps/pootle_store/constants.py:66
+#: apps/pootle_misc/checks.py:84 apps/pootle_store/constants.py:66
 #: core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
 msgstr "Tarjima qilinmagan"
 
-#: apps/pootle_misc/checks.py:84
+#: apps/pootle_misc/checks.py:85
 msgid "URLs"
 msgstr "URL’lar"
 
-#: apps/pootle_misc/checks.py:85
+#: apps/pootle_misc/checks.py:86
 msgid "Valid characters"
 msgstr "To‘g‘ri belgilar"
 
-#: apps/pootle_misc/checks.py:86
+#: apps/pootle_misc/checks.py:87
 msgid "Placeholders"
 msgstr "To‘ldiruvchilar"
 
-#: apps/pootle_misc/checks.py:87
+#: apps/pootle_misc/checks.py:88
 msgid "Valid XML"
 msgstr "To‘g‘ri XML"
 
-#: apps/pootle_misc/checks.py:88
+#: apps/pootle_misc/checks.py:89
 msgid "XML tags"
 msgstr "XML teglar"
 
-#: apps/pootle_misc/checks.py:90
+#: apps/pootle_misc/checks.py:91
 msgid "Broken HTML Entities"
 msgstr "HTML subyektlar buzilgan"
 
-#: apps/pootle_misc/checks.py:91
+#: apps/pootle_misc/checks.py:92
 msgid "Java format"
 msgstr "Java formati"
 
-#: apps/pootle_misc/checks.py:92
+#: apps/pootle_misc/checks.py:93
 msgid "Template format"
 msgstr "Shablon formati"
 
-#: apps/pootle_misc/checks.py:93
+#: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholders"
 msgstr "Soqolli o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:94
+#: apps/pootle_misc/checks.py:95
 msgid "Mustache placeholder pairs"
 msgstr "O‘zgaruvchilar juftligi soqoli"
 
-#: apps/pootle_misc/checks.py:95
+#: apps/pootle_misc/checks.py:96
 msgid "Mustache like placeholder pairs"
 msgstr "Soqolga o‘xshash o‘zgaruvchilar juftligi"
 
-#: apps/pootle_misc/checks.py:96
+#: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
 msgstr "C formatidagi o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:97
+#: apps/pootle_misc/checks.py:98
 msgid "Non printable"
 msgstr "Chop etib bo‘lmaydi"
 
-#: apps/pootle_misc/checks.py:98
+#: apps/pootle_misc/checks.py:99
 msgid "Unbalanced tag braces"
 msgstr "Beqaror teg qavslari"
 
-#: apps/pootle_misc/checks.py:99
+#: apps/pootle_misc/checks.py:100
 msgid "Changed attributes"
 msgstr "O‘zgartirilgan atributlar"
 
-#: apps/pootle_misc/checks.py:100
+#: apps/pootle_misc/checks.py:101
 msgid "Unescaped ampersands"
 msgstr "Chiqmagan ampersand belgisi"
 
-#: apps/pootle_misc/checks.py:101
+#: apps/pootle_misc/checks.py:102
 msgid "Incorrectly escaped ampersands"
 msgstr "Noto‘g‘ri chiqish ampersand belgisi"
 
-#: apps/pootle_misc/checks.py:102
+#: apps/pootle_misc/checks.py:103
 msgid "Whitespaces"
 msgstr "Bo‘sh joylar"
 
-#: apps/pootle_misc/checks.py:103
+#: apps/pootle_misc/checks.py:104
 msgid "Date format"
 msgstr "Sananing ko‘rinishi"
 
-#: apps/pootle_misc/checks.py:104
+#: apps/pootle_misc/checks.py:105
 msgid "Uppercase placeholders"
 msgstr "Katta harfli o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:105
+#: apps/pootle_misc/checks.py:106
 msgid "Percent sign placeholders"
 msgstr "Foiz belgili o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:107
+#: apps/pootle_misc/checks.py:108
 msgid "Percent sign closure placeholders"
 msgstr "Foiz belgisiga yaqin o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:108
+#: apps/pootle_misc/checks.py:109
 msgid "$ placeholders"
 msgstr "$ o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:109
+#: apps/pootle_misc/checks.py:110
 msgid "$ closure placeholders"
 msgstr "$ yopiladigan o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:110
+#: apps/pootle_misc/checks.py:111
 msgid "Java-encoded unicode"
 msgstr "Java-shifrlangan yunikod"
 
-#: apps/pootle_misc/checks.py:111
+#: apps/pootle_misc/checks.py:112
 msgid "Objective-C format"
 msgstr "Obyectiv-C formati"
 
-#: apps/pootle_misc/checks.py:112
+#: apps/pootle_misc/checks.py:113
 msgid "Android format"
 msgstr "Android formati"
 
-#: apps/pootle_misc/checks.py:113
+#: apps/pootle_misc/checks.py:114
 msgid "Tags differ"
 msgstr "Teglar farq qiladi"
 
-#: apps/pootle_misc/checks.py:114
+#: apps/pootle_misc/checks.py:115
 msgid "Curly braces"
 msgstr "Buriluvchan qavs"
 
-#: apps/pootle_misc/checks.py:115
+#: apps/pootle_misc/checks.py:116
 msgid "Potential unwanted placeholders"
 msgstr "Potensial darajada xohlanmagan o‘zgaruvchilar"
 
-#: apps/pootle_misc/checks.py:116
+#: apps/pootle_misc/checks.py:117
 msgid "Double quotes in tags"
 msgstr "Teglar ichidagi qo‘shtirnoqlar"
 
-#: apps/pootle_misc/checks.py:117
+#: apps/pootle_misc/checks.py:118
 msgid "Percent brace placeholders"
 msgstr "Qavs o‘zgaruvchilar foizi"
 
-#: apps/pootle_misc/checks.py:118
+#: apps/pootle_misc/checks.py:119
 msgid "Plurr format"
 msgstr "Plurr formati"
 
-#: apps/pootle_misc/checks.py:119
+#: apps/pootle_misc/checks.py:120
 msgid "Plurr placeholders"
 msgstr "Plurr o‘zgaruvchilar"
 
@@ -871,7 +948,7 @@ msgstr "Old qo‘shimchalarni izlash rasmi"
 msgid "Disabled"
 msgstr "O‘chirib qo‘yilgan"
 
-#: apps/pootle_project/views.py:259
+#: apps/pootle_project/views.py:254
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -880,22 +957,14 @@ msgstr ""
 "Tarjima loyihasi (%s) yaratildi. Biz hozir tarkibini shablon fayldan "
 "yangilayapmiz."
 
-#: apps/pootle_project/views.py:266
+#: apps/pootle_project/views.py:261
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Tarjima loyihasi (%s) o‘chirildi"
 
-#: apps/pootle_statistics/models.py:63
-msgid "Source"
-msgstr "Manba"
-
 #: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Mo‘ljal"
-
-#: apps/pootle_statistics/models.py:65
-msgid "State"
-msgstr "Holati"
 
 #: apps/pootle_statistics/models.py:66
 msgid "Comment"
@@ -927,7 +996,7 @@ msgstr "Tavsiya rejimidan foydalanish uchun yetarlicha huquq yo‘q."
 msgid "Insufficient rights to access translation mode."
 msgstr "Tarjima rejimidan foydalanish uchun yetarlicha huquq yo‘q."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:634
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
 msgid "Insufficient rights to access review mode."
 msgstr ""
 "Qayta ko‘rib chiqish rejimidan foydalanish uchun yetarlicha huquq yo‘q."
@@ -969,7 +1038,7 @@ msgstr "Qabul qilindi"
 msgid "Rejected"
 msgstr "Rad qilindi"
 
-#: apps/pootle_store/models.py:969
+#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
 msgid "Path"
 msgstr "Yo‘l"
 
@@ -1015,28 +1084,28 @@ msgstr ""
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
 msgid "Path too long."
 msgstr "Yo‘l juda uzun."
 
-#: apps/pootle_store/views.py:177 apps/virtualfolder/views.py:104
-#: core/decorators.py:44
+#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Argumentlar yo‘q."
 
-#: apps/pootle_store/views.py:232
+#: apps/pootle_store/views.py:230
 msgid "Failed to remove comment."
 msgstr "Izoh olib tashlanmadi."
 
-#: apps/pootle_store/views.py:267
+#: apps/pootle_store/views.py:264
 msgid "Comment submission failed."
 msgstr "Fikr bildirish amalga oshmadi."
 
-#: apps/pootle_store/views.py:564
+#: apps/pootle_store/views.py:550
 msgid "Failed to process submission."
 msgstr "Jo‘natish amalga oshmadi."
 
-#: apps/pootle_store/views.py:605
+#: apps/pootle_store/views.py:591
 msgid "Failed to process suggestion."
 msgstr "Tavsiya berish amalga oshmadi."
 
@@ -1110,19 +1179,19 @@ msgstr "Qonuniy sahifa"
 msgid "Regular Page"
 msgstr "Muntazam sahifa"
 
-#: apps/staticpages/views.py:119 templates/admin/staticpages/_table.html:8
+#: apps/staticpages/views.py:118 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
 msgstr "Sahifa sarlavhasi"
 
 #. Translators: 'projects' must not be translated.
-#: apps/staticpages/views.py:136
+#: apps/staticpages/views.py:135
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
 "projects/<project_code> yoki <language_code> yoki <language_code>/"
 "<project_code>"
 
-#: apps/staticpages/views.py:231
+#: apps/staticpages/views.py:230
 msgid "Text is missing"
 msgstr "Matn kiritilmagan"
 
@@ -1166,7 +1235,7 @@ msgstr ""
 "Bundan ko‘proq ma’lumot yoki ko‘rsatmalar keltirish uchun foydalaning. "
 "Ruxsat berilgan belgilash: %s"
 
-#: checks.py:63
+#: checks.py:64
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1174,7 +1243,7 @@ msgstr ""
 "Foydalanuvchi hisoblarida e-pochta ikki marta keltirilgan. Bunga Pootle 2.8 "
 "versiyasida ruxsat berilmagan."
 
-#: checks.py:65
+#: checks.py:66
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1185,63 +1254,64 @@ msgstr ""
 "manzillarini yangilang. Shuningdek, siz pootle xizmati uchun merge_user yoki "
 "purge_user buyruqlaridan ham foydalanishingiz mumkin."
 
-#: checks.py:89
+#: checks.py:90
 msgid "Your version of Django is too old."
 msgstr "Django versiyasi juda eski."
 
-#: checks.py:90
+#: checks.py:91
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Ushbu buyruq bilan o‘rnatib ko‘ring --upgrade 'Django==%s'"
 
-#: checks.py:97
+#: checks.py:98
 msgid "Your version of lxml is too old."
 msgstr "lxml versiyasi juda eski."
 
-#: checks.py:98
+#: checks.py:99
 msgid "Try pip install --upgrade lxml"
 msgstr "Oson o‘rnatishga urinib ko‘ring --upgrade lxml"
 
-#: checks.py:104
+#: checks.py:105
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Translate Toolkit versiyasi juda eski."
 
-#: checks.py:105
+#: checks.py:106
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Oson o‘rnatishga urinib ko‘ring --upgrade translate-toolkit"
 
-#: checks.py:125
+#: checks.py:126
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "(%s)ga ulana olmadi"
 
-#: checks.py:126
+#: checks.py:127
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Redis %(host)s:%(port)s bilan ishlayotganligini tekshirib ko‘ring"
 
-#: checks.py:136
+#: checks.py:137
 msgid "Your version of Redis is too old."
 msgstr "Redis versiyasi juda eski."
 
-#: checks.py:137
+#: checks.py:138
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Tizimingizning Redis server paketini so‘nggi %s versiyasiga yangilang"
 
-#: checks.py:147
+#: checks.py:149
 msgid "No RQ Worker running."
 msgstr "RQ ishchi ishlamayapti."
 
-#: checks.py:148
-msgid "Run new workers with manage.py rqworker"
+#: checks.py:150
+#, fuzzy
+msgid "Run new workers with 'pootle rqworker'"
 msgstr "manage.py rqworker bilan yangi ishchilarni ishga tushirish"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "Kech zahira nusxasini saqlashni Redis’da o‘rnatib bo‘lmaydi."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1250,45 +1320,47 @@ msgstr ""
 "Standart kesh zahira nusxasini django_redis.cache.RedisCache’ga o‘rnatish\n"
 "Joriy sozlamalar: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Redis kesh ulanishni ishga tushirib bo‘lmadi"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "KESHLAR sozlamalarini ikki marta tekshirib ko‘ring"
 
-#: checks.py:187
+#: checks.py:189
+#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
-"`default`, `redis` and `stats`."
+"`default`, `redis` and `lru`."
 msgstr ""
 "Distinct django_redis.cache.RedisCache konfiguratsiyalari `default`, `redis` "
 "and `stats` uchun talab qilinadi."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "DEBUG rejimi yoqilgan. Ishlab chiqarishda buni qilmang!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Pootle sozlamalariga DEBUG = False shaklida kiriting"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "sqlite ma’lumotlar bazasini zahiralash ishlamaydi"
 
-#: checks.py:203
-msgid "Set your default database engine to postgresql_psycopg2 or mysql"
+#: checks.py:205
+#, fuzzy
+msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "Asosiy ma’lumotlar bazasi tizimini postgresql_psycopg2 yoki mysql’ga "
 "o‘rnating"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "cached_db seans tizimi sifatida foydalanilmayapti"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1297,11 +1369,11 @@ msgstr ""
 "SESSION_ENGINE’ni django.contrib.sessions.backend.cached_db’ga o‘rnating\n"
 "Joriy sozlamalar: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL o‘rnatilmagan."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1309,13 +1381,13 @@ msgstr ""
 "Foydalanuvchilarga Pootle kontakt shakli orqali administrator bilan "
 "bog‘lanishi uchun POOTLE_CONTACT_EMAIL sozlamasini o‘rnating."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 "POOTLE_CONTACT_EMAIL sozlamasi quyidagi %r sozlamasi uchun foydalanilmoqda."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1323,11 +1395,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL – kontakt shakli orqali yuborilgan xabarlarni qabul "
 "qiladigan manzil."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL – o‘rnatilmadi."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1336,36 +1408,36 @@ msgstr ""
 "uchun foydalanailadi.\n"
 "E-pochta manzili serveri sozlamalarini ko‘rib chiqishni unutmang."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL – quyidagi %r sozlamasi uchun foydalanilmoqda."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER – yo‘q."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "O‘rnating: POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER qiymatida noto‘g‘ri qiymat."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER uchun to‘g‘ri qiymatni o‘rnating."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER’da noto‘g‘ri belgilash."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER uchun to‘g‘ri belgini o‘rnating."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1374,69 +1446,69 @@ msgstr ""
 "POOTLE_MARKUP_FILTER – '%s' belgiga o‘rnatilgan, ammo keltirilgan paket "
 "topilmadi."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Paketni o‘rnating yoki POOTLE_MARKUP_FILTER’ni o‘zgartiring."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] serverida INDEX_NAME yo‘q."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] uchun INDEX_NAME nomini o‘rnating."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "POOTLE_TM_SERVER serveridagi '%s' INDEX_NAME nomini nusxalang."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 "POOTLE_TM_SERVER serveridagi barcha serverlar uchun boshqa INDEX_NAME nomini "
 "o‘rnating."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] serverida ENGINE yo‘q."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] serveri uchun ENGINE o‘rnating."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] serverida HOST yo‘q."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] serveri uchun HOST o‘rnating."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] serverida PORT yo‘q."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] uchun port o‘rnating."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 "POOTLE_TM_SERVER['%s'] serverida WEIGHT qiymati 0.0 dan kamroq yoki 1.0 dan "
 "kattaroq"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1444,41 +1516,41 @@ msgstr ""
 "POOTLE_TM_SERVER['%s'] serveri uchun WEIGHT qiymatini 0.0 va 1.0 (ikkalasini "
 "ham ko‘rsating) oralig‘ida ko‘rsating."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS’da %s yo‘q."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS ichiga %S qiymatini o‘rnating."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "Asosiy 'admin' foydalanuvchisi hali ham 'admin'ga o‘rnatilgan parolga ega."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "'admin' foydalanuvchisini olib tashlang yoki parolini o‘zgartiring."
 
-#: checks.py:400
+#: checks.py:402
 #, fuzzy
 msgid "Database connection uses transaction_hooks."
 msgstr "Ma’lumotlar bazasiga ulanish on_commit amalga oshmadi."
 
-#: checks.py:401
+#: checks.py:403
 #, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
@@ -1487,72 +1559,68 @@ msgstr ""
 "transaction_hooks.backends ma’lumotlar bazasini hisoblash uchun "
 "DATABASES['default']['ENGINE'] sozlamasini o‘rnating."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "E-pochta serveri mavjud emas."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "E-pochta sozlamalarini ko‘rib chiqing va e-pochta serveri ishlayotganligiga "
 "ishonch hosil qiling."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "Qayta ko‘rilmagan yoki qiymati noto‘g‘ri."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Qayta ko‘rishni hisoblagichni tiklash uchun `revision --restore` buyrug‘ini "
 "bajaring."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:502
+#: checks.py:504
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_CONTACT_EMAIL o‘rnatilmagan."
 
-#: checks.py:506
+#: checks.py:508
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:507
+#: checks.py:509
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
 msgstr ""
 
-#: checks.py:512
+#: checks.py:514
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 
-#: checks.py:514
+#: checks.py:516
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
-
-#: core/browser.py:26
-msgid "Project"
-msgstr "Loyiha"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1572,7 +1640,9 @@ msgstr "So‘nggi yangilangan"
 
 #. Translators: The number of suggestions pending review
 #: core/browser.py:60 templates/browser/_actions.html:24
-#: templates/editor/_filters.html:11
+#: templates/editor/_filters.html:11 templates/languages/_nav.html:28
+#: templates/languages/admin/language_team_suggestions.html:5
+#: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Tavsiyalar"
 
@@ -1593,11 +1663,11 @@ msgstr "Tilga qaytish"
 msgid "Back to parent folder"
 msgstr "Yuqori jilga qaytish"
 
-#: core/decorators.py:310 core/views/decorators.py:69
+#: core/decorators.py:140 core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Ushbu sahifaga kirish uchun yetarlicha huquq yo‘q."
 
-#: core/decorators.py:323 core/views/mixins.py:26
+#: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle’ni boshqarish uchun sizga huquq berilmagan."
 
@@ -1616,16 +1686,6 @@ msgstr "Noto‘g‘ri"
 #: core/forms.py:180
 msgid "With selected"
 msgstr ""
-
-#: core/forms.py:184
-#, fuzzy
-msgid "Reject"
-msgstr "Rad qilindi"
-
-#: core/forms.py:185
-#, fuzzy
-msgid "Accept"
-msgstr "Qabul qilindi"
 
 #: core/forms.py:187
 #, fuzzy
@@ -1824,7 +1884,7 @@ msgid "Languages"
 msgstr "Tillar"
 
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
-#: templates/admin/project_fs.html:8 templates/admin/projects.html:4
+#: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
 #: templates/languages/admin/language_team.html:99
 #: templates/projects/base.html:5
@@ -1908,10 +1968,6 @@ msgstr "Keyingi oy"
 #: templates/admin/detailed_reports.html:150
 msgid "Local server time"
 msgstr "Mahalliy server vaqti"
-
-#: templates/admin/detailed_reports.html:151
-msgid "Unit"
-msgstr "Qism"
 
 #: templates/admin/detailed_reports.html:152
 msgid "Action"
@@ -1997,62 +2053,62 @@ msgstr ""
 "foydalanuvchisi tizimga kirgan barcha foydalanuvchilarning standart bo‘yicha "
 "huquqlariga (boshqa maxsus huquqlar ularga belgilanmaguncha) ega."
 
-#: templates/admin/project_fs.html:15
+#: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
 msgstr ""
 
-#: templates/admin/project_fs.html:19
+#: templates/admin/project_fs.html:30
 msgid "Backend configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:24
+#: templates/admin/project_fs.html:41
 msgid "Update filesystem configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:27
-msgid "Translation paths should be of the format:"
+#: templates/admin/project_fs.html:44
+msgid "Translation mapping should be of the format:"
 msgstr ""
 
-#: templates/admin/project_fs.html:35
+#: templates/admin/project_fs.html:52
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:38
+#: templates/admin/project_fs.html:55
 msgid ""
-"If you are using the localfs backend the translation path will be combined "
-"with the path specified in\n"
+"If you are using the localfs backend the translation mapping will be "
+"combined with the path specified in\n"
 "\t    backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:42
+#: templates/admin/project_fs.html:59
 msgid ""
-"For other backends the translation path will be relative to the root of the "
-"repository."
+"For other backends the translation mapping will be relative to the root of "
+"the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:49
+#: templates/admin/project_fs.html:66
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s til ma’lumoti"
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:76
 #, fuzzy
 msgid "Remove"
 msgstr "Izohni olib tashlash"
 
-#: templates/admin/project_fs.html:60
+#: templates/admin/project_fs.html:77
 #, fuzzy
 msgid "Pootle code"
 msgstr "Pootle ogohlantirishlari"
 
-#: templates/admin/project_fs.html:61
+#: templates/admin/project_fs.html:78
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:72
+#: templates/admin/project_fs.html:89
 #, fuzzy
 msgid "Update"
 msgstr "Narxlar"
@@ -2203,18 +2259,18 @@ msgid "All"
 msgstr "Barchasi"
 
 #: templates/browser/_progressbar.html:3
-#, python-format
-msgid "<span class=\"value translated\">0</span>%% translated"
+#, fuzzy, python-format
+msgid "<span class='value translated'>%(translated)s</span>%% translated"
 msgstr "<span class=\"value translated\">0</span>%% tarjima qilindi"
 
 #: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class=\"value fuzzy\">0</span>%% needs work"
+#, fuzzy, python-format
+msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
 msgstr "<span class=\"value fuzzy\">0</span>%% yana ishlash kerak"
 
 #: templates/browser/_progressbar.html:5
-#, python-format
-msgid "<span class=\"value untranslated\">0</span>%% untranslated"
+#, fuzzy, python-format
+msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
 msgstr "<span class=\"value untranslated\">0</span>%% tarjima qilinmagan"
 
 #: templates/browser/index.html:19
@@ -2253,22 +2309,7 @@ msgstr "So‘nggi faoliyat"
 msgid "Translations"
 msgstr "Tarjima"
 
-#: templates/browser/index.html:133
-#, python-format
-msgid ""
-"Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
-"dealing with stats issues."
-msgstr ""
-
-#: templates/browser/index.html:139
-msgid "The stats on this page may be out of date."
-msgstr ""
-
-#: templates/browser/index.html:141
-msgid "Refresh now"
-msgstr "Hozir yangilash"
-
-#: templates/browser/index.html:151
+#: templates/browser/index.html:134
 msgid "This project is disabled and visible to administrators only."
 msgstr "Ushbu loyiha o‘chirib qo‘yilgan va faqat administratorlarga ko‘rinadi."
 
@@ -2751,6 +2792,11 @@ msgstr "Ko‘rish"
 msgid "Team"
 msgstr ""
 
+#: templates/languages/admin/includes/suggestions_header.html:14
+#, fuzzy
+msgid "Filter suggestions"
+msgstr "Foydalanuvchi tavsiyalari"
+
 #: templates/languages/admin/language_team.html:5
 #, fuzzy
 msgid "Language team"
@@ -3133,14 +3179,14 @@ msgstr "Kirish"
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Eng ko‘p hissa qo‘shuvchilar"
 
+#~ msgid "Refresh now"
+#~ msgstr "Hozir yangilash"
+
 #~ msgid "Translation Rate"
 #~ msgstr "Tarjima tezligi"
 
 #~ msgid "Effective from"
 #~ msgstr "Ushbudan samarali"
-
-#~ msgid "Suggestion"
-#~ msgstr "Tavsiya"
 
 #~ msgid "Hourly Work"
 #~ msgstr "Soatbay ish"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-09-28 17:00+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -560,15 +560,15 @@ msgstr "Rodyti išjungtus"
 msgid "Hide disabled"
 msgstr "Nerodyti išjungtų"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Visos kalbos"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Visi projektai"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Visas projektas"
 
@@ -576,14 +576,14 @@ msgstr "Visas projektas"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 "Yra neįrašytų šios eilutės pataisymų. Jei pereisite kitur, juos prarasite."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -591,7 +591,7 @@ msgstr ""
 "Eiti į kitą eilutę (Vald+.)<br/><br/>Taip pat:<br/>Kitas puslapis – Vald"
 "+Lyg2+.<br/>Paskutinis puslapis – Vald+Lyg2+Pab"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -600,77 +600,73 @@ msgstr ""
 "– Vald+Lyg2+,<br/>Pirmas puslapis – Vald+Lyg2+Prad"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Nepatvirtinti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Patvirtinti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Atmesti pasiūlymai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Vertimai, kuriuos pateikė %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Perrašyti vertimai, kuriuos pateikė %s"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Klaida jungiantis prie serverio"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Nerasta"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Serverio klaida"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Panašu, kad serveris išjungtas. Pabandykite vėliau."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Ši eilutė nebeegzistuoja."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Grįžti į apžvalgą"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Įkelti tinklalapį iš naujo"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Nėra rezultatų."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "anoniminis naudotojas"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "kažkas"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Panašūs vertimai"
 
@@ -866,11 +862,11 @@ msgstr "Prieš kelias sekundes"
 msgid "Congratulations! You have completed this task!"
 msgstr "Sveikiname, ši užduotis atlikta!"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Suskleisti išsamią statistiką"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Išskleisti išsamią statistiką"
 
@@ -976,6 +972,10 @@ msgstr ""
 "Šioje sistemoje aptiktas esamas naudotojas, kurio el. paštas – <span>%s</"
 "span>. Įveskite šio naudotojo slaptažodį, kad užbaigtumėte prisijungimą. Tai "
 "– vienkartinis veiksmas, susiesiantis jūsų „Pootle“ ir „%s“ paskyras."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Nėra rezultatų."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"

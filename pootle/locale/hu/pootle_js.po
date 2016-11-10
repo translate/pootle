@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-10-20 14:15+0000\n"
 "Last-Translator: meskobalazs <meskobalazs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -550,15 +550,15 @@ msgstr "Letiltottak megjelenítése"
 msgid "Hide disabled"
 msgstr "Letiltottak elrejtése"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Minden nyelv"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Minden projekt"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Teljes projekt"
 
@@ -566,7 +566,7 @@ msgstr "Teljes projekt"
 msgid "Updating data"
 msgstr "Adatok frissítése"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -574,7 +574,7 @@ msgstr ""
 "A karakterláncban mentetlen módosítások vannak. Más oldalra lépve ezek "
 "elvesznek."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -582,7 +582,7 @@ msgstr ""
 "Ugrás a következő karakterláncra (Ctrl+.)<br/><br/>Továbbá:<br/>Következő "
 "oldal: Ctrl+Shift+.<br/>Utolsó oldal: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -591,77 +591,73 @@ msgstr ""
 "Ctrl+Shift+,<br/>Első oldal: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s függő javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s elfogadta a javaslatokat"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s elutasított javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s beküldései"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s felülírt beküldései"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Hiba a kiszolgálóhoz való kapcsolódás közben"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Nem található"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Úgy tűnik, a kiszolgáló leállt. Próbálja meg később."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Ez a karakterlánc már nem létezik."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Vissza a tallózáshoz"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Oldal újratöltése"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Nincs találat."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "egy névtelen felhasználó"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "valaki"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Hasonló fordítások"
 
@@ -851,11 +847,11 @@ msgstr "Pár másodperce"
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulálunk! Befejezte ezt a feladatot!"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Részletek elrejtése"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Részletek megjelenítése"
 
@@ -960,6 +956,10 @@ msgstr ""
 "span>. Adja meg a jelszót a bejelentkezési folyamat befejezéséhez. Ez egy "
 "egyszeri lépés a Pootle és a(z) %(provider)s fiókjai közti kapcsolat "
 "létrehozásához."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Nincs találat."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"

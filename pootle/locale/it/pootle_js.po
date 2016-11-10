@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-11-03 10:37+0000\n"
 "Last-Translator: Sebastiano <olatusrooc@virgilio.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,15 +559,15 @@ msgstr "Mostra disabilitati"
 msgid "Hide disabled"
 msgstr "Nascondi disabilitati"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Tutte le lingue"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Tutti i progetti"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Intero Progetto"
 
@@ -575,7 +575,7 @@ msgstr "Intero Progetto"
 msgid "Updating data"
 msgstr "Aggiornamento dei dati"
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -583,7 +583,7 @@ msgstr ""
 "Ci sono modifiche non salvate in questa stringa. Uscendo da questa pagina "
 "perderai questi cambiamenti."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -591,7 +591,7 @@ msgstr ""
 "Vai alla prossima stringa (Ctrl+.)<br/><br/>Inoltre:<br/>Pagina seguente: "
 "Ctrl+Maiusc+.<br/>Ultima pagina: Ctrl+Maiusc+Fine"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -600,77 +600,73 @@ msgstr ""
 "precedente: Ctrl+Maiusc+,<br/>Prima pagina: Ctrl+Maiusc+Inizio"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s suggerimenti indicati"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s suggerimenti accettati"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s suggerimenti rifiutati"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s inserimenti"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s inserimenti sovrascritti"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Errore durante la connessione al server"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Non trovato"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Errore del server"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Il server sembra non rispondere. Riprova più tardi."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Questa stringa non esiste più."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Torna alla navigazione"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Ricarica pagina"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Nessun risultato."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "qualche utente anonimo"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "qualcuno"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Traduzioni simili"
 
@@ -867,11 +863,11 @@ msgstr "Qualche secondo fa"
 msgid "Congratulations! You have completed this task!"
 msgstr "Congratulazioni, hai girato per tutte le stringhe."
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Riduci dettagli"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Espandi dettagli"
 
@@ -977,6 +973,10 @@ msgstr ""
 "Ora inserisci la password per completare il processo di registrazione. "
 "Questa è una procedura una tantum, che stabilirà un collegamento tra i tuoi "
 "account di Pootle e %s."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Nessun risultato."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"

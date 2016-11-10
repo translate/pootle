@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-08-14 06:42+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -549,15 +549,15 @@ msgstr "Ko‘rsatish o‘chirib qo‘yilgan"
 msgid "Hide disabled"
 msgstr "Yashirish o‘chirib qo‘yilgan"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Barcha tillar"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Barcha loyihalar"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Butun loyiha"
 
@@ -565,7 +565,7 @@ msgstr "Butun loyiha"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -573,7 +573,7 @@ msgstr ""
 "Ushbu qatorda siz kiritgan, lekin saqlanmagan o‘zgarishlar bor. Keyingi yoki "
 "oldinga tarjimaga o‘tsangiz, ushbu o‘zgartirishlar saqlanmaydi."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -582,7 +582,7 @@ msgstr ""
 ">Keyingi sahifaga: Ctrl+Shift+.<br/>So‘nggi sahifaga: Ctrl+Shift+End "
 "tugmalari bilan o‘tish mumkin"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -592,77 +592,73 @@ msgstr ""
 "tugmalari bilan o‘tish mumkin."
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s's tavsiyalar jo‘natmoqda"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s's tavsiyalarni qabul qildi"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s's tavsiyalarni rad qildi"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s's tarjimalari"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s'ning almashtirilgan tarjimalari"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Server bilan bog'lanishda xatolik"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Topilmadi"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Server xatoligi"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Server ishlamayapti. Keyinroq harakat qilib ko'ring."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Ushbu qator mavjud emas."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Ko‘rish uchun orqaga qaytish"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Sahifani qayta yuklash"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Natijalarsiz."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "anonim foydalanuvchi"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "kimdir"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Bir xil tarjimalar"
 
@@ -858,11 +854,11 @@ msgstr "Bir necha soniya oldin"
 msgid "Congratulations! You have completed this task!"
 msgstr "Tabriklaymiz! Siz bu vazifani bajarib bo‘ldingiz!"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Tafsilotlarni yigʻish"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Tafsilotlarni yoyish"
 
@@ -967,6 +963,10 @@ msgstr ""
 "Biz tizimimizda <span>%s</span> e-pochta manziliga ega foydalanuvchini "
 "topdik. Kirish jarayonini tugatish uchun parolingizni kiriting. Bu Pootle va "
 "%s nomli hisoblaringiz o‘rtasida aloqa o‘rnatadigan bir martalik jarayondir."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Natijalarsiz."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"

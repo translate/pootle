@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-10-20 14:11+0100\n"
+"POT-Creation-Date: 2016-11-10 12:52+0000\n"
 "PO-Revision-Date: 2016-09-24 18:30+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -550,15 +550,15 @@ msgstr "Dangos yr analluogwyd"
 msgid "Hide disabled"
 msgstr "Cuddio'r analluogwyd"
 
-#: static/js/browser.js:284
+#: static/js/browser.js:285
 msgid "All Languages"
 msgstr "Pob Iaith"
 
-#: static/js/browser.js:289
+#: static/js/browser.js:290
 msgid "All Projects"
 msgstr "Pob Project"
 
-#: static/js/browser.js:294
+#: static/js/browser.js:295
 msgid "Entire Project"
 msgstr "Y Project Cyfan"
 
@@ -566,7 +566,7 @@ msgstr "Y Project Cyfan"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:318 static/js/editor/app.js:642
+#: static/js/editor/app.js:319 static/js/editor/app.js:643
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -574,7 +574,7 @@ msgstr ""
 "Mae gennych newidiadau heb eu cadw yn llinyn hwn. Bydd symud i ffwrdd yn "
 "golygu colli'r newidiadau hyn."
 
-#: static/js/editor/app.js:363
+#: static/js/editor/app.js:364
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -582,7 +582,7 @@ msgstr ""
 "Ewch i'r llinyn nesaf (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: Ctrl+Shift"
 "+.<br/>Tudalen olaf: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:369
+#: static/js/editor/app.js:370
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -591,77 +591,73 @@ msgstr ""
 "Ctrl+Shift+,<br/>Tudalen gyntaf: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:494
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Awgrymiadau %s yn disgwyl cymeradwyaeth"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:497
+#: static/js/editor/app.js:498
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Awgrymiadau %s wedi eu derbyn"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:500
+#: static/js/editor/app.js:501
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Awgrymiadau %s wedi eu gwrthod"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:503
+#: static/js/editor/app.js:504
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Awgrymiadau %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:507
+#: static/js/editor/app.js:508
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1070
 msgid "Error while connecting to the server"
 msgstr "Gwall wrth gysylltu â'r gweinydd"
 
-#: static/js/editor/app.js:1073
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Heb ei ganfod"
 
-#: static/js/editor/app.js:1075
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Gwall gweinydd"
 
-#: static/js/editor/app.js:1077
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Mae'r gweinydd i weld wedi torri. Ceisiwch rhywbryd eto."
 
-#: static/js/editor/app.js:1086
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Nid yw'r llinyn hwn yn bodoli."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Mynd nôl i bori"
 
-#: static/js/editor/app.js:1089
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:1855 static/js/editor/app.js:634
-msgid "No results."
-msgstr "Dim canlyniad."
-
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2162
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2164
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 
@@ -851,11 +847,11 @@ msgstr "Ychydig eiliadau yn ôl"
 msgid "Congratulations! You have completed this task!"
 msgstr "Llongyfarchiadau! Rydych wedi cwblhau'r dasg!"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Collapse details"
 msgstr "Lleihau'r manylion"
 
-#: static/js/stats.js:419
+#: static/js/stats.js:396
 msgid "Expand details"
 msgstr "Ehangu'r manylion"
 
@@ -960,6 +956,10 @@ msgstr ""
 "Rydym wedi darganfod defnyddiwr gydag e-bost <span>%s</span> yn ein system. "
 "Rhowch y cyfrinair i orffen y drefn mewngofnodi. Mae hyn yn drefn unwaith ac "
 "am byth, a bydd yn sefydlu cysylltiad rhwng eich cyfrifon Pootle a %s."
+
+#: static/js/editor/app.js:635
+msgid "No results."
+msgstr "Dim canlyniad."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
