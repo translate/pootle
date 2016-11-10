@@ -95,14 +95,6 @@ const stats = {
       });
       $(e.target).parent().toggleClass('collapsed');
     });
-    $(document).on('click', '.js-stats-refresh', (e) => {
-      e.preventDefault();
-      this.refreshStats();
-    });
-    $(document).on('click', '.js-stats-refresh-close', (e) => {
-      e.preventDefault();
-      $('#autorefresh-notice').hide();
-    });
 
     window.addEventListener('popstate', (e) => {
       const state = e.state;
