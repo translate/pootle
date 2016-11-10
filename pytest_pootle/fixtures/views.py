@@ -161,9 +161,6 @@ GET_UNITS_TESTS = OrderedDict(
        "checks": ["endpunc"]}),
      ("checks_category_critical",
       {"filter": "checks",
-       "category": "critical"}),
-     ("checks_category_critical",
-      {"filter": "checks",
        "category": "critical"})))
 
 GET_VFOLDER_UNITS_TESTS = OrderedDict(
