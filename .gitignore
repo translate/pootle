@@ -15,7 +15,7 @@
 # /pootle/translations/
 /pootle/translations/*
 !/pootle/translations/tutorial/
-!/pootle/translations/templates/
+!/pootle/translations/terminology/
 
 # /pootle/.pootle_fs/
 /pootle/.pootle_fs/*/
