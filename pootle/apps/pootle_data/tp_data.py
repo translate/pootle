@@ -172,6 +172,7 @@ class TPDataTool(RelatedStoresDataTool):
                 name=child["last_submission"]["displayname"],
                 at=timesince(child["last_submission"]["mtime"]),
                 grav=grav,
+                mtime=child["last_submission"]["mtime"],
                 profile_url=child["last_submission"]["profile_url"])
         stats.update(agg)
         stats.update(latest)

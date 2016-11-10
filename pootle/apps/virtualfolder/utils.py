@@ -262,6 +262,7 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
                 name=stats[k]["last_submission"]["displayname"],
                 at=timesince(stats[k]["last_submission"]["mtime"]),
                 grav=grav,
+                mtime=stats[k]["last_submission"]["mtime"],
                 profile_url=stats[k]["last_submission"]["profile_url"])
         return stats
 
