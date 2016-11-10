@@ -1712,8 +1712,8 @@ PTL.editor = {
       return false;
     }
 
-    // Don't load anything if we're just selecting text
-    if (window.getSelection().toString() !== '') {
+    // Don't load anything if we're just selecting text or right-clicking
+    if (window.getSelection().toString() !== '' || e.which === 3) {
       return false;
     }
 
