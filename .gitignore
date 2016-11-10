@@ -13,7 +13,7 @@
 /pootle/locale/*/LC_MESSAGES/
 
 # /pootle/translations/
-/pootle/translations/*/
+/pootle/translations/*
 !/pootle/translations/tutorial/
 !/pootle/translations/templates/
 
