@@ -42,12 +42,14 @@ class PootleBrowseView(PootleDetailView):
         stats = self.stats
         for state in states:
             if state["state"] == "untranslated":
-                stats[state["state"]] = state["count"] = (
-                    stats["total"] - stats["fuzzy"] - stats["translated"])
+                if stats["total"]:
+                    stats[state["state"]] = state["count"] = (
+                        stats["total"] - stats["fuzzy"] - stats["translated"])
             else:
                 stats[state["state"]] = state["count"] = stats[state["state"]]
-            state["percent"] = round(
-                (float(state["count"]) / stats["total"]) * 100, 1)
+            if state["count"]:
+                state["percent"] = round(
+                    (float(state["count"]) / stats["total"]) * 100, 1)
         return states
 
     @cached_property
