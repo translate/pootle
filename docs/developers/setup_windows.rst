@@ -135,10 +135,11 @@ Once NPM install has completed, the actual javascript bundles can be compiled:
     (venv)> cd C:\git\pootle
     (venv)> pootle webpack --dev
 
-The ``webpack`` command will keep running after it's completed, to monitor your
-javascript files for changes so that it can auto-recompile as you work. You'll
-need to either exit it with ``Ctrl+C`` once it has settled down, or else open
-up a new command prompt and activate your virtual environment there too.
+The :djadmin:`webpack` command will keep running after it's completed, to
+monitor your javascript files for changes so that it can auto-recompile as you
+work. You'll need to either exit it with ``Ctrl+C`` once it has settled down,
+or else open up a new command prompt and activate your virtual environment
+there too.
 
 One last javascript pack needs to be compiled to complete the client-side
 preparations:
