@@ -83,7 +83,6 @@ PTL.common = {
 
     if (opts.hasSidebar) {
       helpers.fixSidebarHeight();
-      $(window).on('resize', helpers.fixSidebarHeight);
     }
 
     helpers.updateRelativeDates();
@@ -248,6 +247,7 @@ PTL.common = {
       const cookieName = 'pootle-browser-sidebar';
       const cookieData = JSON.parse(cookie(cookieName)) || {};
 
+      helpers.fixSidebarHeight();
       $sidebar.toggleClass(openClass);
 
       cookieData.isOpen = $sidebar.hasClass(openClass);
