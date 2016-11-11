@@ -487,7 +487,7 @@ Run the following to publish the package on PyPI:
 .. code-block:: console
 
     $ workon build-pootle-release
-    (build-pootle-release)$ nvm install 0.12  # Use nodejs 0.12
+    (build-pootle-release)$ nvm install stable
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
     (build-pootle-release)$ make publish-pypi
