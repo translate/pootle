@@ -21,6 +21,7 @@ from pootle.core.browser import (
 from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import PootleBrowseView, PootleTranslateView
+from pootle.core.views.display import StatsDisplay
 from pootle_app.models import Directory
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
@@ -311,20 +312,28 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def stats(self):
-        stats = (
+        vf_stats = (
             {}
             if not self.vfolders_data_view
-            else self.vfolders_data_view.stats)
-        if self.object.tp_path == "/":
-            stats.update(self.object.tp.data_tool.get_stats(user=self.request.user))
-        else:
-            stats.update(self.object.data_tool.get_stats(user=self.request.user))
+            else StatsDisplay(
+                self.object.tp,
+                stats=self.vfolders_data_view.stats).stats)
+        stats = (
+            dict(vfolders=vf_stats["children"])
+            if vf_stats
+            else {})
+        stats_ob = (
+            self.object.tp
+            if self.object.tp_path == "/"
+            else self.object)
+        _stats = stats_ob.data_tool.get_stats(user=self.request.user)
+        stats.update(StatsDisplay(stats_ob, stats=_stats).stats)
         return stats
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
         if self.vfolders_data_view:
-            ctx.update(self.vfolders_data_view.table_data)
+            ctx.update(vfolders=self.vfolders_data_view.table_data["children"])
         return ctx
 
 
