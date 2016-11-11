@@ -89,11 +89,11 @@ To activate the virtual environment run the :command:`activate` script:
 Once activated the virtual environment name will be prepended to the shell prompt.
 
 Lastly, we want to make sure that we are using the latest version of
-:command:`pip`:
+:command:`pip` and ``setuptools``:
 
 .. code-block:: console
 
-   (env) $ pip install --upgrade pip
+   (env) $ pip install --upgrade pip setuptools
 
 
 .. _installation#installing-pootle:
