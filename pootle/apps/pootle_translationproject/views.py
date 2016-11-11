@@ -333,7 +333,9 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
         if self.vfolders_data_view:
-            ctx.update(vfolders=self.vfolders_data_view.table_data["children"])
+            vfdata = self.vfolders_data_view.table_data
+            if vfdata:
+                ctx.update(vfolders=vfdata["children"])
         return ctx
 
 
