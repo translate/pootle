@@ -190,6 +190,12 @@ def stringcount(string):
 
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
+    tp_path = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name=_("Path"))
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True,
@@ -305,6 +311,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+        self.tp_path = self.store.tp_path
         source_updated = kwargs.pop("source_updated", None) or self._source_updated
         target_updated = kwargs.pop("target_updated", None) or self._target_updated
         state_updated = kwargs.pop("state_updated", None) or self._state_updated
