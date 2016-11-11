@@ -17,7 +17,10 @@ from pootle_store.unit.filters import UnitSearchFilter, UnitTextSearch
 class DBSearchBackend(object):
 
     default_chunk_size = None
-    default_order = "store__pootle_path", "index"
+    default_order = (
+        'store__translation_project__project',
+        'store__translation_project__language',
+        "tp_path", "index")
     select_related = (
         'store__translation_project__project',
         'store__translation_project__language')
@@ -106,7 +109,10 @@ class DBSearchBackend(object):
                 # use `distinct()` and `order_by()` at the same time
                 qs = qs.annotate(sort_by_field=Max(max_field))
             return qs.order_by(
-                sort_by, "store__pootle_path", "index")
+                sort_by,
+                'store__translation_project__project',
+                'store__translation_project__language',
+                "tp_path", "index")
         return qs
 
     def filter_qs(self, qs):

@@ -112,6 +112,7 @@ class GroupedResults(object):
         "source_f",
         "target_f",
         "state",
+        "tp_path",
         "store__filetype__name",
         "store__pootle_path",
         "store__translation_project__project__code",
@@ -128,7 +129,11 @@ class GroupedResults(object):
         unit_groups = []
         units_by_path = groupby(
             self.units_qs.values(*self.select_fields),
-            lambda x: x["store__pootle_path"])
+            lambda x: (
+                "%s/%s%s"
+                % (x["store__translation_project__language__code"],
+                   x["store__translation_project__project__code"],
+                   x["tp_path"])))
         for pootle_path, units in units_by_path:
             unit_groups.append({pootle_path: StoreResults(units).data})
         return unit_groups
