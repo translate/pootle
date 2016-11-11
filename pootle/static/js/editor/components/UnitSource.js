@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import cx from 'classnames';
 import React from 'react';
 
 import { t } from 'utils/i18n';
@@ -77,14 +76,10 @@ const UnitSource = React.createClass({
   },
 
   render() {
-    const classNames = cx('translate-original', {
-      'translate-plural': this.props.hasPlurals,
-    });
-
     return (
       <div
         id={`js-unit-${this.props.id}`}
-        className={classNames}
+        className="translate-original"
       >
         {this.props.values.map(this.createItem)}
       </div>
