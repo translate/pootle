@@ -13,7 +13,6 @@ from django.utils.functional import cached_property
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import data_updater, revision
 from pootle.core.url_helpers import split_pootle_path
-from pootle.local.dates import timesince
 from pootle_statistics.models import Submission
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
@@ -409,9 +408,6 @@ class RelatedStoresDataTool(DataTool):
                 sub = subs[child["last_submission__pk"]]
                 lastaction = self.get_info_for_sub(sub)
                 child["last_submission"] = lastaction
-                child["lastaction"] = lastaction
-            else:
-                child["last_submission"] = dict(creation_time=0)
 
     def aggregate_children(self, stats):
         """For a stats dictionary containing children qs.values, aggregate the
@@ -432,26 +428,7 @@ class RelatedStoresDataTool(DataTool):
                 if child["lastupdated"]["creation_time"] > lastupdatedtime:
                     latest["lastupdated"] = child["lastupdated"]
                     lastupdatedtime = child["lastupdated"]["creation_time"]
-                child["lastaction"] = timesince(
-                    child["lastupdated"]["creation_time"])
-                child["lastactiontime"] = child["lastupdated"]["creation_time"]
-            else:
-                child["lastaction"] = ""
-            child["incomplete"] = child["total"] - child["translated"]
-            child["untranslated"] = child["total"] - child["translated"]
-            if not child["last_submission"].get("email"):
-                continue
-            grav = (
-                'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
-                % (child["last_submission"]["email"], 20))
-            child["lastupdated"] = dict(
-                name=child["last_submission"]["displayname"],
-                at=timesince(child["last_submission"]["mtime"]),
-                mtime=child["last_submission"]["mtime"],
-                grav=grav,
-                profile_url=child["last_submission"]["profile_url"])
             del child["last_submission__pk"]
-            del child["last_submission"]
         stats.update(agg)
         stats.update(latest)
         return stats
