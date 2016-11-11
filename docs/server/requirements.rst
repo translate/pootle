@@ -46,7 +46,7 @@ Or, any other Unix-like system.
 Python version
 --------------
 
-**Python 2.7 is required**. 2.6 won't work, and 3.x is not supported.
+**Python 2.7 is required**, 3.x is not yet supported.
 
 
 .. _requirements#packages:
