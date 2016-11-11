@@ -997,7 +997,6 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         validators=[MinValueValidator(0)])
 
     objects = StoreManager()
-    simple_objects = models.Manager()
 
     class Meta(object):
         ordering = ['pootle_path']
