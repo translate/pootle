@@ -10,20 +10,7 @@ import React from 'react';
 
 import { t } from 'utils/i18n';
 
-import { highlightRW } from '../../utils';
-
-
-const InnerDiv = ({ sourceValue }) => (
-  <div
-    dangerouslySetInnerHTML={
-      { __html: highlightRW(sourceValue) }
-    }
-  />
-);
-
-InnerDiv.propTypes = {
-  sourceValue: React.PropTypes.string.isRequired,
-};
+import InnerDiv from './InnerDiv';
 
 
 const UnitSource = React.createClass({
@@ -69,7 +56,7 @@ const UnitSource = React.createClass({
           data-string={sourceValue}
           {...props}
         >
-          <this.props.innerComponent sourceValue={sourceValue} />
+          <this.props.innerComponent value={sourceValue} />
         </div>
       </div>
     );
