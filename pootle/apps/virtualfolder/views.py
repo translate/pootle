@@ -134,7 +134,7 @@ class VFoldersDataView(object):
         ctx = {}
         if len(self.all_stats) > 0:
             ctx.update({
-                'vfolders': {
+                'children': {
                     'id': 'vfolders',
                     'fields': self.table_fields,
                     'headings': get_table_headings(self.table_fields),
@@ -147,7 +147,7 @@ class VFoldersDataView(object):
 
     @cached_property
     def stats(self):
-        return dict(vfolders=self.all_stats)
+        return dict(children=self.all_stats)
 
     @property
     def table_items(self):
