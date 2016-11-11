@@ -85,6 +85,12 @@ const ReactEditor = {
     }
   },
 
+  renderViewUnitComponent(unit, mountNode) {
+    loadFormatAdaptor(unit, (newProps, adaptor) => {
+      ReactRenderer.render(<adaptor.viewUnitComponent {...newProps} />, mountNode);
+    });
+  },
+
   // FIXME: this additional layer of state tracking is only kept to allow
   // interaction from the outside world. Remove ASAP.
   get stateValues() {

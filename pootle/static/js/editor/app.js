@@ -37,7 +37,6 @@ import linkHashtags from 'utils/linkHashtags';
 
 import SuggestionFeedbackForm from './components/SuggestionFeedbackForm';
 import UploadTimeSince from './components/UploadTimeSince';
-import ViewUnit from './components/ViewUnit';
 
 import captcha from '../captcha';
 import { UnitSet } from '../collections';
@@ -1388,8 +1387,8 @@ PTL.editor = {
           type: 'translation',
         };
 
-        ReactRenderer.render(<ViewUnit {...sourceProps} />, rows[i].cells[0]);
-        ReactRenderer.render(<ViewUnit {...targetProps} />, rows[i].cells[1]);
+        ReactEditor.renderViewUnitComponent(sourceProps, rows[i].cells[0]);
+        ReactEditor.renderViewUnitComponent(targetProps, rows[i].cells[1]);
       }
       this.ready();
     }

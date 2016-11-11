@@ -8,11 +8,13 @@
 
 import EditorContainer from '../containers/EditorContainer';
 import UnitSource from '../components/UnitSource';
+import ViewUnit from '../components/ViewUnit';
 
 
 const FormatAdaptor = {
   editorComponent: EditorContainer,
   unitSourceComponent: UnitSource,
+  viewUnitComponent: ViewUnit,
 };
 
 
