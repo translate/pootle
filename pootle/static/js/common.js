@@ -81,10 +81,6 @@ PTL.common = {
     PTL.auth.init();
     PTL.browser.init();
 
-    $(window).load(() => {
-      $('body').removeClass('preload');
-    });
-
     if (opts.hasSidebar) {
       helpers.fixSidebarHeight();
       $(window).on('resize', helpers.fixSidebarHeight);

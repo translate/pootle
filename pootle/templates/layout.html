@@ -74,7 +74,7 @@
     {% block extra_head %}{% endblock %}
   </head>
 
-  <body id="{% block body_id %}pootle-body-base{% endblock %}" class="preload {% block body_class %}{% endblock %}">
+  <body id="{% block body_id %}pootle-body-base{% endblock %}" class="{% block body_class %}{% endblock %}">
     {% block body %}
     <div id="wrapper">
       {% block wrapper %}
