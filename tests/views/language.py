@@ -53,9 +53,9 @@ def _test_browse_view(language, request, response, kwargs):
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
         'items': items}
-    del stats["children"]
     checks = ChecksDisplay(language).checks_by_category
     stats = StatsDisplay(language, stats=stats).stats
+    del stats["children"]
     top_scorers = get_user_model().top_scorers(language=language.code, limit=10)
     assertions = dict(
         page="browse",

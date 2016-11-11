@@ -68,11 +68,25 @@ def _test_browse_view(tp, request, response, kwargs):
         data_obj = obj
     if not kwargs.get("filename"):
         vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
-        stats = vf_view.stats
-        vfolders = stats["vfolders"]
-        stats.update(data_obj.data_tool.get_stats(user=request.user))
+        vf_stats = (
+            {}
+            if not vf_view
+            else StatsDisplay(
+                data_obj,
+                stats=vf_view.stats).stats)
+        stats = (
+            dict(vfolders=vf_stats["children"])
+            if vf_stats
+            else {})
+        stats.update(
+            StatsDisplay(
+                data_obj,
+                stats=data_obj.data_tool.get_stats(user=request.user)).stats)
+        vfolders = True
     else:
-        stats = data_obj.data_tool.get_stats(user=request.user)
+        stats = StatsDisplay(
+            data_obj,
+            data_obj.data_tool.get_stats(user=request.user)).stats
         vfolders = None
     filters = {}
     if vfolders:
@@ -112,9 +126,8 @@ def _test_browse_view(tp, request, response, kwargs):
             'items': items}
     else:
         table = None
-    del stats["children"]
     checks = ChecksDisplay(obj).checks_by_category
-    stats = StatsDisplay(obj, stats=stats).stats
+    del stats["children"]
     User = get_user_model()
     top_scorers = User.top_scorers(language=tp.language.code,
                                    project=tp.project.code, limit=11)

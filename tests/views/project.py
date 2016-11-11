@@ -154,9 +154,9 @@ def _test_browse_view(project, request, response, kwargs):
          url_action_fixcritical,
          url_action_review,
          url_action_view_all) = [None] * 4
-    del stats["children"]
     checks = ChecksDisplay(obj).checks_by_category
     stats = StatsDisplay(obj, stats=stats).stats
+    del stats["children"]
     User = get_user_model()
     top_scorers = User.top_scorers(project=project.code, limit=10)
     assertions = dict(
@@ -234,9 +234,9 @@ def test_view_projects_browse(client, request_users):
          url_action_fixcritical,
          url_action_review,
          url_action_view_all) = [None] * 4
-    del stats["children"]
     checks = ChecksDisplay(obj).checks_by_category
     stats = StatsDisplay(obj, stats=stats).stats
+    del stats["children"]
     User = get_user_model()
     top_scorers = User.top_scorers(limit=10)
     assertions = dict(

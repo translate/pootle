@@ -27,7 +27,7 @@ def test_vfolder_data_view(tp0, request_users):
     assert (
         vf_data.all_stats
         == vf_data.vfolder_data_tool.get_stats(user=user))
-    assert vf_data.stats["vfolders"] == vf_data.all_stats
+    assert vf_data.stats["children"] == vf_data.all_stats
     # ordering?
     rows = [
         make_vfolder_dict(dir0, *vf)
@@ -36,7 +36,7 @@ def test_vfolder_data_view(tp0, request_users):
     for i, row in enumerate(vf_data.table_items):
         assert rows[i] == row
     expected_table_data = dict(
-        vfolders=dict(
+        children=dict(
             id='vfolders',
             fields=vf_data.table_fields,
             headings=get_table_headings(vf_data.table_fields),
