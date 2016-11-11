@@ -27,7 +27,6 @@ from pootle.core.delegate import (
     config, format_classes, format_diffs, formats)
 from pootle.core.models import Revision
 from pootle.core.delegate import deserializers, serializers
-from pootle.core.url_helpers import to_tp_relative_path
 from pootle.core.plugin import provider
 from pootle.core.serializers import Serializer, Deserializer
 from pootle_app.models import Directory
@@ -1432,7 +1431,7 @@ def test_store_syncer_new_units(dummy_store_syncer_units, tp0):
         db_ids={})
     syncer = dummy_store_syncer_units(store, expected=expected)
     results = syncer.get_new_units(
-        expected["old_ids"], expected["new_ids"])
+1        expected["old_ids"], expected["new_ids"])
     _test_get_new(
         results, syncer, expected["old_ids"], expected["new_ids"])
     expected = dict(
@@ -1448,4 +1447,4 @@ def test_store_syncer_new_units(dummy_store_syncer_units, tp0):
 
 @pytest.mark.django_db
 def test_store_path(store0):
-    assert store0.path == to_tp_relative_path(store0.pootle_path)
+    assert store0.path == store0.tp_path[1:]
