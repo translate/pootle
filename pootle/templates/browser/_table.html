@@ -48,7 +48,7 @@
       {% if 'total' in table.fields %}
       <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
         {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_translate }}">{{ item.stats.total }}</a>
+        <a class="stats-data non-zero" href="{{ item.href_translate }}{% if item.sort %}#sort={{ item.sort }}{% endif %}">{{ item.stats.total }}</a>
         {% else %}
         <span class="stats-data non-zero">{{ item.stats.total }}</span>
         {% endif %}
@@ -67,7 +67,7 @@
       {% if 'critical' in table.fields %}
       <td id="critical-{{ item.code|cssid }}" class="stats-number critical{% if not item.stats.critical %} zero{% endif %}">
         {% if can_translate and item.stats.critical %}
-        <a class="stats-data non-zero" href="{{ item.href_translate }}#filter=checks&category=critical">{{ item.stats.critical }}</a>
+        <a class="stats-data non-zero" href="{{ item.href_translate }}#filter=checks&category=critical{% if item.sort %}&sort={{ item.sort }}{% endif %}">{{ item.stats.critical }}</a>
         {% else %}
         <span class="{% if item.stats.critical %}stats-data non-zero{% else %}zero muted{% endif %}">{{ item.stats.critical }}</span>
         {% endif %}
@@ -77,7 +77,7 @@
       {% if 'suggestions' in table.fields %}
       <td id="suggestions-{{ item.code|cssid }}" class="stats-number suggestions{% if not item.stats.suggestions %} zero{% endif %}">
         {% if can_translate and item.stats.suggestions %}
-        <a class="stats-data non-zero" href="{{ item.href_translate }}#filter=suggestions">{{ item.stats.suggestions }}</a>
+        <a class="stats-data non-zero" href="{{ item.href_translate }}#filter=suggestions{% if item.sort %}&sort={{ item.sort }}{% endif %}">{{ item.stats.suggestions }}</a>
         {% else %}
         <span class="{% if item.stats.suggestions %}stats-data non-zero{% else %}zero muted{% endif %}">{{ item.stats.suggestions }}</span>
         {% endif %}
@@ -87,7 +87,7 @@
       {% if 'need-translation' in table.fields %}
       <td id="need-translation-{{ item.code|cssid }}" class="stats-number need-translation{% if not item.stats.incomplete %} zero{% endif %}">
         {% if can_translate and item.stats.incomplete %}
-        <a class="stats-data non-zero" href="{{ item.href_translate }}#filter=incomplete">{{ item.stats.incomplete }}</a>
+        <a class="stats-data non-zero" href="{{ item.href_translate }}#filter=incomplete{% if item.sort %}&sort={{ item.sort }}{% endif %}">{{ item.stats.incomplete }}</a>
         {% else %}
         <span class="{% if item.stats.incomplete %}stats-data non-zero{% else %}zero muted{% endif %}">{{ item.stats.incomplete }}</span>
         {% endif %}

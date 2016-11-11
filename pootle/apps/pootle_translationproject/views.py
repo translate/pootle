@@ -288,10 +288,10 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
             vf_stores = stores.filter(
                 vfolders__isnull=False).exclude(parent=self.object)
             dirs_with_vfolders = set(
-                path.replace(self.object.pootle_path, "").split("/")[0]
-                for path
-                in vf_stores.values_list(
-                    "pootle_path", flat=True))
+                [path.replace(self.object.pootle_path, "").split("/")[0]
+                 for path
+                 in vf_stores.values_list(
+                     "pootle_path", flat=True)])
         directories = [
             make_directory_item(
                 child,
