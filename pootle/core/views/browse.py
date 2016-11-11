@@ -54,7 +54,8 @@ class PootleBrowseView(PootleDetailView):
 
     @cached_property
     def stats(self):
-        return self.object.data_tool.get_stats(user=self.request.user)
+        stats = self.object.data_tool.get_stats(user=self.request.user)
+        return StatsDisplay(self.object, stats=stats).stats
 
     @property
     def has_vfolders(self):
@@ -153,7 +154,7 @@ class PootleBrowseView(PootleDetailView):
             {'page': 'browse',
              'checks': self.checks,
              'translation_states': self.states,
-             'stats': StatsDisplay(self.object, stats=stats).stats,
+             'stats': stats,
              'can_translate': can_translate,
              'can_translate_stats': can_translate_stats,
              'url_action_continue': url_action_continue,
