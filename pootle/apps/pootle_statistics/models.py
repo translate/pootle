@@ -102,15 +102,12 @@ class SubmissionQuerySet(models.QuerySet):
         return self._earliest_or_latest(field_name=field_name, direction="-")
 
 
-class BaseSubmissionManager(models.Manager):
+class SubmissionManager(models.Manager):
+
+    use_for_related_fields = True
 
     def get_queryset(self):
         return SubmissionQuerySet(self.model, using=self._db)
-
-
-class SubmissionManager(BaseSubmissionManager):
-
-    use_for_related_fields = True
 
     def get_unit_comments(self):
         """Submissions that change a `Unit`'s comment.
@@ -168,7 +165,6 @@ class Submission(models.Model):
         db_table = 'pootle_app_submission'
 
     objects = SubmissionManager()
-    simple_objects = BaseSubmissionManager()
 
     creation_time = models.DateTimeField(db_index=True)
     translation_project = models.ForeignKey(
