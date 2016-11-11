@@ -69,20 +69,21 @@ You should check that you have all of the necessary :ref:`Pootle requirements
 Activate virtualenv
 -------------------
 
-These instructions assume that you are using ``virtualenv`` and you have
+These instructions assume that you are using :command:`virtualenv` and you have
 activated a virtual environment named ``env``.
 
 
-.. _upgrading#update-pip:
+.. _upgrading#update-pip-setuptools:
 
-Update pip
-----------
+Update pip and setuptools
+-------------------------
 
-You should now upgrade Pip to the latest version:
+You should now upgrade :command:`pip` and :command:`setuptools` to the latest
+version:
 
 .. code-block:: console
 
-   (env) $ pip install --upgrade pip
+   (env) $ pip install --upgrade pip setuptools
 
 
 .. _upgrading#upgrading-2.6:

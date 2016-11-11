@@ -9,7 +9,8 @@ requirements in a virtual environment.
 If you only want to have a sneak peek of Pootle then the default configuration
 and the built-in server will suffice.
 
-For a production deployment we **strongly** recommend that you set up the following:
+For a production deployment we **strongly** recommend that you set up the
+following:
 
 - :ref:`Install optional optimization packages<optimization#optional_software>`
 - Use either a :ref:`MySQL <mysql_installation>`
@@ -21,10 +22,11 @@ For a production deployment we **strongly** recommend that you set up the follow
    :ref:`necessary requirements <requirements>`.
 
 
-.. warning:: It is important to install Pootle into a virtual environment to ensure
-   the correct packages and permissions. It's even more important not to install Pootle
-   as the root user on your system. **Installing or running Pootle as the root user
-   will expose your system to many potential security vulnerabilities**
+.. warning:: It is important to install Pootle into a virtual environment to
+   ensure the correct packages and permissions. It's even more important not to
+   install Pootle as the root user on your system. **Installing or running
+   Pootle as the root user will expose your system to many potential security
+   vulnerabilities**
 
 
 .. _installation#assumptions:
@@ -54,14 +56,14 @@ In order to install Pootle first create a virtual environment. The virtual
 environment allows you to install dependencies independent of your system
 packages.
 
-Please install ``virtualenv`` from your system packages, e.g. on Debian:
+Please install :command:`virtualenv` from your system packages, e.g. on Debian:
 
 .. code-block:: console
 
   $ sudo apt-get install python-virtualenv
 
 
-Otherwise you can install ``virtualenv`` using :command:`pip`:
+Otherwise you can install :command:`virtualenv` using :command:`pip`:
 
 .. code-block:: console
 
@@ -69,16 +71,18 @@ Otherwise you can install ``virtualenv`` using :command:`pip`:
 
 
 Now create a virtual environment on your location of choice by issuing the
-``virtualenv`` command:
+:command:`virtualenv` command:
 
 .. code-block:: console
 
   $ cd ~/dev/pootle
   $ virtualenv env
 
-.. note:: for versions of ``virtualenv`` prior to 1.10, you may need to call
-    :command:`virtualenv` with the ``--setuptools`` option, to ensure the correct
-    environment.
+
+.. note:: for versions of :command:`virtualenv` prior to 1.10, you may need to
+    call :command:`virtualenv` with the ``--setuptools`` option, to ensure the
+    correct environment.
+
 
 To activate the virtual environment run the :command:`activate` script:
 
@@ -86,10 +90,11 @@ To activate the virtual environment run the :command:`activate` script:
 
   $ source env/bin/activate
 
+
 Once activated the virtual environment name will be prepended to the shell prompt.
 
 Lastly, we want to make sure that we are using the latest version of
-:command:`pip` and ``setuptools``:
+:command:`pip` and :command:`setuptools`:
 
 .. code-block:: console
 

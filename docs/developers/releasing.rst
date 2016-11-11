@@ -277,7 +277,7 @@ checkout run:
 
     $ mkvirtualenv build-pootle-release
     (build-pootle-release)$ nvm install stable
-    (build-pootle-release)$ pip install --upgrade pip
+    (build-pootle-release)$ pip install --upgrade pip setuptools
     (build-pootle-release)$ pip install -r requirements/build.txt
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
@@ -304,7 +304,7 @@ the new release using:
 .. code-block:: console
 
     $ mkvirtualenv test-pootle-release
-    (test-pootle-release)$ pip install --upgrade pip
+    (test-pootle-release)$ pip install --upgrade pip setuptools
     (test-pootle-release)$ pip install dist/Pootle-$version.tar.bz2
     (test-pootle-release)$ pip install mysqlclient
     (test-pootle-release)$ pootle init
