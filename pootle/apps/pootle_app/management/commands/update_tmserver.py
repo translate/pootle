@@ -36,16 +36,15 @@ class DBParser(object):
 
     def get_units(self, filenames):
         """Gets the units to import and its total count."""
-        units_qs = Unit.simple_objects \
-            .exclude(target_f__isnull=True) \
-            .exclude(target_f__exact='') \
-            .filter(revision__gt=self.last_indexed_revision) \
-            .select_related(
-                'submitted_by',
-                'store',
-                'store__translation_project__project',
-                'store__translation_project__language'
-            )
+        units_qs = (
+            Unit.objects.exclude(target_f__isnull=True)
+                        .exclude(target_f__exact='')
+                        .filter(revision__gt=self.last_indexed_revision))
+        units_qs = units_qs.select_related(
+            'submitted_by',
+            'store',
+            'store__translation_project__project',
+            'store__translation_project__language')
 
         if self.exclude_disabled_projects:
             units_qs = units_qs.exclude(
