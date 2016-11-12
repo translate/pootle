@@ -102,6 +102,10 @@ class PootleBrowseView(PootleDetailView):
             response.set_cookie(SIDEBAR_COOKIE_NAME, self.cookie_data)
         return response
 
+    @property
+    def cache_key(self):
+        return self.object.data_tool.cache_key
+
     @cached_property
     def top_scorers(self):
         User = get_user_model()
@@ -155,6 +159,7 @@ class PootleBrowseView(PootleDetailView):
              'checks': self.checks,
              'translation_states': self.states,
              'stats': stats,
+             'cache_key': self.cache_key,
              'can_translate': can_translate,
              'can_translate_stats': can_translate_stats,
              'url_action_continue': url_action_continue,

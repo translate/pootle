@@ -268,7 +268,10 @@ class TPBrowseBaseView(PootleBrowseView):
 
 
 class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
-    pass
+
+    @property
+    def cache_key(self):
+        return ""
 
 
 class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
