@@ -51,7 +51,6 @@ var resolve = {
     'jquery-utils': __dirname + '/vendor/jquery/jquery.utils.js',
 
     levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
-    odometer: __dirname + '/vendor/odometer.js', // FIXME: use npm module
     sorttable: __dirname + '/vendor/sorttable.js',
     spin: __dirname + '/vendor/spin.js', // FIXME: use npm module
   }

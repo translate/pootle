@@ -62,7 +62,6 @@ css_common = Bundle(
     'css/auth.css',
     'css/magnific-popup.css',
     'css/navbar.css',
-    'css/odometer.css',
     'css/popup.css',
     'css/react-select.css',
     'css/tipsy.css',

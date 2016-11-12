@@ -6,6 +6,20 @@
  * AUTHORS file for copyright and authorship information.
  */
 
+#user-score
+{
+    font-size: 1.3em;
+    font-weight: 300;
+    color: rgb(127, 232, 245);
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 0.25em;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 4px;
+    border-radius: 4px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+}
+
 #top-scorers
 {
     width: 100%;

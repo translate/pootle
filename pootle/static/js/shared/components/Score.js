@@ -8,8 +8,6 @@
 
 import React from 'react';
 
-import Odometer from './Odometer';
-
 
 const Score = React.createClass({
 
@@ -19,7 +17,7 @@ const Score = React.createClass({
 
   render() {
     return (
-      <Odometer value={this.props.value} />
+       <span id="user-score">{this.props.value}</span>
     );
   },
 
