@@ -42,7 +42,7 @@
 	  {% widthratio item.stats.translated item.stats.total 1000 %}
 	</div>
         <div id="progressbar-{{ item.code|cssid }}">
-	  {% cache 10000 LANGUAGE_CODE item.stats.total item.stats.fuzzy item.stats.translated %}
+	  {% cache 10000 progress_bar item.stats.total item.stats.fuzzy item.stats.translated LANGUAGE_CODE %}
           {% progress_bar item.stats.total item.stats.fuzzy item.stats.translated %}
 	  {% endcache %}
         </div>
