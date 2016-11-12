@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import calendar
+
 from translate.lang import data
 
 from django import forms
@@ -27,6 +29,7 @@ from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
 from pootle.i18n.gettext import ugettext as _
+from pootle.local.dates import timesince
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)
@@ -350,11 +353,15 @@ class UnitTimelineJSON(PootleUnitJSON):
             if display_dt is not None:
                 display_dt = dateformat.format(display_dt)
                 iso_dt = entry_group['datetime'].isoformat()
+                relative_time = timesince(
+                    calendar.timegm(entry_group['datetime'].timetuple()))
             else:
                 iso_dt = None
+                relative_time = None
             result.append({
                 "display_datetime": display_dt,
                 "iso_datetime": iso_dt,
+                "relative_time": relative_time,
                 "via_upload": entry_group.get('via_upload', False),
             })
         return result

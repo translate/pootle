@@ -611,7 +611,6 @@ PTL.editor = {
     this.keepState = false;
     this.isLoading = false;
     this.hideActivity();
-    helpers.updateRelativeDates();
   },
 
   /* Things to do when no results are returned */
@@ -1326,7 +1325,6 @@ PTL.editor = {
           units: [unit],
         });
       }
-
       prevPath = pootlePath;
 
       return out;
@@ -2058,8 +2056,6 @@ PTL.editor = {
         .prependTo('#extras-container').delay(200)
         .hide().animate({ height: 'show' }, 1000, 'easeOutQuad');
     }
-
-    helpers.updateRelativeDates();
   },
 
   /* Removes last comment */
@@ -2112,6 +2108,7 @@ PTL.editor = {
         const props = {
           title: data.entries_group[i].display_datetime,
           dateTime: data.entries_group[i].iso_datetime,
+          relativeTime: data.entries_group[i].relative_time,
         };
         if (data.entries_group[i].via_upload) {
           ReactRenderer.render(<UploadTimeSince {...props} />, el);

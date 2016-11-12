@@ -85,9 +85,6 @@ PTL.common = {
       $(window).on('resize', helpers.fixSidebarHeight);
     }
 
-    helpers.updateRelativeDates();
-    setInterval(helpers.updateRelativeDates, 6e4);
-
     // Tipsy setup
     $(document).tipsy({
       gravity: $.fn.tipsy.autoBounds2(150, 'n'),
