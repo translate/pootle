@@ -25,10 +25,10 @@ const ReactEditor = {
     this.alternativeSourceNodes = qAll('.js-mount-editor-alt-src');
     this.props = {};
     this.hasCRLF = props.sourceValues.some(hasCRLF);
+    ReactRenderer.unmountComponents();
 
     loadFormatAdaptor(props, (newProps, adaptor) => {
       this.formatAdaptor = adaptor;
-      ReactRenderer.unmountComponents();
       this.setProps(newProps);
     });
   },
