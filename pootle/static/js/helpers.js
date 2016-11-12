@@ -8,8 +8,6 @@
 
 import $ from 'jquery';
 
-import { relativeTime } from 'utils/relativeTime';
-
 
 function updateInputState($checkboxes, $input) {
   if ($checkboxes.length === $checkboxes.filter(':checked').length) {
@@ -21,13 +19,6 @@ function updateInputState($checkboxes, $input) {
 
 
 const helpers = {
-
-  /* Updates relative dates */
-  updateRelativeDates() {
-    $('.js-relative-date').each((i, e) => {
-      $(e).text(relativeTime($(e).attr('datetime')));
-    });
-  },
 
   fixSidebarHeight() {
     const $body = $('#body');

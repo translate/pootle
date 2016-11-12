@@ -16,6 +16,7 @@ const UploadTimeSince = React.createClass({
 
   propTypes: {
     dateTime: PropTypes.string.isRequired,
+    relativeTime: PropTypes.string.isRequired,    
     title: PropTypes.string.isRequired,
   },
 
