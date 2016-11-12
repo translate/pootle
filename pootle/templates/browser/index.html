@@ -1,6 +1,6 @@
 {% extends browser_extends %}
 
-{% load core assets cleanhtml i18n locale common_tags profile_tags %}
+{% load core assets cleanhtml i18n locale common_tags profile_tags cache %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -149,13 +149,19 @@
 
 {% if vfolders %}
 <div class="browsing-table-wrapper bd vfolders" lang="{{ LANGUAGE_CODE }}">
+  {{ rev_cache_key }}
+  {% cache 10000 "vfolder_table" cache_key LANGUAGE_CODE %}
   {% display_table vfolders can_translate %}
+  {% endcache %}
 </div>
 {% endif %}
 
 {% if table %}
 <div class="browsing-table-wrapper bd" lang="{{ LANGUAGE_CODE }}">
+  {{ rev_cache_key }}
+  {% cache 10000 "browse_table" cache_key LANGUAGE_CODE %}
   {% display_table table can_translate %}
+  {% endcache %}
 </div>
 {% endif %}
 {% endblock content %}
