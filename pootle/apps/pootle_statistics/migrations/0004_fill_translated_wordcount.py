@@ -10,7 +10,6 @@ def set_translated_wordcount(apps, schema_editor):
     scorelog_qs = ScoreLog.objects.select_related(
         'submission',
         'submission__suggestion',
-        'submission__unit'
     ).filter(
         action_code__in=[
             TranslationActionCodes.NEW,

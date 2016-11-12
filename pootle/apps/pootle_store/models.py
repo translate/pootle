@@ -40,8 +40,7 @@ from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
 from pootle.core.storage import PootleFileSystemStorage
-from pootle.core.url_helpers import (
-    get_editor_filter, split_pootle_path, to_tp_relative_path)
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
@@ -190,6 +189,12 @@ def stringcount(string):
 
 class Unit(models.Model, base.TranslationUnit):
     store = models.ForeignKey("pootle_store.Store", db_index=True)
+    tp_path = models.CharField(
+        max_length=255,
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name=_("Path"))
     index = models.IntegerField(db_index=True)
     unitid = models.TextField(editable=False)
     unitid_hash = models.CharField(max_length=32, db_index=True,
@@ -305,6 +310,7 @@ class Unit(models.Model, base.TranslationUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+        self.tp_path = self.store.tp_path
         source_updated = kwargs.pop("source_updated", None) or self._source_updated
         target_updated = kwargs.pop("target_updated", None) or self._target_updated
         state_updated = kwargs.pop("state_updated", None) or self._state_updated
@@ -1049,7 +1055,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         `/af/project/dir1/dir2/file.po`, `store.path` will return
         `dir1/dir2/file.po`.
         """
-        return to_tp_relative_path(self.pootle_path)
+        return self.tp_path[1:]
 
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
