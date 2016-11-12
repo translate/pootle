@@ -47,7 +47,7 @@ class PootleBrowseView(PootleDetailView):
                         stats["total"] - stats["fuzzy"] - stats["translated"])
             else:
                 stats[state["state"]] = state["count"] = stats[state["state"]]
-            if state["count"]:
+            if state.get("count"):
                 state["percent"] = round(
                     (float(state["count"]) / stats["total"]) * 100, 1)
         return states
