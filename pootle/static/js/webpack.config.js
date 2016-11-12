@@ -36,8 +36,6 @@ var resolve = {
     backbone: __dirname + '/vendor/backbone/backbone.js',
 
     'backbone-move': __dirname + '/vendor/backbone/backbone.move.js',
-    'backbone-safesync': __dirname + '/vendor/backbone/backbone.safesync.js',
-    'backbone-relational': __dirname + '/vendor/backbone/backbone-relational.js',
 
     'jquery-bidi': __dirname + '/vendor/jquery/jquery.bidi.js',
     'jquery-easing': __dirname + '/vendor/jquery/jquery.easing.js',
@@ -53,7 +51,6 @@ var resolve = {
     'jquery-utils': __dirname + '/vendor/jquery/jquery.utils.js',
 
     levenshtein: __dirname + '/vendor/levenshtein.js', // FIXME: use npm module
-    moment: __dirname + '/vendor/moment.js', // FIXME: use npm module
     odometer: __dirname + '/vendor/odometer.js', // FIXME: use npm module
     sorttable: __dirname + '/vendor/sorttable.js',
     spin: __dirname + '/vendor/spin.js', // FIXME: use npm module
