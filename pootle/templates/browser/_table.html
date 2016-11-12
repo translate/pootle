@@ -1,5 +1,8 @@
-{% load i18n locale %}
+{% load i18n locale cache %}
 {% load common_tags profile_tags %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
 
 <table class="sortable stats" id="{{ table.id }}" lang="{{ LANGUAGE_CODE }}"
   dir="{% locale_dir %}" data-sort-cookie="browser-sorting-pref">
@@ -39,7 +42,9 @@
 	  {% widthratio item.stats.translated item.stats.total 1000 %}
 	</div>
         <div id="progressbar-{{ item.code|cssid }}">
+	  {% cache 10000 LANGUAGE_CODE item.stats.total item.stats.fuzzy item.stats.translated %}
           {% progress_bar item.stats.total item.stats.fuzzy item.stats.translated %}
+	  {% endcache %}
         </div>
 	{% endif %}
       </td>
