@@ -1376,6 +1376,7 @@ PTL.editor = {
           language: unit.store.source_lang,
           values: unit.source,
           type: 'original',
+          fileType: unit.store.filetype,
         };
         const targetProps = {
           id: unit.id,
@@ -1384,6 +1385,7 @@ PTL.editor = {
           dir: unit.store.target_dir,
           language: unit.store.target_lang,
           values: unit.target,
+          fileType: unit.store.filetype,
           type: 'translation',
         };
 
