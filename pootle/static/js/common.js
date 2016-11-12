@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import 'backbone-safesync';
 import $ from 'jquery';
 import 'jquery-magnific-popup';
 import 'select2';

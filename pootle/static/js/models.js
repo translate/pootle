@@ -7,31 +7,14 @@
  */
 
 import Backbone from 'backbone';
-import 'backbone-relational';
 import _ from 'underscore';
-
-
-/*
- * Store
- */
-
-export const Store = Backbone.RelationalModel.extend({});
 
 
 /*
  * Unit
  */
 
-export const Unit = Backbone.RelationalModel.extend({
-
-  relations: [{
-    type: 'HasOne',
-    key: 'store',
-    relatedModel: Store,
-    reverseRelation: {
-      key: 'units',
-    },
-  }],
+export const Unit = Backbone.Model.extend({
 
   /*
    * Sets the current unit's translation.

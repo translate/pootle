@@ -1334,7 +1334,7 @@ PTL.editor = {
     }
 
     return this.units.slice(begin, end).reduce((out, unit) => {
-      const pootlePath = unit.get('store').get('pootlePath');
+      const pootlePath = unit.get('pootlePath');
 
       if (pootlePath === prevPath) {
         out[out.length - 1].units.push(unit);
@@ -2184,7 +2184,7 @@ PTL.editor = {
     if (filtered.length) {
       return this.tmpl.tm({
         name,
-        store: store.toJSON(),
+        store,
         unit: unit.toJSON(),
         suggs: filtered,
       });
@@ -2196,16 +2196,16 @@ PTL.editor = {
   /* Gets TM suggestions from amaGama */
   getTMUnits() {
     const unit = this.units.getCurrent();
-    const store = unit.get('store');
-    const src = store.get('source_lang');
-    const tgt = store.get('target_lang');
     const sText = unit.get('source')[0];
+    const store = unit.get('store');
+    const src = store.source_lang;
+    const tgt = store.target_lang;
 
     if (!sText.length || src === tgt) {
       return;
     }
 
-    const pStyle = store.get('project_style');
+    const pStyle = store.project_style;
     let tmUrl = `${this.settings.tmUrl}${src}/${tgt}/unit/` +
       `?source=${encodeURIComponent(sText)}`;
 
@@ -2231,7 +2231,7 @@ PTL.editor = {
     const name = gettext('Similar translations');
     const tm = PTL.editor.tmpl.tm({
       name,
-      store: store.toJSON(),
+      store,
       unit: unit.toJSON(),
       suggs: filtered,
     });
