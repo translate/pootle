@@ -217,3 +217,68 @@ def test_provider_list_results():
     results = provider_test.gather()
     assert isinstance(results, GatheredList)
     assert [r for r in results] == [1, 2, 3, 2, 3, 4]
+
+
+def test_provider_subclass():
+
+    class ParentClass(object):
+        pass
+
+    class ChildClass(ParentClass):
+        pass
+
+    provider_test = Provider()
+
+    @provider(provider_test, sender=ParentClass)
+    def provider_for_test(sender, *args, **kwargs):
+        return dict(foo="bar")
+
+    assert provider_test.gather(ChildClass)["foo"] == "bar"
+
+
+def test_provider_caching():
+
+    provider_test = Provider(use_caching=True)
+
+    @provider(provider_test)
+    def provider_for_test(sender, *args, **kwargs):
+        return dict(foo="bar")
+
+    assert provider_test.gather()["foo"] == "bar"
+    assert provider_test.gather()["foo"] == "bar"
+
+
+def test_provider_caching_sender():
+
+    class Sender(object):
+        pass
+
+    provider_test = Provider(use_caching=True)
+
+    @provider(provider_test, sender=Sender)
+    def provider_for_test(sender, *args, **kwargs):
+        return dict(foo="bar")
+
+    assert provider_test.gather(Sender)["foo"] == "bar"
+    assert provider_test.gather(Sender)["foo"] == "bar"
+
+
+def test_provider_caching_no_receiver():
+
+    class Sender(object):
+        pass
+
+    provider_test = Provider(use_caching=True)
+
+    assert provider_test.gather(Sender).keys() == []
+    assert provider_test.gather(Sender).keys() == []
+
+    class NotSender(object):
+        pass
+
+    @provider(provider_test, sender=Sender)
+    def provider_for_test(sender, *args, **kwargs):
+        return dict(foo="bar")
+
+    assert provider_test.gather(NotSender).keys() == []
+    assert provider_test.gather(NotSender).keys() == []
