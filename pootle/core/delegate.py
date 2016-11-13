@@ -32,7 +32,7 @@ review = Getter()
 revision = Getter()
 revision_updater = Getter()
 site = Getter()
-
+panels = Provider()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
