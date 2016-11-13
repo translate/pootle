@@ -22,6 +22,8 @@ from .base import PootleDetailView
 
 class PootleTranslateView(PootleDetailView):
     template_name = "editor/main.html"
+    page_name = "translate"
+    view_name = ""
 
     @property
     def checks(self):
@@ -60,7 +62,7 @@ class PootleTranslateView(PootleDetailView):
     def get_context_data(self, *args, **kwargs):
         ctx = super(PootleTranslateView, self).get_context_data(*args, **kwargs)
         ctx.update(
-            {'page': 'translate',
+            {'page': self.page_name,
              'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,

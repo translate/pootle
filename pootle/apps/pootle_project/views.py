@@ -106,7 +106,7 @@ class ProjectMixin(object):
 
 
 class ProjectBrowseView(ProjectMixin, PootleBrowseView):
-    table_id = "project"
+    view_name = "project"
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
@@ -326,7 +326,7 @@ class ProjectsMixin(object):
 
 
 class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
-    table_id = "projects"
+    view_name = "projects"
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']

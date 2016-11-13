@@ -23,10 +23,11 @@ from .display import ChecksDisplay, StatsDisplay
 
 class PootleBrowseView(PootleDetailView):
     template_name = 'browser/index.html'
-    table_id = None
     table_fields = None
     items = None
     is_store = False
+    page_name = "browse"
+    view_name = ""
 
     @property
     def checks(self):
@@ -87,9 +88,9 @@ class PootleBrowseView(PootleDetailView):
 
     @property
     def table(self):
-        if self.table_id and self.table_fields and self.items:
+        if self.table_fields and self.items:
             return {
-                'id': self.table_id,
+                'id': self.view_name,
                 'fields': self.table_fields,
                 'headings': get_table_headings(self.table_fields),
                 'items': self.items,
@@ -151,7 +152,7 @@ class PootleBrowseView(PootleDetailView):
         stats = self.stats
         del stats["children"]
         ctx.update(
-            {'page': 'browse',
+            {'page': self.page_name,
              'checks': self.checks,
              'translation_states': self.states,
              'stats': stats,

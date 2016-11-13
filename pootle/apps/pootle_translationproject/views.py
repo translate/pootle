@@ -272,7 +272,7 @@ class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
 
 
 class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
-    table_id = "tp"
+    view_name = "tp"
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
