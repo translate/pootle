@@ -7,7 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.dispatch import Signal
-from django.dispatch.dispatcher import NO_RECEIVERS
+from django.dispatch.dispatcher import NO_RECEIVERS, NONE_ID, _make_id, weakref
 
 from .exceptions import StopProviding
 from .results import GatheredDict
@@ -19,6 +19,7 @@ class Provider(Signal):
 
     def __init__(self, *args, **kwargs):
         self.result_class = kwargs.pop("result_class", self.result_class)
+        self._sender_map = {}
         super(Provider, self).__init__(*args, **kwargs)
 
     def gather(self, sender=None, **named):
@@ -26,7 +27,9 @@ class Provider(Signal):
         named["gathered"] = gathered
         no_receivers = (
             not self.receivers
-            or self.sender_receivers_cache.get(sender) is NO_RECEIVERS)
+            or (sender and self.use_caching
+                and not self._dead_receivers
+                and self.sender_receivers_cache.get(sender) is NO_RECEIVERS))
         if no_receivers:
             return gathered
         for provider in self._live_receivers(sender):
@@ -41,6 +44,43 @@ class Provider(Signal):
                     e.result)
                 break
         return gathered
+
+    def connect(self, receiver, sender=None, weak=True, dispatch_uid=None):
+        super(Provider, self).connect(receiver, sender, weak, dispatch_uid)
+        self._sender_map[_make_id(sender)] = sender
+
+    def _live_receivers(self, sender):
+        """
+        Filter sequence of receivers to get resolved, live receivers.
+        This checks for weak references and resolves them, then returning only
+        live receivers.
+        """
+        with self.lock:
+            self._clear_dead_receivers()
+            senderkey = _make_id(sender)
+            receivers = []
+            for (receiverkey, r_senderkey), receiver in self.receivers:
+                r_sender = self._sender_map[r_senderkey]
+                if r_senderkey == NONE_ID or r_senderkey == senderkey:
+                    receivers.append(receiver)
+                elif sender and issubclass(sender, r_sender):
+                    receivers.append(receiver)
+            if self.use_caching and sender:
+                if not receivers:
+                    self.sender_receivers_cache[sender] = NO_RECEIVERS
+                else:
+                    # Note, we must cache the weakref versions.
+                    self.sender_receivers_cache[sender] = receivers
+        non_weak_receivers = []
+        for receiver in receivers:
+            if isinstance(receiver, weakref.ReferenceType):
+                # Dereference the weak reference.
+                receiver = receiver()
+                if receiver is not None:
+                    non_weak_receivers.append(receiver)
+            else:
+                non_weak_receivers.append(receiver)
+        return non_weak_receivers
 
 
 def provider(signal, **kwargs):
