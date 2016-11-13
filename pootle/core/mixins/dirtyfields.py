@@ -29,7 +29,7 @@ class DirtyFieldsMixin(object):
         reset_state(sender=self.__class__, instance=self)
 
     def _as_dict(self):
-        return {f.name: self.__dict__[f.name]
+        return {f.name: self._meta.get_field(f.name)
                 for f in self._meta.local_fields
                 if not f.rel}
 
