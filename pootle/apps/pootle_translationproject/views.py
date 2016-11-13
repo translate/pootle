@@ -201,6 +201,7 @@ class TPStoreMixin(TPMixin):
     browse_url_path = "pootle-tp-store-browse"
     translate_url_path = "pootle-tp-store-translate"
     is_store = True
+    panels = ()
 
     @property
     def permission_context(self):
@@ -268,7 +269,12 @@ class TPBrowseBaseView(PootleBrowseView):
 
 
 class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
-    pass
+
+    disabled_items = False
+
+    @property
+    def cache_key(self):
+        return ""
 
 
 class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
@@ -276,6 +282,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
+    panel_names = ('vfolders', 'children')
 
     @cached_property
     def object_children(self):
@@ -324,14 +331,6 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
             stats_ob,
             stats=stats_ob.data_tool.get_stats(
                 user=self.request.user)).stats
-
-    def get_context_data(self, *args, **kwargs):
-        ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
-        if self.vfolders_data_view:
-            vfdata = self.vfolders_data_view.table_data
-            if vfdata:
-                ctx.update(vfolders=vfdata["children"])
-        return ctx
 
 
 class TPTranslateBaseView(PootleTranslateView):
