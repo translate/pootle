@@ -28,3 +28,4 @@ class PootleConfig(AppConfig):
     def ready(self):
         checks.register(deprecation.check_deprecated_settings, "settings")
         importlib.import_module("pootle_app.getters")
+        importlib.import_module("pootle_app.providers")
