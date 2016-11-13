@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import locale
+
 from django.core.urlresolvers import reverse
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
@@ -24,12 +26,26 @@ class PootleDetailView(GatherContextMixin, DetailView):
     translate_url_path = ""
     browse_url_path = ""
     resource_path = ""
+    view_name = ""
 
     @property
     def browse_url(self):
         return reverse(
             self.browse_url_path,
             kwargs=self.url_kwargs)
+
+    @property
+    def cache_key(self):
+        return (
+            "%s.%s.%s.%s"
+            % (self.page_name,
+               self.view_name,
+               self.object.data_tool.cache_key,
+               self.request_lang))
+
+    @property
+    def request_lang(self):
+        return locale.getlocale()[0]
 
     @cached_property
     def has_admin_access(self):
