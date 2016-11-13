@@ -6,10 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
+
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
-from pootle.core.browser import get_table_headings
+from pootle.core.decorators import persistent_property
+from pootle.core.delegate import panels
 from pootle.core.helpers import (SIDEBAR_COOKIE_NAME,
                                  get_sidebar_announcements_context)
 from pootle.core.url_helpers import split_pootle_path
@@ -21,6 +24,9 @@ from .base import PootleDetailView
 from .display import ChecksDisplay, StatsDisplay
 
 
+logger = logging.getLogger(__name__)
+
+
 class PootleBrowseView(PootleDetailView):
     template_name = 'browser/index.html'
     table_fields = None
@@ -28,6 +34,7 @@ class PootleBrowseView(PootleDetailView):
     object_children = ()
     page_name = "browse"
     view_name = ""
+    panel_names = ('children', )
 
     @property
     def checks(self):
@@ -53,7 +60,23 @@ class PootleBrowseView(PootleDetailView):
                     (float(state["count"]) / stats["total"]) * 100, 1)
         return states
 
-    @cached_property
+    @property
+    def cache_key(self):
+        return (
+            "%s.%s.%s.%s.%s"
+            % (self.page_name,
+               self.view_name,
+               self.object.data_tool.cache_key,
+               self.show_all,
+               self.request_lang))
+
+    @property
+    def show_all(self):
+        return (
+            self.request.user.is_superuser
+            or "administrate" in self.request.permissions)
+
+    @persistent_property
     def stats(self):
         stats = self.object.data_tool.get_stats(user=self.request.user)
         return StatsDisplay(self.object, stats=stats).stats
@@ -102,15 +125,6 @@ class PootleBrowseView(PootleDetailView):
                 item["stats"] = stats["children"][item["title"]]
         return items
 
-    @property
-    def table(self):
-        if self.table_fields and self.object_children:
-            return {
-                'id': self.view_name,
-                'fields': self.table_fields,
-                'headings': get_table_headings(self.table_fields),
-                'rows': self.object_children}
-
     def get(self, *args, **kwargs):
         response = super(PootleBrowseView, self).get(*args, **kwargs)
         if self.cookie_data:
@@ -131,6 +145,15 @@ class PootleBrowseView(PootleDetailView):
         return get_top_scorers_data(
             self.top_scorers,
             TOP_CONTRIBUTORS_CHUNK_SIZE)
+
+    @property
+    def panels(self):
+        _panels = panels.gather(self.__class__)
+        for panel in self.panel_names:
+            if panel in _panels:
+                yield _panels[panel](self).content
+            else:
+                logger.warn("Unrecognized panel '%s'", panel)
 
     def get_context_data(self, *args, **kwargs):
         filters = {}
@@ -155,9 +178,7 @@ class PootleBrowseView(PootleDetailView):
 
         ctx, cookie_data_ = self.sidebar_announcements
         ctx.update(super(PootleBrowseView, self).get_context_data(*args, **kwargs))
-        # we need to set table before deleting stats["children"]
-        table = self.table
-        stats = self.stats
+        stats = self.stats.copy()
         del stats["children"]
         ctx.update(
             {'page': self.page_name,
@@ -166,14 +187,15 @@ class PootleBrowseView(PootleDetailView):
              'stats': stats,
              'can_translate': self.can_translate,
              'can_translate_stats': self.can_translate_stats,
+             'cache_key': self.cache_key,
              'url_action_continue': url_action_continue,
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,
              'url_action_view_all': url_action_view_all,
              'top_scorers': self.top_scorers,
              'top_scorers_data': self.top_scorer_data,
-             'table': table,
              'has_disabled': self.has_disabled,
+             'panels': self.panels,
              'is_store': self.is_store,
              'browser_extends': self.template_extends})
         return ctx
