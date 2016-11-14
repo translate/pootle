@@ -65,7 +65,9 @@
         <div id="last-updated-ratio-{{ item.code|cssid }}" class="sortkey">
 	  {{ item.stats.last_created_unit.creation_time }}
 	</div>
-        <span>{{ item.stats.last_created_unit.creation_time|time_since }}</span>
+        {% if item.stats.last_created_unit.creation_time %}
+	<span>_XXX_LAST_CREATED_{{ item.code }}_LAST_CREATED_XXX_</span>
+	{% endif %}
       </td>
       {% endif %}
 
@@ -107,7 +109,9 @@
 	  <span class="user-name">{{ item.stats.last_submission.displayname }}</span>
 	  {% endif %}
 	</a>
-	<span class="not-inited muted">{{ item.stats.last_submission.mtime|time_since }}</span>
+        {% if item.stats.last_submission.mtime %}
+	<span class="not-inited muted">_XXX_LAST_SUBMISSION_{{ item.code }}_LAST_SUBMISSION_XXX_</span>
+	{% endif %}
       </td>
       {% endif %}
     </tr>
