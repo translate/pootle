@@ -1059,7 +1059,22 @@ html[dir="rtl"] .suggestion-original
 {
     color: #c896c8;
     font-size: 85%;
+}
+
+.sources .plural-form-label
+{
     margin: 0.5em 0 0 0.3em;
+}
+
+#suggestions .plural-form-label
+{
+    margin-right: 5px;
+}
+
+#suggestions .plural-form-label,
+#suggestions .suggestion-translation
+{
+    display: inline-block;
 }
 
 .editor-area-wrapper .subheader

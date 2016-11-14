@@ -194,6 +194,7 @@
                 targetNplurals: {{ target_nplurals }},
                 alternativeSources: {{ altsrcs|to_js }},
                 fileType: '{{ filetype }}',
+                suggestions: {{ suggestions|to_js }},
               });
             </script>
             {% endblock %}
@@ -333,17 +334,7 @@
                 </a>
               {% endif %}
             </div>
-            {% for i, target, title in sugg|pluralize_sugg %}
-            <div class="extra-item-content">
-              <div class="extra-item">
-                <div
-                  class="js-suggestion-text suggestion-translation"
-                  data-string="{{ target }}"
-                  lang="{{ language.code }}" {% if title %} title="{{ title }}"{% endif %}
-                  >{{ target }}</div>
-              </div>
-            </div>
-            {% endfor %}
+            <div class="js-mnt-suggestion" data-id="{{ sugg.id }}"></div>
             <div class="suggestion-feedback js-mnt-suggestion-feedback-{{ sugg.id }}"></div>
             {% block suggestion_comment %}{% endblock %}
             {% if sugg.creation_time %}

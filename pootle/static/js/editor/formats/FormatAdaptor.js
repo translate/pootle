@@ -7,12 +7,14 @@
  */
 
 import EditorContainer from '../containers/EditorContainer';
+import SuggestionValue from '../components/SuggestionValue';
 import UnitSource from '../components/UnitSource';
 import ViewUnit from '../components/ViewUnit';
 
 
 const FormatAdaptor = {
   editorComponent: EditorContainer,
+  suggestionValueComponent: SuggestionValue,
   unitSourceComponent: UnitSource,
   viewUnitComponent: ViewUnit,
 };

@@ -458,6 +458,8 @@ class UnitEditJSON(PootleUnitJSON):
             'target_nplurals': self.get_target_nplurals(),
             'has_plurals': self.object.hasplural(),
             'filetype': self.object.store.filetype.name,
+            'suggestions': {x.id: dict(id=x.id, target=x.target.strings)
+                            for x in self.object.get_suggestions()},
         }
 
     def get_response_data(self, context):

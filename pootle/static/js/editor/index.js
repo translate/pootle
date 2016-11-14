@@ -23,6 +23,7 @@ const ReactEditor = {
     this.node = q('.js-mount-editor');
     this.sourceNode = q('.js-mount-editor-original-src');
     this.alternativeSourceNodes = qAll('.js-mount-editor-alt-src');
+    this.suggestionValueNodes = qAll('.js-mnt-suggestion');
     this.props = {};
     this.hasCRLF = props.sourceValues.some(hasCRLF);
     ReactRenderer.unmountComponents();
@@ -80,7 +81,21 @@ const ReactEditor = {
           sourceLocaleCode={unit.language_code}
           sourceLocaleDir={unit.language_direction}
         />,
-        this.alternativeSourceNodes[i]
+        mountNode
+      );
+    }
+    for (let i = 0; i < this.suggestionValueNodes.length; i++) {
+      const mountNode = this.suggestionValueNodes[i];
+      const suggestion = this.props.suggestions[mountNode.dataset.id];
+      ReactRenderer.render(
+        <this.formatAdaptor.suggestionValueComponent
+          id={suggestion.id}
+          values={suggestion.target}
+          hasPlurals={this.props.hasPlurals}
+          sourceLocaleCode={this.props.sourceLocaleCode}
+          sourceLocaleDir={this.props.sourceLocaleDir}
+        />,
+        mountNode
       );
     }
   },
