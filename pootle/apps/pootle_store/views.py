@@ -427,6 +427,7 @@ class UnitEditJSON(PootleUnitJSON):
             self.store.priority
             if 'virtualfolder' in settings.INSTALLED_APPS
             else None)
+        suggestions = self.object.get_suggestions()
         return {
             'unit': self.object,
             'form': self.get_unit_edit_form(),
@@ -458,8 +459,9 @@ class UnitEditJSON(PootleUnitJSON):
             'target_nplurals': self.get_target_nplurals(),
             'has_plurals': self.object.hasplural(),
             'filetype': self.object.store.filetype.name,
-            'suggestions': {x.id: dict(id=x.id, target=x.target.strings)
-                            for x in self.object.get_suggestions()},
+            'suggestions': suggestions,
+            'suggestions_dict': {x.id: dict(id=x.id, target=x.target.strings)
+                                 for x in suggestions},
         }
 
     def get_response_data(self, context):

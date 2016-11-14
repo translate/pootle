@@ -194,7 +194,7 @@
                 targetNplurals: {{ target_nplurals }},
                 alternativeSources: {{ altsrcs|to_js }},
                 fileType: '{{ filetype }}',
-                suggestions: {{ suggestions|to_js }},
+                suggestions: {{ suggestions_dict|to_js }},
               });
             </script>
             {% endblock %}
@@ -292,7 +292,6 @@
         </div>
         {% endif %}
         {% endblock %}
-        {% with unit.get_suggestions as suggestions %}
         {% if suggestions %}
         <div id="suggestions">
           <div class="extra-item-title">{% trans 'User suggestions' %}</div>
@@ -348,7 +347,6 @@
           {% endfor %}
         </div>
         {% endif %}
-        {% endwith %}
       </div>
     </div>
   </div>
