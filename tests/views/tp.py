@@ -19,12 +19,10 @@ from django.core.urlresolvers import reverse
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
-from pootle.core.browser import (
-    get_parent, get_table_headings, make_directory_item, make_store_item)
+from pootle.core.browser import get_parent
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
-from pootle.core.url_helpers import (
-    get_previous_url, get_path_parts, split_pootle_path)
+from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
 from pootle.core.views.display import ChecksDisplay
@@ -39,6 +37,7 @@ from virtualfolder.models import VirtualFolder
 
 
 def _test_browse_view(tp, request, response, kwargs):
+
     cookie_data = json.loads(
         unquote(response.cookies[SIDEBAR_COOKIE_NAME].value))
     assert cookie_data["foo"] == "bar"
@@ -70,50 +69,15 @@ def _test_browse_view(tp, request, response, kwargs):
         data_obj,
         stats=data_obj.data_tool.get_stats(user=request.user)).stats
     if not kwargs.get("filename"):
-        vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
         vfolders = True
     else:
         vfolders = None
     filters = {}
     if vfolders:
         filters['sort'] = 'priority'
-    dirs_with_vfolders = set(
-        split_pootle_path(path)[2].split("/")[0]
-        for path
-        in tp.stores.filter(
-            vfolders__isnull=False).values_list(
-            "pootle_path", flat=True))
-    directories = [
-        make_directory_item(
-            child,
-            **(dict(sort="priority")
-               if child.name in dirs_with_vfolders
-               else {}))
-        for child in obj.get_children()
-        if isinstance(child, Directory)]
-    stores = [
-        make_store_item(child)
-        for child in obj.get_children()
-        if isinstance(child, Store)]
-    items = directories + stores
-    for item in items:
-        if item["code"] in stats["children"]:
-            item["stats"] = stats["children"][item["code"]]
-        elif item["title"] in stats["children"]:
-            item["stats"] = stats["children"][item["title"]]
-    if not kwargs.get("filename"):
-        table_fields = [
-            'name', 'progress', 'total', 'need-translation',
-            'suggestions', 'critical', 'last-updated', 'activity']
-        table = {
-            'id': 'tp',
-            'fields': table_fields,
-            'headings': get_table_headings(table_fields),
-            'rows': items}
-    else:
-        table = None
     checks = ChecksDisplay(obj).checks_by_category
     del stats["children"]
+
     User = get_user_model()
     top_scorers = User.top_scorers(language=tp.language.code,
                                    project=tp.project.code, limit=11)
@@ -141,18 +105,11 @@ def _test_browse_view(tp, request, response, kwargs):
         url_action_view_all=obj.get_translate_url(state='all'),
         stats=stats,
         parent=get_parent(obj))
-    if table:
-        assertions["table"] = table
     sidebar = get_sidebar_announcements_context(
         request, (tp.project, tp.language, tp))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:
         assertions[k] = sidebar[0][k]
     view_context_test(ctx, **assertions)
-    if vfolders:
-        for vfolder in ctx["vfolders"]["rows"]:
-            assert (vfolder["is_grayed"] and not ctx["has_admin_access"]) is False
-        assert ctx["vfolders"]["rows"] == vf_view.table_items
-
     assert (('display_download' in ctx and ctx['display_download']) ==
             (request.user.is_authenticated()
              and check_permission('translate', request)))
