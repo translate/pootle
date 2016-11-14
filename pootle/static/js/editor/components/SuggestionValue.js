@@ -9,20 +9,21 @@
 import React from 'react';
 
 import { t } from 'utils/i18n';
+import diff from 'utils/diff';
 
-import { highlightRW } from '../../utils';
 
-
-const InnerDiv = ({ value }) => (
+const InnerDiv = ({ value, initialValue }) => (
   <div
     dangerouslySetInnerHTML={
-      { __html: highlightRW(value) }
+      // diff() already contains highlightRO()
+      { __html: diff(initialValue, value) }
     }
   />
 );
 
 InnerDiv.propTypes = {
   value: React.PropTypes.string.isRequired,
+  initialValue: React.PropTypes.string.isRequired,
 };
 
 
@@ -36,11 +37,13 @@ const SuggestionValue = React.createClass({
     sourceLocaleCode: React.PropTypes.string,
     sourceLocaleDir: React.PropTypes.string,
     innerComponent: React.PropTypes.func,
+    initialValues: React.PropTypes.array.isRequired,
   },
 
   getDefaultProps() {
     return {
       innerComponent: InnerDiv,
+      initialValues: [],
     };
   },
 
@@ -53,10 +56,8 @@ const SuggestionValue = React.createClass({
   },
 
   createItem(value, index) {
-    const props = {
-      lang: this.props.sourceLocaleCode,
-      dir: this.props.sourceLocaleDir,
-    };
+    const initialValue = this.props.initialValues.length > index ?
+      this.props.initialValues[index] : '';
     return (
       <div
         key={`source-value-${index}`}
@@ -72,8 +73,12 @@ const SuggestionValue = React.createClass({
             className="js-suggestion-text suggestion-translation"
             data-string={value}
             lang={this.props.sourceLocaleCode}
+            dir={this.props.sourceLocaleDir}
           >
-            <this.props.innerComponent value={value} />
+            <this.props.innerComponent
+              value={value}
+              initialValue={initialValue}
+            />
           </div>
         </div>
       </div>

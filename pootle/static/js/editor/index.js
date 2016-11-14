@@ -31,6 +31,7 @@ const ReactEditor = {
     loadFormatAdaptor(props, (newProps, adaptor) => {
       this.formatAdaptor = adaptor;
       this.setProps(newProps);
+      this.renderSuggestions(newProps.initialValues);
     });
   },
 
@@ -84,6 +85,15 @@ const ReactEditor = {
         mountNode
       );
     }
+  },
+
+  renderViewUnitComponent(unit, mountNode) {
+    loadFormatAdaptor(unit, (newProps, adaptor) => {
+      ReactRenderer.render(<adaptor.viewUnitComponent {...newProps} />, mountNode);
+    });
+  },
+
+  renderSuggestions(initialValues) {
     for (let i = 0; i < this.suggestionValueNodes.length; i++) {
       const mountNode = this.suggestionValueNodes[i];
       const suggestion = this.props.suggestions[mountNode.dataset.id];
@@ -94,16 +104,11 @@ const ReactEditor = {
           hasPlurals={this.props.hasPlurals}
           sourceLocaleCode={this.props.sourceLocaleCode}
           sourceLocaleDir={this.props.sourceLocaleDir}
+          initialValues={initialValues}
         />,
         mountNode
       );
     }
-  },
-
-  renderViewUnitComponent(unit, mountNode) {
-    loadFormatAdaptor(unit, (newProps, adaptor) => {
-      ReactRenderer.render(<adaptor.viewUnitComponent {...newProps} />, mountNode);
-    });
   },
 
   // FIXME: this additional layer of state tracking is only kept to allow
