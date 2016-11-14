@@ -9,7 +9,20 @@
 import cx from 'classnames';
 import React, { PropTypes } from 'react';
 
-import InnerDiv from './InnerDiv';
+import { highlightRO } from '../../utils';
+
+
+const InnerDiv = ({ value }) => (
+  <div
+    dangerouslySetInnerHTML={
+      { __html: highlightRO(value) }
+    }
+  />
+);
+
+InnerDiv.propTypes = {
+  value: React.PropTypes.string.isRequired,
+};
 
 
 const ViewUnit = React.createClass({
