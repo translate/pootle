@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
+
 import pytest
 
 from pytest_pootle.factories import ProjectDBFactory
@@ -149,6 +151,9 @@ def test_fs_cmd_state(capsys, dummy_cmd_state, fs_path_qs):
     assert out == str(StateDisplay(dummy_state))
 
 
+@pytest.mark.skipif(sys.platform == 'win32',
+                    reason=("Windows, the native console doesn’t support ANSI "
+                            "escape sequences"))
 def test_fs_cmd_state_colors():
     state_cmd = StateCommand()
     for k, (pootle_style, fs_style) in state_cmd.colormap.items():
@@ -159,6 +164,9 @@ def test_fs_cmd_state_colors():
         assert state_cmd.get_style(k) == (pootle_style, fs_style)
 
 
+@pytest.mark.skipif(sys.platform == 'win32',
+                    reason=("Windows, the native console doesn’t support ANSI "
+                            "escape sequences"))
 def test_fs_cmd_response_colors():
     sub_cmd = FSAPISubCommand()
     for k, (pootle_style, fs_style) in sub_cmd.colormap.items():
