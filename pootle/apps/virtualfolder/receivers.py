@@ -9,6 +9,8 @@
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 
+from pootle.core.delegate import revision_updater
+from pootle_app.models import Directory
 from pootle_store.models import Store
 
 from .delegate import vfolder_finder
@@ -30,7 +32,11 @@ def handle_vfolder_save(sender, instance, created, **kwargs):
 
 @receiver(pre_delete, sender=VirtualFolder)
 def handle_vfolder_delete(sender, instance, **kwargs):
+    dirs = set(instance.stores.values_list("parent", flat=True))
     for store in instance.stores.all():
         instance.stores.remove(store)
         if store.priority == instance.priority:
             store.set_priority()
+    updater = revision_updater.get(Directory)(
+        object_list=Directory.objects.filter(pk__in=dirs))
+    updater.update(keys=["stats"])
