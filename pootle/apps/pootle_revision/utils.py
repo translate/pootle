@@ -175,3 +175,11 @@ class StoreRevisionUpdater(RevisionUpdater):
     @property
     def context_path(self):
         return self.context.parent.pootle_path
+
+
+class DirectoryRevisionUpdater(RevisionUpdater):
+    related_pootle_path = "pootle_path"
+
+    @property
+    def context_path(self):
+        return self.context.pootle_path

@@ -15,8 +15,8 @@ from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store, Unit
 
 from .utils import (
-    DirectoryRevision, LanguageRevision, ProjectRevision,
-    ProjectResourceRevision, ProjectSetRevision,
+    DirectoryRevision, DirectoryRevisionUpdater, LanguageRevision,
+    ProjectRevision, ProjectResourceRevision, ProjectSetRevision,
     StoreRevisionUpdater, TPRevision, UnitRevisionUpdater)
 
 
@@ -48,6 +48,11 @@ def project_set_revision_getter(**kwargs):
 @getter(revision, sender=TranslationProject)
 def tp_revision_getter(**kwargs):
     return TPRevision
+
+
+@getter(revision_updater, sender=Directory)
+def directory_revision_updater_getter(**kwargs):
+    return DirectoryRevisionUpdater
 
 
 @getter(revision_updater, sender=Unit)
