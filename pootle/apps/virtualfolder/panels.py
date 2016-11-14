@@ -16,10 +16,18 @@ class VFolderPanel(ChildrenPanel):
         'suggestions', 'critical', 'last-updated', 'activity']
 
     @property
-    def table(self):
+    def children(self):
         if not self.view.vfolders_data_view:
-            return ""
-        vfdata = self.view.vfolders_data_view.table_data
-        if not vfdata:
-            return ""
-        return vfdata["children"]
+            return {}
+        return self.view.vfolders_data_view.table_items
+
+    @property
+    def vfdata(self):
+        return self.view.vfolders_data_view
+
+    @property
+    def table(self):
+        return (
+            self.vfdata.table_data["children"]
+            if self.vfdata and self.vfdata.table_data
+            else "")
