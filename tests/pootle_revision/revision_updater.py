@@ -106,3 +106,18 @@ def test_revision_store_updater_update_single(store0):
     updater_class = revision_updater.get(Store)
     updater = updater_class(store0)
     _test_revision_updater(updater)
+
+
+@pytest.mark.django_db
+def test_revision_directory_updater_single(subdir0):
+    updater_class = revision_updater.get(Directory)
+    updater = updater_class(subdir0)
+    _test_revision_updater(updater)
+
+
+@pytest.mark.django_db
+def test_revision_directory_updater_update():
+    updater_class = revision_updater.get(Directory)
+    updater = updater_class(
+        object_list=Directory.objects.filter(name="subdir0"))
+    _test_revision_updater(updater)
