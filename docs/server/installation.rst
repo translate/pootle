@@ -6,8 +6,20 @@ Installation
 These instructions will guide you through installing Pootle and its
 requirements in a virtual environment.
 
+.. figure:: ../_static/asciinema_org_92502.png
+   :alt: Pootle installation video tutorial
+   :align: right
+   :scale: 30%
+   :target: https://asciinema.org/a/92502
+
+   *Pootle installation tutorial (Click to play)*
+
 If you only want to have a sneak peek of Pootle then the default configuration
 and the built-in server will suffice.
+
+Follow the Pootle installation video tutorial, which :ref:`starts after some
+basic setup <installation#video_start>`, to see the installation steps in
+action and expected results.
 
 For a production deployment we **strongly** recommend that you set up the
 following:
@@ -69,6 +81,8 @@ Otherwise you can install :command:`virtualenv` using :command:`pip`:
 
   $ sudo pip install virtualenv
 
+
+.. _installation#video_start:
 
 Now create a virtual environment on your location of choice by issuing the
 :command:`virtualenv` command:
