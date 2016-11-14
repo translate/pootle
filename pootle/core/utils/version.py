@@ -240,6 +240,7 @@ def get_git_hash():
         ['/usr/bin/git', 'rev-parse', '--verify', '--short', 'HEAD']
     ).strip()
 
+
 if __name__ == "__main__":
     from sys import argv
     if len(argv) == 2:

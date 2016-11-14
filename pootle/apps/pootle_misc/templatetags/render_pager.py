@@ -47,5 +47,6 @@ def render_pager(pager):
     result += '</ul>'
     return mark_safe(result)
 
+
 register = template.Library()
 register.filter('render_pager', render_pager)

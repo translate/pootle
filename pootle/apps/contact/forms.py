@@ -96,6 +96,7 @@ class ReportForm(ContactForm):
                                settings.POOTLE_CONTACT_EMAIL)
         return [report_email]
 
+
 # Alters form's field order. Use `self.field_order` when in Django 1.9+
 ReportForm.base_fields = OrderedDict(
     (f, ReportForm.base_fields[f])

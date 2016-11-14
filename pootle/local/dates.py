@@ -44,6 +44,7 @@ class LocalDate(object):
                 or self.locale_code
                 or self.default_locale))
 
+
 localdate = LocalDate()
 
 
