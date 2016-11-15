@@ -22,9 +22,12 @@ BAD_FINDER_PATHS = [
     "foo/@<language_code>/bar.<ext>"]
 
 ROOT_PATHS = OrderedDict()
-ROOT_PATHS["<language_code>.<ext>"] = ""
-ROOT_PATHS["foo/<language_code>.<ext>"] = "foo"
-ROOT_PATHS["foo/bar/baz-<filename>-<language_code>.<ext>"] = "foo/bar"
+ROOT_PATHS[os.path.join("<language_code>.<ext>")] = ""
+ROOT_PATHS[os.path.join("foo", "<language_code>.<ext>")] = "foo"
+ROOT_PATHS[
+    os.path.join(
+        "foo", "bar",
+        "baz-<filename>-<language_code>.<ext>")] = os.path.join("foo", "bar")
 
 MATCHES = OrderedDict()
 MATCHES["po/<language_code>.<ext>"] = (
@@ -55,9 +58,9 @@ MATCHES["<dir_path>/<language_code>/<filename>.<ext>"] = (
 
 FINDER_REGEXES = [
     "<language_code>.<ext>",
-    "<language_code>/<filename>.<ext>",
-    "<dir_path>/<language_code>.<ext>",
-    "<language_code><dir_path>/<filename>.<ext>"]
+    os.path.join("<language_code>", "<filename>.<ext>"),
+    os.path.join("<dir_path>", "<language_code>.<ext>"),
+    os.path.join("<language_code><dir_path>", "<filename>.<ext>")]
 
 FILES = OrderedDict()
 FILES["gnu_style/po/<language_code>.<ext>"] = (
