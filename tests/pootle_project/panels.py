@@ -12,6 +12,7 @@ from django.template import loader
 
 from pootle.core.browser import get_table_headings
 from pootle.core.delegate import panels
+from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.panels import ChildrenPanel
 from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
 
@@ -45,7 +46,8 @@ def test_panel_project_table(project0, rf, member):
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(
@@ -53,9 +55,12 @@ def test_panel_project_table(project0, rf, member):
 
 
 @pytest.mark.django_db
-def test_panel_projects_table(rf, member):
+def test_panel_projects_table(rf, member, project0):
     request = rf.get('/projects/')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        project0.directory.parent)
     view = ProjectsBrowseView()
     view.request = request
     view.object = view.get_object()
@@ -77,7 +82,8 @@ def test_panel_projects_table(rf, member):
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(
@@ -113,7 +119,8 @@ def test_panel_project_store_table(project0, store0, rf, member):
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(

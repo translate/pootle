@@ -12,6 +12,7 @@ from django.template import loader
 
 from pootle.core.browser import get_table_headings
 from pootle.core.delegate import panels
+from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.panels import ChildrenPanel
 from pootle_translationproject.views import TPBrowseView
 from virtualfolder.panels import VFolderPanel
@@ -21,6 +22,9 @@ from virtualfolder.panels import VFolderPanel
 def test_panel_tp_table(tp0, rf, member):
     request = rf.get('/language0/project0/')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        tp0.directory)
     view = TPBrowseView(
         kwargs=dict(
             language_code=tp0.language.code,
@@ -43,7 +47,8 @@ def test_panel_tp_table(tp0, rf, member):
         'items': view.items,
         'disabled_items': view.disabled_items}
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(
@@ -55,6 +60,9 @@ def test_panel_tp_table(tp0, rf, member):
 def test_panel_tp_vfolder_table(tp0, rf, member):
     request = rf.get('/language0/project0/')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        tp0.directory)
     view = TPBrowseView(
         kwargs=dict(
             language_code=tp0.language.code,
@@ -72,7 +80,8 @@ def test_panel_tp_vfolder_table(tp0, rf, member):
             % (panel.panel_name, view.cache_key)))
     table = view.vfolders_data_view.table_data["children"]
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(
@@ -83,6 +92,9 @@ def test_panel_tp_vfolder_table(tp0, rf, member):
 def test_panel_tp_subdir_table(subdir0, rf, member):
     request = rf.get(subdir0.pootle_path)
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        subdir0)
     view = TPBrowseView(
         kwargs=dict(
             language_code=subdir0.tp.language.code,
@@ -106,7 +118,8 @@ def test_panel_tp_subdir_table(subdir0, rf, member):
         'items': view.items,
         'disabled_items': view.disabled_items}
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(
@@ -118,6 +131,9 @@ def test_panel_tp_subdir_table(subdir0, rf, member):
 def test_panel_tp_no_vfolders_table(tp0, rf, member, no_vfolders):
     request = rf.get('/language0/project0/')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        tp0.directory)
     view = TPBrowseView(
         kwargs=dict(
             language_code=tp0.language.code,

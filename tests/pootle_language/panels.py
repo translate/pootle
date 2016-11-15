@@ -12,6 +12,7 @@ from django.template import loader
 
 from pootle.core.browser import get_table_headings
 from pootle.core.delegate import panels
+from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.panels import ChildrenPanel
 from pootle_language.views import LanguageBrowseView
 
@@ -20,6 +21,9 @@ from pootle_language.views import LanguageBrowseView
 def test_panel_language_table(language0, rf, member):
     request = rf.get('/language0/')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        language0.directory)
     view = LanguageBrowseView(
         kwargs=dict(language_code=language0.code))
     view.request = request
@@ -42,7 +46,8 @@ def test_panel_language_table(language0, rf, member):
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
-    assert panel.get_context_data() == dict(table=table)
+    assert panel.get_context_data() == dict(
+        table=table, can_translate=view.can_translate)
     assert (
         panel.content
         == loader.render_to_string(
