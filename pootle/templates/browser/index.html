@@ -43,6 +43,7 @@
             </tbody>
           </table>
         </div>
+	{% if checks %}
         <div id="js-stats-checks" class="stats-checks">
           <h3>{% trans "Failing Checks" %}</h3>
           <div class="bd">
@@ -69,17 +70,19 @@
             </div>
           </div>
         </div>
+	{% endif %}
       </div>
 
       <div id="js-mnt-top-contributors"></div>
 
       <div class="summary-3-col">
+	{% if stats.last_created_unit %}
         <div id="js-last-updated-wrapper">
           <h3 class="top">{% trans "Updates" %}</h3>
           <div class="bd">
             <div class="graph"></div>
             <div class="action-wrapper">
-              <label>{% trans "Last action:" %}</label>
+              <label>{% trans "Last updated:" %}</label>
               <div id="js-last-updated" class="last-updated last-action">
 		<span class="extra-item-meta">{{ stats.last_created_unit.creation_time|time_since }}</span>
 		<a href="{{ stats.last_created_unit.unit_url }}">{{ stats.last_created_unit.unit_source }}</a>
@@ -87,6 +90,8 @@
             </div>
           </div>
         </div>
+	{% endif %}
+	{% if stats.last_submission %}
         <div id="js-last-action-wrapper">
           <h3>{% trans "Translations" %}</h3>
           <div class="bd">
@@ -103,6 +108,7 @@
             </div>
           </div>
         </div>
+	{% endif %}
       </div>
       <div class="clear"></div>
     </div>
