@@ -27,4 +27,6 @@ class ChildrenPanel(TablePanel):
                 'disabled_items': self.view.disabled_items}
 
     def get_context_data(self):
-        return dict(table=self.table)
+        return dict(
+            table=self.table,
+            can_translate=self.view.can_translate)
