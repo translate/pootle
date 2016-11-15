@@ -55,40 +55,13 @@ class StatsDisplay(object):
     def stats(self):
         stats = self.stat_data
         self.add_lastaction_info(stats)
-        self.add_lastupdated_info(stats)
         self.add_children_info(stats)
         return stats
 
     def add_children_info(self, stats):
         for k, child in stats["children"].items():
-            if child.get("lastupdated"):
-                child["lastaction"] = timesince(
-                    child["lastupdated"]["creation_time"])
-                child["lastactiontime"] = child["lastupdated"]["creation_time"]
             child["incomplete"] = child["total"] - child["translated"]
             child["untranslated"] = child["total"] - child["translated"]
-            no_submissions = (
-                not child.get("last_submission")
-                or not child["last_submission"].get("email"))
-            if no_submissions:
-                continue
-            grav = (
-                'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
-                % (child["last_submission"]["email"], 20))
-            child["lastupdated"] = dict(
-                name=child["last_submission"]["displayname"],
-                at=timesince(child["last_submission"]["mtime"]),
-                grav=grav,
-                mtime=child["last_submission"]["mtime"],
-                profile_url=child["last_submission"]["profile_url"])
-
-    def add_lastupdated_info(self, stats):
-        if not stats.get("lastupdated"):
-            return
-        stats["lastupdated"] = dict(
-            unit_url=stats["lastupdated"]["unit_url"],
-            source=stats["lastupdated"]["unit_source"],
-            at=timesince(stats["lastupdated"]["creation_time"]))
 
     def add_lastaction_info(self, stats):
         if not stats.get("lastaction"):
