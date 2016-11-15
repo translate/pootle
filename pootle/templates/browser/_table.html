@@ -100,14 +100,14 @@
       {% endif %}
 
       {% if 'activity' in table.fields %}
-      <td id="activity-{{ item.code|cssid }}" class="last-action stats not-inited" sorttable_customkey="{{ item.stats.lastupdated.mtime }}">
-        <a href="{{ item.stats.lastupdated.profile_url }}">
-	  {% if item.stats.lastupdated.name %}
-	  <img src="{{ item.stats.lastupdated.grav }}" class="avatar" />
-	  <span class="user-name">{{ item.stats.lastupdated.name }}</span>
+      <td id="activity-{{ item.code|cssid }}" class="last-action stats not-inited" sorttable_customkey="{{ item.stats.last_submission.mtime }}">
+        <a href="{{ item.stats.last_submission.profile_url }}">
+	  {% if item.stats.last_submission.displayname %}
+	  {% avatar item.stats.last_submission.username item.stats.last_submission.email 20 %}
+	  <span class="user-name">{{ item.stats.last_submission.displayname }}</span>
 	  {% endif %}
 	</a>
-	<span class="not-inited muted">{{ item.stats.lastupdated.at }}</span>
+	<span class="not-inited muted">{{ item.stats.last_submission.mtime|time_since }}</span>
       </td>
       {% endif %}
     </tr>
