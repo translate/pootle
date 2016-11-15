@@ -95,6 +95,8 @@ def test_fs_state_fs_removed(fs_path_qs, dummyfs_plugin_no_files):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_fs_state_pootle_ahead(fs_path_qs, dummyfs):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs
