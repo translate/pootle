@@ -17,7 +17,7 @@ from pytest_pootle.suite import view_context_test
 from django.contrib.auth import get_user_model
 
 from pootle_app.models.permissions import check_permission
-from pootle.core.browser import make_project_item, get_table_headings
+from pootle.core.browser import make_project_item
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url
@@ -39,20 +39,12 @@ def _test_browse_view(language, request, response, kwargs):
     assert cookie_data["foo"] == "bar"
     assert "announcements_%s" % language.code in cookie_data
     ctx = response.context
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
     user_tps = language.get_children_for_user(request.user)
     stats = language.data_tool.get_stats(user=request.user)
     items = [make_project_item(tp) for tp in user_tps]
     for item in items:
         if item["code"] in stats["children"]:
             item["stats"] = stats["children"][item["code"]]
-    table = {
-        'id': 'language',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'rows': items}
     checks = ChecksDisplay(language).checks_by_category
     stats = StatsDisplay(language, stats=stats).stats
     del stats["children"]
@@ -72,7 +64,6 @@ def _test_browse_view(language, request, response, kwargs):
         url_action_review=language.get_translate_url(state='suggestions'),
         url_action_view_all=language.get_translate_url(state='all'),
         # check_categories=get_qualitycheck_schema(language),
-        table=table,
         translation_states=get_translation_states(language),
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
