@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import json
-import locale
 from collections import OrderedDict
 from urllib import unquote
 
@@ -20,9 +19,6 @@ from pytest_pootle.suite import view_context_test
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
-from pootle.core.browser import (
-    get_table_headings, make_language_item, make_xlanguage_item,
-    make_project_list_item)
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
@@ -121,28 +117,7 @@ def _test_browse_view(project, request, response, kwargs):
                 pootle_path__regex="^/.*/%s$" % project_path),
             pootle_path="/projects/%s" % project_path)
 
-    item_func = (
-        make_xlanguage_item
-        if (kwargs["dir_path"]
-            or kwargs["filename"])
-        else make_language_item)
-    items = [
-        item_func(item)
-        for item
-        in obj.get_children_for_user(request.user)
-    ]
-    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     stats = obj.data_tool.get_stats(user=request.user)
-    for item in items:
-        if item["code"] in stats["children"]:
-            item["stats"] = stats["children"][item["code"]]
-    table_fields = ['name', 'progress', 'total', 'need-translation',
-                    'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'project',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'rows': items}
 
     if request.user.is_superuser or kwargs.get("language_code"):
         url_action_continue = obj.get_translate_url(state='incomplete')
@@ -171,7 +146,6 @@ def _test_browse_view(project, request, response, kwargs):
         url_action_review=url_action_review,
         url_action_view_all=url_action_view_all,
         translation_states=get_translation_states(obj),
-        table=table,
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
         checks=checks,
@@ -207,22 +181,7 @@ def test_view_projects_browse(client, request_users):
         Project.objects.for_user(request.user)
                        .filter(code__in=user_projects))
     obj = ProjectSet(user_projects)
-    items = [
-        make_project_list_item(project)
-        for project in obj.children]
-    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     stats = obj.data_tool.get_stats(user=request.user)
-    for item in items:
-        if item["code"] in stats["children"]:
-            item["stats"] = stats["children"][item["code"]]
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
-    table = {
-        'id': 'projects',
-        'fields': table_fields,
-        'headings': get_table_headings(table_fields),
-        'rows': items}
 
     if request.user.is_superuser:
         url_action_continue = obj.get_translate_url(state='incomplete')
@@ -245,7 +204,6 @@ def test_view_projects_browse(client, request_users):
         resource_path="",
         resource_path_parts=[],
         object=obj,
-        table=table,
         browser_extends="projects/all/base.html",
         top_scorers=top_scorers,
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
