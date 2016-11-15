@@ -230,6 +230,6 @@ class SubmissionProxy(object):
     def get_submission_info(self):
         result = self.unit_info
         result.update(self.submission_info)
-        if self.translation_action_type:
+        if self.translation_action_type is not None:
             result["translation_action_type"] = self.translation_action_type
         return result
