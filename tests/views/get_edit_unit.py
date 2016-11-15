@@ -43,6 +43,8 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
     altsrcs = {x.id: x.data for x in altsrcs}
     sources = {altsrcs[x]['language_code']: altsrcs[x]['target'] for x in altsrcs}
     sources[src_lang.code] = unit.source
+    suggestions_dict = {x.id: dict(id=x.id, target=x.target.strings)
+                        for x in unit.get_suggestions()}
 
     assert result["is_obsolete"] is False
     assert result["sources"] == sources
@@ -55,6 +57,7 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
     assert response.context["language"] == language
     assert response.context["source_language"] == src_lang
     assert response.context["altsrcs"] == altsrcs
+    assert response.context["suggestions_dict"] == suggestions_dict
 
     assert response.context["cantranslate"] == check_user_permission(
         user, "translate", directory)
