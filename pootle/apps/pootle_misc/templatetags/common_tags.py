@@ -24,6 +24,15 @@ def time_since(timestamp):
     return ""
 
 
+@register.inclusion_tag('includes/avatar.html')
+def avatar(username, email_hash, size):
+    # TODO: return sprite if its a system user
+    return dict(
+        avatar_url=(
+            'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
+            % (email_hash, size)))
+
+
 @register.inclusion_tag('browser/_progressbar.html')
 def progress_bar(total, fuzzy, translated):
     if not total:
