@@ -110,6 +110,7 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
         'suggestions', 'critical', 'last-updated', 'activity']
+    show_all = True
 
     @property
     def pootle_path(self):
