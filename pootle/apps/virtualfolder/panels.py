@@ -6,10 +6,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.views.panels import TablePanel
+from pootle_app.panels import ChildrenPanel
 
 
-class VFolderPanel(TablePanel):
+class VFolderPanel(ChildrenPanel):
     panel_name = "vfolder"
     table_fields = [
         'name', 'progress', 'total', 'need-translation',
