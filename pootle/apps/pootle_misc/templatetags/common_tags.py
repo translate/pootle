@@ -11,8 +11,17 @@ import datetime
 from django import template
 from django.contrib.auth import get_user_model
 
+from pootle.local.dates import timesince
+
 
 register = template.Library()
+
+
+@register.filter
+def time_since(timestamp):
+    if timestamp:
+        return timesince(timestamp)
+    return ""
 
 
 @register.inclusion_tag('browser/_progressbar.html')
