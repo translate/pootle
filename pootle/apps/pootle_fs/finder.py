@@ -70,7 +70,7 @@ class TranslationFileFinder(object):
         matched = match.groupdict()
         if matched["language_code"] in self.exclude_languages:
             return
-        matched["dir_path"] = matched.get("dir_path", "").strip("/")
+        matched["dir_path"] = matched.get("dir_path", "").strip(os.sep)
         if not matched.get("filename"):
             matched["filename"] = os.path.splitext(
                 os.path.basename(file_path))[0]
@@ -126,15 +126,18 @@ class TranslationFileFinder(object):
         path = (path.replace("<language_code>", language_code)
                     .replace("<filename>", filename))
         if "<dir_path>" in path:
-            if dir_path and dir_path.strip("/"):
-                path = path.replace("<dir_path>", "/%s/" % dir_path.strip("/"))
+            if dir_path and dir_path.strip(os.sep):
+                path = path.replace(
+                    "<dir_path>",
+                    "%s%s%s" % (os.sep, dir_path.strip(os.sep), os.sep))
             else:
                 path = path.replace("<dir_path>", "")
         local_path = path.replace(self.file_root, "")
-        if "//" in local_path:
-            path = "/".join([
+        double_path_sep = "%s%s" % (os.sep, os.sep)
+        if double_path_sep in local_path:
+            path = os.sep.join([
                 self.file_root,
-                local_path.replace("//", "/").lstrip("/")])
+                local_path.replace(double_path_sep, os.sep).lstrip(os.sep)])
         return path
 
     def _ext_re(self):
