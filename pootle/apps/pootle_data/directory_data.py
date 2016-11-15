@@ -48,7 +48,7 @@ class DirectoryDataTool(RelatedStoresDataTool):
                 root=child["store__name"],
                 use_aggregates=False)
         self.add_submission_info(self.stat_data, children)
-        self.add_last_updated_info(child_stores, children)
+        self.add_last_created_info(child_stores, children)
         return children
 
     @property

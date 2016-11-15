@@ -913,10 +913,9 @@ class Unit(models.Model, base.TranslationUnit):
 
         return matcher.matches(self.source)
 
-    def get_last_updated_info(self):
+    def get_last_created_unit_info(self):
         return {
             "display_datetime": dateformat.format(self.creation_time),
-            "iso_datetime": self.creation_time.isoformat(),
             "creation_time": int(dateformat.format(self.creation_time, 'U')),
             "unit_source": truncatechars(self, 50),
             "unit_url": self.get_translate_url(),

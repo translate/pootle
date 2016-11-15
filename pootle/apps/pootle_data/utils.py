@@ -73,13 +73,13 @@ class DataTool(object):
     def get_lastaction(self, **kwargs):
         return kwargs["lastaction"]
 
-    def get_lastupdated(self, **kwargs):
-        lastupdated = (
-            kwargs.get("lastcreated")
+    def get_last_created(self, **kwargs):
+        last_created = (
+            kwargs.get("last_created_unit")
             and Unit.objects.select_related(
-                "store").get(pk=kwargs["lastcreated"]).get_last_updated_info()
+                "store").get(pk=kwargs["last_created_unit"]).get_last_created_info()
             or None)
-        return lastupdated
+        return last_created
 
 
 class DataUpdater(object):
@@ -388,10 +388,10 @@ class RelatedStoresDataTool(DataTool):
     def filter_data(self, qs):
         return qs
 
-    def add_last_updated_info(self, stat_data, children):
-        updated = self.get_updated_for_children(stat_data, children)
+    def add_last_created_info(self, stat_data, children):
+        updated = self.get_last_created_for_children(stat_data, children)
         for k, v in children.items():
-            children[k]["lastupdated"] = updated.get(
+            children[k]["last_created_unit"] = updated.get(
                 children[k]["last_created_unit__pk"])
             del children[k]["last_created_unit__pk"]
 
@@ -415,19 +415,20 @@ class RelatedStoresDataTool(DataTool):
         """
         agg = dict(
             total=0, fuzzy=0, translated=0, critical=0, suggestions=0)
-        latest = dict(lastaction=None, lastupdated=None)
+        latest = dict(lastaction=None, last_created_unit=None)
         lastactionpk = None
-        lastupdatedtime = None
+        last_created_unit_time = None
         for child in stats["children"].values():
             for k in agg.keys():
                 agg[k] += child[k]
+            if child.get("last_created_unit"):
+                last_created = child["last_created_unit"]
+                if last_created["creation_time"] > last_created_unit_time:
+                    latest["last_created_unit"] = last_created
+                    last_created_unit_time = last_created["creation_time"]
             if child["last_submission__pk"] > lastactionpk:
                 latest['lastaction'] = child["last_submission"]
                 lastactionpk = child["last_submission__pk"]
-            if child.get("lastupdated"):
-                if child["lastupdated"]["creation_time"] > lastupdatedtime:
-                    latest["lastupdated"] = child["lastupdated"]
-                    lastupdatedtime = child["lastupdated"]["creation_time"]
             del child["last_submission__pk"]
         stats.update(agg)
         stats.update(latest)
@@ -450,7 +451,7 @@ class RelatedStoresDataTool(DataTool):
         for child in qs.iterator():
             self.add_child_stats(children, child)
         self.add_submission_info(qs, children)
-        self.add_last_updated_info(qs, children)
+        self.add_last_created_info(qs, children)
         return children
 
     def get_info_for_sub(self, sub):
@@ -516,11 +517,11 @@ class RelatedStoresDataTool(DataTool):
               in self.submission_fields])
         return {sub["pk"]: sub for sub in subs}
 
-    def get_updated_for_children(self, stat_data, children):
+    def get_last_created_for_children(self, stat_data, children):
         last_created_units = set(
             [v["last_created_unit__pk"] for v in children.values()])
         return {
-            unit.pk: unit.get_last_updated_info()
+            unit.pk: unit.get_last_created_unit_info()
             for unit
             in Unit.objects.select_related(
                 "store").filter(pk__in=last_created_units)}
@@ -567,7 +568,7 @@ class RelatedStoresDataTool(DataTool):
             for k, v
             in stats.items()}
         stats["lastaction"] = None
-        stats["lastupdated"] = None
+        stats["last_created_unit"] = None
         stats["suggestions"] = None
         return stats
 

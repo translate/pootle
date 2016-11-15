@@ -32,9 +32,9 @@ class StoreDataTool(DataTool):
             self.context.data.last_submission
             and self.context.data.last_submission.get_submission_info()
             or None)
-        stats["lastupdated"] = (
+        stats["last_created_unit"] = (
             self.context.data.last_created_unit
-            and self.context.data.last_created_unit.get_last_updated_info()
+            and self.context.data.last_created_unit.get_last_created_unit_info()
             or None)
         return stats
 

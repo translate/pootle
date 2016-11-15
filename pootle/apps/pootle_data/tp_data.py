@@ -117,7 +117,7 @@ class TPDataTool(RelatedStoresDataTool):
             v: getattr(self.context.data, k)
             for k, v in self.stats_mapping.items()}
         stats["lastaction"] = self.get_lastaction()
-        stats["lastupdated"] = self.get_lastupdated()
+        stats["last_created_unit"] = self.get_last_created()
         return stats
 
     @property
@@ -134,10 +134,10 @@ class TPDataTool(RelatedStoresDataTool):
             and self.context.data.last_submission.get_submission_info()
             or None)
 
-    def get_lastupdated(self, **kwargs):
+    def get_last_created(self, **kwargs):
         return (
             self.context.data.last_created_unit
-            and self.context.data.last_created_unit.get_last_updated_info()
+            and self.context.data.last_created_unit.get_last_created_unit_info()
             or None)
 
     @persistent_property
