@@ -37,7 +37,7 @@ class DirectoryDataTool(RelatedStoresDataTool):
 
     def get_children_stats(self, qs):
         children = {}
-        for child in self.child_stats_qs.iterator():
+        for child in qs.iterator():
             self.add_child_stats(children, child)
         child_stores = self.data_model.filter(store__parent=self.context).values(
             *("store__name", ) + self.max_fields + self.sum_fields)
