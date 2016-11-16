@@ -14,11 +14,14 @@ from django import forms
 from django.core import mail
 from django.core.urlresolvers import reverse
 
+from pootle.core.browser import make_project_item
 from pootle.core.delegate import language_team
 from pootle.core.forms import FormtableForm
+from pootle.core.views.browse import StatsDisplay
 from pootle_language.forms import (
     LanguageSuggestionAdminForm, LanguageTeamAdminForm)
-from pootle_language.views import SuggestionDisplay, SuggestionFormtable
+from pootle_language.views import (
+    LanguageBrowseView, SuggestionDisplay, SuggestionFormtable)
 from pootle_store.constants import STATES_MAP
 from pootle_store.models import Unit
 
@@ -28,6 +31,20 @@ class DummyFormtableForm(FormtableForm):
     units = forms.ModelMultipleChoiceField(
         Unit.objects.order_by("id"),
         required=False)
+
+
+def _test_view_language_children(view, obj):
+    request = view.request
+
+    user_tps = obj.get_children_for_user(request.user)
+    stats = obj.data_tool.get_stats(user=request.user)
+    items = [make_project_item(tp) for tp in user_tps]
+    for item in items:
+        if item["code"] in stats["children"]:
+            item["stats"] = stats["children"][item["code"]]
+    stats = StatsDisplay(obj, stats=stats).stats
+    assert stats == view.stats
+    assert view.object_children == items
 
 
 @pytest.mark.django_db
@@ -291,3 +308,16 @@ def test_view_admin_language_suggestion_post(client, language0, request_users):
     suggestion.refresh_from_db()
     assert suggestion.state == "rejected"
     assert len(mail.outbox) == 2
+
+
+@pytest.mark.django_db
+def test_view_language_children(language0, rf, request_users):
+    request = rf.get('/language0/')
+    request.user = request_users["user"]
+    view = LanguageBrowseView(
+        kwargs=dict(
+            language_code=language0.code))
+    view.request = request
+    view.object = view.get_object()
+    assert view.object == language0
+    _test_view_language_children(view, language0)
