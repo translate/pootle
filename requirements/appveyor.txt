@@ -4,4 +4,4 @@
 -r _docs.txt
 -r _lint.txt
 
-tox==2.4.1
+tox==2.5.0
