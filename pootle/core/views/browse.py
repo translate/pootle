@@ -24,8 +24,8 @@ from .display import ChecksDisplay, StatsDisplay
 class PootleBrowseView(PootleDetailView):
     template_name = 'browser/index.html'
     table_fields = None
-    items = None
     is_store = False
+    object_children = ()
     page_name = "browse"
     view_name = ""
 
