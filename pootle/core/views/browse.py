@@ -88,7 +88,10 @@ class PootleBrowseView(PootleDetailView):
 
     @property
     def disabled_items(self):
-        return filter(lambda item: item.get('is_disabled'), self.items)
+        return any(
+            item.get('is_disabled')
+            for item
+            in self.items or [])
 
     def add_child_stats(self, items):
         stats = self.stats
@@ -106,9 +109,7 @@ class PootleBrowseView(PootleDetailView):
                 'id': self.view_name,
                 'fields': self.table_fields,
                 'headings': get_table_headings(self.table_fields),
-                'items': self.items,
-                'disabled_items': self.disabled_items,
-            }
+                'items': self.items}
 
     def get(self, *args, **kwargs):
         response = super(PootleBrowseView, self).get(*args, **kwargs)
@@ -172,6 +173,7 @@ class PootleBrowseView(PootleDetailView):
              'top_scorers': self.top_scorers,
              'top_scorers_data': self.top_scorer_data,
              'table': table,
+             'disabled_items': self.disabled_items,
              'is_store': self.is_store,
              'browser_extends': self.template_extends})
         return ctx
