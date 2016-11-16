@@ -51,7 +51,7 @@ def test_panel_project_table(project0, rf, member):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))
 
 
 @pytest.mark.django_db
@@ -87,7 +87,7 @@ def test_panel_projects_table(rf, member, project0):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))
 
 
 @pytest.mark.django_db
@@ -124,4 +124,4 @@ def test_panel_project_store_table(project0, store0, rf, member):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))

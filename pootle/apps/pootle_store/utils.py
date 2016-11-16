@@ -197,8 +197,8 @@ class SuggestionsReview(object):
                     suggestion.unit.get_translate_url()))
         return loader.render_to_string(
             template,
-            dict(suggestions=suggestions,
-                 comment=comment))
+            context=dict(suggestions=suggestions,
+                         comment=comment))
 
     def notify_suggesters(self, rejected=True, comment=""):
         for suggester, suggestions in self.users_and_suggestions.items():

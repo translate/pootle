@@ -87,14 +87,14 @@ class ReportFormView(ContactFormView):
                     initial.update({
                         'subject': render_to_string(
                             'contact_form/report_form_subject.txt',
-                            {
+                            context={
                                 'unit': unit,
                                 'language':
                                     unit.store.translation_project.language.code,
                             }),
                         'body': render_to_string(
                             'contact_form/report_form_body.txt',
-                            {
+                            context={
                                 'unit': unit,
                                 'unit_absolute_url': unit_absolute_url,
                             }),

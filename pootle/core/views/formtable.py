@@ -77,7 +77,7 @@ class Formtable(object):
         return (
             render_to_string(
                 self.filters_template,
-                dict(formtable=self))
+                context=dict(formtable=self))
             if self.filters_template
             else "")
 

@@ -51,4 +51,4 @@ def test_panel_language_table(language0, rf, member):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))

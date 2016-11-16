@@ -34,7 +34,7 @@ def tp_inited_async_handler(**kwargs):
     ctx = {"tp": instance,
            "url": urljoin(response_url, instance.get_absolute_url())}
     message = render_to_string(
-        'projects/admin/email/translation_project_created.txt', ctx)
+        'projects/admin/email/translation_project_created.txt', context=ctx)
     subject = _(u"Translation project (%s) created" % instance)
     recipients = get_recipients(instance.project)
     send_mail(subject, message, from_email=None,
@@ -47,7 +47,8 @@ def tp_init_failed_async_handler(**kwargs):
 
     ctx = {"tp": instance}
     message = render_to_string(
-        'projects/admin/email/translation_project_creation_failed.txt', ctx)
+        'projects/admin/email/translation_project_creation_failed.txt',
+        context=ctx)
     subject = _(u"Translation project (%s) creation failed" % instance)
     recipients = get_recipients(instance.project)
     send_mail(subject, message, from_email=None,

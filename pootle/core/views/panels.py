@@ -25,7 +25,7 @@ class Panel(object):
         if not self.template_name:
             return ""
         return loader.render_to_string(
-            self.template_name, self.get_context_data())
+            self.template_name, context=self.get_context_data())
 
     @property
     def cache_key(self):

@@ -52,7 +52,7 @@ def test_panel_tp_table(tp0, rf, member):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))
 
 
 @pytest.mark.pootle_vfolders
@@ -85,7 +85,7 @@ def test_panel_tp_vfolder_table(tp0, rf, member):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))
 
 
 @pytest.mark.django_db
@@ -123,7 +123,7 @@ def test_panel_tp_subdir_table(subdir0, rf, member):
     assert (
         panel.content
         == loader.render_to_string(
-            panel.template_name, panel.get_context_data()))
+            panel.template_name, context=panel.get_context_data()))
 
 
 @pytest.mark.pootle_vfolders
