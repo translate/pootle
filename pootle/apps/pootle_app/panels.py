@@ -23,8 +23,7 @@ class ChildrenPanel(TablePanel):
                 'id': self.view.view_name,
                 'fields': self.table_fields,
                 'headings': get_table_headings(self.table_fields),
-                'rows': self.view.object_children,
-                'disabled_items': self.view.disabled_items}
+                'rows': self.view.object_children}
 
     def get_context_data(self):
         return dict(
