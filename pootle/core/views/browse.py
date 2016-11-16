@@ -104,12 +104,12 @@ class PootleBrowseView(PootleDetailView):
 
     @property
     def table(self):
-        if self.table_fields and self.items:
+        if self.table_fields and self.object_children:
             return {
                 'id': self.view_name,
                 'fields': self.table_fields,
                 'headings': get_table_headings(self.table_fields),
-                'items': self.items}
+                'rows': self.object_children}
 
     def get(self, *args, **kwargs):
         response = super(PootleBrowseView, self).get(*args, **kwargs)

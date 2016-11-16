@@ -138,7 +138,7 @@ class VFoldersDataView(object):
                     'id': 'vfolders',
                     'fields': self.table_fields,
                     'headings': get_table_headings(self.table_fields),
-                    'items': self.table_items}})
+                    'rows': self.table_items}})
         return ctx
 
     @cached_property

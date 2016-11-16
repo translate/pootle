@@ -130,7 +130,7 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
         return self.kwargs
 
     @cached_property
-    def items(self):
+    def object_children(self):
         item_func = (
             make_xlanguage_item
             if (self.kwargs['dir_path']
@@ -332,7 +332,7 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
         'suggestions', 'critical', 'last-updated', 'activity']
 
     @cached_property
-    def items(self):
+    def object_children(self):
         items = [
             make_project_list_item(project)
             for project

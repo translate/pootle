@@ -74,7 +74,7 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
         'suggestions', 'critical', 'last-updated', 'activity']
 
     @cached_property
-    def items(self):
+    def object_children(self):
         return self.add_child_stats(
             [make_project_item(tp)
              for tp in self.object.get_children_for_user(self.request.user)])

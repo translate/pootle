@@ -18,12 +18,12 @@ class ChildrenPanel(TablePanel):
 
     @property
     def table(self):
-        if self.view.items:
+        if self.view.object_children:
             return {
                 'id': self.view.view_name,
                 'fields': self.table_fields,
                 'headings': get_table_headings(self.table_fields),
-                'items': self.view.items,
+                'rows': self.view.object_children,
                 'disabled_items': self.view.disabled_items}
 
     def get_context_data(self):

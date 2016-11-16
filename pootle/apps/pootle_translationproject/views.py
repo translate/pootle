@@ -278,7 +278,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
         'suggestions', 'critical', 'last-updated', 'activity']
 
     @cached_property
-    def items(self):
+    def object_children(self):
         dirs_with_vfolders = []
         if 'virtualfolder' in settings.INSTALLED_APPS:
             stores = self.tp.stores
