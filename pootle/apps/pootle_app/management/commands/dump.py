@@ -119,9 +119,9 @@ class Command(PootleCommand):
         else:
             last_action_id = None
 
-        if res[key]['lastupdated']:
-            if 'id' in res[key]['lastupdated']:
-                last_updated_id = res[key]['lastupdated']['id']
+        if res[key]['last_created_unit']:
+            if 'id' in res[key]['last_created_unit']:
+                last_updated_id = res[key]['last_created_unit']['id']
             else:
                 last_updated_id = None
         else:
