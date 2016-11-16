@@ -91,7 +91,7 @@ class PootleBrowseView(PootleDetailView):
         return any(
             item.get('is_disabled')
             for item
-            in self.items or [])
+            in self.object_children or [])
 
     def add_child_stats(self, items):
         stats = self.stats
