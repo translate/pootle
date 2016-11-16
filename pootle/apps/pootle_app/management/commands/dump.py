@@ -111,13 +111,13 @@ class Command(PootleCommand):
 
         res[key] = (item.data_tool.get_stats(include_children=False))
 
-        if res[key]['lastaction']:
-            if 'id' in res[key]['lastaction']:
-                last_action_id = res[key]['lastaction']['id']
+        if res[key]['last_submission']:
+            if 'id' in res[key]['last_submission']:
+                last_submission_id = res[key]['last_submission']['id']
             else:
-                last_action_id = None
+                last_submission_id = None
         else:
-            last_action_id = None
+            last_submission_id = None
 
         if res[key]['last_created_unit']:
             if 'id' in res[key]['last_created_unit']:
@@ -131,7 +131,7 @@ class Command(PootleCommand):
               (key, res[key]['total'], res[key]['translated'],
                res[key]['fuzzy'], res[key]['suggestions'],
                res[key]['critical'],
-               last_action_id, last_updated_id)
+               last_submission_id, last_updated_id)
 
         self.stdout.write(out)
 
