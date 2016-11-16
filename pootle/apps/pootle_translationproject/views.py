@@ -308,27 +308,22 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
 
     @cached_property
     def has_vfolders(self):
-        return self.stats["vfolders"] and True or False
+        vfdata = self.vfolders_data_view
+        return bool(
+            vfdata
+            and vfdata.table_data
+            and vfdata.table_data.get("children"))
 
     @cached_property
     def stats(self):
-        vf_stats = (
-            {}
-            if not self.vfolders_data_view
-            else StatsDisplay(
-                self.object.tp,
-                stats=self.vfolders_data_view.stats).stats)
-        stats = (
-            dict(vfolders=vf_stats["children"])
-            if vf_stats
-            else {})
         stats_ob = (
             self.object.tp
             if self.object.tp_path == "/"
             else self.object)
-        _stats = stats_ob.data_tool.get_stats(user=self.request.user)
-        stats.update(StatsDisplay(stats_ob, stats=_stats).stats)
-        return stats
+        return StatsDisplay(
+            stats_ob,
+            stats=stats_ob.data_tool.get_stats(
+                user=self.request.user)).stats
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(TPBrowseView, self).get_context_data(*args, **kwargs)
