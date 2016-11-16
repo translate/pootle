@@ -48,10 +48,11 @@ def test_panel_tp_table(tp0, rf, member):
     assert panel.table == table
     assert panel.get_context_data() == dict(
         table=table, can_translate=view.can_translate)
+    content = loader.render_to_string(
+        panel.template_name, context=panel.get_context_data())
     assert (
         panel.content
-        == loader.render_to_string(
-            panel.template_name, context=panel.get_context_data()))
+        == panel.update_times(content))
 
 
 @pytest.mark.pootle_vfolders
@@ -81,10 +82,11 @@ def test_panel_tp_vfolder_table(tp0, rf, member):
     assert panel.table == table
     assert panel.get_context_data() == dict(
         table=table, can_translate=view.can_translate)
+    content = loader.render_to_string(
+        panel.template_name, context=panel.get_context_data())
     assert (
         panel.content
-        == loader.render_to_string(
-            panel.template_name, context=panel.get_context_data()))
+        == panel.update_times(content))
 
 
 @pytest.mark.django_db
@@ -118,13 +120,13 @@ def test_panel_tp_subdir_table(subdir0, rf, member):
     assert panel.table == table
     assert panel.get_context_data() == dict(
         table=table, can_translate=view.can_translate)
+    content = loader.render_to_string(
+        panel.template_name, context=panel.get_context_data())
     assert (
         panel.content
-        == loader.render_to_string(
-            panel.template_name, context=panel.get_context_data()))
+        == panel.update_times(content))
 
 
-@pytest.mark.pootle_vfolders
 @pytest.mark.django_db
 def test_panel_tp_no_vfolders_table(tp0, rf, member, no_vfolders):
     request = rf.get('/language0/project0/')

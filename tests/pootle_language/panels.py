@@ -47,7 +47,8 @@ def test_panel_language_table(language0, rf, member):
     assert panel.table == table
     assert panel.get_context_data() == dict(
         table=table, can_translate=view.can_translate)
+    content = loader.render_to_string(
+        panel.template_name, context=panel.get_context_data())
     assert (
         panel.content
-        == loader.render_to_string(
-            panel.template_name, context=panel.get_context_data()))
+        == panel.update_times(content))
