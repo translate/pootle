@@ -11,7 +11,6 @@ from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
 from pootle.i18n.gettext import ugettext as _
-from pootle.local.dates import timesince
 from pootle_misc.checks import get_qualitycheck_list
 
 
@@ -54,27 +53,16 @@ class StatsDisplay(object):
     @cached_property
     def stats(self):
         stats = self.stat_data
-        self.add_lastaction_info(stats)
         self.add_children_info(stats)
+        if stats.get("last_submission"):
+            stats["last_submission"]["msg"] = (
+                self.get_action_message(stats["last_submission"]))
         return stats
 
     def add_children_info(self, stats):
         for k, child in stats["children"].items():
             child["incomplete"] = child["total"] - child["translated"]
             child["untranslated"] = child["total"] - child["translated"]
-
-    def add_lastaction_info(self, stats):
-        if not stats.get("lastaction"):
-            return
-        grav = (
-            'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
-            % (stats["lastaction"]["email"], 20))
-        stats["lastaction"] = dict(
-            msg=self.get_action_message(stats["lastaction"]),
-            name=stats["lastaction"]["displayname"],
-            at=timesince(stats["lastaction"]["mtime"]),
-            grav=grav,
-            profile_url=stats["lastaction"]["profile_url"])
 
     def get_action_message(self, action):
         msg = ""
