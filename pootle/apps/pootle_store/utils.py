@@ -15,6 +15,7 @@ from django.utils import timezone
 
 from pootle.core.delegate import site
 from pootle.core.mail import send_mail
+from pootle.core.signals import update_data
 from pootle.i18n.gettext import ugettext as _
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_statistics.models import (
@@ -166,6 +167,7 @@ class SuggestionsReview(object):
         unit.save()
 
     def reject_suggestion(self, suggestion):
+        store = suggestion.unit.store
         suggestion.state = SuggestionStates.REJECTED
         suggestion.review_time = timezone.now()
         suggestion.reviewer = self.reviewer
@@ -175,6 +177,8 @@ class SuggestionsReview(object):
             SubmissionTypes.SUGG_REJECT,
             self.reviewer,
             creation_time=suggestion.review_time).save()
+
+        update_data.send(store.__class__, instance=store)
 
     def accept_suggestions(self):
         for suggestion in self.suggestions:
