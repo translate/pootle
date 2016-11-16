@@ -81,8 +81,8 @@
             <div class="action-wrapper">
               <label>{% trans "Last action:" %}</label>
               <div id="js-last-updated" class="last-updated last-action">
-		<span class="extra-item-meta">{{ stats.lastupdated.at }}</span>
-		<a href="{{ stats.lastupdated.unit_url }}">{{ stats.lastupdated.source }}</a>
+		<span class="extra-item-meta">{{ stats.last_created_unit.creation_time|time_since }}</span>
+		<a href="{{ stats.last_created_unit.unit_url }}">{{ stats.last_created_unit.unit_source }}</a>
 	      </div>
             </div>
           </div>
