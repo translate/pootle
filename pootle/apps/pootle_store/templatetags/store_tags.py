@@ -72,19 +72,6 @@ def pluralize_target(unit, nplurals=None):
     return forms
 
 
-@register.filter
-def pluralize_sugg(sugg):
-    unit = sugg.unit
-    if not unit.hasplural():
-        return [(0, sugg.target, None)]
-
-    forms = []
-    for i, target in enumerate(sugg.target.strings):
-        forms.append((i, target, _('Plural Form %d', i)))
-
-    return forms
-
-
 @register.tag(name="include_raw")
 def do_include_raw(parser, token):
     """
