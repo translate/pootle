@@ -28,7 +28,6 @@ def _test_stats_display(obj):
     stat_data = obj.data_tool.get_stats()
     assert stats.stat_data == stat_data.copy()
     stats.add_lastaction_info(stat_data)
-    stats.add_lastupdated_info(stat_data)
     stats.add_children_info(stat_data)
     assert stat_data == stats.stats
 

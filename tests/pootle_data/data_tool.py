@@ -59,12 +59,11 @@ def test_data_tool_store_get_stats(store0):
     assert (
         sorted(stats["lastaction"].items())
         == sorted(last_submission_info.items()))
-    # apparently "updated" means created
-    last_updated_info = (
-        store0.data.last_created_unit.get_last_updated_info())
+    last_created_unit_info = (
+        store0.data.last_created_unit.get_last_created_unit_info())
     assert (
-        sorted(stats["lastupdated"].items())
-        == sorted(last_updated_info.items()))
+        sorted(stats["last_created_unit"].items())
+        == sorted(last_created_unit_info.items()))
 
 
 @pytest.mark.django_db
@@ -91,12 +90,11 @@ def test_data_tool_tp_get_stats(tp0):
     assert (
         sorted(stats["lastaction"].items())
         == sorted(last_submission_info.items()))
-    # apparently "updated" means created
-    last_updated_info = (
-        tp0.data.last_created_unit.get_last_updated_info())
+    last_created_unit_info = (
+        tp0.data.last_created_unit.get_last_created_unit_info())
     assert (
-        sorted(stats["lastupdated"].items())
-        == sorted(last_updated_info.items()))
+        sorted(stats["last_created_unit"].items())
+        == sorted(last_created_unit_info.items()))
 
 
 @pytest.mark.django_db
@@ -114,12 +112,11 @@ def test_data_tool_tp_get_stats_with_children(tp0):
     assert (
         sorted(stats["lastaction"].items())
         == sorted(last_submission_info.items()))
-    # apparently "updated" means created
-    last_updated_info = (
-        tp0.data.last_created_unit.get_last_updated_info())
+    last_created_unit_info = (
+        tp0.data.last_created_unit.get_last_created_unit_info())
     assert (
-        sorted(stats["lastupdated"].items())
-        == sorted(last_updated_info.items()))
+        sorted(stats["last_created_unit"].items())
+        == sorted(last_created_unit_info.items()))
 
     for directory in tp0.directory.child_dirs.all():
         dir_stats = stats["children"][directory.name]
