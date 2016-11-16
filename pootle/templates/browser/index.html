@@ -94,8 +94,11 @@
             <div class="action-wrapper">
               <label>{% trans "Last action:" %}</label>
               <div id="js-last-action" class="last-action">
-		<a href="{{ stats.lastaction.profile_url }}"><img src="{{ stats.lastaction.grav }}" class="avatar" /></a>
-		{{ stats.lastaction.msg }} <span class="extra-item-meta">{{ stats.lastaction.at }}</span>
+		<a href="{{ stats.last_submission.profile_url }}">
+		  {% avatar stats.last_submission.username stats.last_submission.email 20 %}
+		</a>
+		{{ stats.last_submission.msg }}
+		<span class="extra-item-meta">{{ stats.last_submission.mtime|time_since }}</span>
 	      </div>
             </div>
           </div>
