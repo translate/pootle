@@ -87,7 +87,7 @@ class PootleBrowseView(PootleDetailView):
             (self.object, ))
 
     @property
-    def disabled_items(self):
+    def has_disabled(self):
         return any(
             item.get('is_disabled')
             for item
@@ -173,7 +173,7 @@ class PootleBrowseView(PootleDetailView):
              'top_scorers': self.top_scorers,
              'top_scorers_data': self.top_scorer_data,
              'table': table,
-             'disabled_items': self.disabled_items,
+             'has_disabled': self.has_disabled,
              'is_store': self.is_store,
              'browser_extends': self.template_extends})
         return ctx

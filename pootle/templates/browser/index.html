@@ -171,7 +171,7 @@
 
   PTL.stats.init({
     pootlePath: "{{ pootle_path }}",
-    hasDisabledItems: {{ disabled_items|yesno:"true,false" }},
+    hasDisabledItems: {{ has_disabled|yesno:"true,false" }},
     isAdmin: {{ has_admin_access|yesno:"true,false" }},
     isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
     topContributorsData: {{ top_scorers_data|to_js }},
