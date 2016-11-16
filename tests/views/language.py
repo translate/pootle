@@ -52,7 +52,7 @@ def _test_browse_view(language, request, response, kwargs):
         'id': 'language',
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
-        'items': items}
+        'rows': items}
     checks = ChecksDisplay(language).checks_by_category
     stats = StatsDisplay(language, stats=stats).stats
     del stats["children"]

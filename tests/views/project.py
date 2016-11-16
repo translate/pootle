@@ -142,7 +142,7 @@ def _test_browse_view(project, request, response, kwargs):
         'id': 'project',
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
-        'items': items}
+        'rows': items}
 
     if request.user.is_superuser or kwargs.get("language_code"):
         url_action_continue = obj.get_translate_url(state='incomplete')
@@ -222,7 +222,7 @@ def test_view_projects_browse(client, request_users):
         'id': 'projects',
         'fields': table_fields,
         'headings': get_table_headings(table_fields),
-        'items': items}
+        'rows': items}
 
     if request.user.is_superuser:
         url_action_continue = obj.get_translate_url(state='incomplete')

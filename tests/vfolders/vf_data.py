@@ -40,5 +40,5 @@ def test_vfolder_data_view(tp0, request_users):
             id='vfolders',
             fields=vf_data.table_fields,
             headings=get_table_headings(vf_data.table_fields),
-            items=vf_data.table_items))
+            rows=vf_data.table_items))
     assert vf_data.table_data == expected_table_data

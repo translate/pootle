@@ -26,6 +26,6 @@ def view_context_test(ctx, **assertions):
         elif k == "table":
             for tk in ["id", "fields", "headings"]:
                 assert ctx[k][tk] == v[tk]
-            assert list(ctx[k]["items"]) == list(v["items"])
+            assert list(ctx[k]["rows"]) == list(v["rows"])
         else:
             assert ctx[k] == v

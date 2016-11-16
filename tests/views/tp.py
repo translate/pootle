@@ -123,7 +123,7 @@ def _test_browse_view(tp, request, response, kwargs):
             'id': 'tp',
             'fields': table_fields,
             'headings': get_table_headings(table_fields),
-            'items': items}
+            'rows': items}
     else:
         table = None
     checks = ChecksDisplay(obj).checks_by_category
@@ -163,9 +163,9 @@ def _test_browse_view(tp, request, response, kwargs):
         assertions[k] = sidebar[0][k]
     view_context_test(ctx, **assertions)
     if vfolders:
-        for vfolder in ctx["vfolders"]["items"]:
+        for vfolder in ctx["vfolders"]["rows"]:
             assert (vfolder["is_grayed"] and not ctx["has_admin_access"]) is False
-        assert ctx["vfolders"]["items"] == vf_view.table_items
+        assert ctx["vfolders"]["rows"] == vf_view.table_items
 
     assert (('display_download' in ctx and ctx['display_download']) ==
             (request.user.is_authenticated()
