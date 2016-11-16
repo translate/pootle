@@ -44,7 +44,7 @@ def test_panel_tp_table(tp0, rf, member):
         'id': view.view_name,
         'fields': panel.table_fields,
         'headings': get_table_headings(panel.table_fields),
-        'items': view.items,
+        'rows': view.object_children,
         'disabled_items': view.disabled_items}
     assert panel.table == table
     assert panel.get_context_data() == dict(
@@ -115,7 +115,7 @@ def test_panel_tp_subdir_table(subdir0, rf, member):
         'id': view.view_name,
         'fields': panel.table_fields,
         'headings': get_table_headings(panel.table_fields),
-        'items': view.items,
+        'rows': view.object_children,
         'disabled_items': view.disabled_items}
     assert panel.table == table
     assert panel.get_context_data() == dict(

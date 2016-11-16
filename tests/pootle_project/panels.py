@@ -42,7 +42,7 @@ def test_panel_project_table(project0, rf, member):
         'id': view.view_name,
         'fields': panel.table_fields,
         'headings': get_table_headings(panel.table_fields),
-        'items': view.items,
+        'rows': view.object_children,
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
@@ -78,7 +78,7 @@ def test_panel_projects_table(rf, member, project0):
         'id': view.view_name,
         'fields': panel.table_fields,
         'headings': get_table_headings(panel.table_fields),
-        'items': view.items,
+        'rows': view.object_children,
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
@@ -115,7 +115,7 @@ def test_panel_project_store_table(project0, store0, rf, member):
         'id': view.view_name,
         'fields': panel.table_fields,
         'headings': get_table_headings(panel.table_fields),
-        'items': view.items,
+        'rows': view.object_children,
         'disabled_items': view.disabled_items}
 
     assert panel.table == table
