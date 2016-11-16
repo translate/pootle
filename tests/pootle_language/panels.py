@@ -42,8 +42,7 @@ def test_panel_language_table(language0, rf, member):
         'id': view.view_name,
         'fields': panel.table_fields,
         'headings': get_table_headings(panel.table_fields),
-        'rows': view.object_children,
-        'disabled_items': view.disabled_items}
+        'rows': view.object_children}
 
     assert panel.table == table
     assert panel.get_context_data() == dict(
