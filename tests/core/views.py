@@ -27,8 +27,11 @@ def _test_stats_display(obj):
     assert stats.context == obj
     stat_data = obj.data_tool.get_stats()
     assert stats.stat_data == stat_data.copy()
-    stats.add_lastaction_info(stat_data)
     stats.add_children_info(stat_data)
+    if stat_data.get("last_submission"):
+        stat_data["last_submission"]["msg"] = (
+            stats.get_action_message(
+                stat_data["last_submission"]))
     assert stat_data == stats.stats
 
 
