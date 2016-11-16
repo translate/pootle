@@ -53,11 +53,10 @@ def test_data_tool_store_get_stats(store0):
     assert stats["critical"] == store0.data.critical_checks
     assert stats["suggestions"] == store0.data.pending_suggestions
     assert stats["children"] == {}
-    # this is the actually last updated unit - called "lastaction"
     last_submission_info = (
         store0.data.last_submission.get_submission_info())
     assert (
-        sorted(stats["lastaction"].items())
+        sorted(stats["last_submission"].items())
         == sorted(last_submission_info.items()))
     last_created_unit_info = (
         store0.data.last_created_unit.get_last_created_unit_info())
@@ -84,11 +83,10 @@ def test_data_tool_tp_get_stats(tp0):
     assert stats["total"] == tp0.data.total_words
     assert stats["critical"] == tp0.data.critical_checks
     assert stats["suggestions"] == tp0.data.pending_suggestions
-    # this is the actually last updated unit - called "lastaction"
     last_submission_info = (
         tp0.data.last_submission.get_submission_info())
     assert (
-        sorted(stats["lastaction"].items())
+        sorted(stats["last_submission"].items())
         == sorted(last_submission_info.items()))
     last_created_unit_info = (
         tp0.data.last_created_unit.get_last_created_unit_info())
@@ -106,11 +104,10 @@ def test_data_tool_tp_get_stats_with_children(tp0):
     assert stats["total"] == tp0.data.total_words
     assert stats["critical"] == tp0.data.critical_checks
     assert stats["suggestions"] == tp0.data.pending_suggestions
-    # this is the actually last updated unit - called "lastaction"
     last_submission_info = (
         tp0.data.last_submission.get_submission_info())
     assert (
-        sorted(stats["lastaction"].items())
+        sorted(stats["last_submission"].items())
         == sorted(last_submission_info.items()))
     last_created_unit_info = (
         tp0.data.last_created_unit.get_last_created_unit_info())
