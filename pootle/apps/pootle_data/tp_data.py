@@ -116,7 +116,7 @@ class TPDataTool(RelatedStoresDataTool):
         stats = {
             v: getattr(self.context.data, k)
             for k, v in self.stats_mapping.items()}
-        stats["lastaction"] = self.get_lastaction()
+        stats["last_submission"] = self.get_last_submission()
         stats["last_created_unit"] = self.get_last_created()
         return stats
 
@@ -128,7 +128,7 @@ class TPDataTool(RelatedStoresDataTool):
     def filter_data(self, qs):
         return qs.filter(store__translation_project=self.context)
 
-    def get_lastaction(self, **kwargs):
+    def get_last_submission(self, **kwargs):
         return (
             self.context.data.last_submission
             and self.context.data.last_submission.get_submission_info()

@@ -70,8 +70,8 @@ class DataTool(object):
         if self.updater:
             return self.updater.update(**kwargs)
 
-    def get_lastaction(self, **kwargs):
-        return kwargs["lastaction"]
+    def get_last_submission(self, **kwargs):
+        return kwargs["last_submission"]
 
     def get_last_created(self, **kwargs):
         last_created = (
@@ -405,9 +405,8 @@ class RelatedStoresDataTool(DataTool):
                 child["last_submission__pk"]
                 and subs.get(child["last_submission__pk"]))
             if add_sub_info:
-                sub = subs[child["last_submission__pk"]]
-                lastaction = self.get_info_for_sub(sub)
-                child["last_submission"] = lastaction
+                child["last_submission"] = self.get_info_for_sub(
+                    subs[child["last_submission__pk"]])
 
     def aggregate_children(self, stats):
         """For a stats dictionary containing children qs.values, aggregate the
@@ -415,8 +414,8 @@ class RelatedStoresDataTool(DataTool):
         """
         agg = dict(
             total=0, fuzzy=0, translated=0, critical=0, suggestions=0)
-        latest = dict(lastaction=None, last_created_unit=None)
-        lastactionpk = None
+        latest = dict(last_submission=None, last_created_unit=None)
+        last_submission_pk = None
         last_created_unit_time = None
         for child in stats["children"].values():
             for k in agg.keys():
@@ -426,9 +425,9 @@ class RelatedStoresDataTool(DataTool):
                 if last_created["creation_time"] > last_created_unit_time:
                     latest["last_created_unit"] = last_created
                     last_created_unit_time = last_created["creation_time"]
-            if child["last_submission__pk"] > lastactionpk:
-                latest['lastaction'] = child["last_submission"]
-                lastactionpk = child["last_submission__pk"]
+            if child["last_submission__pk"] > last_submission_pk:
+                latest['last_submission'] = child["last_submission"]
+                last_submission_pk = child["last_submission__pk"]
             del child["last_submission__pk"]
         stats.update(agg)
         stats.update(latest)
@@ -567,7 +566,7 @@ class RelatedStoresDataTool(DataTool):
             self.stats_mapping.get(k, k): v
             for k, v
             in stats.items()}
-        stats["lastaction"] = None
+        stats["last_submission"] = None
         stats["last_created_unit"] = None
         stats["suggestions"] = None
         return stats
