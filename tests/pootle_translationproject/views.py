@@ -13,7 +13,6 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views.browse import StatsDisplay
 from pootle_app.models import Directory
 from pootle_store.models import Store
-from virtualfolder.delegate import vfolders_data_view
 from pootle_translationproject.views import TPBrowseView
 
 
@@ -23,21 +22,9 @@ def _test_view_tp_children(view, obj):
         data_obj = obj.tp
     else:
         data_obj = obj
-    vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
-    vf_stats = (
-        {}
-        if not vf_view
-        else StatsDisplay(
-            data_obj,
-            stats=vf_view.stats).stats)
-    stats = (
-        dict(vfolders=vf_stats["children"])
-        if vf_stats
-        else {})
-    stats.update(
-        StatsDisplay(
-            data_obj,
-            stats=data_obj.data_tool.get_stats(user=request.user)).stats)
+    stats = StatsDisplay(
+        data_obj,
+        stats=data_obj.data_tool.get_stats(user=request.user)).stats
     assert stats == view.stats
     stores = view.tp.stores
     if obj.tp_path != "/":
