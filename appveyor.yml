@@ -22,7 +22,7 @@ environment:
 install:
   # Installation
   - "%PYTHON%\\python.exe -m pip install lxml==3.6.0"
-  - "%PYTHON%\\python.exe -m pip install -r requirements/base.txt -r requirements/appveyor.txt -e ."
+  - "%PYTHON%\\python.exe -m pip install --process-dependency-links -e .[appveyor]"
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
   - npm --version

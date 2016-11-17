@@ -20,10 +20,7 @@ before_install:
     - cp -a $HOME/virtualenv/python2.7.9/lib/python2.7/site-packages/pytest.pyc $HOME/pytest_pyc-workaround
 install:
   - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then upgrade="--upgrade"; fi;
-      pip install $upgrade
-      -r requirements/base.txt
-      -r requirements/travis.txt
-      -e .
+      pip install $upgrade --process-dependency-links -e .[travis]
   # http://entulho.fiatjaf.alhur.es/guias/how-to-use-node-along-with-other-language-on-travis-ci/
   - source $HOME/.nvm/nvm.sh
   - nvm install stable

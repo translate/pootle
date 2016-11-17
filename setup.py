@@ -291,6 +291,15 @@ dependency_links += parse_dependency_links('requirements/_pootle_fs_git.txt')
 # Markdown
 extras_require['markdown'] = parse_requirements('requirements/_markup_markdown.txt')
 dependency_links += parse_dependency_links('requirements/_markup_markdown.txt')
+# Testing
+extras_require['travis'] = parse_requirements('requirements/travis.txt',
+                                              recurse=True)
+dependency_links += parse_dependency_links('requirements/travis.txt',
+                                           recurse=True)
+extras_require['appveyor'] = parse_requirements('requirements/appveyor.txt',
+                                                recurse=True)
+dependency_links += parse_dependency_links('requirements/appveyor.txt',
+                                           recurse=True)
 
 
 setup(
