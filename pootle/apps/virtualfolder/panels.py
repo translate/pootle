@@ -24,7 +24,7 @@ class VFolderPanel(ChildrenPanel):
     @property
     def vfdata(self):
         vfdata = self.view.vfolders_data_view
-        if not vfdata or not vfdata.table_data.get("children"):
+        if not self.view.has_vfolders:
             return vfdata
         for child in vfdata.table_data["children"]["rows"]:
             stats = child["stats"]
