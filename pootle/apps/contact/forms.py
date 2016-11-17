@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from collections import OrderedDict
-
 from django import forms
 from django.conf import settings
 
@@ -19,6 +17,9 @@ from pootle.i18n.gettext import ugettext_lazy as _
 
 
 class ContactForm(MathCaptchaForm, OriginalContactForm):
+
+    field_order = ['name', 'email', 'subject', 'body', 'captcha_answer',
+                   'captcha_token']
 
     subject = forms.CharField(
         max_length=100,
@@ -67,14 +68,6 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
         send_mail(fail_silently=fail_silently, **kwargs)
 
 
-# Alters form's field order. Use `self.field_order` when in Django 1.9+
-ContactForm.base_fields = OrderedDict(
-    (f, ContactForm.base_fields[f])
-    for f in ['name', 'email', 'subject', 'body', 'captcha_answer',
-              'captcha_token']
-)
-
-
 class ReportForm(ContactForm):
     """Contact form used to report errors on strings."""
 
@@ -95,11 +88,3 @@ class ReportForm(ContactForm):
         report_email = getattr(settings, 'POOTLE_CONTACT_REPORT_EMAIL',
                                settings.POOTLE_CONTACT_EMAIL)
         return [report_email]
-
-
-# Alters form's field order. Use `self.field_order` when in Django 1.9+
-ReportForm.base_fields = OrderedDict(
-    (f, ReportForm.base_fields[f])
-    for f in ['name', 'email', 'subject', 'body', 'captcha_answer',
-              'captcha_token', 'report_email']
-)
