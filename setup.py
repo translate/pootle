@@ -56,6 +56,8 @@ def parse_requirements(file_name, recurse=False):
         if re.match(r'\s*-e\s+', line):
             requirements.append(re.sub(r'\s*-e\s+.*#egg=([^\d]*)-([\.\d]*((a|b|rc|dev)+\d*)*)$',
                                        r'\1==\2', line))
+            log.warn("Pootle requires a non-PyPI dependency, when using pip "
+                     "ensure you use the --process-dependency-links option.")
         elif re.match(r'\s*-f\s+', line):
             pass
         else:
