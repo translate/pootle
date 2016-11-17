@@ -52,7 +52,7 @@ const SuggestionValue = React.createClass({
       return this.props.getPluralFormName(index);
     }
 
-    return t('Plural form %(index)s', { index });
+    return `[${ index }]`;
   },
 
   createItem(value, index) {
