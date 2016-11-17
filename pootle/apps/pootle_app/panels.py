@@ -44,6 +44,8 @@ class ChildrenPanel(TablePanel):
     def child_update_times(self):
         _times = {}
         for child in self.children:
+            if not child.get("stats"):
+                continue
             last_created_unit = (
                 timesince(child["stats"]["last_created_unit"]["creation_time"])
                 if child["stats"].get("last_created_unit")
