@@ -17,8 +17,12 @@ from pytest_pootle.factories import LanguageDBFactory, UserFactory
 from pytest_pootle.utils import create_api_request
 
 from accounts.models import User
+from pootle.core.delegate import panels
+from pootle.core.plugin import provider
 from pootle.core.views import APIView
+from pootle.core.views.browse import PootleBrowseView
 from pootle.core.views.display import StatsDisplay
+from pootle.core.views.panels import Panel
 from pootle.core.views.widgets import TableSelectMultiple
 
 
@@ -346,7 +350,6 @@ def test_view_gathered_context_data(rf, member):
     from pootle.core.views.base import PootleDetailView
     from pootle_project.models import Project
     from pootle.core.delegate import context_data
-    from pootle.core.plugin import provider
 
     class DummyView(PootleDetailView):
 
@@ -711,3 +714,42 @@ def test_display_stats_action_message(tp0):
                 ("<a href='%s'>%s</a>"
                  % (action["unit_url"], action["unit_source"]))
                 in message)
+
+
+@pytest.mark.django_db
+def test_browse_view_panels():
+
+    class FooBrowseView(PootleBrowseView):
+        panel_names = ["foo_panel"]
+
+    class FooPanel(Panel):
+
+        @property
+        def content(self):
+            return "__FOO__"
+
+    @provider(panels, sender=FooBrowseView)
+    def foo_panel_provider(**kwargs_):
+        return dict(foo_panel=FooPanel)
+
+    view = FooBrowseView()
+    assert list(view.panels) == ["__FOO__"]
+
+    class BarBrowseView(PootleBrowseView):
+        panel_names = ["foo_panel", "bar_panel"]
+
+    class BarPanel(Panel):
+
+        @property
+        def content(self):
+            return "__BAR__"
+
+    @provider(panels, sender=PootleBrowseView)
+    def bar_panel_provider(**kwargs_):
+        return dict(bar_panel=BarPanel)
+
+    # foo_panel is only registered for FooBrowseView
+    # bar_panel is registered for PootleBrowseView
+    # only bar_panel is included
+    view = BarBrowseView()
+    assert list(view.panels) == ["__BAR__"]
