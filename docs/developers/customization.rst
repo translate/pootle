@@ -18,7 +18,8 @@ Customizing templates
 ---------------------
 
 In case you need to change a template, copy it into your custom
-:setting:`TEMPLATE_DIRS` with the same path name as it had before.
+:setting:`TEMPLATE:DIRS <TEMPLATES-DIRS>` directory with the same path name as
+it had before.
 
 .. warning::
 
