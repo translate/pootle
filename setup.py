@@ -24,11 +24,14 @@ from pootle import __version__
 
 def check_pep440_versions():
     if require('setuptools')[0].parsed_version < parse_version('8.0'):
-        exit("Incompatible version of 'setuptools'. Please run\n"
-             "'pip install --upgrade setuptools'")
+        exit("setuptools %s is incompatible with Pootle. Please upgrade "
+             "using:\n"
+             "'pip install --upgrade setuptools'"
+             % require('setuptools')[0].version)
     if require('pip')[0].parsed_version < parse_version('6.0'):
-        exit("Incompatible version of 'pip'. Please run\n"
-             "'pip install --upgrade pip'")
+        exit("pip %s is incompatible with Pootle. Please upgrade "
+             "using:\n"
+             "'pip install --upgrade pip'" % require('pip')[0].version)
 
 
 def parse_requirements(file_name, recurse=False):
