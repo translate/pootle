@@ -54,7 +54,7 @@ def parse_requirements(file_name, recurse=False):
             continue
 
         if re.match(r'\s*-e\s+', line):
-            requirements.append(re.sub(r'\s*-e\s+.*#egg=([^\d]*)-([\.\d]*)$',
+            requirements.append(re.sub(r'\s*-e\s+.*#egg=([^\d]*)-([\.\d]*((a|b|rc|dev)+\d*)*)$',
                                        r'\1==\2', line))
         elif re.match(r'\s*-f\s+', line):
             pass
