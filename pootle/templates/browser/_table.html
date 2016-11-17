@@ -106,7 +106,7 @@
         <a href="{{ item.stats.last_submission.profile_url }}">
 	  {% if item.stats.last_submission.displayname %}
 	  {% avatar item.stats.last_submission.username item.stats.last_submission.email 20 %}
-	  <span class="user-name">{{ item.stats.last_submission.displayname }}</span>
+	  <span class="user-name user-info">{{ item.stats.last_submission.displayname }}</span>
 	  {% endif %}
 	</a>
         {% if item.stats.last_submission.mtime %}

@@ -9,7 +9,7 @@
       <div class="user">
         <a href="{{ user.get_absolute_url }}">
           <img src="{{ user|gravatar:20 }}" class="avatar" />
-          <span class="user-name">{{ user.display_name }}</span>
+          <span class="user-name user-info">{{ user.display_name }}</span>
         </a>
       </div>
       <div class="number">{% if item.public_total_score > 0 %}+{% endif %}{{ item.public_total_score|floatformat:0|intcomma }}</div>

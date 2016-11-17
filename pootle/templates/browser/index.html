@@ -102,8 +102,10 @@
 		<a href="{{ stats.last_submission.profile_url }}">
 		  {% avatar stats.last_submission.username stats.last_submission.email 20 %}
 		</a>
-		{{ stats.last_submission.msg }}
-		<span class="extra-item-meta">{{ stats.last_submission.mtime|time_since }}</span>
+		<span class="user-info">
+		  {{ stats.last_submission.msg }}
+		  <span class="extra-item-meta">{{ stats.last_submission.mtime|time_since }}</span>
+		</span>
 	      </div>
             </div>
           </div>

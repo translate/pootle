@@ -883,12 +883,13 @@ html[dir="rtl"] .last-action img
     position: relative;
 }
 
-.last-action .user-name
+
+.last-action .user-info
 {
     margin-left: 24px;
 }
 
-html[dir="rtl"] .last-action .user-name
+html[dir="rtl"] .last-action .user-info
 {
     margin-left: auto;
     margin-right: 24px;
