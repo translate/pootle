@@ -9,7 +9,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import TimeSince from 'components/TimeSince';
 import ReactRenderer from 'utils/ReactRenderer';
@@ -34,7 +33,6 @@ import { q, qAll } from 'utils/dom';
 import fetch from 'utils/fetch';
 import linkHashtags from 'utils/linkHashtags';
 
-import SuggestionFeedbackForm from './components/SuggestionFeedbackForm';
 import UploadTimeSince from './components/UploadTimeSince';
 
 import captcha from '../captcha';
@@ -2391,37 +2389,32 @@ PTL.editor = {
     return true;
   },
 
-  openSuggestion(suggId, initialSuggestionText) {
+  openSuggestion(suggId) {
+    this.selectedSuggestionId = suggId;
+    const mountSelector = `.js-mnt-suggestion-feedback-${suggId}`;
+    const mountNode = q(mountSelector);
+    const editorBody = q('.js-editor-body .translate-full');
     const suggestion = document.getElementById(`suggestion-${suggId}`);
 
-    this.selectedSuggestionId = suggId;
     const props = {
       suggId,
-      initialSuggestionText,
-      localeDir: this.settings.localeDir,
       onAcceptSuggestion: this.handleAcceptSuggestion.bind(this),
       onRejectSuggestion: this.handleRejectSuggestion.bind(this),
       onChange: this.handleSuggestionFeedbackChange.bind(this),
     };
-    const mountSelector = `.js-mnt-suggestion-feedback-${suggId}`;
-    const feedbackMountPoint = q(mountSelector);
-    const editorBody = q('.js-editor-body .translate-full');
+
     suggestion.classList.add('suggestion-expanded');
     editorBody.classList.add('suggestion-expanded');
-
     this.isSuggestionFeedbackFormDirty = false;
-    this.suggestionFeedbackForm = ReactDOM.render(
-      <SuggestionFeedbackForm {...props} />,
-      feedbackMountPoint
-    );
+
+    ReactEditor.renderSuggestionFeedbackForm(props, mountNode);
   },
 
   toggleSuggestion(e, { canHide = false } = {}) {
     if (this.selectedSuggestionId === undefined) {
       e.stopPropagation();
       const suggestionId = parseInt(e.currentTarget.dataset.suggId, 10);
-      const initialSuggestionText = e.currentTarget.dataset.translationAid;
-      this.openSuggestion(suggestionId, initialSuggestionText);
+      this.openSuggestion(suggestionId);
     } else if (canHide) {
       e.stopPropagation();
       this.closeSuggestion();
@@ -2437,14 +2430,11 @@ PTL.editor = {
         (!checkIfCanNavigate || this.canNavigate())) {
       const suggestion = q(`#suggestion-${this.selectedSuggestionId}`);
       const editorBody = q('.js-editor-body .translate-full');
-      const mountSelector = `.js-mnt-suggestion-feedback-${this.selectedSuggestionId}`;
-      const feedbackMountPoint = q(mountSelector);
       editorBody.classList.remove('suggestion-expanded');
       suggestion.classList.remove('suggestion-expanded');
-      ReactDOM.unmountComponentAtNode(feedbackMountPoint);
       this.selectedSuggestionId = undefined;
-      this.suggestionFeedbackForm = undefined;
       this.isSuggestionFeedbackFormDirty = false;
+      ReactEditor.unmountSuggestionFeedbackForm();
     }
   },
 

@@ -906,10 +906,22 @@ html[dir="rtl"] .suggestion-action
     margin: 5px 5px 0 0;
 }
 
+.extra-item-block .suggestion-feedback .field-wrapper.suggestion-editor
+{
+    margin-right: 0;
+}
+
+.suggestion-feedback label
+{
+    margin-bottom: 3px;
+}
+
 .extra-item-block .suggestion-feedback .field-wrapper label,
 .extra-item-block .suggestion-feedback .field-wrapper textarea
 {
     display: block;
+    width: 100%;
+    max-width: 100%;
 }
 
 .extra-item-block .suggestion-feedback .field-wrapper textarea
@@ -1028,6 +1040,14 @@ html[dir="rtl"] .suggestion-original
     padding-right: 0;
     padding-left: 1em;
     float: right;
+}
+
+.suggestion-feedback .comment
+{
+    background-color: #fff;
+    overflow: hidden;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
 }
 
 .editor-area-wrapper

@@ -8,10 +8,12 @@
 
 import assign from 'object-assign';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import ReactRenderer from 'utils/ReactRenderer';
 import { q, qAll } from 'utils/dom';
 
+import SuggestionFeedbackForm from './components/SuggestionFeedbackForm';
 import { loadFormatAdaptor } from './formats/FormatLoader';
 import { hasCRLF, normalize, denormalize } from './utils/normalizer';
 import { insertAtCaret, setValue } from './utils/RawFontAware';
@@ -111,10 +113,43 @@ const ReactEditor = {
     }
   },
 
+  renderSuggestionFeedbackForm(props, mountNode) {
+    const suggestion = this.props.suggestions[props.suggId];
+    this.feedbackMountNode = mountNode;
+    this.suggestionEditorInstance = ReactDOM.render(
+      <SuggestionFeedbackForm
+        initialSuggestionValues={suggestion.target}
+        sourceValues={this.props.sourceValues}
+        editorComponent={this.formatAdaptor.editorComponent}
+        currentLocaleCode={this.props.currentLocaleCode}
+        currentLocaleDir={this.props.currentLocaleDir}
+        targetNplurals={this.props.targetNplurals}
+        isDisabled={false}
+        {...props}
+      />,
+      mountNode
+    );
+  },
+
+  unmountSuggestionFeedbackForm() {
+    if (this.feedbackMountNode) {
+      ReactDOM.unmountComponentAtNode(this.feedbackMountNode);
+      this.feedbackMountNode = undefined;
+    }
+  },
+
+  get stateValues() {
+    return this._stateValues(this.editorInstance);
+  },
+
+  get stateSuggestionValues() {
+    return this._stateValues(this.suggestionEditorInstance);
+  },
+
   // FIXME: this additional layer of state tracking is only kept to allow
   // interaction from the outside world. Remove ASAP.
-  get stateValues() {
-    const stateValues = this.editorInstance.getStateValues();
+  _stateValues(editorInstance) {
+    const stateValues = editorInstance.getStateValues();
     /*           ,
      *  __  _.-"` `'-.
      * /||\'._ __{}_(  CUSTOMS CHECK: if any CRLF => LF conversion was done
