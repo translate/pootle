@@ -1359,6 +1359,7 @@ PTL.editor = {
           values: unit.source,
           type: 'original',
           fileType: unit.store.filetype,
+          hasPlurals: unit.source.length > 1,
         };
         const targetProps = {
           id: unit.id,
@@ -1369,6 +1370,7 @@ PTL.editor = {
           values: unit.target,
           fileType: unit.store.filetype,
           type: 'translation',
+          hasPlurals: unit.target.length > 1,
         };
 
         ReactEditor.renderViewUnitComponent(sourceProps, rows[i].cells[0]);

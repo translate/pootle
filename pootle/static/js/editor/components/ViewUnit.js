@@ -14,6 +14,7 @@ import { highlightRO } from '../../utils';
 
 const InnerDiv = ({ value }) => (
   <div
+    className="view-unit-value"
     dangerouslySetInnerHTML={
       { __html: highlightRO(value) }
     }
@@ -36,6 +37,8 @@ const ViewUnit = React.createClass({
     values: PropTypes.array.isRequired,
     type: PropTypes.string.isRequired, // original | translation
     innerComponent: React.PropTypes.func,
+    getPluralFormName: React.PropTypes.func,
+    hasPlurals: React.PropTypes.bool.isRequired,
   },
 
   getDefaultProps() {
@@ -43,6 +46,14 @@ const ViewUnit = React.createClass({
       innerComponent: InnerDiv,
       isFuzzy: false,
     };
+  },
+
+  getPluralFormName(index) {
+    if (this.props.getPluralFormName !== undefined) {
+      return this.props.getPluralFormName(index);
+    }
+
+    return `[${index}]`;
   },
 
   createValue(value, index) {
@@ -53,6 +64,11 @@ const ViewUnit = React.createClass({
         key={`${this.props.type}-value-${index}`}
         lang={this.props.language}
       >
+        {this.props.hasPlurals &&
+          <div
+            className="plural-form-label"
+          >{ this.getPluralFormName(index) }</div>
+        }
         <this.props.innerComponent value={value} />
       </div>
     );

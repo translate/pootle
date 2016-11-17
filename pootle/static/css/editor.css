@@ -1066,15 +1066,24 @@ html[dir="rtl"] .suggestion-original
     margin: 0.5em 0 0 0.3em;
 }
 
-#suggestions .plural-form-label
+#suggestions .plural-form-label,
+tr.view-row .plural-form-label
 {
     margin-right: 5px;
+    vertical-align: top;
 }
 
 #suggestions .plural-form-label,
-#suggestions .suggestion-translation
+#suggestions .suggestion-translation,
+tr.view-row .plural-form-label,
+tr.view-row .view-unit-value
 {
     display: inline-block;
+}
+
+html[dir="rtl"] tr.view-row .plural-form-label
+{
+    margin-left: 5px;
 }
 
 .editor-area-wrapper .subheader
