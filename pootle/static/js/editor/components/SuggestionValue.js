@@ -8,7 +8,6 @@
 
 import React from 'react';
 
-import { t } from 'utils/i18n';
 import diff from 'utils/diff';
 
 
@@ -52,7 +51,7 @@ const SuggestionValue = React.createClass({
       return this.props.getPluralFormName(index);
     }
 
-    return `[${ index }]`;
+    return `[${index}]`;
   },
 
   createItem(value, index) {
