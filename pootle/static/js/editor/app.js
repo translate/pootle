@@ -143,7 +143,6 @@ PTL.editor = {
 
     /* Compile templates */
     this.tmpl = {
-      vUnit: _.template($('#view_unit').html()),
       tm: _.template($('#tm_suggestions').html()),
       editCtx: _.template($('#editCtx').html()),
       msg: _.template($('#js-editor-msg').html()),
