@@ -1245,6 +1245,7 @@ PTL.editor = {
 
     const rows = [];
     this.viewUnits = {};
+    this.viewCtxUnits = {};
 
     unitGroups.forEach((unitGroup) => {
       // Don't display a delimiter row if all units have the same origin
@@ -1279,12 +1280,9 @@ PTL.editor = {
 
     for (let i = 0; i < units.length; i++) {
       // FIXME: Please let's use proper models for context units
-      let unit = units[i];
-      unit = assign({}, currentUnit.toJSON(), unit);
-
-      rows += `<tr id="ctx${unit.id}" class="ctx-row ${extraCls}">`;
-      rows += this.tmpl.vUnit({ unit });
-      rows += '</tr>';
+      const unit = assign({}, currentUnit.toJSON(), units[i]);
+      this.viewCtxUnits[unit.id] = unit;
+      rows += `<tr data-id="${unit.id}" class="ctx-row ${extraCls}"><td></td><td></td></tr>`;
     }
 
     return rows;
@@ -1348,38 +1346,41 @@ PTL.editor = {
 
     if (newTbody !== undefined) {
       this.$editorBody.html(newTbody);
-      const rows = document.querySelectorAll('.view-row');
-      for (let i = 0; i < rows.length; i++) {
-        const unit = this.viewUnits[rows[i].dataset.id];
-        const sourceProps = {
-          id: unit.id,
-          url: unit.url,
-          dir: unit.store.source_dir,
-          language: unit.store.source_lang,
-          values: unit.source,
-          type: 'original',
-          fileType: unit.store.filetype,
-          hasPlurals: unit.source.length > 1,
-        };
-        const targetProps = {
-          id: unit.id,
-          url: unit.url,
-          isFuzzy: unit.isfuzzy,
-          dir: unit.store.target_dir,
-          language: unit.store.target_lang,
-          values: unit.target,
-          fileType: unit.store.filetype,
-          type: 'translation',
-          hasPlurals: unit.target.length > 1,
-        };
-
-        ReactEditor.renderViewUnitComponent(sourceProps, rows[i].cells[0]);
-        ReactEditor.renderViewUnitComponent(targetProps, rows[i].cells[1]);
-      }
+      this.renderViewRowValues('.view-row', this.viewUnits);
       this.ready();
     }
   },
 
+  renderViewRowValues(selector, units) {
+    const rows = document.querySelectorAll(selector);
+    for (let i = 0; i < rows.length; i++) {
+      const unit = units[rows[i].dataset.id];
+      const sourceProps = {
+        id: unit.id,
+        url: unit.url,
+        dir: unit.store.source_dir,
+        language: unit.store.source_lang,
+        values: unit.source,
+        type: 'original',
+        fileType: unit.store.filetype,
+        hasPlurals: unit.source.length > 1,
+      };
+      const targetProps = {
+        id: unit.id,
+        url: unit.url,
+        isFuzzy: unit.isfuzzy,
+        dir: unit.store.target_dir,
+        language: unit.store.target_lang,
+        values: unit.target,
+        fileType: unit.store.filetype,
+        type: 'translation',
+        hasPlurals: unit.target.length > 1,
+      };
+
+      ReactEditor.renderViewUnitComponent(sourceProps, rows[i].cells[0]);
+      ReactEditor.renderViewUnitComponent(targetProps, rows[i].cells[1]);
+    }
+  },
 
   /* Updates a button in `selector` to the `disable` state */
   updateNavButton($button, disable) {
@@ -1938,6 +1939,8 @@ PTL.editor = {
     const editCtxRows = $('tr.edit-ctx');
     editCtxRows.first().after(before);
     editCtxRows.last().before(after);
+    this.renderViewRowValues('.ctx-row', this.viewCtxUnits);
+
     return undefined;
   },
 

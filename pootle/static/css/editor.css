@@ -1067,7 +1067,8 @@ html[dir="rtl"] .suggestion-original
 }
 
 #suggestions .plural-form-label,
-tr.view-row .plural-form-label
+tr.view-row .plural-form-label,
+tr.ctx-row .plural-form-label
 {
     margin-right: 5px;
     vertical-align: top;
@@ -1076,7 +1077,9 @@ tr.view-row .plural-form-label
 #suggestions .plural-form-label,
 #suggestions .suggestion-translation,
 tr.view-row .plural-form-label,
-tr.view-row .view-unit-value
+tr.view-row .view-unit-value,
+tr.ctx-row .plural-form-label,
+tr.ctx-row .view-unit-value
 {
     display: inline-block;
 }
