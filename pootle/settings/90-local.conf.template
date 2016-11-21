@@ -60,8 +60,8 @@ DATABASES = {
         'HOST': %(db_host)s,
         # Set to empty string for default. Not used with sqlite3.
         'PORT': %(db_port)s,
-        # See https://docs.djangoproject.com/en/1.6/topics/db/transactions/
-        # required for Django 1.6 + sqlite
+        # See https://docs.djangoproject.com/en/1.10/topics/db/transactions/
+        # required for Django + sqlite
         'ATOMIC_REQUESTS': True,
         'TEST': {
             'NAME': 'test_pootle',
