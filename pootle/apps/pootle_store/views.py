@@ -597,7 +597,8 @@ def suggest(request, unit, **kwargs_):
                 similarity=form.cleaned_data['similarity'],
                 mt_similarity=form.cleaned_data['mt_similarity'])
 
-            json['user_score'] = request.user.public_score
+            if not request.user.is_anonymous:
+                json['user_score'] = request.user.public_score
 
         return JsonResponse(json)
 
