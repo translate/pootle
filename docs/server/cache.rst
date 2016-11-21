@@ -49,7 +49,7 @@ value of :setting:`CACHES` in your configuration file, an example exists in
 file:`90-local.conf.sample`.
 
 
-.. _Django's caching system: https://docs.djangoproject.com/en/dev/topics/cache/
+.. _Django's caching system: https://docs.djangoproject.com/en/1.10/topics/cache/
 .. |Django's caching system| replace:: *Django's caching system*
 
 .. we use | | here and above for italics like :ref: in normal links

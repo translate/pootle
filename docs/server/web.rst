@@ -85,8 +85,8 @@ A sample Apache configuration with mod_wsgi might look like this:
 .. literalinclude:: apache-virtualhost.conf
    :language: apache
 
-You can find more information in the `Django docs about Apache and
-mod_wsgi <https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/>`_.
+You can find more information in the `Django docs about Apache and mod_wsgi
+<https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/modwsgi/>`_.
 
 
 .. _apache#.htaccess:

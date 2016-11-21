@@ -73,7 +73,7 @@ DATABASES = {
 # Cache Backend settings
 
 # For more information, check
-# http://docs.djangoproject.com/en/dev/topics/cache/#setting-up-the-cache
+# https://docs.djangoproject.com/en/1.10/topics/cache/#setting-up-the-cache
 # and http://niwibe.github.io/django-redis/
 #CACHES = {
 #    'default': {
