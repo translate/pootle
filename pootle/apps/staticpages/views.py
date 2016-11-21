@@ -135,7 +135,7 @@ class PageCreateView(SuperuserRequiredMixin, AdminCtxMixin, PageModelMixin,
             msg = _(u'projects/<project_code> or <language_code> or '
                     u'<language_code>/<project_code>')
             form.fields['virtual_path'].widget.attrs['placeholder'] = msg
-            form.fields['virtual_path'].widget.attrs['size'] = 64
+            form.fields['virtual_path'].widget.attrs['size'] = 100
 
         return form
 
