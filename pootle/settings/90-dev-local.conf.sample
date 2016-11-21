@@ -24,12 +24,10 @@ SECRET_KEY = '__P00TL3d3vS3CR3T__'
 # General Django debugging settings
 
 # Enable Django debug mode
-# https://docs.djangoproject.com/en/1.10/ref/settings/#debug
 DEBUG = True
 
 # A list of strings representing the host/domain names that this Pootle server
 # can serve. This is a Django's security measure. More details at
-# https://docs.djangoproject.com/en/1.10/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',

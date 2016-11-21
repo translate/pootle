@@ -28,8 +28,7 @@ TIME_ZONE = 'UTC'
 SECRET_KEY = %(default_key)s
 
 # A list of strings representing the host/domain names that this Pootle server
-# can serve. This is a Django's security measure. More details at
-# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+# can serve. This is a Django's security measure.
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
@@ -147,7 +146,6 @@ ADMINS = (
 # Mail settings
 
 # Default email address to use for messages sent by Pootle.
-# https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = 'info@YOUR_DOMAIN.com'
 
 # Address to receive messages sent by contact form.
