@@ -11,7 +11,6 @@ import json
 import pytest
 
 from django import forms
-from django.core import mail
 from django.urls import reverse
 
 from pootle.core.browser import make_project_item
@@ -248,7 +247,8 @@ def test_view_admin_language_team_suggestion(client, language0, request_users):
 
 
 @pytest.mark.django_db
-def test_view_admin_language_suggestion_post(client, language0, request_users):
+def test_view_admin_language_suggestion_post(client, language0, request_users,
+                                             mailoutbox):
     user = request_users["user"]
     team = language_team.get(language0.__class__)(language0)
     admin_url = reverse(
@@ -272,7 +272,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users):
     assert response.status_code == 302
     suggestion.refresh_from_db()
     assert suggestion.state == "accepted"
-    assert len(mail.outbox) == 0
+    assert len(mailoutbox) == 0
 
     # reject
     suggestion = team.suggestions.first()
@@ -283,7 +283,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users):
     assert response.status_code == 302
     suggestion.refresh_from_db()
     assert suggestion.state == "rejected"
-    assert len(mail.outbox) == 0
+    assert len(mailoutbox) == 0
 
     # reject with comment
     suggestion = team.suggestions.first()
@@ -295,7 +295,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users):
     assert response.status_code == 302
     suggestion.refresh_from_db()
     assert suggestion.state == "accepted"
-    assert len(mail.outbox) == 1
+    assert len(mailoutbox) == 1
 
     # reject with comment
     suggestion = team.suggestions.first()
@@ -307,7 +307,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users):
     assert response.status_code == 302
     suggestion.refresh_from_db()
     assert suggestion.state == "rejected"
-    assert len(mail.outbox) == 2
+    assert len(mailoutbox) == 2
 
 
 @pytest.mark.django_db

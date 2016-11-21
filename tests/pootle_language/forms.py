@@ -8,7 +8,6 @@
 
 import pytest
 
-from django.core import mail
 from django.urls import reverse
 
 from pootle.i18n.gettext import ugettext_lazy as _
@@ -248,7 +247,8 @@ def test_form_language_suggestions_bad(language0, tp0, admin):
 
 @pytest.mark.django_db
 def test_form_language_suggestions_accept_comment(language0, tp0, admin,
-                                                  member2_with_email):
+                                                  member2_with_email,
+                                                  mailoutbox):
     form = LanguageSuggestionAdminForm(
         language=language0,
         user=admin,
@@ -265,16 +265,16 @@ def test_form_language_suggestions_accept_comment(language0, tp0, admin,
     form.save()
     for suggestion in form.suggestions_to_save:
         assert suggestion.state == "accepted"
-    assert len(mail.outbox) == 1
-    message = mail.outbox[0].message()
+    assert len(mailoutbox) == 1
     for suggestion in form.suggestions_to_save:
-        assert ("#%s" % suggestion.id) in str(message)
-    assert "accept" in mail.outbox[0].subject.lower()
+        assert ("#%s" % suggestion.id) in mailoutbox[0].body
+    assert "accept" in mailoutbox[0].subject.lower()
 
 
 @pytest.mark.django_db
 def test_form_language_suggestions_reject_comment(language0, tp0, admin,
-                                                  member2_with_email):
+                                                  member2_with_email,
+                                                  mailoutbox):
     form = LanguageSuggestionAdminForm(
         language=language0,
         user=admin,
@@ -291,8 +291,7 @@ def test_form_language_suggestions_reject_comment(language0, tp0, admin,
     form.save()
     for suggestion in form.suggestions_to_save:
         assert suggestion.state == "rejected"
-    assert len(mail.outbox) == 1
-    message = mail.outbox[0].message()
+    assert len(mailoutbox) == 1
     for suggestion in form.suggestions_to_save:
-        assert ("#%s" % suggestion.id) in str(message)
-    assert "reject" in mail.outbox[0].subject.lower()
+        assert ("#%s" % suggestion.id) in mailoutbox[0].body
+    assert "reject" in mailoutbox[0].subject.lower()
