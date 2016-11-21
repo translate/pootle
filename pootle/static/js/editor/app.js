@@ -1671,7 +1671,10 @@ PTL.editor = {
       score.set(data.user_score);
     }
 
-    this.gotoNext();
+    // Using `PTL.editor` instead of `this` to avoid using of wrong `this`
+    // and hitting the error when anonymous user is redirected from a captcha
+    // page after he added a suggestion.
+    PTL.editor.gotoNext();
   },
 
 
