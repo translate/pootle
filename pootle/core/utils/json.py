@@ -23,7 +23,7 @@ class PootleJSONEncoder(DjangoJSONEncoder):
 
     This is mostly implemented to avoid calling `force_unicode` all the time on
     certain types of objects.
-    https://docs.djangoproject.com/en/1.4/topics/serialization/#id2
+    https://docs.djangoproject.com/en/1.10/topics/serialization/#djangojsonencoder
     """
 
     def default(self, obj):
