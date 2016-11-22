@@ -84,7 +84,7 @@ class ActionDisplay(object):
 
     @property
     def translation_action_type(self):
-        return self.action["translation_action_type"]
+        return self.action.get("translation_action_type")
 
     @property
     def message(self):
