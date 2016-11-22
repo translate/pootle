@@ -1,5 +1,5 @@
 {% extends 'user/base.html'  %}
-{% load core humanize i18n profile_tags assets %}
+{% load core humanize i18n profile_tags assets common_tags %}
 
 {% block body_id %}profile-page{% endblock %}
 
@@ -58,7 +58,10 @@
     {% if last_event %}
     <div class="user-last-activity">
       <div class="label">{% trans 'Latest activity:' %}</div>
-      <div class="last-action js-last-action"></div>
+      <div class="last-action">
+	{% avatar object.username object.email_hash 20 %}
+	<span class="user-info">{{ last_event.message }} {{ last_event.since }}</span>
+      </div>
     </div>
     {% endif %}
     {% endwith %}
@@ -109,18 +112,17 @@
 
 {% block scripts_extra %}
 {{ block.super }}
+{% if user == object %}
 {% assets 'js_user_app' %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
 <script type="text/javascript">
 $(function() {
   PTL.user.init({
-    {% if user == object %}
     userData: {{ user.field_values|to_js }},
     appRoot: '{{ user.get_absolute_url }}',
-    {% endif %}
-    lastEvent: {{ object.last_event.get_submission_info|to_js }},
   });
 });
 </script>
+{% endif %}
 {% endblock %}
