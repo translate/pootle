@@ -50,23 +50,16 @@
       </td>
       {% endif %}
 
-      {% if 'total' in table.fields %}
-      <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
-        {% if can_translate %}
-        <a class="stats-data non-zero" href="{{ item.href_translate }}{% if item.sort %}#sort={{ item.sort }}{% endif %}">{{ item.stats.total }}</a>
-        {% else %}
-        <span class="stats-data non-zero">{{ item.stats.total }}</span>
-        {% endif %}
-      </td>
-      {% endif %}
-
-      {% if 'last-updated' in table.fields %}
-      <td id="last-updated-{{ item.code|cssid }}" class="stats last-updated not-inited">
-        <div id="last-updated-ratio-{{ item.code|cssid }}" class="sortkey">
-	  {{ item.stats.last_created_unit.creation_time }}
-	</div>
-        {% if item.stats.last_created_unit.creation_time %}
-	<span>_XXX_LAST_CREATED_{{ item.code }}_LAST_CREATED_XXX_</span>
+      {% if 'activity' in table.fields %}
+      <td id="activity-{{ item.code|cssid }}" class="last-action stats not-inited" sorttable_customkey="{{ item.stats.last_submission.mtime }}">
+        <a href="{{ item.stats.last_submission.profile_url }}">
+	  {% if item.stats.last_submission.displayname %}
+	  {% avatar item.stats.last_submission.username item.stats.last_submission.email 20 %}
+	  <span class="user-name user-info">{{ item.stats.last_submission.displayname }}</span>
+	  {% endif %}
+	</a>
+        {% if item.stats.last_submission.mtime %}
+	<span class="not-inited muted">_XXX_LAST_SUBMISSION_{{ item.code }}_LAST_SUBMISSION_XXX_</span>
 	{% endif %}
       </td>
       {% endif %}
@@ -101,20 +94,28 @@
       </td>
       {% endif %}
 
-      {% if 'activity' in table.fields %}
-      <td id="activity-{{ item.code|cssid }}" class="last-action stats not-inited" sorttable_customkey="{{ item.stats.last_submission.mtime }}">
-        <a href="{{ item.stats.last_submission.profile_url }}">
-	  {% if item.stats.last_submission.displayname %}
-	  {% avatar item.stats.last_submission.username item.stats.last_submission.email 20 %}
-	  <span class="user-name user-info">{{ item.stats.last_submission.displayname }}</span>
-	  {% endif %}
-	</a>
-        {% if item.stats.last_submission.mtime %}
-	<span class="not-inited muted">_XXX_LAST_SUBMISSION_{{ item.code }}_LAST_SUBMISSION_XXX_</span>
+      {% if 'total' in table.fields %}
+      <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
+        {% if can_translate %}
+        <a class="stats-data non-zero" href="{{ item.href_translate }}{% if item.sort %}#sort={{ item.sort }}{% endif %}">{{ item.stats.total }}</a>
+        {% else %}
+        <span class="stats-data non-zero">{{ item.stats.total }}</span>
+        {% endif %}
+      </td>
+      {% endif %}
+
+      {% if 'last-updated' in table.fields %}
+      <td id="last-updated-{{ item.code|cssid }}" class="stats last-updated not-inited">
+	<div id="last-updated-ratio-{{ item.code|cssid }}" class="sortkey">
+	  {{ item.stats.last_created_unit.creation_time }}
+	</div>
+	{% if item.stats.last_created_unit.creation_time %}
+	<span>_XXX_LAST_CREATED_{{ item.code }}_LAST_CREATED_XXX_</span>
 	{% endif %}
       </td>
       {% endif %}
     </tr>
     {% endfor %}
+
   </tbody>
 </table>
