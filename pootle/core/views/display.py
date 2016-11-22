@@ -11,7 +11,113 @@ from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
 from pootle.i18n.gettext import ugettext as _
+from pootle.local.dates import timesince
 from pootle_misc.checks import get_qualitycheck_list
+
+
+class ActionDisplay(object):
+
+    def __init__(self, action):
+        self.action = action
+
+    @property
+    def since(self):
+        return timesince(self.action["mtime"])
+
+    @property
+    def check_name(self):
+        return self.action.get("check_name")
+
+    @property
+    def checks_url(self):
+        return self.action.get("checks_url")
+
+    @property
+    def check_display_name(self):
+        return escape(self.action["check_display_name"])
+
+    @property
+    def display_name(self):
+        return escape(self.action["displayname"])
+
+    @property
+    def profile_url(self):
+        return self.action["profile_url"]
+
+    @property
+    def unit_url(self):
+        return self.action.get("unit_url")
+
+    @property
+    def unit_source(self):
+        return self.action.get("unit_source")
+
+    @property
+    def params(self):
+        params = dict(
+            user=self.formatted_user,
+            source=self.formatted_source)
+        if self.check_name:
+            params["check"] = format_html(
+                u"<a href='{}'>{}</a>",
+                self.checks_url,
+                self.check_display_name)
+        return params
+
+    @property
+    def formatted_user(self):
+        return format_html(
+            u"<a href='{}' class='user-name'>{}</a>",
+            self.profile_url,
+            self.display_name)
+
+    @property
+    def formatted_source(self):
+        return format_html(
+            u"<a href='{}'>{}</a>",
+            self.unit_url,
+            self.unit_source)
+
+    @property
+    def action_type(self):
+        return self.action["type"]
+
+    @property
+    def translation_action_type(self):
+        return self.action["translation_action_type"]
+
+    @property
+    def message(self):
+        msg = ""
+        params = self.params
+        if (self.action_type == 2):
+            msg = _('%(user)s removed translation for %(source)s', params)
+        if (self.action_type == 3):
+            msg = _('%(user)s accepted suggestion for %(source)s', params)
+        if (self.action_type == 4):
+            msg = _('%(user)s uploaded file', params)
+        if (self.action_type == 6):
+            msg = _('%(user)s muted %(check)s for %(source)s', params)
+        if (self.action_type == 7):
+            msg = _('%(user)s unmuted %(check)s for %(source)s', params)
+        if (self.action_type == 8):
+            msg = _('%(user)s added suggestion for %(source)s', params)
+        if (self.action_type == 9):
+            msg = _('%(user)s rejected suggestion for %(source)s', params)
+        if (self.action_type in [1, 5]):
+            if self.translation_action_type == 0:
+                msg = _('%(user)s translated %(source)s', params)
+            if self.translation_action_type == 1:
+                msg = _('%(user)s edited %(source)s', params)
+            if self.translation_action_type == 2:
+                msg = _('%(user)s pre-translated %(source)s', params)
+            if self.translation_action_type == 3:
+                msg = _('%(user)s removed translation for %(source)s', params)
+            if self.translation_action_type == 4:
+                msg = _('%(user)s reviewed %(source)s', params)
+            if self.translation_action_type == 5:
+                msg = _('%(user)s marked as needs work %(source)s', params)
+        return mark_safe(msg)
 
 
 class ChecksDisplay(object):
@@ -65,46 +171,4 @@ class StatsDisplay(object):
             child["untranslated"] = child["total"] - child["translated"]
 
     def get_action_message(self, action):
-        msg = ""
-        params = dict(
-            user=format_html(
-                u"<a href='{}' class='user-name'>{}</a>",
-                action["profile_url"],
-                escape(action["displayname"])),
-            source=format_html(
-                u"<a href='{}'>{}</a>",
-                action["unit_url"],
-                escape(action["unit_source"])))
-        if action.get("check_name"):
-            params["check"] = format_html(
-                u"<a href='{}'>{}</a>",
-                action["checks_url"],
-                escape(action["check_display_name"]))
-        if (action["type"] == 2):
-            msg = _('%(user)s removed translation for %(source)s', params)
-        if (action["type"] == 3):
-            msg = _('%(user)s accepted suggestion for %(source)s', params)
-        if (action["type"] == 4):
-            msg = _('%(user)s uploaded file', params)
-        if (action["type"] == 6):
-            msg = _('%(user)s muted %(check)s for %(source)s', params)
-        if (action["type"] == 7):
-            msg = _('%(user)s unmuted %(check)s for %(source)s', params)
-        if (action["type"] == 8):
-            msg = _('%(user)s added suggestion for %(source)s', params)
-        if (action["type"] == 9):
-            msg = _('%(user)s rejected suggestion for %(source)s', params)
-        if (action["type"] in [1, 5]):
-            if action.get("translation_action_type") == 0:
-                msg = _('%(user)s translated %(source)s', params)
-            if action.get("translation_action_type") == 1:
-                msg = _('%(user)s edited %(source)s', params)
-            if action.get("translation_action_type") == 2:
-                msg = _('%(user)s pre-translated %(source)s', params)
-            if action.get("translation_action_type") == 3:
-                msg = _('%(user)s removed translation for %(source)s', params)
-            if action.get("translation_action_type") == 4:
-                msg = _('%(user)s reviewed %(source)s', params)
-            if action.get("translation_action_type") == 5:
-                msg = _('%(user)s marked as needs work %(source)s', params)
-        return mark_safe(msg)
+        return ActionDisplay(action).message
