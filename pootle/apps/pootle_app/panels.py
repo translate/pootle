@@ -19,9 +19,17 @@ from pootle.local.dates import timesince
 
 class ChildrenPanel(TablePanel):
     panel_name = "children"
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
+    _table_fields = (
+        'name', 'progress', 'activity',
+        'total', 'need-translation',
+        'suggestions', 'critical')
+
+    @property
+    def table_fields(self):
+        fields = self._table_fields
+        if self.view.has_admin_access:
+            fields += ('last-updated', )
+        return fields
 
     @property
     def children(self):
