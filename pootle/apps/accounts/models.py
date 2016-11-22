@@ -28,6 +28,7 @@ from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
+from pootle.core.views.display import ActionDisplay
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.models import Language
 from pootle_statistics.models import (ScoreLog, Submission,
@@ -296,8 +297,8 @@ class User(AbstractBaseUser):
     def field_values(self):
         """Returns the user's field-values (can be encoded as e.g. JSON)."""
         values = model_to_dict(self, exclude=['password'])
-        values["alt_src_langs"] = values[
-            "alt_src_langs"].values_list("pk", flat=True)
+        values["alt_src_langs"] = list(
+            values["alt_src_langs"].values_list("pk", flat=True))
         return values
 
     @property
@@ -448,4 +449,6 @@ class User(AbstractBaseUser):
         """Returns the latest submission linked with this user. If there's
         no activity, `None` is returned instead.
         """
-        return Submission.objects.filter(submitter=self).latest()
+        return ActionDisplay(
+            Submission.objects.filter(
+                submitter=self).last().get_submission_info())
