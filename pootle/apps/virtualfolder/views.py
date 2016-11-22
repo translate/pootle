@@ -114,9 +114,15 @@ def get_vfolder_units(request, **kwargs):
 
 class VFoldersDataView(object):
 
-    def __init__(self, context, user):
+    _table_fields = (
+        'name', 'progress', 'activity',
+        'total', 'need-translation',
+        'suggestions', 'critical')
+
+    def __init__(self, context, user, has_admin_access=False):
         self.context = context
         self.user = user
+        self.has_admin_access = has_admin_access
 
     @property
     def vfolder_data_tool(self):
@@ -124,10 +130,10 @@ class VFoldersDataView(object):
 
     @property
     def table_fields(self):
-        return [
-            'name', 'priority', 'progress', 'total',
-            'need-translation', 'suggestions', 'critical',
-            'last-updated', 'activity']
+        fields = self._table_fields
+        if self.has_admin_access:
+            fields += ('last-updated', )
+        return fields
 
     @cached_property
     def table_data(self):

@@ -193,7 +193,7 @@ class TPDirectoryMixin(TPMixin):
         from virtualfolder.delegate import vfolders_data_view
 
         return vfolders_data_view.get(self.object.__class__)(
-            self.object, self.request.user)
+            self.object, self.request.user, self.has_admin_access)
 
 
 class TPStoreMixin(TPMixin):

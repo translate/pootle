@@ -11,9 +11,6 @@ from pootle_app.panels import ChildrenPanel
 
 class VFolderPanel(ChildrenPanel):
     panel_name = "vfolder"
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
 
     @property
     def children(self):
