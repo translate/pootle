@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-11-05 10:51+0000\n"
 "Last-Translator: Pavel Maryanov <acid@jack.kiev.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -570,11 +570,11 @@ msgstr "Все проекты"
 msgid "Entire Project"
 msgstr "Весь проект"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr "Обновление данных"
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -582,7 +582,7 @@ msgstr ""
 "У вас есть несохраненные изменения в этой строке. Если вы перейдете в любое "
 "другое место, то все ваши изменения будут отменены."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -590,7 +590,7 @@ msgstr ""
 "Перейти к следующей строке (Ctrl+.)<br/><br/>Также:<br/>Следующая страница: "
 "Ctrl+Shift+.<br/>Последняя страница: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -599,78 +599,78 @@ msgstr ""
 "страница: Ctrl+Shift+,<br/>Первая страница: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s предложений ожидают подтверждения"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s подтвержденных предложений"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s отклоненных предложений"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Предложения %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Измененные предложения %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Ошибка при соединении с сервером"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Не найдено"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Ошибка сервера"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Кажется, сервер не работает. Попробуйте повторить позже."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Эта строка больше не существует."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Вернуться к просмотру"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "анонимный пользователь"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "кто-то"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Похожие переводы"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "Форма #%(index)s"
@@ -691,7 +691,7 @@ msgstr "Принять"
 msgid "Reject"
 msgstr "Отклонить"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s с загрузки файла"
@@ -781,91 +781,15 @@ msgstr "%(user)s отметил неточным %(sourceString)s"
 msgid "disabled"
 msgstr "выключено"
 
-#: static/js/shared/utils/relativeTime.js:18
-msgid "A year ago"
-msgstr "Год назад"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "%(count)s год назад"
-msgstr[1] "%(count)s года назад"
-msgstr[2] "%(count)s лет назад"
-
-#: static/js/shared/utils/relativeTime.js:26
-msgid "A month ago"
-msgstr "Месяц назад"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "%(count)s месяц назад"
-msgstr[1] "%(count)s месяца назад"
-msgstr[2] "%(count)s месяцев назад"
-
-#: static/js/shared/utils/relativeTime.js:34
-msgid "A week ago"
-msgstr "Неделю назад"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "%(count)s неделю назад"
-msgstr[1] "%(count)s недели назад"
-msgstr[2] "%(count)s недель назад"
-
-#: static/js/shared/utils/relativeTime.js:42
-msgid "Yesterday"
-msgstr "Вчера"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "%(count)s день назад"
-msgstr[1] "%(count)s дня назад"
-msgstr[2] "%(count)s дней назад"
-
-#: static/js/shared/utils/relativeTime.js:50
-msgid "An hour ago"
-msgstr "Час назад"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "%(count)s час назад"
-msgstr[1] "%(count)s часа назад"
-msgstr[2] "%(count)s часов назад"
-
-#: static/js/shared/utils/relativeTime.js:58
-msgid "A minute ago"
-msgstr "Минуту назад"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "%(count)s минуту назад"
-msgstr[1] "%(count)s минуты назад"
-msgstr[2] "%(count)s минут назад"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Несколько секунд назад"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "Поздравляем! Вы выполнили это задание!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Свернуть подробности"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Показать подробности"
 
@@ -971,7 +895,7 @@ msgstr ""
 "системе. Пожалуйста, введите пароль, чтобы завершить процедуру входа. Эта "
 "процедура свяжет учетные записи Pootle и %(provider)s."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Нет результатов."
 
@@ -1120,6 +1044,63 @@ msgid ""
 msgstr ""
 "Переведено %(fullname)s в проекте &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "A year ago"
+#~ msgstr "Год назад"
+
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "%(count)s год назад"
+#~ msgstr[1] "%(count)s года назад"
+#~ msgstr[2] "%(count)s лет назад"
+
+#~ msgid "A month ago"
+#~ msgstr "Месяц назад"
+
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "%(count)s месяц назад"
+#~ msgstr[1] "%(count)s месяца назад"
+#~ msgstr[2] "%(count)s месяцев назад"
+
+#~ msgid "A week ago"
+#~ msgstr "Неделю назад"
+
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "%(count)s неделю назад"
+#~ msgstr[1] "%(count)s недели назад"
+#~ msgstr[2] "%(count)s недель назад"
+
+#~ msgid "Yesterday"
+#~ msgstr "Вчера"
+
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "%(count)s день назад"
+#~ msgstr[1] "%(count)s дня назад"
+#~ msgstr[2] "%(count)s дней назад"
+
+#~ msgid "An hour ago"
+#~ msgstr "Час назад"
+
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "%(count)s час назад"
+#~ msgstr[1] "%(count)s часа назад"
+#~ msgstr[2] "%(count)s часов назад"
+
+#~ msgid "A minute ago"
+#~ msgstr "Минуту назад"
+
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "%(count)s минуту назад"
+#~ msgstr[1] "%(count)s минуты назад"
+#~ msgstr[2] "%(count)s минут назад"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Несколько секунд назад"
 
 #~ msgid "Statistics"
 #~ msgstr "Статистика"

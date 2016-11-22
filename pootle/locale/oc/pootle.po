@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2016-06-05 15:50+0000\n"
 "Last-Translator: Cédric <cvalmary@yahoo.fr>\n"
 "Language-Team: Tot en òc (totenoc.eu)\n"
@@ -132,39 +132,39 @@ msgstr "LinkedIn"
 msgid "Short Bio"
 msgstr "Biografia resumida"
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 msgid "This email address already exists."
 msgstr "Aqueste adreça electronica existís ja."
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "Resumit"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr "Entratz lo resumit de vòstre messatge"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Nom"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Entratz vòstre nom"
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "Adreça electronica"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "Entratz vòstra adreça electronica"
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Messatge"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Entratz vòstre messatge"
 
@@ -399,7 +399,7 @@ msgstr "Regetat"
 msgid "Accept"
 msgstr "Acceptat"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projècte"
@@ -449,48 +449,48 @@ msgstr "Nombre de plurals"
 msgid "Plural Equation"
 msgstr "Eqüacion dels plurals"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Estat"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Font"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 msgid "Suggestion"
 msgstr "Suggestion"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "Suggerir"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "Suggerir"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "Regetar la suggestion de %(author)s amb lo comentari : %(comment)s "
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "Acceptar la suggestion de %(author)s amb lo comentari : %(comment)s"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Regetar la suggestion"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Acceptar la suggestion"
@@ -924,19 +924,19 @@ msgstr "Estil de l'arborescéncia del projècte"
 msgid "Ignore Files"
 msgstr "Fichièrs d'ignorar"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr "Una adreça electronica per senhalar de problèmas amb lo tèxte font."
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr ""
 
@@ -988,7 +988,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Permissions insufisentas per accedir a aqueste mòde de traduccion."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 msgid "Insufficient rights to access review mode."
 msgstr "Avètz pas los dreits sufisents per accedir al mòde de relectura."
 
@@ -996,7 +996,6 @@ msgstr "Avètz pas los dreits sufisents per accedir al mòde de relectura."
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "Forma plurala %d"
@@ -1017,19 +1016,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "Comentaris del traductor"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "En espèra"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "Acceptat"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "Regetat"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "Camin"
 
@@ -1067,37 +1066,37 @@ msgstr "Regetar la suggestion de %(author)s amb lo comentari : %(comment)s "
 msgid "Added suggestion"
 msgstr "Apondre una suggestion"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Suggestions acceptadas"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Arguments mancants."
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "Fracàs del mandadís del comentari."
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "Impossible d'enregistrar la traduccion."
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "Impossible d'enregistrar la suggestion."
 
@@ -1110,7 +1109,7 @@ msgstr "Aqueste tèrme existís ja dins lo fichièr."
 msgid "Translation project (%s) created"
 msgstr "Creacion del projècte de traduccion (%s)"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Impossible de crear lo projècte de traduccion (%s)"
@@ -1581,14 +1580,14 @@ msgid "Last updated"
 msgstr ""
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Suggestions"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Incomplet"
@@ -1597,11 +1596,11 @@ msgstr "Incomplet"
 msgid "Last Activity"
 msgstr "Darrièra activitat"
 
-#: core/browser.py:121
+#: core/browser.py:119
 msgid "Back to language"
 msgstr "Retorn a la lenga"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr "Retorn al dorsièr parent"
 
@@ -1671,18 +1670,78 @@ msgstr "Pòt repassar las suggestions"
 msgid "Can perform administrative tasks"
 msgstr "Impossible d'efectuar los prètzfaits administratius"
 
+#: core/views/display.py:84 core/views/display.py:105
+#, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr ""
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "Acceptar la suggestion de %(author)s"
+
+#: core/views/display.py:88
+#, python-format
+msgid "%(user)s uploaded file"
+msgstr ""
+
+#: core/views/display.py:90
+#, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:92
+#, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "Importacion de %(count)d suggestion dempuèi %(store)s"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "Regetar la suggestion de %(author)s"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "De traduire absoludament"
+
+#: core/views/display.py:101
+#, python-format
+msgid "%(user)s edited %(source)s"
+msgstr ""
+
+#: core/views/display.py:103
+#, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr ""
+
+#: core/views/display.py:107
+#, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr ""
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr ""
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Error d'accès a %(filename)s, L'error tornada pel sistèma de fichièrs es : "
 "%(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2020,39 +2079,38 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "Informacions sus la lenga « %(language)s »"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 #, fuzzy
 msgid "Remove"
 msgstr "Suprimir lo comentari"
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "Demonstracion de Pootle"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "Pootle : mesa a jorn"
@@ -2170,29 +2228,29 @@ msgstr "Anóncias"
 msgid "Add Announcement"
 msgstr "Apondre una anóncia"
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr ""
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 msgid "Critical errors"
 msgstr "Errors criticas :"
 
 # 83%
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 msgid "Review suggestions"
 msgstr "Veire las suggestions"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 msgid "Continue translation"
 msgstr "Contunhar la traduccion"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr "Veire tot"
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Totes"
 
@@ -2219,31 +2277,36 @@ msgstr "Far veire los detalhs"
 msgid "Translation Statistics"
 msgstr "Estatisticas de traduccion"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "Contraròtles en fracàs"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "Mai..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 msgid "Updates"
 msgstr ""
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
-msgid "Last action:"
+#: templates/browser/index.html:85
+#, fuzzy
+msgid "Last updated:"
 msgstr "Darrièra accion :"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 msgid "Translations"
 msgstr "Traduccions"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+msgid "Last action:"
+msgstr "Darrièra accion :"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2389,77 +2452,77 @@ msgstr ""
 msgid "Translate"
 msgstr "Traduire"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 msgid "Priority:"
 msgstr "Prioritat :"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "Contèxte"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "Emplaçaments :"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "Terminologia :"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "Inserir lo tèrme traduit dins l'editor"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "Comentaris :"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "Copiar dins la traduccion"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 msgid "Report a problem with this string"
 msgstr "Senhalar un problèma amb la cadena font"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "Mandar"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Sometre la traduccion e passar a la cadena seguenta (Ctrl+Entrada)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "Suggerir"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Suggerir la traduccion e passar a la cadena seguenta (Ctrl+Entrada)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Passar en mòde traduccion (Ctrl+Maj+Espaci)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Passar en mòde suggestion (Ctrl+Maj+Espaci)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Precisar qu'aqueste cadena a besonh d'èsser repassada (Ctrl+Espaci)"
 
@@ -2525,31 +2588,31 @@ msgstr "Inserir aqueste simbòl dins l'editor"
 msgid "Insert space symbol into the editor"
 msgstr "Inserir aqueste simbòl dins l'editor"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "Suggestions d'utilizaires"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 msgid "More options"
 msgstr "Mai d'opcions"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 msgid "Less options"
 msgstr "Mens d'opcions"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "Acceptar la suggestion"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "Regetar la suggestion"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "Suprimir la suggestion"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr ""
 
@@ -4526,11 +4589,6 @@ msgstr "Contributors los mai actius pendent los 30 darrièrs jorns"
 #~ msgstr ""
 #~ "Ara, Pootle va importar totas las traduccions dins la banca de donadas. "
 #~ "Aquesta operacion pòt èsser longa."
-
-#~ msgid "Imported %(count)d suggestion from %(store)s"
-#~ msgid_plural "Imported %(count)d suggestions from %(store)s"
-#~ msgstr[0] "Importacion de %(count)d suggestion dempuèi %(store)s"
-#~ msgstr[1] "Importacion de %(count)d suggestions dempuèi %(store)s"
 
 #~ msgid "Failed to import suggestions from %s"
 #~ msgstr "Fracàs de l'importacion de las suggestions dempuèi %s"

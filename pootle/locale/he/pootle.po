@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2016-07-20 14:24+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,40 +135,40 @@ msgstr ""
 msgid "Short Bio"
 msgstr "קורות חיים בקיצור"
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 #, fuzzy
 msgid "This email address already exists."
 msgstr "מונח זה כבר קיים בקובץ זה."
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "תקציר"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "שם"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr ""
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "כתובת דוא״ל"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr ""
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "הודעה"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr ""
 
@@ -402,7 +402,7 @@ msgstr "דחיה"
 msgid "Accept"
 msgstr "קבלה"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "מיזם"
@@ -453,49 +453,49 @@ msgstr "מספר צורות הרבים"
 msgid "Plural Equation"
 msgstr "משוואת הרבים"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "מצב"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "מקור"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 #, fuzzy
 msgid "Suggestion"
 msgstr "הצעות"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "הצעה"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "הצעה"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "דחיית ההצעה"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "קבלת ההצעה"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "דחיית ההצעה"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "קבלת ההצעה"
@@ -931,20 +931,20 @@ msgstr "סגנון עץ המיזם"
 msgid "Ignore Files"
 msgstr "התעלמות מקבצים"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr "כתובת או דוא״ל שדרכן ניתן לדווח על תקלות בטקסט המקור."
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr ""
 
@@ -995,7 +995,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "ההרשאות אינן מספיקות לצורך מיזם תרגום זה."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "אין די הרשאות לגישה לעמוד זה."
@@ -1004,7 +1004,6 @@ msgstr "אין די הרשאות לגישה לעמוד זה."
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "%d צורות רבים"
@@ -1025,19 +1024,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "הערות המתרגם"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "בהמתנה"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "התקבל"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "נדחה"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "נתיב"
 
@@ -1076,37 +1075,37 @@ msgstr "דחיית ההצעה"
 msgid "Added suggestion"
 msgstr "קבלת ההצעה"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "הצעות שהתקבלו"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr "הנתיב ארוך מדי."
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "הארגומנטים חסרים."
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "הסרת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "הגשת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "ההגשה נכשלה."
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "עיבוד ההצעה נכשל."
 
@@ -1119,7 +1118,7 @@ msgstr "מונח זה כבר קיים בקובץ זה."
 msgid "Translation project (%s) created"
 msgstr "עמוד הבית של מיזם התרגום"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "עמוד הבית של מיזם התרגום"
@@ -1596,14 +1595,14 @@ msgid "Last updated"
 msgstr "מועד עדכון אחרון"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "הצעות"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "לא שלם"
@@ -1612,11 +1611,11 @@ msgstr "לא שלם"
 msgid "Last Activity"
 msgstr "פעילות אחרונה"
 
-#: core/browser.py:121
+#: core/browser.py:119
 msgid "Back to language"
 msgstr "חזרה לשפה"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr "חזרה לתיקיית ההורה"
 
@@ -1685,16 +1684,76 @@ msgstr "יכולת להציע הצעות"
 msgid "Can perform administrative tasks"
 msgstr "יכולת לבצע פעולות ניהוליות"
 
+#: core/views/display.py:84 core/views/display.py:105
+#, fuzzy, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr "תרגום המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> הוסר"
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "קבלת ההצעה"
+
+#: core/views/display.py:88
+#, fuzzy, python-format
+msgid "%(user)s uploaded file"
+msgstr "הועלה קובץ"
+
+#: core/views/display.py:90
+#, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:92
+#, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "יובאה הצעה אחת מ־%(store)s"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "דחיית ההצעה"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "מילים שחובה לתרגם"
+
+#: core/views/display.py:101
+#, python-format
+msgid "%(user)s edited %(source)s"
+msgstr ""
+
+#: core/views/display.py:103
+#, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr ""
+
+#: core/views/display.py:107
+#, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr ""
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr "אין לך גישה לעמוד זה."
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "שגיאה בעת הגישה ל־%(filename)s, מערכת הקבצים שלחה שגיאה: %(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2031,38 +2090,37 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "פרטי השפה ה%(language)s"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr "הסרה"
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "הדמית Pootle"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "עדכון"
@@ -2183,31 +2241,31 @@ msgstr ""
 msgid "Add Announcement"
 msgstr ""
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr ""
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 #, fuzzy
 msgid "Critical errors"
 msgstr "משמעותי"
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 #, fuzzy
 msgid "Review suggestions"
 msgstr "סקור הצעות"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 #, fuzzy
 msgid "Continue translation"
 msgstr "העתקה לתרגום"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr ""
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "הכול"
 
@@ -2234,34 +2292,39 @@ msgstr "הרחבת פרטים"
 msgid "Translation Statistics"
 msgstr "סטטיסטיקת תרגום"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "בדיקות שכשלו"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "עוד..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 #, fuzzy
 msgid "Updates"
 msgstr "עדכון"
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
+#: templates/browser/index.html:85
 #, fuzzy
-msgid "Last action:"
-msgstr "פעילות אחרונה"
+msgid "Last updated:"
+msgstr "מועד עדכון אחרון"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 #, fuzzy
 msgid "Translations"
 msgstr "תרגום"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+#, fuzzy
+msgid "Last action:"
+msgstr "פעילות אחרונה"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2407,79 +2470,79 @@ msgstr ""
 msgid "Translate"
 msgstr "תרגום"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, fuzzy, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">מחרוזת %(id)s</a>"
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 #, fuzzy
 msgid "Priority:"
 msgstr "עדיפות"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "הקשר:"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "מיקומים:"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "מינוח:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "הוספת המונח המתורגם לעורך"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "הערות:"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "העתקה לתרגום"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "דיווח על בעיה במחרוזת המקור"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "הגשה"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "הגשת התרגום ומעבר למחרוזת הבאה (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "הצעה"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "הגשת הצעת התרגום ומעבר למחרוזת הבאה (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "מעבר למצב תרגום (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "מעבר למצב הצעה (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "סימון מחרוזת זו כדורשת עבודה נוספת (Ctrl+Space)"
 
@@ -2545,33 +2608,33 @@ msgstr "הוספת סמל זה לעורך"
 msgid "Insert space symbol into the editor"
 msgstr "הוספת סמל זה לעורך"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "הצעות משתמשים"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 #, fuzzy
 msgid "More options"
 msgstr "שנה אפשרויות"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "Less options"
 msgstr "שנה אפשרויות"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "קבלת ההצעה"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "דחיית ההצעה"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "מחיקת ההצעה"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr ""
 
@@ -3191,9 +3254,6 @@ msgstr "התורמים המובילים"
 
 #~ msgid "Definitions"
 #~ msgstr "הגדרות"
-
-#~ msgid "uploaded a file"
-#~ msgstr "הועלה קובץ"
 
 #~ msgid "XLIFF"
 #~ msgstr "XLIFF"
@@ -4492,10 +4552,6 @@ msgstr "התורמים המובילים"
 #~ msgstr ""
 #~ "המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> סומנה „להמשך עבודה“"
 
-#~ msgid ""
-#~ "removed translation for string <i><a href=\"%(url)s\">%(source)s</a></i>"
-#~ msgstr "תרגום המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> הוסר"
-
 #~ msgid "Already exists a goal with this name. Please pick another name."
 #~ msgstr "כבר קיים יעד בשם הזה. נא לבחור בשם אחר."
 
@@ -4639,11 +4695,6 @@ msgstr "התורמים המובילים"
 #~ msgstr ""
 #~ "מערכת Pootle תייבא כעת את כל התרגומים לתוך מסד הנתונים. פעולה זו עלולה "
 #~ "לערוך זמן רב."
-
-#~ msgid "Imported %(count)d suggestion from %(store)s"
-#~ msgid_plural "Imported %(count)d suggestions from %(store)s"
-#~ msgstr[0] "יובאה הצעה אחת מ־%(store)s"
-#~ msgstr[1] "יובאו %(count)d הצעות מ־%(store)s"
 
 #~ msgid "Failed to import suggestions from %s"
 #~ msgstr "יבוא הצעות מ־%s נכשל"

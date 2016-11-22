@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2016-02-17 09:31+0000\n"
 "Last-Translator: popcorner <memoword@163.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,39 +131,39 @@ msgstr "LinkedIn"
 msgid "Short Bio"
 msgstr "个人简介"
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 msgid "This email address already exists."
 msgstr "此电子邮件地址已经存在。"
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "概览"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr "请输入您的消息摘要"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "名称"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "请输入您的名字"
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "电子邮件地址"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "请输入您的电子邮件地址"
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "消息"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "请输入您的消息"
 
@@ -394,7 +394,7 @@ msgstr "拒绝"
 msgid "Accept"
 msgstr "接受"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "项目"
@@ -443,48 +443,48 @@ msgstr "复数型个数"
 msgid "Plural Equation"
 msgstr "同义复数型"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "单位"
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "状态"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "源"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 msgid "Suggestion"
 msgstr "建议"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "建议"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "建议"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "拒绝了对 %(source_string)s 的建议"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "接受了对 %(source_string)s 的建议"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "拒绝建议"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "接受建议"
@@ -917,19 +917,19 @@ msgstr "项目树风格"
 msgid "Ignore Files"
 msgstr "忽略文件"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr "错误报告邮件"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr "用于报告源文本问题的一个电子邮件地址。"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr "屏幕截图搜索前缀"
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr "已禁用"
 
@@ -979,7 +979,7 @@ msgstr "访问建议模式的权限不足。"
 msgid "Insufficient rights to access translation mode."
 msgstr "访问翻译模式的权限不足。"
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 msgid "Insufficient rights to access review mode."
 msgstr "访问审核模式的权限不足。"
 
@@ -987,7 +987,6 @@ msgstr "访问审核模式的权限不足。"
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "复数形式 %d"
@@ -1008,19 +1007,19 @@ msgstr "必须清除“尚需完善”标志"
 msgid "Translator comment"
 msgstr "译者注释"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "待审"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "已接受"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "已拒绝"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "路径"
 
@@ -1058,37 +1057,37 @@ msgstr "拒绝了对 %(source_string)s 的建议"
 msgid "Added suggestion"
 msgstr "添加了建议"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "建议已接受。"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "缺少参数。"
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "移除注释失败。"
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "提交注释失败。"
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "处理提交失败。"
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "处理建议失败。"
 
@@ -1101,7 +1100,7 @@ msgstr "此术语已存在于文件中。"
 msgid "Translation project (%s) created"
 msgstr "翻译项目的主页"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "翻译项目的主页"
@@ -1589,14 +1588,14 @@ msgid "Last updated"
 msgstr "上次更新"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "建议"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "未完成"
@@ -1605,12 +1604,12 @@ msgstr "未完成"
 msgid "Last Activity"
 msgstr "最后操作"
 
-#: core/browser.py:121
+#: core/browser.py:119
 #, fuzzy
 msgid "Back to language"
 msgstr "回到语言页面"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr "返回父文件夹"
 
@@ -1681,16 +1680,76 @@ msgstr "审阅建议"
 msgid "Can perform administrative tasks"
 msgstr "Django 管理"
 
+#: core/views/display.py:84 core/views/display.py:105
+#, fuzzy, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr "移除了 %(source_string)s 的翻译"
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "接受了来自于%s的建议"
+
+#: core/views/display.py:88
+#, fuzzy, python-format
+msgid "%(user)s uploaded file"
+msgstr "%(user)s 上传了一个文件"
+
+#: core/views/display.py:90
+#, fuzzy, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr "消除了 %(source_string)s 的 %(check_name)s 检查"
+
+#: core/views/display.py:92
+#, fuzzy, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr "取消了 %(source_string)s 的 %(check_name)s 检查消除"
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "添加了对 %(source_string)s 的建议"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "拒绝%s的建议"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "翻译了 %(source_string)s"
+
+#: core/views/display.py:101
+#, fuzzy, python-format
+msgid "%(user)s edited %(source)s"
+msgstr "编辑了  %(source_string)s"
+
+#: core/views/display.py:103
+#, fuzzy, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr "预翻译了 %(source_string)s"
+
+#: core/views/display.py:107
+#, fuzzy, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr "审核了 %(source_string)s"
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr "您不能访问此页面。"
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "访问 %(filename)s 出错，文件系统返回错误：%(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2021,38 +2080,37 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s 语言信息"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr "移除"
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "Pootle 演示"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "更新"
@@ -2171,29 +2229,29 @@ msgstr "公告"
 msgid "Add Announcement"
 msgstr "添加公告"
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr "修复关键错误"
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 #, fuzzy
 msgid "Critical errors"
 msgstr "关键错误："
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 msgid "Review suggestions"
 msgstr "审阅建议"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 msgid "Continue translation"
 msgstr "继续翻译"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr "查看所有"
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "所有"
 
@@ -2220,34 +2278,39 @@ msgstr "展开详情"
 msgid "Translation Statistics"
 msgstr "翻译统计"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "失败点检查"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "更多..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 #, fuzzy
 msgid "Updates"
 msgstr "更新"
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
+#: templates/browser/index.html:85
 #, fuzzy
-msgid "Last action:"
-msgstr "最后操作"
+msgid "Last updated:"
+msgstr "上次更新"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 #, fuzzy
 msgid "Translations"
 msgstr "译文"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+#, fuzzy
+msgid "Last action:"
+msgstr "最后操作"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "此项目已被禁用并且只有管理员可见。"
 
@@ -2391,77 +2454,77 @@ msgstr ""
 msgid "Translate"
 msgstr "翻译"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, fuzzy, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">字符串 %(id)s</a>"
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 msgid "Priority:"
 msgstr "优先级："
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "上下文："
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "位置："
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "术语："
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "将翻译的术语插入编辑器中"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "注释："
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr "点击在新窗口中打开图片"
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr "截图..."
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "复制到翻译框"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 msgid "Report a problem with this string"
 msgstr "报告此字符串的一个问题"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "提交"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "提交翻译并转到下一条字符串(Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "建议"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "提交建议并转到下一条字符串(Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "切换到翻译模式(Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "切换到建议模式(Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "将此字符串标记为尚需完善(Ctrl+Space)"
 
@@ -2527,33 +2590,33 @@ msgstr "将此符号插入编辑器"
 msgid "Insert space symbol into the editor"
 msgstr "将此符号插入编辑器"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "用户建议"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 #, fuzzy
 msgid "More options"
 msgstr "更改选项"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "Less options"
 msgstr "更改选项"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "接受建议"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "拒绝建议"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "移除建议"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr "很久以前"
 
@@ -3230,32 +3293,8 @@ msgstr "顶尖贡献者"
 #~ msgid "reverted translation for %(source_string)s"
 #~ msgstr "还原了 %(source_string)s 的翻译"
 
-#~ msgid "added suggestion for %(source_string)s"
-#~ msgstr "添加了对 %(source_string)s 的建议"
-
 #~ msgid "uploaded a file"
 #~ msgstr "上传了一个文件"
-
-#~ msgid "muted %(check_name)s for %(source_string)s"
-#~ msgstr "消除了 %(source_string)s 的 %(check_name)s 检查"
-
-#~ msgid "unmmuted %(check_name)s for %(source_string)s"
-#~ msgstr "取消了 %(source_string)s 的 %(check_name)s 检查消除"
-
-#~ msgid "translated %(source_string)s"
-#~ msgstr "翻译了 %(source_string)s"
-
-#~ msgid "edited %(source_string)s"
-#~ msgstr "编辑了  %(source_string)s"
-
-#~ msgid "pre-translated %(source_string)s"
-#~ msgstr "预翻译了 %(source_string)s"
-
-#~ msgid "removed translation for %(source_string)s"
-#~ msgstr "移除了 %(source_string)s 的翻译"
-
-#~ msgid "reviewed %(source_string)s"
-#~ msgstr "审核了 %(source_string)s"
 
 #~ msgid "marked as fuzzy %(source_string)s"
 #~ msgstr "将 %(source_string)s 标记为模糊翻译"
@@ -3967,9 +4006,6 @@ msgstr "顶尖贡献者"
 #~ "%(source)s</a></i>"
 #~ msgstr ""
 #~ "%(user)s 接受了对字符串 <i><a href=\"%(url)s\">%(source)s</a></i> 的建议"
-
-#~ msgid "%(user)s uploaded a file"
-#~ msgstr "%(user)s 上传了一个文件"
 
 #~ msgid ""
 #~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">"

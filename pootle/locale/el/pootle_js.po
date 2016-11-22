@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2015-09-29 13:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -580,11 +580,11 @@ msgstr "Όλα τα έργα"
 msgid "Entire Project"
 msgstr "Το συνολικό έργο"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -592,7 +592,7 @@ msgstr ""
 "Έχετε μη αποθηκευμένες αλλαγές σε αυτήν τη συμβολοσειρά. Η περιήγηση εκτός "
 "αυτής θα απορρίψει αυτές τις αλλαγές."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -600,7 +600,7 @@ msgstr ""
 "Μετάβαση στην επόμενη συμβολοσειρά (Ctrl+.)<br/><br/>Επίσης:<br/>Επόμενη "
 "σελίδα:Ctrl+Shift+.<br/>Τελευταία σελίδα:Last page: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -609,78 +609,78 @@ msgstr ""
 "br>Προηγούμενη σελίδα:Ctrl+Shift+,<br/>Πρώτη σελίδα: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Εκκρεμείς προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Αποδεκτές προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Απορριφθείσες προτάσεις του %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Υποβολές του %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Αντικατασταθείσες υποβολές του %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Σφάλμα κατά την σύνδεση με τον εξυπηρετητή"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Δε βρέθηκε"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Σφάλμα εξυπηρετητή"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Ο εξυπηρετητής φαίνεται ανενεργός. Δοκιμάστε αργότερα."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Αυτή η συμβολοσειρά δεν υπάρχει πια."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Επιστροφή στην περιήγηση"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Επαναφόρτωση της σελίδας"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "κάποιος ανώνυμος χρήστης"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "κάποιος"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Παρόμοιες μεταφράσεις"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -701,7 +701,7 @@ msgstr ""
 msgid "Reject"
 msgstr ""
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr ""
@@ -791,92 +791,16 @@ msgstr "προστέθηκε πρόταση για τη ${συμβολοσειρ
 msgid "disabled"
 msgstr "ανενεργό"
 
-#: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
-msgid "A year ago"
-msgstr "Ένα χρόνο πριν"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "Ένα χρόνο πριν"
-msgstr[1] "%s χρόνια πριν"
-
-#: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
-msgid "A month ago"
-msgstr "Ένα λεπτό πριν"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, fuzzy, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "Ένα λεπτό πριν"
-msgstr[1] "Ένα λεπτό πριν"
-
-#: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
-msgid "A week ago"
-msgstr "Μια βδομάδα πριν"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "Μια βδομάδα πριν"
-msgstr[1] "%s βδομάδες πριν"
-
-#: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
-msgid "Yesterday"
-msgstr "Χθες"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "Ένα χρόνο πριν"
-msgstr[1] "%s χρόνια πριν"
-
-#: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
-msgid "An hour ago"
-msgstr "Μια ώρα πριν"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, fuzzy, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "Μια ώρα πριν"
-msgstr[1] "%s ώρες πριν"
-
-#: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
-msgid "A minute ago"
-msgstr "Ένα λεπτό πριν"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, fuzzy, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "Ένα λεπτό πριν"
-msgstr[1] "%s λεπτά πριν"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Λίγα δευτερόλεπτα πριν"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 #, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "Συγχαρητήρια, διασχίσατε όλα τα στοιχεία"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Σύμπτυξη λεπτομερειών"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Επέκταση λεπτομερειών"
 
@@ -985,7 +909,7 @@ msgstr ""
 "διαδικασία σύνδεσης. Αυτή είναι μια διεργασία μια κι έξω, που θα "
 "δημιουργήσει έναν σύνδεσμο μεταξύ του Pootle σας και των %s λογαριασμών."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Κανένα αποτέλεσμα."
 
@@ -1132,6 +1056,69 @@ msgid ""
 msgstr ""
 "Μεταφράστηκε από τον %(fullname)s στα &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo; έργο"
+
+#, fuzzy
+#~ msgid "A year ago"
+#~ msgstr "Ένα χρόνο πριν"
+
+#, fuzzy
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "Ένα χρόνο πριν"
+#~ msgstr[1] "%s χρόνια πριν"
+
+#, fuzzy
+#~ msgid "A month ago"
+#~ msgstr "Ένα λεπτό πριν"
+
+#, fuzzy
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "Ένα λεπτό πριν"
+#~ msgstr[1] "Ένα λεπτό πριν"
+
+#, fuzzy
+#~ msgid "A week ago"
+#~ msgstr "Μια βδομάδα πριν"
+
+#, fuzzy
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "Μια βδομάδα πριν"
+#~ msgstr[1] "%s βδομάδες πριν"
+
+#, fuzzy
+#~ msgid "Yesterday"
+#~ msgstr "Χθες"
+
+#, fuzzy
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "Ένα χρόνο πριν"
+#~ msgstr[1] "%s χρόνια πριν"
+
+#, fuzzy
+#~ msgid "An hour ago"
+#~ msgstr "Μια ώρα πριν"
+
+#, fuzzy
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "Μια ώρα πριν"
+#~ msgstr[1] "%s ώρες πριν"
+
+#, fuzzy
+#~ msgid "A minute ago"
+#~ msgstr "Ένα λεπτό πριν"
+
+#, fuzzy
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "Ένα λεπτό πριν"
+#~ msgstr[1] "%s λεπτά πριν"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Λίγα δευτερόλεπτα πριν"
 
 #~ msgid "Statistics"
 #~ msgstr "Στατιστικά"

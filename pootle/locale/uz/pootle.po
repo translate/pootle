@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2016-08-21 19:51+0000\n"
 "Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,39 +142,39 @@ msgstr "LinkedIn"
 msgid "Short Bio"
 msgstr "Qisqacha biografiya"
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 msgid "This email address already exists."
 msgstr "Bu e-pochta manzili allaqachon mavjud."
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "Mavzusi"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr "Xabar mavzusini kiriting"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Nomi"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Ismingizni kiriting"
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "E-pochta manzili"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "E-pochta manzilingizni kiriting"
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Xabar"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Xabarni kiriting"
 
@@ -405,7 +405,7 @@ msgstr "Rad qilindi"
 msgid "Accept"
 msgstr "Qabul qilindi"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Loyiha"
@@ -457,48 +457,48 @@ msgstr "Ko‘pliklar soni"
 msgid "Plural Equation"
 msgstr "Ko‘plik darajasi"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Qism"
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Holati"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Manba"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 msgid "Suggestion"
 msgstr "Tavsiya"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "Tavsiya qilish"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "Tavsiya qilish"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "%s tavsiyasi qabul rad qilindi"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "%s tavsiyasi qabul qilindi"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Tavsiyani rad qilish"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Tavsiyani qabul qilish"
@@ -930,21 +930,21 @@ msgstr "Loyiha daraxt uslubida"
 msgid "Ignore Files"
 msgstr "Fayllarni e’tiborsiz qoldirish"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr "Hisobot xati xatoliklari"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Manba matni bilan bog‘liq muammolar mavjud e-pochta manzili haqida hisobot "
 "berish mumkin."
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr "Old qo‘shimchalarni izlash rasmi"
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr "O‘chirib qo‘yilgan"
 
@@ -996,7 +996,7 @@ msgstr "Tavsiya rejimidan foydalanish uchun yetarlicha huquq yo‘q."
 msgid "Insufficient rights to access translation mode."
 msgstr "Tarjima rejimidan foydalanish uchun yetarlicha huquq yo‘q."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 msgid "Insufficient rights to access review mode."
 msgstr ""
 "Qayta ko‘rib chiqish rejimidan foydalanish uchun yetarlicha huquq yo‘q."
@@ -1005,7 +1005,6 @@ msgstr ""
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "%d ko‘plik shakli"
@@ -1026,19 +1025,19 @@ msgstr "Ishlash kerak bayroqchasi tozalanishi kerak"
 msgid "Translator comment"
 msgstr "Tarjimon izohi"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "Kutilmoqda"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "Qabul qilindi"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "Rad qilindi"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "Yo‘l"
 
@@ -1076,36 +1075,36 @@ msgstr "%s tavsiyasi qabul rad qilindi"
 msgid "Added suggestion"
 msgstr "Tavsiya qo‘shildi"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 msgid "Suggestion accepted with comment"
 msgstr ""
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr "Yo‘l juda uzun."
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Argumentlar yo‘q."
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Izoh olib tashlanmadi."
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "Fikr bildirish amalga oshmadi."
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "Jo‘natish amalga oshmadi."
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "Tavsiya berish amalga oshmadi."
 
@@ -1118,7 +1117,7 @@ msgstr "Ushbu atama allaqachon bu fayl ichida mavjud."
 msgid "Translation project (%s) created"
 msgstr "Tarjima loyihasi asosiy sahifasi"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Tarjima loyihasi asosiy sahifasi"
@@ -1639,14 +1638,14 @@ msgid "Last updated"
 msgstr "So‘nggi yangilangan"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Tavsiyalar"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Tugallanmagan"
@@ -1655,11 +1654,11 @@ msgstr "Tugallanmagan"
 msgid "Last Activity"
 msgstr "So‘nggi faollik"
 
-#: core/browser.py:121
+#: core/browser.py:119
 msgid "Back to language"
 msgstr "Tilga qaytish"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr "Yuqori jilga qaytish"
 
@@ -1728,16 +1727,76 @@ msgstr "Tarjimalarni ko‘rib chiqish mumkin"
 msgid "Can perform administrative tasks"
 msgstr "Administrator vazifasini bajara oladi"
 
+#: core/views/display.py:84 core/views/display.py:105
+#, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr ""
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "%(author)s tavsiyasi qabul qilindi"
+
+#: core/views/display.py:88
+#, python-format
+msgid "%(user)s uploaded file"
+msgstr ""
+
+#: core/views/display.py:90
+#, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:92
+#, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "%(author)s tavsiyasi qabul qilindi"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "%(author)s tavsiyasi rad qilindi"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "Tarjima qilinishi kerak bo‘lgan so‘zlar"
+
+#: core/views/display.py:101
+#, python-format
+msgid "%(user)s edited %(source)s"
+msgstr ""
+
+#: core/views/display.py:103
+#, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr ""
+
+#: core/views/display.py:107
+#, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr ""
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr "Siz ushbu sahifaga kira olmaysiz."
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "%(filename)s’ga kirishda xato, fayl tizimi xato jo‘natid: %(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2076,39 +2135,38 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s til ma’lumoti"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 #, fuzzy
 msgid "Remove"
 msgstr "Izohni olib tashlash"
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "Pootle ogohlantirishlari"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "Narxlar"
@@ -2232,29 +2290,29 @@ msgstr "E’lonlar"
 msgid "Add Announcement"
 msgstr "E’lon qo‘shish"
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr "Jiddiy xatolarni to‘g‘rilash"
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 #, fuzzy
 msgid "Critical errors"
 msgstr "Jiddiy xatolar:"
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 msgid "Review suggestions"
 msgstr "Tavsiyalarni ko‘rib chiqish"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 msgid "Continue translation"
 msgstr "Tarjimani davom ettirish"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr "Barchasini ko‘rish"
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Barchasi"
 
@@ -2281,35 +2339,40 @@ msgstr "Tafsilotlarni kengaytirish"
 msgid "Translation Statistics"
 msgstr "Tarjima statistikasi"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "Xatolarni tekshirish"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "Ko‘proq..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 #, fuzzy
 msgid "Less..."
 msgstr "kamroq…"
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 #, fuzzy
 msgid "Updates"
 msgstr "Narxlar"
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
+#: templates/browser/index.html:85
 #, fuzzy
-msgid "Last action:"
-msgstr "So‘nggi faoliyat"
+msgid "Last updated:"
+msgstr "So‘nggi yangilangan"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 #, fuzzy
 msgid "Translations"
 msgstr "Tarjima"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+#, fuzzy
+msgid "Last action:"
+msgstr "So‘nggi faoliyat"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "Ushbu loyiha o‘chirib qo‘yilgan va faqat administratorlarga ko‘rinadi."
 
@@ -2457,77 +2520,77 @@ msgstr ""
 msgid "Translate"
 msgstr "Tarjima qilish"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Qism #%(id)s</a>"
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 msgid "Priority:"
 msgstr "Muhimligi:"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "Matn:"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "Manzillar:"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "Atamalar:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "Tahrirlagichga tarjima qilingan atamani kiriting"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "Izohlar:"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr "Ochiladigan oynadagi rasmni ochish uchun bosing"
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr "Ekran rasmlari..."
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "Tarjima ichiga nusxa ko‘chirish"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 msgid "Report a problem with this string"
 msgstr "Ushbu qatordagi muammo haqida xabar berish"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "Jo‘natish"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Tarjimani jo‘natish va keyingi qatorga o‘tish (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "Tavsiya qilish"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Tarjimani tavsiya qilish va keyingi qatorga o‘tish (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Tarjima usuliga o‘tish (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Tavsiya qilish usuliga o‘tish (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 "Ushbu qatorni uzoq ishlashni talab qiladi sifatida belgilash (Ctrl+Space)"
@@ -2603,33 +2666,33 @@ msgstr "Tahrirlagichga belgi kiritish"
 msgid "Insert space symbol into the editor"
 msgstr "Tahrirlagichga belgi kiritish"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "Foydalanuvchi tavsiyalari"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 #, fuzzy
 msgid "More options"
 msgstr "To‘g‘rilash"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "Less options"
 msgstr "Manzillar"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "Tavsiyani qabul qilish"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "Tavsiyani rad qilish"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "Tavsiyani olib tashlash"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr "Ancha vaqtlar oldin"
 

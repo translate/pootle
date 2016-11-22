@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-10-25 11:07+0000\n"
 "Last-Translator: mirosnik <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -567,18 +567,18 @@ msgstr "Сви пројекти"
 msgid "Entire Project"
 msgstr "Читав пројекат"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr "Освежавам податке"
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 "Имате насачуване измене у овој нисци. Одлазак одавде ће одбацити ове измене."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -586,7 +586,7 @@ msgstr ""
 "Идите на следећу ниску (Ктрл+.)<br/><br/>Такође:<br/>Следећа страница: Ктрл"
 "+Помак+.<br/>Последња страница: Ктрл+Помак+Крај"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -595,78 +595,78 @@ msgstr ""
 "Ктрл+Помак+.<br/>Прва страница: Ктрл+Помак+Почетак"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Предлози на чекању корисника %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Прихваћени предлози корисника %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Одбијени предлози корисника %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Предаје корисника %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Замењене предаје корисника %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Грешка повезивања са сервером"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Нисам нашао"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Грешка сервера"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Сервер је пао. Покушајте касније."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Ова ниска не постоји више."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Назад на разгледање"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Освежи страницу"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "неки безимени корисник"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "неко"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Слични преводи"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "Облик множине %(index)s"
@@ -687,7 +687,7 @@ msgstr "Прихвати"
 msgid "Reject"
 msgstr "Одбаци"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s путем отпремања датотеке"
@@ -777,91 +777,15 @@ msgstr "%(user)s је означио као потребно за рад %(sourc
 msgid "disabled"
 msgstr "искључено"
 
-#: static/js/shared/utils/relativeTime.js:18
-msgid "A year ago"
-msgstr "Пре годину дана"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "Пре %(count)s годину"
-msgstr[1] "Пре %(count)s године"
-msgstr[2] "Пре %(count)s година"
-
-#: static/js/shared/utils/relativeTime.js:26
-msgid "A month ago"
-msgstr "Пре један минут"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "Пре %(count)s минут"
-msgstr[1] "Пре %(count)s минута"
-msgstr[2] "Пре %(count)s минута"
-
-#: static/js/shared/utils/relativeTime.js:34
-msgid "A week ago"
-msgstr "Пре недељу дана"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "Пре %(count)s недељу"
-msgstr[1] "Пре %(count)s недеље"
-msgstr[2] "Пре %(count)s недеља"
-
-#: static/js/shared/utils/relativeTime.js:42
-msgid "Yesterday"
-msgstr "Јуче"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "Пре %(count)s дан"
-msgstr[1] "Пре %(count)s дана"
-msgstr[2] "Пре %(count)s дана"
-
-#: static/js/shared/utils/relativeTime.js:50
-msgid "An hour ago"
-msgstr "Пре сат времена"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "Пре %(count)s сат"
-msgstr[1] "Пре %(count)s сата"
-msgstr[2] "Пре %(count)s сати"
-
-#: static/js/shared/utils/relativeTime.js:58
-msgid "A minute ago"
-msgstr "Пре једног минута"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "Пре %(count)s минут"
-msgstr[1] "Пре %(count)s минута"
-msgstr[2] "Пре %(count)s минута"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Пре неколико секунде"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "Честитамо! Завршили сте овај задатак!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Скупи детаље"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Рашири детаље"
 
@@ -967,7 +891,7 @@ msgstr ""
 "Доставите лозинку да завршите поступак пријављивања. Ово је једнократан "
 "поступак, које ће успоставити везу између Поотла и налога „%(provider)s“."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Нема резултата."
 
@@ -1116,6 +1040,63 @@ msgid ""
 msgstr ""
 "Превео је %(fullname)s у &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; пројекат"
+
+#~ msgid "A year ago"
+#~ msgstr "Пре годину дана"
+
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "Пре %(count)s годину"
+#~ msgstr[1] "Пре %(count)s године"
+#~ msgstr[2] "Пре %(count)s година"
+
+#~ msgid "A month ago"
+#~ msgstr "Пре један минут"
+
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "Пре %(count)s минут"
+#~ msgstr[1] "Пре %(count)s минута"
+#~ msgstr[2] "Пре %(count)s минута"
+
+#~ msgid "A week ago"
+#~ msgstr "Пре недељу дана"
+
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "Пре %(count)s недељу"
+#~ msgstr[1] "Пре %(count)s недеље"
+#~ msgstr[2] "Пре %(count)s недеља"
+
+#~ msgid "Yesterday"
+#~ msgstr "Јуче"
+
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "Пре %(count)s дан"
+#~ msgstr[1] "Пре %(count)s дана"
+#~ msgstr[2] "Пре %(count)s дана"
+
+#~ msgid "An hour ago"
+#~ msgstr "Пре сат времена"
+
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "Пре %(count)s сат"
+#~ msgstr[1] "Пре %(count)s сата"
+#~ msgstr[2] "Пре %(count)s сати"
+
+#~ msgid "A minute ago"
+#~ msgstr "Пре једног минута"
+
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "Пре %(count)s минут"
+#~ msgstr[1] "Пре %(count)s минута"
+#~ msgstr[2] "Пре %(count)s минута"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Пре неколико секунде"
 
 #~ msgid "Unknown error"
 #~ msgstr "Непозната грешка"

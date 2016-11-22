@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-07-02 02:36+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -557,17 +557,17 @@ msgstr "Всички проекти"
 msgid "Entire Project"
 msgstr "Целият проект"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -575,7 +575,7 @@ msgstr ""
 "Към следващия низ (Ctrl+.)<br/><br/>Още:<br/>следваща страница: Ctrl+Shift+."
 "<br/>последна страница: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -584,80 +584,80 @@ msgstr ""
 "<br/>първа страница: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Чакащи предложения от %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Приети предложения от %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Отхвърлени предложения от %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Допринесени от %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Презаписани от допринесените от %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Грешка при свързване към сървъра"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Няма съвпадения"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Грешка на сървъра"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Изглежда сървърът не работи. Опитайте по-късно."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 #, fuzzy
 msgid "This string no longer exists."
 msgstr "Това вече не съществува."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 #, fuzzy
 msgid "Go back to browsing"
 msgstr "Назад към обобщението"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Презареждане"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "анонимен потребител"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "някой"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Подобни преводи"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -678,7 +678,7 @@ msgstr ""
 msgid "Reject"
 msgstr ""
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr ""
@@ -768,91 +768,15 @@ msgstr "Приети предложения от %s"
 msgid "disabled"
 msgstr "изключено"
 
-#: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
-msgid "A year ago"
-msgstr "Преди година"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "Преди година"
-msgstr[1] "Преди %s години"
-
-#: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
-msgid "A month ago"
-msgstr "Преди минута"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, fuzzy, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "Преди минута"
-msgstr[1] "Преди минута"
-
-#: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
-msgid "A week ago"
-msgstr "Преди седмица"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "Преди седмица"
-msgstr[1] "Преди %s седмици"
-
-#: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
-msgid "Yesterday"
-msgstr "Вчера"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "Преди година"
-msgstr[1] "Преди %s години"
-
-#: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
-msgid "An hour ago"
-msgstr "Преди час"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, fuzzy, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "Преди час"
-msgstr[1] "Преди %s часа"
-
-#: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
-msgid "A minute ago"
-msgstr "Преди минута"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, fuzzy, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "Преди минута"
-msgstr[1] "Преди %s минути"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Преди няколко секунди"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Без детайли"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Детайли"
 
@@ -952,7 +876,7 @@ msgid ""
 "accounts."
 msgstr ""
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Няма резултати."
 
@@ -1099,6 +1023,69 @@ msgid ""
 msgstr ""
 "Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#, fuzzy
+#~ msgid "A year ago"
+#~ msgstr "Преди година"
+
+#, fuzzy
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "Преди година"
+#~ msgstr[1] "Преди %s години"
+
+#, fuzzy
+#~ msgid "A month ago"
+#~ msgstr "Преди минута"
+
+#, fuzzy
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "Преди минута"
+#~ msgstr[1] "Преди минута"
+
+#, fuzzy
+#~ msgid "A week ago"
+#~ msgstr "Преди седмица"
+
+#, fuzzy
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "Преди седмица"
+#~ msgstr[1] "Преди %s седмици"
+
+#, fuzzy
+#~ msgid "Yesterday"
+#~ msgstr "Вчера"
+
+#, fuzzy
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "Преди година"
+#~ msgstr[1] "Преди %s години"
+
+#, fuzzy
+#~ msgid "An hour ago"
+#~ msgstr "Преди час"
+
+#, fuzzy
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "Преди час"
+#~ msgstr[1] "Преди %s часа"
+
+#, fuzzy
+#~ msgid "A minute ago"
+#~ msgstr "Преди минута"
+
+#, fuzzy
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "Преди минута"
+#~ msgstr[1] "Преди %s минути"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Преди няколко секунди"
 
 #~ msgid "Statistics"
 #~ msgstr "Статистика"

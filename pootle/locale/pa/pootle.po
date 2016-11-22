@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2015-08-01 21:40+0000\n"
 "Last-Translator: A S <apreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,40 +132,40 @@ msgstr ""
 msgid "Short Bio"
 msgstr ""
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 #, fuzzy
 msgid "This email address already exists."
 msgstr "ਇਹ ਮੱਦ ਇਹ ਫਾਇਲ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "ਸੰਖੇਪ"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "ਨਾਂ"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr ""
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "ਈਮੇਲ ਐਡਰੈੱਸ"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr ""
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "ਸੁਨੇਹਾ"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr ""
 
@@ -400,7 +400,7 @@ msgstr "ਨਾ-ਮਨਜ਼ੂਰ"
 msgid "Accept"
 msgstr "ਮਨਜ਼ੂਰ"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "ਪ੍ਰੋਜੈਕਟ"
@@ -445,49 +445,49 @@ msgstr "ਬਹੁਵਚਨਾਂ ਦੀ ਗਿਣਤੀ"
 msgid "Plural Equation"
 msgstr "ਬਹੁਵਚਨ ਸਮੀਕਰਨ"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "ਸਥਿਤੀ"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "ਸਰੋਤ"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 #, fuzzy
 msgid "Suggestion"
 msgstr "ਸੁਝਾਅ"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "ਸੁਝਾਅ"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "ਸੁਝਾਅ"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ"
@@ -922,19 +922,19 @@ msgstr "ਪਰੋਜੈਕਟ ਟਰੀ ਸਟਾਈਲ"
 msgid "Ignore Files"
 msgstr "ਫਾਇਲਾਂ ਅਣਡਿੱਠੀਆਂ"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr ""
 
@@ -984,7 +984,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr ""
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 msgid "Insufficient rights to access review mode."
 msgstr ""
 
@@ -992,7 +992,6 @@ msgstr ""
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "ਬਹੁਵਚਨ ਰੂਪ %d"
@@ -1013,19 +1012,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "ਅਨੁਵਾਦਕ ਟਿੱਪਣੀ"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "ਬਾਕੀ"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "ਮਨਜ਼ੂਰ ਕੀਤੇ"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "ਨਾ-ਮਨਜ਼ੂਰ"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "ਪਾਥ"
 
@@ -1064,37 +1063,37 @@ msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
 msgid "Added suggestion"
 msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ ਹੋਏ"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr ""
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -1107,7 +1106,7 @@ msgstr "ਇਹ ਮੱਦ ਇਹ ਫਾਇਲ ਵਿੱਚ ਪਹਿਲਾਂ ਹ
 msgid "Translation project (%s) created"
 msgstr "ਅਨੁਵਾਦ ਪਰੋਜੈਕਟ ਮੁੱਖ ਪੇਜ਼"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "ਅਨੁਵਾਦ ਪਰੋਜੈਕਟ ਮੁੱਖ ਪੇਜ਼"
@@ -1580,14 +1579,14 @@ msgid "Last updated"
 msgstr "ਆਖਰੀ ਸੋਧ ਕੀਤੀ"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "ਸੁਝਾਅ"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
@@ -1596,11 +1595,11 @@ msgstr "ਅਧੂਰਾ"
 msgid "Last Activity"
 msgstr "ਆਖਰੀ ਸਰਗਰਮੀ"
 
-#: core/browser.py:121
+#: core/browser.py:119
 msgid "Back to language"
 msgstr "ਬੋਲੀ ਲਈ ਵਾਪਸ"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr ""
 
@@ -1670,16 +1669,76 @@ msgstr "ਸਮੀਖਿਆ ਸੁਝਾਅ"
 msgid "Can perform administrative tasks"
 msgstr ""
 
+#: core/views/display.py:84 core/views/display.py:105
+#, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr ""
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ"
+
+#: core/views/display.py:88
+#, fuzzy, python-format
+msgid "%(user)s uploaded file"
+msgstr "ਫਾਇਲ ਅੱਪਲੋਡ ਕੀਤੀ"
+
+#: core/views/display.py:90
+#, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:92
+#, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "ਸ਼ਬਦਾਂ ਦਾ ਅਨੁਵਾਦ ਜ਼ਰੂਰੀ ਹੈ"
+
+#: core/views/display.py:101
+#, python-format
+msgid "%(user)s edited %(source)s"
+msgstr ""
+
+#: core/views/display.py:103
+#, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr ""
+
+#: core/views/display.py:107
+#, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr ""
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr ""
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2005,38 +2064,37 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s ਭਾਸ਼ਾ ਜਾਣਕਾਰੀ"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr ""
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "ਪੋਟਲੀ ਡੈਮੋ"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "ਅਧਿਕਾਰ ਅੱਪਡੇਟ"
@@ -2159,31 +2217,31 @@ msgstr ""
 msgid "Add Announcement"
 msgstr ""
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr ""
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 #, fuzzy
 msgid "Critical errors"
 msgstr "ਗੰਭੀਰ"
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 #, fuzzy
 msgid "Review suggestions"
 msgstr "ਸਮੀਖਿਆ ਸੁਝਾਅ"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 #, fuzzy
 msgid "Continue translation"
 msgstr "ਅਨੁਵਾਦ 'ਚ ਕਾਪੀ ਕਰੋ"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr ""
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "ਸਭ"
 
@@ -2210,34 +2268,39 @@ msgstr "ਵੇਰਵਾ ਫੈਲਾਓ"
 msgid "Translation Statistics"
 msgstr "ਅਨੁਵਾਦ ਅੰਕੜੇ"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "ਚੈੱਕ ਫੇਲ੍ਹ ਹੋਇਆ"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "ਹੋਰ..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 #, fuzzy
 msgid "Updates"
 msgstr "ਅਧਿਕਾਰ ਅੱਪਡੇਟ"
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
+#: templates/browser/index.html:85
 #, fuzzy
-msgid "Last action:"
-msgstr "ਆਖਰੀ ਸਰਗਰਮੀ"
+msgid "Last updated:"
+msgstr "ਆਖਰੀ ਸੋਧ ਕੀਤੀ"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 #, fuzzy
 msgid "Translations"
 msgstr "ਅਨੁਵਾਦ"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+#, fuzzy
+msgid "Last action:"
+msgstr "ਆਖਰੀ ਸਰਗਰਮੀ"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2379,78 +2442,78 @@ msgstr ""
 msgid "Translate"
 msgstr "ਅਨੁਵਾਦ"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr ""
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 #, fuzzy
 msgid "Priority:"
 msgstr "ਤਰਜੀਹ"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "ਪਰਸੰਗ:"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "ਟਿਕਾਣੇ:"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "ਸ਼ਬਦਾਵਲੀ:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "ਐਡੀਟਰ ਵਿੱਚ ਅਨੁਵਾਦ ਕੀਤੇ ਸ਼ਬਦ ਵਜੋਂ ਜੋੜੋ"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "ਟਿੱਪਣੀਆਂ:"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "ਅਨੁਵਾਦ 'ਚ ਕਾਪੀ ਕਰੋ"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 msgid "Report a problem with this string"
 msgstr ""
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "ਭੇਜੋ"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "ਸੁਝਾਅ"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "ਇਹ ਸਤਰ ਨੂੰ ਹੋਰ ਕੰਮ ਕਰਨ ਦੀ ਲੋੜ ਵਜੋਂ ਨਿਸ਼ਾਨਬੱਧ ਕਰੋ (Ctrl+Space)"
 
@@ -2516,33 +2579,33 @@ msgstr ""
 msgid "Insert space symbol into the editor"
 msgstr "ਐਡੀਟਰ ਵਿੱਚ ਅਨੁਵਾਦ ਕੀਤੇ ਸ਼ਬਦ ਵਜੋਂ ਜੋੜੋ"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "ਵਰਤੋਂਕਾਰ ਸੁਝਾਅ"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 #, fuzzy
 msgid "More options"
 msgstr "ਆਮ ਚੋਣਾਂ"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "Less options"
 msgstr "ਆਮ ਚੋਣਾਂ"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "ਸੁਝਾਅ ਮਨਜ਼ੂਰ"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "ਸੁਝਾਅ ਰੱਦ ਕਰੋ"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "ਸੁਝਾਅ ਹਟਾਓ"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr ""
 
@@ -3135,9 +3198,6 @@ msgstr "ਚੋਟੀ ਦੇ ਯੋਗਦਾਨੀ"
 
 #~ msgid "Definitions"
 #~ msgstr "ਪਰਿਭਾਸ਼ਾ"
-
-#~ msgid "uploaded a file"
-#~ msgstr "ਫਾਇਲ ਅੱਪਲੋਡ ਕੀਤੀ"
 
 #~ msgid "XLIFF"
 #~ msgstr "XLIFF"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -583,11 +583,11 @@ msgstr "Gach Tionscadal"
 msgid "Entire Project"
 msgstr "An Tionscadal Ar Fad"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -595,7 +595,7 @@ msgstr ""
 "Athruithe gan sábháil sa teaghrán seo. Caillfidh tú na hathruithe seo má "
 "fhágann tú."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -603,7 +603,7 @@ msgstr ""
 "An chéad teaghrán eile (Ctrl+.)<br/><br/>Nó:<br/>An chéad leathanach eile: "
 "Ctrl+Shift+.<br/>An leathanach roimhe seo: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -612,79 +612,79 @@ msgstr ""
 "Ctrl+Shift+,<br/>An chéad leathanach: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Moltaí ó %s ar feitheamh"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Moltaí glactha ó %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Moltaí diúltaithe ó %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Aistriúcháin de chuid %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Gan aimsiú"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Earráid fhreastalaí"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Níl an teaghrán seo ann a thuilleadh."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Brabhsáil"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -705,7 +705,7 @@ msgstr "Glac Leis"
 msgid "Reject"
 msgstr "Diúltaigh"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, fuzzy, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "Uaslódáilte %(timeSince) ó shin"
@@ -795,109 +795,15 @@ msgstr "marcáladh gur gá %(sourceString)s a dheimhniú"
 msgid "disabled"
 msgstr "díchumasaithe"
 
-#: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
-msgid "A year ago"
-msgstr "Bliain amháin ó shin"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "Bliain amháin ó shin"
-msgstr[1] "%s bhliain ó shin"
-msgstr[2] "%s bliana ó shin"
-msgstr[3] "%s mbliana ó shin"
-msgstr[4] "%s bliain ó shin"
-
-#: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
-msgid "A month ago"
-msgstr "Nóiméad amháin ó shin"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, fuzzy, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "Nóiméad amháin ó shin"
-msgstr[1] "Nóiméad amháin ó shin"
-msgstr[2] "Nóiméad amháin ó shin"
-msgstr[3] "Nóiméad amháin ó shin"
-msgstr[4] "Nóiméad amháin ó shin"
-
-#: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
-msgid "A week ago"
-msgstr "Seachtain amháin ó shin"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "Seachtain amháin ó shin"
-msgstr[1] "%s sheachtain ó shin"
-msgstr[2] "%s seachtaine ó shin"
-msgstr[3] "%s seachtaine ó shin"
-msgstr[4] "%s seachtain ó shin"
-
-#: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
-msgid "Yesterday"
-msgstr "Inné"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "Bliain amháin ó shin"
-msgstr[1] "%s bhliain ó shin"
-msgstr[2] "%s bliana ó shin"
-msgstr[3] "%s mbliana ó shin"
-msgstr[4] "%s bliain ó shin"
-
-#: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
-msgid "An hour ago"
-msgstr "Uair an chloig ó shin"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, fuzzy, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "Uair an chloig ó shin"
-msgstr[1] "%s uair an chloig ó shin"
-msgstr[2] "%s huaire an chloig ó shin"
-msgstr[3] "%s n-uaire an chloig ó shin"
-msgstr[4] "%s uair an chloig ó shin"
-
-#: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
-msgid "A minute ago"
-msgstr "Nóiméad amháin ó shin"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, fuzzy, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "Nóiméad amháin ó shin"
-msgstr[1] "%s nóiméad ó shin"
-msgstr[2] "%s nóiméad ó shin"
-msgstr[3] "%s nóiméad ó shin"
-msgstr[4] "%s nóiméad ó shin"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Cúpla soicind ó shin"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "Comhghairdeas! Chríochnaigh tú an tasc seo!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Folaigh mionsonraí"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Taispeáin mionsonraí"
 
@@ -1006,7 +912,7 @@ msgstr ""
 "ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle "
 "agus do chuntas %s."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Gan torthaí."
 
@@ -1159,6 +1065,87 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#, fuzzy
+#~ msgid "A year ago"
+#~ msgstr "Bliain amháin ó shin"
+
+#, fuzzy
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "Bliain amháin ó shin"
+#~ msgstr[1] "%s bhliain ó shin"
+#~ msgstr[2] "%s bliana ó shin"
+#~ msgstr[3] "%s mbliana ó shin"
+#~ msgstr[4] "%s bliain ó shin"
+
+#, fuzzy
+#~ msgid "A month ago"
+#~ msgstr "Nóiméad amháin ó shin"
+
+#, fuzzy
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "Nóiméad amháin ó shin"
+#~ msgstr[1] "Nóiméad amháin ó shin"
+#~ msgstr[2] "Nóiméad amháin ó shin"
+#~ msgstr[3] "Nóiméad amháin ó shin"
+#~ msgstr[4] "Nóiméad amháin ó shin"
+
+#, fuzzy
+#~ msgid "A week ago"
+#~ msgstr "Seachtain amháin ó shin"
+
+#, fuzzy
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "Seachtain amháin ó shin"
+#~ msgstr[1] "%s sheachtain ó shin"
+#~ msgstr[2] "%s seachtaine ó shin"
+#~ msgstr[3] "%s seachtaine ó shin"
+#~ msgstr[4] "%s seachtain ó shin"
+
+#, fuzzy
+#~ msgid "Yesterday"
+#~ msgstr "Inné"
+
+#, fuzzy
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "Bliain amháin ó shin"
+#~ msgstr[1] "%s bhliain ó shin"
+#~ msgstr[2] "%s bliana ó shin"
+#~ msgstr[3] "%s mbliana ó shin"
+#~ msgstr[4] "%s bliain ó shin"
+
+#, fuzzy
+#~ msgid "An hour ago"
+#~ msgstr "Uair an chloig ó shin"
+
+#, fuzzy
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "Uair an chloig ó shin"
+#~ msgstr[1] "%s uair an chloig ó shin"
+#~ msgstr[2] "%s huaire an chloig ó shin"
+#~ msgstr[3] "%s n-uaire an chloig ó shin"
+#~ msgstr[4] "%s uair an chloig ó shin"
+
+#, fuzzy
+#~ msgid "A minute ago"
+#~ msgstr "Nóiméad amháin ó shin"
+
+#, fuzzy
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "Nóiméad amháin ó shin"
+#~ msgstr[1] "%s nóiméad ó shin"
+#~ msgstr[2] "%s nóiméad ó shin"
+#~ msgstr[3] "%s nóiméad ó shin"
+#~ msgstr[4] "%s nóiméad ó shin"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Cúpla soicind ó shin"
 
 #~ msgid "Statistics"
 #~ msgstr "Staitisticí"

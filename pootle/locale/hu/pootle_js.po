@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-10-20 14:15+0000\n"
 "Last-Translator: meskobalazs <meskobalazs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -562,11 +562,11 @@ msgstr "Minden projekt"
 msgid "Entire Project"
 msgstr "Teljes projekt"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr "Adatok frissítése"
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -574,7 +574,7 @@ msgstr ""
 "A karakterláncban mentetlen módosítások vannak. Más oldalra lépve ezek "
 "elvesznek."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -582,7 +582,7 @@ msgstr ""
 "Ugrás a következő karakterláncra (Ctrl+.)<br/><br/>Továbbá:<br/>Következő "
 "oldal: Ctrl+Shift+.<br/>Utolsó oldal: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -591,78 +591,78 @@ msgstr ""
 "Ctrl+Shift+,<br/>Első oldal: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s függő javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s elfogadta a javaslatokat"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s elutasított javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s beküldései"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s felülírt beküldései"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Hiba a kiszolgálóhoz való kapcsolódás közben"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Nem található"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Úgy tűnik, a kiszolgáló leállt. Próbálja meg később."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Ez a karakterlánc már nem létezik."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Vissza a tallózáshoz"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Oldal újratöltése"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "egy névtelen felhasználó"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "valaki"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Hasonló fordítások"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "%(index)s. többes alak"
@@ -683,7 +683,7 @@ msgstr "Elfogadás"
 msgid "Reject"
 msgstr "Elutasítás"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s fájlfeltöltésen keresztül"
@@ -773,85 +773,15 @@ msgstr "%(user)s megjelölte munkát igénylőként: %(sourceString)s"
 msgid "disabled"
 msgstr "letiltva"
 
-#: static/js/shared/utils/relativeTime.js:18
-msgid "A year ago"
-msgstr "Egy éve"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "%(count)s éve"
-msgstr[1] "%(count)s éve"
-
-#: static/js/shared/utils/relativeTime.js:26
-msgid "A month ago"
-msgstr "Egy hónapja"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "%(count)s hónapja"
-msgstr[1] "%(count)s hónapja"
-
-#: static/js/shared/utils/relativeTime.js:34
-msgid "A week ago"
-msgstr "Egy hete"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "%(count)s hete"
-msgstr[1] "%(count)s hete"
-
-#: static/js/shared/utils/relativeTime.js:42
-msgid "Yesterday"
-msgstr "Tegnap"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "%(count)s napja"
-msgstr[1] "%(count)s napja"
-
-#: static/js/shared/utils/relativeTime.js:50
-msgid "An hour ago"
-msgstr "Egy órája"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "%(count)s órája"
-msgstr[1] "%(count)s órája"
-
-#: static/js/shared/utils/relativeTime.js:58
-msgid "A minute ago"
-msgstr "Egy perce"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "%(count)s perce"
-msgstr[1] "%(count)s perce"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Pár másodperce"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "Gratulálunk! Befejezte ezt a feladatot!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Részletek elrejtése"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Részletek megjelenítése"
 
@@ -957,7 +887,7 @@ msgstr ""
 "egyszeri lépés a Pootle és a(z) %(provider)s fiókjai közti kapcsolat "
 "létrehozásához."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Nincs találat."
 
@@ -1104,6 +1034,57 @@ msgid ""
 msgstr ""
 "Fordította: %(fullname)s, itt: &bdquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
+
+#~ msgid "A year ago"
+#~ msgstr "Egy éve"
+
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "%(count)s éve"
+#~ msgstr[1] "%(count)s éve"
+
+#~ msgid "A month ago"
+#~ msgstr "Egy hónapja"
+
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "%(count)s hónapja"
+#~ msgstr[1] "%(count)s hónapja"
+
+#~ msgid "A week ago"
+#~ msgstr "Egy hete"
+
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "%(count)s hete"
+#~ msgstr[1] "%(count)s hete"
+
+#~ msgid "Yesterday"
+#~ msgstr "Tegnap"
+
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "%(count)s napja"
+#~ msgstr[1] "%(count)s napja"
+
+#~ msgid "An hour ago"
+#~ msgstr "Egy órája"
+
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "%(count)s órája"
+#~ msgstr[1] "%(count)s órája"
+
+#~ msgid "A minute ago"
+#~ msgstr "Egy perce"
+
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "%(count)s perce"
+#~ msgstr[1] "%(count)s perce"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Pár másodperce"
 
 #~ msgid "Statistics"
 #~ msgstr "Statisztika"

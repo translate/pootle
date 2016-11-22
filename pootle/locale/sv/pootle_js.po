@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-10-24 16:13+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -561,11 +561,11 @@ msgstr "Alla projekt"
 msgid "Entire Project"
 msgstr "Hela projektet"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr "Uppdaterar data"
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -573,7 +573,7 @@ msgstr ""
 "Du har ändringar som inte sparats i strängen. Genom att navigera bort kastas "
 "dessa förändringar."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -581,7 +581,7 @@ msgstr ""
 "Gå till nästa sträng (Ctrl+.)<br/><br/>Också:<br/>Nästa sida: Ctrl+Shift+."
 "<br/>Sista sidan: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -590,78 +590,78 @@ msgstr ""
 "+Shift+,<br/>Första sidan: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s väntande förslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s godkända förslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s avvisade förslag"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s bidrag"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s överskrivna bidrag"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Fel i anslutningen till servern"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Hittades inte"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Ett fel inträffade på servern"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Servern tycks vara nere. Försök igen senare."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Strängen finns inte längre."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Gå tillbaks för att bläddra"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Ladda om sida"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "någon anonym användare"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "någon"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Liknande översättningar"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "Pluralform %(index)s"
@@ -682,7 +682,7 @@ msgstr "Godkänn"
 msgid "Reject"
 msgstr "Neka"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s via filöverföring"
@@ -772,85 +772,15 @@ msgstr "%(user)s markerade för kontroll %(sourceString)s"
 msgid "disabled"
 msgstr "inaktiverad"
 
-#: static/js/shared/utils/relativeTime.js:18
-msgid "A year ago"
-msgstr "Ett år sedan"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "%(count)s år sedan"
-msgstr[1] "%(count)s år sedan"
-
-#: static/js/shared/utils/relativeTime.js:26
-msgid "A month ago"
-msgstr "En månad sedan"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "%(count)s månad sedan"
-msgstr[1] "%(count)s månader sedan"
-
-#: static/js/shared/utils/relativeTime.js:34
-msgid "A week ago"
-msgstr "En vecka sedan"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "%(count)s vecka sedan"
-msgstr[1] "%(count)s veckor sedan"
-
-#: static/js/shared/utils/relativeTime.js:42
-msgid "Yesterday"
-msgstr "Igår"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "%(count)s dag sedan"
-msgstr[1] "%(count)s dagar sedan"
-
-#: static/js/shared/utils/relativeTime.js:50
-msgid "An hour ago"
-msgstr "En timme sedan"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "%(count)s timme sedan"
-msgstr[1] "%(count)s timmar sedan"
-
-#: static/js/shared/utils/relativeTime.js:58
-msgid "A minute ago"
-msgstr "En minut sedan"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "%(count)s minut sedan"
-msgstr[1] "%(count)s minuter sedan"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Några sekunder sedan"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "Grattis! Du har slutfört denna uppgift!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Dölj detaljer"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Visa detaljer"
 
@@ -958,7 +888,7 @@ msgstr ""
 "lösenordet för att slutföra inloggningen. Detta är en engångsföreteelse, "
 "vilket kommer att skapa en länk mellan Pootle och %(provider)s konton."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Inga resultat."
 
@@ -1105,6 +1035,57 @@ msgid ""
 msgstr ""
 "Översatt av %(fullname)s ii &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
+
+#~ msgid "A year ago"
+#~ msgstr "Ett år sedan"
+
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "%(count)s år sedan"
+#~ msgstr[1] "%(count)s år sedan"
+
+#~ msgid "A month ago"
+#~ msgstr "En månad sedan"
+
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "%(count)s månad sedan"
+#~ msgstr[1] "%(count)s månader sedan"
+
+#~ msgid "A week ago"
+#~ msgstr "En vecka sedan"
+
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "%(count)s vecka sedan"
+#~ msgstr[1] "%(count)s veckor sedan"
+
+#~ msgid "Yesterday"
+#~ msgstr "Igår"
+
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "%(count)s dag sedan"
+#~ msgstr[1] "%(count)s dagar sedan"
+
+#~ msgid "An hour ago"
+#~ msgstr "En timme sedan"
+
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "%(count)s timme sedan"
+#~ msgstr[1] "%(count)s timmar sedan"
+
+#~ msgid "A minute ago"
+#~ msgstr "En minut sedan"
+
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "%(count)s minut sedan"
+#~ msgstr[1] "%(count)s minuter sedan"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Några sekunder sedan"
 
 #~ msgid "Statistics"
 #~ msgstr "Statistik"

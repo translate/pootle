@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-09-24 18:30+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -562,11 +562,11 @@ msgstr "Pob Project"
 msgid "Entire Project"
 msgstr "Y Project Cyfan"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -574,7 +574,7 @@ msgstr ""
 "Mae gennych newidiadau heb eu cadw yn llinyn hwn. Bydd symud i ffwrdd yn "
 "golygu colli'r newidiadau hyn."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -582,7 +582,7 @@ msgstr ""
 "Ewch i'r llinyn nesaf (Ctrl+.)<br/><br/>Hefyd:<br/>Tudalen nesaf: Ctrl+Shift"
 "+.<br/>Tudalen olaf: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -591,78 +591,78 @@ msgstr ""
 "Ctrl+Shift+,<br/>Tudalen gyntaf: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Awgrymiadau %s yn disgwyl cymeradwyaeth"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Awgrymiadau %s wedi eu derbyn"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Awgrymiadau %s wedi eu gwrthod"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Awgrymiadau %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Gwall wrth gysylltu â'r gweinydd"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "Heb ei ganfod"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Gwall gweinydd"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Mae'r gweinydd i weld wedi torri. Ceisiwch rhywbryd eto."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "Nid yw'r llinyn hwn yn bodoli."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "Mynd nôl i bori"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr "Ffurf lluosog %(index)s"
@@ -683,7 +683,7 @@ msgstr "Derbyn"
 msgid "Reject"
 msgstr "Gwrthod"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s drwy lwytho ffeil"
@@ -773,85 +773,15 @@ msgstr "Nododd %(user)s fel angen gwaith %(sourceString)s"
 msgid "disabled"
 msgstr "analluogwyd"
 
-#: static/js/shared/utils/relativeTime.js:18
-msgid "A year ago"
-msgstr "Blwyddyn yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "%(count)s blwyddyn yn ôl"
-msgstr[1] "%(count)s blynedd yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:26
-msgid "A month ago"
-msgstr "Mis yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "%(count)s mis yn ôl"
-msgstr[1] "%(count)s mis yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:34
-msgid "A week ago"
-msgstr "Wythnos yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "%(count)s wythnos yn ôl"
-msgstr[1] "%(count)s wythnos yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:42
-msgid "Yesterday"
-msgstr "Ddoe"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "%(count)s blwyddyn yn ôl"
-msgstr[1] "%(count)s blynedd yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:50
-msgid "An hour ago"
-msgstr "Awr yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "%(count)s awr yn ôl"
-msgstr[1] "%(count)s awr yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:58
-msgid "A minute ago"
-msgstr "Munud yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "%(count)s munud yn ôl"
-msgstr[1] "%(count)s munud yn ôl"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Ychydig eiliadau yn ôl"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "Llongyfarchiadau! Rydych wedi cwblhau'r dasg!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Lleihau'r manylion"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Ehangu'r manylion"
 
@@ -957,7 +887,7 @@ msgstr ""
 "Rhowch y cyfrinair i orffen y drefn mewngofnodi. Mae hyn yn drefn unwaith ac "
 "am byth, a bydd yn sefydlu cysylltiad rhwng eich cyfrifon Pootle a %s."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Dim canlyniad."
 
@@ -1104,6 +1034,57 @@ msgid ""
 msgstr ""
 "Cyfieithiwyd gan %(fullname)s yn &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo; project"
+
+#~ msgid "A year ago"
+#~ msgstr "Blwyddyn yn ôl"
+
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "%(count)s blwyddyn yn ôl"
+#~ msgstr[1] "%(count)s blynedd yn ôl"
+
+#~ msgid "A month ago"
+#~ msgstr "Mis yn ôl"
+
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "%(count)s mis yn ôl"
+#~ msgstr[1] "%(count)s mis yn ôl"
+
+#~ msgid "A week ago"
+#~ msgstr "Wythnos yn ôl"
+
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "%(count)s wythnos yn ôl"
+#~ msgstr[1] "%(count)s wythnos yn ôl"
+
+#~ msgid "Yesterday"
+#~ msgstr "Ddoe"
+
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "%(count)s blwyddyn yn ôl"
+#~ msgstr[1] "%(count)s blynedd yn ôl"
+
+#~ msgid "An hour ago"
+#~ msgstr "Awr yn ôl"
+
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "%(count)s awr yn ôl"
+#~ msgstr[1] "%(count)s awr yn ôl"
+
+#~ msgid "A minute ago"
+#~ msgstr "Munud yn ôl"
+
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "%(count)s munud yn ôl"
+#~ msgstr[1] "%(count)s munud yn ôl"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Ychydig eiliadau yn ôl"
 
 #~ msgid "Statistics"
 #~ msgstr "Ystadegau"

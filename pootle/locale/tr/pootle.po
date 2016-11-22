@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2016-11-10 16:23+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,39 +141,39 @@ msgstr "LinkedIn"
 msgid "Short Bio"
 msgstr "Kısa Özgeçmiş"
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 msgid "This email address already exists."
 msgstr "Bu eposta adresi zaten var."
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "Özet"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr "Lütfen ileti özetinizi girin"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Ad"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Lütfen adınızı girin"
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "ePosta adresi"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "Lütfen eposta adresinizi girin"
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "İleti"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Lütfen iletinizi girin"
 
@@ -394,7 +394,7 @@ msgstr "Reddet"
 msgid "Accept"
 msgstr "Kabul Et"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Proje"
@@ -445,47 +445,47 @@ msgstr "Çoğulların Sayısı"
 msgid "Plural Equation"
 msgstr "Çoğul Eşitliği"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Birim"
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Durum"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Kaynak"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 msgid "Suggestion"
 msgstr "Öneri"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 msgid "Suggested by"
 msgstr "Öneren"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 msgid "Suggested at"
 msgstr "Önerme zamanı"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "Yorumu olan %s önerileri reddedildi. Kullanıcılar bilgilendirilecektir"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr ""
 "Yorumu olan %s önerileri kabul edildi. Kullanıcılar bilgilendirilecektir"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, python-format
 msgid "Rejected %s suggestions"
 msgstr "%s önerileri reddedildi"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, python-format
 msgid "Accepted %s suggestions"
 msgstr "%s önerileri kabul edildi"
@@ -915,19 +915,19 @@ msgstr "Proje Ağacı Stili"
 msgid "Ignore Files"
 msgstr "Dosyaları Yoksay"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr "Hatalar Raporu Epostası"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr "Kaynak metin ile sorunları olan bir eposta adresi rapor edilebilir."
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr "Ekran Görüntüsü Arama Öneki"
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr "Etkisizleştirildi"
 
@@ -979,7 +979,7 @@ msgstr "Öneri kipine erişmek için yetersiz haklar."
 msgid "Insufficient rights to access translation mode."
 msgstr "Çeviri kipine erişmek için yetersiz haklar."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 msgid "Insufficient rights to access review mode."
 msgstr "İnceleme kipine erişmek için yetersiz haklar."
 
@@ -987,7 +987,6 @@ msgstr "İnceleme kipine erişmek için yetersiz haklar."
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "Çoğul Biçim %d"
@@ -1008,19 +1007,19 @@ msgstr "Çalışma gerekli işareti temizlenmek zorundadır"
 msgid "Translator comment"
 msgstr "Çevirmen yorumu"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "Beklemede"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "Kabul Edildi"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "Reddedildi"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "Yol"
 
@@ -1058,36 +1057,36 @@ msgstr "%(author)s kullanıcısından gelen öneri reddedildi: %(comment)s"
 msgid "Added suggestion"
 msgstr "Öneri eklendi"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 msgid "Suggestion accepted with comment"
 msgstr "Öneri yorum ile kabul edildi"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr "Öneri yorum ile reddedildi"
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr "Yol çok uzun."
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Bağımsız değişkenler eksik."
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Yorumu kaldırma başarısız."
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "Yorum sunuşu başarısız oldu."
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "Sunuşu işlemek başarısız."
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "Öneriyi işlemek başarısız."
 
@@ -1100,7 +1099,7 @@ msgstr "Bu terim zaten bu dosyada mevcut."
 msgid "Translation project (%s) created"
 msgstr "Çeviri projesi (%s) oluşturuldu"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Çeviri projesi (%s) oluşturma başarısız oldu"
@@ -1624,14 +1623,14 @@ msgid "Last updated"
 msgstr "Son güncelleme"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Öneriler"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Tamamlanmadı"
@@ -1640,11 +1639,11 @@ msgstr "Tamamlanmadı"
 msgid "Last Activity"
 msgstr "Son Etkinlik"
 
-#: core/browser.py:121
+#: core/browser.py:119
 msgid "Back to language"
 msgstr "Dile geri dön"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr "Ana klasöre geri git"
 
@@ -1712,18 +1711,78 @@ msgstr "Önerileri inceleyebilir"
 msgid "Can perform administrative tasks"
 msgstr "Yönetimsel görevler yapabilir"
 
+#: core/views/display.py:84 core/views/display.py:105
+#, fuzzy, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr "%(source_string)s için kaldırılan çeviri"
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "%(author)s kullanıcısından gelen öneri kabul edildi"
+
+#: core/views/display.py:88
+#, fuzzy, python-format
+msgid "%(user)s uploaded file"
+msgstr "%(user)s bir dosya gönderdi"
+
+#: core/views/display.py:90
+#, fuzzy, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr "%(source_string)s için kapatılan %(check_name)s"
+
+#: core/views/display.py:92
+#, fuzzy, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr "%(source_string)s için açılan %(check_name)s"
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "%(source_string)s için eklenen öneri"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "%(author)s kullanıcısından gelen öneri reddedildi"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "çevrilen %(source_string)s"
+
+#: core/views/display.py:101
+#, fuzzy, python-format
+msgid "%(user)s edited %(source)s"
+msgstr "düzenlenen %(source_string)s"
+
+#: core/views/display.py:103
+#, fuzzy, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr "ön çevirisi yapılan %(source_string)s"
+
+#: core/views/display.py:107
+#, fuzzy, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr "incelenen %(source_string)s"
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr "Bu sayfaya erişemezsiniz."
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "%(filename)s dosyasına erişmede hata oldu, Dosya sistemi gönderme hatası: "
 "%(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2061,39 +2120,39 @@ msgstr ""
 "Sadece `&lt;language_code&gt;` gerekir, `.&lt;ext&gt;` ile bitmek zorunda "
 "olmasına rağmen"
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
+#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 "Eğer localfs arka ucu kullanıyorsanız çeviri eşlemesi, arka uç URL'sinde "
 "belirtilen yol ile\n"
 "\t     birleştirilecektir"
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr "Diğer arka uçlar için çeviri eşlemesi havuzun kökü ile ilgili olacak."
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 msgid "Language mapping configuration"
 msgstr "Dil eşlemesi yapılandırması"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr "Kaldır"
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 msgid "Pootle code"
 msgstr "Pootle kodu"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr "Dosya sistemi kodu"
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 msgid "Update"
 msgstr "Güncelle"
 
@@ -2215,28 +2274,28 @@ msgstr "Duyurular"
 msgid "Add Announcement"
 msgstr "Duyuru Ekle"
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr "Önemli hataları düzelt"
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 msgid "Critical errors"
 msgstr "Önemli hatalar"
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 msgid "Review suggestions"
 msgstr "Önerileri incele"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 msgid "Continue translation"
 msgstr "Çeviriye devam et"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr "Tümünü göster"
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Tümü"
 
@@ -2263,31 +2322,36 @@ msgstr "Ayrıntıları genişlet"
 msgid "Translation Statistics"
 msgstr "Çeviri İstatistikleri"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "Başarısız Kontrolleri"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "Daha fazla..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr "Daha az..."
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 msgid "Updates"
 msgstr "Güncellemeler"
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
-msgid "Last action:"
-msgstr "Son eylem:"
+#: templates/browser/index.html:85
+#, fuzzy
+msgid "Last updated:"
+msgstr "Son güncelleme"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 msgid "Translations"
 msgstr "Çeviriler"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+msgid "Last action:"
+msgstr "Son eylem:"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "Bu proje etkisizleştirildi ve sadece yöneticilere görünür."
 
@@ -2434,77 +2498,77 @@ msgstr "Sizin tarafınızdan gönderilen aşağıdaki öneriler yorum ile redded
 msgid "Translate"
 msgstr "Çevir"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Birim #%(id)s</a>"
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 msgid "Priority:"
 msgstr "Öncelik:"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "Bağlam:"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "Yerleri:"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "Terminoloji:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "Çevrilmiş terimi düzenleyici içine ekle"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "Yorumlar:"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr "Resmi bir açılır pencerede açmak için tıklayın"
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr "Ekran Görüntüleri..."
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "Çeviri içine kopyala"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 msgid "Report a problem with this string"
 msgstr "Bu satırla ilgili bir sorunu bildir"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "Gönder"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Çeviriyi gönder ve sonraki satıra git (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "Öner"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Çeviriyi öner ve sonraki satıra git (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Çeviri kipini değiştir (Ctrl+Shift+Boşluk)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Öneri kipini değiştir (Ctrl+Shift+Boşluk)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Bu satırı daha fazla çalışmak gerekiyor olarak işaretle (Ctrl+Boşluk)"
 
@@ -2570,31 +2634,31 @@ msgstr "Düzenleyici içine bu sembolü ekle"
 msgid "Insert space symbol into the editor"
 msgstr "Düzenleyici içine boşluk sembolü ekle"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "Kullanıcı önerileri"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 msgid "More options"
 msgstr "Daha fazla seçenek"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 msgid "Less options"
 msgstr "Daha az seçenek"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "Öneriyi kabul et"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "Öneriyi reddet"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "Öneriyi kaldır"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr "Uzun bir zaman önce"
 
@@ -3336,32 +3400,8 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ msgid "reverted translation for %(source_string)s"
 #~ msgstr "%(source_string)s için geri döndürülmüş çeviri"
 
-#~ msgid "added suggestion for %(source_string)s"
-#~ msgstr "%(source_string)s için eklenen öneri"
-
 #~ msgid "uploaded a file"
 #~ msgstr "bir dosya gönderdi"
-
-#~ msgid "muted %(check_name)s for %(source_string)s"
-#~ msgstr "%(source_string)s için kapatılan %(check_name)s"
-
-#~ msgid "unmmuted %(check_name)s for %(source_string)s"
-#~ msgstr "%(source_string)s için açılan %(check_name)s"
-
-#~ msgid "translated %(source_string)s"
-#~ msgstr "çevrilen %(source_string)s"
-
-#~ msgid "edited %(source_string)s"
-#~ msgstr "düzenlenen %(source_string)s"
-
-#~ msgid "pre-translated %(source_string)s"
-#~ msgstr "ön çevirisi yapılan %(source_string)s"
-
-#~ msgid "removed translation for %(source_string)s"
-#~ msgstr "%(source_string)s için kaldırılan çeviri"
-
-#~ msgid "reviewed %(source_string)s"
-#~ msgstr "incelenen %(source_string)s"
 
 #~ msgid "marked as fuzzy %(source_string)s"
 #~ msgstr "belirsiz olarak işaretlenen %(source_string)s"
@@ -4167,9 +4207,6 @@ msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 #~ msgstr ""
 #~ "<i><a href=\"%(url)s\">%(source)s</a></i> dizgisi için öneriyi %(user)s "
 #~ "kabul etti"
-
-#~ msgid "%(user)s uploaded a file"
-#~ msgstr "%(user)s bir dosya gönderdi"
 
 #~ msgid ""
 #~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">"

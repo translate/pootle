@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2016-07-23 05:45+0000\n"
 "Last-Translator: Bocar Amadou <bokarba@yahoo.fr>\n"
 "Language-Team: FULA LOCALIZATION\n"
@@ -133,40 +133,40 @@ msgstr ""
 msgid "Short Bio"
 msgstr ""
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 #, fuzzy
 msgid "This email address already exists."
 msgstr "Ndee helmere ena woodi kisa e ndee fiilde."
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "Tonngol"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr ""
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Innde"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr ""
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "Jokkorde imeel"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr ""
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Ɓatakuru"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr ""
 
@@ -403,7 +403,7 @@ msgstr "Salaama"
 msgid "Accept"
 msgstr "Jaɓaama"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Eɓɓanɗe"
@@ -451,49 +451,49 @@ msgstr "Mbaydiiji Keewal"
 msgid "Plural Equation"
 msgstr "Ekuwaasion Keewal"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Ngonka"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Iwdi"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 #, fuzzy
 msgid "Suggestion"
 msgstr "Miijtannɗe"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "Wasiyo"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "Wasiyo"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "Salo wasiya"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "Jaɓ wasiya"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Salo wasiya"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Jaɓ wasiya"
@@ -929,20 +929,20 @@ msgstr "Fannu calcalti eɓɓannde"
 msgid "Ignore Files"
 msgstr "Hoto hiiso Piille"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr "Ko URL walla iimeel ɗo caɗe e binndol yummawol ngol mbaawi jaŋteede."
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr ""
 
@@ -993,7 +993,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Jamirooje maa timmaani e firde ndee eɓɓoore."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Jamirooje timmaani ngam yahde e ngoo hello."
@@ -1002,7 +1002,6 @@ msgstr "Jamirooje timmaani ngam yahde e ngoo hello."
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "Keewal iwde %d"
@@ -1023,19 +1022,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "Yowre piroowo"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "Ena sabbii"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "Jaɓaama"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "Salaama"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "Path"
 
@@ -1074,37 +1073,37 @@ msgstr "Salo wasiya"
 msgid "Added suggestion"
 msgstr "Jaɓ wasiya"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Wasiyaaji Jaɓaaɗi"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Dalillaaji ena ŋakki."
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "Naatnugol yowre woorii."
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "Horiima jokkitde naatnugol."
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "Horiima jokkitde wasiya."
 
@@ -1117,7 +1116,7 @@ msgstr "Ndee helmere ena woodi kisa e ndee fiilde."
 msgid "Translation project (%s) created"
 msgstr "Hello arwanngo eɓɓoore firo"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Hello arwanngo eɓɓoore firo"
@@ -1599,14 +1598,14 @@ msgid "Last updated"
 msgstr "Taƴtaa Sakket"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Miijtannɗe"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Timmaani"
@@ -1615,12 +1614,12 @@ msgstr "Timmaani"
 msgid "Last Activity"
 msgstr "Dille cakkitiiɗe"
 
-#: core/browser.py:121
+#: core/browser.py:119
 #, fuzzy
 msgid "Back to language"
 msgstr "Ɗemɗe gonɗe e golleede"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr ""
 
@@ -1691,17 +1690,79 @@ msgstr "Ƴeewto Wasiyaaji"
 msgid "Can perform administrative tasks"
 msgstr "Yiilordu Django"
 
+#: core/views/display.py:84 core/views/display.py:105
+#, fuzzy, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr "%(user)s momtii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "Jaɓ wasiya"
+
+#: core/views/display.py:88
+#, fuzzy, python-format
+msgid "%(user)s uploaded file"
+msgstr "%(user)s yollii fiilde"
+
+#: core/views/display.py:90
+#, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:92
+#, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr ""
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr ""
+"Jiggagol %(count)d wasiyaaji iwde e %(store)s Jiggagol %(count)d wasiyaaji "
+"iwde e %(store)s"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "Salo wasiya"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "Alaa e sago ɗii konnguɗi piree"
+
+#: core/views/display.py:101
+#, python-format
+msgid "%(user)s edited %(source)s"
+msgstr ""
+
+#: core/views/display.py:103
+#, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr ""
+
+#: core/views/display.py:107
+#, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr ""
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr ""
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Naatde e %(filename)s feewaani, Yuɓɓopiille ruttinii juumre: %(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, fuzzy, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2042,38 +2103,37 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "Humpito ɗemngal %(language)s"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr ""
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "Ƴeewndol Pootle"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "Pootle: Hesɗitin"
@@ -2193,31 +2253,31 @@ msgstr ""
 msgid "Add Announcement"
 msgstr ""
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr ""
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 #, fuzzy
 msgid "Critical errors"
 msgstr "Gaannuɗum"
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 #, fuzzy
 msgid "Review suggestions"
 msgstr "Ƴeewto Wasiyaaji"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 #, fuzzy
 msgid "Continue translation"
 msgstr "Natto e nder firo"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr ""
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Fof"
 
@@ -2244,33 +2304,38 @@ msgstr "Wetu cariiɗe"
 msgid "Translation Statistics"
 msgstr "Limlimtooje Firooji"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "Ƴeewndite ɗe peewaani"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "Jokku..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 msgid "Updates"
 msgstr ""
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
+#: templates/browser/index.html:85
 #, fuzzy
-msgid "Last action:"
-msgstr "Dille cakkitiiɗe"
+msgid "Last updated:"
+msgstr "Taƴtaa Sakket"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 #, fuzzy
 msgid "Translations"
 msgstr "Firo"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+#, fuzzy
+msgid "Last action:"
+msgstr "Dille cakkitiiɗe"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2416,79 +2481,79 @@ msgstr ""
 msgid "Translate"
 msgstr "Fir"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, fuzzy, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Ɓoggol %(id)s</a>"
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 #, fuzzy
 msgid "Priority:"
 msgstr "Keñoraaɗe"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "Weeyoore:"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "Nokkuuje:"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "Kelmeendi:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "Naatnu helmere firaande ndee e taƴtorde ndee"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "Jowe:"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "Natto e nder firo"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 #, fuzzy
 msgid "Report a problem with this string"
 msgstr "Jaŋto caɗe teski-ɗaa e ɓoggol iwdi ngol"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "Naatnu"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Naatnu firo tee njahaa to ɓoggol paangol (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "Wasiyo"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Wasiyo firo tee njahaa to ɓoggol paangol (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Waɗtu e mbayka firo (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Waɗtu e mbayka wasiya (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Maanto ngol ɓoggol no coklungol ƴeewteede (Ctrl+Space)"
 
@@ -2554,33 +2619,33 @@ msgstr "Naatnu ndee maannde e taƴtorde ndee"
 msgid "Insert space symbol into the editor"
 msgstr "Naatnu ndee maannde e taƴtorde ndee"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "Wasiyaaji kuutoro"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 #, fuzzy
 msgid "More options"
 msgstr "Cuɓe"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "Less options"
 msgstr "Nokkuuji"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "Jaɓ wasiya"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "Salo wasiya"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "Momtu wasiya"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr ""
 
@@ -3937,9 +4002,6 @@ msgstr "Gollooɓe Rowrowɓe"
 #~ msgstr ""
 #~ "%(user)s jaɓii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
 
-#~ msgid "%(user)s uploaded a file"
-#~ msgstr "%(user)s yollii fiilde"
-
 #~ msgid ""
 #~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">"
 #~ "%(source)s</a></i>"
@@ -3952,12 +4014,6 @@ msgstr "Gollooɓe Rowrowɓe"
 #~ msgstr ""
 #~ "%(user)s naatnii \"ena sokli ƴeewteea\" e ɓoggol <i><a href=\"%(url)s\">"
 #~ "%(source)s</a></i>"
-
-#~ msgid ""
-#~ "%(user)s removed translation for string <i><a href=\"%(url)s\">"
-#~ "%(source)s</a></i>"
-#~ msgstr ""
-#~ "%(user)s momtii firo ɓoggol <i><a href=\"%(url)s\">%(source)s</a></i>"
 
 #~ msgid "File does not exist."
 #~ msgstr "Fiilde ndee woodaani."
@@ -4749,12 +4805,6 @@ msgstr "Gollooɓe Rowrowɓe"
 #~ msgstr ""
 #~ "Pootle maa jiggo kala firooji e nder rungere keɓe ndee. Ena waawi ɓama "
 #~ "dumunna juutɗo seeɗa."
-
-#~ msgid "Imported %(count)d suggestion from %(store)s"
-#~ msgid_plural "Imported %(count)d suggestions from %(store)s"
-#~ msgstr[0] ""
-#~ "Jiggagol %(count)d wasiyaaji iwde e %(store)s Jiggagol %(count)d "
-#~ "wasiyaaji iwde e %(store)s"
 
 #~ msgid "Failed to import suggestions from %s"
 #~ msgstr "Jiggagol wasiyaaji iwde e %s feewaani"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2013-10-30 16:35+0000\n"
 "Last-Translator: Tranzistors <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -552,101 +552,101 @@ msgstr "Visi projekti"
 msgid "Entire Project"
 msgstr "Visi projekti"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s rindā esošais ieteikums"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s pieņemtais ieteikums"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s noraidītais ieteikums"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s iesniegumi"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s pārrakstītie iesniegumi"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "Kļūda, savienojoties ar serveri"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "Servera kļūda"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "Izskatās, ka serveris nestrādā. Vēlāk mēģiniet atkal."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "Līdzīgi tulkojumi"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -667,7 +667,7 @@ msgstr ""
 msgid "Reject"
 msgstr ""
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr ""
@@ -757,97 +757,15 @@ msgstr "%s pieņemtais ieteikums"
 msgid "disabled"
 msgstr ""
 
-#: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
-msgid "A year ago"
-msgstr "Pirms %s gada"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "Pirms %s gada"
-msgstr[1] "Pirms %s gadiem"
-msgstr[2] "Pirms %s gadiem"
-
-#: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
-msgid "A month ago"
-msgstr "Pirms %s minūtes"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, fuzzy, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "Pirms %s minūtes"
-msgstr[1] "Pirms %s minūtes"
-msgstr[2] "Pirms %s minūtes"
-
-#: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
-msgid "A week ago"
-msgstr "Pirms %s nedēļas"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "Pirms %s nedēļas"
-msgstr[1] "Pirms %s nedēļām"
-msgstr[2] "Pirms %s nedēļām"
-
-#: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
-msgid "Yesterday"
-msgstr "%d dienu atpakaļ"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "Pirms %s gada"
-msgstr[1] "Pirms %s gadiem"
-msgstr[2] "Pirms %s gadiem"
-
-#: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
-msgid "An hour ago"
-msgstr "Pirms %s stundas"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, fuzzy, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "Pirms %s stundas"
-msgstr[1] "Pirms %s stundām"
-msgstr[2] "Pirms %s stundām"
-
-#: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
-msgid "A minute ago"
-msgstr "Pirms %s minūtes"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, fuzzy, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "Pirms %s minūtes"
-msgstr[1] "Pirms %s minūtēm"
-msgstr[2] "Pirms %s minūtēm"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "Pirms dažām sekundēm"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr ""
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "Sakļaut demokrātiju"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "Izvērst informāciju"
 
@@ -944,7 +862,7 @@ msgid ""
 "accounts."
 msgstr ""
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "Nav rezultātu."
 
@@ -1089,6 +1007,75 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+
+#, fuzzy
+#~ msgid "A year ago"
+#~ msgstr "Pirms %s gada"
+
+#, fuzzy
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "Pirms %s gada"
+#~ msgstr[1] "Pirms %s gadiem"
+#~ msgstr[2] "Pirms %s gadiem"
+
+#, fuzzy
+#~ msgid "A month ago"
+#~ msgstr "Pirms %s minūtes"
+
+#, fuzzy
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "Pirms %s minūtes"
+#~ msgstr[1] "Pirms %s minūtes"
+#~ msgstr[2] "Pirms %s minūtes"
+
+#, fuzzy
+#~ msgid "A week ago"
+#~ msgstr "Pirms %s nedēļas"
+
+#, fuzzy
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "Pirms %s nedēļas"
+#~ msgstr[1] "Pirms %s nedēļām"
+#~ msgstr[2] "Pirms %s nedēļām"
+
+#, fuzzy
+#~ msgid "Yesterday"
+#~ msgstr "%d dienu atpakaļ"
+
+#, fuzzy
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "Pirms %s gada"
+#~ msgstr[1] "Pirms %s gadiem"
+#~ msgstr[2] "Pirms %s gadiem"
+
+#, fuzzy
+#~ msgid "An hour ago"
+#~ msgstr "Pirms %s stundas"
+
+#, fuzzy
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "Pirms %s stundas"
+#~ msgstr[1] "Pirms %s stundām"
+#~ msgstr[2] "Pirms %s stundām"
+
+#, fuzzy
+#~ msgid "A minute ago"
+#~ msgstr "Pirms %s minūtes"
+
+#, fuzzy
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "Pirms %s minūtes"
+#~ msgstr[1] "Pirms %s minūtēm"
+#~ msgstr[2] "Pirms %s minūtēm"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "Pirms dažām sekundēm"
 
 #~ msgid "Unknown error"
 #~ msgstr "Nezināma kļūda"

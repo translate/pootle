@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:37+0000\n"
 "PO-Revision-Date: 2015-10-01 14:51+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,39 +144,39 @@ msgstr "LinkedIn"
 msgid "Short Bio"
 msgstr "Σύντομο βιογραφικό"
 
-#: apps/accounts/models.py:359
+#: apps/accounts/models.py:361
 msgid "This email address already exists."
 msgstr "Αυτή η ηλ. διεύθυνση υπάρχει ήδη."
 
-#: apps/contact/forms.py:25
+#: apps/contact/forms.py:26
 msgid "Summary"
 msgstr "Περίληψη"
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:28
 msgid "Please enter your message summary"
 msgstr "Παρακαλούμε, εισάγετε την περίληψη του μηνύματός σας"
 
-#: apps/contact/forms.py:34 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Όνομα"
 
-#: apps/contact/forms.py:35
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Παρακαλούμε, εισάγετε το όνομά σας"
 
-#: apps/contact/forms.py:38
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "Διεύθυνση αλληλογραφίας"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "Παρακαλούμε, εισάγετε την ηλεκτρονική σας διεύθυνση"
 
-#: apps/contact/forms.py:42
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Μήνυμα"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Παρακαλούμε, εισάγετε το μήνυμά σας"
 
@@ -410,7 +410,7 @@ msgstr "Απόρριψη"
 msgid "Accept"
 msgstr "Αποδοχή"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:212
+#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Έργο"
@@ -463,48 +463,48 @@ msgstr "Αριθμός πληθυντικών"
 msgid "Plural Equation"
 msgstr "Εξίσωση πληθυντικού"
 
-#: apps/pootle_language/views.py:206 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Μονάδα"
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Κατάσταση"
 
-#: apps/pootle_language/views.py:208 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Πηγή"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:208
 msgid "Suggestion"
 msgstr "Πρόταση"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:209
 #, fuzzy
 msgid "Suggested by"
 msgstr "Πρόταση"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:210
 #, fuzzy
 msgid "Suggested at"
 msgstr "Πρόταση"
 
-#: apps/pootle_language/views.py:233
+#: apps/pootle_language/views.py:232
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "απόρριψη πρότασης για το %(source_string)s"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "αποδεκτή η πρόταση για το %(source_string)s"
 
-#: apps/pootle_language/views.py:240
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Απόρριψη πρότασης"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:241
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Αποδοχή πρότασης"
@@ -939,21 +939,21 @@ msgstr "Τεχνοτροπία δένδρου έργου"
 msgid "Ignore Files"
 msgstr "Παράβλεψη αρχείων"
 
-#: apps/pootle_project/models.py:237
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr "Μήνυμα αναφοράς σφαλμάτων"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Μια διεύθυνση αλληλογραφίας όπου θέματα με το πηγαίο κείμενο μπορούν να "
 "αναφερθούν."
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr "Πρόθεμα αναζήτησης στιγμιοτύπου"
 
-#: apps/pootle_project/models.py:247
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr "Ανενεργό"
 
@@ -1003,7 +1003,7 @@ msgstr "Ανεπαρκή δικαιώματα για πρόσβαση στην �
 msgid "Insufficient rights to access translation mode."
 msgstr "Ανεπαρκή δικαιώματα για πρόσβαση στην κατάσταση μετάφρασης."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:620
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
 msgid "Insufficient rights to access review mode."
 msgstr "Ανεπαρκή δικαιώματα για πρόσβαση κατάστασης ελέγχου."
 
@@ -1011,7 +1011,6 @@ msgstr "Ανεπαρκή δικαιώματα για πρόσβαση κατάσ
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
-#: apps/pootle_store/templatetags/store_tags.py:83
 #, python-format
 msgid "Plural Form %d"
 msgstr "Πληθυντικός τύπος %d"
@@ -1032,19 +1031,19 @@ msgstr "Πρέπει να καθαριστεί η σημαία ασαφούς"
 msgid "Translator comment"
 msgstr "Σχόλιο μεταφραστή"
 
-#: apps/pootle_store/models.py:120
+#: apps/pootle_store/models.py:123
 msgid "Pending"
 msgstr "Εκκρεμές"
 
-#: apps/pootle_store/models.py:121
+#: apps/pootle_store/models.py:124
 msgid "Accepted"
 msgstr "Αποδεκτό"
 
-#: apps/pootle_store/models.py:122
+#: apps/pootle_store/models.py:125
 msgid "Rejected"
 msgstr "Απορριπτέο"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
 msgid "Path"
 msgstr "Διαδρομή"
 
@@ -1082,37 +1081,37 @@ msgstr "απόρριψη πρότασης για το %(source_string)s"
 msgid "Added suggestion"
 msgstr "Προσθήκη της πρότασης"
 
-#: apps/pootle_store/utils.py:32
+#: apps/pootle_store/utils.py:33
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Αποδεκτές προτάσεις"
 
-#: apps/pootle_store/utils.py:34
+#: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:173 apps/virtualfolder/views.py:102
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:175 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Λείπουν ορίσματα."
 
-#: apps/pootle_store/views.py:230
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Αποτυχία στην απομάκρυνση σχολίου."
 
-#: apps/pootle_store/views.py:264
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "Αποτυχία υποβολής σχολίου."
 
-#: apps/pootle_store/views.py:550
+#: apps/pootle_store/views.py:563
 msgid "Failed to process submission."
 msgstr "Αποτυχία διαδικασίας υποβολής."
 
-#: apps/pootle_store/views.py:591
+#: apps/pootle_store/views.py:604
 msgid "Failed to process suggestion."
 msgstr "Αποτυχία διαδικασίας πρότασης."
 
@@ -1125,7 +1124,7 @@ msgstr "Αυτός ο όρος υπάρχει ήδη σε αυτό το αρχε
 msgid "Translation project (%s) created"
 msgstr "Η κύρια σελίδα έργου μετάφρασης"
 
-#: apps/pootle_translationproject/receivers.py:51
+#: apps/pootle_translationproject/receivers.py:52
 #, fuzzy, python-format
 msgid "Translation project (%s) creation failed"
 msgstr "Η κύρια σελίδα έργου μετάφρασης"
@@ -1645,14 +1644,14 @@ msgid "Last updated"
 msgstr "Τελευταία ενημέρωση"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:24
+#: core/browser.py:60 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Προτάσεις"
 
-#: core/browser.py:65 templates/browser/_actions.html:37
+#: core/browser.py:65 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Ατελές"
@@ -1661,11 +1660,11 @@ msgstr "Ατελές"
 msgid "Last Activity"
 msgstr "Τελευταία δραστηριότητα"
 
-#: core/browser.py:121
+#: core/browser.py:119
 msgid "Back to language"
 msgstr "Επιστροφή στη γλώσσα"
 
-#: core/browser.py:123
+#: core/browser.py:121
 msgid "Back to parent folder"
 msgstr "Επιστροφή στον γονικό φάκελο"
 
@@ -1734,18 +1733,78 @@ msgstr "Δυνατότητα ελέγχου προτάσεων"
 msgid "Can perform administrative tasks"
 msgstr ""
 
+#: core/views/display.py:84 core/views/display.py:105
+#, fuzzy, python-format
+msgid "%(user)s removed translation for %(source)s"
+msgstr "μεταφράσεις που αφαιρέθηκαν για %(source_string)s"
+
+#: core/views/display.py:86
+#, fuzzy, python-format
+msgid "%(user)s accepted suggestion for %(source)s"
+msgstr "Αποδοχή της πρότασης από τον %s"
+
+#: core/views/display.py:88
+#, fuzzy, python-format
+msgid "%(user)s uploaded file"
+msgstr "ο %(user)s ανέβασε ένα αρχείο"
+
+#: core/views/display.py:90
+#, fuzzy, python-format
+msgid "%(user)s muted %(check)s for %(source)s"
+msgstr "σε σίγαση %(check_name)s για τις %(source_string)s"
+
+#: core/views/display.py:92
+#, fuzzy, python-format
+msgid "%(user)s unmuted %(check)s for %(source)s"
+msgstr "αναίρεση σίγασης %(check_name)s για τις %(source_string)s"
+
+#: core/views/display.py:94
+#, fuzzy, python-format
+msgid "%(user)s added suggestion for %(source)s"
+msgstr "προσθήκη πρότασης για το %(source_string)s"
+
+#: core/views/display.py:96
+#, fuzzy, python-format
+msgid "%(user)s rejected suggestion for %(source)s"
+msgstr "Απορριφθείσα πρόταση από %s"
+
+#: core/views/display.py:99
+#, fuzzy, python-format
+msgid "%(user)s translated %(source)s"
+msgstr "μεταφρασμένα %(source_string)s"
+
+#: core/views/display.py:101
+#, fuzzy, python-format
+msgid "%(user)s edited %(source)s"
+msgstr "επεξεργασμένα %(source_string)s"
+
+#: core/views/display.py:103
+#, fuzzy, python-format
+msgid "%(user)s pre-translated %(source)s"
+msgstr "προμεταφρασμένα %(source_string)s"
+
+#: core/views/display.py:107
+#, fuzzy, python-format
+msgid "%(user)s reviewed %(source)s"
+msgstr "ελεγμένες %(source_string)s"
+
+#: core/views/display.py:109
+#, python-format
+msgid "%(user)s marked as needs work %(source)s"
+msgstr ""
+
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
 msgstr "Αδύνατη η πρόσβαση σε αυτήν τη σελίδα"
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:80
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Σφάλμα πρόσβασης %(filename)s, το σύστημα αρχείων επέστρεψε σφάλμα: "
 "%(errormsg)s"
 
-#: middleware/errorpages.py:118
+#: middleware/errorpages.py:116
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2090,38 +2149,37 @@ msgid ""
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:55
+#: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
-"combined with the path specified in\n"
-"\t    backend URL"
+"combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:59
+#: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:66
+#: templates/admin/project_fs.html:74
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s πληροφορίες γλώσσας"
 
-#: templates/admin/project_fs.html:76
+#: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: templates/admin/project_fs.html:77
+#: templates/admin/project_fs.html:85
 #, fuzzy
 msgid "Pootle code"
 msgstr "Επίδειξη Pootle"
 
-#: templates/admin/project_fs.html:78
+#: templates/admin/project_fs.html:86
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:89
+#: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
 msgstr "Ενημέρωση"
@@ -2244,29 +2302,29 @@ msgstr "Ανακοινώσεις"
 msgid "Add Announcement"
 msgstr "Προσθήκη ανακοίνωσης"
 
-#: templates/browser/_actions.html:6
+#: templates/browser/_actions.html:8
 msgid "Fix critical errors"
 msgstr "Διόρθωση κρίσιμων σφαλμάτων"
 
-#: templates/browser/_actions.html:11
+#: templates/browser/_actions.html:13
 #, fuzzy
 msgid "Critical errors"
 msgstr "Κρίσιμα σφάλματα:"
 
-#: templates/browser/_actions.html:19
+#: templates/browser/_actions.html:23
 msgid "Review suggestions"
 msgstr "Έλεγχος προτάσεων"
 
-#: templates/browser/_actions.html:32
+#: templates/browser/_actions.html:38
 msgid "Continue translation"
 msgstr "Συνέχιση μετάφρασης"
 
-#: templates/browser/_actions.html:45
+#: templates/browser/_actions.html:53
 msgid "View all"
 msgstr "Προβολή όλων"
 
 #. Translators: This refers to "All strings"
-#: templates/browser/_actions.html:50 templates/editor/_filters.html:6
+#: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
 msgstr "Όλα"
 
@@ -2293,34 +2351,39 @@ msgstr "Επέκταση λεπτομερειών"
 msgid "Translation Statistics"
 msgstr "Στατιστικά μετάφρασης"
 
-#: templates/browser/index.html:47
+#: templates/browser/index.html:48
 msgid "Failing Checks"
 msgstr "Αποτυχημένοι έλεγχοι"
 
-#: templates/browser/index.html:66
+#: templates/browser/index.html:67
 msgid "More..."
 msgstr "Περισσότερα..."
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:78
+#: templates/browser/index.html:81
 #, fuzzy
 msgid "Updates"
 msgstr "Ενημέρωση"
 
-#: templates/browser/index.html:82 templates/browser/index.html:92
+#: templates/browser/index.html:85
 #, fuzzy
-msgid "Last action:"
-msgstr "Τελευταία ενέργεια"
+msgid "Last updated:"
+msgstr "Τελευταία ενημέρωση"
 
-#: templates/browser/index.html:88
+#: templates/browser/index.html:96
 #, fuzzy
 msgid "Translations"
 msgstr "Μετάφραση"
 
-#: templates/browser/index.html:134
+#: templates/browser/index.html:100
+#, fuzzy
+msgid "Last action:"
+msgstr "Τελευταία ενέργεια"
+
+#: templates/browser/index.html:151
 msgid "This project is disabled and visible to administrators only."
 msgstr "Αυτό το έργο είναι ανενεργό και ορατό μόνο σε διαχειριστές."
 
@@ -2468,77 +2531,77 @@ msgstr ""
 msgid "Translate"
 msgstr "Μετάφρασε"
 
-#: templates/editor/units/edit.html:13
+#: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">Μονάδα #%(id)s</a>"
 
-#: templates/editor/units/edit.html:20
+#: templates/editor/units/edit.html:19
 msgid "Priority:"
 msgstr "Προτεραιότητα:"
 
-#: templates/editor/units/edit.html:27
+#: templates/editor/units/edit.html:26
 msgid "Context:"
 msgstr "Περιεχόμενο:"
 
-#: templates/editor/units/edit.html:37
+#: templates/editor/units/edit.html:36
 msgid "Locations:"
 msgstr "Τοποθεσίες:"
 
-#: templates/editor/units/edit.html:53
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr "Ορολογία:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr "Εισάγετε τον μεταφρασμένο όρο στον επεξεργαστή"
 
-#: templates/editor/units/edit.html:69
+#: templates/editor/units/edit.html:68
 msgid "Comments:"
 msgstr "Σχόλια:"
 
-#: templates/editor/units/edit.html:79
+#: templates/editor/units/edit.html:78
 msgid "Click to open the image in a popup"
 msgstr "Πατήστε για να ανοίξετε την εικόνα σε αναδυόμενο παράθυρο"
 
-#: templates/editor/units/edit.html:93
+#: templates/editor/units/edit.html:92
 msgid "Screenshots..."
 msgstr "Στιγμιότυπα..."
 
-#: templates/editor/units/edit.html:117 templates/editor/units/edit.html:139
+#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
 msgid "Copy into translation"
 msgstr "Αντιγραφή στη μετάφραση"
 
-#: templates/editor/units/edit.html:133
+#: templates/editor/units/edit.html:132
 msgid "Report a problem with this string"
 msgstr "Αναφορά προβλήματος με αυτήν τη συμβολοσειρά"
 
-#: templates/editor/units/edit.html:151 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:277
 msgid "Submit"
 msgstr "Υποβολή"
 
-#: templates/editor/units/edit.html:152
+#: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Υποβολή μετάφρασης και μετάβαση στην επόμενη συμβολοσειρά (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:157 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
 msgstr "Πρόταση"
 
-#: templates/editor/units/edit.html:158
+#: templates/editor/units/edit.html:157
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Πρόταση μετάφρασης και μετάβαση στην επόμενη συμβολοσειρά (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:161
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Εναλλαγή στην κατάσταση μετάφρασης (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:162
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Εναλλαγή στην κατάσταση πρότασης (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:168
+#: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 "Σημείωση αυτής της συμβολοσειράς ότι χρειάζεται παραπέρα εργασία (Ctrl+Space)"
@@ -2607,33 +2670,33 @@ msgstr "Εισαγωγή αυτού του συμβόλου στον επεξε�
 msgid "Insert space symbol into the editor"
 msgstr "Εισαγωγή αυτού του συμβόλου στον επεξεργαστή"
 
-#: templates/editor/units/edit.html:297
+#: templates/editor/units/edit.html:296
 msgid "User suggestions"
 msgstr "Προτάσεις χρήστη"
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:313
 #, fuzzy
 msgid "More options"
 msgstr "Αλλαγή επιλογών"
 
-#: templates/editor/units/edit.html:316
+#: templates/editor/units/edit.html:315
 #, fuzzy
 msgid "Less options"
 msgstr "Αλλαγή επιλογών"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:320
 msgid "Accept suggestion"
 msgstr "Αποδοχή πρότασης"
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:325
 msgid "Reject suggestion"
 msgstr "Απόρριψη πρότασης"
 
-#: templates/editor/units/edit.html:332
+#: templates/editor/units/edit.html:331
 msgid "Remove suggestion"
 msgstr "Αφαίρεση πρότασης"
 
-#: templates/editor/units/edit.html:354
+#: templates/editor/units/edit.html:343
 msgid "A long time ago"
 msgstr "Πολύ παλιότερα"
 
@@ -3354,32 +3417,8 @@ msgstr "Κορυφαίοι συντελεστές"
 #~ msgid "reverted translation for %(source_string)s"
 #~ msgstr "επαναφορά μετάφρασης για το %(source_string)s"
 
-#~ msgid "added suggestion for %(source_string)s"
-#~ msgstr "προσθήκη πρότασης για το %(source_string)s"
-
 #~ msgid "uploaded a file"
 #~ msgstr "ανεβάστηκε ένα αρχείο"
-
-#~ msgid "muted %(check_name)s for %(source_string)s"
-#~ msgstr "σε σίγαση %(check_name)s για τις %(source_string)s"
-
-#~ msgid "unmmuted %(check_name)s for %(source_string)s"
-#~ msgstr "αναίρεση σίγασης %(check_name)s για τις %(source_string)s"
-
-#~ msgid "translated %(source_string)s"
-#~ msgstr "μεταφρασμένα %(source_string)s"
-
-#~ msgid "edited %(source_string)s"
-#~ msgstr "επεξεργασμένα %(source_string)s"
-
-#~ msgid "pre-translated %(source_string)s"
-#~ msgstr "προμεταφρασμένα %(source_string)s"
-
-#~ msgid "removed translation for %(source_string)s"
-#~ msgstr "μεταφράσεις που αφαιρέθηκαν για %(source_string)s"
-
-#~ msgid "reviewed %(source_string)s"
-#~ msgstr "ελεγμένες %(source_string)s"
 
 #~ msgid "marked as fuzzy %(source_string)s"
 #~ msgstr "σημειωμένες ως ασαφείς %(source_string)s"
@@ -4157,9 +4196,6 @@ msgstr "Κορυφαίοι συντελεστές"
 #~ msgstr ""
 #~ "ο %(user)s αποδέχτηκε την πρόταση για τη συμβολοσειρά <i><a href=\"%(url)s"
 #~ "\">%(source)s</a></i>"
-
-#~ msgid "%(user)s uploaded a file"
-#~ msgstr "ο %(user)s ανέβασε ένα αρχείο"
 
 #~ msgid ""
 #~ "%(user)s submitted translation for string <i><a href=\"%(url)s\">"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-10 12:52+0000\n"
+"POT-Creation-Date: 2016-11-22 14:38+0000\n"
 "PO-Revision-Date: 2016-07-21 12:31+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -575,18 +575,18 @@ msgstr "كلّ المشاريع"
 msgid "Entire Project"
 msgstr "المشروع بالكامل"
 
-#: static/js/common.js:149
+#: static/js/common.js:141
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:319 static/js/editor/app.js:643
+#: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 "لديك تعديلات غير محفوظة في المقطع. التّنقل إلى غيره سيتجاهل هذه التّعديلات."
 
-#: static/js/editor/app.js:364
+#: static/js/editor/app.js:351
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -594,7 +594,7 @@ msgstr ""
 "اذهب إلى المقطع التّالي (Ctrl+.)<br/><br/>أيضًا:<br/>الصّفحة التّالية: Ctrl+Shift"
 "+.<br/>الصّفحة الأخيرة: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:370
+#: static/js/editor/app.js:357
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -603,78 +603,78 @@ msgstr ""
 "+,<br/>الصّفحة الأولى: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "اقتراحات %s المعلّقة"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:498
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "اقتراحات %s المقبولة"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:501
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "اقتراحات %s المرفوضة"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:504
+#: static/js/editor/app.js:491
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "مساهمات %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:508
+#: static/js/editor/app.js:495
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "مساهمات %s المُستبدَلة"
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1052
 msgid "Error while connecting to the server"
 msgstr "خطأ أثناء الاتّصال بالخادوم"
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1056
 msgid "Not found"
 msgstr "لم يُعثر عليها"
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1058
 msgid "Server error"
 msgstr "خطأ في الخادوم"
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1060
 msgid "The server seems down. Try again later."
 msgstr "تعذّر الوصول إلى الخادوم. جرّب مجدّدًا لاحقًا."
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1069
 msgid "This string no longer exists."
 msgstr "لم يعد هذا المقطع موجودًا."
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1070
 msgid "Go back to browsing"
 msgstr "ارجع إلى التّصفّح"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1072
 msgid "Reload page"
 msgstr "أعد تحميل الصّفحة"
 
-#: static/js/editor/app.js:2162
+#: static/js/editor/app.js:2170
 msgid "some anonymous user"
 msgstr "مستخدم ما مجهول"
 
-#: static/js/editor/app.js:2164
+#: static/js/editor/app.js:2172
 msgid "someone"
 msgstr "أحدهم"
 
-#: static/js/editor/app.js:2182 static/js/editor/app.js:2231
+#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
 msgid "Similar translations"
 msgstr "التّرجمات المشابهة"
 
 #: static/js/editor/components/Editor.js:45
-#: static/js/editor/components/UnitSource.js:53
+#: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
 msgstr ""
@@ -695,7 +695,7 @@ msgstr "اقبل"
 msgid "Reject"
 msgstr "ارفض"
 
-#: static/js/editor/components/UploadTimeSince.js:34
+#: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
 msgstr "%(timeSince)s عبر رفع ملف"
@@ -785,115 +785,15 @@ msgstr "علّم %(sourceString)s على أنّها تحتاج للعمل"
 msgid "disabled"
 msgstr "معطّل"
 
-#: static/js/shared/utils/relativeTime.js:18
-#, fuzzy
-msgid "A year ago"
-msgstr "منذ أقلّ من سنة"
-
-#: static/js/shared/utils/relativeTime.js:20
-#, fuzzy, python-format
-msgid "%(count)s year ago"
-msgid_plural "%(count)s years ago"
-msgstr[0] "منذ أقلّ من سنة"
-msgstr[1] "منذ سنة واحدة"
-msgstr[2] "منذ سنتين"
-msgstr[3] "منذ %s سنوات"
-msgstr[4] "منذ %s سنةً"
-msgstr[5] "منذ %s سنة"
-
-#: static/js/shared/utils/relativeTime.js:26
-#, fuzzy
-msgid "A month ago"
-msgstr "منذ أقلّ من دقيقة"
-
-#: static/js/shared/utils/relativeTime.js:28
-#, fuzzy, python-format
-msgid "%(count)s month ago"
-msgid_plural "%(count)s months ago"
-msgstr[0] "منذ أقلّ من دقيقة"
-msgstr[1] "منذ أقلّ من دقيقة"
-msgstr[2] "منذ أقلّ من دقيقة"
-msgstr[3] "منذ أقلّ من دقيقة"
-msgstr[4] "منذ أقلّ من دقيقة"
-msgstr[5] "منذ أقلّ من دقيقة"
-
-#: static/js/shared/utils/relativeTime.js:34
-#, fuzzy
-msgid "A week ago"
-msgstr "منذ أقلّ من أسبوع"
-
-#: static/js/shared/utils/relativeTime.js:36
-#, fuzzy, python-format
-msgid "%(count)s week ago"
-msgid_plural "%(count)s weeks ago"
-msgstr[0] "منذ أقلّ من أسبوع"
-msgstr[1] "منذ أسبوع واحد"
-msgstr[2] "منذ أسبوعين"
-msgstr[3] "منذ %s أسابيع"
-msgstr[4] "منذ %s أسبوعًا"
-msgstr[5] "منذ %s أسبوع"
-
-#: static/js/shared/utils/relativeTime.js:42
-#, fuzzy
-msgid "Yesterday"
-msgstr "منذ أقلّ من يوم"
-
-#: static/js/shared/utils/relativeTime.js:44
-#, fuzzy, python-format
-msgid "%(count)s day ago"
-msgid_plural "%(count)s days ago"
-msgstr[0] "منذ أقلّ من سنة"
-msgstr[1] "منذ سنة واحدة"
-msgstr[2] "منذ سنتين"
-msgstr[3] "منذ %s سنوات"
-msgstr[4] "منذ %s سنةً"
-msgstr[5] "منذ %s سنة"
-
-#: static/js/shared/utils/relativeTime.js:50
-#, fuzzy
-msgid "An hour ago"
-msgstr "منذ أقلّ من ساعة"
-
-#: static/js/shared/utils/relativeTime.js:52
-#, fuzzy, python-format
-msgid "%(count)s hour ago"
-msgid_plural "%(count)s hours ago"
-msgstr[0] "منذ أقلّ من ساعة"
-msgstr[1] "منذ ساعة"
-msgstr[2] "منذ ساعتين"
-msgstr[3] "منذ %s ساعات"
-msgstr[4] "منذ %s ساعةً"
-msgstr[5] "منذ %s ساعة"
-
-#: static/js/shared/utils/relativeTime.js:58
-#, fuzzy
-msgid "A minute ago"
-msgstr "منذ أقلّ من دقيقة"
-
-#: static/js/shared/utils/relativeTime.js:60
-#, fuzzy, python-format
-msgid "%(count)s minute ago"
-msgid_plural "%(count)s minutes ago"
-msgstr[0] "منذ أقلّ من دقيقة"
-msgstr[1] "منذ دقيقة"
-msgstr[2] "منذ دقيقتين"
-msgstr[3] "منذ %s دقائق"
-msgstr[4] "منذ %s دقيقةً"
-msgstr[5] "منذ %s دقيقة"
-
-#: static/js/shared/utils/relativeTime.js:64
-msgid "A few seconds ago"
-msgstr "منذ بضعة ثوان"
-
-#: static/js/stats.js:60
+#: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
 msgstr "تهانينا! لقد أنهيت المهمة!"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Collapse details"
 msgstr "أخفِ التّفاصيل"
 
-#: static/js/stats.js:396
+#: static/js/stats.js:127
 msgid "Expand details"
 msgstr "اعرض التّفاصيل"
 
@@ -996,7 +896,7 @@ msgstr ""
 "لإنهاء عملية الولوج. العملية هذه لمرة واحدة، وهي ستنشئ اتصالا بين بوتل وبين "
 "حسابات %s."
 
-#: static/js/editor/app.js:635
+#: static/js/editor/app.js:617
 msgid "No results."
 msgstr "لا نتائج."
 
@@ -1151,6 +1051,93 @@ msgid ""
 msgstr ""
 "ترجمها %(fullname)s في مشروع &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo;"
+
+#, fuzzy
+#~ msgid "A year ago"
+#~ msgstr "منذ أقلّ من سنة"
+
+#, fuzzy
+#~ msgid "%(count)s year ago"
+#~ msgid_plural "%(count)s years ago"
+#~ msgstr[0] "منذ أقلّ من سنة"
+#~ msgstr[1] "منذ سنة واحدة"
+#~ msgstr[2] "منذ سنتين"
+#~ msgstr[3] "منذ %s سنوات"
+#~ msgstr[4] "منذ %s سنةً"
+#~ msgstr[5] "منذ %s سنة"
+
+#, fuzzy
+#~ msgid "A month ago"
+#~ msgstr "منذ أقلّ من دقيقة"
+
+#, fuzzy
+#~ msgid "%(count)s month ago"
+#~ msgid_plural "%(count)s months ago"
+#~ msgstr[0] "منذ أقلّ من دقيقة"
+#~ msgstr[1] "منذ أقلّ من دقيقة"
+#~ msgstr[2] "منذ أقلّ من دقيقة"
+#~ msgstr[3] "منذ أقلّ من دقيقة"
+#~ msgstr[4] "منذ أقلّ من دقيقة"
+#~ msgstr[5] "منذ أقلّ من دقيقة"
+
+#, fuzzy
+#~ msgid "A week ago"
+#~ msgstr "منذ أقلّ من أسبوع"
+
+#, fuzzy
+#~ msgid "%(count)s week ago"
+#~ msgid_plural "%(count)s weeks ago"
+#~ msgstr[0] "منذ أقلّ من أسبوع"
+#~ msgstr[1] "منذ أسبوع واحد"
+#~ msgstr[2] "منذ أسبوعين"
+#~ msgstr[3] "منذ %s أسابيع"
+#~ msgstr[4] "منذ %s أسبوعًا"
+#~ msgstr[5] "منذ %s أسبوع"
+
+#, fuzzy
+#~ msgid "Yesterday"
+#~ msgstr "منذ أقلّ من يوم"
+
+#, fuzzy
+#~ msgid "%(count)s day ago"
+#~ msgid_plural "%(count)s days ago"
+#~ msgstr[0] "منذ أقلّ من سنة"
+#~ msgstr[1] "منذ سنة واحدة"
+#~ msgstr[2] "منذ سنتين"
+#~ msgstr[3] "منذ %s سنوات"
+#~ msgstr[4] "منذ %s سنةً"
+#~ msgstr[5] "منذ %s سنة"
+
+#, fuzzy
+#~ msgid "An hour ago"
+#~ msgstr "منذ أقلّ من ساعة"
+
+#, fuzzy
+#~ msgid "%(count)s hour ago"
+#~ msgid_plural "%(count)s hours ago"
+#~ msgstr[0] "منذ أقلّ من ساعة"
+#~ msgstr[1] "منذ ساعة"
+#~ msgstr[2] "منذ ساعتين"
+#~ msgstr[3] "منذ %s ساعات"
+#~ msgstr[4] "منذ %s ساعةً"
+#~ msgstr[5] "منذ %s ساعة"
+
+#, fuzzy
+#~ msgid "A minute ago"
+#~ msgstr "منذ أقلّ من دقيقة"
+
+#, fuzzy
+#~ msgid "%(count)s minute ago"
+#~ msgid_plural "%(count)s minutes ago"
+#~ msgstr[0] "منذ أقلّ من دقيقة"
+#~ msgstr[1] "منذ دقيقة"
+#~ msgstr[2] "منذ دقيقتين"
+#~ msgstr[3] "منذ %s دقائق"
+#~ msgstr[4] "منذ %s دقيقةً"
+#~ msgstr[5] "منذ %s دقيقة"
+
+#~ msgid "A few seconds ago"
+#~ msgstr "منذ بضعة ثوان"
 
 #~ msgid "Statistics"
 #~ msgstr "الإحصائيّات"
