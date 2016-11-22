@@ -282,3 +282,30 @@ def test_submit_unit_plural(client, unit_plural, request_users, settings):
 
     else:
         assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_add_suggestion(client, request_users, settings):
+    """Tests translation can be applied after suggestion is accepted."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    unit = Unit.objects.all().first()
+    url = '/xhr/units/%d/suggestions' % unit.id
+    target = "%s TEST SUGGESTION" % unit.source
+    response = client.post(
+        url,
+        {
+            'target_f_0': target,
+        },
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+    )
+
+    assert response.status_code == 200
+    changed = Unit.objects.get(id=unit.id)
+    suggestion = changed.get_suggestions().order_by('id').last()
+    assert suggestion.target == multistring(target)
