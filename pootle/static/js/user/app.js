@@ -9,7 +9,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import UserEvent from 'components/UserEvent';
 import { User } from 'models/user';
 import { q, qAll } from 'utils/dom';
 
@@ -48,23 +47,5 @@ PTL.user = {
         return true;
       });
     }
-
-    const lastActivity = q('.js-last-action');
-    const data = opts.lastEvent;
-    const props = {
-      checkName: data.check_name,
-      checkDisplayName: data.check_display_name,
-      displayName: data.displayname,
-      email: data.email,
-      displayDatetime: data.display_datetime,
-      isoDatetime: data.iso_datetime,
-      type: data.type,
-      translationActionType: data.translation_action_type,
-      unitSource: data.unit_source,
-      unitUrl: data.unit_url,
-      username: data.username,
-    };
-    ReactDOM.render(<UserEvent {...props} />, lastActivity);
   },
-
 };
