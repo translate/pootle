@@ -8,6 +8,7 @@
 
 from datetime import datetime
 
+import pytest
 import pytz
 
 from django.utils import timezone
@@ -15,6 +16,7 @@ from django.utils import timezone
 from pootle.core.utils.timezone import make_aware, make_naive, aware_datetime
 
 
+@pytest.mark.django_db
 def test_make_aware(settings):
     """Tests datetimes can be made aware of timezones."""
     settings.USE_TZ = True
@@ -25,6 +27,7 @@ def test_make_aware(settings):
     assert timezone.is_aware(datetime_aware)
 
 
+@pytest.mark.django_db
 def test_make_aware_default_tz(settings):
     """Tests datetimes are made aware of the configured timezone."""
     settings.USE_TZ = True
@@ -39,6 +42,7 @@ def test_make_aware_default_tz(settings):
     assert datetime_aware.tzinfo.zone == timezone.get_default_timezone().zone
 
 
+@pytest.mark.django_db
 def test_make_aware_explicit_tz(settings):
     """Tests datetimes are made aware of the given timezone."""
     settings.USE_TZ = True
@@ -52,6 +56,7 @@ def test_make_aware_explicit_tz(settings):
     assert datetime_aware.tzinfo.zone == given_timezone.zone
 
 
+@pytest.mark.django_db
 def test_make_aware_use_tz_false(settings):
     """Tests datetimes are left intact if `USE_TZ` is not in effect."""
     settings.USE_TZ = False
@@ -62,6 +67,7 @@ def test_make_aware_use_tz_false(settings):
     assert timezone.is_naive(datetime_aware)
 
 
+@pytest.mark.django_db
 def test_make_naive(settings):
     """Tests datetimes can be made naive of timezones."""
     settings.USE_TZ = True
@@ -72,6 +78,7 @@ def test_make_naive(settings):
     assert timezone.is_naive(naive_datetime)
 
 
+@pytest.mark.django_db
 def test_make_naive_default_tz(settings):
     """Tests datetimes are made naive of the configured timezone."""
     settings.USE_TZ = True
@@ -87,6 +94,7 @@ def test_make_naive_default_tz(settings):
     assert naive_datetime.hour == (datetime_object.hour - 1) % 24
 
 
+@pytest.mark.django_db
 def test_make_naive_explicit_tz(settings):
     """Tests datetimes are made naive of the given timezone."""
     settings.USE_TZ = True
@@ -102,6 +110,7 @@ def test_make_naive_explicit_tz(settings):
     assert naive_datetime.hour == (datetime_object.hour + 5) % 24
 
 
+@pytest.mark.django_db
 def test_make_naive_use_tz_false(settings):
     """Tests datetimes are left intact if `USE_TZ` is not in effect."""
     settings.USE_TZ = False
