@@ -289,3 +289,10 @@ html[dir="rtl"] #user-edit .helptext
 {
     margin-top: 1em;
 }
+
+
+.user-last-activity .last-action
+{
+    position: relative;
+    top: 0;
+}
