@@ -33,10 +33,13 @@ class SuperuserRequiredMixin(object):
 class UserObjectMixin(object):
     """Generic field definitions to be reused across user views."""
 
-    model = get_user_model()
     context_object_name = 'object'
     slug_field = 'username'
     slug_url_kwarg = 'username'
+
+    @property
+    def model(self):
+        return get_user_model()
 
 
 class TestUserFieldMixin(object):
