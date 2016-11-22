@@ -179,7 +179,14 @@ export function makeSelectableInput(selector, options, onChange, onSelecting) {
   if (!$el.length) {
     return;
   }
-  $el.select2(options);
+  $el.select2(options).on('select2:unselecting', function () {
+    $(this).data('state', 'unselected');
+  }).on('select2:open', function () {
+    if ($(this).data('state') === 'unselected') {
+      $(this).removeData('state');
+      $(this).select2('close');
+    }
+  });
   $el.on('change', onChange);
   $el.on('select2-selecting', onSelecting);
   $('.select2-selection__rendered').removeAttr('title');
