@@ -37,16 +37,9 @@ HEADING_CHOICES = [
         'display_name': _("Progress"),
     },
     {
-        'id': 'total',
-        'class': 'stats-number sorttable_numeric when-loaded',
-        # Translators: Heading representing the total number of words of a file
-        # or directory
-        'display_name': _("Total"),
-    },
-    {
-        'id': 'last-updated',
+        'id': 'activity',
         'class': 'stats sorttable_numeric when-loaded',
-        'display_name': _("Last updated"),
+        'display_name': _("Last Activity"),
     },
     {
         'id': 'critical',
@@ -65,9 +58,16 @@ HEADING_CHOICES = [
         'display_name': _("Incomplete"),
     },
     {
-        'id': 'activity',
+        'id': 'total',
+        'class': 'stats-number sorttable_numeric when-loaded',
+        # Translators: Heading representing the total number of words of a file
+        # or directory
+        'display_name': _("Total"),
+    },
+    {
+        'id': 'last-updated',
         'class': 'stats sorttable_numeric when-loaded',
-        'display_name': _("Last Activity"),
+        'display_name': _("Last updated"),
     },
 ]
 
