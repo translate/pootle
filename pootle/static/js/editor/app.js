@@ -1052,6 +1052,7 @@ PTL.editor = {
       text = gettext('Error while connecting to the server');
     } else if (xhr.status === 402) {
       captcha.onError(xhr, 'PTL.editor.error');
+      return;
     } else if (xhr.status === 404) {
       text = gettext('Not found');
     } else if (xhr.status === 500) {
