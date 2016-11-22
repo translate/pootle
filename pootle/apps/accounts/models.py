@@ -295,7 +295,10 @@ class User(AbstractBaseUser):
 
     def field_values(self):
         """Returns the user's field-values (can be encoded as e.g. JSON)."""
-        return model_to_dict(self, exclude=['password'])
+        values = model_to_dict(self, exclude=['password'])
+        values["alt_src_langs"] = values[
+            "alt_src_langs"].values_list("pk", flat=True)
+        return values
 
     @property
     def is_anonymous(self):
