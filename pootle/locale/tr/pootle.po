@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-10 12:52+0000\n"
-"PO-Revision-Date: 2016-10-21 20:26+0000\n"
+"PO-Revision-Date: 2016-11-10 16:23+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1477081569.000000\n"
+"X-POOTLE-MTIME: 1478795026.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -320,19 +320,19 @@ msgstr "Tek dilli biçim"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU stili"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "GNU olmayan stil"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Django stili"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Özel"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
@@ -351,9 +351,8 @@ msgid "The URL or path to your translation files"
 msgstr "Çeviri dosyalarınıza giden URL veya yol"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "The translation mapping for your filesystem"
-msgstr "Dosya sisteminiz için çeviri yolu eşlemesi"
+msgstr "Dosya sisteminiz için çeviri eşlemesi"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -463,34 +462,33 @@ msgid "Suggestion"
 msgstr "Öneri"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested by"
-msgstr "Öner"
+msgstr "Öneren"
 
 #: apps/pootle_language/views.py:211
-#, fuzzy
 msgid "Suggested at"
-msgstr "Öner"
+msgstr "Önerme zamanı"
 
 #: apps/pootle_language/views.py:233
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "%(author)s kullanıcısından gelen öneri reddedildi: %(comment)s"
+msgstr "Yorumu olan %s önerileri reddedildi. Kullanıcılar bilgilendirilecektir"
 
 #: apps/pootle_language/views.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "%(author)s kullanıcısından gelen öneri kabul edildi: %(comment)s"
+msgstr ""
+"Yorumu olan %s önerileri kabul edildi. Kullanıcılar bilgilendirilecektir"
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Öneriyi reddet"
+msgstr "%s önerileri reddedildi"
 
 #: apps/pootle_language/views.py:242
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Öneriyi kabul et"
+msgstr "%s önerileri kabul edildi"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:54
 msgid "Critical"
@@ -1287,9 +1285,8 @@ msgid "No RQ Worker running."
 msgstr "Çalışan RQ İşleyicileri yok."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Yeni işleyicileri manage.py rqworker ile çalıştır"
+msgstr "Yeni işleyicileri 'pootle rqworker' ile çalıştır"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1314,13 +1311,12 @@ msgid "Double-check your CACHES settings"
 msgstr "CACHES ayarlarınızı iki defa kontrol edin"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "Belli django_redis.cache.RedisCache yapılandırmaları `default`, `redis` ve "
-"`stats` için gerekir."
+"`lru` için gerekir."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1335,11 +1331,9 @@ msgid "The sqlite database backend is unsupported"
 msgstr "Sqlite veritabanı arka ucu desteklenmiyor"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
-"Varsayılan veritabanı motorunuzu postgresql_psycopg2 ya da mysql olarak "
-"ayarlayın"
+"Varsayılan veritabanı motorunuzu postgresql ya da mysql olarak ayarlayın"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -2056,9 +2050,8 @@ msgid "Update filesystem configuration"
 msgstr "Dosya sistemi yapılandırmasını güncelle"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation mapping should be of the format:"
-msgstr "Çeviri yolları şu biçimde olmalıdır:"
+msgstr "Çeviri eşlemesi şu biçimde olmalıdır:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2074,12 +2067,15 @@ msgid ""
 "combined with the path specified in\n"
 "\t    backend URL"
 msgstr ""
+"Eğer localfs arka ucu kullanıyorsanız çeviri eşlemesi, arka uç URL'sinde "
+"belirtilen yol ile\n"
+"\t     birleştirilecektir"
 
 #: templates/admin/project_fs.html:59
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
-msgstr ""
+msgstr "Diğer arka uçlar için çeviri eşlemesi havuzun kökü ile ilgili olacak."
 
 #: templates/admin/project_fs.html:66
 msgid "Language mapping configuration"
@@ -2245,19 +2241,19 @@ msgid "All"
 msgstr "Tümü"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "%%<span class=\"value translated\">0</span> çevrildi"
+msgstr "%%<span class='value translated'>%(translated)s</span> çevrildi"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "%%<span class=\"value fuzzy\">0</span> belirsiz"
+msgstr "%%<span class='value fuzzy'>%(fuzzy)s</span> belirsiz"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "%%<span class=\"value untranslated\">0</span> çevrilmedi"
+msgstr "%%<span class='value untranslated'>%(untranslated)s</span> çevrilmedi"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2758,9 +2754,8 @@ msgid "Team"
 msgstr "Takım"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Kullanıcı önerileri"
+msgstr "Önerileri süz"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-10 12:52+0000\n"
-"PO-Revision-Date: 2016-10-25 07:34+0000\n"
+"PO-Revision-Date: 2016-11-12 07:50+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1477380877.000000\n"
+"X-POOTLE-MTIME: 1478937045.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -318,19 +318,19 @@ msgstr "Enspråkigt format"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU-stil"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "icke GNU-stil"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Django-stil"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Anpassad"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
@@ -349,9 +349,8 @@ msgid "The URL or path to your translation files"
 msgstr "URL eller sökvägen till översättningsfiler"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "The translation mapping for your filesystem"
-msgstr "Mappning av översättningssökväg för ditt filsystem"
+msgstr "Översättningsmappning för ditt filsystem"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -462,9 +461,8 @@ msgid "Suggestion"
 msgstr "Förslag"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested by"
-msgstr "Föreslå"
+msgstr "Föreslaget av"
 
 #: apps/pootle_language/views.py:211
 #, fuzzy

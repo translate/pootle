@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-10 12:52+0000\n"
-"PO-Revision-Date: 2016-11-03 14:09+0000\n"
+"PO-Revision-Date: 2016-11-18 12:50+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1478182143.000000\n"
+"X-POOTLE-MTIME: 1479473447.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -315,19 +315,19 @@ msgstr "Egy nyelvű formátum"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU-stílus"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "nem GNU-stílus"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Django-stílus"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Egyéni"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
@@ -346,9 +346,8 @@ msgid "The URL or path to your translation files"
 msgstr "A fordítási fájlok URL-je vagy útvonala"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "The translation mapping for your filesystem"
-msgstr "A fordítási útvonal leképezése a fájlrendszeren"
+msgstr "A fordításleképezés a fájlrendszerhez"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -460,34 +459,32 @@ msgid "Suggestion"
 msgstr "Javaslat"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested by"
-msgstr "Javaslat"
+msgstr "Javasolta"
 
 #: apps/pootle_language/views.py:211
-#, fuzzy
 msgid "Suggested at"
-msgstr "Javaslat"
+msgstr "Javasolva"
 
 #: apps/pootle_language/views.py:233
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Javaslat elutasítva tőle: %(author)s, megjegyzés: %(comment)s"
+msgstr "%s javaslat elutasítva megjegyzéssel. A felhasználók értesítve lesznek"
 
 #: apps/pootle_language/views.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Javaslat elfogadva tőle: %(author)s, megjegyzés: %(comment)s"
+msgstr "%s javaslat elfogadva megjegyzéssel. A felhasználók értesítve lesznek"
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Javaslat elutasítása"
+msgstr "%s javaslat elutasítva"
 
 #: apps/pootle_language/views.py:242
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Javaslat elfogadása"
+msgstr "%s javaslat elfogadva"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:54
 msgid "Critical"
@@ -1282,9 +1279,8 @@ msgid "No RQ Worker running."
 msgstr "Nem fut RQ worker."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Új háttérfolyamatok indíthatók ezzel: manage.py rqworker"
+msgstr "Új háttérfolyamatok indíthatók ezzel: „pootle rqworker”"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1309,13 +1305,12 @@ msgid "Double-check your CACHES settings"
 msgstr "Ellenőrizze újra a CACHES beállításokat"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "Eltérő django_redis.cache.RedisCache beállítások szükségesek a „default”, "
-"„redis” és „stats” esetén."
+"„redis” és „lru” esetén."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1330,11 +1325,9 @@ msgid "The sqlite database backend is unsupported"
 msgstr "Az sqlite adatbázis-háttérprogram nem támogatott"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
-"Állítsa az alapértelmezett adatbázismotort a postgresql_psycopg2 vagy mysql "
-"egyikére"
+"Állítsa az alapértelmezett adatbázismotort a postgresql vagy mysql egyikére"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -2050,9 +2043,8 @@ msgid "Update filesystem configuration"
 msgstr "Rendszerbeállítások frissítése"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation mapping should be of the format:"
-msgstr "A fordítási útvonalaknak ilyen formátumúnak kell lenniük:"
+msgstr "A fordítási leképezésnek ilyen formátumúnak kell lennie:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2063,23 +2055,21 @@ msgstr ""
 "legyen"
 
 #: templates/admin/project_fs.html:55
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in\n"
 "\t    backend URL"
 msgstr ""
-"Ha a localfs háttérprogramot használja, akkor a fordítási útvonal kombinálva "
-"lesz a háttérprogram\n"
+"Ha a localfs háttérprogramot használja, akkor a fordítási leképezés "
+"kombinálva lesz a háttérprogram\n"
 "URL-ben megadott útvonallal"
 
 #: templates/admin/project_fs.html:59
-#, fuzzy
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
-"Más háttérprogramok esetén a fordítási útvonal a tároló gyökeréhez képest "
+"Más háttérprogramok esetén a fordítási leképezés a tároló gyökeréhez képest "
 "lesz értelmezve."
 
 #: templates/admin/project_fs.html:66
@@ -2247,19 +2237,20 @@ msgid "All"
 msgstr "Minden"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class=\"value translated\">0</span>%% lefordítva"
+msgstr "<span class='value translated'>%(translated)s</span>%% lefordítva"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% igényel munkát"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% igényel munkát"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% lefordítatlan"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% lefordítatlan"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2759,9 +2750,8 @@ msgid "Team"
 msgstr "Csapat"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Felhasználói javaslatok"
+msgstr "Javaslatok szűrése"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"

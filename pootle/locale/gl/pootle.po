@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-10 12:52+0000\n"
-"PO-Revision-Date: 2016-10-24 08:25+0000\n"
+"PO-Revision-Date: 2016-11-10 15:55+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1477297505.000000\n"
+"X-POOTLE-MTIME: 1478793341.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -320,19 +320,19 @@ msgstr "Formato monolingüe"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "Estilo de GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "Non estilo de GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Estilo de Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
@@ -351,7 +351,6 @@ msgid "The URL or path to your translation files"
 msgstr "O URL ou ruta ao ficheiros de tradución"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "The translation mapping for your filesystem"
 msgstr "A asociación de ruta de tradución para o sistema de ficheiros"
 
@@ -465,34 +464,36 @@ msgid "Suggestion"
 msgstr "Suxestión"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested by"
-msgstr "Suxerir"
+msgstr "Suxerido por"
 
 #: apps/pootle_language/views.py:211
-#, fuzzy
 msgid "Suggested at"
-msgstr "Suxerir"
+msgstr "Suxerido en"
 
 #: apps/pootle_language/views.py:233
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Rexeitou a suxestión de %(author)s co comentario: %(comment)s"
+msgstr ""
+"Rexeitou %s suxestións cun comentario. Notificarase aos usuarios que as "
+"enviaron"
 
 #: apps/pootle_language/views.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Aceptou a suxestión de %(author)s co comentario: %(comment)s"
+msgstr ""
+"Aceptou %s suxestións cun comentario. Notificarase aos usuarios que as "
+"enviaron"
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Rexeitar suxestión"
+msgstr "Rexeitou %s suxestións"
 
 #: apps/pootle_language/views.py:242
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Aceptar suxestión"
+msgstr "Aceptou %s suxestións"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:54
 msgid "Critical"
@@ -1295,9 +1296,8 @@ msgid "No RQ Worker running."
 msgstr "Non hai traballadores de RQ executándose."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Execute novos traballadores con `manage.py rqworker`"
+msgstr "Execute novos traballadores con 'pootle rqworker'"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1321,13 +1321,12 @@ msgid "Double-check your CACHES settings"
 msgstr "Comprobe o valor da opción CACHES"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "Requírense configuracións diferentes de django_redis.cache.RedisCache para "
-"«default», «redis» e «stats»."
+"«default», «redis» e «lru»."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1342,11 +1341,8 @@ msgid "The sqlite database backend is unsupported"
 msgstr "O motor de bases de datos SQLite non é compatíbel"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
-"Defina postgresql_psycopg2 ou mysql como o motor de bases de datos "
-"predefinido"
+msgstr "Defina postgresql ou mysql como o motor de bases de datos predefinido"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -2054,9 +2050,8 @@ msgid "Update filesystem configuration"
 msgstr "Actualizar a configuración do sistema de ficheiros"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation mapping should be of the format:"
-msgstr "As rutas de tradución deben ter o formato:"
+msgstr "As asociacións de ruta de tradución deben ter o formato:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2067,23 +2062,21 @@ msgstr ""
 "ext&gt;`"
 
 #: templates/admin/project_fs.html:55
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in\n"
 "\t    backend URL"
 msgstr ""
-"Se está empregando a infraestrutura «localfs» a ruta de tradución "
-"combinarase coa ruta especificada no URL de infraestrutura."
+"Se está empregando a infraestrutura «localfs» a asociación de ruta de "
+"tradución combinarase coa ruta especificada no URL de infraestrutura"
 
 #: templates/admin/project_fs.html:59
-#, fuzzy
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
-"Para outras infraestruturas a ruta de tradución debe ser relativa á raíz do "
-"repositorio."
+"Para outras infraestruturas a asociación de ruta de tradución debe ser "
+"relativa á raíz do repositorio."
 
 #: templates/admin/project_fs.html:66
 msgid "Language mapping configuration"
@@ -2250,19 +2243,20 @@ msgid "All"
 msgstr "Todas"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class=\"value translated\">0</span>%% traducido"
+msgstr "<span class='value translated'>%(translated)s</span>%% traducido"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% precisan traballo"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% precisan traballo"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% sen traducir"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% sen traducir"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2772,9 +2766,8 @@ msgid "Team"
 msgstr "Equipo"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Suxestións de usuarios"
+msgstr "Filtrar as suxestións"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"

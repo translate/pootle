@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-10 12:52+0000\n"
-"PO-Revision-Date: 2016-10-20 17:19+0000\n"
+"PO-Revision-Date: 2016-11-10 18:23+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1476983992.000000\n"
+"X-POOTLE-MTIME: 1478802197.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -322,19 +322,19 @@ msgstr "Jednojazyčný formát"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU styl"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "Ne-GNU styl"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Django styl"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Vlastní"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
@@ -353,9 +353,8 @@ msgid "The URL or path to your translation files"
 msgstr "Adresa nebo cesta k překladovým souborům"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "The translation mapping for your filesystem"
-msgstr "Přiřazení cesty překladu pro váš systém souborů"
+msgstr "Přiřazení překladu pro váš systém souborů"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -466,34 +465,32 @@ msgid "Suggestion"
 msgstr "Návrh"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested by"
-msgstr "Navrhnout"
+msgstr "Navrženo uživatelem"
 
 #: apps/pootle_language/views.py:211
-#, fuzzy
 msgid "Suggested at"
-msgstr "Navrhnout"
+msgstr "Navrženo u"
 
 #: apps/pootle_language/views.py:233
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Zamítl návrh uživatele %(author)s s komentářem: %(comment)s"
+msgstr "Zamítl %s návrhů s komentářem. Uživatelé budou upozorněni"
 
 #: apps/pootle_language/views.py:237
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Přijal návrh uživatele %(author)s s komentářem: %(comment)s"
+msgstr "Přijal %s návrhů s komentářem. Uživatelé budou upozorněni"
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Odmítnout návrh"
+msgstr "Odmítl %s návrhů"
 
 #: apps/pootle_language/views.py:242
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Přijmout návrh"
+msgstr "Přijal %s návrhů"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:54
 msgid "Critical"
@@ -1291,9 +1288,8 @@ msgid "No RQ Worker running."
 msgstr "Nejsou spuštěny žádné pracovní RQ procesy."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Nové pracovní procesy můžete spouštět pomocí manage.py rqworker"
+msgstr "Spouštět nové pracovní procesy prostřednictvím ‚pootle rqworker‘"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1317,13 +1313,12 @@ msgid "Double-check your CACHES settings"
 msgstr "Zkontrolujte nastavení CACHES"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "Je vyžadováno samostatné nastavení django_redis.cache.RedisCache pro "
-"`default`, `redis` a `stats`."
+"`default`, `redis` a `Iru`."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1338,9 +1333,8 @@ msgid "The sqlite database backend is unsupported"
 msgstr "Databázový back-end sqlite není podporován"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr "Nastavte výchozí databázový modul na postgresql_psycopg2 nebo mysql"
+msgstr "Nastavte výchozí databázový modul na postgresql nebo mysql"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -2046,9 +2040,8 @@ msgid "Update filesystem configuration"
 msgstr "Aktualizovat nastavení systému souborů"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation mapping should be of the format:"
-msgstr "Cesty překladu by měly používat formát:"
+msgstr "Přiřazení překladu by mělo používat formát:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2059,23 +2052,21 @@ msgstr ""
 "musí být ukončena `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:55
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in\n"
 "\t    backend URL"
 msgstr ""
-"Pokud používáte back-end localfs, bude cesta překladu zkombinována s cestou "
-"nastavenou v\n"
-"\tAdrese back-endu"
+"Pokud používáte back-end localfs, bude přiřazení překladu zkombinováno s "
+"cestou nastavenou v\n"
+"\tadrese back-endu"
 
 #: templates/admin/project_fs.html:59
-#, fuzzy
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
-"Pro ostatní back-endy bude cesta překladu relativní ke kořenové složce "
+"Pro ostatní back-endy bude přiřazení překladu relativní ke kořenové složce "
 "úložiště."
 
 #: templates/admin/project_fs.html:66
@@ -2243,19 +2234,20 @@ msgid "All"
 msgstr "Vše"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "Přeloženo <span class=\"value translated\">0</span>%%"
+msgstr "Přeloženo <span class=\"value translated\">%(translated)s</span>%%"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "Přibližně přeloženo <span class=\"value fuzzy\">0</span>%%"
+msgstr "Přibližně přeloženo <span class=\"value fuzzy\">%(fuzzy)s</span>%%"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "Nepřeloženo <span class=\"value untranslated\">0</span>%%"
+msgstr ""
+"Nepřeloženo <span class=\"value untranslated\">%(untranslated)s</span>%%"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2754,9 +2746,8 @@ msgid "Team"
 msgstr "Tým"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Uživatelské návrhy"
+msgstr "Filtrovat návrhy"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"

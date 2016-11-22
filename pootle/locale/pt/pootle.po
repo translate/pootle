@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-10 12:52+0000\n"
-"PO-Revision-Date: 2016-11-05 01:28+0000\n"
+"PO-Revision-Date: 2016-11-21 23:36+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1478309316.000000\n"
+"X-POOTLE-MTIME: 1479771398.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -334,39 +334,39 @@ msgstr "Formato monolingue"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "Estilo GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "Estilo não GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Estilo Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Infraestrutura do sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:36
 msgid "Select a backend filesystem"
-msgstr ""
+msgstr "Selecione a infraestrutura para o sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
-msgstr ""
+msgstr "UR ou caminho da infraestrutura"
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "O URL ou o caminho dos seus ficheiros de tradução"
 
 #: apps/pootle_fs/forms.py:52
 msgid "The translation mapping for your filesystem"
-msgstr ""
+msgstr "O mapeamento de traduções do seu sistema de ficheiros"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -480,14 +480,12 @@ msgid "Suggestion"
 msgstr "Sugestão"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested by"
-msgstr "Sugerir"
+msgstr "Sugerido por"
 
 #: apps/pootle_language/views.py:211
-#, fuzzy
 msgid "Suggested at"
-msgstr "Sugerir"
+msgstr "Sugerido em"
 
 #: apps/pootle_language/views.py:233
 #, fuzzy, python-format
@@ -925,9 +923,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Não GNU: cada idioma no seu diretório"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Permitir que pootle_fs controle filesystems"
+msgstr "Permitir Pootle FS para controlar o sistema de ficheiros"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1306,14 +1303,13 @@ msgid "No RQ Worker running."
 msgstr "Nenhum processo em execução."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Executar novos processos com manage.py rqworker"
+msgstr "Executar novos processos com 'pootle rqworker'"
 
 # Backend NÃO deverá ser traduzido ou se o for 'infraestrutura' está errado
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
-msgstr "'Backend' de cache não definido para Redis."
+msgstr "Infraestrutura de cache não definida para Redis."
 
 #: checks.py:166
 #, python-format
@@ -1321,7 +1317,7 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
-"Defina o 'backend' de cache para django_redis.cache.RedisCache\n"
+"Defina a infraestrutura de cache para django_redis.cache.RedisCache\n"
 "Definições atuais: %r"
 
 #: checks.py:176
@@ -1333,13 +1329,12 @@ msgid "Double-check your CACHES settings"
 msgstr "Reverifique as definições das CACHES"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "São precisas configurações django_redis.cache.RedisCache distintas para "
-"`default`, `redis` e `stats`."
+"`default`, `redis` e `lru`."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1352,14 +1347,11 @@ msgstr "Defina DEBUG = False nas definições do Pootle"
 
 #: checks.py:204
 msgid "The sqlite database backend is unsupported"
-msgstr "O 'backend' da base de dados sqlite não é suportado"
+msgstr "A base de dados sqlite não é suportada"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
-"Defina o mecanismo da sua base de dados padrão para postgresql_psycopg2 ou "
-"mysql"
+msgstr "Defina o motor da sua base de dados para postgresql ou mysql"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -1554,8 +1546,8 @@ msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"Defina DATABASES['default']['ENGINE'] para utilizar o 'backend' Django de "
-"django.db.backends."
+"Defina DATABASES['default']['ENGINE'] para utilizar a infraestrutura Django "
+"de django.db.backends."
 
 #: checks.py:423
 msgid "Email server is not available."
@@ -1596,27 +1588,30 @@ msgid ""
 msgstr ""
 
 #: checks.py:504
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "POOTLE_CONTACT_EMAIL não está definido."
+msgstr "A definição POOTLE_FS_WORKING_PATH não está definida."
 
 #: checks.py:508
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "O caminho indicado por POOTLE_FS_WORKING_PATH não existe."
 
 #: checks.py:509
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
+msgstr "Criar o diretório indicado pela definição `POOTLE_FS_WORKING_PATH`."
 
 #: checks.py:514
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"O caminho indicado por by POOTLE_FS_WORKING_PATH não pode ser escrito pelo "
+"Pootle."
 
 #: checks.py:516
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Adicione a permissão de escrita ao diretório `POOTLE_FS_WORKING_PATH` com o "
+"comando 'chmod +w'"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1681,7 +1676,7 @@ msgstr "Incorreto"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Com seleção"
 
 #: core/forms.py:187
 msgid "Add comment"
@@ -1690,6 +1685,8 @@ msgstr "Adicionar comentário"
 #: core/forms.py:193
 msgid "Select all matching filter criteria, including those not shown"
 msgstr ""
+"Selecionar todos os critérios coincidentes com o filtro, incluindo os que "
+"não são mostrados"
 
 #: core/forms.py:210
 msgid "You must specify an action to take"
@@ -1697,7 +1694,7 @@ msgstr "Deve especificar a ação a executar"
 
 #: core/forms.py:212
 msgid "FormtableForm must specify a valid search_field"
-msgstr ""
+msgstr "FormtableForm deve especificar um search_field válido"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -2048,25 +2045,27 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Configuração do sistema de ficheiros: %(project_code)s"
 
 #: templates/admin/project_fs.html:30
 msgid "Backend configuration"
-msgstr ""
+msgstr "Configuração da infraestrutura"
 
 #: templates/admin/project_fs.html:41
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Atualizar configuração do sistema de ficheiros"
 
 #: templates/admin/project_fs.html:44
 msgid "Translation mapping should be of the format:"
-msgstr ""
+msgstr "O mapeamento das traduções deve estar no formato:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Apenas é necessário `&lt;language_code&gt;`, mas tem que terminar com `.&lt;"
+"ext&gt;`"
 
 #: templates/admin/project_fs.html:55
 msgid ""
@@ -2083,9 +2082,8 @@ msgstr ""
 
 # O porquê de traduzirem o singular para plural?! Não faz sentido. E Idioma é masculino, não feminino para se usar "a" idioma!!!!!!!!!!!!
 #: templates/admin/project_fs.html:66
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Informações do idioma %(language)s"
+msgstr "Configuração de mapeamento do idioma"
 
 #: templates/admin/project_fs.html:76
 msgid "Remove"
@@ -2248,19 +2246,20 @@ msgid "All"
 msgstr "Todas"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class=\"value translated\">0</span>%% traduzido"
+msgstr "<span class='value translated'>%(translated)s</span>%% traduzido"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% precisa de revisão"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% precisa de revisão"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% não traduzido"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% não traduzido"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2762,9 +2761,8 @@ msgid "Team"
 msgstr "Equipa"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Sugestões do utilizador"
+msgstr "Filtrar sugestões"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"
