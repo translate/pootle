@@ -107,10 +107,6 @@ class ProjectMixin(object):
 
 class ProjectBrowseView(ProjectMixin, PootleBrowseView):
     view_name = "project"
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
-    show_all = True
 
     @property
     def pootle_path(self):
@@ -328,9 +324,6 @@ class ProjectsMixin(object):
 
 class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
     view_name = "projects"
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
 
     @cached_property
     def object_children(self):

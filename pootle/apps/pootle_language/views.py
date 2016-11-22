@@ -69,9 +69,6 @@ class LanguageMixin(object):
 class LanguageBrowseView(LanguageMixin, PootleBrowseView):
     url_pattern_name = "pootle-language-browse"
     view_name = "language"
-    table_fields = [
-        'name', 'progress', 'total', 'need-translation',
-        'suggestions', 'critical', 'last-updated', 'activity']
 
     @cached_property
     def object_children(self):
