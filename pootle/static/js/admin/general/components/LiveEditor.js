@@ -112,11 +112,15 @@ export const LiveEditor = React.createClass({
 
   render() {
     const { renderedValue, value } = this.state;
-    const contentHeight = Math.max(100, this.getContentHeight());
+    const minimumHeight = 300;
+    const maximumHeight = 10000;
+    const contentHeight = (
+        Math.min(maximumHeight, Math.max(minimumHeight, this.getContentHeight()))
+    );
     const contentStyle = {
       height: contentHeight,
-      minHeight: contentHeight,  // Required for Firefox
-      maxHeight: contentHeight,  // Required for Firefox
+      minHeight: minimumHeight,  // Required for Firefox
+      maxHeight: maximumHeight,  // Required for Firefox
     };
 
     return (
