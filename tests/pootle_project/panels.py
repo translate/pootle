@@ -21,6 +21,9 @@ from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
 def test_panel_project_table(project0, rf, member):
     request = rf.get('/projects/project0/')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        project0.directory)
     view = ProjectBrowseView(
         kwargs=dict(
             project_code=project0.code,
@@ -94,6 +97,9 @@ def test_panel_projects_table(rf, member, project0):
 def test_panel_project_store_table(project0, store0, rf, member):
     request = rf.get('/projects/project0/store0')
     request.user = member
+    request.permissions = get_matching_permissions(
+        request.user,
+        project0.directory.parent)
     view = ProjectBrowseView(
         kwargs=dict(
             project_code=project0.code,
