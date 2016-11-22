@@ -1,10 +1,16 @@
-{% load i18n %}
+{% load core i18n %}
 <div class="form popup-inline" lang="{{ LANGUAGE_CODE }}">
   <form method="post" action="{{ url }}"
     id="{% if request.is_ajax %}js-{% endif %}captcha">
+    {% if request.is_ajax %}
+      <script type="src/javascript">
+        PTL.captcha.postData = {{ post_data|to_js }};
+      </script>
+    {% else %}
     {% for field, value in post_data.iteritems %}
       {% if field != "captcha" %}<input type="hidden" name="{{ field|escape }}" value="{{ value|escape }}" />{% endif %}
     {% endfor %}
+    {% endif %}
     <h2>{% trans "Are You Human?" %}</h2>
     <p>{% trans "To protect the server against attacks we have to verify that submissions are made by human users." %}</p>
     <p>{% trans "Please answer this question:" %}</p>
