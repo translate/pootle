@@ -30,18 +30,26 @@ def test_project_resources_instance():
 
 
 @pytest.mark.django_db
-def test_project_resources_stores():
-    project = Project.objects.get(code="project0")
+def test_project_resources_stores(project0, language0):
     stores = Store.objects.filter(
-        translation_project__project=project)
-    assert list(FSProjectResources(project).stores) == list(stores)
+        translation_project__project=project0)
+    assert list(FSProjectResources(project0).stores) == list(stores)
     # mark some Stores obsolete - should still show
     store_count = stores.count()
     assert store_count
     for store in stores:
         store.makeobsolete()
-    assert list(FSProjectResources(project).stores) == list(stores)
+    assert list(FSProjectResources(project0).stores) == list(stores)
     assert stores.count() == store_count
+    project0.config["pootle.fs.excluded_languages"] = [language0.code]
+    filtered_stores = stores.exclude(
+        translation_project__language=language0)
+    assert (
+        list(FSProjectResources(project0).stores)
+        != list(stores))
+    assert (
+        list(FSProjectResources(project0).stores)
+        == list(filtered_stores))
 
 
 @pytest.mark.django_db
