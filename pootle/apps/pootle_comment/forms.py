@@ -14,6 +14,8 @@ from django.utils.functional import cached_property
 
 from django_comments.forms import CommentForm as DjCommentForm
 
+from pootle.core.utils.timezone import make_aware
+
 from .delegate import comment_should_not_be_saved
 from .exceptions import CommentNotSaved
 from .signals import comment_was_saved
@@ -55,7 +57,7 @@ class CommentForm(DjCommentForm):
     def save(self):
         comment = self.comment
         comment.user = self.cleaned_data["user"]
-        comment.submit_date = datetime.now()
+        comment.submit_date = make_aware(datetime.now())
         comment.save()
         comment_was_saved.send(
             sender=comment.__class__,
