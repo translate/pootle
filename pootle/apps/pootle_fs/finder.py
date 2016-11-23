@@ -31,12 +31,14 @@ class TranslationFileFinder(object):
     extensions = DEFAULT_EXTENSIONS
     path_mapping = PATH_MAPPING
 
-    def __init__(self, translation_mapping, path_filters=None, extensions=None):
+    def __init__(self, translation_mapping, path_filters=None, extensions=None,
+                 exclude_languages=None):
         TranslationMappingFinderValidator(translation_mapping).validate()
         self.translation_mapping = translation_mapping
         if extensions:
             self.extensions = extensions
         self.path_filters = path_filters
+        self.exclude_languages = exclude_languages or []
 
     @cached_property
     def regex(self):
@@ -60,6 +62,8 @@ class TranslationFileFinder(object):
         if not match:
             return
         matched = match.groupdict()
+        if matched["language_code"] in self.exclude_languages:
+            return
         matched["dir_path"] = matched.get("dir_path", "").strip("/")
         if not matched.get("filename"):
             matched["filename"] = os.path.splitext(
@@ -85,6 +89,8 @@ class TranslationFileFinder(object):
         """For given matchdata return the file path that would be
         matched.
         """
+        if language_code in self.exclude_languages:
+            return
         if extension is None:
             extension = self.extensions[0]
         if extension not in self.extensions:
