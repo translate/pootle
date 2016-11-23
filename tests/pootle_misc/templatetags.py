@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import pytest
-
 from django.template import Context, Template
 
 
@@ -17,7 +15,6 @@ def _render_str(string, context=None):
     return Template(string).render(context)
 
 
-@pytest.mark.django
 def test_templatetag_progress_bar():
     rendered = _render_str("{% load common_tags %}{% progress_bar 0 0 0 %}")
     assert "<span class=\'value translated\'>0</span>" in rendered

@@ -120,7 +120,6 @@ def test_get_path_obj_disabled(rf, default, admin,
              project_code=project_code_obsolete)
 
 
-@pytest.mark.django
 def test_deco_persistent_property_no_cache_key():
 
     # no cache key set - uses instance caching
@@ -154,7 +153,6 @@ def test_deco_persistent_property_no_cache_key():
     assert foo.__dict__ == dict(special_bar="Baz")
 
 
-@pytest.mark.django
 def test_deco_persistent_property():
 
     # cache_key set - cached with it

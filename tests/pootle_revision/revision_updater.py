@@ -53,7 +53,6 @@ def test_revision_unit_updater(store0):
                     updater.all_pootle_paths))))
 
 
-@pytest.mark.django
 def test_revision_unit_updater_parent_paths():
     updater_class = revision_updater.get(Unit)
     updater = updater_class([])

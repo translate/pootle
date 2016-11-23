@@ -9,14 +9,11 @@
 import time
 from datetime import datetime
 
-import pytest
-
 from babel.dates import format_timedelta
 
 from pootle.local.dates import localdate, timesince
 
 
-@pytest.mark.django
 def test_local_date_timesince(settings):
     timestamp = time.time() - 1000000
     assert (
