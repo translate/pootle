@@ -1189,9 +1189,8 @@ PTL.editor = {
     return reqData;
   },
 
-  getValueStateData() {
+  getValueStateData(valueState) {
     const data = {};
-    const valueState = ReactEditor.stateValues;
     for (let i = 0; i < valueState.length; i++) {
       data[getAreaId(i)] = valueState[i];
     }
@@ -1553,14 +1552,10 @@ PTL.editor = {
   },
 
   /* Pushes translation submissions and moves to the next unit */
-  handleSubmit({ translation = null, comment = '' } = {}) {
+  handleSubmit({ translations = null, comment = '' } = {}) {
     const el = q('input.submit');
-    let valueStateData = {};
-    if (translation !== null) {
-      valueStateData[getAreaId(0)] = translation;
-    } else {
-      valueStateData = this.getValueStateData();
-    }
+    const values = translations !== null ? translations : ReactEditor.stateValues;
+    const valueStateData = this.getValueStateData(values);
     const newTranslation = valueStateData[0];
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return {
@@ -1655,8 +1650,8 @@ PTL.editor = {
 
     this.updateUnitDefaultProperties();
 
-    const body = assign({}, this.getValueStateData(), this.getReqData(),
-                        this.getSimilarityData(), captchaCallbacks);
+    const body = assign({}, this.getValueStateData(ReactEditor.stateValues),
+                        this.getReqData(), this.getSimilarityData(), captchaCallbacks);
 
     UnitAPI.addSuggestion(this.units.getCurrent().id, body)
       .then(
