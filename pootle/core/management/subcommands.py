@@ -158,7 +158,7 @@ class CommandWithSubcommands(BaseCommand):
         except SubcommandsError as e:
             # we have to raise SystemExit here if necessary
             parser.print_usage(sys.stderr)
-            return parser.exit(2, "%s\n" % e.message)
+            return parser.exit(2, "%s\n" % e)
         cmd_options = vars(options)
         args = cmd_options.pop('args', ())
         handle_default_options(options)

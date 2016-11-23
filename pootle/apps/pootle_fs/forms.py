@@ -99,7 +99,7 @@ class ProjectFSAdminForm(forms.Form):
                 self.fs_path_validator(
                     self.cleaned_data["translation_mapping"]).validate()
             except ValueError as e:
-                self.add_error("translation_mapping", e.message)
+                self.add_error("translation_mapping", e)
         if not self.fs_url_validator or not self.cleaned_data.get("fs_url"):
             return
         try:
@@ -111,7 +111,7 @@ class ProjectFSAdminForm(forms.Form):
                     "Incorrect URL or path ('%s') for plugin type '%s': %s"
                     % (self.cleaned_data.get("fs_url"),
                        self.cleaned_data.get("fs_type"),
-                       e.message)))
+                       e)))
 
     def save(self):
         self.project.config["pootle_fs.fs_type"] = self.cleaned_data["fs_type"]
