@@ -26,8 +26,12 @@ class PootleTranslateView(PootleDetailView):
     view_name = ""
 
     @property
+    def check_data(self):
+        return self.object.data_tool.get_checks()
+
+    @property
     def checks(self):
-        check_data = self.object.data_tool.get_checks()
+        check_data = self.check_data
         checks = get_qualitychecks()
         schema = {sc["code"]: sc for sc in get_qualitycheck_schema()}
         _checks = {}
