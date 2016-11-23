@@ -901,7 +901,7 @@ class Unit(models.Model, base.TranslationUnit):
         else:
             sub_type = SubmissionTypes.UNMUTE_CHECK
 
-        sub = Submission(creation_time=timezone.now(),
+        sub = Submission(creation_time=make_aware(timezone.now()),
                          translation_project=self.store.translation_project,
                          submitter=user, field=SubmissionFields.NONE,
                          unit=self, store=self.store, type=sub_type,
