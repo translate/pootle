@@ -8,7 +8,7 @@
 
 from fnmatch import fnmatch
 
-from django.db.models import Max
+from django.db.models import Max, Sum
 
 from pootle.core.decorators import persistent_property
 from pootle_data.utils import RelatedStoresDataTool
@@ -249,3 +249,25 @@ class DirectoryVFDataTool(RelatedStoresDataTool):
         if self.show_all_to(user):
             return self.all_vf_stats
         return self.vf_stats
+
+    def _group_vf_check_data(self, data):
+        checks = {}
+        for vf, name, count in data:
+            checks[vf] = checks.get(vf, {})
+            checks[vf][name] = count
+        return checks
+
+    @persistent_property
+    def all_checks_data(self):
+        return self._group_vf_check_data(
+            self.filter_data(self.checks_data_model)
+                .values_list("store__vfolders", "name")
+                .annotate(Sum("count")))
+
+    @persistent_property
+    def checks_data(self):
+        data = self.filter_accessible(
+            self.filter_data(self.checks_data_model))
+        return self._group_vf_check_data(
+            data.values_list("store__vfolders", "name")
+                .annotate(Sum("count")))
