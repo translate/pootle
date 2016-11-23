@@ -162,7 +162,7 @@ def test_admin_view_project_manager(client, member, administrate):
         'user': member,
         'directory': project.directory}
     ps = PermissionSet.objects.create(**criteria)
-    ps.positive_permissions = [administrate]
+    ps.positive_permissions.set([administrate])
     client.login(
         username=member.username,
         password=TEST_USERS[member.username]["password"])

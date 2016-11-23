@@ -458,7 +458,7 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tp0):
         'directory': tp0.directory,
     }
     ps = PermissionSet.objects.get_or_create(**criteria)[0]
-    ps.positive_permissions = [administrate]
+    ps.positive_permissions.set([administrate])
     ps.save()
     assert no_perms_user.has_manager_permissions()
     ps.positive_permissions.clear()
@@ -467,7 +467,7 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tp0):
     # Assign 'administrate' right for 'Language0' and check user is manager.
     criteria['directory'] = language0.directory
     ps = PermissionSet.objects.get_or_create(**criteria)[0]
-    ps.positive_permissions = [administrate]
+    ps.positive_permissions.set([administrate])
     ps.save()
     assert no_perms_user.has_manager_permissions()
     ps.positive_permissions.clear()
@@ -476,7 +476,7 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tp0):
     # Assign 'administrate' right for 'Project0' and check user is manager.
     criteria['directory'] = project0.directory
     ps = PermissionSet.objects.get_or_create(**criteria)[0]
-    ps.positive_permissions = [administrate]
+    ps.positive_permissions.set([administrate])
     ps.save()
     assert no_perms_user.has_manager_permissions()
     ps.positive_permissions.clear()
@@ -502,7 +502,7 @@ def test_get_users_with_permission(default, member, translate):
     # remove "Can submit translation" permission for default user
     ps = PermissionSet.objects.filter(user=default,
                                       directory=Directory.objects.root)[0]
-    ps.positive_permissions = ps.positive_permissions.exclude(id=translate.id)
+    ps.positive_permissions.set(ps.positive_permissions.exclude(id=translate.id))
     ps.save()
     users = User.objects.get_users_with_permission('translate', project, language)
     for user in users:

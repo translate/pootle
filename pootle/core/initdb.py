@@ -73,7 +73,7 @@ class InitDB(object):
         permission_set, created = self._create_object(PermissionSet,
                                                       **criteria)
         if created:
-            permission_set.positive_permissions = permissions
+            permission_set.positive_permissions.set(permissions)
             permission_set.save()
         return permission_set
 
