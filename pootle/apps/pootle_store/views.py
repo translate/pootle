@@ -8,6 +8,7 @@
 
 import calendar
 import unicodedata
+from collections import OrderedDict
 
 from translate.lang import data
 
@@ -368,15 +369,42 @@ class UnitTimelineJSON(PootleUnitJSON):
         return result
 
 
+CHARACTERS_NAMES = OrderedDict(
+    (
+        # Code  Display name
+        (8204, 'ZWNJ'),
+        (8205, 'ZWJ'),
+        (8206, 'LRM'),
+        (8207, 'RLM'),
+        (8234, 'LRE'),
+        (8235, 'RLE'),
+        (8236, 'PDF'),
+        (8237, 'LRO'),
+        (8238, 'RLO'),
+    )
+)
+
+CHARACTERS = u"".join([unichr(index) for index in CHARACTERS_NAMES.keys()])
+
+
 class UnitEditJSON(PootleUnitJSON):
 
     @property
     def special_characters(self):
+        if self.language.direction == "rtl":
+            # Inject some extra special characters for RTL languages.
+            language_specialchars = CHARACTERS
+            # Do not repeat special chars.
+            language_specialchars += u"".join(
+                [c for c in self.language.specialchars if c not in CHARACTERS])
+        else:
+            language_specialchars = self.language.specialchars
+
         special_chars = []
-        for specialchar in self.language.specialchars:
+        for specialchar in language_specialchars:
             code = ord(specialchar)
             special_chars.append({
-                'display': specialchar,
+                'display': CHARACTERS_NAMES.get(code, specialchar),
                 'code': code,
                 'hex_code': "U+" + hex(code)[2:].upper(),  # Like U+200C
                 'name': unicodedata.name(specialchar, ''),

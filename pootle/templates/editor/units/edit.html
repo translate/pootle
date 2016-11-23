@@ -218,38 +218,9 @@
               {% endwith %}
             </div>
             {% endif %}
-            {% if special_characters or language.direction == "rtl" %}
+            {% if special_characters %}
               {% if cantranslate or cansuggest %}
               <div class="editor-specialchars-block" lang="{{ language.code }}">
-                {% if language.direction == "rtl" %}
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert RLM (Right-To-Left Mark) into the editor' %}"
-                  data-string="&#8207;">RLM</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert LRM (Left-To-Right Mark) into the editor' %}"
-                  data-string="&#8206;">LRM</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert RLE (Right-To-Left Embedding) into the editor' %}"
-                  data-string="&#8235;">RLE</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert LRE (Left-To-Right Embedding) into the editor' %}"
-                  data-string="&#8234;">LRE</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert RLO (Right-To-Left Override) into the editor' %}"
-                  data-string="&#8238;">RLO</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert LRO (Left-To-Right Override) into the editor' %}"
-                  data-string="&#8237;">LRO</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert PDF (Pop Directional Format ) into the editor' %}"
-                  data-string="&#8236;">PDF</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert ZWJ (Zero Width Joiner) into the editor' %}"
-                  data-string="&#8205;">ZWJ</a>
-                <a class="editor-specialchar js-editor-copytext"
-                  title="{% trans 'Insert ZWNJ (Zero Width Non Joiner) into the editor' %}"
-                  data-string="&#8204;">ZWNJ</a>
-                {% endif %}
                 {% for specialchar in special_characters %}
                 <a class="editor-specialchar js-editor-copytext"
                    title="{% blocktrans trimmed with character_name=specialchar.name character_code=specialchar.hex_code %}
