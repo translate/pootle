@@ -41,6 +41,12 @@ def pytest_addoption(parser):
         help="Debug tests to a given file")
 
 
+def pytest_configure(config):
+    # register an additional marker
+    config.addinivalue_line(
+        "markers", "pootle_vfolders: requires special virtual folder projects")
+
+
 @pytest.fixture(autouse=True)
 def test_timing(request, settings, log_timings):
     from django.db import reset_queries
