@@ -422,10 +422,9 @@ def dp_view_urls(request, view_types):
 @pytest.fixture(params=VFOLDER_VIEW_TESTS.keys())
 def vfolder_views(request, client, request_users, settings, tp0):
     from pootle.core.helpers import SIDEBAR_COOKIE_NAME
-    from virtualfolder.models import VirtualFolder
 
-    vfolder0 = VirtualFolder.objects.first()
-
+    vfolder0 = tp0.stores.filter(
+        vfolders__isnull=False)[0].vfolders.first()
     test_kwargs = VFOLDER_VIEW_TESTS[request.param].copy()
     tp_view_test_names = request.param
     user = request_users["user"]
