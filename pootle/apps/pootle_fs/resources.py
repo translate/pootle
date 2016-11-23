@@ -29,9 +29,18 @@ class FSProjectResources(object):
                self.project))
 
     @property
+    def excluded_languages(self):
+        return self.project.config.get("pootle.fs.excluded_languages")
+
+    @property
     def stores(self):
-        return Store.objects.filter(
+        excluded = self.excluded_languages
+        stores = Store.objects.filter(
             translation_project__project=self.project)
+        if excluded:
+            stores = stores.exclude(
+                translation_project__language__code__in=excluded)
+        return stores
 
     @property
     def tracked(self):
