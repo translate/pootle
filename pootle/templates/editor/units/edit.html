@@ -218,7 +218,7 @@
               {% endwith %}
             </div>
             {% endif %}
-            {% if language.specialchars or language.direction == "rtl" %}
+            {% if special_characters or language.direction == "rtl" %}
               {% if cantranslate or cansuggest %}
               <div class="editor-specialchars-block" lang="{{ language.code }}">
                 {% if language.direction == "rtl" %}
@@ -250,11 +250,13 @@
                   title="{% trans 'Insert ZWNJ (Zero Width Non Joiner) into the editor' %}"
                   data-string="&#8204;">ZWNJ</a>
                 {% endif %}
-                {% for specialchar in language.specialchars %}
+                {% for specialchar in special_characters %}
                 <a class="editor-specialchar js-editor-copytext"
-                   title="{% trans 'Insert this symbol into the editor' %}"
-                   data-string="{{ specialchar }}">
-                   {% if specialchar.isspace %}&nbsp;{% else %}{{ specialchar }}{% endif %}</a>
+                   title="{% blocktrans trimmed with character_name=specialchar.name character_code=specialchar.hex_code %}
+                   Insert {{ character_name }} (Unicode value {{ character_code }}) into the editor
+                   {% endblocktrans %}"
+                   data-string="&#{{ specialchar.code }};">
+                   {% if specialchar.display.isspace %}&nbsp;{% else %}{{ specialchar.display }}{% endif %}</a>
                 {% endfor %}
               </div>
               {% endif %}

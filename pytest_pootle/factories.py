@@ -94,6 +94,12 @@ class LanguageDBFactory(factory.django.DjangoModelFactory):
         # returns an incrementing index relative to the tp
         return 'Language %s' % (Language.objects.count() - 1)
 
+    @factory.lazy_attribute
+    def specialchars(self):
+        from pootle_language.models import Language
+
+        return "" if (Language.objects.count() - 1) % 2 == 0 else u"ñ\u200c€"
+
 
 class ProjectDBFactory(factory.django.DjangoModelFactory):
 

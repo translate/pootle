@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import calendar
+import unicodedata
 
 from translate.lang import data
 
@@ -369,6 +370,19 @@ class UnitTimelineJSON(PootleUnitJSON):
 
 class UnitEditJSON(PootleUnitJSON):
 
+    @property
+    def special_characters(self):
+        special_chars = []
+        for specialchar in self.language.specialchars:
+            code = ord(specialchar)
+            special_chars.append({
+                'display': specialchar,
+                'code': code,
+                'hex_code': "U+" + hex(code)[2:].upper(),  # Like U+200C
+                'name': unicodedata.name(specialchar, ''),
+            })
+        return special_chars
+
     def get_edit_template(self):
         if self.project.is_terminology or self.store.has_terminology:
             return loader.get_template('editor/units/term_edit.html')
@@ -445,6 +459,7 @@ class UnitEditJSON(PootleUnitJSON):
             'user': self.request.user,
             'project': self.project,
             'language': self.language,
+            'special_characters': self.special_characters,
             'source_language': self.source_language,
             'cantranslate': check_user_permission(self.request.user,
                                                   "translate",

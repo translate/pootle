@@ -7,12 +7,13 @@
 # AUTHORS file for copyright and authorship information.
 
 import json
+import unicodedata
 
 import pytest
 
 from pootle_app.models.permissions import check_user_permission
 from pootle_store.util import find_altsrcs
-from pootle_store.views import get_alt_src_langs
+from pootle_store.views import CHARACTERS_NAMES, get_alt_src_langs
 
 
 @pytest.mark.django_db
@@ -37,6 +38,16 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
     request = response.wsgi_request
     result = json.loads(response.content)
 
+    special_characters = []
+    for specialchar in language.specialchars:
+        code = ord(specialchar)
+        special_characters.append({
+            'display': CHARACTERS_NAMES.get(code, specialchar),
+            'code': code,
+            'hex_code': "U+" + hex(code)[2:].upper(),
+            'name': unicodedata.name(specialchar, ''),
+        })
+
     src_lang = unit.store.translation_project.project.source_language
     alt_src_langs = get_alt_src_langs(request, user, translation_project)
     altsrcs = find_altsrcs(unit, alt_src_langs, store=store, project=project)
@@ -55,6 +66,7 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
     assert response.context["directory"] == directory
     assert response.context["project"] == project
     assert response.context["language"] == language
+    assert response.context["special_characters"] == special_characters
     assert response.context["source_language"] == src_lang
     assert response.context["altsrcs"] == altsrcs
     assert response.context["suggestions_dict"] == suggestions_dict
