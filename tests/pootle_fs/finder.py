@@ -211,3 +211,23 @@ def test_finder_match(finder_matches):
 def test_finder_find(fs_finder):
     finder, expected = fs_finder
     assert sorted(expected) == sorted(f for f in finder.find())
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
+def test_finder_exclude_langs():
+    finder = TranslationFileFinder(
+        "/path/to/<dir_path>/<language_code>.<ext>",
+        exclude_languages=["foo", "bar"])
+    assert not finder.match("/path/to/foo.po")
+    assert not finder.match("/path/to/bar.po")
+    match = finder.match("/path/to/baz.po")
+    assert match[0] == "/path/to/baz.po"
+    assert match[1]["language_code"] == "baz"
+
+    assert not finder.reverse_match(language_code="foo")
+    assert not finder.reverse_match(language_code="bar")
+    assert (
+        finder.reverse_match(language_code="baz")
+        == "/path/to/baz.po")
