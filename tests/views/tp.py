@@ -15,7 +15,6 @@ import pytest
 from pytest_pootle.suite import view_context_test
 
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
@@ -33,7 +32,6 @@ from pootle.core.views.browse import StatsDisplay
 from pootle_misc.forms import make_search_form
 from pootle_store.models import Store
 from virtualfolder.delegate import vfolders_data_view
-from virtualfolder.models import VirtualFolder
 
 
 def _test_browse_view(tp, request, response, kwargs):
@@ -142,27 +140,12 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         (k, _checks[k])
         for k in CATEGORY_IDS.keys()
         if _checks.get(k))
-    if request.path.startswith("/++vfolder"):
-        vfolder = VirtualFolder.objects.get(
-            name=request.resolver_match.kwargs["vfolder_name"])
-        current_vfolder_pk = vfolder.pk
-        display_priority = False
-        unit_api_root = reverse(
-            "vfolder-pootle-xhr-units",
-            kwargs=dict(vfolder_name=vfolder.name))
-        resource_path = (
-            "/".join(
-                ["++vfolder",
-                 vfolder.name,
-                 ctx['object'].pootle_path.replace(tp.pootle_path, "")]))
-    else:
-        vfolder = None
-        current_vfolder_pk = ""
-        display_priority = False
-        if not kwargs["filename"]:
-            vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
-            display_priority = vf_view.has_data
-        unit_api_root = "/xhr/units/"
+    current_vfolder_pk = ""
+    display_priority = False
+    if not kwargs["filename"]:
+        vf_view = vfolders_data_view.get(obj.__class__)(obj, request.user)
+        display_priority = vf_view.has_data
+    unit_api_root = "/xhr/units/"
     assertions = dict(
         page="translate",
         translation_project=tp,
