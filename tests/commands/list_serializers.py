@@ -69,7 +69,7 @@ def _test_serializer_list(out, err, model=None):
         expected.append("\n%s" % heading)
         expected.append("-" * len(heading))
         for name, klass in serials.items():
-            expected.append("{: <30} {: <50} ".format(name, klass))
+            expected.append("{!s: <30} {!s: <50} ".format(name, klass))
     assert out == "%s\n" % ("\n".join(expected))
 
 
@@ -88,7 +88,7 @@ def _test_deserializer_list(out, err, model=None):
         expected.append("\n%s" % heading)
         expected.append("-" * len(heading))
         for name, klass in deserials.items():
-            expected.append("{: <30} {: <50} ".format(name, klass))
+            expected.append("{!s: <30} {!s: <50} ".format(name, klass))
     assert out == "%s\n" % ("\n".join(expected))
 
 

@@ -65,4 +65,4 @@ class Command(BaseCommand):
         self.stdout.write("-" * len(heading))
         for name, serializer in serials.items():
             self.stdout.write(
-                "{: <30} {: <50} ".format(name, serializer))
+                "{!s: <30} {!s: <50} ".format(name, serializer))
