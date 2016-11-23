@@ -79,7 +79,7 @@ const EditorContainer = React.createClass({
     newValues[i] = value;
     this.setState({
       values: newValues,
-    }, this.props.onChange);
+    }, () => this.props.onChange(newValues));
   },
 
   render() {

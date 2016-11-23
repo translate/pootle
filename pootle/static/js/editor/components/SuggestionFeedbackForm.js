@@ -9,6 +9,8 @@
 import _ from 'underscore';
 import React from 'react';
 
+import assign from 'object-assign';
+
 import FormElement from 'components/FormElement';
 
 
@@ -62,11 +64,17 @@ const SuggestionFeedBackForm = React.createClass({
     this.props.onRejectSuggestion(this.props.suggId, { requestData: this.state.formData });
   },
 
-  handleChange(name, value) {
-    const newData = _.extend({}, this.state.formData);
-    newData[name] = value;
-    const isDirty = !_.isEqual(newData, this.initialData);
-    this.setState({ isDirty, formData: newData });
+  handleChange(values) {
+    const isDirty = !_.isEqual(values, this.initialData);
+    const formData = assign(this.state.formData, { translations: values });
+    this.setState({ isDirty, formData });
+    this.props.onChange(isDirty);
+  },
+
+  handleCommentChange(name, comment) {
+    const isDirty = comment !== '';
+    const formData = assign(this.state.formData, { comment });
+    this.setState({ isDirty, formData });
     this.props.onChange(isDirty);
   },
 
@@ -99,7 +107,7 @@ const SuggestionFeedBackForm = React.createClass({
             label={gettext('Provide optional comment (will be publicly visible)')}
             placeholder=""
             name="comment"
-            handleChange={this.handleChange}
+            handleChange={this.handleCommentChange}
             value={formData.comment}
             className="comment"
           />
