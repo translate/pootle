@@ -31,6 +31,15 @@ class FSPathMatcher(object):
             self.project.__class__,
             instance=self.project)
 
+    @cached_property
+    def excluded_languages(self):
+        excluded = self.project.config.get(
+            "pootle.fs.excluded_languages")
+        return [
+            self.lang_mapper.get_upstream_code(code) or code
+            for code
+            in excluded or []]
+
     @lru_cache(maxsize=None)
     def get_finder(self, fs_path=None):
         path_filters = []
@@ -39,7 +48,8 @@ class FSPathMatcher(object):
         return self.context.finder_class(
             self.translation_mapping,
             extensions=self.project.filetype_tool.valid_extensions,
-            path_filters=path_filters)
+            path_filters=path_filters,
+            exclude_languages=self.excluded_languages)
 
     @property
     def project(self):
