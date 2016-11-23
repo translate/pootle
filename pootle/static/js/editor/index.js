@@ -188,6 +188,12 @@ const ReactEditor = {
     textareas[index].focus();
   },
 
+  setValues(values) {
+    const areaValues = this.editorInstance.getAreaValues(values);
+    for (let i = 0; i < areaValues.length; i++) {
+      ReactEditor.setValueFor(i, areaValues[i]);
+    }
+  },
   /**
    * Inserts a value in the current caret position.
    */

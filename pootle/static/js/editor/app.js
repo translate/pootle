@@ -2299,9 +2299,7 @@ PTL.editor = {
 
   processAcceptSuggestion(data, suggId, skipToNext) {
     if (data.newtargets !== undefined) {
-      for (let i = 0; i < data.newtargets.length; i++) {
-        ReactEditor.setValueFor(i, data.newtargets[i]);
-      }
+      ReactEditor.setValues(data.newtargets);
     }
     this.updateUnitDefaultProperties();
 

@@ -70,6 +70,10 @@ const EditorContainer = React.createClass({
     return this.areas;
   },
 
+  getAreaValues(values) {
+    return values;
+  },
+
   getStateValues() {
     return this.state.values;
   },
