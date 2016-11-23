@@ -8,8 +8,6 @@
 
 import pytest
 
-from datetime import datetime
-
 from pytest_pootle.factories import ScoreLogFactory, SubmissionFactory
 
 from pootle_statistics.models import (ScoreLog, SubmissionTypes, SubmissionFields,
@@ -38,7 +36,6 @@ def test_record_submission(member, submission_type):
         'mt_similarity': 0,
         'submitter': member,
         'translation_project': store.translation_project,
-        'creation_time': datetime.now(),
     }
 
     sub = SubmissionFactory(**submission_params)
