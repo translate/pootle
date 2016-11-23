@@ -197,7 +197,7 @@ def test_vfolder_calc_priority(settings, store0):
     settings.INSTALLED_APPS.append("virtualfolder")
 
 
-@pytest.mark.pootle_vfolder
+@pytest.mark.pootle_vfolders
 @pytest.mark.django_db
 def test_vfolder_membership_new_store(tp0):
     vf0 = VirtualFolder.objects.create(
