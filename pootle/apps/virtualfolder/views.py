@@ -49,6 +49,11 @@ class VFolderTPTranslateView(TPTranslateView):
     display_vfolder_priority = False
 
     @cached_property
+    def check_data(self):
+        return self.vfolders_data_view.vfolder_data_tool.get_checks(
+            user=self.request.user).get(self.vfolder_pk, {})
+
+    @cached_property
     def vfolder(self):
         return VirtualFolder.objects.get(name=self.kwargs["vfolder_name"])
 
