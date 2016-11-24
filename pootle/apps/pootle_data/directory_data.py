@@ -54,6 +54,5 @@ class DirectoryDataTool(RelatedStoresDataTool):
         return children
 
     def get_root_child_path(self, child):
-        return (
-            child["store__parent__tp_path"].replace(
-                self.context.tp_path, "").split("/")[0])
+        return child["store__parent__tp_path"][
+            len(self.context.tp_path):].split("/")[0]
