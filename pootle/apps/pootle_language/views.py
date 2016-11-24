@@ -25,6 +25,7 @@ from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n.gettext import tr_lang, ugettext_lazy as _
 from pootle_store.constants import STATES_MAP
 
+from .apps import PootleLanguageConfig
 from .forms import (
     LanguageSpecialCharsForm, LanguageSuggestionAdminForm, LanguageTeamAdminForm,
     LanguageTeamNewMemberSearchForm)
@@ -32,6 +33,8 @@ from .models import Language
 
 
 class LanguageMixin(object):
+    ns = "pootle.language"
+    sw_version = PootleLanguageConfig.version
     model = Language
     browse_url_path = "pootle-language-browse"
     translate_url_path = "pootle-language-translate"
