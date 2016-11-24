@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-22 14:37+0000\n"
-"PO-Revision-Date: 2016-11-10 16:23+0000\n"
+"PO-Revision-Date: 2016-11-24 10:50+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1478795026.000000\n"
+"X-POOTLE-MTIME: 1479984611.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1712,64 +1712,64 @@ msgid "Can perform administrative tasks"
 msgstr "Yönetimsel görevler yapabilir"
 
 #: core/views/display.py:84 core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "%(source_string)s için kaldırılan çeviri"
+msgstr "%(user)s, %(source_string)s için çeviriyi kaldırdı"
 
 #: core/views/display.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "%(author)s kullanıcısından gelen öneri kabul edildi"
+msgstr "%(user)s, %(source)s için öneriyi kabul etti"
 
 #: core/views/display.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
-msgstr "%(user)s bir dosya gönderdi"
+msgstr "%(user)s dosyayı gönderdi"
 
 #: core/views/display.py:90
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "%(source_string)s için kapatılan %(check_name)s"
+msgstr "%(user)s, %(source)s için %(check)s sesini kapadı"
 
 #: core/views/display.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "%(source_string)s için açılan %(check_name)s"
+msgstr "%(user)s, %(source)s için %(check)s sesini açtı"
 
 #: core/views/display.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "%(source_string)s için eklenen öneri"
+msgstr "%(user)s, %(source)s için öneri ekledi"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "%(author)s kullanıcısından gelen öneri reddedildi"
+msgstr "%(user)s, %(source)s için öneriyi reddetti"
 
 #: core/views/display.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "çevrilen %(source_string)s"
+msgstr "%(user)s, %(source)s çevirdi"
 
 #: core/views/display.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "düzenlenen %(source_string)s"
+msgstr "%(user)s, %(source)s düzenledi"
 
 #: core/views/display.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "ön çevirisi yapılan %(source_string)s"
+msgstr "%(user)s, %(source)s ön çevirisini yaptı"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "incelenen %(source_string)s"
+msgstr "%(user)s, %(source)s gözden geçirdi"
 
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s, %(source)s çalışma gerekli olarak işaretledi"
 
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
@@ -2121,14 +2121,12 @@ msgstr ""
 "olmasına rağmen"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 "Eğer localfs arka ucu kullanıyorsanız çeviri eşlemesi, arka uç URL'sinde "
-"belirtilen yol ile\n"
-"\t     birleştirilecektir"
+"belirtilen yol ile birleştirilecektir"
 
 #: templates/admin/project_fs.html:64
 msgid ""
@@ -2339,9 +2337,8 @@ msgid "Updates"
 msgstr "Güncellemeler"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Son güncelleme"
+msgstr "Son güncelleme:"
 
 #: templates/browser/index.html:96
 msgid "Translations"

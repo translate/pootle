@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-22 14:37+0000\n"
-"PO-Revision-Date: 2016-11-10 18:23+0000\n"
+"PO-Revision-Date: 2016-11-22 16:31+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1478802197.000000\n"
+"X-POOTLE-MTIME: 1479832291.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -964,7 +964,7 @@ msgstr "Zastaralé"
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:212
 #: templates/editor/_filters.html:10
 msgid "Needs work"
-msgstr "Potřebuje upravit"
+msgstr "Vyžaduje úpravy"
 
 #: apps/pootle_store/constants.py:68 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
@@ -1005,7 +1005,7 @@ msgstr "Hodnota ‚mt_similarity‘ by měla být v rozsahu [0..1]"
 
 #: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
-msgstr "Musí být zrušeno označení Potřebuje upravit"
+msgstr "Musí být zrušeno označení Vyžaduje úpravy"
 
 # poznámky vývojáře
 #: apps/pootle_store/forms.py:350
@@ -1704,64 +1704,64 @@ msgid "Can perform administrative tasks"
 msgstr "Může provádět administrativní úlohy"
 
 #: core/views/display.py:84 core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "smazal překlad pro %(source_string)s"
+msgstr "%(user)s smazal překlad pro %(source)s"
 
 #: core/views/display.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Přijal návrh uživatele %(author)s"
+msgstr "%(user)s přijal návrh pro %(source)s"
 
 #: core/views/display.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s nahrál soubor"
 
 #: core/views/display.py:90
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "zakázal kontrolu %(check_name)s pro %(source_string)s"
+msgstr "zakázal kontrolu %(check)s pro %(source)s"
 
 #: core/views/display.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "povolil kontrolu %(check_name)s pro %(source_string)s"
+msgstr "povolil kontrolu %(check)s pro %(source)s"
 
 #: core/views/display.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "přidal návrh pro %(source_string)s"
+msgstr "%(user)s přidal návrh pro %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Zamítl návrh uživatele %(author)s"
+msgstr "%(user)s zamítl návrh pro %(source)s"
 
 #: core/views/display.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "přeložil %(source_string)s"
+msgstr "%(user)s přeložil %(source)s"
 
 #: core/views/display.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "upravil %(source_string)s"
+msgstr "%(user)s upravil %(source)s"
 
 #: core/views/display.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "předběžně přeložil %(source_string)s"
+msgstr "%(user)s předběžně přeložil %(source)s"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "zkontroloval %(source_string)s"
+msgstr "%(user)s zkontroloval %(source)s"
 
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s označil %(source)s jako vyžadující úpravy"
 
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
@@ -2111,14 +2111,12 @@ msgstr ""
 "musí být ukončena `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 "Pokud používáte back-end localfs, bude přiřazení překladu zkombinováno s "
-"cestou nastavenou v\n"
-"\tadrese back-endu"
+"cestou nastavenou v adrese back-endu"
 
 #: templates/admin/project_fs.html:64
 msgid ""
@@ -2333,9 +2331,8 @@ msgid "Updates"
 msgstr "Aktualizace"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Naposledy aktualizováno"
+msgstr "Naposledy aktualizováno:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2850,7 +2847,7 @@ msgstr "Přeloženo:"
 
 #: templates/languages/admin/language_team.html:135
 msgid "Needs work:"
-msgstr "Potřebuje upravit:"
+msgstr "Vyžaduje úpravy:"
 
 #: templates/languages/admin/language_team.html:144
 msgid "Suggestion admin"

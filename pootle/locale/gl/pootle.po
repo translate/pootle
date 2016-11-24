@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-22 14:37+0000\n"
-"PO-Revision-Date: 2016-11-10 15:55+0000\n"
+"PO-Revision-Date: 2016-11-22 19:32+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1478793341.000000\n"
+"X-POOTLE-MTIME: 1479843157.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -1713,64 +1713,64 @@ msgid "Can perform administrative tasks"
 msgstr "Pode realizar tarefas de administración"
 
 #: core/views/display.py:84 core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "eliminou a tradución de %(source_string)s"
+msgstr "%(user)s eliminou a tradución de %(source)s"
 
 #: core/views/display.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Aceptou unha suxestión de %(author)s"
+msgstr "%(user)s aceptou unha suxestión para %(source)s"
 
 #: core/views/display.py:88
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s enviou un ficheiro"
 
 #: core/views/display.py:90
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "desactivou %(check_name)s para %(source_string)s"
+msgstr "%(user)s desactivou %(check)s para %(source)s"
 
 #: core/views/display.py:92
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "reactivou %(check_name)s para %(source_string)s"
+msgstr "%(user)s reactivou %(check)s para %(source)s"
 
 #: core/views/display.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "enviou unha suxestión para %(source_string)s"
+msgstr "%(user)s enviou unha suxestión para %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Rexeitou unha suxestión de %(author)s"
+msgstr "%(user)s rexeitou unha suxestión para %(source)s"
 
 #: core/views/display.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "traduciu %(source_string)s"
+msgstr "%(user)s traduciu %(source)s"
 
 #: core/views/display.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "editou %(source_string)s"
+msgstr "%(user)s editou %(source)s"
 
 #: core/views/display.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "pretraduciu %(source_string)s"
+msgstr "%(user)s pretraduciu %(source)s"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "revisou %(source_string)s"
+msgstr "%(user)s revisou %(source)s"
 
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s marcou %(source)s como que precisa máis traballo"
 
 #: core/views/mixins.py:63
 msgid "You cannot access this page."
@@ -2121,7 +2121,6 @@ msgstr ""
 "ext&gt;`"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in backend URL"
@@ -2342,9 +2341,8 @@ msgid "Updates"
 msgstr "Actualizacións"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Última actualización"
+msgstr "Última actualización:"
 
 #: templates/browser/index.html:96
 msgid "Translations"

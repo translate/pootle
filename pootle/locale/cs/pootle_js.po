@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-22 14:38+0000\n"
-"PO-Revision-Date: 2016-10-20 14:51+0000\n"
+"PO-Revision-Date: 2016-11-22 16:32+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1476975098.000000\n"
+"X-POOTLE-MTIME: 1479832342.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -771,7 +771,7 @@ msgstr "%(user)s zkontroloval %(sourceString)s"
 #: static/js/shared/components/UserEvent.js:122
 #, python-format
 msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "%(user)s označil jako vyžadující úpravu %(sourceString)s"
+msgstr "%(user)s označil %(sourceString)s jako vyžadující úpravy"
 
 #: static/js/shared/models/project.js:62
 msgid "disabled"

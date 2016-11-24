@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-22 14:38+0000\n"
-"PO-Revision-Date: 2016-09-24 18:30+0000\n"
+"PO-Revision-Date: 2016-11-24 14:34+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1474741815.000000\n"
+"X-POOTLE-MTIME: 1479998054.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -115,7 +115,7 @@ msgstr "Trosolwg"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Tîm"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -198,9 +198,8 @@ msgid "Permissions"
 msgstr "Caniatâd"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "Math o ffeil"
+msgstr "Systemau Ffeiliau"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -337,21 +336,23 @@ msgid "Preview will be displayed here."
 msgstr "Bydd y rhagolwg yn cael ei ddangos yma."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
-msgstr "Rydym wedi anfon e-bost sy'n cynnwys dolen arbennig at <span>%s</span>"
+msgstr ""
+"Rydym wedi anfon e-bost sy'n cynnwys dolen arbennig at <span>%s</span>. "
+"Gwiriwch eich ffolder sbam os nad ydych yn gweld yr e-bost."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
 "Rydym wedi anfon e-bost yn cynnwys dolen arbennig at y cyfeiriad defnyddiwyd "
-"i gofrestru'r cyfrif hwn."
+"i gofrestru'r cyfrif hwn. Gwiriwch eich ffolder sbam os nad ydych yn gweld "
+"yr e-bost. "
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -564,7 +565,7 @@ msgstr "Y Project Cyfan"
 
 #: static/js/common.js:141
 msgid "Updating data"
-msgstr ""
+msgstr "Diweddaru data"
 
 #: static/js/editor/app.js:306 static/js/editor/app.js:625
 msgid ""
@@ -876,16 +877,17 @@ msgid "Creating new user accounts is prohibited."
 msgstr "Mae creu cyfrifon defnyddwyr newydd wedi ei wahardd."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Rydym wedi darganfod defnyddiwr gydag e-bost <span>%s</span> yn ein system. "
-"Rhowch y cyfrinair i orffen y drefn mewngofnodi. Mae hyn yn drefn unwaith ac "
-"am byth, a bydd yn sefydlu cysylltiad rhwng eich cyfrifon Pootle a %s."
+"Rydym wedi darganfod defnyddiwr gydag e-bost span>%(email)s</span>  yn ein "
+"system. Rhowch y cyfrinair i orffen y drefn mewngofnodi. Mae hyn yn drefn "
+"unwaith ac am byth, a bydd yn sefydlu cysylltiad rhwng eich cyfrifon Pootle "
+"a %(provider)s."
 
 #: static/js/editor/app.js:617
 msgid "No results."
