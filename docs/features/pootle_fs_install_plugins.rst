@@ -18,7 +18,7 @@ examples for Git:
 
   .. code-block:: console
 
-    (env) $ pip install Pootle[git]
+    (env) $ pip install --process-dependency-links --pre Pootle[git]
 
 
 - Add the plugin to :setting:`INSTALLED_APPS`:
