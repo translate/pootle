@@ -41,7 +41,7 @@ $(function() {
 	    <input type="submit" class="btn" value="{% trans 'Update filesystem configuration' %}" />
 	  </div>
 	  <p>
-	    {% trans "Translation mapping should be of the format:" %}
+	    {% trans "Translation path mapping should be of the format:" %}
 	    <blockquote class="centered">
 	      <code>
 		`/path/to/translation/files/&lt;language_code&gt;/&lt;dir_path&gt;/&lt;filename&gt;.&lt;ext&gt;`
@@ -56,14 +56,14 @@ $(function() {
 	  </p>
 	  <p>
 	    {% blocktrans trimmed %}
-	    If you are using the localfs backend the translation mapping will be
-	    combined with the path specified in backend URL
+	    If you are using the localfs backend the translation patj mapping will
+	    be combined with the path specified in backend URL
 	    {% endblocktrans %}
 	  </p>
 	  <p>
 	    {% blocktrans trimmed %}
-	    For other backends the translation mapping will be relative to the root
-	    of the repository.
+	    For other backends the translation path mapping will be relative to the
+	    root of the repository.
 	    {% endblocktrans %}
 	  </p>
 	</form>
