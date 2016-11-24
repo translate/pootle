@@ -12,6 +12,7 @@ from django.db.models import Sum
 
 from pootle.core.delegate import data_tool, revision
 from pootle_app.models import Directory
+from pootle_data.apps import PootleDataConfig
 from pootle_data.models import StoreChecksData, StoreData, TPChecksData
 from pootle_data.store_data import StoreDataTool
 from pootle_data.utils import DataTool
@@ -221,48 +222,60 @@ def test_data_project_stats(project0):
 @pytest.mark.django_db
 def test_data_cache_keys(language0, project0, subdir0, vfolder0):
     # language
+    assert language0.data_tool.ns == "pootle.data"
     assert (
-        'pootle_data.%s.%s.%s'
-        % (language0.data_tool.cache_key_name,
+        '%s.%s.%s.%s'
+        % (PootleDataConfig.version,
+           language0.data_tool.cache_key_name,
            language0.code,
            revision.get(Language)(language0).get(key="stats"))
         == language0.data_tool.cache_key)
     # project
+    assert project0.data_tool.ns == "pootle.data"
     assert (
-        'pootle_data.%s.%s.%s'
-        % (project0.data_tool.cache_key_name,
+        '%s.%s.%s.%s'
+        % (PootleDataConfig.version,
+           project0.data_tool.cache_key_name,
            project0.code,
            revision.get(Project)(project0).get(key="stats"))
         == project0.data_tool.cache_key)
     # directory
+    assert subdir0.data_tool.ns == "pootle.data"
     assert (
-        'pootle_data.%s.%s.%s'
-        % (subdir0.data_tool.cache_key_name,
+        '%s.%s.%s.%s'
+        % (PootleDataConfig.version,
+           subdir0.data_tool.cache_key_name,
            subdir0.pootle_path,
            revision.get(Directory)(subdir0).get(key="stats"))
         == subdir0.data_tool.cache_key)
     # projectresource
     resource_path = "%s%s" % (project0.pootle_path, subdir0.path)
     projectresource = ProjectResource(Directory.objects.none(), resource_path)
+    assert projectresource.data_tool.ns == "pootle.data"
     assert (
-        'pootle_data.%s.%s.%s'
-        % (projectresource.data_tool.cache_key_name,
+        '%s.%s.%s.%s'
+        % (PootleDataConfig.version,
+           projectresource.data_tool.cache_key_name,
            resource_path,
            revision.get(ProjectResource)(projectresource).get(key="stats"))
         == projectresource.data_tool.cache_key)
     # projectset
     projectset = ProjectSet(Project.objects.all())
+    assert projectset.data_tool.ns == "pootle.data"
     assert (
-        'pootle_data.%s.%s.%s'
-        % (projectset.data_tool.cache_key_name,
+        '%s.%s.%s.%s'
+        % (PootleDataConfig.version,
+           projectset.data_tool.cache_key_name,
            "ALL",
            revision.get(ProjectSet)(projectset).get(key="stats"))
         == projectset.data_tool.cache_key)
     # vfolders
     vfdata = vfolders_data_tool.get(Directory)(subdir0)
+    assert vfdata.ns == "virtualfolder"
     assert (
-        'pootle_data.%s.%s.%s'
-        % (vfdata.cache_key_name,
+        '%s.%s.%s.%s'
+        % (PootleDataConfig.version,
+           vfdata.cache_key_name,
            subdir0.pootle_path,
            revision.get(subdir0.__class__)(subdir0).get(key="stats"))
         == vfdata.cache_key)
