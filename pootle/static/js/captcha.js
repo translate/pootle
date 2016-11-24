@@ -48,6 +48,8 @@ function onSubmit(e) {
 
 
 function display(html) {
+  // we need to remove existing handlers which can exist after wrong captcha input
+  $(document).off('submit', '#js-captcha');
   $(document).on('submit', '#js-captcha', onSubmit);
 
   $.magnificPopup.open({
