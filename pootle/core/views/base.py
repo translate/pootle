@@ -26,6 +26,8 @@ class PootleDetailView(GatherContextMixin, DetailView):
     browse_url_path = ""
     resource_path = ""
     view_name = ""
+    sw_version = 0
+    ns = "pootle.core"
 
     @property
     def browse_url(self):
@@ -36,8 +38,9 @@ class PootleDetailView(GatherContextMixin, DetailView):
     @property
     def cache_key(self):
         return (
-            "%s.%s.%s.%s"
-            % (self.page_name,
+            "%s.%s.%s.%s.%s"
+            % (self.sw_version,
+               self.page_name,
                self.view_name,
                self.object.data_tool.cache_key,
                self.request_lang))
