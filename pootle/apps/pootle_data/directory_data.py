@@ -31,9 +31,11 @@ class DirectoryDataTool(RelatedStoresDataTool):
             return self.all_stat_data.aggregate(rev=Max("max_unit_revision"))["rev"]
 
     def filter_data(self, qs):
-        return qs.filter(
-            store__translation_project=self.context.translation_project,
-            store__parent__tp_path__startswith=self.context.tp_path)
+        return (
+            qs.filter(
+                store__translation_project=self.context.translation_project,
+                store__parent__tp_path__startswith=self.context.tp_path)
+              .exclude(store__parent=self.context))
 
     def get_children_stats(self, qs):
         children = {}
@@ -50,12 +52,6 @@ class DirectoryDataTool(RelatedStoresDataTool):
         self.add_submission_info(self.stat_data, children)
         self.add_last_created_info(child_stores, children)
         return children
-
-    @property
-    def child_stats_qs(self):
-        return super(
-            DirectoryDataTool,
-            self).child_stats_qs.exclude(store__parent=self.context)
 
     def get_root_child_path(self, child):
         return (
