@@ -296,10 +296,12 @@ def test_data_language_stats(language0, request_users):
 
 @pytest.mark.django_db
 def test_data_directory_stats(subdir0):
+    filtered_units = Unit.objects.live().filter(
+        store__pootle_path__startswith=subdir0.pootle_path)
+    filtered_units = filtered_units.exclude(store__parent=subdir0)
     _test_object_stats(
         subdir0.data_tool.get_stats(include_children=False),
-        Unit.objects.live().filter(
-            store__pootle_path__startswith=subdir0.pootle_path))
+        filtered_units)
     # get the child stores
     _test_children_stats(
         subdir0.data_tool.get_stats(),
@@ -362,11 +364,12 @@ def test_data_tool_project_get_checks(project0):
 
 @pytest.mark.django_db
 def test_data_tool_directory_get_checks(subdir0):
+    expected = StoreChecksData.objects.filter(
+        store__pootle_path__startswith=subdir0.pootle_path)
+    expected = expected.exclude(store__parent=subdir0)
     assert (
         subdir0.data_tool.get_checks()
-        == _calculate_check_data(
-            StoreChecksData.objects.filter(
-                store__pootle_path__startswith=subdir0.pootle_path)))
+        == _calculate_check_data(expected))
 
 
 @pytest.mark.django_db
