@@ -122,7 +122,7 @@ class VFoldersDataView(object):
     _table_fields = (
         'name', 'progress', 'activity',
         'total', 'need-translation',
-        'suggestions', 'critical')
+        'suggestions', 'critical', 'priority')
 
     def __init__(self, context, user, has_admin_access=False):
         self.context = context
