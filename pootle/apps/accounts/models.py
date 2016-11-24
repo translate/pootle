@@ -449,6 +449,6 @@ class User(AbstractBaseUser):
         """Returns the latest submission linked with this user. If there's
         no activity, `None` is returned instead.
         """
-        return ActionDisplay(
-            Submission.objects.filter(
-                submitter=self).last().get_submission_info())
+        last_event = Submission.objects.filter(submitter=self).last()
+        if last_event:
+            return ActionDisplay(last_event.get_submission_info())
