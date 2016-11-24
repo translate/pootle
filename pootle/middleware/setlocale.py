@@ -12,9 +12,10 @@ import os
 
 from django.conf import settings
 from django.utils import translation
+from django.utils.deprecation import MiddlewareMixin
 
 
-class SetLocale(object):
+class SetLocale(MiddlewareMixin):
     """Sets python locale for each request."""
 
     def process_request(self, request):

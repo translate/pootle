@@ -7,9 +7,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.utils.cache import add_never_cache_headers
+from django.utils.deprecation import MiddlewareMixin
 
 
-class CacheAnonymousOnly(object):
+class CacheAnonymousOnly(MiddlewareMixin):
     """Imitate the deprecated `CACHE_MIDDLEWARE_ANONYMOUS_ONLY` behavior."""
 
     def process_response(self, request, response):

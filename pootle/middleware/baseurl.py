@@ -7,9 +7,10 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.conf import settings
+from django.utils.deprecation import MiddlewareMixin
 
 
-class BaseUrlMiddleware(object):
+class BaseUrlMiddleware(MiddlewareMixin):
     def process_request(self, request):
         """calculate settings.BASEURL based on HTTP headers"""
         domain = None

@@ -12,6 +12,7 @@ from django.conf import settings
 from django.http import Http404
 from django.shortcuts import render
 from django.urls import resolve
+from django.utils.deprecation import MiddlewareMixin
 
 from pootle.core.forms import MathCaptchaForm
 
@@ -28,7 +29,7 @@ CAPTCHA_EXEMPT_URLPATTERNS = (
 )
 
 
-class CaptchaMiddleware(object):
+class CaptchaMiddleware(MiddlewareMixin):
     """Middleware to display a captcha question to verify POST submissions
     are made by humans.
     """

@@ -15,6 +15,7 @@ from django.core.mail import mail_admins
 from django.http import Http404, HttpResponseForbidden, HttpResponseServerError
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_unicode
 
 try:
@@ -89,7 +90,7 @@ def handle_exception(request, exception, template_name):
         pass
 
 
-class ErrorPagesMiddleware(object):
+class ErrorPagesMiddleware(MiddlewareMixin):
     """Friendlier error pages."""
 
     def process_exception(self, request, exception):

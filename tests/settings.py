@@ -24,7 +24,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'pytest_pootle', 'data', 'po')
 
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     #: Resolves paths
     'pootle.middleware.baseurl.BaseUrlMiddleware',
     #: Must be as high as possible (see above)
