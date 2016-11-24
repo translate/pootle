@@ -174,17 +174,20 @@ class persistent_property(object):
     `always_cache` to False in the decorator.
     """
 
-    def __init__(self, func, name=None, key_attr=None, always_cache=True):
+    def __init__(self, func, name=None, key_attr=None, always_cache=True,
+                 ns_attr=None):
         self.func = func
         self.__doc__ = getattr(func, '__doc__')
         self.name = name or func.__name__
+        self.ns_attr = ns_attr or "ns"
         self.key_attr = key_attr or "cache_key"
         self.always_cache = always_cache
 
     def _get_cache_key(self, instance):
+        ns = getattr(instance, self.ns_attr, "pootle.core")
         cache_key = getattr(instance, self.key_attr, None)
         if cache_key:
-            return "%s/%s" % (cache_key, self.name)
+            return "%s.%s.%s" % (ns, cache_key, self.name)
 
     def __get__(self, instance, cls=None):
         if instance is None:
