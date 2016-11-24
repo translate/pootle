@@ -28,6 +28,7 @@ from pootle_app.views.admin.permissions import admin_permissions as admin_perms
 from pootle_language.models import Language
 from pootle_store.models import Store
 
+from .apps import PootleTPConfig
 from .models import TranslationProject
 
 
@@ -119,6 +120,9 @@ class TPMixin(object):
 
     The context object may be a resource with the TP, ie a Directory or Store.
     """
+
+    ns = "pootle.tp"
+    sw_version = PootleTPConfig.version
 
     @redirect_to_tp_on_404
     def dispatch(self, request, *args, **kwargs):
