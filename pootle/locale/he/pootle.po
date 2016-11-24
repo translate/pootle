@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-22 14:37+0000\n"
+"POT-Creation-Date: 2016-11-24 16:54+0000\n"
 "PO-Revision-Date: 2016-07-20 14:24+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,103 +39,103 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr "נראה כי המשתמש שלך נעלם. נא לדווח על כך לבעלי האתר."
 
-#: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:64 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "שם משתמש"
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "נדרש. 30 תווים או פחות. אותיות לטיניות, ספרות והסימנים @/./+/-/_"
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:69
 msgid "Enter a valid username."
 msgstr "נא להזין שם משתמש תקין."
 
-#: apps/accounts/models.py:72
+#: apps/accounts/models.py:73
 msgid "Email Address"
 msgstr "כתובת דוא״ל"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:92
+#: apps/accounts/models.py:74 apps/pootle_language/models.py:92
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "שם מלא"
 
-#: apps/accounts/models.py:76 apps/staticpages/models.py:31
+#: apps/accounts/models.py:77 apps/staticpages/models.py:31
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "פעיל"
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:83
 #, fuzzy
 msgid "Superuser Status"
 msgstr "מצב משתמש על"
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:86
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:89
 msgid "date joined"
 msgstr "מועד ההצטרפות"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:93
 msgid "Number of Rows"
 msgstr "מספר השורות"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:97
 msgid "Alternative Source Languages"
 msgstr "שפות מקור חלופית"
 
-#: apps/accounts/models.py:99 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:100 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr ""
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Review Rate"
 msgstr ""
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:102
 msgid "Hourly Rate"
 msgstr ""
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:103
 msgid "Score"
 msgstr ""
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:104
 msgid "Currency"
 msgstr "מטבע"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:106
 msgid "Is employee?"
 msgstr "עובד?"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:107
 msgid "Twitter"
 msgstr ""
 
-#: apps/accounts/models.py:108
+#: apps/accounts/models.py:109
 msgid "Website"
 msgstr "אתר"
 
-#: apps/accounts/models.py:109
+#: apps/accounts/models.py:110
 msgid "LinkedIn"
 msgstr ""
 
-#: apps/accounts/models.py:110
+#: apps/accounts/models.py:111
 msgid "Short Bio"
 msgstr "קורות חיים בקיצור"
 
-#: apps/accounts/models.py:361
+#: apps/accounts/models.py:365
 #, fuzzy
 msgid "This email address already exists."
 msgstr "מונח זה כבר קיים בקובץ זה."
@@ -296,7 +296,7 @@ msgstr "שלילת הרשאות"
 msgid "No files in this project."
 msgstr "אין קבצים במיזם זה."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:167
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:166
 msgid "There are errors in the form. Please review the problems below."
 msgstr "יש טעויות בטופס. נא לסקור את הבעיות להלן."
 
@@ -339,8 +339,9 @@ msgid "Filesystem backend"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:36
-msgid "Select a backend filesystem"
-msgstr ""
+#, fuzzy
+msgid "Select a filesystem backend"
+msgstr "בחר קובץ להעלאה"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -351,8 +352,24 @@ msgid "The URL or path to your translation files"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:52
-msgid "The translation mapping for your filesystem"
+#, fuzzy
+msgid "Translation path mapping"
+msgstr "הגדרות תרגום"
+
+#: apps/pootle_fs/forms.py:53
+msgid ""
+"Translation path mapping that maps the localisation files on the filesystem "
+"to stores on Pootle."
 msgstr ""
+
+#: apps/pootle_fs/forms.py:177
+msgid "Filesystem language codes must be unique"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:181
+#, fuzzy
+msgid "Pootle language mappings must be unique"
+msgstr "דף ניהול שפות ה־Pootle"
 
 #: apps/pootle_language/forms.py:27
 #, fuzzy
@@ -376,8 +393,8 @@ msgstr "ניהול"
 
 #: apps/pootle_language/forms.py:69
 #, fuzzy
-msgid "Admins"
-msgstr "מנהל"
+msgid "Administrators"
+msgstr "ניהול"
 
 #: apps/pootle_language/forms.py:75
 #, fuzzy
@@ -394,15 +411,28 @@ msgstr "הגשה"
 msgid "Members"
 msgstr "מספרים"
 
-#: apps/pootle_language/forms.py:151 core/forms.py:184
+#: apps/pootle_language/forms.py:89
+#, fuzzy
+msgid "New member"
+msgstr "מספרים"
+
+#: apps/pootle_language/forms.py:90
+msgid "Add a user to this team"
+msgstr ""
+
+#: apps/pootle_language/forms.py:127
+msgid "Role is required when adding a new member"
+msgstr ""
+
+#: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
 msgstr "דחיה"
 
-#: apps/pootle_language/forms.py:152 core/forms.py:185
+#: apps/pootle_language/forms.py:154 core/forms.py:185
 msgid "Accept"
 msgstr "קבלה"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "מיזם"
@@ -500,7 +530,7 @@ msgstr "דחיית ההצעה"
 msgid "Accepted %s suggestions"
 msgstr "קבלת ההצעה"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:54
+#: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
 msgstr "משמעותי"
 
@@ -948,14 +978,14 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_project/views.py:254
+#: apps/pootle_project/views.py:253
 #, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr "מיזם התרגום עודכן כנגד התבניות העדכניות ביותר."
 
-#: apps/pootle_project/views.py:261
+#: apps/pootle_project/views.py:260
 #, fuzzy, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "קובצי מיזם התרגום נסרקו מחדש."
@@ -995,7 +1025,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "ההרשאות אינן מספיקות לצורך מיזם תרגום זה."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "אין די הרשאות לגישה לעמוד זה."
@@ -1084,28 +1114,28 @@ msgstr "הצעות שהתקבלו"
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
 msgid "Path too long."
 msgstr "הנתיב ארוך מדי."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:106
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "הארגומנטים חסרים."
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "הסרת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:270
 msgid "Comment submission failed."
 msgstr "הגשת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:563
+#: apps/pootle_store/views.py:606
 msgid "Failed to process submission."
 msgstr "ההגשה נכשלה."
 
-#: apps/pootle_store/views.py:604
+#: apps/pootle_store/views.py:648
 msgid "Failed to process suggestion."
 msgstr "עיבוד ההצעה נכשל."
 
@@ -1583,33 +1613,33 @@ msgstr ""
 msgid "Progress"
 msgstr "התקדמות"
 
-#. Translators: Heading representing the total number of words of a file
-#. or directory
-#: core/browser.py:44 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
-msgid "Total"
-msgstr "סך הכול"
-
-#: core/browser.py:49
-msgid "Last updated"
-msgstr "מועד עדכון אחרון"
+#: core/browser.py:42
+msgid "Last Activity"
+msgstr "פעילות אחרונה"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:28
+#: core/browser.py:53 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "הצעות"
 
-#: core/browser.py:65 templates/browser/_actions.html:43
+#: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "לא שלם"
 
+#. Translators: Heading representing the total number of words of a file
+#. or directory
+#: core/browser.py:65 core/utils/stats.py:27
+#: templates/admin/detailed_reports.html:319
+msgid "Total"
+msgstr "סך הכול"
+
 #: core/browser.py:70
-msgid "Last Activity"
-msgstr "פעילות אחרונה"
+msgid "Last updated"
+msgstr "מועד עדכון אחרון"
 
 #: core/browser.py:119
 msgid "Back to language"
@@ -1649,15 +1679,15 @@ msgid "Add comment"
 msgstr "הוספת הערה"
 
 #: core/forms.py:193
-msgid "Select all matching filter criteria, including those not shown"
+msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 
-#: core/forms.py:210
+#: core/forms.py:211
 msgid "You must specify an action to take"
 msgstr ""
 
 #: core/forms.py:212
-msgid "FormtableForm must specify a valid search_field"
+msgid "A valid search field must be specified"
 msgstr ""
 
 #: core/initdb.py:136
@@ -1684,76 +1714,76 @@ msgstr "יכולת להציע הצעות"
 msgid "Can perform administrative tasks"
 msgstr "יכולת לבצע פעולות ניהוליות"
 
-#: core/views/display.py:84 core/views/display.py:105
+#: core/views/display.py:94 core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "תרגום המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> הוסר"
 
-#: core/views/display.py:86
+#: core/views/display.py:96
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "קבלת ההצעה"
 
-#: core/views/display.py:88
+#: core/views/display.py:98
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "הועלה קובץ"
 
-#: core/views/display.py:90
+#: core/views/display.py:100
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:92
+#: core/views/display.py:102
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:94
+#: core/views/display.py:104
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "יובאה הצעה אחת מ־%(store)s"
 
-#: core/views/display.py:96
+#: core/views/display.py:106
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "דחיית ההצעה"
 
-#: core/views/display.py:99
+#: core/views/display.py:109
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "מילים שחובה לתרגם"
 
-#: core/views/display.py:101
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:103
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:107
+#: core/views/display.py:117
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:109
+#: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
 
-#: core/views/mixins.py:63
+#: core/views/mixins.py:66
 msgid "You cannot access this page."
 msgstr "אין לך גישה לעמוד זה."
 
-#: middleware/errorpages.py:80
+#: middleware/errorpages.py:81
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr "שגיאה בעת הגישה ל־%(filename)s, מערכת הקבצים שלחה שגיאה: %(errormsg)s"
 
-#: middleware/errorpages.py:116
+#: middleware/errorpages.py:117
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2120,6 +2150,11 @@ msgstr "הדמית Pootle"
 msgid "Filesystem code"
 msgstr ""
 
+#: templates/admin/project_fs.html:90
+#: templates/admin/staticpages/page_create.html:4
+msgid "Add"
+msgstr "הוספה"
+
 #: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
@@ -2212,10 +2247,6 @@ msgstr "הצג"
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
 msgstr "אין עמודים עדיין."
-
-#: templates/admin/staticpages/page_create.html:4
-msgid "Add"
-msgstr "הוספה"
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
@@ -2364,11 +2395,11 @@ msgid "Top contributors:"
 msgstr "התורמים המובילים"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
-#: templates/core/xhr_captcha.html:8
+#: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
 msgstr "לא רובוט?"
 
-#: templates/core/xhr_captcha.html:9
+#: templates/core/xhr_captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
@@ -2376,11 +2407,11 @@ msgstr ""
 "כדי להגן על השרת מפני מתקפות עלינו לוודא שההגשות מתבצעות על ידי אנשים בשר "
 "ודם."
 
-#: templates/core/xhr_captcha.html:10
+#: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
 msgstr "נא לענות על השאלה הבאה:"
 
-#: templates/core/xhr_captcha.html:13
+#: templates/core/xhr_captcha.html:19
 msgid "Confirm"
 msgstr "אישור"
 
@@ -2518,7 +2549,7 @@ msgid "Report a problem with this string"
 msgstr "דיווח על בעיה במחרוזת המקור"
 
 #: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
-#: templates/editor/units/edit.html:277
+#: templates/editor/units/edit.html:245
 msgid "Submit"
 msgstr "הגשה"
 
@@ -2564,77 +2595,38 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "נסקר ע״י <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr "הוספת RLM (Right-To-Left Mark)‎ לעורך (חיוני לעברית)"
+#, python-format
+msgid ""
+"Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
+msgstr ""
 
-#: templates/editor/units/edit.html:229
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr "הוספת LRM (Left-To-Right Mark)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:232
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr "הוספת RLE (Right-To-Left Embedding)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:235
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr "הוספת LRE (Left-To-Right Embedding)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:238
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr "הוספת ‎RLO (Right-To-Left Override)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:241
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr "הוספת ‎LRO (Left-To-Right Override)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:244
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr "הוספת PDF (Pop Directional Format )‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:247
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr "הוספת ZWJ (Zero Width Joiner)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:250
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr "הוספת ZWNJ (Zero Width Non Joiner)‎ לעורך (חיוני לעברית)"
-
-#: templates/editor/units/edit.html:257
-msgid "Insert this symbol into the editor"
-msgstr "הוספת סמל זה לעורך"
-
-#: templates/editor/units/edit.html:261
-#, fuzzy
-msgid "Insert space symbol into the editor"
-msgstr "הוספת סמל זה לעורך"
-
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:264
 msgid "User suggestions"
 msgstr "הצעות משתמשים"
 
-#: templates/editor/units/edit.html:313
+#: templates/editor/units/edit.html:281
 #, fuzzy
 msgid "More options"
 msgstr "שנה אפשרויות"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:283
 #, fuzzy
 msgid "Less options"
 msgstr "שנה אפשרויות"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:288
 msgid "Accept suggestion"
 msgstr "קבלת ההצעה"
 
-#: templates/editor/units/edit.html:325
+#: templates/editor/units/edit.html:293
 msgid "Reject suggestion"
 msgstr "דחיית ההצעה"
 
-#: templates/editor/units/edit.html:331
+#: templates/editor/units/edit.html:299
 msgid "Remove suggestion"
 msgstr "מחיקת ההצעה"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:311
 msgid "A long time ago"
 msgstr ""
 
@@ -3065,27 +3057,27 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "פעילות אחרונה"
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:81
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:87
+#: templates/user/profile.html:90
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:97
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:99
+#: templates/user/profile.html:102
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3155,6 +3147,44 @@ msgstr "פעולת הקצאה"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "התורמים המובילים"
+
+#, fuzzy
+#~ msgid "Admins"
+#~ msgstr "מנהל"
+
+#~ msgid "Insert RLM (Right-To-Left Mark) into the editor"
+#~ msgstr "הוספת RLM (Right-To-Left Mark)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert LRM (Left-To-Right Mark) into the editor"
+#~ msgstr "הוספת LRM (Left-To-Right Mark)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+#~ msgstr "הוספת RLE (Right-To-Left Embedding)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+#~ msgstr "הוספת LRE (Left-To-Right Embedding)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert RLO (Right-To-Left Override) into the editor"
+#~ msgstr "הוספת ‎RLO (Right-To-Left Override)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert LRO (Left-To-Right Override) into the editor"
+#~ msgstr "הוספת ‎LRO (Left-To-Right Override)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert PDF (Pop Directional Format ) into the editor"
+#~ msgstr "הוספת PDF (Pop Directional Format )‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+#~ msgstr "הוספת ZWJ (Zero Width Joiner)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+#~ msgstr "הוספת ZWNJ (Zero Width Non Joiner)‎ לעורך (חיוני לעברית)"
+
+#~ msgid "Insert this symbol into the editor"
+#~ msgstr "הוספת סמל זה לעורך"
+
+#, fuzzy
+#~ msgid "Insert space symbol into the editor"
+#~ msgstr "הוספת סמל זה לעורך"
 
 #~ msgid "User missing"
 #~ msgstr "המשתמש חסר"
@@ -3442,9 +3472,6 @@ msgstr "התורמים המובילים"
 
 #~ msgid "Profile"
 #~ msgstr "פרופיל"
-
-#~ msgid "Translation Settings"
-#~ msgstr "הגדרות תרגום"
 
 #~ msgid "Password Changed"
 #~ msgstr "הססמה הוחלפה"
@@ -5129,9 +5156,6 @@ msgstr "התורמים המובילים"
 #~ msgid "Home Page"
 #~ msgstr "דף הבית"
 
-#~ msgid "Pootle Languages Admin Page"
-#~ msgstr "דף ניהול שפות ה־Pootle"
-
 #~ msgid "Main admin page"
 #~ msgstr "דף הניהול הראשי"
 
@@ -5315,9 +5339,6 @@ msgstr "התורמים המובילים"
 
 #~ msgid "Add Goal"
 #~ msgstr "הוסף מטרה"
-
-#~ msgid "Select file to upload"
-#~ msgstr "בחר קובץ להעלאה"
 
 #~ msgid "Overwrite"
 #~ msgstr "שכתב"

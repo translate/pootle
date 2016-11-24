@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-22 14:37+0000\n"
+"POT-Creation-Date: 2016-11-24 16:54+0000\n"
 "PO-Revision-Date: 2016-11-18 12:50+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,35 +37,35 @@ msgid ""
 msgstr ""
 "Úgy tűnik, a felhasználója eltűnt. Jelentse ezt az oldal üzemeltetőinek."
 
-#: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:64 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Legfeljebb 30 karakter szükséges. Betűk, számok és @/./+/-/_ karakterek"
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:69
 msgid "Enter a valid username."
 msgstr "Adjon meg egy érvényes felhasználónevet."
 
-#: apps/accounts/models.py:72
+#: apps/accounts/models.py:73
 msgid "Email Address"
 msgstr "E-mail cím"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:92
+#: apps/accounts/models.py:74 apps/pootle_language/models.py:92
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Teljes név"
 
-#: apps/accounts/models.py:76 apps/staticpages/models.py:31
+#: apps/accounts/models.py:77 apps/staticpages/models.py:31
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Aktív"
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -73,11 +73,11 @@ msgstr ""
 "Megadja, hogy ez a felhasználó aktívként kezelendő-e. Törölje ezt a "
 "négyzetet a fiókok törlése helyett."
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:83
 msgid "Superuser Status"
 msgstr "Adminisztrátor állapot"
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:86
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -85,59 +85,59 @@ msgstr ""
 "Megadja, hogy ez a felhasználó rendelkezik-e minden jogosultsággal a "
 "kifejezett hozzárendelésük nélkül is."
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:89
 msgid "date joined"
 msgstr "csatlakozás dátuma"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:93
 msgid "Number of Rows"
 msgstr "Sorok száma"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:97
 msgid "Alternative Source Languages"
 msgstr "Alternatív forrásnyelvek"
 
-#: apps/accounts/models.py:99 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:100 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Díj"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Review Rate"
 msgstr "Lektorálási díj"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:102
 msgid "Hourly Rate"
 msgstr "Óránkénti díj"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:103
 msgid "Score"
 msgstr "Pontszám"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:104
 msgid "Currency"
 msgstr "Pénznem"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:106
 msgid "Is employee?"
 msgstr "Alkalmazott?"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:107
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:108
+#: apps/accounts/models.py:109
 msgid "Website"
 msgstr "Weboldal"
 
-#: apps/accounts/models.py:109
+#: apps/accounts/models.py:110
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:110
+#: apps/accounts/models.py:111
 msgid "Short Bio"
 msgstr "Rövid bemutatkozás"
 
-#: apps/accounts/models.py:361
+#: apps/accounts/models.py:365
 msgid "This email address already exists."
 msgstr "Ez az e-mail cím már létezik."
 
@@ -293,7 +293,7 @@ msgstr "Jogosultságok visszavonása"
 msgid "No files in this project."
 msgstr "Nincs fájl ebben a projektben."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:167
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:166
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Hiba van az űrlapon. Nézze meg az alábbiakban felsorolt problémákat."
 
@@ -334,8 +334,9 @@ msgid "Filesystem backend"
 msgstr "Fájlrendszer háttérrendszer"
 
 #: apps/pootle_fs/forms.py:36
-msgid "Select a backend filesystem"
-msgstr "Válasszon egy háttér fájlrendszert"
+#, fuzzy
+msgid "Select a filesystem backend"
+msgstr "Fájlrendszer háttérrendszer"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -346,8 +347,24 @@ msgid "The URL or path to your translation files"
 msgstr "A fordítási fájlok URL-je vagy útvonala"
 
 #: apps/pootle_fs/forms.py:52
-msgid "The translation mapping for your filesystem"
-msgstr "A fordításleképezés a fájlrendszerhez"
+#, fuzzy
+msgid "Translation path mapping"
+msgstr "Fordítási beállítások"
+
+#: apps/pootle_fs/forms.py:53
+msgid ""
+"Translation path mapping that maps the localisation files on the filesystem "
+"to stores on Pootle."
+msgstr ""
+
+#: apps/pootle_fs/forms.py:177
+msgid "Filesystem language codes must be unique"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:181
+#, fuzzy
+msgid "Pootle language mappings must be unique"
+msgstr "Pootle Nyelvek Adminisztrációs Oldal"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -366,8 +383,9 @@ msgid "Administrator"
 msgstr "Adminisztrátor"
 
 #: apps/pootle_language/forms.py:69
-msgid "Admins"
-msgstr "Adminisztrátorok"
+#, fuzzy
+msgid "Administrators"
+msgstr "Adminisztrátor"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -381,15 +399,28 @@ msgstr "Beküldők"
 msgid "Members"
 msgstr "Tagok"
 
-#: apps/pootle_language/forms.py:151 core/forms.py:184
+#: apps/pootle_language/forms.py:89
+#, fuzzy
+msgid "New member"
+msgstr "Csapattag hozzáadása"
+
+#: apps/pootle_language/forms.py:90
+msgid "Add a user to this team"
+msgstr ""
+
+#: apps/pootle_language/forms.py:127
+msgid "Role is required when adding a new member"
+msgstr ""
+
+#: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
 msgstr "Elutasítás"
 
-#: apps/pootle_language/forms.py:152 core/forms.py:185
+#: apps/pootle_language/forms.py:154 core/forms.py:185
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
@@ -486,7 +517,7 @@ msgstr "%s javaslat elutasítva"
 msgid "Accepted %s suggestions"
 msgstr "%s javaslat elfogadva"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:54
+#: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
 msgstr "Kritikus"
 
@@ -928,7 +959,7 @@ msgstr "Képernyőkép keresési előtag"
 msgid "Disabled"
 msgstr "Kikapcsolva"
 
-#: apps/pootle_project/views.py:254
+#: apps/pootle_project/views.py:253
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -937,7 +968,7 @@ msgstr ""
 "A fordítási projekt (%s) létrejött. A tárolói frissítése a fájlsablonokból "
 "folyamatban."
 
-#: apps/pootle_project/views.py:261
+#: apps/pootle_project/views.py:260
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "A fordítási projekt (%s) törölve"
@@ -976,7 +1007,7 @@ msgstr "Elégtelen jogosultságok a javaslat mód eléréséhez."
 msgid "Insufficient rights to access translation mode."
 msgstr "Elégtelen jogosultságok a fordítási mód eléréséhez."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
 msgid "Insufficient rights to access review mode."
 msgstr "Elégtelen jogosultságok a lektorálási mód eléréséhez."
 
@@ -1062,28 +1093,28 @@ msgstr "Javaslat elfogadva, megjegyzéssel"
 msgid "Suggestion rejected with comment"
 msgstr "Javaslat visszautasítva, megjegyzéssel"
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
 msgid "Path too long."
 msgstr "Az elérési út túl hosszú."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:106
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Hiányzó argumentumok."
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "Nem sikerült eltávolítani a megjegyzést."
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:270
 msgid "Comment submission failed."
 msgstr "A megjegyzés beküldése sikertelen."
 
-#: apps/pootle_store/views.py:563
+#: apps/pootle_store/views.py:606
 msgid "Failed to process submission."
 msgstr "A beküldés feldolgozása nem sikerült."
 
-#: apps/pootle_store/views.py:604
+#: apps/pootle_store/views.py:648
 msgid "Failed to process suggestion."
 msgstr "A javaslat feldolgozása nem sikerült."
 
@@ -1604,33 +1635,33 @@ msgstr ""
 msgid "Progress"
 msgstr "Állapot"
 
-#. Translators: Heading representing the total number of words of a file
-#. or directory
-#: core/browser.py:44 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
-msgid "Total"
-msgstr "Összes"
-
-#: core/browser.py:49
-msgid "Last updated"
-msgstr "Utoljára frissítve"
+#: core/browser.py:42
+msgid "Last Activity"
+msgstr "Utolsó művelet"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:28
+#: core/browser.py:53 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Javaslatok"
 
-#: core/browser.py:65 templates/browser/_actions.html:43
+#: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Befejezetlen"
 
+#. Translators: Heading representing the total number of words of a file
+#. or directory
+#: core/browser.py:65 core/utils/stats.py:27
+#: templates/admin/detailed_reports.html:319
+msgid "Total"
+msgstr "Összes"
+
 #: core/browser.py:70
-msgid "Last Activity"
-msgstr "Utolsó művelet"
+msgid "Last updated"
+msgstr "Utoljára frissítve"
 
 #: core/browser.py:119
 msgid "Back to language"
@@ -1669,17 +1700,18 @@ msgid "Add comment"
 msgstr "Megjegyzés hozzáadása"
 
 #: core/forms.py:193
-msgid "Select all matching filter criteria, including those not shown"
+#, fuzzy
+msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 "Jelölje ki az összes illeszkedő szűrőfeltételt, a nem láthatókat is beleértve"
 
-#: core/forms.py:210
+#: core/forms.py:211
 msgid "You must specify an action to take"
 msgstr "Meg kell adnia egy végrehajtandó műveletet"
 
 #: core/forms.py:212
-msgid "FormtableForm must specify a valid search_field"
-msgstr "A FormtableFormnak egy érvényes search_field értéket kell megadnia"
+msgid "A valid search field must be specified"
+msgstr ""
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1705,78 +1737,78 @@ msgstr "Lektorálhat javaslatokat"
 msgid "Can perform administrative tasks"
 msgstr "Végezhet adminisztrációs feladatokat"
 
-#: core/views/display.py:84 core/views/display.py:105
+#: core/views/display.py:94 core/views/display.py:115
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 
-#: core/views/display.py:86
+#: core/views/display.py:96
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Javaslat elfogadva tőle: %(author)s"
 
-#: core/views/display.py:88
+#: core/views/display.py:98
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr ""
 
-#: core/views/display.py:90
+#: core/views/display.py:100
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:92
+#: core/views/display.py:102
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:94
+#: core/views/display.py:104
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(count)d javaslat került importálásra, összes: %(store)s"
 
-#: core/views/display.py:96
+#: core/views/display.py:106
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Javaslat elutasítva tőle: %(author)s"
 
-#: core/views/display.py:99
+#: core/views/display.py:109
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Kötelezően fordítandó szavak"
 
-#: core/views/display.py:101
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:103
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:107
+#: core/views/display.py:117
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:109
+#: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
 
-#: core/views/mixins.py:63
+#: core/views/mixins.py:66
 msgid "You cannot access this page."
 msgstr "Nem érheti el ezt az oldalt."
 
-#: middleware/errorpages.py:80
+#: middleware/errorpages.py:81
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "A(z) %(filename)s elérése közben hiba történt, a fájlrendszer a következő "
 "hibát adta: %(errormsg)s"
 
-#: middleware/errorpages.py:116
+#: middleware/errorpages.py:117
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2147,6 +2179,11 @@ msgstr "Pootle kód"
 msgid "Filesystem code"
 msgstr "Fájlrendszer kód"
 
+#: templates/admin/project_fs.html:90
+#: templates/admin/staticpages/page_create.html:4
+msgid "Add"
+msgstr "Hozzáadás"
+
 #: templates/admin/project_fs.html:97
 msgid "Update"
 msgstr "Frissítés"
@@ -2241,10 +2278,6 @@ msgstr "nézet"
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
 msgstr "Még nincsenek oldalak."
-
-#: templates/admin/staticpages/page_create.html:4
-msgid "Add"
-msgstr "Hozzáadás"
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
@@ -2387,11 +2420,11 @@ msgid "Top contributors:"
 msgstr "Legaktívabb közreműködők:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
-#: templates/core/xhr_captcha.html:8
+#: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
 msgstr "Ön ember?"
 
-#: templates/core/xhr_captcha.html:9
+#: templates/core/xhr_captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
@@ -2399,11 +2432,11 @@ msgstr ""
 "A rendszer elleni támadások kivédése érdekében meg kell győződnünk róla, "
 "hogy emberi felhasználó használja-e a rendszert."
 
-#: templates/core/xhr_captcha.html:10
+#: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
 msgstr "Válaszoljon erre a kérdésre:"
 
-#: templates/core/xhr_captcha.html:13
+#: templates/core/xhr_captcha.html:19
 msgid "Confirm"
 msgstr "Megerősítés"
 
@@ -2542,7 +2575,7 @@ msgid "Report a problem with this string"
 msgstr "Karakterlánc-probléma bejelentése"
 
 #: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
-#: templates/editor/units/edit.html:277
+#: templates/editor/units/edit.html:245
 msgid "Submit"
 msgstr "Elküldés"
 
@@ -2588,74 +2621,36 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "lektorálta: <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr "RLM beszúrása (Jobbról balra jel) a szerkesztőbe"
+#, python-format
+msgid ""
+"Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
+msgstr ""
 
-#: templates/editor/units/edit.html:229
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr "LRM beszúrása (Balról jobbra jel) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:232
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr "RLE beszúrása (Jobbról balra beágyazás) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:235
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr "LRE beszúrása (Balról jobbra beágyazás) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:238
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr "RLO beszúrása (Jobbról balra felülbírálás) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:241
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr "LRO beszúrása (Balról jobbra felülbírálás) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:244
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr "PDF beszúrása (Pop Directional Format) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:247
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr "ZWJ beszúrása (Zero Width Joiner) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:250
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr "ZWNJ beszúrása (Zero Width Non Joiner) a szerkesztőbe"
-
-#: templates/editor/units/edit.html:257
-msgid "Insert this symbol into the editor"
-msgstr "Szimbólum beszúrása a szerkesztőbe"
-
-#: templates/editor/units/edit.html:261
-msgid "Insert space symbol into the editor"
-msgstr "Szóköz szimbólum beszúrása a szerkesztőbe"
-
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:264
 msgid "User suggestions"
 msgstr "Felhasználói javaslatok"
 
-#: templates/editor/units/edit.html:313
+#: templates/editor/units/edit.html:281
 msgid "More options"
 msgstr "Több beállítás"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:283
 msgid "Less options"
 msgstr "Kevesebb beállítás"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:288
 msgid "Accept suggestion"
 msgstr "Javaslat elfogadása"
 
-#: templates/editor/units/edit.html:325
+#: templates/editor/units/edit.html:293
 msgid "Reject suggestion"
 msgstr "Javaslat elutasítása"
 
-#: templates/editor/units/edit.html:331
+#: templates/editor/units/edit.html:299
 msgid "Remove suggestion"
 msgstr "Javaslat eltávolítása"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:311
 msgid "A long time ago"
 msgstr "Régen"
 
@@ -3086,15 +3081,15 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "Utolsó tevékenység:"
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My Website"
 msgstr "Weboldal"
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:81
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn profil"
 
-#: templates/user/profile.html:87
+#: templates/user/profile.html:90
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3102,7 +3097,7 @@ msgstr ""
 "Mutassa meg, kicsoda, mutatkozzon be<br/>és tegye érdekessé nyilvános "
 "profilját!"
 
-#: templates/user/profile.html:97
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3110,7 +3105,7 @@ msgstr ""
 "Néhány fordítást névtelen önkéntesek készítettek. Ezeket képviseli ez a "
 "speciális metafiók."
 
-#: templates/user/profile.html:99
+#: templates/user/profile.html:102
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3181,6 +3176,51 @@ msgstr "Bejelentkezés"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
+
+#~ msgid "Select a backend filesystem"
+#~ msgstr "Válasszon egy háttér fájlrendszert"
+
+#~ msgid "The translation mapping for your filesystem"
+#~ msgstr "A fordításleképezés a fájlrendszerhez"
+
+#~ msgid "Admins"
+#~ msgstr "Adminisztrátorok"
+
+#~ msgid "FormtableForm must specify a valid search_field"
+#~ msgstr "A FormtableFormnak egy érvényes search_field értéket kell megadnia"
+
+#~ msgid "Insert RLM (Right-To-Left Mark) into the editor"
+#~ msgstr "RLM beszúrása (Jobbról balra jel) a szerkesztőbe"
+
+#~ msgid "Insert LRM (Left-To-Right Mark) into the editor"
+#~ msgstr "LRM beszúrása (Balról jobbra jel) a szerkesztőbe"
+
+#~ msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+#~ msgstr "RLE beszúrása (Jobbról balra beágyazás) a szerkesztőbe"
+
+#~ msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+#~ msgstr "LRE beszúrása (Balról jobbra beágyazás) a szerkesztőbe"
+
+#~ msgid "Insert RLO (Right-To-Left Override) into the editor"
+#~ msgstr "RLO beszúrása (Jobbról balra felülbírálás) a szerkesztőbe"
+
+#~ msgid "Insert LRO (Left-To-Right Override) into the editor"
+#~ msgstr "LRO beszúrása (Balról jobbra felülbírálás) a szerkesztőbe"
+
+#~ msgid "Insert PDF (Pop Directional Format ) into the editor"
+#~ msgstr "PDF beszúrása (Pop Directional Format) a szerkesztőbe"
+
+#~ msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+#~ msgstr "ZWJ beszúrása (Zero Width Joiner) a szerkesztőbe"
+
+#~ msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+#~ msgstr "ZWNJ beszúrása (Zero Width Non Joiner) a szerkesztőbe"
+
+#~ msgid "Insert this symbol into the editor"
+#~ msgstr "Szimbólum beszúrása a szerkesztőbe"
+
+#~ msgid "Insert space symbol into the editor"
+#~ msgstr "Szóköz szimbólum beszúrása a szerkesztőbe"
 
 #~ msgid ""
 #~ "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
@@ -3524,9 +3564,6 @@ msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
 
 #~ msgid "Profile"
 #~ msgstr "Profil"
-
-#~ msgid "Translation Settings"
-#~ msgstr "Fordítási beállítások"
 
 #~ msgid "Password Changed"
 #~ msgstr "Jelszó megváltozott"
@@ -5100,9 +5137,6 @@ msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
 
 #~ msgid "Home Page"
 #~ msgstr "Honlap"
-
-#~ msgid "Pootle Languages Admin Page"
-#~ msgstr "Pootle Nyelvek Adminisztrációs Oldal"
 
 #~ msgid "Main admin page"
 #~ msgstr "Adminisztráció"

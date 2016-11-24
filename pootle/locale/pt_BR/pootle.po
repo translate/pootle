@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-22 14:37+0000\n"
+"POT-Creation-Date: 2016-11-24 16:54+0000\n"
 "PO-Revision-Date: 2016-07-20 21:28+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
@@ -41,36 +41,36 @@ msgid ""
 msgstr ""
 "Seu usuário parece que desapareceu. Relate isto aos proprietários do site."
 
-#: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:64 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Necessário. 30 caracteres ou menos. Letras, números e os seguintes "
 "caracteres @/./+/-/_"
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:69
 msgid "Enter a valid username."
 msgstr "Digite um nome de usuário válido."
 
-#: apps/accounts/models.py:72
+#: apps/accounts/models.py:73
 msgid "Email Address"
 msgstr "Endereço de e-mail"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:92
+#: apps/accounts/models.py:74 apps/pootle_language/models.py:92
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Nome completo"
 
-#: apps/accounts/models.py:76 apps/staticpages/models.py:31
+#: apps/accounts/models.py:77 apps/staticpages/models.py:31
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Ativo"
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -78,11 +78,11 @@ msgstr ""
 "Designa se este usuário deve ser tratado como ativo. Desmarque isto ao invés "
 "de excluir contas."
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:83
 msgid "Superuser Status"
 msgstr "Status de superusuário"
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:86
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -90,59 +90,59 @@ msgstr ""
 "Designa se este usuário tem todas as permissões sem atribuí-las "
 "explicitamente a ele."
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:89
 msgid "date joined"
 msgstr "data de entrada"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:93
 msgid "Number of Rows"
 msgstr "Número de linhas"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:97
 msgid "Alternative Source Languages"
 msgstr "Idioma de origem alternativo"
 
-#: apps/accounts/models.py:99 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:100 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Taxa"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Review Rate"
 msgstr "Taxa de revisão"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:102
 msgid "Hourly Rate"
 msgstr "Taxa horária"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:103
 msgid "Score"
 msgstr "Pontuação"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:104
 msgid "Currency"
 msgstr "Moeda"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:106
 msgid "Is employee?"
 msgstr "É empregado?"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:107
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:108
+#: apps/accounts/models.py:109
 msgid "Website"
 msgstr "Site"
 
-#: apps/accounts/models.py:109
+#: apps/accounts/models.py:110
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:110
+#: apps/accounts/models.py:111
 msgid "Short Bio"
 msgstr "Biografia curta"
 
-#: apps/accounts/models.py:361
+#: apps/accounts/models.py:365
 msgid "This email address already exists."
 msgstr "Este endereço de e-mail já existe."
 
@@ -299,7 +299,7 @@ msgstr "Revogar permissões"
 msgid "No files in this project."
 msgstr "Nenhum arquivo neste projeto."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:167
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:166
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Existem erros no formulário. Por favor reveja os problemas abaixo."
 
@@ -343,8 +343,9 @@ msgid "Filesystem backend"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:36
-msgid "Select a backend filesystem"
-msgstr ""
+#, fuzzy
+msgid "Select a filesystem backend"
+msgstr "Seleciona o arquivo a ser enviado"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -355,8 +356,24 @@ msgid "The URL or path to your translation files"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:52
-msgid "The translation mapping for your filesystem"
+#, fuzzy
+msgid "Translation path mapping"
+msgstr "Configurações da tradução"
+
+#: apps/pootle_fs/forms.py:53
+msgid ""
+"Translation path mapping that maps the localisation files on the filesystem "
+"to stores on Pootle."
 msgstr ""
+
+#: apps/pootle_fs/forms.py:177
+msgid "Filesystem language codes must be unique"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:181
+#, fuzzy
+msgid "Pootle language mappings must be unique"
+msgstr "Página de idiomas do Administrador do Pootle"
 
 #: apps/pootle_language/forms.py:27
 #, fuzzy
@@ -380,8 +397,8 @@ msgstr "Administração"
 
 #: apps/pootle_language/forms.py:69
 #, fuzzy
-msgid "Admins"
-msgstr "Administrador"
+msgid "Administrators"
+msgstr "Administração"
 
 #: apps/pootle_language/forms.py:75
 #, fuzzy
@@ -398,15 +415,28 @@ msgstr "Submeter"
 msgid "Members"
 msgstr "Números"
 
-#: apps/pootle_language/forms.py:151 core/forms.py:184
+#: apps/pootle_language/forms.py:89
+#, fuzzy
+msgid "New member"
+msgstr "Números"
+
+#: apps/pootle_language/forms.py:90
+msgid "Add a user to this team"
+msgstr ""
+
+#: apps/pootle_language/forms.py:127
+msgid "Role is required when adding a new member"
+msgstr ""
+
+#: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
 msgstr "Rejeitar"
 
-#: apps/pootle_language/forms.py:152 core/forms.py:185
+#: apps/pootle_language/forms.py:154 core/forms.py:185
 msgid "Accept"
 msgstr "Aceitar"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projeto"
@@ -505,7 +535,7 @@ msgstr "Rejeita a sugestão"
 msgid "Accepted %s suggestions"
 msgstr "Aceita a sugestão"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:54
+#: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
 msgstr "Crítico"
 
@@ -954,7 +984,7 @@ msgstr "Prefixo de pesquisa de captura de tela"
 msgid "Disabled"
 msgstr "Desabilitado"
 
-#: apps/pootle_project/views.py:254
+#: apps/pootle_project/views.py:253
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -963,7 +993,7 @@ msgstr ""
 "O projeto de tradução (%s) foi criado. Estamos atualizando o armazenamento a "
 "partir dos arquivos de modelo."
 
-#: apps/pootle_project/views.py:261
+#: apps/pootle_project/views.py:260
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "O projeto de tradução (%s) foi excluído"
@@ -1002,7 +1032,7 @@ msgstr "Permissões insuficientes para acessar o modo de sugestão."
 msgid "Insufficient rights to access translation mode."
 msgstr "Permissões insuficientes para acessar o modo de tradução."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
 msgid "Insufficient rights to access review mode."
 msgstr "Permissões insuficientes para acessar o modo de revisão."
 
@@ -1089,28 +1119,28 @@ msgstr "Sugestão aceita."
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
 msgid "Path too long."
 msgstr "Caminho muito longo."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:106
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Argumentos em falta."
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "Falha ao remover comentário."
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:270
 msgid "Comment submission failed."
 msgstr "Não foi possível submeter o comentário."
 
-#: apps/pootle_store/views.py:563
+#: apps/pootle_store/views.py:606
 msgid "Failed to process submission."
 msgstr "Não foi possível processar a submissão."
 
-#: apps/pootle_store/views.py:604
+#: apps/pootle_store/views.py:648
 msgid "Failed to process suggestion."
 msgstr "Não foi possível processar a sugestão."
 
@@ -1596,33 +1626,33 @@ msgstr ""
 msgid "Progress"
 msgstr "Progresso"
 
-#. Translators: Heading representing the total number of words of a file
-#. or directory
-#: core/browser.py:44 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
-msgid "Total"
-msgstr "Total"
-
-#: core/browser.py:49
-msgid "Last updated"
-msgstr "Última atualização"
+#: core/browser.py:42
+msgid "Last Activity"
+msgstr "Última atividade"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:28
+#: core/browser.py:53 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "Sugestões"
 
-#: core/browser.py:65 templates/browser/_actions.html:43
+#: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "Incompleto"
 
+#. Translators: Heading representing the total number of words of a file
+#. or directory
+#: core/browser.py:65 core/utils/stats.py:27
+#: templates/admin/detailed_reports.html:319
+msgid "Total"
+msgstr "Total"
+
 #: core/browser.py:70
-msgid "Last Activity"
-msgstr "Última atividade"
+msgid "Last updated"
+msgstr "Última atualização"
 
 #: core/browser.py:119
 msgid "Back to language"
@@ -1662,15 +1692,15 @@ msgid "Add comment"
 msgstr "Adicionar comentário"
 
 #: core/forms.py:193
-msgid "Select all matching filter criteria, including those not shown"
+msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 
-#: core/forms.py:210
+#: core/forms.py:211
 msgid "You must specify an action to take"
 msgstr ""
 
 #: core/forms.py:212
-msgid "FormtableForm must specify a valid search_field"
+msgid "A valid search field must be specified"
 msgstr ""
 
 #: core/initdb.py:136
@@ -1697,80 +1727,80 @@ msgstr "Pode revisar sugestões"
 msgid "Can perform administrative tasks"
 msgstr "Pode executar tarefas administrativas"
 
-#: core/views/display.py:84 core/views/display.py:105
+#: core/views/display.py:94 core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 "%(user)s removeu a tradução da cadeia <i><a href=\"%(url)s\">%(source)s</a></"
 "i>"
 
-#: core/views/display.py:86
+#: core/views/display.py:96
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Sugestão aceita de %(author)s"
 
-#: core/views/display.py:88
+#: core/views/display.py:98
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s enviou um arquivo"
 
-#: core/views/display.py:90
+#: core/views/display.py:100
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:92
+#: core/views/display.py:102
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:94
+#: core/views/display.py:104
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "Importada %(count)d sugestão de %(store)s"
 
-#: core/views/display.py:96
+#: core/views/display.py:106
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Sugestão rejeitada de %(author)s"
 
-#: core/views/display.py:99
+#: core/views/display.py:109
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Palavras que devem ser traduzidas"
 
-#: core/views/display.py:101
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:103
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:107
+#: core/views/display.py:117
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:109
+#: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
 
-#: core/views/mixins.py:63
+#: core/views/mixins.py:66
 msgid "You cannot access this page."
 msgstr "Você pode acessar esta página."
 
-#: middleware/errorpages.py:80
+#: middleware/errorpages.py:81
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Erro ao acessar %(filename)s, o sistema de arquivos enviou o erro: "
 "%(errormsg)s"
 
-#: middleware/errorpages.py:116
+#: middleware/errorpages.py:117
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2137,6 +2167,11 @@ msgstr "Demonstração do Pootle"
 msgid "Filesystem code"
 msgstr ""
 
+#: templates/admin/project_fs.html:90
+#: templates/admin/staticpages/page_create.html:4
+msgid "Add"
+msgstr "Adicionar"
+
 #: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
@@ -2231,10 +2266,6 @@ msgstr "visualizar"
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
 msgstr "Nenhuma página ainda."
-
-#: templates/admin/staticpages/page_create.html:4
-msgid "Add"
-msgstr "Adicionar"
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
@@ -2377,11 +2408,11 @@ msgid "Top contributors:"
 msgstr "Maiores colaboradores:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
-#: templates/core/xhr_captcha.html:8
+#: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
 msgstr "Você é humano?"
 
-#: templates/core/xhr_captcha.html:9
+#: templates/core/xhr_captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
@@ -2389,11 +2420,11 @@ msgstr ""
 "Para proteger o servidor contra ataques, nós temos de verificar se as "
 "submissões foram efetuadas por utilizadores humanos."
 
-#: templates/core/xhr_captcha.html:10
+#: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
 msgstr "Por favor responda esta questão:"
 
-#: templates/core/xhr_captcha.html:13
+#: templates/core/xhr_captcha.html:19
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -2529,7 +2560,7 @@ msgid "Report a problem with this string"
 msgstr "Relatar um problema com este texto"
 
 #: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
-#: templates/editor/units/edit.html:277
+#: templates/editor/units/edit.html:245
 msgid "Submit"
 msgstr "Submeter"
 
@@ -2575,75 +2606,36 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "revisto por <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr "Inserir MDE (Marcar da Direita-para-Esquerda) no editor"
+#, python-format
+msgid ""
+"Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
+msgstr ""
 
-#: templates/editor/units/edit.html:229
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr "Inserir MED (Marcar da Esquerda-para-Direita) no editor"
-
-#: templates/editor/units/edit.html:232
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr "Inserir IDE (Integrar da Direita-para-Esquerda) no editor"
-
-#: templates/editor/units/edit.html:235
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr "Inserir IED (Integrar da Esquerda-para-Direita) no editor"
-
-#: templates/editor/units/edit.html:238
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr "Inserir SDE (Substituir da Direita-para-Esquerda) no editor"
-
-#: templates/editor/units/edit.html:241
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr "Inserir SED (Substituir da Esquerda-para-Direita) no editor"
-
-#: templates/editor/units/edit.html:244
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr "Inserir PDF (Formato Direcional Pop) no editor"
-
-#: templates/editor/units/edit.html:247
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr "Inserir ZWJ (Unir com Largura Zero) no editor"
-
-#: templates/editor/units/edit.html:250
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr "Inserir ZWNJ (Não-Unir com Largura Zero) no editor"
-
-#: templates/editor/units/edit.html:257
-msgid "Insert this symbol into the editor"
-msgstr "Inserir este símbolo no editor"
-
-#: templates/editor/units/edit.html:261
-#, fuzzy
-msgid "Insert space symbol into the editor"
-msgstr "Inserir este símbolo no editor"
-
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:264
 msgid "User suggestions"
 msgstr "Sugestões do usuário"
 
-#: templates/editor/units/edit.html:313
+#: templates/editor/units/edit.html:281
 msgid "More options"
 msgstr "Mais opções"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:283
 msgid "Less options"
 msgstr "Menos opções"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:288
 msgid "Accept suggestion"
 msgstr "Aceita a sugestão"
 
-#: templates/editor/units/edit.html:325
+#: templates/editor/units/edit.html:293
 msgid "Reject suggestion"
 msgstr "Rejeita a sugestão"
 
-#: templates/editor/units/edit.html:331
+#: templates/editor/units/edit.html:299
 msgid "Remove suggestion"
 msgstr "Remover sugestão"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:311
 msgid "A long time ago"
 msgstr "Há muito tempo atrás"
 
@@ -3088,15 +3080,15 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "Última atividade:"
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My Website"
 msgstr "Meu site"
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:81
 msgid "My LinkedIn Profile"
 msgstr "Meu perfil no LinkedIn"
 
-#: templates/user/profile.html:87
+#: templates/user/profile.html:90
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3104,7 +3096,7 @@ msgstr ""
 "Mostre aos outros quem você é, fale sobre você<br/>e faça seu perfil público "
 "ficar bonito!"
 
-#: templates/user/profile.html:97
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3112,7 +3104,7 @@ msgstr ""
 "Algumas traduções são fornecidas por voluntários anônimos. Eles são "
 "registrados dentro desta meta-conta especial."
 
-#: templates/user/profile.html:99
+#: templates/user/profile.html:102
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3183,6 +3175,44 @@ msgstr "Entrar"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Maiores colaboradores dos últimos 30 dias"
+
+#, fuzzy
+#~ msgid "Admins"
+#~ msgstr "Administrador"
+
+#~ msgid "Insert RLM (Right-To-Left Mark) into the editor"
+#~ msgstr "Inserir MDE (Marcar da Direita-para-Esquerda) no editor"
+
+#~ msgid "Insert LRM (Left-To-Right Mark) into the editor"
+#~ msgstr "Inserir MED (Marcar da Esquerda-para-Direita) no editor"
+
+#~ msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+#~ msgstr "Inserir IDE (Integrar da Direita-para-Esquerda) no editor"
+
+#~ msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+#~ msgstr "Inserir IED (Integrar da Esquerda-para-Direita) no editor"
+
+#~ msgid "Insert RLO (Right-To-Left Override) into the editor"
+#~ msgstr "Inserir SDE (Substituir da Direita-para-Esquerda) no editor"
+
+#~ msgid "Insert LRO (Left-To-Right Override) into the editor"
+#~ msgstr "Inserir SED (Substituir da Esquerda-para-Direita) no editor"
+
+#~ msgid "Insert PDF (Pop Directional Format ) into the editor"
+#~ msgstr "Inserir PDF (Formato Direcional Pop) no editor"
+
+#~ msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+#~ msgstr "Inserir ZWJ (Unir com Largura Zero) no editor"
+
+#~ msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+#~ msgstr "Inserir ZWNJ (Não-Unir com Largura Zero) no editor"
+
+#~ msgid "Insert this symbol into the editor"
+#~ msgstr "Inserir este símbolo no editor"
+
+#, fuzzy
+#~ msgid "Insert space symbol into the editor"
+#~ msgstr "Inserir este símbolo no editor"
 
 #~ msgid ""
 #~ "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
@@ -3538,9 +3568,6 @@ msgstr "Maiores colaboradores dos últimos 30 dias"
 
 #~ msgid "Profile"
 #~ msgstr "Perfil"
-
-#~ msgid "Translation Settings"
-#~ msgstr "Configurações da tradução"
 
 #~ msgid "Password Changed"
 #~ msgstr "Senha alterada"
@@ -5368,9 +5395,6 @@ msgstr "Maiores colaboradores dos últimos 30 dias"
 #~ msgid "Home Page"
 #~ msgstr "Página inicial"
 
-#~ msgid "Pootle Languages Admin Page"
-#~ msgstr "Página de idiomas do Administrador do Pootle"
-
 #~ msgid "Main admin page"
 #~ msgstr "Página principal de administração"
 
@@ -5561,9 +5585,6 @@ msgstr "Maiores colaboradores dos últimos 30 dias"
 
 #~ msgid "Add Goal"
 #~ msgstr "Adicionar meta"
-
-#~ msgid "Select file to upload"
-#~ msgstr "Seleciona o arquivo a ser enviado"
 
 #~ msgid "Overwrite"
 #~ msgstr "Sobrescrever"

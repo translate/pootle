@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-22 14:38+0000\n"
+"POT-Creation-Date: 2016-11-24 16:54+0000\n"
 "PO-Revision-Date: 2016-10-07 16:15+0000\n"
 "Last-Translator: Hugo65 <janezkranjski505@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -558,92 +558,92 @@ msgstr ""
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:306 static/js/editor/app.js:625
+#: static/js/editor/app.js:304 static/js/editor/app.js:623
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:351
+#: static/js/editor/app.js:349
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:357
+#: static/js/editor/app.js:355
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:482
+#: static/js/editor/app.js:480
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:483
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:486
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:489
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr ""
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr ""
 
-#: static/js/editor/app.js:1052
+#: static/js/editor/app.js:1050
 msgid "Error while connecting to the server"
 msgstr "Napaka pri povezovanju na strežnik"
 
-#: static/js/editor/app.js:1056
+#: static/js/editor/app.js:1055
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1058
+#: static/js/editor/app.js:1057
 msgid "Server error"
 msgstr "Napaka strežnika"
 
-#: static/js/editor/app.js:1060
+#: static/js/editor/app.js:1059
 msgid "The server seems down. Try again later."
 msgstr "Kaže, da strežnik ne deluje. Poskusite znova pozneje."
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1068
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1069
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1072
+#: static/js/editor/app.js:1071
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:2170
+#: static/js/editor/app.js:2167
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2172
+#: static/js/editor/app.js:2169
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
+#: static/js/editor/app.js:2187 static/js/editor/app.js:2236
 msgid "Similar translations"
 msgstr "Podobni prevodi"
 
@@ -653,19 +653,19 @@ msgstr "Podobni prevodi"
 msgid "Plural form %(index)s"
 msgstr ""
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:82
+#: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
 msgstr ""
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:93
+#: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
 msgstr ""
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:104
+#: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"
 msgstr "Sprejmi"
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:108
+#: static/js/editor/components/SuggestionFeedbackForm.js:123
 msgid "Reject"
 msgstr ""
 
@@ -693,67 +693,6 @@ msgstr "Izberi ..."
 #: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
 msgstr "Vtipkajte niz za iskanje"
-
-#: static/js/shared/components/UserEvent.js:97
-#: static/js/shared/components/UserEvent.js:118
-#, python-format
-msgid "%(user)s removed translation for %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:99
-#, python-format
-msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:101
-#, python-format
-msgid "%(user)s uploaded file"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:103
-#, python-format
-msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:105
-#, python-format
-msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:107
-#, python-format
-msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:109
-#, python-format
-msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:112
-#, python-format
-msgid "%(user)s translated %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:114
-#, python-format
-msgid "%(user)s edited %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:116
-#, python-format
-msgid "%(user)s pre-translated %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:120
-#, python-format
-msgid "%(user)s reviewed %(sourceString)s"
-msgstr ""
-
-#: static/js/shared/components/UserEvent.js:122
-#, python-format
-msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr ""
 
 #: static/js/shared/models/project.js:62
 msgid "disabled"
@@ -865,7 +804,7 @@ msgid ""
 "accounts."
 msgstr ""
 
-#: static/js/editor/app.js:617
+#: static/js/editor/app.js:615
 msgid "No results."
 msgstr "Ni najdenih zadetkov."
 

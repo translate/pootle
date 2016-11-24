@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-22 14:38+0000\n"
+"POT-Creation-Date: 2016-11-24 16:54+0000\n"
 "PO-Revision-Date: 2016-10-20 14:15+0000\n"
 "Last-Translator: meskobalazs <meskobalazs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -566,7 +566,7 @@ msgstr "Teljes projekt"
 msgid "Updating data"
 msgstr "Adatok frissítése"
 
-#: static/js/editor/app.js:306 static/js/editor/app.js:625
+#: static/js/editor/app.js:304 static/js/editor/app.js:623
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -574,7 +574,7 @@ msgstr ""
 "A karakterláncban mentetlen módosítások vannak. Más oldalra lépve ezek "
 "elvesznek."
 
-#: static/js/editor/app.js:351
+#: static/js/editor/app.js:349
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -582,7 +582,7 @@ msgstr ""
 "Ugrás a következő karakterláncra (Ctrl+.)<br/><br/>Továbbá:<br/>Következő "
 "oldal: Ctrl+Shift+.<br/>Utolsó oldal: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:357
+#: static/js/editor/app.js:355
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -591,73 +591,73 @@ msgstr ""
 "Ctrl+Shift+,<br/>Első oldal: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:482
+#: static/js/editor/app.js:480
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s függő javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:483
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s elfogadta a javaslatokat"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:486
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s elutasított javaslatai"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:491
+#: static/js/editor/app.js:489
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s beküldései"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:495
+#: static/js/editor/app.js:493
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s felülírt beküldései"
 
-#: static/js/editor/app.js:1052
+#: static/js/editor/app.js:1050
 msgid "Error while connecting to the server"
 msgstr "Hiba a kiszolgálóhoz való kapcsolódás közben"
 
-#: static/js/editor/app.js:1056
+#: static/js/editor/app.js:1055
 msgid "Not found"
 msgstr "Nem található"
 
-#: static/js/editor/app.js:1058
+#: static/js/editor/app.js:1057
 msgid "Server error"
 msgstr "Kiszolgálóhiba"
 
-#: static/js/editor/app.js:1060
+#: static/js/editor/app.js:1059
 msgid "The server seems down. Try again later."
 msgstr "Úgy tűnik, a kiszolgáló leállt. Próbálja meg később."
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1068
 msgid "This string no longer exists."
 msgstr "Ez a karakterlánc már nem létezik."
 
-#: static/js/editor/app.js:1070
+#: static/js/editor/app.js:1069
 msgid "Go back to browsing"
 msgstr "Vissza a tallózáshoz"
 
-#: static/js/editor/app.js:1072
+#: static/js/editor/app.js:1071
 msgid "Reload page"
 msgstr "Oldal újratöltése"
 
-#: static/js/editor/app.js:2170
+#: static/js/editor/app.js:2167
 msgid "some anonymous user"
 msgstr "egy névtelen felhasználó"
 
-#: static/js/editor/app.js:2172
+#: static/js/editor/app.js:2169
 msgid "someone"
 msgstr "valaki"
 
-#: static/js/editor/app.js:2190 static/js/editor/app.js:2239
+#: static/js/editor/app.js:2187 static/js/editor/app.js:2236
 msgid "Similar translations"
 msgstr "Hasonló fordítások"
 
@@ -667,19 +667,19 @@ msgstr "Hasonló fordítások"
 msgid "Plural form %(index)s"
 msgstr "%(index)s. többes alak"
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:82
+#: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
 msgstr "Elfogadás előtt szerkessze a javaslatot, ha szükséges"
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:93
+#: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
 msgstr "További megjegyzés hozzáadása (ez nyilvános lesz)"
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:104
+#: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: static/js/editor/components/SuggestionFeedbackForm.js:108
+#: static/js/editor/components/SuggestionFeedbackForm.js:123
 msgid "Reject"
 msgstr "Elutasítás"
 
@@ -707,67 +707,6 @@ msgstr "Válasszon…"
 #: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
 msgstr "Gépeljen a kereséshez"
-
-#: static/js/shared/components/UserEvent.js:97
-#: static/js/shared/components/UserEvent.js:118
-#, python-format
-msgid "%(user)s removed translation for %(sourceString)s"
-msgstr "%(user)s eltávolította a fordítást ehhez: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:99
-#, python-format
-msgid "%(user)s accepted suggestion for %(sourceString)s"
-msgstr "%(user)s elfogadta a javaslatot ehhez: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:101
-#, python-format
-msgid "%(user)s uploaded file"
-msgstr "%(user)s feltöltött egy fájlt"
-
-#: static/js/shared/components/UserEvent.js:103
-#, python-format
-msgid "%(user)s muted %(check)s for %(sourceString)s"
-msgstr "%(user)s elnémította: %(check)s, ehhez: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:105
-#, python-format
-msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-msgstr "%(user)s újra aktiválta: %(check)s, ehhez: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:107
-#, python-format
-msgid "%(user)s added suggestion for %(sourceString)s"
-msgstr "%(user)s javaslatot adott ehhez: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:109
-#, python-format
-msgid "%(user)s rejected suggestion for %(sourceString)s"
-msgstr "%(user)s elvetett egy javaslatot ehhez: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:112
-#, python-format
-msgid "%(user)s translated %(sourceString)s"
-msgstr "%(user)s lefordította: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:114
-#, python-format
-msgid "%(user)s edited %(sourceString)s"
-msgstr "%(user)s szerkesztette: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:116
-#, python-format
-msgid "%(user)s pre-translated %(sourceString)s"
-msgstr "%(user)s előfordította: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:120
-#, python-format
-msgid "%(user)s reviewed %(sourceString)s"
-msgstr "%(user)s lektorálta: %(sourceString)s"
-
-#: static/js/shared/components/UserEvent.js:122
-#, python-format
-msgid "%(user)s marked as needs work %(sourceString)s"
-msgstr "%(user)s megjelölte munkát igénylőként: %(sourceString)s"
 
 #: static/js/shared/models/project.js:62
 msgid "disabled"
@@ -887,7 +826,7 @@ msgstr ""
 "egyszeri lépés a Pootle és a(z) %(provider)s fiókjai közti kapcsolat "
 "létrehozásához."
 
-#: static/js/editor/app.js:617
+#: static/js/editor/app.js:615
 msgid "No results."
 msgstr "Nincs találat."
 
@@ -1034,6 +973,42 @@ msgid ""
 msgstr ""
 "Fordította: %(fullname)s, itt: &bdquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
+
+#~ msgid "%(user)s removed translation for %(sourceString)s"
+#~ msgstr "%(user)s eltávolította a fordítást ehhez: %(sourceString)s"
+
+#~ msgid "%(user)s accepted suggestion for %(sourceString)s"
+#~ msgstr "%(user)s elfogadta a javaslatot ehhez: %(sourceString)s"
+
+#~ msgid "%(user)s uploaded file"
+#~ msgstr "%(user)s feltöltött egy fájlt"
+
+#~ msgid "%(user)s muted %(check)s for %(sourceString)s"
+#~ msgstr "%(user)s elnémította: %(check)s, ehhez: %(sourceString)s"
+
+#~ msgid "%(user)s unmuted %(check)s for %(sourceString)s"
+#~ msgstr "%(user)s újra aktiválta: %(check)s, ehhez: %(sourceString)s"
+
+#~ msgid "%(user)s added suggestion for %(sourceString)s"
+#~ msgstr "%(user)s javaslatot adott ehhez: %(sourceString)s"
+
+#~ msgid "%(user)s rejected suggestion for %(sourceString)s"
+#~ msgstr "%(user)s elvetett egy javaslatot ehhez: %(sourceString)s"
+
+#~ msgid "%(user)s translated %(sourceString)s"
+#~ msgstr "%(user)s lefordította: %(sourceString)s"
+
+#~ msgid "%(user)s edited %(sourceString)s"
+#~ msgstr "%(user)s szerkesztette: %(sourceString)s"
+
+#~ msgid "%(user)s pre-translated %(sourceString)s"
+#~ msgstr "%(user)s előfordította: %(sourceString)s"
+
+#~ msgid "%(user)s reviewed %(sourceString)s"
+#~ msgstr "%(user)s lektorálta: %(sourceString)s"
+
+#~ msgid "%(user)s marked as needs work %(sourceString)s"
+#~ msgstr "%(user)s megjelölte munkát igénylőként: %(sourceString)s"
 
 #~ msgid "A year ago"
 #~ msgstr "Egy éve"

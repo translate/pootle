@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-22 14:37+0000\n"
+"POT-Creation-Date: 2016-11-24 16:54+0000\n"
 "PO-Revision-Date: 2016-08-06 12:07+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,34 +39,34 @@ msgstr ""
 "あなたのユーザアカウントが見つかりません。この問題をサイト管理者に報告してく"
 "ださい。"
 
-#: apps/accounts/models.py:63 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:64 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "ユーザー名"
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "必須。30 文字以下。英数字と @/./+/-/_ の記号のみ"
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:69
 msgid "Enter a valid username."
 msgstr "正しいユーザ名を入力してください。"
 
-#: apps/accounts/models.py:72
+#: apps/accounts/models.py:73
 msgid "Email Address"
 msgstr "メール アドレス"
 
-#: apps/accounts/models.py:73 apps/pootle_language/models.py:92
+#: apps/accounts/models.py:74 apps/pootle_language/models.py:92
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "フルネーム"
 
-#: apps/accounts/models.py:76 apps/staticpages/models.py:31
+#: apps/accounts/models.py:77 apps/staticpages/models.py:31
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "アクティブ"
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:80
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -74,70 +74,70 @@ msgstr ""
 "このユーザをアクティブとして扱うべきかどうかを示します。アカウントを削除する"
 "代わりに、この選択を解除してください。"
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:83
 msgid "Superuser Status"
 msgstr "管理者ステータス"
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:86
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
 "このユーザが、明示的に割り当てなくてもすべての権限を持つかどうかを示します。"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:89
 msgid "date joined"
 msgstr "参加日"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:93
 msgid "Number of Rows"
 msgstr "ページごとの表示件数"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:97
 msgid "Alternative Source Languages"
 msgstr "別のソース言語"
 
-#: apps/accounts/models.py:99 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:100 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "割合"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:101
 msgid "Review Rate"
 msgstr "レビュー率"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:102
 msgid "Hourly Rate"
 msgstr "時給"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:103
 msgid "Score"
 msgstr "スコア"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:104
 msgid "Currency"
 msgstr "通貨"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:106
 msgid "Is employee?"
 msgstr "従業員？"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:107
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:108
+#: apps/accounts/models.py:109
 msgid "Website"
 msgstr "ウェブサイト"
 
-#: apps/accounts/models.py:109
+#: apps/accounts/models.py:110
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:110
+#: apps/accounts/models.py:111
 msgid "Short Bio"
 msgstr "短い自己紹介"
 
-#: apps/accounts/models.py:361
+#: apps/accounts/models.py:365
 msgid "This email address already exists."
 msgstr "このメールアドレスはすでに使用されています。"
 
@@ -292,7 +292,7 @@ msgstr "権限を取り消し"
 msgid "No files in this project."
 msgstr "このプロジェクトにはファイルがありません。"
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:167
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:166
 msgid "There are errors in the form. Please review the problems below."
 msgstr "フォームにエラーがあります。以下の問題を見直してください。"
 
@@ -333,8 +333,9 @@ msgid "Filesystem backend"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:36
-msgid "Select a backend filesystem"
-msgstr ""
+#, fuzzy
+msgid "Select a filesystem backend"
+msgstr "アップロードするファイルを選択してください"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -345,8 +346,24 @@ msgid "The URL or path to your translation files"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:52
-msgid "The translation mapping for your filesystem"
+#, fuzzy
+msgid "Translation path mapping"
+msgstr "翻訳設定"
+
+#: apps/pootle_fs/forms.py:53
+msgid ""
+"Translation path mapping that maps the localisation files on the filesystem "
+"to stores on Pootle."
 msgstr ""
+
+#: apps/pootle_fs/forms.py:177
+msgid "Filesystem language codes must be unique"
+msgstr ""
+
+#: apps/pootle_fs/forms.py:181
+#, fuzzy
+msgid "Pootle language mappings must be unique"
+msgstr "Pootle 言語管理ページ"
 
 #: apps/pootle_language/forms.py:27
 #, fuzzy
@@ -370,8 +387,8 @@ msgstr "管理"
 
 #: apps/pootle_language/forms.py:69
 #, fuzzy
-msgid "Admins"
-msgstr "管理者"
+msgid "Administrators"
+msgstr "管理"
 
 #: apps/pootle_language/forms.py:75
 #, fuzzy
@@ -388,15 +405,28 @@ msgstr "送信"
 msgid "Members"
 msgstr "数値"
 
-#: apps/pootle_language/forms.py:151 core/forms.py:184
+#: apps/pootle_language/forms.py:89
+#, fuzzy
+msgid "New member"
+msgstr "数値"
+
+#: apps/pootle_language/forms.py:90
+msgid "Add a user to this team"
+msgstr ""
+
+#: apps/pootle_language/forms.py:127
+msgid "Role is required when adding a new member"
+msgstr ""
+
+#: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
 msgstr "却下"
 
-#: apps/pootle_language/forms.py:152 core/forms.py:185
+#: apps/pootle_language/forms.py:154 core/forms.py:185
 msgid "Accept"
 msgstr "採用"
 
-#: apps/pootle_language/forms.py:168 apps/pootle_language/views.py:211
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:211
 #: core/browser.py:26
 msgid "Project"
 msgstr "プロジェクト"
@@ -493,7 +523,7 @@ msgstr "提案を却下"
 msgid "Accepted %s suggestions"
 msgstr "提案を承認"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:54
+#: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
 msgstr "重大"
 
@@ -935,7 +965,7 @@ msgstr "スクリーンショット検索の接頭辞"
 msgid "Disabled"
 msgstr "無効"
 
-#: apps/pootle_project/views.py:254
+#: apps/pootle_project/views.py:253
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -944,7 +974,7 @@ msgstr ""
 "翻訳プロジェクト (%s) が作成されました。ファイルテンプレートから内容を更新し"
 "ています。"
 
-#: apps/pootle_project/views.py:261
+#: apps/pootle_project/views.py:260
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "翻訳プロジェクト (%s) が削除されました"
@@ -983,7 +1013,7 @@ msgstr "提案モードにアクセスするための権限がありません。
 msgid "Insufficient rights to access translation mode."
 msgstr "翻訳モードへのアクセスに必要な権限がありません。"
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:633
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
 msgid "Insufficient rights to access review mode."
 msgstr "査読モードへのアクセスに必要な権限がありません。"
 
@@ -1070,28 +1100,28 @@ msgstr "提案が承認されました。"
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:99
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
 msgid "Path too long."
 msgstr "パスが長すぎます。"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:101
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:106
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "引数が足りません。"
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "コメントの削除に失敗しました。"
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:270
 msgid "Comment submission failed."
 msgstr "コメントの送信に失敗しました。"
 
-#: apps/pootle_store/views.py:563
+#: apps/pootle_store/views.py:606
 msgid "Failed to process submission."
 msgstr "送信の処理に失敗しました。"
 
-#: apps/pootle_store/views.py:604
+#: apps/pootle_store/views.py:648
 msgid "Failed to process suggestion."
 msgstr "提案の処理に失敗しました。"
 
@@ -1609,33 +1639,33 @@ msgstr ""
 msgid "Progress"
 msgstr "進捗状況"
 
-#. Translators: Heading representing the total number of words of a file
-#. or directory
-#: core/browser.py:44 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
-msgid "Total"
-msgstr "合計"
-
-#: core/browser.py:49
-msgid "Last updated"
-msgstr "最終更新日"
+#: core/browser.py:42
+msgid "Last Activity"
+msgstr "最終更新日時"
 
 #. Translators: The number of suggestions pending review
-#: core/browser.py:60 templates/browser/_actions.html:28
+#: core/browser.py:53 templates/browser/_actions.html:28
 #: templates/editor/_filters.html:11 templates/languages/_nav.html:28
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
 msgstr "提案"
 
-#: core/browser.py:65 templates/browser/_actions.html:43
+#: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
 msgstr "不完全"
 
+#. Translators: Heading representing the total number of words of a file
+#. or directory
+#: core/browser.py:65 core/utils/stats.py:27
+#: templates/admin/detailed_reports.html:319
+msgid "Total"
+msgstr "合計"
+
 #: core/browser.py:70
-msgid "Last Activity"
-msgstr "最終更新日時"
+msgid "Last updated"
+msgstr "最終更新日"
 
 #: core/browser.py:119
 msgid "Back to language"
@@ -1675,15 +1705,15 @@ msgid "Add comment"
 msgstr "コメントを追加"
 
 #: core/forms.py:193
-msgid "Select all matching filter criteria, including those not shown"
+msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 
-#: core/forms.py:210
+#: core/forms.py:211
 msgid "You must specify an action to take"
 msgstr ""
 
 #: core/forms.py:212
-msgid "FormtableForm must specify a valid search_field"
+msgid "A valid search field must be specified"
 msgstr ""
 
 #: core/initdb.py:136
@@ -1710,80 +1740,80 @@ msgstr "提案を査読できます"
 msgid "Can perform administrative tasks"
 msgstr "管理タスクを実行できます"
 
-#: core/views/display.py:84 core/views/display.py:105
+#: core/views/display.py:94 core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 "%(user)s が文字列 <i><a href=\"%(url)s\">%(source)s</a></i> の翻訳を削除しま"
 "した"
 
-#: core/views/display.py:86
+#: core/views/display.py:96
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(author)s による提案を承認しました"
 
-#: core/views/display.py:88
+#: core/views/display.py:98
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s がファイルをアップロードしました"
 
-#: core/views/display.py:90
+#: core/views/display.py:100
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:92
+#: core/views/display.py:102
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:94
+#: core/views/display.py:104
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(store)s から %(count)d 個の提案をインポートしました"
 
-#: core/views/display.py:96
+#: core/views/display.py:106
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(author)s による提案を却下しました"
 
-#: core/views/display.py:99
+#: core/views/display.py:109
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "単語を翻訳すべき"
 
-#: core/views/display.py:101
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:103
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:107
+#: core/views/display.py:117
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:109
+#: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
 
-#: core/views/mixins.py:63
+#: core/views/mixins.py:66
 msgid "You cannot access this page."
 msgstr "このページにアクセスする権限がありません。"
 
-#: middleware/errorpages.py:80
+#: middleware/errorpages.py:81
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "%(filename)s へのアクセス時にエラーが発生しました。 Filesystem sent error: "
 "%(errormsg)s"
 
-#: middleware/errorpages.py:116
+#: middleware/errorpages.py:117
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -2146,6 +2176,11 @@ msgstr "Pootle デモ"
 msgid "Filesystem code"
 msgstr ""
 
+#: templates/admin/project_fs.html:90
+#: templates/admin/staticpages/page_create.html:4
+msgid "Add"
+msgstr "追加"
+
 #: templates/admin/project_fs.html:97
 #, fuzzy
 msgid "Update"
@@ -2240,10 +2275,6 @@ msgstr "表示"
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
 msgstr "ページはまだありません。"
-
-#: templates/admin/staticpages/page_create.html:4
-msgid "Add"
-msgstr "追加"
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
@@ -2385,11 +2416,11 @@ msgid "Top contributors:"
 msgstr "上位の貢献者:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
-#: templates/core/xhr_captcha.html:8
+#: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
 msgstr "あなたがロボットでないことを証明してください"
 
-#: templates/core/xhr_captcha.html:9
+#: templates/core/xhr_captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
@@ -2397,11 +2428,11 @@ msgstr ""
 "サーバーを外部の攻撃から守るため、人間のユーザーによる登録かどうかを検証しま"
 "す。ご了承ください。"
 
-#: templates/core/xhr_captcha.html:10
+#: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
 msgstr "次の質問に答えてください:"
 
-#: templates/core/xhr_captcha.html:13
+#: templates/core/xhr_captcha.html:19
 msgid "Confirm"
 msgstr "確認"
 
@@ -2537,7 +2568,7 @@ msgid "Report a problem with this string"
 msgstr "この文字列の問題を報告する"
 
 #: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
-#: templates/editor/units/edit.html:277
+#: templates/editor/units/edit.html:245
 msgid "Submit"
 msgstr "送信"
 
@@ -2583,75 +2614,36 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "査読者: <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-msgid "Insert RLM (Right-To-Left Mark) into the editor"
-msgstr "RLM (Right-To-Left Mark) をエディターに挿入する"
+#, python-format
+msgid ""
+"Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
+msgstr ""
 
-#: templates/editor/units/edit.html:229
-msgid "Insert LRM (Left-To-Right Mark) into the editor"
-msgstr "LRM (Left-To-Right Mark) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:232
-msgid "Insert RLE (Right-To-Left Embedding) into the editor"
-msgstr "RLE (Right-To-Left Embedding) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:235
-msgid "Insert LRE (Left-To-Right Embedding) into the editor"
-msgstr "LRE (Left-To-Right Embedding) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:238
-msgid "Insert RLO (Right-To-Left Override) into the editor"
-msgstr "RLO (Right-To-Left Override) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:241
-msgid "Insert LRO (Left-To-Right Override) into the editor"
-msgstr "LRO (Left-To-Right Override) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:244
-msgid "Insert PDF (Pop Directional Format ) into the editor"
-msgstr "PDF (Pop Directional Format) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:247
-msgid "Insert ZWJ (Zero Width Joiner) into the editor"
-msgstr "ZWJ (Zero Width Joiner) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:250
-msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
-msgstr "ZWNJ (Zero Width Non Joiner) をエディターに挿入する"
-
-#: templates/editor/units/edit.html:257
-msgid "Insert this symbol into the editor"
-msgstr "この記号をエディターに挿入する"
-
-#: templates/editor/units/edit.html:261
-#, fuzzy
-msgid "Insert space symbol into the editor"
-msgstr "この記号をエディターに挿入する"
-
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:264
 msgid "User suggestions"
 msgstr "ユーザーによる提案"
 
-#: templates/editor/units/edit.html:313
+#: templates/editor/units/edit.html:281
 msgid "More options"
 msgstr "追加オプション"
 
-#: templates/editor/units/edit.html:315
+#: templates/editor/units/edit.html:283
 msgid "Less options"
 msgstr "オプション表示を隠す"
 
-#: templates/editor/units/edit.html:320
+#: templates/editor/units/edit.html:288
 msgid "Accept suggestion"
 msgstr "提案を承認"
 
-#: templates/editor/units/edit.html:325
+#: templates/editor/units/edit.html:293
 msgid "Reject suggestion"
 msgstr "提案を却下"
 
-#: templates/editor/units/edit.html:331
+#: templates/editor/units/edit.html:299
 msgid "Remove suggestion"
 msgstr "提案を削除"
 
-#: templates/editor/units/edit.html:343
+#: templates/editor/units/edit.html:311
 msgid "A long time ago"
 msgstr "ずっと前"
 
@@ -3082,21 +3074,21 @@ msgstr ""
 msgid "Latest activity:"
 msgstr "最終活動日時:"
 
-#: templates/user/profile.html:72
+#: templates/user/profile.html:75
 msgid "My Website"
 msgstr "ウェブサイト"
 
-#: templates/user/profile.html:78
+#: templates/user/profile.html:81
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn プロフィール"
 
-#: templates/user/profile.html:87
+#: templates/user/profile.html:90
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr "あなたの自己紹介をして、<br/>公開プロフィールを派手に見せましょう。"
 
-#: templates/user/profile.html:97
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3104,7 +3096,7 @@ msgstr ""
 "翻訳は匿名のボランティアにより提供されているものもあります。これらは、この特"
 "別なメタアカウントの下に登録されています。"
 
-#: templates/user/profile.html:99
+#: templates/user/profile.html:102
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3175,6 +3167,44 @@ msgstr "サインイン"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "最近 30 日間の上位の貢献者たち"
+
+#, fuzzy
+#~ msgid "Admins"
+#~ msgstr "管理者"
+
+#~ msgid "Insert RLM (Right-To-Left Mark) into the editor"
+#~ msgstr "RLM (Right-To-Left Mark) をエディターに挿入する"
+
+#~ msgid "Insert LRM (Left-To-Right Mark) into the editor"
+#~ msgstr "LRM (Left-To-Right Mark) をエディターに挿入する"
+
+#~ msgid "Insert RLE (Right-To-Left Embedding) into the editor"
+#~ msgstr "RLE (Right-To-Left Embedding) をエディターに挿入する"
+
+#~ msgid "Insert LRE (Left-To-Right Embedding) into the editor"
+#~ msgstr "LRE (Left-To-Right Embedding) をエディターに挿入する"
+
+#~ msgid "Insert RLO (Right-To-Left Override) into the editor"
+#~ msgstr "RLO (Right-To-Left Override) をエディターに挿入する"
+
+#~ msgid "Insert LRO (Left-To-Right Override) into the editor"
+#~ msgstr "LRO (Left-To-Right Override) をエディターに挿入する"
+
+#~ msgid "Insert PDF (Pop Directional Format ) into the editor"
+#~ msgstr "PDF (Pop Directional Format) をエディターに挿入する"
+
+#~ msgid "Insert ZWJ (Zero Width Joiner) into the editor"
+#~ msgstr "ZWJ (Zero Width Joiner) をエディターに挿入する"
+
+#~ msgid "Insert ZWNJ (Zero Width Non Joiner) into the editor"
+#~ msgstr "ZWNJ (Zero Width Non Joiner) をエディターに挿入する"
+
+#~ msgid "Insert this symbol into the editor"
+#~ msgstr "この記号をエディターに挿入する"
+
+#, fuzzy
+#~ msgid "Insert space symbol into the editor"
+#~ msgstr "この記号をエディターに挿入する"
 
 #~ msgid ""
 #~ "Stats are out of date. See <a href=\"%(docs_url)s\">documentation</a> for "
@@ -3533,9 +3563,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 
 #~ msgid "Profile"
 #~ msgstr "プロファイル"
-
-#~ msgid "Translation Settings"
-#~ msgstr "翻訳設定"
 
 #~ msgid "Password Changed"
 #~ msgstr "パスワードの変更完了"
@@ -5386,9 +5413,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 #~ msgid "Home Page"
 #~ msgstr "ホームページ"
 
-#~ msgid "Pootle Languages Admin Page"
-#~ msgstr "Pootle 言語管理ページ"
-
 #~ msgid "Main admin page"
 #~ msgstr "メイン管理ページ"
 
@@ -5574,9 +5598,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 
 #~ msgid "Add Goal"
 #~ msgstr "目標の追加"
-
-#~ msgid "Select file to upload"
-#~ msgstr "アップロードするファイルを選択してください"
 
 #~ msgid "Overwrite"
 #~ msgstr "上書き"
