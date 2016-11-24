@@ -17,6 +17,7 @@ from pootle_statistics.models import Submission
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.models import Unit
 
+from .apps import PootleDataConfig
 from .models import StoreChecksData, StoreData, TPChecksData, TPData
 
 
@@ -265,6 +266,7 @@ class DataUpdater(object):
 
 
 class RelatedStoresDataTool(DataTool):
+    ns = "pootle.data"
     group_by = (
         "store__pootle_path", )
     max_fields = (
@@ -318,10 +320,15 @@ class RelatedStoresDataTool(DataTool):
             self.context.__class__)(self.context).get(key="stats")
 
     @property
+    def sw_version(self):
+        return PootleDataConfig.version
+
+    @property
     def cache_key(self):
         return (
-            'pootle_data.%s.%s.%s'
-            % (self.cache_key_name,
+            '%s.%s.%s.%s'
+            % (self.sw_version,
+               self.cache_key_name,
                self.context_name,
                self.rev_cache_key))
 
