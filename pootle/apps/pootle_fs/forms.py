@@ -33,7 +33,7 @@ class ProjectFSAdminForm(forms.Form):
 
     fs_type = forms.ChoiceField(
         label=_("Filesystem backend"),
-        help_text=_("Select a backend filesystem"),
+        help_text=_("Select a filesystem backend"),
         choices=(),
         widget=forms.Select(
             attrs={'class': 'js-select2'}))
@@ -49,7 +49,9 @@ class ProjectFSAdminForm(forms.Form):
         widget=forms.Select(
             attrs={'class': 'js-select2 js-select-fs-mapping'}))
     translation_mapping = forms.CharField(
-        help_text=_("The translation mapping for your filesystem"),
+        label=_("Translation path mapping"),
+        help_text=_("Translation path mapping that maps the localisation "
+                    "files on the filesystem to stores on Pootle."),
         widget=forms.TextInput(
             attrs={'class': 'js-select-fs-mapping-target'}))
 
@@ -172,11 +174,11 @@ class BaseLangMappingFormSet(forms.BaseFormSet):
         fs_counter = Counter([v["fs_code"] for v in self.cleaned_data if v])
         if set(fs_counter.values()) != set([1]):
             raise forms.ValidationError(
-                "Filesystem language codes must be unique")
+                _("Filesystem language codes must be unique"))
         pootle_counter = Counter([v["pootle_code"] for v in self.cleaned_data if v])
         if set(pootle_counter.values()) != set([1]):
             raise forms.ValidationError(
-                "Pootle language mappings must be unique")
+                _("Pootle language mappings must be unique"))
 
     def get_form_kwargs(self, index):
         kwargs = super(BaseLangMappingFormSet, self).get_form_kwargs(index)

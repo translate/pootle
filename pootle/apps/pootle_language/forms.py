@@ -66,7 +66,7 @@ class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
 
 class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
     rm_admins = forms.ModelMultipleChoiceField(
-        label=_("Admins"),
+        label=_("Administrators"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         required=False,
         queryset=User.objects.none())
@@ -86,6 +86,8 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
         widget=TableSelectMultiple(item_attrs=["username"]),
         queryset=User.objects.none())
     new_member = forms.ModelChoiceField(
+        label=_("New member"),
+        help_text=_("Add a user to this team"),
         required=False,
         queryset=User.objects.none(),
         widget=forms.Select(
@@ -122,7 +124,7 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
             self.add_error(
                 "role",
                 forms.ValidationError(
-                    "Role is required when adding a new member"))
+                    _("Role is required when adding a new member")))
 
     def should_save(self):
         return (

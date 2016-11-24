@@ -87,7 +87,7 @@ $(function() {
 	    </tr>
 	    {% for form in lang_mapping_formset %}
 	    <tr>
-	      <td class="aligned-right padded-half-right">{% if form.initial %}{{ form.remove }}{% else %}Add{% endif %}</td>
+	      <td class="aligned-right padded-half-right">{% if form.initial %}{{ form.remove }}{% else %}{% trans 'Add' %}{% endif %}</td>
 	      <td>{{ form.pootle_code }} {{ form.pootle_code.errors }}</td>
 	      <td>{{ form.fs_code }}</td>
 	    </tr>

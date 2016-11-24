@@ -190,7 +190,8 @@ class FormWithActionsMixin(forms.Form):
     select_all = forms.BooleanField(
         required=False,
         label=_(
-            "Select all matching filter criteria, including those not shown"),
+            "Select all items matching filter criteria, including those not "
+            "shown"),
         widget=forms.CheckboxInput(
             attrs={"class": "js-formtable-select-all"}))
 
@@ -208,8 +209,7 @@ class FormWithActionsMixin(forms.Form):
 class FormtableForm(PaginatingForm, FormWithActionsMixin):
     search_field = None
     msg_err_no_action = _("You must specify an action to take")
-    msg_err_no_search_field = _(
-        "FormtableForm must specify a valid search_field")
+    msg_err_no_search_field = _("A valid search field must be specified")
 
     def __init__(self, *args, **kwargs):
         super(FormtableForm, self).__init__(*args, **kwargs)

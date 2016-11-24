@@ -12,7 +12,7 @@
     <div id="pootle-fs-project-admin" class="settings-container">
       <div class="config-content">
 	<div class="config-content-panel">
-	  <h3>{% blocktrans %}Member admin{% endblocktrans %}</h3>
+	  <h3>{% trans "Member admin" %}</h3>
 	  <div class="padded centered">
 	    <div class="padded aligned-left">
 	      <h4>{{form.new_member.label }}</h4>
@@ -96,7 +96,7 @@
       </div>
       <div class="config-content">
 	<div class="config-content-panel">
-	  <h3>{% blocktrans %}Projects{% endblocktrans %}</h3>
+	  <h3>{% trans "Projects" %}</h3>
 	  <div class="padded">
 	    <ul>
 	      {% for tp in tps %}
@@ -110,29 +110,29 @@
 	  </div>
 	</div>
 	<div class="config-content-panel">
-	  <h3>{% blocktrans %}Unit admin{% endblocktrans %}</h3>
+	  <h3>{% trans "Unit admin" %}</h3>
 	  <div class="padded">
 	    <ul>
 	      <li class="padded-half">
-		{% blocktrans %}Critical:{% endblocktrans %}
+		{% trans "Critical:" %}
 		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=checks&category=critical">
 		  {{ stats.critical }}
 		</a>
 	      </li>
 	      <li class="padded-half">
-		{% blocktrans %}Total words:{% endblocktrans %}
+		{% trans "Total words:" %}
 		<a href="{% url 'pootle-language-translate' language_code=language.code %}">
 		  {{ stats.total }}
 		</a>
 	      </li>
 	      <li class="padded-half">
-		{% blocktrans %}Translated:{% endblocktrans %}
+		{% trans "Translated:" %}
 		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=translated">
 		  {{ stats.translated }}
 		</a>
 	      </li>
 	      <li class="padded-half">
-		{% blocktrans %}Needs work:{% endblocktrans %}
+		{% trans "Needs work:" %}
 		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=fuzzy">
 		  {{ stats.fuzzy }}
 		</a>
@@ -141,7 +141,7 @@
 	  </div>
 	</div>
 	<div class="config-content-panel">
-	  <h3>{% blocktrans %}Suggestion admin{% endblocktrans %}</h3>
+	  <h3>{% trans "Suggestion admin" %}</h3>
 	  <div class="padded">
 	    <p>
 	      {% blocktrans %}There are {{ suggestions.count }} suggestions pending{% endblocktrans %}
