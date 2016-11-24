@@ -167,7 +167,7 @@ def test_deco_persistent_property():
     assert Foo.bar.__doc__ == "Get a bar man"
     foo = Foo()
     assert foo.bar == "Baz"
-    assert get_cache().get('foo-cache/bar') == "Baz"
+    assert get_cache().get('pootle.core.foo-cache.bar') == "Baz"
     # cached version this time
     assert foo.bar == "Baz"
 
@@ -180,7 +180,7 @@ def test_deco_persistent_property():
         bar = persistent_property(_bar, key_attr="special_key")
     foo = Foo()
     assert foo.bar == "Baz"
-    assert get_cache().get('special-foo-cache/_bar') == "Baz"
+    assert get_cache().get('pootle.core.special-foo-cache._bar') == "Baz"
 
     # cache_key set with custom key attr and name - cached with it
     class Foo(object):
@@ -192,4 +192,20 @@ def test_deco_persistent_property():
             _bar, name="bar", key_attr="special_key")
     foo = Foo()
     assert foo.bar == "Baz"
-    assert get_cache().get('special-foo-cache/bar') == "Baz"
+    assert get_cache().get('pootle.core.special-foo-cache.bar') == "Baz"
+
+    # cache_key set with custom namespace
+    class Foo(object):
+        ns = "pootle.foo"
+        cache_key = "foo-cache"
+
+        @persistent_property
+        def bar(self):
+            """Get a bar man"""
+            return "Baz"
+
+    foo = Foo()
+    assert foo.bar == "Baz"
+    assert get_cache().get('pootle.foo.foo-cache.bar') == "Baz"
+    # cached version this time
+    assert foo.bar == "Baz"
