@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-22 19:32+0000\n"
+"PO-Revision-Date: 2016-11-24 17:24+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479843157.000000\n"
+"X-POOTLE-MTIME: 1480008246.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -339,9 +339,8 @@ msgid "Filesystem backend"
 msgstr "Infraestrutura de sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Infraestrutura de sistema de ficheiros"
+msgstr "Seleccione unha infraestrutura de sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -352,24 +351,24 @@ msgid "The URL or path to your translation files"
 msgstr "O URL ou ruta ao ficheiros de tradución"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Opcións de tradución"
+msgstr "Asociación de ruta de tradución"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Asociación de ruta de tradución que asocia os ficheiros de tradución no "
+"sistema de ficheiros a ficheiros en Pootle."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Os códigos de idioma do sistema de ficheiros deben ser únicos"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Páxina de administración de lenguaxes de Pootle"
+msgstr "As asociacións de idioma deben ser únicas"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -388,9 +387,8 @@ msgid "Administrator"
 msgstr "Administrador"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Administrador"
+msgstr "Administradores"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -405,17 +403,16 @@ msgid "Members"
 msgstr "Membros"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Engadir membro ao equipo"
+msgstr "Novo membro"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Engadir un usuario a este equipo"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Ten que especificar un rol ao engadir un novo membro"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -1706,11 +1703,10 @@ msgid "Add comment"
 msgstr "Engadir comentario"
 
 #: core/forms.py:193
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
-"Seleccionar todos os criterios de filtrado coincidentes, incluídos os que "
-"non se mostran"
+"Seleccionar todos os elementos que coincidan cos criterios de filtrado, "
+"incluídos os que non se mostran"
 
 #: core/forms.py:211
 msgid "You must specify an action to take"
@@ -1718,7 +1714,7 @@ msgstr "Debe especificar unha acción a realizar"
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Débese especificar un campo de busca válido"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -2634,6 +2630,7 @@ msgstr "revisado por <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Inserir %(character_name)s (Valor de Unicode %(character_code)s) no editor"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
