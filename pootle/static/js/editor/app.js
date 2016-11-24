@@ -39,7 +39,6 @@ import captcha from '../captcha';
 import { UnitSet } from '../collections';
 import helpers from '../helpers';
 import msg from '../msg';
-import score from '../score';
 import search from '../search';
 import utils from '../utils';
 import {
@@ -1630,10 +1629,6 @@ PTL.editor = {
     const hasCriticalChecks = !!data.checks;
     $('.translate-container').toggleClass('error', hasCriticalChecks);
 
-    if (data.user_score) {
-      score.set(data.user_score);
-    }
-
     if (hasCriticalChecks) {
       _refreshChecksSnippet(data.checks);
     } else {
@@ -1660,11 +1655,7 @@ PTL.editor = {
       );
   },
 
-  processSuggestion(data) {
-    if (data.user_score) {
-      score.set(data.user_score);
-    }
-
+  processSuggestion() {
     // Using `PTL.editor` instead of `this` to avoid using of wrong `this`
     // and hitting the error when anonymous user is redirected from a captcha
     // page after he added a suggestion.
@@ -2261,10 +2252,6 @@ PTL.editor = {
   },
 
   processRejectSuggestion(data, suggId) {
-    if (data.user_score) {
-      score.set(data.user_score);
-    }
-
     $(`#suggestion-${suggId}`).fadeOut(200, function handleRemove() {
       PTL.editor.closeSuggestion({ checkIfCanNavigate: false });
       $(this).remove();
@@ -2308,10 +2295,6 @@ PTL.editor = {
     unit.set('isfuzzy', false);
 
     ReactEditor.renderSuggestions(data.newtargets);
-
-    if (data.user_score) {
-      score.set(data.user_score);
-    }
 
     const hasCriticalChecks = !!data.checks;
     $('.translate-container').toggleClass('error', hasCriticalChecks);
