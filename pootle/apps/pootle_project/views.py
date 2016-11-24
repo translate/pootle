@@ -34,11 +34,14 @@ from pootle_project.forms import TranslationProjectForm
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .apps import PootleProjectConfig
 from .forms import TranslationProjectFormSet
 from .models import Project, ProjectResource, ProjectSet
 
 
 class ProjectMixin(object):
+    ns = "pootle.project"
+    sw_version = PootleProjectConfig.version
     model = Project
     browse_url_path = "pootle-project-browse"
     translate_url_path = "pootle-project-translate"
