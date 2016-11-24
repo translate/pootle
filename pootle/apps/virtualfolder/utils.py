@@ -192,6 +192,7 @@ class VirtualFolderPathMatcher(object):
 
 class DirectoryVFDataTool(RelatedStoresDataTool):
     group_by = ("store__vfolders__name", )
+    ns = "virtualfolder"
     cache_key_name = "vfolder"
 
     @property
