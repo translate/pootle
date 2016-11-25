@@ -244,8 +244,9 @@ class TPBrowseBaseView(PootleBrowseView):
     template_extends = 'translation_projects/base.html'
 
     def get_context_data(self, *args, **kwargs):
+        upload_widget = self.get_upload_widget()
         ctx = super(TPBrowseBaseView, self).get_context_data(*args, **kwargs)
-        ctx.update(self.get_upload_widget())
+        ctx.update(upload_widget)
         ctx.update(
             {'parent': get_parent(self.object)})
         return ctx
