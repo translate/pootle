@@ -24,7 +24,7 @@
     <div class="path-summary-expanded">
       <div class="summary-1-col">
         <h3 class="top">{% trans "Translation Statistics" %}</h3>
-        <div class="bd">
+        <div class="not-bd">
           <table class="stats" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             <tbody>
               {% for item in translation_states %}
@@ -85,7 +85,7 @@
               <label>{% trans "Last updated:" %}</label>
               <div id="js-last-updated" class="last-updated last-action">
 		<span class="extra-item-meta">{{ stats.last_created_unit.creation_time|time_since }}</span>
-		<a href="{{ stats.last_created_unit.unit_url }}">{{ stats.last_created_unit.unit_source }}</a>
+		<a dir="ltr" href="{{ stats.last_created_unit.unit_url }}">{{ stats.last_created_unit.unit_source }}</a>
 	      </div>
             </div>
           </div>
