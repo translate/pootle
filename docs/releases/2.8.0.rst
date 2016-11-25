@@ -77,6 +77,7 @@ Details of changes
     - Technical details of escape sequences are omitted in the output displayed
       to end users
 
+  - Buttons to add special characters display helpful information when hovering
   - Errors fixed:
 
     - Fixed bugs in muting/unmuting checks
@@ -117,6 +118,10 @@ Details of changes
     - Faster stats retrieval
 
   - Hide disabled items and allow showing them to admin users
+  - Altered order of columns to highlight latest activity and pending work
+
+    - Last updated data is now only shown to admin users
+
   - Show leaderboard on top panel and expanded stats panel
   - Search widget is disabled if user cannot translate
   - Improvements to the statistics table for overly long filenames and smaller
@@ -257,8 +262,9 @@ This release was made possible by the following people:
 
 Ryan Northey, Dwayne Bailey, Julen Ruiz Aizpuru, Taras Semenenko, Leandro
 Regueiro, Igor Afanasyev, Safa Alfulaij, Rene Ladan, Kevin Scannell, Jason P.
-Pickering, Eamonn Lawlor, Alexander Lakhin, Robbie, Rhoslyn Prys, Nootan
-Ghimire, Mikhail Paulyshka, Mike Robinson, Henrik Feldt, Francesc Ortiz,
-Christian Lohmaier, Burhan Khalid, Arash Mousavi, Andy Kittner, Adam Chainz.
+Pickering, Eamonn Lawlor, Alexander Lakhin, Robbie Cole, Rhoslyn Prys, Prasasto
+Adi, Nootan Ghimire, Mikhail Paulyshka, Mike Robinson, Henrik Feldt, Francesc
+Ortiz, Christian Lohmaier, Burhan Khalid, Arash Mousavi, Andy Kittner, Adam
+Chainz.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
