@@ -542,6 +542,10 @@ Let people know that there is a new version:
 #. Announce on mailing lists **using plain text** emails using the same text
    (adjusting what needs to be adjusted) used for the :ref:`Github release <releasing#create-github-release>` description:
 
+   .. warning:: This has to be explicitly reviewed and approved by Dwayne so
+      **we don't repeat the same email over and over**.
+
+
    - translate-announce@lists.sourceforge.net
    - translate-pootle@lists.sourceforge.net
    - translate-devel@lists.sourceforge.net
