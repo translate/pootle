@@ -16,6 +16,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
     config, response as pootle_response, state as pootle_state)
+from pootle.core.models import Revision
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 from pootle_store.models import Store
 from pootle_project.models import Project
@@ -73,6 +74,14 @@ class Plugin(object):
         from .models import StoreFS
 
         return StoreFS
+
+    @cached_property
+    def latest_hash(self):
+        return self.get_latest_hash()
+
+    @cached_property
+    def latest_revision(self):
+        return Revision.get()
 
     @cached_property
     def matcher(self):
@@ -133,6 +142,9 @@ class Plugin(object):
           matched paths.
         """
         return self.matcher.matches(fs_path, pootle_path)
+
+    def get_latest_hash(self):
+        return None
 
     def pull(self):
         """

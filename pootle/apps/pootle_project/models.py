@@ -6,7 +6,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import json
 import logging
+import md5
 import os
 import shutil
 from collections import OrderedDict
@@ -357,6 +359,17 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     @property
     def name(self):
         return self.fullname
+
+    @property
+    def revision_hash(self):
+        tp_list = self.translationproject_set.values_list(
+            "id", flat=True).order_by("id"),
+        return md5.md5(
+            "%s.%s.%s.%s"
+            % (self.pootle_path,
+               tp_list,
+               json.dumps(self.config.values()),
+               self.data_tool.max_unit_revision)).digest()
 
     @property
     def pootle_path(self):

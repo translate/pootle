@@ -51,6 +51,9 @@ class DummyPlugin(object):
     def __init__(self, project):
         self.project = project
 
+    def get_latest_hash(self):
+        return None
+
     def find_translations(self, fs_path=None, pootle_path=None):
         for pp in self.resources.stores.values_list("pootle_path", flat=True):
             if pootle_path and not fnmatch(pp, pootle_path):

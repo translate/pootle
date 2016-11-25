@@ -85,12 +85,21 @@ class ProjectLanguageMapper(object):
         """Language mappings after Project.config and presets are parsed"""
         return self._parse_mappings()
 
+    @cached_property
+    def mapped_languages(self):
+        return {
+            lang.code: lang
+            for lang in Language.objects.filter(
+                code__in=self.lang_mappings.values())}
+
     @lru_cache()
     def get_lang(self, upstream_code):
         """Return a `Language` for a given code after mapping"""
+        pootle_code = self.get_pootle_code(upstream_code)
+        if upstream_code in self.lang_mappings:
+            return self.mapped_languages.get(pootle_code)
         try:
-            return Language.objects.get(
-                code=self.get_pootle_code(upstream_code))
+            return Language.objects.get(code=pootle_code)
         except Language.DoesNotExist:
             return None
 
