@@ -46,6 +46,7 @@ class FSPathMatcher(object):
         if fs_path:
             path_filters.append(fs_path)
         return self.context.finder_class(
+            self.context,
             self.translation_mapping,
             extensions=self.project.filetype_tool.valid_extensions,
             path_filters=path_filters,
@@ -101,7 +102,7 @@ class FSPathMatcher(object):
 
     def matches(self, fs_path, pootle_path):
         missing_langs = []
-        for file_path, matched in self.get_finder(fs_path).find():
+        for file_path, matched in self.get_finder(fs_path).found:
             if matched["language_code"] in missing_langs:
                 continue
             language = self.get_language(matched["language_code"])
