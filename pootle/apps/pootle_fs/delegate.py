@@ -23,3 +23,5 @@ fs_pre_pull_handlers = Provider()
 fs_post_pull_handlers = Provider()
 fs_pre_push_handlers = Provider()
 fs_post_push_handlers = Provider()
+
+fs_upstream = Provider()
