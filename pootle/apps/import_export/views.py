@@ -111,8 +111,7 @@ def handle_upload_form(request, tp):
                             with zf.open(path, "r") as f:
                                 import_file(f, user=uploader)
                 else:
-                    # It is necessary to seek to the beginning because
-                    # is_zipfile fucks the file, and thus cannot be read.
+                    # is_zipfile consumes the file buffer
                     django_file.seek(0)
                     import_file(django_file, user=uploader)
             except Exception as e:
