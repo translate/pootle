@@ -31,8 +31,9 @@ class TranslationFileFinder(object):
     extensions = DEFAULT_EXTENSIONS
     path_mapping = PATH_MAPPING
 
-    def __init__(self, translation_mapping, path_filters=None, extensions=None,
-                 exclude_languages=None):
+    def __init__(self, translation_mapping, path_filters=None,
+                 extensions=None, exclude_languages=None, fs_hash=None):
+        self.fs_hash = fs_hash
         TranslationMappingFinderValidator(translation_mapping).validate()
         self.translation_mapping = translation_mapping
         if extensions:
@@ -82,6 +83,16 @@ class TranslationFileFinder(object):
             match = self.match(filepath)
             if match:
                 yield match
+
+    @property
+    def cache_key(self):
+        if not self.fs_hash:
+            return
+        return (
+            "pootle.fs.finder.%s.%s.%s"
+            % (self.fs_hash,
+               "::".join(self.exclude_languages),
+               hash(self.regex.pattern)))
 
     @lru_cache(maxsize=None)
     def reverse_match(self, language_code, filename=None,
