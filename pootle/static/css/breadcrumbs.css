@@ -48,6 +48,8 @@
 html[dir="rtl"] .breadcrumb li
 {
     float: right;
+    margin-left: 0;
+    margin-right: 0.3em;
 }
 
 .breadcrumb li.hide
@@ -67,4 +69,3 @@ html[dir="rtl"] .breadcrumb li
     margin-left: 0;
     content: normal;
 }
-

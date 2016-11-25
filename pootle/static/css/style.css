@@ -881,6 +881,7 @@ html[dir="rtl"] .last-action img
 .last-action a
 {
     position: relative;
+    display: inline-block;
 }
 
 
@@ -1701,10 +1702,21 @@ html[dir="rtl"] .summary-3-col
     margin: 0 0 0 6.25%;
 }
 
+html[dir="rtl"] .path-summary-more .summary-3-col
+{
+    margin: 0 6.25% 0 0;
+}
+
 .path-summary-more .summary-1-col
 {
     margin: 0 6.25% 0 0;
 }
+
+html[dir="rtl"] .path-summary-more .summary-1-col
+{
+    margin: 0 0 0 6.25%;
+}
+
 
 .path-summary-more .summary-2-col
 {

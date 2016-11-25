@@ -1,3 +1,11 @@
+/*
+ * Copyright (C) Pootle contributors.
+ *
+ * This file is a part of the Pootle project. It is distributed under the GPL3
+ * or later license. See the LICENSE file for a copy of the license and the
+ * AUTHORS file for copyright and authorship information.
+ */
+
 .select2-default
 {
     color: #999 !important;
@@ -40,10 +48,25 @@
 }
 
 
+html[dir="rtl"] #header-meta .s2-pootle .select2-container .select2-selection--single .select2-selection__rendered
+{
+    padding-left: 23px;
+    padding-right: 0;
+    line-height: 44px;
+}
+
+
 #header-meta .s2-pootle .select2-container--default .select2-selection--single .select2-selection__clear
 {
     margin-left: 13px;
     color: #999;
+    font-family: "Helvetica Neue", Helvetica, Helvetica, Arial, sans-serif;
+}
+
+html[dir="rtl"] #header-meta .s2-pootle .select2-container--default .select2-selection--single .select2-selection__clear
+{
+    margin-right: 13px;
+    margin-left: 0;
 }
 
 #header-meta .s2-pootle .select2-container--default .select2-selection--single .select2-selection__clear:hover
@@ -63,6 +86,14 @@
     height: auto;
     padding: 0 0 0 4px;
 }
+
+html[dir="rtl"] #header-meta .s2-pootle .select2-container .select2-choice,
+html[dir="rtl"] #header-meta .s2-pootle .select2-container--default .select2-selection--single
+{
+    height: auto;
+    padding: 0 4px 0 0;
+}
+
 
 #select2-js-select-navigation-results .select2-results__option .admin
 {
@@ -152,6 +183,12 @@
     margin-left: 0.3em;
 }
 
+html[dir="rtl"] .select2-results .text
+{
+    margin-left: 0;
+    margin-right: 0.3em;
+}
+
 .select2-result-label
 {
     white-space: nowrap;
@@ -162,9 +199,20 @@
     margin-left: 1.5em;
 }
 
-.select2-resource-root .file
+html[dir="rtl"] .select2-results .file
+{
+    margin-left: 0;
+    margin-right: 1.5em;
+}
+
+html[dir="ltr"] .select2-resource-root .file
 {
     margin-left: auto;
+}
+
+html[dir="rtl"] .select2-resource-root .file
+{
+    margin-right: auto;
 }
 
 .select2-match
@@ -230,6 +278,11 @@
     border-radius: 0;
     box-shadow: none;
     background: url('../images/select2.png') no-repeat 100% -22px, linear-gradient(to top, #fff 85%, #eee 99%);
+}
+
+html[dir="rtl"] .select2-search input
+{
+    background: url('../images/select2.png') no-repeat -40px -22px, linear-gradient(to top, #fff 85%, #eee 99%);
 }
 
 .select2-container--default .select2-results__option[aria-selected="true"]
