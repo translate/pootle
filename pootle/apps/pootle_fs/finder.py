@@ -15,6 +15,8 @@ import scandir
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
+from pootle.core.decorators import persistent_property
+
 
 PATH_MAPPING = (
     (".", "\."),
@@ -93,6 +95,10 @@ class TranslationFileFinder(object):
             % (self.fs_hash,
                "::".join(self.exclude_languages),
                hash(self.regex.pattern)))
+
+    @persistent_property
+    def found(self):
+        return list(self.find())
 
     @lru_cache(maxsize=None)
     def reverse_match(self, language_code, filename=None,
