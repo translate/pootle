@@ -5,6 +5,7 @@ include pootle/log/README
 include pootle/.pootle_fs/tmp/README
 recursive-include docs *
 recursive-exclude docs/_themes/.git *
+prune docs/_build/doctrees/
 exclude docs/_themes/.gitignore
 recursive-include pootle/assets *
 recursive-include pootle/locale *
