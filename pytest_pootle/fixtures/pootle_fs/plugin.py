@@ -28,8 +28,6 @@ RESPONSE_MAP = {
     "conflict": dict(
         add_force=("added_from_pootle", "pootle_staged"),
         fetch_force=("fetched_from_fs", "fs_staged"),
-        merge_fs=("staged_for_merge_fs", "merge_fs_wins"),
-        merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
         resolve_overwrite=("staged_for_overwrite_fs", "fs_staged"),
         resolve_pootle_overwrite=("staged_for_overwrite_pootle", "pootle_staged"),
         resolve_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
@@ -37,8 +35,6 @@ RESPONSE_MAP = {
     "conflict_untracked": dict(
         add_force=("added_from_pootle", "pootle_staged"),
         fetch_force=("fetched_from_fs", "fs_staged"),
-        merge_fs=("staged_for_merge_fs", "merge_fs_wins"),
-        merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
         rm_force=("staged_for_removal", "remove"),
         resolve_pootle_overwrite=("staged_for_overwrite_pootle", "pootle_staged"),
         resolve_overwrite=("staged_for_overwrite_fs", "fs_staged"),

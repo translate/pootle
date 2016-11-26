@@ -26,11 +26,4 @@ def parse_fs_action_args(action):
         else:
             plugin_kwargs["pootle_wins"] = False
         action = "resolve"
-    elif action.startswith("merge_"):
-        if action.endswith("pootle"):
-            command_args.append("--pootle-wins")
-            plugin_kwargs["pootle_wins"] = True
-        else:
-            plugin_kwargs["pootle_wins"] = False
-        action = "merge"
     return action, command_args, plugin_kwargs
