@@ -16,6 +16,7 @@ DUMMY_RESPONSE_MAP = dict(
     add="added_from_pootle",
     fetch="fetched_from_fs",
     merge="staged_for_merge_pootle",
+    resolve="staged_for_merge_fs",
     rm="remove",
     sync="merged_from_pootle")
 
