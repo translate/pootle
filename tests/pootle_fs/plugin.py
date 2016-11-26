@@ -17,7 +17,7 @@ from pootle_fs.models import StoreFS
 from pootle_fs.plugin import Plugin
 from pootle_fs.utils import FSPlugin
 from pootle_project.models import Project
-from pootle_store.constants import SOURCE_WINS
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 
 FS_CHANGE_KEYS = [
@@ -26,7 +26,7 @@ FS_CHANGE_KEYS = [
     "_removed", "_unstaged"]
 
 
-def _test_dummy_response(responses, **kwargs):
+def _test_dummy_response(action, responses, **kwargs):
     stores = kwargs.pop("stores", None)
     if stores:
         assert len(responses) == len(stores)
@@ -34,6 +34,64 @@ def _test_dummy_response(responses, **kwargs):
     if stores_fs:
         assert len(responses) == len(stores_fs)
     for response in responses:
+        if action == "add_force":
+            if response.fs_state.state_type.endswith("_untracked"):
+                store_fs = StoreFS.objects.get(
+                    pootle_path=response.pootle_path,
+                    path=response.fs_path)
+            else:
+                store_fs = response.store_fs
+                store_fs.refresh_from_db()
+            assert store_fs.resolve_conflict == POOTLE_WINS
+            assert not store_fs.staged_for_merge
+            continue
+        if action == "fetch_force":
+            if response.fs_state.state_type.endswith("_untracked"):
+                store_fs = StoreFS.objects.get(
+                    pootle_path=response.pootle_path,
+                    path=response.fs_path)
+            else:
+                store_fs = response.store_fs
+                store_fs.refresh_from_db()
+            assert store_fs.resolve_conflict == SOURCE_WINS
+            assert not store_fs.staged_for_merge
+            continue
+        if action.startswith("merge"):
+            if response.fs_state.state_type == "conflict_untracked":
+                store_fs = StoreFS.objects.get(
+                    pootle_path=response.pootle_path,
+                    path=response.fs_path)
+            else:
+                store_fs = response.store_fs
+                store_fs.refresh_from_db()
+            if "pootle" in action:
+                assert store_fs.resolve_conflict == POOTLE_WINS
+            else:
+                assert store_fs.resolve_conflict == SOURCE_WINS
+            assert store_fs.staged_for_merge
+            continue
+        if action.startswith("rm"):
+            if response.fs_state.state_type.endswith("_untracked"):
+                store_fs = StoreFS.objects.get(
+                    pootle_path=response.pootle_path,
+                    path=response.fs_path)
+            else:
+                store_fs = response.store_fs
+                store_fs.refresh_from_db()
+            assert store_fs.staged_for_removal
+            continue
+        if action.startswith("unstage"):
+            store_fs = response.store_fs
+            should_remove = (
+                not store_fs.last_sync_hash
+                and not store_fs.last_sync_revision)
+            if should_remove:
+                assert not StoreFS.objects.filter(pk=store_fs.pk).exists()
+            else:
+                store_fs.refresh_from_db()
+                assert not store_fs.staged_for_merge
+                assert not store_fs.resolve_conflict
+            continue
         if stores:
             if response.store_fs:
                 assert response.store_fs.store in stores
@@ -45,19 +103,11 @@ def _test_dummy_response(responses, **kwargs):
             and not response.fs_state.state_type == "fs_untracked")
         if check_store_fs:
             assert response.store_fs in stores_fs
-        elif response.store_fs:
-            for k in FS_CHANGE_KEYS:
-                assert getattr(response.store_fs.file, k) == kwargs.get(k, False)
-            for k in kwargs:
-                if k not in FS_CHANGE_KEYS:
-                    assert getattr(response.store_fs.file, k) == kwargs[k]
-        else:
+        elif not response.store_fs:
             store_fs = StoreFS.objects.filter(
                 path=response.fs_path,
                 pootle_path=response.pootle_path)
-            if store_fs and response.action_type == "staged_for_removal":
-                assert store_fs[0].staged_for_removal is True
-            elif store_fs and response.action_type == "fetched_from_fs":
+            if store_fs and response.action_type == "fetched_from_fs":
                 assert store_fs[0].resolve_conflict == SOURCE_WINS
 
 
@@ -72,7 +122,8 @@ def test_fs_plugin_unstage_response(capsys, no_complex_po_, localfs_envs):
         "merge_fs_wins", "merge_pootle_wins"]
     if state_type in unstaging_states:
         assert plugin_response.made_changes is True
-        _test_dummy_response(plugin_response["unstaged"], _unstaged=True)
+        _test_dummy_response(
+            action, plugin_response["unstaged"], _unstaged=True)
     else:
         assert plugin_response.made_changes is False
         assert not plugin_response["unstaged"]
@@ -88,7 +139,8 @@ def test_fs_plugin_unstage_staged_response(capsys,
     plugin_response = getattr(plugin, action)(
         state=original_state)
     assert plugin_response.made_changes is True
-    _test_dummy_response(plugin_response["unstaged"], _unstaged=True)
+    _test_dummy_response(
+        action, plugin_response["unstaged"], _unstaged=True)
 
 
 @pytest.mark.django_db
@@ -154,6 +206,7 @@ def test_fs_plugin_response(localfs_envs, possible_actions, fs_response_map):
         dict(stores=stores,
              stores_fs=stores_fs))
     _test_dummy_response(
+        action_name,
         plugin_response[expected[0]],
         **kwargs)
 
