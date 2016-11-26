@@ -282,6 +282,37 @@ class Plugin(object):
         return response
 
     @responds_to_state
+    def resolve(self, state, response, fs_path=None, pootle_path=None,
+                merge=True, pootle_wins=False):
+        """
+        Resolve conflicting translations
+
+        Default is to merge with FS winning
+
+        :param merge: Merge Pootle and FS, defaults to True, otherwise overwrite
+        :param pootle_wins: Use unit from Pootle where conflicting
+        :param fs_path: FS path glob to filter translations
+        :param pootle_path: Pootle path glob to filter translations
+        :returns response: Where ``response`` is an instance of self.respose_class
+        """
+        kwargs = {}
+        if pootle_wins:
+            kwargs["resolve_conflict"] = POOTLE_WINS
+        if merge:
+            kwargs["staged_for_merge"] = True
+            if not pootle_wins:
+                kwargs["resolve_conflict"] = SOURCE_WINS
+        self.create_store_fs(state["conflict_untracked"], **kwargs)
+        self.update_store_fs(state["conflict"], **kwargs)
+        action_type = (
+            "staged_for_%s_%s"
+            % ((merge and "merge" or "overwrite"),
+               (pootle_wins and "pootle" or "fs")))
+        for fs_state in state["conflict"] + state["conflict_untracked"]:
+            response.add(action_type, fs_state=fs_state)
+        return response
+
+    @responds_to_state
     def rm(self, state, response, fs_path=None, pootle_path=None, force=False):
         """
         Stage translations for removal.
