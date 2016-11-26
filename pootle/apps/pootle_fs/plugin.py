@@ -257,31 +257,6 @@ class Plugin(object):
         return response
 
     @responds_to_state
-    def merge(self, state, response,
-              fs_path=None, pootle_path=None, pootle_wins=False):
-        """
-        Stage translations for merge.
-
-        :param pootle_wins: Prefer Pootle where there are conflicting units
-        :param fs_path: FS path glob to filter translations
-        :param pootle_path: Pootle path glob to filter translations
-        :returns response: Where ``response`` is an instance of self.respose_class
-        """
-        to_create = state["conflict_untracked"]
-        to_update = state["conflict"]
-        action_type = (
-            "staged_for_merge_%s"
-            % (pootle_wins and "pootle" or "fs"))
-        kwargs = dict(staged_for_merge=True)
-        kwargs["resolve_conflict"] = (
-            pootle_wins and POOTLE_WINS or SOURCE_WINS)
-        self.update_store_fs(to_update, **kwargs)
-        self.create_store_fs(to_create, **kwargs)
-        for fs_state in to_create + to_update:
-            response.add(action_type, fs_state=fs_state)
-        return response
-
-    @responds_to_state
     def resolve(self, state, response, fs_path=None, pootle_path=None,
                 merge=True, pootle_wins=False):
         """
