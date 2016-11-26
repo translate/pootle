@@ -35,6 +35,14 @@ FS_RESPONSE["pushed_to_fs"] = {
     "title": "Pushed to filesystem",
     "description":
         "Files updated where Pootle Store version was new or newer"}
+FS_RESPONSE["staged_for_overwrite_fs"] = {
+    "title": "Staged for overwrite from filesystem",
+    "description":
+        ("Files staged to overwrite the corresponding Store")}
+FS_RESPONSE["staged_for_overwrite_pootle"] = {
+    "title": "Staged for overwrite from pootle",
+    "description":
+        ("Stores staged to overwrite the corresponding file")}
 FS_RESPONSE["staged_for_removal"] = {
     "title": "Staged for removal",
     "description":
