@@ -29,7 +29,7 @@ class ItemState(object):
                  == sorted(other.kwargs.items())))
 
     def __getattr__(self, k):
-        if k in self.kwargs:
+        if self.__dict__.get("kwargs") and k in self.__dict__["kwargs"]:
             return self.kwargs[k]
         return self.__getattribute__(k)
 
