@@ -66,6 +66,9 @@ class State(object):
     def __getitem__(self, k):
         return self.__state__[k]
 
+    def __setitem__(self, k, v):
+        self.__state__[k] = v
+
     def __iter__(self):
         for k in self.__state__:
             if self.__state__[k]:
