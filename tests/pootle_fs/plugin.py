@@ -13,9 +13,11 @@ import pytest
 from pootle.core.response import Response
 from pootle.core.state import State
 from pootle_fs.matcher import FSPathMatcher
+from pootle_fs.models import StoreFS
 from pootle_fs.plugin import Plugin
 from pootle_fs.utils import FSPlugin
 from pootle_project.models import Project
+from pootle_store.constants import SOURCE_WINS
 
 
 FS_CHANGE_KEYS = [
@@ -33,14 +35,30 @@ def _test_dummy_response(responses, **kwargs):
         assert len(responses) == len(stores_fs)
     for response in responses:
         if stores:
-            assert response.store_fs.store in stores
-        if stores_fs:
+            if response.store_fs:
+                assert response.store_fs.store in stores
+            else:
+                assert stores.filter(
+                    pootle_path=response.pootle_path).exists()
+        check_store_fs = (
+            stores_fs
+            and not response.fs_state.state_type == "fs_untracked")
+        if check_store_fs:
             assert response.store_fs in stores_fs
-        for k in FS_CHANGE_KEYS:
-            assert getattr(response.store_fs.file, k) == kwargs.get(k, False)
-        for k in kwargs:
-            if k not in FS_CHANGE_KEYS:
-                assert getattr(response.store_fs.file, k) == kwargs[k]
+        elif response.store_fs:
+            for k in FS_CHANGE_KEYS:
+                assert getattr(response.store_fs.file, k) == kwargs.get(k, False)
+            for k in kwargs:
+                if k not in FS_CHANGE_KEYS:
+                    assert getattr(response.store_fs.file, k) == kwargs[k]
+        else:
+            store_fs = StoreFS.objects.filter(
+                path=response.fs_path,
+                pootle_path=response.pootle_path)
+            if store_fs and response.action_type == "staged_for_removal":
+                assert store_fs[0].staged_for_removal is True
+            elif store_fs and response.action_type == "fetched_from_fs":
+                assert store_fs[0].resolve_conflict == SOURCE_WINS
 
 
 @pytest.mark.django_db
