@@ -201,21 +201,8 @@ def localfs_dummy_file(no_fs_files):
         def latest_hash(self):
             return str(hash(self.pootle_path))
 
-        def add(self):
-            self._added = True
-
         def delete(self):
             self._deleted = True
-
-        def fetch(self):
-            self._fetched = True
-
-        def merge(self, pootle_wins):
-            self._merged = True
-            if pootle_wins:
-                self._merge_pootle = True
-            else:
-                self._merge_fs = True
 
         def pull(self, **kwargs):
             self._pulled = True
@@ -223,12 +210,6 @@ def localfs_dummy_file(no_fs_files):
 
         def push(self):
             self._pushed = True
-
-        def rm(self):
-            self._removed = True
-
-        def unstage(self):
-            self._unstaged = True
 
     @getter(fs_file, sender=LocalFSPlugin, weak=False)
     def get_fs_file_(**kwargs_):
