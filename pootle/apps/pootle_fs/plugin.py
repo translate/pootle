@@ -235,21 +235,19 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
-        to_fetch = state["fs_untracked"]
+        to_create = state["fs_untracked"]
+        to_update = []
         if force:
-            to_fetch = (
-                to_fetch
-                + state["conflict_untracked"]
-                + state["pootle_removed"]
+            to_create += state["conflict_untracked"]
+            to_update += (
+                state["pootle_removed"]
                 + state["conflict"])
-        to_create = []
-        for fs_state in to_fetch:
-            if fs_state.state_type in ["fs_untracked", "conflict_untracked"]:
-                to_create.append(fs_state)
-            else:
-                fs_state.store_fs.file.fetch()
-            response.add("fetched_from_fs", fs_state=fs_state)
+        self.update_store_fs(
+            to_update,
+            resolve_conflict=SOURCE_WINS)
         self.create_store_fs(to_create, resolve_conflict=SOURCE_WINS)
+        for fs_state in to_create + to_update:
+            response.add("fetched_from_fs", fs_state=fs_state)
         return response
 
     @responds_to_state
