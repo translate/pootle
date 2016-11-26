@@ -23,7 +23,7 @@ from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 FS_CHANGE_KEYS = [
     "_added", "_fetched", "_pulled",
     "_synced", "_pushed", "_merged",
-    "_removed", "_unstaged"]
+    "_resolved", "_removed", "_unstaged"]
 
 
 def _test_dummy_response(action, responses, **kwargs):
@@ -98,6 +98,19 @@ def _test_dummy_response(action, responses, **kwargs):
             else:
                 assert stores.filter(
                     pootle_path=response.pootle_path).exists()
+        if action.startswith("resolve"):
+            if response.fs_state.state_type.endswith("_untracked"):
+                store_fs = StoreFS.objects.get(
+                    path=response.fs_state.fs_path,
+                    pootle_path=response.fs_state.pootle_path)
+            else:
+                store_fs = response.store_fs
+                store_fs.refresh_from_db()
+            if "pootle" in action:
+                assert store_fs.resolve_conflict == POOTLE_WINS
+            if not action.endswith("overwrite"):
+                assert store_fs.staged_for_merge is True
+            continue
         check_store_fs = (
             stores_fs
             and not response.fs_state.state_type == "fs_untracked")
