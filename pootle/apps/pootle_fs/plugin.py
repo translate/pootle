@@ -112,6 +112,8 @@ class Plugin(object):
         return self.matcher.reverse_match(pootle_path)
 
     def create_store_fs(self, items, **kwargs):
+        if not items:
+            return
         to_add = []
         paths = [
             x.pootle_path
@@ -209,8 +211,7 @@ class Plugin(object):
             else:
                 fs_state.store_fs.file.add()
             response.add("added_from_pootle", fs_state=fs_state)
-        if to_create:
-            self.create_store_fs(to_create, resolve_conflict=POOTLE_WINS)
+        self.create_store_fs(to_create, resolve_conflict=POOTLE_WINS)
         return response
 
     @responds_to_state
@@ -242,8 +243,7 @@ class Plugin(object):
             else:
                 fs_state.store_fs.file.fetch()
             response.add("fetched_from_fs", fs_state=fs_state)
-        if to_create:
-            self.create_store_fs(to_create, resolve_conflict=SOURCE_WINS)
+        self.create_store_fs(to_create, resolve_conflict=SOURCE_WINS)
         return response
 
     @responds_to_state
@@ -267,11 +267,10 @@ class Plugin(object):
                 response.add("staged_for_merge_pootle", fs_state=fs_state)
             else:
                 response.add("staged_for_merge_fs", fs_state=fs_state)
-        if to_create:
-            self.create_store_fs(
-                to_create,
-                staged_for_merge=True,
-                resolve_conflict=(pootle_wins and POOTLE_WINS or SOURCE_WINS))
+        self.create_store_fs(
+            to_create,
+            staged_for_merge=True,
+            resolve_conflict=(pootle_wins and POOTLE_WINS or SOURCE_WINS))
         return response
 
     @responds_to_state
@@ -305,8 +304,7 @@ class Plugin(object):
             else:
                 fs_state.store_fs.file.rm()
             response.add("staged_for_removal", fs_state=fs_state)
-        if to_create:
-            self.create_store_fs(to_create, staged_for_removal=True)
+        self.create_store_fs(to_create, staged_for_removal=True)
         return response
 
     @responds_to_state
