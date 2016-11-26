@@ -47,7 +47,7 @@ def _get_dummy_api_plugin():
         response_types = [
             "remove", "remove_args",
             "fetched_from_fs", "fetched_from_fs_args",
-            "added_from_pootle", "added_from_pootle_args",
+            "added_from_pootle", "added_from_pootle_args", "staged_for_merge_fs",
             "staged_for_merge_pootle", "staged_for_merge_pootle_args",
             "merged_from_pootle", "merged_from_pootle_args"]
 
@@ -73,6 +73,10 @@ def _get_dummy_api_plugin():
 
         def merge(self, **kwargs):
             self._api_called("merge", **kwargs)
+            return self.dummy_response
+
+        def resolve(self, **kwargs):
+            self._api_called("resolve", **kwargs)
             return self.dummy_response
 
         def rm(self, **kwargs):

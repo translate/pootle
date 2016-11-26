@@ -29,13 +29,21 @@ RESPONSE_MAP = {
         add_force=("added_from_pootle", "pootle_staged"),
         fetch_force=("fetched_from_fs", "fs_staged"),
         merge_fs=("staged_for_merge_fs", "merge_fs_wins"),
-        merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins")),
+        merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
+        resolve_overwrite=("staged_for_overwrite_fs", "fs_staged"),
+        resolve_pootle_overwrite=("staged_for_overwrite_pootle", "pootle_staged"),
+        resolve_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
+        resolve=("staged_for_merge_fs", "merge_fs_wins")),
     "conflict_untracked": dict(
         add_force=("added_from_pootle", "pootle_staged"),
         fetch_force=("fetched_from_fs", "fs_staged"),
         merge_fs=("staged_for_merge_fs", "merge_fs_wins"),
         merge_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
-        rm_force=("staged_for_removal", "remove")),
+        rm_force=("staged_for_removal", "remove"),
+        resolve_pootle_overwrite=("staged_for_overwrite_pootle", "pootle_staged"),
+        resolve_overwrite=("staged_for_overwrite_fs", "fs_staged"),
+        resolve_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
+        resolve=("staged_for_merge_fs", "merge_fs_wins")),
     "fs_ahead": dict(
         sync=("pulled_to_pootle", None)),
     "fs_removed": dict(
@@ -191,6 +199,7 @@ def localfs_dummy_file(no_fs_files):
         _merged = False
         _pulled = False
         _pushed = False
+        _resolved = False
         _removed = False
         _synced = False
         _unstaged = False
