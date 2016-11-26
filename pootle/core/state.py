@@ -86,6 +86,10 @@ class State(object):
                           if self.__state__[k]])))
 
     @property
+    def changed(self):
+        return {k: len(v) for k, v in self.__state__.items() if v}
+
+    @property
     def has_changed(self):
         return any(self.__state__.values())
 
