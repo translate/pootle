@@ -131,6 +131,12 @@ class Plugin(object):
                     **kwargs))
         self.store_fs_class.objects.bulk_create(to_add)
 
+    def update_store_fs(self, items, **kwargs):
+        if not items:
+            return
+        self.store_fs_class.objects.filter(
+            pk__in=[fs.store_fs.pk for fs in items]).update(**kwargs)
+
     def clear_repo(self):
         if self.is_cloned:
             shutil.rmtree(self.project.local_fs_path)
