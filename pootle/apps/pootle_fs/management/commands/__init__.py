@@ -70,7 +70,7 @@ class FSAPISubCommand(ProjectSubCommand):
             for k, v
             in options.items()
             if k in [
-                "pootle_path", "fs_path",
+                "pootle_path", "fs_path", "merge",
                 "force", "pootle_wins"]}
 
     def handle_api(self, **options):
