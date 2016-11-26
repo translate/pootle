@@ -131,6 +131,12 @@ class Plugin(object):
                     **kwargs))
         self.store_fs_class.objects.bulk_create(to_add)
 
+    def delete_store_fs(self, items, **kwargs):
+        if not items:
+            return
+        self.store_fs_class.objects.filter(
+            pk__in=[fs.store_fs.pk for fs in items]).delete()
+
     def update_store_fs(self, items, **kwargs):
         if not items:
             return
@@ -310,21 +316,35 @@ class Plugin(object):
         """
         Unstage files staged for addition, merge or removal
         """
-        to_unstage = (
+        to_remove = []
+        to_update = (
             state["remove"]
             + state["merge_pootle_wins"]
             + state["merge_fs_wins"]
-            + state["pootle_ahead"]
-            + state["fs_ahead"]
             + state["pootle_staged"]
             + state["fs_staged"])
-        for fs_state in to_unstage:
-            staged = (
-                fs_state.state_type not in ["fs_ahead", "pootle_ahead"]
-                or fs_state.store_fs.resolve_conflict in [SOURCE_WINS, POOTLE_WINS])
-            if staged:
-                fs_state.store_fs.file.unstage()
-                response.add("unstaged", fs_state=fs_state)
+        for fs_state in state["pootle_ahead"] + state["fs_ahead"]:
+            if fs_state.store_fs.resolve_conflict in [SOURCE_WINS, POOTLE_WINS]:
+                to_update.append(fs_state)
+        for fs_state in to_update:
+            should_remove = (
+                fs_state.store_fs
+                and not fs_state.store_fs.last_sync_revision
+                and not fs_state.store_fs.last_sync_hash)
+            if should_remove:
+                to_remove.append(fs_state)
+        to_update = list(set(to_update) - set(to_remove))
+        self.update_store_fs(
+            to_update,
+            resolve_conflict=None,
+            staged_for_merge=False,
+            staged_for_removal=False)
+        self.delete_store_fs(to_remove)
+        updated = sorted(
+            to_remove + to_update,
+            key=lambda x: x.pootle_path)
+        for fs_state in updated:
+            response.add("unstaged", fs_state=fs_state)
         return response
 
     @responds_to_state
