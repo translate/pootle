@@ -195,35 +195,34 @@ class Plugin(object):
             self, fs_path=fs_path, pootle_path=pootle_path)
 
     @responds_to_state
-    def add(self, state, response,
-            fs_path=None, pootle_path=None, force=False):
+    def add(self, state, response, fs_path=None, pootle_path=None, force=False):
         """
-        Stage translations from Pootle into the FS
+        Stage untracked or removed Stores or files
 
-        If ``force``=``True`` is present it will also:
-        - stage untracked conflicting files from Pootle
-        - stage tracked conflicting files to update from Pootle
-
-        :param force: Add conflicting translations.
+        :param force: Re-add removed Stores or files.
         :param fs_path: FS path glob to filter translations
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
-        to_create = state["pootle_untracked"]
-        to_update = []
-        if force:
-            to_create += state["conflict_untracked"]
-            to_update += (
-                state["fs_removed"]
-                + state["conflict"])
-        self.update_store_fs(
-            to_update,
-            resolve_conflict=POOTLE_WINS)
         self.create_store_fs(
-            to_create,
-            resolve_conflict=POOTLE_WINS)
-        for fs_state in to_create + to_update:
+            state["fs_untracked"]
+            + state["pootle_untracked"])
+        if force:
+            self.update_store_fs(
+                state["fs_removed"],
+                resolve_conflict=POOTLE_WINS)
+            self.update_store_fs(
+                state["pootle_removed"],
+                resolve_conflict=SOURCE_WINS)
+        for fs_state in state["fs_untracked"]:
+            response.add("added_from_fs", fs_state=fs_state)
+        for fs_state in state["pootle_untracked"]:
             response.add("added_from_pootle", fs_state=fs_state)
+        if force:
+            for fs_state in state["fs_removed"]:
+                response.add("readded_from_pootle", fs_state=fs_state)
+            for fs_state in state["pootle_removed"]:
+                response.add("readded_from_fs", fs_state=fs_state)
         return response
 
     @responds_to_state
@@ -307,6 +306,7 @@ class Plugin(object):
             + state["fs_removed"]
             + state["both_removed"])
         if force:
+            to_update += state["conflict"]
             to_create += (
                 state["conflict_untracked"]
                 + state["fs_untracked"]
