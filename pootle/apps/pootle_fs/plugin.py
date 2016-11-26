@@ -289,24 +289,20 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
-        removed = (
+        to_create = []
+        to_update = (
             state["pootle_removed"]
             + state["fs_removed"]
             + state["both_removed"])
         if force:
-            removed = (
-                removed
-                + state["conflict_untracked"]
+            to_create += (
+                state["conflict_untracked"]
                 + state["fs_untracked"]
                 + state["pootle_untracked"])
-        to_create = []
-        for fs_state in removed:
-            if fs_state.state_type.endswith("_untracked"):
-                to_create.append(fs_state)
-            else:
-                fs_state.store_fs.file.rm()
-            response.add("staged_for_removal", fs_state=fs_state)
+        self.update_store_fs(to_update, staged_for_removal=True)
         self.create_store_fs(to_create, staged_for_removal=True)
+        for fs_state in to_create + to_update:
+            response.add("staged_for_removal", fs_state=fs_state)
         return response
 
     @responds_to_state
