@@ -111,16 +111,27 @@ class Plugin(object):
         """
         return self.matcher.reverse_match(pootle_path)
 
+    def create_store_fs(self, items, **kwargs):
+        to_add = []
+        paths = [
+            x.pootle_path
+            for x in items]
+        stores = dict(
+            Store.objects.filter(
+                pootle_path__in=paths).values_list("pootle_path", "pk"))
+        for item in items:
+            to_add.append(
+                self.store_fs_class(
+                    project=self.project,
+                    pootle_path=item.pootle_path,
+                    path=item.fs_path,
+                    store_id=stores.get(item.pootle_path),
+                    **kwargs))
+        self.store_fs_class.objects.bulk_create(to_add)
+
     def clear_repo(self):
         if self.is_cloned:
             shutil.rmtree(self.project.local_fs_path)
-
-    def create_store_fs(self, fs_path=None, pootle_path=None, store=None):
-        return self.store_fs_class.objects.create(
-            project=self.project,
-            pootle_path=pootle_path,
-            path=fs_path,
-            store=store)
 
     def find_translations(self, fs_path=None, pootle_path=None):
         """
@@ -191,13 +202,15 @@ class Plugin(object):
                 + state["conflict_untracked"]
                 + state["fs_removed"]
                 + state["conflict"])
+        to_create = []
         for fs_state in to_add:
             if fs_state.state_type in ["pootle_untracked", "conflict_untracked"]:
-                fs_state.kwargs["store_fs"] = self.create_store_fs(
-                    pootle_path=fs_state.pootle_path,
-                    fs_path=fs_state.fs_path)
-            fs_state.store_fs.file.add()
+                to_create.append(fs_state)
+            else:
+                fs_state.store_fs.file.add()
             response.add("added_from_pootle", fs_state=fs_state)
+        if to_create:
+            self.create_store_fs(to_create, resolve_conflict=POOTLE_WINS)
         return response
 
     @responds_to_state
@@ -222,13 +235,15 @@ class Plugin(object):
                 + state["conflict_untracked"]
                 + state["pootle_removed"]
                 + state["conflict"])
+        to_create = []
         for fs_state in to_fetch:
             if fs_state.state_type in ["fs_untracked", "conflict_untracked"]:
-                fs_state.kwargs["store_fs"] = self.create_store_fs(
-                    pootle_path=fs_state.pootle_path,
-                    fs_path=fs_state.fs_path)
-            fs_state.store_fs.file.fetch()
+                to_create.append(fs_state)
+            else:
+                fs_state.store_fs.file.fetch()
             response.add("fetched_from_fs", fs_state=fs_state)
+        if to_create:
+            self.create_store_fs(to_create, resolve_conflict=SOURCE_WINS)
         return response
 
     @responds_to_state
@@ -242,16 +257,21 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
+        to_create = []
         for fs_state in state["conflict"] + state["conflict_untracked"]:
             if fs_state.state_type == "conflict_untracked":
-                fs_state.kwargs["store_fs"] = self.create_store_fs(
-                    store=Store.objects.get(pootle_path=fs_state.pootle_path),
-                    fs_path=fs_state.fs_path)
-            fs_state.store_fs.file.merge(pootle_wins)
+                to_create.append(fs_state)
+            else:
+                fs_state.store_fs.file.merge(pootle_wins)
             if pootle_wins:
                 response.add("staged_for_merge_pootle", fs_state=fs_state)
             else:
                 response.add("staged_for_merge_fs", fs_state=fs_state)
+        if to_create:
+            self.create_store_fs(
+                to_create,
+                staged_for_merge=True,
+                resolve_conflict=(pootle_wins and POOTLE_WINS or SOURCE_WINS))
         return response
 
     @responds_to_state
@@ -278,13 +298,15 @@ class Plugin(object):
                 + state["conflict_untracked"]
                 + state["fs_untracked"]
                 + state["pootle_untracked"])
+        to_create = []
         for fs_state in removed:
             if fs_state.state_type.endswith("_untracked"):
-                fs_state.kwargs["store_fs"] = self.create_store_fs(
-                    pootle_path=fs_state.pootle_path,
-                    fs_path=fs_state.fs_path)
-            fs_state.store_fs.file.rm()
+                to_create.append(fs_state)
+            else:
+                fs_state.store_fs.file.rm()
             response.add("staged_for_removal", fs_state=fs_state)
+        if to_create:
+            self.create_store_fs(to_create, staged_for_removal=True)
         return response
 
     @responds_to_state
