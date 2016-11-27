@@ -297,6 +297,9 @@ def test_fs_plugin_not_implemented():
     plugin = Plugin(project)
 
     with pytest.raises(NotImplementedError):
+        plugin.latest_hash
+
+    with pytest.raises(NotImplementedError):
         plugin.pull()
 
     with pytest.raises(NotImplementedError):
