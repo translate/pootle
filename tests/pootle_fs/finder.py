@@ -231,3 +231,25 @@ def test_finder_exclude_langs():
     assert (
         finder.reverse_match(language_code="baz")
         == "/path/to/baz.po")
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
+def test_finder_cache_key():
+    finder = TranslationFileFinder(
+        "/path/to/<dir_path>/<language_code>.<ext>",
+        exclude_languages=["foo", "bar"])
+    assert not finder.fs_hash
+    assert not finder.cache_key
+    finder = TranslationFileFinder(
+        "/path/to/<dir_path>/<language_code>.<ext>",
+        exclude_languages=["foo", "bar"],
+        fs_hash="XYZ")
+    assert finder.fs_hash == "XYZ"
+    assert (
+        finder.cache_key
+        == ("pootle.fs.finder.%s.%s.%s"
+            % (finder.fs_hash,
+               "::".join(finder.exclude_languages),
+               hash(finder.regex.pattern))))
