@@ -47,11 +47,12 @@ class State(object):
     item_state_class = ItemState
     prefix = "state"
 
-    def __init__(self, context, **kwargs):
+    def __init__(self, context, load=True, **kwargs):
         self.context = context
         self.__state__ = {}
         self.kwargs = kwargs
-        self.reload()
+        if load:
+            self.reload()
 
     def __contains__(self, k):
         return k in self.__state__ and self.__state__[k]
