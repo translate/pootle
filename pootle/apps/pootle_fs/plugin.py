@@ -226,36 +226,6 @@ class Plugin(object):
         return response
 
     @responds_to_state
-    def fetch(self, state, response,
-              fs_path=None, pootle_path=None, force=False):
-        """
-        Stage translations from FS into Pootle
-
-        If ``force``=``True`` is present it will also:
-        - stage untracked conflicting files from FS
-        - stage tracked conflicting files to update from FS
-
-        :param force: Fetch conflicting translations.
-        :param fs_path: FS path glob to filter translations
-        :param pootle_path: Pootle path glob to filter translations
-        :returns response: Where ``response`` is an instance of self.respose_class
-        """
-        to_create = state["fs_untracked"]
-        to_update = []
-        if force:
-            to_create += state["conflict_untracked"]
-            to_update += (
-                state["pootle_removed"]
-                + state["conflict"])
-        self.update_store_fs(
-            to_update,
-            resolve_conflict=SOURCE_WINS)
-        self.create_store_fs(to_create, resolve_conflict=SOURCE_WINS)
-        for fs_state in to_create + to_update:
-            response.add("fetched_from_fs", fs_state=fs_state)
-        return response
-
-    @responds_to_state
     def resolve(self, state, response, fs_path=None, pootle_path=None,
                 merge=True, pootle_wins=False):
         """
