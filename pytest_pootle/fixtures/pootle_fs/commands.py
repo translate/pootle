@@ -14,7 +14,6 @@ from django.utils.lru_cache import lru_cache
 
 DUMMY_RESPONSE_MAP = dict(
     add="added_from_pootle",
-    fetch="fetched_from_fs",
     resolve="staged_for_merge_fs",
     rm="remove",
     sync="merged_from_pootle")
@@ -45,7 +44,7 @@ def _get_dummy_api_plugin():
 
         response_types = [
             "remove", "remove_args",
-            "fetched_from_fs", "fetched_from_fs_args",
+            "added_from_fs", "added_from_fs_args",
             "added_from_pootle", "added_from_pootle_args", "staged_for_merge_fs",
             "staged_for_merge_pootle", "staged_for_merge_pootle_args",
             "merged_from_pootle", "merged_from_pootle_args"]

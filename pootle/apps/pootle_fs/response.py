@@ -26,8 +26,8 @@ FS_RESPONSE["added_from_pootle"] = {
     "title": "Added from Pootle",
     "description":
         "Files staged from Pootle that were new or newer than their files"}
-FS_RESPONSE["fetched_from_fs"] = {
-    "title": "Fetched from filesystem",
+FS_RESPONSE["added_from_fs"] = {
+    "title": "Added from filesystem",
     "description":
         ("Files staged from the filesystem that were new or newer than their "
          "Pootle Stores")}

@@ -15,7 +15,7 @@ BOTH_EXISTS_ACTIONS = [
     "merged_from_fs", "merged_from_pootle",
     "pulled_to_pootle", "pushed_to_fs",
     "staged_for_merge_fs", "staged_for_merge_pootle"]
-FS_EXISTS_ACTIONS = BOTH_EXISTS_ACTIONS + ["fetched_from_fs"]
+FS_EXISTS_ACTIONS = BOTH_EXISTS_ACTIONS + ["added_from_fs"]
 STORE_EXISTS_ACTIONS = BOTH_EXISTS_ACTIONS + ["added_from_pootle"]
 BOTH_EXISTS_STATES = [
     "fs_ahead", "pootle_ahead",
@@ -68,7 +68,7 @@ class ResponseItemDisplay(FSItemDisplay):
     @property
     def fs_added(self):
         return (
-            self.action_type == "fetched_from_fs"
+            self.action_type == "added_from_fs"
             and self.state_type not in ["conflict", "conflict_untracked"])
 
     @property

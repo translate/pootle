@@ -146,7 +146,7 @@ def test_fs_response_path_items(settings, tmpdir):
              "/language0/%s/fs_untracked_%s.po" % (project.code, i)))
     _test_fs_response(
         fs_untracked=fs_untracked,
-        action_type="fetched_from_fs",
+        action_type="added_from_fs",
         state_type="fs_untracked")
 
 

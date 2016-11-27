@@ -96,9 +96,9 @@ def test_fs_response_display_item_instance(localfs_pootle_untracked):
 def test_fs_response_display_item_fs_untracked(localfs_fs_untracked):
     plugin = localfs_fs_untracked
     response = plugin.add()
-    response_item = response["fetched_from_fs"][0]
+    response_item = response["added_from_fs"][0]
     item_display = ResponseItemDisplay(None, response_item)
-    assert item_display.action_type == "fetched_from_fs"
+    assert item_display.action_type == "added_from_fs"
     assert item_display.state_item == response_item.fs_state
     assert item_display.file_exists is True
     assert item_display.store_exists is False
@@ -140,7 +140,7 @@ def test_fs_response_display_item_existence(fs_responses, fs_states):
             and (fs_states
                  in ["pootle_untracked", "fs_removed"])))
     fs_added = (
-        fs_responses == "fetched_from_fs"
+        fs_responses == "added_from_fs"
         and fs_states not in ["conflict", "conflict_untracked"])
     pootle_added = (
         fs_responses == "added_from_pootle"
