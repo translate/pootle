@@ -48,17 +48,6 @@ def _test_dummy_response(action, responses, **kwargs):
                 assert store_fs.resolve_conflict == SOURCE_WINS
             assert not store_fs.staged_for_merge
             continue
-        if action == "fetch_force":
-            if response.fs_state.state_type.endswith("_untracked"):
-                store_fs = StoreFS.objects.get(
-                    pootle_path=response.pootle_path,
-                    path=response.fs_path)
-            else:
-                store_fs = response.store_fs
-                store_fs.refresh_from_db()
-            assert store_fs.resolve_conflict == SOURCE_WINS
-            assert not store_fs.staged_for_merge
-            continue
         if action.startswith("rm"):
             if response.fs_state.state_type.endswith("_untracked"):
                 store_fs = StoreFS.objects.get(
@@ -180,8 +169,6 @@ def test_fs_plugin_response(localfs_envs, possible_actions, fs_response_map):
         changes = ["_pulled", "_pushed", "_synced"]
     elif expected[0] == "added_from_pootle":
         changes = ["_added"]
-    elif expected[0] == "fetched_from_fs":
-        changes = ["_fetched"]
     elif expected[0] == "pushed_to_fs":
         changes = ["_pushed", "_synced"]
     elif expected[0] == "pulled_to_pootle":

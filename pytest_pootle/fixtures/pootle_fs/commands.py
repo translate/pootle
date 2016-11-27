@@ -66,10 +66,6 @@ def _get_dummy_api_plugin():
             self._api_called("add", **kwargs)
             return self.dummy_response
 
-        def fetch(self, **kwargs):
-            self._api_called("fetch", **kwargs)
-            return self.dummy_response
-
         def resolve(self, **kwargs):
             self._api_called("resolve", **kwargs)
             return self.dummy_response
