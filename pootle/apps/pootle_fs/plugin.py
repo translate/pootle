@@ -16,6 +16,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
     config, response as pootle_response, state as pootle_state)
+from pootle.core.models import Revision
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 from pootle_store.models import Store
 from pootle_project.models import Project
@@ -48,6 +49,22 @@ class Plugin(object):
     def __str__(self):
         return "<%s(%s)>" % (self.__class__.__name__, self.project)
 
+    @cached_property
+    def cache_key(self):
+        project_revision = self.project.directory.revisions.get(
+            key="stats").value
+        latest_hash = self.get_latest_hash()
+        from pootle.core.delegate import revision
+        fs_key = revision.get(
+            self.project.directory.__class__)(self.project.directory).get(key="fs")
+        if latest_hash is None:
+            return
+        return (
+            "projectfs.%s.%s.%s"
+            % (project_revision,
+               fs_key,
+               latest_hash))
+
     @property
     def is_cloned(self):
         return os.path.exists(self.project.local_fs_path)
@@ -73,6 +90,14 @@ class Plugin(object):
         from .models import StoreFS
 
         return StoreFS
+
+    @cached_property
+    def latest_hash(self):
+        return self.get_latest_hash()
+
+    @cached_property
+    def latest_revision(self):
+        return Revision.get()
 
     @cached_property
     def matcher(self):
@@ -159,6 +184,9 @@ class Plugin(object):
         """
         return self.matcher.matches(fs_path, pootle_path)
 
+    def get_latest_hash(self):
+        return None
+
     def pull(self):
         """
         Pull the FS from external source if required.
@@ -190,7 +218,7 @@ class Plugin(object):
           ``pootle_path``
         :returns state: Where ``state`` is an instance of self.state_class
         """
-        self.pull()
+        # self.pull()
         return self.state_class(
             self, fs_path=fs_path, pootle_path=pootle_path)
 

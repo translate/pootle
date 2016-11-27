@@ -95,9 +95,12 @@ class FSFile(object):
     def store(self):
         return self.store_fs.store
 
-    def add(self):
-        logger.debug("Adding file: %s", self.path)
-        self.store_fs.resolve_conflict = POOTLE_WINS
+    def add(self, pootle_wins=False):
+        # logger.debug("Adding file: %s", self.path)
+        if pootle_wins:
+            self.store_fs.resolve_conflict = POOTLE_WINS
+        else:
+            self.store_fs.resolve_conflict = SOURCE_WINS
         self.store_fs.save()
 
     def create_store(self):
@@ -125,14 +128,6 @@ class FSFile(object):
         if self.store_fs.pk:
             self.store_fs.delete()
         self.remove_file()
-
-    def fetch(self):
-        """
-        Called when FS file is fetched
-        """
-        logger.debug("Fetching file: %s", self.path)
-        self.store_fs.resolve_conflict = SOURCE_WINS
-        self.store_fs.save()
 
     def merge(self, pootle_wins):
         if pootle_wins:
@@ -195,16 +190,10 @@ class FSFile(object):
         self.store_fs.save()
 
     def unstage(self):
-        should_remove = (
-            not self.store_fs.last_sync_revision
-            and not self.store_fs.last_sync_hash)
         self.store_fs.resolve_conflict = None
         self.store_fs.staged_for_merge = False
         self.store_fs.staged_for_removal = False
-        if should_remove:
-            self.store_fs.delete()
-        else:
-            self.store_fs.save()
+        self.store_fs.save()
 
     def deserialize(self):
         if not self.file_exists:
@@ -250,10 +239,16 @@ class FSFile(object):
             # Store.update_from_disk
             revision = Revision.get() + 1
         tmp_store = self.deserialize()
+        author_email = self.repo.git.log(
+            "-1", self.path[1:], follow=True, pretty="%ae")
+        try:
+            user = User.objects.get(email=author_email)
+        except User.DoesNotExist:
+            user = User.objects.get_system_user()
         self.store.update(
             tmp_store,
             submission_type=SubmissionTypes.SYSTEM,
-            user=user or User.objects.get_system_user(),
+            user=user,
             store_revision=revision,
             resolve_conflict=resolve_conflict)
         logger.debug("Pulled file: %s", self.path)
