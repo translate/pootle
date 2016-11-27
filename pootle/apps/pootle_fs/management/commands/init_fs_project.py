@@ -114,5 +114,5 @@ class Command(BaseCommand):
 
         if options['sync']:
             plugin = FSPlugin(project)
-            plugin.fetch()
+            plugin.add()
             plugin.sync()
