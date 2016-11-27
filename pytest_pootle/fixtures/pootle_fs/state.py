@@ -16,6 +16,33 @@ from django.db.models import Q
 from django.utils.functional import cached_property
 
 
+STATE_FILTERS = [
+    dict(fs_paths=None, pootle_paths=None, states=None),
+    dict(fs_paths=None,
+         pootle_paths=["/language0/project0/store0.po",
+                       "/language0/project0/store1.po"],
+         states=None),
+    dict(fs_paths=["/language0/store0.po",
+                   "/language0/store1.po"],
+         pootle_paths=None,
+         states=None),
+    dict(fs_paths=["/language0/store0.po",
+                   "/language0/store1.po"],
+         pootle_paths=["/language0/project0/store0.po",
+                       "/language0/project0/store1.po"],
+         states=None),
+    dict(fs_paths=["/language0/store0.po",
+                   "/language0/store1.po"],
+         pootle_paths=None,
+         states=["fs_removed", "pootle_removed"]),
+    dict(fs_paths=None,
+         pootle_paths=None,
+         states=["fs_removed", "pootle_removed"]),
+    dict(fs_paths=None,
+         pootle_paths=None,
+         states=["DOES_NOT_EXIST"])]
+
+
 FS_PATH_QS = OrderedDict((
     ("all", (
         (None, None, None))),
@@ -218,3 +245,8 @@ def dummyfs_plugin_no_files(settings, no_complex_po_,
     project.config["pootle_fs.fs_type"] = "dummyfs"
     plugin = FSPlugin(project)
     return plugin
+
+
+@pytest.fixture(params=STATE_FILTERS)
+def state_filters(request):
+    return request.param
