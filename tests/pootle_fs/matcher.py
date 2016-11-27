@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import random
 import sys
 from collections import OrderedDict
 
@@ -71,6 +72,10 @@ class DummyContext(object):
 
     def __init__(self, project):
         self.project = project
+
+    @property
+    def latest_hash(self):
+        return hash(random.random())
 
     @property
     def finder_class(self):

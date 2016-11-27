@@ -14,6 +14,7 @@ import pytest
 
 from django.urls import resolve
 
+from pootle_fs.apps import PootleFSConfig
 from pootle_fs.finder import TranslationFileFinder
 from pootle_store.models import Store
 
@@ -242,6 +243,8 @@ def test_finder_cache_key():
         exclude_languages=["foo", "bar"])
     assert not finder.fs_hash
     assert not finder.cache_key
+    assert finder.ns == "pootle.fs.finder"
+    assert finder.sw_version == PootleFSConfig.version
     finder = TranslationFileFinder(
         "/path/to/<dir_path>/<language_code>.<ext>",
         exclude_languages=["foo", "bar"],
@@ -249,7 +252,7 @@ def test_finder_cache_key():
     assert finder.fs_hash == "XYZ"
     assert (
         finder.cache_key
-        == ("pootle.fs.finder.%s.%s.%s"
+        == ("%s.%s.%s"
             % (finder.fs_hash,
                "::".join(finder.exclude_languages),
                hash(finder.regex.pattern))))
