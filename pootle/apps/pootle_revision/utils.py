@@ -22,6 +22,11 @@ class RevisionContext(object):
     def __init__(self, context):
         self.context = context
 
+    @cached_property
+    def content_type_id(self):
+        return ContentType.objects.get_for_model(
+            self.context._meta.model).id
+
     @property
     def revision_context(self):
         return self.context.revisions
@@ -32,6 +37,20 @@ class RevisionContext(object):
             return ""
         return self.revision_context.filter(
             key=key).values_list("value", flat=True).first() or ""
+
+    def set(self, keys=None, value=None):
+        """get a revision from db or set one if not set"""
+        self.revision_context.filter(key__in=keys).delete()
+        if value:
+            revisions = []
+            for k in keys:
+                revisions.append(
+                    Revision(
+                        content_type_id=self.content_type_id,
+                        object_id=self.context.pk,
+                        key=k,
+                        value=value))
+            Revision.objects.bulk_create(revisions)
 
 
 class DirectoryRevision(RevisionContext):
