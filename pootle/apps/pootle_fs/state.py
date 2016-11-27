@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from collections import OrderedDict
+from copy import copy
 
 from django.db.models import Q
 from django.utils.functional import cached_property
@@ -118,11 +119,12 @@ class ProjectFSState(State):
 
     item_state_class = FSItemState
 
-    def __init__(self, context, fs_path=None, pootle_path=None):
+    def __init__(self, context, fs_path=None, pootle_path=None, load=True):
         self.fs_path = fs_path
         self.pootle_path = pootle_path
         super(ProjectFSState, self).__init__(
-            context, fs_path=fs_path, pootle_path=pootle_path)
+            context, fs_path=fs_path, pootle_path=pootle_path,
+            load=load)
 
     @property
     def project(self):
@@ -316,3 +318,22 @@ class ProjectFSState(State):
         if "resources" in self.__dict__:
             del self.__dict__["resources"]
         return super(ProjectFSState, self).clear_cache()
+
+    def filter(self, fs_paths=None, pootle_paths=None, states=None):
+        filtered = self.__class__(
+            self.context,
+            pootle_path=self.pootle_path,
+            fs_path=self.fs_path,
+            load=False)
+        for k in self.states:
+            if states and k not in states:
+                filtered[k] = []
+                continue
+            filtered[k] = [
+                copy(item)
+                for item in self.__state__[k]
+                if (not pootle_paths
+                    or item.pootle_path in pootle_paths)
+                and (not fs_paths
+                     or item.fs_path in fs_paths)]
+        return filtered
