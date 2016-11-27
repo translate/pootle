@@ -8,6 +8,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import sys
+from copy import copy
 
 import pytest
 
@@ -250,3 +251,33 @@ def test_fs_state_pootle_removed_obsolete(fs_path_qs,
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_obs_stores
     _test_state(plugin, pootle_path, fs_path, "pootle_removed")
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
+def test_fs_state_filtered(state_filters, dummyfs_plugin_no_files, tp0):
+    plugin = dummyfs_plugin_no_files
+    state = ProjectFSState(plugin)
+    current_state = {
+        k: copy(v)
+        for k, v
+        in state.__state__.items()}
+    filtered_state = state.filter(**state_filters)
+    pootle_paths = state_filters["pootle_paths"]
+    fs_paths = state_filters["fs_paths"]
+    states = state_filters["states"]
+    # original is unchanged
+    assert state.__state__ == current_state
+    for name, items in state.__state__.items():
+        if states and name not in states:
+            assert filtered_state[name] == []
+            continue
+        assert (
+            [(item.fs_path, item.pootle_path)
+             for item in items
+             if (not pootle_paths
+                 or item.pootle_path in pootle_paths)
+             and (not fs_paths
+                  or item.fs_path in fs_paths)]
+            == [(x.fs_path, x.pootle_path) for x in filtered_state[name]])
