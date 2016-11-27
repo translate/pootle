@@ -26,15 +26,12 @@ _plugin_fetch_base = {
 
 RESPONSE_MAP = {
     "conflict": dict(
-        add_force=("added_from_pootle", "pootle_staged"),
-        fetch_force=("fetched_from_fs", "fs_staged"),
+        rm_force=("staged_for_removal", "remove"),
         resolve_overwrite=("staged_for_overwrite_fs", "fs_staged"),
         resolve_pootle_overwrite=("staged_for_overwrite_pootle", "pootle_staged"),
         resolve_pootle=("staged_for_merge_pootle", "merge_pootle_wins"),
         resolve=("staged_for_merge_fs", "merge_fs_wins")),
     "conflict_untracked": dict(
-        add_force=("added_from_pootle", "pootle_staged"),
-        fetch_force=("fetched_from_fs", "fs_staged"),
         rm_force=("staged_for_removal", "remove"),
         resolve_pootle_overwrite=("staged_for_overwrite_pootle", "pootle_staged"),
         resolve_overwrite=("staged_for_overwrite_fs", "fs_staged"),
@@ -43,12 +40,14 @@ RESPONSE_MAP = {
     "fs_ahead": dict(
         sync=("pulled_to_pootle", None)),
     "fs_removed": dict(
-        add_force=("added_from_pootle", "pootle_staged"),
-        rm=("staged_for_removal", "remove")),
+        add_force=("readded_from_pootle", "pootle_staged"),
+        rm=("staged_for_removal", "remove"),
+        rm_force=("staged_for_removal", "remove")),
     "fs_staged": dict(
         sync=("pulled_to_pootle", None)),
     "fs_untracked": dict(
-        fetch=("fetched_from_fs", "fs_staged"),
+        add=("added_from_fs", "fs_staged"),
+        add_force=("added_from_fs", "fs_staged"),
         rm_force=("staged_for_removal", "remove")),
     "merge_fs_wins": dict(
         sync=("merged_from_fs", None)),
@@ -57,7 +56,7 @@ RESPONSE_MAP = {
     "pootle_ahead": dict(
         sync=("pushed_to_fs", None)),
     "pootle_removed": dict(
-        fetch_force=("fetched_from_fs", "fs_staged"),
+        add_force=("readded_from_fs", "fs_staged"),
         rm=("staged_for_removal", "remove"),
         rm_force=("staged_for_removal", "remove")),
     "pootle_staged": dict(
