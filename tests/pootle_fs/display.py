@@ -95,7 +95,7 @@ def test_fs_response_display_item_instance(localfs_pootle_untracked):
 @pytest.mark.django_db
 def test_fs_response_display_item_fs_untracked(localfs_fs_untracked):
     plugin = localfs_fs_untracked
-    response = plugin.fetch()
+    response = plugin.add()
     response_item = response["fetched_from_fs"][0]
     item_display = ResponseItemDisplay(None, response_item)
     assert item_display.action_type == "fetched_from_fs"

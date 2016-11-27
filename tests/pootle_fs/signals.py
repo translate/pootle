@@ -17,7 +17,7 @@ from pootle_fs.signals import (
 @pytest.mark.django_db
 def test_fs_pull_signal(project_fs):
 
-    project_fs.fetch(force=True)
+    project_fs.add(force=True)
     state = project_fs.state()
 
     class Success(object):
