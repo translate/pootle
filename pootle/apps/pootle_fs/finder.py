@@ -17,6 +17,8 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.decorators import persistent_property
 
+from .apps import PootleFSConfig
+
 
 PATH_MAPPING = (
     (".", "\."),
@@ -29,7 +31,8 @@ DEFAULT_EXTENSIONS = ("po", "pot")
 
 
 class TranslationFileFinder(object):
-
+    ns = "pootle.fs.finder"
+    sw_version = PootleFSConfig.version
     extensions = DEFAULT_EXTENSIONS
     path_mapping = PATH_MAPPING
 
@@ -91,7 +94,7 @@ class TranslationFileFinder(object):
         if not self.fs_hash:
             return
         return (
-            "pootle.fs.finder.%s.%s.%s"
+            "%s.%s.%s"
             % (self.fs_hash,
                "::".join(self.exclude_languages),
                hash(self.regex.pattern)))
