@@ -53,6 +53,10 @@ class Plugin(object):
         return os.path.exists(self.project.local_fs_path)
 
     @property
+    def latest_hash(self):
+        raise NotImplementedError
+
+    @property
     def finder_class(self):
         return fs_finder.get(self.__class__)
 
