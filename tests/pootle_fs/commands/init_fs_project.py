@@ -30,7 +30,7 @@ def test_init_fs_project_cmd_bad_lang(capsys):
 @pytest.mark.cmd
 @pytest.mark.xfail(sys.platform == 'win32',
                    reason="broken on windows")
-def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
+def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir, revision):
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
     tr_path = "<language_code>/<filename>.<ext>"
@@ -69,7 +69,7 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir):
 @pytest.mark.cmd
 @pytest.mark.xfail(sys.platform == 'win32',
                    reason="broken on windows")
-def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir):
+def test_init_fs_project_cmd(capsys, settings, test_fs, tmpdir, revision):
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
     fs_path = test_fs.path("data/fs/example_fs/non_gnu_style_minimal/")
     tr_path = "<language_code>/<filename>.<ext>"
