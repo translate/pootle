@@ -18,13 +18,14 @@ from django.utils.safestring import mark_safe
 from accounts.proxy import DisplayUser
 from pootle.i18n.gettext import ugettext as _
 from pootle_comment import get_model as get_comment_model
+from pootle.core.delegate import unit_display
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.constants import STATES_MAP
 from pootle_store.fields import to_python
-from pootle_store.models import Suggestion
+from pootle_store.models import Suggestion, Unit
 
 
 class SuggestionEvent(object):
@@ -86,7 +87,8 @@ class TimelineEntry(object):
 
     def base_entry(self):
         entry = self.entry_dict
-        entry['new_value'] = to_python(self.submission.new_value)
+        entry['new_value'] = self.unit_display(
+            to_python(self.submission.new_value))
         return entry
 
     def qc_entry(self):
@@ -120,9 +122,21 @@ class TimelineEntry(object):
             ).description
         )
         entry.update(
-            {'suggestion_text': self.submission.suggestion_target,
+            {'suggestion_text': self.unit_display(
+                self.submission.suggestion_target),
              'suggestion_description': suggestion_description})
         return entry
+
+    @property
+    def unit_display_class(self):
+        return unit_display.gather(
+            Unit).get(self.submission.store_format)
+
+    def unit_display(self, value):
+        display = self.unit_display_class
+        return (
+            display and display(value)
+            or value)
 
     @property
     def entry(self):
