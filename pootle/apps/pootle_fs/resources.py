@@ -11,8 +11,13 @@ from fnmatch import fnmatch
 from django.db.models import F, Max
 from django.utils.functional import cached_property
 
+from pootle.core.decorators import persistent_property
+from pootle.core.delegate import revision
+from pootle_app.models import Directory
+from pootle_project.models import Project
 from pootle_store.models import Store
 
+from .apps import PootleFSConfig
 from .models import StoreFS
 from .utils import StoreFSPathFilter, StorePathFilter
 
@@ -70,6 +75,9 @@ class FSProjectStateResources(object):
     If present all resources are filtered accordingly.
     """
 
+    ns = "pootle.fs.resources"
+    sw_version = PootleFSConfig.version
+
     def __init__(self, context, pootle_path=None, fs_path=None):
         self.context = context
         self.pootle_path = pootle_path
@@ -85,14 +93,16 @@ class FSProjectStateResources(object):
             qs.exclude(staged_for_removal=True)
               .exclude(staged_for_merge=True))
 
-    @cached_property
+    @persistent_property
     def found_file_matches(self):
         return sorted(self.context.find_translations(
             fs_path=self.fs_path, pootle_path=self.pootle_path))
 
-    @cached_property
-    def found_file_paths(self):
+    def _found_file_paths(self):
         return [x[1] for x in self.found_file_matches]
+    found_file_paths = persistent_property(
+        _found_file_paths,
+        key_attr="fs_revision")
 
     @cached_property
     def resources(self):
@@ -140,7 +150,7 @@ class FSProjectStateResources(object):
             for store, fs_path
             in self.trackable_stores}
 
-    @cached_property
+    @persistent_property
     def missing_file_paths(self):
         return [
             path for path in self.tracked_paths.keys()
@@ -151,10 +161,12 @@ class FSProjectStateResources(object):
         """StoreFS queryset of tracked resources"""
         return self.storefs_filter.filtered(self.resources.tracked)
 
-    @cached_property
-    def tracked_paths(self):
+    def _tracked_paths(self):
         """Dictionary of fs_path, path for tracked StoreFS"""
         return dict(self.tracked.values_list("path", "pootle_path"))
+    tracked_paths = persistent_property(
+        _tracked_paths,
+        key_attr="sync_revision")
 
     @cached_property
     def unsynced(self):
@@ -178,7 +190,32 @@ class FSProjectStateResources(object):
 
     def reload(self):
         """Uncache cached_properties"""
+        cache_reload = [
+            "context", "pootle_path", "fs_path",
+            "sync_revision", "project_revision"]
         for k, v_ in self.__dict__.items():
-            if k in ["context", "pootle_path", "fs_path"]:
+            if k in cache_reload:
                 continue
             del self.__dict__[k]
+
+    @cached_property
+    def fs_revision(self):
+        return self.context.latest_hash
+
+    @cached_property
+    def sync_revision(self):
+        return revision.get(Project)(
+            self.context.project).get(key="pootle.fs.sync")
+
+    @cached_property
+    def project_revision(self):
+        return revision.get(Directory)(
+            self.context.project.directory).get(key="stats")
+
+    @cached_property
+    def cache_key(self):
+        return (
+            "%s.%s.%s"
+            % (self.project_revision,
+               self.sync_revision,
+               self.fs_revision))
