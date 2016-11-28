@@ -281,3 +281,20 @@ def test_fs_state_filtered(state_filters, dummyfs_plugin_no_files, tp0):
              and (not fs_paths
                   or item.fs_path in fs_paths)]
             == [(x.fs_path, x.pootle_path) for x in filtered_state[name]])
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
+def test_fs_state_fs_unchanged(fs_path_qs, no_complex_po_, dummyfs):
+    plugin = dummyfs
+    (qfilter, pootle_path, fs_path) = fs_path_qs
+    state = ProjectFSState(plugin, fs_path=fs_path, pootle_path=pootle_path)
+    expected = (
+        plugin.resources.tracked.filter(qfilter)
+        if qfilter
+        else plugin.resources.tracked)
+    if qfilter is False:
+        expected = []
+    stores_fs = [x["store_fs"] for x in state.state_unchanged]
+    assert stores_fs == list(expected)
