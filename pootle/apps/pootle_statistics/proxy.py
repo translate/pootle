@@ -11,12 +11,14 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 
 from accounts.proxy import DisplayUser
+from pootle.core.delegate import unit_display
 from pootle.core.primitives import PrefixedDict
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils import dateformat
 from pootle_misc.checks import check_names
 from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_store.fields import to_python
+from pootle_store.models import Unit
 
 from .models import SubmissionFields, SubmissionTypes, TranslationActionTypes
 
@@ -56,19 +58,23 @@ class SubmissionProxy(object):
         "unit__state",
         "unit__source_f",
         "unit__store__pootle_path")
+    store_fields = (
+        "unit__store__filetype__name", )
     timeline_fields = (
         fields
         + qc_fields
         + submitter_fields
         + suggestion_fields
-        + suggestion_user_fields)
+        + suggestion_user_fields
+        + store_fields)
     info_fields = (
         fields
         + qc_fields
         + submitter_fields
         + suggestion_fields
         + suggestion_reviewer_fields
-        + unit_fields)
+        + unit_fields
+        + store_fields)
 
     def __init__(self, values, prefix=""):
         if prefix:
@@ -123,6 +129,10 @@ class SubmissionProxy(object):
         return self.values.get('unit__source_f')
 
     @property
+    def store_format(self):
+        return self.values.get('unit__store__filetype__name')
+
+    @property
     def submitter_display(self):
         return DisplayUser(
             self.values["submitter__username"],
@@ -173,7 +183,7 @@ class SubmissionProxy(object):
         if self.unit is None:
             return info
         info.update(
-            dict(unit_source=truncatechars(self.unit_source, 50),
+            dict(unit_source=truncatechars(self.unit_display(self.unit_source), 50),
                  unit_url=self.unit_translate_url))
         if self.qc_name is None:
             return info
@@ -182,6 +192,16 @@ class SubmissionProxy(object):
                  check_display_name=check_names.get(self.qc_name, self.qc_name),
                  checks_url=reverse('pootle-checks-descriptions')))
         return info
+
+    def unit_display(self, value):
+        display = self.unit_display_class
+        return (
+            display and display(value)
+            or value)
+
+    @property
+    def unit_display_class(self):
+        return unit_display.gather(Unit).get(self.store_format)
 
     @property
     def submission_info(self):
@@ -192,6 +212,7 @@ class SubmissionProxy(object):
             "username": self.display_user.username,
             "display_datetime": dateformat.format(self.creation_time),
             "type": self.type,
+            "format": self.store_format,
             "mtime": int(dateformat.format(self.creation_time, 'U'))}
 
     @property
