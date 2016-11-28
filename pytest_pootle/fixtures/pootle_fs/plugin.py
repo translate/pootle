@@ -117,7 +117,7 @@ def localfs_staged_envs(request):
 
 
 @pytest.fixture
-def localfs_env(project_fs, no_complex_po_):
+def localfs_env(project_fs, no_complex_po_, revision):
     return project_fs
 
 
