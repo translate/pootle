@@ -9,13 +9,15 @@
 import logging
 import os
 import shutil
+import uuid
 
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
-    config, response as pootle_response, state as pootle_state)
+    config, response as pootle_response,
+    revision, state as pootle_state)
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 from pootle_store.models import Store
 from pootle_project.models import Project
@@ -151,6 +153,10 @@ class Plugin(object):
         if self.is_cloned:
             shutil.rmtree(self.project.local_fs_path)
 
+    def expire_sync_cache(self):
+        revision.get(Project)(self.project).set(
+            keys=["pootle.fs.sync"], value=uuid.uuid4().hex)
+
     def find_translations(self, fs_path=None, pootle_path=None):
         """
         Find translation files from the file system
@@ -227,6 +233,8 @@ class Plugin(object):
                 response.add("readded_from_pootle", fs_state=fs_state)
             for fs_state in state["pootle_removed"]:
                 response.add("readded_from_fs", fs_state=fs_state)
+        if response.made_changes:
+            self.expire_sync_cache()
         return response
 
     @responds_to_state
@@ -258,6 +266,8 @@ class Plugin(object):
                (pootle_wins and "pootle" or "fs")))
         for fs_state in state["conflict"] + state["conflict_untracked"]:
             response.add(action_type, fs_state=fs_state)
+        if response.made_changes:
+            self.expire_sync_cache()
         return response
 
     @responds_to_state
@@ -289,6 +299,8 @@ class Plugin(object):
         self.create_store_fs(to_create, staged_for_removal=True)
         for fs_state in to_create + to_update:
             response.add("staged_for_removal", fs_state=fs_state)
+        if response.made_changes:
+            self.expire_sync_cache()
         return response
 
     @responds_to_state
@@ -325,6 +337,8 @@ class Plugin(object):
             key=lambda x: x.pootle_path)
         for fs_state in updated:
             response.add("unstaged", fs_state=fs_state)
+        if response.made_changes:
+            self.expire_sync_cache()
         return response
 
     @responds_to_state
@@ -348,6 +362,8 @@ class Plugin(object):
                 response.add("merged_from_pootle", fs_state=fs_state)
             else:
                 response.add("merged_from_fs", fs_state=fs_state)
+        if response.made_changes:
+            self.expire_sync_cache()
         return response
 
     @responds_to_state
@@ -422,4 +438,6 @@ class Plugin(object):
             if sync_type in response:
                 for response_item in response.completed(sync_type):
                     response_item.store_fs.file.on_sync()
+        if response.made_changes:
+            self.expire_sync_cache()
         return response
