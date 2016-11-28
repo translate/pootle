@@ -146,7 +146,6 @@ class ProjectFSState(State):
         conflict = self.resources.pootle_changed.exclude(
             resolve_conflict__gt=0)
         for store_fs in conflict.iterator():
-            store_fs.project = self.project
             pootle_changed_, fs_changed = self._get_changes(store_fs.file)
             if fs_changed:
                 yield dict(store_fs=store_fs)
@@ -211,7 +210,6 @@ class ProjectFSState(State):
                             .exclude(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=SOURCE_WINS))
         for store_fs in staged.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @property
@@ -220,7 +218,6 @@ class ProjectFSState(State):
             self.resources.synced
                           .exclude(path__in=self.resources.missing_file_paths))
         for store_fs in fs_changed.iterator():
-            store_fs.project = self.project
             pootle_changed, fs_changed = self._get_changes(store_fs.file)
             fs_ahead = (
                 fs_changed
@@ -239,7 +236,6 @@ class ProjectFSState(State):
                           .exclude(store_id__isnull=True)
                           .exclude(store__obsolete=True))
         for store_fs in removed.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @property
@@ -248,7 +244,6 @@ class ProjectFSState(State):
             staged_for_merge=True,
             resolve_conflict=POOTLE_WINS)
         for store_fs in to_merge.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @property
@@ -257,13 +252,11 @@ class ProjectFSState(State):
             staged_for_merge=True,
             resolve_conflict=SOURCE_WINS)
         for store_fs in to_merge.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @property
     def state_pootle_ahead(self):
         for store_fs in self.resources.pootle_changed.iterator():
-            store_fs.project = self.project
             pootle_changed_, fs_changed = self._get_changes(store_fs.file)
             pootle_ahead = (
                 not fs_changed
@@ -284,7 +277,6 @@ class ProjectFSState(State):
                             .filter(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=POOTLE_WINS))
         for store_fs in staged.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @property
@@ -294,7 +286,6 @@ class ProjectFSState(State):
                           .filter(Q(store__obsolete=True) | Q(store__isnull=True))
                           .filter(path__in=self.resources.missing_file_paths))
         for store_fs in removed.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @property
@@ -305,7 +296,6 @@ class ProjectFSState(State):
                           .exclude(path__in=self.resources.missing_file_paths)
                           .filter(Q(store__isnull=True) | Q(store__obsolete=True)))
         for store_fs in synced.iterator():
-            store_fs.project = self.project
             yield dict(store_fs=store_fs)
 
     @lru_cache()
