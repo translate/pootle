@@ -14,6 +14,7 @@ import pytest
 
 from django.utils.functional import cached_property
 
+from pootle_fs.apps import PootleFSConfig
 from pootle_fs.models import StoreFS
 from pootle_fs.resources import (
     FSProjectResources, FSProjectStateResources)
@@ -388,3 +389,17 @@ def test_fs_state_found_file_matches(fs_path_qs, dummyfs):
     assert (
         resources.found_file_paths
         == [x[1] for x in resources.found_file_matches])
+
+
+@pytest.mark.django_db
+def test_fs_resources_cache_key(project_fs):
+    plugin = project_fs
+    resources = plugin.state().resources
+    assert resources.ns == "pootle.fs.resources"
+    assert resources.sw_version == PootleFSConfig.version
+    assert (
+        resources.cache_key
+        == ("%s.%s.%s"
+            % (resources.project_revision,
+               resources.sync_revision,
+               plugin.latest_hash)))
