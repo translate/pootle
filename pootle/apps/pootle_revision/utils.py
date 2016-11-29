@@ -65,10 +65,7 @@ class LanguageRevision(RevisionContext):
 
 
 class ProjectRevision(RevisionContext):
-
-    @property
-    def revision_context(self):
-        return self.context.directory.revisions
+    pass
 
 
 class ProjectResourceRevision(RevisionContext):
