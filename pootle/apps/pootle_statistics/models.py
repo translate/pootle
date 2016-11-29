@@ -234,7 +234,7 @@ class Submission(models.Model):
             result.update({
                 'unit_source': truncatechars(self.unit, 50),
                 'unit_url': self.unit.get_translate_url(),
-            })
+                'format': self.unit.store.filetype.name})
 
             if self.quality_check is not None:
                 check_name = self.quality_check.name
