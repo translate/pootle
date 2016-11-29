@@ -15,6 +15,7 @@ from translate.filters import checks
 from translate.lang.data import langcode_re
 
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
@@ -39,6 +40,7 @@ from pootle_app.models.permissions import PermissionSet
 from pootle_config.utils import ObjectConfig
 from pootle_format.models import Format
 from pootle_format.utils import ProjectFiletypes
+from pootle_revision.models import Revision
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path
 from staticpages.models import StaticPage
@@ -246,6 +248,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                                          editable=False, null=True)
 
     disabled = models.BooleanField(verbose_name=_('Disabled'), default=False)
+    revisions = GenericRelation(Revision)
 
     objects = ProjectManager()
 
