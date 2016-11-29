@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import sys
 
 import pytest
 
@@ -97,6 +98,9 @@ def _test_dummy_response(action, responses, **kwargs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason="path mangling broken on windows")
 def test_fs_plugin_unstage_response(capsys, no_complex_po_, localfs_envs):
     state_type, plugin = localfs_envs
     action = "unstage"
@@ -150,6 +154,9 @@ def test_fs_plugin_paths(project_fs_empty, possible_actions):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason="path mangling broken on windows")
 def test_fs_plugin_response(localfs_envs, possible_actions, fs_response_map):
     state_type, plugin = localfs_envs
     action_name, action, command_args, plugin_kwargs = possible_actions
@@ -316,6 +323,9 @@ def test_fs_plugin_matcher(localfs):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason="path mangling broken on windows")
 def test_fs_plugin_localfs_push(localfs_pootle_staged_real):
     plugin = localfs_pootle_staged_real
     response = plugin.sync()

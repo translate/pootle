@@ -83,6 +83,9 @@ def test_fs_cmd_bad_project(project_fs, capsys, english):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason="path mangling broken on windows")
 def test_fs_cmd_unstage_response(capsys, localfs_envs):
     state_type, plugin = localfs_envs
     action = "unstage"

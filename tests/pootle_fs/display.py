@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
+
 import pytest
 
 
@@ -93,6 +95,9 @@ def test_fs_response_display_item_instance(localfs_pootle_untracked):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason="path mangling broken on windows")
 def test_fs_response_display_item_fs_untracked(localfs_fs_untracked):
     plugin = localfs_fs_untracked
     response = plugin.add()
@@ -207,6 +212,9 @@ def test_fs_display_state_item_instance_file(localfs_pootle_untracked):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    sys.platform == 'win32',
+    reason="path mangling broken on windows")
 def test_fs_display_state_item_instance_fs_untracked(localfs_fs_untracked):
     plugin = localfs_fs_untracked
     state_item = plugin.state()["fs_untracked"][0]
