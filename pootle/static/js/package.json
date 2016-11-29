@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "eslint .",
     "stylelint": "stylelint --config=stylelint.json ../css/**/*.css **/*.css",
-    "test": "mocha --compilers js:babel-register \"./{,!(node_modules)/**/}*.test.js\""
+    "test": "mocha --compilers js:babel-register \"./{,!(node_modules)/**/}*.test.js\"",
+    "svgo": "svgo"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -30,6 +31,7 @@
     "style-loader": "^0.8.0",
     "stylelint": "^7.1.0",
     "stylelint-config-standard": "^12.0.0",
+    "svgo": "^0.7.1",
     "webpack": "^1.9.8"
   },
   "dependencies": {
