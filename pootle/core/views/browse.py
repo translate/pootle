@@ -63,9 +63,8 @@ class PootleBrowseView(PootleDetailView):
     @property
     def cache_key(self):
         return (
-            "%s.%s.%s.%s.%s.%s"
-            % (self.sw_version,
-               self.page_name,
+            "%s.%s.%s.%s.%s"
+            % (self.page_name,
                self.view_name,
                self.object.data_tool.cache_key,
                self.show_all,

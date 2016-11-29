@@ -326,9 +326,8 @@ class RelatedStoresDataTool(DataTool):
     @property
     def cache_key(self):
         return (
-            '%s.%s.%s.%s'
-            % (self.sw_version,
-               self.cache_key_name,
+            '%s.%s.%s'
+            % (self.cache_key_name,
                self.context_name,
                self.rev_cache_key))
 
