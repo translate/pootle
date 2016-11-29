@@ -175,19 +175,23 @@ class persistent_property(object):
     """
 
     def __init__(self, func, name=None, key_attr=None, always_cache=True,
-                 ns_attr=None):
+                 ns_attr=None, version_attr=None):
         self.func = func
         self.__doc__ = getattr(func, '__doc__')
         self.name = name or func.__name__
         self.ns_attr = ns_attr or "ns"
         self.key_attr = key_attr or "cache_key"
+        self.version_attr = version_attr or "sw_version"
         self.always_cache = always_cache
 
     def _get_cache_key(self, instance):
         ns = getattr(instance, self.ns_attr, "pootle.core")
+        sw_version = getattr(instance, self.version_attr, "")
         cache_key = getattr(instance, self.key_attr, None)
         if cache_key:
-            return "%s.%s.%s" % (ns, cache_key, self.name)
+            return (
+                "%s.%s.%s.%s"
+                % (ns, sw_version, cache_key, self.name))
 
     def __get__(self, instance, cls=None):
         if instance is None:
