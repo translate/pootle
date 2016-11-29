@@ -688,9 +688,7 @@ PTL.editor = {
   /* Copies source text(s) into the target textarea(s)*/
   copyOriginal(languageCode) {
     const sources = this.units.getCurrent().get('sources')[languageCode];
-    for (let i = 0; i < sources.length; i++) {
-      ReactEditor.setValueFor(i, sources[i]);
-    }
+    ReactEditor.setValues(sources);
 
     this.goFuzzy();
   },
