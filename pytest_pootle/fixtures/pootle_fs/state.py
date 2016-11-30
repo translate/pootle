@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import random
 from collections import OrderedDict
 from fnmatch import fnmatch
 
@@ -77,6 +78,10 @@ class DummyPlugin(object):
 
     def __init__(self, project):
         self.project = project
+
+    @property
+    def latest_hash(self):
+        return hash(random.random())
 
     def find_translations(self, fs_path=None, pootle_path=None):
         for pp in self.resources.stores.values_list("pootle_path", flat=True):
