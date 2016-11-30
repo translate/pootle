@@ -4,6 +4,17 @@ from django.utils.html import escape
 from django.utils.safestring import SafeText, mark_safe
 
 
+class TableRowItem(object):
+
+    def __init__(self, value, title=None):
+        self.value = value
+        self._title = title
+
+    @property
+    def title(self):
+        return self._title or self.value
+
+
 class TableSelectMultiple(SelectMultiple):
     """
     Provides selection of items via checkboxes, with a table row
@@ -56,7 +67,12 @@ class TableSelectMultiple(SelectMultiple):
                 check_test=lambda value: value in str_values)
             option_value = force_unicode(option_value)
             rendered_cb = cb.render(name, option_value)
-            output.append(u'<tr>')
+            klass = ""
+            if hasattr(item, "get"):
+                klass = item.get("class", "")
+                if klass:
+                    klass = ' class="%s"' % klass
+            output.append(u'<tr%s>' % klass)
             output.append(u'<td class="row-select">%s</td>' % rendered_cb)
             for attr in self.item_attrs:
                 css_name = attr
@@ -70,6 +86,8 @@ class TableSelectMultiple(SelectMultiple):
                         content = getattr(item, attr)
                 else:
                     content = item[attr]
+                if isinstance(content, TableRowItem):
+                    content = content.title
                 if not isinstance(content, SafeText):
                     content = escape(content)
                 css = (
