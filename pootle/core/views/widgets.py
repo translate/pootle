@@ -80,11 +80,13 @@ class TableSelectMultiple(SelectMultiple):
                     content = attr(item)
                     css_name = attr.__name__.strip("_")
                 elif hasattr(item, attr):
+                    css = attr
                     if callable(getattr(item, attr)):
                         content = getattr(item, attr)()
                     else:
                         content = getattr(item, attr)
                 else:
+                    css = attr
                     content = item[attr]
                 if isinstance(content, TableRowItem):
                     content = content.title
