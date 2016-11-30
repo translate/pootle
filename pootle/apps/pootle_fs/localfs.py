@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+import os
 import uuid
 
 import dirsync
@@ -56,5 +57,5 @@ class LocalFSUrlValidator(object):
     help_text = "Enter an absolute path to a directory on your filesystem"
 
     def validate(self, url):
-        if not url.startswith("/"):
+        if not os.path.isabs(url):
             raise forms.ValidationError(self.help_text)
