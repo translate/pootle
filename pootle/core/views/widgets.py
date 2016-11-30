@@ -56,10 +56,13 @@ class TableSelectMultiple(SelectMultiple):
                 check_test=lambda value: value in str_values)
             option_value = force_unicode(option_value)
             rendered_cb = cb.render(name, option_value)
-            output.append(u'<tr><td class="row-select">%s</td>' % rendered_cb)
+            output.append(u'<tr>')
+            output.append(u'<td class="row-select">%s</td>' % rendered_cb)
             for attr in self.item_attrs:
+                css_name = attr
                 if callable(attr):
                     content = attr(item)
+                    css_name = attr.__name__.strip("_")
                 elif hasattr(item, attr):
                     if callable(getattr(item, attr)):
                         content = getattr(item, attr)()
@@ -69,6 +72,9 @@ class TableSelectMultiple(SelectMultiple):
                     content = item[attr]
                 if not isinstance(content, SafeText):
                     content = escape(content)
-                output.append(u'<td>%s</td>' % content)
+                css = (
+                    ' class="field-%s"'
+                    % css_name.lower().replace("_", "-").replace(" ", "-"))
+                output.append(u'<td%s>%s</td>' % (css, content))
             output.append(u'</tr>')
         return mark_safe(u'\n'.join(output))
