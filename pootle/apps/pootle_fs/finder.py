@@ -70,7 +70,7 @@ class TranslationFileFinder(object):
         matched = match.groupdict()
         if matched["language_code"] in self.exclude_languages:
             return
-        matched["dir_path"] = matched.get("dir_path", "").strip(os.sep)
+        matched["dir_path"] = matched.get("dir_path", "").strip("/")
         if not matched.get("filename"):
             matched["filename"] = os.path.splitext(
                 os.path.basename(file_path))[0]
@@ -126,18 +126,15 @@ class TranslationFileFinder(object):
         path = (path.replace("<language_code>", language_code)
                     .replace("<filename>", filename))
         if "<dir_path>" in path:
-            if dir_path and dir_path.strip(os.sep):
-                path = path.replace(
-                    "<dir_path>",
-                    "%s%s%s" % (os.sep, dir_path.strip(os.sep), os.sep))
+            if dir_path and dir_path.strip("/"):
+                path = path.replace("<dir_path>", "/%s/" % dir_path.strip("/"))
             else:
                 path = path.replace("<dir_path>", "")
         local_path = path.replace(self.file_root, "")
-        double_path_sep = "%s%s" % (os.sep, os.sep)
-        if double_path_sep in local_path:
-            path = os.sep.join([
+        if "//" in local_path:
+            path = "/".join([
                 self.file_root,
-                local_path.replace(double_path_sep, os.sep).lstrip(os.sep)])
+                local_path.replace("//", "/").lstrip("/")])
         return path
 
     def _ext_re(self):
@@ -175,9 +172,9 @@ class TranslationMappingValidator(object):
         self.path = path
 
     def validate_absolute(self):
-        if not os.path.isabs(self.path):
+        if self.path[0] != '/':
             raise ValueError(
-                "Translation mapping '%s' should be absolute" % self.path)
+                "Translation mapping '%s' should start with '/'" % self.path)
 
     def validate_lang_code(self):
         if "<language_code>" not in self.path:
@@ -204,7 +201,7 @@ class TranslationMappingValidator(object):
                 "patterns to match in the translation mapping")
 
     def validate_path(self):
-        if os.sep == "\\":
+        if os.path.sep == "\\":
             bad_chars = re.search("[^\w\/\\\:\-\.]+", self.stripped_path)
         else:
             bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)

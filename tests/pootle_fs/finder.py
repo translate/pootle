@@ -24,51 +24,47 @@ from pootle_store.models import Store
                    reason="path mangling broken on windows")
 def test_finder_match_filepath():
 
-    finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<language_code>.<ext>"))
-    assert finder.match(os.path.abspath("/foo/baz/lang.po")) is None
-    assert finder.match(os.path.abspath("/path/to/lang.xliff")) is None
-    assert finder.match(os.path.abspath("/path/to/lang.po"))
+    finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
+    assert finder.match("/foo/baz/lang.po") is None
+    assert finder.match("/path/to/lang.xliff") is None
+    assert finder.match("/path/to/lang.po")
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_reverse():
-    finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<language_code>.<ext>"))
-    assert finder.reverse_match("foo") == os.path.abspath("/path/to/foo.po")
+    finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
+    assert finder.reverse_match("foo") == "/path/to/foo.po"
 
-    finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<language_code>/<filename>.<ext>"))
-    assert finder.reverse_match("foo") == os.path.abspath("/path/to/foo/foo.po")
+    finder = TranslationFileFinder("/path/to/<language_code>/<filename>.<ext>")
+    assert finder.reverse_match("foo") == "/path/to/foo/foo.po"
 
-    finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<language_code>/<filename>.<ext>"))
-    assert finder.reverse_match(
-        "foo", filename="bar") == os.path.abspath("/path/to/foo/bar.po")
+    finder = TranslationFileFinder("/path/to/<language_code>/<filename>.<ext>")
+    assert finder.reverse_match("foo", filename="bar") == "/path/to/foo/bar.po"
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_reverse_directory():
-    finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<language_code>.<ext>"))
+    finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
     assert finder.reverse_match("foo", dir_path="bar") is None
 
     finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<dir_path>/<language_code>.<ext>"))
-    assert finder.reverse_match("foo") == os.path.abspath("/path/to/foo.po")
+        "/path/to/<dir_path>/<language_code>.<ext>")
+    assert finder.reverse_match("foo") == "/path/to/foo.po"
     assert finder.reverse_match(
-        "foo", dir_path="bar") == os.path.abspath("/path/to/bar/foo.po")
+        "foo", dir_path="bar") == "/path/to/bar/foo.po"
     assert finder.reverse_match(
-        "foo", dir_path=os.path.join(
-            "some", "other")) == os.path.abspath("/path/to/some/other/foo.po")
+        "foo", dir_path="some/other") == "/path/to/some/other/foo.po"
 
 
 @pytest.mark.django_db
 @pytest.mark.xfail(sys.platform == 'win32',
                    reason="path mangling broken on windows")
 def test_finder_match_stores():
-    TRANSLATION_PATH = os.path.abspath(
-        "/path/to/<dir_path>/<language_code>/<filename>.<ext>")
+    TRANSLATION_PATH = "/path/to/<dir_path>/<language_code>/<filename>.<ext>"
     finder = TranslationFileFinder(TRANSLATION_PATH)
     stores = Store.objects.all()
     for store in stores:
@@ -79,13 +75,13 @@ def test_finder_match_stores():
         for k, v in kwargs.items():
             expected = expected.replace("<%s>" % k, v)
         # clean up if no dir_path
-        expected = expected.replace("%s%s" % (os.sep, os.sep), os.sep)
+        expected = expected.replace("//", "/")
         expected = expected.replace(
             "<ext>", str(store.filetype.extension))
         assert finder.reverse_match(**kwargs) == expected
         matched = finder.match(expected)
         for k, v in kwargs.items():
-            assert matched[1][k] == v.strip(os.sep)
+            assert matched[1][k] == v.strip("/")
 
 
 @pytest.mark.django_db
@@ -93,60 +89,58 @@ def test_finder_match_stores():
                    reason="path mangling broken on windows")
 def test_finder_filters():
     finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<dir_path>/<language_code>.<ext>"),
-        path_filters=[os.path.abspath("/path/to/*")])
+        "/path/to/<dir_path>/<language_code>.<ext>",
+        path_filters=["/path/to/*"])
     # doesnt filter anything
-    assert finder.match(os.path.abspath("/path/to/any.po"))
-    assert finder.match(os.path.abspath("/path/to/some/other.po"))
-    assert finder.match(os.path.abspath("/path/to/and/any/other.po"))
+    assert finder.match("/path/to/any.po")
+    assert finder.match("/path/to/some/other.po")
+    assert finder.match("/path/to/and/any/other.po")
 
     finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<dir_path>/<language_code>.<ext>"),
-        path_filters=[os.path.abspath("/path/to/some/*")])
+        "/path/to/<dir_path>/<language_code>.<ext>",
+        path_filters=["/path/to/some/*"])
     # these dont match
-    assert not finder.match(os.path.abspath("/path/to/any.po"))
-    assert not finder.match(os.path.abspath("/path/to/and/any/other.po"))
+    assert not finder.match("/path/to/any.po")
+    assert not finder.match("/path/to/and/any/other.po")
     # but this does
-    assert finder.match(os.path.abspath("/path/to/some/other.po"))
+    assert finder.match("/path/to/some/other.po")
 
     # filter_paths are `and` matches
     finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<dir_path>/<language_code>.<ext>"),
-        path_filters=[
-            os.path.abspath("/path/to/this/*"),
-            os.path.abspath("/path/to/this/other/*")])
+        "/path/to/<dir_path>/<language_code>.<ext>",
+        path_filters=["/path/to/this/*", "/path/to/this/other/*"])
     # so this doesnt match
-    assert not finder.match(os.path.abspath("/path/to/this/file.po"))
+    assert not finder.match("/path/to/this/file.po")
     # but these do
-    assert finder.match(os.path.abspath("/path/to/this/other/file.po"))
-    assert finder.match(os.path.abspath("/path/to/this/other/file2.po"))
-    assert finder.match(os.path.abspath("/path/to/this/other/in/subdir/file2.po"))
+    assert finder.match("/path/to/this/other/file.po")
+    assert finder.match("/path/to/this/other/file2.po")
+    assert finder.match("/path/to/this/other/in/subdir/file2.po")
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_match_reverse_ext():
 
-    finder = TranslationFileFinder(
-        os.path.abspath("/path/to/<language_code>.<ext>"))
+    finder = TranslationFileFinder("/path/to/<language_code>.<ext>")
 
     # ext must be in list of exts
     with pytest.raises(ValueError):
         finder.reverse_match("foo", extension="abc")
 
     finder = TranslationFileFinder(
-        os.path.abspath(
-            "/foo/bar/<language_code>.<ext>"), extensions=["abc", "xyz"])
-    assert finder.reverse_match("foo") == os.path.abspath("/foo/bar/foo.abc")
-    assert finder.reverse_match(
-        "foo", extension="abc") == os.path.abspath("/foo/bar/foo.abc")
-    assert finder.reverse_match(
-        "foo", extension="xyz") == os.path.abspath("/foo/bar/foo.xyz")
+        "/foo/bar/<language_code>.<ext>", extensions=["abc", "xyz"])
+    assert finder.reverse_match("foo") == "/foo/bar/foo.abc"
+    assert finder.reverse_match("foo", extension="abc") == "/foo/bar/foo.abc"
+    assert finder.reverse_match("foo", extension="xyz") == "/foo/bar/foo.xyz"
 
 
 # Parametrized: ROOT_PATHS
 @pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
 def test_finder_file_root(finder_root_paths):
-    dir_path = os.path.abspath("/some/path")
+    dir_path = os.sep.join(['', 'some', 'path'])
     path, expected = finder_root_paths
     assert (
         TranslationFileFinder(
@@ -160,7 +154,7 @@ def test_finder_file_root(finder_root_paths):
 # Parametrized: BAD_FINDER_PATHS
 @pytest.mark.django_db
 def test_finder_bad_paths(bad_finder_paths):
-    dir_path = os.path.abspath("/some/path")
+    dir_path = os.sep.join(['', 'some', 'path'])
     with pytest.raises(ValueError):
         TranslationFileFinder(os.path.join(dir_path, bad_finder_paths))
 
@@ -170,7 +164,7 @@ def test_finder_bad_paths(bad_finder_paths):
 @pytest.mark.xfail(sys.platform == 'win32',
                    reason="path mangling broken on windows")
 def test_finder_regex(finder_regexes):
-    dir_path = os.path.abspath("/some/path")
+    dir_path = os.sep.join(['', 'some', 'path'])
     translation_mapping = os.path.join(dir_path, finder_regexes)
     finder = TranslationFileFinder(translation_mapping)
     path = translation_mapping
@@ -186,7 +180,7 @@ def test_finder_regex(finder_regexes):
 @pytest.mark.xfail(sys.platform == 'win32',
                    reason="path mangling broken on windows")
 def test_finder_match(finder_matches):
-    dir_path = os.path.abspath("/some/path")
+    dir_path = os.sep.join(['', 'some', 'path'])
     match_path, not_matching, matching = finder_matches
     finder = TranslationFileFinder(os.path.join(dir_path, match_path))
 
