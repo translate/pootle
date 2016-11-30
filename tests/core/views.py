@@ -484,7 +484,7 @@ def test_widget_table_select_multiple_dict():
              'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
-        assert ('<td>%s</td>' % choice["title"]) in rendered
+        assert ('<td class="field-title">%s</td>' % choice["title"]) in rendered
 
 
 @pytest.mark.django_db
@@ -534,7 +534,7 @@ def test_widget_table_select_multiple_objects():
              'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
-        assert ('<td>%s</td>' % choice["title"]) in rendered
+        assert ('<td class="field-title">%s</td>' % choice["title"]) in rendered
 
 
 @pytest.mark.django_db
@@ -558,8 +558,10 @@ def test_widget_table_select_multiple_callable():
              'type="checkbox" value="%s" /></td>'
              % name)
             in rendered)
-        assert ('<td>xx%s</td>' % choice["id"]) in rendered
-        assert ('<td>xx%s</td>' % choice["title"]) not in rendered
+        assert ('<td class="field-get-id">xx%s</td>' % choice["id"]) in rendered
+        assert (
+            ('<td class="field-get-title">xx%s</td>' % choice["title"])
+            not in rendered)
     widget = TableSelectMultiple(item_attrs=[_get_id], choices=choices)
     rendered = widget.render("a-field", choices[0])
     for i, (name, choice) in enumerate(choices):
@@ -571,8 +573,10 @@ def test_widget_table_select_multiple_callable():
              'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
-        assert ('<td>xx%s</td>' % choice["id"]) in rendered
-        assert ('<td>xx%s</td>' % choice["title"]) not in rendered
+        assert ('<td class="field-get-id">xx%s</td>' % choice["id"]) in rendered
+        assert (
+            ('<td class="field-get-title">xx%s</td>' % choice["title"])
+            not in rendered)
     widget = TableSelectMultiple(item_attrs=[_get_id, _get_title], choices=choices)
     rendered = widget.render("a-field", choices[0])
     for i, (name, choice) in enumerate(choices):
@@ -584,8 +588,10 @@ def test_widget_table_select_multiple_callable():
              'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
-        assert ('<td>xx%s</td>' % choice["id"]) in rendered
-        assert ('<td>xx%s</td>' % choice["title"]) in rendered
+        assert ('<td class="field-get-id">xx%s</td>' % choice["id"]) in rendered
+        assert (
+            ('<td class="field-get-title">xx%s</td>' % choice["title"])
+            in rendered)
 
 
 @pytest.mark.django_db
@@ -642,7 +648,7 @@ def test_widget_table_select_multiple_object_methods():
              'type="checkbox" value="%s" /></td>'
              % (checked, name))
             in rendered)
-        assert ('<td>%s</td>' % choice["title"]) in rendered
+        assert ('<td class="field-title">%s</td>' % choice["title"]) in rendered
 
 
 @pytest.mark.django_db
