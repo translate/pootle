@@ -18,10 +18,12 @@ from django.utils.lru_cache import lru_cache
 from pootle.core.delegate import (
     config, response as pootle_response,
     revision, state as pootle_state)
+from pootle_app.models import Directory
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 from pootle_store.models import Store
 from pootle_project.models import Project
 
+from .apps import PootleFSConfig
 from .decorators import emits_state, responds_to_state
 from .delegate import fs_finder, fs_matcher, fs_resources
 from .signals import fs_pre_push, fs_post_push, fs_pre_pull, fs_post_pull
@@ -32,6 +34,9 @@ logger = logging.getLogger(__name__)
 
 class Plugin(object):
     """Base Plugin implementation"""
+
+    ns = "pootle.fs.plugin"
+    sw_version = PootleFSConfig.version
 
     name = None
 
@@ -51,6 +56,14 @@ class Plugin(object):
         return "<%s(%s)>" % (self.__class__.__name__, self.project)
 
     @property
+    def cache_key(self):
+        return (
+            "%s.%s.%s"
+            % (self.pootle_revision,
+               self.sync_revision,
+               self.fs_revision))
+
+    @property
     def is_cloned(self):
         return os.path.exists(self.project.local_fs_path)
 
@@ -67,8 +80,22 @@ class Plugin(object):
         return self.project.config["pootle_fs.fs_url"]
 
     @property
+    def fs_revision(self):
+        return self.latest_hash
+
+    @property
+    def pootle_revision(self):
+        return revision.get(Directory)(
+            self.project.directory).get(key="stats")
+
+    @property
     def response_class(self):
         return pootle_response.get(self.state_class)
+
+    @property
+    def sync_revision(self):
+        return revision.get(
+            Project)(self.project).get(key="pootle.fs.sync")
 
     @cached_property
     def matcher_class(self):

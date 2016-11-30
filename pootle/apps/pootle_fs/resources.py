@@ -12,9 +12,6 @@ from django.db.models import F, Max
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import revision
-from pootle_app.models import Directory
-from pootle_project.models import Project
 from pootle_store.models import Store
 
 from .apps import PootleFSConfig
@@ -192,7 +189,7 @@ class FSProjectStateResources(object):
         """Uncache cached_properties"""
         cache_reload = [
             "context", "pootle_path", "fs_path",
-            "sync_revision", "project_revision"]
+            "cache_key", "sync_revision", "fs_revision"]
         for k, v_ in self.__dict__.items():
             if k in cache_reload:
                 continue
@@ -200,22 +197,12 @@ class FSProjectStateResources(object):
 
     @cached_property
     def fs_revision(self):
-        return self.context.latest_hash
+        return self.context.fs_revision
 
     @cached_property
     def sync_revision(self):
-        return revision.get(Project)(
-            self.context.project).get(key="pootle.fs.sync")
-
-    @cached_property
-    def project_revision(self):
-        return revision.get(Directory)(
-            self.context.project.directory).get(key="stats")
+        return self.context.sync_revision
 
     @cached_property
     def cache_key(self):
-        return (
-            "%s.%s.%s"
-            % (self.project_revision,
-               self.sync_revision,
-               self.fs_revision))
+        return self.context.cache_key
