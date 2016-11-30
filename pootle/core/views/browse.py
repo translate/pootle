@@ -19,6 +19,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data,
                                      get_translation_states)
+from pootle.i18n import formatter
 
 from .base import PootleDetailView
 from .display import ChecksDisplay, StatsDisplay
@@ -56,8 +57,11 @@ class PootleBrowseView(PootleDetailView):
             else:
                 stats[state["state"]] = state["count"] = stats[state["state"]]
             if state.get("count"):
+                state["count_display"] = formatter.number(state["count"])
                 state["percent"] = round(
-                    (float(state["count"]) / stats["total"]) * 100, 1)
+                    float(state["count"]) / stats["total"], 3)
+                state["percent_display"] = formatter.percent(
+                    state["percent"], "#,##0.0%")
         return states
 
     @property

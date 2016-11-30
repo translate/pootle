@@ -140,6 +140,7 @@ class ChecksDisplay(object):
             if check["code"] not in self.check_data:
                 continue
             check["count"] = self.check_data[check["code"]]
+            check["count_display"] = formatter.number(check["count"])
             _checks.append(check)
         return _checks
 

@@ -32,12 +32,12 @@
                 <td id="stats-name">{{ item.title }}</td>
                 <td class="stats-number">
                   {% if can_translate_stats %}
-                  <a href="{{ item.url }}" class="stats-data">{{ item.count }}</a>
+                  <a href="{{ item.url }}" class="stats-data">{{ item.count_display }}</a>
                   {% else %}
-                  <span class="stats-data">{{ item.count }}</span>
+                  <span class="stats-data">{{ item.count_display }}</span>
                   {% endif %}
                 </td>
-                <td class="stats-percentage"><span>{{ item.percent }}</span>%</td>
+                <td class="stats-percentage"><span>{{ item.percent_display }}</span></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -54,10 +54,10 @@
                 <td class="check-name">
                   <a class="check-data" href="{{ check.url }}">{{ check.title }}</a>
                 </td>
-                <td class="check-count"><a class="check-data" href="{{ check.url }}">{{ check.count }}</a></td>
+                <td class="check-count"><a class="check-data" href="{{ check.url }}">{{ check.count_display }}</a></td>
                 {% else %}
                 <td class="check-name"><span class="check-data">{{ check.title }}</span></td>
-                <td class="check-count"><span class="check-data">{{ check.count }}</span></td>
+                <td class="check-count"><span class="check-data">{{ check.count_display }}</span></td>
                 {% endif %}
               </tr>
             {% endfor %}
