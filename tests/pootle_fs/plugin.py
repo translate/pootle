@@ -11,8 +11,11 @@ import sys
 
 import pytest
 
+from pootle.core.delegate import revision
 from pootle.core.response import Response
 from pootle.core.state import State
+from pootle_app.models import Directory
+from pootle_fs.apps import PootleFSConfig
 from pootle_fs.matcher import FSPathMatcher
 from pootle_fs.models import StoreFS
 from pootle_fs.plugin import Plugin
@@ -337,3 +340,27 @@ def test_fs_plugin_localfs_push(localfs_pootle_staged_real):
         with open(src_file) as target:
             with open(target_file) as src:
                 assert src.read() == target.read()
+
+
+@pytest.mark.django_db
+def test_fs_plugin_cache_key(project_fs):
+    plugin = project_fs
+    assert plugin.ns == "pootle.fs.plugin"
+    assert plugin.sw_version == PootleFSConfig.version
+    assert (
+        plugin.fs_revision
+        == plugin.latest_hash)
+    assert (
+        plugin.sync_revision
+        == revision.get(
+            Project)(plugin.project).get(key="pootle.fs.sync"))
+    assert (
+        plugin.pootle_revision
+        == revision.get(
+            Directory)(plugin.project.directory).get(key="stats"))
+    assert (
+        plugin.cache_key
+        == ("%s.%s.%s"
+            % (plugin.pootle_revision,
+               plugin.sync_revision,
+               plugin.fs_revision)))

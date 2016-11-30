@@ -398,8 +398,11 @@ def test_fs_resources_cache_key(project_fs):
     assert resources.ns == "pootle.fs.resources"
     assert resources.sw_version == PootleFSConfig.version
     assert (
+        resources.fs_revision
+        == resources.context.fs_revision)
+    assert (
+        resources.sync_revision
+        == resources.context.sync_revision)
+    assert (
         resources.cache_key
-        == ("%s.%s.%s"
-            % (resources.project_revision,
-               resources.sync_revision,
-               plugin.latest_hash)))
+        == resources.context.cache_key)
