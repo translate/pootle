@@ -2567,3 +2567,83 @@ form.formtable tfoot .formtable-actions td
 {
     padding: 1em;
 }
+
+dl.horizontal
+{
+    background: red;
+    position: relative;
+    top: 0;
+}
+
+dl.horizontal dt
+{
+    float: left;
+    display: block;
+    margin: 0;
+    padding: 0.5em;
+    box-sizing: border-box;
+    background: #ddd;
+    width: 50%;
+    height: 1.5em;
+    text-align: right;
+    line-height: 1.5em;
+    height: 2.5em;
+}
+
+dl.horizontal dd
+{
+    float: left;
+    display: block;
+    background: #fafafa;
+    margin: 0;
+    padding: 0.5em;
+    box-sizing: border-box;
+    width: 50%;
+    line-height: 1.5em;
+    height: 2.5em;
+}
+
+
+tr.conflict-untracked td.fs-path,
+tr.conflict-untracked td.pootle-path,
+tr.conflict td.fs-path,
+tr.conflict td.pootle-path
+{
+    color: #c19b9b;
+}
+
+
+tr.conflict-untracked td.fs-path a,
+tr.conflict-untracked td.pootle-path a,
+tr.conflict td.fs-path a,
+tr.conflict td.pootle-path a
+{
+    color: #8f6b6b;
+}
+
+
+tr.pootle-untracked td.fs-path,
+tr.fs-untracked td.pootle-path
+{
+    color: #999;
+    font-style: italic;
+}
+
+tr.merge-fs-wins td.pootle-path
+{
+    color: #999;
+}
+
+tr.remove td.fs-path,
+tr.remove td.pootle-path,
+tr.pootle-staged .fs-path
+{
+    color: #999;
+    text-decoration: line-through;
+}
+
+tr.remove.no-file td.fs-path,
+tr.remove.no-store td.pootle-path
+{
+    font-style: italic;
+}
