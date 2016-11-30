@@ -9,15 +9,18 @@
 from collections import OrderedDict
 from copy import copy
 
+from django.core.cache import cache
 from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
 from pootle.core.state import ItemState, State
+from pootle_project.models import Project
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 from .models import StoreFS
 from .resources import FSProjectStateResources
+from .utils import FSPlugin
 
 
 FS_STATE = OrderedDict()
@@ -74,6 +77,28 @@ FS_STATE["both_removed"] = {
     "description": (
         "Files or Stores that were previously tracked but have now "
         "disappeared")}
+
+
+class ProjectStates(object):
+
+    @lru_cache()
+    def project_state(self, project_code, cache_key, fs_path="", pootle_path=""):
+        cache_key = (
+            "fs.state.%s.%s.%s"
+            % (cache_key, hash(fs_path), hash(pootle_path)))
+        cached = cache.get(cache_key)
+        if cached:
+            return cached
+        project = Project.objects.get(code=project_code)
+        fs = FSPlugin(project)
+        state = fs.state_class(fs, fs_path=fs_path, pootle_path=pootle_path)
+        from pootle.core.debug import timings
+        with timings():
+            cache.set(cache_key, state)
+        return state
+
+
+project_states = ProjectStates()
 
 
 class FSItemState(ItemState):
