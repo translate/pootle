@@ -118,6 +118,9 @@ check_names = {
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
     'plurr_format': _(u'Plurr format'),
     'plurr_placeholders': _(u'Plurr placeholders'),
+
+    # FIXME: make checks customisable
+    'ftl_format': _(u'ftl format'),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy',
