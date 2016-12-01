@@ -6,9 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import locale
-import os
-
 from redis.exceptions import ConnectionError
 
 from django.contrib.auth import get_user_model
@@ -19,6 +16,7 @@ from django_rq.queues import get_failed_queue, get_queue
 from django_rq.workers import Worker
 
 from pootle.core.decorators import admin_required
+from pootle.i18n import formatter
 from pootle.i18n.gettext import ugettext as _, ungettext
 from pootle_statistics.models import Submission
 from pootle_store.models import Suggestion
@@ -26,13 +24,7 @@ from pootle_store.models import Suggestion
 
 def _format_numbers(numbers):
     for k in numbers.keys():
-        formatted_number = locale.format("%d", numbers[k], grouping=True)
-        # Under Windows, formatted number must be converted to Unicode
-        if os.name == 'nt':
-            formatted_number = formatted_number.decode(
-                locale.getpreferredencoding()
-            )
-        numbers[k] = formatted_number
+        numbers[k] = formatter.number(numbers[k])
 
 
 def server_stats():
