@@ -11,6 +11,7 @@ import datetime
 from django import template
 from django.contrib.auth import get_user_model
 
+from pootle.i18n import formatter
 from pootle.local.dates import timesince
 
 
@@ -36,14 +37,24 @@ def avatar(username, email_hash, size):
 @register.inclusion_tag('browser/_progressbar.html')
 def progress_bar(total, fuzzy, translated):
     if not total:
-        return dict(fuzzy=0, translated=0, untranslated=0)
-    untranslated = total - translated - fuzzy
+        fuzzy_frac = translated_frac = untranslated_frac = 0
+        cldrformat = "0%"
+    else:
+        untranslated = total - translated - fuzzy
+        untranslated_frac = float(untranslated)/total
+        fuzzy_frac = float(fuzzy)/total
+        translated_frac = float(translated)/total
+        cldrformat = "#,##0.0%"
     return dict(
-        fuzzy=round((float(fuzzy)/total) * 100),
-        translated=round(
-            (float(translated)/total) * 100),
-        untranslated=round(
-            (float(untranslated)/total) * 100))
+        untranslated_percent_display=formatter.percent(
+            untranslated_frac, cldrformat),
+        fuzzy_percent_display=cldr.format_percent(
+            fuzzy_frac, cldrformat),
+        translated_percent_display=formatter.percent(
+            translated_frac, cldrformat),
+        untranslated_bar=round(untranslated_frac * 100, 1),
+        fuzzy_bar=round(fuzzy_frac * 100, 1),
+        translated_bar=round(translated_frac * 100, 1))
 
 
 @register.inclusion_tag('browser/_table.html')
