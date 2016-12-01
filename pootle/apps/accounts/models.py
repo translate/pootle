@@ -29,6 +29,7 @@ from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.cache import make_method_key
 from pootle.core.views.display import ActionDisplay
+from pootle.i18n import formatter
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.models import Language
 from pootle_statistics.models import (ScoreLog, Submission,
@@ -43,11 +44,6 @@ __all__ = ('User', )
 
 
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'), ('CNY', 'CNY'), ('JPY', 'JPY'))
-
-
-def _humanize_score(score):
-    """Returns a human-readable score for public display."""
-    return int(round(score))
 
 
 class User(AbstractBaseUser):
@@ -132,7 +128,7 @@ class User(AbstractBaseUser):
 
     @property
     def public_score(self):
-        return _humanize_score(self.score)
+        return formatter.number(round(self.score))
 
     @property
     def has_contact_details(self):
@@ -256,7 +252,8 @@ class User(AbstractBaseUser):
         top_scorers = []
         for item in top_scores:
             item['user'] = users[item['user']]
-            item['public_total_score'] = _humanize_score(item['total_score'])
+            item['public_total_score'] = formatter.number(
+                round(item['total_score']))
             top_scorers.append(item)
 
         cache.set(cache_key, top_scorers, 60)

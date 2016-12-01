@@ -1,5 +1,5 @@
 {% extends 'user/base.html'  %}
-{% load core humanize i18n profile_tags assets common_tags %}
+{% load core i18n profile_tags assets common_tags %}
 
 {% block body_id %}profile-page{% endblock %}
 
@@ -28,9 +28,9 @@
     <h2 class="user-score-title">{% trans 'Score:' %}</h2>
     <h3 class="user-score">
       {% if user == object and object.public_score > 0 %}
-        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE score=object.public_score|intcomma %}My current score at {{ server_title }} is {{ score }} {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">{{ object.public_score|intcomma }}</a>
+        <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE score=object.public_score %}My current score at {{ server_title }} is {{ score }} {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">{{ object.public_score }}</a>
       {% else %}
-        {{ object.public_score|intcomma }}
+        {{ object.public_score }}
       {% endif %}
     </h3>
 

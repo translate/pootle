@@ -1,4 +1,4 @@
-{% load i18n humanize profile_tags %}
+{% load i18n profile_tags %}
 
 {% if top_scorers %}
 <table id="top-scorers">
@@ -22,7 +22,7 @@
           <li class="name"><a href="{{ user.get_absolute_url }}">{{ user.display_name }}</a></li>
         </ul>
       </td>
-      <td class="number">{{ item.public_total_score|floatformat|intcomma }}</td>
+      <td class="number">{{ item.public_total_score }}</td>
     </tr>
     {% endwith %}
   {% endfor %}

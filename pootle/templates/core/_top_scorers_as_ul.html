@@ -1,4 +1,4 @@
-{% load i18n humanize profile_tags %}
+{% load i18n profile_tags %}
 {% if top_scorers %}
 <label>{% trans 'Top contributors:' %}</label>
 <ul class="top-scorers">
@@ -12,7 +12,7 @@
           <span class="user-name user-info">{{ user.display_name }}</span>
         </a>
       </div>
-      <div class="number">{% if item.public_total_score > 0 %}+{% endif %}{{ item.public_total_score|floatformat:0|intcomma }}</div>
+      <div class="number">{% if item.total_score > 0 %}+{% endif %}{{ item.public_total_score }}</div>
     </li>
     {% endwith %}
   {% endfor %}

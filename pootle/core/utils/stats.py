@@ -37,6 +37,7 @@ def get_top_scorers_data(top_scorers, chunk_size):
 
     top_scorers_data = [
         dict(
+            total_score=scorer['total_score'],
             public_total_score=scorer['public_total_score'],
             suggested=scorer['suggested'],
             translated=scorer['translated'],

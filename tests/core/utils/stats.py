@@ -23,6 +23,7 @@ class MockUser(object):
 
 TEST_TOP_SCORERS = [
     dict(
+        total_score=1,
         public_total_score=1,
         suggested=0,
         translated=1,
@@ -34,6 +35,7 @@ TEST_TOP_SCORERS = [
         )
     ),
     dict(
+        total_score=3,
         public_total_score=3,
         suggested=1,
         translated=2,
@@ -55,6 +57,7 @@ def test_get_top_scorers_data(top_scorers, chunk_size):
     has_more_scorers = len(top_scorers) > chunk_size
     top_scorer_items = [
         dict(
+            total_score=x['total_score'],
             public_total_score=x['public_total_score'],
             suggested=x['suggested'],
             translated=x['translated'],
