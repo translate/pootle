@@ -48,7 +48,7 @@ def progress_bar(total, fuzzy, translated):
     return dict(
         untranslated_percent_display=formatter.percent(
             untranslated_frac, cldrformat),
-        fuzzy_percent_display=cldr.format_percent(
+        fuzzy_percent_display=formatter.percent(
             fuzzy_frac, cldrformat),
         translated_percent_display=formatter.percent(
             translated_frac, cldrformat),

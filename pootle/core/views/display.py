@@ -10,6 +10,7 @@ from django.utils.functional import cached_property
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
+from pootle.i18n import formatter
 from pootle.i18n.gettext import ugettext as _
 from pootle.local.dates import timesince
 from pootle_misc.checks import get_qualitycheck_list
@@ -151,6 +152,14 @@ class StatsDisplay(object):
         self.context = context
         self._stats = stats
 
+    @staticmethod
+    def make_display_stat(d, keys=["total", "critical", "incomplete",
+                                   "suggestions", "fuzzy", "untranslated"]):
+        assert isinstance(d, dict)
+        for k in keys:
+            if d.get(k):
+                d[k + '_display'] = formatter.number(d[k])
+
     @cached_property
     def stat_data(self):
         if self._stats:
@@ -161,6 +170,7 @@ class StatsDisplay(object):
     def stats(self):
         stats = self.stat_data
         self.add_children_info(stats)
+        self.make_display_stat(stats)
         if stats.get("last_submission"):
             stats["last_submission"]["msg"] = (
                 self.get_action_message(stats["last_submission"]))
@@ -170,6 +180,7 @@ class StatsDisplay(object):
         for k, child in stats["children"].items():
             child["incomplete"] = child["total"] - child["translated"]
             child["untranslated"] = child["total"] - child["translated"]
+            self.make_display_stat(child)
 
     def get_action_message(self, action):
         return ActionDisplay(action).message

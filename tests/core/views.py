@@ -36,6 +36,7 @@ def _test_stats_display(obj):
         stat_data["last_submission"]["msg"] = (
             stats.get_action_message(
                 stat_data["last_submission"]))
+    StatsDisplay.make_display_stat(stat_data)
     assert stat_data == stats.stats
 
 
