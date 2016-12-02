@@ -1,5 +1,5 @@
 {% extends "admin/base.html" %}
-{% load i18n locale assets %}
+{% load i18n locale assets babel %}
 
 {% block section_body %}
 <div id="serverstats" class="module first" lang="{{ LANGUAGE_CODE }}">
@@ -11,15 +11,15 @@
       <tbody>
         <tr>
           <th scope="row">{% trans "Submissions" %}</th>
-          <td class="stats-number">{{ server_stats.submission_count }}</td>
+          <td class="stats-number">{{ server_stats.submission_count|decimalfmt }}</td>
         </tr>
         <tr>
           <th scope="row">{% trans "Pending suggestions" %}</th>
-          <td class="stats-number">{{ server_stats.pending_count }}</td>
+          <td class="stats-number">{{ server_stats.pending_count|decimalfmt }}</td>
         </tr>
         <tr>
           <th scope="row">{% trans "Users" %}</th>
-          <td class="stats-number">{{ server_stats.user_count }}</td>
+          <td class="stats-number">{{ server_stats.user_count|decimalfmt }}</td>
         </tr>
       </tbody>
     </table>

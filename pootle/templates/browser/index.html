@@ -1,6 +1,6 @@
 {% extends browser_extends %}
 
-{% load core assets cleanhtml i18n locale common_tags profile_tags %}
+{% load core assets cleanhtml i18n locale common_tags profile_tags babel %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -32,9 +32,9 @@
                 <td id="stats-name">{{ item.title }}</td>
                 <td class="stats-number">
                   {% if can_translate_stats %}
-                  <a href="{{ item.url }}" class="stats-data">{{ item.count }}</a>
+                  <a href="{{ item.url }}" class="stats-data">{{ item.count|decimalfmt }}</a>
                   {% else %}
-                  <span class="stats-data">{{ item.count }}</span>
+                  <span class="stats-data">{{ item.count|decimalfmt }}</span>
                   {% endif %}
                 </td>
                 <td class="stats-percentage"><span>{{ item.percent }}</span>%</td>
@@ -54,10 +54,10 @@
                 <td class="check-name">
                   <a class="check-data" href="{{ check.url }}">{{ check.title }}</a>
                 </td>
-                <td class="check-count"><a class="check-data" href="{{ check.url }}">{{ check.count }}</a></td>
+                <td class="check-count"><a class="check-data" href="{{ check.url }}">{{ check.count|decimalfmt }}</a></td>
                 {% else %}
                 <td class="check-name"><span class="check-data">{{ check.title }}</span></td>
-                <td class="check-count"><span class="check-data">{{ check.count }}</span></td>
+                <td class="check-count"><span class="check-data">{{ check.count|decimalfmt }}</span></td>
                 {% endif %}
               </tr>
             {% endfor %}
