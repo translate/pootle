@@ -82,7 +82,7 @@ def rq_stats():
 def checks():
     from django.core.checks.registry import registry
 
-    return registry.run_checks()
+    return [e for e in registry.run_checks() if not e.is_silenced()]
 
 
 @admin_required
