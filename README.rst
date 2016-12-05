@@ -17,7 +17,7 @@ Pootle
    :target: https://coveralls.io/github/translate/pootle?branch=master
    :alt: Test Coverage
 
-.. image:: https://img.shields.io/requires/github/translate/pootle.svg?style=flat-square
+.. image:: https://img.shields.io/requires/github/translate/pootle/master.svg?style=flat-square
    :target: https://requires.io/github/translate/pootle/requirements/?branch=master
    :alt: Requirements
 
