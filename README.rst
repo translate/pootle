@@ -62,4 +62,6 @@ Copying
 -------
 
 Pootle is released under the General Public License, version 3 or later. See
-the file LICENSE for details.
+the `LICENSE`_ file for details.
+
+.. _LICENSE: https://github.com/translate/pootle/blob/master/LICENSE
