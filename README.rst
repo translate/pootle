@@ -21,6 +21,15 @@ Pootle
    :target: https://requires.io/github/translate/pootle/requirements/?branch=master
    :alt: Requirements
 
+.. Resources:
+
+`Docs <http://docs.translatehouse.org/projects/pootle/>`_ |
+`Changes <http://docs.translatehouse.org/projects/pootle/en/latest/releases/2.8.0.html>`_ |
+`Issues <https://github.com/translate/pootle/issues>`_ |
+`Community Support <https://gitter.im/translate/pootle>`_ |
+`Translations <http://pootle.locamotion.org/projects/pootle/>`_ |
+`Development Channel <https://gitter.im/translate/dev>`_
+
 
 `Pootle <http://pootle.translatehouse.org/>`_ is an online translation and
 localization tool.  It works to lower the barrier of entry, providing tools to
@@ -45,18 +54,6 @@ But don't forget to read the `installation guide
 <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
 for the important details.
 
-
-Resources
----------
-
-- `Pootle Website <http://pootle.translatehouse.org/>`_
-- `Documentation <http://docs.translatehouse.org/projects/pootle/>`_
-- `Translations <http://pootle.locamotion.org/projects/pootle/>`_
-- `Bug Tracker <https://github.com/translate/pootle/issues>`_
-- `Mailing List
-  <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_
-- `Support channel <https://gitter.im/translate/pootle>`_
-- `Development channel <https://gitter.im/translate/dev>`_
 
 Copying
 -------
