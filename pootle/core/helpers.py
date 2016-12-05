@@ -12,7 +12,7 @@ from urllib import quote, unquote
 from django.utils import dateformat
 
 
-SIDEBAR_COOKIE_NAME = 'pootle-browser-sidebar'
+SIDEBAR_COOKIE_NAME = 'pootle-browser-open-sidebar'
 
 
 def get_sidebar_announcements_context(request, objects):
@@ -24,6 +24,7 @@ def get_sidebar_announcements_context(request, objects):
                     missing, but it is recommended for them to be in that exact
                     order.
     """
+    must_show_announcement = False
     announcements = []
     new_cookie_data = {}
     cookie_data = {}
@@ -41,20 +42,20 @@ def get_sidebar_announcements_context(request, objects):
             continue
 
         announcements.append(announcement)
-        # The virtual_path cannot be used as is for JSON.
-        ann_key = announcement.virtual_path.replace('/', '_')
+
         ann_mtime = dateformat.format(announcement.modified_on, 'U')
-        stored_mtime = cookie_data.get(ann_key, None)
+        stored_mtime = request.session.get(announcement.virtual_path, None)
 
         if ann_mtime != stored_mtime:
-            new_cookie_data[ann_key] = ann_mtime
+            # Some announcement has been changed or was never displayed before,
+            # so display sidebar and save the changed mtimes in the session to
+            # not display it next time unless it is necessary.
+            must_show_announcement = True
+            request.session[announcement.virtual_path] = ann_mtime
 
-    if new_cookie_data:
-        # Some announcement has been changed or was never displayed before, so
-        # display sidebar and save the changed mtimes in the cookie to not
-        # display it next time unless it is necessary.
+    if must_show_announcement and not is_sidebar_open:
         is_sidebar_open = True
-        cookie_data.update(new_cookie_data)
+        cookie_data['isOpen'] = is_sidebar_open
         new_cookie_data = quote(json.dumps(cookie_data))
 
     ctx = {
