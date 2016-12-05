@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import pootle.core.markup.fields
-import pootle.core.mixins.dirtyfields
 import django.utils.timezone
 from django.conf import settings
 
@@ -29,7 +28,7 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(pootle.core.mixins.dirtyfields.DirtyFieldsMixin, models.Model),
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='StaticPage',
@@ -45,7 +44,7 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(pootle.core.mixins.dirtyfields.DirtyFieldsMixin, models.Model),
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Agreement',

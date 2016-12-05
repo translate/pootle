@@ -16,6 +16,7 @@ from staticpages.models import LegalPage
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(reason="this will be dropped")
 def test_pending_agreements():
     """Tests proper user pending agreements are returned."""
     foo_user = UserFactory.create(username='foo')
