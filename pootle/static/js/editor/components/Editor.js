@@ -8,9 +8,8 @@
 
 import React from 'react';
 
-import { t } from 'utils/i18n';
-
 import EditingArea from '../components/EditingArea';
+import EditorPluralFormHeader from '../components/EditorPluralFormHeader';
 import RawFontTextarea from '../components/RawFontTextarea';
 import { getAreaId } from '../utils';
 
@@ -18,7 +17,6 @@ import { getAreaId } from '../utils';
 const Editor = React.createClass({
 
   propTypes: {
-    getPluralFormName: React.PropTypes.func,
     initialValues: React.PropTypes.array,
     isDisabled: React.PropTypes.bool,
     isRawMode: React.PropTypes.bool,
@@ -27,6 +25,9 @@ const Editor = React.createClass({
     style: React.PropTypes.object,
     targetNplurals: React.PropTypes.number.isRequired,
     textareaComponent: React.PropTypes.func,
+    textareaHeaderActionCallback: React.PropTypes.func,
+    textareaHeaderComponent: React.PropTypes.func,
+    getTextareaHeaderProps: React.PropTypes.func,
     values: React.PropTypes.array,
   },
 
@@ -34,15 +35,10 @@ const Editor = React.createClass({
     return {
       initialValues: [],
       textareaComponent: RawFontTextarea,
+      textareaHeaderComponent: EditorPluralFormHeader,
+      getTextareaHeaderProps: () => null,
+      textareaHeaderActionCallback: () => null,
     };
-  },
-
-  getPluralFormName(index) {
-    if (this.props.getPluralFormName !== undefined) {
-      return this.props.getPluralFormName(index);
-    }
-
-    return t('Plural form %(index)s', { index });
   },
 
   render() {
@@ -53,17 +49,17 @@ const Editor = React.createClass({
       if (this.props.isRawMode !== undefined) {
         extraProps.isRawMode = this.props.isRawMode;
       }
-
       editingAreas.push(
         <EditingArea
           isDisabled={this.props.isDisabled}
           key={i}
         >
-          {(this.props.targetNplurals > 1) &&
-            <div className="subheader">
-              { this.getPluralFormName(i) }
-            </div>
-          }
+          <this.props.textareaHeaderComponent
+            count={this.props.targetNplurals}
+            index={i}
+            actionCallback={(action) => this.props.textareaHeaderActionCallback(i, action)}
+            getProps={() => this.props.getTextareaHeaderProps(i)}
+          />
           <this.props.textareaComponent
             autoFocus={i === 0}
             id={getAreaId(i)}
