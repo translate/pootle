@@ -46,13 +46,16 @@ A number of translation projects for a number of languages can be hosted on
 Pootle.  Teams can manage their files, permissions, projects, and translate
 on-line.  Files can be downloaded for offline translation.
 
-Installation can be done via pip::
+Installation
+------------
+
+::
 
   pip install Pootle
 
-But don't forget to read the `installation guide
+Don't forget to read the `installation guide
 <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
-for the important details.
+for important details.
 
 
 Copying
