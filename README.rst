@@ -7,7 +7,7 @@
 
 .. image:: https://img.shields.io/travis/translate/pootle/master.svg?style=flat-square
     :alt: Build Status
-    :target: https://travis-ci.org/translate/pootle
+    :target: https://travis-ci.org/translate/pootle/branches
 
 .. image:: https://landscape.io/github/translate/pootle/master/landscape.svg?style=flat-square
     :target: https://landscape.io/github/translate/pootle/master
