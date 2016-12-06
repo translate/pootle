@@ -1,5 +1,5 @@
-Pootle
-======
+|logo| Pootle
+=============
 
 .. image:: https://img.shields.io/gitter/room/translate/pootle.svg?style=flat-square
    :alt: Join the chat at https://gitter.im/translate/pootle
@@ -65,3 +65,6 @@ Pootle is released under the General Public License, version 3 or later. See
 the `LICENSE`_ file for details.
 
 .. _LICENSE: https://github.com/translate/pootle/blob/master/LICENSE
+.. |logo| image:: https://cdn.rawgit.com/dwaynebailey/pootle/master/pootle/static/images/logo-color.svg
+          :target: https://github.com/translate/pootle
+          :align: bottom
