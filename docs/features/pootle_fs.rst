@@ -58,7 +58,7 @@ You specify *Actions* that need to be taken to resolve conflicts or to ensure
 that files are tracked. This could be adding a file, removing a file or merging
 conflicting translations. This is the process of staging actions.
 
-The final step is to synchronise Pootle and your filesystem. This operations
+The final step is to synchronise Pootle and your filesystem. This operation
 takes your staged actions and executes them.
 
 
@@ -91,7 +91,7 @@ These two commands still exist but we will be phasing these out in the long
 term to make everything use Pootle FS.
 
 You can find an outline of how to use Pootle FS on your existing Pootle
-projects on the :ref:`adding a Pootle FS managed project
+projects in the :ref:`adding a Pootle FS managed project
 <pootle_fs_add_project>` instructions.
 
 Once you are familiar with Pootle FS you can start :ref:`migrating your
