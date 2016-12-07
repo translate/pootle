@@ -102,11 +102,6 @@ class PootleBrowseView(PootleDetailView):
     def has_vfolders(self):
         return False
 
-    @cached_property
-    def cookie_data(self):
-        ctx_, cookie_data = self.sidebar_announcements
-        return cookie_data
-
     @property
     def sidebar_announcements(self):
         return get_sidebar_announcements_context(
@@ -131,8 +126,7 @@ class PootleBrowseView(PootleDetailView):
 
     def get(self, *args, **kwargs):
         response = super(PootleBrowseView, self).get(*args, **kwargs)
-        if self.cookie_data:
-            response.set_cookie(SIDEBAR_COOKIE_NAME, self.cookie_data)
+        response.delete_cookie(SIDEBAR_COOKIE_NAME)
         return response
 
     @cached_property
@@ -180,7 +174,7 @@ class PootleBrowseView(PootleDetailView):
             url_action_review = None
             url_action_view_all = None
 
-        ctx, cookie_data_ = self.sidebar_announcements
+        ctx = self.sidebar_announcements
         ctx.update(super(PootleBrowseView, self).get_context_data(*args, **kwargs))
         stats = self.stats.copy()
         del stats["children"]

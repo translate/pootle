@@ -6,13 +6,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import json
-from urllib import quote, unquote
-
 from django.utils import dateformat
 
 
-SIDEBAR_COOKIE_NAME = 'pootle-browser-open-sidebar'
+SIDEBAR_COOKIE_NAME = 'pootle-browser-sidebar'
 
 
 def get_sidebar_announcements_context(request, objects):
@@ -26,14 +23,16 @@ def get_sidebar_announcements_context(request, objects):
     """
     must_show_announcement = False
     announcements = []
-    new_cookie_data = {}
-    cookie_data = {}
 
     if SIDEBAR_COOKIE_NAME in request.COOKIES:
-        json_str = unquote(request.COOKIES[SIDEBAR_COOKIE_NAME])
-        cookie_data = json.loads(json_str)
+        try:
+            is_sidebar_open = bool(int(request.COOKIES[SIDEBAR_COOKIE_NAME]))
+        except ValueError:
+            is_sidebar_open = True
 
-    is_sidebar_open = cookie_data.get('isOpen', True)
+        request.session['is_sidebar_open'] = is_sidebar_open
+    else:
+        is_sidebar_open = request.session.get('is_sidebar_open', True)
 
     for item in objects:
         announcement = item.get_announcement(request.user)
@@ -53,15 +52,10 @@ def get_sidebar_announcements_context(request, objects):
             must_show_announcement = True
             request.session[announcement.virtual_path] = ann_mtime
 
-    if must_show_announcement and not is_sidebar_open:
-        is_sidebar_open = True
-        cookie_data['isOpen'] = is_sidebar_open
-        new_cookie_data = quote(json.dumps(cookie_data))
-
     ctx = {
         'announcements': announcements,
-        'is_sidebar_open': is_sidebar_open,
+        'is_sidebar_open': must_show_announcement or is_sidebar_open,
         'has_sidebar': len(announcements) > 0,
     }
 
-    return ctx, new_cookie_data
+    return ctx

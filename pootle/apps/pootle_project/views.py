@@ -339,7 +339,7 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
 
     @property
     def sidebar_announcements(self):
-        return {}, None
+        return {}
 
     def get(self, *args, **kwargs):
         response = super(ProjectsBrowseView, self).get(*args, **kwargs)

@@ -239,13 +239,13 @@ PTL.common = {
     $(document).on('click', '.js-sidebar-toggle', () => {
       const $sidebar = $('.js-sidebar');
       const openClass = 'sidebar-open';
-      const cookieName = 'pootle-browser-open-sidebar';
-      const cookieData = JSON.parse(cookie(cookieName)) || {};
+      const cookieName = 'pootle-browser-sidebar';
 
       $sidebar.toggleClass(openClass);
 
-      cookieData.isOpen = $sidebar.hasClass(openClass);
-      cookie(cookieName, JSON.stringify(cookieData), { path: '/' });
+      const isOpen = $sidebar.hasClass(openClass) ? 1 : 0;
+
+      cookie(cookieName, isOpen, { path: '/' });
     });
 
     /* Popups */
