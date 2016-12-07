@@ -8,9 +8,8 @@
 
 import React from 'react';
 
-import { t } from 'utils/i18n';
-
 import { highlightRW } from '../../utils';
+import UnitPluralFormLabel from './UnitPluralFormLabel';
 
 
 const InnerDiv = ({ value }) => (
@@ -35,21 +34,16 @@ const UnitSource = React.createClass({
     hasPlurals: React.PropTypes.bool.isRequired,
     sourceLocaleCode: React.PropTypes.string,
     sourceLocaleDir: React.PropTypes.string,
+    labelComponent: React.PropTypes.func,
+    getLabel: React.PropTypes.func,
     innerComponent: React.PropTypes.func,
   },
 
   getDefaultProps() {
     return {
       innerComponent: InnerDiv,
+      labelComponent: UnitPluralFormLabel,
     };
-  },
-
-  getPluralFormName(index) {
-    if (this.props.getPluralFormName !== undefined) {
-      return this.props.getPluralFormName(index);
-    }
-
-    return t('Plural form %(index)s', { index });
   },
 
   createItem(sourceValue, index) {
@@ -59,11 +53,11 @@ const UnitSource = React.createClass({
     };
     return (
       <div key={`source-value-${index}`}>
-        {this.props.hasPlurals &&
-         <div
-           className="plural-form-label"
-         >{ this.getPluralFormName(index) }</div>
-        }
+        <this.props.labelComponent
+          index={index}
+          hasPlurals={this.props.hasPlurals}
+          getLabel={this.props.getLabel}
+        />
         <div
           className="translation-text js-translation-text"
           data-string={sourceValue}
