@@ -1,28 +1,9 @@
 |logo| Pootle
 =============
 
-.. image:: https://img.shields.io/gitter/room/translate/pootle.svg?style=flat-square
-   :alt: Join the chat at https://gitter.im/translate/pootle
-   :target: https://gitter.im/translate/pootle
+|chat| |build| |health| |coverage| |requirements|
 
-.. image:: https://img.shields.io/travis/translate/pootle/master.svg?style=flat-square
-    :alt: Build Status
-    :target: https://travis-ci.org/translate/pootle/branches
-
-.. image:: https://landscape.io/github/translate/pootle/master/landscape.svg?style=flat-square
-    :target: https://landscape.io/github/translate/pootle/master
-    :alt: Code Health
-
-.. image:: https://img.shields.io/coveralls/translate/pootle/master.svg?style=flat-square
-   :target: https://coveralls.io/github/translate/pootle?branch=master
-   :alt: Test Coverage
-
-.. image:: https://img.shields.io/requires/github/translate/pootle/master.svg?style=flat-square
-   :target: https://requires.io/github/translate/pootle/requirements/?branch=master
-   :alt: Requirements
-
-.. Resources:
-
+.. Resources: 
 `Docs <http://docs.translatehouse.org/projects/pootle/>`_ |
 `Changes <http://docs.translatehouse.org/projects/pootle/en/latest/releases/2.8.0.html>`_ |
 `Issues <https://github.com/translate/pootle/issues>`_ |
@@ -68,3 +49,23 @@ the `LICENSE`_ file for details.
 .. |logo| image:: https://cdn.rawgit.com/dwaynebailey/pootle/master/pootle/static/images/logo-color.svg
           :target: https://github.com/translate/pootle
           :align: bottom
+
+.. |chat| image:: https://img.shields.io/gitter/room/translate/pootle.svg?style=flat-square
+   :alt: Join the chat at https://gitter.im/translate/pootle
+   :target: https://gitter.im/translate/pootle
+
+.. |build| image:: https://img.shields.io/travis/translate/pootle/master.svg?style=flat-square
+    :alt: Build Status
+    :target: https://travis-ci.org/translate/pootle/branches
+
+.. |health| image:: https://landscape.io/github/translate/pootle/master/landscape.svg?style=flat-square
+    :target: https://landscape.io/github/translate/pootle/master
+    :alt: Code Health
+
+.. |coverage| image:: https://img.shields.io/coveralls/translate/pootle/master.svg?style=flat-square
+   :target: https://coveralls.io/github/translate/pootle?branch=master
+   :alt: Test Coverage
+
+.. |requirements| image:: https://img.shields.io/requires/github/translate/pootle/master.svg?style=flat-square
+   :target: https://requires.io/github/translate/pootle/requirements/?branch=master
+   :alt: Requirements
