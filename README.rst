@@ -8,7 +8,7 @@
 `Changes <http://docs.translatehouse.org/projects/pootle/en/latest/releases/2.8.0.html>`_ |
 `Issues <https://github.com/translate/pootle/issues>`_ |
 `Community Support <https://gitter.im/translate/pootle>`_ |
-`Translations <http://pootle.locamotion.org/projects/pootle/>`_ |
+`Contributing <https://github.com/translate/pootle/blob/master/CONTRIBUTING.rst>`_ |
 `Development Channel <https://gitter.im/translate/dev>`_
 
 
