@@ -50,8 +50,9 @@ class StoreSerialization(object):
         if hasattr(store, "updateheader"):
             # FIXME We need those headers on import
             # However some formats just don't support setting metadata
+            max_unit_revision = self.max_unit_revision or 0
             store.updateheader(add=True, X_Pootle_Path=self.pootle_path)
-            store.updateheader(add=True, X_Pootle_Revision=self.max_unit_revision)
+            store.updateheader(add=True, X_Pootle_Revision=max_unit_revision)
         return str(store)
 
     def pipeline(self, data):
