@@ -11,6 +11,7 @@ import React, { PropTypes } from 'react';
 
 import { highlightRO } from '../../utils';
 
+import UnitPluralFormLabel from './UnitPluralFormLabel';
 
 const InnerDiv = ({ value }) => (
   <div
@@ -37,23 +38,24 @@ const ViewUnit = React.createClass({
     values: PropTypes.array.isRequired,
     type: PropTypes.string.isRequired, // original | translation
     innerComponent: React.PropTypes.func,
-    getPluralFormName: React.PropTypes.func,
+    labelComponent: React.PropTypes.func,
+    getLabel: React.PropTypes.func,
     hasPlurals: React.PropTypes.bool.isRequired,
   },
 
   getDefaultProps() {
     return {
       innerComponent: InnerDiv,
+      labelComponent: UnitPluralFormLabel,
       isFuzzy: false,
     };
   },
 
-  getPluralFormName(index) {
-    if (this.props.getPluralFormName !== undefined) {
-      return this.props.getPluralFormName(index);
+  getLabel(index) {
+    if (this.props.getLabel) {
+      return this.props.getLabel(index);
     }
-
-    return `[${index}]`;
+    return `${index}`;
   },
 
   createValue(value, index) {
@@ -64,11 +66,12 @@ const ViewUnit = React.createClass({
         key={`${this.props.type}-value-${index}`}
         lang={this.props.language}
       >
-        {this.props.hasPlurals &&
-          <div
-            className="plural-form-label"
-          >{ this.getPluralFormName(index) }</div>
-        }
+        <this.props.labelComponent
+          index={index}
+          isShort
+          hasPlurals={this.props.hasPlurals}
+          getLabel={this.props.getLabel}
+        />
         <this.props.innerComponent value={value} />
       </div>
     );
