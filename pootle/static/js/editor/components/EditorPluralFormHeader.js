@@ -8,8 +8,7 @@
 
 import React from 'react';
 
-import { t } from 'utils/i18n';
-
+import UnitPluralFormLabel from './UnitPluralFormLabel';
 
 const EditorPluralFormHeader = React.createClass({
   propTypes: {
@@ -23,7 +22,10 @@ const EditorPluralFormHeader = React.createClass({
     }
     return (
       <div className="subheader">
-        { t('Plural form %(index)s', { index: this.props.index }) }
+        <UnitPluralFormLabel
+          index={this.props.index}
+          className="title"
+        />
       </div>
     );
   },
