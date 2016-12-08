@@ -10,6 +10,8 @@ import React from 'react';
 
 import diff from 'utils/diff';
 
+import UnitPluralFormLabel from './UnitPluralFormLabel';
+
 
 const InnerDiv = ({ value, initialValue }) => (
   <div
@@ -31,27 +33,21 @@ const SuggestionValue = React.createClass({
   propTypes: {
     id: React.PropTypes.number.isRequired,
     values: React.PropTypes.array.isRequired,
-    getPluralFormName: React.PropTypes.func,
     hasPlurals: React.PropTypes.bool.isRequired,
     sourceLocaleCode: React.PropTypes.string,
     sourceLocaleDir: React.PropTypes.string,
     innerComponent: React.PropTypes.func,
     initialValues: React.PropTypes.array.isRequired,
+    labelComponent: React.PropTypes.func,
+    getLabel: React.PropTypes.func,
   },
 
   getDefaultProps() {
     return {
       innerComponent: InnerDiv,
       initialValues: [],
+      labelComponent: UnitPluralFormLabel,
     };
-  },
-
-  getPluralFormName(index) {
-    if (this.props.getPluralFormName !== undefined) {
-      return this.props.getPluralFormName(index);
-    }
-
-    return `[${index}]`;
   },
 
   createItem(value, index) {
@@ -63,11 +59,12 @@ const SuggestionValue = React.createClass({
         className="extra-item-content"
       >
         <div className="extra-item">
-          {this.props.hasPlurals &&
-           <div
-             className="plural-form-label"
-           >{ this.getPluralFormName(index) }</div>
-          }
+          <this.props.labelComponent
+            index={index}
+            isShort={true}
+            hasPlurals={this.props.hasPlurals}
+            getLabel={this.props.getLabel}
+          />
           <div
             className="js-suggestion-text suggestion-translation"
             data-string={value}
