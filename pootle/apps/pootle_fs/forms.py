@@ -25,7 +25,7 @@ FS_CHOICES = (
      "/<language_code>/<dir_path>/<filename>.<ext>"),
     ("django",
      _("Django-style"),
-     "/locale/<lang_code>/LC_MESSAGES/<filename>.<ext>"),
+     "/locale/<language_code>/LC_MESSAGES/<filename>.<ext>"),
     ("custom", _("Custom"), ""))
 
 
