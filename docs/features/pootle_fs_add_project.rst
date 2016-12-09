@@ -95,7 +95,8 @@ into Pootle:
 
 .. code-block:: console
 
-  (env) $ pootle fs fetch MYPROJECT
+  (env) $ pootle fs state MYPROJECT
+  (env) $ pootle fs add MYPROJECT
   (env) $ pootle fs sync MYPROJECT
 
 
