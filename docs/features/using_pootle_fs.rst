@@ -59,13 +59,14 @@ To re-sync stores and files just run:
    (env) $ pootle fs sync MYPROJECT
 
 
-.. _using_pootle_fs#pull_new_files:
+.. _using_pootle_fs#add_files_stores:
 
-Pulling new files from the filesystem into Pootle
--------------------------------------------------
+Adding new files and stores
+---------------------------
 
 When new files appear on the filesystem that we want to bring into Pootle we
-use :djadmin:`add`:
+use :djadmin:`add`. And when new stores have appeared on Pootle that we want to
+push to the filesystem we also use :djadmin:`add`:
 
 .. code-block:: console
    
@@ -73,30 +74,12 @@ use :djadmin:`add`:
    (env) $ pootle fs sync MYPROJECT
 
 
-Where :djadmin:`add` will stage the previously untracked files, and
-:djadmin:`sync` will synchronize, pulling the translations in the file into the
-Pootle database.
+Where :djadmin:`add` will stage the previously untracked files or stores.
+While :djadmin:`sync` will synchronize, pulling the translations in the file
+into the Pootle database or pushing translations from the stores in the
+database to files on the filesystem.
 
 Following this the file and store are now tracked.
-
-
-.. _using_pootle_fs#push_new_stores:
-
-Pushing new stores from Pootle to the filesystem
-------------------------------------------------
-
-When new stores have appeared on Pootle that we want to push to the filesystem
-we use :djadmin:`add`:
-
-.. code-block:: console
-   
-   (env) $ pootle fs add MYPROJECT
-   (env) $ pootle fs sync MYPROJECT
-
-
-Where :djadmin:`add` will stage the previously untracked store, and
-:djadmin:`sync` will synchronize, pushing the translations in the Pootle store
-onto the filesystem.
 
 
 .. _using_pootle_fs#remove_files_stores:
