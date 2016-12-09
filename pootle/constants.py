@@ -9,4 +9,4 @@
 VERSION = (2, 8, 0, 'beta', 5)
 
 # Minimum Django version required for Pootle to run.
-DJANGO_MINIMUM_REQUIRED_VERSION = (1, 10, 3)
+DJANGO_MINIMUM_REQUIRED_VERSION = (1, 10, 4)
