@@ -65,15 +65,15 @@ Pulling new files from the filesystem into Pootle
 -------------------------------------------------
 
 When new files appear on the filesystem that we want to bring into Pootle we
-use :djadmin:`fetch`:
+use :djadmin:`add`:
 
 .. code-block:: console
    
-   (env) $ pootle fs fetch MYPROJECT
+   (env) $ pootle fs add MYPROJECT
    (env) $ pootle fs sync MYPROJECT
 
 
-Where :djadmin:`fetch` will stage the previously untracked files, and
+Where :djadmin:`add` will stage the previously untracked files, and
 :djadmin:`sync` will synchronize, pulling the translations in the file into the
 Pootle database.
 
@@ -151,7 +151,7 @@ all changes in Pootle:
 
 .. code-block:: console
    
-   (env) $ pootle fs fetch --force MYPROJECT
+   (env) $ pootle fs resolve --overwrite --pootle-wins MYPROJECT
    (env) $ pootle fs sync MYPROJECT
 
 
@@ -165,7 +165,7 @@ changes in the filesystem:
 
 .. code-block:: console
    
-   (env) $ pootle fs add --force MYPROJECT
+   (env) $ pootle fs resolve --overwrite MYPROJECT
    (env) $ pootle fs sync MYPROJECT
 
 
@@ -175,12 +175,12 @@ Use filesystem version and convert Pootle version into suggestion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To retain all translation and allow translators to resolve conflicts use
-:djadmin:`merge`. This will merge any non-conflicting units and convert
+:djadmin:`resolve`. This will merge any non-conflicting units and convert
 conflicts into suggestions, by default we use filesystem translations:
 
 .. code-block:: console
    
-   (env) $ pootle fs merge MYPROJECT
+   (env) $ pootle fs resolve MYPROJECT
    (env) $ pootle fs sync MYPROJECT
 
 
@@ -196,12 +196,12 @@ Use Pootle version and convert filesystem version into suggestion
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To retain all translation and allow translators to resolve conflicts use
-:djadmin:`merge`. This will merge any non-conflicting units and convert
-conflicts into suggestions, the :option:`--pootle-wins <merge --pootle-wins>`
+:djadmin:`resolve`. This will merge any non-conflicting units and convert
+conflicts into suggestions, the :option:`--pootle-wins <resolve --pootle-wins>`
 option ensures that we use Pootle translations and convert filesystem
 translations into suggestions:
 
 .. code-block:: console
    
-   (env) $ pootle fs merge --pootle-wins MYPROJECT
+   (env) $ pootle fs resolve --pootle-wins MYPROJECT
    (env) $ pootle fs sync MYPROJECT
