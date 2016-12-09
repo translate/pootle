@@ -24,21 +24,21 @@ synchronised. But there might be files with no store (the store for a new file
 has not yet been created in the Pootle database), and stores with no file (the
 file has been removed from the filesystem).
 
-Pootle FS works in two stages:
+Pootle FS works in these stages:
 
 1. Actions are staged. An action is chosen to resolve each issue.
 2. The system is synchronized. The staged action are actually performed.
 
-Files that have not being synced yet are untracked, and thus they need to be
+Files that have never been synced are untracked, and thus they need to be
 explicitly staged. Files previously synced are tracked, and thus automatically
-staged when any changes. In case of conflict (changes both in disk and Pootle)
-it is also necessary to manually stage these to resolve which version should
-prevail.
+staged if there are any changes. In the case of conflicts (changes both on disk
+and in Pootle) it is also necessary to manually stage these to resolve which
+version should prevail.
 
-When staging changed items it is possible to specify specific stores or files,
-or groups of them using the ``-P`` and ``-p`` options. It is also possible to
-limit which staged actions are performed by using these same options on the
-:djadmin:`sync` command.
+When staging it is possible to specify specific stores or files, or groups of
+them using the ``-P`` and ``-p`` options. It is also possible to limit which
+staged actions are executed by using these same options on the :djadmin:`sync`
+command.
 
 
 .. _using_pootle_fs#sync_tracked:
