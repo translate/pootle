@@ -312,7 +312,7 @@ Configuration settings for applications used by Pootle.
 
   .. versionadded:: 2.8
 
-  The directory Pootle_fs uses to keep temporary data when handling the
+  The directory that Pootle FS uses to store temporary data for handling the
   projects.
 
   .. warning:: This directory can potentially get very large, so you need to
