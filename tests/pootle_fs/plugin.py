@@ -25,7 +25,7 @@ from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 
 FS_CHANGE_KEYS = [
-    "_added", "_fetched", "_pulled",
+    "_added", "_pulled",
     "_synced", "_pushed",
     "_resolved", "_removed", "_unstaged"]
 

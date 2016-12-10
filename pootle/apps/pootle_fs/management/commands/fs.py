@@ -49,7 +49,6 @@ from pootle_project.models import Project
 
 from .fs_commands.add import AddCommand
 from .fs_commands.info import ProjectInfoCommand
-from .fs_commands.fetch import FetchCommand
 from .fs_commands.resolve import ResolveCommand
 from .fs_commands.rm import RmCommand
 from .fs_commands.state import StateCommand
@@ -65,7 +64,6 @@ class Command(CommandWithSubcommands):
     subcommands = {
         "add": AddCommand,
         "info": ProjectInfoCommand,
-        "fetch": FetchCommand,
         "rm": RmCommand,
         "resolve": ResolveCommand,
         "state": StateCommand,

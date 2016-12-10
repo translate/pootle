@@ -120,7 +120,7 @@ def test_fs_cmd_api(capsys, dummy_cmd_response, fs_path_qs, possible_actions):
         cmd_args += ["-p", fs_path]
     if pootle_path:
         cmd_args += ["-P", pootle_path]
-    forceable = ["add", "fetch", "rm"]
+    forceable = ["add", "rm"]
     if cmd in forceable and not plugin_kwargs.get("force"):
         plugin_kwargs["force"] = False
     plugin_kwargs["pootle_path"] = pootle_path

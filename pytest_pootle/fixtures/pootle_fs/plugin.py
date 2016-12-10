@@ -14,16 +14,6 @@ import pytest
 from pytest_pootle.fs.utils import parse_fs_action_args
 
 
-_plugin_fetch_base = {
-    'conflict': 1,
-    'conflict_untracked': 1,
-    'fs_ahead': 1,
-    'fs_removed': 1,
-    'fs_untracked': 2,
-    'pootle_ahead': 1,
-    'pootle_removed': 1,
-    'pootle_untracked': 1}
-
 RESPONSE_MAP = {
     "conflict": dict(
         rm_force=("staged_for_removal", "remove"),
@@ -108,7 +98,7 @@ def localfs_envs(request, localfs_env_names):
             "localfs_%s" % localfs_env_names))
 
 
-@pytest.fixture(params=["force_added", "force_fetched"])
+@pytest.fixture(params=["force_added"])
 def localfs_staged_envs(request):
     return (
         request.param,
@@ -190,7 +180,6 @@ def localfs_dummy_file(no_fs_files):
 
         _added = False
         _deleted = False
-        _fetched = False
         _merged = False
         _pulled = False
         _pushed = False
@@ -413,20 +402,5 @@ def localfs_force_added(localfs, localfs_dummy_finder):
         store_fs.save()
     state = plugin.state()
     assert len(state["pootle_ahead"]) == plugin.resources.tracked.count()
-    assert len([x for x in state]) == 1
-    return plugin
-
-
-@pytest.fixture
-def localfs_force_fetched(localfs, localfs_dummy_finder):
-    from pootle_store.constants import SOURCE_WINS
-
-    plugin = localfs
-    for store_fs in plugin.resources.tracked:
-        store_fs.last_sync_revision = store_fs.last_sync_revision - 1
-        store_fs.resolve_conflict = SOURCE_WINS
-        store_fs.save()
-    state = plugin.state()
-    assert len(state["fs_ahead"]) == plugin.resources.tracked.count()
     assert len([x for x in state]) == 1
     return plugin
