@@ -26,6 +26,7 @@ from pootle_project.models import Project
 from .apps import PootleFSConfig
 from .decorators import emits_state, responds_to_state
 from .delegate import fs_finder, fs_matcher, fs_resources
+from .models import StoreFS
 from .signals import fs_pre_push, fs_post_push, fs_pre_pull, fs_post_pull
 
 
@@ -168,13 +169,13 @@ class Plugin(object):
         if not items:
             return
         self.store_fs_class.objects.filter(
-            pk__in=[fs.store_fs.pk for fs in items]).delete()
+            pk__in=[fs.kwargs["store_fs"] for fs in items]).delete()
 
     def update_store_fs(self, items, **kwargs):
         if not items:
             return
         self.store_fs_class.objects.filter(
-            pk__in=[fs.store_fs.pk for fs in items]).update(**kwargs)
+            pk__in=[fs.kwargs["store_fs"] for fs in items]).update(**kwargs)
 
     def clear_repo(self):
         if self.is_cloned:
@@ -403,9 +404,12 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
+        sfs = {}
         for fs_state in (state['fs_staged'] + state['fs_ahead']):
-            fs_state.store_fs.file.pull(user=self.pootle_user)
-            response.add("pulled_to_pootle", fs_state=fs_state)
+            sfs[fs_state.kwargs["store_fs"]] = fs_state
+        for store_fs in StoreFS.objects.filter(id__in=sfs.keys()):
+            store_fs.file.pull(user=self.pootle_user)
+            response.add("pulled_to_pootle", fs_state=sfs[store_fs.pk])
         return response
 
     @responds_to_state
@@ -434,9 +438,13 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
+        sfs = {}
         for fs_state in state['remove']:
-            fs_state.store_fs.file.delete()
-            response.add("removed", fs_state=fs_state)
+            sfs[fs_state.kwargs["store_fs"]] = fs_state
+        for store_fs in StoreFS.objects.filter(id__in=sfs.keys()):
+            fs_state = sfs[store_fs.pk]
+            store_fs.file.delete()
+            response.add("removed", fs_state=fs_state, store_fs=store_fs)
         return response
 
     @responds_to_state
