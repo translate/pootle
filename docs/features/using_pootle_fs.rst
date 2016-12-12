@@ -46,13 +46,13 @@ command.
 Syncing tracked stores or files
 -------------------------------
 
-When a store and corresponding file have been synced previously, they are
-automatically staged for syncing if either changes.
+When a store and its corresponding file are tracked and previously synced, then
+they are automatically staged for syncing if either changes.
 
-If both have changed then we will be required to specify how to :ref:`resolve
-the conflicts <using_pootle_fs#resolve_conflicts>`.
+If both have changed then we will need to specify how to :ref:`resolve the
+conflict <using_pootle_fs#resolve_conflicts>`.
 
-To re-sync stores and files just run:
+To re-sync stores and files run:
 
 .. code-block:: console
 
