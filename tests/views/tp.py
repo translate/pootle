@@ -6,9 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import json
 from collections import OrderedDict
-from urllib import unquote
 
 import pytest
 
@@ -19,8 +17,7 @@ from django.contrib.auth import get_user_model
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import get_parent
-from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
+from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
@@ -35,10 +32,6 @@ from virtualfolder.delegate import vfolders_data_view
 
 
 def _test_browse_view(tp, request, response, kwargs):
-    if SIDEBAR_COOKIE_NAME in response.cookies:
-        cookie_data = json.loads(
-            unquote(response.cookies[SIDEBAR_COOKIE_NAME].value))
-        assert cookie_data["foo"] == "bar"
     assert "announcements/projects/%s" % tp.project.code in request.session
     assert "announcements/%s" % tp.language.code in request.session
     assert (
@@ -106,7 +99,7 @@ def _test_browse_view(tp, request, response, kwargs):
     sidebar = get_sidebar_announcements_context(
         request, (tp.project, tp.language, tp))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:
-        assertions[k] = sidebar[0][k]
+        assertions[k] = sidebar[k]
     view_context_test(ctx, **assertions)
     assert (('display_download' in ctx and ctx['display_download']) ==
             (request.user.is_authenticated

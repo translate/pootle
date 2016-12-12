@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import functools
-import json
 import urllib
 from collections import OrderedDict
 from datetime import datetime, timedelta
@@ -272,7 +271,6 @@ def get_units_views(request, client, request_users):
 
 @pytest.fixture(params=PROJECT_VIEW_TESTS.keys())
 def project_views(request, client, request_users, settings):
-    from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_project.models import Project
 
     test_kwargs = PROJECT_VIEW_TESTS[request.param].copy()
@@ -286,14 +284,12 @@ def project_views(request, client, request_users, settings):
     kwargs = {"project_code": project.code, "dir_path": "", "filename": ""}
     kwargs.update(test_kwargs)
     view_name = "pootle-project-%s" % test_type
-    client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     response = client.get(reverse(view_name, kwargs=kwargs))
     return test_type, project, response.wsgi_request, response, kwargs
 
 
 @pytest.fixture(params=TP_VIEW_TESTS.keys())
 def tp_views(request, client, request_users, settings):
-    from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_translationproject.models import TranslationProject
 
     tp_view_test_names = request.param
@@ -309,7 +305,6 @@ def tp_views(request, client, request_users, settings):
         "filename": ""}
     test_kwargs = TP_VIEW_TESTS[request.param].copy()
     kwargs.update(test_kwargs)
-    client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     if kwargs.get("filename"):
         tp_view = "%s-store" % tp_view
     else:
@@ -329,7 +324,6 @@ def tp_views(request, client, request_users, settings):
 @pytest.fixture(params=LANGUAGE_VIEW_TESTS.keys())
 def language_views(request, client):
 
-    from pootle.core.helpers import SIDEBAR_COOKIE_NAME
     from pootle_language.models import Language
 
     test_type = request.param.split("_")[0]
@@ -337,7 +331,6 @@ def language_views(request, client):
     kwargs = {"language_code": language.code}
     kwargs.update(LANGUAGE_VIEW_TESTS[request.param])
     view_name = "pootle-language-%s" % test_type
-    client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     response = client.get(reverse(view_name, kwargs=kwargs))
     return test_type, language, response.wsgi_request, response, kwargs
 
@@ -421,7 +414,6 @@ def dp_view_urls(request, view_types):
 
 @pytest.fixture(params=VFOLDER_VIEW_TESTS.keys())
 def vfolder_views(request, client, request_users, settings, tp0):
-    from pootle.core.helpers import SIDEBAR_COOKIE_NAME
 
     vfolder0 = tp0.stores.filter(
         vfolders__isnull=False)[0].vfolders.first()
@@ -437,7 +429,6 @@ def vfolder_views(request, client, request_users, settings, tp0):
         "dir_path": "",
         "filename": ""}
     kwargs.update(test_kwargs)
-    client.cookies[SIDEBAR_COOKIE_NAME] = json.dumps({"foo": "bar"})
     del kwargs["filename"]
     view_name = "%s-%s" % (tp_view, test_type)
     if user.username != "nobody":

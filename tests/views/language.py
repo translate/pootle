@@ -6,9 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import json
 from collections import OrderedDict
-from urllib import unquote
 
 import pytest
 
@@ -18,8 +16,7 @@ from django.contrib.auth import get_user_model
 
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import make_project_item
-from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
+from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.url_helpers import get_previous_url
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
@@ -32,12 +29,7 @@ from pootle_misc.forms import make_search_form
 
 
 def _test_browse_view(language, request, response, kwargs):
-    assert (
-        response.cookies["pootle-language"].value == language.code)
-    if SIDEBAR_COOKIE_NAME in response.cookies:
-        cookie_data = json.loads(
-            unquote(response.cookies[SIDEBAR_COOKIE_NAME].value))
-        assert cookie_data["foo"] == "bar"
+    assert response.cookies["pootle-language"].value == language.code
     assert "announcements/%s" % language.code in request.session
     ctx = response.context
     user_tps = language.get_children_for_user(request.user)
@@ -70,10 +62,9 @@ def _test_browse_view(language, request, response, kwargs):
         top_scorers_data=get_top_scorers_data(top_scorers, 10),
         checks=checks,
         stats=stats)
-    sidebar = get_sidebar_announcements_context(
-        request, (language, ))
+    sidebar = get_sidebar_announcements_context(request, (language, ))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:
-        assertions[k] = sidebar[0][k]
+        assertions[k] = sidebar[k]
     view_context_test(ctx, **assertions)
 
 

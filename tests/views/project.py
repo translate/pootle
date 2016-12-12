@@ -6,9 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import json
 from collections import OrderedDict
-from urllib import unquote
 
 import pytest
 
@@ -19,8 +17,7 @@ from pytest_pootle.suite import view_context_test
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
-from pootle.core.helpers import (
-    SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
+from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
@@ -93,10 +90,6 @@ def _test_translate_view(project, request, response, kwargs, settings):
 
 
 def _test_browse_view(project, request, response, kwargs):
-    if SIDEBAR_COOKIE_NAME in response.cookies:
-        cookie_data = json.loads(
-            unquote(response.cookies[SIDEBAR_COOKIE_NAME].value))
-        assert cookie_data["foo"] == "bar"
     assert "announcements/projects/%s" % project.code in request.session
     ctx = response.context
     kwargs["project_code"] = project.code
@@ -154,7 +147,7 @@ def _test_browse_view(project, request, response, kwargs):
     sidebar = get_sidebar_announcements_context(
         request, (project, ))
     for k in ["has_sidebar", "is_sidebar_open", "announcements"]:
-        assertions[k] = sidebar[0][k]
+        assertions[k] = sidebar[k]
     view_context_test(ctx, **assertions)
 
 
