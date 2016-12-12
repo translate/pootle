@@ -32,7 +32,7 @@ class AbstractPootleData(models.Model):
         db_index=True)
     # the revision of the last unit to be changed - used to order Stores
     max_unit_revision = models.IntegerField(
-        null=True,
+        null=False,
         blank=True,
         default=0,
         db_index=True)
