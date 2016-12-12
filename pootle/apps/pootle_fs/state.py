@@ -16,6 +16,7 @@ from django.utils.lru_cache import lru_cache
 from pootle.core.state import ItemState, State
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
+from .models import StoreFS
 from .resources import FSProjectStateResources
 
 
@@ -81,17 +82,12 @@ class FSItemState(ItemState):
     def pootle_path(self):
         if "pootle_path" in self.kwargs:
             return self.kwargs["pootle_path"]
-        elif "store_fs" in self.kwargs:
-            return self.kwargs["store_fs"].pootle_path
         elif "store" in self.kwargs:
             return self.kwargs["store"].pootle_path
 
     @property
     def fs_path(self):
-        if "fs_path" in self.kwargs:
-            return self.kwargs["fs_path"]
-        elif "store_fs" in self.kwargs:
-            return self.kwargs["store_fs"].path
+        return self.kwargs.get("fs_path")
 
     @property
     def project(self):
@@ -101,9 +97,12 @@ class FSItemState(ItemState):
     def plugin(self):
         return self.state.context
 
-    @property
+    @cached_property
     def store_fs(self):
-        return self.kwargs.get("store_fs")
+        store_fs = self.kwargs.get("store_fs")
+        if isinstance(store_fs, (int, long)):
+            return StoreFS.objects.filter(pk=store_fs).first()
+        return store_fs
 
     @property
     def store(self):
@@ -148,7 +147,10 @@ class ProjectFSState(State):
         for store_fs in conflict.iterator():
             pootle_changed_, fs_changed = self._get_changes(store_fs.file)
             if fs_changed:
-                yield dict(store_fs=store_fs)
+                yield dict(
+                    store_fs=store_fs.pk,
+                    pootle_path=store_fs.pootle_path,
+                    fs_path=store_fs.path)
 
     @property
     def state_fs_untracked(self):
@@ -185,9 +187,14 @@ class ProjectFSState(State):
 
     @property
     def state_remove(self):
-        to_remove = self.resources.tracked.filter(staged_for_removal=True)
-        for store_fs in to_remove.iterator():
-            yield dict(store_fs=store_fs)
+        to_remove = (
+            self.resources.tracked.filter(staged_for_removal=True)
+                                  .values_list("pk", "pootle_path", "path"))
+        for pk, pootle_path, path in to_remove.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_unchanged(self):
@@ -195,9 +202,15 @@ class ProjectFSState(State):
         for v in self.__state__.values():
             if v:
                 has_changes.extend([p.pootle_path for p in v])
-        unchanged = self.resources.synced.exclude(pootle_path__in=has_changes)
-        for store_fs in unchanged.iterator():
-            yield dict(store_fs=store_fs)
+        unchanged = (
+            self.resources.synced.exclude(pootle_path__in=has_changes)
+                                 .order_by("pootle_path")
+                                 .values_list("pk", "pootle_path", "path"))
+        for pk, pootle_path, path in unchanged.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_fs_staged(self):
@@ -209,8 +222,12 @@ class ProjectFSState(State):
                             .filter(Q(store__isnull=True) | Q(store__obsolete=True))
                             .exclude(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=SOURCE_WINS))
-        for store_fs in staged.iterator():
-            yield dict(store_fs=store_fs)
+        staged = staged.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in staged.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_fs_ahead(self):
@@ -225,7 +242,10 @@ class ProjectFSState(State):
                     not pootle_changed
                     or store_fs.resolve_conflict == SOURCE_WINS))
             if fs_ahead:
-                yield dict(store_fs=store_fs)
+                yield dict(
+                    store_fs=store_fs.pk,
+                    pootle_path=store_fs.pootle_path,
+                    fs_path=store_fs.path)
 
     @property
     def state_fs_removed(self):
@@ -235,24 +255,36 @@ class ProjectFSState(State):
                           .exclude(resolve_conflict=POOTLE_WINS)
                           .exclude(store_id__isnull=True)
                           .exclude(store__obsolete=True))
-        for store_fs in removed.iterator():
-            yield dict(store_fs=store_fs)
+        removed = removed.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in removed.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_merge_pootle_wins(self):
         to_merge = self.resources.tracked.filter(
             staged_for_merge=True,
             resolve_conflict=POOTLE_WINS)
-        for store_fs in to_merge.iterator():
-            yield dict(store_fs=store_fs)
+        to_merge = to_merge.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in to_merge.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_merge_fs_wins(self):
         to_merge = self.resources.tracked.filter(
             staged_for_merge=True,
             resolve_conflict=SOURCE_WINS)
-        for store_fs in to_merge.iterator():
-            yield dict(store_fs=store_fs)
+        to_merge = to_merge.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in to_merge.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_pootle_ahead(self):
@@ -262,7 +294,10 @@ class ProjectFSState(State):
                 not fs_changed
                 or store_fs.resolve_conflict == POOTLE_WINS)
             if pootle_ahead:
-                yield dict(store_fs=store_fs)
+                yield dict(
+                    store_fs=store_fs.pk,
+                    pootle_path=store_fs.pootle_path,
+                    fs_path=store_fs.path)
 
     @property
     def state_pootle_staged(self):
@@ -276,8 +311,12 @@ class ProjectFSState(State):
                             .exclude(store__isnull=True)
                             .filter(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=POOTLE_WINS))
-        for store_fs in staged.iterator():
-            yield dict(store_fs=store_fs)
+        staged = staged.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in staged.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_both_removed(self):
@@ -285,8 +324,12 @@ class ProjectFSState(State):
             self.resources.synced
                           .filter(Q(store__obsolete=True) | Q(store__isnull=True))
                           .filter(path__in=self.resources.missing_file_paths))
-        for store_fs in removed.iterator():
-            yield dict(store_fs=store_fs)
+        removed = removed.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in removed.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_pootle_removed(self):
@@ -295,8 +338,12 @@ class ProjectFSState(State):
                           .exclude(resolve_conflict=SOURCE_WINS)
                           .exclude(path__in=self.resources.missing_file_paths)
                           .filter(Q(store__isnull=True) | Q(store__obsolete=True)))
-        for store_fs in synced.iterator():
-            yield dict(store_fs=store_fs)
+        synced = synced.values_list("pk", "pootle_path", "path")
+        for pk, pootle_path, path in synced.iterator():
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @lru_cache()
     def _get_changes(self, fs_file):
