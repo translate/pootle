@@ -162,10 +162,12 @@ class VFoldersDataView(object):
 
     @property
     def table_items(self):
-        return [
-            make_vfolder_dict(self.context, *vf)
-            for vf
-            in self.all_stats.items()]
+        items = [make_vfolder_dict(self.context, *vf)
+                 for vf
+                 in self.all_stats.items()]
+        items.sort(
+            lambda x, y: cmp(y['stats']['priority'], x['stats']['priority']))
+        return items
 
     @cached_property
     def has_data(self):
