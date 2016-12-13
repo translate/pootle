@@ -13,11 +13,13 @@ import pytest
 from pytest_pootle.suite import view_context_test
 
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import get_parent
-from pootle.core.helpers import get_sidebar_announcements_context
+from pootle.core.helpers import (
+    SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (get_top_scorers_data,
                                      get_translation_states)
@@ -172,6 +174,50 @@ def test_views_tp(tp_views, settings):
         _test_browse_view(tp, request, response, kwargs)
     elif test_type == "translate":
         _test_translate_view(tp, request, response, kwargs, settings)
+
+
+@pytest.mark.django_db
+def test_view_tp_browse_sidebar_cookie(client, member):
+    # - ensure that when a sidebar cookie is sent the session is changed
+    # - ensure that the cookie is deleted
+    from pootle_translationproject.models import TranslationProject
+
+    tp = TranslationProject.objects.first()
+    args = [tp.language.code, tp.project.code]
+
+    client.login(username=member.username, password=member.password)
+    response = client.get(reverse("pootle-tp-browse", args=args))
+    assert SIDEBAR_COOKIE_NAME not in response
+    assert client.session.get('is_sidebar_open', True) is True
+
+    client.cookies[SIDEBAR_COOKIE_NAME] = 1
+    response = client.get(reverse("pootle-tp-browse", args=args))
+    assert SIDEBAR_COOKIE_NAME not in response
+    assert client.session.get('is_sidebar_open', True) is True
+
+    del client.cookies[SIDEBAR_COOKIE_NAME]
+    response = client.get(reverse("pootle-tp-browse", args=args))
+    assert SIDEBAR_COOKIE_NAME not in response
+    assert client.session.get('is_sidebar_open', True) is True
+
+    client.cookies[SIDEBAR_COOKIE_NAME] = 0
+    response = client.get(reverse("pootle-tp-browse", args=args))
+    assert SIDEBAR_COOKIE_NAME not in response
+    assert client.session.get('is_sidebar_open', True) is False
+
+
+@pytest.mark.django_db
+def test_view_tp_browse_sidebar_cookie_nonsense(client, member):
+    # - ensure that sending nonsense in a cookie does the right thing
+    from pootle_translationproject.models import TranslationProject
+
+    tp = TranslationProject.objects.first()
+    args = [tp.language.code, tp.project.code]
+    client.login(username=member.username, password=member.password)
+
+    client.cookies[SIDEBAR_COOKIE_NAME] = "complete jibberish"
+    client.get(reverse("pootle-tp-browse", args=args))
+    assert client.session.get('is_sidebar_open', True) is True
 
 
 @pytest.mark.django_db
