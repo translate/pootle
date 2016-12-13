@@ -91,3 +91,13 @@ def get_date_interval(month):
     end = end.replace(hour=23, minute=59, second=59, microsecond=999999)
 
     return [start, end]
+
+
+def cmp_by_last_activity(x, y):
+    val_x = 0
+    val_y = 0
+    if 'last_submission' in x['stats']:
+        val_x = x['stats']['last_submission']['mtime']
+    if 'last_submission' in y['stats']:
+        val_y = y['stats']['last_submission']['mtime']
+    return cmp(val_y, val_x)

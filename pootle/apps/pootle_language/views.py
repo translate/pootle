@@ -23,6 +23,7 @@ from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.views.formtable import Formtable
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n.gettext import tr_lang, ugettext_lazy as _
+from pootle_misc.util import cmp_by_last_activity
 from pootle_store.constants import STATES_MAP
 
 from .apps import PootleLanguageConfig
@@ -75,9 +76,11 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
 
     @cached_property
     def object_children(self):
-        return self.add_child_stats(
-            [make_project_item(tp)
-             for tp in self.object.get_children_for_user(self.request.user)])
+        items = [make_project_item(tp)
+                 for tp in self.object.get_children_for_user(self.request.user)]
+        items = self.add_child_stats(items)
+        items.sort(cmp_by_last_activity)
+        return items
 
     @property
     def language(self):

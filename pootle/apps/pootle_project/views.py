@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import locale
-
 from django.contrib import messages
 from django.forms.models import modelformset_factory
 from django.http import Http404
@@ -30,6 +28,7 @@ from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
+from pootle_misc.util import cmp_by_last_activity
 from pootle_project.forms import TranslationProjectForm
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
@@ -142,9 +141,9 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
             in self.object.get_children_for_user(self.request.user)
         ]
 
-        items.sort(
-            lambda x, y: locale.strcoll(x['title'], y['title']))
-        return self.add_child_stats(items)
+        items = self.add_child_stats(items)
+        items.sort(cmp_by_last_activity)
+        return items
 
 
 class ProjectTranslateView(ProjectMixin, PootleTranslateView):
@@ -334,9 +333,9 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
             make_project_list_item(project)
             for project
             in self.object.children]
-        items.sort(
-            lambda x, y: locale.strcoll(x['title'], y['title']))
-        return self.add_child_stats(items)
+        items = self.add_child_stats(items)
+        items.sort(cmp_by_last_activity)
+        return items
 
     @property
     def sidebar_announcements(self):
