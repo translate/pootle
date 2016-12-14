@@ -1,0 +1,3 @@
+version: 1.0
+requirements:
+    - requirements/base.txt
