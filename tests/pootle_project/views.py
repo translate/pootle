@@ -6,14 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import locale
-
 import pytest
 
 from pootle.core.browser import (
     make_language_item, make_project_list_item, make_xlanguage_item)
 from pootle.core.views.browse import StatsDisplay
 from pootle_app.models import Directory
+from pootle_misc.util import cmp_by_last_activity
 from pootle_project.models import ProjectResource, ProjectSet
 from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
 from pootle_store.models import Store
@@ -50,12 +49,12 @@ def _test_view_project_children(view, project):
         for item
         in obj.get_children_for_user(request.user)
     ]
-    items.sort(lambda x, y: locale.strcoll(x['title'], y['title']))
     stats = obj.data_tool.get_stats(user=request.user)
     stats = StatsDisplay(obj, stats=stats).stats
     for item in items:
         if item["code"] in stats["children"]:
             item["stats"] = stats["children"][item["code"]]
+    items.sort(cmp_by_last_activity)
     assert view.object_children == items
 
 
@@ -116,7 +115,6 @@ def test_view_project_set_children(project0, store0, rf, request_users):
         make_project_list_item(project)
         for project
         in view.object.children]
-    items.sort(
-        lambda x, y: locale.strcoll(x['title'], y['title']))
     view.add_child_stats(items)
+    items.sort(cmp_by_last_activity)
     assert view.object_children == items

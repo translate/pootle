@@ -21,6 +21,7 @@ from pootle_language.forms import (
     LanguageSuggestionAdminForm, LanguageTeamAdminForm)
 from pootle_language.views import (
     LanguageBrowseView, SuggestionDisplay, SuggestionFormtable)
+from pootle_misc.util import cmp_by_last_activity
 from pootle_store.constants import STATES_MAP
 from pootle_store.models import Unit
 
@@ -41,6 +42,7 @@ def _test_view_language_children(view, obj):
     for item in items:
         if item["code"] in stats["children"]:
             item["stats"] = stats["children"][item["code"]]
+    items.sort(cmp_by_last_activity)
     stats = StatsDisplay(obj, stats=stats).stats
     assert stats == view.stats
     assert view.object_children == items
