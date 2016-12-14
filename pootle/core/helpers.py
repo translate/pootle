@@ -42,6 +42,10 @@ def get_sidebar_announcements_context(request, objects):
 
         announcements.append(announcement)
 
+        if request.user.is_anonymous:
+            # Do not store announcement mtimes for anonymous user.
+            continue
+
         ann_mtime = dateformat.format(announcement.modified_on, 'U')
         stored_mtime = request.session.get(announcement.virtual_path, None)
 

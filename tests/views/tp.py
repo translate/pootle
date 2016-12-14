@@ -34,12 +34,13 @@ from virtualfolder.delegate import vfolders_data_view
 
 
 def _test_browse_view(tp, request, response, kwargs):
-    assert "announcements/projects/%s" % tp.project.code in request.session
-    assert "announcements/%s" % tp.language.code in request.session
-    assert (
-        "announcements/%s/%s"
-        % (tp.language.code, tp.project.code)
-        in request.session)
+    assert (request.user.is_anonymous
+            or "announcements/projects/%s" % tp.project.code in request.session)
+    assert (request.user.is_anonymous
+            or "announcements/%s" % tp.language.code in request.session)
+    assert (request.user.is_anonymous
+            or "announcements/%s/%s" % (tp.language.code, tp.project.code)
+            in request.session)
     ctx = response.context
     kwargs["project_code"] = tp.project.code
     kwargs["language_code"] = tp.language.code
@@ -218,6 +219,23 @@ def test_view_tp_browse_sidebar_cookie_nonsense(client, member):
     client.cookies[SIDEBAR_COOKIE_NAME] = "complete jibberish"
     client.get(reverse("pootle-tp-browse", args=args))
     assert client.session.get('is_sidebar_open', True) is True
+
+
+@pytest.mark.django_db
+def test_view_tp_browse_sidebar_openness_in_anonymous_session(client):
+    from pootle_translationproject.models import TranslationProject
+
+    tp = TranslationProject.objects.first()
+    args = [tp.language.code, tp.project.code]
+    client.cookies[SIDEBAR_COOKIE_NAME] = 1
+    response = client.get(reverse("pootle-tp-browse", args=args))
+    session = response.wsgi_request.session
+    assert "announcements/projects/%s" % tp.project.code not in session
+    assert "announcements/%s" % tp.language.code not in session
+    assert (
+        "announcements/%s/%s" % (tp.language.code, tp.project.code)
+        not in session)
+    assert "is_sidebar_open" in session
 
 
 @pytest.mark.django_db

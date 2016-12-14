@@ -90,7 +90,8 @@ def _test_translate_view(project, request, response, kwargs, settings):
 
 
 def _test_browse_view(project, request, response, kwargs):
-    assert "announcements/projects/%s" % project.code in request.session
+    assert (request.user.is_anonymous
+            or "announcements/projects/%s" % project.code in request.session)
     ctx = response.context
     kwargs["project_code"] = project.code
     resource_path = (
