@@ -76,7 +76,7 @@ PTL.common = {
 
   init(opts) {
     PTL.auth.init();
-    PTL.browser.init();
+    PTL.browser.init(opts);
 
     if (opts.hasSidebar) {
       helpers.fixSidebarHeight();

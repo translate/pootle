@@ -224,7 +224,7 @@ function removeCtxEntries(results, container, query) {
 
 
 const browser = {
-  init() {
+  init(opts) {
     $(window).on('pageshow', fixDropdowns);
     const searchQuery = { term: '' };
     const formatProject = (item) => {
@@ -275,18 +275,20 @@ const browser = {
       }
       return null;
     };
-
+    const allowTPClear = opts.page !== 'translate';
     makeNavDropdown(sel.navigation, {
       allowClear: false,
       minimumResultsForSearch: -1,
       templateResult: templateResultNav,
     }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.language, {
+      allowClear: allowTPClear,
       placeholder: gettext('All Languages'),
       templateResult: formatLanguage,
       matcher: termMatcher,
     }, handleNavDropDownSelectClick);
     makeNavDropdown(sel.project, {
+      allowClear: allowTPClear,
       placeholder: gettext('All Projects'),
       templateResult: formatProject,
       matcher: termMatcher,
