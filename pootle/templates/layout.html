@@ -62,7 +62,8 @@
 
     $(function () {
       PTL.common.init({
-        hasSidebar: {{ has_sidebar|yesno:'true, false' }}
+        hasSidebar: {{ has_sidebar|yesno:'true, false' }},
+        page: "{{ page }}",
       });
 
       {% if user.is_authenticated %}
