@@ -3,7 +3,7 @@
 # FIXME can be remove when factory_boy depends on Faker instead of fake-factory
 #factory_boy==2.7.0
 -e git+git://github.com/FactoryBoy/factory_boy.git#egg=factory_boy-2.7.1
-fake-factory==0.7.2
+fake-factory==9999.9.9
 pytest==3.0.5
 pytest-catchlog==1.2.2
 pytest-cov==2.4.0
