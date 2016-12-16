@@ -304,9 +304,9 @@
             <div class="suggestion-feedback js-mnt-suggestion-feedback-{{ sugg.id }}"></div>
             {% block suggestion_comment %}{% endblock %}
             {% if sugg.creation_time %}
-            <time class="extra-item-meta js-relative-date"
+            <time class="extra-item-meta"
               title="{{ sugg.creation_time|dateformat }}"
-              datetime="{{ sugg.creation_time.isoformat }}">&nbsp;</time>
+              datetime="{{ sugg.creation_time.isoformat }}">{{ sugg.creation_time|relative_datetime_format }}</time>
             {% else %}
             <time class="extra-item-meta">{% trans 'A long time ago' %}</time>
             {% endif%}
