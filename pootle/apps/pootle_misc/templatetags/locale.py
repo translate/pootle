@@ -6,11 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import calendar
+
 from django import template
 from django.utils.formats import get_format
 from django.utils.translation import trans_real
 
 from pootle.core.utils import dateformat
+from pootle.local.dates import timesince
 
 
 register = template.Library()
@@ -38,6 +41,11 @@ def do_dateformat(value, use_format='c'):
         pass
 
     return dateformat.format(value, use_format)
+
+
+@register.filter(name='relative_datetime_format')
+def do_relative_datetime_format(value):
+    return timesince(calendar.timegm(value.timetuple()))
 
 
 @register.simple_tag
