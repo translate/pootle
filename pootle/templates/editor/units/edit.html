@@ -207,9 +207,9 @@
             </div>
             {% if unit.submitted_by and unit.submitted_on %}
             <div class="unit-meta">
-              <time class="js-relative-date"
+              <time
                 title="{{ unit.submitted_on|dateformat }}"
-                datetime="{{ unit.submitted_on.isoformat }}">&nbsp;</time>
+                datetime="{{ unit.submitted_on.isoformat }}">{{ unit.submitted_on|relative_datetime_format }}</time>
               {% with reviewer=unit.reviewed_by %}
               {% if reviewer %}
               <br>
