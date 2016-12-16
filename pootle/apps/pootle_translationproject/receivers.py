@@ -16,7 +16,8 @@ from pootle.core.url_helpers import urljoin
 from pootle.i18n.gettext import ugettext_lazy as _
 
 from .models import TranslationProject
-from .signals import tp_init_failed_async, tp_inited_async
+from .signals import (tp_deleted_async, tp_deletion_failed_async,
+                      tp_init_failed_async, tp_inited_async)
 
 
 def get_recipients(project):
@@ -50,6 +51,32 @@ def tp_init_failed_async_handler(**kwargs):
         'projects/admin/email/translation_project_creation_failed.txt',
         context=ctx)
     subject = _(u"Translation project (%s) creation failed" % instance)
+    recipients = get_recipients(instance.project)
+    send_mail(subject, message, from_email=None,
+              recipient_list=[], fail_silently=True, bcc=recipients)
+
+
+@receiver(tp_deleted_async, sender=TranslationProject)
+def tp_deleted_async_handler(**kwargs):
+    instance = kwargs["instance"]
+    ctx = {"tp": instance}
+    message = render_to_string(
+        'projects/admin/email/translation_project_deleted.txt', context=ctx)
+    subject = _(u"Translation project (%s) deleted" % instance)
+    recipients = get_recipients(instance.project)
+    send_mail(subject, message, from_email=None,
+              recipient_list=[], fail_silently=True, bcc=recipients)
+
+
+@receiver(tp_deletion_failed_async, sender=TranslationProject)
+def tp_deletion_failed_async_handler(**kwargs):
+    instance = kwargs["instance"]
+
+    ctx = {"tp": instance}
+    message = render_to_string(
+        'projects/admin/email/translation_project_deletion_failed.txt',
+        context=ctx)
+    subject = _(u"Translation project (%s) deletion failed" % instance)
     recipients = get_recipients(instance.project)
     send_mail(subject, message, from_email=None,
               recipient_list=[], fail_silently=True, bcc=recipients)
