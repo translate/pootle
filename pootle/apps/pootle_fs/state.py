@@ -303,7 +303,7 @@ class ProjectFSState(State):
     def state_pootle_staged(self):
         staged = (
             self.resources.unsynced
-                          .exclude(resolve_conflict=SOURCE_WINS)
+                          .filter(resolve_conflict=POOTLE_WINS)
                           .exclude(store__isnull=True)
                           .exclude(store__obsolete=True)
             | self.resources.synced
