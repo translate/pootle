@@ -15,6 +15,7 @@ import pytest
 from pytest_pootle.factories import ProjectDBFactory
 from pytest_pootle.fixtures.pootle_fs.state import DummyPlugin
 
+from pootle_fs.models import StoreFS
 from pootle_fs.state import FS_STATE, ProjectFSState
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
@@ -27,16 +28,11 @@ def _test_state(plugin, pootle_path, fs_path, state_type, paths=None):
                 state.resources.tracked).values_list("pootle_path", "path"))
     state_paths = []
     for item in getattr(state, "state_%s" % state_type):
-        fs_path = None
         if item.get("pootle_path"):
             pootle_path = item["pootle_path"]
-        elif item.get("store_fs"):
-            pootle_path = item["store_fs"].pootle_path
-            fs_path = item["store_fs"].path
         else:
             pootle_path = item["store"].pootle_path
-        if not fs_path:
-            fs_path = item["fs_path"]
+        fs_path = item["fs_path"]
         state_paths.append((pootle_path, fs_path))
     result_state_paths = []
     for item in sorted(reversed(state[state_type])):
@@ -295,6 +291,12 @@ def test_fs_state_fs_unchanged(fs_path_qs, no_complex_po_, dummyfs):
         if qfilter
         else plugin.resources.tracked)
     if qfilter is False:
-        expected = []
+        expected = plugin.resources.tracked.none()
     stores_fs = [x["store_fs"] for x in state.state_unchanged]
-    assert stores_fs == list(expected)
+    assert (
+        stores_fs
+        == list(
+            expected.order_by("pootle_path").values_list("id", flat=True)))
+    StoreFS.objects.filter(pk__in=stores_fs).update(staged_for_removal=True)
+    state = ProjectFSState(plugin, fs_path=fs_path, pootle_path=pootle_path)
+    assert len(list(state.state_unchanged)) == 0

@@ -62,17 +62,16 @@ def _test_dummy_response(action, responses, **kwargs):
                 store_fs.refresh_from_db()
             assert store_fs.staged_for_removal
             continue
+        remove_states = ["fs_staged", "pootle_staged", "remove"]
         if action.startswith("unstage"):
+            if response.fs_state.state_type in remove_states:
+                with pytest.raises(StoreFS.DoesNotExist):
+                    response.store_fs.refresh_from_db()
+                continue
             store_fs = response.store_fs
-            should_remove = (
-                not store_fs.last_sync_hash
-                and not store_fs.last_sync_revision)
-            if should_remove:
-                assert not StoreFS.objects.filter(pk=store_fs.pk).exists()
-            else:
-                store_fs.refresh_from_db()
-                assert not store_fs.staged_for_merge
-                assert not store_fs.resolve_conflict
+            store_fs.refresh_from_db()
+            assert not store_fs.staged_for_merge
+            assert not store_fs.resolve_conflict
             continue
         if stores:
             if response.store_fs:

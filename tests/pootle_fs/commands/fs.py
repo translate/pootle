@@ -106,6 +106,11 @@ def test_fs_cmd_unstage_staged_response(capsys, localfs_staged_envs):
     out, err = capsys.readouterr()
     plugin_response = getattr(plugin, action)(
         state=original_state)
+    responses = sorted(
+        original_state["pootle_ahead"],
+        key=lambda x: x.pootle_path)
+    for fs_state in responses:
+        plugin_response.add("unstaged", fs_state=fs_state)
     display = ResponseDisplay(plugin_response)
     assert out.strip() == str(display).strip()
 
