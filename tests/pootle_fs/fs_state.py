@@ -131,7 +131,9 @@ def test_fs_state_fs_staged_store_removed(fs_path_qs,
 def test_fs_state_pootle_staged(fs_path_qs, dummyfs_plugin_no_files):
     (qfilter, pootle_path, fs_path) = fs_path_qs
     plugin = dummyfs_plugin_no_files
-    plugin.resources.tracked.update(last_sync_hash=None, last_sync_revision=None)
+    plugin.resources.tracked.update(
+        last_sync_hash=None, last_sync_revision=None,
+        resolve_conflict=POOTLE_WINS)
     _test_state(plugin, pootle_path, fs_path, "pootle_staged")
 
 
