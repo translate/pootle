@@ -162,7 +162,7 @@ class StatsDisplay(object):
 
     @cached_property
     def stat_data(self):
-        if self._stats:
+        if self._stats is not None:
             return self._stats
         return self.context.data_tool.get_stats()
 
