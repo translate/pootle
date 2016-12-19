@@ -54,8 +54,9 @@ class AbstractStoreFS(models.Model):
     @cached_property
     def file(self):
         if self.plugin:
-            return fs_file.get(
-                self.plugin.__class__)(self)
+            file_adapter = fs_file.get(self.plugin.__class__)
+            if file_adapter:
+                return file_adapter(self)
 
     def save(self, *args, **kwargs):
         validated = validate_store_fs(
