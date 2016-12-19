@@ -9,8 +9,10 @@ pootle:
     #image: pootle:2.7.3
     build: .
     links:
-        - db
-        - redis
+        - db:dbserver
+        - redis:rdserver
+    environment:
+        DATABASE: 'mysql'
     ports:
         - 8000:8000
 

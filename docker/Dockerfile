@@ -40,10 +40,7 @@ USER pootle
 RUN mkdir -p $INSTALL_DIR && cd $_ \
     && virtualenv . \
     && . bin/activate \
-    && pip install 'Pootle==$POOTLE_VERSION' \
-    && pootle init \
-    && pootle migrate \
-    && pootle initdb --no-rq \
+    && pip install 'Pootle==$POOTLE_VERSION'
 
 
 
