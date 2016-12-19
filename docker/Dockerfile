@@ -42,5 +42,5 @@ RUN mkdir -p $INSTALL_DIR && cd $_ \
     && . bin/activate \
     && pip install 'Pootle==$POOTLE_VERSION'
 
-
-
+COPY entrypoint.sh /
+ENTRYPOINT /entrypoint.sh
