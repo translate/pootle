@@ -24,6 +24,7 @@ from pootle_store.unit.results import GroupedResults
 from pootle_translationproject.views import TPTranslateView
 
 from .delegate import vfolders_data_tool
+from .display import VFolderStatsDisplay
 from .models import VirtualFolder
 
 
@@ -154,7 +155,9 @@ class VFoldersDataView(object):
 
     @cached_property
     def all_stats(self):
-        return self.vfolder_data_tool.get_stats(user=self.user)
+        return VFolderStatsDisplay(
+            self.context,
+            self.vfolder_data_tool.get_stats(user=self.user)).stats
 
     @cached_property
     def stats(self):
