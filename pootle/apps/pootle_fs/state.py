@@ -311,12 +311,17 @@ class ProjectFSState(State):
                             .exclude(store__isnull=True)
                             .filter(path__in=self.resources.missing_file_paths)
                             .filter(resolve_conflict=POOTLE_WINS))
-        staged = staged.values_list("pk", "pootle_path", "path")
-        for pk, pootle_path, path in staged.iterator():
+        for store_fs in staged.iterator():
+            fs_staged = (
+                not store_fs.resolve_conflict == POOTLE_WINS
+                and (store_fs.file
+                     and store_fs.file.file_exists))
+            if fs_staged:
+                continue
             yield dict(
-                store_fs=pk,
-                pootle_path=pootle_path,
-                fs_path=path)
+                store_fs=store_fs.pk,
+                pootle_path=store_fs.pootle_path,
+                fs_path=store_fs.path)
 
     @property
     def state_both_removed(self):
