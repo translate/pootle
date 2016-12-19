@@ -197,7 +197,7 @@ class Plugin(object):
         """
         return self.matcher.matches(fs_path, pootle_path)
 
-    def pull(self):
+    def fetch(self):
         """
         Pull the FS from external source if required.
         """
@@ -228,7 +228,7 @@ class Plugin(object):
           ``pootle_path``
         :returns state: Where ``state`` is an instance of self.state_class
         """
-        self.pull()
+        self.fetch()
         return self.state_class(
             self, fs_path=fs_path, pootle_path=pootle_path)
 

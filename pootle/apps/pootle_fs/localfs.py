@@ -38,7 +38,7 @@ class LocalFSPlugin(Plugin):
             logger=logging.getLogger(dirsync.__name__))
         return response
 
-    def pull(self):
+    def fetch(self):
         synced = dirsync.sync(
             self.fs_url,
             self.project.local_fs_path,
