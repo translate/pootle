@@ -23,10 +23,6 @@ class VFolderPanel(ChildrenPanel):
         vfdata = self.view.vfolders_data_view
         if not self.view.has_vfolders:
             return vfdata
-        for child in vfdata.table_data["children"]["rows"]:
-            stats = child["stats"]
-            stats["incomplete"] = stats["total"] - stats["translated"]
-            stats["untranslated"] = stats["total"] - stats["translated"]
         return vfdata
 
     @property
