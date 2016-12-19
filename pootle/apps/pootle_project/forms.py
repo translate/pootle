@@ -80,6 +80,8 @@ class TranslationProjectFormSet(BaseModelFormSet):
 
     def delete_existing(self, obj, commit=True):
         if commit:
+            obj.awaiting_deletion = True
+            obj.save()
             queue = get_queue('default')
             queue.enqueue(delete_translation_project, obj)
 
