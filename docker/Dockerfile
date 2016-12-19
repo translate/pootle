@@ -1,7 +1,8 @@
 FROM python:2.7.12
 MAINTAINER Ovidiu-Florin BOGDAN "ovidiu.b13@gmail.com"
 
-ENV INSTALL_DIR=/home/pootle/pootle \
+ENV INSTALL_DIR=/pootle \
+    CONFIG_DIR=/config \
     POOTLE_VERSION='2.7.6' \
     USE_LOCALE='en_US.UTF-8'
 
@@ -34,9 +35,12 @@ RUN echo "$USE_LOCALE UTF-8" >> /etc/locale.gen \
 RUN groupadd -r pootle \
     && useradd -m -d /home/pootle -k /etc/skel -s /bin/bash -g pootle pootle
 
+VOLUME /config
+
 USER pootle
 # Install Pootle
-RUN mkdir -p $INSTALL_DIR && cd $INSTALL_DIR \
+RUN mkdir -p $INSTALL_DIR \
+    && cd $INSTALL_DIR \
     && virtualenv . \
     && . bin/activate \
     && pip install "Pootle==$POOTLE_VERSION"
@@ -49,6 +53,8 @@ RUN apt remove -y `cat build-deps.txt | tr "\n" " "` \
     && rm -rf /var/lib/apt/lists/* /tmp* /var/tmp/* \
 
 USER pootle
+
+
 
 COPY entrypoint.sh /
 ENTRYPOINT /entrypoint.sh

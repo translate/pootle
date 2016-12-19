@@ -13,6 +13,8 @@ pootle:
         - redis:rdserver
     environment:
         DATABASE: 'mysql'
+    volumes:
+        - ./config:/config
     ports:
         - 8000:8000
 

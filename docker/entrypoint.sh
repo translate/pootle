@@ -33,7 +33,7 @@ fi
 : "${POOTLE_DB_HOSTNAME:=dbserver}"
 : "${DOMAIN:=""}" # By defaulting this empty we set ALLOWED_HOSTS to '*', thus avoiding "Bad request 400" when accessed form non "localhost"
 
-CONFIG_FILE="~/.pootle/pootle.conf"
+CONFIG_FILE="~/config/pootle.conf"
 
 if [ ! -f $CONFIG_FILE ]; then
     cd ~/$INSTALL_DIR \
