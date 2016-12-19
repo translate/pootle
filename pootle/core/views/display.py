@@ -157,7 +157,7 @@ class StatsDisplay(object):
                                    "suggestions", "fuzzy", "untranslated"]):
         assert isinstance(d, dict)
         for k in keys:
-            if d.get(k):
+            if k in d:
                 d[k + '_display'] = formatter.number(d[k])
 
     @cached_property
