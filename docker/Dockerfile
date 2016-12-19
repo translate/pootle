@@ -1,33 +1,33 @@
-FROM debian:8
+FROM python:2.7.12
 MAINTAINER Ovidiu-Florin BOGDAN "ovidiu.b13@gmail.com"
 
-ENV INSTALL_DIR=~/pootle \
-    POOTLE_VERSION='2.7.3' \
+ENV INSTALL_DIR=/home/pootle/pootle \
+    POOTLE_VERSION='2.7.6' \
     USE_LOCALE='en_US.UTF-8'
-
-# Update the image packages
-RUN apt update && \
-    apt dist-upgrade -y
 
 # Install Pootle dependencies
 RUN apt update \
-    && DEBIAN_FRONTEND=noninteractive \
-    apt install -y \
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt install -y \
+            locales \
+            ca-certificates
+RUN apt update \
+    && build_packages='\
         build-essential \
         libxml2-dev \
         libxslt-dev \
-        locales \
         python-dev \
-        python-pip \
-        sudo \
-        zlib1g-dev \
-    && apt clean \
-    && rm -rf /var/lib/apt/lists/* /tmp* /var/tmp/* \
-    && pip install --upgrade pip \
-    && pip install virtualenv
+        wget \
+        zlib1g-dev' \
+    && apt-get install \
+        -s \
+        $build_packages \
+        | grep "Inst " \
+        | cut -f 2 -d " " > build-deps.txt \
+    && apt install -y $build_packages
 
 # Set-up locale
-RUN echo "$USE_LOCALE" >> /etc/locale.gen \
+RUN echo "$USE_LOCALE UTF-8" >> /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=$USE_LOCALE
 
@@ -35,12 +35,20 @@ RUN groupadd -r pootle \
     && useradd -m -d /home/pootle -k /etc/skel -s /bin/bash -g pootle pootle
 
 USER pootle
-
-# Set-up Pootle
-RUN mkdir -p $INSTALL_DIR && cd $_ \
+# Install Pootle
+RUN mkdir -p $INSTALL_DIR && cd $INSTALL_DIR \
     && virtualenv . \
     && . bin/activate \
-    && pip install 'Pootle==$POOTLE_VERSION'
+    && pip install "Pootle==$POOTLE_VERSION"
+
+USER root
+# Clean image
+RUN apt remove -y `cat build-deps.txt | tr "\n" " "` \
+    && rm build-deps.txt \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp* /var/tmp/* \
+
+USER pootle
 
 COPY entrypoint.sh /
 ENTRYPOINT /entrypoint.sh
