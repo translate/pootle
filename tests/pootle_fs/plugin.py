@@ -217,7 +217,7 @@ def test_plugin_instance_bad_args(project_fs_empty):
 @pytest.mark.django_db
 def test_plugin_pull(project_fs_empty):
     assert project_fs_empty.is_cloned is False
-    project_fs_empty.pull()
+    project_fs_empty.fetch()
     assert project_fs_empty.is_cloned is True
     project_fs_empty.clear_repo()
     assert project_fs_empty.is_cloned is False
@@ -309,7 +309,7 @@ def test_fs_plugin_not_implemented():
         plugin.latest_hash
 
     with pytest.raises(NotImplementedError):
-        plugin.pull()
+        plugin.fetch()
 
     with pytest.raises(NotImplementedError):
         plugin.push()
