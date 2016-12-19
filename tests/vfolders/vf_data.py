@@ -11,6 +11,7 @@ import pytest
 from django.db.models import Sum
 
 from pootle.core.browser import get_table_headings
+from virtualfolder.display import VFolderStatsDisplay
 from virtualfolder.delegate import vfolders_data_view
 from virtualfolder.views import VFoldersDataView, make_vfolder_dict
 from virtualfolder.utils import DirectoryVFDataTool
@@ -26,9 +27,8 @@ def test_vfolder_data_view(tp0, request_users):
     assert vf_data.context is dir0
     assert isinstance(vf_data.vfolder_data_tool, DirectoryVFDataTool)
     assert vf_data.vfolder_data_tool.context is dir0
-    assert (
-        vf_data.all_stats
-        == vf_data.vfolder_data_tool.get_stats(user=user))
+    stats = vf_data.vfolder_data_tool.get_stats(user=user)
+    assert vf_data.all_stats == VFolderStatsDisplay(dir0, stats=stats).stats
     assert vf_data.stats["children"] == vf_data.all_stats
     # ordering?
     rows = [
