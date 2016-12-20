@@ -228,7 +228,6 @@ class Plugin(object):
           ``pootle_path``
         :returns state: Where ``state`` is an instance of self.state_class
         """
-        self.fetch()
         return self.state_class(
             self, fs_path=fs_path, pootle_path=pootle_path)
 
