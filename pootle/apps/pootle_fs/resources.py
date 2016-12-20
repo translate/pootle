@@ -47,8 +47,7 @@ class FSProjectResources(object):
 
     @property
     def tracked(self):
-        return StoreFS.objects.filter(
-            project=self.project).select_related("store")
+        return StoreFS.objects.filter(project=self.project)
 
     @property
     def synced(self):
@@ -68,6 +67,7 @@ class FSProjectResources(object):
             self.stores.exclude(obsolete=True)
                        .filter(fs__isnull=True)
                        .order_by())
+
 
 class FSProjectStateResources(object):
     """Wrap FSPlugin and cache available resources
