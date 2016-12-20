@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-24 16:54+0000\n"
+"POT-Creation-Date: 2016-12-20 15:40+0000\n"
 "PO-Revision-Date: 2016-08-06 12:09+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -538,29 +538,29 @@ msgstr "無効なものを表示"
 msgid "Hide disabled"
 msgstr "無効なものを隠す"
 
-#: static/js/browser.js:285
+#: static/js/browser.js:286
 msgid "All Languages"
 msgstr "すべての言語"
 
-#: static/js/browser.js:290
+#: static/js/browser.js:292
 msgid "All Projects"
 msgstr "すべてのプロジェクト"
 
-#: static/js/browser.js:295
+#: static/js/browser.js:297
 msgid "Entire Project"
 msgstr "プロジェクト全体"
 
-#: static/js/common.js:141
+#: static/js/common.js:139
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:304 static/js/editor/app.js:623
+#: static/js/editor/app.js:303 static/js/editor/app.js:622
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr "この文字列の変更は保存されていません。移動すると変更が破棄されます。"
 
-#: static/js/editor/app.js:349
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -568,7 +568,7 @@ msgstr ""
 "次の文字列へ移動 (Ctrl+.)<br/><br/>他の操作:<br/>次のページ: Ctrl+Shift+.<br/"
 ">最後のページ: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:355
+#: static/js/editor/app.js:354
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -577,77 +577,77 @@ msgstr ""
 ">最初のページ: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:479
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s の留保中の提案"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:483
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s の採用された提案"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:486
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s の却下された提案"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:489
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s の提出"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:492
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s の上書きする提出"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1047
 msgid "Error while connecting to the server"
 msgstr "サーバーに接続する際にエラーが発生しました"
 
-#: static/js/editor/app.js:1055
+#: static/js/editor/app.js:1052
 msgid "Not found"
 msgstr "見つかりませんでした"
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1054
 msgid "Server error"
 msgstr "サーバー エラー"
 
-#: static/js/editor/app.js:1059
+#: static/js/editor/app.js:1056
 msgid "The server seems down. Try again later."
 msgstr "サーバーが停止しているようです。後でもう一度試してください。"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1065
 msgid "This string no longer exists."
 msgstr "この文字列は存在しません。"
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "ブラウジングへ戻る"
 
-#: static/js/editor/app.js:1071
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "ページを再読み込み"
 
-#: static/js/editor/app.js:2167
+#: static/js/editor/app.js:2156
 msgid "some anonymous user"
 msgstr "匿名ユーザ"
 
-#: static/js/editor/app.js:2169
+#: static/js/editor/app.js:2158
 msgid "someone"
 msgstr "誰か"
 
-#: static/js/editor/app.js:2187 static/js/editor/app.js:2236
+#: static/js/editor/app.js:2176 static/js/editor/app.js:2225
 msgid "Similar translations"
 msgstr "類似翻訳"
 
-#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/EditorPluralFormHeader.js:26
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
@@ -812,7 +812,7 @@ msgstr ""
 "手続きを完了するにはパスワードを入力してください。この手続きは一度限りであ"
 "り、あなたの Pootle アカウントと %s アカウントの間のリンクを確立します。"
 
-#: static/js/editor/app.js:615
+#: static/js/editor/app.js:614
 msgid "No results."
 msgstr "該当するものはありません。"
 

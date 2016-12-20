@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-24 16:54+0000\n"
+"POT-Creation-Date: 2016-12-20 15:40+0000\n"
 "PO-Revision-Date: 2015-10-01 14:51+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,36 +43,36 @@ msgstr ""
 "Ο χρήστης σας φαίνεται ότι έχει εξαφανιστεί. Παρακαλούμε, αναφέρτε το στους "
 "κατόχους του ιστότοπου."
 
-#: apps/accounts/models.py:64 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:61
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Απαραίτητο. 30 χαρακτήρες ή λιγότεροι. Γράμματα, αριθμοί και χαρακτήρες @/./"
 "+/-/_"
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:65
 msgid "Enter a valid username."
 msgstr "Εισάγετε ένα έγκυρο όνομα χρήστη."
 
-#: apps/accounts/models.py:73
+#: apps/accounts/models.py:69
 msgid "Email Address"
 msgstr "Διεύθυνση αλληλογραφίας"
 
-#: apps/accounts/models.py:74 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:204
+#: apps/accounts/models.py:70 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Πλήρες Όνομα"
 
-#: apps/accounts/models.py:77 apps/staticpages/models.py:31
+#: apps/accounts/models.py:73 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Ενεργό"
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:76
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -80,11 +80,11 @@ msgstr ""
 "Υποδεικνύει αν αυτός ο χρήστης πρέπει να θεωρηθεί ως ενεργός. Αποεπιλέξτε το "
 "αντί να διαγράψετε τους λογαριασμούς."
 
-#: apps/accounts/models.py:83
+#: apps/accounts/models.py:79
 msgid "Superuser Status"
 msgstr "Κατάσταση υπερχρήστη"
 
-#: apps/accounts/models.py:86
+#: apps/accounts/models.py:82
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -92,59 +92,59 @@ msgstr ""
 "Υποδεικνύει ότι ο χρήστης αυτός έχει όλα τα δικαιώματα χωρίς ρητή εκχώρησή "
 "τους."
 
-#: apps/accounts/models.py:89
+#: apps/accounts/models.py:85
 msgid "date joined"
 msgstr "ημερομηνία εισόδου"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:89
 msgid "Number of Rows"
 msgstr "Αριθμός γραμμών"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:93
 msgid "Alternative Source Languages"
 msgstr "Εναλλακτικές αρχικές γλώσσες"
 
-#: apps/accounts/models.py:100 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:96 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Ρυθμός"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:97
 msgid "Review Rate"
 msgstr "Ρυθμός ελέγχου"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:98
 msgid "Hourly Rate"
 msgstr "Ωριαίος ρυθμός"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:99
 msgid "Score"
 msgstr "Βαθμός"
 
-#: apps/accounts/models.py:104
+#: apps/accounts/models.py:100
 msgid "Currency"
 msgstr "Νόμισμα"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:102
 msgid "Is employee?"
 msgstr "Είναι υπάλληλος;"
 
-#: apps/accounts/models.py:107
+#: apps/accounts/models.py:103
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:109
+#: apps/accounts/models.py:105
 msgid "Website"
 msgstr "Ιστότοπος"
 
-#: apps/accounts/models.py:110
+#: apps/accounts/models.py:106
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:111
+#: apps/accounts/models.py:107
 msgid "Short Bio"
 msgstr "Σύντομο βιογραφικό"
 
-#: apps/accounts/models.py:365
+#: apps/accounts/models.py:362
 msgid "This email address already exists."
 msgstr "Αυτή η ηλ. διεύθυνση υπάρχει ήδη."
 
@@ -180,7 +180,7 @@ msgstr "Μήνυμα"
 msgid "Please enter your message"
 msgstr "Παρακαλούμε, εισάγετε το μήνυμά σας"
 
-#: apps/contact/views.py:34 templates/layout.html:103
+#: apps/contact/views.py:34 templates/layout.html:108
 msgid "Contact Us"
 msgstr "Επικοινωνήστε μαζί μας"
 
@@ -250,7 +250,7 @@ msgstr "Υπήρξε ένα σφάλμα κατά τη μεταφόρτωση τ
 msgid "Language code does not follow the ISO convention"
 msgstr "Ο κωδικός γλώσσας δεν ακολουθεί τη σύμβαση ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Αρχική γλώσσα"
 
@@ -270,7 +270,7 @@ msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "Παρακαλούμε, εισάγετε ένα έγκυρο URL της κατατομής χρήστη LinkedIn."
 
 #. Translators: this refers to the status of the background job worker
-#: apps/pootle_app/views/admin/dashboard.py:66
+#: apps/pootle_app/views/admin/dashboard.py:58
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
@@ -278,7 +278,7 @@ msgstr[0] "Εκτελείται (%d worker)"
 msgstr[1] "Εκτελείται  (%d workers)"
 
 #. Translators: this refers to the status of the background job worker
-#: apps/pootle_app/views/admin/dashboard.py:70
+#: apps/pootle_app/views/admin/dashboard.py:62
 msgid "Stopped"
 msgstr "Σταματημένο"
 
@@ -303,7 +303,7 @@ msgstr "Ανάκληση δικαιωμάτων"
 msgid "No files in this project."
 msgstr "Δεν υπάρχουν αρχεία σε αυτό το έργο."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:166
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:165
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Υπάρχουν σφάλματα στη φόρμα. Παρακαλώ ελέγξτε τα παρακάτω προβλήματα."
 
@@ -440,12 +440,12 @@ msgstr "Απόρριψη"
 msgid "Accept"
 msgstr "Αποδοχή"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:211
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:214
 #: core/browser.py:26
 msgid "Project"
 msgstr "Έργο"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Κωδικός"
 
@@ -493,48 +493,48 @@ msgstr "Αριθμός πληθυντικών"
 msgid "Plural Equation"
 msgstr "Εξίσωση πληθυντικού"
 
-#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:208 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Μονάδα"
 
-#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:209 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Κατάσταση"
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Πηγή"
 
-#: apps/pootle_language/views.py:208
+#: apps/pootle_language/views.py:211
 msgid "Suggestion"
 msgstr "Πρόταση"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:212
 #, fuzzy
 msgid "Suggested by"
 msgstr "Πρόταση"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:213
 #, fuzzy
 msgid "Suggested at"
 msgstr "Πρόταση"
 
-#: apps/pootle_language/views.py:232
+#: apps/pootle_language/views.py:235
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "απόρριψη πρότασης για το %(source_string)s"
 
-#: apps/pootle_language/views.py:236
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "αποδεκτή η πρόταση για το %(source_string)s"
 
-#: apps/pootle_language/views.py:239
+#: apps/pootle_language/views.py:242
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Απόρριψη πρότασης"
 
-#: apps/pootle_language/views.py:241
+#: apps/pootle_language/views.py:244
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Αποδοχή πρότασης"
@@ -863,6 +863,11 @@ msgstr "Μορφή Android"
 msgid "Plurr placeholders"
 msgstr "$ δεσμευτικά θέσης"
 
+#: apps/pootle_misc/checks.py:123
+#, fuzzy
+msgid "ftl format"
+msgstr "Μορφή ημερομηνίας"
+
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Αναζήτηση"
@@ -922,17 +927,17 @@ msgstr "Επιλέξτε μία ή περισσότερες γλώσσες"
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: apps/pootle_project/models.py:178
+#: apps/pootle_project/models.py:180
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Το \"%s\" δεν μπορεί να χρησιμοποιηθεί ως κώδικας έργου"
 
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:188
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "Το \"%s\" δεν μπορεί να χρησιμοποιηθεί ως κώδικας έργου"
 
-#: apps/pootle_project/models.py:193
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -940,61 +945,61 @@ msgstr ""
 "Ένας σύντομος κώδικας για το έργο. Αυτός πρέπει να περιέχει μόνο χαρακτήρες "
 "ASCII, αριθμούς και τον χαρακτήρα υπογράμμισης (_)."
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "Έλεγχοι ποιότητας"
 
-#: apps/pootle_project/models.py:217
+#: apps/pootle_project/models.py:219
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Αυτόματη ανίχνευση (πιο αργό)"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "Τεχνοτροπία GNU: τα αρχεία ονομάζονται σύμφωνα με τον κωδικό γλώσσας"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Μη GNU: Κάθε γλώσσα στον δικό της κατάλογο"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Τεχνοτροπία δένδρου έργου"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Παράβλεψη αρχείων"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "Μήνυμα αναφοράς σφαλμάτων"
 
-#: apps/pootle_project/models.py:239
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Μια διεύθυνση αλληλογραφίας όπου θέματα με το πηγαίο κείμενο μπορούν να "
 "αναφερθούν."
 
-#: apps/pootle_project/models.py:243
+#: apps/pootle_project/models.py:245
 msgid "Screenshot Search Prefix"
 msgstr "Πρόθεμα αναζήτησης στιγμιοτύπου"
 
-#: apps/pootle_project/models.py:248
+#: apps/pootle_project/models.py:250
 msgid "Disabled"
 msgstr "Ανενεργό"
 
-#: apps/pootle_project/views.py:253
+#: apps/pootle_project/views.py:252
 #, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr "Το έργο της μετάφρασης έχει ενημερωθεί με τα τελευταία πρότυπα."
 
-#: apps/pootle_project/views.py:260
+#: apps/pootle_project/views.py:259
 #, fuzzy, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Τα αρχεία έργου μετάφρασης έχουν ξανασαρωθεί."
@@ -1120,11 +1125,11 @@ msgstr "Αποδεκτές προτάσεις"
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:106
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Λείπουν ορίσματα."
@@ -1168,33 +1173,33 @@ msgstr ""
 "Διάβασα και αποδέχτηκα: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 
-#: apps/staticpages/models.py:33
+#: apps/staticpages/models.py:32
 msgid "Whether this page is active or not."
 msgstr "Εάν αυτή η σελίδα είναι ενεργή ή όχι."
 
-#: apps/staticpages/models.py:36 templates/admin/staticpages/_table.html:7
+#: apps/staticpages/models.py:35 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
 msgstr "Εικονική διαδρομή"
 
-#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:32
+#: apps/staticpages/models.py:42 apps/virtualfolder/models.py:32
 msgid "Title"
 msgstr "Τίτλος"
 
 #. Translators: Content that will be used to display this static page
-#: apps/staticpages/models.py:46
+#: apps/staticpages/models.py:45
 msgid "Display Content"
 msgstr "Εμφάνιση περιεχομένου"
 
-#: apps/staticpages/models.py:48
+#: apps/staticpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "Να επιτρέπεται επισήμανση: %s"
 
-#: apps/staticpages/models.py:51 templates/admin/staticpages/_table.html:9
+#: apps/staticpages/models.py:50 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
 msgstr "Ανακατεύθυνση σε URL"
 
-#: apps/staticpages/models.py:53
+#: apps/staticpages/models.py:52
 #, fuzzy
 msgid "If set, this page will redirect to this URL"
 msgstr ""
@@ -1202,11 +1207,11 @@ msgstr ""
 "URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:98
+#: apps/staticpages/models.py:97
 msgid "URL or content must be provided."
 msgstr "Πρέπει να δοθούν URL ή περιεχόμενο."
 
-#: apps/staticpages/models.py:104
+#: apps/staticpages/models.py:103
 msgid "Virtual path already in use."
 msgstr "Η εικονική διαδρομή χρησιμοποιείται ήδη."
 
@@ -1275,7 +1280,7 @@ msgstr ""
 "Χρησιμοποιήστε αυτό για να δώσετε περισσότερες πληροφορίες ή οδηγίες. "
 "Επιτρεπόμενη επισήμανση: %s"
 
-#: checks.py:64
+#: checks.py:62
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1283,7 +1288,7 @@ msgstr ""
 "Υπάρχουν λογαριασμοί χρήστη με διπλότυπες ηλ. διευθύνσεις. Αυτό δεν θα "
 "επιτρέπεται στο Pootle 2.8."
 
-#: checks.py:66
+#: checks.py:64
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1294,66 +1299,66 @@ msgstr ""
 "email'. Μπορεί επίσης να θελήσετε να εξετάσετε τη χρήση των εντολών pootle "
 "merge_user και purge_user. "
 
-#: checks.py:90
+#: checks.py:88
 msgid "Your version of Django is too old."
 msgstr "Η έκδοσή σας του Django είναι πολύ παλιά."
 
-#: checks.py:91
+#: checks.py:89
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Δοκιμάστε pip install --upgrade 'Django==%s'"
 
-#: checks.py:98
+#: checks.py:96
 msgid "Your version of lxml is too old."
 msgstr "Η έκδοσή σας του lxml είναι υπερβολικά παλιά."
 
-#: checks.py:99
+#: checks.py:97
 msgid "Try pip install --upgrade lxml"
 msgstr "Δοκιμάστε pip install --upgrade lxml"
 
-#: checks.py:105
+#: checks.py:103
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Η έκδοσή σας του Translate Toolkit είναι υπερβολικά παλιά."
 
-#: checks.py:106
+#: checks.py:104
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Δοκιμάστε pip install --upgrade translate-toolkit"
 
-#: checks.py:126
+#: checks.py:124
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Αδύνατη η σύνδεση με το Redis (%s)"
 
-#: checks.py:127
+#: checks.py:125
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Βεβαιωθείτε ότι το Redis εκτελείται στο %(host)s:%(port)s"
 
-#: checks.py:137
+#: checks.py:135
 msgid "Your version of Redis is too old."
 msgstr "Η έκδοση του Redis είναι πολύ παλιά."
 
-#: checks.py:138
+#: checks.py:136
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
 "Ενημερώστε το πακέτο διακομιστή Redis του συστήματός σας στην έκδοση "
 "τουλάχιστον %s."
 
-#: checks.py:149
+#: checks.py:147
 msgid "No RQ Worker running."
 msgstr "Δεν εκτελείται κανένα RQ Worker."
 
-#: checks.py:150
+#: checks.py:148
 #, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Εκτέλεση νέων workers με manage.py rqworker"
 
-#: checks.py:165
+#: checks.py:163
 msgid "Cache backend is not set to Redis."
 msgstr "Η κρυφή μνήμη παρασκηνίου δεν ορίστηκε στο Redis."
 
-#: checks.py:166
+#: checks.py:164
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1363,45 +1368,45 @@ msgstr ""
 "RedisCache\n"
 "Τρέχουσες ρυθμίσεις: %r"
 
-#: checks.py:176
+#: checks.py:174
 msgid "Could not initiate a Redis cache connection"
 msgstr "Αδύνατη η αρχικοποίηση σύνδεσης κρυφής μνήμης Redis"
 
-#: checks.py:177 checks.py:191
+#: checks.py:175 checks.py:189
 msgid "Double-check your CACHES settings"
 msgstr "Διπλοελέγξτε τις ρυθμίσεις των ΚΡΥΦΩΝ ΜΝΗΜΩΝ"
 
-#: checks.py:189
+#: checks.py:187
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 
-#: checks.py:197
+#: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 "Η κατάσταση ΑΠΟΣΦΑΛΜΑΤΩΣΗΣ είναι ενεργή. Μην το κάνετε αυτό στην παραγωγή!"
 
-#: checks.py:198
+#: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Ορισμός του DEBUG = False στις ρυθμίσεις Pootle"
 
-#: checks.py:204
+#: checks.py:202
 msgid "The sqlite database backend is unsupported"
 msgstr "Η βάση δεδομένων παρασκηνίου sqlite δεν υποστηρίζεται"
 
-#: checks.py:205
+#: checks.py:203
 #, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "Ορισμός της προεπιλεγμένης σας μηχανής βάσης δεδομένων σε "
 "postgresql_psycopg2 ή mysql"
 
-#: checks.py:212
+#: checks.py:210
 msgid "Not using cached_db as session engine"
 msgstr "Να μην χρησιμοποιείται η cached_db ως μηχανή λειτουργίας"
 
-#: checks.py:213
+#: checks.py:211
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1410,11 +1415,11 @@ msgstr ""
 "Ορισμός του SESSION_ENGINE σε django.contrib.sessions.backend.cached_db\n"
 "Τρέχουσες ρυθμίσεις: %r"
 
-#: checks.py:221
+#: checks.py:219
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "Το POOTLE_CONTACT_EMAIL δεν ορίστηκε."
 
-#: checks.py:222
+#: checks.py:220
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1422,13 +1427,13 @@ msgstr ""
 "Ορίστε το POOTLE_CONTACT_EMAIL ώστε να επιτρέπει στους χρήστες να "
 "επικοινωνούν με τους διαχειριστές μέσω της μορφής επαφής του Pootle."
 
-#: checks.py:230
+#: checks.py:228
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 "Το POOTLE_CONTACT_EMAIL χρησιμοποιεί την παρακάτω προεπιλεγμένη ρύθμιση %r."
 
-#: checks.py:232
+#: checks.py:230
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1436,11 +1441,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL είναι η διεύθυνση που θα δεχθεί μηνύματα που στάλθηκαν "
 "από τη μορφή επαφής."
 
-#: checks.py:239
+#: checks.py:237
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "Το DEFAULT_FROM_EMAIL δεν ορίστηκε."
 
-#: checks.py:240 checks.py:250
+#: checks.py:238 checks.py:248
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1449,37 +1454,37 @@ msgstr ""
 "Pootle.\n"
 "Μην ξεχάσετε να ελέγξετε τις ρυθμίσεις του διακομιστή αλληλογραφίας."
 
-#: checks.py:248
+#: checks.py:246
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 "Το DEFAULT_FROM_EMAIL χρησιμοποιεί την παρακάτω προεπιλεγμένη ρύθμιση %r."
 
-#: checks.py:259
+#: checks.py:257
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "Το POOTLE_MARKUP_FILTER λείπει."
 
-#: checks.py:260
+#: checks.py:258
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Ορισμός του POOTLE_MARKUP_FILTER."
 
-#: checks.py:265
+#: checks.py:263
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Άκυρη τιμή στο POOTLE_MARKUP_FILTER."
 
-#: checks.py:266
+#: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Δώστε μια έγκυρη τιμή στο POOTLE_MARKUP_FILTER."
 
-#: checks.py:280
+#: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Άκυρη επισήμανση στο POOTLE_MARKUP_FILTER."
 
-#: checks.py:281
+#: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Δώστε μια έγκυρη επισήμανση στο POOTLE_MARKUP_FILTER."
 
-#: checks.py:286
+#: checks.py:284
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1488,106 +1493,106 @@ msgstr ""
 "Το POOTLE_MARKUP_FILTER ορίστηκε στην επισήμανση '%s', αλλά το πακέτο που το "
 "δίνει δεν μπορεί να βρεθεί."
 
-#: checks.py:288
+#: checks.py:286
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Εγκαταστήστε το πακέτο ή αλλάξτε το POOTLE_MARKUP_FILTER."
 
-#: checks.py:299
+#: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr ""
 
-#: checks.py:300
+#: checks.py:298
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:306
+#: checks.py:304
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr ""
 
-#: checks.py:308
+#: checks.py:306
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 
-#: checks.py:318
+#: checks.py:316
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr ""
 
-#: checks.py:319
+#: checks.py:317
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:326
+#: checks.py:324
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr ""
 
-#: checks.py:327
+#: checks.py:325
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:334
+#: checks.py:332
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr ""
 
-#: checks.py:335
+#: checks.py:333
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:344
+#: checks.py:342
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 
-#: checks.py:346
+#: checks.py:344
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:354
+#: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr ""
 
-#: checks.py:355
+#: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr ""
 
-#: checks.py:362
+#: checks.py:360
 #, fuzzy, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Άκυρη τιμή στο POOTLE_MARKUP_FILTER."
 
-#: checks.py:364
+#: checks.py:362
 #, fuzzy, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Δώστε μια έγκυρη τιμή στο POOTLE_MARKUP_FILTER."
 
-#: checks.py:386
+#: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "Ο προεπιλεγμένος χρήστης 'admin' έχει ακόμα έναν κωδικό πρόσβασης που "
 "ορίστηκε σε 'admin'."
 
-#: checks.py:388
+#: checks.py:386
 msgid "Remove the 'admin' user or change its password."
 msgstr "Αφαιρέστε τον χρήστη 'admin' ή αλλάξτε τον κωδικό πρόσβασής του."
 
-#: checks.py:402
+#: checks.py:400
 #, fuzzy
 msgid "Database connection uses transaction_hooks."
 msgstr "Σύνδεση με βάση δεδομένων δεν εφαρμόζεται στο on_commit."
 
-#: checks.py:403
+#: checks.py:401
 #, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
@@ -1596,62 +1601,62 @@ msgstr ""
 "Ορίστε το DATABASES['default']['ENGINE'] να χρησιμοποιήσει ένα παρασκήνιο "
 "από το transaction_hooks.backends."
 
-#: checks.py:423
+#: checks.py:421
 msgid "Email server is not available."
 msgstr "Ο διαχειριστής ηλ. αλληλογραφίας δεν είναι διαθέσιμος."
 
-#: checks.py:424
+#: checks.py:422
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Επανεξετάστε τις ρυθμίσεις της ηλ. αλληλογραφίας και βεβαιωθείτε ότι ο "
 "διακομιστής ηλ. αλληλογραφίας δουλεύει."
 
-#: checks.py:451
+#: checks.py:449
 msgid "Revision is missing or has an incorrect value."
 msgstr ""
 
-#: checks.py:452
+#: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
-#: checks.py:466
+#: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:468
+#: checks.py:466
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:470
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:474
+#: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:504
+#: checks.py:502
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "Το POOTLE_CONTACT_EMAIL δεν ορίστηκε."
 
-#: checks.py:508
+#: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:509
+#: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
 msgstr ""
 
-#: checks.py:514
+#: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 
-#: checks.py:516
+#: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
@@ -1731,11 +1736,11 @@ msgstr "Προσθήκη σχολίου"
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 
-#: core/forms.py:211
+#: core/forms.py:213
 msgid "You must specify an action to take"
 msgstr ""
 
-#: core/forms.py:212
+#: core/forms.py:214
 msgid "A valid search field must be specified"
 msgstr ""
 
@@ -1763,62 +1768,62 @@ msgstr "Δυνατότητα ελέγχου προτάσεων"
 msgid "Can perform administrative tasks"
 msgstr ""
 
-#: core/views/display.py:94 core/views/display.py:115
+#: core/views/display.py:95 core/views/display.py:116
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "μεταφράσεις που αφαιρέθηκαν για %(source_string)s"
 
-#: core/views/display.py:96
+#: core/views/display.py:97
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Αποδοχή της πρότασης από τον %s"
 
-#: core/views/display.py:98
+#: core/views/display.py:99
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "ο %(user)s ανέβασε ένα αρχείο"
 
-#: core/views/display.py:100
+#: core/views/display.py:101
 #, fuzzy, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "σε σίγαση %(check_name)s για τις %(source_string)s"
 
-#: core/views/display.py:102
+#: core/views/display.py:103
 #, fuzzy, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "αναίρεση σίγασης %(check_name)s για τις %(source_string)s"
 
-#: core/views/display.py:104
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "προσθήκη πρότασης για το %(source_string)s"
 
-#: core/views/display.py:106
+#: core/views/display.py:107
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Απορριφθείσα πρόταση από %s"
 
-#: core/views/display.py:109
+#: core/views/display.py:110
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "μεταφρασμένα %(source_string)s"
 
-#: core/views/display.py:111
+#: core/views/display.py:112
 #, fuzzy, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "επεξεργασμένα %(source_string)s"
 
-#: core/views/display.py:113
+#: core/views/display.py:114
 #, fuzzy, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "προμεταφρασμένα %(source_string)s"
 
-#: core/views/display.py:117
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "ελεγμένες %(source_string)s"
 
-#: core/views/display.py:119
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -1873,7 +1878,7 @@ msgstr "Όροι χρήσης"
 msgid "Terms of Service"
 msgstr "Όροι εξυπηρέτησης"
 
-#: templates/about.html:7 templates/layout.html:170
+#: templates/about.html:7 templates/layout.html:175
 msgid "About"
 msgstr "Σχετικά με"
 
@@ -2170,8 +2175,9 @@ msgid "Update filesystem configuration"
 msgstr ""
 
 #: templates/admin/project_fs.html:44
-msgid "Translation mapping should be of the format:"
-msgstr ""
+#, fuzzy
+msgid "Translation path mapping should be of the format:"
+msgstr "Ρυθμίσεις μετάφρασης"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2181,14 +2187,14 @@ msgstr ""
 
 #: templates/admin/project_fs.html:58
 msgid ""
-"If you are using the localfs backend the translation mapping will be "
+"If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 
 #: templates/admin/project_fs.html:64
 msgid ""
-"For other backends the translation mapping will be relative to the root of "
-"the repository."
+"For other backends the translation path mapping will be relative to the root "
+"of the repository."
 msgstr ""
 
 #: templates/admin/project_fs.html:74
@@ -2361,17 +2367,21 @@ msgstr "Όλα"
 
 #: templates/browser/_progressbar.html:3
 #, fuzzy, python-format
-msgid "<span class='value translated'>%(translated)s</span>%% translated"
+msgid ""
+"<span class='value translated'>%(translated_percent_display)s</span> "
+"translated"
 msgstr "<span class='value translated'>0</span>%% μεταφράστηκαν"
 
 #: templates/browser/_progressbar.html:4
 #, fuzzy, python-format
-msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
+msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
 msgstr "<span class='value fuzzy'>0</span>%% ασαφή"
 
 #: templates/browser/_progressbar.html:5
 #, fuzzy, python-format
-msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
+msgid ""
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+"untranslated"
 msgstr "<span class='value untranslated'>0</span>%% αμετάφραστα"
 
 #: templates/browser/index.html:19
@@ -2908,39 +2918,39 @@ msgstr "Πρόταση %d:"
 msgid "There are %(suggestions.count)s suggestions pending"
 msgstr ""
 
-#: templates/layout.html:83
+#: templates/layout.html:88
 msgid "Pootle requires JavaScript"
 msgstr "Το Pootle χρειάζεται το JavaScript"
 
-#: templates/layout.html:84
+#: templates/layout.html:89
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Παρακαλώ ενεργοποιήστε το JavaScript στις προτιμήσεις του περιηγητή σας και "
 "επαναφορτώστε τη σελίδα."
 
-#: templates/layout.html:93
+#: templates/layout.html:98
 msgid "skip to navigation"
 msgstr "παράλειψη περιήγησης"
 
-#: templates/layout.html:114
+#: templates/layout.html:119
 msgid "Public Profile"
 msgstr "Δημόσια κατατομή"
 
-#: templates/layout.html:115 templates/user/settings.html:4
+#: templates/layout.html:120 templates/user/settings.html:4
 #: templates/user/settings.html:7
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: templates/layout.html:117
+#: templates/layout.html:122
 msgid "Admin"
 msgstr "Διαχειριστής"
 
-#: templates/layout.html:120
+#: templates/layout.html:125
 msgid "Sign out"
 msgstr "Έξοδος"
 
-#: templates/layout.html:124
+#: templates/layout.html:129
 msgid "Sign In"
 msgstr "Είσοδος"
 

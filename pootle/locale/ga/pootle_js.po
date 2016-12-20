@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-24 16:54+0000\n"
+"POT-Creation-Date: 2016-12-20 15:40+0000\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -571,23 +571,23 @@ msgstr "Taispeáin díchumasaithe"
 msgid "Hide disabled"
 msgstr "Folaigh díchumasaithe"
 
-#: static/js/browser.js:285
+#: static/js/browser.js:286
 msgid "All Languages"
 msgstr "Gach Teanga"
 
-#: static/js/browser.js:290
+#: static/js/browser.js:292
 msgid "All Projects"
 msgstr "Gach Tionscadal"
 
-#: static/js/browser.js:295
+#: static/js/browser.js:297
 msgid "Entire Project"
 msgstr "An Tionscadal Ar Fad"
 
-#: static/js/common.js:141
+#: static/js/common.js:139
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:304 static/js/editor/app.js:623
+#: static/js/editor/app.js:303 static/js/editor/app.js:622
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -595,7 +595,7 @@ msgstr ""
 "Athruithe gan sábháil sa teaghrán seo. Caillfidh tú na hathruithe seo má "
 "fhágann tú."
 
-#: static/js/editor/app.js:349
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -603,7 +603,7 @@ msgstr ""
 "An chéad teaghrán eile (Ctrl+.)<br/><br/>Nó:<br/>An chéad leathanach eile: "
 "Ctrl+Shift+.<br/>An leathanach roimhe seo: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:355
+#: static/js/editor/app.js:354
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -612,78 +612,78 @@ msgstr ""
 "Ctrl+Shift+,<br/>An chéad leathanach: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:479
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Moltaí ó %s ar feitheamh"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:483
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Moltaí glactha ó %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:486
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Moltaí diúltaithe ó %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:489
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Aistriúcháin de chuid %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:492
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Aistriúcháin fhorscríofa de chuid %s"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1047
 msgid "Error while connecting to the server"
 msgstr "Earráid agus ceangal á bhunú leis an bhfreastalaí"
 
-#: static/js/editor/app.js:1055
+#: static/js/editor/app.js:1052
 msgid "Not found"
 msgstr "Gan aimsiú"
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1054
 msgid "Server error"
 msgstr "Earráid fhreastalaí"
 
-#: static/js/editor/app.js:1059
+#: static/js/editor/app.js:1056
 msgid "The server seems down. Try again later."
 msgstr ""
 "Dealraíonn sé go bhfuil an freastalaí as feidhm. Déan iarracht eile ar ball."
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1065
 msgid "This string no longer exists."
 msgstr "Níl an teaghrán seo ann a thuilleadh."
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "Brabhsáil"
 
-#: static/js/editor/app.js:1071
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:2167
+#: static/js/editor/app.js:2156
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2169
+#: static/js/editor/app.js:2158
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2187 static/js/editor/app.js:2236
+#: static/js/editor/app.js:2176 static/js/editor/app.js:2225
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
-#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/EditorPluralFormHeader.js:26
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
@@ -851,7 +851,7 @@ msgstr ""
 "ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle "
 "agus do chuntas %s."
 
-#: static/js/editor/app.js:615
+#: static/js/editor/app.js:614
 msgid "No results."
 msgstr "Gan torthaí."
 

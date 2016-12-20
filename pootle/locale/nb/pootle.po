@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-24 16:54+0000\n"
+"POT-Creation-Date: 2016-12-20 15:40+0000\n"
 "PO-Revision-Date: 2016-11-18 09:31+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,34 +39,34 @@ msgid ""
 msgstr ""
 "Din brukerkonto ser ut til å ha forsvunnet. Rapporter dette til side-eierne."
 
-#: apps/accounts/models.py:64 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Brukernavn"
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:61
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "Påkrevd. 30 tegn eller mindre. Bokstaver, tall og \"@/./+/-/_-symboler"
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:65
 msgid "Enter a valid username."
 msgstr "Skriv inn et gyldig brukernavn."
 
-#: apps/accounts/models.py:73
+#: apps/accounts/models.py:69
 msgid "Email Address"
 msgstr "E-postadresse"
 
-#: apps/accounts/models.py:74 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:204
+#: apps/accounts/models.py:70 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Fullt navn"
 
-#: apps/accounts/models.py:77 apps/staticpages/models.py:31
+#: apps/accounts/models.py:73 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Aktiv"
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:76
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -74,11 +74,11 @@ msgstr ""
 "Bestemmer hvorvidt denne brukeren skal anses som aktiv. Fravelg dette i "
 "steden for å slette kontoer."
 
-#: apps/accounts/models.py:83
+#: apps/accounts/models.py:79
 msgid "Superuser Status"
 msgstr "superbrukerstatus"
 
-#: apps/accounts/models.py:86
+#: apps/accounts/models.py:82
 #, fuzzy
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
@@ -87,59 +87,59 @@ msgstr ""
 "Bestemmer at denne brukeren skal ha alle tilganger uten å eksplisitt tildele "
 "dem."
 
-#: apps/accounts/models.py:89
+#: apps/accounts/models.py:85
 msgid "date joined"
 msgstr "dato innmeldt"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:89
 msgid "Number of Rows"
 msgstr "Antall rekker"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:93
 msgid "Alternative Source Languages"
 msgstr "Alternative kildespråk"
 
-#: apps/accounts/models.py:100 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:96 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Takst"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:97
 msgid "Review Rate"
 msgstr "Korekturlesningstakt"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:98
 msgid "Hourly Rate"
 msgstr "Timespris"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:99
 msgid "Score"
 msgstr "Poengsum"
 
-#: apps/accounts/models.py:104
+#: apps/accounts/models.py:100
 msgid "Currency"
 msgstr "Valuta"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:102
 msgid "Is employee?"
 msgstr "Ansatt?"
 
-#: apps/accounts/models.py:107
+#: apps/accounts/models.py:103
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:109
+#: apps/accounts/models.py:105
 msgid "Website"
 msgstr "Nettside"
 
-#: apps/accounts/models.py:110
+#: apps/accounts/models.py:106
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:111
+#: apps/accounts/models.py:107
 msgid "Short Bio"
 msgstr "Kort bio"
 
-#: apps/accounts/models.py:365
+#: apps/accounts/models.py:362
 msgid "This email address already exists."
 msgstr "Denne e-postadressen finnes allerede."
 
@@ -175,7 +175,7 @@ msgstr "Melding"
 msgid "Please enter your message"
 msgstr "Skriv inn din melding"
 
-#: apps/contact/views.py:34 templates/layout.html:103
+#: apps/contact/views.py:34 templates/layout.html:108
 msgid "Contact Us"
 msgstr "Kontakt oss"
 
@@ -245,7 +245,7 @@ msgstr "Kan overskrive oversettelser ved opplasting av filer"
 msgid "Language code does not follow the ISO convention"
 msgstr "Språkkode har følger ikke ISO-konvensjonen"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Kildespråk"
 
@@ -267,7 +267,7 @@ msgid "Please enter a valid LinkedIn user profile URL."
 msgstr "Angi en gyldig nettadresse for LinkedIn-brukerprofil."
 
 #. Translators: this refers to the status of the background job worker
-#: apps/pootle_app/views/admin/dashboard.py:66
+#: apps/pootle_app/views/admin/dashboard.py:58
 #, fuzzy, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
@@ -275,7 +275,7 @@ msgstr[0] "Kjører (%d arbeider)"
 msgstr[1] "Kjører (%d arbeidere)"
 
 #. Translators: this refers to the status of the background job worker
-#: apps/pootle_app/views/admin/dashboard.py:70
+#: apps/pootle_app/views/admin/dashboard.py:62
 msgid "Stopped"
 msgstr "Stoppet"
 
@@ -301,7 +301,7 @@ msgstr "Tilbakekall tilganger"
 msgid "No files in this project."
 msgstr "Ingen filer i dette prosjektet."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:166
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:165
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Det er feil i skjemaet. Se over problemene nedenfor."
 
@@ -437,12 +437,12 @@ msgstr "Avvis"
 msgid "Accept"
 msgstr "Aksepter"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:211
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:214
 #: core/browser.py:26
 msgid "Project"
 msgstr "Prosjekt"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:199
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Kode"
 
@@ -490,49 +490,49 @@ msgstr "Antall flertallsformer"
 msgid "Plural Equation"
 msgstr "Flertallsformel"
 
-#: apps/pootle_language/views.py:205 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:208 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Enhet"
 
-#: apps/pootle_language/views.py:206 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:209 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Tilstand"
 
-#: apps/pootle_language/views.py:207 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Kilde"
 
-#: apps/pootle_language/views.py:208
+#: apps/pootle_language/views.py:211
 msgid "Suggestion"
 msgstr "Forslag"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:212
 #, fuzzy
 msgid "Suggested by"
 msgstr "Foreslå"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:213
 #, fuzzy
 msgid "Suggested at"
 msgstr "Foreslå"
 
-#: apps/pootle_language/views.py:232
+#: apps/pootle_language/views.py:235
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "Avslo %s forslag med kommentarer. Merknad vil bli sendt til brukere"
 
 # Should have ":" instead of "."
-#: apps/pootle_language/views.py:236
+#: apps/pootle_language/views.py:239
 #, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "Godkjente %s forslag med kommentaren: Brukere vil bli varslet"
 
-#: apps/pootle_language/views.py:239
+#: apps/pootle_language/views.py:242
 #, python-format
 msgid "Rejected %s suggestions"
 msgstr "Avslo %s forslag"
 
-#: apps/pootle_language/views.py:241
+#: apps/pootle_language/views.py:244
 #, python-format
 msgid "Accepted %s suggestions"
 msgstr "Godkjente %s forslag"
@@ -869,6 +869,11 @@ msgstr "Flertallsformat"
 msgid "Plurr placeholders"
 msgstr "Plassholdere"
 
+#: apps/pootle_misc/checks.py:123
+#, fuzzy
+msgid "ftl format"
+msgstr "Datoformat"
+
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Søk"
@@ -926,17 +931,17 @@ msgstr "Velg ett eller flere språk"
 msgid "Language"
 msgstr "Språk"
 
-#: apps/pootle_project/models.py:178
+#: apps/pootle_project/models.py:180
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" kan ikke brukes som prosjektkode"
 
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:188
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" kan ikke brukes som prosjektkode"
 
-#: apps/pootle_project/models.py:193
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -944,41 +949,41 @@ msgstr ""
 "En kort kode for prosjektet. Dette burde bare inneholde ASCII tegn, numre, "
 "og understrek (_) tegnet."
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "Kvalitetssjekk"
 
-#: apps/pootle_project/models.py:217
+#: apps/pootle_project/models.py:219
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Automatisk oppdagelse av gnu/ikke-gnu filoppsett (tregere)"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "GNU stil: filer navngitt av språkkode"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Ikke-GNU: Hvert språk i egen mappe"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:222
 #, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
 msgstr "Tillat pootle_fs å behandle filsystemer"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Prosjekttre stil"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Ignorer filer"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "Feilrapports-e-post"
 
-#: apps/pootle_project/models.py:239
+#: apps/pootle_project/models.py:241
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
@@ -986,22 +991,22 @@ msgstr ""
 "rapportert."
 
 # This is a duplicate string
-#: apps/pootle_project/models.py:243
+#: apps/pootle_project/models.py:245
 msgid "Screenshot Search Prefix"
 msgstr "Prefiks for skjermbildesøk"
 
-#: apps/pootle_project/models.py:248
+#: apps/pootle_project/models.py:250
 msgid "Disabled"
 msgstr "Avskrudd"
 
-#: apps/pootle_project/views.py:253
+#: apps/pootle_project/views.py:252
 #, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr "Oversettelsesprosjektet (%s) har blitt oppdatert iht. nyeste maler."
 
-#: apps/pootle_project/views.py:260
+#: apps/pootle_project/views.py:259
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Oversettelsesprosjektet (%s) har blitt slettet"
@@ -1131,11 +1136,11 @@ msgstr "Forslag akseptert."
 msgid "Suggestion rejected with comment"
 msgstr "Forslag avslått med kommentar"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Stien er for lang."
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:106
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 #, fuzzy
 msgid "Arguments missing."
@@ -1180,33 +1185,33 @@ msgstr ""
 "Jeg har lest og godtar: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 
-#: apps/staticpages/models.py:33
+#: apps/staticpages/models.py:32
 msgid "Whether this page is active or not."
 msgstr "Om denne siden er aktiv eller ikke."
 
-#: apps/staticpages/models.py:36 templates/admin/staticpages/_table.html:7
+#: apps/staticpages/models.py:35 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
 msgstr "Virtuell sti"
 
-#: apps/staticpages/models.py:43 apps/virtualfolder/models.py:32
+#: apps/staticpages/models.py:42 apps/virtualfolder/models.py:32
 msgid "Title"
 msgstr "Tittel"
 
 #. Translators: Content that will be used to display this static page
-#: apps/staticpages/models.py:46
+#: apps/staticpages/models.py:45
 msgid "Display Content"
 msgstr "Vis innhold"
 
-#: apps/staticpages/models.py:48
+#: apps/staticpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
 msgstr "Tillatt markup: %s"
 
-#: apps/staticpages/models.py:51 templates/admin/staticpages/_table.html:9
+#: apps/staticpages/models.py:50 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
 msgstr "Omdiriger til nettadresse"
 
-#: apps/staticpages/models.py:53
+#: apps/staticpages/models.py:52
 #, fuzzy
 msgid "If set, this page will redirect to this URL"
 msgstr ""
@@ -1214,11 +1219,11 @@ msgstr ""
 "denne URL-en"
 
 #. Translators: 'URL' and 'content' refer to form fields.
-#: apps/staticpages/models.py:98
+#: apps/staticpages/models.py:97
 msgid "URL or content must be provided."
 msgstr "URL eller innhold kan ikke være tomme."
 
-#: apps/staticpages/models.py:104
+#: apps/staticpages/models.py:103
 msgid "Virtual path already in use."
 msgstr "Virtuell sti allerede i bruk."
 
@@ -1290,7 +1295,7 @@ msgstr ""
 "En beskrivelse av dette prosjektet. Denne er nyttig for å gi mer informasjon "
 "eller instruksjonerer. Tillatt markup: %s"
 
-#: checks.py:64
+#: checks.py:62
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1298,7 +1303,7 @@ msgstr ""
 "Noen brukerkontoer har duplikerte e-poster. Dette vil ikke tillates i Pootle "
 "2.8."
 
-#: checks.py:66
+#: checks.py:64
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1308,64 +1313,64 @@ msgstr ""
 "postene med 'pootle update_user_email username email'. Du kan også vurdere å "
 "bruke pootle merge_user eller purge_user -kommandoene."
 
-#: checks.py:90
+#: checks.py:88
 msgid "Your version of Django is too old."
 msgstr "Din versjon av Django er for gammel."
 
-#: checks.py:91
+#: checks.py:89
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Prøv pip install --upgrade 'Django==%s'"
 
-#: checks.py:98
+#: checks.py:96
 msgid "Your version of lxml is too old."
 msgstr "Din versjon av lxml er for gammel."
 
-#: checks.py:99
+#: checks.py:97
 msgid "Try pip install --upgrade lxml"
 msgstr "Prøv pip install --upgrade lxml"
 
-#: checks.py:105
+#: checks.py:103
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Din versjon av Translate Toolkit er for gammel."
 
-#: checks.py:106
+#: checks.py:104
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Prøv med pip install --upgrade translate-toolkit"
 
-#: checks.py:126
+#: checks.py:124
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Kunne ikke koble til Redis (%s)"
 
-#: checks.py:127
+#: checks.py:125
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Sørg for at Redis kjører på %(host)s:%(port)s"
 
-#: checks.py:137
+#: checks.py:135
 msgid "Your version of Redis is too old."
 msgstr "Din versjon av Redis er for gammel."
 
-#: checks.py:138
+#: checks.py:136
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Oppdater ditt systems tjenerpakke for Redis til ihvertfall versjon %s"
 
-#: checks.py:149
+#: checks.py:147
 msgid "No RQ Worker running."
 msgstr "Ingen RQ-arbeider kjører."
 
-#: checks.py:150
+#: checks.py:148
 #, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Kjør nye arbeidere med manage.py rqworker"
 
-#: checks.py:165
+#: checks.py:163
 msgid "Cache backend is not set to Redis."
 msgstr "Mellomlager-bakende er ikke satt til Redis."
 
-#: checks.py:166
+#: checks.py:164
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1374,15 +1379,15 @@ msgstr ""
 "Sett forvalgt mellomlager-bakende til django_redis.cache.RedisCache\n"
 "Gjeldende innstillinger: %r"
 
-#: checks.py:176
+#: checks.py:174
 msgid "Could not initiate a Redis cache connection"
 msgstr "Kunne ikke igangsette en Redis mellomlager-tilkobling"
 
-#: checks.py:177 checks.py:191
+#: checks.py:175 checks.py:189
 msgid "Double-check your CACHES settings"
 msgstr "Dobbeltsjekk dine CACHES-innstillinger"
 
-#: checks.py:189
+#: checks.py:187
 #, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
@@ -1391,29 +1396,29 @@ msgstr ""
 "Spesifikke django_redis.cache.RedisCache-oppsett kreves for `default`,` "
 "redis` og `stats`."
 
-#: checks.py:197
+#: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 "DEBUG (feilrettings-)modus er påslått. Ikke bruk dette i produksjonsøyemed!"
 
-#: checks.py:198
+#: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Sett DEBUG = False i Pootles innstillinger"
 
-#: checks.py:204
+#: checks.py:202
 msgid "The sqlite database backend is unsupported"
 msgstr "SQLite-databasebakende støttes ikke"
 
-#: checks.py:205
+#: checks.py:203
 #, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "Sett forvalgt databasemotor til postgresql_psycopg2 eller mysql"
 
-#: checks.py:212
+#: checks.py:210
 msgid "Not using cached_db as session engine"
 msgstr "Bruker ikke cached_db som øktmotor"
 
-#: checks.py:213
+#: checks.py:211
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1422,12 +1427,12 @@ msgstr ""
 "Sett SESSION_ENGINE til django.contrib.sessions.backends.cached_db\n"
 "Nåværende innstillinger: %r"
 
-#: checks.py:221
+#: checks.py:219
 #, fuzzy
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL har ikke blitt satt."
 
-#: checks.py:222
+#: checks.py:220
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1435,12 +1440,12 @@ msgstr ""
 "Angi POOTLE_CONTACT_EMAIL for å tillate brukere å kontakte administatorer "
 "gjennom kontaktskjemaet til Pootle."
 
-#: checks.py:230
+#: checks.py:228
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL bruker følgende forvalgte innstilling %r."
 
-#: checks.py:232
+#: checks.py:230
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1448,11 +1453,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL er adressen meldinger fra kontaktskjemaet vil bli sendt "
 "til."
 
-#: checks.py:239
+#: checks.py:237
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL er ikke satt."
 
-#: checks.py:240 checks.py:250
+#: checks.py:238 checks.py:248
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1460,37 +1465,37 @@ msgstr ""
 "DEFAULT_FROM_EMAIL brukes til all utgående e-post fra Pootle.\n"
 "Ikke glem å se over e-postinnstillingene på tjeneren din."
 
-#: checks.py:248
+#: checks.py:246
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL bruker følgende forvalgte innstilling %r."
 
-#: checks.py:259
+#: checks.py:257
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER mangler."
 
-#: checks.py:260
+#: checks.py:258
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Angi POOTLE_MARKUP_FILTER."
 
-#: checks.py:265
+#: checks.py:263
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Ugyldig verdi i POOTLE_MARKUP_FILTER."
 
-#: checks.py:266
+#: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Angi en gyldig verdi for POOTLE_MARKUP_FILTER."
 
-#: checks.py:280
+#: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Ugyldig oppmerking i POOTLE_MARKUP_FILTER."
 
-#: checks.py:281
+#: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Velg en gyldig oppmerking for POOTLE_MARKUP_FILTER."
 
 # This is rather cryptic…
-#: checks.py:286
+#: checks.py:284
 #, fuzzy, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1499,105 +1504,105 @@ msgstr ""
 "POOTLE_MARKUP_FILTER er satt til '%s'-oppmerking, men den pakken det tilbyr "
 "finnes ikke."
 
-#: checks.py:288
+#: checks.py:286
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Installer pakken eller endre POOTLE_MARKUP_FILTER."
 
-#: checks.py:299
+#: checks.py:297
 #, fuzzy, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] har inget INDEX_NAME."
 
-#: checks.py:300
+#: checks.py:298
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Angi et INDEX_NAME for POOTLE_TM_SERVER['%s']."
 
-#: checks.py:306
+#: checks.py:304
 #, fuzzy, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Duplisert '%s' INDEX_NAME i POOTLE_TM_SERVER."
 
-#: checks.py:308
+#: checks.py:306
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Angi ulike INDEX_NAME for alle tjenere i POOTLE_TM_SERVER."
 
-#: checks.py:318
+#: checks.py:316
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen ENGINE."
 
-#: checks.py:319
+#: checks.py:317
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Angi en ENGINE for POOTLE_TM_SERVER['%s']."
 
-#: checks.py:326
+#: checks.py:324
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen HOST. (vert)"
 
-#: checks.py:327
+#: checks.py:325
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Angi en HOST (vert) for POOTLE_TM_SERVER['%s']."
 
-#: checks.py:334
+#: checks.py:332
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen PORT."
 
-#: checks.py:335
+#: checks.py:333
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Angi en PORT for POOTLE_TM_SERVER['%s']."
 
-#: checks.py:344
+#: checks.py:342
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 "POOTLE_TM_SERVER['%s'] har en WEIGHT mindre enn 0.0 eller større enn 1.0"
 
-#: checks.py:346
+#: checks.py:344
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
 "Angi WEIGHT mellon 0.0 og 1.0 (båda inkluderade) for POOTLE_TM_SERVER['%s']."
 
-#: checks.py:354
+#: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS har ingen %s."
 
-#: checks.py:355
+#: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Angi %s i POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:362
+#: checks.py:360
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Ugyldig verdi for %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:364
+#: checks.py:362
 #, fuzzy, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Sett en gyldig verdi for %s i POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:386
+#: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Den forvalgte 'admin'-brukeren har passord satt til 'admin'."
 
-#: checks.py:388
+#: checks.py:386
 msgid "Remove the 'admin' user or change its password."
 msgstr "Fjern 'admin'-brukeren eller endre dens passord."
 
-#: checks.py:402
+#: checks.py:400
 msgid "Database connection uses transaction_hooks."
 msgstr "Databasetilkoblingen bruker transaction_hooks."
 
-#: checks.py:403
+#: checks.py:401
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1605,31 +1610,31 @@ msgstr ""
 "Sett DATABASES['default']['ENGINE'] til å bruke en Django-bakende fra django."
 "db.backends."
 
-#: checks.py:423
+#: checks.py:421
 msgid "Email server is not available."
 msgstr "E-posttjeneren er ikke tilgjengelig."
 
-#: checks.py:424
+#: checks.py:422
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Se over dine e-postinnstillinger og sørg for at din e-posttjener fungerer."
 
-#: checks.py:451
+#: checks.py:449
 #, fuzzy
 msgid "Revision is missing or has an incorrect value."
 msgstr "Revision mangler eller har en feilaktig verdi."
 
-#: checks.py:452
+#: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "Kjør `revision --restore` for å tilbakestille revisionstelleren."
 
-#: checks.py:466
+#: checks.py:464
 #, fuzzy
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Ingen mønstergyldig nettadresse angitt og forvalgt side satt til example.com"
 
-#: checks.py:468
+#: checks.py:466
 #, fuzzy
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
@@ -1638,12 +1643,12 @@ msgstr ""
 "Sett `POOTLE_CANONICAL_URL` i innstillingene eller oppdater forvalgt side "
 "hvis du bruker django.contrib.sites."
 
-#: checks.py:472
+#: checks.py:470
 #, fuzzy
 msgid "Canonical URL is set to http://localhost."
 msgstr "Mønstergyldig nettadresse satt til http://localhost."
 
-#: checks.py:474
+#: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1651,25 +1656,25 @@ msgstr ""
 "Sett `POOTLE_CANONICAL_URL` til en passende verdi for din side eller la stå "
 "tomt hvis du bruker"
 
-#: checks.py:504
+#: checks.py:502
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_CONTACT_EMAIL har ikke blitt satt."
 
-#: checks.py:508
+#: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Stien som pekes til av POOTLE_FS_WORKING_PATH finnes ikke."
 
-#: checks.py:509
+#: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
 msgstr "Opprett mappen som `POOTLE_FS_WORKING_PATH`-innstillingen peker til."
 
-#: checks.py:514
+#: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Pootle kan ikke skrive til stien som pekes til i POOTLE_FS_WORKING_PATH."
 
-#: checks.py:516
+#: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
@@ -1753,11 +1758,11 @@ msgstr "Legg til kommentar"
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr "Velg alle samsvarende filterkriterium, inkludert de som ikke vises"
 
-#: core/forms.py:211
+#: core/forms.py:213
 msgid "You must specify an action to take"
 msgstr "Du må velge en handling som skal iverksettes"
 
-#: core/forms.py:212
+#: core/forms.py:214
 msgid "A valid search field must be specified"
 msgstr ""
 
@@ -1787,62 +1792,62 @@ msgstr "Se over forslag"
 msgid "Can perform administrative tasks"
 msgstr "Django administrasjon"
 
-#: core/views/display.py:94 core/views/display.py:115
+#: core/views/display.py:95 core/views/display.py:116
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 
-#: core/views/display.py:96
+#: core/views/display.py:97
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Godkjente forslag fra %(author)s"
 
-#: core/views/display.py:98
+#: core/views/display.py:99
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr ""
 
-#: core/views/display.py:100
+#: core/views/display.py:101
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:102
+#: core/views/display.py:103
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:104
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "Importerte %(count)d forslag fra %(store)s"
 
-#: core/views/display.py:106
+#: core/views/display.py:107
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Avslo forslag fra %(author)s"
 
-#: core/views/display.py:109
+#: core/views/display.py:110
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Må oversette ord"
 
-#: core/views/display.py:111
+#: core/views/display.py:112
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:113
+#: core/views/display.py:114
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:117
+#: core/views/display.py:118
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:119
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -1897,7 +1902,7 @@ msgstr "Bruksvilkår"
 msgid "Terms of Service"
 msgstr "Tjenestevilkår"
 
-#: templates/about.html:7 templates/layout.html:170
+#: templates/about.html:7 templates/layout.html:175
 msgid "About"
 msgstr "Om"
 
@@ -2196,7 +2201,8 @@ msgid "Update filesystem configuration"
 msgstr "Oppdater filsystemsoppsett"
 
 #: templates/admin/project_fs.html:44
-msgid "Translation mapping should be of the format:"
+#, fuzzy
+msgid "Translation path mapping should be of the format:"
 msgstr "Oversettelsestilknytning skal være i dette formatet:"
 
 #: templates/admin/project_fs.html:52
@@ -2209,7 +2215,7 @@ msgstr ""
 #: templates/admin/project_fs.html:58
 #, fuzzy
 msgid ""
-"If you are using the localfs backend the translation mapping will be "
+"If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 "Hvis du bruker localfs-bakenden vil oversettelsestilknytningen kombineres "
@@ -2219,8 +2225,8 @@ msgstr ""
 #: templates/admin/project_fs.html:64
 #, fuzzy
 msgid ""
-"For other backends the translation mapping will be relative to the root of "
-"the repository."
+"For other backends the translation path mapping will be relative to the root "
+"of the repository."
 msgstr ""
 "For andre bakender vil oversettelsestilknytningen være relativ til rota av "
 "pakkebrønnen."
@@ -2398,18 +2404,22 @@ msgid "All"
 msgstr "Alle"
 
 #: templates/browser/_progressbar.html:3
-#, python-format
-msgid "<span class='value translated'>%(translated)s</span>%% translated"
+#, fuzzy, python-format
+msgid ""
+"<span class='value translated'>%(translated_percent_display)s</span> "
+"translated"
 msgstr "<span class='value translated'>%(translated)s</span>%% oversatt"
 
 #: templates/browser/_progressbar.html:4
 #, fuzzy, python-format
-msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
+msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
 msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% må arbeides med"
 
 #: templates/browser/_progressbar.html:5
-#, python-format
-msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
+#, fuzzy, python-format
+msgid ""
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+"untranslated"
 msgstr "<span class='value untranslated'>%(untranslated)s</span>%% uoversatt"
 
 #: templates/browser/index.html:19
@@ -2955,38 +2965,38 @@ msgstr "Forslagsadministrator"
 msgid "There are %(suggestions.count)s suggestions pending"
 msgstr "%(suggestions.count)s forslag på vent"
 
-#: templates/layout.html:83
+#: templates/layout.html:88
 msgid "Pootle requires JavaScript"
 msgstr "Pootle krever JavaScript"
 
-#: templates/layout.html:84
+#: templates/layout.html:89
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 "Slå på JavaScript i nettleserinnstillingene dine og last inn siden på nytt."
 
-#: templates/layout.html:93
+#: templates/layout.html:98
 msgid "skip to navigation"
 msgstr "hopp over til navigering"
 
-#: templates/layout.html:114
+#: templates/layout.html:119
 msgid "Public Profile"
 msgstr "Offentlig profil"
 
-#: templates/layout.html:115 templates/user/settings.html:4
+#: templates/layout.html:120 templates/user/settings.html:4
 #: templates/user/settings.html:7
 msgid "Settings"
 msgstr "Oppsett"
 
-#: templates/layout.html:117
+#: templates/layout.html:122
 msgid "Admin"
 msgstr "Administrator"
 
-#: templates/layout.html:120
+#: templates/layout.html:125
 msgid "Sign out"
 msgstr "Logg ut"
 
-#: templates/layout.html:124
+#: templates/layout.html:129
 msgid "Sign In"
 msgstr "Logg inn"
 

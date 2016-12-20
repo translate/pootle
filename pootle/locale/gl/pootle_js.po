@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-11-24 16:54+0000\n"
+"POT-Creation-Date: 2016-12-20 15:40+0000\n"
 "PO-Revision-Date: 2016-10-21 08:30+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,23 +548,23 @@ msgstr "Mostrar os desactivados"
 msgid "Hide disabled"
 msgstr "Ocultar os desactivados"
 
-#: static/js/browser.js:285
+#: static/js/browser.js:286
 msgid "All Languages"
 msgstr "Todos os idiomas"
 
-#: static/js/browser.js:290
+#: static/js/browser.js:292
 msgid "All Projects"
 msgstr "Todos os proxectos"
 
-#: static/js/browser.js:295
+#: static/js/browser.js:297
 msgid "Entire Project"
 msgstr "Todo o proxecto"
 
-#: static/js/common.js:141
+#: static/js/common.js:139
 msgid "Updating data"
 msgstr "Actualizando os datos"
 
-#: static/js/editor/app.js:304 static/js/editor/app.js:623
+#: static/js/editor/app.js:303 static/js/editor/app.js:622
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -572,7 +572,7 @@ msgstr ""
 "Ten cambios sen gardar nesta cadea. Continuar sen gardalos fará que se "
 "desboten."
 
-#: static/js/editor/app.js:349
+#: static/js/editor/app.js:348
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -580,7 +580,7 @@ msgstr ""
 "Ir á seguinte cadea (Ctrl+.)<br/><br/>Tamén:<br/>Seguinte páxina: Ctrl+Maiús"
 "+.<br/>Última páxina: Ctrl+Maiús+Fin"
 
-#: static/js/editor/app.js:355
+#: static/js/editor/app.js:354
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -589,77 +589,77 @@ msgstr ""
 "+,<br/>Primeira páxina: Ctrl+Maiús+Inicio"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:480
+#: static/js/editor/app.js:479
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Suxestións pendentes de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:483
+#: static/js/editor/app.js:482
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Suxestións aceptadas de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:486
+#: static/js/editor/app.js:485
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Suxestións rexeitadas de %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:489
+#: static/js/editor/app.js:488
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Envíos de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:493
+#: static/js/editor/app.js:492
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Envíos sobrescritos de %s"
 
-#: static/js/editor/app.js:1050
+#: static/js/editor/app.js:1047
 msgid "Error while connecting to the server"
 msgstr "Produciuse un erro ao conectar co servidor"
 
-#: static/js/editor/app.js:1055
+#: static/js/editor/app.js:1052
 msgid "Not found"
 msgstr "Non atopado"
 
-#: static/js/editor/app.js:1057
+#: static/js/editor/app.js:1054
 msgid "Server error"
 msgstr "Erro do servidor"
 
-#: static/js/editor/app.js:1059
+#: static/js/editor/app.js:1056
 msgid "The server seems down. Try again later."
 msgstr "Parece ser que o servidor está caído. Probe de novo máis tarde."
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1065
 msgid "This string no longer exists."
 msgstr "Esta cadea xa non existe."
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1066
 msgid "Go back to browsing"
 msgstr "Volver á navegación"
 
-#: static/js/editor/app.js:1071
+#: static/js/editor/app.js:1068
 msgid "Reload page"
 msgstr "Recargar a páxina"
 
-#: static/js/editor/app.js:2167
+#: static/js/editor/app.js:2156
 msgid "some anonymous user"
 msgstr "algún usuario anónimo"
 
-#: static/js/editor/app.js:2169
+#: static/js/editor/app.js:2158
 msgid "someone"
 msgstr "alguén"
 
-#: static/js/editor/app.js:2187 static/js/editor/app.js:2236
+#: static/js/editor/app.js:2176 static/js/editor/app.js:2225
 msgid "Similar translations"
 msgstr "Traducións semellantes"
 
-#: static/js/editor/components/Editor.js:45
+#: static/js/editor/components/EditorPluralFormHeader.js:26
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
@@ -827,7 +827,7 @@ msgstr ""
 "realizarase unha única vez e asociará as súas contas de Pootle e "
 "%(provider)s."
 
-#: static/js/editor/app.js:615
+#: static/js/editor/app.js:614
 msgid "No results."
 msgstr "Sen resultados."
 
