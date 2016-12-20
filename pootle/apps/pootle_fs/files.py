@@ -61,7 +61,7 @@ class FSFile(object):
 
     @property
     def store_exists(self):
-        return self.store is not None
+        return self.store_fs.store_id is not None
 
     @property
     def file_path(self):
@@ -93,7 +93,9 @@ class FSFile(object):
 
     @cached_property
     def store(self):
-        return self.store_fs.store
+        return (
+            self.store_fs.store_id
+            and self.store_fs.store)
 
     def create_store(self):
         """
