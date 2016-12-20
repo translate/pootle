@@ -267,6 +267,19 @@ class BuildChecksTemplatesCommand(Command):
         print("Checks templates written to %r" % (filename))
 
 
+def parse_long_description(filename):
+    filename = os.path.join(os.path.dirname(__file__), filename)
+    readme_lines = []
+    with open(filename) as f:
+        readme_lines = f.readlines()
+    pootle = "Pootle"
+    initial_title = [  # PyPI doesn't like |logo|
+        pootle,
+        "="*len(pootle)
+    ]
+    return "\n".join(initial_title + readme_lines[2:-4])
+
+
 check_pep440_versions()
 
 
@@ -308,9 +321,7 @@ setup(
     version=__version__,
 
     description="An online collaborative localization tool.",
-    long_description=open(
-        os.path.join(os.path.dirname(__file__), 'README.rst')
-    ).read(),
+    long_description=parse_long_description('README.rst'),
 
     author="Translate",
     author_email="dev@translate.org.za",
