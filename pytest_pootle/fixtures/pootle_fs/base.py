@@ -22,6 +22,7 @@ def project_fs(tmpdir, settings):
     plugin = FSPlugin(project)
     os.makedirs(new_url)
     settings.POOTLE_FS_WORKING_PATH = str(tmpdir)
+    plugin.fetch()
     return plugin
 
 
