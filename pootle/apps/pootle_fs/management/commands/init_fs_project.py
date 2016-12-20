@@ -111,8 +111,8 @@ class Command(BaseCommand):
         project.config['pootle_fs.translation_mappings'] = {
             'default': options['translation_mapping']
         }
-
         if options['sync']:
             plugin = FSPlugin(project)
+            plugin.fetch()
             plugin.add()
             plugin.sync()
