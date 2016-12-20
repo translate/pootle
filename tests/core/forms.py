@@ -232,3 +232,13 @@ def test_form_formtable_batch():
         sorted(project_units.values_list("id", flat=True))
         == sorted(form.search().values_list("id", flat=True)))
     _test_batch(form, project_units)
+
+
+@pytest.mark.django_db
+def test_form_formtable_no_comment():
+
+    class DummyNoCommentFormtableForm(DummyFormtableForm):
+        comment_field = None
+
+    form = DummyNoCommentFormtableForm()
+    assert "comment" not in form.fields
