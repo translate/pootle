@@ -197,6 +197,8 @@ class FormWithActionsMixin(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(FormWithActionsMixin, self).__init__(*args, **kwargs)
+        if self.comment_field != "comment":
+            del self.fields["comment"]
         self.fields[self.action_field].choices = self.action_choices
 
     def should_save(self):

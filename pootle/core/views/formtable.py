@@ -42,7 +42,10 @@ class Formtable(object):
 
     @property
     def comment(self):
-        return self.form[self.form.comment_field]
+        return (
+            self.form[self.form.comment_field]
+            if self.form.comment_field
+            else "")
 
     @property
     def sort_columns(self):
