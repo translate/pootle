@@ -11,6 +11,8 @@ import os
 import shutil
 import uuid
 
+from bulk_update.helper import bulk_update
+
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
@@ -468,10 +470,19 @@ class Plugin(object):
         sync_types = [
             "pushed_to_fs", "pulled_to_pootle",
             "merged_from_pootle", "merged_from_fs"]
+        fs_to_update = {}
         for sync_type in sync_types:
             if sync_type in response:
                 for response_item in response.completed(sync_type):
-                    response_item.store_fs.file.on_sync()
+                    store_fs = response_item.store_fs
+                    store_fs.file.on_sync(save=False)
+                    fs_to_update[store_fs.id] = store_fs
+        if fs_to_update:
+            bulk_update(
+                fs_to_update.values(),
+                update_fields=[
+                    "last_sync_revision", "last_sync_hash",
+                    "resolve_conflict", "staged_for_merge"])
         if response.made_changes:
             self.expire_sync_cache()
         return response
