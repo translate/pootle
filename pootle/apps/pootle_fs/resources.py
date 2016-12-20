@@ -64,8 +64,10 @@ class FSProjectResources(object):
 
     @property
     def trackable_stores(self):
-        return self.stores.exclude(obsolete=True).filter(fs__isnull=True)
-
+        return (
+            self.stores.exclude(obsolete=True)
+                       .filter(fs__isnull=True)
+                       .order_by())
 
 class FSProjectStateResources(object):
     """Wrap FSPlugin and cache available resources
