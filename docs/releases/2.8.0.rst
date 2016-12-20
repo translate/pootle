@@ -96,6 +96,8 @@ Details of changes
   - Improvements on timeline
   - Cross-language translation is now restricted to admins as it heavily
     impacts performance and translators are unlikely to require it
+  - Removed ability to clear language or project dropdown to prevent
+    performance degradation.
 
 - Added suggestion bulk management:
 
@@ -122,7 +124,22 @@ Details of changes
 
     - Last updated data is now only shown to admin users
 
+  - Altered order in which some items are listed by default:
+
+    - Projects and languages are sorted by most recent translators changes to
+      highlight activity
+    - Virtual folders are sorted by priority to highlight most important
+      strings to translate
+
+  - Got rid of fat cookies:
+
+   - Increases responsiveness and removes security issue
+   - Most data is now stored in user session instead
+   - Sidebar is no longer automatically open for anonymous users when an
+     announcement changes.
+
   - Show leaderboard on top panel and expanded stats panel
+  - Numbers are rendered in a locale aware fashion
   - Search widget is disabled if user cannot translate
   - Improvements to the statistics table for overly long filenames and smaller
     screens
@@ -156,6 +173,7 @@ Details of changes
   - Disabled upload for non-PO projects as conflict handling currently only
     works in PO
   - Admins can upload translations as other user
+  - Fixed error for stores with no revision
 
 - New Machine Translation providers:
 
@@ -165,6 +183,7 @@ Details of changes
 
 - Added placeholders check for Plurr-formatted strings
 - Improved RQ usage and new management commands
+- Changed Pootle logo
 - Documentation updates
 
 
