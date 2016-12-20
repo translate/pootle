@@ -884,6 +884,11 @@ html[dir="rtl"] .last-action img
     display: inline-block;
 }
 
+#top-stats .last-action a
+{
+    display: inline;
+}
+
 
 .last-action .user-info
 {
