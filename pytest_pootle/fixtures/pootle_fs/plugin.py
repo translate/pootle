@@ -185,10 +185,9 @@ def localfs_dummy_file(no_fs_files):
         _pushed = False
         _resolved = False
         _removed = False
+        _saved = False
         _synced = False
         _unstaged = False
-
-        on_sync = lambda self: setattr(self, "_synced", True)
 
         @property
         def latest_hash(self):
@@ -196,6 +195,10 @@ def localfs_dummy_file(no_fs_files):
 
         def delete(self):
             self._deleted = True
+
+        def on_sync(self, save=False):
+            self._synced = True
+            self._saved = save
 
         def pull(self, **kwargs):
             self._pulled = True
