@@ -137,6 +137,7 @@ def test_fs_plugin_unstage_staged_response(capsys,
 @pytest.mark.django_db
 def test_fs_plugin_paths(project_fs_empty, possible_actions):
     __, cmd, __, cmd_args = possible_actions
+    project_fs_empty.fetch()
     pootle_path, fs_path = "FOO", "BAR"
     response = getattr(project_fs_empty, cmd)(
         pootle_path=pootle_path, fs_path=fs_path, **cmd_args)

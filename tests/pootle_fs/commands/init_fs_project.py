@@ -61,7 +61,9 @@ def test_init_fs_project_cmd_nosync(settings, test_fs, tmpdir, revision):
         'pootle_fs.translation_mappings')['default'] == tr_path
 
     assert project.translationproject_set.all().count() == 0
-    state = FSPlugin(project).state()
+    plugin = FSPlugin(project)
+    plugin.fetch()
+    state = plugin.state()
     assert "fs_untracked: 1" in str(state)
 
 

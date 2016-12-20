@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import shutil
 import sys
 
 import pytest
@@ -188,6 +189,6 @@ def test_fs_cmd_response_colors():
 
 @pytest.mark.django_db
 def test_fs_cmd_fetch(capsys, project_fs):
-    assert not os.path.exists(project_fs.project.local_fs_path)
+    shutil.rmtree(project_fs.project.local_fs_path)
     call_command("fs", "fetch", project_fs.project.code)
     assert os.path.exists(project_fs.project.local_fs_path)
