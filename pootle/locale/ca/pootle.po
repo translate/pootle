@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-09-18 15:13+0000\n"
-"Last-Translator: jordis <jordis@softcatala.cat>\n"
+"PO-Revision-Date: 2016-12-05 08:13+0000\n"
+"Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1474211599.000000\n"
+"X-POOTLE-MTIME: 1480925597.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -196,14 +196,12 @@ msgid "Download for offline translation"
 msgstr "Baixa el fitxer per a traduir fora de línia"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Baixa el fitxer de traducció per a traduir fora de línia"
+msgstr "Baixa els fitxers de traducció per a traduir fora de línia"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Baixa el fitxer"
+msgstr "Baixa per a còpia de seguretat"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -214,9 +212,9 @@ msgid "Upload translations"
 msgstr "Puja les traduccions"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Informe per a %(user)s"
+msgstr "Puja com a %(user)s"
 
 #: apps/import_export/utils.py:28
 #, python-format
@@ -259,6 +257,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"No podeu suprimir el tipus de fitxer d'un projecte si hi ha fitxers d'aquest "
+"tipus de fitxer («%s»)."
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -307,61 +307,56 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Hi ha algun error al formulari. Reviseu els problemes a continuació."
 
 #: apps/pootle_format/abstracts.py:35
-#, fuzzy
 msgid "Format name"
-msgstr "Nom"
+msgstr "Nom del format"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
-msgstr ""
+msgstr "Títol del format"
 
 #: apps/pootle_format/abstracts.py:44
-#, fuzzy
 msgid "Enabled"
-msgstr "Inhabilitat"
+msgstr "Habilitat"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Format de l'Android"
+msgstr "Format monolingüe"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "Estil GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "Estil no-GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Estil Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Personalitzat"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Infraestructura de sistema de fitxers"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Seleccioneu un fitxer per carregar"
+msgstr "Seleccioneu una infraestructura de sistema de fitxers"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
-msgstr ""
+msgstr "URL o camí de la infraestructura"
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "L'URL o el camí als fitxers de traducció"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Paràmetres de traducció"
+msgstr "Assignació de camins de traducció"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
@@ -374,62 +369,52 @@ msgid "Filesystem language codes must be unique"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Pàgina d'administració de llengües de Pootle"
+msgstr "Les assignacions de llengües del Pootle han de ser úniques"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "Nombres"
+msgstr "Membre"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
-msgstr "Envia"
+msgstr "Traductor"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "Revisa"
+msgstr "Revisor"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "Administració"
+msgstr "Administrador"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Administració"
+msgstr "Administradors"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "Revisions"
+msgstr "Revisors"
 
 #: apps/pootle_language/forms.py:80
-#, fuzzy
 msgid "Submitters"
-msgstr "Envia"
+msgstr "Traductors"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "Nombres"
+msgstr "Membres"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Nombres"
+msgstr "Membre nou"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Afegeix un usuari a aquest equip"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "En afegir un membre nou, heu d'indicar-ne el rol"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -509,34 +494,32 @@ msgid "Suggestion"
 msgstr "Suggeriment"
 
 #: apps/pootle_language/views.py:209
-#, fuzzy
 msgid "Suggested by"
-msgstr "Suggereix"
+msgstr "Suggerit per"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested at"
-msgstr "Suggereix"
+msgstr "Suggerit el"
 
 #: apps/pootle_language/views.py:232
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Ha rebutjat un suggeriment de %(author)s amb comentari: %(comment)s"
+msgstr "Ha rebutjat %s suggeriments amb comentari. Es notificarà als usuaris"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Ha acceptat un suggeriment de %(author)s amb comentari: %(comment)s"
+msgstr "Ha acceptat %s suggeriments amb comentari. Es notificarà als usuaris"
 
 #: apps/pootle_language/views.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Rebutja el suggeriment"
+msgstr "Rebutja %s suggeriments"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Accepta el suggeriment"
+msgstr "Accepta  %s suggeriments"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -857,9 +840,8 @@ msgid "Plurr format"
 msgstr "Format Plurr"
 
 #: apps/pootle_misc/checks.py:120
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "Texts variables amb $"
+msgstr "Texts variables de Plurr"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -919,14 +901,14 @@ msgid "Language"
 msgstr "Llengua"
 
 #: apps/pootle_project/models.py:178
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "No es pot utilitzar «%s» com a codi de projecte"
+msgstr "No es pot utilitzar «%(code)s» com a codi de projecte"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "No es pot utilitzar «%s» com a codi de projecte"
+msgstr "No es pot utilitzar «%(code)s» com a comprovador de projecte"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -941,9 +923,8 @@ msgid "Quality Checks"
 msgstr "Comprovacions de qualitat"
 
 #: apps/pootle_project/models.py:217
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Detecció automàtica (més lent)"
+msgstr "Detecció automàtica de disposicions de fitxers gnu/non-gnu (més lent)"
 
 #: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
@@ -1110,13 +1091,12 @@ msgid "Added suggestion"
 msgstr "Ha afegit un suggeriment"
 
 #: apps/pootle_store/utils.py:33
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Suggeriments acceptats."
+msgstr "Suggeriments acceptats amb algun comentari"
 
 #: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "S'ha rebutjat un suggeriment amb comentari"
 
 #: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:104
 msgid "Path too long."
@@ -1422,7 +1402,7 @@ msgstr ""
 #: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "DEFAULT_FROM_EMAIL està usant l'opció  predeterminada %r."
 
 #: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
@@ -1551,9 +1531,8 @@ msgid "Remove the 'admin' user or change its password."
 msgstr "Suprimiu l'usuari «admin» o canvieu-ne la contrasenya."
 
 #: checks.py:402
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "La connexió de base de dades no implementa on_commit."
+msgstr "La connexió de base de dades usa transaction_hooks."
 
 #: checks.py:403
 msgid ""
@@ -1590,7 +1569,7 @@ msgstr ""
 
 #: checks.py:472
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "L'URL canònic està definit com a http://localhost."
 
 #: checks.py:474
 msgid ""
@@ -1599,9 +1578,8 @@ msgid ""
 msgstr ""
 
 #: checks.py:504
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "No s'ha definit POOTLE_CONTACT_EMAIL."
+msgstr "No s'ha definit POOTLE_FS_WORKING_PATH."
 
 #: checks.py:508
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
@@ -1687,7 +1665,6 @@ msgid "With selected"
 msgstr ""
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "Afegeix un comentari"
 
@@ -1701,7 +1678,7 @@ msgstr ""
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Heu d'indicar un camp de cerca vàlid"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1728,19 +1705,17 @@ msgid "Can perform administrative tasks"
 msgstr "Pot fer tasques administratives"
 
 #: core/views/display.py:94 core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
-"%(user)s ha eliminat la traducció de la cadena <i><a href=\"%(url)s\">"
-"%(source)s</a></i>"
+msgstr "%(user)s ha eliminat la traducció de la cadena %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Ha acceptat un suggeriment de %(author)s"
+msgstr "%(user)s ha acceptat un suggeriment per a %(source)s"
 
 #: core/views/display.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s ha pujat un fitxer"
 
@@ -1755,34 +1730,34 @@ msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "S'ha importat %(count)d suggeriment de %(store)s"
+msgstr "%(user)s ha afegit un suggeriment per a %(source)s"
 
 #: core/views/display.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Ha rebutjat un suggeriment de %(author)s"
+msgstr "%(user)s ha rebutjat un suggeriment per a %(source)s"
 
 #: core/views/display.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "Paraules que cal traduir"
+msgstr "%(user)s ha traduït %(source)s"
 
 #: core/views/display.py:111
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s ha editat %(source)s"
 
 #: core/views/display.py:113
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s ha pre-traduït %(source)s"
 
 #: core/views/display.py:117
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s ha revisat %(source)s"
 
 #: core/views/display.py:119
 #, python-format
@@ -1848,7 +1823,6 @@ msgid "About This Pootle Server"
 msgstr "Quant a aquest servidor Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1856,11 +1830,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"El lloc web funciona amb el Pootle &mdash; un potent programari web per "
+"Aquest lloc web funciona amb el Pootle &mdash; un potent programari web per "
 "facilitar als equips traduir i gestionar les traduccions. Aquesta eina "
 "comunitària és programari lliure, i qualsevol equip pot emprar-lo i "
 "contribuir en la comunitat del Pootle. Podeu llegir-ne més al <a href="
-"\"http://translate.sourceforge.net/\">lloc web del projecte</a>."
+"\"http://pootle.translatehouse.org/\">lloc web del projecte</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1894,12 +1868,11 @@ msgstr "Confirmació de l'adreça electrònica del Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Hem rebut una petició per a canviar la vostra contrasenya."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Per activar el vostre compte seguiu aquest enllaç:"
+msgstr "Per a canviar la contrasenya, seguit aquest enllaç:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
@@ -1907,9 +1880,8 @@ msgid ""
 msgstr ""
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "La reinicialització de la contrasenya ha fallat."
+msgstr "Correu electrònic de canvi de contrasenya del Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2117,19 +2089,19 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Configuració del sistema de fitxer: %(project_code)s"
 
 #: templates/admin/project_fs.html:30
 msgid "Backend configuration"
-msgstr ""
+msgstr "Configuració de la infraestructura"
 
 #: templates/admin/project_fs.html:41
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Actualitza la configuració del sistema de fitxers"
 
 #: templates/admin/project_fs.html:44
 msgid "Translation mapping should be of the format:"
-msgstr ""
+msgstr "L'assignació de traduccions hauria de ser en el format:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2150,22 +2122,20 @@ msgid ""
 msgstr ""
 
 #: templates/admin/project_fs.html:74
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Informació de la llengua %(language)s"
+msgstr "Configuració de l'assignació de llengües"
 
 #: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr "Suprimeix"
 
 #: templates/admin/project_fs.html:85
-#, fuzzy
 msgid "Pootle code"
-msgstr "Demostració de Pootle"
+msgstr "Codi del Pootle"
 
 #: templates/admin/project_fs.html:86
 msgid "Filesystem code"
-msgstr ""
+msgstr "Codi del sistema de fitxers"
 
 #: templates/admin/project_fs.html:90
 #: templates/admin/staticpages/page_create.html:4
@@ -2173,9 +2143,8 @@ msgid "Add"
 msgstr "Afegeix"
 
 #: templates/admin/project_fs.html:97
-#, fuzzy
 msgid "Update"
-msgstr "Actualitzacions"
+msgstr "Actualitza"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2316,19 +2285,20 @@ msgid "All"
 msgstr "Tots"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class=\"value translated\">0</span>%% traduït"
+msgstr "<span class='value translated'>%(translated)s</span>%% traduït"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% cal revisar"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% cal revisar"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% sense traduir"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% sense traduir"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2347,18 +2317,16 @@ msgid "More..."
 msgstr "Més..."
 
 #: templates/browser/index.html:68
-#, fuzzy
 msgid "Less..."
-msgstr "menys..."
+msgstr "Menys..."
 
 #: templates/browser/index.html:81
 msgid "Updates"
 msgstr "Actualitzacions"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Darrera modificació"
+msgstr "Darrera actualització:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2498,17 +2466,19 @@ msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
 msgstr ""
+"Els suggeriments següents enviats per vós s'han acceptat amb el comentari:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Esperem que aquest comentari us ajudi a millorar les contribucions futures."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
+msgstr "Els suggeriments enviats per vós s'han rebutjat amb el comentari:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2785,9 +2755,8 @@ msgid "Showing"
 msgstr "Mostra el filtratge"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Selecció múltiple"
+msgstr "Selecciona-ho tot"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2797,68 +2766,59 @@ msgstr "Navega"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Equip"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Suggeriments de l'usuari"
+msgstr "Filtra els suggeriments"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Nom de la llengua"
+msgstr "Equip de la llengua"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Administració de membres"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Afegeix un membre a l'equip"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Suprimeix un usuari"
+msgstr "Suprimeix la selecció"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Administració del lloc de Django"
+msgstr "Administració d'unitats"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Crític"
+msgstr "Crític:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Nombre total de paraules"
+msgstr "Nombre total de paraules:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Traduït"
+msgstr "Traduït:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Cal revisar"
+msgstr "Cal revisar:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Suggeriment %d:"
+msgstr "Administració de suggeriments"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Hi ha %(suggestions.count)s suggeriments pendents"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"
@@ -3042,32 +3002,31 @@ msgid "Tweet this!"
 msgstr "Piula això!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Cap contribució en l'últim mes"
+msgstr "Cap contribució en els últims 30 dies"
 
 #: templates/user/profile.html:43
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
 "Sóc el col·laborador número %(pos)s per a %(lang_name)s d'aquest mes en "
-"%(server_title)s! "
+"%(server_title)s!  "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Col·laborador número %(pos)s per a %(lang_name)s d'aquest mes"
+msgstr "Col·laborador número %(pos)s per a %(lang_name)s en els últims 30 dies"
 
 #: templates/user/profile.html:49
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"Col·laborador %(pos)s per a <a href=\"%(url)s\">%(lang_name)s</a> d'aquest "
-"mes"
+"Col·laborador núm. %(pos)s per a <a href=\"%(url)s\">%(lang_name)s</a> en "
+"els últims 30 dies"
 
 #: templates/user/profile.html:60
 msgid "Latest activity:"
@@ -3166,9 +3125,8 @@ msgid "Sign in"
 msgstr "Inicia la sessió"
 
 #: templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Col·laboradors més actius els últims 30 dies"
+msgstr "Col·laboradors més actius dels últims 30 dies"
 
 #, fuzzy
 #~ msgid "Admins"

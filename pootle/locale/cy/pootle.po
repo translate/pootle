@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-24 14:39+0000\n"
+"PO-Revision-Date: 2016-12-01 14:48+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479998393.000000\n"
+"X-POOTLE-MTIME: 1480603737.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -320,7 +320,7 @@ msgstr "Arddull GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr "nid arddull GNU "
+msgstr "nid arddull GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
@@ -335,7 +335,6 @@ msgid "Filesystem backend"
 msgstr "Cefn system ffeiliau"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
 msgstr "Cefn system ffeiliau"
 
@@ -348,23 +347,24 @@ msgid "The URL or path to your translation files"
 msgstr "URL neu lwybr i'ch ffeiliau cyfieithu"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Gosodiadau Cyfieithu"
+msgstr "Mapio'r llwybr cyfieithu"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Mapio llwybr cyfieithu sy'n mapio'r ffeil lleoleiddio ar system ffeiliau i'r "
+"storfa ar Pootle."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Rhaid i godau iaith system ffeiliau fod yn unigryw"
 
 #: apps/pootle_fs/forms.py:181
 msgid "Pootle language mappings must be unique"
-msgstr ""
+msgstr "Rhaid i fapio iaith Pootle fod yn unigryw"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -383,7 +383,6 @@ msgid "Administrator"
 msgstr "Gweinyddwr"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
 msgstr "Gweinyddwr"
 
@@ -400,24 +399,22 @@ msgid "Members"
 msgstr "Aelodau"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Aelod"
+msgstr "Aelod newydd"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Ychwanegu defnyddiwr i'r tîm hwn"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Rôl sydd ei angen wrth ychwanegu aelod newydd"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
 msgstr "Gwrthod"
 
 #: apps/pootle_language/forms.py:154 core/forms.py:185
-#, fuzzy
 msgid "Accept"
 msgstr "Derbyniwyd"
 
@@ -490,34 +487,32 @@ msgid "Suggestion"
 msgstr "Awgrymu"
 
 #: apps/pootle_language/views.py:209
-#, fuzzy
 msgid "Suggested by"
-msgstr "Awgrymu"
+msgstr "Awgrymu gan"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested at"
-msgstr "Awgrymu"
+msgstr "Awgrymwyd gan"
 
 #: apps/pootle_language/views.py:232
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Gwrthod awgrym gan %(author)s a sylw: %(comment)s"
+msgstr "Gwrthod awgrymiadau %s gyda sylw. Bydd y defnyddiwr yn cael ei hysbysu"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Derbyn awgrym gan %(author)s a sylw: %(comment)s"
+msgstr "Derbyn awgrymiadau %s gyda sylw. Bydd y defnyddiwr yn cael ei hysbysu"
 
 #: apps/pootle_language/views.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Gwrthod yr awgrym"
+msgstr "Gwrthod awgrym %s"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Derbyn yr awgrym"
+msgstr "Derbyn awgrym %s"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -904,9 +899,9 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Nid oes modd defnyddio \"%(code)s\" fel cod project"
 
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "Nid oes modd defnyddio \"%(code)s\" fel cod project"
+msgstr "Nid oes modd defnyddio \"%(code)s\" fel gwiriwr project"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -933,9 +928,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Nid GNU: Pob iaith yn ei gyfarwyddiadur ei hun"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
-msgstr "Caniatáu i pootle_fs i reoli systemau ffeiliau"
+msgstr "Caniatáu i Pootle FS i reoli systemau ffeiliau"
 
 #: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
@@ -1317,9 +1311,8 @@ msgid "No RQ Worker running."
 msgstr "Dim RQ Worker yn rhedeg."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Rhedeg gweithwyr newydd gyda manage.py rqworker"
+msgstr "Rhedeg gweithwyr newydd gyda 'pootle rqworker'"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1552,17 +1545,15 @@ msgid "Remove the 'admin' user or change its password."
 msgstr "Tynnu'r defnyddiwr 'admin' neu newid ei gyfrinair."
 
 #: checks.py:402
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "Nid yw'r cysylltiad a'r gronfa ddata yn cychwyn on_commit."
+msgstr "Mae cysylltiad â'r gronfa ddata yn defnyddio transaction_hooks."
 
 #: checks.py:403
-#, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"Gosod y DATABASES['default']['ENGINE'] i ddefnyddio cefn o transaction_hooks."
+"Gosod y DATABASES['default']['ENGINE'] i ddefnyddio cefn Django o django.db."
 "backends."
 
 #: checks.py:423
@@ -1586,45 +1577,58 @@ msgstr "Rhedwch `revision --restore` i ailosod y cyfrif adolygu."
 #: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Dim URL canonical wedi ei ddarparu ac mae'r wefan ragosodedig wedi ei gosod "
+"i example.com."
 
 #: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Gosod `POOTLE_CANONICAL_URL` yn y gosodiadau neu ddiweddaru'r wefan "
+"ragosodedig os ydych yn defnyddio django.contrib.sites."
 
 #: checks.py:472
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Mae'r Canonical URL wedi ei osod i http://localhost."
 
 #: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Gosod `POOTLE_CANONICAL_URL` i werth priodol ar gyfer eich gwefan neu ei "
+"adael yn wag os ydych yn defnyddio django.contrib.sites."
 
 #: checks.py:504
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "Nid yw POOTLE_CONTACT_EMAIL wedi ei osod."
+msgstr "Nid yw POOTLE_FS_WORKING_PATH wedi ei osod."
 
 #: checks.py:508
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
+"Nid yw'r llwybr sy'n cael ei bwyntio ato gan POOTLE_FS_WORKING_PATH yn "
+"bodoli."
 
 #: checks.py:509
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
 msgstr ""
+"Wrthi'n creu'r cyfeiriadur cyfeiriwyd ato gan osodiad "
+"`POOTLE_FS_WORKING_PATH`."
 
 #: checks.py:514
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Nid yw'r llwybr cyfeiriwyd ato gan POOTLE_FS_WORKING_PATH yn ysgrifenadwy "
+"gan Pootle."
 
 #: checks.py:516
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Ychwanegu hawl ysgrifennu i gyfeiriadur `POOTLE_FS_WORKING_PATH` gan "
+"ddefnyddio 'chmod +w'"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1689,24 +1693,25 @@ msgstr "Anghywir"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Gyda hwn"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
-msgstr "Ychwanegu Sylw"
+msgstr "Ychwanegu sylw"
 
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Dewis pob eitem sy'n cydweddu â meini prawf yr hidl, gan gynnwys y rhai nad "
+"ydynt yn cael eu dangos"
 
 #: core/forms.py:211
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Rhaid pennu gweithred i'w weithredu"
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Rhaid pennu maes chwilio dilys"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1733,64 +1738,64 @@ msgid "Can perform administrative tasks"
 msgstr "Gall gyflawni tasgau gweinyddol"
 
 #: core/views/display.py:94 core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "%(source_string)s wedi tynnu'r cyfieithiad"
+msgstr "Mae %(user)s wedi tynnu cyfieithiad %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Derbyn yr awgrym gan %(author)s"
+msgstr "Derbyniodd %(user)s awgrymiadau gan %(source)s"
 
 #: core/views/display.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
-msgstr "wedi llwytho ffeil"
+msgstr "Llwythodd %(user)s ffeil"
 
 #: core/views/display.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "tawelu %(check_name)s ar gyfer %(source_string)s"
+msgstr "Tawelodd %(user)s %(check)s ar gyfer %(source)s"
 
 #: core/views/display.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "%(check_name)s llafar ar gyfer %(source_string)s"
+msgstr "Dad-dawelodd %(user)s %(check)s ar gyfer %(source)s"
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "awgrymiadau ychwanegwyd ar gyfer %(source_string)s"
+msgstr "Ychwanegodd %(user)s awgrymiadau ar gyfer %(source)s"
 
 #: core/views/display.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Gwrthod yr awgrym gan %(author)s"
+msgstr "Gwrthododd %(user)s awgrym gan %(source)s"
 
 #: core/views/display.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "%(source_string)s wedi eu cyfieithu"
+msgstr "Cyfieithodd %(user)s %(source)s"
 
 #: core/views/display.py:111
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "%(source_string)s wedi eu golygu"
+msgstr "Golygodd %(user)s %(source)s"
 
 #: core/views/display.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "%(source_string)s wedi eu rhag-gyfieithu"
+msgstr "Rhag-gyfieithodd %(user)s %(source)s"
 
 #: core/views/display.py:117
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "%(source_string)s wedi eu hadolygu"
+msgstr "Adolygodd %(user)s %(source)s"
 
 #: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "Nododd %(user)s ei fod angen gwaith %(source)s"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -2119,56 +2124,58 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Ffurfweddiad system cod: %(project_code)s"
 
 #: templates/admin/project_fs.html:30
 msgid "Backend configuration"
-msgstr ""
+msgstr "Ffurfweddiad y cefn"
 
 #: templates/admin/project_fs.html:41
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Diweddaru ffurfweddiad y system ffeiliau"
 
 #: templates/admin/project_fs.html:44
 msgid "Translation mapping should be of the format:"
-msgstr ""
+msgstr "Dylai fapio cyfieithu fod ar ffurf:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Dim ond`&lt;language_code&gt;` sydd ei angen, er mae'n rhaid iddo orffen "
+"gyda `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Os ydych yn defnyddio cefn localfs bydd y mapio cyfieithu'n cael ei gyfuno "
+"gyda'r llwybr nodwyd yn URL y cefn"
 
 #: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
+"Ar gyfer pob cefn arall bydd mapio'r cyfieithu'n berthynol i wraidd y storfa."
 
 #: templates/admin/project_fs.html:74
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Gwybodaeth iaith %(language)s"
+msgstr "Ffurfweddiad mapio iaith"
 
 #: templates/admin/project_fs.html:84
-#, fuzzy
 msgid "Remove"
-msgstr "Tynnu sylw"
+msgstr "Tynnu"
 
 #: templates/admin/project_fs.html:85
-#, fuzzy
 msgid "Pootle code"
-msgstr "Enghraifft o Pootle"
+msgstr "Cod Pootle"
 
 #: templates/admin/project_fs.html:86
 msgid "Filesystem code"
-msgstr ""
+msgstr "Cod system ffeiliau"
 
 #: templates/admin/project_fs.html:90
 #: templates/admin/staticpages/page_create.html:4
@@ -2176,7 +2183,6 @@ msgid "Add"
 msgstr "Ychwanegu"
 
 #: templates/admin/project_fs.html:97
-#, fuzzy
 msgid "Update"
 msgstr "Diweddariadau"
 
@@ -2320,19 +2326,21 @@ msgid "All"
 msgstr "Popeth"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class=\"value translated\">0</span>%% wedi ei gyfieithu"
+msgstr ""
+"<span class='value translated'>%(translated)s</span>%% wedi ei gyfieithu"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% bras"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% angen gwaith"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% heb eu cyfieithu"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% heb eu cyfieithu"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2359,9 +2367,8 @@ msgid "Updates"
 msgstr "Diweddariadau"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Diweddarwyd diwethaf"
+msgstr "Diweddarwyd diwethaf:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2497,13 +2504,11 @@ msgid "Go to the next string (Ctrl+Down)"
 msgstr "Mynd i'r llinyn nesaf (Ctrl+Lawr)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
 msgstr ""
-"Mae awgrym #%(suggestion_id)s gyflwynwyd gennych chi ar gyfer %(unit_url)s "
-"wedi ei dderbyn gyda'r sylw canlynol:"
+"Mae'r awgrymiadau canlynol gyflwynwyd gennych wedi eu derbyn gyda'r sylw:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2513,13 +2518,11 @@ msgstr ""
 "cyfraniadau yn y dyfodol."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
 msgstr ""
-"Mae awgrym #%(suggestion_id)s gyflwynwyd gennych chi ar gyfer %(unit_url)s "
-"wedi ei wrthod gyda'r sylw canlynol:"
+"Mae'r awgrymiadau canlynol gyflwynwyd gennych wedi eu gwrthod gyda'r sylw:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2623,6 +2626,7 @@ msgstr "adolygwyd gan <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Mewnosod %(character_name)s (Unicode value %(character_code)s) i'r golygydd"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
@@ -2789,14 +2793,12 @@ msgid "The reported error was:"
 msgstr "Y gwall cofnodwyd oedd:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Dangos yr hidlo"
+msgstr "Dangos"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Dewis y math"
+msgstr "Dewis popeth"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2806,68 +2808,59 @@ msgstr "Pori"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Tîm"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Awgrymiadau gan ddefnyddwyr"
+msgstr "Awgrymiadau hidlo"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Newyddion yr iaith"
+msgstr "Tîm iaith"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Gweinyddiaeth yr aelod"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Ychwanegu aelod o'r tîm"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Tynnu'r awgrym"
+msgstr "Tynnu'r unigolyn"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Crëwyd uned"
+msgstr "Uned weinyddol"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Pwysig"
+msgstr "Pwysig:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Geiriau wedi eu cyfieithu"
+msgstr "Cyfanswm geiriau:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Cyfieithu"
+msgstr "Cyfieithwyd:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Angen gwaith"
+msgstr "Angen gwaith:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Awgrymiadau dan Ystyriaeth"
+msgstr "Gweinyddiaeth awgrymiadau"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Mae yna %(suggestions.count)s awgrymiad yn disgwyl"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"

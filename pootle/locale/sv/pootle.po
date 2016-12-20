@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-12 07:50+0000\n"
+"PO-Revision-Date: 2016-12-07 18:27+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1478937045.000000\n"
+"X-POOTLE-MTIME: 1481135245.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -337,9 +337,8 @@ msgid "Filesystem backend"
 msgstr "Backend för filsystem"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Backend för filsystem"
+msgstr "Välj ett backend för filsystem"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -350,24 +349,24 @@ msgid "The URL or path to your translation files"
 msgstr "URL eller sökvägen till översättningsfiler"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Översättningsinställningar"
+msgstr "Mappning översättningssökväg"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Mappning av översättningssökvägar mappar lokaliseringsfiler på filsystemet "
+"till lagring på Pootle."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Filsystemets språkkoder måste vara unika"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Administrera språk i Pootle"
+msgstr "Pootle språkmappning måste vara unik"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -386,9 +385,8 @@ msgid "Administrator"
 msgstr "Administratör"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Administratör"
+msgstr "Administratörer"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -403,17 +401,16 @@ msgid "Members"
 msgstr "Medlemmar"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Lägg till gruppmedlem"
+msgstr "Ny medlem"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Lägg till en användare till gruppen"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Roll krävs när du lägger till en ny medlem"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -496,29 +493,28 @@ msgid "Suggested by"
 msgstr "Föreslaget av"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested at"
-msgstr "Föreslå"
+msgstr "Föreslaget den"
 
 #: apps/pootle_language/views.py:232
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Avvisade förslag från %(author)s med kommentar: %(comment)s"
+msgstr "Avvisade %s förslag med kommentarer. Användare kommer att meddelas"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Godkände förslag från %(author)s med kommentar: %(comment)s"
+msgstr "Godkände %s förslag med kommentarer. Användare kommer att meddelas "
 
 #: apps/pootle_language/views.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Avvisa förslag"
+msgstr "Avvisade %s förslag"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Godkänn förslag"
+msgstr "Godkände %s förslag"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -1313,9 +1309,8 @@ msgid "No RQ Worker running."
 msgstr "Ingen RQ-Worker körs."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Kör nya workers med manage.py rqworker"
+msgstr "Kör nya workers med 'pootle rqworker'"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1339,13 +1334,12 @@ msgid "Double-check your CACHES settings"
 msgstr "Dubbelkolla dina cache-inställningar"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "Distinkta django_redis.cache.RedisCache konfigurationer krävs för `default`,"
-"` redis` och `stats`."
+"` redis` och `lru`."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1360,9 +1354,8 @@ msgid "The sqlite database backend is unsupported"
 msgstr "SQLite databas backend stöds inte"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr "Ange standarddatabasmotor till postgresql_psycopg2 eller mysql"
+msgstr "Ställ in standarddatabasmotor till PostgreSQL eller MySQL"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -1697,9 +1690,9 @@ msgid "Add comment"
 msgstr "Lägg till kommentar"
 
 #: core/forms.py:193
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
-msgstr "Välj alla matchande filterkriterier, inklusive de som inte visas"
+msgstr ""
+"Välj alla objekt som matchar filterkriterier, även sådana som inte visas"
 
 #: core/forms.py:211
 msgid "You must specify an action to take"
@@ -1707,7 +1700,7 @@ msgstr "Du måste ange en åtgärd som ska vidtas"
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Ett giltigt sökfält måste specificeras"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1736,62 +1729,62 @@ msgstr "Kan utföra administrativa uppgifter"
 #: core/views/display.py:94 core/views/display.py:115
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
+msgstr "%(user)s tog bort översättning för %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Godkända förslag från %(author)s"
+msgstr "%(user)s godkände förslag för %(source)s"
 
 #: core/views/display.py:98
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s laddade upp fil"
 
 #: core/views/display.py:100
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s tog bort %(check)s för %(source)s"
 
 #: core/views/display.py:102
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s lade till %(check)s för %(source)s"
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "Importerade %(count)d förslag från %(store)s"
+msgstr "%(user)s lade till förslag för %(source)s"
 
 #: core/views/display.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Avvisade förslag från %(author)s"
+msgstr "%(user)s avvisade förslag för %(source)s"
 
 #: core/views/display.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "Måste översätta ord"
+msgstr "%(user)s översatte %(source)s"
 
 #: core/views/display.py:111
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s redigerade %(source)s"
 
 #: core/views/display.py:113
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s förhandsöversatt %(source)s"
 
 #: core/views/display.py:117
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s granskade %(source)s"
 
 #: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s markerade att %(source)s behöver kontrolleras"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -2128,9 +2121,8 @@ msgid "Update filesystem configuration"
 msgstr "Uppdatera filsystemskonfiguration"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation mapping should be of the format:"
-msgstr "Översättningssökvägar bör vara av formatet:"
+msgstr "Översättningsmappning bör vara av formatet:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2141,22 +2133,19 @@ msgstr ""
 "ext&gt;`"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
-"Om du använder localfs backend kommer översättningssökvägen att kombineras "
-"med den sökväg som anges i\n"
-"\t    backend-URL"
+"Om du använder localfs backend kommer översättningsmappningen att kombineras "
+"med den sökväg som anges i backend-URL"
 
 #: templates/admin/project_fs.html:64
-#, fuzzy
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
 msgstr ""
-"För andra backend kommer översättningssökvägen vara relativ till roten av "
+"För andra backend kommer översättningsmappningen vara relativ till roten av "
 "lagringsplatsen."
 
 #: templates/admin/project_fs.html:74
@@ -2324,19 +2313,20 @@ msgid "All"
 msgstr "Alla"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class=\"value translated\">0</span>%% översatta"
+msgstr "<span class='value translated'>%(translated)s</span>%% översatta"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% behöver kontrolleras"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% behöver kontrolleras"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% ej översatta"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% ej översatta"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2363,9 +2353,8 @@ msgid "Updates"
 msgstr "Uppdateringar"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Senast uppdaterad"
+msgstr "Senast uppdaterad:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2547,7 +2536,7 @@ msgstr "Terminologi:"
 
 #: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
-msgstr "Lägg till den översatta termen i Pootle"
+msgstr "Infoga den översatta termen i editorn"
 
 #: templates/editor/units/edit.html:68
 msgid "Comments:"
@@ -2619,11 +2608,11 @@ msgstr "granskad av <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
-msgstr ""
+msgstr "Infoga %(character_name)s (Unicode value %(character_code)s) i editorn"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
-msgstr "Visa förslag"
+msgstr "Användarförslag"
 
 #: templates/editor/units/edit.html:281
 msgid "More options"
@@ -2651,7 +2640,7 @@ msgstr "För länge sedan"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr "Kommentarer: "
+msgstr "Kommentar: "
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical issues with the translation"
@@ -2804,9 +2793,8 @@ msgid "Team"
 msgstr "Grupp"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Visa förslag"
+msgstr "Filtrera förslag"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"

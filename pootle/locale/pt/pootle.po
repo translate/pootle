@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-21 23:36+0000\n"
+"PO-Revision-Date: 2016-11-25 13:53+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1479771398.000000\n"
+"X-POOTLE-MTIME: 1480081983.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -353,9 +353,8 @@ msgid "Filesystem backend"
 msgstr "Infraestrutura do sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Infraestrutura do sistema de ficheiros"
+msgstr "Selecione a infraestrutura do sistema de ficheiros"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -366,9 +365,8 @@ msgid "The URL or path to your translation files"
 msgstr "O URL ou o caminho dos seus ficheiros de tradução"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Definições de tradução"
+msgstr "Mapeamento do caminho da tradução"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
@@ -403,9 +401,8 @@ msgid "Administrator"
 msgstr "Administrador"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Administrador"
+msgstr "Administradores"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -421,13 +418,12 @@ msgid "Members"
 msgstr "Membros"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Adicionar membro à equipa"
+msgstr "Novo membro"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Adiciona um utilizador à equipa"
 
 #: apps/pootle_language/forms.py:127
 #, fuzzy
@@ -1753,59 +1749,59 @@ msgid "Can perform administrative tasks"
 msgstr "Pode executar tarefas administrativas"
 
 #: core/views/display.py:94 core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "com tradução removida em %(source_string)s"
+msgstr "%(user)s removeu a tradução de %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Aceitou a sugestão de %(author)s"
+msgstr "%(user)s aceitou a sugestão para %(source)s"
 
 #: core/views/display.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s enviou um ficheiro"
 
 #: core/views/display.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "removeu %(check_name)s em %(source_string)s"
+msgstr "%(user)s removeu %(check)s em %(source)s"
 
 #: core/views/display.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "restaurou %(check_name)s em %(source_string)s"
+msgstr "%(user)s restaurou %(check)s em %(source)s"
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "adicionou uma sugestão em %(source_string)s"
+msgstr "%(user)s adicionou uma sugestão para %(source)s"
 
 #: core/views/display.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Rejeitou a sugestão de %(author)s"
+msgstr "%(user)s rejeitou a sugestão para %(source)s"
 
 #: core/views/display.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "traduziu %(source_string)s"
+msgstr "%(user)s traduziu %(source)s"
 
 #: core/views/display.py:111
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "editou %(source_string)s"
+msgstr "%(user)s editou %(source)s"
 
 #: core/views/display.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "pré-traduziu %(source_string)s"
+msgstr "%(user)s pré-traduziu %(source)s"
 
 #: core/views/display.py:117
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "reviu %(source_string)s"
+msgstr "%(user)s reviu %(source)s"
 
 #: core/views/display.py:119
 #, python-format
@@ -2378,9 +2374,8 @@ msgid "Updates"
 msgstr "Atualizações"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Última atualização"
+msgstr "Última atualização:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2637,6 +2632,7 @@ msgstr "revista por <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Inserir %(character_name)s (valor Unicode %(character_code)s) no editor"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"

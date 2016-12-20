@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-05 10:50+0000\n"
-"Last-Translator: Pavel Maryanov <acid@jack.kiev.ua>\n"
+"PO-Revision-Date: 2016-12-05 17:28+0000\n"
+"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1478343037.000000\n"
+"X-POOTLE-MTIME: 1480958884.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -321,56 +321,55 @@ msgstr "Одноязычный формат"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "стиль GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "не стиль GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "стиль Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Другой"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Бекенд файловой системы"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Выберите файл для выгрузки"
+msgstr "Выберите бекенд файловой системы"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
-msgstr ""
+msgstr "URL или путь бекенда"
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
 msgstr "URL-адрес или путь к файлом переводов"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Настройки переводов"
+msgstr "Маппинг путей перевода"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Маппинг путей перевода указывает, где хранятся файлы переводов в файловой "
+"системе Pootle."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Языковые коды файловой системы должны быть уникальными"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Страница управления языками"
+msgstr "Маппинг языков Pootle должен быть уникален"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -389,9 +388,8 @@ msgid "Administrator"
 msgstr "Администратор"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Администратор"
+msgstr "Администраторы"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -406,17 +404,16 @@ msgid "Members"
 msgstr "Участники"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Участник"
+msgstr "Новый участник"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Добавить пользователя в эту команду"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Необходимо указать роль при добавлении нового участника"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -496,34 +493,32 @@ msgid "Suggestion"
 msgstr "Предложение"
 
 #: apps/pootle_language/views.py:209
-#, fuzzy
 msgid "Suggested by"
-msgstr "Предложить"
+msgstr "Предложено"
 
 #: apps/pootle_language/views.py:210
-#, fuzzy
 msgid "Suggested at"
-msgstr "Предложить"
+msgstr "Предложено"
 
 #: apps/pootle_language/views.py:232
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Отклонено предложение от %(author)s с комментарием: %(comment)s"
+msgstr "Отклонено предложение от %s с комментарием. Пользователь оповещён."
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Принято предложение от %(author)s с комментарием: %(comment)s"
+msgstr "Принято предложение от %s с комментарием. Пользователь оповещён."
 
 #: apps/pootle_language/views.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Отклонить предложение"
+msgstr "Отклонённые предложения от %s"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Принять предложение"
+msgstr "Принятые предложения от %s"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -1320,9 +1315,8 @@ msgid "No RQ Worker running."
 msgstr "Отсутствуют запущенные RQ обработчики."
 
 #: checks.py:150
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Запустите новые обработчики с помощью manage.py rqworker"
+msgstr "Запустите новые обработчики с помощью 'pootle rqworker'"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1346,13 +1340,12 @@ msgid "Double-check your CACHES settings"
 msgstr "Перепроверьте настройки переменной CACHES"
 
 #: checks.py:189
-#, fuzzy
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 "Отдельные конфигурации django_redis.cache.RedisCache необходимы для "
-"`default`, `redis` и `stats`."
+"`default`, `redis` and `lru`."
 
 #: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1367,9 +1360,8 @@ msgid "The sqlite database backend is unsupported"
 msgstr "База данных sqlite не поддерживается"
 
 #: checks.py:205
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr "Установите движок базы данных в значение postgresql_psycopg2 или mysql"
+msgstr "Установите движок базы данных в значение postgresql или mysql"
 
 #: checks.py:212
 msgid "Not using cached_db as session engine"
@@ -1587,27 +1579,32 @@ msgstr "Запустите `revision --restore` чтобы восстанови�
 #: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Канонический URL не указан, поэтому сайт по умолчанию установлен в example."
+"com."
 
 #: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Установите в настройках переменную `POOTLE_CANONICAL_URL` или обновите сайт "
+"по умолчанию, если вы используете django.contrib.sites."
 
 #: checks.py:472
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Канонический URL установлен в http://localhost."
 
 #: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Установите переменную `POOTLE_CANONICAL_URL` в необходимое значение для "
+"вашего сайта или оставьте пустым, если вы используете`django.contrib.sites`."
 
 #: checks.py:504
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "Переменная POOTLE_CONTACT_EMAIL не задана."
+msgstr "Переменная POOTLE_FS_WORKING_PATH не задана."
 
 #: checks.py:508
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
@@ -1702,14 +1699,15 @@ msgstr "Добавить комментарий"
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Выбрать все элемент, отвечающие критериям, включая те, которые не показаны"
 
 #: core/forms.py:211
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Вы должны выбрать действие"
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Корректное поле поиска должно быть указано"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1736,64 +1734,64 @@ msgid "Can perform administrative tasks"
 msgstr "Может выполнять административные задачи"
 
 #: core/views/display.py:94 core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "удалил перевод для %(source_string)s"
+msgstr "%(user)s удалил перевод для %(source)s"
 
 #: core/views/display.py:96
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Принято предложение от %(author)s"
+msgstr "%(user)s принял предложение для %(source)s"
 
 #: core/views/display.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
-msgstr "загрузил файл"
+msgstr "%(user)s загрузил файл"
 
 #: core/views/display.py:100
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "заглушил проверку %(check_name)s для %(source_string)s"
+msgstr "%(user)s заглушил проверку %(check_name)s для %(source)s"
 
 #: core/views/display.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "вернул проверку %(check_name)s для %(source_string)s"
+msgstr "%(user)s вернул проверку %(check_name)s для %(source)s"
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "добавил предложение для %(source_string)s"
+msgstr "%(user)s добавил предложение для %(source)s"
 
 #: core/views/display.py:106
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Отклонено предложение от %(author)s"
+msgstr "%(user)s отклонил предложение для %(source)s"
 
 #: core/views/display.py:109
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "перевел %(source_string)s"
+msgstr "%(user)s перевел %(source)s"
 
 #: core/views/display.py:111
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "изменил %(source_string)s"
+msgstr "%(user)s изменил %(source)s"
 
 #: core/views/display.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "предварительно перевел %(source_string)s"
+msgstr "%(user)s предварительно перевел %(source)s"
 
 #: core/views/display.py:117
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "отрецензировал %(source_string)s"
+msgstr "%(user)s отрецензировал %(source)s"
 
 #: core/views/display.py:119
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s пометил как требующее доработки %(source)s"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -2123,55 +2121,57 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Конфигурация файловой системы: %(project_code)s"
 
 #: templates/admin/project_fs.html:30
 msgid "Backend configuration"
-msgstr ""
+msgstr "Конфигурация бекенда"
 
 #: templates/admin/project_fs.html:41
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Обновить конфигурацию файловой системы"
 
 #: templates/admin/project_fs.html:44
 msgid "Translation mapping should be of the format:"
-msgstr ""
+msgstr "Маппинг перевода должен отвечать формату:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Только `&lt;language_code&gt;` является обязательным, также, он должен "
+"заканчиваться на `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:58
 msgid ""
 "If you are using the localfs backend the translation mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Если вы используете бекенд localfs, то маппинг путей перевода будет совмещён "
+"с путём, указанным в URL бекенда"
 
 #: templates/admin/project_fs.html:64
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
-msgstr ""
+msgstr "Для остальных бекендов, маппинг относителен корню репозитория."
 
 #: templates/admin/project_fs.html:74
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Информация о языках %(language)s"
+msgstr "Конфигурация маппинга языков"
 
 #: templates/admin/project_fs.html:84
 msgid "Remove"
 msgstr "Удалить"
 
 #: templates/admin/project_fs.html:85
-#, fuzzy
 msgid "Pootle code"
-msgstr "Демонстрация Pootle"
+msgstr "Код Pootle"
 
 #: templates/admin/project_fs.html:86
 msgid "Filesystem code"
-msgstr ""
+msgstr "Код файловой системы"
 
 #: templates/admin/project_fs.html:90
 #: templates/admin/staticpages/page_create.html:4
@@ -2179,9 +2179,8 @@ msgid "Add"
 msgstr "Добавить"
 
 #: templates/admin/project_fs.html:97
-#, fuzzy
 msgid "Update"
-msgstr "Обновления"
+msgstr "Обновить"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2324,19 +2323,20 @@ msgid "All"
 msgstr "Все"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value translated'>%(translated)s</span>%% translated"
-msgstr "<span class='value translated'>0</span>%% переведено"
+msgstr "<span class='value translated'>%(translated)s</span>%% переведено"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy)s</span>%% needs work"
-msgstr "<span class='value fuzzy'>0</span>%% неточных"
+msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% неточных"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value untranslated'>%(untranslated)s</span>%% untranslated"
-msgstr "<span class='value untranslated'>0</span>%% не переведено"
+msgstr ""
+"<span class='value untranslated'>%(untranslated)s</span>%% не переведено"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2363,9 +2363,8 @@ msgid "Updates"
 msgstr "Обновления"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "Последнее изменение"
+msgstr "Последнее изменение:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2499,13 +2498,12 @@ msgid "Go to the next string (Ctrl+Down)"
 msgstr "Переход на следующую строку (Ctrl+Down)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
 msgstr ""
-"Предложение перевода #%(suggestion_id)s отправленное вами для %(unit_url)s "
-"было одобрено со следующим комментарием:"
+"Данные предложения, отправленые вами, были одобрены со следующим "
+"комментарием:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2514,13 +2512,12 @@ msgstr ""
 "Мы надеемся, что этот отзыв поможет вам улучшить ваши следующие правки."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
-#, fuzzy
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
 msgstr ""
-"Предложение перевода #%(suggestion_id)s отправленное вами для %(unit_url)s "
-"было отклонено со следующим комментарием:"
+"Данные предложения, отправленые вами, были отклонены со следующим "
+"комментарием:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2624,6 +2621,7 @@ msgstr "подтверждено <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Вставить %(character_name)s (Код Unicode %(character_code)s) в редактор"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
@@ -2791,14 +2789,12 @@ msgid "The reported error was:"
 msgstr "Была получена ошибка:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Показать назначения"
+msgstr "Показано"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Выбрать несколько"
+msgstr "Выбрать все"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2808,68 +2804,59 @@ msgstr "Обзор"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Команда"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Просмотреть предложения"
+msgstr "Фильтр предложений"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Название языка"
+msgstr "Языковая команда"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Администратор участников"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
-msgstr ""
+msgstr "Добавить участника команды"
 
 #: templates/languages/admin/language_team.html:44
 #: templates/languages/admin/language_team.html:60
 #: templates/languages/admin/language_team.html:76
 #: templates/languages/admin/language_team.html:92
-#, fuzzy
 msgid "Remove selected"
-msgstr "Удалить пользователя"
+msgstr "Удалить выделеное"
 
 #: templates/languages/admin/language_team.html:113
-#, fuzzy
 msgid "Unit admin"
-msgstr "Администратор Django"
+msgstr "Администратор сегментов"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Critical:"
-msgstr "Критические"
+msgstr "Критические:"
 
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Total words:"
-msgstr "Всего слов"
+msgstr "Всего слов:"
 
 #: templates/languages/admin/language_team.html:129
-#, fuzzy
 msgid "Translated:"
-msgstr "Переведено"
+msgstr "Переведено:"
 
 #: templates/languages/admin/language_team.html:135
-#, fuzzy
 msgid "Needs work:"
-msgstr "Необходима доработка"
+msgstr "Необходима доработка:"
 
 #: templates/languages/admin/language_team.html:144
-#, fuzzy
 msgid "Suggestion admin"
-msgstr "Предложение %d:"
+msgstr "Администратор предложений"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
 msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
+msgstr "Сейчас %(suggestions.count)s предложений ожидают рассмотрения"
 
 #: templates/layout.html:83
 msgid "Pootle requires JavaScript"

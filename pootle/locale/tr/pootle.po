@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-24 10:50+0000\n"
+"PO-Revision-Date: 2016-12-03 09:35+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1479984611.000000\n"
+"X-POOTLE-MTIME: 1480757726.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -339,9 +339,8 @@ msgid "Filesystem backend"
 msgstr "Dosya sistemi arka ucu"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Dosya sistemi arka ucu"
+msgstr "Bir dosya sistemi arka ucu seçin"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -352,24 +351,24 @@ msgid "The URL or path to your translation files"
 msgstr "Çeviri dosyalarınıza giden URL veya yol"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Çeviri Ayarları"
+msgstr "Çeviri yolu eşlemesi"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Dosya sistemindeki yerelleştirme dosyalarını Pootle üzerinde depolananlar "
+"ile eşleyen çeviri yolu eşlemesi."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Dosya sistemi dil kodları benzersiz olmak zorundadır"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Pootle Diller Yönetici Sayfası"
+msgstr "Pootle dil eşlemeleri benzersiz olmak zorundadır"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -388,9 +387,8 @@ msgid "Administrator"
 msgstr "Yönetici"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Yönetici"
+msgstr "Yöneticiler"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -405,18 +403,16 @@ msgid "Members"
 msgstr "Üyeler"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Takım üyesi ekle"
+msgstr "Yeni üye"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Bir kullanıcıyı bu takıma ekle"
 
 #: apps/pootle_language/forms.py:127
-#, fuzzy
 msgid "Role is required when adding a new member"
-msgstr "Redis bir önbellekleme arka ucu olarak gerekir."
+msgstr "Yeni bir üye eklenirken rol gerekir"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -1658,7 +1654,7 @@ msgstr "Öneriler"
 #: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr "Tamamlanmadı"
+msgstr "Tamamlanmamış"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -1708,9 +1704,8 @@ msgid "Add comment"
 msgstr "Yorum ekle"
 
 #: core/forms.py:193
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
-msgstr "Tüm eşleşen süzme ölçütlerini seçin, bu gösterilmeyenler dahil"
+msgstr "Süzme ölçütüyle eşleşen tüm öğeleri seçin, bu gösterilmeyenler dahil"
 
 #: core/forms.py:211
 msgid "You must specify an action to take"
@@ -1718,7 +1713,7 @@ msgstr "Gerçekleştirmek için bir eylem belirlemek zorundasınız"
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Geçerli bir arama alanı belirtilmek zorundadır"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1747,7 +1742,7 @@ msgstr "Yönetimsel görevler yapabilir"
 #: core/views/display.py:94 core/views/display.py:115
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "%(user)s, %(source_string)s için çeviriyi kaldırdı"
+msgstr "%(user)s, %(source)s için çeviriyi kaldırdı"
 
 #: core/views/display.py:96
 #, python-format
@@ -2165,7 +2160,8 @@ msgstr ""
 msgid ""
 "For other backends the translation mapping will be relative to the root of "
 "the repository."
-msgstr "Diğer arka uçlar için çeviri eşlemesi havuzun kökü ile ilgili olacak."
+msgstr ""
+"Diğer arka uçlar için çeviri eşlemesi havuzun kökü ile ilgili olacaktır."
 
 #: templates/admin/project_fs.html:74
 msgid "Language mapping configuration"
@@ -2626,6 +2622,8 @@ msgstr ""
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Düzenleyici içine %(character_name)s (Evrensel kod değeri "
+"%(character_code)s) ekle"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"

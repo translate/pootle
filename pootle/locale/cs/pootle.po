@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-11-24 16:54+0000\n"
-"PO-Revision-Date: 2016-11-22 16:31+0000\n"
+"PO-Revision-Date: 2016-11-25 13:25+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479832291.000000\n"
+"X-POOTLE-MTIME: 1480080339.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -341,9 +341,8 @@ msgid "Filesystem backend"
 msgstr "Back-end systému souborů"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Back-end systému souborů"
+msgstr "Vyberte back-end systému souborů"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -354,24 +353,24 @@ msgid "The URL or path to your translation files"
 msgstr "Adresa nebo cesta k překladovým souborům"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Nastavení překladů"
+msgstr "Přiřazení cesty překladu"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Přiřazení cesty překladu určující přiřazení překladových souborů v systému "
+"souborů k úložištím Pootle serveru."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Kódy jazyků pro systém souborů musí být jedinečné"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Administrátorská stránka jazyků"
+msgstr "Přiřazení jazyků pro Pootle musí být jedinečná"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -390,9 +389,8 @@ msgid "Administrator"
 msgstr "Správce"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Správce"
+msgstr "Správci"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -407,18 +405,16 @@ msgid "Members"
 msgstr "Členové"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Přidat člena týmu"
+msgstr "Nový člen"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Přidat uživatele do tohoto týmu"
 
 #: apps/pootle_language/forms.py:127
-#, fuzzy
 msgid "Role is required when adding a new member"
-msgstr "Jako back-end pro mezipaměť je vyžadován Redis."
+msgstr "Při přidání nového člena je nutné nastavit roli"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -1699,10 +1695,10 @@ msgid "Add comment"
 msgstr "Přidat komentář"
 
 #: core/forms.py:193
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
-"Vybrat odpovídající podmínky filtru, včetně těch které nejsou zobrazeny"
+"Vybrat všechny položky odpovídající filtru, včetně těch které nejsou "
+"zobrazeny"
 
 #: core/forms.py:211
 msgid "You must specify an action to take"
@@ -1710,7 +1706,7 @@ msgstr "Musíte určit akci kterou chcete provést"
 
 #: core/forms.py:212
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Musí být zadána platná podmínka hledání"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -2619,6 +2615,7 @@ msgstr "zkontroloval <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Vložit do editoru %(character_name)s (Unicode value %(character_code)s)"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
