@@ -258,10 +258,19 @@ class Plugin(object):
         for fs_state in state["pootle_untracked"]:
             response.add("added_from_pootle", fs_state=fs_state)
         if force:
-            for fs_state in state["fs_removed"]:
-                response.add("readded_from_pootle", fs_state=fs_state)
-            for fs_state in state["pootle_removed"]:
-                response.add("readded_from_fs", fs_state=fs_state)
+            sfs = {}
+            for fs_state in (state['fs_removed'] + state['pootle_removed']):
+                sfs[fs_state.kwargs["store_fs"]] = fs_state
+            _sfs = StoreFS.objects.filter(
+                id__in=sfs.keys()).select_related("store")
+            for store_fs in _sfs:
+                fs_state = sfs[store_fs.id]
+                fs_state.store_fs = store_fs
+                message = (
+                    "readded_from_pootle"
+                    if fs_state.state_type == "fs_removed"
+                    else "readded_from_fs")
+                response.add(message, fs_state=fs_state)
         if response.made_changes:
             self.expire_sync_cache()
         return response
@@ -293,7 +302,16 @@ class Plugin(object):
             "staged_for_%s_%s"
             % ((merge and "merge" or "overwrite"),
                (pootle_wins and "pootle" or "fs")))
-        for fs_state in state["conflict"] + state["conflict_untracked"]:
+        sfs = {}
+        for fs_state in state['conflict']:
+            sfs[fs_state.kwargs["store_fs"]] = fs_state
+        _sfs = StoreFS.objects.filter(
+            id__in=sfs.keys()).select_related("store")
+        for store_fs in _sfs:
+            fs_state = sfs[store_fs.id]
+            fs_state.store_fs = store_fs
+            response.add(action_type, fs_state=fs_state)
+        for fs_state in state["conflict_untracked"]:
             response.add(action_type, fs_state=fs_state)
         if response.made_changes:
             self.expire_sync_cache()
@@ -326,7 +344,16 @@ class Plugin(object):
                 + state["pootle_untracked"])
         self.update_store_fs(to_update, staged_for_removal=True)
         self.create_store_fs(to_create, staged_for_removal=True)
-        for fs_state in to_create + to_update:
+        sfs = {}
+        for fs_state in to_update:
+            sfs[fs_state.kwargs["store_fs"]] = fs_state
+        _sfs = StoreFS.objects.filter(
+            id__in=sfs.keys()).select_related("store")
+        for store_fs in _sfs:
+            fs_state = sfs[store_fs.id]
+            fs_state.store_fs = store_fs
+            response.add("staged_for_removal", fs_state=fs_state)
+        for fs_state in to_create:
             response.add("staged_for_removal", fs_state=fs_state)
         if response.made_changes:
             self.expire_sync_cache()
@@ -361,10 +388,20 @@ class Plugin(object):
             staged_for_merge=False,
             staged_for_removal=False)
         self.delete_store_fs(to_remove)
+        sfs = {}
+        update_fs = StoreFS.objects.filter(
+            id__in=[
+                st.kwargs["store_fs"]
+                for st
+                in (state["pootle_ahead"] + state["fs_ahead"])])
+        for store_fs in update_fs.select_related("store"):
+            sfs[store_fs.id] = store_fs
         updated = sorted(
             to_remove + to_update,
             key=lambda x: x.pootle_path)
         for fs_state in updated:
+            if fs_state.kwargs["store_fs"] in sfs:
+                fs_state.store_fs = sfs[fs_state.kwargs["store_fs"]]
             response.add("unstaged", fs_state=fs_state)
         if response.made_changes:
             self.expire_sync_cache()
@@ -388,7 +425,6 @@ class Plugin(object):
             fs_state = sfs[store_fs.id]
             fs_state.store_fs = store_fs
             pootle_wins = (fs_state.state_type == "merge_pootle_wins")
-            store_fs = fs_state.store_fs
             store_fs.file.pull(
                 merge=True,
                 pootle_wins=pootle_wins,
