@@ -125,6 +125,10 @@ class ProjectFSState(State):
             context, fs_path=fs_path, pootle_path=pootle_path,
             load=load)
 
+    @cached_property
+    def cache_key(self):
+        return self.context.cache_key
+
     @property
     def project(self):
         return self.context.project
@@ -154,36 +158,68 @@ class ProjectFSState(State):
 
     @property
     def state_fs_untracked(self):
-        tracked_fs_paths = self.resources.tracked_paths.keys()
-        tracked_pootle_paths = self.resources.tracked_paths.values()
-        trackable_fs_paths = self.resources.trackable_store_paths.values()
-        trackable_pootle_paths = self.resources.trackable_store_paths.keys()
+        tracked_paths = self.resources.tracked_paths
+        tracked_pootle_paths = tracked_paths.values()
+        trackable_store_paths = self.trackable_store_paths
+        trackable_fs_paths = trackable_store_paths.values()
+        result = []
         for pootle_path, fs_path in self.resources.found_file_matches:
             fs_untracked = (
-                fs_path not in tracked_fs_paths
+                fs_path not in tracked_paths
                 and pootle_path not in tracked_pootle_paths
                 and fs_path not in trackable_fs_paths
-                and pootle_path not in trackable_pootle_paths)
+                and pootle_path not in trackable_store_paths)
             if fs_untracked:
-                yield dict(
-                    pootle_path=pootle_path,
-                    fs_path=fs_path)
+                result.append(
+                    dict(pootle_path=pootle_path,
+                         fs_path=fs_path))
+        return result
 
     @property
     def state_pootle_untracked(self):
-        for store, path in self.resources.trackable_stores:
-            if path not in self.resources.found_file_paths:
-                yield dict(
-                    store=store,
-                    fs_path=path)
+        result = []
+        trackable_stores = self.trackable_store_paths
+        found_paths = self.found_file_paths
+        for pootle_path in sorted(trackable_stores.keys()):
+            path = trackable_stores[pootle_path]
+            if path not in found_paths:
+                result.append(
+                    dict(pootle_path=pootle_path,
+                         fs_path=path))
+        return result
+
+    @cached_property
+    def trackable_store_paths(self):
+        return self.resources.trackable_store_paths
+
+    @cached_property
+    def found_file_paths(self):
+        return self.resources.found_file_paths
+
+    @cached_property
+    def synced_not_missing_fs(self):
+        return self.resources.synced_not_missing_fs
+
+    @cached_property
+    def synced_missing_fs(self):
+        return self.resources.synced_missing_fs
+
+    @cached_property
+    def unsynced_fs_wins(self):
+        return self.resources.unsynced_fs_wins
 
     @property
     def state_conflict_untracked(self):
-        for store, path in self.resources.trackable_stores:
-            if path in self.resources.found_file_paths:
-                yield dict(
-                    store=store,
-                    fs_path=path)
+        result = []
+        trackable_stores = self.trackable_store_paths
+        found_paths = self.found_file_paths
+        for pootle_path in sorted(trackable_stores.keys()):
+            path = trackable_stores[pootle_path]
+            if path in found_paths:
+                result.append(
+                    dict(pootle_path=pootle_path,
+                         fs_path=path))
+        return result
 
     @property
     def state_remove(self):
@@ -231,10 +267,8 @@ class ProjectFSState(State):
 
     @property
     def state_fs_ahead(self):
-        fs_changed = (
-            self.resources.synced
-                          .exclude(path__in=self.resources.missing_file_paths))
-        for store_fs in fs_changed.iterator():
+        fs_changed = self.synced_not_missing_fs
+        for store_fs in fs_changed:
             pootle_changed, fs_changed = self._get_changes(store_fs.file)
             fs_ahead = (
                 fs_changed
@@ -355,10 +389,6 @@ class ProjectFSState(State):
         return fs_file.pootle_changed, fs_file.fs_changed
 
     def clear_cache(self):
-        for x in dir(self):
-            x = getattr(self, x)
-            if callable(x) and hasattr(x, "cache_clear"):
-                x.cache_clear()
         if "resources" in self.__dict__:
             del self.__dict__["resources"]
         return super(ProjectFSState, self).clear_cache()
