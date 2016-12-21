@@ -121,17 +121,16 @@ class FSFile(object):
             self.store_fs.delete()
         self.remove_file()
 
-    def on_sync(self, save=True):
+    def on_sync(self, last_sync_hash, last_sync_revision, save=True):
         """
         Called after FS and Pootle have been synced
         """
         self.store_fs.resolve_conflict = None
         self.store_fs.staged_for_merge = False
-        self.store_fs.last_sync_hash = self.latest_hash
-        self.store_fs.last_sync_revision = self.store.data.max_unit_revision
+        self.store_fs.last_sync_hash = last_sync_hash
+        self.store_fs.last_sync_revision = last_sync_revision
         if save:
             self.store_fs.save()
-        logger.debug("File synced: %s", self.path)
 
     def pull(self, user=None, merge=False, pootle_wins=None):
         """
