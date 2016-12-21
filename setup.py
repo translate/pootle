@@ -272,12 +272,9 @@ def parse_long_description(filename):
     readme_lines = []
     with open(filename) as f:
         readme_lines = f.readlines()
-    pootle = "Pootle"
-    initial_title = [  # PyPI doesn't like |logo|
-        pootle,
-        "="*len(pootle)
-    ]
-    return "\n".join(initial_title + readme_lines[2:-4])
+    # PyPI doesn't like title to be underlined with =
+    readme_lines[1] = readme_lines[1].replace("=", "-")
+    return "".join(readme_lines)
 
 
 check_pep440_versions()
