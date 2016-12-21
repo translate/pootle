@@ -379,7 +379,14 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
-        for fs_state in (state["merge_pootle_wins"] + state["merge_fs_wins"]):
+        sfs = {}
+        for fs_state in (state['merge_pootle_wins'] + state['merge_fs_wins']):
+            sfs[fs_state.kwargs["store_fs"]] = fs_state
+        _sfs = StoreFS.objects.filter(
+            id__in=sfs.keys()).select_related("store", "store__data")
+        for store_fs in _sfs:
+            fs_state = sfs[store_fs.id]
+            fs_state.store_fs = store_fs
             pootle_wins = (fs_state.state_type == "merge_pootle_wins")
             store_fs = fs_state.store_fs
             store_fs.file.pull(
@@ -387,6 +394,10 @@ class Plugin(object):
                 pootle_wins=pootle_wins,
                 user=self.pootle_user)
             store_fs.file.push()
+            state.resources.pootle_revisions[
+                store_fs.store_id] = store_fs.store.data.max_unit_revision
+            state.resources.file_hashes[
+                store_fs.pootle_path] = store_fs.file.latest_hash
             if pootle_wins:
                 response.add("merged_from_pootle", fs_state=fs_state)
             else:
@@ -408,9 +419,18 @@ class Plugin(object):
         sfs = {}
         for fs_state in (state['fs_staged'] + state['fs_ahead']):
             sfs[fs_state.kwargs["store_fs"]] = fs_state
-        for store_fs in StoreFS.objects.filter(id__in=sfs.keys()):
+        _sfs = StoreFS.objects.filter(
+            id__in=sfs.keys()).select_related("store", "store__data")
+        for store_fs in _sfs:
             store_fs.file.pull(user=self.pootle_user)
-            response.add("pulled_to_pootle", fs_state=sfs[store_fs.pk])
+            if store_fs.store and store_fs.store.data:
+                state.resources.pootle_revisions[
+                    store_fs.store_id] = store_fs.store.data.max_unit_revision
+            state.resources.file_hashes[
+                store_fs.pootle_path] = store_fs.file.latest_hash
+            fs_state = sfs[store_fs.id]
+            fs_state.store_fs = store_fs
+            response.add("pulled_to_pootle", fs_state=fs_state)
         return response
 
     @responds_to_state
@@ -424,8 +444,20 @@ class Plugin(object):
         :returns response: Where ``response`` is an instance of self.respose_class
         """
         pushable = state['pootle_staged'] + state['pootle_ahead']
+        stores_fs = StoreFS.objects.filter(
+            id__in=[
+                fs_state.store_fs.id
+                for fs_state
+                in pushable])
+        stores_fs = {sfs.id: sfs for sfs in stores_fs.select_related("store")}
         for fs_state in pushable:
-            fs_state.store_fs.file.push()
+            store_fs = stores_fs[fs_state.store_fs.id]
+            fs_state.store_fs = store_fs
+            store_fs.file.push()
+            state.resources.pootle_revisions[
+                store_fs.store_id] = store_fs.store.data.max_unit_revision
+            state.resources.file_hashes[
+                store_fs.pootle_path] = store_fs.file.latest_hash
             response.add('pushed_to_fs', fs_state=fs_state)
         return response
 
@@ -445,6 +477,8 @@ class Plugin(object):
         for store_fs in StoreFS.objects.filter(id__in=sfs.keys()):
             fs_state = sfs[store_fs.pk]
             store_fs.file.delete()
+            state.resources.pootle_revisions[
+                store_fs.store_id] = store_fs.store.data.max_unit_revision
             response.add("removed", fs_state=fs_state, store_fs=store_fs)
         return response
 
@@ -471,11 +505,19 @@ class Plugin(object):
             "pushed_to_fs", "pulled_to_pootle",
             "merged_from_pootle", "merged_from_fs"]
         fs_to_update = {}
+        file_hashes = state.resources.file_hashes
+        pootle_revisions = state.resources.pootle_revisions
         for sync_type in sync_types:
             if sync_type in response:
                 for response_item in response.completed(sync_type):
                     store_fs = response_item.store_fs
-                    store_fs.file.on_sync(save=False)
+                    last_sync_revision = None
+                    if store_fs.store_id in pootle_revisions:
+                        last_sync_revision = pootle_revisions[store_fs.store_id]
+                    store_fs.file.on_sync(
+                        file_hashes[store_fs.pootle_path],
+                        last_sync_revision,
+                        save=False)
                     fs_to_update[store_fs.id] = store_fs
         if fs_to_update:
             bulk_update(
