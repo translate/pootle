@@ -196,7 +196,9 @@ def localfs_dummy_file(no_fs_files):
         def delete(self):
             self._deleted = True
 
-        def on_sync(self, save=False):
+        def on_sync(self, sync_hash, sync_revision, save=False):
+            self._sync_hash = sync_hash
+            self._sync_revision = sync_revision
             self._synced = True
             self._saved = save
 
