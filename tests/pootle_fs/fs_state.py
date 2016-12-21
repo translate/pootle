@@ -16,6 +16,7 @@ from pytest_pootle.factories import ProjectDBFactory
 from pytest_pootle.fixtures.pootle_fs.state import DummyPlugin
 
 from pootle_fs.models import StoreFS
+from pootle_fs.resources import FSProjectStateResources
 from pootle_fs.state import FS_STATE, ProjectFSState
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
@@ -285,7 +286,27 @@ def test_fs_state_filtered(state_filters, dummyfs_plugin_no_files, tp0):
 def test_fs_state_fs_unchanged(fs_path_qs, no_complex_po_, dummyfs):
     plugin = dummyfs
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    state = ProjectFSState(plugin, fs_path=fs_path, pootle_path=pootle_path)
+
+    class UnchangedStateResources(FSProjectStateResources):
+
+        @property
+        def file_hashes(self):
+            hashes = {}
+            for pootle_path, path in self.found_file_matches:
+                hashes[pootle_path] = self.tracked.get(
+                    pootle_path=pootle_path).last_sync_hash
+            return hashes
+
+    class UnchangedFSState(ProjectFSState):
+
+        @property
+        def resources(self):
+            return UnchangedStateResources(
+                self.context,
+                pootle_path=self.pootle_path,
+                fs_path=self.fs_path)
+
+    state = UnchangedFSState(plugin, fs_path=fs_path, pootle_path=pootle_path)
     expected = (
         plugin.resources.tracked.filter(qfilter)
         if qfilter
@@ -298,5 +319,5 @@ def test_fs_state_fs_unchanged(fs_path_qs, no_complex_po_, dummyfs):
         == list(
             expected.order_by("pootle_path").values_list("id", flat=True)))
     StoreFS.objects.filter(pk__in=stores_fs).update(staged_for_removal=True)
-    state = ProjectFSState(plugin, fs_path=fs_path, pootle_path=pootle_path)
+    state = UnchangedFSState(plugin, fs_path=fs_path, pootle_path=pootle_path)
     assert len(list(state.state_unchanged)) == 0
