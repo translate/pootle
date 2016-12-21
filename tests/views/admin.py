@@ -225,7 +225,7 @@ def test_admin_view_project_add_tp(templates, client, admin):
     _test_admin_view(response, project)
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db(transaction=True)
 def test_admin_view_project_delete_tp(english, client, admin):
 
     user = admin
