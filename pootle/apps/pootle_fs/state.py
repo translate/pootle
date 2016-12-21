@@ -231,21 +231,32 @@ class ProjectFSState(State):
 
     @property
     def state_fs_ahead(self):
+        all_pootle_changed = list(
+            self.resources.pootle_changed.values_list("pk", flat=True))
+        all_fs_changed = list(self.resources.fs_changed)
+        fs_changed = self.resources.synced.filter(pk__in=all_fs_changed)
         fs_changed = (
-            self.resources.synced
-                          .exclude(path__in=self.resources.missing_file_paths))
-        for store_fs in fs_changed.iterator():
-            pootle_changed, fs_changed = self._get_changes(store_fs.file)
-            fs_ahead = (
-                fs_changed
-                and (
-                    not pootle_changed
-                    or store_fs.resolve_conflict == SOURCE_WINS))
-            if fs_ahead:
-                yield dict(
-                    store_fs=store_fs.pk,
-                    pootle_path=store_fs.pootle_path,
-                    fs_path=store_fs.path)
+            fs_changed.exclude(pk__in=all_pootle_changed)
+            | (fs_changed.filter(pk__in=all_pootle_changed)
+                         .filter(resolve_conflict=SOURCE_WINS)))
+        fs_changed = fs_changed.values_list(
+            "pk", "pootle_path", "path", "store_id", "store__obsolete")
+        fs_hashes = self.resources.file_hashes
+        pootle_revisions = self.resources.pootle_revisions
+        for changed in fs_changed.iterator():
+            pk, pootle_path, path, store_id, store_obsolete = changed
+            if store_obsolete:
+                continue
+            if pootle_path not in fs_hashes:
+                # fs_removed
+                continue
+            if store_id not in pootle_revisions:
+                # pootle_removed
+                continue
+            yield dict(
+                store_fs=pk,
+                pootle_path=pootle_path,
+                fs_path=path)
 
     @property
     def state_fs_removed(self):
