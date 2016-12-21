@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from fnmatch import fnmatch
+import os
 
 from django.db.models import F, Max
 from django.utils.functional import cached_property
@@ -184,6 +185,40 @@ class FSProjectStateResources(object):
                        .exclude(store__obsolete=True)
                        .annotate(max_revision=Max("store__unit__revision"))
                        .exclude(last_sync_revision=F("max_revision")))
+
+    @cached_property
+    def pootle_revisions(self):
+        return dict(
+            self.synced.exclude(store_id__isnull=True)
+                       .exclude(store__obsolete=True)
+                       .values_list("store_id", "store__data__max_unit_revision"))
+
+    @cached_property
+    def file_hashes(self):
+        hashes = {}
+
+        def _get_file_hash(path):
+            file_path = os.path.join(
+                self.context.project.local_fs_path,
+                path.strip("/"))
+            if os.path.exists(file_path):
+                return str(os.stat(file_path).st_mtime)
+        for pootle_path, path in self.found_file_matches:
+            hashes[pootle_path] = _get_file_hash(path)
+        return hashes
+
+    @cached_property
+    def fs_changed(self):
+        """StoreFS queryset of tracked resources where the Store has changed
+        since it was last synced.
+        """
+        hashes = self.file_hashes
+        tracked_files = []
+        for store_fs in self.synced.iterator():
+            if store_fs.last_sync_hash == hashes.get(store_fs.pootle_path):
+                continue
+            tracked_files.append(store_fs.pk)
+        return tracked_files
 
     def reload(self):
         """Uncache cached_properties"""
