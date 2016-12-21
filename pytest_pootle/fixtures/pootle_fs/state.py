@@ -172,9 +172,8 @@ def dummyfs_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
 @pytest.fixture
 def dummyfs_plugin_no_stores(settings, no_complex_po_,
                              no_fs_plugins, no_fs_files):
-    from pootle.core.plugin import getter, provider
-    from pootle_fs.delegate import fs_file, fs_plugins
-    from pootle_fs.files import FSFile
+    from pootle.core.plugin import provider
+    from pootle_fs.delegate import fs_plugins
     from pootle_fs.utils import FSPlugin
     from pootle_project.models import Project
     from pootle_store.models import Store
@@ -200,10 +199,6 @@ def dummyfs_plugin_no_stores(settings, no_complex_po_,
     @provider(fs_plugins, weak=False, sender=Project)
     def plugin_provider_(**kwargs_):
         return dict(dummyfs=NoStoresDummyPlugin)
-
-    @getter(fs_file, weak=False, sender=NoStoresDummyPlugin)
-    def fs_files_getter_(**kwargs_):
-        return FSFile
 
     plugin = FSPlugin(project)
     return plugin
