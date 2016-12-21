@@ -291,6 +291,12 @@ def test_fs_plugin_sync_all():
     plugin = SyncPlugin(project)
     state = State("dummy")
     response = Response(state)
+
+    class DummyResources(object):
+        file_hashes = {}
+        pootle_revisions = {}
+
+    state.resources = DummyResources()
     plugin.sync(state, response, fs_path="FOO", pootle_path="BAR")
     for result in [plugin._merged, plugin._pushed, plugin._rmed, plugin._pulled]:
         assert result[0] is state
