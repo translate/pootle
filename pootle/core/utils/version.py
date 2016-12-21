@@ -252,3 +252,9 @@ if __name__ == "__main__":
             print(get_docs_version())
     else:
         print(get_version())
+
+
+def is_prerelease(version=None):
+    """Is this a final release or not"""
+
+    return _get_candidate(get_complete_version(version)) != 'final'
