@@ -138,7 +138,8 @@ def test_wrap_store_fs_push(store_fs_file_store):
     # after push the store and fs should always match
     assert fs_file.read() == fs_file.serialize()
     # pushing again does nothing once the Store and file are synced
-    fs_file.on_sync()
+    fs_file.on_sync(
+        fs_file.latest_hash, fs_file.store.data.max_unit_revision)
     fs_file.push()
     assert fs_file.read() == fs_file.serialize()
 
@@ -152,7 +153,8 @@ def test_wrap_store_fs_pull(store_fs_file):
     unit_count = fs_file.store.units.count()
     assert unit_count == len(fs_file.deserialize().units) - 1
     # pulling again will do nothing once the Store and file are synced
-    fs_file.on_sync()
+    fs_file.on_sync(
+        fs_file.latest_hash, fs_file.store.data.max_unit_revision)
     fs_file.pull()
     assert unit_count == len(fs_file.deserialize().units) - 1
 
@@ -200,7 +202,8 @@ def test_wrap_store_fs_create_store(store_fs_file):
 def test_wrap_store_fs_on_sync(store_fs_file_store):
     fs_file = store_fs_file_store
     fs_file.pull()
-    fs_file.on_sync()
+    fs_file.on_sync(
+        fs_file.latest_hash, fs_file.store.data.max_unit_revision)
     fs_file.store_fs.resolve_conflict = None
     fs_file.store_fs.staged_for_merge = False
     fs_file.store_fs.last_sync_hash = fs_file.latest_hash
