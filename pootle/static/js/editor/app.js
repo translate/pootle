@@ -1212,7 +1212,15 @@ PTL.editor = {
 
   /* Renders a single row */
   renderRow(unitId) {
-    return (`<tr id="row${unitId}" class="view-row" data-id="${unitId}"><td></td><td></td></tr>`);
+    const unit = this.viewUnits[unitId];
+    return (`
+      <tr
+        id="row${unitId}"
+        class="view-row"
+        data-id="${unitId}"
+        data-target="${unit.url}"
+      ><td></td><td></td></tr>
+    `);
   },
 
   renderEditorRow(unit) {
@@ -1276,7 +1284,14 @@ PTL.editor = {
       // FIXME: Please let's use proper models for context units
       const unit = assign({}, currentUnit.toJSON(), units[i]);
       this.viewCtxUnits[unit.id] = unit;
-      rows += `<tr data-id="${unit.id}" class="ctx-row ${extraCls}"><td></td><td></td></tr>`;
+      rows += (`
+        <tr
+          id="ctx${unit.id}"
+          data-id="${unit.id}"
+          data-target="${unit.url}"
+          class="ctx-row ${extraCls}"
+        ><td></td><td></td></tr>
+      `);
     }
 
     return rows;
@@ -1350,8 +1365,6 @@ PTL.editor = {
     for (let i = 0; i < rows.length; i++) {
       const unit = units[rows[i].dataset.id];
       const sourceProps = {
-        id: unit.id,
-        url: unit.url,
         dir: unit.store.source_dir,
         language: unit.store.source_lang,
         values: unit.source,
@@ -1360,8 +1373,6 @@ PTL.editor = {
         hasPlurals: unit.source.length > 1,
       };
       const targetProps = {
-        id: unit.id,
-        url: unit.url,
         isFuzzy: unit.isfuzzy,
         dir: unit.store.target_dir,
         language: unit.store.target_lang,
@@ -1705,8 +1716,8 @@ PTL.editor = {
 
     // Ctrl + click / Alt + click / Cmd + click / Middle click opens a new tab
     if (e.ctrlKey || e.altKey || e.metaKey || e.which === 2) {
-      const $el = e.target.nodeName !== 'TD' ?
-                  $(e.target).parents('td') :
+      const $el = e.target.nodeName !== 'TR' ?
+                  $(e.target).parents('tr') :
                   $(e.target);
       window.open($el.data('target'), '_blank');
       return false;

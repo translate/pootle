@@ -29,8 +29,6 @@ InnerDiv.propTypes = {
 const ViewUnit = React.createClass({
 
   propTypes: {
-    id: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
     dir: PropTypes.string.isRequired,
     isFuzzy: PropTypes.bool,
     language: PropTypes.string.isRequired,
@@ -83,8 +81,6 @@ const ViewUnit = React.createClass({
       <div
         dir={this.props.dir}
         className={classNames}
-        id={`${this.props.type}${this.props.id}`}
-        data-target={this.props.url}
       >
         {this.props.values.map(this.createValue)}
       </div>
