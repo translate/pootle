@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from pootle.core.delegate import revision
+
 from .utils import RelatedStoresDataTool, RelatedTPsDataTool
 
 
@@ -16,6 +18,11 @@ class ProjectDataTool(RelatedTPsDataTool):
 
     def filter_data(self, qs):
         return qs.filter(tp__project=self.context)
+
+    @property
+    def rev_cache_key(self):
+        return revision.get(
+            self.context.__class__)(self.context.directory).get(key="stats")
 
 
 class ProjectResourceDataTool(RelatedStoresDataTool):
