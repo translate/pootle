@@ -16,9 +16,10 @@ examples for Git:
 
 - Install the plugin:
 
-  .. code-block:: console
+  .. highlight:: console
+  .. parsed-literal::
 
-    (env) $ pip install --process-dependency-links --pre Pootle[git]
+    (env) $ pip install |--process-dependency-links --pre| Pootle[git]
 
 
 - Add the plugin to :setting:`INSTALLED_APPS`:

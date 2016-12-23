@@ -54,9 +54,10 @@ you will need to install the PostgreSQL bindings.
 
 You can do so as follows:
 
-.. code-block:: console
+.. highlight:: console
+.. parsed-literal::
 
-  (env) $ pip install Pootle[postgresql]
+  (env) $ pip install |--process-dependency-links --pre| Pootle[postgresql]
 
 
 .. _postgresql_installation#init-config:

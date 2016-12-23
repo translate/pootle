@@ -57,9 +57,10 @@ you will need to install the MySQL driver.
 
 You can do so as follows:
 
-.. code-block:: console
+.. highlight:: console
+.. parsed-literal::
 
-  (env) $ pip install Pootle[mysql]
+  (env) $ pip install |--process-dependency-links --pre| Pootle[mysql]
 
 
 .. _mysql_installation#init-config:

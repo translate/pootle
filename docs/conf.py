@@ -12,9 +12,11 @@
 # serve to show the default.
 
 import os
+import re
 import sys
 
 from django import __version__ as dj_version_actual
+from pootle.core.utils import version as pootle_version
 from translate.__version__ import sver as ttk_version_actual
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -66,8 +68,7 @@ author = u'Pootle contributors'
 # built documents.
 #
 # The short X.Y version.
-from pootle.core.utils.version import get_docs_version
-version = get_docs_version()
+version = pootle_version.get_docs_version()
 # The full version, including alpha/beta/rc tags.
 from pootle import __version__
 release = __version__
@@ -434,7 +435,23 @@ extlinks = {
 
 # -- Dependency versions ----
 
+install_options = []
+requirements_dir = '../requirements'
+for requirement in os.listdir(requirements_dir):
+    with open(os.path.join(requirements_dir, requirement)) as req:
+        for line in req.readlines():
+            if re.match(r'^\s*-e\s+', line):
+                install_options += ["--process-dependency-links"]
+                break
+if pootle_version.is_prerelease():
+    install_options += ["--pre"]
+if install_options:
+    install_options_string = " ".join(install_options)
+else:
+    install_options_string = "\\"
+
 rst_prolog = """
 .. |django_ver| replace:: %s
 .. |ttk_ver| replace:: %s
-""" % (dj_version_actual, ttk_version_actual)
+.. |--process-dependency-links --pre| replace:: %s
+""" % (dj_version_actual, ttk_version_actual, install_options_string)

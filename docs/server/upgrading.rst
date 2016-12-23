@@ -128,9 +128,10 @@ Upgrading from version 2.6.x or later
 
 Upgrade to the latest Pootle version:
 
-.. code-block:: console
+.. highlight:: console
+.. parsed-literal::
 
-   (env) $ pip install --process-dependency-links --pre --upgrade Pootle
+   (env) $ pip install |--process-dependency-links --pre| --upgrade Pootle
 
 
 .. _upgrading#check-settings:

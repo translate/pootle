@@ -122,9 +122,10 @@ Installing Pootle
 
 Use :command:`pip` to install Pootle into the virtual environment:
 
-.. code-block:: console
+.. highlight:: console
+.. parsed-literal::
 
-  (env) $ pip install --process-dependency-links --pre Pootle
+  (env) $ pip install |--process-dependency-links --pre| Pootle
 
 
 This will also fetch and install Pootle's dependencies.
