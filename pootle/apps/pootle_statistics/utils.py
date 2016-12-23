@@ -16,6 +16,7 @@ from pootle.core.decorators import persistent_property
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import TOP_CONTRIBUTORS_CHUNK_SIZE
 
+from .apps import PootleStatisticsConfig
 
 
 class Contributors(object):
@@ -92,6 +93,7 @@ class Contributors(object):
 
 class TopScorersDataTool(object):
     ns = 'pootle.top_scores'
+    sw_version = PootleStatisticsConfig.version
 
     def __init__(self, context, pootle_path):
         self.context = context
