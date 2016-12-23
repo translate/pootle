@@ -54,7 +54,7 @@ def parse_requirements(file_name, recurse=False):
                     re.sub(r'-r\s*(.*[.]txt)$', r'\1', line), recurse))
             continue
 
-        if re.match(r'\s*-e\s+', line):
+        if re.match(r'^\s*-e\s+', line):
             requirements.append(re.sub(
                 r'''\s*-e\s+          # -e marker
                  .*                   # URL
@@ -77,7 +77,7 @@ def parse_requirements(file_name, recurse=False):
 def parse_dependency_links(file_name, recurse=False):
     dependency_links = []
     for line in open(file_name, 'r').read().split('\n'):
-        if re.match(r'\s*-e\s+', line):
+        if re.match(r'^\s*-e\s+', line):
             dependency_links.append(re.sub(r'\s*-e\s+', '', line))
 
         if re.match(r'-r .*$', line):
