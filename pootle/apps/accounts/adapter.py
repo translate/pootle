@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+import re
 
 from django.conf import settings
 from django.http import JsonResponse
@@ -21,12 +22,16 @@ logger = logging.getLogger('action')
 
 class PootleAccountAdapter(DefaultAccountAdapter):
     """Reimplementation of DefaultAccountAdapter from allauth to change
-    ajax_response.
+    ajax_response and username validation.
 
     Differences:
       - the html key is removed for performance reasons
       - form_errors is renamed to errors
+      - Latin1 usernames are allowed
     """
+
+    # TODO: Remove this once allauth newer than 0.29.0 is released.
+    username_regex = re.compile(r'^[\w.@+-]+$', re.UNICODE)
 
     def ajax_response(self, request, response, redirect_to=None, form=None):
         data = {}

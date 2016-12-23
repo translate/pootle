@@ -92,7 +92,8 @@ class ProjectManager(models.Manager):
             cache_params = {'username': user.username}
         else:
             cache_params = {'is_admin': user.is_superuser}
-        cache_key = make_method_key('Project', 'cached_dict', cache_params)
+        cache_key = iri_to_uri(make_method_key('Project', 'cached_dict',
+                                               cache_params))
         projects = cache.get(cache_key)
         if not projects:
             logging.debug('Cache miss for %s', cache_key)
