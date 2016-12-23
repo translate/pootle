@@ -185,12 +185,19 @@ Migrate your database schema
 ----------------------------
 
 Once you have updated your settings you can perform the database schema and
-data upgrade by running. This needs to be done in a few steps:
+data upgrade by running. This is done as follows:
+
+.. note:: The following fake migrations are required when migrating from
+   Pootle 2.6 or older.  Subsequent versions do not require these steps:
+
+   .. code-block:: console
+
+      (env) $ pootle migrate accounts 0002 --fake
+      (env) $ pootle migrate pootle_translationproject 0002 --fake
+
 
 .. code-block:: console
 
-   (env) $ pootle migrate accounts 0002 --fake
-   (env) $ pootle migrate pootle_translationproject 0002 --fake
    (env) $ pootle migrate
 
 
