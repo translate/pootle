@@ -8,18 +8,17 @@
 
 import logging
 
-from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import panels
 from pootle.core.helpers import (SIDEBAR_COOKIE_NAME,
                                  get_sidebar_announcements_context)
-from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data,
                                      get_translation_states)
 from pootle.i18n import formatter
+from pootle_statistics.utils import TopScorersDataTool
 
 from .base import PootleDetailView
 from .display import ChecksDisplay, StatsDisplay
@@ -131,12 +130,8 @@ class PootleBrowseView(PootleDetailView):
 
     @cached_property
     def top_scorers(self):
-        User = get_user_model()
-        lang_code, proj_code = split_pootle_path(self.pootle_path)[:2]
-        return User.top_scorers(
-            project=proj_code,
-            language=lang_code,
-            limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1)
+        return TopScorersDataTool(self.top_scorers_context,
+                                  self.pootle_path).data
 
     @property
     def top_scorer_data(self):
