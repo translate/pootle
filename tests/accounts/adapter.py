@@ -16,7 +16,9 @@ from allauth.account.adapter import get_adapter
 @pytest.mark.django_db
 def test_account_adapter_unicode():
     adapter = get_adapter()
-    adapter.clean_username('ascii')
-    adapter.clean_username(u'lätin1')
+    username = 'ascii'
+    assert username == adapter.clean_username(username)
+    username = u'lätin1'
+    assert username == adapter.clean_username(username)
     with pytest.raises(ValidationError):  # Unicode characters don't yet pass.
         adapter.clean_username(u'อัตโนมัติ')
