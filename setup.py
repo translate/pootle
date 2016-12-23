@@ -21,6 +21,7 @@ from setuptools.command.test import test as TestCommand
 
 from pootle import __version__
 from pootle.constants import DJANGO_MINIMUM_REQUIRED_VERSION
+from pootle.core.utils import version
 
 
 def check_pep440_versions():
@@ -268,12 +269,30 @@ class BuildChecksTemplatesCommand(Command):
 
 
 def parse_long_description(filename):
+
+    def reduce_header_level():
+        # PyPI doesn't like title to be underlined with =
+        readme_lines[1] = readme_lines[1].replace("=", "-")
+
+    def adjust_installation_command():
+        extra_options = []
+        if dependency_links:
+            extra_options += ["--process-dependency-links"]
+        if version.is_prerelease():
+            extra_options += ["--pre"]
+        for ln, line in enumerate(readme_lines):
+            if re.match(r'^\s*pip install\s+.*\s+Pootle$', line):
+                if extra_options:
+                    readme_lines[ln] = (
+                        "  pip install %s Pootle\n" % " ".join(extra_options))
+                else:
+                    readme_lines[ln] = "  pip install Pootle\n"
+
     filename = os.path.join(os.path.dirname(__file__), filename)
-    readme_lines = []
     with open(filename) as f:
         readme_lines = f.readlines()
-    # PyPI doesn't like title to be underlined with =
-    readme_lines[1] = readme_lines[1].replace("=", "-")
+    reduce_header_level()
+    adjust_installation_command()
     return "".join(readme_lines)
 
 
