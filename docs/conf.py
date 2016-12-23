@@ -11,8 +11,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
 import os
+import sys
 
 from django import __version__ as dj_version_actual
 from translate.__version__ import sver as ttk_version_actual
