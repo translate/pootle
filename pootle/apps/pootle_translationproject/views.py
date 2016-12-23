@@ -272,6 +272,10 @@ class TPBrowseBaseView(PootleBrowseView):
     def post(self, *args, **kwargs):
         return self.get(*args, **kwargs)
 
+    @property
+    def top_scorers_context(self):
+        return self.tp.directory
+
 
 class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
 
