@@ -237,7 +237,7 @@ def test_data_cache_keys(language0, project0, subdir0, vfolder0):
         '%s.%s.%s'
         % (project0.data_tool.cache_key_name,
            project0.code,
-           revision.get(Project)(project0).get(key="stats"))
+           revision.get(Project)(project0.directory).get(key="stats"))
         == project0.data_tool.cache_key)
     # directory
     assert subdir0.data_tool.ns == "pootle.data"
