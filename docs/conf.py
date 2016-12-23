@@ -417,6 +417,7 @@ intersphinx_mapping = {
                'https://docs.djangoproject.com/en/%s/_objects/' % django_ver),
     'toolkit': ('http://docs.translatehouse.org/projects/translate-toolkit/en/latest/', None),
     'virtualenvwrapper': ('https://virtualenvwrapper.readthedocs.io/en/latest/', None),
+    'pip': ('https://pip.pypa.io/en/stable/', None),
 }
 
 
