@@ -6,12 +6,17 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.delegate import contributors
+from pootle.core.delegate import contributors, top_scorers_data_tool
 from pootle.core.plugin import getter
 
-from .utils import Contributors
+from .utils import Contributors, TopScorersDataTool
 
 
 @getter(contributors)
 def get_contributors(**kwargs_):
     return Contributors
+
+
+@getter(top_scorers_data_tool)
+def get_top_scorers_data_tool(**kwargs_):
+    return TopScorersDataTool

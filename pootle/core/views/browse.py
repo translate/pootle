@@ -11,14 +11,13 @@ import logging
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import panels
+from pootle.core.delegate import panels, top_scorers_data_tool
 from pootle.core.helpers import (SIDEBAR_COOKIE_NAME,
                                  get_sidebar_announcements_context)
 from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
                                      get_top_scorers_data,
                                      get_translation_states)
 from pootle.i18n import formatter
-from pootle_statistics.utils import TopScorersDataTool
 
 from .base import PootleDetailView
 from .display import ChecksDisplay, StatsDisplay
@@ -130,8 +129,9 @@ class PootleBrowseView(PootleDetailView):
 
     @cached_property
     def top_scorers(self):
-        return TopScorersDataTool(self.top_scorers_context,
-                                  self.pootle_path).data
+        top_scorers_data_tool_class = top_scorers_data_tool.get()
+        return top_scorers_data_tool_class(self.top_scorers_context,
+                                           self.pootle_path).data
 
     @property
     def top_scorer_data(self):

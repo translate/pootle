@@ -26,6 +26,7 @@ filetype_tool = Getter()
 tp_tool = Getter()
 data_tool = Getter()
 data_updater = Getter()
+top_scorers_data_tool = Getter()
 
 language_team = Getter()
 review = Getter()
