@@ -110,42 +110,47 @@
 	  </div>
 	</div>
 	<div class="config-content-panel">
-	  <h3>{% trans "Unit admin" %}</h3>
+	  <h3>{% trans "Unit and suggestions admin" %}</h3>
 	  <div class="padded">
+	    {% url 'pootle-language-translate' language_code=language.code as translate_url %}
 	    <ul>
 	      <li class="padded-half">
-		{% trans "Critical:" %}
-		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=checks&category=critical">
-		  {{ stats.critical }}
-		</a>
+		    {% trans "Critical errors:" %}
+	        {% if stats.critical %}
+		    <a href="{{ translate_url }}#filter=checks&category=critical">{{ stats.critical }}</a>
+	        {% else %}
+	        {{ stats.critical }}
+	        {% endif %}
 	      </li>
 	      <li class="padded-half">
-		{% trans "Total words:" %}
-		<a href="{% url 'pootle-language-translate' language_code=language.code %}">
-		  {{ stats.total }}
-		</a>
+	        {% trans "Pending suggestions:" %}
+	        {% if suggestions.count %}
+	        <a href="{% url 'pootle-language-admin-suggestions' language_code=language.code %}">{{ suggestions.count }}</a>
+	        {% else %}
+	        {{ suggestions.count }}
+	        {% endif %}
 	      </li>
 	      <li class="padded-half">
-		{% trans "Translated:" %}
-		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=translated">
-		  {{ stats.translated }}
-		</a>
+		    {% trans "Total words:" %}
+		    <a href="{{ translate_url }}">{{ stats.total }}</a>
 	      </li>
 	      <li class="padded-half">
-		{% trans "Needs work:" %}
-		<a href="{% url 'pootle-language-translate' language_code=language.code %}#filter=fuzzy">
-		  {{ stats.fuzzy }}
-		</a>
+		    {% trans "Translated:" %}
+	        {% if stats.translated %}
+		    <a href="{{ translate_url }}#filter=translated">{{ stats.translated }}</a>
+	        {% else %}
+	        {{ stats.translated }}
+	        {% endif %}
+	      </li>
+	      <li class="padded-half">
+		    {% trans "Needs work:" %}
+	        {% if stats.fuzzy %}
+		    <a href="{{ translate_url }}#filter=fuzzy">{{ stats.fuzzy }}</a>
+	        {% else %}
+	        {{ stats.fuzzy }}
+	        {% endif %}
 	      </li>
 	    </ul>
-	  </div>
-	</div>
-	<div class="config-content-panel">
-	  <h3>{% trans "Suggestion admin" %}</h3>
-	  <div class="padded">
-	    <p>
-	      {% blocktrans %}There are {{ suggestions.count }} suggestions pending{% endblocktrans %}
-	    </p>
 	  </div>
 	</div>
       </div>
