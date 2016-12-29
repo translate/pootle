@@ -2,7 +2,8 @@
 
 # Default to MySQL
 : ${DATABASE:=mysql}
-: ${INSTALL_DIR:=~/pootle}
+: ${INSTALL_DIR:=/pootle}
+: ${CONFIG_DIR:=/config}
 
 if [[ "$DATABASE" == "mysql" ]]; then
     : ${POOTLE_DB_USER:=${DBSERVER_ENV_MYSQL_USER:-root}}
@@ -33,19 +34,26 @@ fi
 : "${POOTLE_DB_HOSTNAME:=dbserver}"
 : "${DOMAIN:=""}" # By defaulting this empty we set ALLOWED_HOSTS to '*', thus avoiding "Bad request 400" when accessed form non "localhost"
 
-CONFIG_FILE="~/config/pootle.conf"
+CONFIG_FILE="$CONFIG_DIR/pootle.conf"
 
 if [ ! -f $CONFIG_FILE ]; then
-    cd ~/$INSTALL_DIR \
-    && . bin/activate \
+    cd $INSTALL_DIR \
+    && . bin/activate || exit 3
+    echo "Creating initial Pootle configuration..."
     pootle init --config $CONFIG_FILE \
         --db $DATABASE \
         --db-name $POOTLE_DB_NAME \
         --db-user $POOTLE_DB_USER \
-        --db-host $POOTLE_DB_HOSTNAME
+        --db-host $POOTLE_DB_HOSTNAME || exit 3
+    echo "Created initial Pootle configuration. See documentation for help on customising the settings: http://docs.translatehouse.org/projects/pootle/en/stable-2.7.6/server/settings.html"
     # exit virtualenv
-    deactivate
+    deactivate || exit 3
 fi
 
-# pootle migrate
-# pootle initdb
+# configure Redis
+
+# handle upgrade scenario
+    # pootle migrate
+
+# populate fresh install database
+    # pootle initdb

@@ -37,10 +37,11 @@ RUN groupadd -r pootle \
 
 VOLUME /config
 
+RUN mkdir -p $INSTALL_DIR
+
 USER pootle
 # Install Pootle
-RUN mkdir -p $INSTALL_DIR \
-    && cd $INSTALL_DIR \
+RUN cd $INSTALL_DIR \
     && virtualenv . \
     && . bin/activate \
     && pip install "Pootle==$POOTLE_VERSION"
@@ -50,11 +51,9 @@ USER root
 RUN apt remove -y `cat build-deps.txt | tr "\n" " "` \
     && rm build-deps.txt \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp* /var/tmp/* \
+    && rm -rf /var/lib/apt/lists/* /tmp* /var/tmp/*
 
 USER pootle
-
-
 
 COPY entrypoint.sh /
 ENTRYPOINT /entrypoint.sh
