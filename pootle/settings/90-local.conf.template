@@ -63,6 +63,8 @@ DATABASES = {
         # required for Django + sqlite
         'ATOMIC_REQUESTS': True,
         #'OPTIONS' : {
+        #    # MySQL:
+        #    # https://docs.djangoproject.com/en/1.10/ref/databases/#setting-sql-mode
         #    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         #},
         'TEST': {
