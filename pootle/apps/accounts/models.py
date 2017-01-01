@@ -31,7 +31,6 @@ from pootle.core.cache import make_method_key
 from pootle.core.views.display import ActionDisplay
 from pootle.i18n import formatter
 from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_language.models import Language
 from pootle_statistics.models import (ScoreLog, Submission,
                                       TranslationActionCodes)
 from pootle_store.models import Unit
@@ -391,47 +390,6 @@ class User(AbstractBaseUser):
         created_unit_pks = self.submission_set.get_unit_creates() \
                                               .values_list("unit", flat=True)
         return Unit.objects.filter(pk__in=created_unit_pks)
-
-    def top_language(self, days=30):
-        """Returns the top language the user has contributed to and its
-        position.
-
-        "Top language" is defined as the language with the highest
-        aggregate score delta within the last `days` days.
-
-        :param days: period of days to account for scores.
-        :return: Tuple of `(position, Language)`. If there's no delta in
-            the score for the given period for any of the languages,
-            `(-1, None)` is returned.
-        """
-        position = -1
-
-        now = timezone.now()
-        past = now + datetime.timedelta(-days)
-
-        sum_field = 'translationproject__submission__scorelog__score_delta'
-        lookup_kwargs = {
-            'translationproject__submission__scorelog__user': self,
-            'translationproject__submission__scorelog__creation_time__range':
-                [past, now]
-        }
-
-        try:
-            language = Language.objects.filter(**lookup_kwargs) \
-                                       .annotate(score=Sum(sum_field)) \
-                                       .order_by('-score')[0]
-        except IndexError:
-            language = None
-
-        if language is not None:
-            language_scorers = self.top_scorers(language=language.code,
-                                                days=days, limit=None)
-            for index, user_score in enumerate(language_scorers, start=1):
-                if user_score['user'] == self:
-                    position = index
-                    break
-
-        return (position, language)
 
     @lru_cache()
     def last_event(self):
