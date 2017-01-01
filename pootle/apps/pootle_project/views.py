@@ -125,6 +125,10 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
             (self.project, ))
 
     @property
+    def score_context(self):
+        return self.project
+
+    @property
     def url_kwargs(self):
         return self.kwargs
 
