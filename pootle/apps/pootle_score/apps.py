@@ -18,5 +18,5 @@ class PootleScoreConfig(AppConfig):
     version = "0.0.1"
 
     def ready(self):
-        # importlib.import_module("pootle_score.getters")
+        importlib.import_module("pootle_score.getters")
         importlib.import_module("pootle_score.receivers")
