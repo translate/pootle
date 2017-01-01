@@ -32,6 +32,7 @@ language_team = Getter()
 review = Getter()
 revision = Getter()
 revision_updater = Getter()
+scores = Getter()
 site = Getter()
 panels = Provider()
 
