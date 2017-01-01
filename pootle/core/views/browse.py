@@ -11,12 +11,11 @@ import logging
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import panels, top_scorers_data_tool
+from pootle.core.delegate import panels, scores
 from pootle.core.helpers import (SIDEBAR_COOKIE_NAME,
                                  get_sidebar_announcements_context)
-from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
-                                     get_top_scorers_data,
-                                     get_translation_states)
+from pootle.core.utils.stats import (
+    TOP_CONTRIBUTORS_CHUNK_SIZE, get_translation_states)
 from pootle.i18n import formatter
 
 from .base import PootleDetailView
@@ -128,16 +127,22 @@ class PootleBrowseView(PootleDetailView):
         return response
 
     @cached_property
-    def top_scorers(self):
-        top_scorers_data_tool_class = top_scorers_data_tool.get()
-        return top_scorers_data_tool_class(self.top_scorers_context,
-                                           self.pootle_path).data
+    def scores(self):
+        return scores.get(
+            self.score_context.__class__)(
+                self.score_context)
 
     @property
+    def score_context(self):
+        return self.object
+
+    @persistent_property
     def top_scorer_data(self):
-        return get_top_scorers_data(
-            self.top_scorers,
-            TOP_CONTRIBUTORS_CHUNK_SIZE)
+        chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
+        top_scorers = self.scores.top_scorers
+        return dict(
+            items=top_scorers[:chunk_size],
+            has_more_items=len(top_scorers) > chunk_size)
 
     @property
     def panels(self):
@@ -185,8 +190,7 @@ class PootleBrowseView(PootleDetailView):
              'url_action_fixcritical': url_action_fixcritical,
              'url_action_review': url_action_review,
              'url_action_view_all': url_action_view_all,
-             'top_scorers': self.top_scorers,
-             'top_scorers_data': self.top_scorer_data,
+             'top_scorers': self.top_scorer_data,
              'has_disabled': self.has_disabled,
              'panels': self.panels,
              'is_store': self.is_store,
