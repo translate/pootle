@@ -10,17 +10,17 @@ from collections import OrderedDict
 
 import pytest
 
-from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from pytest_pootle.suite import view_context_test
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
+from pootle.core.delegate import scores
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.url_helpers import get_previous_url, get_path_parts
-from pootle.core.utils.stats import (get_top_scorers_data,
-                                     get_translation_states)
+from pootle.core.utils.stats import (
+    TOP_CONTRIBUTORS_CHUNK_SIZE, get_translation_states)
 from pootle.core.views.display import ChecksDisplay
 from pootle.core.views.browse import StatsDisplay
 from pootle_misc.checks import (
@@ -127,8 +127,13 @@ def _test_browse_view(project, request, response, kwargs):
     checks = ChecksDisplay(obj).checks_by_category
     stats = StatsDisplay(obj, stats=stats).stats
     del stats["children"]
-    User = get_user_model()
-    top_scorers = User.top_scorers(project=project.code, limit=10)
+
+    chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
+    score_data = scores.get(Project)(project)
+    top_scorers = score_data.top_scorers
+    top_scorer_data = dict(
+        items=top_scorers[:chunk_size],
+        has_more_items=len(top_scorers) > chunk_size)
     assertions = dict(
         page="browse",
         project=project,
@@ -141,8 +146,7 @@ def _test_browse_view(project, request, response, kwargs):
         url_action_review=url_action_review,
         url_action_view_all=url_action_view_all,
         translation_states=get_translation_states(obj),
-        top_scorers=top_scorers,
-        top_scorers_data=get_top_scorers_data(top_scorers, 10),
+        top_scorers=top_scorer_data,
         checks=checks,
         stats=stats)
     sidebar = get_sidebar_announcements_context(
@@ -191,8 +195,12 @@ def test_view_projects_browse(client, request_users):
     checks = ChecksDisplay(obj).checks_by_category
     stats = StatsDisplay(obj, stats=stats).stats
     del stats["children"]
-    User = get_user_model()
-    top_scorers = User.top_scorers(limit=10)
+    chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
+    score_data = scores.get(ProjectSet)(obj)
+    top_scorers = score_data.top_scorers
+    top_scorer_data = dict(
+        items=top_scorers[:chunk_size],
+        has_more_items=len(top_scorers) > chunk_size)
     assertions = dict(
         page="browse",
         pootle_path="/projects/",
@@ -200,8 +208,7 @@ def test_view_projects_browse(client, request_users):
         resource_path_parts=[],
         object=obj,
         browser_extends="projects/all/base.html",
-        top_scorers=top_scorers,
-        top_scorers_data=get_top_scorers_data(top_scorers, 10),
+        top_scorers=top_scorer_data,
         translation_states=get_translation_states(obj),
         url_action_continue=url_action_continue,
         url_action_fixcritical=url_action_fixcritical,

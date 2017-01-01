@@ -12,14 +12,13 @@ import pytest
 
 from pytest_pootle.suite import view_context_test
 
-from django.contrib.auth import get_user_model
-
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import make_project_item
+from pootle.core.delegate import scores
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.url_helpers import get_previous_url
-from pootle.core.utils.stats import (get_top_scorers_data,
-                                     get_translation_states)
+from pootle.core.utils.stats import (
+    TOP_CONTRIBUTORS_CHUNK_SIZE, get_translation_states)
 from pootle.core.views.browse import StatsDisplay
 from pootle.core.views.display import ChecksDisplay
 from pootle_misc.checks import (
@@ -42,7 +41,12 @@ def _test_browse_view(language, request, response, kwargs):
     checks = ChecksDisplay(language).checks_by_category
     stats = StatsDisplay(language, stats=stats).stats
     del stats["children"]
-    top_scorers = get_user_model().top_scorers(language=language.code, limit=10)
+    score_data = scores.get(language.__class__)(language)
+    chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
+    top_scorers = score_data.top_scorers
+    top_scorer_data = dict(
+        items=top_scorers[:chunk_size],
+        has_more_items=len(top_scorers) > chunk_size)
     assertions = dict(
         page="browse",
         object=language,
@@ -59,8 +63,7 @@ def _test_browse_view(language, request, response, kwargs):
         url_action_view_all=language.get_translate_url(state='all'),
         # check_categories=get_qualitycheck_schema(language),
         translation_states=get_translation_states(language),
-        top_scorers=top_scorers,
-        top_scorers_data=get_top_scorers_data(top_scorers, 10),
+        top_scorers=top_scorer_data,
         checks=checks,
         stats=stats)
     sidebar = get_sidebar_announcements_context(request, (language, ))

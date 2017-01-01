@@ -12,17 +12,17 @@ import pytest
 
 from pytest_pootle.suite import view_context_test
 
-from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission
 from pootle.core.browser import get_parent
+from pootle.core.delegate import scores
 from pootle.core.helpers import (
     SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
 from pootle.core.url_helpers import get_previous_url, get_path_parts
-from pootle.core.utils.stats import (get_top_scorers_data,
-                                     get_translation_states)
+from pootle.core.utils.stats import (
+    TOP_CONTRIBUTORS_CHUNK_SIZE, get_translation_states)
 from pootle.core.views.display import ChecksDisplay
 from pootle_misc.checks import (
     CATEGORY_IDS, check_names,
@@ -72,9 +72,12 @@ def _test_browse_view(tp, request, response, kwargs):
     checks = ChecksDisplay(obj).checks_by_category
     del stats["children"]
 
-    User = get_user_model()
-    top_scorers = User.top_scorers(language=tp.language.code,
-                                   project=tp.project.code, limit=11)
+    score_data = scores.get(tp.__class__)(tp)
+    chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
+    top_scorers = score_data.top_scorers
+    top_scorer_data = dict(
+        items=top_scorers[:chunk_size],
+        has_more_items=len(top_scorers) > chunk_size)
     assertions = dict(
         page="browse",
         object=obj,
@@ -89,8 +92,7 @@ def _test_browse_view(tp, request, response, kwargs):
         resource_path_parts=get_path_parts(resource_path),
         translation_states=get_translation_states(obj),
         checks=checks,
-        top_scorers=top_scorers,
-        top_scorers_data=get_top_scorers_data(top_scorers, 10),
+        top_scorers=top_scorer_data,
         url_action_continue=obj.get_translate_url(
             state='incomplete', **filters),
         url_action_fixcritical=obj.get_critical_url(**filters),
