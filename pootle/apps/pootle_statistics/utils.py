@@ -9,14 +9,7 @@ from collections import OrderedDict
 
 from django.contrib.auth import get_user_model
 from django.db.models import Count, Q
-from django.utils import timezone
 from django.utils.functional import cached_property
-
-from pootle.core.decorators import persistent_property
-from pootle.core.url_helpers import split_pootle_path
-from pootle.core.utils.stats import TOP_CONTRIBUTORS_CHUNK_SIZE
-
-from .apps import PootleStatisticsConfig
 
 
 class Contributors(object):
@@ -89,28 +82,3 @@ class Contributors(object):
             [(user["username"], user)
              for user
              in qs.values("username", "full_name", "contributions", "email")])
-
-
-class TopScorersDataTool(object):
-    ns = 'pootle.top_scores'
-    sw_version = PootleStatisticsConfig.version
-
-    def __init__(self, context, pootle_path):
-        self.context = context
-        self.pootle_path = pootle_path
-
-    @property
-    def cache_key(self):
-        return (
-            "%s.%s"
-            % (self.context.data_tool.cache_key,
-               timezone.now().date()))
-
-    @persistent_property
-    def data(self):
-        User = get_user_model()
-        lang_code, proj_code = split_pootle_path(self.pootle_path)[:2]
-        return User.top_scorers(
-            project=proj_code,
-            language=lang_code,
-            limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1)
