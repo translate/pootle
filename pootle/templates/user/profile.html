@@ -30,12 +30,12 @@
       {% if user == object and object.public_score > 0 %}
         <a class="js-popup-tweet" href="https://twitter.com/share?text={% filter urlencode %}{% blocktrans with server_title=settings.POOTLE_TITLE score=object.public_score %}My current score at {{ server_title }} is {{ score }} {% endblocktrans %}{% endfilter %}" title="{% blocktrans %}Tweet this!{% endblocktrans %}">{{ object.public_score }}</a>
       {% else %}
-        {{ object.public_score }}
+        {{ user_score }}
       {% endif %}
     </h3>
 
     <h3 class="user-position">
-    {% with pos=object.top_language.0 lang=object.top_language.1 %}
+    {% with pos=user_top_language.0 lang=user_top_language.1 %}
     {% if pos == -1 %}
       {% trans 'No contributions in the last 30 days' %}
     {% else %}

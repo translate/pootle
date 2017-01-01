@@ -9,6 +9,7 @@
 from django.contrib import auth
 from django.views.generic import DetailView, UpdateView
 
+from pootle.core.delegate import scores
 from pootle.core.views import APIView
 from pootle.core.views.mixins import (NoDefaultUserMixin, TestUserFieldMixin,
                                       UserObjectMixin)
@@ -33,6 +34,9 @@ class UserDetailView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
         context['user_is_manager'] = self.request.user.has_manager_permissions()
+        user_scores = scores.get(User)(self.object)
+        context['user_score'] = user_scores.public_score
+        context["user_top_language"] = user_scores.top_language
         return context
 
 
