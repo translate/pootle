@@ -149,10 +149,6 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
         items.sort(cmp_by_last_activity)
         return items
 
-    @property
-    def top_scorers_context(self):
-        return self.project.directory
-
 
 class ProjectTranslateView(ProjectMixin, PootleTranslateView):
     required_permission = "administrate"
@@ -353,10 +349,6 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
         response = super(ProjectsBrowseView, self).get(*args, **kwargs)
         response.set_cookie('pootle-language', "projects")
         return response
-
-    @property
-    def top_scorers_context(self):
-        return self.object.directory
 
 
 class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):

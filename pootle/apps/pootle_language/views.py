@@ -93,10 +93,6 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
         response.set_cookie('pootle-language', self.object.code)
         return response
 
-    @property
-    def top_scorers_context(self):
-        return self.object.directory
-
 
 class LanguageTranslateView(LanguageMixin, PootleTranslateView):
     url_pattern_name = "pootle-language-translate"
