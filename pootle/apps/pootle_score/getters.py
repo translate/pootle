@@ -15,7 +15,8 @@ from pootle_project.models import Project, ProjectSet
 from pootle_translationproject.models import TranslationProject
 
 from .utils import (
-    LanguageScores, ProjectScores, ProjectSetScores, TPScores)
+    LanguageScores, ProjectScores, ProjectSetScores, TPScores, UserScores)
+
 
 User = get_user_model()
 
@@ -38,3 +39,8 @@ def get_projectset_scores(**kwargs_):
 @getter(scores, sender=TranslationProject)
 def get_tp_scores(**kwargs_):
     return TPScores
+
+
+@getter(scores, sender=User)
+def get_user_scores(**kwargs_):
+    return UserScores

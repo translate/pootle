@@ -13,8 +13,9 @@ from django.db.models import Sum
 from django.utils import timezone
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import revision
+from pootle.core.delegate import scores, revision
 from pootle_app.models import Directory
+from pootle_language.models import Language
 
 from .apps import PootleScoreConfig
 from .models import UserTPScore
@@ -126,3 +127,71 @@ class TPScores(Scores):
 
     def filter_scores(self, qs):
         return qs.filter(tp_id=self.context.id)
+
+
+class UserScores(Scores):
+    ns = "pootle.score.user"
+
+    @property
+    def cache_key(self):
+        return (
+            "%s.%s.%s"
+            % (self.context.username,
+               timezone.now().date(),
+               self.revision))
+
+    @property
+    def revision(self):
+        # this could probs be more efficient
+        project_directory = Directory.objects.get(pootle_path="/projects/")
+        return revision.get(Directory)(
+            project_directory).get(key="stats")
+
+    @property
+    def score_model(self):
+        return self.context.scores
+
+    @property
+    def public_score(self):
+        return self.context.public_score
+
+    @persistent_property
+    def top_language(self):
+        return self.get_top_language()
+
+    def get_top_language_within(self, days):
+        top_lang = self.get_scores_by_language(
+            days).order_by("score__sum").first()
+        if top_lang:
+            return Language.objects.get(id=top_lang["tp__language"])
+
+    def get_scores_by_language(self, days):
+        """Languages that the user has contributed to in the last `days`,
+        and the summary score
+        """
+        return self.get_scores(days).order_by(
+            "tp__language").values("tp__language").annotate(Sum("score"))
+
+    def get_language_top_scores(self, language):
+        return scores.get(language.__class__)(language).top_scorers
+
+    def get_top_language(self, days=30):
+        """Returns the top language the user has contributed to and its
+        position.
+
+        "Top language" is defined as the language with the highest
+        aggregate score delta within the last `days` days.
+
+        :param days: period of days to account for scores.
+        :return: Tuple of `(position, Language)`. If there's no delta in
+            the score for the given period for any of the languages,
+            `(-1, None)` is returned.
+        """
+        language = self.get_top_language_within(days)
+        if language:
+            # this only gets scores for the last 30 days as that is cached
+            language_scores = self.get_language_top_scores(language)
+            for index, user_score in enumerate(language_scores):
+                if user_score['user__username'] == self.context.username:
+                    return index + 1, language
+        return -1, language
