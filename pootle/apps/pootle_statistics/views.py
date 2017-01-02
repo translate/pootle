@@ -6,7 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.contrib.auth import get_user_model
 from django.forms import ValidationError
 from django.http import Http404
 from django.utils.decorators import method_decorator
@@ -14,8 +13,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import View
 
 from pootle.core.url_helpers import split_pootle_path
-from pootle.core.utils.stats import (TOP_CONTRIBUTORS_CHUNK_SIZE,
-                                     get_top_scorers_data)
+from pootle.core.utils.stats import TOP_CONTRIBUTORS_CHUNK_SIZE
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle_language.views import LanguageBrowseView
 from pootle_misc.util import ajax_required
@@ -26,27 +24,25 @@ from .forms import StatsForm
 
 
 class ContributorsJSONMixin(PootleJSONMixin):
+
     @property
     def path(self):
         return self.kwargs["path"]
 
     def get_context_data(self, **kwargs_):
-        User = get_user_model()
-
-        language_code, project_code = split_pootle_path(self.pootle_path)[:2]
         offset = self.kwargs.get("offset", 0)
+        chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
 
-        top_scorers = User.top_scorers(
-            project=project_code,
-            language=language_code,
-            limit=TOP_CONTRIBUTORS_CHUNK_SIZE + 1,
+        def scores_to_json(score):
+            score["user"] = score["user"].to_dict()
+            return score
+        top_scorers = self.scores.display(
             offset=offset,
-        )
-
-        return get_top_scorers_data(
-            top_scorers,
-            TOP_CONTRIBUTORS_CHUNK_SIZE
-        )
+            limit=chunk_size,
+            formatter=scores_to_json)
+        return dict(
+            items=list(top_scorers),
+            has_more_items=len(self.scores.top_scorers) > (offset + chunk_size))
 
 
 class TPContributorsJSON(ContributorsJSONMixin, TPBrowseView):
