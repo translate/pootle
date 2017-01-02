@@ -79,9 +79,6 @@ class UserManager(BaseUserManager):
     def hide_meta(self):
         return self.get_queryset().exclude(username__in=self.META_USERS)
 
-    def meta_users(self):
-        return self.get_queryset().filter(username__in=self.META_USERS)
-
     def get_users_with_permission(self, permission_code, project, language,
                                   tp=None):
         default = self.get_default_user()
