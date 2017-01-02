@@ -8,6 +8,8 @@
 
 import pytest
 
+from datetime import timedelta
+
 from django.db.utils import IntegrityError
 from django.utils import timezone
 
@@ -17,7 +19,10 @@ from pootle_score.models import UserTPScore
 @pytest.mark.django_db
 def test_user_tp_score_repr(tp0, member):
     score = UserTPScore.objects.create(
-        user=member, tp=tp0, score=2, date=timezone.now().date())
+        user=member,
+        tp=tp0,
+        score=2,
+        date=timezone.now().date() + timedelta(days=5))
     score_info = (
         "%s(%s) %s score: %s, suggested: %s, translated: %s, reviewed: %s"
         % (score.user.username,
@@ -33,7 +38,7 @@ def test_user_tp_score_repr(tp0, member):
 
 @pytest.mark.django_db
 def test_user_tp_score_instance(tp0, member):
-    theday = timezone.now().date()
+    theday = timezone.now().date() + timedelta(days=5)
     score = UserTPScore.objects.create(
         user=member, tp=tp0, score=2, date=theday)
     assert score.user == member
@@ -53,14 +58,19 @@ def test_user_tp_score_instance(tp0, member):
 @pytest.mark.django_db
 def test_user_tp_score_bad_no_user(tp0, member):
     with pytest.raises(IntegrityError):
-        UserTPScore.objects.create(tp=tp0, score=2, date=timezone.now().date())
+        UserTPScore.objects.create(
+            tp=tp0,
+            score=2,
+            date=timezone.now().date() + timedelta(days=5))
 
 
 @pytest.mark.django_db
 def test_user_tp_score_bad_no_tp(tp0, member):
     with pytest.raises(IntegrityError):
         UserTPScore.objects.create(
-            user=member, score=2, date=timezone.now().date())
+            user=member,
+            score=2,
+            date=timezone.now().date() + timedelta(days=5))
 
 
 @pytest.mark.django_db
@@ -72,7 +82,7 @@ def test_user_tp_score_bad_no_date(tp0, member):
 
 @pytest.mark.django_db
 def test_user_tp_score_bad_dupe(tp0, member):
-    theday = timezone.now().date()
+    theday = timezone.now().date() + timedelta(days=5)
     UserTPScore.objects.create(
         user=member, tp=tp0, score=2, date=theday)
     with pytest.raises(IntegrityError):
