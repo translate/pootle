@@ -6,18 +6,16 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import datetime
 import re
 from hashlib import md5
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
-from django.core.cache import cache
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.core.validators import RegexValidator
 from django.db import models
-from django.db.models import Case, ProtectedError, Q, Sum, When
+from django.db.models import ProtectedError, Q
 from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.utils import timezone
@@ -27,12 +25,10 @@ from django.utils.lru_cache import lru_cache
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
-from pootle.core.cache import make_method_key
 from pootle.core.views.display import ActionDisplay
 from pootle.i18n import formatter
 from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_statistics.models import (ScoreLog, Submission,
-                                      TranslationActionCodes)
+from pootle_statistics.models import Submission
 from pootle_store.models import Unit
 
 from .managers import UserManager
@@ -142,113 +138,6 @@ class User(AbstractBaseUser):
             return md5(self.email).hexdigest()
         except UnicodeEncodeError:
             return None
-
-    @classmethod
-    def top_scorers(cls, days=30, language=None, project=None, limit=5,
-                    offset=0):
-        """Returns users with the top scores.
-
-        :param days: period of days to account for scores.
-        :param language: limit results to the given language code.
-        :param project: limit results to the given project code.
-        :param limit: limit results to this number of users. Values other
-            than positive numbers will return the entire result set.
-        """
-        cache_kwargs = {
-            'days': days,
-            'language': language,
-            'project': project,
-            'limit': limit,
-            'offset': offset,
-        }
-        cache_key = make_method_key(cls, 'top_scorers', cache_kwargs)
-
-        top_scorers = cache.get(cache_key, None)
-        if top_scorers is not None:
-            return top_scorers
-
-        now = timezone.now()
-        past = now + datetime.timedelta(-days)
-
-        lookup_kwargs = {
-            'creation_time__range': [past, now],
-        }
-
-        if language is not None:
-            lookup_kwargs.update({
-                'submission__translation_project__language__code':
-                    language,
-            })
-
-        if project is not None:
-            lookup_kwargs.update({
-                'submission__translation_project__project__code':
-                    project,
-            })
-
-        meta_user_ids = cls.objects.meta_users().values_list('id', flat=True)
-        top_scores = ScoreLog.objects.values("user").filter(
-            **lookup_kwargs
-        ).exclude(
-            user__pk__in=meta_user_ids,
-        ).annotate(
-            total_score=Sum('score_delta'),
-            suggested=Sum(
-                Case(
-                    When(
-                        action_code=TranslationActionCodes.SUGG_ADDED,
-                        then='wordcount'
-                    ),
-                    default=0,
-                    output_field=models.IntegerField()
-                )
-            ),
-            translated=Sum(
-                Case(
-                    When(
-                        translated_wordcount__isnull=False,
-                        then='translated_wordcount'
-                    ),
-                    default=0,
-                    output_field=models.IntegerField()
-                )
-            ),
-            reviewed=Sum(
-                Case(
-                    When(
-                        action_code__in=[
-                            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED,
-                            TranslationActionCodes.REVIEWED,
-                            TranslationActionCodes.EDITED,
-                        ],
-                        translated_wordcount__isnull=True,
-                        then='wordcount',
-                    ),
-                    default=0,
-                    output_field=models.IntegerField()
-                )
-            ),
-        ).order_by('-total_score')[offset:]
-
-        if isinstance(limit, (int, long)) and limit > 0:
-            top_scores = top_scores[:limit]
-
-        users = dict(
-            (user.id, user)
-            for user in cls.objects.filter(
-                pk__in=[item['user'] for item in top_scores]
-            )
-        )
-
-        top_scorers = []
-        for item in top_scores:
-            item['user'] = users[item['user']]
-            item['public_total_score'] = formatter.number(
-                round(item['total_score']))
-            top_scorers.append(item)
-
-        cache.set(cache_key, top_scorers, 60)
-        return top_scorers
 
     def __unicode__(self):
         return self.username
