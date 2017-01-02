@@ -30,25 +30,3 @@ def get_translation_states(path_obj):
     states.append(make_dict('untranslated', _("Untranslated")))
 
     return states
-
-
-def get_top_scorers_data(top_scorers, chunk_size):
-    has_more_scorers = len(top_scorers) > chunk_size
-
-    top_scorers_data = [
-        dict(
-            total_score=scorer['total_score'],
-            public_total_score=scorer['public_total_score'],
-            suggested=scorer['suggested'],
-            translated=scorer['translated'],
-            reviewed=scorer['reviewed'],
-            email=scorer['user'].email_hash,
-            display_name=scorer['user'].display_name,
-            username=scorer['user'].username,
-        ) for scorer in top_scorers[:chunk_size]
-    ]
-
-    return dict(
-        items=top_scorers_data,
-        has_more_items=has_more_scorers
-    )
