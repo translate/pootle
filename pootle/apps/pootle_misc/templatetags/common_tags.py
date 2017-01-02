@@ -9,7 +9,6 @@
 import datetime
 
 from django import template
-from django.contrib.auth import get_user_model
 
 from pootle.i18n import formatter
 from pootle.local.dates import timesince
@@ -100,16 +99,8 @@ def label_tag(field, suffix=None):
 
 
 @register.inclusion_tag('core/_top_scorers.html')
-def top_scorers(*args, **kwargs):
-    User = get_user_model()
-    allowed_kwargs = ('days', 'language', 'project', 'limit')
-    lookup_kwargs = dict(
-        (k, v) for (k, v) in kwargs.iteritems() if k in allowed_kwargs and v
-    )
-
-    return {
-        'top_scorers': User.top_scorers(**lookup_kwargs),
-    }
+def top_scorers(user, top_scorers):
+    return dict(user=user, top_scorers=top_scorers)
 
 
 @register.simple_tag
