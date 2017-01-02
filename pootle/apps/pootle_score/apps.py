@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-# import importlib
+import importlib
 
 from django.apps import AppConfig
 
@@ -19,4 +19,4 @@ class PootleScoreConfig(AppConfig):
 
     def ready(self):
         # importlib.import_module("pootle_score.getters")
-        pass
+        importlib.import_module("pootle_score.receivers")
