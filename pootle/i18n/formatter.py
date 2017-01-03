@@ -16,10 +16,12 @@ from django.utils.translation import get_language, to_locale
 
 
 def _get_locale_formats():
-    try:
-        locale = babel_core.Locale.parse(to_locale(get_language()))
-    except UnknownLocaleError:
-        locale = settings.LANGUAGE_CODE
+    for language in [get_language(), settings.LANGUAGE_CODE, 'en-us']:
+        try:
+            locale = babel_core.Locale.parse(to_locale(language))
+            break
+        except UnknownLocaleError:
+            continue
     return babel_support.Format(locale)
 
 
