@@ -8,14 +8,18 @@
 
 from __future__ import absolute_import
 
-from babel import support as babel_support
-from babel import core as babel_core
+from babel import (UnknownLocaleError, core as babel_core,
+                   support as babel_support)
 
+from django.conf import settings
 from django.utils.translation import get_language, to_locale
 
 
 def _get_locale_formats():
-    locale = babel_core.Locale.parse(to_locale(get_language()))
+    try:
+        locale = babel_core.Locale.parse(to_locale(get_language()))
+    except UnknownLocaleError:
+        locale = settings.LANGUAGE_CODE
     return babel_support.Format(locale)
 
 
