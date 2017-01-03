@@ -55,5 +55,6 @@ RUN apt remove -y `cat build-deps.txt | tr "\n" " "` \
 
 USER pootle
 
+COPY scripts/ /scripts/
 COPY entrypoint.sh /
 ENTRYPOINT /entrypoint.sh
