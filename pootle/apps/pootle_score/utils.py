@@ -13,7 +13,7 @@ from django.db.models import Sum
 from django.utils import timezone
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import scores, revision
+from pootle.core.delegate import display, scores, revision
 from pootle_app.models import Directory
 from pootle_language.models import Language
 
@@ -70,6 +70,14 @@ class Scores(object):
     @persistent_property
     def top_scorers(self):
         return tuple(self.get_top_scorers())
+
+    def display(self, limit=5, language=None):
+        scorers = self.top_scorers
+        if limit:
+            scorers = list(scorers)[:limit]
+        return display.get(Scores)(
+            top_scores=scorers,
+            language=language)
 
 
 class LanguageScores(Scores):
