@@ -14,10 +14,12 @@ from django.db.models import Sum
 from django.utils import timezone
 
 from pootle.core.delegate import revision, scores
+from pootle_app.models import Directory
+from pootle_language.models import Language
 from pootle_score.apps import PootleScoreConfig
 from pootle_score.models import UserTPScore
 from pootle_score.utils import (
-    LanguageScores, ProjectScores, ProjectSetScores, TPScores)
+    LanguageScores, ProjectScores, ProjectSetScores, TPScores, UserScores)
 
 
 def _test_scores(ns, context, score_data):
@@ -118,3 +120,54 @@ def test_scores_project_set(project_set):
                score_data.revision)))
     qs = score_data.scores_within_days(30)
     assert score_data.filter_scores(qs) is qs
+
+
+@pytest.mark.django_db
+def test_scores_user(member, system):
+    score_data = scores.get(member.__class__)(member)
+
+    assert isinstance(score_data, UserScores)
+    assert score_data.ns == "pootle.score.user"
+    assert score_data.sw_version == PootleScoreConfig.version
+    assert score_data.context == member
+    assert score_data.public_score == member.public_score
+    assert(
+        list(score_data.get_scores_by_language(10))
+        == list(
+            score_data.get_scores(10).order_by(
+                "tp__language").values("tp__language").annotate(Sum("score"))))
+    top_lang = score_data.get_scores_by_language(20).order_by("score__sum").first()
+    top_lang = Language.objects.get(id=top_lang["tp__language"])
+    assert (
+        score_data.get_top_language_within(20)
+        == top_lang)
+    assert (
+        score_data.get_language_top_scores(top_lang)
+        == scores.get(Language)(top_lang).top_scorers)
+    top_lang = score_data.get_top_language_within(100)
+    language_scores = score_data.get_language_top_scores(top_lang)
+    for index, user_score in enumerate(language_scores):
+        if user_score['user__username'] == member.username:
+            assert (
+                score_data.get_top_language(100)
+                == (index + 1, top_lang))
+            break
+    assert (
+        score_data.top_language
+        == score_data.get_top_language(30))
+    project_directory = Directory.objects.get(pootle_path="/projects/")
+    assert (
+        score_data.revision
+        == revision.get(Directory)(
+            project_directory).get(key="stats"))
+    assert (
+        score_data.cache_key
+        == ("%s.%s.%s"
+            % (member.username,
+               timezone.now().date(),
+               score_data.revision)))
+    # system gets no rank
+    sys_score_data = scores.get(system.__class__)(system)
+    assert (
+        sys_score_data.top_language
+        == (-1, None))
