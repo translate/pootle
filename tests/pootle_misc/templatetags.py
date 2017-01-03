@@ -6,7 +6,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import pytest
+
 from django.template import Context, Template
+
+from pootle.core.delegate import scores
 
 
 def _render_str(string, context=None):
@@ -28,3 +32,16 @@ def test_templatetag_progress_bar():
     assert '<td class="translated" style="width: 59.3%">' in rendered
     assert '<td class="fuzzy" style="width: 18.7%">' in rendered
     assert '<td class="untranslated" style="width: 22.0%">' in rendered
+
+
+@pytest.mark.django_db
+def test_inclusion_tag_top_scorers(project_set, member):
+    score_data = scores.get(project_set.__class__)(project_set)
+    rendered = _render_str(
+        "{% load common_tags %}{% top_scorers user score_data %}",
+        context=dict(
+            user=member,
+            score_data=score_data.display()))
+    top_scorer = list(score_data.display())[0]
+    assert top_scorer["public_total_score"] in rendered
+    assert top_scorer["user"].email_hash in rendered
