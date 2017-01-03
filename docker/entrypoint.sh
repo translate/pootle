@@ -4,14 +4,23 @@
 : ${DATABASE:=sqlite}
 : ${INSTALL_DIR:=/pootle}
 : ${CONFIG_DIR:=/config}
-
-. /scripts/configureDB.sh
-
-: "${DOMAIN:="*"}" # set ALLOWED_HOSTS to '*'
+: ${FRESH_INSTALL:=True}
 
 CONFIG_FILE="$CONFIG_DIR/pootle.conf"
 
 if [ ! -f $CONFIG_FILE ]; then
+    FRESH_INSTALL=True
+    echo "This is a fresh install"
+else
+    FRESH_INSTALL=False
+fi
+
+if [[ "$FRESH_INSTALL" == "True" ]]; then
+    . /scripts/configureDB.sh
+    : "${DOMAIN:="*"}" # set ALLOWED_HOSTS to '*'
+fi
+
+if [[ "$FRESH_INSTALL" == "True" ]]; then
     cd $INSTALL_DIR \
     && . bin/activate || exit 3
     echo "Creating initial Pootle configuration..."
