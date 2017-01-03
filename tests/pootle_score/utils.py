@@ -13,10 +13,13 @@ import pytest
 from django.db.models import Sum
 from django.utils import timezone
 
+from accounts.proxy import DisplayUser
 from pootle.core.delegate import revision, scores
+from pootle.i18n import formatter
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_score.apps import PootleScoreConfig
+from pootle_score.display import TopScoreDisplay
 from pootle_score.models import UserTPScore
 from pootle_score.utils import (
     LanguageScores, ProjectScores, ProjectSetScores, TPScores, UserScores)
@@ -54,6 +57,19 @@ def _test_scores(ns, context, score_data):
         score_data.revision
         == revision.get(context.directory.__class__)(
             context.directory).get(key="stats"))
+
+    score_display = score_data.display()
+    assert isinstance(score_display, TopScoreDisplay)
+    for i, item in enumerate(score_display):
+        data = score_data.top_scorers[i]
+        assert item["public_total_score"] == formatter.number(
+            round(data["score__sum"]))
+        assert isinstance(item["user"], DisplayUser)
+        assert item["user"].username == data["user__username"]
+        assert item["user"].full_name == data["user__full_name"]
+        assert item["user"].email == data["user__email"]
+    score_display = score_data.display(limit=1)
+    assert len(list(score_display)) <= 1
 
 
 @pytest.mark.django_db
