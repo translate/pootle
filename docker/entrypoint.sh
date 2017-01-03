@@ -18,9 +18,7 @@ fi
 if [[ "$FRESH_INSTALL" == "True" ]]; then
     . /scripts/configureDB.sh
     : "${DOMAIN:="*"}" # set ALLOWED_HOSTS to '*'
-fi
 
-if [[ "$FRESH_INSTALL" == "True" ]]; then
     cd $INSTALL_DIR \
     && . bin/activate || exit 2
     echo "Creating initial Pootle configuration..."
@@ -28,7 +26,9 @@ if [[ "$FRESH_INSTALL" == "True" ]]; then
     echo "Created initial Pootle configuration. See documentation for help on customising the settings: http://docs.translatehouse.org/projects/pootle/en/stable-2.7.6/server/settings.html"
     # exit virtualenv
     deactivate || exit 2
+
     sed -i -e "s/'PASSWORD': '',/'PASSWORD': '$POOTLE_DB_PASSWORD',/g" $CONFIG_FILE || exit 2
+    sed -i -e "s/#'\${your_server}',/'$DOMAIN',/g" $CONFIG_FILE || exit 2
 fi
 
 # configure Redis
