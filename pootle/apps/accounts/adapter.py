@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
-import re
 
 from django.conf import settings
 from django.http import JsonResponse
@@ -29,9 +28,6 @@ class PootleAccountAdapter(DefaultAccountAdapter):
       - form_errors is renamed to errors
       - Latin1 usernames are allowed
     """
-
-    # TODO: Remove this once allauth newer than 0.29.0 is released.
-    username_regex = re.compile(r'^[\w.@+-]+$', re.UNICODE)
 
     def ajax_response(self, request, response, redirect_to=None, form=None):
         data = {}
