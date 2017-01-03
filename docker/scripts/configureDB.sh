@@ -29,7 +29,10 @@ if [[ "$DATABASE" == "mysql" ]]; then
 elif [[ "$DATABASE" == "postgresql" ]]; then
     echo 'PostgreSQL was chosen as database backend.'
     echo >&2 'ERROR: PostgreSQL support not implemented yet in Docker image.'
-    exit 2
+    exit 1
 elif [[ "$DATABASE" == "sqlite" ]]; then
     echo 'SQLite3 was chosen as database backend.'
+else
+    echo "Invalid database backend specified: \"$DATABASE\""
+    exit 1
 fi

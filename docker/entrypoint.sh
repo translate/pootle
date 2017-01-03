@@ -22,12 +22,12 @@ fi
 
 if [[ "$FRESH_INSTALL" == "True" ]]; then
     cd $INSTALL_DIR \
-    && . bin/activate || exit 3
+    && . bin/activate || exit 2
     echo "Creating initial Pootle configuration..."
-    pootle init --config $CONFIG_FILE $DB_INIT_PARAMS || exit 3
+    pootle init --config $CONFIG_FILE $DB_INIT_PARAMS || exit 2
     echo "Created initial Pootle configuration. See documentation for help on customising the settings: http://docs.translatehouse.org/projects/pootle/en/stable-2.7.6/server/settings.html"
     # exit virtualenv
-    deactivate || exit 3
+    deactivate || exit 2
 fi
 
 # configure Redis
