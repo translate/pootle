@@ -8,17 +8,24 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle.core.delegate import scores
+from pootle.core.delegate import display, scores
 from pootle.core.plugin import getter
 from pootle_language.models import Language
 from pootle_project.models import Project, ProjectSet
 from pootle_translationproject.models import TranslationProject
 
+from .display import TopScoreDisplay
 from .utils import (
-    LanguageScores, ProjectScores, ProjectSetScores, TPScores, UserScores)
+    LanguageScores, ProjectScores, ProjectSetScores, Scores,
+    TPScores, UserScores)
 
 
 User = get_user_model()
+
+
+@getter(display, sender=Scores)
+def get_scores_display(**kwargs_):
+    return TopScoreDisplay
 
 
 @getter(scores, sender=Language)
