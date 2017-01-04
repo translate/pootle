@@ -1,28 +1,28 @@
-nginx:
-    image: nginx:1.11.6
-    links:
-        - pootle
-    volumes:
-        - ./nginx.conf:/etc/nginx/nginx.conf:ro
+#nginx:
+    #image: nginx:1.11.6
+    #links:
+        #- pootle
+    #volumes:
+        #- ./nginx.conf:/etc/nginx/nginx.conf:ro
 
 pootle:
     #image: pootle:2.7.3
     build: .
     links:
-        - db:dbserver
+        #- db:dbserver
         - redis:rdserver
     environment:
-        DATABASE: 'mysql'
+        DATABASE: 'sqlite'
     volumes:
         - ./config:/config
     ports:
         - 8000:8000
 
-db:
-    image: mysql:5.7.17
-    environment:
-        MYSQL_ROOT_PASSWORD: 'superSecretPassword'
-        MYSQL_DATABSE: 'pootledb'
+#db:
+    #image: mysql:5.7.17
+    #environment:
+        #MYSQL_ROOT_PASSWORD: 'superSecretPassword'
+        #MYSQL_DATABSE: 'pootledb'
 
 redis:
     image: redis:3.2.6
