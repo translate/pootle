@@ -46,3 +46,16 @@ class DisplayUser(object):
         return (
             'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
             % (self.email_hash, size))
+
+    def to_dict(self):
+        userdict = {}
+        props = [
+            "username", "full_name", "email",
+            "author_link", "display_name", "email_hash"]
+        methods = [
+            "get_absolute_url", "gravatar_url"]
+        for prop in props:
+            userdict[prop] = getattr(self, prop)
+        for method in methods:
+            userdict[method] = getattr(self, method)()
+        return userdict
