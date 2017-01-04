@@ -71,12 +71,17 @@ class Scores(object):
     def top_scorers(self):
         return tuple(self.get_top_scorers())
 
-    def display(self, limit=5, language=None):
+    def display(self, offset=0, limit=5, language=None, formatter=None):
         scorers = self.top_scorers
+        if offset or limit:
+            scorers = list(scorers)
+        if offset:
+            scorers = scorers[offset:]
         if limit:
-            scorers = list(scorers)[:limit]
+            scorers = scorers[:limit]
         return display.get(Scores)(
             top_scores=scorers,
+            formatter=formatter,
             language=language)
 
 

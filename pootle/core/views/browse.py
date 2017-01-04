@@ -139,10 +139,16 @@ class PootleBrowseView(PootleDetailView):
     @persistent_property
     def top_scorer_data(self):
         chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
-        top_scorers = self.scores.top_scorers
+
+        def scores_to_json(score):
+            score["user"] = score["user"].to_dict()
+            return score
+        top_scorers = self.scores.display(
+            limit=chunk_size,
+            formatter=scores_to_json)
         return dict(
-            items=top_scorers[:chunk_size],
-            has_more_items=len(top_scorers) > chunk_size)
+            items=list(top_scorers),
+            has_more_items=len(self.scores.top_scorers) > chunk_size)
 
     @property
     def panels(self):

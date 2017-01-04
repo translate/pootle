@@ -12,16 +12,23 @@ from pootle.i18n import formatter
 
 class TopScoreDisplay(object):
 
-    def __init__(self, top_scores, language=None):
+    def __init__(self, top_scores, language=None, formatter=None):
         self.top_scores = top_scores
         self.language = language
+        self.formatter = formatter
+
+    def format_score(self, score):
+        if self.formatter:
+            return self.formatter(score)
+        return score
 
     def __iter__(self):
         for score in self.top_scores:
-            yield dict(
-                user=DisplayUser(
-                    score["user__username"],
-                    score["user__full_name"],
-                    score["user__email"]),
-                public_total_score=formatter.number(
-                    int(round(score["score__sum"]))))
+            yield self.format_score(
+                dict(
+                    user=DisplayUser(
+                        score["user__username"],
+                        score["user__full_name"],
+                        score["user__email"]),
+                    public_total_score=formatter.number(
+                        int(round(score["score__sum"])))))
