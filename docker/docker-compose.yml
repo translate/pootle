@@ -10,7 +10,7 @@ pootle:
     build: .
     links:
         #- db:dbserver
-        - redis:rdserver
+        - redis:redis
     environment:
         DATABASE: 'sqlite'
     volumes:
