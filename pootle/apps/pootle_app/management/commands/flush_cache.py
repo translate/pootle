@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import sys
 
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
@@ -16,6 +17,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django_redis import get_redis_connection
 
 from pootle.core.models import Revision
+from pootle.core.utils.redis_rq import rq_workers_are_running
 from pootle_store.models import Unit
 
 
@@ -62,8 +64,14 @@ class Command(BaseCommand):
                                "--django-cache, --rqdata, --lru "
                                "or --all.")
 
-        self.stdout.write('Flushing cache...')
+        if options['flush_rqdata'] or options['flush_all']:
+            if rq_workers_are_running():
+                self.stdout.write("Nothing has been flushed. "
+                                  "Stop RQ workers before running this "
+                                  "command with --rqdata or --all option.")
+                sys.exit()
 
+        self.stdout.write('Flushing cache...')
         if options['flush_rqdata'] or options['flush_all']:
             # Flush all rq data, dirty counter and restore Pootle revision
             # value.
