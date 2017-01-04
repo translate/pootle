@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /scripts/functions.sh
+
 # Default to SQLite3
 : ${DATABASE:=sqlite}
 : ${INSTALL_DIR:=/pootle}
@@ -29,9 +31,10 @@ if [[ "$FRESH_INSTALL" == "True" ]]; then
 
     sed -i -e "s/'PASSWORD': '',/'PASSWORD': '$POOTLE_DB_PASSWORD',/g" $CONFIG_FILE || exit 2
     sed -i -e "s/#'\${your_server}',/'$DOMAIN',/g" $CONFIG_FILE || exit 2
-fi
 
-# configure Redis
+    # configure Redis
+    . /scripts/configureCACHES.sh
+fi
 
 # handle upgrade scenario
     # pootle migrate

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 DB_INIT_PARAMS="--db $DATABASE"
 
 if [[ "$DATABASE" == "mysql" ]]; then
