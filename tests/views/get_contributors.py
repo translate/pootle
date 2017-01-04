@@ -120,6 +120,33 @@ def test_get_contributors_language(client, request_users):
 
 
 @pytest.mark.django_db
+def test_get_contributors_projects_offset(client, request_users):
+    offset = 3
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    directory = Directory.objects.projects
+    response = client.get(
+        ("/xhr/stats/contributors/?path=%s&offset=%d"
+         % (directory.pootle_path, offset)),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 200
+    result = json.loads(response.content)
+    user_projects = Project.accessible_by_user(user)
+    user_projects = (
+        Project.objects.for_user(user)
+                       .filter(code__in=user_projects))
+    top_scorers_data = get_top_scorers_test_data(
+        ProjectSet(user_projects),
+        offset=offset)
+    for k, v in result.items():
+        assert json.loads(json.dumps(top_scorers_data[k])) == v
+
+
+@pytest.mark.django_db
 def test_get_contributors_projects(client, request_users):
 
     user = request_users["user"]
