@@ -24,11 +24,14 @@ class TopScoreDisplay(object):
 
     def __iter__(self):
         for score in self.top_scores:
-            yield self.format_score(
-                dict(
-                    user=DisplayUser(
-                        score["user__username"],
-                        score["user__full_name"],
-                        score["user__email"]),
-                    public_total_score=formatter.number(
-                        int(round(score["score__sum"])))))
+            score_data = dict(
+                user=DisplayUser(
+                    score["user__username"],
+                    score["user__full_name"],
+                    score["user__email"]),
+                public_total_score=formatter.number(
+                    int(round(score["score__sum"]))))
+            for k in ["translated", "reviewed", "suggested"]:
+                score_data[k] = formatter.number(
+                    int(round(score["%s__sum" % k])))
+            yield self.format_score(score_data)
