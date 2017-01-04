@@ -75,9 +75,16 @@ def _test_browse_view(tp, request, response, kwargs):
     score_data = scores.get(tp.__class__)(tp)
     chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
     top_scorers = score_data.top_scorers
+
+    def scores_to_json(score):
+        score["user"] = score["user"].to_dict()
+        return score
+    top_scorers = score_data.display(
+        limit=chunk_size,
+        formatter=scores_to_json)
     top_scorer_data = dict(
-        items=top_scorers[:chunk_size],
-        has_more_items=len(top_scorers) > chunk_size)
+        items=list(top_scorers),
+        has_more_items=len(score_data.top_scorers) > chunk_size)
     assertions = dict(
         page="browse",
         object=obj,
