@@ -11,7 +11,9 @@ RUN apt update \
     && export DEBIAN_FRONTEND=noninteractive \
     && apt install -y \
             locales \
-            ca-certificates
+            ca-certificates \
+            libxml2 \
+            libpython2.7
 RUN apt update \
     && build_packages='\
         build-essential \
@@ -47,6 +49,7 @@ RUN cd $INSTALL_DIR \
     && pip install "Pootle==$POOTLE_VERSION"
 
 USER root
+
 # Clean image
 RUN apt remove -y `cat build-deps.txt | tr "\n" " "` \
     && rm build-deps.txt \
