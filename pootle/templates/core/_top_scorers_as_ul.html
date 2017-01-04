@@ -1,14 +1,14 @@
-{% load i18n profile_tags %}
+{% load i18n common_tags profile_tags %}
 {% if top_scorers %}
 <label>{% trans 'Top contributors:' %}</label>
 <ul class="top-scorers">
-  {% for item in top_scorers|slice:":3" %}
+  {% for item in top_scorers.items|slice:":3" %}
     {% with user=item.user %}
     <li class="top-scorer">
       <div class="place">{% blocktrans with position=forloop.counter %}#{{ position }}{% endblocktrans %}</div>
       <div class="user">
         <a href="{{ user.get_absolute_url }}">
-          <img src="{{ user|gravatar:20 }}" class="avatar" />
+	  {% avatar user.username user.email_hash 20 %}
           <span class="user-name user-info">{{ user.display_name }}</span>
         </a>
       </div>

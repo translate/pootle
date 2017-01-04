@@ -175,7 +175,7 @@
       hasDisabledItems: {{ has_disabled|yesno:"true,false" }},
       isAdmin: {{ has_admin_access|yesno:"true,false" }},
       isInitiallyExpanded: {{ is_store|yesno:"true,false" }},
-      topContributorsData: {{ top_scorers_data|to_js }},
+      topContributorsData: {{ top_scorers|to_js }},
       uiLocaleDir: '{{ LANGUAGE_BIDI|yesno:"rtl,ltr" }}',
     });
   });
