@@ -54,8 +54,6 @@ class Scores(object):
         """Returns users with the top scores.
 
         :param days: period of days to account for scores.
-        :param limit: limit results to this number of users. Values other
-            than positive numbers will return the entire result set.
         """
         return self.get_scores(days).order_by("user__username").values(
             "user__username", "user__email", "user__full_name").annotate(
