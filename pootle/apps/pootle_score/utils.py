@@ -153,10 +153,8 @@ class UserScores(Scores):
 
     @property
     def revision(self):
-        # this could probs be more efficient
-        project_directory = Directory.objects.get(pootle_path="/projects/")
         return revision.get(Directory)(
-            project_directory).get(key="stats")
+            Directory.objects.projects).get(key="stats")
 
     @property
     def score_model(self):
