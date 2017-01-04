@@ -2,7 +2,7 @@ FROM python:2.7.12
 MAINTAINER Ovidiu-Florin BOGDAN "ovidiu.b13@gmail.com"
 
 ENV INSTALL_DIR=/pootle \
-    CONFIG_DIR=/config \
+    POOTLE_SETTINGS=/config/pootle.conf \
     POOTLE_VERSION='2.7.6' \
     USE_LOCALE='en_US.UTF-8'
 

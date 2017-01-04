@@ -5,12 +5,10 @@
 # Default to SQLite3
 : ${DATABASE:=sqlite}
 : ${INSTALL_DIR:=/pootle}
-: ${CONFIG_DIR:=/config}
+: ${POOTLE_SETTINGS:=/config/pootle.conf}
 : ${FRESH_INSTALL:=True}
 
-CONFIG_FILE="$CONFIG_DIR/pootle.conf"
-
-if [ ! -f $CONFIG_FILE ]; then
+if [ ! -f $POOTLE_SETTINGS ]; then
     FRESH_INSTALL=True
     echo "This is a fresh install"
 else
@@ -24,13 +22,13 @@ if [[ "$FRESH_INSTALL" == "True" ]]; then
     cd $INSTALL_DIR \
     && . bin/activate || exit 2
     echo "Creating initial Pootle configuration..."
-    pootle init --config $CONFIG_FILE $DB_INIT_PARAMS || exit 2
+    pootle init --config $POOTLE_SETTINGS $DB_INIT_PARAMS || exit 2
     echo "Created initial Pootle configuration. See documentation for help on customising the settings: http://docs.translatehouse.org/projects/pootle/en/stable-2.7.6/server/settings.html"
     # exit virtualenv
     deactivate || exit 2
 
-    sed -i -e "s/'PASSWORD': '',/'PASSWORD': '$POOTLE_DB_PASSWORD',/g" $CONFIG_FILE || exit 2
-    sed -i -e "s/#'\${your_server}',/'$DOMAIN',/g" $CONFIG_FILE || exit 2
+    sed -i -e "s/'PASSWORD': '',/'PASSWORD': '$POOTLE_DB_PASSWORD',/g" $POOTLE_SETTINGS || exit 2
+    sed -i -e "s/#'\${your_server}',/'$DOMAIN',/g" $POOTLE_SETTINGS || exit 2
 
     # configure Redis
     . /scripts/configureCACHES.sh
