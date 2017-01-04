@@ -29,6 +29,7 @@ class TopScoreDisplay(object):
                     score["user__username"],
                     score["user__full_name"],
                     score["user__email"]),
+                total_score=score["score__sum"],
                 public_total_score=formatter.number(
                     int(round(score["score__sum"]))))
             for k in ["translated", "reviewed", "suggested"]:
