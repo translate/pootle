@@ -10,7 +10,8 @@ import re
 
 import pytest
 
-from pootle.core.delegate import stemmer, stopwords, terminology
+from pootle.core.delegate import (
+    stemmer, stopwords, terminology, terminology_matcher)
 from pootle_terminology.utils import UnitTerminology
 
 
@@ -65,3 +66,46 @@ def test_unit_terminology_bad(store0):
     unit = store0.units.first()
     with pytest.raises(ValueError):
         terminology.get(unit.__class__)(unit)
+
+
+@pytest.mark.django_db
+def test_terminology_matcher(store0, terminology0):
+
+    for store in terminology0.stores.all():
+        for unit in store.units.all():
+            terminology.get(unit.__class__)(unit).stem()
+
+    unit = store0.units.first()
+    matcher = terminology_matcher.get(unit.__class__)(unit)
+    assert matcher.text == unit.source_f
+    assert (
+        matcher.split(matcher.text)
+        == re.split(u"[\W]+", matcher.text))
+    assert (
+        matcher.tokens
+        == [t.lower()
+            for t
+            in matcher.split(matcher.text)
+            if (len(t) > 2
+                and t not in matcher.stopwords)])
+    assert matcher.stems == set(matcher.stemmer(t) for t in matcher.tokens)
+    assert (
+        matcher.matches
+        == matcher.similar(
+            matcher.terminology_units.filter(
+                stems__root__in=matcher.stems).distinct()))
+    unit.source_f = "on the cycle home"
+    unit.save()
+    matches = []
+    results = matcher.terminology_units.filter(
+        stems__root__in=matcher.stems).distinct()
+    for result in results:
+        similarity = matcher.comparison.similarity(result.source_f)
+        if similarity > matcher.similarity_threshold:
+            matches.append((similarity, result))
+    assert (
+        matcher.similar(results)
+        == sorted(matches, key=lambda x: -x[0])[:matcher.max_matches])
+    assert (
+        matcher.matches
+        == matcher.similar(results))
