@@ -19,3 +19,4 @@ class PootleWordConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_word.models")
+        importlib.import_module("pootle_word.getters")
