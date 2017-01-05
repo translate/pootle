@@ -1042,26 +1042,22 @@ Retrieve the filesystem info for a project.
    (env) $ pootle fs info MYPROJECT
 
 
-.. django-admin:: merge
+.. django-admin:: resolve
 
-fs merge
-++++++++
+fs resolve
+++++++++++
 
 .. versionadded:: 2.8.0
 
-Stage for merging any stores/files that have either been:
-
-1. Independently added both on the filesystem and on Pootle, or
-2. That have been updated both in Pootle and filesystem.
+Stage for merging any stores/files that have either been updated both in Pootle
+and filesystem.
 
 When merging, if there are conflicts in any specific translation unit the
 default behavior is to keep the filesystem version and convert the Pootle
-version into a suggestion.
+version into a suggestion.  Suggestions can then we reviewed by translators to
+ensure any corrections are correctly incorporated.
 
-Suggestions can then we reviewed by translators to ensure any corrections are
-correctly incorporated.
-
-When there are no conflicts in unit :djadmin:`merge` will handle the merge
+When there are no conflicts in unit :djadmin:`resolve` will handle the merge
 without user input:
 
 .. code-block:: console
@@ -1077,7 +1073,17 @@ without user input:
 
   .. code-block:: console
 
-    (env) $ pootle fs merge --pootle-wins MYPROJECT
+    (env) $ pootle fs resolve --pootle-wins MYPROJECT
+
+.. django-admin-option:: --overwrite
+
+   Discard all translations.  Use only those translations from the filesytem,
+   by default, or from Pootle if used together with :option:`--pootle-wins
+   <resolve --pootle-wins>`
+
+  .. code-block:: console
+
+    (env) $ pootle fs resolve --overwrite MYPROJECT
 
 
 .. django-admin:: rm
