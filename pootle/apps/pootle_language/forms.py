@@ -24,9 +24,13 @@ from .models import Language
 User = get_user_model()
 
 LANGUAGE_TEAM_ROLES = (
+    # Translators: A team member, only has suggest rights.
     ("member", _("Member")),
+    # Translators: A team member, with translate rights.
     ("submitter", _("Submitter")),
+    # Translators: A team member, with translation rights and rights to review other's suggestions.
     ("reviewer", _("Reviewer")),
+    # Translators: A team member who can manage the team.
     ("admin", _("Administrator")))
 
 
@@ -66,22 +70,26 @@ class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
 
 class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
     rm_admins = forms.ModelMultipleChoiceField(
+        # Translators: Team members who can manage the team.
         label=_("Administrators"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         required=False,
         queryset=User.objects.none())
     rm_reviewers = forms.ModelMultipleChoiceField(
         required=False,
+        # Translators: Team members with translate rights and rights to review other's suggestions.
         label=_("Reviewers"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         queryset=User.objects.none())
     rm_submitters = forms.ModelMultipleChoiceField(
         required=False,
+        # Translators: Team members with translate rights.
         label=_("Submitters"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         queryset=User.objects.none())
     rm_members = forms.ModelMultipleChoiceField(
         required=False,
+        # Translators: Team members with only suggest rights.
         label=_("Members"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         queryset=User.objects.none())
@@ -94,6 +102,8 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
             attrs={
                 'class': 'js-select2-remote'}))
     role = forms.ChoiceField(
+        label=_("Role"),
+        help_text=_("Add new team member with this role"),
         required=False,
         widget=forms.Select(
             attrs={'class': 'js-select2'}),

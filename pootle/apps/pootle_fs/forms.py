@@ -32,12 +32,14 @@ FS_CHOICES = (
 class ProjectFSAdminForm(forms.Form):
 
     fs_type = forms.ChoiceField(
+        # Translators: Pootle FS backend for managing translations e.g. Git or local filesystem.
         label=_("Filesystem backend"),
         help_text=_("Select a filesystem backend"),
         choices=(),
         widget=forms.Select(
             attrs={'class': 'js-select2'}))
     fs_url = forms.CharField(
+        # Translators: Where the Pootle FS backend will find the translations.
         label=_("Backend URL or path"),
         help_text=_(
             "The URL or path to your translation files"))
@@ -49,6 +51,7 @@ class ProjectFSAdminForm(forms.Form):
         widget=forms.Select(
             attrs={'class': 'js-select2 js-select-fs-mapping'}))
     translation_mapping = forms.CharField(
+        # Translators: Expression that maps the location of the translation files so that Pootle FS can know what is translatable and where they are located.
         label=_("Translation path mapping"),
         help_text=_("Translation path mapping that maps the localisation "
                     "files on the filesystem to stores on Pootle."),
