@@ -107,40 +107,40 @@
                 {% trans "Critical errors:" %}
                 {% if stats.critical %}
                 <a href="{{ translate_url }}#filter=checks&category=critical">
-                  {{ stats.critical }}
+                  {{ stats.critical_display }}
                 </a>
                 {% else %}
-                {{ stats.critical }}
+                {{ stats.critical_display }}
                 {% endif %}
               </li>
               <li class="padded-half">
                 {% trans "Pending suggestions:" %}
                 {% if suggestions.count %}
                 <a href="{% url 'pootle-language-admin-suggestions' language_code=language.code %}">
-                  {{ suggestions.count }}
+                  {{ suggestions_display }}
                 </a>
                 {% else %}
-                {{ suggestions.count }}
+                {{ suggestions_display }}
                 {% endif %}
               </li>
               <li class="padded-half">
                 {% trans "Total words:" %}
-                <a href="{{ translate_url }}">{{ stats.total }}</a>
+                <a href="{{ translate_url }}">{{ stats.total_display }}</a>
               </li>
               <li class="padded-half">
                 {% trans "Translated:" %}
                 {% if stats.translated %}
-                <a href="{{ translate_url }}#filter=translated">{{ stats.translated }}</a>
+                <a href="{{ translate_url }}#filter=translated">{{ stats.translated_display }}</a>
                 {% else %}
-                {{ stats.translated }}
+                {{ stats.translated_display }}
                 {% endif %}
               </li>
               <li class="padded-half">
                 {% trans "Needs work:" %}
                 {% if stats.fuzzy %}
-                <a href="{{ translate_url }}#filter=fuzzy">{{ stats.fuzzy }}</a>
+                <a href="{{ translate_url }}#filter=fuzzy">{{ stats.fuzzy_display }}</a>
                 {% else %}
-                {{ stats.fuzzy }}
+                {{ stats.fuzzy_display }}
                 {% endif %}
               </li>
             </ul>

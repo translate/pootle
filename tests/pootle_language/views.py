@@ -115,6 +115,9 @@ def test_view_language_team_admin(client, language0, request_users):
         == list(
             language0.translationproject_set.exclude(
                 project__disabled=True)))
+    for k in response.context["stats"].keys():
+        if k.endswith("_display"):
+            del response.context["stats"][k]
     assert (
         list(response.context["stats"])
         == list(

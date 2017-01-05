@@ -22,6 +22,7 @@ from pootle.core.views.admin import PootleFormView
 from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.views.formtable import Formtable
 from pootle.core.views.mixins import PootleJSONMixin
+from pootle.i18n import formatter
 from pootle.i18n.gettext import tr_lang, ugettext_lazy as _
 from pootle_misc.util import cmp_by_last_activity
 from pootle_store.constants import STATES_MAP
@@ -281,10 +282,20 @@ class LanguageTeamAdminFormView(PootleLanguageAdminFormView):
         form = context["form"]
         context["tps"] = self.language.translationproject_set.exclude(
             project__disabled=True)
-        context["stats"] = self.language.data_tool.get_stats(
+        stats = self.language.data_tool.get_stats(
             include_children=False,
             user=self.request.user)
+        keys = ("total", "critical", "incomplete", "translated", "fuzzy",
+                "untranslated")
+        for k in keys:
+            if k in stats:
+                stats[k + "_display"] = formatter.number(stats[k])
+        context["stats"] = stats
         context["suggestions"] = form.language_team.suggestions
+        suggestions_count = 0
+        if context["suggestions"]:
+            suggestions_count = context["suggestions"].count()
+        context["suggestions_display"] = formatter.number(suggestions_count)
         context["language"] = self.language
         context["page"] = "admin-team"
         context["browse_url"] = reverse(
