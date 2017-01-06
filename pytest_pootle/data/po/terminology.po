@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Pootle terminology tests\n"
+
+#:
+msgid "Recycle"
+msgstr "~Recycle"
+
+#:
+msgid "Recycling"
+msgstr "~Recycling"
+
+#:
+msgid "Bicycling"
+msgstr "~Bicycling"
+
+#:
+msgid "Bicycle"
+msgstr "~Bicycle"
+
+#:
+msgid "Cycling"
+msgstr "~Cycling"
+
+#:
+msgid "Cycle"
+msgstr "~Cycle"
+
+#:
+msgid "Tricycling"
+msgstr "~Tricycling"
+
+#:
+msgid "Tricycle"
+msgstr "~Tricycle"
+
+#:
+msgid "Cycle home"
+msgstr "~Cycle home"
+
+#:
+msgid "Spin cycle"
+msgstr "~Spin cycle"
+
+#:
+msgid "Cpu cycle"
+msgstr "~Cpu cycle"
+
+#:
+msgid "Going home (cycling)"
+msgstr "~Going home (cycling)"
