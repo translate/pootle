@@ -19,3 +19,4 @@ class PootleTerminologyConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_terminology.getters")
+        importlib.import_module("pootle_terminology.receivers")
