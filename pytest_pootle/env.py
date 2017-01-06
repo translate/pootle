@@ -285,8 +285,9 @@ class PootleTestEnv(object):
             project.filetypes.add(po)
 
     def setup_terminology(self):
-        from pytest_pootle.factories import (ProjectDBFactory,
-                                             TranslationProjectFactory)
+        import pytest_pootle
+        from pytest_pootle.factories import (
+            ProjectDBFactory, StoreDBFactory, TranslationProjectFactory)
         from pootle_language.models import Language
 
         source_language = Language.objects.get(code="en")
@@ -294,8 +295,21 @@ class PootleTestEnv(object):
                                        checkstyle="terminology",
                                        fullname="Terminology",
                                        source_language=source_language)
+        term_file = os.path.join(
+            os.path.dirname(pytest_pootle.__file__),
+            *("data", "po", "terminology.po"))
+        with open(term_file) as f:
+            term_ttk = getclass(f)(f.read())
         for language in Language.objects.all():
-            TranslationProjectFactory(project=terminology, language=language)
+            tp = TranslationProjectFactory(
+                project=terminology, language=language)
+            if language.code not in ["language0", "language1"]:
+                continue
+            store = StoreDBFactory(
+                parent=tp.directory,
+                translation_project=tp,
+                name="terminology.po")
+            store.update(term_ttk)
 
     def setup_disabled_project(self):
         from pytest_pootle.factories import (DirectoryFactory,
