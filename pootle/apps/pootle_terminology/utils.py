@@ -8,6 +8,9 @@
 
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import text_comparison
+from pootle_store.constants import TRANSLATED
+from pootle_store.models import Unit
 from pootle_word.utils import TextStemmer
 
 
@@ -79,3 +82,38 @@ class UnitTerminology(TextStemmer):
             del self.__dict__["existing_stems"]
         if "missing_stems" in self.__dict__:
             del self.__dict__["missing_stems"]
+
+
+class UnitTerminologyMatcher(TextStemmer):
+
+    similarity_threshold = .2
+    max_matches = 10
+
+    @property
+    def language_id(self):
+        return self.context.store.translation_project.language.id
+
+    @property
+    def terminology_units(self):
+        return Unit.objects.filter(
+            state=TRANSLATED,
+            store__translation_project__project__code="terminology",
+            store__translation_project__language_id=self.language_id)
+
+    @cached_property
+    def comparison(self):
+        return text_comparison.get()(self.text)
+
+    def similar(self, results):
+        matches = []
+        for result in results:
+            similarity = self.comparison.similarity(result.source_f)
+            if similarity > self.similarity_threshold:
+                matches.append((similarity, result))
+        return sorted(matches, key=lambda x: -x[0])[:self.max_matches]
+
+    @property
+    def matches(self):
+        return self.similar(
+            self.terminology_units.filter(
+                stems__root__in=self.stems).distinct())
