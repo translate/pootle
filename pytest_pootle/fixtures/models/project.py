@@ -11,6 +11,8 @@ import shutil
 
 import pytest
 
+from pootle.core.delegate import project_tool
+
 
 def _require_project(code, name, source_language, **kwargs):
     """Helper to get/create a new project."""
@@ -141,3 +143,14 @@ def project_set():
     from pootle_project.models import Project, ProjectSet
 
     return ProjectSet(Project.objects.exclude(disabled=True))
+
+
+@pytest.fixture
+def no_project_tool_(request):
+    start_receivers = project_tool.receivers
+    project_tool.receivers = []
+
+    def _reset_project_tool():
+        project_tool.receivers = start_receivers
+
+    request.addfinalizer(_reset_project_tool)
