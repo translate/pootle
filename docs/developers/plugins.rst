@@ -173,6 +173,6 @@ Add a file called :file:`receivers.py` with the following code:
 
    @receiver(cache_cleared, sender=Store)
    def handle_cache_cleared(**kwargs):
-       logging.warn(
+       logging.warning(
            "Store cache cleared: %s"
 	   % kwargs["instance"].pootle_path)

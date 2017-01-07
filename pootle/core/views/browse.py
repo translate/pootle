@@ -157,7 +157,7 @@ class PootleBrowseView(PootleDetailView):
             if panel in _panels:
                 yield _panels[panel](self).content
             else:
-                logger.warn("Unrecognized panel '%s'", panel)
+                logger.warning("Unrecognized panel '%s'", panel)
 
     def get_context_data(self, *args, **kwargs):
         filters = {}
