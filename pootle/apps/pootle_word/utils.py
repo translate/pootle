@@ -9,6 +9,8 @@
 import os
 import re
 
+import Levenshtein
+
 import translate
 
 from django.utils.functional import cached_property
@@ -66,3 +68,39 @@ class TextStemmer(object):
 
     def get_stems(self, tokens):
         return set(self.stemmer(t) for t in tokens)
+
+
+class TextComparison(TextStemmer):
+
+    @property
+    def text(self):
+        return self.context
+
+    def jaccard_similarity(self, other):
+        return (
+            len(other.stems.intersection(self.stems))
+            / float(len(set(other.stems).union(self.stems))))
+
+    def levenshtein_distance(self, other):
+        return (
+            Levenshtein.distance(self.text, other.text)
+            / max(len(self.text), len(other.text)))
+
+    def tokens_present(self, other):
+        return (
+            len(set(self.tokens).intersection(other.tokens))
+            / float(len(other.tokens)))
+
+    def stems_present(self, other):
+        return (
+            len(set(self.stems).intersection(other.stems))
+            / float(len(other.stems)))
+
+    def similarity(self, other):
+        other = self.__class__(other)
+        return (
+            (self.jaccard_similarity(other)
+             + self.levenshtein_distance(other)
+             + self.tokens_present(other)
+             + self.stems_present(other))
+            / 4)
