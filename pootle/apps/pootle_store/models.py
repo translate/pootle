@@ -28,7 +28,8 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
 from pootle.core.contextmanagers import update_data_after
-from pootle.core.delegate import data_tool, format_syncers, format_updaters
+from pootle.core.delegate import (
+    data_tool, format_syncers, format_updaters, terminology_matcher)
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -914,11 +915,8 @@ class Unit(models.Model, base.TranslationUnit):
 
     def get_terminology(self):
         """get terminology suggestions"""
-        matcher = self.store.translation_project.gettermmatcher()
-        if matcher is None:
-            return []
-
-        return matcher.matches(self.source)
+        results = terminology_matcher.get(self.__class__)(self).matches
+        return [m[1] for m in results]
 
     def get_last_created_unit_info(self):
         return {
