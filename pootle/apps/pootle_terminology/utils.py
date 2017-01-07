@@ -6,20 +6,17 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import re
-
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import stemmer
+from pootle_word.utils import TextStemmer
 
 
-STOPWORDS = []
-
-
-class Terminology(object):
+class UnitTerminology(TextStemmer):
 
     def __init__(self, context):
-        self.context = context
+        super(UnitTerminology, self).__init__(context)
+        if not self.is_terminology:
+            raise ValueError("Unit must be a terminology unit")
 
     @property
     def is_terminology(self):
@@ -27,47 +24,18 @@ class Terminology(object):
             self.context.store.translation_project.project.code
             == "terminology")
 
-    def split(self, words):
-        return re.split(u"[\W]+", words)
-
-    @property
-    def stop_words(self):
-        return STOPWORDS
-
-    @property
-    def tokens(self):
-        return [
-            t.lower()
-            for t
-            in self.split(self.text)
-            if (len(t) > 2
-                and t not in self.stop_words)]
-
-    @property
-    def text(self):
-        return self.context.source_f
-
-    @property
-    def stemmer(self):
-        return stemmer.get()
-
-    @property
-    def stems(self):
-        return set(self.stemmer(t) for t in self.tokens)
-
-
-class UnitTerminology(Terminology):
-
-    def __init__(self, context):
-        super(UnitTerminology, self).__init__(context)
-        if not self.is_terminology:
-            raise ValueError("Unit must be a terminology unit")
-
     @cached_property
     def existing_stems(self):
         return list(
             self.stem_set.values_list(
                 "root", flat=True))
+
+    @cached_property
+    def missing_stems(self):
+        return (
+            self.stems
+            - set(self.stem_model.objects.filter(
+                root__in=self.stems).values_list("root", flat=True)))
 
     @property
     def stem_model(self):
@@ -99,13 +67,15 @@ class UnitTerminology(Terminology):
         self.stem_model.objects.bulk_create(
             self.stem_model(root=root)
             for root
-            in stems
-            if root not in self.existing_stems)
+            in stems)
 
     def stem(self):
         stems = self.stems
         self.remove_stems(stems)
-        self.create_stems(stems)
+        if self.missing_stems:
+            self.create_stems(self.missing_stems)
         self.associate_stems(stems)
         if "existing_stems" in self.__dict__:
             del self.__dict__["existing_stems"]
+        if "missing_stems" in self.__dict__:
+            del self.__dict__["missing_stems"]
