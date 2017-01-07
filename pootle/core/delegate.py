@@ -38,6 +38,7 @@ revision_updater = Getter()
 scores = Getter()
 site = Getter()
 stopwords = Getter()
+text_comparison = Getter()
 panels = Provider()
 
 serializers = Provider(providing_args=["instance"])
