@@ -50,7 +50,7 @@ def test_unit_terminology_instance(terminology_units, terminology0):
     unit.save()
     term.stem()
     assert (
-        term.existing_stems
+        sorted(term.existing_stems)
         == [u'hatstand', u'umbrella'])
     unit.source_f = old_source
     unit.save()
