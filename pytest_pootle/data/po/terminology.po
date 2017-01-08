@@ -8,8 +8,8 @@ msgstr ""
 "X-Generator: Pootle terminology tests\n"
 
 #:
-msgid "Recycle"
-msgstr "~Recycle"
+msgid "Re-cycle"
+msgstr "~Re-cycle"
 
 #:
 msgid "Recycling"
