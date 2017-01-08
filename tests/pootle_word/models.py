@@ -16,8 +16,8 @@ from pootle_word.models import Stem
 
 @pytest.mark.django_db
 def test_word_stem_repr(store0):
-    stem = Stem.objects.create(root="cycl")
-    assert repr(stem) == "<Stem: \"cycl\", units: []>"
+    stem = Stem.objects.create(root="foo")
+    assert repr(stem) == "<Stem: \"foo\", units: []>"
     unit_stem = stem.units.through
     unit_stem.objects.bulk_create(
         unit_stem(stem=stem, unit_id=unit)
@@ -25,13 +25,13 @@ def test_word_stem_repr(store0):
         in store0.units[:5].values_list("id", flat=True))
     assert (
         repr(stem)
-        == ("<Stem: \"cycl\", units: %s>"
+        == ("<Stem: \"foo\", units: %s>"
             % list(stem.units.values_list("id", flat=True))))
 
 
 @pytest.mark.django_db
 def test_word_stem_instance(store0):
-    stem1 = Stem.objects.create(root="cycl")
+    stem1 = Stem.objects.create(root="foo")
     unit_stem = stem1.units.through
     unit_stem.objects.bulk_create(
         unit_stem(stem=stem1, unit_id=unit)
