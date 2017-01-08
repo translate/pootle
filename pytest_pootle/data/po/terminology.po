@@ -32,6 +32,10 @@ msgid "Cycle"
 msgstr "~Cycle"
 
 #:
+msgid "cycle"
+msgstr "~cycle"
+
+#:
 msgid "Tricycling"
 msgstr "~Tricycling"
 

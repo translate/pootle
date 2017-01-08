@@ -17,8 +17,13 @@ from pootle_terminology.utils import UnitTerminology
 
 @pytest.mark.django_db
 def test_unit_terminology_instance(terminology_units, terminology0):
-    unit = terminology0.stores.first().units.get(
+    units = terminology0.stores.first().units.filter(
         source_f=terminology_units)
+    unit = None
+    for _unit in units:
+        if _unit.source_f == terminology_units:
+            unit = _unit
+            break
     term = terminology.get(unit.__class__)(unit)
     assert isinstance(term, UnitTerminology)
     assert term.context == unit
@@ -97,12 +102,19 @@ def test_terminology_matcher(store0, terminology0):
     unit.source_f = "on the cycle home"
     unit.save()
     matches = []
+    matched = []
     results = matcher.terminology_units.filter(
         stems__root__in=matcher.stems).distinct()
     for result in results:
+        target_pair = (
+            result.source_f.lower().strip(),
+            result.target_f.lower().strip())
+        if target_pair in matched:
+            continue
         similarity = matcher.comparison.similarity(result.source_f)
         if similarity > matcher.similarity_threshold:
             matches.append((similarity, result))
+            matched.append(target_pair)
     assert (
         matcher.similar(results)
         == sorted(matches, key=lambda x: -x[0])[:matcher.max_matches])

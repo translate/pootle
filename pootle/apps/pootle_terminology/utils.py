@@ -105,10 +105,17 @@ class UnitTerminologyMatcher(TextStemmer):
 
     def similar(self, results):
         matches = []
+        matched = []
         for result in results:
+            target_pair = (
+                result.source_f.lower().strip(),
+                result.target_f.lower().strip())
+            if target_pair in matched:
+                continue
             similarity = self.comparison.similarity(result.source_f)
             if similarity > self.similarity_threshold:
                 matches.append((similarity, result))
+                matched.append(target_pair)
         return sorted(matches, key=lambda x: -x[0])[:self.max_matches]
 
     @property
