@@ -8,11 +8,16 @@
 
 import os
 
+import Levenshtein
+
 from stemming.porter2 import stem
 
 import translate
 
-from pootle.core.delegate import stemmer, stopwords
+import pytest
+
+from pootle.core.delegate import stemmer, stopwords, text_comparison
+from pootle_word.utils import TextComparison
 
 
 def test_stemmer():
@@ -30,3 +35,41 @@ def test_stopwords():
                 words.add(line[1:].strip().lower())
     stops = stopwords.get()
     assert stops.words == words
+
+
+@pytest.mark.django_db
+def test_text_comparer():
+    comparer = text_comparison.get()("Cycling through the examples")
+    assert isinstance(comparer, TextComparison)
+    assert comparer.context == "Cycling through the examples"
+    assert comparer.text == comparer.context
+    assert comparer.tokens == [
+        word for word
+        in comparer.split(comparer.text.lower())
+        if word not in comparer.stopwords]
+    assert comparer.stems == set(comparer.stemmer(t) for t in comparer.tokens)
+    other_text = "cycle home"
+    other = text_comparison.get()(other_text)
+    assert (
+        comparer.jaccard_similarity(other)
+        == (len(other.stems.intersection(comparer.stems))
+            / float(len(set(other.stems).union(comparer.stems)))))
+    assert (
+        comparer.levenshtein_distance(other)
+        == (Levenshtein.distance(comparer.text, other.text)
+            / max(len(comparer.text), len(other.text))))
+    assert (
+        comparer.tokens_present(other)
+        == (len(set(comparer.tokens).intersection(other.tokens))
+            / float(len(other.tokens))))
+    assert (
+        comparer.stems_present(other)
+        == (len(set(comparer.stems).intersection(other.stems))
+            / float(len(other.stems))))
+    assert (
+        comparer.similarity(other_text)
+        == ((comparer.jaccard_similarity(other)
+             + comparer.levenshtein_distance(other)
+             + comparer.tokens_present(other)
+             + comparer.stems_present(other))
+            / 4))
