@@ -42,7 +42,7 @@ def test_unit_terminology_instance(terminology_units, terminology0):
     assert term.stem_model == term.stem_set.model
     assert term.stem_m2m == term.stem_set.through
     unit.stems.all().delete()
-    assert term.existing_stems == []
+    assert term.existing_stems == set([])
     term.stem()
     assert sorted(term.existing_stems) == sorted(term.stems)
     old_source = unit.source_f

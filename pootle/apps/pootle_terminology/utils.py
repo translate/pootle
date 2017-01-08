@@ -27,13 +27,13 @@ class UnitTerminology(TextStemmer):
             self.context.store.translation_project.project.code
             == "terminology")
 
-    @cached_property
+    @property
     def existing_stems(self):
-        return list(
+        return set(
             self.stem_set.values_list(
                 "root", flat=True))
 
-    @cached_property
+    @property
     def missing_stems(self):
         return (
             self.stems
@@ -58,13 +58,11 @@ class UnitTerminology(TextStemmer):
             for stem_id
             in list(
                 self.stem_model.objects.filter(root__in=stems)
-                               .exclude(root__in=self.existing_stems)
                                .values_list("id", flat=True)))
 
-    def remove_stems(self, stems):
-        if self.existing_stems:
-            # not sure if this delecetes the m2m or the stem
-            self.stem_set.exclude(root__in=stems).delete()
+    def clear_stems(self, stems):
+        # not sure if this delecetes the m2m or the stem
+        self.stem_set.filter(root__in=stems).delete()
 
     def create_stems(self, stems):
         self.stem_model.objects.bulk_create(
@@ -74,14 +72,14 @@ class UnitTerminology(TextStemmer):
 
     def stem(self):
         stems = self.stems
-        self.remove_stems(stems)
-        if self.missing_stems:
-            self.create_stems(self.missing_stems)
-        self.associate_stems(stems)
-        if "existing_stems" in self.__dict__:
-            del self.__dict__["existing_stems"]
-        if "missing_stems" in self.__dict__:
-            del self.__dict__["missing_stems"]
+        existing_stems = self.existing_stems
+        missing_stems = self.missing_stems
+        if existing_stems:
+            self.clear_stems(existing_stems - stems)
+        if missing_stems:
+            self.create_stems(missing_stems)
+        if stems - existing_stems:
+            self.associate_stems(stems - existing_stems)
 
 
 class UnitTerminologyMatcher(TextStemmer):
