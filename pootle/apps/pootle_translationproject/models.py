@@ -8,8 +8,6 @@
 
 import logging
 
-from translate.misc.lru import LRUCachingDict
-
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
@@ -28,19 +26,8 @@ from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
 from pootle_store.constants import PARSED
-from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 from staticpages.models import StaticPage
-
-
-class TranslationProjectNonDBState(object):
-
-    def __init__(self, parent):
-        self.parent = parent
-
-        # Terminology matcher
-        self.termmatcher = None
-        self.termmatchermtime = None
 
 
 def create_or_resurrect_translation_project(language, project):
@@ -170,9 +157,6 @@ class TranslationProject(models.Model, CachedTreeItem):
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
 
-    _non_db_state_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
-                                         settings.PARSE_POOL_CULL_FREQUENCY)
-
     objects = TranslationProjectManager()
 
     class Meta(object):
@@ -234,18 +218,6 @@ class TranslationProject(models.Model, CachedTreeItem):
                                  excludefilters=excluded_filters,
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
-
-    @property
-    def non_db_state(self):
-        if not hasattr(self, "_non_db_state"):
-            try:
-                self._non_db_state = self._non_db_state_cache[self.id]
-            except KeyError:
-                self._non_db_state = TranslationProjectNonDBState(self)
-                self._non_db_state_cache[self.id] = \
-                    TranslationProjectNonDBState(self)
-
-        return self._non_db_state
 
     @property
     def disabled(self):
@@ -437,45 +409,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         )
 
         return all_files, new_files
-
-    ###########################################################################
-
-    def gettermmatcher(self):
-        """Returns the terminology matcher."""
-        terminology_stores = Store.objects.none()
-        mtime = None
-
-        if not self.is_terminology_project:
-            # Get global terminology first
-            try:
-                termproject = TranslationProject.objects \
-                    .get_terminology_project(self.language_id)
-                mtime = termproject.data.max_unit_mtime
-                terminology_stores = termproject.stores.live()
-            except TranslationProject.DoesNotExist:
-                pass
-
-            local_terminology = self.stores.live().filter(
-                name__startswith='pootle-terminology')
-            for store in local_terminology.iterator():
-                if mtime is None:
-                    mtime = store.data.max_unit_mtime
-                else:
-                    mtime = max(mtime,
-                                store.data.max_unit_mtime)
-
-            terminology_stores = terminology_stores | local_terminology
-
-        if mtime is None:
-            return
-
-        if mtime != self.non_db_state.termmatchermtime:
-            from pootle_misc.match import Matcher
-            self.non_db_state.termmatcher = Matcher(
-                terminology_stores.iterator())
-            self.non_db_state.termmatchermtime = mtime
-
-        return self.non_db_state.termmatcher
 
     ###########################################################################
 

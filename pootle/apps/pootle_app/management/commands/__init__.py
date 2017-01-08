@@ -13,7 +13,6 @@ from django.core.management.base import BaseCommand
 
 from pootle.runner import set_sync_mode
 from pootle_project.models import Project
-from pootle_translationproject.models import TranslationProject
 
 
 class SkipChecksMixin(object):
@@ -118,8 +117,6 @@ class PootleCommand(BaseCommand):
         from pootle_store.fields import TranslationStoreFieldFile
         TranslationStoreFieldFile._store_cache.maxsize = 2
         TranslationStoreFieldFile._store_cache.cullsize = 2
-        TranslationProject._non_db_state_cache.maxsize = 2
-        TranslationProject._non_db_state_cache.cullsize = 2
 
         self.projects = options.pop('projects', [])
         self.languages = options.pop('languages', [])
