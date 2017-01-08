@@ -10,7 +10,7 @@ import re
 
 import pytest
 
-from pootle.core.delegate import stemmer, terminology
+from pootle.core.delegate import stemmer, stopwords, terminology
 from pootle_terminology.utils import UnitTerminology
 
 
@@ -21,7 +21,7 @@ def test_unit_terminology_instance(terminology_units, terminology0):
     term = terminology.get(unit.__class__)(unit)
     assert isinstance(term, UnitTerminology)
     assert term.context == unit
-    assert term.stop_words == []
+    assert term.stopwords == stopwords.get().words
     assert term.stemmer == stemmer.get()
     assert term.text == unit.source_f
     assert (
@@ -33,7 +33,7 @@ def test_unit_terminology_instance(terminology_units, terminology0):
             for t
             in term.split(term.text)
             if (len(t) > 2
-                and t not in term.stop_words)])
+                and t.lower() not in term.stopwords)])
     assert (
         term.stems
         == set(term.stemmer(t) for t in term.tokens))
