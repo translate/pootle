@@ -1076,10 +1076,10 @@ def run_given_filters(checker, unit, check_names=None):
 
         try:
             filterresult = checker.run_test(filterfunction, unit)
-        except checks.FilterFailure, e:
+        except checks.FilterFailure as e:
             filterresult = False
             filtermessage = unicode(e)
-        except Exception, e:
+        except Exception as e:
             if checker.errorhandler is None:
                 raise ValueError("error in filter %s: %r, %r, %s" %
                                  (functionname, unit.source, unit.target, e))
