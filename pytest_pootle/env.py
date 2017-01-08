@@ -159,6 +159,15 @@ class PootleTestEnv(object):
             "utf8_bin",
             "varchar(255)")
 
+        # Word.Stem
+        set_mysql_collation_for_column(
+            apps,
+            cursor,
+            "pootle_word.Stem",
+            "root",
+            "utf8_bin",
+            "varchar(255)")
+
     def setup_permissions(self):
         from django.contrib.contenttypes.models import ContentType
 
