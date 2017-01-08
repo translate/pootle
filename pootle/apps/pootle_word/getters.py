@@ -8,10 +8,20 @@
 
 from stemming.porter2 import stem
 
-from pootle.core.delegate import stemmer
+from pootle.core.delegate import stemmer, stopwords
 from pootle.core.plugin import getter
+
+from .utils import Stopwords
+
+
+site_stopwords = Stopwords()
 
 
 @getter(stemmer)
 def get_stemmer(**kwargs_):
     return stem
+
+
+@getter(stopwords)
+def get_stopwords(**kwargs_):
+    return site_stopwords
