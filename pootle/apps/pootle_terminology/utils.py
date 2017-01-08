@@ -8,10 +8,15 @@
 
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import text_comparison
+from pootle.core.delegate import revision, text_comparison
+from pootle.core.decorators import persistent_property
 from pootle_store.constants import TRANSLATED
 from pootle_store.models import Unit
+from pootle_translationproject.models import TranslationProject
 from pootle_word.utils import TextStemmer
+
+
+from .apps import PootleTerminologyConfig
 
 
 class UnitTerminology(TextStemmer):
@@ -85,8 +90,34 @@ class UnitTerminology(TextStemmer):
 
 class UnitTerminologyMatcher(TextStemmer):
 
+    ns = "pootle.terminology.matcher"
+    sw_version = PootleTerminologyConfig.version
     similarity_threshold = .2
     max_matches = 10
+
+    @property
+    def revision_context(self):
+        term_tp = TranslationProject.objects.filter(
+            language_id=self.language_id,
+            project__code="terminology").first()
+        if term_tp:
+            return term_tp.directory
+
+    @property
+    def rev_cache_key(self):
+        rev_context = self.revision_context
+        return (
+            revision.get(rev_context.__class__)(rev_context).get(key="stats")
+            if rev_context
+            else "")
+
+    @property
+    def cache_key(self):
+        return (
+            "%s.%s.%s"
+            % (self.language_id,
+               self.rev_cache_key,
+               hash(self.text)))
 
     @property
     def language_id(self):
@@ -118,7 +149,7 @@ class UnitTerminologyMatcher(TextStemmer):
                 matched.append(target_pair)
         return sorted(matches, key=lambda x: -x[0])[:self.max_matches]
 
-    @property
+    @persistent_property
     def matches(self):
         return self.similar(
             self.terminology_units.filter(
