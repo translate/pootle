@@ -24,8 +24,9 @@ class UnitTerminology(TextStemmer):
     @property
     def is_terminology(self):
         return (
-            self.context.store.translation_project.project.code
-            == "terminology")
+            self.context.store.name.startswith("pootle-terminology")
+            or (self.context.store.translation_project.project.code
+                == "terminology"))
 
     @property
     def existing_stems(self):
