@@ -30,6 +30,3 @@ def pytest_configure():
         # for pytest-dev/pytest-django#289 is needed too, and this is not part
         # of any releases for the time being.
         setup()
-
-
-pytest_plugins = 'pytest_pootle.plugin'

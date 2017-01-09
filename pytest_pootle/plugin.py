@@ -46,6 +46,17 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers", "pootle_vfolders: requires special virtual folder projects")
 
+    pytest_plugins = tuple(
+        _load_fixtures(
+            fixtures,
+            fixtures_core_management,
+            fixtures_core_utils,
+            fixtures_formats,
+            fixtures_models,
+            fixtures_fs))
+    for plugin in pytest_plugins:
+        config.pluginmanager.import_plugin(plugin)
+
 
 @pytest.fixture(autouse=True)
 def test_timing(request, settings, log_timings):
@@ -134,13 +145,3 @@ def post_db_setup(translations_directory, django_db_setup, django_db_blocker,
 @pytest.fixture(scope='session')
 def django_db_use_migrations(tests_use_migration):
     return tests_use_migration
-
-
-pytest_plugins = tuple(
-    _load_fixtures(
-        fixtures,
-        fixtures_core_management,
-        fixtures_core_utils,
-        fixtures_formats,
-        fixtures_models,
-        fixtures_fs))
