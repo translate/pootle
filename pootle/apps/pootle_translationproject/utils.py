@@ -29,15 +29,20 @@ class TPTool(object):
     @property
     def tp_qs(self):
         """Queryset of translation_projects"""
-        return self.project.translationproject_set
+        return self.get_tps(self.project)
 
-    def check_no_tp(self, language):
+    def get_tps(self, project):
+        return project.translationproject_set
+
+    def check_no_tp(self, language, project=None):
         """Check a TP doesn't exist already for a given language.
         """
-        if self.get_tp(language):
+        if self.get_tp(language, project):
             raise ValueError(
                 "TranslationProject '%s' already exists"
-                % self.get_path(language.code))
+                % self.get_path(
+                    language.code,
+                    project and project.code or None))
 
     def check_tp(self, tp):
         """Check if a TP is part of our Project"""
@@ -46,13 +51,14 @@ class TPTool(object):
                 "TP '%s' is not part of project '%s'"
                 % (tp, self.project.code))
 
-    def clone(self, tp, language, update_cache=True):
+    def clone(self, tp, language, project=None, update_cache=True):
         """Clone a TP to a given language. Raises Exception if an existing TP
         exists for that Language.
         """
-        self.check_tp(tp)
-        self.check_no_tp(language)
-        new_tp = self.create_tp(language)
+        if not project:
+            self.check_tp(tp)
+        self.check_no_tp(language, project)
+        new_tp = self.create_tp(language, project)
         new_tp.directory.tp = new_tp
         new_tp.directory.translationproject = new_tp
         self.clone_children(
@@ -97,9 +103,13 @@ class TPTool(object):
         cloned.save()
         return cloned
 
-    def create_tp(self, language):
+    def create_tp(self, language, project=None):
         """Create a TP for a given language"""
-        return self.tp_qs.create(language=language)
+        tp_qs = (
+            self.get_tps(project)
+            if project
+            else self.tp_qs)
+        return tp_qs.create(language=language)
 
     def get(self, language_code, default=None):
         """Given a language code, returns the relevant TP.
@@ -110,45 +120,62 @@ class TPTool(object):
         except self.tp_qs.model.DoesNotExist:
             return default
 
-    def get_path(self, language_code):
+    def get_path(self, language_code, project_code=None):
         """Returns the pootle_path of a TP for a given language_code"""
-        return "/%s/%s/" % (language_code, self.project.code)
+        return (
+            "/%s/%s/"
+            % (language_code,
+               (project_code
+                and project_code
+                or self.project.code)))
 
-    def get_tp(self, language):
+    def get_tp(self, language, project=None):
         """Given a language return the related TP"""
+        tp_qs = (
+            self.get_tps(project)
+            if project
+            else self.tp_qs)
         try:
-            return self.tp_qs.get(language=language)
-        except self.tp_qs.model.DoesNotExist:
+            return tp_qs.get(language=language)
+        except tp_qs.model.DoesNotExist:
             pass
 
-    def move(self, tp, language, update_cache=True):
+    def move(self, tp, language, project=None, update_cache=True):
         """Re-assign a tp to a different language"""
-        self.check_tp(tp)
-        if tp.language == language:
+        if not project:
+            self.check_tp(tp)
+        if not project and (tp.language == language):
             return
-        self.check_no_tp(language)
-        pootle_path = self.get_path(language.code)
+        self.check_no_tp(language, project)
+        pootle_path = self.get_path(
+            language.code,
+            project and project.code or None)
         directory = tp.directory
+        if project:
+            tp.project = project
         tp.language = language
         tp.pootle_path = pootle_path
         tp.save()
         self.set_parents(
             directory,
-            self.get_tp(language).directory,
+            self.get_tp(language, project).directory,
+            project=project,
             update_cache=update_cache)
         directory.delete()
 
-    def set_parents(self, directory, parent, update_cache=True):
+    def set_parents(self, directory, parent, project=None, update_cache=True):
         """Recursively sets the parent for children of a directory"""
-        self.check_tp(directory.translation_project)
-        self.check_tp(parent.translation_project)
+        if not project:
+            self.check_tp(directory.translation_project)
+            self.check_tp(parent.translation_project)
         for store in directory.child_stores.all():
             store.parent = parent
             store.save()
         for subdir in directory.child_dirs.all():
             subdir.parent = parent
             subdir.save()
-            self.set_parents(subdir, subdir, update_cache=update_cache)
+            self.set_parents(
+                subdir, subdir, project, update_cache=update_cache)
 
     def update_children(self, source_dir, target_dir, update_cache=True):
         """Update a target Directory and its children from a given
