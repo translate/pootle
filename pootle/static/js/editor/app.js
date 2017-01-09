@@ -1300,24 +1300,20 @@ PTL.editor = {
 
   /* Returns the unit groups for the current editor state */
   getUnitGroups() {
-    const limit = parseInt(((this.units.chunkSize - 1) / 2), 10);
     const unitCount = this.units.length;
     const currentUnit = this.units.getCurrent();
     const curIndex = this.units.indexOf(currentUnit);
 
-    let begin = curIndex - limit;
-    let end = curIndex + 1 + limit;
+    // Display only one unit before the current unit
+    const numberOfUnitsBeforeCurrent = 1;
+    let begin = curIndex - numberOfUnitsBeforeCurrent;
+    let end = curIndex + this.units.chunkSize - 1;
     let prevPath = null;
 
     if (begin < 0) {
-      end = end + -begin;
+      end = end - begin;
       begin = 0;
     } else if (end > unitCount) {
-      if (begin > end - unitCount) {
-        begin = begin + -(end - unitCount);
-      } else {
-        begin = 0;
-      }
       end = unitCount;
     }
 
