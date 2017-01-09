@@ -15,6 +15,7 @@ from translate.misc.multistring import multistring
 
 from pootle.core.plugin import getter
 from pootle.core.delegate import tp_tool
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -42,7 +43,7 @@ def test_tp_tool_move(language0, project0, templates):
         assert store.parent.pootle_path.startswith(tp.pootle_path)
 
     assert not Store.objects.filter(
-        pootle_path__startswith="/%s/%s"
+        pootle_path__startswith="/%s/%s/"
         % (language0.code, project0.code))
     assert not Directory.objects.filter(
         pootle_path__startswith="/%s/%s/"
@@ -86,14 +87,18 @@ def test_tp_tool_bad(po_directory, tp0, templates, english):
             tp0, Language.objects.get(code="language1"))
 
 
-def _test_tp_match(source_tp, target_tp):
+def _test_tp_match(source_tp, target_tp, project=None, update=False):
     source_stores = []
     for store in source_tp.stores.live():
         source_stores.append(store.pootle_path)
+        project_code = (
+            project and project.code or source_tp.project.code)
+        store_path = "".join(split_pootle_path(store.pootle_path)[2:])
         update_path = (
-            "/%s/%s"
+            "/%s/%s/%s"
             % (target_tp.language.code,
-               store.pootle_path[(len(source_tp.language.code) + 2):]))
+               project_code,
+               store_path))
         updated = Store.objects.get(pootle_path=update_path)
         assert store.state == updated.state
         updated_units = updated.units
@@ -106,11 +111,15 @@ def _test_tp_match(source_tp, target_tp):
             assert unit.getlocations() == updated_unit.getlocations()
             assert unit.hasplural() == updated_unit.hasplural()
     for store in target_tp.stores.live():
+        store_path = "".join(split_pootle_path(store.pootle_path)[2:])
         source_path = (
-            "/%s/%s"
+            "/%s/%s/%s"
             % (source_tp.language.code,
-               store.pootle_path[(len(target_tp.language.code) + 2):]))
+               source_tp.project.code,
+               store_path))
         assert source_path in source_stores
+    if not update:
+        assert source_tp.stores.count() == target_tp.stores.count()
 
 
 @pytest.mark.django_db
@@ -129,7 +138,7 @@ def test_tp_tool_update(po_directory, tp0, templates):
 
     # this will clone stores/directories as new_tp is empty
     tp0_tool.update_from_tp(tp0, new_tp)
-    _test_tp_match(tp0, new_tp)
+    _test_tp_match(tp0, new_tp, update=True)
     tp0_tool.update_from_tp(tp0, new_tp)
 
     tp0.stores.first().delete()
@@ -146,11 +155,11 @@ def test_tp_tool_update(po_directory, tp0, templates):
     unit.store.addunit(newunit)
 
     tp0_tool.update_from_tp(tp0, new_tp)
-    _test_tp_match(tp0, new_tp)
+    _test_tp_match(tp0, new_tp, update=True)
 
     # doing another update does nothing
     tp0_tool.update_from_tp(tp0, new_tp)
-    _test_tp_match(tp0, new_tp)
+    _test_tp_match(tp0, new_tp, update=True)
 
 
 @pytest.mark.django_db
@@ -182,3 +191,50 @@ def test_tp_tool_gets(project0, tp0):
 
     with pytest.raises(tp0.DoesNotExist):
         project0.tp_tool["DOES_NOT_EXIST"]
+
+
+@pytest.mark.django_db
+def test_tp_tool_move_project(language0, project0, project1, templates):
+    tp = project0.translationproject_set.get(language=language0)
+    original_stores = list(tp.stores.all())
+
+    TPTool(project0).move(tp, templates, project1)
+    assert tp.language == templates
+    assert (
+        tp.pootle_path
+        == tp.directory.pootle_path
+        == "/%s/%s/" % (templates.code, project1.code))
+    assert tp.directory.parent == templates.directory
+
+    # all of the stores and their directories are updated
+    for store in original_stores:
+        store.refresh_from_db()
+        assert store.pootle_path.startswith(tp.pootle_path)
+        assert store.parent.pootle_path.startswith(tp.pootle_path)
+
+    assert not Store.objects.filter(
+        pootle_path__startswith="/%s/%s"
+        % (language0.code, project0.code))
+    assert not Directory.objects.filter(
+        pootle_path__startswith="/%s/%s/"
+        % (language0.code, project0.code))
+
+
+@pytest.mark.django_db
+def test_tp_tool_clone_project(tp0, project1):
+    new_lang = LanguageDBFactory()
+    tp_tool = TPTool(tp0.project)
+    _test_tp_match(
+        tp0,
+        tp_tool.clone(tp0, new_lang, project1),
+        project1)
+
+
+@pytest.mark.django_db
+def test_tp_tool_clone_project_same_lang(tp0, english):
+    new_proj = ProjectDBFactory(source_language=english)
+    tp_tool = TPTool(tp0.project)
+    _test_tp_match(
+        tp0,
+        tp_tool.clone(tp0, tp0.language, new_proj),
+        new_proj)
