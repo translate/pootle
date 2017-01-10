@@ -339,13 +339,13 @@ Translation environment configuration settings.
 .. setting:: POOTLE_SYNC_FILE_MODE
 
 ``POOTLE_SYNC_FILE_MODE``
-  Default: ``0644``
+  Default: ``0o644``
 
   .. versionchanged:: 2.7
 
-  On POSIX systems, files synchronized to disk will be assigned this permission.
-  Use ``0644`` for publically-readable files or ``0600`` if you want only the
-  Pootle user to be able to read them.
+  On POSIX systems, files synchronized to disk will be assigned this
+  permission.  Use ``0o644`` for publically-readable files or ``0o600`` if you
+  want only the Pootle user to be able to read them.
 
 
 .. setting:: POOTLE_TM_SERVER
