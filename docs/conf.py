@@ -144,12 +144,12 @@ if build_icons_inc:
     with open(icons_inc_file_name, "w") as icons_txt_file:
         for icon_image in os.listdir(icons_dir):
             icon_name = icon_image[:icon_image.rfind(".")]
-            print >>icons_txt_file, ".. |icon:" + icon_name + "| " + \
-                                    "image:: /" + icons_dir + "/" + icon_image
-            print >>icons_txt_file, "                      :alt: " + \
-                                    icon_name.replace("-", " ").replace("_", " ") + \
-                                    " icon"
-            print >>icons_txt_file
+            print(".. |icon:" + icon_name + "| " + \
+                  "image:: /" + icons_dir + "/" + icon_image, file=icons_txt_file)
+            print("                      :alt: " + \
+                  icon_name.replace("-", " ").replace("_", " ") + \
+                  " icon", file=icons_txt_file)
+            print(file=icons_txt_file)
 
 # Files to include at the end of every .rst file
 rst_epilog = """

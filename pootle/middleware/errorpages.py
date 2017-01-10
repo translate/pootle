@@ -59,7 +59,7 @@ def log_exception(request, exception, tb):
 def handle_exception(request, exception, template_name):
     # XXX: remove this? exceptions are already displayed in debug mode
     tb = traceback.format_exc()
-    print >> sys.stderr, tb
+    print(tb, file=sys.stderr)
 
     if settings.DEBUG:
         return None
