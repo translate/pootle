@@ -13,12 +13,13 @@ from django.db.models import Sum
 from django.utils import timezone
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import display, scores, revision
+from pootle.core.delegate import display, revision, scores
 from pootle_app.models import Directory
 from pootle_language.models import Language
 
 from .apps import PootleScoreConfig
 from .models import UserTPScore
+
 
 User = get_user_model()
 

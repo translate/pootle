@@ -8,13 +8,12 @@
 
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import revision, text_comparison
 from pootle.core.decorators import persistent_property
+from pootle.core.delegate import revision, text_comparison
 from pootle_store.constants import TRANSLATED
 from pootle_store.models import Unit
 from pootle_translationproject.models import TranslationProject
 from pootle_word.utils import TextStemmer
-
 
 from .apps import PootleTerminologyConfig
 

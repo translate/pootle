@@ -6,8 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from fnmatch import fnmatch
 import os
+from fnmatch import fnmatch
 
 from django.db.models import F, Max
 from django.utils.functional import cached_property
