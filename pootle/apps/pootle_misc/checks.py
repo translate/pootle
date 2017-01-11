@@ -121,6 +121,10 @@ check_names = {
 
     # FIXME: make checks customisable
     'ftl_format': _(u'ftl format'),
+
+    # Romanian-specific checks
+    'cedillas': _(u'Romanian: Avoid cedillas diacritics'),
+    'niciun_nicio': _(u'Romanian: Use "niciun"/"nicio"'),
 }
 
 excluded_filters = ['hassuggestion', 'spellcheck', 'isfuzzy',
