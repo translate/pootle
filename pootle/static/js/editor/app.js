@@ -56,6 +56,29 @@ const CTX_STEP = 1;
 
 const ALLOWED_SORTS = ['oldest', 'newest', 'default'];
 
+const debounce = function (func, wait) {
+  let timeout;
+  let immediate;
+  return function (...args) {
+    const context = this;
+    const later = function () {
+      timeout = null;
+      if (!immediate) {
+        func.apply(context, args);
+      }
+    };
+    const callNow = !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) {
+      immediate = true;
+      func.apply(context, args);
+    } else {
+      immediate = false;
+    }
+  };
+};
+
 
 const filterSelectOpts = {
   dropdownAutoWidth: true,
@@ -96,6 +119,19 @@ PTL.editor = {
     }
 
     this.formats = {};
+
+    this.setActiveUnit = debounce((body, newUnit) => {
+      this.fetchUnits().always(() => {
+        UnitAPI.fetchUnit(newUnit.id, body)
+          .then(
+            (data) => {
+              this.setEditUnit(data);
+              this.renderUnit();
+            },
+            this.error
+          );
+      });
+    }, 250);
 
     /* Cached elements */
     this.backToBrowserEl = q('.js-back-to-browser');
@@ -1542,17 +1578,8 @@ PTL.editor = {
     if (this.settings.vFolder) {
       body.vfolder = this.settings.vFolder;
     }
-    this.fetchUnits().always(() => {
-      this.updateNavigation();
-      UnitAPI.fetchUnit(newUnit.id, body)
-        .then(
-          (data) => {
-            this.setEditUnit(data);
-            this.renderUnit();
-          },
-          this.error
-        );
-    });
+    this.updateNavigation();
+    this.setActiveUnit(body, newUnit);
   },
 
   /* Pushes translation submissions and moves to the next unit */
