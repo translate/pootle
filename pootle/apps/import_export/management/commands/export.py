@@ -60,15 +60,7 @@ class Command(PootleCommand):
                 self.handle_language(language)
             return
 
-        for project in project_query.iterator():
-            tp_query = project.translationproject_set \
-                              .order_by("language__code")
-
-            if self.languages:
-                tp_query = tp_query.filter(language__code__in=self.languages)
-
-            for tp in tp_query.iterator():
-                self.do_translation_project(tp, **options)
+        return super(Command, self).handle_all(**options)
 
     def handle_translation_project(self, translation_project, **options_):
         stores = translation_project.stores.live()
