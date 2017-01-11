@@ -1354,7 +1354,6 @@ PTL.editor = {
       this.renderViewRowValues('.view-row', this.viewUnits);
       this.ready();
     }
-    this.scrollIntoMiddle();
   },
 
   renderViewRowValues(selector, units) {
@@ -1702,11 +1701,6 @@ PTL.editor = {
     return true;
   },
 
-  scrollIntoMiddle() {
-    const $el = $('.edit-row');
-    const scrollY = $el.offset().top - (window.innerHeight - $el.get(0).offsetHeight) / 2;
-    window.scrollTo(0, scrollY);
-  },
 
   /* Loads the editor with a specific unit */
   gotoUnit(e) {
