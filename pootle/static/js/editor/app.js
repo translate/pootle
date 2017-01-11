@@ -1300,20 +1300,20 @@ PTL.editor = {
 
   /* Returns the unit groups for the current editor state */
   getUnitGroups() {
-    const limit = parseInt(((this.units.chunkSize - 1) / 2), 10);
+    const limit = 1;
     const unitCount = this.units.length;
     const currentUnit = this.units.getCurrent();
     const curIndex = this.units.indexOf(currentUnit);
 
     let begin = curIndex - limit;
-    let end = curIndex + 1 + limit;
+    let end = unitCount;
     let prevPath = null;
 
     if (begin < 0) {
-      end = end + -begin;
+      end = end - begin;
       begin = 0;
     } else if (end > unitCount) {
-      if (begin > end - unitCount) {
+      if (begin > (end - unitCount)) {
         begin = begin + -(end - unitCount);
       } else {
         begin = 0;
@@ -1382,7 +1382,9 @@ PTL.editor = {
         type: 'translation',
         hasPlurals: unit.target.length > 1,
       };
-
+      console.log($(rows[i]).data("id"))
+      // console.log(this.unitIndexEl)
+      // console.log(this.units.getCurrent())
       ReactEditor.renderViewUnitComponent(sourceProps, rows[i].cells[0]);
       ReactEditor.renderViewUnitComponent(targetProps, rows[i].cells[1]);
     }
