@@ -40,6 +40,7 @@ site = Getter()
 stopwords = Getter()
 text_comparison = Getter()
 panels = Provider()
+sidebar_panel_names = Provider()
 
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
