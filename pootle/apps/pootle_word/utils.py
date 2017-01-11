@@ -22,7 +22,11 @@ class Stopwords(object):
 
     @cached_property
     def words(self):
-        fpath = os.path.join(translate.__path__[0], "share", "stoplist-en")
+        ttk_path = translate.__path__[0]
+        fpath = (
+            os.path.join(ttk_path, "share", "stoplist-en")
+            if "share" in os.listdir(ttk_path)
+            else os.path.join(ttk_path, "..", "share", "stoplist-en"))
         words = set()
         with open(fpath) as f:
             for line in f.read().split("\n"):
