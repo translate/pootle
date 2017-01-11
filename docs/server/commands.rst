@@ -738,6 +738,16 @@ A file or a .zip of files is provided as output.  The file headers include a
 revision counter to assist Pootle to detetmine how to handle subsequent uploads
 of the file.
 
+Available options:
+
+.. django-admin-option:: --tmx
+
+  .. versionadded:: 2.8.0
+
+  Export every translation project as one zipped TMX file into :setting:`MEDIA_ROOT`
+  directory.
+
+
 .. django-admin:: import
 
 import

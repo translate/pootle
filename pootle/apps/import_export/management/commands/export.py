@@ -17,6 +17,8 @@ from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
 
+from ...utils import TPTMXExporter
+
 
 class Command(PootleCommand):
     help = "Export a Project, Translation Project, or path. " \
@@ -24,11 +26,25 @@ class Command(PootleCommand):
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
-        parser.add_argument(
+        group_path_or_tmx = parser.add_mutually_exclusive_group()
+        group_path_or_tmx.add_argument(
             "--path",
             action="store",
             dest="pootle_path",
             help="Export a single file",
+        )
+        group_path_or_tmx.add_argument(
+            "--tmx",
+            action="store_true",
+            dest="export_tmx",
+            default=False,
+            help="Export each translation project into a single TMX file",
+        )
+        parser.add_argument(
+            "--overwrite",
+            action="store_true",
+            default=False,
+            help="Overwrite already exported TMX files",
         )
 
     def _create_zip(self, stores, prefix):
@@ -40,33 +56,39 @@ class Command(PootleCommand):
         self.stdout.write("Created %s\n" % (f.name))
 
     def handle_all(self, **options):
-        project_query = Project.objects.all()
-
-        if self.projects:
-            project_query = project_query.filter(code__in=self.projects)
-
         if options['pootle_path'] is not None:
             return self.handle_path(options['pootle_path'])
 
         # support exporting an entire project
-        if self.projects and not self.languages:
-            for project in project_query:
+        if self.projects and not self.languages and not options['export_tmx']:
+            for project in Project.objects.filter(code__in=self.projects):
                 self.handle_project(project)
             return
 
         # Support exporting an entire language
-        if self.languages and not self.projects:
+        if self.languages and not self.projects and not options['export_tmx']:
             for language in Language.objects.filter(code__in=self.languages):
                 self.handle_language(language)
             return
 
         return super(Command, self).handle_all(**options)
 
-    def handle_translation_project(self, translation_project, **options_):
-        stores = translation_project.stores.live()
-        prefix = "%s-%s" % (translation_project.project.code,
-                            translation_project.language.code)
-        self._create_zip(stores, prefix)
+    def handle_translation_project(self, translation_project, **options):
+        if options['export_tmx']:
+            exporter = TPTMXExporter(translation_project)
+            if not options['overwrite'] and not exporter.has_changes():
+                self.stdout.write(
+                    'Translation project (%s) has not been changed.' %
+                    translation_project)
+                return False
+
+            filename = exporter.export()
+            self.stdout.write('File "%s" has been saved.' % filename)
+        else:
+            stores = translation_project.stores.live()
+            prefix = "%s-%s" % (translation_project.project.code,
+                                translation_project.language.code)
+            self._create_zip(stores, prefix)
 
     def handle_project(self, project):
         stores = Store.objects.live().filter(

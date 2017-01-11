@@ -7,12 +7,22 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+import os
+
+from io import BytesIO
+from zipfile import ZipFile
 
 from translate.storage.factory import getclass
+from translate.storage import tmx
 
+from django.conf import settings
+from django.utils.functional import cached_property
+
+from pootle.core.delegate import revision
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.permissions import check_user_permission
 from pootle_statistics.models import SubmissionTypes
+from pootle_store.constants import TRANSLATED
 from pootle_store.models import Store
 
 from .exceptions import (FileImportError, MissingPootlePathError,
@@ -62,3 +72,68 @@ def import_file(f, user=None):
         # This should not happen!
         logger.error("Error importing file: %s", str(e))
         raise FileImportError(_("There was an error uploading your file"))
+
+
+class TPTMXExporter(object):
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def exported_revision(self):
+        return revision.get(self.context.__class__)(
+            self.context).get(key="pootle.offline.tm")
+
+    @cached_property
+    def revision(self):
+        return revision.get(self.context.__class__)(
+            self.context.directory).get(key="stats")
+
+    def update_exported_revision(self):
+        if self.has_changes():
+            revision.get(self.context.__class__)(
+                self.context).set(keys=["pootle.offline.tm"],
+                                  value=self.revision)
+
+    def has_changes(self):
+        return self.revision != self.exported_revision
+
+    @property
+    def directory(self):
+        return os.path.join(settings.MEDIA_ROOT,
+                            'offline_tm',
+                            self.context.language.code)
+
+    @property
+    def filename(self):
+        return ".".join([self.context.project.fullname.replace(' ', '_'),
+                         self.context.language.code, self.revision, 'tmx',
+                         'zip'])
+
+    @property
+    def abs_filepath(self):
+        return os.path.join(self.directory, self.filename)
+
+    def export(self):
+        source_language = self.context.project.source_language.code
+        target_language = self.context.language.code
+
+        if not os.path.exists(self.directory):
+            os.makedirs(self.directory)
+
+        tmxfile = tmx.tmxfile()
+        for store in self.context.stores.live().iterator():
+            for unit in store.units.filter(state=TRANSLATED):
+                tmxfile.addtranslation(unit.source, source_language,
+                                       unit.target, target_language,
+                                       unit.developer_comment)
+
+        bs = BytesIO()
+        tmxfile.serialize(bs)
+        with open(self.abs_filepath, "wb") as f:
+            with ZipFile(f, "w") as zf:
+                zf.writestr(self.filename, bs.getvalue())
+
+        self.update_exported_revision()
+
+        return self.abs_filepath
