@@ -179,7 +179,7 @@ def test_scores_user(member, system):
     assert (
         score_data.cache_key
         == ("%s.%s.%s"
-            % (member.username,
+            % (member.id,
                timezone.now().date(),
                score_data.revision)))
     # system gets no rank

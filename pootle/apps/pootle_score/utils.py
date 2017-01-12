@@ -148,7 +148,7 @@ class UserScores(Scores):
     def cache_key(self):
         return (
             "%s.%s.%s"
-            % (self.context.username,
+            % (self.context.id,
                timezone.now().date(),
                self.revision))
 
