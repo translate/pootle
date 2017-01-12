@@ -1131,9 +1131,10 @@ PTL.editor = {
 
   /* Checks whether editor needs the next batch of units */
   needsNextUnitBatch() {
+    const fetchOffset = Math.round((2.0 / 3 * this.units.chunkSize)) * 2;
     return (
-      this.units.uIds.slice(-7).indexOf(this.units.activeUnit.id) !== -1 &&
-      this.getOffsetOfLastUnit() < this.units.total
+      this.units.uIds.slice(-fetchOffset).indexOf(this.units.activeUnit.id) !== -1
+      && this.getOffsetOfLastUnit() < this.units.frozenTotal
     );
   },
 
