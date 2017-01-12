@@ -15,7 +15,6 @@ from django.urls import resolve, reverse
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
-from import_export.views import handle_upload_form
 from pootle.core.browser import (
     get_parent, make_directory_item, make_store_item)
 from pootle.core.decorators import get_path_obj, permission_required
@@ -263,6 +262,8 @@ class TPBrowseBaseView(PootleBrowseView):
     def get_upload_widget(self):
         ctx = {}
         if self.can_upload:
+            from import_export.views import handle_upload_form
+
             ctx.update(handle_upload_form(self.request, self.tp))
             ctx.update(
                 {'display_download': True,
