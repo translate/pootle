@@ -1173,7 +1173,7 @@ PTL.editor = {
   /* Removes remembered offsets once the XHR call has completed */
   markAsFetched(offset) {
     if (this.fetchingOffsets.indexOf(offset) !== -1) {
-      this.fetchingOffsets = this.fetchingOffsets.splice(
+      this.fetchingOffsets.splice(
         this.fetchingOffsets.indexOf(offset), 1
       );
     }
