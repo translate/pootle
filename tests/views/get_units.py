@@ -80,7 +80,7 @@ def test_get_previous_slice(client, request_users):
             password=request_users["password"])
 
     resp = client.get(
-        "/xhr/units/?filter=all&count=5&path=/&offset=60",
+        "/xhr/units/?filter=all&count=5&path=/&offset=80",
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     if not request_users.get("is_superuser", False):
@@ -97,18 +97,17 @@ def test_get_previous_slice(client, request_users):
             for unit in group_data["units"]:
                 uids.append(unit["id"])
 
-    assert result["start"] == 60
-    assert result["end"] == 70
+    assert result["start"] == 80
+    assert result["end"] == 98
     assert result["total"] == qs.count()
-    assert uids == list(qs[60:70].values_list("pk", flat=True))
+    assert uids == list(qs[80:98].values_list("pk", flat=True))
 
     resp2 = client.get(
         "/xhr/units/",
         dict(
             filter="all",
-            count=5,
             path="/",
-            offset=50),
+            offset=62),
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     result2 = json.loads(resp2.content)
@@ -119,27 +118,26 @@ def test_get_previous_slice(client, request_users):
             for unit in group_data["units"]:
                 uids2.append(unit["id"])
 
-    assert result2["start"] == 50
-    assert result2["end"] == 60
+    assert result2["start"] == 62
+    assert result2["end"] == 80
     assert result2["total"] == qs.count()
-    assert uids2 == list(qs[50:60].values_list("pk", flat=True))
+    assert uids2 == list(qs[62:80].values_list("pk", flat=True))
 
-    expected = list(qs[40:50].values_list("pk", flat=True))
+    expected = list(qs[44:62].values_list("pk", flat=True))
 
     to_obsolete = [uid for i, uid in enumerate(uids2) if i % 2]
     for unit in Unit.objects.filter(id__in=to_obsolete):
         unit.makeobsolete()
         unit.save()
 
-    assert expected == list(qs.all()[40:50].values_list("pk", flat=True))
+    assert expected == list(qs.all()[44:62].values_list("pk", flat=True))
 
     resp3 = client.get(
         "/xhr/units/",
         dict(
             filter="all",
-            count=5,
             path="/",
-            offset=40),
+            offset=44),
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     result3 = json.loads(resp3.content)
@@ -151,11 +149,11 @@ def test_get_previous_slice(client, request_users):
                 uids3.append(unit["id"])
 
     # obsoleting the units makes no difference when paginating backwards
-    assert result3["start"] == 40
-    assert result3["end"] == 50
+    assert result3["start"] == 44
+    assert result3["end"] == 62
     assert result3["total"] == qs.count()
     assert uids3 == list(
-        qs[40:50].values_list("pk", flat=True))
+        qs[44:62].values_list("pk", flat=True))
 
 
 @pytest.mark.django_db
@@ -186,17 +184,16 @@ def test_get_next_slice(client, request_users):
                 uids.append(unit["id"])
 
     assert result["start"] == 0
-    assert result["end"] == 10
+    assert result["end"] == 18
     assert result["total"] == qs.count()
-    assert uids == list(qs[:10].values_list("pk", flat=True))
+    assert uids == list(qs[:18].values_list("pk", flat=True))
 
     resp2 = client.get(
         "/xhr/units/",
         dict(
             filter="all",
-            count=5,
             path="/",
-            offset=10,
+            offset=18,
             previous_uids=uids),
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
@@ -208,27 +205,26 @@ def test_get_next_slice(client, request_users):
             for unit in group_data["units"]:
                 uids2.append(unit["id"])
 
-    assert result2["start"] == 10
-    assert result2["end"] == 20
+    assert result2["start"] == 18
+    assert result2["end"] == 36
     assert result2["total"] == qs.count()
-    assert uids2 == list(qs[10:20].values_list("pk", flat=True))
+    assert uids2 == list(qs[18:36].values_list("pk", flat=True))
 
-    expected = list(qs[20:30].values_list("pk", flat=True))
+    expected = list(qs[36:54].values_list("pk", flat=True))
 
     to_obsolete = [uid for i, uid in enumerate(uids2) if i % 2]
     for unit in Unit.objects.filter(id__in=to_obsolete):
         unit.makeobsolete()
         unit.save()
 
-    assert expected == list(qs.all()[15:25].values_list("pk", flat=True))
+    assert expected == list(qs.all()[27:45].values_list("pk", flat=True))
 
     resp3 = client.get(
         "/xhr/units/",
         dict(
             filter="all",
-            count=5,
             path="/",
-            offset=20,
+            offset=36,
             previous_uids=uids2),
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
@@ -240,12 +236,12 @@ def test_get_next_slice(client, request_users):
             for unit in group_data["units"]:
                 uids3.append(unit["id"])
 
-    assert result3["start"] == 20 - len(to_obsolete)
-    assert result3["end"] == 30 - len(to_obsolete)
+    assert result3["start"] == 36 - len(to_obsolete)
+    assert result3["end"] == 54 - len(to_obsolete)
     assert result3["total"] == qs.count()
 
-    start = 20 - len(to_obsolete)
-    end = 30 - len(to_obsolete)
+    start = 36 - len(to_obsolete)
+    end = 54 - len(to_obsolete)
 
     assert uids3 == list(
         qs[start:end].values_list("pk", flat=True))
