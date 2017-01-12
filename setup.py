@@ -380,6 +380,9 @@ setup(
         'console_scripts': [
             'pootle = pootle.runner:main',
         ],
+        'pytest11': [
+            'pytest_pootle = pytest_pootle.plugin',
+        ]
     },
     cmdclass={
         'build_checks_templates': BuildChecksTemplatesCommand,
