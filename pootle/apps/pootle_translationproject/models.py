@@ -9,6 +9,7 @@
 import logging
 
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -25,6 +26,7 @@ from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_misc.checks import excluded_filters
 from pootle_project.models import Project
+from pootle_revision.models import Revision
 from pootle_store.constants import PARSED
 from pootle_store.util import absolute_real_path, relative_real_path
 from staticpages.models import StaticPage
@@ -156,6 +158,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                                    db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
+    revisions = GenericRelation(Revision)
 
     objects = TranslationProjectManager()
 

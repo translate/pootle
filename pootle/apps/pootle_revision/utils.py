@@ -91,10 +91,7 @@ class ProjectSetRevision(RevisionContext):
 
 
 class TPRevision(RevisionContext):
-
-    @property
-    def revision_context(self):
-        return self.context.directory.revisions
+    pass
 
 
 class RevisionUpdater(object):
