@@ -21,7 +21,9 @@ from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
 from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
-from pootle_translationproject.signals import (tp_init_failed_async,
+from pootle_translationproject.signals import (tp_deleted_async,
+                                               tp_deletion_failed_async,
+                                               tp_init_failed_async,
                                                tp_inited_async)
 
 
@@ -47,6 +49,24 @@ def update_translation_project(tp, initialize_from_templates, response_url):
                          instance=tp, response_url=response_url)
 
 
+def delete_translation_project(tp):
+    """Wraps translation project initializing to allow it to be running
+    as RQ job.
+    """
+    script_name = (u'/'
+                   if settings.FORCE_SCRIPT_NAME is None
+                   else force_unicode(settings.FORCE_SCRIPT_NAME))
+    set_script_prefix(script_name)
+
+    try:
+        with useable_connection():
+            tp.delete()
+    except Exception as e:
+        tp_deletion_failed_async.send(sender=tp.__class__, instance=tp)
+        raise e
+    tp_deleted_async.send(sender=tp.__class__, instance=tp)
+
+
 class TranslationProjectFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
@@ -57,6 +77,17 @@ class TranslationProjectFormSet(BaseModelFormSet):
         return form.save(
             response_url=self.response_url,
             commit=commit)
+
+    def delete_existing(self, obj, commit=True):
+        if commit:
+            obj.awaiting_deletion = True
+            obj.save()
+
+            def _delete_translation_project():
+                queue = get_queue('default')
+                queue.enqueue(delete_translation_project, obj)
+
+            connection.on_commit(_delete_translation_project)
 
 
 class TranslationProjectForm(forms.ModelForm):

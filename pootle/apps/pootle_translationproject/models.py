@@ -79,6 +79,10 @@ class TranslationProjectManager(models.Manager):
     # disabled objects are hidden for related objects too
     use_for_related_fields = True
 
+    def get_queryset(self):
+        qs = super(TranslationProjectManager, self).get_queryset()
+        return qs.filter(awaiting_deletion=False)
+
     def get_terminology_project(self, language_id):
         # FIXME: the code below currently uses the same approach to determine
         # the 'terminology' kind of a project as 'Project.is_terminology()',
@@ -156,6 +160,8 @@ class TranslationProject(models.Model, CachedTreeItem):
                                    db_index=True, editable=False)
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
+    awaiting_deletion = models.BooleanField(default=False, null=False,
+                                            db_index=True)
 
     objects = TranslationProjectManager()
 

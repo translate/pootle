@@ -1,0 +1,2 @@
+{% load i18n %}
+{% filter wordwrap:70 %}{% blocktrans with tp=tp %}A Translation project ({{tp}}) has been deleted successfully.{% endblocktrans %}{% endfilter %}
