@@ -19,6 +19,7 @@ from django.conf import settings
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import revision
+from pootle.core.url_helpers import urljoin
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.permissions import check_user_permission
 from pootle_statistics.models import SubmissionTypes
@@ -88,6 +89,17 @@ class TPTMXExporter(object):
     def revision(self):
         return revision.get(self.context.__class__)(
             self.context.directory).get(key="stats")
+
+    @property
+    def relative_path(self):
+        return "offline_tm/%s/%s" % (
+            self.context.language.code,
+            self.filename)
+
+    def get_url(self):
+        if self.exported_revision:
+            return urljoin(settings.MEDIA_URL, self.relative_path)
+        return None
 
     def update_exported_revision(self):
         if self.has_changes():
