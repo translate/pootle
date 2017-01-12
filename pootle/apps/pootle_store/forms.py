@@ -395,7 +395,6 @@ def unit_comment_form_factory(language):
 
 class UnitSearchForm(forms.Form):
 
-    count = forms.IntegerField(required=False)
     offset = forms.IntegerField(required=False)
     path = forms.CharField(
         max_length=2048,
@@ -446,8 +445,6 @@ class UnitSearchForm(forms.Form):
             ('locations', _('Locations'))),
         initial=['source', 'target'])
 
-    default_count = 10
-
     def __init__(self, *args, **kwargs):
         self.request_user = kwargs.pop("user")
         super(UnitSearchForm, self).__init__(*args, **kwargs)
@@ -462,14 +459,7 @@ class UnitSearchForm(forms.Form):
             self.cleaned_data["user"] = self.request_user
         if self.errors:
             return
-        if self.default_count:
-            count = (
-                self.cleaned_data.get("count", self.default_count)
-                or self.default_count)
-            user_count = (
-                self.cleaned_data["user"].get_unit_rows()
-                or self.default_count)
-            self.cleaned_data['count'] = min(count, user_count)
+        self.cleaned_data['count'] = self.request_user.get_unit_rows()
         self.cleaned_data["vfolder"] = None
         pootle_path = self.cleaned_data.get("path")
         path_keys = [
