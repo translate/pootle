@@ -63,10 +63,15 @@ class PootleTranslateView(PootleDetailView):
     def display_vfolder_priority(self):
         return False
 
+    @property
+    def chunk_size(self):
+        return self.request.user.get_unit_rows()
+
     def get_context_data(self, *args, **kwargs):
         ctx = super(PootleTranslateView, self).get_context_data(*args, **kwargs)
         ctx.update(
             {'page': self.page_name,
+             'chunk_size': self.chunk_size,
              'current_vfolder_pk': self.vfolder_pk,
              'ctx_path': self.ctx_path,
              'display_priority': self.display_vfolder_priority,
