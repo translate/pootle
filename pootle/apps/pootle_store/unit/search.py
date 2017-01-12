@@ -147,7 +147,7 @@ class DBSearchBackend(object):
         total = self.results.count()
         start = self.offset
 
-        if start > total:
+        if start > (total + len(self.previous_uids)):
             return total, total, total, self.results.none()
 
         find_unit = (
