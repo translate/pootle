@@ -23,10 +23,12 @@ def handle_storedata_save(**kwargs):
 
 @receiver(post_save, sender=Directory)
 def handle_directory_save(**kwargs):
-    if kwargs.get("created"):
-        return
+    context = (
+        kwargs["instance"].parent
+        if kwargs.get("created")
+        else kwargs["instance"])
     revision_updater.get(Directory)(
-        context=kwargs["instance"]).update(keys=["stats", "checks"])
+        context=context).update(keys=["stats", "checks"])
 
 
 @receiver(pre_delete, sender=Directory)
