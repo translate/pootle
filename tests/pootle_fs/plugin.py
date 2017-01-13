@@ -16,6 +16,7 @@ from pootle.core.response import Response
 from pootle.core.state import State
 from pootle_app.models import Directory
 from pootle_fs.apps import PootleFSConfig
+from pootle_fs.exceptions import FSStateError
 from pootle_fs.matcher import FSPathMatcher
 from pootle_fs.models import StoreFS
 from pootle_fs.plugin import Plugin
@@ -370,3 +371,10 @@ def test_fs_plugin_cache_key(project_fs):
             % (plugin.pootle_revision,
                plugin.sync_revision,
                plugin.fs_revision)))
+
+
+@pytest.mark.django_db
+def test_fs_plugin_fetch_bad(project0):
+
+    with pytest.raises(FSStateError):
+        FSPlugin(project0).add()

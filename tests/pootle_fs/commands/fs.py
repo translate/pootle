@@ -192,3 +192,9 @@ def test_fs_cmd_fetch(capsys, project_fs):
     shutil.rmtree(project_fs.project.local_fs_path)
     call_command("fs", "fetch", project_fs.project.code)
     assert os.path.exists(project_fs.project.local_fs_path)
+
+
+@pytest.mark.django_db
+def test_fs_cmd_add_bad(capsys, project0):
+    with pytest.raises(CommandError):
+        call_command("fs", "add", project0.code)
