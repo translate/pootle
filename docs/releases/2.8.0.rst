@@ -136,10 +136,10 @@ Details of changes
 
   - Got rid of fat cookies:
 
-   - Increases responsiveness and removes security issue
-   - Most data is now stored in user session instead
-   - Sidebar is no longer automatically open for anonymous users when an
-     announcement changes.
+    - Increases responsiveness and removes security issue
+    - Most data is now stored in user session instead
+    - Sidebar is no longer automatically open for anonymous users when an
+      announcement changes.
 
   - Show leaderboard on top panel and expanded stats panel
   - Numbers are rendered in a locale aware fashion
