@@ -2567,3 +2567,10 @@ form.formtable tfoot .formtable-actions td
 {
     padding: 1em;
 }
+
+.warning
+{
+    color: #9f6000;
+    background-color: #feefb3;
+    padding: 1em;
+}
