@@ -10,7 +10,7 @@ target=${1:-$default_target}
 for lang in $(ls)
 do
 	if [ -d "$lang" -a "$lang" != "templates" ]; then
-		completeness=$(pocount  $(find $lang -name "*.po") | egrep "^translated" | cut -d"(" -f2- | cut -d")" -f1 | sed "s/%//" | tail -1)
+		completeness=$(pocount --no-color $(find $lang -name "*.po") | egrep "^Translated" | cut -d"(" -f2- | cut -d")" -f1 | sed "s/%//" | tail -1)
 		if [[ $completeness -ge $target ]]; then
 			echo $lang
 		fi
