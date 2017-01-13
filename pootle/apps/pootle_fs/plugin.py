@@ -230,8 +230,10 @@ class Plugin(object):
           ``pootle_path``
         :returns state: Where ``state`` is an instance of self.state_class
         """
-        return self.state_class(
-            self, fs_path=fs_path, pootle_path=pootle_path)
+        from .state import project_states
+        return project_states.project_state(
+            self.project.code, self.cache_key,
+            fs_path=fs_path, pootle_path=pootle_path)
 
     @responds_to_state
     def add(self, state, response, fs_path=None, pootle_path=None, force=False):
