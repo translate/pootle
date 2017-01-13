@@ -11,6 +11,8 @@
 # Copyright (c) Django Software Foundation and individual contributors.  All
 # rights reserved.
 
+from __future__ import print_function
+
 import datetime
 import os
 import subprocess
