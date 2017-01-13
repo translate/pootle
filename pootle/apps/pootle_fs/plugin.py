@@ -28,6 +28,7 @@ from pootle_project.models import Project
 from .apps import PootleFSConfig
 from .decorators import emits_state, responds_to_state
 from .delegate import fs_finder, fs_matcher, fs_resources
+from .exceptions import FSStateError
 from .models import StoreFS
 from .signals import fs_pre_push, fs_post_push, fs_pre_pull, fs_post_pull
 
@@ -230,6 +231,10 @@ class Plugin(object):
           ``pootle_path``
         :returns state: Where ``state`` is an instance of self.state_class
         """
+        if not self.is_cloned:
+            raise FSStateError(
+                "Filesystem has not been fetched. "
+                "Use `pootle fs fetch ...` first.")
         return self.state_class(
             self, fs_path=fs_path, pootle_path=pootle_path)
 
