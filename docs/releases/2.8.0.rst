@@ -71,6 +71,9 @@ Details of changes
     - Accept suggestion without "can review" permissions if submitted
       translation is 100% match.
 
+  - Current unit is shown at the top of the unit list so it is easier to use
+    the navigation bar and it doesn't jump so much.
+  - Faster terminology matching yielding more results by using stemming
   - Special characters are depicted by symbols from a custom-built font:
 
     - Properly display whitespace as special character
@@ -181,6 +184,7 @@ Details of changes
     Irish
   - `Welsh <http://techiaith.cymru/api/translation/?lang=en>`_
 
+- Usernames using latin1 characters are now allowed
 - Added placeholders check for Plurr-formatted strings
 - Improved RQ usage and new management commands
 - Changed Pootle logo
@@ -251,11 +255,14 @@ Command changes and additions
 - :djadmin:`init_fs_project` was added.
 - :djadmin:`set_filetype` was added.
 - Removed ``refresh_stats`` and ``clear_stats`` commands.
+- :djadmin:`export` is now able to export zipped TMX files per translation
+  project with the :option:`--tmx <export --tmx>` option.
 
 
 Changes in settings
 -------------------
 
+- MySQL database connections should now use `STRICT_TRANS_TABLES`.
 - :setting:`POOTLE_SCORE_COEFFICIENTS` accepts custom settings for user
   scores calculation.
 - :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter,
