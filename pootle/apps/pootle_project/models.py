@@ -220,7 +220,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         ('auto', _('Automatic detection of gnu/non-gnu file layouts (slower)')),
         ('gnu', _('GNU style: files named by language code')),
         ('nongnu', _('Non-GNU: Each language in its own directory')),
-        ('pootle_fs', _('Allow Pootle FS to manage filesystems')),
+        ('pootle_fs', _('Allow Pootle FS to manage filesystems (Experimental)')),
     )
     treestyle = models.CharField(max_length=20, default='auto',
                                  choices=treestyle_choices,
