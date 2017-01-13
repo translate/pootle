@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-12-03 09:35+0000\n"
+"PO-Revision-Date: 2016-12-22 16:58+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1480757726.000000\n"
+"X-POOTLE-MTIME: 1482425893.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -841,9 +841,8 @@ msgid "Plurr placeholders"
 msgstr "Plurr yer tutucuları"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Tarih biçimi"
+msgstr "ftl biçimi"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -2142,9 +2141,8 @@ msgid "Update filesystem configuration"
 msgstr "Dosya sistemi yapılandırmasını güncelle"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "Çeviri eşlemesi şu biçimde olmalıdır:"
+msgstr "Çeviri yolu eşlemesi şu biçimde olmalıdır:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2155,21 +2153,19 @@ msgstr ""
 "olmasına rağmen"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
-"Eğer localfs arka ucu kullanıyorsanız çeviri eşlemesi, arka uç URL'sinde "
-"belirtilen yol ile birleştirilecektir"
+"Eğer localfs arka ucu kullanıyorsanız çeviri yolu eşlemesi, arka uç "
+"URL'sinde belirtilen yol ile birleştirilecektir"
 
 #: templates/admin/project_fs.html:64
-#, fuzzy
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
-"Diğer arka uçlar için çeviri eşlemesi havuzun kökü ile ilgili olacaktır."
+"Diğer arka uçlar için çeviri yolu eşlemesi havuzun kökü ile ilgili olacaktır."
 
 #: templates/admin/project_fs.html:74
 msgid "Language mapping configuration"
@@ -2336,23 +2332,27 @@ msgid "All"
 msgstr "Tümü"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "%%<span class='value translated'>%(translated)s</span> çevrildi"
+msgstr ""
+"<span class='value translated'>%(translated_percent_display)s</span> çevrildi"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "%%<span class='value fuzzy'>%(fuzzy)s</span> belirsiz"
+msgstr ""
+"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> çalışma gerekli"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
-msgstr "%%<span class='value untranslated'>%(untranslated)s</span> çevrilmedi"
+msgstr ""
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+"çevrilmedi"
 
 #: templates/browser/index.html:19
 msgid "Expand details"

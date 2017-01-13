@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-12-01 14:48+0000\n"
+"PO-Revision-Date: 2017-01-06 16:31+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1480603737.000000\n"
+"X-POOTLE-MTIME: 1483720287.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -837,9 +837,8 @@ msgid "Plurr placeholders"
 msgstr "Dalfannau plurr"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Fformat dyddiad"
+msgstr "Fformat ftl"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -2140,7 +2139,6 @@ msgid "Update filesystem configuration"
 msgstr "Diweddaru ffurfweddiad y system ffeiliau"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
 msgstr "Dylai fapio cyfieithu fod ar ffurf:"
 
@@ -2153,7 +2151,6 @@ msgstr ""
 "gyda `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
@@ -2162,7 +2159,6 @@ msgstr ""
 "gyda'r llwybr nodwyd yn URL y cefn"
 
 #: templates/admin/project_fs.html:64
-#, fuzzy
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
@@ -2334,25 +2330,28 @@ msgid "All"
 msgstr "Popeth"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
 msgstr ""
-"<span class='value translated'>%(translated)s</span>%% wedi ei gyfieithu"
+"<span class='value translated'>(translated_percent_display)s</span>%% wedi "
+"ei gyfieithu"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% angen gwaith"
+msgstr ""
+"Mae <span class='value fuzzy'>%(fuzzy_percent_display)s</span> angen gwaith"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
-"<span class='value untranslated'>%(untranslated)s</span>%% heb eu cyfieithu"
+"Nid yw <span class='value untranslated'>%(untranslated_percent_display)s</"
+"span>%% wedi eu cyfieithu"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2411,7 +2410,7 @@ msgstr "Diolch!"
 msgid ""
 "We have received your message and will try to respond as soon as possible."
 msgstr ""
-"Rydym wedi derbyn eich neges a byddwn yn ceisio ymateb ycn gynted ag y bo "
+"Rydym wedi derbyn eich neges a byddwn yn ceisio ymateb cyn gynted ag y bo "
 "modd."
 
 #: templates/core/_top_scorers.html:9

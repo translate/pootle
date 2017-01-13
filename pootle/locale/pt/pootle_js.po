@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-11-05 01:26+0000\n"
-"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
+"PO-Revision-Date: 2016-12-23 10:55+0000\n"
+"Last-Translator: Manuela <manuela.silva@sky.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1478309205.000000\n"
+"X-POOTLE-MTIME: 1482490522.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -742,11 +742,11 @@ msgstr "Expandir detalhes"
 
 #: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
-msgstr "Editar o meu perfil público"
+msgstr "Editar o Meu Perfil Público"
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr "O meu perfil público"
+msgstr "O Meu Perfil Público"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
@@ -803,7 +803,7 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr "Endereço de e-mail"
+msgstr "Endereço de E-mail"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
@@ -819,7 +819,7 @@ msgstr "Não, obrigado"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
-msgstr "Enviar mensagem"
+msgstr "Enviar Mensagem"
 
 # link -> hiperligação / diferenciar de ligação -> connection desde que não querem utilizar conexão -> connection
 #: static/js/auth/components/RequestPasswordResetSent.js:44
@@ -855,19 +855,19 @@ msgstr "Projeto/Idioma"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr "Sugeriu"
+msgstr "Sugerida"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr "Traduziu"
+msgstr "Traduzida"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr "Reviu"
+msgstr "Revista"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr "Alteração de pontuação"
+msgstr "Alteração de Pontuação"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -896,7 +896,7 @@ msgstr "Por favor, selecione um utilizador válido."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"
-msgstr "Tarefas registadas"
+msgstr "Tarefas Registadas"
 
 #: templates/admin/xhr_paid_tasks_report.html:7
 msgid "Datetime"
@@ -976,7 +976,7 @@ msgid "Show"
 msgstr "Mostrar"
 
 #: templates/editor/units/xhr_tm.html:17
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"

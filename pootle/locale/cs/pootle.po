@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-11-25 13:25+0000\n"
+"PO-Revision-Date: 2016-12-20 16:53+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1480080339.000000\n"
+"X-POOTLE-MTIME: 1482252805.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -2133,9 +2133,8 @@ msgid "Update filesystem configuration"
 msgstr "Aktualizovat nastavení systému souborů"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "Přiřazení překladu by mělo používat formát:"
+msgstr "Přiřazení cesty překladu by mělo používat formát:"
 
 #: templates/admin/project_fs.html:52
 msgid ""
@@ -2146,22 +2145,20 @@ msgstr ""
 "musí být ukončena `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
-"Pokud používáte back-end localfs, bude přiřazení překladu zkombinováno s "
-"cestou nastavenou v adrese back-endu"
+"Pokud používáte back-end localfs, bude přiřazení cesty překladu zkombinováno "
+"s cestou nastavenou v adrese back-endu"
 
 #: templates/admin/project_fs.html:64
-#, fuzzy
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
-"Pro ostatní back-endy bude přiřazení překladu relativní ke kořenové složce "
-"úložiště."
+"Pro ostatní back-endy bude přiřazení cesty překladu relativní ke kořenové "
+"složce úložiště."
 
 #: templates/admin/project_fs.html:74
 msgid "Language mapping configuration"
@@ -2329,24 +2326,29 @@ msgid "All"
 msgstr "Vše"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "Přeloženo <span class=\"value translated\">%(translated)s</span>%%"
+msgstr ""
+"Přeloženo <span class=\"value translated\">%(translated_percent_display)s</"
+"span>"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "Přibližně přeloženo <span class=\"value fuzzy\">%(fuzzy)s</span>%%"
+msgstr ""
+"Přibližně přeloženo <span class=\"value fuzzy\">%(fuzzy_percent_display)s</"
+"span>"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
-"Nepřeloženo <span class=\"value untranslated\">%(untranslated)s</span>%%"
+"Nepřeloženo <span class=\"value untranslated\">"
+"%(untranslated_percent_display)s</span>"
 
 #: templates/browser/index.html:19
 msgid "Expand details"

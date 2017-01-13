@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-12-14 13:52+0000\n"
+"PO-Revision-Date: 2016-12-26 13:07+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1481723576.000000\n"
+"X-POOTLE-MTIME: 1482757624.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -250,7 +250,7 @@ msgid "Source Language"
 msgstr "Brontaal"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
@@ -337,17 +337,14 @@ msgid "Custom"
 msgstr "Aangepast"
 
 #: apps/pootle_fs/forms.py:35
-#, fuzzy
 msgid "Filesystem backend"
 msgstr "Bestandssysteem-backend"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
 msgstr "Selecteer een bestandssysteem-backend"
 
 #: apps/pootle_fs/forms.py:41
-#, fuzzy
 msgid "Backend URL or path"
 msgstr "Backend-URL of -pad"
 
@@ -356,12 +353,10 @@ msgid "The URL or path to your translation files"
 msgstr "De URL of het pad naar uw vertaalbestanden"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
 msgstr "Padtoewijzing van vertaling"
 
 #: apps/pootle_fs/forms.py:53
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
@@ -370,12 +365,10 @@ msgstr ""
 "bestandssysteem naar archieven op Pootle verwijst."
 
 #: apps/pootle_fs/forms.py:177
-#, fuzzy
 msgid "Filesystem language codes must be unique"
 msgstr "Taalcodes van bestandssysteem moeten uniek zijn"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
 msgstr "Pootle-taaltoewijzingen moeten uniek zijn"
 
@@ -384,12 +377,10 @@ msgid "Member"
 msgstr "Lid"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
-msgstr "Inzender"
+msgstr "Indiener"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
 msgstr "Beoordelaar"
 
@@ -402,14 +393,12 @@ msgid "Administrators"
 msgstr "Beheerders"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
 msgstr "Beoordelaars"
 
 #: apps/pootle_language/forms.py:80
-#, fuzzy
 msgid "Submitters"
-msgstr "Inzenders"
+msgstr "Indieners"
 
 #: apps/pootle_language/forms.py:85
 msgid "Members"
@@ -424,7 +413,6 @@ msgid "Add a user to this team"
 msgstr "Een gebruiker aan dit team toevoegen"
 
 #: apps/pootle_language/forms.py:127
-#, fuzzy
 msgid "Role is required when adding a new member"
 msgstr "Rol is vereist bij toevoegen van een nieuw lid"
 
@@ -510,12 +498,11 @@ msgid "Suggested by"
 msgstr "Voorgesteld door"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested at"
 msgstr "Voorgesteld op"
 
 #: apps/pootle_language/views.py:235
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr ""
 "Heeft %s suggesties afgewezen met opmerking. Gebruikers ontvangen een melding"
@@ -863,9 +850,8 @@ msgid "Plurr placeholders"
 msgstr "Plurr-plaatshouders"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Datumnotatie"
+msgstr "ftl-indeling"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -930,7 +916,7 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "'%(code)s' kan niet als projectcode worden gebruikt"
 
 #: apps/pootle_project/models.py:188
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "'%(code)s' kan niet als projectcontroleur worden gebruikt"
 
@@ -959,7 +945,6 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Niet-GNU: elke taal in een eigen map"
 
 #: apps/pootle_project/models.py:222
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems"
 msgstr "Pootle FS toestaan om bestandssystemen te beheren"
 
@@ -988,7 +973,7 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: apps/pootle_project/views.py:252
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
@@ -1637,21 +1622,18 @@ msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Pad waarnaar POOTLE_FS_WORKING_PATH verwijst bestaat niet."
 
 #: checks.py:507
-#, fuzzy
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
 msgstr ""
 "Maak de map waarnaar wordt verwezen met de instelling "
 "'POOTLE_FS_WORKING_PATH'."
 
 #: checks.py:512
-#, fuzzy
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Pad waarnaar POOTLE_FS_WORKING_PATH verwijst, is niet schrijfbaar door "
 "Pootle."
 
 #: checks.py:514
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
@@ -1720,7 +1702,6 @@ msgid "Incorrect"
 msgstr "Onjuist"
 
 #: core/forms.py:180
-#, fuzzy
 msgid "With selected"
 msgstr "Met geselecteerde"
 
@@ -1732,7 +1713,7 @@ msgstr "Opmerking toevoegen"
 #, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
-"Selecteer alle items die met filtercriteria overeenkomen, inclusief de niet "
+"Alle items selecteren die met filtercriteria overeenkomen, inclusief de niet "
 "getoonde"
 
 #: core/forms.py:213
@@ -1757,7 +1738,7 @@ msgstr "Kan een suggestie voor een vertaling doen"
 
 #: core/initdb.py:148
 msgid "Can submit a translation"
-msgstr "Kan een vertaling invoeren"
+msgstr "Kan een vertaling indienen"
 
 #: core/initdb.py:152
 msgid "Can review suggestions"
@@ -1768,27 +1749,27 @@ msgid "Can perform administrative tasks"
 msgstr "Kan beheerderstaken uitvoeren"
 
 #: core/views/display.py:95 core/views/display.py:116
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s heeft vertaling voor %(source)s verwijderd"
 
 #: core/views/display.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(user)s heeft suggestie voor %(source)s geaccepteerd"
 
 #: core/views/display.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s heeft bestand geüpload"
 
 #: core/views/display.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "%(user)s heeft %(check)s voor %(source)s gedempt"
+msgstr "%(user)s heeft %(check)s voor %(source)s verborgen"
 
 #: core/views/display.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "%(user)s heeft %(check)s voor %(source)s zichtbaar gemaakt"
 
@@ -1798,7 +1779,7 @@ msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(user)s heeft suggestie voor %(source)s toegevoegd"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(user)s heeft suggestie voor %(source)s afgewezen"
 
@@ -1818,12 +1799,12 @@ msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s heeft %(source)s vooraf vertaald"
 
 #: core/views/display.py:118
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s heeft %(source)s gecontroleerd"
 
 #: core/views/display.py:120
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s heeft %(source)s gemarkeerd als Werk vereist"
 
@@ -2016,7 +1997,7 @@ msgstr "Opgeslagen"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
-msgstr "Wachtende suggesties"
+msgstr "Openstaande suggesties"
 
 #: templates/admin/dashboard.html:29
 msgid "Background Jobs"
@@ -2146,33 +2127,29 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"De gebruiker ‘niemand’ verwijst naar een gebruiker die niet is aangemeld "
-"(een anonieme, niet-geïdentificeerde gebruiker). De gebruiker ‘standaard’ "
+"De gebruiker 'niemand' verwijst naar een gebruiker die niet is aangemeld "
+"(een anonieme, niet-geïdentificeerde gebruiker). De gebruiker 'standaard' "
 "verwijst naar de rechten die alle aangemelde gebruikers standaard hebben, "
 "tenzij aan hen andere specifieke rechten zijn toegekend."
 
 #: templates/admin/project_fs.html:26
-#, fuzzy, python-format
+#, python-format
 msgid "Filesystem configuration: %(project_code)s"
 msgstr "Bestandssysteemconfiguratie: %(project_code)s"
 
 #: templates/admin/project_fs.html:30
-#, fuzzy
 msgid "Backend configuration"
 msgstr "Backend-configuratie"
 
 #: templates/admin/project_fs.html:41
-#, fuzzy
 msgid "Update filesystem configuration"
 msgstr "Bestandssysteemconfiguratie bijwerken"
 
 #: templates/admin/project_fs.html:44
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
 msgstr "Padtoewijzing van vertaling dient de volgende notatie te hebben:"
 
 #: templates/admin/project_fs.html:52
-#, fuzzy
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
@@ -2181,7 +2158,6 @@ msgstr ""
 "eindigen"
 
 #: templates/admin/project_fs.html:58
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
@@ -2190,7 +2166,6 @@ msgstr ""
 "worden gecombineerd met het opgegeven pad in de backend-URL"
 
 #: templates/admin/project_fs.html:64
-#, fuzzy
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
@@ -2199,7 +2174,6 @@ msgstr ""
 "v. de hoofdmap van de repository."
 
 #: templates/admin/project_fs.html:74
-#, fuzzy
 msgid "Language mapping configuration"
 msgstr "Configuratie van taaltoewijzing"
 
@@ -2212,7 +2186,6 @@ msgid "Pootle code"
 msgstr "Pootle-code"
 
 #: templates/admin/project_fs.html:86
-#, fuzzy
 msgid "Filesystem code"
 msgstr "Bestandssysteemcode"
 
@@ -2366,23 +2339,27 @@ msgid "All"
 msgstr "Alles"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "<span class='value translated'>%(translated)s</span>%% vertaald"
+msgstr ""
+"<span class='value translated'>%(translated_percent_display)s</span> vertaald"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% werk vereist"
+msgstr ""
+"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> werk vereist"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
-msgstr "<span class='value untranslated'>%(untranslated)s</span>%% onvertaald"
+msgstr ""
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+"onvertaald"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2620,11 +2597,11 @@ msgstr "Een probleem met deze tekenreeks melden"
 #: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:245
 msgid "Submit"
-msgstr "Opslaan"
+msgstr "Indienen"
 
 #: templates/editor/units/edit.html:151
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr "Vertaling opslaan en naar de volgende tekenreeks gaan (Ctrl+Enter)"
+msgstr "Vertaling indienen en naar de volgende tekenreeks gaan (Ctrl+Enter)"
 
 #: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
 msgid "Suggest"
@@ -2643,8 +2620,9 @@ msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Omschakelen naar suggestiemodus (Ctrl+Shift+Spatie)"
 
 #: templates/editor/units/edit.html:167
+#, fuzzy
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr "Deze tekenreeks markeren als meer werk nodig te hebben (Ctrl+Spatie)"
+msgstr "Deze tekenreeks markeren als meer werk vereist (Ctrl+Spatie)"
 
 #: templates/editor/units/edit.html:202
 msgid "Show Timeline"
@@ -2664,7 +2642,7 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "gecontroleerd door <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
@@ -2839,12 +2817,10 @@ msgid "The reported error was:"
 msgstr "De gemelde fout was:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
 msgstr "Getoond:"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
 msgstr "Alles selecteren"
 
@@ -2859,7 +2835,6 @@ msgid "Team"
 msgstr "Team"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
 msgstr "Suggesties filteren"
 
@@ -2870,7 +2845,7 @@ msgstr "Taalteam"
 #: templates/languages/admin/language_team.html:15
 #, fuzzy
 msgid "Member admin"
-msgstr "Lid-beheerder"
+msgstr "Ledenbeheer"
 
 #: templates/languages/admin/language_team.html:28
 msgid "Add team member"
@@ -2886,7 +2861,7 @@ msgstr "Geselecteerde verwijderen"
 #: templates/languages/admin/language_team.html:113
 #, fuzzy
 msgid "Unit admin"
-msgstr "Eenheid-beheerder"
+msgstr "Eenhedenbeheer"
 
 #: templates/languages/admin/language_team.html:117
 msgid "Critical:"
@@ -2907,7 +2882,7 @@ msgstr "Werk vereist:"
 #: templates/languages/admin/language_team.html:144
 #, fuzzy
 msgid "Suggestion admin"
-msgstr "Suggestie-beheerder"
+msgstr "Suggestiebeheer"
 
 #: templates/languages/admin/language_team.html:147
 #, python-format
@@ -2940,7 +2915,7 @@ msgstr "Instellingen"
 # again: person or action?
 #: templates/layout.html:122
 msgid "Admin"
-msgstr "Beheerder"
+msgstr "Beheer"
 
 #: templates/layout.html:125
 msgid "Sign out"
@@ -3123,7 +3098,7 @@ msgstr ""
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "medewerker #%(pos)s in het %(lang_name)s in de afgelopen 30 dagen"
+msgstr "Medewerker #%(pos)s in het %(lang_name)s in de afgelopen 30 dagen"
 
 #: templates/user/profile.html:49
 #, python-format
@@ -3131,7 +3106,7 @@ msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
-"medewerker #%(pos)s in het <a href=\"%(url)s\">%(lang_name)s</a> in de "
+"Medewerker #%(pos)s in het <a href=\"%(url)s\">%(lang_name)s</a> in de "
 "afgelopen 30 dagen"
 
 #: templates/user/profile.html:60

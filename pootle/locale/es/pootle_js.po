@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-10-26 21:07+0000\n"
-"Last-Translator: Sergito <sergio@aiyellow.com>\n"
+"PO-Revision-Date: 2017-01-12 11:50+0000\n"
+"Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1477516034.000000\n"
+"X-POOTLE-MTIME: 1484221837.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -346,7 +346,7 @@ msgid ""
 "check your spam folder if you do not see the email."
 msgstr ""
 "Le hemos enviado un mensaje que contiene el enlace especial a <span>%s</"
-"span>. Por favor chequee su carpeta de spam si no recibe el mensaje."
+"span>. Revise la carpeta de correo basura si no ve el mensaje."
 
 #: static/js/auth/components/AccountActivation.js:41
 msgid ""
@@ -355,8 +355,8 @@ msgid ""
 "email."
 msgstr ""
 "Le hemos enviado un mensaje que contiene el enlace especial a la dirección "
-"usada para registrar esta cuenta. Por favor chequee su carpeta de spam si no "
-"recibe el mensaje."
+"usada para registrar esta cuenta. Revise la carpeta de correo basura si no "
+"ve el mensaje."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -527,7 +527,7 @@ msgstr "Restablecer la contraseña"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr "Ups..."
+msgstr "¡Vaya!"
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
@@ -535,11 +535,11 @@ msgstr "Verificación social"
 
 #: static/js/browser/components/Stats.js:54
 msgid "More..."
-msgstr "Más..."
+msgstr "Más…"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr "Colaboradores, 30 Días"
+msgstr "Colaboradores, 30 días"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
@@ -549,7 +549,7 @@ msgstr "+%(score)s"
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr "#%(position)s"
+msgstr "n.º %(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
@@ -561,11 +561,11 @@ msgstr "Ocultar desactivados"
 
 #: static/js/browser.js:286
 msgid "All Languages"
-msgstr "Todos los Idiomas"
+msgstr "Todos los idiomas"
 
 #: static/js/browser.js:292
 msgid "All Projects"
-msgstr "Todos los Proyectos"
+msgstr "Todos los proyectos"
 
 #: static/js/browser.js:297
 msgid "Entire Project"
@@ -834,9 +834,9 @@ msgid ""
 "accounts."
 msgstr ""
 "Encontramos un usuario con la dirección <span>%(email)s</span> en nuestro "
-"sistema. Por favor proporcione la contraseña para completar el proceso de "
-"acceso. Este proceso, que se realiza solo una vez, enlazará sus cuentas de "
-"Pootle y %(provider)s."
+"sistema. Proporcione la contraseña para completar el proceso de acceso. Este "
+"proceso, que se realiza solo una vez, enlazará sus cuentas de Pootle y "
+"%(provider)s."
 
 #: static/js/editor/app.js:614
 msgid "No results."

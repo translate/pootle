@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-07-20 14:24+0000\n"
+"PO-Revision-Date: 2016-12-26 09:44+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -19,20 +19,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1469024646.000000\n"
+"X-POOTLE-MTIME: 1482745452.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
-"איזושהי תקלה אירעה בעת הניסיון לשלוח הודעת אימות בדוא״ל. נא לנסות שוב מאוחר "
+"תקלה כלשהי אירעה בעת הניסיון לשלוח הודעת אימות בדוא״ל. נא לנסות שוב מאוחר "
 "יותר."
 
 #: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr ""
+msgstr "אירעה שגיאה בעת כניסה למערכת. נא ליצור קשר עם מנהל המערכת שלך."
 
 #: apps/accounts/forms.py:59
 msgid ""
@@ -71,9 +71,9 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"מגדיר האם משתמש זה נחשב לפעיל. ניתן לבטל את הסימון במקום למחוק חשבונות."
 
 #: apps/accounts/models.py:79
-#, fuzzy
 msgid "Superuser Status"
 msgstr "מצב משתמש על"
 
@@ -81,7 +81,7 @@ msgstr "מצב משתמש על"
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
-msgstr ""
+msgstr "מגדיר שלמשתמש זה יש את כל ההרשאות מבלי להקצות אותם במפורש."
 
 #: apps/accounts/models.py:85
 msgid "date joined"
@@ -97,19 +97,19 @@ msgstr "שפות מקור חלופית"
 
 #: apps/accounts/models.py:96 templates/admin/detailed_reports.html:157
 msgid "Rate"
-msgstr ""
+msgstr "דירוג"
 
 #: apps/accounts/models.py:97
 msgid "Review Rate"
-msgstr ""
+msgstr "דירוג סקירה"
 
 #: apps/accounts/models.py:98
 msgid "Hourly Rate"
-msgstr ""
+msgstr "דירוג שעתי"
 
 #: apps/accounts/models.py:99
 msgid "Score"
-msgstr ""
+msgstr "ניקוד"
 
 #: apps/accounts/models.py:100
 msgid "Currency"
@@ -121,7 +121,7 @@ msgstr "עובד?"
 
 #: apps/accounts/models.py:103
 msgid "Twitter"
-msgstr ""
+msgstr "טוויטר"
 
 #: apps/accounts/models.py:105
 msgid "Website"
@@ -129,16 +129,15 @@ msgstr "אתר"
 
 #: apps/accounts/models.py:106
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:107
 msgid "Short Bio"
 msgstr "קורות חיים בקיצור"
 
 #: apps/accounts/models.py:362
-#, fuzzy
 msgid "This email address already exists."
-msgstr "מונח זה כבר קיים בקובץ זה."
+msgstr "כתובת דוא״ל זו כבר קיימת."
 
 #: apps/contact/forms.py:26
 msgid "Summary"
@@ -146,7 +145,7 @@ msgstr "תקציר"
 
 #: apps/contact/forms.py:28
 msgid "Please enter your message summary"
-msgstr ""
+msgstr "נא להקליד את תקציר ההודעה שלך"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -154,7 +153,7 @@ msgstr "שם"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr ""
+msgstr "נא להקליד את שמך"
 
 #: apps/contact/forms.py:39
 msgid "Email address"
@@ -162,7 +161,7 @@ msgstr "כתובת דוא״ל"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr ""
+msgstr "נא להקליד את כתובת הדוא״ל שלך."
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -170,36 +169,31 @@ msgstr "הודעה"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr ""
+msgstr "נא להזין את ההודעה שלך"
 
 #: apps/contact/views.py:34 templates/layout.html:108
 msgid "Contact Us"
 msgstr "יצירת קשר"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
-msgstr "דיווח על בעיה במחרוזת המקור"
+msgstr "דיווח על בעיה עם מחרוזת"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "הורדת XLIFF לתרגום בלתי מקוון"
+msgstr "הורדת קובצי תרגום לתרגום בלתי מקוון"
 
 #: apps/import_export/templates/browser/index.html:12
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "הורדת XLIFF לתרגום בלתי מקוון"
+msgstr "הורדה לצורך תרגום בלתי מקוון"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "הורדת XLIFF לתרגום בלתי מקוון"
+msgstr "הורדת קובצי תרגום לגיבוי"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "הורדת קובץ"
+msgstr "הורדה לצורך גיבוי"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -212,12 +206,12 @@ msgstr "העלאת תרגומים"
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
 msgid "Upload as %(user)s"
-msgstr ""
+msgstr "העלאה בתור %(user)s"
 
 #: apps/import_export/utils.py:28
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "סוג הקובץ '%s' אינו נתמך, רק קובצי PO נתמכים נכון לעכשיו\n"
 
 #: apps/import_export/utils.py:34
 #, python-format
@@ -336,16 +330,15 @@ msgstr ""
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
-msgstr ""
+msgstr "מנגנון מערכת קבצים"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "בחר קובץ להעלאה"
+msgstr "בחירת מנגנון מערכת קבצים"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
-msgstr ""
+msgstr "כתובת או נתיב של המנגנון"
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
@@ -382,24 +375,20 @@ msgid "Submitter"
 msgstr "הגשה"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "סקור"
+msgstr "מבקר"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "ניהול"
+msgstr "מנהל"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "ניהול"
+msgstr "מנהלים"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "סקירות"
+msgstr "מבקרים"
 
 #: apps/pootle_language/forms.py:80
 #, fuzzy
@@ -407,22 +396,20 @@ msgid "Submitters"
 msgstr "הגשה"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "מספרים"
+msgstr "חברים"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "מספרים"
+msgstr "חבר חדש"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "הוספת משתמש לצוות זה"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "נדרש תפקיד בעת הוספת חבר חדש"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -485,7 +472,7 @@ msgstr "משוואת הרבים"
 
 #: apps/pootle_language/views.py:208 templates/admin/detailed_reports.html:151
 msgid "Unit"
-msgstr ""
+msgstr "יחידה"
 
 #: apps/pootle_language/views.py:209 apps/pootle_statistics/models.py:65
 msgid "State"
@@ -496,19 +483,16 @@ msgid "Source"
 msgstr "מקור"
 
 #: apps/pootle_language/views.py:211
-#, fuzzy
 msgid "Suggestion"
-msgstr "הצעות"
+msgstr "הצעה"
 
 #: apps/pootle_language/views.py:212
-#, fuzzy
 msgid "Suggested by"
-msgstr "הצעה"
+msgstr "הוצע ע״י"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested at"
-msgstr "הצעה"
+msgstr "הוצע ב־"
 
 #: apps/pootle_language/views.py:235
 #, fuzzy, python-format
@@ -743,15 +727,15 @@ msgstr "יישויות HTML פגומות"
 
 #: apps/pootle_misc/checks.py:92
 msgid "Java format"
-msgstr ""
+msgstr "תצורת Java"
 
 #: apps/pootle_misc/checks.py:93
 msgid "Template format"
-msgstr ""
+msgstr "תצורת תבנית"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "ממלאי מקום בסוגריים מסולסלים"
 
 #: apps/pootle_misc/checks.py:95
 msgid "Mustache placeholder pairs"
@@ -806,9 +790,8 @@ msgid "Percent sign closure placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:109
-#, fuzzy
 msgid "$ placeholders"
-msgstr "ממלאי מקום"
+msgstr "ממלאי מקום $"
 
 #: apps/pootle_misc/checks.py:110
 msgid "$ closure placeholders"
@@ -840,7 +823,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:117
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "מירכאות כפולות בתגים"
 
 #: apps/pootle_misc/checks.py:118
 #, fuzzy
@@ -848,19 +831,16 @@ msgid "Percent brace placeholders"
 msgstr "ממלאי מקום"
 
 #: apps/pootle_misc/checks.py:119
-#, fuzzy
 msgid "Plurr format"
-msgstr "%d צורות רבים"
+msgstr "תצורת Plurr"
 
 #: apps/pootle_misc/checks.py:120
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "ממלאי מקום"
+msgstr "ממלאי מקום Plurr"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "%d צורות רבים"
+msgstr "תצורת ftl"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -968,12 +948,11 @@ msgstr "התעלמות מקבצים"
 
 #: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
-msgstr ""
+msgstr "דוא״ל לדיווח על שגיאות"
 
 #: apps/pootle_project/models.py:241
-#, fuzzy
 msgid "An email address where issues with the source text can be reported."
-msgstr "כתובת או דוא״ל שדרכן ניתן לדווח על תקלות בטקסט המקור."
+msgstr "כתובת דוא״ל שדרכה ניתן לדווח על תקלות בטקסט המקור."
 
 #: apps/pootle_project/models.py:245
 msgid "Screenshot Search Prefix"
@@ -1149,14 +1128,14 @@ msgid "This term already exists in this file."
 msgstr "מונח זה כבר קיים בקובץ זה."
 
 #: apps/pootle_translationproject/receivers.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "עמוד הבית של מיזם התרגום"
+msgstr "מיזם התרגום (%s) נוצר"
 
 #: apps/pootle_translationproject/receivers.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "עמוד הבית של מיזם התרגום"
+msgstr "יצירת המיזם (%s) נכשלה"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1231,7 +1210,6 @@ msgstr "הארגומנטים חסרים."
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Filter"
 msgstr "מסנן"
 
@@ -1246,11 +1224,11 @@ msgstr "עדיפות"
 #: apps/virtualfolder/models.py:47
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
-msgstr ""
+msgstr "מספר המציין עדיפות. מספר גדול יותר מציין חשיבות גבוהה יותר."
 
 #: apps/virtualfolder/models.py:51
 msgid "Is public?"
-msgstr ""
+msgstr "ציבורי?"
 
 #: apps/virtualfolder/models.py:53
 #, fuzzy
@@ -1283,20 +1261,20 @@ msgstr ""
 
 #: checks.py:88
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "גרסת ה־Django שלך ישנה מדי."
 
 #: checks.py:89
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
-msgstr ""
+msgstr "כדאי לנסות להפעיל את הפקודה pip install --upgrade 'Django==%s'‎"
 
 #: checks.py:96
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "גרסת ה־lxml שלך ישנה מדי."
 
 #: checks.py:97
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "כדאי לנסות את הפקודה pip install --upgrade lxml"
 
 #: checks.py:103
 msgid "Your version of Translate Toolkit is too old."
@@ -1309,7 +1287,7 @@ msgstr ""
 #: checks.py:124
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "לא ניתן להתחבר ל־Redis (%s)"
 
 #: checks.py:125
 #, python-format
@@ -1335,7 +1313,7 @@ msgstr ""
 
 #: checks.py:163
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "מנגנון המטמון לא מוגדר כ־Redis."
 
 #: checks.py:164
 #, python-format
@@ -1368,7 +1346,7 @@ msgstr ""
 
 #: checks.py:202
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "מנגנון מסד הנתונים של sqlite אינו נתמך"
 
 #: checks.py:203
 msgid "Set your default database engine to postgresql or mysql"
@@ -1633,7 +1611,7 @@ msgstr "הצעות"
 #: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr "לא שלם"
+msgstr "במחסור"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -1679,7 +1657,6 @@ msgid "With selected"
 msgstr ""
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "הוספת הערה"
 
@@ -1689,7 +1666,7 @@ msgstr ""
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "עליך לציין באיזו פעולה לנקוט"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
@@ -1969,70 +1946,67 @@ msgstr "הצעות ממתינות"
 
 #: templates/admin/dashboard.html:29
 msgid "Background Jobs"
-msgstr ""
+msgstr "משימות רקע"
 
 #: templates/admin/dashboard.html:35
 msgid "Status"
-msgstr ""
+msgstr "מצב"
 
 #: templates/admin/dashboard.html:42
 msgid "Pending jobs"
-msgstr ""
+msgstr "משימות ממתינות"
 
 #: templates/admin/dashboard.html:46
 msgid "Failed jobs"
-msgstr ""
+msgstr "משימות שנכשלו"
 
 #: templates/admin/dashboard.html:56
-#, fuzzy
 msgid "System Checks"
-msgstr "הצג מסומנים"
+msgstr "בדיקות מערכת"
 
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "לא זוהו בעיות. הכול בסדר!"
 
 #: templates/admin/detailed_reports.html:7
 #, python-format
 msgid "Report for %(user)s, "
-msgstr ""
+msgstr "דיווח עבור %(user)s, "
 
 #: templates/admin/detailed_reports.html:137
 #, python-format
 msgid "Report for %(user)s"
-msgstr ""
+msgstr "דיווח עבור %(user)s"
 
 #: templates/admin/detailed_reports.html:141
 #: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
 msgid "Previous month"
-msgstr ""
+msgstr "החודש הקודם"
 
 #: templates/admin/detailed_reports.html:143
 #: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
 msgid "Next month"
-msgstr ""
+msgstr "החודש הבא"
 
 #: templates/admin/detailed_reports.html:150
 msgid "Local server time"
-msgstr ""
+msgstr "זמן השרת המקומי"
 
 #: templates/admin/detailed_reports.html:152
-#, fuzzy
 msgid "Action"
-msgstr "פעולות"
+msgstr "פעולה"
 
 #: templates/admin/detailed_reports.html:153
-#, fuzzy
 msgid "Source words"
-msgstr "מונחי המקור"
+msgstr "מילים במקור"
 
 #: templates/admin/detailed_reports.html:154
 msgid "Similarity"
-msgstr ""
+msgstr "דמיון"
 
 #: templates/admin/detailed_reports.html:155
 msgid "Words"
-msgstr ""
+msgstr "מילים"
 
 #: templates/admin/detailed_reports.html:158
 msgid "Subtotal"
@@ -2049,9 +2023,8 @@ msgid "Subactions"
 msgstr "פונקציות"
 
 #: templates/admin/detailed_reports.html:220
-#, fuzzy
 msgid "Raw Translation"
-msgstr "תרגום"
+msgstr "תרגום גולמי"
 
 #: templates/admin/detailed_reports.html:233
 msgid "Review"
@@ -2060,11 +2033,11 @@ msgstr "סקור"
 #: templates/admin/detailed_reports.html:250
 #: templates/admin/detailed_reports.html:309
 msgid "registered tasks"
-msgstr ""
+msgstr "משימות רשומות"
 
 #: templates/admin/detailed_reports.html:261
 msgid "No activity recorded in a given period"
-msgstr ""
+msgstr "לא נרשמה פעילות בתקופה הנתונה"
 
 #: templates/admin/detailed_reports.html:270
 #, fuzzy
@@ -2081,7 +2054,7 @@ msgstr ""
 
 #: templates/admin/detailed_reports.html:327
 msgid "Please select a valid user."
-msgstr ""
+msgstr "נא לבחור במשתמש תקני."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2109,11 +2082,11 @@ msgstr ""
 
 #: templates/admin/project_fs.html:30
 msgid "Backend configuration"
-msgstr ""
+msgstr "תצורת מנגנון"
 
 #: templates/admin/project_fs.html:41
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "עדכון הגדרות מערכת הקבצים"
 
 #: templates/admin/project_fs.html:44
 #, fuzzy
@@ -2173,7 +2146,7 @@ msgstr "משתמשים"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
-msgstr ""
+msgstr "דוח מפורט"
 
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
@@ -2427,7 +2400,7 @@ msgstr "אישור"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr ""
+msgstr "חזרה לעיון"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2454,7 +2427,7 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "סידור בררת מחדל"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
@@ -2497,7 +2470,7 @@ msgstr ""
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
-msgstr ""
+msgstr "אנו מקווים שמשוב זה יסייע לך לשפר את תרומותיך בעתיד."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
@@ -2517,9 +2490,8 @@ msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
 msgstr "<a href=\"%(url)s\">מחרוזת %(id)s</a>"
 
 #: templates/editor/units/edit.html:19
-#, fuzzy
 msgid "Priority:"
-msgstr "עדיפות"
+msgstr "עדיפות:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
@@ -2554,9 +2526,8 @@ msgid "Copy into translation"
 msgstr "העתקה לתרגום"
 
 #: templates/editor/units/edit.html:132
-#, fuzzy
 msgid "Report a problem with this string"
-msgstr "דיווח על בעיה במחרוזת המקור"
+msgstr "דיווח על בעיה במחרוזת זו"
 
 #: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
 #: templates/editor/units/edit.html:245
@@ -3149,9 +3120,8 @@ msgid "Come and join us!"
 msgstr ""
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
-msgstr "פעולת הקצאה"
+msgstr "כניסה"
 
 #: templates/welcome.html:32
 #, fuzzy

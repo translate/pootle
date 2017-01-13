@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2016-12-20 15:40+0000\n"
-"PO-Revision-Date: 2016-11-25 13:53+0000\n"
-"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
+"PO-Revision-Date: 2017-01-12 18:28+0000\n"
+"Last-Translator: Manuela <manuela.silva@sky.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1480081983.000000\n"
+"X-POOTLE-MTIME: 1484245714.000000\n"
 
 #: apps/accounts/adapter.py:65
 msgid ""
@@ -60,7 +60,7 @@ msgstr "Digite um nome de utilizador válido"
 
 #: apps/accounts/models.py:69
 msgid "Email Address"
-msgstr "Endereço de e-mail"
+msgstr "Endereço de E-mail"
 
 #: apps/accounts/models.py:70 apps/pootle_language/models.py:92
 #: apps/pootle_project/models.py:206
@@ -259,7 +259,7 @@ msgstr "O código do idioma não corresponde à convenção ISO."
 
 #: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
-msgstr "Idioma original"
+msgstr "Idioma Original"
 
 #: apps/pootle_app/forms.py:88
 #, python-format
