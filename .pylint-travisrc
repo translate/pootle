@@ -16,7 +16,8 @@ ignore=migrations,.eggs,.git,.tox
 disable=all
 # For checkers and individual checks see
 # https://pylint.readthedocs.io/en/latest/features.html
-enable=reimported,logging,stdlib,string,unneeded-not,undefined-loop-variable
+enable=reimported, logging, stdlib, string, unneeded-not, undefined-loop-variable, old-octal-literal
+
 dummy-variables-rgx=__|^.*[^_]_$
 
 [REPORTS]
