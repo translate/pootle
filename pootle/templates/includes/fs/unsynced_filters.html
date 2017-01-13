@@ -1,0 +1,16 @@
+{% load i18n %}
+<div class="padded">
+  <span class="padded aligned-center">
+    {{ formtable.form.filter_language.label }}
+    {{ formtable.form.filter_language }}
+    {{ formtable.form.filter_language.errors }}
+  </span>
+  <span class="padded aligned-center">
+    {{ formtable.form.filter_state.label }}
+    {{ formtable.form.filter_state }}
+    {{ formtable.form.filter_state.errors }}
+  </span>
+  <span class="padded aligned-center">
+    <input type="submit" value="{% trans 'Filter' %}" class="btn" />
+  </span>
+</div>

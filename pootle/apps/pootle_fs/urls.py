@@ -8,10 +8,31 @@
 
 from django.conf.urls import url
 
-from .views import ProjectFSAdminView
+from .views import (
+    ProjectFSAdminView, ProjectFSFetchAdminView, ProjectFSStateAdminView,
+    ProjectFSStateConflictingAdminView, ProjectFSStateTrackedAdminView,
+    ProjectFSStateUnsyncedAdminView, ProjectFSStateUntrackedAdminView)
 
 
 urlpatterns = [
     url(r'^admin/projects/(?P<project_code>[^/]*)/fs/?$',
         ProjectFSAdminView.as_view(),
-        name='pootle-admin-project-fs')]
+        name='pootle-admin-project-fs'),
+    url(r'^admin/projects/(?P<project_code>[^/]*)/fs/fetch/?$',
+        ProjectFSFetchAdminView.as_view(),
+        name='pootle-admin-project-fs-fetch'),
+    url(r'^admin/projects/(?P<project_code>[^/]*)/fs/state/?$',
+        ProjectFSStateAdminView.as_view(),
+        name='pootle-admin-project-fs-state'),
+    url(r'^admin/projects/(?P<project_code>[^/]*)/fs/state/tracked/?$',
+        ProjectFSStateTrackedAdminView.as_view(),
+        name='pootle-admin-project-fs-state-tracked'),
+    url(r'^admin/projects/(?P<project_code>[^/]*)/fs/state/untracked/?$',
+        ProjectFSStateUntrackedAdminView.as_view(),
+        name='pootle-admin-project-fs-state-untracked'),
+    url(r'^admin/projects/(?P<project_code>[^/]*)/fs/state/unsynced/?$',
+        ProjectFSStateUnsyncedAdminView.as_view(),
+        name='pootle-admin-project-fs-state-unsynced'),
+    url(r'^admin/projects/(?P<project_code>[^/]*)/fs/state/conflicting/?$',
+        ProjectFSStateConflictingAdminView.as_view(),
+        name='pootle-admin-project-fs-state-conflicting')]
