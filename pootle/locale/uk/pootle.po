@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-12-20 15:40+0000\n"
+"POT-Creation-Date: 2017-01-13 11:47+0000\n"
 "PO-Revision-Date: 2016-07-26 20:10+0000\n"
 "Last-Translator: Андрій <andriykopanytsia@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1469563800.000000\n"
 
-#: apps/accounts/adapter.py:65
+#: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -44,36 +44,36 @@ msgstr ""
 "Схоже, ваш обліковий запис зник. Будь ласка, повідомте про це адміністратора "
 "сайту."
 
-#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Ім’я користувача"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Необхідно. Не більше 30 символів. Можна використовувати букви, цифри, "
 "символи @/./+/-/_"
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:60
 msgid "Enter a valid username."
 msgstr "Введіть чинне ім'я користувача."
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:64
 msgid "Email Address"
 msgstr "Адреса електронної пошти"
 
-#: apps/accounts/models.py:70 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:206
+#: apps/accounts/models.py:65 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:207
 msgid "Full Name"
 msgstr "Повне ім’я"
 
-#: apps/accounts/models.py:73 apps/staticpages/models.py:30
+#: apps/accounts/models.py:68 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Активно"
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:71
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -81,70 +81,70 @@ msgstr ""
 "Визначає, чи є користувач активним. Зніміть цей прапорець замість видалення "
 "користувача."
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:74
 msgid "Superuser Status"
 msgstr "Статус суперкористувача"
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:77
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
 "Визначає, що цей користувач має всі права без явного їхнього призначення."
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:80
 msgid "date joined"
 msgstr "дата приєднання"
 
-#: apps/accounts/models.py:89
+#: apps/accounts/models.py:84
 msgid "Number of Rows"
 msgstr "Кількість рядків"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:88
 msgid "Alternative Source Languages"
 msgstr "Додаткові мови для джерела"
 
-#: apps/accounts/models.py:96 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Ціна"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:92
 msgid "Review Rate"
 msgstr "Ціна на рецензію"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:93
 msgid "Hourly Rate"
 msgstr "Ціна за годину"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Рахунок"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:95
 msgid "Currency"
 msgstr "Валюта"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:97
 msgid "Is employee?"
 msgstr "Робітник?"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:98
 msgid "Twitter"
 msgstr "Твітер"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:100
 msgid "Website"
 msgstr "Веб-сайт"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:101
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:107
+#: apps/accounts/models.py:102
 msgid "Short Bio"
 msgstr "Коротка біографія"
 
-#: apps/accounts/models.py:362
+#: apps/accounts/models.py:242
 msgid "This email address already exists."
 msgstr "Цей адреса електронної пошти вже існує."
 
@@ -217,27 +217,27 @@ msgstr "Експортувати переклади"
 msgid "Upload as %(user)s"
 msgstr "Вивантажити як %(user)s"
 
-#: apps/import_export/utils.py:28
+#: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr "Непідтримуваний тип файлу '%s'. Зараз підтримується тільки PO\n"
 
-#: apps/import_export/utils.py:34
+#: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "У файлі '%s' пропущено заголовок X-Pootle-Path\n"
 
-#: apps/import_export/utils.py:39
+#: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "У файлі '%s' пропущений або некоректний заголовок X-Pootle-Revision\n"
 
-#: apps/import_export/utils.py:47
+#: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Неможливо створити '%s'. Відсутній Проект/Мова? (%s)"
 
-#: apps/import_export/utils.py:64
+#: apps/import_export/utils.py:74
 msgid "There was an error uploading your file"
 msgstr "Сталася помилка при звантаженні вашого файлу."
 
@@ -245,7 +245,7 @@ msgstr "Сталася помилка при звантаженні вашого
 msgid "Language code does not follow the ISO convention"
 msgstr "Код мови не відповідає конвенції ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
 msgid "Source Language"
 msgstr "Мова джерела"
 
@@ -299,7 +299,7 @@ msgstr "Відкликати дозволи"
 msgid "No files in this project."
 msgstr "У цього проекту немає файлів."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:165
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:169
 msgid "There are errors in the form. Please review the problems below."
 msgstr "У цій формі є помилки. Перегляньте та виправте їх."
 
@@ -436,12 +436,12 @@ msgstr "Відхилити"
 msgid "Accept"
 msgstr "Прийняти"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:214
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Проект"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
 msgid "Code"
 msgstr "Код"
 
@@ -487,48 +487,48 @@ msgstr "Кількість форм множини"
 msgid "Plural Equation"
 msgstr "Рівняння форм множини"
 
-#: apps/pootle_language/views.py:208 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "Сегмент"
 
-#: apps/pootle_language/views.py:209 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Стан"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Джерело"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:212
 msgid "Suggestion"
 msgstr "Пропозиція"
 
-#: apps/pootle_language/views.py:212
+#: apps/pootle_language/views.py:213
 #, fuzzy
 msgid "Suggested by"
 msgstr "Запропонувати"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:214
 #, fuzzy
 msgid "Suggested at"
 msgstr "Запропонувати"
 
-#: apps/pootle_language/views.py:235
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "Відхилено пропозицію від %(author)s з коментарем: %(comment)s"
 
-#: apps/pootle_language/views.py:239
+#: apps/pootle_language/views.py:240
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "Прийнято пропозицію від %(author)s з коментарем: %(comment)s"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:243
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Відхилити пропозицію"
 
-#: apps/pootle_language/views.py:244
+#: apps/pootle_language/views.py:245
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Прийняти пропозицію"
@@ -862,6 +862,14 @@ msgstr "$ заповнювачі"
 msgid "ftl format"
 msgstr "Формат дати"
 
+#: apps/pootle_misc/checks.py:126
+msgid "Romanian: Avoid cedillas diacritics"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:127
+msgid "Romanian: Use \"niciun\"/\"nicio\""
+msgstr ""
+
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Шукати"
@@ -870,23 +878,23 @@ msgstr "Шукати"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Пошук (Ctrl+Shift+S)<br/>Наберіть та натисніть Enter для пошуку"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:437
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
 msgid "Exact Match"
 msgstr "Точне співпадіння"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
 msgid "Source Text"
 msgstr "джерельні тексти"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
 msgid "Target Text"
 msgstr "перекладені тексти"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
 msgid "Comments"
 msgstr "коментарі"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:446
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
 msgid "Locations"
 msgstr "Розміщення"
 
@@ -911,7 +919,7 @@ msgstr "Останні (%d)"
 msgid "Search unavailable"
 msgstr "Пошук недоступний"
 
-#: apps/pootle_profile/views.py:55
+#: apps/pootle_profile/views.py:59
 msgid "Select one or more languages"
 msgstr "Виберіть одну або кілька мов"
 
@@ -919,17 +927,17 @@ msgstr "Виберіть одну або кілька мов"
 msgid "Language"
 msgstr "Мова"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "„%s“ не може бути використано як код проекту"
 
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:189
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "„%s“ не може бути використано як код проекту"
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:196
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -937,55 +945,55 @@ msgstr ""
 "Коротка кодова назва для проекту. Вона може містити лише символи ASCII, "
 "цифри та знак підкреслення „_“."
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:214
 msgid "Quality Checks"
 msgstr "Перевірки якості"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:220
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Автоматичне виявлення gnu і не gnu розміток проекту (повільніше)"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
 msgstr "Стиль GNU : файли, названі за кодом мови"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Не GNU-стиль: кожна мова у її власній теці"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 #, fuzzy
-msgid "Allow Pootle FS to manage filesystems"
+msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Дозволити pootle_fs управляти файловою системою"
 
 # +- ієрархічний
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
 msgstr "Дерево проекту"
 
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:235
 msgid "Ignore Files"
 msgstr "Ігнорувати файли"
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:241
 msgid "Errors Report Email"
 msgstr "Електронна пошта для звітів"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Адресу електронної пошти, куди слід повідомляти про проблеми з джерельним "
 "текстом."
 
-#: apps/pootle_project/models.py:245
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr "Префікс для пошуку знімків екрану"
 
-#: apps/pootle_project/models.py:250
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "Вимкнено"
 
-#: apps/pootle_project/views.py:252
+#: apps/pootle_project/views.py:256
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -994,7 +1002,7 @@ msgstr ""
 "Проект (%s) був створений. Зараз відбувається оновлення сховища проекту з "
 "шаблону."
 
-#: apps/pootle_project/views.py:259
+#: apps/pootle_project/views.py:263
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Проект (%s) був видалений"
@@ -1061,19 +1069,19 @@ msgstr "Прапор неточного перекладу повинен бут
 msgid "Translator comment"
 msgstr "Коментар перекладача"
 
-#: apps/pootle_store/models.py:123
+#: apps/pootle_store/models.py:124
 msgid "Pending"
 msgstr "Очікуючих"
 
-#: apps/pootle_store/models.py:124
+#: apps/pootle_store/models.py:125
 msgid "Accepted"
 msgstr "Прийнято"
 
-#: apps/pootle_store/models.py:125
+#: apps/pootle_store/models.py:126
 msgid "Rejected"
 msgstr "Відхилено"
 
-#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
+#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
 msgid "Path"
 msgstr "Шлях"
 
@@ -1974,7 +1982,7 @@ msgstr "Мови"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:99
+#: templates/languages/admin/language_team.html:88
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Проекти"
@@ -2146,61 +2154,68 @@ msgstr ""
 msgid "Filesystem configuration: %(project_code)s"
 msgstr ""
 
-#: templates/admin/project_fs.html:30
+#: templates/admin/project_fs.html:28
+msgid ""
+"Pootle FS is still experimental, we’d love you to use it, but it does "
+"require a level of expertise in localisation, Python and Pootle in case "
+"anything goes wrong."
+msgstr ""
+
+#: templates/admin/project_fs.html:37
 msgid "Backend configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:41
+#: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:44
+#: templates/admin/project_fs.html:51
 #, fuzzy
 msgid "Translation path mapping should be of the format:"
 msgstr "Налаштування перекладів"
 
-#: templates/admin/project_fs.html:52
+#: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:58
+#: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:64
+#: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:74
+#: templates/admin/project_fs.html:81
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "Відомості про мову: %(language)s"
 
-#: templates/admin/project_fs.html:84
+#: templates/admin/project_fs.html:91
 msgid "Remove"
 msgstr "Вилучити"
 
-#: templates/admin/project_fs.html:85
+#: templates/admin/project_fs.html:92
 #, fuzzy
 msgid "Pootle code"
 msgstr "Pootle наживо"
 
-#: templates/admin/project_fs.html:86
+#: templates/admin/project_fs.html:93
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:90
+#: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
 msgid "Add"
 msgstr "Додати"
 
-#: templates/admin/project_fs.html:97
+#: templates/admin/project_fs.html:104
 #, fuzzy
 msgid "Update"
 msgstr "Оновлення"
@@ -2683,6 +2698,7 @@ msgid "Critical issues with the translation"
 msgstr "Критичні проблеми з перекладом"
 
 #: templates/editor/units/xhr_checks.html:5
+#: templates/languages/admin/language_team.html:107
 msgid "Critical errors:"
 msgstr "Критичні помилки:"
 
@@ -2844,53 +2860,43 @@ msgstr "Ім'я мови"
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:28
+#: templates/languages/admin/language_team.html:29
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:44
-#: templates/languages/admin/language_team.html:60
-#: templates/languages/admin/language_team.html:76
-#: templates/languages/admin/language_team.html:92
+#: templates/languages/admin/language_team.html:42
+#: templates/languages/admin/language_team.html:55
+#: templates/languages/admin/language_team.html:68
+#: templates/languages/admin/language_team.html:81
 #, fuzzy
 msgid "Remove selected"
 msgstr "Вилучити користувача"
 
-#: templates/languages/admin/language_team.html:113
+# було Запропонувати
+#: templates/languages/admin/language_team.html:102
 #, fuzzy
-msgid "Unit admin"
-msgstr "Адміністратор Django "
+msgid "Unit and suggestions admin"
+msgstr "Пропозиція %d:"
 
 #: templates/languages/admin/language_team.html:117
 #, fuzzy
-msgid "Critical:"
-msgstr "Критичні"
+msgid "Pending suggestions:"
+msgstr "Нерозглянуті пропозиції"
 
-#: templates/languages/admin/language_team.html:123
+#: templates/languages/admin/language_team.html:127
 #, fuzzy
 msgid "Total words:"
 msgstr "Слів загалом"
 
-#: templates/languages/admin/language_team.html:129
+#: templates/languages/admin/language_team.html:131
 #, fuzzy
 msgid "Translated:"
 msgstr "Перекладено"
 
-#: templates/languages/admin/language_team.html:135
+#: templates/languages/admin/language_team.html:139
 #, fuzzy
 msgid "Needs work:"
 msgstr "Потрібно доопрацювати"
-
-# було Запропонувати
-#: templates/languages/admin/language_team.html:144
-#, fuzzy
-msgid "Suggestion admin"
-msgstr "Пропозиція %d:"
-
-#: templates/languages/admin/language_team.html:147
-#, python-format
-msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
@@ -3206,6 +3212,14 @@ msgstr "Увійти"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Найактивніші перекладачі за останні 30 днів"
+
+#, fuzzy
+#~ msgid "Unit admin"
+#~ msgstr "Адміністратор Django "
+
+#, fuzzy
+#~ msgid "Critical:"
+#~ msgstr "Критичні"
 
 #, fuzzy
 #~ msgid "Admins"

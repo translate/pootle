@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-12-20 15:40+0000\n"
+"POT-Creation-Date: 2017-01-13 11:47+0000\n"
 "PO-Revision-Date: 2015-07-12 15:59+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1436716741.000000\n"
 
-#: apps/accounts/adapter.py:65
+#: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -40,36 +40,36 @@ msgstr ""
 "Panašu, kad jūsų naudotojo paskyra dingo. Praneškite apie tai šios svetainės "
 "valdytojams."
 
-#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Naudotojo vardas"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Privalomas. Ilgis iki 30 simbolių. Raidės, skaitmenys ir šie simboliai: @ . "
 "+ - _."
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:60
 msgid "Enter a valid username."
 msgstr "Įveskite leistiną naudotojo vardą."
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:64
 msgid "Email Address"
 msgstr "El. pašto adresas"
 
-#: apps/accounts/models.py:70 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:206
+#: apps/accounts/models.py:65 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:207
 msgid "Full Name"
 msgstr "Vardas, Pavardė"
 
-#: apps/accounts/models.py:73 apps/staticpages/models.py:30
+#: apps/accounts/models.py:68 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Aktyvus"
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:71
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -77,11 +77,11 @@ msgstr ""
 "Nurodo, ar šis naudotojas laikytinas aktyviu. Jei norite šalinti šią "
 "paskyrą, geriau nuimkite šio laukelio žymėjimą."
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:74
 msgid "Superuser Status"
 msgstr "Administratorius"
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:77
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -89,59 +89,59 @@ msgstr ""
 "Suteikia šiam naudotojui visas galimas teises, nenurodant kiekvienos jų "
 "atskirai."
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:80
 msgid "date joined"
 msgstr "registravimosi data"
 
-#: apps/accounts/models.py:89
+#: apps/accounts/models.py:84
 msgid "Number of Rows"
 msgstr "Eilučių skaičius"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:88
 msgid "Alternative Source Languages"
 msgstr "Alternatyvios pradinės kalbos"
 
-#: apps/accounts/models.py:96 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "Įkainis"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:92
 msgid "Review Rate"
 msgstr "Peržiūros įkainis"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:93
 msgid "Hourly Rate"
 msgstr "Valandinis įkainis"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Taškai"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:95
 msgid "Currency"
 msgstr "Valiuta"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:97
 msgid "Is employee?"
 msgstr "Yra darbuotojas?"
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:98
 msgid "Twitter"
 msgstr "„Twitter“"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:100
 msgid "Website"
 msgstr "Svetainė"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:101
 msgid "LinkedIn"
 msgstr "„LinkedIn“"
 
-#: apps/accounts/models.py:107
+#: apps/accounts/models.py:102
 msgid "Short Bio"
 msgstr "Trumpa biografija"
 
-#: apps/accounts/models.py:362
+#: apps/accounts/models.py:242
 msgid "This email address already exists."
 msgstr "Šis elektroninio pašto adresas jau yra registruotas."
 
@@ -217,27 +217,27 @@ msgstr "Įkelti vertimus"
 msgid "Upload as %(user)s"
 msgstr ""
 
-#: apps/import_export/utils.py:28
+#: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 
-#: apps/import_export/utils.py:34
+#: apps/import_export/utils.py:44
 #, fuzzy, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Faile „%r“ trūksta „X-Pootle-Path“ antraštės\n"
 
-#: apps/import_export/utils.py:39
+#: apps/import_export/utils.py:49
 #, fuzzy, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Faile „%r“ trūksta „X-Pootle-Revision“ antraštės\n"
 
-#: apps/import_export/utils.py:47
+#: apps/import_export/utils.py:57
 #, fuzzy, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Sukurti „%r“ nepavyko. Gal nenurodytas projektas arba kalba? (%s)"
 
-#: apps/import_export/utils.py:64
+#: apps/import_export/utils.py:74
 #, fuzzy
 msgid "There was an error uploading your file"
 msgstr "Gali perrašyti vertimus esančiais įkeliamame faile"
@@ -246,7 +246,7 @@ msgstr "Gali perrašyti vertimus esančiais įkeliamame faile"
 msgid "Language code does not follow the ISO convention"
 msgstr "Šis kalbos kodas neatitinka ISO standarto"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
 msgid "Source Language"
 msgstr "Originalo kalba"
 
@@ -300,7 +300,7 @@ msgstr "Atimti teises"
 msgid "No files in this project."
 msgstr "Šiame projekte nėra failų."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:165
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:169
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Formos duomenyse aptikta klaidų. Išspręskite nurodytas problemas."
 
@@ -435,12 +435,12 @@ msgstr "Atmesti"
 msgid "Accept"
 msgstr "Patvirtinti"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:214
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projektas"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
 msgid "Code"
 msgstr "Kodas"
 
@@ -488,49 +488,49 @@ msgstr "Daugiskaitinių formų skaičius"
 msgid "Plural Equation"
 msgstr "Daugiskaitos lygtis"
 
-#: apps/pootle_language/views.py:208 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:209 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Būsena"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Originalas"
 
-#: apps/pootle_language/views.py:211
+#: apps/pootle_language/views.py:212
 #, fuzzy
 msgid "Suggestion"
 msgstr "Pateikti pasiūlymai"
 
-#: apps/pootle_language/views.py:212
+#: apps/pootle_language/views.py:213
 #, fuzzy
 msgid "Suggested by"
 msgstr "Pasiūlyti"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:214
 #, fuzzy
 msgid "Suggested at"
 msgstr "Pasiūlyti"
 
-#: apps/pootle_language/views.py:235
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "Atmesti pasiūlymą"
 
-#: apps/pootle_language/views.py:239
+#: apps/pootle_language/views.py:240
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "Priimti pasiūlymą"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:243
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "Atmesti pasiūlymą"
 
-#: apps/pootle_language/views.py:244
+#: apps/pootle_language/views.py:245
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "Priimti pasiūlymą"
@@ -865,6 +865,14 @@ msgstr "Vietaženkliai su dolerio ženklu"
 msgid "ftl format"
 msgstr "Datos formatas"
 
+#: apps/pootle_misc/checks.py:126
+msgid "Romanian: Avoid cedillas diacritics"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:127
+msgid "Romanian: Use \"niciun\"/\"nicio\""
+msgstr ""
+
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Ieškoti"
@@ -873,23 +881,23 @@ msgstr "Ieškoti"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Paieška (Vald+Lyg2+S)<br/>Įveskite ieškomą tekstą ir spauskite Įvesti"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:437
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
 msgid "Exact Match"
 msgstr "Tikslus atitikmuo"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
 msgid "Source Text"
 msgstr "Pirminis tekstas"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
 msgid "Target Text"
 msgstr "Galutinis tekstas"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
 msgid "Comments"
 msgstr "Pastabos"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:446
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
 msgid "Locations"
 msgstr "Vietos"
 
@@ -914,7 +922,7 @@ msgstr "Paskutinis (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:55
+#: apps/pootle_profile/views.py:59
 msgid "Select one or more languages"
 msgstr "Pasirinkite vieną ar daugiau kalbų"
 
@@ -922,17 +930,17 @@ msgstr "Pasirinkite vieną ar daugiau kalbų"
 msgid "Language"
 msgstr "Kalba"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Žodis „%s“ negali būti naudojamas kaip projekto kodas"
 
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:189
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "Žodis „%s“ negali būti naudojamas kaip projekto kodas"
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:196
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -940,62 +948,62 @@ msgstr ""
 "Trumpas projekto kodinis pavadinimas. Jį gali sudaryti tik lotyniškos raidės "
 "be diakritinių ženklų, skaičiai ir simbolis „_“."
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:214
 msgid "Quality Checks"
 msgstr "Kokybės patikra"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:220
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Automatiškai aptikti (užtruks ilgiau)"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
 msgstr "GNU stilius: failo vardas atitinka kalbos kodą"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Ne GNU: kiekvienas failas atskirame aplanke"
 
-#: apps/pootle_project/models.py:222
-msgid "Allow Pootle FS to manage filesystems"
+#: apps/pootle_project/models.py:223
+msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
 msgstr "Vertimo failų išdėstymo būdas projekte"
 
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:235
 msgid "Ignore Files"
 msgstr "Nepaisomi failai"
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:241
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "URL adresas arba el. paštas, kuriuo galima pranešti apie problemas "
 "originaliame tekste."
 
-#: apps/pootle_project/models.py:245
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:250
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_project/views.py:252
+#: apps/pootle_project/views.py:256
 #, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr "Vertimo projektas atnaujintas pagal šviežiausius šablonus."
 
-#: apps/pootle_project/views.py:259
+#: apps/pootle_project/views.py:263
 #, fuzzy, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Vertimo projekto failai perskenuoti."
@@ -1064,19 +1072,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "Vertėjo pastaba"
 
-#: apps/pootle_store/models.py:123
+#: apps/pootle_store/models.py:124
 msgid "Pending"
 msgstr "Nepatvirtintas"
 
-#: apps/pootle_store/models.py:124
+#: apps/pootle_store/models.py:125
 msgid "Accepted"
 msgstr "Patvirtintas"
 
-#: apps/pootle_store/models.py:125
+#: apps/pootle_store/models.py:126
 msgid "Rejected"
 msgstr "Atmestas"
 
-#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
+#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
 msgid "Path"
 msgstr "Kelias"
 
@@ -1952,7 +1960,7 @@ msgstr "Kalbos"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:99
+#: templates/languages/admin/language_team.html:88
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projektai"
@@ -2130,61 +2138,68 @@ msgstr ""
 msgid "Filesystem configuration: %(project_code)s"
 msgstr ""
 
-#: templates/admin/project_fs.html:30
+#: templates/admin/project_fs.html:28
+msgid ""
+"Pootle FS is still experimental, we’d love you to use it, but it does "
+"require a level of expertise in localisation, Python and Pootle in case "
+"anything goes wrong."
+msgstr ""
+
+#: templates/admin/project_fs.html:37
 msgid "Backend configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:41
+#: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:44
+#: templates/admin/project_fs.html:51
 #, fuzzy
 msgid "Translation path mapping should be of the format:"
 msgstr "Vertimo nuostatos"
 
-#: templates/admin/project_fs.html:52
+#: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:58
+#: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:64
+#: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:74
+#: templates/admin/project_fs.html:81
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s kalbos informacija"
 
-#: templates/admin/project_fs.html:84
+#: templates/admin/project_fs.html:91
 msgid "Remove"
 msgstr "Šalinti"
 
-#: templates/admin/project_fs.html:85
+#: templates/admin/project_fs.html:92
 #, fuzzy
 msgid "Pootle code"
 msgstr "„Pootle“ demonstracija"
 
-#: templates/admin/project_fs.html:86
+#: templates/admin/project_fs.html:93
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:90
+#: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
 msgid "Add"
 msgstr "Pridėti"
 
-#: templates/admin/project_fs.html:97
+#: templates/admin/project_fs.html:104
 #, fuzzy
 msgid "Update"
 msgstr "Naujinti"
@@ -2673,6 +2688,7 @@ msgid "Critical issues with the translation"
 msgstr "Galimos vertimo problemos"
 
 #: templates/editor/units/xhr_checks.html:5
+#: templates/languages/admin/language_team.html:107
 #, fuzzy
 msgid "Critical errors:"
 msgstr "Kritinės"
@@ -2842,52 +2858,42 @@ msgstr "Kalbos pavadinimas"
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:28
+#: templates/languages/admin/language_team.html:29
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:44
-#: templates/languages/admin/language_team.html:60
-#: templates/languages/admin/language_team.html:76
-#: templates/languages/admin/language_team.html:92
+#: templates/languages/admin/language_team.html:42
+#: templates/languages/admin/language_team.html:55
+#: templates/languages/admin/language_team.html:68
+#: templates/languages/admin/language_team.html:81
 #, fuzzy
 msgid "Remove selected"
 msgstr "Šalinti vartotoją"
 
-#: templates/languages/admin/language_team.html:113
+#: templates/languages/admin/language_team.html:102
 #, fuzzy
-msgid "Unit admin"
-msgstr "„Django“ svetainės administravimas"
+msgid "Unit and suggestions admin"
+msgstr "%d pasiūlymas:"
 
 #: templates/languages/admin/language_team.html:117
 #, fuzzy
-msgid "Critical:"
-msgstr "Kritinės"
+msgid "Pending suggestions:"
+msgstr "Pateikta pasiūlymų"
 
-#: templates/languages/admin/language_team.html:123
+#: templates/languages/admin/language_team.html:127
 #, fuzzy
 msgid "Total words:"
 msgstr "Viso žodžių"
 
-#: templates/languages/admin/language_team.html:129
+#: templates/languages/admin/language_team.html:131
 #, fuzzy
 msgid "Translated:"
 msgstr "Išversta"
 
-#: templates/languages/admin/language_team.html:135
+#: templates/languages/admin/language_team.html:139
 #, fuzzy
 msgid "Needs work:"
 msgstr "Tikslintina"
-
-#: templates/languages/admin/language_team.html:144
-#, fuzzy
-msgid "Suggestion admin"
-msgstr "%d pasiūlymas:"
-
-#: templates/languages/admin/language_team.html:147
-#, python-format
-msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
@@ -3184,6 +3190,14 @@ msgstr "Priskirti veiksmą"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Aktyviausi talkininkai"
+
+#, fuzzy
+#~ msgid "Unit admin"
+#~ msgstr "„Django“ svetainės administravimas"
+
+#, fuzzy
+#~ msgid "Critical:"
+#~ msgstr "Kritinės"
 
 #, fuzzy
 #~ msgid "Admins"

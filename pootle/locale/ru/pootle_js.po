@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-12-20 15:40+0000\n"
+"POT-Creation-Date: 2017-01-13 11:47+0000\n"
 "PO-Revision-Date: 2016-12-05 16:55+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -573,7 +573,7 @@ msgstr "Весь проект"
 msgid "Updating data"
 msgstr "Обновление данных"
 
-#: static/js/editor/app.js:303 static/js/editor/app.js:622
+#: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -581,7 +581,7 @@ msgstr ""
 "У вас есть несохраненные изменения в этой строке. Если вы перейдете в любое "
 "другое место, то все ваши изменения будут отменены."
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:384
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -589,7 +589,7 @@ msgstr ""
 "Перейти к следующей строке (Ctrl+.)<br/><br/>Также:<br/>Следующая страница: "
 "Ctrl+Shift+.<br/>Последняя страница: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:354
+#: static/js/editor/app.js:390
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -598,73 +598,73 @@ msgstr ""
 "страница: Ctrl+Shift+,<br/>Первая страница: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:479
+#: static/js/editor/app.js:515
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s предложений ожидают подтверждения"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:482
+#: static/js/editor/app.js:518
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s подтвержденных предложений"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:521
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s отклоненных предложений"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:524
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Предложения %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:492
+#: static/js/editor/app.js:528
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Измененные предложения %s"
 
-#: static/js/editor/app.js:1047
+#: static/js/editor/app.js:1083
 msgid "Error while connecting to the server"
 msgstr "Ошибка при соединении с сервером"
 
-#: static/js/editor/app.js:1052
+#: static/js/editor/app.js:1088
 msgid "Not found"
 msgstr "Не найдено"
 
-#: static/js/editor/app.js:1054
+#: static/js/editor/app.js:1090
 msgid "Server error"
 msgstr "Ошибка сервера"
 
-#: static/js/editor/app.js:1056
+#: static/js/editor/app.js:1092
 msgid "The server seems down. Try again later."
 msgstr "Кажется, сервер не работает. Попробуйте повторить позже."
 
-#: static/js/editor/app.js:1065
+#: static/js/editor/app.js:1101
 msgid "This string no longer exists."
 msgstr "Эта строка больше не существует."
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1102
 msgid "Go back to browsing"
 msgstr "Вернуться к просмотру"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1104
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
-#: static/js/editor/app.js:2156
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "анонимный пользователь"
 
-#: static/js/editor/app.js:2158
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "кто-то"
 
-#: static/js/editor/app.js:2176 static/js/editor/app.js:2225
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "Похожие переводы"
 
@@ -833,7 +833,7 @@ msgstr ""
 "системе. Пожалуйста, введите пароль, чтобы завершить процедуру входа. Эта "
 "процедура свяжет учетные записи Pootle и %(provider)s."
 
-#: static/js/editor/app.js:614
+#: static/js/editor/app.js:650
 msgid "No results."
 msgstr "Нет результатов."
 

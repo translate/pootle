@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-12-20 15:40+0000\n"
+"POT-Creation-Date: 2017-01-13 11:47+0000\n"
 "PO-Revision-Date: 2016-07-20 15:16+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -569,7 +569,7 @@ msgstr "Projeto inteiro"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:303 static/js/editor/app.js:622
+#: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
@@ -577,7 +577,7 @@ msgstr ""
 "Você tem alterações não salvas nesta string. Navegar fora irá descartar "
 "estas alterações."
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:384
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -585,7 +585,7 @@ msgstr ""
 "Ir para a próxima string (Ctrl+.)<br/><br/>Também:<br/>Próxima página: Ctrl"
 "+Shift+.<br/>Última página: Ctrl+Shift+End"
 
-#: static/js/editor/app.js:354
+#: static/js/editor/app.js:390
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -594,73 +594,73 @@ msgstr ""
 "+Shift+,<br/>Primeira página: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:479
+#: static/js/editor/app.js:515
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "Sugestões pendentes para %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:482
+#: static/js/editor/app.js:518
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "Sugestões aceites para %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:521
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "Sugestões rejeitadas para %s"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:524
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "Submissões de %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:492
+#: static/js/editor/app.js:528
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "Submissões substituídas para %s"
 
-#: static/js/editor/app.js:1047
+#: static/js/editor/app.js:1083
 msgid "Error while connecting to the server"
 msgstr "Ocorreu um erro ao ligar ao servidor"
 
-#: static/js/editor/app.js:1052
+#: static/js/editor/app.js:1088
 msgid "Not found"
 msgstr "Não encontrado"
 
-#: static/js/editor/app.js:1054
+#: static/js/editor/app.js:1090
 msgid "Server error"
 msgstr "Erro no servidor"
 
-#: static/js/editor/app.js:1056
+#: static/js/editor/app.js:1092
 msgid "The server seems down. Try again later."
 msgstr "Parece que o servidor está desligado. Tente mais tarde."
 
-#: static/js/editor/app.js:1065
+#: static/js/editor/app.js:1101
 msgid "This string no longer exists."
 msgstr "Esta string não existe mais."
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1102
 msgid "Go back to browsing"
 msgstr "Voltar para a navegação"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1104
 msgid "Reload page"
 msgstr "Recarregar página"
 
-#: static/js/editor/app.js:2156
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "algum usuário anônimo"
 
-#: static/js/editor/app.js:2158
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "alguém"
 
-#: static/js/editor/app.js:2176 static/js/editor/app.js:2225
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "Traduções similares"
 
@@ -830,7 +830,7 @@ msgstr ""
 "procedimento que só acontece uma vez, que irá estabelecer uma ligação entre "
 "as suas contas Pootle e %s."
 
-#: static/js/editor/app.js:614
+#: static/js/editor/app.js:650
 msgid "No results."
 msgstr "Nenhum resultado."
 

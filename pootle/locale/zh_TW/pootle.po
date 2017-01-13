@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-12-20 15:40+0000\n"
+"POT-Creation-Date: 2017-01-13 11:47+0000\n"
 "PO-Revision-Date: 2016-08-17 23:52+0000\n"
 "Last-Translator: wck317 <wck317@pchome.com.tw>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1471477928.000000\n"
 
-#: apps/accounts/adapter.py:65
+#: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -36,102 +36,102 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 
-#: apps/accounts/models.py:60 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "使用者名稱"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:60
 msgid "Enter a valid username."
 msgstr "請輸入有效的使用者名稱。"
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:64
 msgid "Email Address"
 msgstr "電郵地址"
 
-#: apps/accounts/models.py:70 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:206
+#: apps/accounts/models.py:65 apps/pootle_language/models.py:92
+#: apps/pootle_project/models.py:207
 msgid "Full Name"
 msgstr "全名"
 
-#: apps/accounts/models.py:73 apps/staticpages/models.py:30
+#: apps/accounts/models.py:68 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "啟用"
 
-#: apps/accounts/models.py:76
+#: apps/accounts/models.py:71
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: apps/accounts/models.py:79
+#: apps/accounts/models.py:74
 msgid "Superuser Status"
 msgstr "管理員位階"
 
-#: apps/accounts/models.py:82
+#: apps/accounts/models.py:77
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr "指定這個使用者有所有的權限，而不必明示地分派這些權限。"
 
-#: apps/accounts/models.py:85
+#: apps/accounts/models.py:80
 msgid "date joined"
 msgstr "加入的日期"
 
-#: apps/accounts/models.py:89
+#: apps/accounts/models.py:84
 msgid "Number of Rows"
 msgstr "列數"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:88
 msgid "Alternative Source Languages"
 msgstr "第二來源語言"
 
-#: apps/accounts/models.py:96 templates/admin/detailed_reports.html:157
+#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
 msgid "Rate"
 msgstr "比率"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:92
 msgid "Review Rate"
 msgstr "審閱率"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:93
 msgid "Hourly Rate"
 msgstr ""
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:94
 msgid "Score"
 msgstr ""
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:95
 msgid "Currency"
 msgstr ""
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:97
 msgid "Is employee?"
 msgstr ""
 
-#: apps/accounts/models.py:103
+#: apps/accounts/models.py:98
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:105
+#: apps/accounts/models.py:100
 msgid "Website"
 msgstr "網站"
 
-#: apps/accounts/models.py:106
+#: apps/accounts/models.py:101
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:107
+#: apps/accounts/models.py:102
 msgid "Short Bio"
 msgstr "簡短自我介紹"
 
-#: apps/accounts/models.py:362
+#: apps/accounts/models.py:242
 msgid "This email address already exists."
 msgstr "此電郵址已存在。"
 
@@ -204,27 +204,27 @@ msgstr "上傳翻譯"
 msgid "Upload as %(user)s"
 msgstr "以 %(user)s 身份上傳"
 
-#: apps/import_export/utils.py:28
+#: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 
-#: apps/import_export/utils.py:34
+#: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:39
+#: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:47
+#: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr ""
 
-#: apps/import_export/utils.py:64
+#: apps/import_export/utils.py:74
 msgid "There was an error uploading your file"
 msgstr "上傳檔案時出錯"
 
@@ -232,7 +232,7 @@ msgstr "上傳檔案時出錯"
 msgid "Language code does not follow the ISO convention"
 msgstr "語言代碼沒有遵循 ISO 標準"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
 msgid "Source Language"
 msgstr "來源語言"
 
@@ -284,7 +284,7 @@ msgstr "撤消權限"
 msgid "No files in this project."
 msgstr "此專案無檔案。"
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:165
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:169
 msgid "There are errors in the form. Please review the problems below."
 msgstr "表單中有錯誤。請檢視下列問題。"
 
@@ -419,12 +419,12 @@ msgstr "拒絕"
 msgid "Accept"
 msgstr "接受"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:214
+#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "專案"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
 msgid "Code"
 msgstr "代碼"
 
@@ -467,48 +467,48 @@ msgstr "複數型個數"
 msgid "Plural Equation"
 msgstr "同義複數型"
 
-#: apps/pootle_language/views.py:208 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
 msgid "Unit"
 msgstr "單位"
 
-#: apps/pootle_language/views.py:209 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "狀態"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "源文"
 
-#: apps/pootle_language/views.py:211
-msgid "Suggestion"
-msgstr "建議"
-
 #: apps/pootle_language/views.py:212
-#, fuzzy
-msgid "Suggested by"
+msgid "Suggestion"
 msgstr "建議"
 
 #: apps/pootle_language/views.py:213
 #, fuzzy
+msgid "Suggested by"
+msgstr "建議"
+
+#: apps/pootle_language/views.py:214
+#, fuzzy
 msgid "Suggested at"
 msgstr "建議"
 
-#: apps/pootle_language/views.py:235
+#: apps/pootle_language/views.py:236
 #, fuzzy, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
 msgstr "拒絕%(author)s的建議，並附上評註：%(comment)s"
 
-#: apps/pootle_language/views.py:239
+#: apps/pootle_language/views.py:240
 #, fuzzy, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "接受%(author)s的建議，並附上評註：%(comment)s"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:243
 #, fuzzy, python-format
 msgid "Rejected %s suggestions"
 msgstr "拒絕建議"
 
-#: apps/pootle_language/views.py:244
+#: apps/pootle_language/views.py:245
 #, fuzzy, python-format
 msgid "Accepted %s suggestions"
 msgstr "接受建議"
@@ -845,6 +845,14 @@ msgstr "萬用字元"
 msgid "ftl format"
 msgstr "日期格式"
 
+#: apps/pootle_misc/checks.py:126
+msgid "Romanian: Avoid cedillas diacritics"
+msgstr ""
+
+#: apps/pootle_misc/checks.py:127
+msgid "Romanian: Use \"niciun\"/\"nicio\""
+msgstr ""
+
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "搜尋"
@@ -853,23 +861,23 @@ msgstr "搜尋"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "搜尋 (Ctrl+Shift+S)<br/>輸入後，按 Enter 搜尋"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:437
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
 msgid "Exact Match"
 msgstr "完全符合"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
 msgid "Source Text"
 msgstr "源文"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
 msgid "Target Text"
 msgstr "譯文"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
 msgid "Comments"
 msgstr "備註"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:446
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
 msgid "Locations"
 msgstr "位置"
 
@@ -894,7 +902,7 @@ msgstr "最後 (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:55
+#: apps/pootle_profile/views.py:59
 msgid "Select one or more languages"
 msgstr "選擇一種或多種語言"
 
@@ -902,75 +910,75 @@ msgstr "選擇一種或多種語言"
 msgid "Language"
 msgstr "語系"
 
-#: apps/pootle_project/models.py:180
+#: apps/pootle_project/models.py:181
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "“%s”不能用於專案代碼"
 
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:189
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "“%s”不能用於專案代碼"
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:196
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr "此專案的簡短代號。只能使用 ASCII 字元、數字和底線(_)。"
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:214
 msgid "Quality Checks"
 msgstr "品質檢查"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:220
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "自動辨識 gnu/non-gnu 檔（較慢）"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
 msgstr "GNU 式：檔案以語言代碼為名"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "Non-GNU: Each language in its own directory"
 msgstr "非 GNU 式：每種語言有各自的目錄"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 #, fuzzy
-msgid "Allow Pootle FS to manage filesystems"
+msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "允許 pootle_fs 管理檔案系統"
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
 msgstr "專案樹樣式"
 
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:235
 msgid "Ignore Files"
 msgstr "忽略檔案"
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:241
 msgid "Errors Report Email"
 msgstr "錯誤報告之電郵"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "An email address where issues with the source text can be reported."
 msgstr "用於提報源文問題的電子郵件地址。"
 
-#: apps/pootle_project/models.py:245
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:250
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_project/views.py:252
+#: apps/pootle_project/views.py:256
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
 
-#: apps/pootle_project/views.py:259
+#: apps/pootle_project/views.py:263
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "翻譯專案 (%s) 已刪除"
@@ -1037,19 +1045,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "翻譯者備註"
 
-#: apps/pootle_store/models.py:123
+#: apps/pootle_store/models.py:124
 msgid "Pending"
 msgstr "未決定"
 
-#: apps/pootle_store/models.py:124
+#: apps/pootle_store/models.py:125
 msgid "Accepted"
 msgstr "已接受"
 
-#: apps/pootle_store/models.py:125
+#: apps/pootle_store/models.py:126
 msgid "Rejected"
 msgstr "已拒絕"
 
-#: apps/pootle_store/models.py:974 apps/pootle_store/models.py:981
+#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
 msgid "Path"
 msgstr "路徑"
 
@@ -1895,7 +1903,7 @@ msgstr "語言"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:99
+#: templates/languages/admin/language_team.html:88
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "專案"
@@ -2066,61 +2074,68 @@ msgstr ""
 msgid "Filesystem configuration: %(project_code)s"
 msgstr ""
 
-#: templates/admin/project_fs.html:30
+#: templates/admin/project_fs.html:28
+msgid ""
+"Pootle FS is still experimental, we’d love you to use it, but it does "
+"require a level of expertise in localisation, Python and Pootle in case "
+"anything goes wrong."
+msgstr ""
+
+#: templates/admin/project_fs.html:37
 msgid "Backend configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:41
+#: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
 msgstr ""
 
-#: templates/admin/project_fs.html:44
+#: templates/admin/project_fs.html:51
 #, fuzzy
 msgid "Translation path mapping should be of the format:"
 msgstr "翻譯設定值"
 
-#: templates/admin/project_fs.html:52
+#: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
 
-#: templates/admin/project_fs.html:58
+#: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
 
-#: templates/admin/project_fs.html:64
+#: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
 
-#: templates/admin/project_fs.html:74
+#: templates/admin/project_fs.html:81
 #, fuzzy
 msgid "Language mapping configuration"
 msgstr "%(language)s 語言資訊"
 
-#: templates/admin/project_fs.html:84
+#: templates/admin/project_fs.html:91
 msgid "Remove"
 msgstr "移除"
 
-#: templates/admin/project_fs.html:85
+#: templates/admin/project_fs.html:92
 #, fuzzy
 msgid "Pootle code"
 msgstr "Pootle 預覽"
 
-#: templates/admin/project_fs.html:86
+#: templates/admin/project_fs.html:93
 msgid "Filesystem code"
 msgstr ""
 
-#: templates/admin/project_fs.html:90
+#: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
 msgid "Add"
 msgstr "新增"
 
-#: templates/admin/project_fs.html:97
+#: templates/admin/project_fs.html:104
 #, fuzzy
 msgid "Update"
 msgstr "更新"
@@ -2593,6 +2608,7 @@ msgid "Critical issues with the translation"
 msgstr "翻譯有嚴重問題"
 
 #: templates/editor/units/xhr_checks.html:5
+#: templates/languages/admin/language_team.html:107
 msgid "Critical errors:"
 msgstr "嚴重錯誤："
 
@@ -2749,52 +2765,43 @@ msgstr "語系名稱"
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:28
+#: templates/languages/admin/language_team.html:29
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:44
-#: templates/languages/admin/language_team.html:60
-#: templates/languages/admin/language_team.html:76
-#: templates/languages/admin/language_team.html:92
+#: templates/languages/admin/language_team.html:42
+#: templates/languages/admin/language_team.html:55
+#: templates/languages/admin/language_team.html:68
+#: templates/languages/admin/language_team.html:81
 #, fuzzy
 msgid "Remove selected"
 msgstr "移除使用者"
 
-#: templates/languages/admin/language_team.html:113
+#: templates/languages/admin/language_team.html:102
 #, fuzzy
-msgid "Unit admin"
-msgstr "Django 網站管理"
+msgid "Unit and suggestions admin"
+msgstr "建議 %d："
 
+# This has two meanings: (1) suggestions that have been made but are pending approval; (2) Waiting for suggestions
 #: templates/languages/admin/language_team.html:117
 #, fuzzy
-msgid "Critical:"
-msgstr "關鍵的"
+msgid "Pending suggestions:"
+msgstr "待處理的翻譯建議"
 
-#: templates/languages/admin/language_team.html:123
+#: templates/languages/admin/language_team.html:127
 #, fuzzy
 msgid "Total words:"
 msgstr "字詞總數"
 
-#: templates/languages/admin/language_team.html:129
+#: templates/languages/admin/language_team.html:131
 #, fuzzy
 msgid "Translated:"
 msgstr "已翻譯"
 
-#: templates/languages/admin/language_team.html:135
+#: templates/languages/admin/language_team.html:139
 #, fuzzy
 msgid "Needs work:"
 msgstr "尚需改善"
-
-#: templates/languages/admin/language_team.html:144
-#, fuzzy
-msgid "Suggestion admin"
-msgstr "建議 %d："
-
-#: templates/languages/admin/language_team.html:147
-#, python-format
-msgid "There are %(suggestions.count)s suggestions pending"
-msgstr ""
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
@@ -3081,6 +3088,14 @@ msgstr "登入"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "最大貢獻者"
+
+#, fuzzy
+#~ msgid "Unit admin"
+#~ msgstr "Django 網站管理"
+
+#, fuzzy
+#~ msgid "Critical:"
+#~ msgstr "關鍵的"
 
 #, fuzzy
 #~ msgid "Admins"

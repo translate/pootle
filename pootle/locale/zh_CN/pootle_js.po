@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2016-12-20 15:40+0000\n"
+"POT-Creation-Date: 2017-01-13 11:47+0000\n"
 "PO-Revision-Date: 2016-07-29 10:40+0000\n"
 "Last-Translator: chanson <84365252@qq.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,13 +548,13 @@ msgstr "整个项目"
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:303 static/js/editor/app.js:622
+#: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr "你在这个单元有未保存的数据。离开会丢失这些数据。"
 
-#: static/js/editor/app.js:348
+#: static/js/editor/app.js:384
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
@@ -562,7 +562,7 @@ msgstr ""
 "转到下一个字符串 (Ctrl+.)<br/><br/>也可以：<br/>下一页：Ctrl+Shift+.<br/>最后"
 "一页：Ctrl+Shift+End"
 
-#: static/js/editor/app.js:354
+#: static/js/editor/app.js:390
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
@@ -571,73 +571,73 @@ msgstr ""
 "页：Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:479
+#: static/js/editor/app.js:515
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%s 的待审建议"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:482
+#: static/js/editor/app.js:518
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr "%s 的获准建议"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:485
+#: static/js/editor/app.js:521
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr "%s 的被拒建议"
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:488
+#: static/js/editor/app.js:524
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr "%s 的提交"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:492
+#: static/js/editor/app.js:528
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr "%s 的被覆盖的提交"
 
-#: static/js/editor/app.js:1047
+#: static/js/editor/app.js:1083
 msgid "Error while connecting to the server"
 msgstr "连接到服务器时出错"
 
-#: static/js/editor/app.js:1052
+#: static/js/editor/app.js:1088
 msgid "Not found"
 msgstr "未找到"
 
-#: static/js/editor/app.js:1054
+#: static/js/editor/app.js:1090
 msgid "Server error"
 msgstr "服务器错误"
 
-#: static/js/editor/app.js:1056
+#: static/js/editor/app.js:1092
 msgid "The server seems down. Try again later."
 msgstr "服务器似乎宕机了。请您稍后重试。"
 
-#: static/js/editor/app.js:1065
+#: static/js/editor/app.js:1101
 msgid "This string no longer exists."
 msgstr "这个字符串已不存在。"
 
-#: static/js/editor/app.js:1066
+#: static/js/editor/app.js:1102
 msgid "Go back to browsing"
 msgstr "返回浏览"
 
-#: static/js/editor/app.js:1068
+#: static/js/editor/app.js:1104
 msgid "Reload page"
 msgstr "重新载入页面"
 
-#: static/js/editor/app.js:2156
+#: static/js/editor/app.js:2191
 msgid "some anonymous user"
 msgstr "一些匿名用户"
 
-#: static/js/editor/app.js:2158
+#: static/js/editor/app.js:2193
 msgid "someone"
 msgstr "某人"
 
-#: static/js/editor/app.js:2176 static/js/editor/app.js:2225
+#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
 msgid "Similar translations"
 msgstr "类似的翻译"
 
@@ -803,7 +803,7 @@ msgstr ""
 "我们发现已经有一个用户使用<span>%s</span>的邮箱地址注册了。请输入密码来登陆。"
 "这只是一个一次性的操作，之后你的Pootle账户将会和%s 账户绑定。"
 
-#: static/js/editor/app.js:614
+#: static/js/editor/app.js:650
 msgid "No results."
 msgstr "没有结果。"
 
