@@ -25,8 +25,11 @@ $(function() {
     <div class="hd">
       <h2>{% blocktrans with project_code=project.code %}Filesystem configuration: {{ project_code }}{% endblocktrans %}</h2>
       <h3 class="warning">
-	Pootle FS is still experimental, we’d love you to use it, but it does require a level of expertise in localisation,
-	Python and Pootle in case anything goes wrong.
+        {% blocktrans trimmed %}
+        Pootle FS is still experimental, we’d love you to use it, but it does
+        require a level of expertise in localisation, Python and Pootle in case
+        anything goes wrong.
+        {% endblocktrans %}
       </h3>
     </div>
     <div class="config-content">
