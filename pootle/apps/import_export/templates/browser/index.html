@@ -47,6 +47,17 @@
 </div>
 {% endif %}
 
+{% if has_offline_tm %}
+<div class="sidebar-group">
+  <p class="sidebar-action">
+    <a href="{% url 'pootle-offline-tm-tp' language.code project.code %}"
+      title="{% trans 'Download offline TM for the translation project' %}">
+      <i class="icon-download"></i> <span>{% trans 'Download offline TM' %}</span>
+    </a>
+  </p>
+</div>
+{% endif %}
+
 {{ block.super }}
 {% endblock %}
 
