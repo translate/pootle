@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-12-20 16:11+0000\n"
+"PO-Revision-Date: 2017-01-13 12:12+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1482250290.000000\n"
+"X-POOTLE-MTIME: 1484309521.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -851,11 +851,11 @@ msgstr "Formato FTL"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Romanés: Evite as cedillas diacríticas"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Romanés: Use \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -951,9 +951,9 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Non-GNU: cada idioma no seu propio cartafol"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Permitir que pootle FS xestione os sistemas de ficheiros"
+msgstr ""
+"Permitir que pootle FS xestione os sistemas de ficheiros (Experimental)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -2147,6 +2147,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS aínda é experimental, gustaríanos que o empregue pero aínda "
+"require un certo nivel de experiencia na localización, en Python e en Pootle "
+"en caso de que algo vaia mal."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2872,14 +2875,12 @@ msgid "Remove selected"
 msgstr "Retirar seleccionados"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Administración de suxestións"
+msgstr "Administración de unidades e suxestións"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Suxestións pendentes"
+msgstr "Suxestións pendentes:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"
