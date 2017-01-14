@@ -523,3 +523,23 @@ def check_pootle_fs_working_dir(app_configs=None, **kwargs):
     elif not os.access(settings.POOTLE_FS_WORKING_PATH, os.W_OK):
         errors.append(not_writable_directory_error)
     return errors
+
+
+@checks.register()
+def check_mysql_timezones(app_configs=None, **kwargs):
+    from django.db import connection
+
+    missing_mysql_timezone_tables = checks.Critical(
+        _("MySQL requires time zone settings."),
+        hint=("Load the time zone tables "
+              "http://dev.mysql.com/doc/refman/5.7/en/mysql-tzinfo-to-sql.html"),
+        id="pootle.C022",
+    )
+    errors = []
+    with connection.cursor() as cursor:
+        if hasattr(cursor.db, "mysql_version"):
+            cursor.execute("SELECT COUNT(*) FROM mysql.time_zone_name;")
+            timezone_count = cursor.fetchone()[0]
+            if timezone_count == 0:
+                errors.append(missing_mysql_timezone_tables)
+    return errors
