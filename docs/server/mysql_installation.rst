@@ -82,6 +82,16 @@ You will most likely want to edit your Pootle configuration (default location:
 :file:`~/.pootle/pootle.conf`) to set your password.
 
 
+.. _mysql_installation#tz-setup:
+
+Adding timezone definitions
+---------------------------
+
+Pootle makes use of time zones, follow Django's instructions to :ref:`load time
+zone tables into the MySQL database <mysql-time-zone-definitions>`. This needs
+to be done just once for your MySQL server, not per database.
+
+
 .. _mysql_installation#db-backend:
 
 Database backend
