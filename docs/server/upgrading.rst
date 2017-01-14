@@ -180,6 +180,21 @@ In a production environment you may want to :ref:`run RQ workers as services
 See here for :ref:`further information about RQ jobs in Pootle <rq>`.
 
 
+.. _upgrading#review-database:
+
+Review your database configuration
+----------------------------------
+
+Review the :doc:`MySQL <mysql_installation>` or :doc:`PostgreSQL
+<postgresql_installation>` installation instructions for any changes that you
+need to make to your database.
+
+If you run MySQL you will almost certainly need to make sure you have
+:ref:`Time zone definition files <django:mysql-time-zone-definitions>` loaded
+into the database.
+
+
+
 .. _upgrading#schema-migration:
 
 Migrate your database schema
