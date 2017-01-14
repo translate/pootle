@@ -35,9 +35,8 @@ Use the :command:`mysql` command to create the user and database:
 System software requirements
 ----------------------------
 
-In addition to the 
-:ref:`system packages <requirements#packages>` set out in the general
-installation requirements you will also require the MySQL client
+In addition to the :ref:`system packages <requirements#packages>` set out in
+the general installation requirements you will also require the MySQL client
 development headers in order to build the Python bindings, e.g. on a
 Debian-based system:
 
@@ -51,9 +50,8 @@ Debian-based system:
 Installing MySQL Python driver
 ------------------------------
 
-Once you have
-:ref:`set up and activated your virtual environment <installation#setup-environment>`,
-you will need to install the MySQL driver.
+Once you have :ref:`set up and activated your virtual environment
+<installation#setup-environment>`, you will need to install the MySQL driver.
 
 You can do so as follows:
 
@@ -68,9 +66,9 @@ You can do so as follows:
 Initializing the Configuration
 ------------------------------
 
-When
-:ref:`initializing your configuration <installation#initializing-the-configuration>`
-you can specify params to set up your database, e.g.:
+When :ref:`initializing your configuration
+<installation#initializing-the-configuration>` you can specify params to set up
+your database, e.g.:
 
 .. code-block:: console
 
