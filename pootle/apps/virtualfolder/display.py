@@ -19,5 +19,5 @@ class VFolderStatsDisplay(StatsDisplay):
         for k, item in stats.items():
             item["incomplete"] = item["total"] - item["translated"]
             item["untranslated"] = item["total"] - item["translated"]
-            self.make_display_stat(item)
+            self.localize_stats(item)
         return stats
