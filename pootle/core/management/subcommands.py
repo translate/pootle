@@ -125,6 +125,18 @@ class CommandWithSubcommands(BaseCommand):
             subs = "\n".join(self.subcommands.keys())
             self.stdout.write(subs)
 
+    def handle_exception(self, e, options=None):
+        do_raise = (
+            (options and options.traceback)
+            or not isinstance(e, CommandError))
+        if do_raise:
+            raise e
+        if isinstance(e, SystemCheckError):
+            self.stderr.write(str(e), lambda x: x)
+        else:
+            self.stderr.write('%s: %s' % (e.__class__.__name__, e))
+        sys.exit(1)
+
     def run_from_argv(self, argv):
         """
         Override django's run_from_argv to parse a subcommand.
@@ -138,6 +150,8 @@ class CommandWithSubcommands(BaseCommand):
             known, __ = parser.parse_known_args(argv[2:])
         except SubcommandsError:
             known = None
+        except Exception as e:
+            self.handle_exception(e)
         is_subcommand = (
             known
             and hasattr(known, "subcommand")
@@ -165,13 +179,7 @@ class CommandWithSubcommands(BaseCommand):
         try:
             self.execute(*args, **cmd_options)
         except Exception as e:
-            if options.traceback or not isinstance(e, CommandError):
-                raise e
-            if isinstance(e, SystemCheckError):
-                self.stderr.write(str(e), lambda x: x)
-            else:
-                self.stderr.write('%s: %s' % (e.__class__.__name__, e))
-            sys.exit(1)
+            self.handle_exception(e, options)
         finally:
             connections.close_all()
 
