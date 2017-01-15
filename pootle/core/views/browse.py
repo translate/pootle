@@ -85,15 +85,17 @@ class PootleBrowseView(PootleDetailView):
     @property
     def can_translate(self):
         return bool(
-            self.request.user.is_superuser
-            or self.language
-            or self.project)
+            not self.is_templates_context
+            and (self.request.user.is_superuser
+                 or self.language
+                 or self.project))
 
     @property
     def can_translate_stats(self):
         return bool(
-            self.request.user.is_superuser
-            or self.language)
+            not self.is_templates_context
+            and (self.request.user.is_superuser
+                 or self.language))
 
     @property
     def has_vfolders(self):
@@ -159,12 +161,21 @@ class PootleBrowseView(PootleDetailView):
             else:
                 logger.warning("Unrecognized panel '%s'", panel)
 
+    @property
+    def is_templates_context(self):
+        return self.object.pootle_path.startswith("/templates/")
+
     def get_context_data(self, *args, **kwargs):
         filters = {}
         if self.has_vfolders:
             filters['sort'] = 'priority'
 
-        if self.request.user.is_superuser or self.language:
+        show_translation_links = (
+            (self.request.user.is_superuser
+             or self.language)
+            and not self.object.pootle_path.startswith("/templates"))
+
+        if show_translation_links:
             url_action_continue = self.object.get_translate_url(
                 state='incomplete',
                 **filters)
@@ -198,6 +209,7 @@ class PootleBrowseView(PootleDetailView):
              'url_action_view_all': url_action_view_all,
              'top_scorers': self.top_scorer_data,
              'has_disabled': self.has_disabled,
+             'templates_context': self.is_templates_context,
              'panels': self.panels,
              'is_store': self.is_store,
              'browser_extends': self.template_extends})
