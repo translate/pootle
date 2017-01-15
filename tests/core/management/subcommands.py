@@ -235,3 +235,29 @@ def test_command_with_subcommands_bad_commanderror(capsys):
         foo_command.run_from_argv(["", "foo"])
     out, err = capsys.readouterr()
     assert err == u'CommandError: BAD COMMAND\n'
+
+
+@pytest.mark.django_db
+def test_command_with_subcommands_bad_sub_args(capsys, argv_caller):
+
+    class FooCommand(CommandWithSubcommands):
+
+        name = "foo"
+
+    class BarSubcommand(management.BaseCommand):
+
+        def add_arguments(self, parser):
+            super(BarSubcommand, self).add_arguments(parser)
+            parser.add_argument(
+                'fooarg',
+                type=str,
+                help='Help with foo arg')
+
+    @provider(subcommands, sender=FooCommand)
+    def provide_subcommands(**kwargs):
+        return dict(bar=BarSubcommand)
+
+    argv_caller(FooCommand(), "bar")
+    out, err = capsys.readouterr()
+    assert out == ""
+    assert err == u'CommandError: Error: too few arguments\n'
