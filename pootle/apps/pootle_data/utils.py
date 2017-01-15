@@ -423,7 +423,11 @@ class RelatedStoresDataTool(DataTool):
         latest = dict(last_submission=None, last_created_unit=None)
         last_submission_pk = None
         last_created_unit_time = None
-        for child in stats["children"].values():
+        for path, child in stats["children"].items():
+            if path.startswith("templates-") or path == "templates":
+                if not self.context.pootle_path.startswith("/templates/"):
+                    del child["last_submission__pk"]
+                    continue
             for k in agg.keys():
                 agg[k] += child[k]
             if child.get("last_created_unit"):
@@ -503,7 +507,10 @@ class RelatedStoresDataTool(DataTool):
                 self.all_object_stats
                 if self.show_all_to(user)
                 else self.object_stats)
-        if stats.get("total") is not None:
+        add_untranslated = (
+            stats.get("total") is not None
+            and not self.context.pootle_path.startswith("/templates/"))
+        if add_untranslated:
             stats["untranslated"] = stats["total"] - stats["translated"]
             stats["incomplete"] = stats["total"] - stats["translated"]
         return stats
