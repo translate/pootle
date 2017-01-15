@@ -16,6 +16,11 @@ from pootle.local.dates import timesince
 from pootle_misc.checks import get_qualitycheck_list
 
 
+STAT_KEYS = [
+    "total", "critical", "incomplete",
+    "suggestions", "fuzzy", "untranslated"]
+
+
 class ActionDisplay(object):
 
     def __init__(self, action):
@@ -152,13 +157,10 @@ class StatsDisplay(object):
         self.context = context
         self._stats = stats
 
-    @staticmethod
-    def make_display_stat(d, keys=["total", "critical", "incomplete",
-                                   "suggestions", "fuzzy", "untranslated"]):
-        assert isinstance(d, dict)
-        for k in keys:
-            if k in d:
-                d[k + '_display'] = formatter.number(d[k])
+    def localize_stats(self, stats):
+        for k in STAT_KEYS:
+            if k in stats and isinstance(stats[k], (int, long, float)):
+                stats[k + '_display'] = formatter.number(stats[k])
 
     @cached_property
     def stat_data(self):
@@ -170,7 +172,7 @@ class StatsDisplay(object):
     def stats(self):
         stats = self.stat_data
         self.add_children_info(stats)
-        self.make_display_stat(stats)
+        self.localize_stats(stats)
         if stats.get("last_submission"):
             stats["last_submission"]["msg"] = (
                 self.get_action_message(stats["last_submission"]))
@@ -178,9 +180,21 @@ class StatsDisplay(object):
 
     def add_children_info(self, stats):
         for k, child in stats["children"].items():
-            child["incomplete"] = child["total"] - child["translated"]
-            child["untranslated"] = child["total"] - child["translated"]
-            self.make_display_stat(child)
+            is_template = (
+                self.context.pootle_path.startswith("/templates/")
+                or k.startswith("templates-")
+                or k == "templates")
+            if is_template:
+                child["incomplete"] = "---"
+                child["untranslated"] = "---"
+                child["critical"] = "---"
+                child["suggestions"] = "---"
+                if "last_submission" in child:
+                    del child["last_submission"]
+            else:
+                child["incomplete"] = child["total"] - child["translated"]
+                child["untranslated"] = child["total"] - child["translated"]
+            self.localize_stats(child)
 
     def get_action_message(self, action):
         return ActionDisplay(action).message
