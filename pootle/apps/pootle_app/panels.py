@@ -26,7 +26,10 @@ class ChildrenPanel(TablePanel):
 
     @property
     def table_fields(self):
-        fields = self._table_fields
+        fields = (
+            ("name", "total")
+            if self.view.is_templates_context
+            else self._table_fields)
         if self.view.has_admin_access:
             fields += ('last-updated', )
         return fields
