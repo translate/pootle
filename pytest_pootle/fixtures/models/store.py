@@ -17,6 +17,8 @@ from translate.storage.factory import getclass
 
 from django.utils import timezone
 
+from pytest_pootle.factories import (
+    LanguageDBFactory, StoreDBFactory, TranslationProjectFactory)
 from pytest_pootle.utils import create_store, update_store
 
 
@@ -157,7 +159,6 @@ def _setup_store_test(store, member, member2, test):
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def store_diff_tests(request, tp0, member, member2):
-    from pytest_pootle.factories import StoreDBFactory
     from pootle.core.contextmanagers import update_data_after
     from pootle_store.diff import StoreDiff
 
@@ -174,7 +175,6 @@ def store_diff_tests(request, tp0, member, member2):
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def param_update_store_test(request, tp0, member, member2):
-    from pytest_pootle.factories import StoreDBFactory
     from pootle.core.contextmanagers import update_data_after
 
     store = StoreDBFactory(
@@ -343,8 +343,6 @@ def issue_2401_po(po_directory, settings, afrikaans_tutorial):
 def store_po(tp0):
     """An empty Store in the /language0/project0 TP"""
     from pootle_translationproject.models import TranslationProject
-
-    from pytest_pootle.factories import StoreDBFactory
 
     tp = TranslationProject.objects.get(
         project__code="project0",
@@ -572,7 +570,6 @@ def store1(tp1):
 @pytest.fixture
 def ordered_po(test_fs, tp0):
     """Create a store with ordered units."""
-    from pytest_pootle.factories import StoreDBFactory
 
     store = StoreDBFactory(
         name="ordered.po",
@@ -586,8 +583,6 @@ def ordered_po(test_fs, tp0):
 @pytest.fixture
 def numbered_po(test_fs, project0):
     """Create a store with numbered units."""
-    from pytest_pootle.factories import (
-        LanguageDBFactory, StoreDBFactory, TranslationProjectFactory)
 
     tp = TranslationProjectFactory(
         project=project0,
