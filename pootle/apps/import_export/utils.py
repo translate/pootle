@@ -88,7 +88,7 @@ class TPTMXExporter(object):
     @cached_property
     def revision(self):
         return revision.get(self.context.__class__)(
-            self.context.directory).get(key="stats")
+            self.context.directory).get(key="stats")[:10] or "0"
 
     @property
     def relative_path(self):
@@ -116,11 +116,14 @@ class TPTMXExporter(object):
                             'offline_tm',
                             self.context.language.code)
 
+    def get_filename(self, revision):
+        return ".".join([self.context.project.code,
+                         self.context.language.code, revision, 'tmx',
+                         'zip'])
+
     @property
     def filename(self):
-        return ".".join([self.context.project.fullname.replace(' ', '_'),
-                         self.context.language.code, self.revision, 'tmx',
-                         'zip'])
+        return self.get_filename(self.revision)
 
     @property
     def abs_filepath(self):

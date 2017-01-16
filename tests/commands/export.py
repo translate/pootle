@@ -97,8 +97,8 @@ def test_export_tmx_tp(capfd, tp0):
     out, err = capfd.readouterr()
     rev = revision.get(tp0.__class__)(tp0.directory).get(key="stats")
     filename = '%s.%s.%s.tmx.zip' % (
-        tp0.project.fullname.replace(' ', '_'),
-        tp0.language.code, rev)
+        tp0.project.code,
+        tp0.language.code, rev[:10])
     assert os.path.join(lang_code, filename) in out
 
     call_command('export', '--tmx', '--project=%s' % prj_code,
