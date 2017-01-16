@@ -191,19 +191,17 @@ def test_admin_view_project_post(client, request_users):
 
 
 @pytest.mark.django_db
-def test_admin_view_project_add_tp(templates, client, admin):
+def test_admin_view_project_add_tp(project0, client, admin):
 
     user = admin
-    project = Project.objects.get(code="project0")
 
     new_language = LanguageDBFactory()
-    TranslationProject.objects.create(language=templates, project=project)
 
     client.login(
         username=user.username,
         password=TEST_USERS["admin"]["password"])
 
-    get_response = _admin_view_get(client, project)
+    get_response = _admin_view_get(client, project0)
     post_data = {}
     formset = get_response.context["formset"]
     forms = formset.forms + formset.extra_forms + [formset.management_form]
@@ -215,14 +213,14 @@ def test_admin_view_project_add_tp(templates, client, admin):
                 or form.initial.get(field, ""))
 
     post_data["%s-language" % formset.extra_forms[0].prefix] = new_language.id
-    post_data["%s-project" % formset.extra_forms[0].prefix] = project.id
+    post_data["%s-project" % formset.extra_forms[0].prefix] = project0.id
 
-    response = _admin_view_post(client, project, **post_data)
+    response = _admin_view_post(client, project0, **post_data)
 
-    new_tp = TranslationProject.objects.get(language=new_language, project=project)
+    new_tp = TranslationProject.objects.get(language=new_language, project=project0)
     assert new_tp in response.context["objects"].object_list
 
-    _test_admin_view(response, project)
+    _test_admin_view(response, project0)
 
 
 @pytest.mark.django_db

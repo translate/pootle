@@ -42,7 +42,7 @@ def test_tp_create_fail(po_directory, tutorial, english):
 
 @pytest.mark.django_db
 def test_tp_create_templates(project0_nongnu, project0,
-                             templates, complex_ttk):
+                             templates, no_templates_tps, complex_ttk):
     # As there is a tutorial template it will automatically create stores for
     # our new TP
     template_tp = TranslationProject.objects.create(
@@ -91,9 +91,6 @@ def test_tp_empty_stats(project0_nongnu, project0, templates):
     is added for a project with existing but empty template translation project.
     """
 
-    # Create an empty template translation project for project0.
-    TranslationProjectFactory(project=project0, language=templates)
-
     # Create a new language to test.
     language = LanguageDBFactory()
     tp = TranslationProject.objects.create(
@@ -135,7 +132,7 @@ def test_can_be_inited_from_templates(po_directory, tutorial, templates):
 
 
 @pytest.mark.django_db
-def test_cannot_be_inited_from_templates(project0):
+def test_cannot_be_inited_from_templates(project0, no_templates_tps):
     language = LanguageDBFactory()
     tp = TranslationProject(project=project0, language=language)
     assert not tp.can_be_inited_from_templates()

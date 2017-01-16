@@ -287,7 +287,7 @@ def test_matcher_matches(settings):
 @pytest.mark.django_db
 @pytest.mark.xfail(sys.platform == 'win32',
                    reason="path mangling broken on windows")
-def test_matcher_matches_missing_langs(settings, caplog):
+def test_matcher_matches_missing_langs(settings, caplog, no_templates_tps):
     settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'path', 'to'])
     project = Project.objects.get(code="project0")
     project.config["pootle_fs.translation_mappings"] = dict(

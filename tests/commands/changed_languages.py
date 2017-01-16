@@ -21,7 +21,7 @@ def test_changed_languages_noargs(capfd):
     revision = Revision.get()
     call_command('changed_languages')
     out, err = capfd.readouterr()
-    assert out == u'language0,language1\n'
+    assert out == u'language0,language1,templates\n'
     assert (
         ("Will show languages changed between revisions -1 (exclusive) and "
          "%d (inclusive)"
@@ -60,7 +60,7 @@ def test_changed_languages_since_revision(capfd, project0_nongnu, tp0):
         rev=Min('last_sync_revision'))['rev'] - 1
     call_command('changed_languages', '--after-revision=%s' % rev)
     out, err = capfd.readouterr()
-    assert out == u'language0,language1\n'
+    assert out == u'language0,language1,templates\n'
 
     # End revisions
     revision = Revision.get()

@@ -25,6 +25,9 @@ def test_language_repr():
 @pytest.mark.django_db
 def test_language_only_in_disabled_proj_liveness(templates, project0,
                                                  templates_project0):
+    # this is not optimal, but its not clear what the test is testing
+    templates.translationproject_set.exclude(project=project0).delete()
+
     project0.disabled = True
     project0.save()
 

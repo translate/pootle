@@ -16,9 +16,11 @@ from pootle_project.models import Project
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_cmd_initdb_noprojects(capfd, no_permission_sets, no_permissions, no_users):
+def test_cmd_initdb_noprojects(capfd, no_permission_sets, no_permissions,
+                               no_users, templates):
     """Initialise the database with initdb
     """
+    templates.delete()
     call_command('initdb', '--no-projects')
     out, err = capfd.readouterr()
     assert "Successfully populated the database." in out
@@ -36,9 +38,10 @@ def test_cmd_initdb_noprojects(capfd, no_permission_sets, no_permissions, no_use
 @pytest.mark.cmd
 @pytest.mark.django_db
 def test_cmd_initdb(capfd, po_directory, no_permission_sets, no_permissions,
-                    no_users, no_projects):
+                    no_users, no_projects, templates):
     """Initialise the database with initdb
     """
+    templates.delete()
     call_command('initdb')
     out, err = capfd.readouterr()
     assert "Successfully populated the database." in out

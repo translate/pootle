@@ -24,7 +24,7 @@ from pootle_translationproject.utils import TPTool
 
 
 @pytest.mark.django_db
-def test_tp_tool_move(language0, project0, templates):
+def test_tp_tool_move(language0, project0, templates, no_templates_tps):
     tp = project0.translationproject_set.get(language=language0)
     original_stores = list(tp.stores.all())
 
@@ -54,7 +54,7 @@ def test_tp_tool_move(language0, project0, templates):
 
 
 @pytest.mark.django_db
-def test_tp_tool_bad(po_directory, tp0, templates, english):
+def test_tp_tool_bad(po_directory, tp0, templates, english, no_templates_tps):
     other_project = ProjectDBFactory(source_language=english)
     other_tp = TranslationProjectFactory(
         project=other_project,
@@ -194,7 +194,8 @@ def test_tp_tool_gets(project0, tp0):
 
 
 @pytest.mark.django_db
-def test_tp_tool_move_project(language0, project0, project1, templates):
+def test_tp_tool_move_project(language0, project0, project1,
+                              templates, no_templates_tps):
     tp = project0.translationproject_set.get(language=language0)
     original_stores = list(tp.stores.all())
 
