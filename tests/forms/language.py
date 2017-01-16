@@ -12,6 +12,7 @@ from pootle_app.forms import LanguageForm
 
 
 @pytest.mark.parametrize('specialchars', [
+    ' ',
     ' abcde ',
     ' ab cd',
     ' abcde',
@@ -52,3 +53,18 @@ def test_clean_specialchars_unique(specialchars, count_char):
     form = LanguageForm(form_data)
     assert form.is_valid()
     assert form.cleaned_data['specialchars'].count(count_char) == 1
+
+
+@pytest.mark.django_db
+def test_specialchars_can_be_blank():
+    """Test that a blank special character field is valid."""
+    form_data = {
+        'code': 'foo',
+        'fullname': 'Foo',
+        'checkstyle': 'foo',
+        'nplurals': '2',
+        'specialchars': '',
+    }
+    form = LanguageForm(form_data)
+    assert form.is_valid()
+    assert form.cleaned_data['specialchars'] == ''
