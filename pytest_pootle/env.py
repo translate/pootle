@@ -19,7 +19,7 @@ class PootleTestEnv(object):
     methods = (
         "redis", "case_sensitive_schema", "formats", "site_root",
         "languages", "site_matrix", "system_users", "permissions",
-        "site_permissions", "tps",
+        "site_permissions", "tps", "templates",
         "disabled_project", "subdirs", "submissions", "announcements",
         "terminology", "fs", "vfolders", "complex_po")
 
@@ -373,6 +373,23 @@ class PootleTestEnv(object):
                     unit.store = store
                     self._add_submissions(unit, year_ago)
 
+    def setup_templates(self):
+        from pootle_project.models import Project
+        from pytest_pootle.factories import (
+            LanguageDBFactory, TranslationProjectFactory)
+
+        templates = LanguageDBFactory(code="templates")
+
+        for project in Project.objects.all():
+            # add a TP to the project for each language
+            tp = TranslationProjectFactory(project=project, language=templates)
+            # As there are no files on the FS we have to currently unobsolete
+            # the directory
+            tp_dir = tp.directory
+            tp_dir.obsolete = False
+            tp_dir.save()
+            self._add_template_stores(tp)
+
     def setup_tps(self):
         from pootle_project.models import Project
         from pootle_language.models import Language
@@ -388,6 +405,19 @@ class PootleTestEnv(object):
                 tp_dir.obsolete = False
                 tp_dir.save()
                 self._add_stores(tp)
+
+    def _add_template_stores(self, tp, n=(3, 2), parent=None):
+        from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
+
+        for i_ in range(0, n[0]):
+            # add 3 stores
+            store = StoreDBFactory(translation_project=tp)
+            store.filetype = tp.project.filetype_tool.choose_filetype(store.name)
+            store.save()
+
+            # add 8 units to each store
+            for i_ in range(0, 4):
+                UnitDBFactory(store=store, target="")
 
     def _add_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
