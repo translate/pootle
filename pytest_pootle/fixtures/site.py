@@ -150,6 +150,11 @@ def no_users():
 
 
 @pytest.fixture
+def no_templates_tps(templates):
+    templates.translationproject_set.all().delete()
+
+
+@pytest.fixture
 def no_extra_users():
     from django.contrib.auth import get_user_model
 
