@@ -76,7 +76,7 @@ class Command(PootleCommand):
     def handle_translation_project(self, translation_project, **options):
         if options['export_tmx']:
             exporter = TPTMXExporter(translation_project)
-            if not options['overwrite'] and not exporter.has_changes():
+            if not options['overwrite'] and exporter.file_exists():
                 self.stdout.write(
                     'Translation project (%s) has not been changed.' %
                     translation_project)
