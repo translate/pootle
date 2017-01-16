@@ -538,8 +538,8 @@ def check_mysql_timezones(app_configs=None, **kwargs):
     errors = []
     with connection.cursor() as cursor:
         if hasattr(cursor.db, "mysql_version"):
-            cursor.execute("SELECT COUNT(*) FROM mysql.time_zone_name;")
-            timezone_count = cursor.fetchone()[0]
-            if timezone_count == 0:
+            cursor.execute("SELECT CONVERT_TZ(NOW(), 'UTC', 'UTC');")
+            converted_now = cursor.fetchone()[0]
+            if converted_now is None:
                 errors.append(missing_mysql_timezone_tables)
     return errors
