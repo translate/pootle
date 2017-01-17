@@ -482,8 +482,9 @@ class Plugin(object):
         for store_fs in StoreFS.objects.filter(id__in=sfs.keys()):
             fs_state = sfs[store_fs.pk]
             store_fs.file.delete()
-            state.resources.pootle_revisions[
-                store_fs.store_id] = store_fs.store.data.max_unit_revision
+            if store_fs.store and store_fs.store.data:
+                state.resources.pootle_revisions[
+                    store_fs.store_id] = store_fs.store.data.max_unit_revision
             response.add("removed", fs_state=fs_state, store_fs=store_fs)
         return response
 
