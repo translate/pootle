@@ -14,7 +14,6 @@ import re
 from django.conf import settings
 
 from pootle.core.log import STORE_RESURRECTED, store_log
-from pootle.core.utils.timezone import datetime_min
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store
@@ -186,11 +185,7 @@ def create_or_resurrect_store(f, parent, name, translation_project):
     """Create or resurrect a store db item with given name and parent."""
     try:
         store = Store.objects.get(parent=parent, name=name)
-        store.obsolete = False
-        store.file_mtime = datetime_min
-        if store.last_sync_revision is None:
-            store.last_sync_revision = store.data.max_unit_revision
-
+        store.resurrect(save=False, resurrect_units=False)
         store_log(user='system', action=STORE_RESURRECTED,
                   path=store.pootle_path, store=store.id)
     except Store.DoesNotExist:

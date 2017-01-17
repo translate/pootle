@@ -1124,6 +1124,19 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         self.save()
         update_data.send(self.__class__, instance=self)
 
+    def resurrect(self, save=True, resurrect_units=True):
+        self.obsolete = False
+        self.file_mtime = datetime_min
+        if self.last_sync_revision is None:
+            self.last_sync_revision = self.data.max_unit_revision
+        if resurrect_units:
+            for unit in self.unit_set.all():
+                unit.resurrect()
+                unit.save()
+        if save:
+            self.save()
+        update_data.send(self.__class__, instance=self)
+
     def get_absolute_url(self):
         return reverse(
             'pootle-tp-store-browse',
