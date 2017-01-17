@@ -110,6 +110,14 @@ class ProjectBrowseView(ProjectMixin, PootleBrowseView):
     view_name = "project"
 
     @property
+    def is_templates_context(self):
+        # this view is a "template context" only when
+        # its a single .pot file or similar
+        return (
+            len(self.object_children) == 1
+            and self.object_children[0]["code"] == "templates")
+
+    @property
     def pootle_path(self):
         return self.object.pootle_path
 
