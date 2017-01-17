@@ -201,7 +201,10 @@ class TranslationMappingValidator(object):
                 "patterns to match in the translation mapping")
 
     def validate_path(self):
-        bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
+        if os.path.sep == "\\":
+            bad_chars = re.search("[^\w\/\\\:\-\.]+", self.stripped_path)
+        else:
+            bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
         if bad_chars:
             raise ValueError(
                 "Invalid character in translation_mapping '%s'"
