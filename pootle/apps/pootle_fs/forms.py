@@ -6,11 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import uuid
 from collections import Counter, OrderedDict
 
 from django import forms
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import revision
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.models import Language
 
@@ -167,6 +169,8 @@ class BaseLangMappingFormSet(forms.BaseFormSet):
 
     def save(self):
         self.project.config["pootle.core.lang_mapping"] = self.cleaned_mapping
+        revision.get(self.project.__class__)(self.project).set(
+            keys=["pootle.fs.sync"], value=uuid.uuid4().hex)
 
     def clean(self):
         if any(self.errors):
