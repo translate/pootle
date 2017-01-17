@@ -32,6 +32,22 @@ def test_data_tool_store(store0):
 
 
 @pytest.mark.django_db
+def test_data_tool_obsolete_resurrect_store(store0):
+    assert store0.check_data.count()
+    orig_stats = store0.data_tool.get_stats()
+    store0.makeobsolete()
+    assert store0.data.total_words == 0
+    assert store0.data.critical_checks == 0
+    assert not store0.check_data.count()
+    assert store0.data_tool.get_stats() != orig_stats
+    assert store0.data.max_unit_revision
+    store0.resurrect()
+    assert store0.data.total_words
+    assert store0.check_data.count()
+    assert store0.data.critical_checks
+
+
+@pytest.mark.django_db
 def test_data_tool_base_tool():
     foo = object()
     base_tool = DataTool(foo)
