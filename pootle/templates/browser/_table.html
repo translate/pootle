@@ -37,7 +37,7 @@
 
       {% if 'progress' in table.fields %}
       <td class="stats-graph">
-	{% if item.stats.total %}
+	{% if item.stats.total and item.stats.untranslated != "---" %}
         <div id="translated-ratio-{{ item.code|cssid }}" class="sortkey">
 	  {% widthratio item.stats.translated item.stats.total 1000 %}
 	</div>
@@ -96,7 +96,7 @@
 
       {% if 'total' in table.fields %}
       <td id="total-words-{{ item.code|cssid }}" class="stats-number total not-inited">
-        {% if can_translate %}
+        {% if can_translate and item.stats.untranslated != "---" %}
         <a class="stats-data non-zero" href="{{ item.href_translate }}{% if item.sort %}#sort={{ item.sort }}{% endif %}">{{ item.stats.total_display }}</a>
         {% else %}
         <span class="stats-data non-zero">{{ item.stats.total_display }}</span>
