@@ -130,6 +130,10 @@
   <div id="sidebar-content">
     {% block sidebar_content %}
 
+    {% for panel in sidebar_panels %}
+      {{ panel }}
+    {% endfor %}
+
     {% if announcements %}
     <div class="sidebar-group">
       {% for announcement in announcements %}

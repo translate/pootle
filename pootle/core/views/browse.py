@@ -11,7 +11,7 @@ import logging
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
-from pootle.core.delegate import panels, scores
+from pootle.core.delegate import panels, scores, sidebar_panel_names
 from pootle.core.helpers import (SIDEBAR_COOKIE_NAME,
                                  get_sidebar_announcements_context)
 from pootle.core.utils.stats import (
@@ -159,6 +159,15 @@ class PootleBrowseView(PootleDetailView):
             else:
                 logger.warning("Unrecognized panel '%s'", panel)
 
+    @property
+    def sidebar_panels(self):
+        _panels = panels.gather(self.__class__)
+        for panel in sidebar_panel_names.gather(self.__class__):
+            if panel in _panels:
+                yield _panels[panel](self).content
+            else:
+                logger.warning("Unrecognized panel '%s'", panel)
+
     def get_context_data(self, *args, **kwargs):
         filters = {}
         if self.has_vfolders:
@@ -199,6 +208,7 @@ class PootleBrowseView(PootleDetailView):
              'top_scorers': self.top_scorer_data,
              'has_disabled': self.has_disabled,
              'panels': self.panels,
+             'sidebar_panels': self.sidebar_panels,
              'is_store': self.is_store,
              'browser_extends': self.template_extends})
         return ctx
