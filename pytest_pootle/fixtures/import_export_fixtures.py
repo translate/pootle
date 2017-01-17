@@ -82,8 +82,6 @@ def import_tps(request):
     from pootle_translationproject.models import TranslationProject
 
     language_code, project_code = request.param.split('_')
-    try:
-        return TranslationProject.objects.get(language__code=language_code,
-                                              project__code=project_code)
-    except TranslationProject.DoesNotExist:
-        return request.getfuncargvalue(request.param)
+    return TranslationProject.objects.get(
+        language__code=language_code,
+        project__code=project_code)
