@@ -1122,6 +1122,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unit_query.update(state=OBSOLETE, index=0)
         self.obsolete = True
         self.save()
+        update_data.send(self.__class__, instance=self)
 
     def get_absolute_url(self):
         return reverse(
