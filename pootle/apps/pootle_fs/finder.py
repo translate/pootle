@@ -22,7 +22,7 @@ from .apps import PootleFSConfig
 
 PATH_MAPPING = (
     (".", "\."),
-    ("<language_code>", "(?P<language_code>[\w\-\.]*)"),
+    ("<language_code>", "(?P<language_code>[\w\@\-\.]*)"),
     ("<filename>", "(?P<filename>[\w\-\.]*)"),
     ("/<dir_path>/", "/<dir_path>"),
     ("<dir_path>", "(?P<dir_path>[\w\/\-]*?)"))
