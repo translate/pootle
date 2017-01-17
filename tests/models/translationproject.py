@@ -113,11 +113,11 @@ def test_tp_empty_stats(project0_nongnu, project0, templates):
 
 
 @pytest.mark.django_db
-def test_tp_stats_created_from_template(po_directory, tutorial, templates):
-    language = LanguageDBFactory()
-    tp = TranslationProject.objects.create(language=language, project=tutorial)
+def test_tp_stats_created_from_template(po_directory, templates, tutorial):
+    os.mkdir(os.path.join(tutorial.get_real_path(), "foolang"))
+    language = LanguageDBFactory(code="foolang")
+    tp = TranslationProject.objects.get(language=language, project=tutorial)
     tp.init_from_templates()
-
     assert tp.stores.all().count() == 1
     stats = tp.data_tool.get_stats()
     assert stats['total'] == 2  # there are 2 words in test template
