@@ -15,7 +15,7 @@ class PootleProjectConfig(AppConfig):
 
     name = "pootle_project"
     verbose_name = "Pootle Project"
-    version = "0.0.2"
+    version = "0.0.3"
 
     def ready(self):
         importlib.import_module("pootle_project.getters")
