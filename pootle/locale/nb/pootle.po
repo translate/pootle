@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-11-18 09:31+0000\n"
+"PO-Revision-Date: 2017-01-17 11:03+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479461486.000000\n"
+"X-POOTLE-MTIME: 1484650991.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -423,11 +423,11 @@ msgstr "Legg til lagmedlem"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Legg til et nytt medlem på dette laget"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Rolle er påkrevd når du legger til et nytt medlem"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -1772,7 +1772,7 @@ msgstr "Du må velge en handling som skal iverksettes"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Et gyldig søkefelt må oppgis"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1803,7 +1803,7 @@ msgstr "Django administrasjon"
 #: core/views/display.py:95 core/views/display.py:116
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
+msgstr "%(user)s fjernet oversettelsen for %(source)s"
 
 #: core/views/display.py:97
 #, fuzzy, python-format
@@ -1813,17 +1813,17 @@ msgstr "Godkjente forslag fra %(author)s"
 #: core/views/display.py:99
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s lastet opp ei fil"
 
 #: core/views/display.py:101
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s tok bort %(check)s for %(source)s"
 
 #: core/views/display.py:103
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s la til %(check)s for %(source)s"
 
 #: core/views/display.py:105
 #, fuzzy, python-format
@@ -1843,22 +1843,22 @@ msgstr "Må oversette ord"
 #: core/views/display.py:112
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s redigerte %(source)s"
 
 #: core/views/display.py:114
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s forhåndsoversatte %(source)s"
 
 #: core/views/display.py:118
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s gjennomgikk %(source)s"
 
 #: core/views/display.py:120
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s markert som 'Trenger arbeid' %(source)s"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -2720,10 +2720,12 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "gjennomgått av <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Sett inn %(character_name)s (Unicode-verdi %(character_code)s) i "
+"tekstbehandleren"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"

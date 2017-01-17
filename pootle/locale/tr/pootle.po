@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-12-22 16:58+0000\n"
+"PO-Revision-Date: 2017-01-17 09:00+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1482425893.000000\n"
+"X-POOTLE-MTIME: 1484643602.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -846,11 +846,11 @@ msgstr "ftl biçimi"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Romence: Harf altı işareti önler"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Romence: \"niciun\"/\"nicio\" kullan"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -944,9 +944,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "GNU olmayan: Her dil kendi dizinindedir"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Dosya sistemlerini yönetmesi için Pootle DS'ne izin ver"
+msgstr "Dosya sistemlerini yönetmesi için Pootle DS'ne izin ver (Deneysel)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -2147,6 +2146,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle DS hala deneyseldir, kullanmanızı çok isteriz, ancak herhangi bir "
+"şeyin yanlış gitmesi durumunda, belirli bir seviyede yerelleştirme, Python "
+"ve Pootle uzmanlığı gerektirir."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2861,14 +2863,12 @@ msgid "Remove selected"
 msgstr "Seçileni kaldır"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Öneri yöneticisi"
+msgstr "Birim ve öneriler yöneticisi"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Bekleyen öneriler"
+msgstr "Bekleyen öneriler:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"

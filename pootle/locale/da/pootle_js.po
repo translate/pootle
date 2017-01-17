@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-08-31 08:51+0000\n"
+"PO-Revision-Date: 2017-01-16 21:12+0000\n"
 "Last-Translator: prathers <preben@northchannel.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1472633482.000000\n"
+"X-POOTLE-MTIME: 1484601174.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -316,7 +316,7 @@ msgstr "Personlig hjemmeside-URL"
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr "Kort beskrivelse"
+msgstr "Kort biografi"
 
 #: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
@@ -530,12 +530,12 @@ msgid "Contributors, 30 Days"
 msgstr "Bidragydere, 30 dage"
 
 #: static/js/browser/components/TopContributorsTable.js:17
-#, fuzzy, python-format
+#, python-format
 msgid "+%(score)s"
 msgstr "+%(stilling)er"
 
 #: static/js/browser/components/TopContributorsTable.js:31
-#, fuzzy, python-format
+#, python-format
 msgid "#%(position)s"
 msgstr "#%(position)er"
 
@@ -854,11 +854,11 @@ msgstr "Ændring i score"
 #: templates/admin/xhr_paid_tasks_report.html:24
 #: templates/admin/xhr_summary_report.html:18
 #: templates/admin/xhr_summary_report.html:31
-#, fuzzy, python-format
+#, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "ord"
-msgstr[1] "ord"
+msgstr[0] "%s ord"
+msgstr[1] "%s ord"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
@@ -902,11 +902,11 @@ msgstr "Subtotal"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "time"
-msgstr[1] "timer"
+msgstr[0] "%s time"
+msgstr[1] "%s timer"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"
@@ -950,13 +950,13 @@ msgid "Show"
 msgstr "Vis"
 
 #: templates/editor/units/xhr_tm.html:17
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
-"Oversat af %(fullname)s i projektet &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo;"
+"Oversat af %(fullname) i projektet &ldquo;<span title=\"%(path)s\">"
+"%(project)</span>&rdquo;"
 
 #: templates/editor/units/xhr_tm.html:20
 #, python-format

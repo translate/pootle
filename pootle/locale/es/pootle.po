@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-12 13:11+0000\n"
+"PO-Revision-Date: 2017-01-16 18:25+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484226709.000000\n"
+"X-POOTLE-MTIME: 1484591105.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -197,14 +197,12 @@ msgid "Download for offline translation"
 msgstr "Descargar para traducir sin conexión"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
 msgstr "Descargar archivos para traducir sin conexión"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Descargar archivo"
+msgstr "Descargar para respaldar"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -215,9 +213,9 @@ msgid "Upload translations"
 msgstr "Cargar traducciones"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Informe para %(user)s"
+msgstr "Cargar como %(user)s"
 
 #: apps/import_export/utils.py:38
 #, python-format
@@ -308,48 +306,44 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Hay errores en el formulario. Revise los siguientes problemas."
 
 #: apps/pootle_format/abstracts.py:35
-#, fuzzy
 msgid "Format name"
-msgstr "Nombre"
+msgstr "Nombre del formato"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
 msgstr "Título del formato"
 
 #: apps/pootle_format/abstracts.py:44
-#, fuzzy
 msgid "Enabled"
-msgstr "Desactivado"
+msgstr "Activado"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Formato de Android"
+msgstr "Formato monolingüe"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "Estilo GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "Estilo no GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Estilo Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Personalizado"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
 msgstr "Infraestructura de sistema de archivos"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Sistema de archivos del back-end"
+msgstr "Seleccione una infraestructura de sistema de archivos"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -360,77 +354,68 @@ msgid "The URL or path to your translation files"
 msgstr "URL o ruta a sus archivos de traducción"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Configuración de traducción"
+msgstr "Asignación de rutas de traducción"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"La asignación de rutas de traducción asocia los archivos de regionalización "
+"del sistema de archivos con los almacenamientos de Pootle."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Los códigos de idioma del sistema de archivos deben ser únicos"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Página de Administración de Idiomas de Pootle"
+msgstr "Las asignaciones de idiomas de Pootle deben ser únicas"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "Números"
+msgstr "Miembro"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
-msgstr "Enviar"
+msgstr "Contribuidor"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "Revisar"
+msgstr "Revisor"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "Administración"
+msgstr "Administrador"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Administración"
+msgstr "Administradores"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "Revisiones"
+msgstr "Administradores"
 
 #: apps/pootle_language/forms.py:80
-#, fuzzy
 msgid "Submitters"
-msgstr "Enviar"
+msgstr "Contribuidores"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "Números"
+msgstr "Miembros"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Números"
+msgstr "Miembro nuevo"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Añadir un usuario a este equipo"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Al añadir un miembro nuevo debe indicar su papel"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -511,34 +496,32 @@ msgid "Suggestion"
 msgstr "Sugerencia"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested by"
-msgstr "Sugerir"
+msgstr "Sugerida por"
 
 #: apps/pootle_language/views.py:214
-#, fuzzy
 msgid "Suggested at"
-msgstr "Sugerir"
+msgstr "Sugerida el"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Rechazó la sugerencia de %s"
+msgstr "Rechazó %s sugerencias con comentario. Se notificará a los usuarios"
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Aceptó la sugerencia de %s"
+msgstr "Aceptó %s sugerencias con comentario. Se notificará a los usuarios"
 
 #: apps/pootle_language/views.py:243
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Rechazar sugerencia"
+msgstr "Rechazó %s sugerencias"
 
 #: apps/pootle_language/views.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Aceptar sugerencia"
+msgstr "Aceptó %s sugerencias"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -678,7 +661,7 @@ msgstr "Puntuación pura"
 
 #: apps/pootle_misc/checks.py:72
 msgid "Python brace placeholders"
-msgstr "Espacios reservados con llaves de Python"
+msgstr "Textos variables con llaves de Python"
 
 #: apps/pootle_misc/checks.py:73
 msgid "Number of sentences"
@@ -736,7 +719,7 @@ msgstr "Caracteres válidos"
 
 #: apps/pootle_misc/checks.py:87
 msgid "Placeholders"
-msgstr "Marcadores de posición"
+msgstr "Textos variables"
 
 #: apps/pootle_misc/checks.py:88
 msgid "Valid XML"
@@ -760,19 +743,19 @@ msgstr "Formato de la plantilla"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholders"
-msgstr "Espacios reservados de Mustache"
+msgstr "Textos variables de Mustache"
 
 #: apps/pootle_misc/checks.py:95
 msgid "Mustache placeholder pairs"
-msgstr "Pares de espacios reservados de Mustache"
+msgstr "Pares de textos variables de Mustache"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Mustache like placeholder pairs"
-msgstr "Pares de espacios reservados similares a Mustache"
+msgstr "Pares de textos variables similares a Mustache"
 
 #: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
-msgstr "Espacios reservados en formato C"
+msgstr "Textos variables en formato C"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Non printable"
@@ -804,26 +787,24 @@ msgid "Date format"
 msgstr "Formato de fecha"
 
 #: apps/pootle_misc/checks.py:105
-#, fuzzy
 msgid "Uppercase placeholders"
-msgstr "Marcadores de posición para mayúsculas"
+msgstr "Textos variables en mayúsculas"
 
 #: apps/pootle_misc/checks.py:106
-#, fuzzy
 msgid "Percent sign placeholders"
-msgstr "Marcadores de posición para signo de porcentaje"
+msgstr "Textos variables con signo de porcentaje"
 
 #: apps/pootle_misc/checks.py:108
 msgid "Percent sign closure placeholders"
-msgstr ""
+msgstr "Textos variables de cierre con signo de porcentaje"
 
 #: apps/pootle_misc/checks.py:109
 msgid "$ placeholders"
-msgstr "Espacios reservados con $"
+msgstr "Textos variables con $"
 
 #: apps/pootle_misc/checks.py:110
 msgid "$ closure placeholders"
-msgstr "Espacios reservados con $ de cierre"
+msgstr "Textos variables de cierre con $"
 
 #: apps/pootle_misc/checks.py:111
 msgid "Java-encoded unicode"
@@ -847,7 +828,7 @@ msgstr "Llaves"
 
 #: apps/pootle_misc/checks.py:116
 msgid "Potential unwanted placeholders"
-msgstr "Espacios reservados potencialmente no deseados"
+msgstr "Textos variables potencialmente no deseados"
 
 #: apps/pootle_misc/checks.py:117
 msgid "Double quotes in tags"
@@ -855,29 +836,27 @@ msgstr "Comillas dobles en etiquetas"
 
 #: apps/pootle_misc/checks.py:118
 msgid "Percent brace placeholders"
-msgstr "Espacios reservados con símb. de porcentaje y llaves"
+msgstr "Textos variables entre símbolos de porcentaje"
 
 #: apps/pootle_misc/checks.py:119
 msgid "Plurr format"
 msgstr "Formato Plurr"
 
 #: apps/pootle_misc/checks.py:120
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "Espacios reservados con $"
+msgstr "Textos variables de Plurr"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Formato de fecha"
+msgstr "Formato ftl"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Rumano: evitar cedillas"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rumano: utilizar «nicium»/«nicio»"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -937,14 +916,14 @@ msgid "Language"
 msgstr "Idioma"
 
 #: apps/pootle_project/models.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "No se puede usar «%s» como código de proyecto"
+msgstr "No se puede utilizar «%(code)s» como código de proyecto"
 
 #: apps/pootle_project/models.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "No se puede usar «%s» como código de proyecto"
+msgstr "No se puede utilizar «%(code)s» como comprobador de proyecto"
 
 #: apps/pootle_project/models.py:196
 msgid ""
@@ -959,9 +938,9 @@ msgid "Quality Checks"
 msgstr "Control de calidad"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Detección automática (lenta)"
+msgstr ""
+"Detección automática de disposiciones de archivos GNU/no GNU (más lenta)"
 
 #: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
@@ -972,9 +951,9 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "No GNU: cada idioma en su propia carpeta"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Permitir que Pootle FS maneje los sistemas de archivos"
+msgstr ""
+"Permitir que el FS de Pootle maneje los sistemas de archivos (experimental)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1003,18 +982,18 @@ msgid "Disabled"
 msgstr "Desactivado"
 
 #: apps/pootle_project/views.py:256
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
-"El proyecto de traducción ha sido actualizado a partir de las últimas "
-"plantillas."
+"Se ha creado el proyecto de traducción (%s). Estamos actualizando sus "
+"almacenes a partir de las plantillas."
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Los archivos del proyecto de traducción han sido escaneados."
+msgstr "Se ha eliminado el proyecto de traducción (%s)"
 
 #: apps/pootle_statistics/models.py:64
 msgid "Target"
@@ -1106,33 +1085,32 @@ msgid "Plural"
 msgstr "Plural"
 
 #: apps/pootle_store/unit/timeline.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Aceptó la sugerencia de %s"
+msgstr "Aceptó la sugerencia de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Rechazó la sugerencia de %s"
+msgstr "Rechazó la sugerencia de %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "Aceptó la sugerencia de %s"
+msgstr "Aceptó la sugerencia de %(author)s con el comentario: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:61
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "Rechazó la sugerencia de %s"
+msgstr "Rechazó la sugerencia de %(author)s con el comentario: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:67
 msgid "Added suggestion"
 msgstr "Añadió una sugerencia"
 
 #: apps/pootle_store/utils.py:33
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Sugerencia aceptada."
+msgstr "Sugerencia aceptada con comentario"
 
 #: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
@@ -1168,14 +1146,14 @@ msgid "This term already exists in this file."
 msgstr "Este término ya existe en este archivo."
 
 #: apps/pootle_translationproject/receivers.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Página principal del proyecto"
+msgstr "Se ha creado el proyecto de traducción (%s)"
 
 #: apps/pootle_translationproject/receivers.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Página principal del proyecto"
+msgstr "Falló la creación del proyecto de traducción (%s)"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1254,6 +1232,7 @@ msgstr "Filtro"
 #: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
+"Las reglas de filtración indican qué se incluye en esta carpeta virtual."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1263,6 +1242,8 @@ msgstr "Prioridad"
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
+"El número que especifica la importancia. Entre mayor prioridad, mayor "
+"importancia."
 
 #: apps/virtualfolder/models.py:51
 msgid "Is public?"
@@ -1277,12 +1258,12 @@ msgid "Description"
 msgstr "Descripción"
 
 #: apps/virtualfolder/models.py:58
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
-"Una descripción de este objetivo. Útil para dar más información o "
-"instrucciones. Marcado permitido: %s"
+"Utilice este campo para brindar más información o instrucciones. Marcado "
+"permitido: %s"
 
 #: checks.py:62
 msgid ""
@@ -1298,6 +1279,9 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Pruebe a utilizar «pootle find_duplicate_emails» y actualice los correos de "
+"usuario mediante «pootle update_user_email nombredeusuario correo». "
+"Considere asimismo utilizar las órdenes «merge_user» y «purge_user»"
 
 #: checks.py:88
 msgid "Your version of Django is too old."
@@ -1350,13 +1334,12 @@ msgid "No RQ Worker running."
 msgstr "No se está ejecutando ningún proceso de RQ."
 
 #: checks.py:148
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "Ejecute procesos nuevos con: manage.py rqworker"
+msgstr "Ejecute procesos nuevos con «pootle rqworker»"
 
 #: checks.py:163
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "El motor de la antememoria no está definido como Redis."
 
 #: checks.py:164
 #, python-format
@@ -1364,40 +1347,45 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"Defina el motor de antememoria predeterminado a django_redis.cache."
+"RedisCache\n"
+"Configuración actual: %r"
 
 #: checks.py:174
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "No se pudo iniciar una conexión de antememoria de Redis"
 
 #: checks.py:175 checks.py:189
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "Compruebe su configuración de CACHES"
 
 #: checks.py:187
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
+"Se necesitan configuraciones distintas de django_redis.cache.RedisCache para "
+"«default», «redis» y «lru»."
 
 #: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "El modo DEBUG está activado. ¡No lo utilice en entornos de producción!"
 
 #: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "Defina DEBUG = False en la configuración de Pootle"
 
 #: checks.py:202
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "No se admite el motor de base de datos SQLite"
 
 #: checks.py:203
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
+msgstr "Defina el motor de base de datos predeterminado a PostgreSQL o MySQL"
 
 #: checks.py:210
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "No se utiliza cached_db como motor de sesiones"
 
 #: checks.py:211
 #, python-format
@@ -1405,10 +1393,12 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"Defina SESSION_ENGINE a django.contrib.sessions.backend.cached_db\n"
+"Configuración actual: %r"
 
 #: checks.py:219
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "No se ha definido POOTLE_CONTACT_EMAIL."
 
 #: checks.py:220
 msgid ""

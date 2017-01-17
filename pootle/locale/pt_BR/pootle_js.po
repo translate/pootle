@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-07-20 15:16+0000\n"
+"PO-Revision-Date: 2017-01-16 14:09+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469027761.000000\n"
+"X-POOTLE-MTIME: 1484575769.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -116,7 +116,7 @@ msgstr "Visão geral"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Equipe"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -163,9 +163,8 @@ msgid "Quality Checks"
 msgstr "Verificações de qualidade"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Tipo de arquivo"
+msgstr "Tipos de arquivo"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -200,9 +199,8 @@ msgid "Permissions"
 msgstr "Permissões"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "Tipo de arquivo"
+msgstr "Sistemas de arquivo"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -340,21 +338,23 @@ msgid "Preview will be displayed here."
 msgstr "A pré-visualização será mostrada aqui."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
-msgstr "Nós enviamos um e-mail contendo o link especial para <span>%s</span>"
+msgstr ""
+"Enviamos um e-mail contendo o link especial para <span>%s</span>. Verifique "
+"sua pasta de SPAM se você não encontrar o e-mail."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
-"Nós enviamos um e-mail contendo o link especial para o endereço usado para "
-"registrar esta conta."
+"Enviamos um e-mail contendo o link especial para o endereço usado para "
+"registrar esta conta. Verifique sua pasta de SPAM se você não encontrar o e-"
+"mail."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -362,7 +362,7 @@ msgstr "Sua conta precisa de ativação."
 
 #: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
-msgstr "Por favor, siga o link para continuar a criação da conta."
+msgstr "Siga o link para continuar a criação da conta."
 
 #: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
@@ -388,7 +388,7 @@ msgid ""
 "used. Please request a new password reset."
 msgstr ""
 "O link de redefinição de senha era inválido, possivelmente porque ele já foi "
-"usado. Por favor, solicite uma nova redefinição de senha."
+"usado. Solicite uma nova redefinição de senha."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
@@ -418,8 +418,7 @@ msgstr "Enviando e-mail para %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
-msgstr ""
-"Por favor, siga o link para continuar o processo de redefinição de senha."
+msgstr "Siga o link para continuar o processo de redefinição de senha."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
@@ -527,23 +526,22 @@ msgid "Social Verification"
 msgstr "Verificação social"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Mais"
+msgstr "Mais..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Colaboradores, 30 dias"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
@@ -567,7 +565,7 @@ msgstr "Projeto inteiro"
 
 #: static/js/common.js:139
 msgid "Updating data"
-msgstr ""
+msgstr "Enviando dados"
 
 #: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
@@ -668,7 +666,7 @@ msgstr "Traduções similares"
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Forma plural %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
@@ -758,7 +756,7 @@ msgid ""
 "to gravatar.com."
 msgstr ""
 "Para definir ou alterar o seu avatar para seu endereço de e-mail "
-"(%(email)s), por favor, vá para gravatar.com."
+"(%(email)s), vá para gravatar.com."
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
@@ -797,8 +795,8 @@ msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
-"Digite seu endereço de e-mail, e nós vamos enviar uma mensagem para você com "
-"o link especial para redefinir sua senha."
+"Digite seu endereço de e-mail, e vamos enviar uma mensagem para você com o "
+"link especial para redefinir sua senha."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
@@ -811,24 +809,24 @@ msgstr "Enviar e-mail"
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr "Nós enviamos um e-mail contendo o link especial para <span>%s</span>"
+msgstr "Enviamos um e-mail contendo o link especial para <span>%s</span>"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
 msgstr "Criar novas contas de usuário é proibido."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Nós encontramos um usuário com o e-mail <span>%s</span> no nosso sistema. "
-"Por favor, forneça a senha para terminar o processo de login. Este é um "
-"procedimento que só acontece uma vez, que irá estabelecer uma ligação entre "
-"as suas contas Pootle e %s."
+"Encontramos um usuário com o e-mail <span>%(email)s</span> no nosso sistema. "
+"Forneça a senha para terminar o processo de login. Este é um procedimento "
+"que só acontece uma vez, que irá estabelecer uma ligação entre as suas "
+"contas Pootle e %(provider)s."
 
 #: static/js/editor/app.js:650
 msgid "No results."
@@ -877,7 +875,7 @@ msgstr "Nenhuma atividade registrada em um determinado período"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr "Por favor, selecione um usuário válido."
+msgstr "Selecione um usuário válido."
 
 #: templates/admin/xhr_paid_tasks_report.html:3
 msgid "Registered Tasks"

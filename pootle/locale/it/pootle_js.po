@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-11-03 10:37+0000\n"
+"PO-Revision-Date: 2017-01-16 17:04+0000\n"
 "Last-Translator: Sebastiano <olatusrooc@virgilio.it>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1478169430.000000\n"
+"X-POOTLE-MTIME: 1484586266.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -167,9 +167,8 @@ msgid "File types"
 msgstr "Tipo file"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
-#, fuzzy
 msgid "Project Tree Style"
-msgstr "Struttura Albero del Progetto"
+msgstr "Progetto con Struttura ad albero"
 
 #: static/js/admin/components/Project/ProjectForm.js:104
 msgid "Source Language"
@@ -200,9 +199,8 @@ msgid "Permissions"
 msgstr "Autorizzazioni"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "Tipo di file"
+msgstr "Filesystem"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -340,21 +338,23 @@ msgid "Preview will be displayed here."
 msgstr "L'anteprima verrà mostrata qui."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
-msgstr "Abbiamo inviato un'email contenente il link speciale a <span>%s</span>"
+msgstr ""
+"Abbiamo inviato un'email contenente il link a <span>%s</span>. Se non la "
+"trovi nella Posta in ingresso prova a cercarla nella cartella dello Spam."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
 "Abbiamo inviato un'email contenente il link speciale all'indirizzo "
-"utilizzato per registrare questo account."
+"utilizzato per registrare questo account. Se non la trovi nella Posta in "
+"ingresso prova a cercarla nella cartella dello Spam."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -533,9 +533,8 @@ msgid "Social Verification"
 msgstr "Verifica Social"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Ancora"
+msgstr "Altre..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
@@ -544,12 +543,12 @@ msgstr "Collaboratori, 30 giorni"
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr "#%(posizione)i"
+msgstr "#%(posizione)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
@@ -674,11 +673,12 @@ msgstr "Traduzioni simili"
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Forma plurale %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
 msgstr ""
+"Puoi modificare il suggerimento prima di accettarlo, se lo ritieni necessario"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
@@ -722,9 +722,8 @@ msgid "disabled"
 msgstr "disabilitato"
 
 #: static/js/stats.js:30
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
-msgstr "Congratulazioni, hai girato per tutte le stringhe."
+msgstr "Complimenti! Hai completato questo task!"
 
 #: static/js/stats.js:127
 msgid "Collapse details"
@@ -825,17 +824,17 @@ msgid "Creating new user accounts is prohibited."
 msgstr "Non è possibile creare nuovi account utente."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"Abbiamo trovato un utente con l'email <span>%s</span> nel nostro sistema. "
-"Ora inserisci la password per completare il processo di registrazione. "
-"Questa è una procedura una tantum, che stabilirà un collegamento tra i tuoi "
-"account di Pootle e %s."
+"Abbiamo trovato un utente con l'email <span>%(email)s</span> nel nostro "
+"sistema. Ora è necessario inserire la password per completare il processo di "
+"registrazione. Questa è una procedura una tantum, che stabilirà un "
+"collegamento tra i tuoi account di Pootle e quelli del tuo %(provider)s."
 
 #: static/js/editor/app.js:650
 msgid "No results."
@@ -920,11 +919,11 @@ msgstr "Subtotale"
 
 #: templates/admin/xhr_paid_tasks_report.html:21
 #: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
+#, python-format
 msgid "%s hour"
 msgid_plural "%s hours"
-msgstr[0] "ora"
-msgstr[1] "ore"
+msgstr[0] "%s ora"
+msgstr[1] "%s ore"
 
 #: templates/admin/xhr_paid_tasks_report.html:38
 msgid "Remove task"

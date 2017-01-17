@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-06-21 23:51+0000\n"
-"Last-Translator: Aputsiak Niels <aj@isit.gl>\n"
+"PO-Revision-Date: 2017-01-16 21:16+0000\n"
+"Last-Translator: prathers <preben@northchannel.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1466553104.000000\n"
+"X-POOTLE-MTIME: 1484601414.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -181,7 +181,6 @@ msgid "Contact Us"
 msgstr "Kontakt os"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Meld et problem med kildestrengen"
 
@@ -320,9 +319,8 @@ msgid "Enabled"
 msgstr ""
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Flertalsform %d"
+msgstr "Etsproget format"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
@@ -514,24 +512,24 @@ msgid "Suggested at"
 msgstr "Foreslå"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Afvis forslag"
+msgstr "Afviste %s forslag med kommentarer. Brugere vil få besked"
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Godkend forslag"
+msgstr "Godkendte %s forslag med kommentarer. Brugere vil få besked"
 
 #: apps/pootle_language/views.py:243
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Afvis forslag"
+msgstr "Afviste %s forslag"
 
 #: apps/pootle_language/views.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Godkend forslag"
+msgstr "Godkendte %s forslag"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -852,9 +850,8 @@ msgid "Percent brace placeholders"
 msgstr "Pladsholdere"
 
 #: apps/pootle_misc/checks.py:119
-#, fuzzy
 msgid "Plurr format"
-msgstr "Flertalsform %d"
+msgstr "Flertalsform"
 
 #: apps/pootle_misc/checks.py:120
 #, fuzzy
@@ -998,12 +995,13 @@ msgid "Disabled"
 msgstr ""
 
 #: apps/pootle_project/views.py:256
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
-"Oversættelsesprojektet er blevet opdateret op imod de seneste skabeloner."
+"Oversættelsesprojektet (%s) er blevet oprettet. Vi opdaterer nu serveren fra "
+"filskabelonerne."
 
 #: apps/pootle_project/views.py:263
 #, fuzzy, python-format

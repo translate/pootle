@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-12-20 16:53+0000\n"
+"PO-Revision-Date: 2017-01-13 20:22+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1482252805.000000\n"
+"X-POOTLE-MTIME: 1484338956.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -843,17 +843,16 @@ msgid "Plurr placeholders"
 msgstr "Zástupné řetězce plurálu"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Formát data"
+msgstr ""
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Rumunština: Vyhýbat se znaménkům cedilla"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rumunština: Používat \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -949,9 +948,9 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Jiný než GNU: Každý jazyk má vlastní adresář"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Povolit správu systémů souborů prostřednictvím Pootle FS"
+msgstr ""
+"Povolit správu systémů souborů prostřednictvím Pootle FS (experimentální)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -2139,6 +2138,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS je stále experimentální, rádi bychom ho používali, ale v případě "
+"výskytu jakýchkoliv problémů vyžaduje značnou úroveň znalostí Pythonu, "
+"Pootlu a lokalizace."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2854,14 +2856,12 @@ msgid "Remove selected"
 msgstr "Odebrat vybrané"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Správa návrhů"
+msgstr "Správa jednotek a návrhů"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Nevyřízené návrhy"
+msgstr "Nevyřízené návrhy:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"

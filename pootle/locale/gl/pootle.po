@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-13 12:12+0000\n"
+"PO-Revision-Date: 2017-01-13 12:22+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484309521.000000\n"
+"X-POOTLE-MTIME: 1484310169.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -953,7 +953,7 @@ msgstr "Non-GNU: cada idioma no seu propio cartafol"
 #: apps/pootle_project/models.py:223
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
-"Permitir que pootle FS xestione os sistemas de ficheiros (Experimental)"
+"Permitir que Pootle FS xestione os sistemas de ficheiros (Experimental)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"

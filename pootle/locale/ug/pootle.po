@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-01-03 15:20+0000\n"
+"PO-Revision-Date: 2017-01-16 02:36+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1451834446.000000\n"
+"X-POOTLE-MTIME: 1484534160.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -176,9 +176,8 @@ msgid "Contact Us"
 msgstr "بىز بىلەن ئالاقە قىلىڭ"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
-msgstr "ئەسلى ھەرپ تىزىقىدىكى مەسىلىنى دوكلات قىل"
+msgstr "ھەرپ تىزىقىدىكى مەسىلىنى دوكلات قىلىڭ"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
@@ -189,14 +188,12 @@ msgid "Download for offline translation"
 msgstr "تورسىز تەرجىمە ئۈچۈن چۈشۈرۈڭ"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "تورسىز تەرجىمە ئۈچۈن تەرجىمە قىلىدىغان ھۆججەتنى چۈشۈرۈڭ"
+msgstr "زاپاسلاش ئۈچۈن تەرجىمە قىلىدىغان ھۆججەتنى چۈشۈرۈڭ"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "ھۆججەتنى چۈشۈر"
+msgstr "زاپاسلاش ئۈچۈن ھۆججەتنى چۈشۈر"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -207,9 +204,9 @@ msgid "Upload translations"
 msgstr "تەرجىمىلەرنى يۈكلە"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "%(user)s نىڭ دوكلاتى"
+msgstr "%(user)s سۈپىتىدە يۈكلە"
 
 #: apps/import_export/utils.py:38
 #, python-format
@@ -250,6 +247,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"ئەگەر بۇ بۇ ھۆججەت ('%s') تىپىدا ساقلانغان بولسا، قۇرۇلۇشتىن ھۆججەت تىپىنى "
+"چىقىرىۋېتەلمەيسىز، "
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -299,18 +298,16 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "بۇ كۆزنەكتە خاتالىق بار. تۆۋەندىكى خاتالىقلارنى قايتا تەكشۈرۈڭ."
 
 #: apps/pootle_format/abstracts.py:35
-#, fuzzy
 msgid "Format name"
-msgstr "ئاتى"
+msgstr "پىچىم ئاتى"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
-msgstr ""
+msgstr "پىچىم ماۋزۇسى"
 
 #: apps/pootle_format/abstracts.py:44
-#, fuzzy
 msgid "Enabled"
-msgstr "چەكلەنگەن"
+msgstr "قوزغىتىلغان"
 
 #: apps/pootle_format/abstracts.py:46
 #, fuzzy
@@ -2373,7 +2370,7 @@ msgstr "تەپسىلاتىنى ياي"
 
 #: templates/browser/index.html:26
 msgid "Translation Statistics"
-msgstr "تەرجخمە سىتاتىستىكىسى"
+msgstr "تەرجىمە سىتاتىستىكىسى"
 
 #: templates/browser/index.html:48
 msgid "Failing Checks"

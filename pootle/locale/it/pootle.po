@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-03-02 16:36+0000\n"
+"PO-Revision-Date: 2017-01-17 11:56+0000\n"
 "Last-Translator: frasten <frasten@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1456936585.000000\n"
+"X-POOTLE-MTIME: 1484654218.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -81,9 +81,8 @@ msgstr ""
 "invece di eliminare gli account."
 
 #: apps/accounts/models.py:74
-#, fuzzy
 msgid "Superuser Status"
-msgstr "Stato di Amministratore"
+msgstr "Status di Amministratore"
 
 #: apps/accounts/models.py:77
 msgid ""
@@ -186,9 +185,8 @@ msgid "Contact Us"
 msgstr "Contattaci"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
-msgstr "Segnala un problema con questa stringa"
+msgstr "Segnala un problema in questa stringa"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
@@ -199,29 +197,25 @@ msgid "Download for offline translation"
 msgstr "Scarica per la traduzione offline"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Scarica il file di traduzione per la traduzione offline"
+msgstr "Scarica i file per la traduzione offline"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Scarica il file"
+msgstr "Scarica una copia"
 
 #: apps/import_export/templates/browser/index.html:26
-#, fuzzy
 msgid "Upload translation files or archives in .zip format"
-msgstr "Tutte le traduzioni sono state importate."
+msgstr "Carica file di traduzione oppure archivi in formato .zip"
 
 #: apps/import_export/templates/browser/index.html:27
-#, fuzzy
 msgid "Upload translations"
-msgstr "Export traduzioni"
+msgstr "Carica traduzioni"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
-msgstr "Rapporto per %(user)s"
+msgstr "Invia come %(user)s"
 
 #: apps/import_export/utils.py:38
 #, python-format
@@ -310,48 +304,44 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "Ci sono errori nel form. Rivedi i problemi qui sotto."
 
 #: apps/pootle_format/abstracts.py:35
-#, fuzzy
 msgid "Format name"
-msgstr "Nome"
+msgstr "Nome del formato"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
 msgstr ""
 
 #: apps/pootle_format/abstracts.py:44
-#, fuzzy
 msgid "Enabled"
-msgstr "Disabilitato"
+msgstr "Abilitato"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Formato Android"
+msgstr "Formato monolingua"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "Stile GNU"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "Stile non GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Stile Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "Personalizzato"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
 msgstr ""
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Seleziona file da caricare"
+msgstr "Seleziona un filesystem di destinazione"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -359,7 +349,7 @@ msgstr ""
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "Percorso od URL dei tuoi file di traduzione"
 
 #: apps/pootle_fs/forms.py:52
 #, fuzzy
@@ -382,53 +372,44 @@ msgid "Pootle language mappings must be unique"
 msgstr "Pagina amministrazione lingue di Pootle"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "Numeri"
+msgstr "Membro"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
-msgstr "Accetta"
+msgstr "Contributore"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "Rivedi"
+msgstr "Revisore"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "Amministrazione"
+msgstr "Amministratore"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Amministrazione"
+msgstr "Amministratori"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "Revisioni"
+msgstr "Revisori"
 
 #: apps/pootle_language/forms.py:80
-#, fuzzy
 msgid "Submitters"
-msgstr "Accetta"
+msgstr "Contributori"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "Numeri"
+msgstr "Membri"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Numeri"
+msgstr "Nuovo membro"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Aggiungi un utente a questo team"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
@@ -512,14 +493,12 @@ msgid "Suggestion"
 msgstr "Proposta"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested by"
-msgstr "Suggerisci"
+msgstr "Suggerita da"
 
 #: apps/pootle_language/views.py:214
-#, fuzzy
 msgid "Suggested at"
-msgstr "Suggerisci"
+msgstr "Suggerita a"
 
 #: apps/pootle_language/views.py:236
 #, fuzzy, python-format
@@ -532,14 +511,14 @@ msgid "Accepted %s suggestions with comment. Users will be notified"
 msgstr "È stato accettato il suggerimento di %s"
 
 #: apps/pootle_language/views.py:243
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "Rifiuta suggerimento"
+msgstr "Rifiutati %s suggerimenti"
 
 #: apps/pootle_language/views.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "Accetta suggerimento"
+msgstr "Accettati %s suggerimenti"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -647,7 +626,7 @@ msgstr "Bisogna tradurre le parole"
 
 #: apps/pootle_misc/checks.py:64
 msgid "Newlines"
-msgstr "Nuove rige"
+msgstr "Nuove righe"
 
 #: apps/pootle_misc/checks.py:65
 msgid "Number of plurals"
@@ -860,14 +839,12 @@ msgid "Percent brace placeholders"
 msgstr "Segnaposto racchiusi tra percentuali"
 
 #: apps/pootle_misc/checks.py:119
-#, fuzzy
 msgid "Plurr format"
-msgstr "Formato Android"
+msgstr "Formato Plurr"
 
 #: apps/pootle_misc/checks.py:120
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "Segnaposti"
+msgstr "Segnaposto Plurr"
 
 #: apps/pootle_misc/checks.py:123
 #, fuzzy
@@ -929,7 +906,7 @@ msgstr "Ultimo (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
-msgstr ""
+msgstr "Ricerca non disponibile"
 
 #: apps/pootle_profile/views.py:59
 msgid "Select one or more languages"
@@ -940,9 +917,9 @@ msgid "Language"
 msgstr "Lingua"
 
 #: apps/pootle_project/models.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\" non può essere usato come codice di progetto"
+msgstr "\"%(code)s\" non può essere usato come codice di progetto."
 
 #: apps/pootle_project/models.py:189
 #, fuzzy, python-format
@@ -988,7 +965,7 @@ msgstr "Ignora i file"
 
 #: apps/pootle_project/models.py:241
 msgid "Errors Report Email"
-msgstr ""
+msgstr "Email di notifica errori"
 
 #: apps/pootle_project/models.py:242
 msgid "An email address where issues with the source text can be reported."
@@ -1136,11 +1113,11 @@ msgstr "Suggerimento accettato."
 
 #: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Suggerimento rifiutato con commento"
 
 #: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
-msgstr ""
+msgstr "Percorso troppo lungo."
 
 #: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
@@ -1743,7 +1720,7 @@ msgstr ""
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "È necessario specificare un'azione da eseguire"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
@@ -1802,19 +1779,19 @@ msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
 #: core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "È stato accettato il suggerimento di %s"
+msgstr "%(user)s ha scritto un suggerimento per %(source)s"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "È stato rifiutato il suggerimento di %s"
+msgstr "%(user)s ha rifiutato un suggerimento per %(source)s"
 
 #: core/views/display.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "Bisogna tradurre le parole"
+msgstr "%(user)s ha tradotto %(source)s"
 
 #: core/views/display.py:112
 #, python-format
@@ -1848,13 +1825,13 @@ msgstr ""
 "errore: %(errormsg)s"
 
 #: middleware/errorpages.py:117
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Dovete <a href=\"%(login_link)s\">accedere</a> per visualizzare questa "
-"pagina."
+"É necessario <a class=\"js-login\" href=\"%(login_link)s\">Accedere</a> per "
+"poter visualizzare questa pagina."
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:39
@@ -1891,7 +1868,6 @@ msgid "About"
 msgstr "Informazioni"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
 msgstr "Informazioni su questo server Pootle"
 
@@ -1945,9 +1921,8 @@ msgid "We have received a request to reset your password."
 msgstr ""
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Per attivare l'account, aprire questo collegamento:"
+msgstr "Per resettare la password, aprite questo collegamento:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
@@ -2109,9 +2084,8 @@ msgid "Subactions"
 msgstr "Funzioni"
 
 #: templates/admin/detailed_reports.html:220
-#, fuzzy
 msgid "Raw Translation"
-msgstr "Traduzioni grezze"
+msgstr "Traduzione grezza"
 
 #: templates/admin/detailed_reports.html:233
 msgid "Review"
@@ -2217,13 +2191,12 @@ msgid "Remove"
 msgstr "Rimuovi"
 
 #: templates/admin/project_fs.html:92
-#, fuzzy
 msgid "Pootle code"
-msgstr "Dimostrazione di Pootle"
+msgstr "Codice Pootle"
 
 #: templates/admin/project_fs.html:93
 msgid "Filesystem code"
-msgstr ""
+msgstr "Codice filesystem"
 
 #: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
@@ -2231,7 +2204,6 @@ msgid "Add"
 msgstr "Aggiungi"
 
 #: templates/admin/project_fs.html:104
-#, fuzzy
 msgid "Update"
 msgstr "Aggiorna"
 
@@ -2358,7 +2330,6 @@ msgid "Fix critical errors"
 msgstr "Correggi gli errori critici"
 
 #: templates/browser/_actions.html:13
-#, fuzzy
 msgid "Critical errors"
 msgstr "Errori critici:"
 
@@ -2417,7 +2388,7 @@ msgstr "Maggiori info..."
 
 #: templates/browser/index.html:68
 msgid "Less..."
-msgstr ""
+msgstr "Meno..."
 
 #: templates/browser/index.html:81
 #, fuzzy
@@ -2475,9 +2446,8 @@ msgid "No user contributions yet."
 msgstr "Ancora nessun contributo degli utenti."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Migliori contributori"
+msgstr "Migliori collaboratori:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:14
@@ -2510,7 +2480,7 @@ msgstr "I miei suggerimenti"
 
 #: templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr ""
+msgstr "I miei invii"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
@@ -2689,14 +2659,12 @@ msgid "User suggestions"
 msgstr "Suggerimenti degli utenti"
 
 #: templates/editor/units/edit.html:281
-#, fuzzy
 msgid "More options"
-msgstr "Modifica opzioni"
+msgstr "Più opzioni"
 
 #: templates/editor/units/edit.html:283
-#, fuzzy
 msgid "Less options"
-msgstr "Modifica opzioni"
+msgstr "Meno opzioni"
 
 #: templates/editor/units/edit.html:288
 msgid "Accept suggestion"
@@ -2858,9 +2826,8 @@ msgid "Showing"
 msgstr "Mostra filtraggio"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Selezione multipla"
+msgstr "Seleziona tutto"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2870,33 +2837,30 @@ msgstr "Sfoglia"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Gruppo"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Suggerimenti degli utenti"
+msgstr "Filtra suggerimenti"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Nome lingua"
+msgstr "Gruppo linguistico"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Membro amministratore"
 
 #: templates/languages/admin/language_team.html:29
 msgid "Add team member"
-msgstr ""
+msgstr "Aggiungi membro al gruppo"
 
 #: templates/languages/admin/language_team.html:42
 #: templates/languages/admin/language_team.html:55
 #: templates/languages/admin/language_team.html:68
 #: templates/languages/admin/language_team.html:81
-#, fuzzy
 msgid "Remove selected"
-msgstr "Rimuovi utente"
+msgstr "Rimuovi selezionata"
 
 #: templates/languages/admin/language_team.html:102
 #, fuzzy
@@ -2904,24 +2868,20 @@ msgid "Unit and suggestions admin"
 msgstr "Suggerimento %d:"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Suggerimenti in attesa"
+msgstr "Suggerimenti in sospeso:"
 
 #: templates/languages/admin/language_team.html:127
-#, fuzzy
 msgid "Total words:"
-msgstr "Totale parole"
+msgstr "Parole complessive:"
 
 #: templates/languages/admin/language_team.html:131
-#, fuzzy
 msgid "Translated:"
-msgstr "Tradotto"
+msgstr "Tradotte:"
 
 #: templates/languages/admin/language_team.html:139
-#, fuzzy
 msgid "Needs work:"
-msgstr "Necessita revisione"
+msgstr "Necessita revisione:"
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
@@ -3001,7 +2961,7 @@ msgstr ""
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
-msgstr ""
+msgstr "Azione necessaria"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
@@ -3110,9 +3070,8 @@ msgid "Tweet this!"
 msgstr "Twittalo!"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Nessun contributo nell'ultimo mese"
+msgstr "Nessun contributo negli ultimi 30 giorni"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -3224,9 +3183,8 @@ msgid "Sign in"
 msgstr "Accedi"
 
 #: templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Migliori contributori"
+msgstr "Migliori collaboratori negli ultimi 30 giorni"
 
 #, fuzzy
 #~ msgid "Unit admin"
