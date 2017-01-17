@@ -15,6 +15,7 @@ from pytest_pootle.factories import LanguageDBFactory
 
 from django import forms
 
+from pootle.core.delegate import revision
 from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins, fs_url_validator
 from pootle_fs.finder import TranslationMappingValidator
@@ -179,7 +180,15 @@ def test_formset_fs_project_lang_mapper(project0, language0, language1):
     assert (
         formset.cleaned_mapping
         == OrderedDict([(u'FOO', u'language0')]))
+    orig_revision = revision.get(
+        formset.project.__class__)(
+            formset.project).get(key="pootle.fs.sync")
     formset.save()
+    assert (
+        orig_revision
+        != revision.get(
+            formset.project.__class__)(
+                formset.project).get(key="pootle.fs.sync"))
     assert (
         project0.config["pootle.core.lang_mapping"]
         == OrderedDict([(u'FOO', u'language0')]))
