@@ -8,102 +8,99 @@
 
 from django.forms import ValidationError
 from django.http import Http404
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
-from django.views.generic import View
+from django.utils.functional import cached_property
 
+from pootle.core.delegate import scores
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.utils.stats import TOP_CONTRIBUTORS_CHUNK_SIZE
-from pootle.core.views.mixins import PootleJSONMixin
-from pootle_language.views import LanguageBrowseView
-from pootle_misc.util import ajax_required
-from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
-from pootle_translationproject.views import TPBrowseStoreView, TPBrowseView
+from pootle.core.views.base import PootleJSON
+from pootle_app.models import Directory
+from pootle_language.models import Language
+from pootle_project.models import Project, ProjectSet
 
 from .forms import StatsForm
 
 
-class ContributorsJSONMixin(PootleJSONMixin):
+class TopContributorsJSON(PootleJSON):
+    form_class = StatsForm
+
+    @cached_property
+    def request_kwargs(self):
+        stats_form = self.get_form()
+        if not stats_form.is_valid():
+            raise Http404(
+                ValidationError(stats_form.errors).messages)
+        return stats_form.cleaned_data
+
+    @cached_property
+    def pootle_path(self):
+        (language_code, project_code,
+         dir_path, filename) = split_pootle_path(self.path)
+        if language_code and project_code:
+            return (
+                "/%s/%s/"
+                % (language_code, project_code))
+        elif language_code:
+            return "/%s/" % language_code
+        elif project_code:
+            return "/projects/%s/" % project_code
+
+    @cached_property
+    def object(self):
+        return (
+            self.pootle_path
+            and Directory.objects.get(pootle_path=self.pootle_path)
+            or Directory.objects.projects)
+
+    def get_object(self):
+        return self.object
+
+    def get_form(self):
+        return self.form_class(self.request.GET)
 
     @property
     def path(self):
-        return self.kwargs["path"]
+        return self.request_kwargs.get("path")
+
+    @property
+    def offset(self):
+        return self.request_kwargs.get("offset") or 0
+
+    @property
+    def limit(self):
+        return TOP_CONTRIBUTORS_CHUNK_SIZE
+
+    @cached_property
+    def scores(self):
+        return scores.get(
+            self.score_context.__class__)(
+                self.score_context)
+
+    @property
+    def score_context(self):
+        (language_code, project_code,
+         dir_path, filename) = split_pootle_path(self.path)
+        if language_code and project_code:
+            return self.object.translationproject
+        elif language_code:
+            return Language.objects.get(code=language_code)
+        elif project_code:
+            return Project.objects.get(code=project_code)
+        return ProjectSet(
+            Project.objects.for_user(self.request.user)
+                           .select_related("directory"))
 
     def get_context_data(self, **kwargs_):
-        offset = self.kwargs.get("offset", 0)
-        chunk_size = TOP_CONTRIBUTORS_CHUNK_SIZE
 
         def scores_to_json(score):
             score["user"] = score["user"].to_dict()
             return score
         top_scorers = self.scores.display(
-            offset=offset,
-            limit=chunk_size,
+            offset=self.offset,
+            limit=self.limit,
             formatter=scores_to_json)
         return dict(
             items=list(top_scorers),
-            has_more_items=len(self.scores.top_scorers) > (offset + chunk_size))
-
-
-class TPContributorsJSON(ContributorsJSONMixin, TPBrowseView):
-    pass
-
-
-class TPStoreContributorsJSON(ContributorsJSONMixin, TPBrowseStoreView):
-    pass
-
-
-class LanguageContributorsJSON(ContributorsJSONMixin, LanguageBrowseView):
-    pass
-
-
-class ProjectContributorsJSON(ContributorsJSONMixin, ProjectBrowseView):
-    pass
-
-
-class ProjectsContributorsJSON(ContributorsJSONMixin, ProjectsBrowseView):
-    pass
-
-
-class TopContributorsJSON(View):
-    form_class = StatsForm
-    content_type = None
-
-    @never_cache
-    @method_decorator(ajax_required)
-    def dispatch(self, request, *args, **kwargs):
-        stats_form = self.get_form()
-        if not stats_form.is_valid():
-            raise Http404(
-                ValidationError(stats_form.errors).messages)
-
-        offset = stats_form.cleaned_data['offset'] or 0
-        path = stats_form.cleaned_data['path']
-        language_code, project_code, dir_path, filename = \
-            split_pootle_path(path)
-
-        kwargs.update(
-            dict(
-                language_code=language_code,
-                project_code=project_code,
-                dir_path=dir_path,
-                filename=filename,
-                offset=offset,
-                path=path,
-            )
-        )
-        view_class = ProjectsContributorsJSON
-        if language_code and project_code:
-            if filename:
-                view_class = TPStoreContributorsJSON
-            else:
-                view_class = TPContributorsJSON
-        elif language_code:
-            view_class = LanguageContributorsJSON
-        elif project_code:
-            view_class = ProjectContributorsJSON
-
-        return view_class.as_view()(request, *args, **kwargs)
-
-    def get_form(self):
-        return self.form_class(self.request.GET)
+            has_more_items=(
+                len(self.scores.top_scorers)
+                > (self.offset + self.limit)))
