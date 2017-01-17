@@ -20,6 +20,8 @@ from django.urls import reverse
 from pytest_pootle.fixtures.models.user import TEST_USERS
 from pytest_pootle.utils import create_store, get_test_uids
 
+from pootle.core.delegate import context_data
+
 
 DAY_AGO = (datetime.now() - timedelta(days=1))
 MONTH_AGO = (datetime.now() - relativedelta(months=1))
@@ -462,3 +464,14 @@ def get_vfolder_units_views(request, client, request_users):
 
     params["pootle_path"] = params["path"]
     return user, vfolder0, params, url_params, response
+
+
+@pytest.fixture
+def no_context_data(request):
+    start_receivers = context_data.receivers
+    context_data.receivers = []
+
+    def _reset_tp_tool():
+        context_data.receivers = start_receivers
+
+    request.addfinalizer(_reset_tp_tool)

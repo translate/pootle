@@ -346,7 +346,7 @@ def test_apiview_search(rf):
 
 
 @pytest.mark.django_db
-def test_view_gathered_context_data(rf, member):
+def test_view_gathered_context_data(rf, member, no_context_data):
 
     from pootle.core.views.base import PootleDetailView
     from pootle_project.models import Project
@@ -387,7 +387,6 @@ def test_view_gathered_context_data(rf, member):
     assert isinstance(response.context_data.pop("view"), DummyView)
     assert sorted(response.context_data.items()) == [
         ("foo", "bar"), ("foo2", "bar2")]
-    context_data.receivers = []
 
 
 @pytest.mark.django_db
