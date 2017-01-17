@@ -256,3 +256,13 @@ def test_finder_cache_key():
             % (finder.fs_hash,
                "::".join(finder.exclude_languages),
                hash(finder.regex.pattern))))
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(sys.platform == 'win32',
+                   reason="path mangling broken on windows")
+def test_finder_lang_codes():
+    finder = TranslationFileFinder(
+        "/path/to/<dir_path>/<language_code>.<ext>")
+    match = finder.match("/path/to/foo/bar@baz.po")
+    assert match[1]["language_code"] == "bar@baz"
