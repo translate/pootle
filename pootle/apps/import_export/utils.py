@@ -110,15 +110,6 @@ class TPTMXExporter(object):
     def has_changes(self):
         return self.revision != self.exported_revision
 
-    def file_exists(self):
-        return os.path.exists(self.abs_filepath)
-
-    def exported_file_exists(self):
-        if not self.exported_revision:
-            return False
-        exported_filename = self.get_filename(self.exported_revision)
-        return os.path.exists(os.path.join(self.directory, exported_filename))
-
     @property
     def directory(self):
         return os.path.join(settings.MEDIA_ROOT,
