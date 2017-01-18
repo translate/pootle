@@ -41,4 +41,5 @@ def test_disabled_project_in_lang_browse_view(client, request_users):
 
     disabled_project_exists = "language0-disabled_project0" in response.content
 
+    assert response.status_code == 200
     assert (user.is_superuser is disabled_project_exists)
