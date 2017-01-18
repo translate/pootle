@@ -10,8 +10,6 @@ from collections import OrderedDict
 
 import pytest
 
-from django.urls import reverse
-
 from .models import store
 
 
@@ -87,23 +85,3 @@ def import_tps(request):
     return TranslationProject.objects.get(
         language__code=language_code,
         project__code=project_code)
-
-
-@pytest.fixture
-def exported_tp_view_response(client, request_users, tp0):
-    from import_export.utils import TPTMXExporter
-
-    user = request_users["user"]
-    client.login(
-        username=user.username,
-        password=request_users["password"])
-
-    kwargs = {
-        "project_code": tp0.project.code,
-        "language_code": tp0.language.code,
-        "dir_path": ""}
-    exporter = TPTMXExporter(tp0)
-    exporter.export()
-
-    response = client.get(reverse('pootle-tp-browse', kwargs=kwargs))
-    return response
