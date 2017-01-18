@@ -23,7 +23,7 @@ from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.views.formtable import Formtable
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n import formatter
-from pootle.i18n.gettext import tr_lang, ugettext_lazy as _
+from pootle.i18n.gettext import tr_lang, ugettext_lazy as _, ungettext_lazy
 from pootle_misc.util import cmp_by_last_activity
 from pootle_store.constants import STATES_MAP
 
@@ -232,17 +232,25 @@ class LanguageSuggestionAdminView(PootleLanguageAdminFormView):
             form.cleaned_data["actions"] == "accept"
             and form.cleaned_data["comment"])
         if reject_and_notify:
-            message = _(
+            message = ungettext_lazy(
+                "Rejected %s suggestion with comment. User will be notified",
                 "Rejected %s suggestions with comment. Users will be notified",
                 count)
         elif accept_and_notify:
-            message = _(
+            message = ungettext_lazy(
+                "Accepted %s suggestion with comment. User will be notified",
                 "Accepted %s suggestions with comment. Users will be notified",
                 count)
         elif form.cleaned_data["actions"] == "reject":
-            message = _("Rejected %s suggestions", count)
+            message = ungettext_lazy(
+                "Rejected %s suggestion",
+                "Rejected %s suggestions",
+                count)
         else:
-            message = _("Accepted %s suggestions", count)
+            message = ungettext_lazy(
+                "Accepted %s suggestion",
+                "Accepted %s suggestions",
+                count)
         messages.success(self.request, message)
 
     def get_context_data(self, **kwargs):
