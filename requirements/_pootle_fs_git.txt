@@ -1,3 +1,3 @@
 # Pootle FS Git plugin
 
--e git+https://github.com/translate/pootle_fs_git#egg=pootle-fs-git-0.0.1
+-e git+https://github.com/translate/pootle_fs_git@186c893f#egg=pootle-fs-git-0.0.1
