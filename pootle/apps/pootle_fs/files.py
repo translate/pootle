@@ -7,7 +7,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import io
 import logging
 import os
 
@@ -169,16 +168,18 @@ class FSFile(object):
         if self.file_exists:
             os.unlink(self.file_path)
 
-    def deserialize(self):
-        if not self.file_exists:
+    def deserialize(self, create=False):
+        if not create and not self.file_exists:
             return
-        deserialized = ""
-        with open(self.file_path) as f:
-            deserialized = f.read()
+        if self.file_exists:
+            with open(self.file_path) as f:
+                store_file = (
+                    self.store.syncer.file_class(f)
+                    if self.store and self.store.syncer.file_class
+                    else getclass(f)(f.read()))
+            return store_file
         if self.store_exists:
-            return self.store.deserialize(deserialized)
-        serial_io = io.BytesIO(deserialized)
-        return getclass(serial_io)(serial_io.read())
+            return self.store.deserialize(self.store.serialize())
 
     def serialize(self):
         if not self.store_exists:
@@ -189,8 +190,10 @@ class FSFile(object):
         """
         Update FS file with the serialized content from Pootle ```Store```
         """
+        disk_store = self.deserialize(create=True)
+        self.store.syncer.sync(disk_store, self.store.data.max_unit_revision)
         with open(self.file_path, "w") as f:
-            f.write(self.serialize())
+            f.write(str(disk_store))
         logger.debug("Pushed file: %s", self.path)
 
     def _sync_to_pootle(self, merge=False, user=None, pootle_wins=None):
