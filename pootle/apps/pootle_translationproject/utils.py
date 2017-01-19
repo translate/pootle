@@ -212,7 +212,6 @@ class TPTool(object):
     def update_from_tp(self, source, target, update_cache=True):
         """Update one TP from another"""
         self.check_tp(source)
-        self.check_tp(target)
         self.update_children(
             source.directory, target.directory, update_cache=update_cache)
 
