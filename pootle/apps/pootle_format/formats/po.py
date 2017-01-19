@@ -74,17 +74,17 @@ class PoStoreSyncer(StoreSyncer):
             or 'Anonymous Pootle User')
         return headerupdates
 
-    def update_po_headers(self, mtime, user_displayname, user_email):
-        self.disk_store.updateheader(
+    def update_po_headers(self, disk_store, mtime, user_displayname, user_email):
+        disk_store.updateheader(
             add=True,
             **self.get_po_headers(mtime, user_displayname, user_email))
         if self.language.nplurals and self.language.pluralequation:
-            self.disk_store.updateheaderplural(
+            disk_store.updateheaderplural(
                 self.language.nplurals,
                 self.language.pluralequation)
 
-    def update_store_header(self, **kwargs):
-        super(PoStoreSyncer, self).update_store_header(**kwargs)
+    def update_store_header(self, disk_store, **kwargs):
+        super(PoStoreSyncer, self).update_store_header(disk_store, **kwargs)
         user = kwargs.get("user")
         mtime = self.store.units.aggregate(mtime=Max("mtime"))["mtime"]
         if mtime is None or mtime == datetime_min:
@@ -98,4 +98,4 @@ class PoStoreSyncer(StoreSyncer):
         elif user.is_authenticated:
             user_displayname = user.display_name
             user_email = user.email
-        self.update_po_headers(mtime, user_displayname, user_email)
+        self.update_po_headers(disk_store, mtime, user_displayname, user_email)
