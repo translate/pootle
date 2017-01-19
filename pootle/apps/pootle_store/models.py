@@ -7,7 +7,9 @@
 # AUTHORS file for copyright and authorship information.
 
 import datetime
+import logging
 import operator
+import os
 from hashlib import md5
 
 from collections import OrderedDict
@@ -35,7 +37,7 @@ from pootle.core.log import (
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
     STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
     MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
-    action_log, store_log)
+    action_log, log, store_log)
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
@@ -61,7 +63,7 @@ from .fields import MultiStringField, TranslationStoreField
 from .managers import StoreManager, SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
-from .util import SuggestionStates, vfolders_installed
+from .util import SuggestionStates, get_change_str, vfolders_installed
 
 
 TM_BROKER = None
@@ -1279,18 +1281,75 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def serialize(self):
         return StoreSerialization(self).serialize()
 
+    def create_file_store(self, last_revision, user):
+        path_parts = split_pootle_path(self.pootle_path)
+        file_path = os.path.join(
+            self.translation_project.abs_real_path,
+            *path_parts[2:])
+        path_prefix = [path_parts[1]]
+        if self.translation_project.project.get_treestyle() != "gnu":
+            path_prefix.append(path_parts[0])
+        relative_file_path = os.path.join(*(path_prefix + list(path_parts[2:])))
+        logging.debug(u"Creating file %s", self.pootle_path)
+        store = self.syncer.convert()
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+        self.file = relative_file_path
+        store.savefile(file_path)
+        log(u"Created file for %s [revision: %d]" %
+            (self.pootle_path, last_revision))
+        self.syncer.update_store_header(store, user=user)
+        self.file.savestore()
+        self.file_mtime = self.get_file_mtime()
+        self.last_sync_revision = last_revision
+        self.save()
+
+    def update_file_store(self, changes, last_revision, user):
+        self.syncer.update_store_header(self.file.store, user=user)
+        self.file.savestore()
+        self.file_mtime = self.get_file_mtime()
+        log(u"[sync] File saved; %s units in %s [revision: %d]" %
+            (get_change_str(changes),
+             self.pootle_path,
+             last_revision))
+
     def sync(self, update_structure=False, conservative=True,
              user=None, skip_missing=False, only_newer=True):
         """Sync file with translations from DB."""
         if skip_missing and not self.file.exists():
             return
 
-        self.syncer.sync(
-            update_structure=update_structure,
-            conservative=conservative,
-            user=user,
-            only_newer=only_newer)
+        last_revision = self.data.max_unit_revision or 0
 
+        # TODO only_newer -> not force
+        if only_newer and not self.syncer.update_newer(last_revision):
+            logging.info(
+                u"[sync] No updates for %s after [revision: %d]",
+                self.pootle_path, last_revision)
+            return
+
+        if not self.file.exists():
+            return self.create_file_store(last_revision, user)
+
+        if conservative and self.is_template:
+            return
+
+        file_changed, changes = self.syncer.sync(
+            self.file.store,
+            last_revision,
+            update_structure=update_structure,
+            conservative=conservative)
+
+        # TODO conservative -> not overwrite
+        if file_changed or not conservative:
+            self.update_file_store(changes, last_revision, user)
+        else:
+            logging.info(
+                u"[sync] nothing changed in %s [revision: %d]",
+                self.pootle_path,
+                last_revision)
+        self.last_sync_revision = last_revision
+        self.save()
 
 # # # # # # # # # # # #  TranslationStore # # # # # # # # # # # # #
 

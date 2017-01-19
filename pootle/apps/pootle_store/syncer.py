@@ -15,11 +15,8 @@ from translate.storage.factory import getclass
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import format_classes
-from pootle.core.log import log
-from pootle.core.url_helpers import split_pootle_path
 
 from .models import Unit
-from .util import get_change_str
 
 
 class UnitSyncer(object):
@@ -122,10 +119,6 @@ class StoreSyncer(object):
         self.store = store
 
     @property
-    def disk_store(self):
-        return self.store.file.store
-
-    @property
     def translation_project(self):
         return self.store.translation_project
 
@@ -140,20 +133,6 @@ class StoreSyncer(object):
     @property
     def source_language(self):
         return self.project.source_language
-
-    @property
-    def store_file_path(self):
-        return os.path.join(
-            self.translation_project.abs_real_path,
-            *split_pootle_path(self.store.pootle_path)[2:])
-
-    @property
-    def relative_file_path(self):
-        path_parts = split_pootle_path(self.store.pootle_path)
-        path_prefix = [path_parts[1]]
-        if self.project.get_treestyle() != "gnu":
-            path_prefix.append(path_parts[0])
-        return os.path.join(*(path_prefix + list(path_parts[2:])))
 
     @property
     def unit_class(self):
@@ -204,9 +183,9 @@ class StoreSyncer(object):
              for uid
              in new_ids - old_ids])
 
-    def get_units_to_obsolete(self, old_ids, new_ids):
+    def get_units_to_obsolete(self, disk_store, old_ids, new_ids):
         for uid in old_ids - new_ids:
-            unit = self.disk_store.findid(uid)
+            unit = disk_store.findid(uid)
             if unit and not unit.isobsolete():
                 yield unit
 
@@ -222,7 +201,7 @@ class StoreSyncer(object):
             del unit
         return obsoleted, deleted
 
-    def update_structure(self, obsolete_units, new_units, conservative):
+    def update_structure(self, disk_store, obsolete_units, new_units, conservative):
         obsolete = 0
         deleted = 0
         added = 0
@@ -233,25 +212,10 @@ class StoreSyncer(object):
             if _deleted:
                 deleted += 1
         for unit in new_units:
-            newunit = unit.convert(self.disk_store.UnitClass)
-            self.disk_store.addunit(newunit)
+            newunit = unit.convert(disk_store.UnitClass)
+            disk_store.addunit(newunit)
             added += 1
         return obsolete, deleted, added
-
-    def create_store_file(self, last_revision, user):
-        logging.debug(u"Creating file %s", self.store.pootle_path)
-        store = self.convert()
-        if not os.path.exists(os.path.dirname(self.store_file_path)):
-            os.makedirs(os.path.dirname(self.store_file_path))
-        self.store.file = self.relative_file_path
-        store.savefile(self.store_file_path)
-        log(u"Created file for %s [revision: %d]" %
-            (self.store.pootle_path, last_revision))
-        self.update_store_header(user=user)
-        self.store.file.savestore()
-        self.store.file_mtime = self.store.get_file_mtime()
-        self.store.last_sync_revision = last_revision
-        self.store.save()
 
     def update_newer(self, last_revision):
         return (
@@ -265,52 +229,28 @@ class StoreSyncer(object):
         return dict(
             self.store.unit_set.live().values_list('unitid', 'id'))
 
-    def sync(self, update_structure=False, conservative=True,
-             user=None, only_newer=True):
-        last_revision = self.store.data.max_unit_revision
-
-        # TODO only_newer -> not force
-        if only_newer and not self.update_newer(last_revision):
-            logging.info(
-                u"[sync] No updates for %s after [revision: %d]",
-                self.store.pootle_path, self.store.last_sync_revision)
-            return
-
-        if not self.store.file.exists():
-            self.create_store_file(last_revision, user)
-            return
-
-        if conservative and self.store.is_template:
-            return
-
-        file_changed, changes = self.sync_store(
-            last_revision,
-            update_structure,
-            conservative)
-        self.save_store(
-            last_revision,
-            user,
-            changes,
-            (file_changed or not conservative))
-
-    def sync_store(self, last_revision, update_structure, conservative):
+    def sync(self, disk_store, last_revision,
+             update_structure=False, conservative=True):
         logging.info(u"Syncing %s", self.store.pootle_path)
-        old_ids = set(self.disk_store.getids())
+        old_ids = set(disk_store.getids())
         new_ids = set(self.dbid_index.keys())
         file_changed = False
         changes = {}
         if update_structure:
-            obsolete_units = self.get_units_to_obsolete(old_ids, new_ids)
+            obsolete_units = self.get_units_to_obsolete(
+                disk_store, old_ids, new_ids)
             new_units = self.get_new_units(old_ids, new_ids)
             if obsolete_units or new_units:
                 file_changed = True
                 (changes['obsolete'],
                  changes['deleted'],
                  changes['added']) = self.update_structure(
-                    obsolete_units,
-                    new_units,
-                    conservative=conservative)
+                     disk_store,
+                     obsolete_units,
+                     new_units,
+                     conservative=conservative)
         changes["updated"] = self.sync_units(
+            disk_store,
             self.get_common_units(
                 set(self.dbid_index.get(uid)
                     for uid
@@ -318,24 +258,6 @@ class StoreSyncer(object):
                 last_revision,
                 conservative))
         return bool(file_changed or any(changes.values())), changes
-
-    def save_store(self, last_revision, user, changes, updated):
-        # TODO conservative -> not overwrite
-        if updated:
-            self.update_store_header(user=user)
-            self.store.file.savestore()
-            self.store.file_mtime = self.store.get_file_mtime()
-            log(u"[sync] File saved; %s units in %s [revision: %d]" %
-                (get_change_str(changes),
-                 self.store.pootle_path,
-                 last_revision))
-        else:
-            logging.info(
-                u"[sync] nothing changed in %s [revision: %d]",
-                self.store.pootle_path,
-                last_revision)
-        self.store.last_sync_revision = last_revision
-        self.store.save()
 
     def get_revision_filters(self, last_revision):
         # Get units modified after last sync and before this sync started
@@ -360,16 +282,16 @@ class StoreSyncer(object):
             common_dbids &= self.get_modified_units(last_revision)
         return self.store.findid_bulk(list(common_dbids))
 
-    def sync_units(self, units):
+    def sync_units(self, disk_store, units):
         updated = 0
         for unit in units:
-            match = self.disk_store.findid(unit.getid())
+            match = disk_store.findid(unit.getid())
             if match is not None:
                 changed = unit.sync(match)
                 if changed:
                     updated += 1
         return updated
 
-    def update_store_header(self, **kwargs_):
-        self.disk_store.settargetlanguage(self.language.code)
-        self.disk_store.setsourcelanguage(self.source_language.code)
+    def update_store_header(self, disk_store, **kwargs_):
+        disk_store.settargetlanguage(self.language.code)
+        disk_store.setsourcelanguage(self.source_language.code)
