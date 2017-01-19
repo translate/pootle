@@ -1278,21 +1278,24 @@ def test_store_syncer_obsolete_unit(tp0):
 @pytest.mark.django_db
 def test_store_syncer_sync_store(tp0, dummy_store_syncer):
     store = tp0.stores.live().first()
-    DummyStoreSyncer, expected = dummy_store_syncer
+    DummyStoreSyncer, __, expected = dummy_store_syncer
+    disk_store = store.syncer.convert()
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
-    result = dummy_syncer.sync_store(
+    result = dummy_syncer.sync(
+        disk_store,
         expected["last_revision"],
-        expected["update_structure"],
-        expected["conservative"])
+        update_structure=expected["update_structure"],
+        conservative=expected["conservative"])
     assert result[0] is True
     assert result[1]["updated"] == expected["changes"]
     # conservative makes no diff here
     expected["conservative"] = False
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
-    result = dummy_syncer.sync_store(
+    result = dummy_syncer.sync(
+        disk_store,
         expected["last_revision"],
-        expected["update_structure"],
-        expected["conservative"])
+        update_structure=expected["update_structure"],
+        conservative=expected["conservative"])
     assert result[0] is True
     assert result[1]["updated"] == expected["changes"]
 
@@ -1300,14 +1303,16 @@ def test_store_syncer_sync_store(tp0, dummy_store_syncer):
 @pytest.mark.django_db
 def test_store_syncer_sync_store_no_changes(tp0, dummy_store_syncer):
     store = tp0.stores.live().first()
-    DummyStoreSyncer, expected = dummy_store_syncer
+    DummyStoreSyncer, __, expected = dummy_store_syncer
+    disk_store = store.syncer.convert()
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
 
     # no changes
     expected["changes"] = []
     expected["conservative"] = True
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
-    result = dummy_syncer.sync_store(
+    result = dummy_syncer.sync(
+        disk_store,
         expected["last_revision"],
         expected["update_structure"],
         expected["conservative"])
@@ -1317,7 +1322,8 @@ def test_store_syncer_sync_store_no_changes(tp0, dummy_store_syncer):
     # conservative makes no diff here
     expected["conservative"] = False
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
-    result = dummy_syncer.sync_store(
+    result = dummy_syncer.sync(
+        disk_store,
         expected["last_revision"],
         expected["update_structure"],
         expected["conservative"])
@@ -1328,12 +1334,14 @@ def test_store_syncer_sync_store_no_changes(tp0, dummy_store_syncer):
 @pytest.mark.django_db
 def test_store_syncer_sync_store_structure(tp0, dummy_store_syncer):
     store = tp0.stores.live().first()
-    DummyStoreSyncer, expected = dummy_store_syncer
+    DummyStoreSyncer, DummyDiskStore, expected = dummy_store_syncer
 
+    disk_store = DummyDiskStore(expected)
     expected["update_structure"] = True
     expected["changes"] = []
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
-    result = dummy_syncer.sync_store(
+    result = dummy_syncer.sync(
+        disk_store,
         expected["last_revision"],
         expected["update_structure"],
         expected["conservative"])
@@ -1347,7 +1355,8 @@ def test_store_syncer_sync_store_structure(tp0, dummy_store_syncer):
     expected["new_units"] = []
     expected["changes"] = []
     dummy_syncer = DummyStoreSyncer(store, expected=expected)
-    result = dummy_syncer.sync_store(
+    result = dummy_syncer.sync(
+        disk_store,
         expected["last_revision"],
         expected["update_structure"],
         expected["conservative"])
@@ -1357,7 +1366,7 @@ def test_store_syncer_sync_store_structure(tp0, dummy_store_syncer):
 @pytest.mark.django_db
 def test_store_syncer_sync_update_structure(dummy_store_structure_syncer, tp0):
     store = tp0.stores.live().first()
-    DummyStoreSyncer, DummyUnit = dummy_store_structure_syncer
+    DummyStoreSyncer, DummyDiskStore, DummyUnit = dummy_store_structure_syncer
     expected = dict(
         unit_class="FOO",
         conservative=True,
@@ -1367,7 +1376,9 @@ def test_store_syncer_sync_update_structure(dummy_store_structure_syncer, tp0):
         DummyUnit(unit, expected=expected)
         for unit in ["5", "6", "7"]]
     syncer = DummyStoreSyncer(store, expected=expected)
+    disk_store = DummyDiskStore(expected)
     result = syncer.update_structure(
+        disk_store,
         expected["obsolete_units"],
         expected["new_units"],
         expected["conservative"])
@@ -1391,35 +1402,37 @@ def _test_get_new(results, syncer, old_ids, new_ids):
              in new_ids - old_ids]))
 
 
-def _test_get_obsolete(results, syncer, old_ids, new_ids):
+def _test_get_obsolete(results, disk_store, syncer, old_ids, new_ids):
     assert list(results) == list(
-        syncer.disk_store.findid(uid)
+        disk_store.findid(uid)
         for uid
         in old_ids - new_ids
-        if (syncer.disk_store.findid(uid)
-            and not syncer.disk_store.findid(uid).isobsolete()))
+        if (disk_store.findid(uid)
+            and not disk_store.findid(uid).isobsolete()))
 
 
 @pytest.mark.django_db
 def test_store_syncer_obsolete_units(dummy_store_syncer_units, tp0):
     store = tp0.stores.live().first()
+    disk_store = store.syncer.convert()
     expected = dict(
         old_ids=set(),
         new_ids=set(),
         disk_ids={})
     syncer = dummy_store_syncer_units(store, expected=expected)
     results = syncer.get_units_to_obsolete(
-        expected["old_ids"], expected["new_ids"])
+        disk_store, expected["old_ids"], expected["new_ids"])
     _test_get_obsolete(
-        results, syncer, expected["old_ids"], expected["new_ids"])
+        results, disk_store, syncer,
+        expected["old_ids"], expected["new_ids"])
     expected = dict(
         old_ids=set(["2", "3", "4"]),
         new_ids=set(["3", "4", "5"]),
         disk_ids={"3": "foo", "4": "bar", "5": "baz"})
     results = syncer.get_units_to_obsolete(
-        expected["old_ids"], expected["new_ids"])
+        disk_store, expected["old_ids"], expected["new_ids"])
     _test_get_obsolete(
-        results, syncer, expected["old_ids"], expected["new_ids"])
+        results, disk_store, syncer, expected["old_ids"], expected["new_ids"])
 
 
 @pytest.mark.django_db

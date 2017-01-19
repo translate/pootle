@@ -438,10 +438,6 @@ def dummy_store_structure_syncer():
             super(DummyStoreSyncer, self).__init__(*args, **kwargs)
 
         @cached_property
-        def disk_store(self):
-            return DummyDiskStore(self.expected)
-
-        @cached_property
         def _units(self):
             for unit in self.expected["obsolete_units"]:
                 yield unit
@@ -451,13 +447,12 @@ def dummy_store_structure_syncer():
             assert unit == self._units.next()
             return self.expected["obsolete_delete"]
 
-    return DummyStoreSyncer, DummyUnit
+    return DummyStoreSyncer, DummyDiskStore, DummyUnit
 
 
 @pytest.fixture
 def dummy_store_syncer_units():
     from pootle_store.syncer import StoreSyncer
-    from django.utils.functional import cached_property
 
     class DummyStore(object):
 
@@ -466,14 +461,6 @@ def dummy_store_syncer_units():
 
         def findid_bulk(self, uids):
             return uids
-
-    class DummyDiskStore(object):
-
-        def __init__(self, expected):
-            self.expected = expected
-
-        def findid(self, uid):
-            return self.expected['disk_ids'].get(uid)
 
     class DummyStoreSyncer(StoreSyncer):
 
@@ -486,17 +473,12 @@ def dummy_store_syncer_units():
         def dbid_index(self):
             return self.expected["db_ids"]
 
-        @cached_property
-        def disk_store(self):
-            return DummyDiskStore(self.expected)
-
     return DummyStoreSyncer
 
 
 @pytest.fixture
 def dummy_store_syncer():
     from pootle_store.syncer import StoreSyncer
-    from django.utils.functional import cached_property
 
     class DummyDiskStore(object):
 
@@ -512,15 +494,11 @@ def dummy_store_syncer():
             self.expected = kwargs.pop("expected")
             super(DummyStoreSyncer, self).__init__(*args, **kwargs)
 
-        @cached_property
-        def disk_store(self):
-            return DummyDiskStore(self.expected)
-
         @property
         def dbid_index(self):
             return self.expected["db_index"]
 
-        def get_units_to_obsolete(self, old_ids_, new_ids_):
+        def get_units_to_obsolete(self, disk_store, old_ids_, new_ids_):
             return self.expected["obsolete_units"]
 
         def get_new_units(self, old_ids, new_ids):
@@ -533,13 +511,14 @@ def dummy_store_syncer():
             assert conservative == self.expected["conservative"]
             return self.expected["common_units"]
 
-        def update_structure(self, obsolete_units, new_units, conservative):
+        def update_structure(self, disk_store, obsolete_units,
+                             new_units, conservative):
             assert obsolete_units == self.expected["obsolete_units"]
             assert new_units == self.expected["new_units"]
             assert conservative == self.expected["conservative"]
             return self.expected["structure_changed"]
 
-        def sync_units(self, units):
+        def sync_units(self, disk_store, units):
             assert units == self.expected["common_units"]
             return self.expected["changes"]
 
@@ -554,7 +533,7 @@ def dummy_store_syncer():
         new_units=["new", "units"],
         common_units=["common", "units"],
         changes=["some", "changes"])
-    return DummyStoreSyncer, expected
+    return DummyStoreSyncer, DummyDiskStore, expected
 
 
 @pytest.fixture
