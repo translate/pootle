@@ -121,7 +121,7 @@ class StoreSyncer(object):
     def __init__(self, store):
         self.store = store
 
-    @cached_property
+    @property
     def disk_store(self):
         return self.store.file.store
 
