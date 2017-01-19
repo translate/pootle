@@ -1462,3 +1462,34 @@ def test_store_syncer_new_units(dummy_store_syncer_units, tp0):
 @pytest.mark.django_db
 def test_store_path(store0):
     assert store0.path == to_tp_relative_path(store0.pootle_path)
+
+
+@pytest.mark.django_db
+def test_store_sync_empty(project0_nongnu, tp0, caplog):
+    store = StoreDBFactory(
+        name="empty.po",
+        translation_project=tp0,
+        parent=tp0.directory)
+    store.sync()
+    assert os.path.exists(store.file.path)
+    modified = os.stat(store.file.path).st_mtime
+    store.sync()
+    assert modified == os.stat(store.file.path).st_mtime
+    # warning message - nothing changes
+    store.sync(conservative=True, only_newer=False)
+    assert "nothing changed" in caplog.records[-1].message
+    assert modified == os.stat(store.file.path).st_mtime
+
+
+@pytest.mark.django_db
+def test_store_sync_template(project0_nongnu, templates_project0, caplog):
+    template = templates_project0.stores.first()
+    template.sync()
+    modified = os.stat(template.file.path).st_mtime
+    unit = template.units.first()
+    unit.target = "NEW TARGET"
+    unit.save()
+    template.sync(conservative=True)
+    assert modified == os.stat(template.file.path).st_mtime
+    template.sync(conservative=False)
+    assert not modified == os.stat(template.file.path).st_mtime
