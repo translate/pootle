@@ -427,7 +427,7 @@ class Plugin(object):
         _sfs = StoreFS.objects.filter(
             id__in=sfs.keys()).select_related("store", "store__data")
         for store_fs in _sfs:
-            store_fs.file.pull(user=self.pootle_user)
+            store_fs.file.sync(user=self.pootle_user)
             if store_fs.store and store_fs.store.data:
                 state.resources.pootle_revisions[
                     store_fs.store_id] = store_fs.store.data.max_unit_revision
