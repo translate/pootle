@@ -123,7 +123,7 @@ check_names = {
     'ftl_format': _(u'ftl format'),
 
     # Romanian-specific checks
-    'cedillas': _(u'Romanian: Avoid cedillas diacritics'),
+    'cedillas': _(u'Romanian: Avoid cedilla diacritics'),
     'niciun_nicio': _(u'Romanian: Use "niciun"/"nicio"'),
 }
 
