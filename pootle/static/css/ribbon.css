@@ -1,0 +1,63 @@
+/* Git branch ribbon */
+
+.ribbon.is-default-branch
+{
+    background-color: #090;
+}
+
+.ribbon
+{
+    background-color: #a00;
+    overflow: hidden;
+    white-space: nowrap;
+
+    /* top right corner */
+    position: absolute;
+    right: -50px;
+    top: 40px;
+    z-index: 999;
+
+    /* 45 deg cw rotation */
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px #888;
+}
+
+.ribbon.is-default-branch a
+{
+    border: 1px solid #9c9;
+}
+
+.ribbon a
+{
+    border: 1px solid #faa;
+    color: #fff;
+    display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 85%;
+    margin: 1px 0;
+    padding: 10px 50px;
+    min-width: 100px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 0 5px #444;
+}
+
+
+/* Navbar */
+
+#navbar
+{
+    background-color: #222;
+}
+
+.development #navbar
+{
+    background-color: #800;
+}
+
+.stage #navbar
+{
+    background-color: #408;
+}
