@@ -104,8 +104,6 @@ class SubmissionQuerySet(models.QuerySet):
 
 class SubmissionManager(models.Manager):
 
-    use_for_related_fields = True
-
     def get_queryset(self):
         return SubmissionQuerySet(self.model, using=self._db)
 
@@ -163,6 +161,7 @@ class Submission(models.Model):
         index_together = ["submitter", "creation_time", "id"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
+        base_manager_name = 'objects'
 
     objects = SubmissionManager()
 

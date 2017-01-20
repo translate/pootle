@@ -20,7 +20,6 @@ from pootle_revision.models import Revision
 
 
 class DirectoryManager(models.Manager):
-    use_for_related_fields = True
 
     def live(self):
         """Filters non-obsolete directories."""
@@ -82,6 +81,7 @@ class Directory(models.Model, CachedTreeItem):
         index_together = [
             ["obsolete", "pootle_path"],
             ["obsolete", "tp", "tp_path"]]
+        base_manager_name = "objects"
 
     @cached_property
     def data_tool(self):

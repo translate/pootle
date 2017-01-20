@@ -1008,6 +1008,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         unique_together = (
             ('parent', 'name'),
             ("obsolete", "translation_project", "tp_path"))
+        base_manager_name = "objects"
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
