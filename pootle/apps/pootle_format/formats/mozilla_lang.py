@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from translate.misc.multistring import multistring
+
 from pootle_store.constants import FUZZY, UNTRANSLATED
 from pootle_store.diff import DiffableStore
 from pootle_store.syncer import StoreSyncer, UnitSyncer
@@ -16,7 +18,7 @@ class LangUnitSyncer(UnitSyncer):
     @property
     def target(self):
         if self.isfuzzy:
-            return ""
+            return multistring("")
         return self.unit.target
 
 
