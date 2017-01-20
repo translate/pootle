@@ -15,11 +15,6 @@ from pootle_misc.checks import (Category, ENChecker, check_names,
                                 get_qualitychecks, get_qualitycheck_list,
                                 get_qualitycheck_schema)
 
-try:
-    from plurr import Plurr
-except ImportError:
-    Plurr = None
-
 
 checker = ENChecker()
 
@@ -120,14 +115,6 @@ def test_incorrectly_escaped_ampersands(source_string, target_string, should_ski
     (u'NAME6_', u'name_count', False),
     (u'NAME6_', u'NAME7_', False),
     (u'NAME6_', u'NAME6_', True),
-
-    # Ignore the check altogether for Plurr-like source strings
-    (u'{:{BAR}}', u'Foo', True),
-    (u'{:{:a|b}|c}', u'Foo', True),
-    (u'{FOO:{BAR}}', u'Foo', True),
-    (u'{FOO:{BAR:a|b}|c}', u'Foo', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo', True),
 ])
 def test_uppercase_placeholders(source_string, target_string, should_skip):
     check = checker.uppercase_placeholders
@@ -170,14 +157,6 @@ def test_uppercase_placeholders(source_string, target_string, should_skip):
     (u'{{FOO}}a{{BAR}}', u'{{FOO}}A{{RAB}}', False),
     (u'{{FOO}}a{{BAR}}', u'{{OOF}}A{{BAR}}', False),
     (u'{{FOO}}a{{BAR}}', u'{{OOF}}A{{RAB}}', False),
-
-    # Ignore the check altogether for Plurr-like source strings
-    (u'{:{BAR}}', u'Foo', True),
-    (u'{:{:a|b}|c}', u'Foo', True),
-    (u'{FOO:{BAR}}', u'Foo', True),
-    (u'{FOO:{BAR:a|b}|c}', u'Foo', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo', True),
 ])
 def test_mustache_placeholders(source_string, target_string, should_skip):
     check = checker.mustache_placeholders
@@ -233,14 +212,6 @@ def test_mustache_like_placeholder_pairs(source_string, target_string, should_sk
     (u'', u'', True),
     (u'{a}', u'{a}', True),
     (u'{{a}}', u'{{a}', False),
-
-    # Ignore the check altogether for Plurr-like source strings
-    (u'{:{BAR}}', u'Foo', True),
-    (u'{:{:a|b}|c}', u'Foo', True),
-    (u'{FOO:{BAR}}', u'Foo', True),
-    (u'{FOO:{BAR:a|b}|c}', u'Foo', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo', True),
 ])
 def test_unbalanced_curly_braces(source_string, target_string, should_skip):
     check = checker.unbalanced_curly_braces
@@ -279,14 +250,6 @@ def test_tags_differ(source_string, target_string, should_skip):
 
     (u'_Foo', u'_foo', True),
     (u'_Foo', u'bar_foo', True),
-
-    # Ignore the check altogether for Plurr-like source strings
-    (u'{:{BAR}}', u'Foo', True),
-    (u'{:{:a|b}|c}', u'Foo', True),
-    (u'{FOO:{BAR}}', u'Foo', True),
-    (u'{FOO:{BAR:a|b}|c}', u'Foo', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo', True),
 ])
 def test_accelerators(source_string, target_string, should_skip):
     check = checker.accelerators
@@ -329,59 +292,6 @@ def test_broken_entities(source_string, target_string, should_skip):
 ])
 def test_date_format(source_string, target_string, should_skip):
     check = checker.date_format
-    assert_check(check, source_string, target_string, should_skip)
-
-
-@pytest.mark.skipif(Plurr is None, reason='Plurr library not installed')
-@pytest.mark.parametrize('source_string, target_string, should_skip', [
-    (u'', u'', True),
-    (u'Foo bar', u'', True),
-    (u'Foo {bar}', u'', True),
-
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:foo}', True),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:foo|{BAR}}', True),
-
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:foo', False),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo BAR_PLURAL:foo}', False),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{BAR|foo}', False),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:BAR}|foo}', False),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{BAR}|foo}}', False),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{BAR}|{foo}', False),
-    (u'Foo {BAR_PLURAL:Zero|{BAR}}', u'Foo {BAR_PLURAL:{{{BAR}}|foo}', False),
-])
-def test_plurr_format(source_string, target_string, should_skip):
-    check = checker.plurr_format
-    assert_check(check, source_string, target_string, should_skip,
-                 language_code='ru')
-
-
-@pytest.mark.parametrize('source_string, target_string, should_skip', [
-    (u'', u'', True),
-    (u'Foo bar', u'', True),
-    (u'Foo {bar}', u'', True),
-    (u'Foo bar baz', u'Baz bar foo', True),
-
-    (u'A {BAR_PLURAL:Zero|{BAR}}', u'', True),
-    (u'B {BAR_PLURAL:Zero|{BAR}}', u'B {BAR_PLURAL:foo}', True),
-    (u'C {BAR_PLURAL:Zero|{BAR}}', u'C {BAR_PLURAL:foo|{BAR}}', True),
-    (u'{FOO} {BAR} {BAZ}', u'{FOO} {BAR} {BAZ}', True),
-
-    (u'D {BAR_PLURAL:Zero|{BAR}}', u'D {RAB_PLURAL:rab|{RAB} rab}', False),
-    (u'F {BAR_PLURAL:Zero|{BAR}}', u'F {BAR_PLURALL:rab|{RAB} rab}', False),
-    (u'G {BAR}', u'{FOO} Bar', False),
-    (u'H {FOO}', u'FOO H', False),
-    (u'{FOO} {BAR} {BAZ}', u'{OOF} {BAR} {BAZ}', False),
-    (u'{FOO} {BAR} {BAZ}', u'{OOF} {RAB} {BAZ}', False),
-    (u'{FOO} {BAR} {BAZ}', u'{OOF} {RAB} {ZAB}', False),
-
-    (u'{N} {N_PLURAL:Note|Notes}', u'{N} {Not}', False),
-    (u'{DATE}', u'{FECHA}', False),
-    (u'{QUOTA} upload limit resets in {N} {N_PLURAL:day|days}',
-     u'{CUOTA} se restablece en {N} {FOO_PLURAL:día|días}', False),
-])
-def test_plurr_placeholders(source_string, target_string, should_skip):
-    check = checker.plurr_placeholders
     assert_check(check, source_string, target_string, should_skip)
 
 

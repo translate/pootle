@@ -116,8 +116,6 @@ check_names = {
     'potential_unwanted_placeholders': _(u"Potential unwanted placeholders"),
     'double_quotes_in_tags': _(u"Double quotes in tags"),
     'percent_brace_placeholders': _(u"Percent brace placeholders"),
-    'plurr_format': _(u'Plurr format'),
-    'plurr_placeholders': _(u'Plurr placeholders'),
 
     # FIXME: make checks customisable
     'ftl_format': _(u'ftl format'),
@@ -250,14 +248,6 @@ potential_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 fmt = u"\%\{{1}[^\}]+\}{1}"
 percent_brace_placeholders_regex = re.compile(u"(%s)" % fmt, re.U)
 
-plurr_format_regex = re.compile(u'{[^{}]*:.*?}')
-plurr_placeholders_regex = re.compile(u'{([^{}]*):.*?}|{([^{}]*?)}')
-plurr_plural_suffix_regex = re.compile(u'_PLURAL$')
-
-
-def clean_plurr_placeholder(string):
-    return plurr_plural_suffix_regex.sub('', string)
-
 
 def get_category_id(code):
     return CATEGORY_IDS.get(code)
@@ -340,19 +330,11 @@ class ENChecker(checks.UnitChecker):
 
     @critical
     def uppercase_placeholders(self, str1, str2, **kwargs):
-        # Ignore check for Plurr-formatted strings
-        if plurr_format_regex.search(str1):
-            return True
-
         return _generic_check(str1, str2, uppercase_placeholders_regex,
                               u"uppercase_placeholders")
 
     @critical
     def mustache_placeholders(self, str1, str2, **kwargs):
-        # Ignore check for Plurr-formatted strings
-        if plurr_format_regex.search(str1):
-            return True
-
         return _generic_check(str1, str2, mustache_placeholders_regex,
                               u"mustache_placeholders")
 
@@ -683,10 +665,6 @@ class ENChecker(checks.UnitChecker):
 
             return fingerprint
 
-        # Ignore check for Plurr-formatted strings
-        if plurr_format_regex.search(str1):
-            return True
-
         if check_translation(get_fingerprint, str1, str2):
             return True
 
@@ -782,10 +760,6 @@ class ENChecker(checks.UnitChecker):
             )
 
             return fingerprint
-
-        # Ignore check for Plurr-formatted strings
-        if plurr_format_regex.search(str1):
-            return True
 
         if check_translation(get_fingerprint, str1, str2):
             return True
@@ -968,74 +942,6 @@ class ENChecker(checks.UnitChecker):
                 return True
 
         raise checks.FilterFailure(u"Double quotes in tags mismatch")
-
-    @critical
-    def plurr_format(self, str1, str2, **kwargs):
-        """For plurr-formatted strings, checks the syntax is correct."""
-        # Ignore check for empty target strings or non Plurr-formatted
-        # source strings
-        if str2 == u'' or not plurr_format_regex.search(str1):
-            return True
-
-        # Ignore check if library is missing
-        try:
-            from plurr import Plurr
-        except ImportError:
-            return True
-
-        plurr = Plurr()
-
-        try:
-            plurr.format(str2, {}, {
-                'locale': kwargs['language_code'],
-                'strict': False,
-                'callback': lambda x: '',
-            })
-        except SyntaxError as e:
-            raise checks.FilterFailure(e)
-
-        return True
-
-    @critical
-    def plurr_placeholders(self, str1, str2, **kwargs):
-        """For plurr-formatted strings, checks placeholders used in target
-        strings actually exist in the source string.
-        """
-        if str2 == u'' or not plurr_placeholders_regex.search(str1):
-            return True
-
-        placeholders_source = map(
-            clean_plurr_placeholder,
-            filter(None,
-                   reduce(lambda x, y: x + y,
-                          map(list, plurr_placeholders_regex.findall(str1)),
-                          []))
-        )
-        placeholders_target = map(
-            clean_plurr_placeholder,
-            filter(None,
-                   reduce(lambda x, y: x + y,
-                          map(list, plurr_placeholders_regex.findall(str2)),
-                          []))
-        )
-        if set(placeholders_source) == set(placeholders_target):
-            return True
-
-        unknown_in_target = set(placeholders_target) - set(placeholders_source)
-        if len(unknown_in_target) > 0:
-            raise checks.FilterFailure(
-                u'Unknown placeholders in translation: %s' %
-                u', '.join(unknown_in_target)
-            )
-
-        missing_in_translation = set(placeholders_source) - set(placeholders_target)
-        if len(missing_in_translation) > 0:
-            raise checks.FilterFailure(
-                u'Placeholders missing in translation: %s' %
-                u', '.join(missing_in_translation)
-            )
-
-        return True
 
 
 def run_given_filters(checker, unit, check_names=None):

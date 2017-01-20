@@ -187,7 +187,6 @@ Details of changes
   - `Welsh <http://techiaith.cymru/api/translation/?lang=en>`_
 
 - Usernames using latin1 characters are now allowed
-- Added placeholders check for Plurr-formatted strings
 - Improved RQ usage and new management commands
 - Changed Pootle logo
 - Documentation updates
