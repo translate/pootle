@@ -480,7 +480,7 @@ class Unit(models.Model, base.TranslationUnit):
         """
         return self.unit_syncer.convert(unitclass)
 
-    def sync(self, unit):
+    def sync(self, unit, unitclass=None):
         """Sync in file unit with translations from the DB."""
         changed = False
 
@@ -488,18 +488,23 @@ class Unit(models.Model, base.TranslationUnit):
             unit.resurrect()
             changed = True
 
-        if unit.target != self.target:
+        target = (
+            unitclass(self).target
+            if unitclass
+            else unit.target)
+
+        if unit.target != target:
             if unit.hasplural():
                 nplurals = self.store.translation_project.language.nplurals
-                target_plurals = len(self.target.strings)
-                strings = self.target.strings
+                target_plurals = len(target.strings)
+                strings = target.strings
                 if target_plurals < nplurals:
                     strings.extend([u'']*(nplurals - target_plurals))
                 if unit.target.strings != strings:
                     unit.target = strings
                     changed = True
             else:
-                unit.target = self.target
+                unit.target = target
                 changed = True
 
         self_notes = self.getnotes(origin="translator")

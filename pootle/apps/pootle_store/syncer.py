@@ -287,7 +287,7 @@ class StoreSyncer(object):
         for unit in units:
             match = disk_store.findid(unit.getid())
             if match is not None:
-                changed = unit.sync(match)
+                changed = unit.sync(match, unitclass=self.unit_sync_class)
                 if changed:
                     updated += 1
         return updated
