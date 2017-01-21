@@ -2574,3 +2574,8 @@ form.formtable tfoot .formtable-actions td
     background-color: #feefb3;
     padding: 1em;
 }
+
+.absolute
+{
+    position: absolute;
+}
