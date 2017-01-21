@@ -1,6 +1,6 @@
 {% extends browser_extends %}
 
-{% load core assets cleanhtml i18n locale common_tags profile_tags %}
+{% load core assets cleanhtml i18n locale common_tags profile_tags fs_tags %}
 
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -89,6 +89,9 @@
 		<a dir="ltr" href="{{ stats.last_created_unit.unit_url }}">{{ stats.last_created_unit.unit_source }}</a>
 	      </div>
             </div>
+	    {% if project.treestyle == "pootle_fs" %}
+	    {% upstream_link project %}
+	    {% endif %}
           </div>
         </div>
 	{% endif %}
