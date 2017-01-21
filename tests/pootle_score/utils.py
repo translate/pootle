@@ -10,6 +10,7 @@ from datetime import timedelta
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.utils import timezone
 
@@ -25,6 +26,9 @@ from pootle_score.utils import (
     LanguageScores, ProjectScores, ProjectSetScores, TPScores, UserScores)
 
 
+User = get_user_model()
+
+
 def _test_scores(ns, context, score_data):
     today = timezone.now().date()
     assert score_data.context == context
@@ -33,7 +37,9 @@ def _test_scores(ns, context, score_data):
         == (today - timedelta(days=30), today))
     assert score_data.ns == "pootle.score.%s" % ns
     assert score_data.sw_version == PootleScoreConfig.version
-    assert score_data.score_model == UserTPScore.objects
+    assert list(score_data.score_model.order_by("id")) == list(
+        UserTPScore.objects.exclude(
+            user__username__in=User.objects.META_USERS).order_by("id"))
     assert (
         list(score_data.scores_within_days(5))
         == list(score_data.score_model.filter(
