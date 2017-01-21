@@ -48,3 +48,5 @@ url_patterns = Provider()
 
 # view.context_data
 context_data = Provider(providing_args=["view", "context"])
+
+upstream = Provider()
