@@ -1,0 +1,7 @@
+{% if upstream_url %}
+<div class="upstream-link">
+  <a href="{{ upstream_url }}">
+    <i class="icon-github upstream-icon"></i>{{ fs_path }}
+  </a>@<a href="{{ revision_url }}">{{ latest_hash }}</a>
+</div>
+{% endif %}
