@@ -114,7 +114,7 @@ class InitDB(object):
         # associate updates done by bulk commands as update_stores.
         criteria = {
             'username': u"system",
-            'full_name': u"system user",
+            'full_name': u"Pootle",
             'is_active': True,
         }
         self._create_pootle_user(**criteria)
