@@ -1,4 +1,4 @@
-/* glue: 0.11.1 hash: 4b08df7800 */
+/* glue: 0.11.1 hash: 4557349d96 */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -6,6 +6,7 @@
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
+.icon-github,
 .icon-expand-stats,
 .icon-collapse-stats,
 .icon-yandex-translate,
@@ -41,7 +42,7 @@
 .icon-back,
 .icon-accept-white,
 .icon-external-link {
-            background-image: url('../images/sprite.png?4b08df7800');
+            background-image: url('../images/sprite.png?4557349d96');
             background-repeat: no-repeat;
         }
         
@@ -87,218 +88,218 @@
             height: 4px;
         }
         
-        .icon-expand-stats {
+        .icon-github {
             background-position: -64px -17px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .icon-expand-stats {
+            background-position: -64px -37px;
             width: 17px;
             height: 17px;
         }
         
         .icon-collapse-stats {
-            background-position: -64px -34px;
+            background-position: 0 -64px;
             width: 17px;
             height: 17px;
         }
         
         .icon-yandex-translate {
-            background-position: 0 -64px;
+            background-position: -17px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-welsh-translate {
-            background-position: -16px -64px;
+            background-position: -33px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-web-translate {
-            background-position: -32px -64px;
+            background-position: -49px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-warning {
-            background-position: -48px -64px;
+            background-position: -65px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-vfolder {
-            background-position: -64px -64px;
-            width: 16px;
-            height: 16px;
-        }
-        
-        .icon-timeline {
             background-position: -85px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-tick {
+        .icon-timeline {
             background-position: -85px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-search {
+        .icon-tick {
             background-position: -85px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-reject {
+        .icon-search {
             background-position: -85px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-raw-mode {
+        .icon-reject {
             background-position: -85px -64px;
             width: 16px;
             height: 16px;
         }
         
+        .icon-raw-mode {
+            background-position: 0 -81px;
+            width: 16px;
+            height: 16px;
+        }
+        
         .icon-project {
-            background-position: 0 -80px;
+            background-position: -16px -81px;
             width: 16px;
             height: 16px;
         }
         
         .icon-language {
-            background-position: -16px -80px;
+            background-position: -32px -81px;
             width: 16px;
             height: 16px;
         }
         
         .icon-information {
-            background-position: -32px -80px;
+            background-position: -48px -81px;
             width: 16px;
             height: 16px;
         }
         
         .icon-google-translate {
-            background-position: -48px -80px;
+            background-position: -64px -81px;
             width: 16px;
             height: 16px;
         }
         
         .icon-folder {
-            background-position: -64px -80px;
+            background-position: -80px -81px;
             width: 16px;
             height: 16px;
         }
         
         .icon-folder-parent {
-            background-position: -80px -80px;
-            width: 16px;
-            height: 16px;
-        }
-        
-        html[dir="rtl"] .icon-folder-parent {
-            -webkit-transform: scaleX(-1);
-            -moz-transform: scaleX(-1);
-            transform: scaleX(-1);
-        }
-        
-        .icon-file {
             background-position: -101px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-error {
+        .icon-file {
             background-position: -101px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-copy {
+        .icon-error {
             background-position: -101px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-user {
+        .icon-copy {
             background-position: -101px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-add {
+        .icon-comment-user {
             background-position: -101px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-caighdean-translate {
+        .icon-comment-add {
             background-position: -101px -80px;
             width: 16px;
             height: 16px;
         }
         
+        .icon-caighdean-translate {
+            background-position: 0 -97px;
+            width: 16px;
+            height: 16px;
+        }
+        
         .icon-block {
-            background-position: 0 -96px;
+            background-position: -16px -97px;
             width: 16px;
             height: 16px;
         }
         
         .icon-block-muted {
-            background-position: -16px -96px;
+            background-position: -32px -97px;
             width: 16px;
             height: 16px;
         }
         
         .icon-arrow-up {
-            background-position: -32px -96px;
+            background-position: -48px -97px;
             width: 9px;
             height: 16px;
         }
         
         .icon-arrow-down {
-            background-position: -41px -96px;
+            background-position: -57px -97px;
             width: 9px;
             height: 16px;
         }
         
         .icon-accept {
-            background-position: -50px -96px;
+            background-position: -66px -97px;
             width: 16px;
             height: 16px;
         }
         
         .icon-upload {
-            background-position: -66px -96px;
+            background-position: -82px -97px;
             width: 14px;
             height: 14px;
         }
         
         .icon-reject-white {
-            background-position: -80px -96px;
+            background-position: -96px -97px;
             width: 14px;
             height: 14px;
         }
         
         .icon-download {
-            background-position: -94px -96px;
-            width: 14px;
-            height: 14px;
-        }
-        
-        .icon-back {
-            background-position: -64px -51px;
-            width: 14px;
-            height: 13px;
-        }
-        
-        .icon-accept-white {
             background-position: -117px 0;
             width: 14px;
             height: 14px;
         }
         
-        .icon-external-link {
+        .icon-back {
             background-position: -117px -14px;
+            width: 14px;
+            height: 13px;
+        }
+        
+        .icon-accept-white {
+            background-position: -117px -27px;
+            width: 14px;
+            height: 14px;
+        }
+        
+        .icon-external-link {
+            background-position: -117px -41px;
             width: 12px;
             height: 12px;
         }
@@ -311,6 +312,7 @@
     .icon-desc,
     .icon-ascdesc,
     .icon-asc,
+    .icon-github,
     .icon-expand-stats,
     .icon-collapse-stats,
     .icon-yandex-translate,
@@ -346,10 +348,10 @@
     .icon-back,
     .icon-accept-white,
     .icon-external-link {
-                background-image: url('../images/sprite.png?4b08df7800');
-                -webkit-background-size: 131px 112px;
-                -moz-background-size: 131px 112px;
-                background-size: 131px 112px;
+                background-image: url('../images/sprite.png?4557349d96');
+                -webkit-background-size: 131px 113px;
+                -moz-background-size: 131px 113px;
+                background-size: 131px 113px;
             }
         }
         
