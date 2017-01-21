@@ -16,6 +16,7 @@ from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
 from pootle.core.models import Revision
+from pootle.core.proxy import AttributeProxy
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 from pootle_store.models import Store
@@ -173,6 +174,8 @@ class FSFile(object):
             return
         if self.file_exists:
             with open(self.file_path) as f:
+                f = AttributeProxy(f)
+                f.location_root = self.store_fs.project.local_fs_path
                 store_file = (
                     self.store.syncer.file_class(f)
                     if self.store and self.store.syncer.file_class
