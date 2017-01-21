@@ -172,7 +172,10 @@
           <div id="orig{{ unit.index }}" class="js-translate-translation translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
             {% if unit.submitted_by %}
             <div id="target-item-gravatar">
-              {% include 'core/_avatar.html' with user=unit.submitted_by %}
+	      <a href="{% url 'pootle-user-profile' unit.submitted_by.username %}"
+		 title="{{ unit.submitted_by.display_name|force_escape|force_escape }}">
+		{% avatar unit.submitted_by.username unit.submitted_by.email_hash 24 %}
+	      </a>
             </div>
             {% endif %}
 
@@ -269,9 +272,12 @@
             data-sugg-id="{{ sugg.id }}"
             data-suggestor-id="{{ sugg.user.id }}">
             {% if sugg.user %}
-              <div class="extra-item-gravatar">
-                {% include 'core/_avatar.html' with user=sugg.user %}
-              </div>
+            <div class="extra-item-gravatar">
+	      <a href="{% url 'pootle-user-profile' sugg.user.username %}"
+		 title="{{ sugg.user.display_name|force_escape|force_escape }}">
+		{% avatar sugg.user.username sugg.user.email_hash 20 %}
+	      </a>
+            </div>
             {% endif %}
             <div class="suggestion-actions">
               {% if canreview %}

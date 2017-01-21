@@ -1,9 +1,12 @@
-{% load i18n locale profile_tags %}
+{% load i18n locale profile_tags common_tags %}
 <div class="extra-item-block js-comment-first">
   <div class="extra-item-content">
     {% if unit.commented_by %}
     <div class="extra-item-gravatar">
-      {% include 'core/_avatar.html' with user=unit.commented_by %}
+      <a href="{% url 'pootle-user-profile' unit.commented_by.username %}"
+	 title="{{ unit.commented_by.display_name|force_escape|force_escape }}">
+	{% avatar unit.commented_by.username unit.commented_by.email_hash 20 %}
+      </a>
     </div>
     {% endif %}
     <div class="extra-item">
