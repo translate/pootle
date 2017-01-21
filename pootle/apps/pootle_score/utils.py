@@ -38,7 +38,8 @@ class Scores(object):
 
     @property
     def score_model(self):
-        return UserTPScore.objects
+        return UserTPScore.objects.exclude(
+            user__username__in=User.objects.META_USERS)
 
     def get_daterange(self, days):
         now = timezone.now().date()
