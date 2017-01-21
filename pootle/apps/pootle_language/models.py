@@ -180,6 +180,14 @@ class Language(models.Model, TreeItem):
         from pootle_app.models.directory import Directory
         self.directory = Directory.objects.root.get_or_make_subdir(self.code)
 
+        # Do not repeat special chars.
+        special_chars = []
+        for special_char in self.specialchars:
+            if special_char in special_chars:
+                continue
+            special_chars.append(special_char)
+        self.specialchars = u"".join(special_chars)
+
         super(Language, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

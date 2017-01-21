@@ -112,3 +112,14 @@ def test_language_liveness():
     assert language.translationproject_set.count() == 1
     assert language in Language.live.all()
     assert language in Language.live.get_all_queryset()
+
+
+@pytest.mark.django_db
+def test_language_specialchars_uniqueness():
+    language = Language.objects.first()
+    language.specialchars = u"‌ æ ø å Æ Ø Å é è É È Ô ô"
+    language.save()
+    assert language.specialchars == u"‌ æøåÆØÅéèÉÈÔô"
+    language.specialchars = u" Čč Ḍḍ Ɛɛ Ǧǧ Ɣɣ  Ḥḥ Ṣṣ ṬṬṭ Ẓẓ Ţţ Ṛṛ‌Ṛṛ‌"
+    language.save()
+    assert language.specialchars == u" ČčḌḍƐɛǦǧƔɣḤḥṢṣṬṭẒẓŢţṚṛ‌"
