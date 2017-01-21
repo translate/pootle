@@ -1,4 +1,4 @@
-{% load core i18n common_tags store_tags cleanhtml locale %}
+{% load core i18n common_tags store_tags cleanhtml locale fs_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
@@ -34,6 +34,9 @@
       <!-- Location comments -->
       <div class="comments sidebar">
         <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</span>
+	{% if project.treestyle == "pootle_fs" %}
+	{% upstream_link_short unit.store.translation_project.project unit.locations %}
+	{% else %}
 	{% if cantranslatexlang %}
         <a lang="en" dir="ltr" class="translate-locations" title="{{ unit.locations }}"
            href="{{ unit.get_search_locations_url }}">{{ unit.locations|truncatewords:4 }}</a>
@@ -41,6 +44,7 @@
 	<span lang="en"
 	      dir="ltr"
 	      class="translate-locations">{{ unit.locations|truncatewords:4 }}</span>
+	{% endif %}
 	{% endif %}
       </div>
       {% endif %}
