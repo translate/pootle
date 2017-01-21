@@ -1,4 +1,4 @@
-/* glue: 0.11.1 hash: 4557349d96 */
+/* glue: 0.11.1 hash: 4234d11978 */
         .icon-user-website,
 .icon-user-twitter,
 .icon-user-linkedin,
@@ -6,6 +6,7 @@
 .icon-desc,
 .icon-ascdesc,
 .icon-asc,
+.icon-pootle,
 .icon-github,
 .icon-expand-stats,
 .icon-collapse-stats,
@@ -42,7 +43,7 @@
 .icon-back,
 .icon-accept-white,
 .icon-external-link {
-            background-image: url('../images/sprite.png?4557349d96');
+            background-image: url('../images/sprite.png?4234d11978');
             background-repeat: no-repeat;
         }
         
@@ -88,218 +89,224 @@
             height: 4px;
         }
         
-        .icon-github {
+        .icon-pootle {
             background-position: -64px -17px;
             width: 20px;
             height: 20px;
         }
         
-        .icon-expand-stats {
+        .icon-github {
             background-position: -64px -37px;
-            width: 17px;
-            height: 17px;
+            width: 20px;
+            height: 20px;
         }
         
-        .icon-collapse-stats {
+        .icon-expand-stats {
             background-position: 0 -64px;
             width: 17px;
             height: 17px;
         }
         
-        .icon-yandex-translate {
+        .icon-collapse-stats {
             background-position: -17px -64px;
+            width: 17px;
+            height: 17px;
+        }
+        
+        .icon-yandex-translate {
+            background-position: -34px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-welsh-translate {
-            background-position: -33px -64px;
+            background-position: -50px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-web-translate {
-            background-position: -49px -64px;
+            background-position: -66px -64px;
             width: 16px;
             height: 16px;
         }
         
         .icon-warning {
-            background-position: -65px -64px;
-            width: 16px;
-            height: 16px;
-        }
-        
-        .icon-vfolder {
             background-position: -85px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-timeline {
+        .icon-vfolder {
             background-position: -85px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-tick {
+        .icon-timeline {
             background-position: -85px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-search {
+        .icon-tick {
             background-position: -85px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-reject {
+        .icon-search {
             background-position: -85px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-raw-mode {
+        .icon-reject {
             background-position: 0 -81px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-project {
+        .icon-raw-mode {
             background-position: -16px -81px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-language {
+        .icon-project {
             background-position: -32px -81px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-information {
+        .icon-language {
             background-position: -48px -81px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-google-translate {
+        .icon-information {
             background-position: -64px -81px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-folder {
+        .icon-google-translate {
             background-position: -80px -81px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-folder-parent {
+        .icon-folder {
             background-position: -101px 0;
             width: 16px;
             height: 16px;
         }
         
-        .icon-file {
+        .icon-folder-parent {
             background-position: -101px -16px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-error {
+        .icon-file {
             background-position: -101px -32px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-copy {
+        .icon-error {
             background-position: -101px -48px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-user {
+        .icon-copy {
             background-position: -101px -64px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-comment-add {
+        .icon-comment-user {
             background-position: -101px -80px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-caighdean-translate {
+        .icon-comment-add {
             background-position: 0 -97px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-block {
+        .icon-caighdean-translate {
             background-position: -16px -97px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-block-muted {
+        .icon-block {
             background-position: -32px -97px;
             width: 16px;
             height: 16px;
         }
         
-        .icon-arrow-up {
+        .icon-block-muted {
             background-position: -48px -97px;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .icon-arrow-up {
+            background-position: -64px -97px;
             width: 9px;
             height: 16px;
         }
         
         .icon-arrow-down {
-            background-position: -57px -97px;
+            background-position: -73px -97px;
             width: 9px;
             height: 16px;
         }
         
         .icon-accept {
-            background-position: -66px -97px;
+            background-position: -82px -97px;
             width: 16px;
             height: 16px;
         }
         
         .icon-upload {
-            background-position: -82px -97px;
+            background-position: -98px -97px;
             width: 14px;
             height: 14px;
         }
         
         .icon-reject-white {
-            background-position: -96px -97px;
-            width: 14px;
-            height: 14px;
-        }
-        
-        .icon-download {
             background-position: -117px 0;
             width: 14px;
             height: 14px;
         }
         
-        .icon-back {
+        .icon-download {
             background-position: -117px -14px;
+            width: 14px;
+            height: 14px;
+        }
+        
+        .icon-back {
+            background-position: -117px -28px;
             width: 14px;
             height: 13px;
         }
         
         .icon-accept-white {
-            background-position: -117px -27px;
+            background-position: -117px -41px;
             width: 14px;
             height: 14px;
         }
         
         .icon-external-link {
-            background-position: -117px -41px;
+            background-position: -117px -55px;
             width: 12px;
             height: 12px;
         }
@@ -312,6 +319,7 @@
     .icon-desc,
     .icon-ascdesc,
     .icon-asc,
+    .icon-pootle,
     .icon-github,
     .icon-expand-stats,
     .icon-collapse-stats,
@@ -348,7 +356,7 @@
     .icon-back,
     .icon-accept-white,
     .icon-external-link {
-                background-image: url('../images/sprite.png?4557349d96');
+                background-image: url('../images/sprite.png?4234d11978');
                 -webkit-background-size: 131px 113px;
                 -moz-background-size: 131px 113px;
                 background-size: 131px 113px;
