@@ -46,22 +46,19 @@ class ProxyTimelineUser(object):
         self.submission = submission
 
     @property
+    def username(self):
+        return self.submission["submitter__username"]
+
+    @property
+    def email_hash(self):
+        return md5(self.submission['submitter__email']).hexdigest()
+
+    @property
     def display_name(self):
         return (
             self.submission["submitter__full_name"].strip()
             if self.submission["submitter__full_name"].strip()
             else self.submission["submitter__username"])
-
-    def get_absolute_url(self):
-        return reverse(
-            'pootle-user-profile',
-            args=[self.submission["submitter__username"]])
-
-    def gravatar_url(self, size=80):
-        email_hash = md5(self.submission['submitter__email']).hexdigest()
-        return (
-            'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
-            % (email_hash, size))
 
 
 def _get_suggestion_description(submission):
