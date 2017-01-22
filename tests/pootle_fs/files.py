@@ -313,13 +313,6 @@ def test_wrap_store_fs_pull_merge_default(store_fs_file):
 
 
 @pytest.mark.django_db
-def test_wrap_store_fs_pull_user(store_fs_file, member2):
-    fs_file = store_fs_file
-    fs_file.pull(user=member2)
-    assert fs_file.store.units[0].submitted_by == member2
-
-
-@pytest.mark.django_db
 def test_wrap_store_fs_pull_submission_type(store_fs_file_store):
     fs_file = store_fs_file_store
     fs_file.push()
