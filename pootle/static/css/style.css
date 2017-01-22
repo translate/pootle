@@ -2060,6 +2060,15 @@ html[dir="rtl"] #tabs li
     border-radius: 50%;
 }
 
+
+.avatar-system
+{
+    display: inline-block;
+    overflow: hidden;
+    top: -2px;
+    position: absolute;
+}
+
 a.collapse
 {
     cursor: pointer;
