@@ -50,7 +50,7 @@ class DisplayUser(object):
     def to_dict(self):
         userdict = {}
         props = [
-            "username", "full_name", "email",
+            "username",
             "author_link", "display_name", "email_hash"]
         methods = [
             "get_absolute_url", "gravatar_url"]
