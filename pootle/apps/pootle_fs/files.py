@@ -24,6 +24,8 @@ from pootle_store.models import Store
 
 logger = logging.getLogger(__name__)
 
+User = get_user_model()
+
 
 class FSFile(object):
 
@@ -84,6 +86,14 @@ class FSFile(object):
             return str(os.stat(self.file_path).st_mtime)
 
     @property
+    def latest_author(self):
+        return None, None
+
+    @property
+    def plugin(self):
+        return self.store_fs.plugin
+
+    @property
     def pootle_changed(self):
         return bool(
             self.store_exists
@@ -132,6 +142,19 @@ class FSFile(object):
         if save:
             self.store_fs.save()
 
+    @property
+    def latest_user(self):
+        author, author_email = self.latest_author
+        if not author or not author_email:
+            return self.plugin.pootle_user
+        try:
+            return User.objects.get(email=author_email)
+        except User.DoesNotExist:
+            try:
+                return User.objects.get(username=author)
+            except User.DoesNotExist:
+                return self.plugin.pootle_user
+
     def pull(self, user=None, merge=False, pootle_wins=None):
         """
         Pull FS file into Pootle
@@ -141,7 +164,7 @@ class FSFile(object):
         logger.debug("Pulling file: %s", self.path)
         if not self.store_exists:
             self.create_store()
-        self._sync_to_pootle(user=user, merge=merge, pootle_wins=pootle_wins)
+        self._sync_to_pootle(merge=merge, pootle_wins=pootle_wins)
 
     def push(self, user=None):
         """
@@ -199,11 +222,10 @@ class FSFile(object):
             f.write(str(disk_store))
         logger.debug("Pushed file: %s", self.path)
 
-    def _sync_to_pootle(self, merge=False, user=None, pootle_wins=None):
+    def _sync_to_pootle(self, merge=False, pootle_wins=None):
         """
         Update Pootle ``Store`` with the parsed FS file.
         """
-        User = get_user_model()
         if pootle_wins is None:
             resolve_conflict = (
                 self.store_fs.resolve_conflict or SOURCE_WINS)
@@ -222,7 +244,7 @@ class FSFile(object):
         self.store.update(
             tmp_store,
             submission_type=SubmissionTypes.SYSTEM,
-            user=user or User.objects.get_system_user(),
+            user=self.latest_user,
             store_revision=revision,
             resolve_conflict=resolve_conflict)
         logger.debug("Pulled file: %s", self.path)
