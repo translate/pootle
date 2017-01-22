@@ -326,3 +326,44 @@ def test_wrap_store_fs_pull_submission_type(store_fs_file_store):
     assert (
         fs_file.store.units[0].submission_set.latest().type
         == SubmissionTypes.SYSTEM)
+
+
+@pytest.mark.django_db
+def test_fs_file_latest_author(system, member2):
+
+    member2.email = "member2@poot.le"
+    member2.save()
+
+    class DummyPlugin(object):
+        pootle_user = system
+
+    class DummyFile(FSFile):
+
+        _author_name = None
+        _author_email = None
+
+        def __init__(self):
+            pass
+
+        @property
+        def plugin(self):
+            return DummyPlugin()
+
+        @property
+        def latest_author(self):
+            return self._author_name, self._author_email
+
+    myfile = DummyFile()
+    assert myfile.latest_user == system
+    myfile._author_name = "DOES NOT EXIST"
+    assert myfile.latest_user == system
+    myfile._author_email = member2.email
+    assert myfile.latest_user == member2
+    myfile._author_name = member2.username
+    assert myfile.latest_user == member2
+    myfile._author_email = None
+    assert myfile.latest_user == system
+    myfile._author_email = "DOESNT@EXIST.EMAIL"
+    assert myfile.latest_user == member2
+    myfile._author_name = "DOES NOT EXIST"
+    assert myfile.latest_user == system
