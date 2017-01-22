@@ -6,7 +6,6 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-import md5 from 'md5';
 import React, { PropTypes } from 'react';
 import { PureRenderMixin } from 'react-addons-pure-render-mixin';
 
@@ -16,7 +15,7 @@ const Avatar = React.createClass({
   // FIXME: be smarter with props validation, e.g. `email` should be required if
   // `src` is missing etc.
   propTypes: {
-    email: PropTypes.string,
+    emailHash: PropTypes.string,
     label: PropTypes.string,
     size: PropTypes.number,
     src: PropTypes.string,
@@ -33,20 +32,13 @@ const Avatar = React.createClass({
   },
 
   render() {
-    const { email } = this.props;
+    const { emailHash } = this.props;
     const { label } = this.props;
     const { size } = this.props;
     const { title } = this.props;
     const { username } = this.props;
 
-    let imgSrc = this.props.src;
-    if (email) {
-      let emailMd5 = email;
-      if (email.indexOf('@') > -1) {
-        emailMd5 = md5(email);
-      }
-      imgSrc = `https://secure.gravatar.com/avatar/${emailMd5}?s=${size}&d=mm`;
-    }
+    const imgSrc = `https://secure.gravatar.com/avatar/${emailHash}?s=${size}&d=mm`;
 
     const icon = (
       <img

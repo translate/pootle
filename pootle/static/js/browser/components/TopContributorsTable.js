@@ -31,7 +31,7 @@ function createRow(item, index) {
       <td className="number">{t('#%(position)s', { position: index + 1 })}</td>
       <td className="user top-scorer">
         <Avatar
-          email={item.user.email}
+          emailHash={item.user.email_hash}
           label={item.user.display_name}
           size={20}
           username={item.user.username}
