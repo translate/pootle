@@ -1,4 +1,4 @@
-{% load i18n locale store_tags %}
+{% load i18n locale store_tags common_tags %}
 <div id="timeline-results">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
   {% for entry_group in entries_group %}
@@ -6,7 +6,10 @@
     <div class="extra-item-content">
       {% if entry_group.submitter %}
       <div class="extra-item-gravatar">
-        {% include 'core/_avatar.html' with user=entry_group.submitter %}
+	<a href="{% url 'pootle-user-profile' entry_group.submitter.username %}"
+	   title="{{ entry_group.submitter.display_name|force_escape|force_escape }}">
+	  {% avatar entry_group.submitter.username entry_group.submitter.email_hash 20 %}
+	</a>
       </div>
       {% endif %}
       <div class="extra-item">
