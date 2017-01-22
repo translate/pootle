@@ -132,6 +132,13 @@ class FSFile(object):
         if save:
             self.store_fs.save()
 
+    def sync(self, user=None, merge=False, pootle_wins=None):
+        if not self.store_exists:
+            self.create_store()
+        syncer = self.store.syncer
+        disk_store = self.deserialize()
+        syncer.sync(disk_store, self.store.data.max_unit_revision)
+
     def pull(self, user=None, merge=False, pootle_wins=None):
         """
         Pull FS file into Pootle

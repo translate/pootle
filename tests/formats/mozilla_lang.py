@@ -83,3 +83,41 @@ def test_mozlang_sync(tp0):
     ttk = foo_lang.deserialize(foo_lang.serialize())
     ttk_unit = ttk.findid(unit.getid())
     assert not ttk_unit.istranslated()
+
+
+@pytest.mark.django_db
+def test_mozlang_sync_to_file(project0_nongnu, store0, tp0):
+    mozlang = Format.objects.get(name="lang")
+    tp0.project.filetypes.add(mozlang)
+
+    foo_lang = StoreDBFactory(
+        name="foo.lang",
+        filetype=mozlang,
+        parent=tp0.directory,
+        translation_project=tp0)
+
+    store0 = tp0.stores.get(name="store0.po")
+
+    # deserialize as source
+    foo_lang.update(store0.deserialize(store0.serialize()))
+    foo_lang.sync()
+
+    header = "## SOME HEADER"
+
+    # add some headers...
+    with open(foo_lang.file.path, "wb") as f:
+        content = (
+            "%s\n\n\n%s"
+            % (header, str(foo_lang)))
+        f.write(content)
+
+    unit = foo_lang.units.first()
+    unit.target = "NEW TARGET FOO"
+    unit.save()
+    foo_lang.sync()
+
+    with open(foo_lang.file.path) as f:
+        new_file_contents = f.read()
+
+    assert new_file_contents.startswith(header)
+    assert "NEW TARGET FOO" in new_file_contents
