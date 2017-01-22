@@ -2060,7 +2060,6 @@ html[dir="rtl"] #tabs li
     border-radius: 50%;
 }
 
-
 .avatar-system
 {
     display: inline-block;
@@ -2584,7 +2583,15 @@ form.formtable tfoot .formtable-actions td
     padding: 1em;
 }
 
-.absolute
+.upstream-icon
 {
-    position: absolute;
+    position: relative;
+    top: -2px;
+    margin-right: 0.2em;
+}
+
+.upstream-link
+{
+    position: relative;
+    margin-top: 0.5em;
 }
