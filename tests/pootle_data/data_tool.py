@@ -356,6 +356,7 @@ def test_data_project_store_stats(project_store_resources0):
 def test_data_project_set_stats(project_set):
     units = Unit.objects.live().exclude(
         store__translation_project__project__disabled=True)
+    units = units.exclude(store__is_template=True)
     stats = project_set.data_tool.get_stats(include_children=False)
     _test_object_stats(
         stats,
