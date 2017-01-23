@@ -17,7 +17,7 @@ from pootle.core.delegate import revision
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_noargs(capfd):
+def test_export_noargs(capfd, export_dir, cd_export_dir):
     """Export whole site"""
     call_command('export')
     out, err = capfd.readouterr()
@@ -26,7 +26,7 @@ def test_export_noargs(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_project(capfd):
+def test_export_project(capfd, export_dir, cd_export_dir):
     """Export a project"""
     call_command('export', '--project=project0')
     out, err = capfd.readouterr()
@@ -35,7 +35,7 @@ def test_export_project(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_project_and_lang(capfd):
+def test_export_project_and_lang(capfd, export_dir, cd_export_dir):
     """Export a project TP"""
     call_command('export', '--project=project0', '--language=language0')
     out, err = capfd.readouterr()
@@ -44,7 +44,7 @@ def test_export_project_and_lang(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_language(capfd):
+def test_export_language(capfd, export_dir, cd_export_dir):
     """Export a language"""
     call_command('export', '--language=language0')
     out, err = capfd.readouterr()
@@ -54,7 +54,7 @@ def test_export_language(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_export_path(capfd):
+def test_export_path(capfd, export_dir, cd_export_dir):
     """Export a path
 
     Testing variants of lang, TP, single PO file and whole site.

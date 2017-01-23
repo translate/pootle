@@ -219,3 +219,27 @@ def media_test_dir(request, settings, tmpdir):
 
     request.addfinalizer(rm_media_dir)
     return media_dir
+
+
+@pytest.fixture(scope="session")
+def export_dir(request):
+    export_dir = tempfile.mkdtemp()
+
+    def rm_export_dir():
+        if os.path.exists(export_dir):
+            shutil.rmtree(export_dir)
+
+    request.addfinalizer(rm_export_dir)
+
+    return export_dir
+
+
+@pytest.fixture
+def cd_export_dir(request, export_dir):
+    curdir = os.path.abspath(os.curdir)
+    os.chdir(export_dir)
+
+    def cd_curdir():
+        os.chdir(curdir)
+
+    request.addfinalizer(cd_curdir)
