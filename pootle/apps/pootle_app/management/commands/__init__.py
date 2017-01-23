@@ -9,7 +9,7 @@
 import datetime
 import logging
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 from pootle.runner import set_sync_mode
 from pootle_project.models import Project
@@ -68,37 +68,19 @@ class PootleCommand(BaseCommand):
         super(PootleCommand, self).__init__(*args, **kwargs)
 
     def do_translation_project(self, tp, **options):
-        process_stores = True
-
         if hasattr(self, "handle_translation_project"):
             logging.info(u"Running %s over %s", self.name, tp)
-            try:
-                process_stores = self.handle_translation_project(tp, **options)
-            except Exception:
-                logging.exception(u"Failed to run %s over %s", self.name, tp)
+            if not self.handle_translation_project(tp, **options):
                 return
-
-            if not process_stores:
-                return
-
         if hasattr(self, "handle_all_stores"):
             logging.info(u"Running %s over %s's files", self.name, tp)
-            try:
-                self.handle_all_stores(tp, **options)
-            except Exception:
-                logging.exception(u"Failed to run %s over %s's files",
-                                  self.name, tp)
-                return
+            self.handle_all_stores(tp, **options)
         elif hasattr(self, "handle_store"):
             store_query = tp.stores.live()
             for store in store_query.iterator():
                 logging.info(u"Running %s over %s",
                              self.name, store.pootle_path)
-                try:
-                    self.handle_store(store, **options)
-                except Exception:
-                    logging.exception(u"Failed to run %s over %s",
-                                      self.name, store.pootle_path)
+                self.handle_store(store, **options)
 
     def handle(self, **options):
         # adjust debug level to the verbosity option
@@ -125,7 +107,10 @@ class PootleCommand(BaseCommand):
         start = datetime.datetime.now()
         logging.info('Start running of %s', self.name)
 
-        self.handle_all(**options)
+        try:
+            self.handle_all(**options)
+        except Exception as e:
+            raise CommandError(e)
 
         # info finish
         end = datetime.datetime.now()
