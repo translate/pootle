@@ -134,7 +134,6 @@ Details of changes
     - Virtual folders are sorted by priority to highlight most important
       strings to translate
 
-  - Hid most of the special templates language data as it is unnecessary
   - Got rid of fat cookies:
 
     - Increases responsiveness and removes security issue
@@ -172,13 +171,12 @@ Details of changes
     assets, thus requiring ``django-statici18n`` app.
   - Password reset email is now localizable in Pootle
 
-- Upload and download:
+- Upload:
 
   - Disabled upload for non-PO projects as conflict handling currently only
     works in PO
   - Admins can upload translations as other user
   - Fixed error for stores with no revision
-  - Added ability to download TMX exports
 
 - New Machine Translation providers:
 

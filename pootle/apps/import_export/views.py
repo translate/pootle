@@ -13,16 +13,13 @@ from zipfile import ZipFile, is_zipfile
 
 from django.contrib.auth import get_user_model
 from django.http import Http404, HttpResponse
-from django.shortcuts import redirect
 
 from pootle.core.delegate import language_team
-from pootle.core.views.base import PootleDetailView
-from pootle_translationproject.views import TPDirectoryMixin
 from pootle_app.models.permissions import check_permission
 from pootle_store.models import Store
 
 from .forms import UploadForm
-from .utils import import_file, TPTMXExporter
+from .utils import import_file
 
 
 def download(contents, name, content_type):
@@ -134,19 +131,3 @@ def handle_upload_form(request, tp):
             initial=dict(user_id=request.user.id)
         ),
     }
-
-
-class TPOfflineTMView(TPDirectoryMixin, PootleDetailView):
-
-    @property
-    def path(self):
-        return "/%s/%s/" % (self.kwargs['language_code'],
-                            self.kwargs['project_code'])
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        exporter = TPTMXExporter(self.tp)
-        url = exporter.get_url()
-        if url is not None:
-            return redirect(url)
-        raise Http404
