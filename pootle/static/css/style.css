@@ -157,7 +157,7 @@ h6
 {
     font-weight: normal;
     font-size: 100%;
-    color: #999;
+    color: #777;
 }
 
 h1,
@@ -169,7 +169,6 @@ h3
 
 h1
 {
-    color: #005b7a;
     font-size: 185%;
 }
 
@@ -1542,11 +1541,6 @@ html[dir="rtl"] ul.pager li:last-child > *
     padding: 0 1.5em;
 }
 
-#header-tabs
-{
-    border-bottom: 1px solid #d9d9d9;
-}
-
 #header-meta
 {
     box-sizing: border-box;
@@ -1630,7 +1624,7 @@ html[dir="rtl"] .expand-stats
 .path-summary-more
 {
     padding: 0 2em;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #eee;
     background: #f4f4f4;
     border-radius: 0 0 5px 5px;
 }
