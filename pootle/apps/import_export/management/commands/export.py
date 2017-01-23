@@ -46,6 +46,13 @@ class Command(PootleCommand):
             default=False,
             help="Overwrite already exported TMX files",
         )
+        parser.add_argument(
+            "--rotate",
+            action="store_true",
+            dest="rotate",
+            default=False,
+            help="Remove old exported TMX files",
+        )
 
     def _create_zip(self, stores, prefix):
         with open("%s.zip" % (prefix), "wb") as f:
@@ -82,7 +89,7 @@ class Command(PootleCommand):
                     translation_project)
                 return False
 
-            filename = exporter.export()
+            filename = exporter.export(rotate=options['rotate'])
             self.stdout.write('File "%s" has been saved.' % filename)
         else:
             stores = translation_project.stores.live()

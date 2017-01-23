@@ -113,11 +113,17 @@ class TPTMXExporter(object):
     def file_exists(self):
         return os.path.exists(self.abs_filepath)
 
-    def exported_file_exists(self):
+    @property
+    def last_exported_file_path(self):
         if not self.exported_revision:
-            return False
+            return None
         exported_filename = self.get_filename(self.exported_revision)
-        return os.path.exists(os.path.join(self.directory, exported_filename))
+        return os.path.join(self.directory, exported_filename)
+
+    def exported_file_exists(self):
+        if self.last_exported_file_path is None:
+            return False
+        return os.path.exists(self.last_exported_file_path)
 
     @property
     def directory(self):
@@ -138,7 +144,7 @@ class TPTMXExporter(object):
     def abs_filepath(self):
         return os.path.join(self.directory, self.filename)
 
-    def export(self):
+    def export(self, rotate=False):
         source_language = self.context.project.source_language.code
         target_language = self.context.language.code
 
@@ -158,6 +164,13 @@ class TPTMXExporter(object):
             with ZipFile(f, "w") as zf:
                 zf.writestr(self.filename, bs.getvalue())
 
+        last_exported_filepath = self.last_exported_file_path
         self.update_exported_revision()
+
+        if rotate:
+            for fn in os.listdir(self.directory):
+                filepath = os.path.join(self.directory, fn)
+                if filepath not in [self.abs_filepath, last_exported_filepath]:
+                    os.remove(filepath)
 
         return self.abs_filepath
