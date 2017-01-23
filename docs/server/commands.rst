@@ -744,9 +744,15 @@ Available options:
 
   .. versionadded:: 2.8.0
 
-  Export every translation project as one zipped TMX file into :setting:`MEDIA_ROOT`
-  directory.
+  Export every translation project as one zipped TMX file
+  into :setting:`MEDIA_ROOT` directory.
 
+.. django-admin-option:: --rotate
+
+  .. versionadded:: 2.8.0
+
+  Remove old exported zipped TMX files (except previous one)
+  from :setting:`MEDIA_ROOT` directory after current exported file is saved.
 
 .. django-admin:: import
 
