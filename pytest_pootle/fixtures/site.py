@@ -206,3 +206,16 @@ def test_fs():
             return open(self.path(paths), *args, **kwargs)
 
     return TestFs()
+
+
+@pytest.fixture
+def media_test_dir(request, settings, tmpdir):
+    media_dir = str(tmpdir.mkdir("media"))
+    settings.MEDIA_ROOT = media_dir
+
+    def rm_media_dir():
+        if os.path.exists(media_dir):
+            shutil.rmtree(media_dir)
+
+    request.addfinalizer(rm_media_dir)
+    return media_dir
