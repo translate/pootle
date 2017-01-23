@@ -503,16 +503,18 @@ def check_pootle_fs_working_dir(app_configs=None, **kwargs):
         id="pootle.C019",
     )
     missing_directory_error = checks.Critical(
-        _("Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."),
-        hint=_("Create the directory pointed by `POOTLE_FS_WORKING_PATH` "
-               "setting."),
+        _("Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
+          % settings.POOTLE_FS_WORKING_PATH),
+        hint=_("Create the directory pointed by `POOTLE_FS_WORKING_PATH`, "
+               "or change the setting."),
         id="pootle.C020",
     )
     not_writable_directory_error = checks.Critical(
-        _("Path pointed to by POOTLE_FS_WORKING_PATH is not writable by "
-          "Pootle."),
+        _("Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by "
+          "Pootle."
+          % settings.POOTLE_FS_WORKING_PATH),
         hint=_("Add the write permission to the `POOTLE_FS_WORKING_PATH` "
-               "directory using 'chmod +w'"),
+               "or change the setting"),
         id="pootle.C021",
     )
     errors = []
