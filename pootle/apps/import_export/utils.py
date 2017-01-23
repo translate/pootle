@@ -19,7 +19,6 @@ from django.conf import settings
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import revision
-from pootle.core.url_helpers import urljoin
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.permissions import check_user_permission
 from pootle_statistics.models import SubmissionTypes
@@ -88,18 +87,7 @@ class TPTMXExporter(object):
     @cached_property
     def revision(self):
         return revision.get(self.context.__class__)(
-            self.context.directory).get(key="stats")[:10] or "0"
-
-    @property
-    def relative_path(self):
-        return "offline_tm/%s/%s" % (
-            self.context.language.code,
-            self.filename)
-
-    def get_url(self):
-        if self.exported_revision:
-            return urljoin(settings.MEDIA_URL, self.relative_path)
-        return None
+            self.context.directory).get(key="stats")
 
     def update_exported_revision(self):
         if self.has_changes():
@@ -110,29 +98,17 @@ class TPTMXExporter(object):
     def has_changes(self):
         return self.revision != self.exported_revision
 
-    def file_exists(self):
-        return os.path.exists(self.abs_filepath)
-
-    def exported_file_exists(self):
-        if not self.exported_revision:
-            return False
-        exported_filename = self.get_filename(self.exported_revision)
-        return os.path.exists(os.path.join(self.directory, exported_filename))
-
     @property
     def directory(self):
         return os.path.join(settings.MEDIA_ROOT,
                             'offline_tm',
                             self.context.language.code)
 
-    def get_filename(self, revision):
-        return ".".join([self.context.project.code,
-                         self.context.language.code, revision, 'tmx',
-                         'zip'])
-
     @property
     def filename(self):
-        return self.get_filename(self.revision)
+        return ".".join([self.context.project.fullname.replace(' ', '_'),
+                         self.context.language.code, self.revision, 'tmx',
+                         'zip'])
 
     @property
     def abs_filepath(self):

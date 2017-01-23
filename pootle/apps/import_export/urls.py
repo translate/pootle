@@ -8,14 +8,11 @@
 
 from django.conf.urls import url
 
-from .views import TPOfflineTMView, export
+from .views import export
 
 
 urlpatterns = [
     url(r"^export/$",
         export,
-        name="pootle-export"),
-    url(r'^\+\+offline_tm/(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/$',
-        TPOfflineTMView.as_view(),
-        name='pootle-offline-tm-tp'),
+        name="pootle-export")
 ]
