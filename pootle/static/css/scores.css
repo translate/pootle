@@ -8,9 +8,9 @@
 
 #nav-main .user-score
 {
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 300;
-    color: rgb(127, 232, 245);
+    color: #aedffc;
     white-space: nowrap;
     overflow: hidden;
     margin: 0 0.25em;
