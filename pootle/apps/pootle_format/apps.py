@@ -18,6 +18,7 @@ class PootleFormatConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_format.models")
+        importlib.import_module("pootle_format.receivers")
         importlib.import_module("pootle_format.getters")
         importlib.import_module("pootle_format.providers")
         importlib.import_module("pootle_format.formats.providers")
