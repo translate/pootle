@@ -30,9 +30,7 @@ def project_fs(tmpdir, settings):
 def project_fs_empty(english, tmpdir, settings):
     from pytest_pootle.factories import ProjectDBFactory
 
-    from pootle.core.delegate import config
     from pootle_fs.utils import FSPlugin
-    from pootle_project.models import Project
 
     project = ProjectDBFactory(
         source_language=english,
@@ -42,12 +40,10 @@ def project_fs_empty(english, tmpdir, settings):
     repo_path = os.path.join(str(tmpdir), "__src__")
     if not os.path.exists(repo_path):
         os.mkdir(repo_path)
-    conf = config.get(Project, instance=project)
-    conf.set_config("pootle_fs.fs_type", "localfs")
-    conf.set_config("pootle_fs.fs_url", repo_path)
-    conf.set_config(
-        "pootle_fs.translation_mappings",
-        {"default": "/<language_code>/<dir_path>/<filename>.<ext>"})
+    project.config["pootle_fs.fs_type"] = "localfs"
+    project.config["pootle_fs.fs_url"] = repo_path
+    project.config["pootle_fs.translation_mappings"] = {
+        "default": "/<language_code>/<dir_path>/<filename>.<ext>"}
     return FSPlugin(project)
 
 
