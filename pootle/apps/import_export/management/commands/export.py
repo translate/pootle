@@ -89,8 +89,10 @@ class Command(PootleCommand):
                     translation_project)
                 return False
 
-            filename = exporter.export(rotate=options['rotate'])
+            filename, removed = exporter.export(rotate=options['rotate'])
             self.stdout.write('File "%s" has been saved.' % filename)
+            for filename in removed:
+                self.stdout.write('File "%s" has been removed.' % filename)
         else:
             stores = translation_project.stores.live()
             prefix = "%s-%s" % (translation_project.project.code,

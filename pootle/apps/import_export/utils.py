@@ -167,10 +167,12 @@ class TPTMXExporter(object):
         last_exported_filepath = self.last_exported_file_path
         self.update_exported_revision()
 
+        removed = []
         if rotate:
             for fn in os.listdir(self.directory):
                 filepath = os.path.join(self.directory, fn)
                 if filepath not in [self.abs_filepath, last_exported_filepath]:
+                    removed.append(filepath)
                     os.remove(filepath)
 
-        return self.abs_filepath
+        return self.abs_filepath, removed
