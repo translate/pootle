@@ -19,10 +19,8 @@
     display: inline-block;
 
     background-image: none;
-    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
 
     text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 
     transition: all 0.25s linear 0s;
 
@@ -73,17 +71,12 @@ a.btn:link
 
 .btn.btn-primary
 {
-    background-color: #4dbdcb;
+    background-color: #72a6c4;
 }
 
 .btn.btn-success
 {
     background-color: #5fb336;
-}
-
-.btn.btn-login
-{
-    background-color: #1cc8dd;
 }
 
 .btn.btn-info
