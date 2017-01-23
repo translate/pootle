@@ -157,6 +157,16 @@ Site-specific settings.
   to blank string.
 
 
+.. setting:: POOTLE_CUSTOM_LOGO
+
+``POOTLE_CUSTOM_LOGO``
+  Default: ``""``
+
+  .. versionadded:: 2.8
+
+  Custom logo URL - this can be an absolute or relative URL.
+
+
 40-apps.conf
 ^^^^^^^^^^^^
 
