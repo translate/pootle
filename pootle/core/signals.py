@@ -11,3 +11,6 @@ from django.dispatch import Signal
 
 
 update_data = Signal(providing_args=["instance"], use_caching=True)
+filetypes_changed = Signal(
+    providing_args=["instance", "filetype"],
+    use_caching=True)
