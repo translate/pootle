@@ -21,4 +21,5 @@ class PootleFSConfig(AppConfig):
         importlib.import_module("pootle_fs.models")
         importlib.import_module("pootle_fs.getters")
         importlib.import_module("pootle_fs.providers")
+        importlib.import_module("pootle_fs.receivers")
         importlib.import_module("pootle_fs.management.commands.fs")
