@@ -62,3 +62,7 @@ class ProjectSetDataTool(RelatedTPsDataTool):
     @property
     def context_name(self):
         return "ALL"
+
+    def filter_data(self, qs):
+        qs = super(ProjectSetDataTool, self).filter_data(qs)
+        return qs.exclude(tp__language__code="templates")
