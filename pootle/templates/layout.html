@@ -100,7 +100,7 @@
         {% block logo %}
         <h1 class="brand">
 	  <a href="{% url 'pootle-home' %}"
-	     title="settings.POOTLE_TITLE">
+	     title="{{ settings.POOTLE_TITLE }}">
 	    <i class="icon-logo"></i>
 	    {% if settings.POOTLE_CUSTOM_LOGO %}
 	    <img
