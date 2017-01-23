@@ -98,7 +98,19 @@
           <a href="#nav-main">{% trans 'skip to navigation' %}</a>
         </div>
         {% block logo %}
-        <h1 class="brand"><a href="{% url 'pootle-home' %}"><i class="icon-logo"></i><span class="site-title">{{ settings.POOTLE_TITLE }}</span></a></h1>
+        <h1 class="brand">
+	  <a href="{% url 'pootle-home' %}"
+	     title="settings.POOTLE_TITLE">
+	    <i class="icon-logo"></i>
+	    {% if settings.POOTLE_CUSTOM_LOGO %}
+	    <img
+	       class="logo-custom"
+	       src="{{ settings.POOTLE_CUSTOM_LOGO }}" />
+	    {% else %}
+	    <span class="site-title">{{ settings.POOTLE_TITLE }}</span>
+	    {% endif %}
+	  </a>
+	</h1>
         {% endblock %}
         <a href="#nav-main" id="menu-toggle" class="js-toggle">&nbsp;</a>
         <ul id="nav-main">
@@ -156,6 +168,7 @@
         {% block tabs %}{% endblock %}
       </div>
       {% endblock %}
+      <div style="clear: both"></div>
     {% endblock %}
 
       <div id="body">
