@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-21 18:55+0000\n"
-"Last-Translator: prathers <preben@northchannel.dk>\n"
+"PO-Revision-Date: 2017-01-24 12:22+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1485024944.000000\n"
+"X-POOTLE-MTIME: 1485260545.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -212,7 +212,7 @@ msgstr "Upload oversættelser"
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
 msgid "Upload as %(user)s"
-msgstr "Upload som %(user)ere"
+msgstr "Upload som %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
 #, fuzzy
@@ -1896,7 +1896,8 @@ msgstr ""
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
-msgstr "Pootle %(pootle_ver)s anvender Translate Toolkit %(toolkit_ver)s"
+msgstr ""
+"Pootle %(pootle_version)s anvender Translate Toolkit %(toolkit_version)s"
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."

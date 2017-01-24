@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-24 03:25+0000\n"
-"Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2017-01-24 12:24+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485228359.000000\n"
+"X-POOTLE-MTIME: 1485260662.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -975,7 +975,7 @@ msgid ""
 "span>&rdquo; project %(time_ago)s"
 msgstr ""
 "Traducido por %(fullname)s en el proyecto &laquo;<span title=\"%(path)s\">"
-"%(project)s</span>&raquo; &(time_ago)s"
+"%(project)s</span>&raquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
 #, python-format

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2016-06-08 12:15+0000\n"
+"PO-Revision-Date: 2017-01-24 12:31+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "Language: sq\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1465388143.000000\n"
+"X-POOTLE-MTIME: 1485261111.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -224,7 +224,7 @@ msgid "Download offline TM"
 msgstr "Shkarko për përkthim jashtë linje"
 
 #: apps/import_export/utils.py:39
-#, python-format
+#, fuzzy, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 "Tipe të papërmbajtshme , vetëm skedar PO janë të suportuar në këtë kohë\n"
@@ -1815,7 +1815,7 @@ msgid "You cannot access this page."
 msgstr ""
 
 #: middleware/errorpages.py:83
-#, python-format
+#, fuzzy, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Gabim veprimi % (Emri i file )s, File i sistemit i dërgoi  gabimin:% "

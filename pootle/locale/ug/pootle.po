@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-23 23:30+0000\n"
-"Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
+"PO-Revision-Date: 2017-01-24 12:33+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485214209.000000\n"
+"X-POOTLE-MTIME: 1485261227.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1879,7 +1879,7 @@ msgstr ""
 "بېكىتى</a>دىن تېخىمۇ كۆپ بىلدۈرگۈ ئوقۇڭ."
 
 #: templates/about.html:25
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2016-12-21 17:14+0000\n"
-"Last-Translator: uzadmin <uzbadmin@gmail.com>\n"
+"PO-Revision-Date: 2017-01-24 12:35+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1482340483.000000\n"
+"X-POOTLE-MTIME: 1485261331.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1575,17 +1575,17 @@ msgstr "POOTLE_SCORE_COEFFICIENTS’da %s yo‘q."
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_SCORE_COEFFICIENTS ichiga %S qiymatini o‘rnating."
+msgstr "POOTLE_SCORE_COEFFICIENTS ichiga %s qiymatini o‘rnating."
 
 #: checks.py:360
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
+msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %s qiymati noto‘g‘ri."
 
 #: checks.py:362
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %S qiymati noto‘g‘ri."
+msgstr "POOTLE_SCORE_COEFFICIENTS ichidagi %s qiymati noto‘g‘ri."
 
 #: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -2682,7 +2682,7 @@ msgid "Raw View"
 msgstr "Qator ko‘rinishi"
 
 #: templates/editor/units/edit.html:223
-#, python-format
+#, fuzzy, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 "<a href=\"%(profile_url)s\">%(qayta ko‘rib chiquvchi)</a> tomonidan ko‘rib "
