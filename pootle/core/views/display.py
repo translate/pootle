@@ -11,8 +11,8 @@ from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
 from pootle.i18n import formatter
+from pootle.i18n.dates import timesince
 from pootle.i18n.gettext import ugettext as _
-from pootle.local.dates import timesince
 from pootle_misc.checks import get_qualitycheck_list
 
 

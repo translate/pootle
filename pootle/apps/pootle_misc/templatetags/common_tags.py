@@ -11,7 +11,7 @@ import datetime
 from django import template
 
 from pootle.i18n import formatter
-from pootle.local.dates import timesince
+from pootle.i18n.dates import timesince
 
 
 register = template.Library()

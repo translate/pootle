@@ -30,8 +30,8 @@ from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
+from pootle.i18n.dates import timesince
 from pootle.i18n.gettext import ugettext as _
-from pootle.local.dates import timesince
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (check_permission,
                                            check_user_permission)

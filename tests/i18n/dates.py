@@ -11,7 +11,7 @@ from datetime import datetime
 
 from babel.dates import format_timedelta
 
-from pootle.local.dates import localdate, timesince
+from pootle.i18n.dates import localdate, timesince
 
 
 def test_local_date_timesince(settings):

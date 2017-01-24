@@ -14,7 +14,7 @@ from pootle.core.browser import get_table_headings
 from pootle.core.decorators import persistent_property
 from pootle.core.views.panels import TablePanel
 
-from pootle.local.dates import timesince
+from pootle.i18n.dates import timesince
 
 
 class ChildrenPanel(TablePanel):

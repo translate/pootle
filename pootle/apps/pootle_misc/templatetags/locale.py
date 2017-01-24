@@ -13,7 +13,7 @@ from django.utils.formats import get_format
 from django.utils.translation import trans_real
 
 from pootle.core.utils import dateformat
-from pootle.local.dates import timesince
+from pootle.i18n.dates import timesince
 
 
 register = template.Library()
