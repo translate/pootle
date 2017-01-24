@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-07-21 12:31+0000\n"
+"PO-Revision-Date: 2017-01-18 16:17+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469104286.000000\n"
+"X-POOTLE-MTIME: 1484756271.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -211,9 +211,8 @@ msgid "Permissions"
 msgstr "الصّلاحيّات"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "نوع الملفّ"
+msgstr "أنظمة الملفّات"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -355,20 +354,22 @@ msgid "Preview will be displayed here."
 msgstr "ستُعرض المعاينة هنا."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
-msgstr "لقد أرسلنا بريدًا يحوي الوصلة الخاصّة إلى <span>%s</span>"
+msgstr ""
+"لقد أرسلنا بريدًا يحوي الرابط الخاصّ إلى <span>%s</span>. رجاء افحص مجلد "
+"السخام إن لم تجده."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
-"لقد أرسلنا بريدًا يحوي وصلة خاصّة إلى العنوان المستخدم لتسجيل هذا الحساب."
+"لقد أرسلنا بريدًا يحوي الرابط الخاصّ إلى العنوان الذي استُخدم لتسجيل هذا "
+"الحساب. رجاء افحص مجلد السخام إن لم تجده."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -543,17 +544,17 @@ msgstr "أكثر"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "المساهمين، في الـ30 يوما"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
 msgid "Show disabled"
@@ -577,7 +578,7 @@ msgstr "المشروع بالكامل"
 
 #: static/js/common.js:139
 msgid "Updating data"
-msgstr ""
+msgstr "يحدّث البيانات"
 
 #: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
@@ -677,7 +678,7 @@ msgstr "التّرجمات المشابهة"
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "صيغة الجمع %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"

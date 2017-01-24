@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-13 20:22+0000\n"
+"PO-Revision-Date: 2017-01-21 20:26+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484338956.000000\n"
+"X-POOTLE-MTIME: 1485030360.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -844,7 +844,7 @@ msgstr "Zástupné řetězce plurálu"
 
 #: apps/pootle_misc/checks.py:123
 msgid "ftl format"
-msgstr ""
+msgstr "FTL formát"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"

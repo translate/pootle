@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-12-22 15:14+0000\n"
+"PO-Revision-Date: 2017-01-19 04:35+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1482419672.000000\n"
+"X-POOTLE-MTIME: 1484800524.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -844,11 +844,11 @@ msgstr "ftl-format"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Rumänska: Undvik diakritiska tecken"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rumänska: Använd \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -942,9 +942,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Icke-GNU: Varje språk i sin egna katalog"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Tillåt Pootle FS att hantera filsystem"
+msgstr "Tillåt Pootle FS att hantera filsystem (Experimentell)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -2131,6 +2130,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS är fortfarande på experimentstadiet , vi vill gärna att du "
+"använder det, men det kräver en nivå av expertis inom lokalisering, Python "
+"och Pootle i fall något går fel."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2846,14 +2848,12 @@ msgid "Remove selected"
 msgstr "Ta bort markerad"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Förslag administratör"
+msgstr "Enhet och förslag admin"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Väntande förslag"
+msgstr "Väntande förslag:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-16 11:53+0000\n"
+"PO-Revision-Date: 2017-01-18 02:42+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484567616.000000\n"
+"X-POOTLE-MTIME: 1484707321.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -47,16 +47,16 @@ msgstr "Hætta við"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s tungumál samsvarar fyrirspurn þinni."
+msgstr[1] "%(count)s tungumál samsvara fyrirspurn þinni."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Það er %(count)s tungumál."
+msgstr[1] "Það eru %(count)s tungumál."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
@@ -124,16 +124,16 @@ msgstr "Bæta við verkefni"
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s verkefni samsvarar fyrirspurn þinni."
+msgstr[1] "%(count)s verkefni samsvara fyrirspurn þinni."
 
 #: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Það er %(count)s verkefni."
+msgstr[1] "Það eru %(count)s verkefni."
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
@@ -174,7 +174,7 @@ msgstr "Hunsa skrár"
 
 #: static/js/admin/components/Project/ProjectForm.js:119
 msgid "String Errors Contact"
-msgstr ""
+msgstr "Tengiliður vegna villna í textastrengjum"
 
 #: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
@@ -213,16 +213,17 @@ msgstr "Bæta við notanda"
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(count)s notandi samsvarar fyrirspurn þinni."
+msgstr[1] "%(count)s notendur samsvara fyrirspurn þinni."
 
 #: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
+msgstr[0] "Það er %(count)s notandi."
 msgstr[1] ""
+"Það eru %(count)s notendur. Fyrir neðan eru þeir sem síðast var bætt við."
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
@@ -230,7 +231,7 @@ msgstr "Leita að notendum"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr "Finna notanda eftir nafni, tölvupóstfangi, eiginleikum"
+msgstr "Finndu notanda eftir nafni, tölvupóstfangi, eiginleikum"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
@@ -817,7 +818,7 @@ msgstr "Yfirfarið"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "Breyting á skori"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -869,7 +870,7 @@ msgstr "Magn"
 #: templates/admin/xhr_paid_tasks_report.html:11
 #: templates/admin/xhr_summary_report.html:9
 msgid "Rate"
-msgstr ""
+msgstr "Stig"
 
 #: templates/admin/xhr_paid_tasks_report.html:12
 #: templates/admin/xhr_summary_report.html:10

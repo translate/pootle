@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-11-18 12:50+0000\n"
+"PO-Revision-Date: 2017-01-19 09:01+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479473447.000000\n"
+"X-POOTLE-MTIME: 1484816473.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -334,9 +334,8 @@ msgid "Filesystem backend"
 msgstr "Fájlrendszer háttérrendszer"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Fájlrendszer háttérrendszer"
+msgstr "Válasszon fájlrendszer háttérrendszert"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
@@ -347,24 +346,24 @@ msgid "The URL or path to your translation files"
 msgstr "A fordítási fájlok URL-je vagy útvonala"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Fordítási beállítások"
+msgstr "Fordítási útvonal leképezése"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Fordítási útvonal leképezése, amely a fájlrendszeren lévő fordítási fájlokat "
+"leképezi a Pootle tárolóira."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "A fájlrendszer nyelvi kódjainak egyedieknek kell lenniük"
 
 #: apps/pootle_fs/forms.py:181
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Pootle Nyelvek Adminisztrációs Oldal"
+msgstr "A Pootle nyelvleképezéseknek egyedieknek kell lenniük"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -383,9 +382,8 @@ msgid "Administrator"
 msgstr "Adminisztrátor"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Adminisztrátor"
+msgstr "Adminisztrátorok"
 
 #: apps/pootle_language/forms.py:75
 msgid "Reviewers"
@@ -400,17 +398,16 @@ msgid "Members"
 msgstr "Tagok"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Csapattag hozzáadása"
+msgstr "Új tag"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Felhasználó hozzáadása a csapathoz"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "A szerep kötelező új tag hozzáadásánál"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -840,9 +837,8 @@ msgid "Plurr placeholders"
 msgstr "Plurr helykitöltők"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Dátumformátum"
+msgstr "ftl formátum"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
@@ -944,9 +940,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Nem-GNU: minden nyelv külön könyvtárban van"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "A Pootle FS kezelheti a fájlrendszereket"
+msgstr "A Pootle FS kezelheti a fájlrendszereket (kísérleti)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1714,10 +1709,10 @@ msgid "Add comment"
 msgstr "Megjegyzés hozzáadása"
 
 #: core/forms.py:193
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
-"Jelölje ki az összes illeszkedő szűrőfeltételt, a nem láthatókat is beleértve"
+"Szűrőfeltételekre illeszkedő összes elem kijelölése, a nem láthatókat is "
+"beleértve"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"

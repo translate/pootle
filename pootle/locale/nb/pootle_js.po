@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-11-18 07:28+0000\n"
+"PO-Revision-Date: 2017-01-19 02:13+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479454133.000000\n"
+"X-POOTLE-MTIME: 1484791981.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -47,16 +47,16 @@ msgstr "Avbryt"
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] "%(counts)s språk samsvarer med din spørring."
-msgstr[1] "%(counts)s språk samsvarer med din spørring."
+msgstr[0] "%(count)s språk samsvarer med din spørring."
+msgstr[1] "%(count)s språk samsvarer med din spørring."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] "Det finnes %(cont)s språk."
-msgstr[1] "Det finnes %(cont)s språk. Nedenfor finner du de nyligst tillagte."
+msgstr[0] "Det finnes %(count)s språk."
+msgstr[1] "Det finnes %(count)s språk. Nedenfor finner du de nyligst tillagte."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
@@ -321,9 +321,8 @@ msgid "Short Bio"
 msgstr "Kort bio"
 
 #: static/js/admin/components/User/UserForm.js:144
-#, fuzzy
 msgid "Personal description"
-msgstr "Egenbeskrivelse"
+msgstr "Biografi"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
@@ -347,14 +346,14 @@ msgstr ""
 "span>. Se gjennom søppelposten hvis du ikke ser e-posten."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
 "En e-post som inneholder den spesielle lenken har blitt sendt til adressen "
-"brukeren oppga i registreringen av denne kontoen."
+"brukeren oppga i registreringen av denne kontoen. Se gjennom spøppelposten "
+"din hvis du ikke ser e-posten."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -566,12 +565,10 @@ msgid "All Projects"
 msgstr "Alle prosjekter"
 
 #: static/js/browser.js:297
-#, fuzzy
 msgid "Entire Project"
 msgstr "Hele prosjektet"
 
 #: static/js/common.js:139
-#, fuzzy
 msgid "Updating data"
 msgstr "Oppdaterer data"
 
@@ -584,26 +581,24 @@ msgstr ""
 "forkaste de endringene."
 
 #: static/js/editor/app.js:384
-#, fuzzy
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"Gå til neste streng (Ctrl+.)<br/><br/>Also:<br/>Neste side: Ctrl+Shift+.<br/"
+"Gå til neste streng (Ctrl+.)<br/><br/>Også:<br/>Neste side: Ctrl+Shift+.<br/"
 ">Forrige side: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:390
-#, fuzzy
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Gå til forrige streng (Ctrl+,)<br/><br/>Also:<br/>Forrige side: Ctrl+Shift+,"
+"Gå til forrige streng (Ctrl+,)<br/><br/>Også:<br/>Forrige side: Ctrl+Shift+,"
 "<br/>Første side: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:515
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr "%ss ventende forslag"
 
@@ -628,9 +623,9 @@ msgstr "%ss innsendelser"
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
 #: static/js/editor/app.js:528
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid "%s's overwritten submissions"
-msgstr "%ss overskrevede innsendelser"
+msgstr "%ss overskrevne innsendelser"
 
 #: static/js/editor/app.js:1083
 msgid "Error while connecting to the server"
@@ -698,7 +693,7 @@ msgstr "Avvis"
 #: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr "%s(timeSince)s via filopplasting"
+msgstr "%(timeSince)s via filopplasting"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -767,7 +762,7 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
-"For å sette eller endre avatar for din e-postadresse (%(emails)s), gå til "
+"For å sette eller endre avatar for din e-postadresse (%(email)s), gå til "
 "gravatar.com."
 
 #: static/js/user/components/UserProfileForm.js:75

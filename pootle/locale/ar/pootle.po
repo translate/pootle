@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-07-28 16:02+0000\n"
+"PO-Revision-Date: 2017-01-18 16:14+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1469721739.000000\n"
+"X-POOTLE-MTIME: 1484756076.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
-msgstr "حدثت مشكلة أثناء إرسال بريد التّأكيد. فضلًا جرّب مجدّدًا لاحقًا."
+msgstr "حدثت مشكلة أثناء إرسال بريد التأكيد. رجاء أعد المحاولة لاحقا."
 
 #: apps/accounts/forms.py:32
 msgid ""
@@ -35,7 +35,7 @@ msgstr "حدث عُطل أثناء ولوجك. رجاء تواصل مع مدير
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
-msgstr "يبدو أن مستخدمك قد اختفى. فضلًا أبلغ هذا إلى مالكي الموقع."
+msgstr "يبدو أن مستخدمك قد اختفى. رجاء أبلغ هذا إلى مالكي الموقع."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -45,7 +45,8 @@ msgstr "اسم المستخدم"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
-"مطلوب. 30 محرفًا أو أقلّ. المحارف المقبولة هي الأحرف، والأعداد و @/./+/-/_"
+"مطلوب. الحد الأعلى هو 30 محرفًا. المحارف المقبولة هي الأحرف، و الأعداد "
+"و محارف @/./+/-/_"
 
 #: apps/accounts/models.py:60
 msgid "Enter a valid username."
@@ -145,7 +146,7 @@ msgstr "الملخّص"
 
 #: apps/contact/forms.py:28
 msgid "Please enter your message summary"
-msgstr "فضلًا أدخل ملخّص رسالتك"
+msgstr "رجاء أدخل ملخّص رسالتك"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -153,7 +154,7 @@ msgstr "الاسم"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr "فضلًا أدخل اسمك"
+msgstr "رجاء أدخل اسمك"
 
 #: apps/contact/forms.py:39
 msgid "Email address"
@@ -161,7 +162,7 @@ msgstr "عنوان البريد الإلكترونيّ"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr "فضلًا أدخل عنوان بريدك الإلكترونيّ"
+msgstr "رجاء أدخل عنوان بريدك الإلكترونيّ"
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -169,7 +170,7 @@ msgstr "الرّسالة"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr "فضلًا أدخل رسالتك"
+msgstr "رجاء أدخل رسالتك"
 
 #: apps/contact/views.py:34 templates/layout.html:108
 msgid "Contact Us"
@@ -185,7 +186,7 @@ msgstr "نزّل ملفّات التّرجمة للتّرجمة محليًّا"
 
 #: apps/import_export/templates/browser/index.html:12
 msgid "Download for offline translation"
-msgstr "نزّل للتّرجمة المحليّة"
+msgstr "نزّل للتّرجمة محليًّا"
 
 #: apps/import_export/templates/browser/index.html:16
 msgid "Download translation files for backup"
@@ -211,22 +212,22 @@ msgstr "ارفع ك‍ %(user)s"
 #: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr "نوع الملفّات '%s' غير مدعوم، ملفّات PO هي فقط المدعومة حاليًّا\n"
+msgstr "نوع الملفّات ’%s‘ غير مدعوم، ملفّات PO هي فقط المدعومة حاليًّا\n"
 
 #: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "ينقصه الملفّ '%s' ترويسة X-Pootle-Path\n"
+msgstr "ينقصه الملفّ ’%s‘ ترويسة X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "الملفّ '%s' إمّا أنّه ينقصه ترويسة X-Pootle-Revision أو أنّها غير صالحة\n"
+msgstr "الملفّ ’%s‘ إمّا أنّه ينقصه ترويسة X-Pootle-Revision أو أنّها غير صالحة\n"
 
 #: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr "تعذّر إنشاء '%s'. لربّما المشروع أو اللغة ناقصة؟ (%s)"
+msgstr "تعذّر إنشاء ’%s‘. لربّما المشروع أو اللغة ناقصة؟ (%s)"
 
 #: apps/import_export/utils.py:74
 msgid "There was an error uploading your file"
@@ -241,19 +242,21 @@ msgid "Source Language"
 msgstr "اللغة المصدر"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"إن كان هناك تخزين بأحد أنواع الملفات، لا يمكنك إزالة ذلك النوع من أي مشروع "
+"(’%s‘)"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
-msgstr "كلمة المرور"
+msgstr "كلمة السر"
 
 #: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr "فضلًا أدخل عنوان ملفّ شخصيّ لك على لنكدإن."
+msgstr "رجاء أدخل عنوان ملفّك الشخصيّ على لنكدإن."
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58
@@ -295,7 +298,7 @@ msgstr "لا ملفّات في هذا المشروع."
 
 #: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:169
 msgid "There are errors in the form. Please review the problems below."
-msgstr "بالاستمارة أخطاء. فضلًا راجع المشاكل أدناه."
+msgstr "بالاستمارة أخطاء. رجاء راجع المشاكل أدناه."
 
 #: apps/pootle_format/abstracts.py:35
 #, fuzzy
@@ -318,7 +321,7 @@ msgstr "نسق أندرويد"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "نمط غنو"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
@@ -326,28 +329,27 @@ msgstr ""
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "نمط جانغو"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "مخصّص"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
-msgstr ""
+msgstr "سند نظام الملفّات"
 
 #: apps/pootle_fs/forms.py:36
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "اختر ملفا لرفعه"
+msgstr "اختر سند نظام ملفّات"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
-msgstr ""
+msgstr "عنوان السّند أو مساره"
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "عنوان ملفّات الترجمة أو مسارها"
 
 #: apps/pootle_fs/forms.py:52
 #, fuzzy
@@ -370,57 +372,49 @@ msgid "Pootle language mappings must be unique"
 msgstr "صفحة المدير للغات بوتل"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "الأعداد"
+msgstr "عضو"
 
 #: apps/pootle_language/forms.py:28
 #, fuzzy
 msgid "Submitter"
-msgstr "أرسل"
+msgstr "مودع"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "مراجعة"
+msgstr "مراجع"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "الإدارة"
+msgstr "مدير"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "الإدارة"
+msgstr "المدراء"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "المراجعات"
+msgstr "المراجعون"
 
 #: apps/pootle_language/forms.py:80
-#, fuzzy
 msgid "Submitters"
-msgstr "أرسل"
+msgstr "المودعون"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "الأعداد"
+msgstr "الأعضاء"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "الأعداد"
+msgstr "عضو جديد"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "أضف مستخدمًا إلى هذا الفريق"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "الدور مطلوب لإضافة عضو جديد"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -498,14 +492,12 @@ msgid "Suggestion"
 msgstr "اقتراح"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested by"
-msgstr "اقترح"
+msgstr "اقترحه"
 
 #: apps/pootle_language/views.py:214
-#, fuzzy
 msgid "Suggested at"
-msgstr "اقترح"
+msgstr "اقتُرح في"
 
 #: apps/pootle_language/views.py:236
 #, fuzzy, python-format
@@ -922,14 +914,14 @@ msgid "Language"
 msgstr "اللغة"
 
 #: apps/pootle_project/models.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "لا يمكن استخدام \"%s\" في رمز المشروع"
+msgstr "لا يمكن استخدام ”%(code)s“ كرمز للمشروع"
 
 #: apps/pootle_project/models.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "لا يمكن استخدام \"%s\" في رمز المشروع"
+msgstr "لا يمكن استخدام ”%(code)s“ كفاحِص للمشروع"
 
 #: apps/pootle_project/models.py:196
 msgid ""
@@ -1109,13 +1101,12 @@ msgid "Added suggestion"
 msgstr "أضاف اقتراحًا"
 
 #: apps/pootle_store/utils.py:33
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "قبل الاقتراح."
+msgstr "قُبل اقتراح مع تعليق"
 
 #: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "رُفض اقتراح مع تعليق"
 
 #: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
@@ -1735,39 +1726,39 @@ msgid "Can perform administrative tasks"
 msgstr "يمكنه أداء مهام الإدارة"
 
 #: core/views/display.py:95 core/views/display.py:116
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "أزال ترجمة لِـ %(source_string)s"
+msgstr "أزال %(user)s ترجمة ل‍ %(source)s"
 
 #: core/views/display.py:97
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "قبل اقتراح %(author)s"
+msgstr "قبل %(user)s اقتراحا ل‍ %(source)s"
 
 #: core/views/display.py:99
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
 msgstr "رفع %(user)s ملفًا"
 
 #: core/views/display.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "كتم %(check_name)s لِـ %(source_string)s"
+msgstr "كتم %(user)s فحص %(check)s ل‍ %(source)s"
 
 #: core/views/display.py:103
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "أزال كتم %(check_name)s لِـ %(source_string)s"
+msgstr "أزال %(user)s كتم فحص %(check)s ل‍ %(source)s "
 
 #: core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "أضاف اقتراح لِـ %(source_string)s"
+msgstr "أضاف %(user)s اقتراحا ل‍ %(source)s"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "رفض اقتراح %(author)s"
+msgstr "رفض %(user)s اقتراحا ل‍ %(source)s"
 
 #: core/views/display.py:110
 #, fuzzy, python-format
@@ -1896,22 +1887,20 @@ msgstr "تأكيد البريد الإلكترونيّ لبوتل"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "استقبلنا طلبا لتصفير كلمة السر."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "لتنشيط حسابك، اتّبع هذه الوصة:"
+msgstr "لتصفير كلمة السر، اتبع هذا الرابط:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr ""
+msgstr "إن لم ترد تصفير كلمة السر، تجاهل هذه الرسالة."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "فشلت في استرجاع كلمة السر."
+msgstr "بريد إلكتروني لتصفير كلمة سر بوتل"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -1921,7 +1910,7 @@ msgstr "التّسجيل معطّل"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
-msgstr "التّسجيل معطّل حاليًّا. فضلّا جرّب مجدّدًا لاحقًا."
+msgstr "التّسجيل معطّل حاليًّا. رجاء أعد المحاولة لاحقا."
 
 #: templates/admin/_generic_formset.html:22
 #: templates/translation_projects/terminology/manage.html:54
@@ -2116,7 +2105,7 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "ضبط نظام الملفّات: %(project_code)s"
 
 #: templates/admin/project_fs.html:28
 msgid ""
@@ -2127,7 +2116,7 @@ msgstr ""
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
-msgstr ""
+msgstr "ضبط السّند"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
@@ -2324,27 +2313,30 @@ msgid "All"
 msgstr "الكلّ"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "<span class=\"value translated\">0</span>%% مترجمة"
+msgstr ""
+"<span class='value translated'>%(translated_percent_display)s</span> مترجم"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% مبهمة"
+msgstr "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> يحتاج عملا"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% غير مترجمة"
+msgstr ""
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> غير "
+"مترجم"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
-msgstr "اعرض التّفاصيل"
+msgstr "وسّع التّفاصيل"
 
 #: templates/browser/index.html:26
 msgid "Translation Statistics"
@@ -2359,7 +2351,6 @@ msgid "More..."
 msgstr "المزيد..."
 
 #: templates/browser/index.html:68
-#, fuzzy
 msgid "Less..."
 msgstr "أقل..."
 
@@ -2368,9 +2359,8 @@ msgid "Updates"
 msgstr "التحديثات"
 
 #: templates/browser/index.html:85
-#, fuzzy
 msgid "Last updated:"
-msgstr "آخر تحديث"
+msgstr "آخر تحديث:"
 
 #: templates/browser/index.html:96
 msgid "Translations"
@@ -2617,10 +2607,11 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "راجعها <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:226
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"أدرج %(character_name)s (وقيمته اليونيكودية %(character_code)s) إلى المحرّر"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
@@ -2805,58 +2796,50 @@ msgstr "تصفّح"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "الفريق"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "اقتراحات المستخدم"
+msgstr "رشّح الاقتراحات"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "اسم اللغة"
+msgstr "فريق اللغة"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "إدارة الأعضاء"
 
 #: templates/languages/admin/language_team.html:29
 msgid "Add team member"
-msgstr ""
+msgstr "أضفه كعضو جديد"
 
 #: templates/languages/admin/language_team.html:42
 #: templates/languages/admin/language_team.html:55
 #: templates/languages/admin/language_team.html:68
 #: templates/languages/admin/language_team.html:81
-#, fuzzy
 msgid "Remove selected"
-msgstr "احذف المستخدم"
+msgstr "أزل المحدّد"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "اقتراح %d:"
+msgstr "إدارة الوحدات والاقتراحات"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "الاقتراحات المنتظرة"
+msgstr "الاقتراحات المُرجأة:"
 
 #: templates/languages/admin/language_team.html:127
-#, fuzzy
 msgid "Total words:"
-msgstr "المجموع الكلي للكلمات"
+msgstr "مجموع الكلمات:"
 
 #: templates/languages/admin/language_team.html:131
-#, fuzzy
 msgid "Translated:"
-msgstr "مُتَرجَمة"
+msgstr "المترجم:"
 
 #: templates/languages/admin/language_team.html:139
-#, fuzzy
 msgid "Needs work:"
-msgstr "تحتاج للعمل"
+msgstr "يحتاج عملا:"
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"

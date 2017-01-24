@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-12 11:50+0000\n"
+"PO-Revision-Date: 2017-01-24 03:25+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484221837.000000\n"
+"X-POOTLE-MTIME: 1485228359.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -679,11 +679,11 @@ msgstr "Plural %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr "Si fuera necesario, editar la sugerencia antes de aceptar"
+msgstr "Si fuera necesario, editar sugerencia antes de aceptarla"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
-msgstr "Proponer un comentario opcional (visible para el público)"
+msgstr "Proporcione un comentario opcional (visible para el público)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-17 12:01+0000\n"
+"PO-Revision-Date: 2017-01-17 12:25+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "Language: pt_BR\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484654473.000000\n"
+"X-POOTLE-MTIME: 1484655927.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -505,12 +505,12 @@ msgstr "Sugerido em"
 #: apps/pootle_language/views.py:236
 #, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Sugestão rejeitada %s com comentário. O usuário será notificado."
+msgstr "Sugestão rejeitada %s com comentário. O usuário será notificado"
 
 #: apps/pootle_language/views.py:240
 #, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Sugestão aceita %s com comentário. O usuário será notificado."
+msgstr "Sugestão aceita %s com comentário. O usuário será notificado"
 
 #: apps/pootle_language/views.py:243
 #, python-format
@@ -596,7 +596,7 @@ msgstr "Espaço em branco no final"
 
 #: apps/pootle_misc/checks.py:56
 msgid "Escapes"
-msgstr "Seqüências de escape"
+msgstr "Sequências de escape"
 
 #: apps/pootle_misc/checks.py:57
 msgid "File paths"
@@ -672,11 +672,11 @@ msgstr "Curto"
 
 #: apps/pootle_misc/checks.py:75
 msgid "Simple capitalization"
-msgstr "Capitalização simple"
+msgstr "Capitalização simples"
 
 #: apps/pootle_misc/checks.py:76
 msgid "Simple plural(s)"
-msgstr "Plural(is) simples"
+msgstr "Plural simples"
 
 #: apps/pootle_misc/checks.py:77
 msgid "Single quotes"
@@ -870,7 +870,7 @@ msgstr "Correspondência exata"
 
 #: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
 msgid "Source Text"
-msgstr "Texto de origem"
+msgstr "Texto fonte"
 
 #: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
 msgid "Target Text"
@@ -1015,7 +1015,7 @@ msgstr "Traduzidas"
 
 #: apps/pootle_store/decorators.py:25
 msgid "Insufficient rights to access this directory."
-msgstr "Você não tem permissões para aceder a este diretório."
+msgstr "Permissões insuficientes para acessar este diretório."
 
 #: apps/pootle_store/decorators.py:28
 msgid "Insufficient rights to access suggestion mode."
@@ -1035,7 +1035,7 @@ msgstr "Permissões insuficientes para acessar o modo de revisão."
 #: apps/pootle_store/templatetags/store_tags.py:70
 #, python-format
 msgid "Plural Form %d"
-msgstr "Forma Plural %d"
+msgstr "Forma plural %d"
 
 #: apps/pootle_store/forms.py:258
 msgid "Value of `similarity` should be in in the [0..1] range"
@@ -1736,11 +1736,11 @@ msgstr "Não pode acessar o projeto"
 
 #: core/initdb.py:144
 msgid "Can make a suggestion for a translation"
-msgstr "Fazer uma sugestão para um tradução"
+msgstr "Pode fazer sugestão para tradução"
 
 #: core/initdb.py:148
 msgid "Can submit a translation"
-msgstr "Enviar uma tradução"
+msgstr "Pode enviar tradução"
 
 #: core/initdb.py:152
 msgid "Can review suggestions"
@@ -1838,7 +1838,7 @@ msgstr "Política de privacidade"
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:41
 msgid "Legal"
-msgstr "Legal"
+msgstr "Requisitos legais"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:43
@@ -1930,7 +1930,7 @@ msgstr ""
 
 #: templates/account/email/password_reset_key_subject.txt:2
 msgid "Pootle password reset e-mail"
-msgstr "E-mail de redefinição de senha o Pootle."
+msgstr "E-mail de redefinição de senha do Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2056,7 +2056,7 @@ msgstr "Ação"
 
 #: templates/admin/detailed_reports.html:153
 msgid "Source words"
-msgstr "Palavras do fonte"
+msgstr "Palavras fonte"
 
 #: templates/admin/detailed_reports.html:154
 msgid "Similarity"
@@ -2129,10 +2129,10 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"O utilizador “nobody” refere-se a qualquer utilizador não registado "
-"(anónimo, não identificado). O utilizador “default” refere-se aos direitos "
-"que todos os utilizadores registados terão por norma, a não ser que outros "
-"direitos específicos que lhes sejam atribuídos."
+"O usuário “nobody” refere-se a qualquer usuário não registado (anônimo, não "
+"identificado). O usuário “default” refere-se às permissões que todos os "
+"usuário registados terão por padrão, a não ser que outras permissões "
+"específicas lhes sejam atribuídos."
 
 #: templates/admin/project_fs.html:26
 #, python-format
@@ -2457,12 +2457,12 @@ msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
-"Para proteger o servidor contra ataques, nós temos de verificar se as "
-"submissões foram efetuadas por utilizadores humanos."
+"Para proteger o servidor contra ataques, temos que verificar se os envios "
+"foram feitos por usuários humanos."
 
 #: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
-msgstr "Por favor responda esta questão:"
+msgstr "Responda esta questão:"
 
 #: templates/core/xhr_captcha.html:19
 msgid "Confirm"
@@ -2629,7 +2629,7 @@ msgstr "Mudar para o modo de sugestão (Ctrl+Shift+Space)"
 
 #: templates/editor/units/edit.html:167
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr "Marcar este item como \"Precisa de Revisão\" (Ctrl+Space)"
+msgstr "Marcar este texto como necessita trabalho (Ctrl+Space)"
 
 #: templates/editor/units/edit.html:202
 msgid "Show Timeline"
@@ -2684,7 +2684,7 @@ msgstr "Há muito tempo atrás"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr "Comentário:"
+msgstr "Comentário: "
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical issues with the translation"
@@ -2794,7 +2794,7 @@ msgstr ""
 
 #: templates/errors/db.html:4 templates/errors/db.html:8
 msgid "Database Error"
-msgstr "Erro na base de dados"
+msgstr "Erro no banco de dados"
 
 #: templates/errors/db.html:11
 msgid ""
@@ -2889,8 +2889,7 @@ msgstr "Pootle requer JavaScript"
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
-"Por favor, ative o JavaScript nas preferências do seu Navegador e recarregue "
-"a página."
+"Ative o JavaScript nas preferências do seu navegador e recarregue a página."
 
 #: templates/layout.html:98
 msgid "skip to navigation"
@@ -3049,7 +3048,8 @@ msgstr "Arquivo"
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
-"Assim que enviar os arquivos, irá poder adicionar, editar e apagar os termos."
+"Assim que enviar os arquivos, irá poder adicionar, editar e excluir os "
+"termos."
 
 #: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-16 02:36+0000\n"
+"PO-Revision-Date: 2017-01-23 23:30+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484534160.000000\n"
+"X-POOTLE-MTIME: 1485214209.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -310,113 +310,104 @@ msgid "Enabled"
 msgstr "قوزغىتىلغان"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android پىچىمى"
+msgstr "بىر تىللىق پىچىم"
 
 #: apps/pootle_fs/forms.py:22
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU-ئۇسلۇبى"
 
 #: apps/pootle_fs/forms.py:24
 msgid "non GNU-style"
-msgstr ""
+msgstr "غەيرى GNU-ئۇسلۇبى"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr ""
+msgstr "Django-ئۇسلۇبى"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
-msgstr ""
+msgstr "ئىختىيارى"
 
 #: apps/pootle_fs/forms.py:35
 msgid "Filesystem backend"
-msgstr ""
+msgstr "ھۆججەت سىستېما ئارقا ئۇچى"
 
 #: apps/pootle_fs/forms.py:36
 msgid "Select a filesystem backend"
-msgstr ""
+msgstr "ھۆججەت سىستېما ئارقا ئۇچىدىن بىرنى تاللاڭ"
 
 #: apps/pootle_fs/forms.py:41
 msgid "Backend URL or path"
-msgstr ""
+msgstr "ئارقا ئۇچ URL ى ياكى يولى"
 
 #: apps/pootle_fs/forms.py:43
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "تەرجىمە ھۆججەتلىرىڭىزگە بارىدىغان URL ياكى يول"
 
 #: apps/pootle_fs/forms.py:52
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "تەرجىمە تەڭشەك"
+msgstr "تەرجىمە يولى خەرىتىسى"
 
 #: apps/pootle_fs/forms.py:53
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"تەرجىمە يولى خەرىتىسى ھۆججەت سىستېمىسىنىڭ Pootle دا ساقلىنىدىغان "
+"يەرلىكلەشتۈرۈلگەن ھۆججەتلەر خەرىتىسىدۇر."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "ھۆججەت سىستېما تىل كودى چوقۇم بىردىنبىر بولۇشى لازىم"
 
 #: apps/pootle_fs/forms.py:181
 msgid "Pootle language mappings must be unique"
-msgstr ""
+msgstr "بۇ Pootle تىل خەرىتىسى چوقۇم بىردىنبىر بولۇشى لازىم"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "سانلار"
+msgstr "ئەزا"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
-msgstr "تاپشۇر"
+msgstr "تاپشۇرغۇچى"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "تەكشۈر"
+msgstr "تەكشۈرگۈچى"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "باشقۇر"
+msgstr "باشقۇرغۇچى"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "باشقۇر"
+msgstr "باشقۇرغۇچىلار"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "تەكشۈرۈلگەنلىرى"
+msgstr "تەكشۈرگۈچىلەر"
 
 #: apps/pootle_language/forms.py:80
-#, fuzzy
 msgid "Submitters"
-msgstr "تاپشۇر"
+msgstr "تاپشۇرغۇچىلار"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "سانلار"
+msgstr "ئەزالار"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "سانلار"
+msgstr "يېڭى ئەزا"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "بۇ قوشۇنغا بىر ئەزا قوش"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "يېڭى بىر ئەزا قوشقاندا ئۇنىڭ رولىنى بەلگىلەش زۆرۈر"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -494,34 +485,32 @@ msgid "Suggestion"
 msgstr "تەۋسىيە"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested by"
-msgstr "تەكلىپ"
+msgstr "تەكلىپ بەرگۈچى"
 
 #: apps/pootle_language/views.py:214
-#, fuzzy
 msgid "Suggested at"
-msgstr "تەكلىپ"
+msgstr "تەكلىپ ۋاقتى"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "%s نىڭ تەكلىپىنى رەت قىل"
+msgstr "%s نىڭ ئىزاھاتلىق تەكلىپى رەت قىلىندى. ئىشلەتكۈچىلەرگە ئۇقتۇرۇلىدۇ."
 
 #: apps/pootle_language/views.py:240
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "%s نىڭ تەكلىپىگە قوشۇل"
+msgstr "%s نىڭ ئىزاھاتلىق تەكلىپىگە قوشۇلدى. ئىشلەتكۈچىلەرگە ئۇقتۇرۇلىدۇ."
 
 #: apps/pootle_language/views.py:243
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestions"
-msgstr "تەكلىپنى رەت قىل"
+msgstr "%s تەكلىپ رەت قىلىندى"
 
 #: apps/pootle_language/views.py:245
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestions"
-msgstr "تەكلىپكە قوشۇل"
+msgstr "%s تەكلىپ قوبۇل قىلىندى"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -838,19 +827,16 @@ msgid "Percent brace placeholders"
 msgstr "پىرسەنت ئورۇن بەلگىسى"
 
 #: apps/pootle_misc/checks.py:119
-#, fuzzy
 msgid "Plurr format"
-msgstr "Android پىچىمى"
+msgstr "Plurr پىچىمى"
 
 #: apps/pootle_misc/checks.py:120
-#, fuzzy
 msgid "Plurr placeholders"
-msgstr "$ بەلگىسى"
+msgstr "Plurr ئورۇن بەلگىسى"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "چېسلا پىچىمى"
+msgstr "ftl پىچىمى"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
@@ -907,7 +893,7 @@ msgstr "ئەڭ ئاخىرى(%d)"
 
 #: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
-msgstr ""
+msgstr "ئىزدىگىلى بولمايدۇ"
 
 #: apps/pootle_profile/views.py:59
 msgid "Select one or more languages"
@@ -918,14 +904,14 @@ msgid "Language"
 msgstr "تىل"
 
 #: apps/pootle_project/models.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "\"%s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
+msgstr "\"%(code)s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
 
 #: apps/pootle_project/models.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "\"%s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
+msgstr "\"%(code)s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
 
 #: apps/pootle_project/models.py:196
 msgid ""
@@ -940,9 +926,8 @@ msgid "Quality Checks"
 msgstr "سۈپەت تەكشۈرۈش"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "ئۆزلۈكىدىن بايقا (ئاستىراق)"
+msgstr "gnu/غەيرى-gnu ئۇسلۇبىنى ئۆزلۈكىدىن بايقاش (ئاستىراق)"
 
 #: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
@@ -954,7 +939,7 @@ msgstr "غەيرى GNU: ھەر بىر تىلنىڭ ئۆزىنىڭ مۇندەرى
 
 #: apps/pootle_project/models.py:223
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr ""
+msgstr "ھۆججەت سىستېمىسىنى باشقۇرۇش ئۈچۈن Pootle FS كە يول قوي (تەجرىبە)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -981,16 +966,18 @@ msgid "Disabled"
 msgstr "چەكلەنگەن"
 
 #: apps/pootle_project/views.py:256
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
-msgstr "تەرجىمە قۇرۇلۇشى ئاخىرقى قېلىپتىن يېڭىلاندى."
+msgstr ""
+"تەرجىمە قۇرۇلۇشى (%s) قۇرۇلدى. ئۇنىڭ ساقلانمىلىرىنى ھۆججەت قېلىپىدىن "
+"يېڭىلايمىز."
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "تەرجىمە قىلىنىدىغان قۇرۇلۇش ھۆججەتلىرى قايتا تەكشۈرۈلدى."
+msgstr "تەرجىمە قۇرۇلۇشى (%s) ئۆچۈرۈلدى."
 
 #: apps/pootle_statistics/models.py:64
 msgid "Target"
@@ -1081,41 +1068,40 @@ msgid "Plural"
 msgstr "كۆپلۈك"
 
 #: apps/pootle_store/unit/timeline.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "%s نىڭ تەكلىپىگە قوشۇل"
+msgstr "%(author)s نىڭ تەكلىپىگە قوشۇلدى"
 
 #: apps/pootle_store/unit/timeline.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "%s نىڭ تەكلىپىنى رەت قىل"
+msgstr "%(author)s نىڭ تەكلىپى رەت قىلىندى"
 
 #: apps/pootle_store/unit/timeline.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "%s نىڭ تەكلىپىگە قوشۇل"
+msgstr "%(author)s نىڭ تەكلىپىگە قوشۇلدى، ئىزاھاتى: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:61
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "%s نىڭ تەكلىپىنى رەت قىل"
+msgstr "%(author)s نىڭ تەكلىپى رەت قىلىندى، ئىزاھاتى: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:67
 msgid "Added suggestion"
 msgstr "تەكلىپ قوشۇلدى"
 
 #: apps/pootle_store/utils.py:33
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "تەكلىپ قوبۇل قىلىندى."
+msgstr "ئىزاھاتلىق تەكلىپ قوبۇل قىلىندى."
 
 #: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "ئىزاھاتلىق تەكلىپ رەت قىلىندى"
 
 #: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
-msgstr ""
+msgstr "يول بەك ئۇزۇن."
 
 #: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
@@ -1143,14 +1129,14 @@ msgid "This term already exists in this file."
 msgstr "بۇ ئاتالغۇ مەزكۇر ھۆججەتتە مەۋجۇت."
 
 #: apps/pootle_translationproject/receivers.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "تەرجىمە قۇرۇلۇش باش بېتى"
+msgstr "تەرجىمە قۇرۇلۇشى (%s) قۇرۇلدى"
 
 #: apps/pootle_translationproject/receivers.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "تەرجىمە قۇرۇلۇش باش بېتى"
+msgstr "تەرجىمە قۇرۇلۇشى (%s) نى قۇرالمىدى"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1332,9 +1318,8 @@ msgid "No RQ Worker running."
 msgstr "ئىجرا قىلىنىۋاتقان RQ ئىشچى يوق"
 
 #: checks.py:148
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "يېڭى ئىشچى manage.py rqworker ئارقىلىق ئىجرا قىلىڭ"
+msgstr "يېڭى ئىشچى 'pootle rqworker' ئارقىلىق ئىجرا قىلىڭ"
 
 #: checks.py:163
 msgid "Cache backend is not set to Redis."

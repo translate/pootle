@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-06 16:31+0000\n"
+"PO-Revision-Date: 2017-01-19 10:25+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
 "Language: cy\n"
@@ -16,37 +16,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==2) ? 1 : 0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1483720287.000000\n"
+"X-POOTLE-MTIME: 1484821507.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
-"Digwyddodd anhawster wrth geisio anfon y neges e-bost cadarnhau. Ceisiwch "
-"eto yn nes ymlaen."
+"Cafwyd anhawster wrth geisio anfon y neges e-bost cadarnhau. Ceisiwch eto yn "
+"nes ymlaen."
 
 #: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
-"Digwyddodd gwall wrth eich mewngofnodi. Cysylltwch â gweinyddwr eich system"
+"Cafwyd gwall wrth eich mewngofnodi. Cysylltwch â gweinyddwr eich system"
 
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
-"Mae eich defnyddiwr i weld wedi diflannu. Adroddwch hyn i berchnogion y "
-"wefan."
+"Mae eich defnyddiwr i weld wedi diflannu. Dywedwch wrth berchnogion y wefan."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
-msgstr "Enw defnyddiwr"
+msgstr "Enw Defnyddiwr"
 
 #: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr "Angenrheidiol. 30 nod neu lai. Llythrennau, rhifau a nodau @/./+/-/_"
+msgstr ""
+"Yn Angenrheidiol. 30 nod neu lai. Llythrennau, rhifau a nodau @/./+/-/_"
 
 #: apps/accounts/models.py:60
 msgid "Enter a valid username."
@@ -71,7 +71,7 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-"Yn dynodi p'un ai dylai'r defnyddiwr hwn gael ei drin fel un gweithredol. "
+"Mae'n dynodi p'un ai dylai'r defnyddiwr hwn gael ei drin fel un gweithredol. "
 "Dad-ddewis hwn yn lle dileu cyfrifon."
 
 #: apps/accounts/models.py:74
@@ -82,7 +82,8 @@ msgstr "Statws Uwch Ddefnyddiwr"
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
-msgstr "Yn dynodi fod gan y defnyddiwr pob caniatâd heb eu dynodi'n benodol."
+msgstr ""
+"Mae'n dynodi fod gan y defnyddiwr pob caniatâd heb eu dynodi'n benodol."
 
 #: apps/accounts/models.py:80
 msgid "date joined"
@@ -94,7 +95,7 @@ msgstr "Nifer o Resi"
 
 #: apps/accounts/models.py:88
 msgid "Alternative Source Languages"
-msgstr "Iaith Ffynhonnell Arall"
+msgstr "Yr Iaith Ffynhonnell Arall"
 
 #: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
 msgid "Rate"
@@ -182,7 +183,7 @@ msgstr "Adrodd ar anhawster gyda'r llinyn hwn"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
-msgstr "Llwytho ffeil cyfieithu i lawr ar gyfer cyfieithu all-lein"
+msgstr "Llwytho'r ffeil cyfieithu i lawr ar gyfer cyfieithu all-lein"
 
 #: apps/import_export/templates/browser/index.html:12
 msgid "Download for offline translation"
@@ -190,19 +191,19 @@ msgstr "Llwytho i lawr er mwyn cyfieithu all-lein"
 
 #: apps/import_export/templates/browser/index.html:16
 msgid "Download translation files for backup"
-msgstr "Llwytho ffeiliau cyfieithu i lawr ar gyfer copïau wrth gefn"
+msgstr "Llwytho'r ffeiliau cyfieithu i lawr ar gyfer copïau wrth gefn"
 
 #: apps/import_export/templates/browser/index.html:17
 msgid "Download for backup"
-msgstr "Llwytho ffeil i lawr ar gyfer copïau wrth gefn"
+msgstr "Llwytho'r ffeil i lawr ar gyfer copïau wrth gefn"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
-msgstr "Llwytho ffeil cyfieithiad neu archifau i fyny mewn fformat .zip"
+msgstr "Llwytho'r ffeil cyfieithiad neu archifau i fyny mewn fformat .zip"
 
 #: apps/import_export/templates/browser/index.html:27
 msgid "Upload translations"
-msgstr "Llwytho cyfieithiadau"
+msgstr "Llwytho'r cyfieithiadau"
 
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
@@ -213,7 +214,7 @@ msgstr "Llwytho i fyny fel %(user)s"
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
-"Nid yw ffeliau '%s' yn cael eu cynnal, dim ond ffeiliau PO sy'n cael eu "
+"Nid yw ffeiliau '%s' yn cael eu cynnal, dim ond ffeiliau PO sy'n cael eu "
 "cynnal ar hyn o bryd\n"
 
 #: apps/import_export/utils.py:44
@@ -324,7 +325,7 @@ msgstr "nid arddull GNU"
 
 #: apps/pootle_fs/forms.py:27
 msgid "Django-style"
-msgstr "arddull Django"
+msgstr "Arddull Django"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Custom"
@@ -484,15 +485,15 @@ msgstr "Ffynhonnell"
 
 #: apps/pootle_language/views.py:212
 msgid "Suggestion"
-msgstr "Awgrymu"
+msgstr "Awgrym"
 
 #: apps/pootle_language/views.py:213
 msgid "Suggested by"
-msgstr "Awgrymu gan"
+msgstr "Awgrym gan"
 
 #: apps/pootle_language/views.py:214
 msgid "Suggested at"
-msgstr "Awgrymwyd gan"
+msgstr "Awgrymwyd yn"
 
 #: apps/pootle_language/views.py:236
 #, python-format
@@ -524,7 +525,7 @@ msgstr "Cosmetig"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Functional"
-msgstr "Swyddogaethol"
+msgstr "Ffwythiannol"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Extraction"
@@ -596,7 +597,7 @@ msgstr "Llwybrau ffeiliau"
 
 #: apps/pootle_misc/checks.py:58
 msgid "Functions"
-msgstr "Swyddogaethau"
+msgstr "Ffwythiannau"
 
 #: apps/pootle_misc/checks.py:59
 msgid "GConf values"
@@ -628,7 +629,7 @@ msgstr "Nifer o luosogion"
 
 #: apps/pootle_misc/checks.py:66
 msgid "Don't translate words"
-msgstr "Peidiwch cyfieithu geiriau"
+msgstr "Peidiwch cyfieithu'r geiriau"
 
 #: apps/pootle_misc/checks.py:67
 msgid "Numbers"
@@ -693,12 +694,12 @@ msgstr "Tabiau"
 
 #: apps/pootle_misc/checks.py:83
 msgid "Unchanged"
-msgstr "Heb eu newid"
+msgstr "Heb eu Newid"
 
 #: apps/pootle_misc/checks.py:84 apps/pootle_store/constants.py:66
 #: core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
-msgstr "Dim cyfieithiad"
+msgstr "Dim Cyfieithiad"
 
 #: apps/pootle_misc/checks.py:85
 msgid "URLs"
@@ -842,11 +843,11 @@ msgstr "Fformat ftl"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Rwmaneg: Osgoi cedilau deiacritig"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rwmaneg: Defnyddio \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -940,9 +941,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Nid GNU: Pob iaith yn ei gyfarwyddiadur ei hun"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Caniatáu i Pootle FS i reoli systemau ffeiliau"
+msgstr "Caniatáu i Pootle FS i reoli systemau ffeiliau (Arbrofol)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1048,15 +1048,15 @@ msgstr "Sylw'r cyfieithydd"
 
 #: apps/pootle_store/models.py:124
 msgid "Pending"
-msgstr "Dan ystyriaeth"
+msgstr "Dan Ystyriaeth"
 
 #: apps/pootle_store/models.py:125
 msgid "Accepted"
-msgstr "Derbyniwyd"
+msgstr "Wedi ei Dderbyn"
 
 #: apps/pootle_store/models.py:126
 msgid "Rejected"
-msgstr "Gwrthodwyd"
+msgstr "Wedi ei Wrthod"
 
 #: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
 msgid "Path"
@@ -1172,7 +1172,7 @@ msgstr "Dangos y Cynnwys"
 #: apps/staticpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr "Tagio a ganiateir: %s"
+msgstr "Tagio sy'n cael ei ganiatáu: %s"
 
 #: apps/staticpages/models.py:50 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
@@ -1678,7 +1678,7 @@ msgstr "Diweddarwyd diwethaf"
 
 #: core/browser.py:119
 msgid "Back to language"
-msgstr "Nôl i iaith"
+msgstr "Nôl i'r iaith"
 
 #: core/browser.py:121
 msgid "Back to parent folder"
@@ -1736,7 +1736,7 @@ msgstr "Methu cael mynediad i brosiect"
 
 #: core/initdb.py:144
 msgid "Can make a suggestion for a translation"
-msgstr "Gallu cynnig cyfieithiad"
+msgstr "Gallu cynnig awgrym am gyfieithiad"
 
 #: core/initdb.py:148
 msgid "Can submit a translation"
@@ -1748,7 +1748,7 @@ msgstr "Gallu adolygu cyfieithiadau"
 
 #: core/initdb.py:156
 msgid "Can perform administrative tasks"
-msgstr "Gall gyflawni tasgau gweinyddol"
+msgstr "Gallu gyflawni tasgau gweinyddol"
 
 #: core/views/display.py:95 core/views/display.py:116
 #, python-format
@@ -2077,7 +2077,7 @@ msgstr "CP"
 
 #: templates/admin/detailed_reports.html:219
 msgid "Subactions"
-msgstr "Is -swyddogaethau"
+msgstr "Is-swyddogaethau"
 
 #: templates/admin/detailed_reports.html:220
 msgid "Raw Translation"
@@ -2145,6 +2145,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Mae Pootle FS yn dal yn arbrofol, a hoffwn eich gweld yn ei ddefnyddio, ond "
+"mae'n gofyn am lefel uwch o arbenigedd mewn lleoleiddio, Python a Pootle os "
+"fydd rhywbeth yn mynd o'i le."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2351,8 +2354,8 @@ msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
 msgstr ""
-"<span class='value translated'>(translated_percent_display)s</span>%% wedi "
-"ei gyfieithu"
+"<span class='value translated'>%(translated_percent_display)s</span> wedi ei "
+"gyfieithu"
 
 #: templates/browser/_progressbar.html:4
 #, python-format
@@ -2367,7 +2370,7 @@ msgid ""
 "untranslated"
 msgstr ""
 "Nid yw <span class='value untranslated'>%(untranslated_percent_display)s</"
-"span>%% wedi eu cyfieithu"
+"span> wedi eu cyfieithu"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2449,7 +2452,7 @@ msgstr "Prif gyfranwyr:"
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
-msgstr "Ydych chi'n Ddynol?"
+msgstr "Ydych chi'n Berson?"
 
 #: templates/core/xhr_captcha.html:15
 msgid ""
@@ -2862,14 +2865,12 @@ msgid "Remove selected"
 msgstr "Tynnu'r unigolyn"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Gweinyddiaeth awgrymiadau"
+msgstr "Gweinyddiaeth unedau ac awgrymiadau"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Awgrymiadau dan ystyriaeth"
+msgstr "Awgrymiadau o dan ystyriaeth:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"
@@ -2947,8 +2948,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
-"Nid oes temledi ar gyfer y project hwn, felly mae ychwanegu iaith newydd o'r "
-"sgrin wedi ei analluogi."
+"Nid oes templedi ar gyfer y project hwn, felly mae ychwanegu iaith newydd "
+"o'r sgrin wedi ei analluogi."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -3021,7 +3022,7 @@ msgstr "Cyfieithu"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
-msgstr "Heb ganfod ffeiliau terminolegol"
+msgstr "Heb ganfod ffeiliau terminoleg"
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-02 08:21+0000\n"
+"PO-Revision-Date: 2017-01-19 17:38+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1483345319.000000\n"
+"X-POOTLE-MTIME: 1484847501.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -843,17 +843,16 @@ msgid "Plurr placeholders"
 msgstr "Заполнитель множественного числа"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Формат даты"
+msgstr "формат ftl"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Румынский: избегать диакритиков в виде седильи"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Румынский: Использовать \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -947,9 +946,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Не GNU-стиль: каждый язык в своей директории"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Разрешить Pootle FS управлять файловыми системами"
+msgstr "Разрешить Pootle FS управлять файловыми системами (экспериментально)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -2143,6 +2141,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS является экспериментальным. Мы будем рады, если вы будете "
+"использовать его, но это потребует знаний в области локализации и умения "
+"программировать на Python, если что-то пойдет не так."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2153,9 +2154,8 @@ msgid "Update filesystem configuration"
 msgstr "Обновить конфигурацию файловой системы"
 
 #: templates/admin/project_fs.html:51
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "Маппинг перевода должен отвечать формату:"
+msgstr "Путь для маппинга перевода должен быть данного формата:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
@@ -2166,7 +2166,6 @@ msgstr ""
 "заканчиваться на `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:65
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
@@ -2175,11 +2174,10 @@ msgstr ""
 "с путём, указанным в URL бекенда"
 
 #: templates/admin/project_fs.html:71
-#, fuzzy
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
-msgstr "Для остальных бекендов, маппинг относителен корню репозитория."
+msgstr "Для остальных бекендов, маппинг путей относителен корню репозитория."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2862,14 +2860,12 @@ msgid "Remove selected"
 msgstr "Удалить выделеное"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Администратор предложений"
+msgstr "Администратор сегментов и предложений"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Ожидающих предложений"
+msgstr "Ожидающих предложений:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"

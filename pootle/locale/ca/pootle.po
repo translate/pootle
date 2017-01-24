@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-12-05 08:13+0000\n"
+"PO-Revision-Date: 2017-01-19 08:44+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1480925597.000000\n"
+"X-POOTLE-MTIME: 1484815487.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -258,7 +258,7 @@ msgid ""
 "file type ('%s')"
 msgstr ""
 "No podeu suprimir el tipus de fitxer d'un projecte si hi ha fitxers d'aquest "
-"tipus de fitxer («%s»)."
+"tipus de fitxer («%s»)"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -363,10 +363,12 @@ msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"L'assignació de camins de traducció que associa els fitxers de traducció en "
+"el sistema de fitxers amb l'emmagatzematge al Pootle."
 
 #: apps/pootle_fs/forms.py:177
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Els codis de llengua del sistema de fitxers han de ser únics"
 
 #: apps/pootle_fs/forms.py:181
 msgid "Pootle language mappings must be unique"
@@ -844,17 +846,16 @@ msgid "Plurr placeholders"
 msgstr "Texts variables de Plurr"
 
 #: apps/pootle_misc/checks.py:123
-#, fuzzy
 msgid "ftl format"
-msgstr "Format de la data"
+msgstr "Format ftl"
 
 #: apps/pootle_misc/checks.py:126
 msgid "Romanian: Avoid cedillas diacritics"
-msgstr ""
+msgstr "Romanès: evita les cedilles diacrítiques"
 
 #: apps/pootle_misc/checks.py:127
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Romanès: usa «nicium»/«nicio»"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -950,6 +951,8 @@ msgstr "No GNU: cada llengua en el seu propi directori"
 #: apps/pootle_project/models.py:223
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
+"Permet que el sistema de fitxers del Pootle gestioni els sistema de fitxers "
+"(experimental)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1047,7 +1050,7 @@ msgstr "El valor de «mt_similarity» hauria de ser entre l'interval [0..1]"
 
 #: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
-msgstr ""
+msgstr "S'ha de suprimir la marca «cal revisar»"
 
 #: apps/pootle_store/forms.py:350
 msgid "Translator comment"
@@ -1238,6 +1241,8 @@ msgstr "Prioritat"
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
 msgstr ""
+"El número indica la importància. Una prioritat major significa que és més "
+"important."
 
 #: apps/virtualfolder/models.py:51
 msgid "Is public?"
@@ -1264,6 +1269,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Hi ha comptes d'usuari amb adreces electròniques duplicades. Això no és "
+"permès al Pootle 2.8."
 
 #: checks.py:64
 msgid ""
@@ -1271,6 +1278,9 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Proveu a usar «pootle find_duplicate_emails» i actualitzeu els correus "
+"d'usuari amb «pootle update_user_email username email». Potser també vulgueu "
+"considerar les ordres «merge_user» i «purge_user»."
 
 #: checks.py:88
 msgid "Your version of Django is too old."
@@ -1323,11 +1333,11 @@ msgstr "No s'està executant cap tasca RQ."
 
 #: checks.py:148
 msgid "Run new workers with 'pootle rqworker'"
-msgstr ""
+msgstr "Executeu processos nous amb «pootle rqworker»"
 
 #: checks.py:163
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "El motor de la memòria cau no està definit com a Redis."
 
 #: checks.py:164
 #, python-format
@@ -1335,10 +1345,13 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"Definiu el motor de memòria cau predeterminat a django_redis.cache."
+"RedisCache\n"
+"Configuració actual: %r"
 
 #: checks.py:174
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "No s'ha pogut iniciar la connexió a la memòria cau Redis"
 
 #: checks.py:175 checks.py:189
 msgid "Double-check your CACHES settings"
@@ -1349,6 +1362,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
+"Es requereixen configuracions diferents de django_redis.cache.RedisCache per "
+"a «default», «redis» i «lru»."
 
 #: checks.py:195
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1356,7 +1371,7 @@ msgstr "El mode DEBUG és actiu. No feu això a producció!"
 
 #: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
-msgstr "Estableix DEBUG = False en la configuració del Pootle"
+msgstr "Definiu DEBUG = False en la configuració del Pootle"
 
 #: checks.py:202
 msgid "The sqlite database backend is unsupported"
@@ -1364,11 +1379,11 @@ msgstr "No s'admet el motor de base de dades sqlite"
 
 #: checks.py:203
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
+msgstr "Definiu el motor de bases de dades predeterminat a PostgreSQL o MySQL"
 
 #: checks.py:210
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "No s'usa cached_db com a motor de sessions"
 
 #: checks.py:211
 #, python-format
@@ -1376,6 +1391,8 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"Definiu SESSION_ENGINE a django.contrib.sessions.backend.cached_db\n"
+"Configuració actual: %r"
 
 #: checks.py:219
 msgid "POOTLE_CONTACT_EMAIL is not set."
@@ -1411,6 +1428,9 @@ msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL s'usa per a tot el correu electrònic sortint del Pootle.\n"
+"No oblideu de revisar la configuració del vostre servidor de correu "
+"electrònic."
 
 #: checks.py:246
 #, python-format
@@ -1435,11 +1455,11 @@ msgstr "Definiu un valor vàlid per a l'opció POOTLE_MARKUP_FILTER."
 
 #: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Marcatge no vàlid a POOTLE_MARKUP_FILTER."
 
 #: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Definiu un marcatge per a POOTLE_MARKUP_FILTER."
 
 #: checks.py:284
 #, python-format
@@ -1447,10 +1467,12 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER està definit com a marcatge «%s», però el paquet que ho "
+"proporciona no es pot trobar."
 
 #: checks.py:286
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Intal·leu el paquet o canvieu POOTLE_MARKUP_FILTER."
 
 #: checks.py:297
 #, python-format
@@ -1533,7 +1555,7 @@ msgstr "El valor «%s» al POOTLE_SCORE_COEFFICIENTS no és vàlid."
 #: checks.py:362
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "El valor «%s» al POOTLE_SCORE_COEFFICIENTS no és vàlid."
+msgstr "Definiu un valor vàlid per «%s» a POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1552,6 +1574,8 @@ msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
+"Definiu el DATABASES['default']['ENGINE'] a usar en el motor de Django de "
+"django.db.backends."
 
 #: checks.py:421
 msgid "Email server is not available."
@@ -1560,10 +1584,12 @@ msgstr "El servidor de correu electrònic no està disponible."
 #: checks.py:422
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Reviseu la configuració de correu electrònic i assegureu-vos que el vostre "
+"servidor de correu funciona correctament."
 
 #: checks.py:449
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Manca la revisió o té un valor incorrecte."
 
 #: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
@@ -1573,12 +1599,16 @@ msgstr ""
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"No s'ha proporcionat un URL canònic i el lloc predeterminat s'ha establert a "
+"example.com"
 
 #: checks.py:466
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Definiu el «POOTLE_CANONICAL_URL» a la configuració o actualitzeu el lloc "
+"predeterminat si esteu usant django.contrib.sites."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
@@ -1589,6 +1619,8 @@ msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Definiu el «POOTLE_CANONICAL_URL» a un valor adient per al vostre lloc web o "
+"deixeu-ho buit si esteu usant «django.contrib.sites»."
 
 #: checks.py:502
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
@@ -1596,21 +1628,23 @@ msgstr "No s'ha definit POOTLE_FS_WORKING_PATH."
 
 #: checks.py:506
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "El camí indicat a POOTLE_FS_WORKING_PATH no existeix."
 
 #: checks.py:507
 msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
+msgstr "Creeu el directori indicat pel paràmetre «POOTLE_FS_WORKING_PATH»."
 
 #: checks.py:512
 msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
-msgstr ""
+msgstr "Pootle no pot escriure en el camí indicat a POOTLE_FS_WORKING_PATH ."
 
 #: checks.py:514
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
 "'chmod +w'"
 msgstr ""
+"Afegiu el permís d'escriptura al directori «POOTLE_FS_WORKING_PATH» usant "
+"«chmod +w»"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1675,7 +1709,7 @@ msgstr "Incorrecte"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Amb la selecció"
 
 #: core/forms.py:187
 msgid "Add comment"
@@ -1684,10 +1718,12 @@ msgstr "Afegeix un comentari"
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Selecciona tots els elements que coincideixen amb el criteri, incloent-hi "
+"els que no es mostren"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Heu d'indicar una acció a prendre"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
@@ -1735,12 +1771,12 @@ msgstr "%(user)s ha pujat un fitxer"
 #: core/views/display.py:101
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s ha amagat %(check)s per a %(source)s"
 
 #: core/views/display.py:103
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s ha mostrat %(check)s per a %(source)s"
 
 #: core/views/display.py:105
 #, python-format
@@ -1775,7 +1811,7 @@ msgstr "%(user)s ha revisat %(source)s"
 #: core/views/display.py:120
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s ha marcat %(source)s com a cal revisar"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -1890,7 +1926,7 @@ msgstr "Per a canviar la contrasenya, seguit aquest enllaç:"
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr ""
+msgstr "Si no voleu canviar la contrasenya, podeu ignorar aquest missatge."
 
 #: templates/account/email/password_reset_key_subject.txt:2
 msgid "Pootle password reset e-mail"
@@ -2110,6 +2146,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS encara és experimenta. Ens agradaria que el féssiu servir, però "
+"requereix un nivell d'expertesa en localització, Python i Pootle en cas que "
+"quelcom vagi malament."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2120,27 +2159,32 @@ msgid "Update filesystem configuration"
 msgstr "Actualitza la configuració del sistema de fitxers"
 
 #: templates/admin/project_fs.html:51
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "L'assignació de traduccions hauria de ser en el format:"
+msgstr "Les assignacions de camí de traducció haurien de ser en el format:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Només es requereix «&lt;language_code&gt;», però ha d'acabar en «.&lt;"
+"ext&gt;»"
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Si esteu emprant el sistema «localfs» d'assignació de camins de traducció es "
+"combinarà amb el camí indicat en l'URL del sistema"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
+"Per a altres sistemes, l'assignació de camins de traducció serà relativa a "
+"l'arrel del dipòsit."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2230,6 +2274,8 @@ msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"En les pàgines d'anuncis, useu <code><strong>/xx/</strong></code>als URL per "
+"a codi de llengua dinàmic."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -2306,24 +2352,26 @@ msgid "All"
 msgstr "Tots"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "<span class='value translated'>%(translated)s</span>%% traduït"
+msgstr ""
+"<span class='value translated'>%(translated_percent_display)s</span> traduït"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% cal revisar"
+msgstr "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> cal revisar"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
-"<span class='value untranslated'>%(untranslated)s</span>%% sense traduir"
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+"sense traduir"
 
 #: templates/browser/index.html:19
 msgid "Expand details"
@@ -2607,6 +2655,7 @@ msgstr "revisat per <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Insereix %(character_name)s (valor Unicode %(character_code)s) en l'editor"
 
 #: templates/editor/units/edit.html:264
 msgid "User suggestions"
@@ -2776,9 +2825,8 @@ msgid "The reported error was:"
 msgstr "S'ha informat de l'error:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "Mostra el filtratge"
+msgstr "Mostra"
 
 #: templates/includes/formtable.html:81
 msgid "Select all"
@@ -2818,14 +2866,12 @@ msgid "Remove selected"
 msgstr "Suprimeix la selecció"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Administració de suggeriments"
+msgstr "Administració d'unitats i suggeriments"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Suggeriments pendents"
+msgstr "Suggeriments pendents:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"
@@ -2986,6 +3032,12 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"per a usar la funció de terminologia, assegureu-vos d'afegir un fitxer de "
+"terminologia en el projecte de traducció. El fitxer de terminologia ha de "
+"tenir el nom «pootle-terminology» i usar la mateixa extensió de fitxer "
+"(format) que la resta de fitxers del projectes. Aquesta terminologia "
+"personalitzada s'usarà en qualsevol suggeriment terminològic proporcionat "
+"pel projecte «Terminologia»."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

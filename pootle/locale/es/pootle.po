@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2017-01-16 18:25+0000\n"
+"PO-Revision-Date: 2017-01-24 04:45+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484591105.000000\n"
+"X-POOTLE-MTIME: 1485233144.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1689,24 +1689,25 @@ msgstr "Incorrecto"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Con la selección"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "Añadir comentario"
 
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Seleccionar todos los elementos que coincidan con el criterio, incluso los "
+"que no se muestran"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Debe especificar una acción que tomar"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Debe indicar un campo de búsqueda válido"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1729,9 +1730,8 @@ msgid "Can review suggestions"
 msgstr "Puede revisar sugerencias"
 
 #: core/initdb.py:156
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Administración de Django"
+msgstr "Puede realizar tareas administrativas"
 
 #: core/views/display.py:95 core/views/display.py:116
 #, fuzzy, python-format
@@ -1900,7 +1900,7 @@ msgstr "Confirmación de correo electrónico de Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Hemos recibido una solicitud para cambiar su contraseña."
 
 #: templates/account/email/password_reset_key_message.txt:3
 #, fuzzy
@@ -1911,11 +1911,11 @@ msgstr "Para activar su cuenta, siga este enlace:"
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Si no quiere restablecer la contraseña, puede pasar por alto este mensaje."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "El reajuste de la contraseña ha fallado."
+msgstr "Correo electrónico de cambio de contraseña de Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2123,7 +2123,7 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Configuración del sistema de archivos: %(project_code)s"
 
 #: templates/admin/project_fs.html:28
 msgid ""
@@ -2134,11 +2134,11 @@ msgstr ""
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
-msgstr ""
+msgstr "Configuración de infraestructura"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Actualizar configuración del sistema de archivos"
 
 #: templates/admin/project_fs.html:51
 #, fuzzy
