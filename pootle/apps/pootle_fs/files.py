@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) Pootle contributors.
@@ -164,6 +163,8 @@ class FSFile(object):
         logger.debug("Pulling file: %s", self.path)
         if not self.store_exists:
             self.create_store()
+        if self.store.obsolete:
+            self.store.resurrect()
         self._sync_to_pootle(merge=merge, pootle_wins=pootle_wins)
 
     def push(self, user=None):
@@ -226,6 +227,7 @@ class FSFile(object):
         """
         Update Pootle ``Store`` with the parsed FS file.
         """
+        tmp_store = self.deserialize()
         if pootle_wins is None:
             resolve_conflict = (
                 self.store_fs.resolve_conflict or SOURCE_WINS)
@@ -240,7 +242,6 @@ class FSFile(object):
             # This is analogous to the `overwrite` option in
             # Store.update_from_disk
             revision = Revision.get() + 1
-        tmp_store = self.deserialize()
         self.store.update(
             tmp_store,
             submission_type=SubmissionTypes.SYSTEM,
