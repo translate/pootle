@@ -188,6 +188,15 @@ def test_wrap_store_fs_delete(store_fs_file_store):
 
 
 @pytest.mark.django_db
+def test_wrap_store_fs_readd(store_fs_file_store):
+    fs_file = store_fs_file_store
+    fs_file.push()
+    fs_file.store.makeobsolete()
+    fs_file.pull()
+    assert not fs_file.store.obsolete
+
+
+@pytest.mark.django_db
 def test_wrap_store_fs_create_store(store_fs_file):
     fs_file = store_fs_file
     assert fs_file.store is None
