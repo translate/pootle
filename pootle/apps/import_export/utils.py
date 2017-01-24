@@ -90,15 +90,13 @@ class TPTMXExporter(object):
         return revision.get(self.context.__class__)(
             self.context.directory).get(key="stats")[:10] or "0"
 
-    @property
-    def relative_path(self):
-        return "offline_tm/%s/%s" % (
-            self.context.language.code,
-            self.filename)
-
     def get_url(self):
         if self.exported_revision:
-            return urljoin(settings.MEDIA_URL, self.relative_path)
+            relative_path = "offline_tm/%s/%s" % (
+                self.context.language.code,
+                self.get_filename(self.exported_revision)
+            )
+            return urljoin(settings.MEDIA_URL, relative_path)
         return None
 
     def update_exported_revision(self):
