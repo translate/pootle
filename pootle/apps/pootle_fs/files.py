@@ -228,6 +228,9 @@ class FSFile(object):
         Update Pootle ``Store`` with the parsed FS file.
         """
         tmp_store = self.deserialize()
+        if not tmp_store:
+            logger.warn("File staged for sync has disappeared: %s", self.path)
+            return
         if pootle_wins is None:
             resolve_conflict = (
                 self.store_fs.resolve_conflict or SOURCE_WINS)
