@@ -217,7 +217,7 @@ def test_plugin_instance_bad_args(project_fs_empty):
 
 
 @pytest.mark.django_db
-def test_plugin_pull(project_fs_empty):
+def test_plugin_fetch(project_fs_empty):
     assert project_fs_empty.is_cloned is False
     project_fs_empty.fetch()
     assert project_fs_empty.is_cloned is True
