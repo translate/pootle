@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-01-24 10:19+0000\n"
 "PO-Revision-Date: 2017-01-18 02:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,7 +169,7 @@ msgstr "Skilaboð"
 msgid "Please enter your message"
 msgstr "Settu inn skilaboðin þín"
 
-#: apps/contact/views.py:34 templates/layout.html:108
+#: apps/contact/views.py:34 templates/layout.html:120
 msgid "Contact Us"
 msgstr "Hafa samband"
 
@@ -206,27 +206,37 @@ msgstr "Flytja út þýðingar"
 msgid "Upload as %(user)s"
 msgstr "Senda inn sem %(user)s"
 
-#: apps/import_export/utils.py:38
+#: apps/import_export/templates/browser/index.html:54
+#, fuzzy
+msgid "Download offline TM for the translation project"
+msgstr "Sækja til að þýða ótengdur"
+
+#: apps/import_export/templates/browser/index.html:55
+#, fuzzy
+msgid "Download offline TM"
+msgstr "Sækja til að þýða ótengdur"
+
+#: apps/import_export/utils.py:39
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 
-#: apps/import_export/utils.py:44
+#: apps/import_export/utils.py:45
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Skrána '%s' vantar X-Pootle-Path haus\n"
 
-#: apps/import_export/utils.py:49
+#: apps/import_export/utils.py:50
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Skrána '%s' vantar eða hún er með ógildan X-Pootle-Revision haus\n"
 
-#: apps/import_export/utils.py:57
+#: apps/import_export/utils.py:58
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Tókst ekki að búa til '%s'. Vantar Verkefni/Tungumál? (%s)"
 
-#: apps/import_export/utils.py:74
+#: apps/import_export/utils.py:75
 msgid "There was an error uploading your file"
 msgstr "Það kom upp villa við að senda inn skrána þína"
 
@@ -287,7 +297,7 @@ msgstr "Afturkalla aðgangsheimildir"
 msgid "No files in this project."
 msgstr "Engar skrá eru í þessu verkefni."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:169
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Villur eru á síðunni. Athugaðu hver vandamálin eru hér fyrir neðan."
 
@@ -307,53 +317,53 @@ msgstr "Virkt"
 msgid "Monolingual format"
 msgstr "Eins-tungumáls snið"
 
-#: apps/pootle_fs/forms.py:22
+#: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
 msgstr "GNU-stíll"
 
-#: apps/pootle_fs/forms.py:24
+#: apps/pootle_fs/forms.py:26
 msgid "non GNU-style"
 msgstr "Ekki-GNU-stíll"
 
-#: apps/pootle_fs/forms.py:27
+#: apps/pootle_fs/forms.py:29
 msgid "Django-style"
 msgstr "Django-stíll"
 
-#: apps/pootle_fs/forms.py:29
+#: apps/pootle_fs/forms.py:31
 msgid "Custom"
 msgstr "Sérsniðið"
 
-#: apps/pootle_fs/forms.py:35
+#: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
 msgstr "Bakendi skráakerfis"
 
-#: apps/pootle_fs/forms.py:36
+#: apps/pootle_fs/forms.py:38
 msgid "Select a filesystem backend"
 msgstr "Veldu bakenda skráakerfis"
 
-#: apps/pootle_fs/forms.py:41
+#: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
 msgstr "Slóð á bakenda"
 
-#: apps/pootle_fs/forms.py:43
+#: apps/pootle_fs/forms.py:45
 msgid "The URL or path to your translation files"
 msgstr "Slóð á þýðingaskrárnar þínar"
 
-#: apps/pootle_fs/forms.py:52
+#: apps/pootle_fs/forms.py:54
 msgid "Translation path mapping"
 msgstr "Vörpun milli slóða á þýðingar"
 
-#: apps/pootle_fs/forms.py:53
+#: apps/pootle_fs/forms.py:55
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
 
-#: apps/pootle_fs/forms.py:177
+#: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:181
+#: apps/pootle_fs/forms.py:185
 msgid "Pootle language mappings must be unique"
 msgstr "Varpanir tungumála í Pootle verða að vera einstakar"
 
@@ -486,24 +496,32 @@ msgid "Suggested at"
 msgstr "Stungið uppá í"
 
 #: apps/pootle_language/views.py:236
-#, python-format
-msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Hafnaði %s tillögum með athugasemd. Notendur verða látnir vita"
+#, fuzzy, python-format
+msgid "Rejected %s suggestion with comment. User will be notified"
+msgid_plural "Rejected %s suggestions with comment. Users will be notified"
+msgstr[0] "Hafnaði %s tillögum með athugasemd. Notendur verða látnir vita"
+msgstr[1] "Hafnaði %s tillögum með athugasemd. Notendur verða látnir vita"
 
-#: apps/pootle_language/views.py:240
-#, python-format
-msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Samþykkti %s tillögur með athugasemd. Notendur verða látnir vita"
+#: apps/pootle_language/views.py:241
+#, fuzzy, python-format
+msgid "Accepted %s suggestion with comment. User will be notified"
+msgid_plural "Accepted %s suggestions with comment. Users will be notified"
+msgstr[0] "Samþykkti %s tillögur með athugasemd. Notendur verða látnir vita"
+msgstr[1] "Samþykkti %s tillögur með athugasemd. Notendur verða látnir vita"
 
-#: apps/pootle_language/views.py:243
-#, python-format
-msgid "Rejected %s suggestions"
-msgstr "Hafnaði %s tillögum"
+#: apps/pootle_language/views.py:246
+#, fuzzy, python-format
+msgid "Rejected %s suggestion"
+msgid_plural "Rejected %s suggestions"
+msgstr[0] "Hafnaði %s tillögum"
+msgstr[1] "Hafnaði %s tillögum"
 
-#: apps/pootle_language/views.py:245
-#, python-format
-msgid "Accepted %s suggestions"
-msgstr "Samþykkti %s tillögur"
+#: apps/pootle_language/views.py:251
+#, fuzzy, python-format
+msgid "Accepted %s suggestion"
+msgid_plural "Accepted %s suggestions"
+msgstr[0] "Samþykkti %s tillögur"
+msgstr[1] "Samþykkti %s tillögur"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -819,23 +837,15 @@ msgstr ""
 msgid "Percent brace placeholders"
 msgstr "Slaufusvigabreytur fyrir prósentur"
 
-#: apps/pootle_misc/checks.py:119
-msgid "Plurr format"
-msgstr "Plurr-snið"
-
-#: apps/pootle_misc/checks.py:120
-msgid "Plurr placeholders"
-msgstr "Plurr ígildisbreytur"
-
-#: apps/pootle_misc/checks.py:123
+#: apps/pootle_misc/checks.py:121
 msgid "ftl format"
 msgstr "ftl-snið"
 
-#: apps/pootle_misc/checks.py:126
-msgid "Romanian: Avoid cedillas diacritics"
+#: apps/pootle_misc/checks.py:124
+msgid "Romanian: Avoid cedilla diacritics"
 msgstr ""
 
-#: apps/pootle_misc/checks.py:127
+#: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
 msgstr ""
 
@@ -958,14 +968,14 @@ msgstr ""
 msgid "Disabled"
 msgstr "Óvirkt"
 
-#: apps/pootle_project/views.py:256
+#: apps/pootle_project/views.py:263
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
 
-#: apps/pootle_project/views.py:263
+#: apps/pootle_project/views.py:270
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Þýðingarverkefninu (%s) var eytt"
@@ -1032,19 +1042,19 @@ msgstr ""
 msgid "Translator comment"
 msgstr "Athugasemd þýðanda"
 
-#: apps/pootle_store/models.py:124
+#: apps/pootle_store/models.py:126
 msgid "Pending"
 msgstr "Í bið"
 
-#: apps/pootle_store/models.py:125
+#: apps/pootle_store/models.py:127
 msgid "Accepted"
 msgstr "Samþykkt"
 
-#: apps/pootle_store/models.py:126
+#: apps/pootle_store/models.py:128
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
 msgid "Path"
 msgstr "Slóð"
 
@@ -1570,21 +1580,30 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr ""
 
 #: checks.py:506
-msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
+#, python-format
+msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:507
-msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
-msgstr ""
-
-#: checks.py:512
-msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
-msgstr ""
-
-#: checks.py:514
+#: checks.py:508
 msgid ""
-"Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
-"'chmod +w'"
+"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"setting."
+msgstr ""
+
+#: checks.py:513
+#, python-format
+msgid ""
+"Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
+msgstr ""
+
+#: checks.py:516
+msgid ""
+"Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
+"setting"
+msgstr ""
+
+#: checks.py:535
+msgid "MySQL requires time zone settings."
 msgstr ""
 
 #. Translators: noun. The graphical representation of translation status
@@ -1692,62 +1711,62 @@ msgstr "Getur yfirfarið tillögur"
 msgid "Can perform administrative tasks"
 msgstr "Get ekki framkvæmt stjórnunarverk"
 
-#: core/views/display.py:95 core/views/display.py:116
+#: core/views/display.py:100 core/views/display.py:121
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s fjarlægði þýðingu fyrir %(source)s"
 
-#: core/views/display.py:97
+#: core/views/display.py:102
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(user)s samþykkti tillögu fyrir %(source)s"
 
-#: core/views/display.py:99
+#: core/views/display.py:104
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s sendi inn skrá"
 
-#: core/views/display.py:101
+#: core/views/display.py:106
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "%(user)s þaggaði niður í %(check)s fyrir %(source)s"
 
-#: core/views/display.py:103
+#: core/views/display.py:108
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "(user)s virkjaði aftur %(check)s fyrir %(source)s"
 
-#: core/views/display.py:105
+#: core/views/display.py:110
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(user)s bætti við tillögu fyrir %(source)s"
 
-#: core/views/display.py:107
+#: core/views/display.py:112
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(user)s hafnaði tillögu fyrir %(source)s"
 
-#: core/views/display.py:110
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "%(user)s þýddi %(source)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:117
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s breytti %(source)s"
 
-#: core/views/display.py:114
+#: core/views/display.py:119
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s for-þýddi %(source)s"
 
-#: core/views/display.py:118
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s yfirfór %(source)s"
 
-#: core/views/display.py:120
+#: core/views/display.py:125
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s merkti sem ófrágengið %(source)s"
@@ -1756,13 +1775,13 @@ msgstr "%(user)s merkti sem ófrágengið %(source)s"
 msgid "You cannot access this page."
 msgstr "Þú hefur ekki aðgang að þessari síðu."
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Villa við að ná í %(filename)s, Skráarkerfið skilaði villu: %(errormsg)s"
 
-#: middleware/errorpages.py:117
+#: middleware/errorpages.py:119
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -1801,7 +1820,7 @@ msgstr "Notkunarskilmálar"
 msgid "Terms of Service"
 msgstr "Þjónustuskilmálar"
 
-#: templates/about.html:7 templates/layout.html:175
+#: templates/about.html:7 templates/layout.html:188
 msgid "About"
 msgstr "Um"
 
@@ -2295,43 +2314,43 @@ msgstr ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "óþýtt"
 
-#: templates/browser/index.html:19
+#: templates/browser/index.html:20
 msgid "Expand details"
 msgstr "Birta ítarlegri upplýsingar"
 
-#: templates/browser/index.html:26
+#: templates/browser/index.html:27
 msgid "Translation Statistics"
 msgstr "Þýðingartölfræði"
 
-#: templates/browser/index.html:48
+#: templates/browser/index.html:49
 msgid "Failing Checks"
 msgstr "Fell á prófunum"
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "More..."
 msgstr "Meira..."
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:69
 msgid "Less..."
 msgstr "Minna..."
 
-#: templates/browser/index.html:81
+#: templates/browser/index.html:82
 msgid "Updates"
 msgstr "Uppfærslur"
 
-#: templates/browser/index.html:85
+#: templates/browser/index.html:86
 msgid "Last updated:"
 msgstr "Síðast uppfært:"
 
-#: templates/browser/index.html:96
+#: templates/browser/index.html:100
 msgid "Translations"
 msgstr "Þýðingar"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:104
 msgid "Last action:"
 msgstr "Síðasta aðgerð:"
 
-#: templates/browser/index.html:151
+#: templates/browser/index.html:156
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2492,111 +2511,111 @@ msgstr "Samhengi:"
 msgid "Locations:"
 msgstr "Staðsetningar:"
 
-#: templates/editor/units/edit.html:52
+#: templates/editor/units/edit.html:56
 msgid "Terminology:"
 msgstr "Hugtakaskrá:"
 
-#: templates/editor/units/edit.html:55
+#: templates/editor/units/edit.html:59
 msgid "Insert the translated term into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:68
+#: templates/editor/units/edit.html:72
 msgid "Comments:"
 msgstr "Athugasemdir:"
 
-#: templates/editor/units/edit.html:78
+#: templates/editor/units/edit.html:82
 msgid "Click to open the image in a popup"
 msgstr "Smelltu til að opna myndina í sprettglugga"
 
-#: templates/editor/units/edit.html:92
+#: templates/editor/units/edit.html:96
 msgid "Screenshots..."
 msgstr "Skjámyndir..."
 
-#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
+#: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
 msgid "Copy into translation"
 msgstr "Afrita yfir í þýðingu"
 
-#: templates/editor/units/edit.html:132
+#: templates/editor/units/edit.html:136
 msgid "Report a problem with this string"
 msgstr "Tilkynna um vandamál með þennan streng"
 
-#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
-#: templates/editor/units/edit.html:245
+#: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:252
 msgid "Submit"
 msgstr "Senda"
 
-#: templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:155
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Senda inn þýðingu og fara á næsta streng (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
 msgid "Suggest"
 msgstr "Stinga uppá"
 
-#: templates/editor/units/edit.html:157
+#: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Stinga upp á þýðingu og fara á næsta streng (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:161
+#: templates/editor/units/edit.html:165
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Skipta yfir í þýðingarham (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:166
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Skipta yfir í tillöguham (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:167
+#: templates/editor/units/edit.html:171
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Merkja þennan streng sem ófullgerðan (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:202
+#: templates/editor/units/edit.html:209
 msgid "Show Timeline"
 msgstr "Birta tímalínu"
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:211
 msgid "Add Comment"
 msgstr "Bæta við athugasemd"
 
-#: templates/editor/units/edit.html:206
+#: templates/editor/units/edit.html:213
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:216
+#: templates/editor/units/edit.html:223
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "yfirfarið af <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:233
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:264
+#: templates/editor/units/edit.html:271
 msgid "User suggestions"
 msgstr "Uppástungur notenda"
 
-#: templates/editor/units/edit.html:281
+#: templates/editor/units/edit.html:291
 msgid "More options"
 msgstr "Fleiri valkostir"
 
-#: templates/editor/units/edit.html:283
+#: templates/editor/units/edit.html:293
 msgid "Less options"
 msgstr "Færri Vvalkostir"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
 msgstr "Samþykkja tillögu"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:303
 msgid "Reject suggestion"
 msgstr "Hafna tillögu"
 
-#: templates/editor/units/edit.html:299
+#: templates/editor/units/edit.html:309
 msgid "Remove suggestion"
 msgstr "Fjarlægja tillögu"
 
-#: templates/editor/units/edit.html:311
+#: templates/editor/units/edit.html:321
 msgid "A long time ago"
 msgstr "Fyrir langalöngu"
 
@@ -2631,11 +2650,11 @@ msgstr "Hugsanlegar villur í þýðingunni"
 msgid "Watch out for:"
 msgstr "Fylgjast með:"
 
-#: templates/editor/units/xhr_comment.html:13
+#: templates/editor/units/xhr_comment.html:16
 msgid "Remove comment"
 msgstr "Fjarlægja athugasemd"
 
-#: templates/editor/units/xhr_comment.html:16
+#: templates/editor/units/xhr_comment.html:19
 msgid "Last comment:"
 msgstr "Síðasta athugasemd:"
 
@@ -2643,21 +2662,21 @@ msgstr "Síðasta athugasemd:"
 msgid "Timeline"
 msgstr "Tímalína"
 
-#: templates/editor/units/xhr_timeline.html:35
+#: templates/editor/units/xhr_timeline.html:38
 msgid "Last comment removed"
 msgstr "Síðasta athugasemd fjarlægð"
 
-#: templates/editor/units/xhr_timeline.html:41
+#: templates/editor/units/xhr_timeline.html:44
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr "Þaggaði niður í <a href=\"%(check_url)s\">%(check_name)s</a> prófun"
 
-#: templates/editor/units/xhr_timeline.html:45
+#: templates/editor/units/xhr_timeline.html:48
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr "Virkjaði aftur <a href=\"%(check_url)s\">%(check_name)s</a> prófun"
 
-#: templates/editor/units/xhr_timeline.html:57
+#: templates/editor/units/xhr_timeline.html:60
 msgid "Unit created"
 msgstr ""
 
@@ -2804,24 +2823,24 @@ msgstr "Virkjaðu JavaScript í vafranum þínum og endurlestu svo síðuna."
 msgid "skip to navigation"
 msgstr "hoppa til baka í leiðsagnarham"
 
-#: templates/layout.html:119
+#: templates/layout.html:131
 msgid "Public Profile"
 msgstr "Opinber notandasíða"
 
-#: templates/layout.html:120 templates/user/settings.html:4
+#: templates/layout.html:132 templates/user/settings.html:4
 #: templates/user/settings.html:7
 msgid "Settings"
 msgstr "Stillingar"
 
-#: templates/layout.html:122
+#: templates/layout.html:134
 msgid "Admin"
 msgstr "Stjórnandi"
 
-#: templates/layout.html:125
+#: templates/layout.html:137
 msgid "Sign out"
 msgstr "Skrá út"
 
-#: templates/layout.html:129
+#: templates/layout.html:141
 msgid "Sign In"
 msgstr "Skrá inn"
 
@@ -3081,6 +3100,12 @@ msgstr "Skrá inn"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Afkastamestu þátttakendur síðustu 30 daga"
+
+#~ msgid "Plurr format"
+#~ msgstr "Plurr-snið"
+
+#~ msgid "Plurr placeholders"
+#~ msgstr "Plurr ígildisbreytur"
 
 #, fuzzy
 #~ msgid "Unit admin"

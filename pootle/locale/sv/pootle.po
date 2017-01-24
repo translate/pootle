@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-01-24 10:19+0000\n"
 "PO-Revision-Date: 2017-01-19 04:35+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,7 +176,7 @@ msgstr "Meddelande"
 msgid "Please enter your message"
 msgstr "Ange ditt meddelande"
 
-#: apps/contact/views.py:34 templates/layout.html:108
+#: apps/contact/views.py:34 templates/layout.html:120
 msgid "Contact Us"
 msgstr "Kontakta oss"
 
@@ -213,27 +213,37 @@ msgstr "Ladda upp översättningar"
 msgid "Upload as %(user)s"
 msgstr "Ladda upp som %(user)s"
 
-#: apps/import_export/utils.py:38
+#: apps/import_export/templates/browser/index.html:54
+#, fuzzy
+msgid "Download offline TM for the translation project"
+msgstr "Hämta för översättning offline"
+
+#: apps/import_export/templates/browser/index.html:55
+#, fuzzy
+msgid "Download offline TM"
+msgstr "Hämta för översättning offline"
+
+#: apps/import_export/utils.py:39
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr "Filtypen stöds inte '%s', endast PO-filer stöds just nu\n"
 
-#: apps/import_export/utils.py:44
+#: apps/import_export/utils.py:45
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Filen '%s' saknar X-Poodle-Path huvud\n"
 
-#: apps/import_export/utils.py:49
+#: apps/import_export/utils.py:50
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr "Filen '%s' saknar eller ogiltig X-Poodle-Revision huvud\n"
 
-#: apps/import_export/utils.py:57
+#: apps/import_export/utils.py:58
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Det gick inte att skapa '%s'. Saknar projekt/språk? (%s)"
 
-#: apps/import_export/utils.py:74
+#: apps/import_export/utils.py:75
 msgid "There was an error uploading your file"
 msgstr "Det gick inte att överföra filen"
 
@@ -296,7 +306,7 @@ msgstr "Återkalla behörigheter"
 msgid "No files in this project."
 msgstr "Inga filer i detta projekt."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:169
+#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Det finns fel i formuläret. Granska problemen nedan."
 
@@ -316,43 +326,43 @@ msgstr "Aktiverad"
 msgid "Monolingual format"
 msgstr "Enspråkigt format"
 
-#: apps/pootle_fs/forms.py:22
+#: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
 msgstr "GNU-stil"
 
-#: apps/pootle_fs/forms.py:24
+#: apps/pootle_fs/forms.py:26
 msgid "non GNU-style"
 msgstr "icke GNU-stil"
 
-#: apps/pootle_fs/forms.py:27
+#: apps/pootle_fs/forms.py:29
 msgid "Django-style"
 msgstr "Django-stil"
 
-#: apps/pootle_fs/forms.py:29
+#: apps/pootle_fs/forms.py:31
 msgid "Custom"
 msgstr "Anpassad"
 
-#: apps/pootle_fs/forms.py:35
+#: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
 msgstr "Backend för filsystem"
 
-#: apps/pootle_fs/forms.py:36
+#: apps/pootle_fs/forms.py:38
 msgid "Select a filesystem backend"
 msgstr "Välj ett backend för filsystem"
 
-#: apps/pootle_fs/forms.py:41
+#: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
 msgstr "Backend-URL eller sökväg"
 
-#: apps/pootle_fs/forms.py:43
+#: apps/pootle_fs/forms.py:45
 msgid "The URL or path to your translation files"
 msgstr "URL eller sökvägen till översättningsfiler"
 
-#: apps/pootle_fs/forms.py:52
+#: apps/pootle_fs/forms.py:54
 msgid "Translation path mapping"
 msgstr "Mappning översättningssökväg"
 
-#: apps/pootle_fs/forms.py:53
+#: apps/pootle_fs/forms.py:55
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
@@ -360,11 +370,11 @@ msgstr ""
 "Mappning av översättningssökvägar mappar lokaliseringsfiler på filsystemet "
 "till lagring på Pootle."
 
-#: apps/pootle_fs/forms.py:177
+#: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
 msgstr "Filsystemets språkkoder måste vara unika"
 
-#: apps/pootle_fs/forms.py:181
+#: apps/pootle_fs/forms.py:185
 msgid "Pootle language mappings must be unique"
 msgstr "Pootle språkmappning måste vara unik"
 
@@ -497,24 +507,32 @@ msgid "Suggested at"
 msgstr "Föreslaget den"
 
 #: apps/pootle_language/views.py:236
-#, python-format
-msgid "Rejected %s suggestions with comment. Users will be notified"
-msgstr "Avvisade %s förslag med kommentarer. Användare kommer att meddelas"
+#, fuzzy, python-format
+msgid "Rejected %s suggestion with comment. User will be notified"
+msgid_plural "Rejected %s suggestions with comment. Users will be notified"
+msgstr[0] "Avvisade %s förslag med kommentarer. Användare kommer att meddelas"
+msgstr[1] "Avvisade %s förslag med kommentarer. Användare kommer att meddelas"
 
-#: apps/pootle_language/views.py:240
-#, python-format
-msgid "Accepted %s suggestions with comment. Users will be notified"
-msgstr "Godkände %s förslag med kommentarer. Användare kommer att meddelas "
+#: apps/pootle_language/views.py:241
+#, fuzzy, python-format
+msgid "Accepted %s suggestion with comment. User will be notified"
+msgid_plural "Accepted %s suggestions with comment. Users will be notified"
+msgstr[0] "Godkände %s förslag med kommentarer. Användare kommer att meddelas "
+msgstr[1] "Godkände %s förslag med kommentarer. Användare kommer att meddelas "
 
-#: apps/pootle_language/views.py:243
-#, python-format
-msgid "Rejected %s suggestions"
-msgstr "Avvisade %s förslag"
+#: apps/pootle_language/views.py:246
+#, fuzzy, python-format
+msgid "Rejected %s suggestion"
+msgid_plural "Rejected %s suggestions"
+msgstr[0] "Avvisade %s förslag"
+msgstr[1] "Avvisade %s förslag"
 
-#: apps/pootle_language/views.py:245
-#, python-format
-msgid "Accepted %s suggestions"
-msgstr "Godkände %s förslag"
+#: apps/pootle_language/views.py:251
+#, fuzzy, python-format
+msgid "Accepted %s suggestion"
+msgid_plural "Accepted %s suggestions"
+msgstr[0] "Godkände %s förslag"
+msgstr[1] "Godkände %s förslag"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -830,23 +848,16 @@ msgstr "Dubbla citattecken i taggar"
 msgid "Percent brace placeholders"
 msgstr "Procent parentes-platshållare"
 
-#: apps/pootle_misc/checks.py:119
-msgid "Plurr format"
-msgstr "Plurr-format"
-
-#: apps/pootle_misc/checks.py:120
-msgid "Plurr placeholders"
-msgstr "Plurr-platshållare"
-
-#: apps/pootle_misc/checks.py:123
+#: apps/pootle_misc/checks.py:121
 msgid "ftl format"
 msgstr "ftl-format"
 
-#: apps/pootle_misc/checks.py:126
-msgid "Romanian: Avoid cedillas diacritics"
+#: apps/pootle_misc/checks.py:124
+#, fuzzy
+msgid "Romanian: Avoid cedilla diacritics"
 msgstr "Rumänska: Undvik diakritiska tecken"
 
-#: apps/pootle_misc/checks.py:127
+#: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
 msgstr "Rumänska: Använd \"niciun\"/\"nicio\""
 
@@ -969,7 +980,7 @@ msgstr "Skärmbild sökprefix"
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: apps/pootle_project/views.py:256
+#: apps/pootle_project/views.py:263
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
@@ -977,7 +988,7 @@ msgid ""
 msgstr ""
 "Översättningsprojekt (%s) har skapats. Vi uppdaterar nu filer från mallar."
 
-#: apps/pootle_project/views.py:263
+#: apps/pootle_project/views.py:270
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Översättningsprojekt (%s) har tagits bort"
@@ -1044,19 +1055,19 @@ msgstr "Behöver kontrolleras flagga måste rensas"
 msgid "Translator comment"
 msgstr "Översättarens kommentar"
 
-#: apps/pootle_store/models.py:124
+#: apps/pootle_store/models.py:126
 msgid "Pending"
 msgstr "Väntande"
 
-#: apps/pootle_store/models.py:125
+#: apps/pootle_store/models.py:127
 msgid "Accepted"
 msgstr "Godkänt"
 
-#: apps/pootle_store/models.py:126
+#: apps/pootle_store/models.py:128
 msgid "Rejected"
 msgstr "Nekat"
 
-#: apps/pootle_store/models.py:972 apps/pootle_store/models.py:979
+#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
 msgid "Path"
 msgstr "Sökväg"
 
@@ -1611,26 +1622,37 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH inställning är inte satt."
 
 #: checks.py:506
-msgid "Path pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
+#, fuzzy, python-format
+msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Sökväg som pekas på av POOTLE_FS_WORKING PATH existerar inte."
 
-#: checks.py:507
-msgid "Create the directory pointed by `POOTLE_FS_WORKING_PATH` setting."
+#: checks.py:508
+#, fuzzy
+msgid ""
+"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"setting."
 msgstr ""
 "Skapa katalogen som indikeras av `POOTLE_FS_WORKING PATH` i inställningar."
 
-#: checks.py:512
-msgid "Path pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
+#: checks.py:513
+#, fuzzy, python-format
+msgid ""
+"Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Sökväg som pekas ut av POOTLE_FS_WORKING_PATH är inte skrivbar av Pootle."
 
-#: checks.py:514
+#: checks.py:516
+#, fuzzy
 msgid ""
-"Add the write permission to the `POOTLE_FS_WORKING_PATH` directory using "
-"'chmod +w'"
+"Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
+"setting"
 msgstr ""
 "Lägg till skrivrättigheter till `POOTLE_FS_WORKING PATH` katalog med 'chmod "
 "+w'"
+
+#: checks.py:535
+msgid "MySQL requires time zone settings."
+msgstr ""
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1738,62 +1760,62 @@ msgstr "Kan granska förslag"
 msgid "Can perform administrative tasks"
 msgstr "Kan utföra administrativa uppgifter"
 
-#: core/views/display.py:95 core/views/display.py:116
+#: core/views/display.py:100 core/views/display.py:121
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s tog bort översättning för %(source)s"
 
-#: core/views/display.py:97
+#: core/views/display.py:102
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(user)s godkände förslag för %(source)s"
 
-#: core/views/display.py:99
+#: core/views/display.py:104
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s laddade upp fil"
 
-#: core/views/display.py:101
+#: core/views/display.py:106
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "%(user)s tog bort %(check)s för %(source)s"
 
-#: core/views/display.py:103
+#: core/views/display.py:108
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "%(user)s lade till %(check)s för %(source)s"
 
-#: core/views/display.py:105
+#: core/views/display.py:110
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(user)s lade till förslag för %(source)s"
 
-#: core/views/display.py:107
+#: core/views/display.py:112
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(user)s avvisade förslag för %(source)s"
 
-#: core/views/display.py:110
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "%(user)s översatte %(source)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:117
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s redigerade %(source)s"
 
-#: core/views/display.py:114
+#: core/views/display.py:119
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s förhandsöversatt %(source)s"
 
-#: core/views/display.py:118
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s granskade %(source)s"
 
-#: core/views/display.py:120
+#: core/views/display.py:125
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s markerade att %(source)s behöver kontrolleras"
@@ -1802,13 +1824,13 @@ msgstr "%(user)s markerade att %(source)s behöver kontrolleras"
 msgid "You cannot access this page."
 msgstr "Du kan inte få tillgång till den här sidan."
 
-#: middleware/errorpages.py:81
+#: middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
 "Fel vid åtkomst till %(filename)s. Filsystemet skickade felet: %(errormsg)s"
 
-#: middleware/errorpages.py:117
+#: middleware/errorpages.py:119
 #, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
@@ -1847,7 +1869,7 @@ msgstr "Användarvilkor"
 msgid "Terms of Service"
 msgstr "Användarvillkor"
 
-#: templates/about.html:7 templates/layout.html:175
+#: templates/about.html:7 templates/layout.html:188
 msgid "About"
 msgstr "Om"
 
@@ -2359,43 +2381,43 @@ msgstr ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> ej "
 "översatta"
 
-#: templates/browser/index.html:19
+#: templates/browser/index.html:20
 msgid "Expand details"
 msgstr "Visa detaljer"
 
-#: templates/browser/index.html:26
+#: templates/browser/index.html:27
 msgid "Translation Statistics"
 msgstr "Översättningsstatistik"
 
-#: templates/browser/index.html:48
+#: templates/browser/index.html:49
 msgid "Failing Checks"
 msgstr "Fel har upptäckts"
 
-#: templates/browser/index.html:67
+#: templates/browser/index.html:68
 msgid "More..."
 msgstr "Mer..."
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:69
 msgid "Less..."
 msgstr "Mindre..."
 
-#: templates/browser/index.html:81
+#: templates/browser/index.html:82
 msgid "Updates"
 msgstr "Uppdateringar"
 
-#: templates/browser/index.html:85
+#: templates/browser/index.html:86
 msgid "Last updated:"
 msgstr "Senast uppdaterad:"
 
-#: templates/browser/index.html:96
+#: templates/browser/index.html:100
 msgid "Translations"
 msgstr "Översättningar"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:104
 msgid "Last action:"
 msgstr "Senaste åtgärd:"
 
-#: templates/browser/index.html:151
+#: templates/browser/index.html:156
 msgid "This project is disabled and visible to administrators only."
 msgstr "Detta projekt är inaktiverat och synlig endast för administratörer."
 
@@ -2561,111 +2583,111 @@ msgstr "Sammanhang:"
 msgid "Locations:"
 msgstr "Platser:"
 
-#: templates/editor/units/edit.html:52
+#: templates/editor/units/edit.html:56
 msgid "Terminology:"
 msgstr "Terminologi:"
 
-#: templates/editor/units/edit.html:55
+#: templates/editor/units/edit.html:59
 msgid "Insert the translated term into the editor"
 msgstr "Infoga den översatta termen i editorn"
 
-#: templates/editor/units/edit.html:68
+#: templates/editor/units/edit.html:72
 msgid "Comments:"
 msgstr "Kommentarer:"
 
-#: templates/editor/units/edit.html:78
+#: templates/editor/units/edit.html:82
 msgid "Click to open the image in a popup"
 msgstr "Klicka för att öppna bilden i en popup"
 
-#: templates/editor/units/edit.html:92
+#: templates/editor/units/edit.html:96
 msgid "Screenshots..."
 msgstr "Skärmbilder..."
 
-#: templates/editor/units/edit.html:116 templates/editor/units/edit.html:138
+#: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
 msgid "Copy into translation"
 msgstr "Kopiera till översättning"
 
-#: templates/editor/units/edit.html:132
+#: templates/editor/units/edit.html:136
 msgid "Report a problem with this string"
 msgstr "Rapportera ett problem med den här strängen"
 
-#: templates/editor/units/edit.html:150 templates/editor/units/edit.html:161
-#: templates/editor/units/edit.html:245
+#: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:252
 msgid "Submit"
 msgstr "Skicka in"
 
-#: templates/editor/units/edit.html:151
+#: templates/editor/units/edit.html:155
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Lägg till översättning och gå till nästa enhet (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:156 templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
 msgid "Suggest"
 msgstr "Föreslå"
 
-#: templates/editor/units/edit.html:157
+#: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Föreslå översättning och gå till nästa enhet (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:161
+#: templates/editor/units/edit.html:165
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Växla till översättningsläge (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:162
+#: templates/editor/units/edit.html:166
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Växla till förslagsläge (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:167
+#: templates/editor/units/edit.html:171
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Markera denna sträng som om den behöver kontrolleras (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:202
+#: templates/editor/units/edit.html:209
 msgid "Show Timeline"
 msgstr "Visa tidslinje"
 
-#: templates/editor/units/edit.html:204
+#: templates/editor/units/edit.html:211
 msgid "Add Comment"
 msgstr "Lägg till kommentar"
 
-#: templates/editor/units/edit.html:206
+#: templates/editor/units/edit.html:213
 msgid "Raw View"
 msgstr "Rå vy"
 
-#: templates/editor/units/edit.html:216
+#: templates/editor/units/edit.html:223
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "granskad av <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:226
+#: templates/editor/units/edit.html:233
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr "Infoga %(character_name)s (Unicode value %(character_code)s) i editorn"
 
-#: templates/editor/units/edit.html:264
+#: templates/editor/units/edit.html:271
 msgid "User suggestions"
 msgstr "Användarförslag"
 
-#: templates/editor/units/edit.html:281
+#: templates/editor/units/edit.html:291
 msgid "More options"
 msgstr "Fler alternativ"
 
-#: templates/editor/units/edit.html:283
+#: templates/editor/units/edit.html:293
 msgid "Less options"
 msgstr "Färre alternativ"
 
-#: templates/editor/units/edit.html:288
+#: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
 msgstr "Godkänn förslag"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:303
 msgid "Reject suggestion"
 msgstr "Avvisa förslag"
 
-#: templates/editor/units/edit.html:299
+#: templates/editor/units/edit.html:309
 msgid "Remove suggestion"
 msgstr "Ta bort förslag"
 
-#: templates/editor/units/edit.html:311
+#: templates/editor/units/edit.html:321
 msgid "A long time ago"
 msgstr "För länge sedan"
 
@@ -2700,11 +2722,11 @@ msgstr "Möjliga problem med översättningen"
 msgid "Watch out for:"
 msgstr "Se upp för:"
 
-#: templates/editor/units/xhr_comment.html:13
+#: templates/editor/units/xhr_comment.html:16
 msgid "Remove comment"
 msgstr "Ta bort kommentar"
 
-#: templates/editor/units/xhr_comment.html:16
+#: templates/editor/units/xhr_comment.html:19
 msgid "Last comment:"
 msgstr "Senaste kommentar:"
 
@@ -2712,21 +2734,21 @@ msgstr "Senaste kommentar:"
 msgid "Timeline"
 msgstr "Tidslinje"
 
-#: templates/editor/units/xhr_timeline.html:35
+#: templates/editor/units/xhr_timeline.html:38
 msgid "Last comment removed"
 msgstr "Senaste kommentar borttagen"
 
-#: templates/editor/units/xhr_timeline.html:41
+#: templates/editor/units/xhr_timeline.html:44
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr "Ta bort <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
 
-#: templates/editor/units/xhr_timeline.html:45
+#: templates/editor/units/xhr_timeline.html:48
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr "Använd <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
 
-#: templates/editor/units/xhr_timeline.html:57
+#: templates/editor/units/xhr_timeline.html:60
 msgid "Unit created"
 msgstr "Enhet skapad"
 
@@ -2881,24 +2903,24 @@ msgstr ""
 msgid "skip to navigation"
 msgstr "hoppa till navigering"
 
-#: templates/layout.html:119
+#: templates/layout.html:131
 msgid "Public Profile"
 msgstr "Publik profil"
 
-#: templates/layout.html:120 templates/user/settings.html:4
+#: templates/layout.html:132 templates/user/settings.html:4
 #: templates/user/settings.html:7
 msgid "Settings"
 msgstr "Inställningar"
 
-#: templates/layout.html:122
+#: templates/layout.html:134
 msgid "Admin"
 msgstr "Administratör"
 
-#: templates/layout.html:125
+#: templates/layout.html:137
 msgid "Sign out"
 msgstr "Logga ut"
 
-#: templates/layout.html:129
+#: templates/layout.html:141
 msgid "Sign In"
 msgstr "Logga in"
 
@@ -3179,6 +3201,12 @@ msgstr "Logga in"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
+
+#~ msgid "Plurr format"
+#~ msgstr "Plurr-format"
+
+#~ msgid "Plurr placeholders"
+#~ msgstr "Plurr-platshållare"
 
 #~ msgid "Unit admin"
 #~ msgstr "Enhet administratör"
