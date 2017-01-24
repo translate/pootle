@@ -30,3 +30,23 @@ def test_view_context_with_exported_tmx(exported_tp_view_response):
 
     assert exported_tp_view_response.status_code == 200
     assert exported_tp_view_response.context['has_offline_tm']
+
+
+@pytest.mark.django_db
+def test_exported_tmx_url(client, tp0):
+    args = [tp0.language.code, tp0.project.code]
+    response = client.get(reverse('pootle-offline-tm-tp', args=args))
+    assert response.status_code == 404
+    exporter = TPTMXExporter(tp0)
+    exporter.export()
+    response = client.get(reverse('pootle-offline-tm-tp', args=args))
+    assert response.status_code == 302
+    exported_url = exporter.get_url()
+    assert response.url == exported_url
+
+    unit = tp0.stores.first().units.first()
+    unit.target_f += ' CHANGED'
+    unit.save()
+    response = client.get(reverse('pootle-offline-tm-tp', args=args))
+    assert response.status_code == 302
+    assert response.url == exported_url
