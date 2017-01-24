@@ -197,6 +197,15 @@ def test_wrap_store_fs_readd(store_fs_file_store):
 
 
 @pytest.mark.django_db
+def test_wrap_store_fs_bad_stage(store_fs_file_store, caplog):
+    fs_file = store_fs_file_store
+    fs_file._sync_to_pootle()
+    rec = caplog.records.pop()
+    assert "disappeared" in rec.message
+    assert rec.levelname == "WARNING"
+
+
+@pytest.mark.django_db
 def test_wrap_store_fs_create_store(store_fs_file):
     fs_file = store_fs_file
     assert fs_file.store is None
