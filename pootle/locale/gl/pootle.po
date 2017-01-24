@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-13 12:22+0000\n"
+"PO-Revision-Date: 2017-01-24 11:15+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484310169.000000\n"
+"X-POOTLE-MTIME: 1485256548.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -215,14 +215,12 @@ msgid "Upload as %(user)s"
 msgstr "Enviar como %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Descargar para traducir en desconexión"
+msgstr "Descargar MT do proxecto de tradución"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Descargar para traducir en desconexión"
+msgstr "Descargar MT"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -510,39 +508,37 @@ msgid "Suggested at"
 msgstr "Suxerido en"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-"Rexeitou %s suxestións cun comentario. Notificarase aos usuarios que as "
-"enviaron"
+"Rexeitou %s suxestión cun comentario. Notificarase ao usuario que a enviou"
 msgstr[1] ""
 "Rexeitou %s suxestións cun comentario. Notificarase aos usuarios que as "
 "enviaron"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-"Aceptou %s suxestións cun comentario. Notificarase aos usuarios que as "
-"enviaron"
+"Aceptou %s suxestión cun comentario. Notificarase ao usuario que a enviou"
 msgstr[1] ""
 "Aceptou %s suxestións cun comentario. Notificarase aos usuarios que as "
 "enviaron"
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Rexeitou %s suxestións"
+msgstr[0] "Rexeitou %s suxestión"
 msgstr[1] "Rexeitou %s suxestións"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Aceptou %s suxestións"
+msgstr[0] "Aceptou %s suxestión"
 msgstr[1] "Aceptou %s suxestións"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
@@ -864,7 +860,6 @@ msgid "ftl format"
 msgstr "Formato FTL"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
 msgstr "Romanés: Evite as cedillas diacríticas"
 
@@ -1642,35 +1637,36 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH non está definido."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "A ruta indicada en POOTLE_FS_WORKING_PATH non existe."
+msgstr "A ruta («%s») indicada en POOTLE_FS_WORKING_PATH non existe."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
-msgstr "Cree o directorio indicado por «POOTLE_FS_WORKING_PATH»."
+msgstr ""
+"Cree o directorio indicado por «POOTLE_FS_WORKING_PATH» ou cambie a "
+"configuración."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
-msgstr "Pootle non pode escribir na ruta indicada en POOTLE_FS_WORKING_PATH."
+msgstr ""
+"Pootle non pode escribir na ruta («%s») indicada en POOTLE_FS_WORKING_PATH."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"Engada o permiso de escritura ao directorio indicado en "
-"«POOTLE_FS_WORKING_PATH» mediante 'chmod +w'"
+"Engada o permiso de escritura á ruta de «POOTLE_FS_WORKING_PATH» ou cambie a "
+"configuración"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL require a configuración de fusos horarios."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
