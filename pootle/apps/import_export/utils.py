@@ -136,6 +136,13 @@ class TPTMXExporter(object):
                          self.context.language.code, revision, 'tmx',
                          'zip'])
 
+    def check_tp(self, filename):
+        """Check if filename relates to the context TP."""
+
+        return filename.startswith(".".join([
+            self.context.project.code,
+            self.context.language.code]))
+
     @property
     def filename(self):
         return self.get_filename(self.revision)
@@ -170,6 +177,9 @@ class TPTMXExporter(object):
         removed = []
         if rotate:
             for fn in os.listdir(self.directory):
+                # Skip files from other projects.
+                if not self.check_tp(fn):
+                    continue
                 filepath = os.path.join(self.directory, fn)
                 if filepath not in [self.abs_filepath, last_exported_filepath]:
                     removed.append(filepath)
