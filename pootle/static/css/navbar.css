@@ -49,6 +49,12 @@
     left: 55px;
 }
 
+html[dir="rtl"] #navbar .logo-custom
+{
+    left: auto;
+    right: 55px;
+}
+
 #navbar h1
 {
     font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
