@@ -16,6 +16,7 @@ from django import forms
 from pootle.core.delegate import revision
 from pootle_project.models import Project
 
+from .exceptions import FSFetchError
 from .plugin import Plugin
 
 
@@ -39,13 +40,16 @@ class LocalFSPlugin(Plugin):
         return response
 
     def fetch(self):
-        synced = dirsync.sync(
-            self.fs_url,
-            self.project.local_fs_path,
-            "sync",
-            create=True,
-            purge=True,
-            logger=logging.getLogger(dirsync.__name__))
+        try:
+            synced = dirsync.sync(
+                self.fs_url,
+                self.project.local_fs_path,
+                "sync",
+                create=True,
+                purge=True,
+                logger=logging.getLogger(dirsync.__name__))
+        except ValueError as e:
+            raise FSFetchError(e)
         if synced:
             revision.get(Project)(self.project).set(
                 keys=["pootle.fs.fs_hash"], value=uuid.uuid4().hex)
