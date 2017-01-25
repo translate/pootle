@@ -40,20 +40,12 @@ const VisibilityToggle = React.createClass({
   },
 
   render() {
-    const style = {
-      position: 'absolute',
-      [this.props.uiLocaleDir === 'ltr' ? 'right' : 'left']: '2em',
-      color: '#c30',
-      zIndex: '2',
-    };
-
     return (
       <TextToggle
         defaultChecked
         labelActive={gettext('Show disabled')}
         labelInactive={gettext('Hide disabled')}
         onClick={this.handleVisibility}
-        style={style}
       />
     );
   },
