@@ -117,3 +117,20 @@ def test_cmd_init_fs_project_bad_filetype(capsys):
             fs_path,
             tr_path,
             "--filetypes", "NO_SUCH_FILETYPE")
+
+
+@pytest.mark.django_db
+@pytest.mark.cmd
+def test_cmd_init_fs_project_bad_filepath(capsys):
+    fs_path = "/test/fs/path"
+    tr_path = "<language_code>/<filename>.<ext>"
+
+    with pytest.raises(CommandError) as e:
+        call_command(
+            "init_fs_project",
+            "foo",
+            fs_path,
+            tr_path,
+            "--filetypes", "po")
+    assert not Project.objects.filter(code="foo").exists()
+    assert "Source directory does not exist" in str(e)
