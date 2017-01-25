@@ -12,6 +12,7 @@ from django.core.exceptions import ValidationError
 from django.core.management import BaseCommand, CommandError
 
 from pootle_format.models import Format
+from pootle_fs.exceptions import FSFetchError
 from pootle_fs.utils import FSPlugin, parse_fs_url
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -112,7 +113,11 @@ class Command(BaseCommand):
             'default': options['translation_mapping']
         }
         if options['sync']:
-            plugin = FSPlugin(project)
-            plugin.fetch()
-            plugin.add()
-            plugin.sync()
+            try:
+                plugin = FSPlugin(project)
+                plugin.fetch()
+                plugin.add()
+                plugin.sync()
+            except FSFetchError as e:
+                project.delete()
+                raise CommandError(e)
