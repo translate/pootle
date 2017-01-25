@@ -2589,3 +2589,9 @@ form.formtable tfoot .formtable-actions td
     position: relative;
     margin-top: 0.5em;
 }
+
+.visibility-toggle
+{
+    float: right;
+    color: #c30;
+}
