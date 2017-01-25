@@ -111,6 +111,7 @@ Details of changes
 - Configuration system
 - Plugin framework
 - Comment system
+- Removed Plurr format checks
 - Added ``pootle_format`` app
 
   - Added support to have several formats in the same project
@@ -188,7 +189,8 @@ Details of changes
 
 - Usernames using latin1 characters are now allowed
 - Improved RQ usage and new management commands
-- Changed Pootle logo
+- Changed Pootle logo and styling
+- Added the ability to use a custom logo with :setting:`POOTLE_CUSTOM_LOGO`
 - Documentation updates
 
 
@@ -258,6 +260,7 @@ Command changes and additions
 - Removed ``refresh_stats`` and ``clear_stats`` commands.
 - :djadmin:`export` is now able to export zipped TMX files per translation
   project with the :option:`--tmx <export --tmx>` option.
+  :option:`--rotate <export --rotate>` option allows old files to be removed.
 
 
 Changes in settings
@@ -278,8 +281,8 @@ Changes in settings
   sessions are always remembered.
 - :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` was added, to allow disabling
   sending emails to suggesters when suggestions are accepted or rejected.
-- Added new :setting:`POOTLE_FS_WORKING_PATH` and
-  :setting:`POOTLE_CANONICAL_URL` settings.
+- Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FS_WORKING_PATH`
+  and :setting:`POOTLE_CANONICAL_URL` settings.
 
 
 Credits
