@@ -55,6 +55,74 @@ class TPToolProjectSubCommand(BaseCommand):
     def get_project(self, project_code):
         return get_project(project_code)
 
+    def copy_project(self, target_project_code):
+        """ Creates an empty copy of project with a new project code."""
+        project = self.tp_tool.project
+        params = dict(
+            code=target_project_code,
+            fullname="%s (%s)" % (project.fullname, target_project_code),
+            checkstyle=project.checkstyle,
+            source_language=project.source_language,
+            filetypes=project.filetypes.all(),
+            treestyle=project.treestyle,
+            ignoredfiles=project.ignoredfiles,
+            disabled=project.disabled,
+        )
+        return Project.objects.create(**params)
+
+    def handle(self, *args, **options):
+        self.tp_tool = self.get_tp_tool(options['source_project'])
+        try:
+            target_project = self.copy_project(options['target_project'])
+        except Exception as e:
+            raise CommandError(e)
+
+        tp_query = self.tp_tool.tp_qs.all()
+        if options['languages']:
+            tp_query = tp_query.filter(language__code__in=options['languages'])
+
+        for source_tp in tp_query:
+            try:
+                self.handle_tp(source_tp, target_project)
+
+            except ValueError as e:
+                raise CommandError(e)
+
+
+class MoveCommand(TPToolProjectSubCommand):
+
+    def handle_tp(self, tp, target_project):
+        self.tp_tool.move(tp, language=tp.language, project=target_project)
+        self.stdout.write('Translation project '
+                          '"%s" has been moved.' % tp)
+
+
+class CloneCommand(TPToolProjectSubCommand):
+
+    def handle_tp(self, tp, target_project):
+        cloned = self.tp_tool.clone(tp, language=tp.language,
+                                    project=target_project)
+        self.stdout.write('Translation project '
+                          '"%s" has been cloned.' % cloned)
+
+
+class RemoveCommand(TPToolProjectSubCommand):
+    help = """Remove project."""
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--project',
+            type=str,
+            help='Pootle project',
+            required=True,
+        )
+        super(RemoveCommand, self).add_arguments(parser)
+
+    def handle(self, *args, **options):
+        project = get_project(options['project'])
+        project.delete()
+        self.stdout.write('Project "%s" has been deleted.' % project)
+
 
 class UpdateCommand(TPToolProjectSubCommand):
     help = """Update project."""
