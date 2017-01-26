@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-17 09:00+0000\n"
+"PO-Revision-Date: 2017-01-25 17:42+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484643602.000000\n"
+"X-POOTLE-MTIME: 1485366125.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -215,14 +215,12 @@ msgid "Upload as %(user)s"
 msgstr "%(user)s olarak gönder"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Çevrimdışı çeviri için indirin"
+msgstr "Çeviri projesi için çevrimdışı ÇB'ni indirin"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Çevrimdışı çeviri için indirin"
+msgstr "Çevrimdışı ÇB'ni indir"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -508,30 +506,29 @@ msgid "Suggested at"
 msgstr "Önerme zamanı"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] ""
-"Yorumu olan %s önerileri reddedildi. Kullanıcılar bilgilendirilecektir"
+msgstr[0] "Yorumu olan %s öneri reddedildi. Kullanıcılar bilgilendirilecektir"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-"Yorumu olan %s önerileri kabul edildi. Kullanıcılar bilgilendirilecektir"
+"Yorumu olan %s öneri kabul edildi. Kullanıcılar bilgilendirilecektir"
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "%s önerileri reddedildi"
+msgstr[0] "%s öneri reddedildi"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "%s önerileri kabul edildi"
+msgstr[0] "%s öneri kabul edildi"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -852,9 +849,8 @@ msgid "ftl format"
 msgstr "ftl biçimi"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr "Romence: Harf altı işareti önler"
+msgstr "Romence: Harf altı işaretleri önler"
 
 #: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
@@ -1634,36 +1630,36 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH ayarı ayarlı değil."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "POOTLE_FS_WORKING_PATH tarafından gösterilen yol mevcut değil."
+msgstr "POOTLE_FS_WORKING_PATH tarafından gösterilen yol ('%s') mevcut değil."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
-msgstr "`POOTLE_FS_WORKING_PATH` ayarı tarafından gösterilen dizini oluşturun."
+msgstr ""
+"`POOTLE_FS_WORKING_PATH` tarafından gösterilen dizini oluşturun, ya da ayarı "
+"değiştirin."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"POOTLE_FS_WORKING_PATH tarafından gösterilen yol, Pootle tarafından "
+"POOTLE_FS_WORKING_PATH tarafından gösterilen yol ('%s'), Pootle tarafından "
 "yazılabilir değil."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"'chmod +w' kullanarak `POOTLE_FS_WORKING_PATH` dizinine yazma izni ekleyin"
+"`POOTLE_FS_WORKING_PATH` için yazma izni ekleyin ya da ayarı değiştirin"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL saat dilimi ayarlarını gerektirir."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

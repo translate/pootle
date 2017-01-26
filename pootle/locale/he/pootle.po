@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-24 12:26+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-01-26 08:03+0000\n"
+"Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1485260782.000000\n"
+"X-POOTLE-MTIME: 1485417788.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -845,7 +845,6 @@ msgid "ftl format"
 msgstr "תצורת ftl"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
 msgstr "רומנית: התעלמות מסימני סדיליה"
 
@@ -911,7 +910,7 @@ msgid "Language"
 msgstr "שפה"
 
 #: apps/pootle_project/models.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "לא ניתן להשתמש בצירוף „%s“ בתור קוד מיזם"
 
@@ -1459,22 +1458,22 @@ msgstr ""
 
 #: checks.py:306
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "הגדרת INDEX_NAME שונה לכל השרתים ב־POOTLE_TM_SERVER."
 
 #: checks.py:316
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "ל־POOTLE_TM_SERVER['%s'] אין ENGINE."
 
 #: checks.py:317
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "הגדרת ENGINE עבור POOTLE_TM_SERVER['%s']."
 
 #: checks.py:324
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "ל־POOTLE_TM_SERVER['%s'] אין HOST."
 
 #: checks.py:325
 #, python-format
@@ -1489,7 +1488,7 @@ msgstr ""
 #: checks.py:333
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "הגדרת PORT עבור POOTLE_TM_SERVER['%s']."
 
 #: checks.py:342
 #, python-format
@@ -1578,7 +1577,7 @@ msgstr ""
 
 #: checks.py:502
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr ""
+msgstr "הפריט POOTLE_FS_WORKING_PATH אינו מוגדר."
 
 #: checks.py:506
 #, python-format
@@ -1605,7 +1604,7 @@ msgstr ""
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "ל־MySQL נדרשות הגדרות אזור זמן."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1686,7 +1685,7 @@ msgstr "עליך לציין באיזו פעולה לנקוט"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "יש לציין שדה חיפוש תקני"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -2131,9 +2130,8 @@ msgid ""
 msgstr ""
 
 #: templates/admin/project_fs.html:81
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "פרטי השפה ה%(language)s"
+msgstr "תצורת מיפוי שפה"
 
 #: templates/admin/project_fs.html:91
 msgid "Remove"
@@ -2946,7 +2944,7 @@ msgstr "תרגום"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "לא נמצא קובץ מינוח"
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated

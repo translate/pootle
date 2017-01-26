@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-19 17:38+0000\n"
+"PO-Revision-Date: 2017-01-26 00:33+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484847501.000000\n"
+"X-POOTLE-MTIME: 1485390802.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -216,14 +216,12 @@ msgid "Upload as %(user)s"
 msgstr "Загрузить как %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Скачать для перевода оффлайн"
+msgstr "Скачать оффлайновую память перевода для проекта"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Скачать для перевода оффлайн"
+msgstr "Скачать оффлайновую память перевода"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -511,36 +509,39 @@ msgid "Suggested at"
 msgstr "Предложено"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "Отклонено предложение от %s с комментарием. Пользователь оповещён."
-msgstr[1] "Отклонено предложение от %s с комментарием. Пользователь оповещён."
-msgstr[2] "Отклонено предложение от %s с комментарием. Пользователь оповещён."
+msgstr[0] ""
+"Отклонено %s предложение с комментарием. Пользователь будет оповещён."
+msgstr[1] ""
+"Отклонено %s предложения с комментарием. Пользователь будет оповещён."
+msgstr[2] ""
+"Отклонено %s предложений с комментарием. Пользователь будет оповещён."
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "Принято предложение от %s с комментарием. Пользователь оповещён."
-msgstr[1] "Принято предложение от %s с комментарием. Пользователь оповещён."
-msgstr[2] "Принято предложение от %s с комментарием. Пользователь оповещён."
+msgstr[0] "Принято %s предложение с комментарием. Пользователь будет оповещён."
+msgstr[1] "Принято %s предложения с комментарием. Пользователь будет оповещён."
+msgstr[2] "Принято %s предложений с комментарием. Пользователь будет оповещён."
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Отклонённые предложения от %s"
-msgstr[1] "Отклонённые предложения от %s"
-msgstr[2] "Отклонённые предложения от %s"
+msgstr[0] "Отклонено %s предложение"
+msgstr[1] "Отклонено %s предложения"
+msgstr[2] "Отклонено %s предложений"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Принятые предложения от %s"
-msgstr[1] "Принятые предложения от %s"
-msgstr[2] "Принятые предложения от %s"
+msgstr[0] "Принято %s предложение"
+msgstr[1] "Принято %s предложения"
+msgstr[2] "Принято %s предложений"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -861,7 +862,6 @@ msgid "ftl format"
 msgstr "формат ftl"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
 msgstr "Румынский: избегать диакритиков в виде седильи"
 
@@ -1634,36 +1634,38 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "Переменная POOTLE_FS_WORKING_PATH не задана."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "Путь, заданный в параметре POOTLE_FS_WORKING_PATH , не существует."
+msgstr ""
+"Путь ('%s'), заданный в параметре POOTLE_FS_WORKING_PATH , не существует."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
-msgstr "Создать каталог, указанный в параметре POOTLE_FS_WORKING_PATH."
+msgstr ""
+"Создайте каталог, указанный в параметре `POOTLE_FS_WORKING_PATH`, или "
+"измените его значение."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"Pootle не может выполнить запись в каталог, указанный в параметре "
-"POOTLE_FS_WORKING_PATH."
+"Pootle не может выполнить запись в каталог ('%s'), который указан в "
+"параметре POOTLE_FS_WORKING_PATH."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"Добавьте права на запись в каталог POOTLE_FS_WORKING_PATH командой 'chmod +w'"
+"Добавьте права на запись в каталог `POOTLE_FS_WORKING_PATH` или измените "
+"значение параметра"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL требует настройки часового пояса."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1789,12 +1791,12 @@ msgstr "%(user)s загрузил файл"
 #: core/views/display.py:106
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "%(user)s заглушил проверку %(check_name)s для %(source)s"
+msgstr "%(user)s заглушил проверку %(check)s для %(source)s"
 
 #: core/views/display.py:108
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "%(user)s вернул проверку %(check_name)s для %(source)s"
+msgstr "%(user)s вернул проверку %(check)s для %(source)s"
 
 #: core/views/display.py:110
 #, python-format

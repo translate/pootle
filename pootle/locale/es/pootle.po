@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-24 04:45+0000\n"
+"PO-Revision-Date: 2017-01-24 20:48+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1485233144.000000\n"
+"X-POOTLE-MTIME: 1485290900.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -218,14 +218,12 @@ msgid "Upload as %(user)s"
 msgstr "Cargar como %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Descargar para traducir sin conexión"
+msgstr "Descargar MT sin conexión del proyecto de traducción"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Descargar para traducir sin conexión"
+msgstr "Descargar MT sin conexión"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -861,7 +859,6 @@ msgid "ftl format"
 msgstr "Formato ftl"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
 msgstr "Rumano: evitar cedillas"
 
@@ -1491,41 +1488,42 @@ msgstr ""
 #: checks.py:304
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "INDEX_NAME «%s» duplicado en POOTLE_TM_SERVER."
 
 #: checks.py:306
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
+"Establezca un INDEX_NAME distinto para cada servidor de POOTLE_TM_SERVER."
 
 #: checks.py:316
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no posee un ENGINE."
 
 #: checks.py:317
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Establezca un ENGINE para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:324
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no tiene HOST."
 
 #: checks.py:325
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Establezca un HOST para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:332
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no tiene PORT."
 
 #: checks.py:333
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Establezca un PORT para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:342
 #, python-format
@@ -1598,6 +1596,8 @@ msgstr ""
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"No se proporcionó ningún URL canónico; el sitio predeterminado se estableció "
+"a example.com"
 
 #: checks.py:466
 msgid ""
@@ -1644,7 +1644,7 @@ msgstr ""
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL necesita la configuración de huso horario."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1754,21 +1754,19 @@ msgid "Can perform administrative tasks"
 msgstr "Puede realizar tareas administrativas"
 
 #: core/views/display.py:100 core/views/display.py:121
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
-"%(user)s eliminó traducción por la cadena <i><a href=\"%(url)s\">%(source)s</"
-"a></i>"
+msgstr "%(user)s eliminó la traducción de %(source)s"
 
 #: core/views/display.py:102
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Aceptó la sugerencia de %s"
+msgstr "%(user)s aceptó la sugerencia para %(source)s"
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
-msgstr "%(user)s subió un archivo"
+msgstr "%(user)s cargó un archivo"
 
 #: core/views/display.py:106
 #, python-format
@@ -1781,19 +1779,19 @@ msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
 #: core/views/display.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "Se ha importado %(count)d sugerencia desde %(store)s"
+msgstr "%(user)s añadió una sugerencia para %(source)s"
 
 #: core/views/display.py:112
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Rechazó la sugerencia de %s"
+msgstr "%(user)s rechazó la sugerencia para %(source)s"
 
 #: core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "Debe traducir las palabras"
+msgstr "%(user)s tradujo %(source)s"
 
 #: core/views/display.py:117
 #, python-format
@@ -1874,7 +1872,6 @@ msgid "About This Pootle Server"
 msgstr "Acerca de este servidor Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1882,11 +1879,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Este sitio usa Pootle &mdash; un potente software web para potenciar a los "
-"equipos de traducción y la gestión de traducciones. Esta herramienta "
-"comunitaria es Software Libre, y cualquier equipo puede utilizarla y "
-"contribuir a la comunidad Pootle. Lea más en el <a href=\"http://translate."
-"sourceforge.net/\">sitio web del proyecto</a>."
+"Este sitio funciona con Pootle: un <em>software</em> web potente para "
+"habilitar a equipos para que realicen y gestionen traducciones. Esta "
+"herramienta comunitaria es <em>software</em> libre, y cualquier equipo puede "
+"utilizarlo y colaborar en él. Para más información, consulte el <a href="
+"\"http://pootle.translatehouse.org/\">sitio web del proyecto</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1923,9 +1920,8 @@ msgid "We have received a request to reset your password."
 msgstr "Hemos recibido una solicitud para cambiar su contraseña."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Para activar su cuenta, siga este enlace:"
+msgstr "Para restablecer su contraseña, utilice este enlace:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
@@ -2151,6 +2147,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS es todavía experimental; nos encantaría que lo utilizara, pero "
+"requiere un nivel de pericia en regionalización, Python y Pootle en caso de "
+"que algo salga mal."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2161,9 +2160,8 @@ msgid "Update filesystem configuration"
 msgstr "Actualizar configuración del sistema de archivos"
 
 #: templates/admin/project_fs.html:51
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "Configuración de traducción"
+msgstr "Las asignaciones de ruta de traducción deben estar en el formato:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
@@ -2184,22 +2182,20 @@ msgid ""
 msgstr ""
 
 #: templates/admin/project_fs.html:81
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Información del idioma %(language)s"
+msgstr "Configuración de asignación de idiomas"
 
 #: templates/admin/project_fs.html:91
 msgid "Remove"
 msgstr "Eliminar"
 
 #: templates/admin/project_fs.html:92
-#, fuzzy
 msgid "Pootle code"
-msgstr "Demo de Pootle"
+msgstr "Código de Pootle"
 
 #: templates/admin/project_fs.html:93
 msgid "Filesystem code"
-msgstr ""
+msgstr "Código de sistema de archivos"
 
 #: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
@@ -2207,7 +2203,6 @@ msgid "Add"
 msgstr "Añadir"
 
 #: templates/admin/project_fs.html:104
-#, fuzzy
 msgid "Update"
 msgstr "Actualizar"
 
@@ -2347,23 +2342,28 @@ msgid "All"
 msgstr "Todos"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "<span class=\"value translated\">0</span> %% traducido"
+msgstr ""
+"<span class='value translated'>%(translated_percent_display)s</span> "
+"traducido"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class=\"value fuzzy\">0</span> %% necesita trabajo"
+msgstr ""
+"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> necesita trabajo"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
-msgstr "<span class=\"value untranslated\">0</span> %% sin traducir"
+msgstr ""
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> sin "
+"traducir"
 
 #: templates/browser/index.html:20
 msgid "Expand details"
@@ -2648,20 +2648,19 @@ msgstr "revisada por <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Insertar %(character_name)s (n.º Unicode %(character_code)s) en el editor"
 
 #: templates/editor/units/edit.html:271
 msgid "User suggestions"
 msgstr "Ver sugerencias del usuario"
 
 #: templates/editor/units/edit.html:291
-#, fuzzy
 msgid "More options"
-msgstr "Cambiar opciones"
+msgstr "Más opciones"
 
 #: templates/editor/units/edit.html:293
-#, fuzzy
 msgid "Less options"
-msgstr "Cambiar opciones"
+msgstr "Menos opciones"
 
 #: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
@@ -2822,9 +2821,8 @@ msgid "Showing"
 msgstr "Mostrar el filtrado"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "Selección múltiple"
+msgstr "Seleccionar todo"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2834,17 +2832,15 @@ msgstr "Examinar"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Equipo"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Ver sugerencias del usuario"
+msgstr "Filtrar sugerencias"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Nombre del idioma"
+msgstr "Equipo de idioma"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
@@ -2858,9 +2854,8 @@ msgstr ""
 #: templates/languages/admin/language_team.html:55
 #: templates/languages/admin/language_team.html:68
 #: templates/languages/admin/language_team.html:81
-#, fuzzy
 msgid "Remove selected"
-msgstr "Eliminar Usuario"
+msgstr "Eliminar seleccionados"
 
 #: templates/languages/admin/language_team.html:102
 #, fuzzy
@@ -2868,24 +2863,20 @@ msgid "Unit and suggestions admin"
 msgstr "Sugerencia %d:"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Sugerencias pendientes"
+msgstr "Sugerencias pendientes:"
 
 #: templates/languages/admin/language_team.html:127
-#, fuzzy
 msgid "Total words:"
-msgstr "Total de palabras"
+msgstr "Total de palabras:"
 
 #: templates/languages/admin/language_team.html:131
-#, fuzzy
 msgid "Translated:"
-msgstr "Traducido"
+msgstr "Traducido:"
 
 #: templates/languages/admin/language_team.html:139
-#, fuzzy
 msgid "Needs work:"
-msgstr "Necesita trabajo"
+msgstr "Necesita trabajo:"
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"

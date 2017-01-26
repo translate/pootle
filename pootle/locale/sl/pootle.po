@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2016-10-07 16:20+0000\n"
+"PO-Revision-Date: 2017-01-25 11:48+0000\n"
 "Last-Translator: Hugo65 <janezkranjski505@yahoo.com>\n"
 "Language-Team: Slovenščina <users@sl.openoffice.org>\n"
 "Language: sl\n"
@@ -20,14 +20,14 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1475857227.000000\n"
+"X-POOTLE-MTIME: 1485344916.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
-"Ob poskusu pošiljanja potrditvenega sporočila je prišlo do napake. Prosimo "
+"Ob poskusu pošiljanja potrditvenega sporočila je prišlo do napake. Prosim "
 "poskusite kasneje."
 
 #: apps/accounts/forms.py:32
@@ -166,7 +166,7 @@ msgstr "E-poštni naslov"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr "Vnesite vaš elektronski naslov."
+msgstr "Vnesite vaš elektronski naslov"
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -181,19 +181,16 @@ msgid "Contact Us"
 msgstr "Stik z nami"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
 msgstr "Prijavi težavo z izvornim nizom"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Prenesite datoteko XLIFF za nepovezano prevajanje"
+msgstr "Prenesi datoteko za nepovezano prevajanje"
 
 #: apps/import_export/templates/browser/index.html:12
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Prenesite datoteko za nepovezano prevajanje"
+msgstr "Prenesi za nepovezano prevajanje"
 
 #: apps/import_export/templates/browser/index.html:16
 #, fuzzy
@@ -201,33 +198,29 @@ msgid "Download translation files for backup"
 msgstr "Prenesite datoteko XLIFF za nepovezano prevajanje"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Prenesi datoteko"
+msgstr "Prenos za varnostno kopiranje"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
 msgstr "Naloži datoteke s prevodom ali arhive v obliki .zip"
 
 #: apps/import_export/templates/browser/index.html:27
-#, fuzzy
 msgid "Upload translations"
-msgstr "Izvozi prevode"
+msgstr "Nalaganje prevodov"
 
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
 msgid "Upload as %(user)s"
-msgstr ""
+msgstr "Nalaganje kot %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Prenesite datoteko za nepovezano prevajanje"
+msgstr "Prenesi TM za projekt prevajanja brez povezave"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Prenesite datoteko za nepovezano prevajanje"
+msgstr "Prenesi TM za prevajanja brez povezave"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -250,9 +243,8 @@ msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr ""
 
 #: apps/import_export/utils.py:75
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Lahko prepiše prevode ob nalaganju datotek"
+msgstr "Pri nalaganju datoteke je prišlo do napake"
 
 #: apps/pootle_app/forms.py:39
 msgid "Language code does not follow the ISO convention"
@@ -260,7 +252,7 @@ msgstr "Izbrana koda jezika ne sledi ISO specifikaciji"
 
 #: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
 msgid "Source Language"
-msgstr "Izvirni jezik"
+msgstr "Izvorni jezik"
 
 #: apps/pootle_app/forms.py:88
 #, python-format
@@ -290,25 +282,24 @@ msgstr[3] ""
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:62
 msgid "Stopped"
-msgstr ""
+msgstr "Zaustavljeno"
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
 msgstr "Vsi uporabniki"
 
 #: apps/pootle_app/views/admin/permissions.py:92
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Uporabniške pravice"
+msgstr "Dodaj dovoljenja"
 
 #: apps/pootle_app/views/admin/permissions.py:97
 #: apps/pootle_app/views/admin/permissions.py:106
 msgid "Select one or more permissions"
-msgstr "Izberite enega ali več pravic"
+msgstr "Izberite eno ali več dovoljenj"
 
 #: apps/pootle_app/views/admin/permissions.py:101
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Preklic dovoljenj"
 
 #: apps/pootle_app/views/admin/util.py:125
 msgid "No files in this project."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-12-21 12:39+0000\n"
+"PO-Revision-Date: 2017-01-25 12:02+0000\n"
 "Last-Translator: Hugo65 <janezkranjski505@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1482323991.000000\n"
+"X-POOTLE-MTIME: 1485345748.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -698,7 +698,6 @@ msgid "disabled"
 msgstr ""
 
 #: static/js/stats.js:30
-#, fuzzy
 msgid "Congratulations! You have completed this task!"
 msgstr "Čestitamo, sprehodili ste se čez vse nize."
 
