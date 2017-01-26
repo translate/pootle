@@ -438,7 +438,10 @@ def scan_projects(**kwargs):
     if not created or raw:
         return
 
-    for project in Project.objects.enabled().iterator():
+    old_style_projects = Project.objects.enabled().exclude(
+        treestyle="pootle_fs")
+
+    for project in old_style_projects.iterator():
         tp = create_translation_project(instance, project)
         if tp is not None:
             tp.update_from_disk()
