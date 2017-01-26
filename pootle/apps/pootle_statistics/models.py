@@ -198,6 +198,12 @@ class Submission(models.Model):
     # similarity ratio to the result of machine translation
     mt_similarity = models.FloatField(blank=True, null=True)
 
+    # Unit revision when submission was created if applicable
+    revision = models.IntegerField(
+        null=True,
+        db_index=True,
+        blank=True)
+
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
@@ -315,6 +321,8 @@ class Submission(models.Model):
         return result
 
     def save(self, *args, **kwargs):
+        if self.unit:
+            self.revision = self.unit.revision
         super(Submission, self).save(*args, **kwargs)
 
         if not self.needs_scorelog():
