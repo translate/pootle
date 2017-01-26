@@ -177,7 +177,8 @@ class TPTool(object):
             self.set_parents(
                 subdir, subdir, project, update_cache=update_cache)
 
-    def update_children(self, source_dir, target_dir, update_cache=True):
+    def update_children(self, source_dir, target_dir, update_cache=True,
+                        allow_add_and_obsolete=True):
         """Update a target Directory and its children from a given
         source Directory
         """
@@ -191,9 +192,12 @@ class TPTool(object):
             try:
                 self.update_store(
                     store,
-                    target_dir.child_stores.get(name=store.name))
+                    target_dir.child_stores.get(name=store.name),
+                    allow_add_and_obsolete=allow_add_and_obsolete,
+                )
             except target_dir.child_stores.model.DoesNotExist:
-                self.clone_store(store, target_dir, update_cache=update_cache)
+                if allow_add_and_obsolete:
+                    self.clone_store(store, target_dir, update_cache=update_cache)
         for subdir in source_dir.child_dirs.live():
             subdir.parent = source_dir
             dirs.append(subdir.name)
@@ -201,21 +205,26 @@ class TPTool(object):
                 self.update_children(
                     subdir,
                     target_dir.child_dirs.get(name=subdir.name),
-                    update_cache=update_cache)
+                    update_cache=update_cache,
+                    allow_add_and_obsolete=allow_add_and_obsolete,
+                )
             except target_dir.child_dirs.model.DoesNotExist:
                 self.clone_directory(
                     subdir, target_dir, update_cache=update_cache)
 
-        for store in target_dir.child_stores.exclude(name__in=stores):
-            store.makeobsolete()
+        if allow_add_and_obsolete:
+            for store in target_dir.child_stores.exclude(name__in=stores):
+                store.makeobsolete()
 
-    def update_from_tp(self, source, target, update_cache=True):
+    def update_from_tp(self, source, target, update_cache=True,
+                       allow_add_and_obsolete=True):
         """Update one TP from another"""
         self.check_tp(source)
         self.update_children(
-            source.directory, target.directory, update_cache=update_cache)
+            source.directory, target.directory, update_cache=update_cache,
+            allow_add_and_obsolete=allow_add_and_obsolete)
 
-    def update_store(self, source, target):
+    def update_store(self, source, target, allow_add_and_obsolete=True):
         """Update a target Store from a given source Store"""
         source_revision = target.data.max_unit_revision + 1
         differ = StoreDiff(target, source, source_revision)
@@ -232,4 +241,4 @@ class TPTool(object):
             system,
             SubmissionTypes.SYSTEM,
             SOURCE_WINS,
-            True)
+            allow_add_and_obsolete)
