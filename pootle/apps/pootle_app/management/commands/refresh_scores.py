@@ -43,8 +43,9 @@ class Command(BaseCommand):
         if options['users']:
             users = users.filter(username__in=options['users'])
 
+        users.update(score=0)
+
         if options['reset']:
-            users.update(score=0)
             scorelogs = ScoreLog.objects.all()
             if options['users']:
                 scorelogs = scorelogs.filter(user__in=users)
