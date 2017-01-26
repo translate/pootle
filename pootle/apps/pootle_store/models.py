@@ -1265,7 +1265,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS,
-               allow_add_and_obsolete=True):
+               can_create=True, can_obsolete=True):
         """Update DB with units from a ttk Store.
 
         :param store: a source `Store` instance from TTK.
@@ -1273,13 +1273,14 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
             synced.
         :param user: User to attribute updates to.
         :param submission_type: Submission type of saved updates.
-        :param allow_add_and_obsolete: allow to add new units
-            and make obsolete existing units
+        :param resolve_conflict: set how update conflicts should be resolved.
+        :param can_create: allow to add new units.
+        :param can_obsolete: allow to mark existing units as obsolete.
         """
         self.updater.update(
             store, user=user, store_revision=store_revision,
             submission_type=submission_type, resolve_conflict=resolve_conflict,
-            allow_add_and_obsolete=allow_add_and_obsolete)
+            can_create=can_create, can_obsolete=can_obsolete)
 
     def deserialize(self, data):
         return StoreDeserialization(self).deserialize(data)

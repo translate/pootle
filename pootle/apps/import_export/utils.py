@@ -68,7 +68,8 @@ def import_file(f, user=None):
         store.update(store=ttk, user=user,
                      submission_type=SubmissionTypes.UPLOAD,
                      store_revision=rev,
-                     allow_add_and_obsolete=allow_add_and_obsolete)
+                     can_create=allow_add_and_obsolete,
+                     can_obsolete=allow_add_and_obsolete)
     except Exception as e:
         # This should not happen!
         logger.error("Error importing file: %s", str(e))
