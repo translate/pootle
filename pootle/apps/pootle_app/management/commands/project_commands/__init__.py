@@ -88,6 +88,6 @@ class UpdateCommand(TPToolProjectSubCommand):
                 )
             except TranslationProject.DoesNotExist:
                 logging.warning(
-                    u"Translation project (/%s/%s) is missing." %
-                    (source_tp.language.code, target_project.code)
+                    u"Translation project (/%s/%s) is missing.",
+                    source_tp.language.code, target_project.code
                 )
