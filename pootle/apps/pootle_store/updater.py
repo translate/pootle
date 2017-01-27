@@ -168,7 +168,10 @@ class UnitUpdater(object):
             self.original.state,
             self.at,
             self.update.user,
-            self.update.submission_type)
+            self.update.submission_type,
+            state_updated=self.unit.state != self.original.state,
+            target_updated=self.unit.target != self.original.target,
+            comment_updated=self.translator_comment_updated)
 
     def save_unit(self):
         self.unit.save(revision=self.update.update_revision)
