@@ -77,10 +77,11 @@
       <div id="js-mnt-top-contributors"></div>
 
       <div class="summary-3-col">
-	{% if stats.last_created_unit %}
+	{% if has_admin_access or project.treestyle == "pootle_fs" %}
         <div id="js-last-updated-wrapper">
           <h3 class="top">{% trans "Updates" %}</h3>
           <div class="bd">
+	    {% if has_admin_access and stats.last_created_unit %}
             <div class="graph"></div>
             <div class="action-wrapper">
               <label>{% trans "Last updated:" %}</label>
@@ -89,6 +90,7 @@
 		<a dir="ltr" href="{{ stats.last_created_unit.unit_url }}">{{ stats.last_created_unit.unit_source }}</a>
 	      </div>
             </div>
+	    {% endif %}
 	    {% if project.treestyle == "pootle_fs" %}
 	    {% upstream_link project %}
 	    {% endif %}
