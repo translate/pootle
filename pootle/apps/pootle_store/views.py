@@ -565,6 +565,18 @@ def submit(request, unit, **kwargs_):
                     comment_form.save()
 
         if form.updated_fields:
+            # Update current unit instance's attributes
+            # important to set these attributes after saving Submission
+            # because we need to access the unit's state before it was saved
+            if SubmissionFields.TARGET in (f[0] for f in form.updated_fields):
+                form.instance.submitted_by = request.user
+                form.instance.submitted_on = current_time
+                form.instance.reviewed_by = None
+                form.instance.reviewed_on = None
+
+            form.instance._log_user = request.user
+            form.save()
+
             for field, old_value, new_value in form.updated_fields:
                 if field == SubmissionFields.TARGET and suggestion:
                     old_value = str(suggestion.target_f)
@@ -582,19 +594,6 @@ def submit(request, unit, **kwargs_):
                     mt_similarity=form.cleaned_data['mt_similarity'],
                 )
                 sub.save()
-
-            # Update current unit instance's attributes
-            # important to set these attributes after saving Submission
-            # because we need to access the unit's state before it was saved
-            if SubmissionFields.TARGET in (f[0] for f in form.updated_fields):
-                form.instance.submitted_by = request.user
-                form.instance.submitted_on = current_time
-                form.instance.reviewed_by = None
-                form.instance.reviewed_on = None
-
-            form.instance._log_user = request.user
-
-            form.save()
 
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
