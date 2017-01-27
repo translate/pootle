@@ -17,6 +17,11 @@ perspectives, server administrator's, and developer's view.
    server/index
    developers/index
 
+.. toctree::
+   :maxdepth: 1
+
+   faq
+
 
 .. _notes:
 
