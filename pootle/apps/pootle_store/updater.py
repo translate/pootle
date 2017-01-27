@@ -16,6 +16,7 @@ from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle.core.log import log
 from pootle.core.models import Revision
+from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .constants import OBSOLETE, PARSED, POOTLE_WINS
 from .diff import StoreDiff
@@ -121,7 +122,7 @@ class UnitUpdater(object):
             self.newunit
             and self.update.store_revision is not None
             and self.update.store_revision < self.unit.revision
-            and (self.unit.target != self.newunit.target
+            and (self.target_updated
                  or self.unit.source != self.newunit.source))
 
     @property
@@ -141,12 +142,26 @@ class UnitUpdater(object):
     def should_update_target(self):
         return (
             self.newunit
-            and not (self.conflict_found
-                     and self.update.resolve_conflict == POOTLE_WINS))
+            and self.target_updated
+            and not (
+                self.conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
 
-    @property
+    @cached_property
     def target_updated(self):
-        return self.unit.target != self.original.target
+        if not self.newunit:
+            return False
+        if not self.update.store_revision:
+            return True
+        if self.unit.target == self.newunit.target:
+            return False
+        edit_types = SubmissionTypes.EDIT_TYPES + [SubmissionTypes.SUGG_ACCEPT]
+        prev_subs = self.unit.submission_set.filter(
+            type__in=edit_types).filter(field=SubmissionFields.TARGET).filter(
+                revision__lte=self.update.store_revision)
+        last_subs = prev_subs.order_by("-revision")
+        old_target = last_subs.values_list("new_value", flat=True).first()
+        return old_target != self.newunit.target
 
     def create_suggestion(self):
         suggestion_review = review.get(Suggestion)()
@@ -187,17 +202,27 @@ class UnitUpdater(object):
         self.unit.reviewed_by = None
 
     def set_unit(self):
-        self.record_submission()
         if self.translator_comment_updated:
             self.set_commented()
         if self.target_updated:
             self.set_submitted()
         self.save_unit()
+        self.record_submission()
+
+    @property
+    def should_unobsolete(self):
+        return (
+            self.unit.isobsolete()
+            and self.newunit
+            and self.update.store_revision is not None
+            and (self.update.store_revision > self.unit.revision
+                 and not self.update.resolve_conflict == POOTLE_WINS)
+            and not self.newunit.isobsolete())
 
     def update_unit(self):
         suggested = False
         updated = False
-        if self.should_update_target:
+        if self.should_unobsolete or self.should_update_target:
             updated = self.unit.update(
                 self.newunit, user=self.update.user)
         if self.should_update_index:
