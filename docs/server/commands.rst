@@ -915,6 +915,63 @@ and the process will start a watchdog to track any client-side scripts for
 changes. Use this only when developing Pootle.
 
 
+.. _commands#pootle-project:
+
+Pootle project tool
+-------------------
+
+
+.. django-admin:: project
+
+project
+^^^^^^^
+
+To perform actions on projects we use multiple subcommands:
+
+* :djadmin:`update` - Update one project from another one
+
+Common options
+^^^^^^^^^^^^^^
+
+.. django-admin-option:: --source-project
+.. django-admin-option:: --target-project
+.. django-admin-option:: --language
+
+
+Pootle project subcommands
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. django-admin:: update
+
+project update
+++++++++++++++
+
+.. versionadded:: 2.8.0
+
+
+Update target project from source project:
+
+* Add missing stores from source to target
+* Remove stores missing in source from target
+* Update stores from source project to corresponding stores in target project
+
+.. code-block:: console
+
+   (env) $ pootle project update --source-project=SRC_PROJECT --target-project=DEST_PROJECT
+
+.. django-admin-option:: --translations
+
+  Do not create missing stores and mark existing stores as obsoletes
+  in the target project. Copy translations from source unit to target unit.
+  Copy translations as suggestions for already translated units.
+
+
+  .. code-block:: console
+
+     (env) $ pootle project update --translations --source-project=SRC_PROJECT --target-project=DEST_PROJECT
+
+
 .. _commands#pootle-fs:
 
 Pootle FS
