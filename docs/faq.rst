@@ -45,3 +45,18 @@ Something like this will be needed to setup your virtual environment.
 .. code:: console
 
    $ mkvirtualenv --python=/path/to/python2 pootle
+
+
+locale.Error: unsupported locale setting
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pootle assumes that you have the ``en_US.utf8`` locale installed on your
+server.  If for some reason your server does not include this (you're not
+American or you are using a very minimal server) then you need to install that
+locale.
+
+On a Debian based server simply run:
+
+.. code:: console
+
+   $ sudo dpkg-reconfigure locales
