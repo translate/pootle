@@ -781,6 +781,11 @@ button.close
 
 /* table row colors, see 'Table Row Colors.psd' */
 
+table.stats
+{
+    clear: both;
+}
+
 .stats tr.item
 {
     display: none;
@@ -831,12 +836,6 @@ html[dir="rtl"] .module.first
 {
     margin: 1em 0.5em 0;
     border-bottom: 1px solid #eee;
-}
-
-html[dir="rtl"] .hd h2
-{
-    margin-left: 0;
-    margin-right: 0.5em;
 }
 
 .last-action .short-action-text
@@ -1703,7 +1702,7 @@ html[dir="rtl"] .summary-3-col
 
 html[dir="rtl"] .path-summary-more .summary-3-col
 {
-    margin: 0 6.25% 0 0;
+    margin: 0 0 0 6.25%;
 }
 
 .path-summary-more .summary-1-col

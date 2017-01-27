@@ -56,6 +56,14 @@
     float: left;
 }
 
+
+html[dir="rtl"] #top-scorers .user .gravatar,
+html[dir="rtl"] #top-scorers .user .properties
+{
+    float: right;
+    text-align: right;
+}
+
 #top-scorers .user .properties
 {
     margin: 5px 10px 0;
