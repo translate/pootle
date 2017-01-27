@@ -1218,15 +1218,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
     def record_submissions(self, unit, old_target, old_state, current_time, user,
                            submission_type=None, **kwargs):
         """Records all applicable submissions for `unit`.
-
-        EXTREME HAZARD: this relies on implicit `._<field>_updated` members
-        being available in `unit`. Let's look into replacing such members with
-        something saner (#3895).
         """
-        state_updated = kwargs.get("state_updated") or unit._state_updated
-        target_updated = kwargs.get("target_updated") or unit._target_updated
-        comment_updated = kwargs.get("comment_updated") or unit._comment_updated
-
+        state_updated = kwargs.get("state_updated")
+        target_updated = kwargs.get("target_updated")
+        comment_updated = kwargs.get("comment_updated")
         create_subs = OrderedDict()
 
         if state_updated:
