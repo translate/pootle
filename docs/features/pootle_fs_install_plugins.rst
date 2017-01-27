@@ -6,6 +6,11 @@ Install Pootle FS plugins for VCS
 To work with VCS systems Pootle FS requires some additional packages and
 configuration.
 
+.. warning:: Pootle FS is considered beta in Pootle 2.8.0.  We'd love you to
+   try it out but please be aware that if you are basing production installs on
+   Pootle FS that you can expect changes that might require manual
+   intervention.
+
 
 Install the Pootle FS plugins
 -----------------------------

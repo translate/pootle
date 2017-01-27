@@ -8,6 +8,11 @@ allows Pootle to synchronize with an external repository containing your
 translations, keep them synchronised and manage and resolve any conflicts
 either automatically or via user input.
 
+.. warning:: Pootle FS is considered beta in Pootle 2.8.0.  We'd love you to
+   try it out but please be aware that if you are basing production installs on
+   Pootle FS that you can expect changes that might require manual
+   intervention.
+
 
 Aims
 ----
