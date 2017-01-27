@@ -123,9 +123,9 @@ class Suggestion(models.Model, base.TranslationUnit):
     translator_comment_f = models.TextField(null=True, blank=True)
 
     state_choices = [
-        (SuggestionStates.PENDING, _('Pending')),
-        (SuggestionStates.ACCEPTED, _('Accepted')),
-        (SuggestionStates.REJECTED, _('Rejected')),
+        (SuggestionStates.PENDING, 'Pending'),
+        (SuggestionStates.ACCEPTED, 'Accepted'),
+        (SuggestionStates.REJECTED, 'Rejected'),
     ]
     state = models.CharField(max_length=16, default=SuggestionStates.PENDING,
                              null=False, choices=state_choices, db_index=True)
