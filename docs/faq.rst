@@ -60,3 +60,20 @@ On a Debian based server simply run:
 .. code:: console
 
    $ sudo dpkg-reconfigure locales
+
+
+Installing missing system dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pootle may require you to install additional system dependencies.  The majority
+of these relate to the installation of lxml, required by Pootle for XLIFF and
+other XML based support.
+
+lxml requires compilation so we depend on build components as well as libraries
+for ``libxml``, ``libxslt`` and Python.
+
+On Debian based system the following will install all additional system requirements:
+
+.. code:: console
+
+   $ sudo apt-get install build-essential libxml2-dev libxslt-dev python-dev python-pip zlib1g-dev
