@@ -140,6 +140,7 @@ class SuggestionsReview(object):
                 'translation_project': translation_project,
                 'submitter': self.reviewer,
                 'unit': unit,
+                'revision': unit.revision,
                 'store': unit.store,
                 'field': field,
                 'type': SubmissionTypes.SUGG_ACCEPT,

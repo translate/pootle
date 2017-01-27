@@ -1250,6 +1250,7 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
                     translation_project_id=self.translation_project_id,
                     submitter=user,
                     unit=unit,
+                    revision=unit.revision,
                     store_id=self.id,
                     field=field,
                     type=submission_type,
