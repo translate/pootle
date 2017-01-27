@@ -112,7 +112,8 @@ def form_set_as_table(formset, link=None, linkfield='code'):
         result.append('<tbody>\n')
 
         # Do not display the delete checkbox for the 'add a new entry' form.
-        formset.forms[-1].fields['DELETE'].widget = forms.HiddenInput()
+        if formset.extra_forms:
+            formset.forms[-1].fields['DELETE'].widget = forms.HiddenInput()
 
         for form in formset.forms:
             add_errors(result, fields, form)
