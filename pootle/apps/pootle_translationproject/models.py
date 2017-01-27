@@ -308,6 +308,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         """
 
         template_tp = self.project.get_template_translationproject()
+        if not template_tp:
+            return
+
         template_stores = template_tp.stores.live().exclude(file="")
 
         for template_store in template_stores.iterator():
