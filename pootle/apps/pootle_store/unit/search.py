@@ -172,7 +172,7 @@ class DBSearchBackend(object):
             # that the results we are returning start from the end of previous
             # result set
             _start = start = max(self.offset - len(self.previous_uids), 0)
-            end = max(self.offset + (2 * self.chunk_size), total)
+            end = min(self.offset + (2 * self.chunk_size), total)
             uid_list = self.results[start:end].values_list("pk", flat=True)
             for i, uid in enumerate(uid_list):
                 if uid in self.previous_uids:
