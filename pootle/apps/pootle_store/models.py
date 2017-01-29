@@ -873,6 +873,7 @@ class Unit(models.Model, base.TranslationUnit):
             self.state = UNTRANSLATED
 
         self.update_qualitychecks(keep_false_positives=True)
+        self.index = self.store.max_index() + 1
         self._state_updated = True
         self._save_action = UNIT_RESURRECTED
 
