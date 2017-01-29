@@ -360,6 +360,11 @@ html[dir="rtl"] ul.icons
     margin-left: auto;
 }
 
+html[dir="rtl"] .icon-folder-parent
+{
+    transform: scaleX(-1);
+}
+
 .icon-external-link
 {
     margin-top: 3px;
