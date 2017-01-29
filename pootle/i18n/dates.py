@@ -49,4 +49,6 @@ localdate = LocalDate()
 
 
 def timesince(timestamp, locale=None):
+    if locale:
+        locale = translation.to_locale(locale)
     return localdate.format_timesince(timestamp, locale=locale)

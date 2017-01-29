@@ -58,11 +58,15 @@ class ChildrenPanel(TablePanel):
             if not child.get("stats"):
                 continue
             last_created_unit = (
-                timesince(child["stats"]["last_created_unit"]["creation_time"])
+                timesince(
+                    child["stats"]["last_created_unit"]["creation_time"],
+                    locale=self.view.request_lang)
                 if child["stats"].get("last_created_unit")
                 else None)
             last_submission = (
-                timesince(child["stats"]["last_submission"]["mtime"])
+                timesince(
+                    child["stats"]["last_submission"]["mtime"],
+                    locale=self.view.request_lang)
                 if child["stats"].get("last_submission")
                 else None)
             _times[child["code"]] = (last_submission, last_created_unit)
