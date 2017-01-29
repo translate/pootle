@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-17 10:24+0000\n"
+"PO-Revision-Date: 2017-01-27 09:12+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484648651.000000\n"
+"X-POOTLE-MTIME: 1485508330.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -218,14 +218,13 @@ msgid "Upload as %(user)s"
 msgstr "Ανέβασμα ως %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Κατέβασμα για μετάφραση χωρίς σύνδεση"
+msgstr ""
+"Κατέβασμα χωρίς σύνδεση μεταφραστικής μνήμης για το έργο της μετάφρασης"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Κατέβασμα για μετάφραση χωρίς σύνδεση"
+msgstr "Κατέβασμα χωρίς σύνδεση μεταφραστικής μνήμης"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -516,32 +515,32 @@ msgid "Suggested at"
 msgstr "Προτάθηκε στο"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "Απόρριψη %s προτάσεων με σχόλιο. Οι χρήστες θα ενημερωθούν."
-msgstr[1] "Απόρριψη %s προτάσεων με σχόλιο. Οι χρήστες θα ενημερωθούν."
+msgstr[0] "Απόρριψη της %s πρότασης με σχόλιο. Ο χρήστης θα ενημερωθεί."
+msgstr[1] "Απόρριψη των %s προτάσεων με σχόλιο. Οι χρήστες θα ενημερωθούν."
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "Αποδοχή %s προτάσεων με σχόλιο. Οι χρήστες θα ενημερωθούν."
-msgstr[1] "Αποδοχή %s προτάσεων με σχόλιο. Οι χρήστες θα ενημερωθούν."
+msgstr[0] "Αποδοχή της %s πρότασης με σχόλιο. Ο χρήστης θα ενημερωθεί."
+msgstr[1] "Αποδοχή των %s προτάσεων με σχόλιο. Οι χρήστες θα ενημερωθούν."
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Απόρριψη %s προτάσεων"
-msgstr[1] "Απόρριψη %s προτάσεων"
+msgstr[0] "Απόρριψη της %s πρότασης"
+msgstr[1] "Απόρριψη των %s προτάσεων"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Αποδοχή %s προτάσεων"
-msgstr[1] "Αποδοχή %s προτάσεων"
+msgstr[0] "Αποδοχή  της %s πρότασης"
+msgstr[1] "Αποδοχή  των %s προτάσεων"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -862,7 +861,6 @@ msgid "ftl format"
 msgstr "Μορφή ftl"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
 msgstr "Ρουμανικά: Να αποφεύγονται τα διακριτικά υποδιαστολής"
 
@@ -1653,39 +1651,38 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "Η ρύθμιση POOTLE_FS_WORKING_PATH δεν ορίστηκε."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "Η διαδρομή που δείχνεται από το POOTLE_FS_WORKING_PATH δεν υπάρχει."
+msgstr ""
+"Η διαδρομή ('%s') που δείχνεται από το POOTLE_FS_WORKING_PATH δεν υπάρχει."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Δημιουργήστε τον κατάλογο που δείχνεται από τη ρύθμιση "
-"`POOTLE_FS_WORKING_PATH`."
+"Δημιουργήστε τον κατάλογο που δείχνεται από το `POOTLE_FS_WORKING_PATH`, ή "
+"αλλάξτε τη ρύθμιση."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"Η διαδρομή που δείχνεται από το POOTLE_FS_WORKING_PATH δεν είναι εγγράψιμη "
-"από το Pootle."
+"Η διαδρομή ('%s') που δείχνεται από το POOTLE_FS_WORKING_PATH δεν είναι "
+"εγγράψιμη από το Pootle."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"Προσθέστε το δικαίωμα εγγραφής στον κατάλογο `POOTLE_FS_WORKING_PATH` "
-"χρησιμοποιώντας 'chmod +w'"
+"Προσθέστε το δικαίωμα εγγραφής στο`POOTLE_FS_WORKING_PATH` , ή αλλάξτε τη "
+"ρύθμιση."
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "Το MySQL απαιτεί ρυθμίσεις ζώνης χρόνου."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

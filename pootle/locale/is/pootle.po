@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-24 12:27+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-01-27 13:56+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
@@ -19,23 +19,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1485260842.000000\n"
+"X-POOTLE-MTIME: 1485525418.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Eitthvað vandamál kom upp við að senda staðsetningarpóst. Reyndu aftur síðar."
 
 #: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Eitthvað vandamál kom upp við innskráningu þína. Hafðu sambandi við "
+"kerfisstjórann þinn"
 
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Notandaauðkennið þitt virðist hafa horfið. Endilega tilkynntu þetta til "
+"eigenda vefsins."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -70,6 +75,8 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Þýðir að þennan notanda skal líta á sem virkan. Afveldu þetta í stað þess að "
+"eyða notandaaðgöngum."
 
 #: apps/accounts/models.py:74
 msgid "Superuser Status"
@@ -80,6 +87,8 @@ msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Þýðir að þessi notandi er með allar heimildir án þess að þurfa að tilgreina "
+"hverja þeirra fyrir sig."
 
 #: apps/accounts/models.py:80
 msgid "date joined"
@@ -207,19 +216,18 @@ msgid "Upload as %(user)s"
 msgstr "Senda inn sem %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Sækja til að þýða ótengdur"
+msgstr "Sækja ónettengt þýðingaminni (TM) fyrir þýðingarverkefnið"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Sækja til að þýða ótengdur"
+msgstr "Sækja ónettengt þýðingaminni"
 
 #: apps/import_export/utils.py:39
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
+"Óstudd skráategund '%s', einungis PO-skrár eru studdar í augnablikinu\n"
 
 #: apps/import_export/utils.py:45
 #, python-format
@@ -254,6 +262,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Þú getur ekki fjarlægt skráategund úr verkefni, ef í því eru skráageymslur "
+"með þeirri skráategund ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -261,7 +271,7 @@ msgstr "Lykilorð"
 
 #: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Skráðu inn gilda slóð á LinkedIn notandasnið"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58
@@ -358,10 +368,12 @@ msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"Vörpun milli slóða á þýðingar sem skráir staðsetningar þýðingaskráa á þessu "
+"skráakerfi miðað við skráageymslur á Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Stafakóði tungumáls verður að vera einstakur"
 
 #: apps/pootle_fs/forms.py:185
 msgid "Pootle language mappings must be unique"
@@ -496,28 +508,28 @@ msgid "Suggested at"
 msgstr "Stungið uppá í"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
 msgstr[0] "Hafnaði %s tillögum með athugasemd. Notendur verða látnir vita"
 msgstr[1] "Hafnaði %s tillögum með athugasemd. Notendur verða látnir vita"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
 msgstr[0] "Samþykkti %s tillögur með athugasemd. Notendur verða látnir vita"
 msgstr[1] "Samþykkti %s tillögur með athugasemd. Notendur verða látnir vita"
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
 msgstr[0] "Hafnaði %s tillögum"
 msgstr[1] "Hafnaði %s tillögum"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
 msgstr[0] "Samþykkti %s tillögur"
@@ -755,7 +767,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
-msgstr "C-format innskotsbreytur"
+msgstr "C-format ígildisbreytur"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Non printable"
@@ -803,11 +815,11 @@ msgstr "$ ígildisbreytur"
 
 #: apps/pootle_misc/checks.py:110
 msgid "$ closure placeholders"
-msgstr ""
+msgstr "$ lokunarbreytur"
 
 #: apps/pootle_misc/checks.py:111
 msgid "Java-encoded unicode"
-msgstr ""
+msgstr "Java-kóðað unicode"
 
 #: apps/pootle_misc/checks.py:112
 msgid "Objective-C format"
@@ -819,7 +831,7 @@ msgstr "Android snið"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Tags differ"
-msgstr ""
+msgstr "Mismunur merkinga"
 
 #: apps/pootle_misc/checks.py:115
 msgid "Curly braces"
@@ -827,11 +839,11 @@ msgstr "Slaufusvigar"
 
 #: apps/pootle_misc/checks.py:116
 msgid "Potential unwanted placeholders"
-msgstr ""
+msgstr "Mögulega óvelkomnar ígildisbreytur"
 
 #: apps/pootle_misc/checks.py:117
 msgid "Double quotes in tags"
-msgstr ""
+msgstr "Tvöfaldar gæsalappir í merkingum"
 
 #: apps/pootle_misc/checks.py:118
 msgid "Percent brace placeholders"
@@ -843,11 +855,11 @@ msgstr "ftl-snið"
 
 #: apps/pootle_misc/checks.py:124
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "Rúmenska: Forðast bakkróka (cedilla) á broddstöfum"
 
 #: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rúmenska: Nota \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -942,7 +954,7 @@ msgstr "Ekki GNU stíll: Hvert tungumál í sér möppu"
 
 #: apps/pootle_project/models.py:223
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr ""
+msgstr "Leyfa Pootle FS að stýra skráakerfum (á tilraunastigi)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -962,7 +974,7 @@ msgstr "Tölvupóstfang þar sem hægt er að tilkynna um vandamál með frumtex
 
 #: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Leitarforskeyti skjámyndar"
 
 #: apps/pootle_project/models.py:251
 msgid "Disabled"
@@ -1028,15 +1040,15 @@ msgstr "Fleirtala %d"
 
 #: apps/pootle_store/forms.py:258
 msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "Gildi `similarity` ætti að vera á bilinu [0..1]"
 
 #: apps/pootle_store/forms.py:268
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "Gildi `mt_similarity` ætti að vera á bilinu [0..1]"
 
 #: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
-msgstr ""
+msgstr "Það þarf að hreinsa út flaggið 'þarfnast lagfæringa'"
 
 #: apps/pootle_store/forms.py:350
 msgid "Translator comment"
@@ -1312,7 +1324,7 @@ msgstr ""
 
 #: checks.py:147
 msgid "No RQ Worker running."
-msgstr ""
+msgstr "Enginn RQ Worker í gangi."
 
 #: checks.py:148
 msgid "Run new workers with 'pootle rqworker'"
@@ -1353,11 +1365,11 @@ msgstr ""
 
 #: checks.py:202
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "sqlite gagnagrunnsbakendinn er ekki studdur"
 
 #: checks.py:203
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
+msgstr "Settu sjálfgefna gagnagrunnsvél sem postgresql eða mysql"
 
 #: checks.py:210
 msgid "Not using cached_db as session engine"
@@ -1524,10 +1536,11 @@ msgstr "Settu leyfilegt gildi fyrir %s í POOTLE_SCORE_COEFFICIENTS."
 #: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
+"Sjálfgefinn 'admin' notandi er ennþá með lykilorðið stillt sem 'admin'."
 
 #: checks.py:386
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Fjarlægðu 'admin' notandann eða breyttu lykilorði hans."
 
 #: checks.py:400
 msgid "Database connection uses transaction_hooks."
@@ -1604,7 +1617,7 @@ msgstr ""
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL krefst stillingar á tímabelti."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1678,6 +1691,8 @@ msgstr "Bæta við athugasemd"
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Velja alla hluti sem samsvara skilyrðum síu, þar með talið það sem ekki er "
+"sýnilegt"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
@@ -1685,7 +1700,7 @@ msgstr "Þú verður að tilgreina aðgerð sem á að framkvæma"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Það verður að tilgreina gilt leitarsvið"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -2030,7 +2045,7 @@ msgstr "Millisamtala"
 #: templates/admin/detailed_reports.html:185
 #: templates/admin/detailed_reports.html:223
 msgid "MT"
-msgstr ""
+msgstr "Vélþýðing"
 
 #: templates/admin/detailed_reports.html:219
 msgid "Subactions"
@@ -2102,6 +2117,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS er enn á tilraunastigi, okkur þætti vænt um ef þú notaðir það, en "
+"slíkt útheimtir hins vegar sérfræðikunnáttu í staðfærslu, á Python og á "
+"Pootle ef eitthvað fer úrskeiðis."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2132,6 +2150,8 @@ msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
+"Fyrir aðra bakenda verður vörpun milli slóða á þýðingar afstæð miðað við rót "
+"gagnasafnsins."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2353,7 +2373,7 @@ msgstr "Síðasta aðgerð:"
 
 #: templates/browser/index.html:156
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Þetta verkefni er óvirkt og einungis sýnilegt kerfisstjórum."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
@@ -2417,7 +2437,7 @@ msgstr "Fara til baka í yfirlit"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
-msgstr "Mínar uppástungur"
+msgstr "Tillögurnar mínar"
 
 #: templates/editor/_filters.html:13
 msgid "My submissions"
@@ -2463,6 +2483,8 @@ msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Númer núverandi strengs (Ctrl+Shift+S)<br/><br/>Skrifaðu inn tölu og ýttu á "
+"Enter<br/> til að fara á hvaða stað sem er"
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
@@ -2476,18 +2498,20 @@ msgstr "Fara á næsta streng (Ctrl+Down)"
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
+msgstr "Eftirtaldar tillögur frá þér hafa verið samþykktar með athugasemdinni:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Við vonum að þessi umsögn komi að gagni við að bæta framlög þín í "
+"framtíðinni."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
+msgstr "Eftirtöldum tillögum frá þér hafa verið hafnað með athugasemdinni:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2518,7 +2542,7 @@ msgstr "Hugtakaskrá:"
 
 #: templates/editor/units/edit.html:59
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "Setja þýtt hugtak inn í ritilinn"
 
 #: templates/editor/units/edit.html:72
 msgid "Comments:"
@@ -2579,7 +2603,7 @@ msgstr "Bæta við athugasemd"
 
 #: templates/editor/units/edit.html:213
 msgid "Raw View"
-msgstr ""
+msgstr "Hrá sýn"
 
 #: templates/editor/units/edit.html:223
 #, python-format
@@ -2591,6 +2615,7 @@ msgstr "yfirfarið af <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Setja inn %(character_name)s (Unicode-gildi %(character_code)s) í ritilinn"
 
 #: templates/editor/units/edit.html:271
 msgid "User suggestions"
@@ -2679,7 +2704,7 @@ msgstr "Virkjaði aftur <a href=\"%(check_url)s\">%(check_name)s</a> prófun"
 
 #: templates/editor/units/xhr_timeline.html:60
 msgid "Unit created"
-msgstr ""
+msgstr "Bjó til einingu"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
@@ -2793,7 +2818,7 @@ msgstr "Fjarlægja valið"
 
 #: templates/languages/admin/language_team.html:102
 msgid "Unit and suggestions admin"
-msgstr "Stjórnun þýðingastrengja og tillagna"
+msgstr "Stjórnun þýðingaeininga og tillagna"
 
 #: templates/languages/admin/language_team.html:117
 msgid "Pending suggestions:"
@@ -2890,6 +2915,7 @@ msgstr "Aðgerðar krafist"
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Áður en lengra er haldið, verðurðu að lesa og samþykkja eftirfarandi skjöl."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
@@ -2953,7 +2979,7 @@ msgstr ""
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
-msgstr ""
+msgstr "Hér geturðu sýslað með skilgreiningar í hugtakaskránum."
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"

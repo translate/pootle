@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2016-09-06 14:02+0000\n"
+"PO-Revision-Date: 2017-01-26 12:49+0000\n"
 "Last-Translator: vasilvestre <vasilvestre@laposte.net>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
 "Language: fr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1473170543.000000\n"
+"X-POOTLE-MTIME: 1485434960.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -76,17 +76,20 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Désigne quand un utilisateur doit être traité comme actif. Désélectionnez "
+"ceci au lieu de supprimer des comptes."
 
 #: apps/accounts/models.py:74
-#, fuzzy
 msgid "Superuser Status"
-msgstr "statut d'administrateur"
+msgstr "Statut d'administrateur"
 
 #: apps/accounts/models.py:77
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Désigne que cette utilisateur à toutes les permissions sans lui assigner "
+"explicitement."
 
 #: apps/accounts/models.py:80
 msgid "date joined"
@@ -101,8 +104,9 @@ msgid "Alternative Source Languages"
 msgstr "Langues d'origine alternatives"
 
 #: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
+#, fuzzy
 msgid "Rate"
-msgstr ""
+msgstr "Taux"
 
 #: apps/accounts/models.py:92
 msgid "Review Rate"
@@ -114,7 +118,7 @@ msgstr ""
 
 #: apps/accounts/models.py:94
 msgid "Score"
-msgstr ""
+msgstr "Score"
 
 #: apps/accounts/models.py:95
 msgid "Currency"
@@ -122,7 +126,7 @@ msgstr "Monnaie"
 
 #: apps/accounts/models.py:97
 msgid "Is employee?"
-msgstr ""
+msgstr "Est employé ?"
 
 #: apps/accounts/models.py:98
 msgid "Twitter"
@@ -269,20 +273,20 @@ msgstr "Mot de passe"
 
 #: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Veuillez entrer une URL de compte Linkedin valide."
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Exécute  (%d worker)"
+msgstr[1] "Exécute  (%d workes)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:62
 msgid "Stopped"
-msgstr ""
+msgstr "Arrêté"
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
@@ -322,28 +326,27 @@ msgstr ""
 
 #: apps/pootle_format/abstracts.py:44
 msgid "Enabled"
-msgstr ""
+msgstr "Activé"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Format Android"
+msgstr "Format monolingue"
 
 #: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
-msgstr ""
+msgstr "Style standard GNU"
 
 #: apps/pootle_fs/forms.py:26
 msgid "non GNU-style"
-msgstr ""
+msgstr "Style non standard GNU"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Django-style"
-msgstr ""
+msgstr "Style Django"
 
 #: apps/pootle_fs/forms.py:31
 msgid "Custom"
-msgstr ""
+msgstr "Personnalisé"
 
 #: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
@@ -383,9 +386,8 @@ msgid "Pootle language mappings must be unique"
 msgstr "Page Admin des languages Pootle"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "Nombres"
+msgstr "Membre"
 
 #: apps/pootle_language/forms.py:28
 #, fuzzy
@@ -393,24 +395,20 @@ msgid "Submitter"
 msgstr "Envoyer"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Reviewer"
-msgstr "Examiner"
+msgstr "Réviseur"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "Administration"
+msgstr "Administrateur"
 
 #: apps/pootle_language/forms.py:69
-#, fuzzy
 msgid "Administrators"
-msgstr "Administration"
+msgstr "Administrateurs"
 
 #: apps/pootle_language/forms.py:75
-#, fuzzy
 msgid "Reviewers"
-msgstr "Relectures"
+msgstr "Relecteurs"
 
 #: apps/pootle_language/forms.py:80
 #, fuzzy
@@ -418,22 +416,20 @@ msgid "Submitters"
 msgstr "Envoyer"
 
 #: apps/pootle_language/forms.py:85
-#, fuzzy
 msgid "Members"
-msgstr "Nombres"
+msgstr "Membres"
 
 #: apps/pootle_language/forms.py:89
-#, fuzzy
 msgid "New member"
-msgstr "Nombres"
+msgstr "Nouveau membre"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Ajouter un utilisateur à cette équipe"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Le role est requis lors de l'ajout d'un nouvel utilisateur"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -778,8 +774,9 @@ msgid "Mustache placeholder pairs"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:96
+#, fuzzy
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "Moustique comme placeholder"
 
 #: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
@@ -787,7 +784,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:98
 msgid "Non printable"
-msgstr ""
+msgstr "Non affichable"
 
 #: apps/pootle_misc/checks.py:99
 msgid "Unbalanced tag braces"
@@ -795,7 +792,7 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:100
 msgid "Changed attributes"
-msgstr ""
+msgstr "Attributs modifiés"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Unescaped ampersands"
@@ -807,11 +804,11 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:103
 msgid "Whitespaces"
-msgstr ""
+msgstr "Espaces"
 
 #: apps/pootle_misc/checks.py:104
 msgid "Date format"
-msgstr ""
+msgstr "Format de date"
 
 #: apps/pootle_misc/checks.py:105
 msgid "Uppercase placeholders"
@@ -939,14 +936,14 @@ msgid "Language"
 msgstr "Langue"
 
 #: apps/pootle_project/models.py:181
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "« %s » ne peut être utilisé comme code de projet"
 
 #: apps/pootle_project/models.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "« %s » ne peut être utilisé comme code de projet"
+msgstr "« %s » ne peut être utilisé comme vérificateur de projet"
 
 #: apps/pootle_project/models.py:196
 msgid ""
@@ -961,9 +958,8 @@ msgid "Quality Checks"
 msgstr "Contrôles de qualité"
 
 #: apps/pootle_project/models.py:220
-#, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "Détection automatique (plus lent)"
+msgstr "Détection automatique de style GNU/non GNU (plus lent)"
 
 #: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
@@ -975,7 +971,7 @@ msgstr "Non GNU : chaque langue utilise un sous-répertoire"
 
 #: apps/pootle_project/models.py:223
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr ""
+msgstr "Autoriser Pootle FS à manipuler les fichiers systèmes (Expérimental)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -990,11 +986,10 @@ msgid "Errors Report Email"
 msgstr ""
 
 #: apps/pootle_project/models.py:242
-#, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
-"Un URL ou une adresse électronique pour signaler des problèmes avec le texte "
-"source."
+"Une adresse électronique ayant des soucis avec le texte source peut être "
+"signalé."
 
 #: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
@@ -1002,7 +997,7 @@ msgstr ""
 
 #: apps/pootle_project/models.py:251
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 #: apps/pootle_project/views.py:263
 #, fuzzy, python-format

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2016-01-29 07:40+0000\n"
+"PO-Revision-Date: 2017-01-27 16:40+0000\n"
 "Last-Translator: Tornoz <tornoz@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: br\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1454053230.000000\n"
+"X-POOTLE-MTIME: 1485535202.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -32,11 +32,15 @@ msgstr ""
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Degouezhet ez eus bet ur fazi en ur gennaskañ ac'hanoc'h. Kit e darempred "
+"gant ardoer ho reizhad."
 
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Hoc'h arveriaded a seblant bezañ steuziet kuit. Danevellit ar fazi da "
+"berc'henned al lec'hienn."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -46,10 +50,12 @@ msgstr "anv implijer"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Azgoulennet. 30 arouez pe nebeutoc'h. Lizherennoù, niverennoù hag "
+"arouezennoù @/./+/-/_"
 
 #: apps/accounts/models.py:60
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Enankit un anv arveriad talvoudek."
 
 #: apps/accounts/models.py:64
 msgid "Email Address"

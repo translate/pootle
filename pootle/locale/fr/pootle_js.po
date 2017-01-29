@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-09-06 14:00+0000\n"
+"PO-Revision-Date: 2017-01-26 12:52+0000\n"
 "Last-Translator: vasilvestre <vasilvestre@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1473170420.000000\n"
+"X-POOTLE-MTIME: 1485435138.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -117,7 +117,7 @@ msgstr "Vue d'ensemble"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Équipe"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -165,9 +165,8 @@ msgid "Quality Checks"
 msgstr "Vérifications de la qualité"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Type de fichier"
+msgstr "Types de fichier"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -203,9 +202,8 @@ msgid "Permissions"
 msgstr "Permissions"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "Type de fichier"
+msgstr "Systèmes de fichiers"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -344,23 +342,24 @@ msgid "Preview will be displayed here."
 msgstr "L'aperçu s'affichera ici."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
 msgstr ""
-"Nous avons envoyé un courrier électronique contenant le lien spécial à <span>"
-"%s</span>"
+"Nous avons envoyé un courrier électronique contenant le lien d'activation à "
+"<span>%s</span>. Veuillez vérifier votre boite de spam si vous ne le recevez "
+"pas."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
 "Nous avons envoyé un courrier électronique contenant le lien spécial à "
-"l'adresse email utilisée pour enregistrer ce compte."
+"l'adresse email utilisée pour enregistrer ce compte. Veuillez vérifier votre "
+"boite de spam si vous ne le recevez pas."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -545,25 +544,24 @@ msgstr "Plus..."
 msgid "Contributors, 30 Days"
 msgstr "Contributeurs, 30 jours"
 
+# same things
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:53
-#, fuzzy
 msgid "Show disabled"
-msgstr "désactivé"
+msgstr "Voir désactivés"
 
 #: static/js/browser/components/VisibilityToggle.js:54
-#, fuzzy
 msgid "Hide disabled"
-msgstr "désactivé"
+msgstr "Cacher désactivés"
 
 #: static/js/browser.js:286
 msgid "All Languages"
@@ -579,7 +577,7 @@ msgstr "Projet entier"
 
 #: static/js/common.js:139
 msgid "Updating data"
-msgstr ""
+msgstr "Mis à jour des données"
 
 #: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
@@ -680,7 +678,7 @@ msgstr "Traductions similaires"
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Forme plurielle %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
@@ -688,7 +686,7 @@ msgstr "Modifiez la suggestion avant de l'accepter, si nécessaire"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Ajoutez un commentaire optionnel (sera publiquement visible)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"
@@ -833,7 +831,7 @@ msgid "Creating new user accounts is prohibited."
 msgstr "La création de nouveaux comptes utilisateurs est interdite."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
@@ -867,7 +865,7 @@ msgstr "Relus"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "Score de changements"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24

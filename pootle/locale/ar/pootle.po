@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-24 12:19+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-01-27 19:25+0000\n"
+"Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485260397.000000\n"
+"X-POOTLE-MTIME: 1485545100.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -210,14 +210,12 @@ msgid "Upload as %(user)s"
 msgstr "ارفع ك‍ %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "نزّل للتّرجمة محليًّا"
+msgstr "نزّل ذاكرة التّرجمة بلا اتّصال لمشروع التّرجمة"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "نزّل للتّرجمة محليًّا"
+msgstr "نزّل ذاكرة التّرجمة بلا اتّصال"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -252,30 +250,30 @@ msgid "Source Language"
 msgstr "اللغة المصدر"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
-"إن كان هناك تخزين بأحد أنواع الملفات، لا يمكنك إزالة ذلك النوع من أي مشروع "
-"(’%s‘)"
+"إن كانت هناك مخازن بأحد أنواع الملفّات (’%s‘)، فلا يمكنك إزالة ذلك النوع من "
+"أيّ مشروع"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
-msgstr "كلمة السر"
+msgstr "كلمة السّرّ"
 
 #: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr "رجاء أدخل عنوان ملفّك الشخصيّ على لنكدإن."
+msgstr "رجاء أدخل عنوان ملفّك الشخصيّ على «لنكدإن»."
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] "متوقّفة (%d)"
-msgstr[1] "تعمل (عامل واحد %d)"
-msgstr[2] "تعمل (عاملان %d)"
+msgstr[0] "متوقّفة"
+msgstr[1] "تعمل (عامل واحد)"
+msgstr[2] "تعمل (عاملان)"
 msgstr[3] "تعمل (%d عمّال)"
 msgstr[4] "تعمل (%d عاملًا)"
 msgstr[5] "تعمل (%d عامل)"
@@ -311,23 +309,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "بالاستمارة أخطاء. رجاء راجع المشاكل أدناه."
 
 #: apps/pootle_format/abstracts.py:35
-#, fuzzy
 msgid "Format name"
-msgstr "الاسم"
+msgstr "اسم النّسق"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
-msgstr ""
+msgstr "عنوان النّسق"
 
 #: apps/pootle_format/abstracts.py:44
-#, fuzzy
 msgid "Enabled"
-msgstr "معطّل"
+msgstr "مفعّل"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "نسق أندرويد"
+msgstr "نسق أحادي اللغة"
 
 #: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
@@ -335,7 +330,7 @@ msgstr "نمط غنو"
 
 #: apps/pootle_fs/forms.py:26
 msgid "non GNU-style"
-msgstr ""
+msgstr "نمط ليس غنو"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Django-style"
@@ -362,31 +357,29 @@ msgid "The URL or path to your translation files"
 msgstr "عنوان ملفّات الترجمة أو مسارها"
 
 #: apps/pootle_fs/forms.py:54
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "إعدادات الترجمة"
+msgstr "مسار ربط التّرجمة"
 
 #: apps/pootle_fs/forms.py:55
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to stores on Pootle."
 msgstr ""
+"مسار ربط التّرجمة الذي يربط ملفّات التّوطين في نظام الملفّات بالمخازن في «بوتل»."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "يجب أن تكون رموز لغة نظام الملفّات فريدة"
 
 #: apps/pootle_fs/forms.py:185
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "صفحة المدير للغات بوتل"
+msgstr "يجب أن تكون ربطات لغات «بوتل» فريدة"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
 msgstr "عضو"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
 msgstr "مودع"
 
@@ -416,7 +409,7 @@ msgstr "الأعضاء"
 
 #: apps/pootle_language/forms.py:89
 msgid "New member"
-msgstr "عضو جديد"
+msgstr "العضو الجديد"
 
 #: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
@@ -424,7 +417,7 @@ msgstr "أضف مستخدمًا إلى هذا الفريق"
 
 #: apps/pootle_language/forms.py:127
 msgid "Role is required when adding a new member"
-msgstr "الدور مطلوب لإضافة عضو جديد"
+msgstr "الدّور مطلوب لإضافة عضو جديد"
 
 #: apps/pootle_language/forms.py:153 core/forms.py:184
 msgid "Reject"
@@ -449,8 +442,8 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"رمز اللغة بحسب نظام آيزو 639 لعنونة اللغات، يمكن أن يتبع بشرطة سفليّة (_) "
-"و رمز البلد بحسب نظام آيزو 3166. <a href=\"http://www.w3.org/International/"
+"رمز اللغة بحسب نظام «آيزو 639» لعنونة اللغات، يمكن أن يتبع بشرطة سفليّة (_) "
+"و رمز البلد بحسب نظام «آيزو 3166». <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">لمزيد من المعلومات</a>"
 
 #: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
@@ -510,48 +503,48 @@ msgid "Suggested at"
 msgstr "اقتُرح في"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "رفض اقتراح %(author)s قائلا: %(comment)s"
-msgstr[1] "رفض اقتراح %(author)s قائلا: %(comment)s"
-msgstr[2] "رفض اقتراح %(author)s قائلا: %(comment)s"
-msgstr[3] "رفض اقتراح %(author)s قائلا: %(comment)s"
-msgstr[4] "رفض اقتراح %(author)s قائلا: %(comment)s"
-msgstr[5] "رفض اقتراح %(author)s قائلا: %(comment)s"
+msgstr[0] "لم يُرفض أيّ اقتراح."
+msgstr[1] "رُفض اقتراح واحد وتُرك تعليق. سيُخطَر المستخدم"
+msgstr[2] "رُفض اقتراحان وتُركت تعليقات. سيُخطَر المستخدمان"
+msgstr[3] "رُفضت %s اقتراحات وتُركت تعليقات. سيُخطر المستخدمون"
+msgstr[4] "رُفض %s اقتراحًا وتُركت تعليقات. سيُخطر المستخدمون"
+msgstr[5] "رُفض %s اقتراح وتُركت تعليقات. سيُخطر المستخدمون"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "قبل اقتراح %(author)s قائلا: %(comment)s"
-msgstr[1] "قبل اقتراح %(author)s قائلا: %(comment)s"
-msgstr[2] "قبل اقتراح %(author)s قائلا: %(comment)s"
-msgstr[3] "قبل اقتراح %(author)s قائلا: %(comment)s"
-msgstr[4] "قبل اقتراح %(author)s قائلا: %(comment)s"
-msgstr[5] "قبل اقتراح %(author)s قائلا: %(comment)s"
+msgstr[0] "لم يُقبل أيّ اقتراح."
+msgstr[1] "قُبل اقتراح واحد وتُرك تعليق. سيُخطر المستخدم"
+msgstr[2] "قُبل اقتراحان وتُركت تعليقات. سيُخطر المستخدمان"
+msgstr[3] "قُبلت %s اقتراحات وتُركت تعليقات. سيُخطر المستخدمون"
+msgstr[4] "قُبل %s اقتراحًا وتُركت تعليقات. سيُخطر المستخدمون"
+msgstr[5] "قُبل %s اقتراح وتُركت تعليقات. سيُخطر المستخدمون"
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "ارفض الاقتراح"
-msgstr[1] "ارفض الاقتراح"
-msgstr[2] "ارفض الاقتراح"
-msgstr[3] "ارفض الاقتراح"
-msgstr[4] "ارفض الاقتراح"
-msgstr[5] "ارفض الاقتراح"
+msgstr[0] "لم يُرفض أيّ اقتراح"
+msgstr[1] "رُفض اقتراح واحد"
+msgstr[2] "رُفض اقتراحان"
+msgstr[3] "رُفضت %s اقتراحات"
+msgstr[4] "رُفض %s اقتراحًا"
+msgstr[5] "رُفض %s اقتراح"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "اقبل الاقتراح"
-msgstr[1] "اقبل الاقتراح"
-msgstr[2] "اقبل الاقتراح"
-msgstr[3] "اقبل الاقتراح"
-msgstr[4] "اقبل الاقتراح"
-msgstr[5] "اقبل الاقتراح"
+msgstr[0] "لم يُقبل أيّ اقتراح"
+msgstr[1] "قُبل اقتراح واحد"
+msgstr[2] "قُبل اقتراحان"
+msgstr[3] "قُبلت %s اقتراحات"
+msgstr[4] "قُبل %s اقتراحًا"
+msgstr[5] "قُبل %s اقتراح"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -647,7 +640,7 @@ msgstr "مبهم"
 
 #: apps/pootle_misc/checks.py:61
 msgid "Old KDE comment"
-msgstr "تعليقات كدي القديمة"
+msgstr "تعليقات «كدي» القديمة"
 
 #: apps/pootle_misc/checks.py:62
 msgid "Long"
@@ -691,7 +684,7 @@ msgstr "علامات ترقيم فقط"
 
 #: apps/pootle_misc/checks.py:72
 msgid "Python brace placeholders"
-msgstr "أقواس حافظات مكان بايثون"
+msgstr "أقواس حافظات مكان «بايثون»"
 
 #: apps/pootle_misc/checks.py:73
 msgid "Number of sentences"
@@ -773,19 +766,19 @@ msgstr "نسق القوالب"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "حافظات مكان الأقواس المجعّدة"
 
 #: apps/pootle_misc/checks.py:95
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "زوجا حافظات مكان الأقواس المجعّدة"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "زوجا حافظات مكان شبيهة بالأقواس المجعّدة"
 
 #: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
-msgstr "حافظات مكان نسق سي"
+msgstr "حافظات مكان نسق «سي»"
 
 #: apps/pootle_misc/checks.py:98
 msgid "Non printable"
@@ -801,11 +794,11 @@ msgstr "الخاصيّات المغيّرة"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Unescaped ampersands"
-msgstr "علامة & غير متخلصة"
+msgstr "علامة & غير متخلّصة"
 
 #: apps/pootle_misc/checks.py:102
 msgid "Incorrectly escaped ampersands"
-msgstr "علامة & متخلص منها خطأ"
+msgstr "علامة & متخلّص منها خطأ"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Whitespaces"
@@ -813,7 +806,7 @@ msgstr "المسافات البيضاء"
 
 #: apps/pootle_misc/checks.py:104
 msgid "Date format"
-msgstr "نسق التّاريخ"
+msgstr "تنسيق التّاريخ"
 
 #: apps/pootle_misc/checks.py:105
 msgid "Uppercase placeholders"
@@ -837,15 +830,15 @@ msgstr "حافظات المكان المحصورة ب‍ $"
 
 #: apps/pootle_misc/checks.py:111
 msgid "Java-encoded unicode"
-msgstr "يونيكود المرمّز بجافا"
+msgstr "«يونيكود» المرمّز ب‍«جافا»"
 
 #: apps/pootle_misc/checks.py:112
 msgid "Objective-C format"
-msgstr "نسق أُبجكتف-سي"
+msgstr "تنسيق «أُبجكتف-سي»"
 
 #: apps/pootle_misc/checks.py:113
 msgid "Android format"
-msgstr "نسق أندرويد"
+msgstr "تنسيق «أندرويد»"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Tags differ"
@@ -868,17 +861,16 @@ msgid "Percent brace placeholders"
 msgstr "قوس المئويّة في حافظات المكان"
 
 #: apps/pootle_misc/checks.py:121
-#, fuzzy
 msgid "ftl format"
-msgstr "نسق التّاريخ"
+msgstr "تنسيق ftl"
 
 #: apps/pootle_misc/checks.py:124
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "الرّومانيّة: تجنّب حركات الذّيل"
 
 #: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "الرّومانيّة: استخدم ”niciun“/‏”nicio“"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -961,20 +953,19 @@ msgstr "فحوص الجودة"
 
 #: apps/pootle_project/models.py:220
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
-msgstr "كشف آليّ لتخطيطات ملفّات غنو/ليست غنو (أبطأ)"
+msgstr "كشف آليّ لتخطيطات ملفّات «غنو»/ليست «غنو» (أبطأ)"
 
 #: apps/pootle_project/models.py:221
 msgid "GNU style: files named by language code"
-msgstr "نمط غنو: تسمّى الملفّات بحسب رمز اللغة"
+msgstr "نمط «غنو»: تسمّى الملفّات بحسب رمز اللغة"
 
 #: apps/pootle_project/models.py:222
 msgid "Non-GNU: Each language in its own directory"
-msgstr "نمط غير غنو: لكلّ لغة دليل خاصّ بها"
+msgstr "نمط غير «غنو»: لكلّ لغة دليل خاصّ بها"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "اسمح ل‍ pootle_fs بإدارة أنظمة الملفات"
+msgstr "اسمح ل‍«نظام ملفّات بوتل» بإدارة أنظمة الملفّات (تجريبيّ)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1018,7 +1009,7 @@ msgstr "الهدف"
 
 #: apps/pootle_statistics/models.py:66
 msgid "Comment"
-msgstr "التّعليق"
+msgstr "تعليق"
 
 #: apps/pootle_store/constants.py:65
 msgid "Obsolete"
@@ -1032,23 +1023,23 @@ msgstr "تحتاج للعمل"
 #: apps/pootle_store/constants.py:68 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
 msgid "Translated"
-msgstr "مُتَرجَمة"
+msgstr "المُترجَمة"
 
 #: apps/pootle_store/decorators.py:25
 msgid "Insufficient rights to access this directory."
-msgstr "صلاحيّاتك غير كافية للنّفاذ إلى هذا الدّليل."
+msgstr "صلاحيّاتك غير كافية للوصول إلى هذا الدّليل."
 
 #: apps/pootle_store/decorators.py:28
 msgid "Insufficient rights to access suggestion mode."
-msgstr "صلاحيّاتك غير كافية للنّفاذ إلى وضع الاقتراح."
+msgstr "صلاحيّاتك غير كافية للوصول إلى وضع الاقتراح."
 
 #: apps/pootle_store/decorators.py:29
 msgid "Insufficient rights to access translation mode."
-msgstr "صلاحيّاتك غير كافية للنّفاذ إلى وضع التّرجمة."
+msgstr "صلاحيّاتك غير كافية للوصول إلى وضع التّرجمة."
 
 #: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
 msgid "Insufficient rights to access review mode."
-msgstr "صلاحيّاتك غير كافية للنّفاذ إلى وضع المراجعة."
+msgstr "صلاحيّاتك غير كافية للوصول إلى وضع المراجعة."
 
 #: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
@@ -1060,15 +1051,15 @@ msgstr "صيغة الجمع %d"
 
 #: apps/pootle_store/forms.py:258
 msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "يجب أن تكون قيمة ”similarity“ في نطاق [0..1]"
 
 #: apps/pootle_store/forms.py:268
 msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
+msgstr "يجب أن تكون قيمة ”mt_similarity“ في نطاق [0..1]"
 
 #: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
-msgstr "يجب محو راية \"تحتاج للعمل\""
+msgstr "يجب محو راية ”تحتاج للعمل“"
 
 #: apps/pootle_store/forms.py:350
 msgid "Translator comment"
@@ -1126,15 +1117,15 @@ msgstr "أضاف اقتراحًا"
 
 #: apps/pootle_store/utils.py:33
 msgid "Suggestion accepted with comment"
-msgstr "قُبل اقتراح مع تعليق"
+msgstr "قُبل اقتراح وتُرك تعليق"
 
 #: apps/pootle_store/utils.py:35
 msgid "Suggestion rejected with comment"
-msgstr "رُفض اقتراح مع تعليق"
+msgstr "رُفض اقتراح وتُرك تعليق"
 
 #: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
-msgstr "المسار طويل جدا."
+msgstr "المسار طويل جدًّا."
 
 #: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
@@ -1164,12 +1155,12 @@ msgstr "هذا المصطلح موجود في هذا الملفّ بالفعل."
 #: apps/pootle_translationproject/receivers.py:38
 #, python-format
 msgid "Translation project (%s) created"
-msgstr "أُنشئ مشروع الترجمة (%s)"
+msgstr "أُنشئ مشروع التّرجمة (%s)"
 
 #: apps/pootle_translationproject/receivers.py:52
 #, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "فشل إنشاء مشروع الترجمة (%s)"
+msgstr "فشل إنشاء مشروع التّرجمة (%s)"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1206,7 +1197,7 @@ msgstr "أعد التّوجيه إلى العنوان"
 
 #: apps/staticpages/models.py:52
 msgid "If set, this page will redirect to this URL"
-msgstr "إذا ضُبط، ستُحّول هذه الصفحة إلى هذا العنوان"
+msgstr "إن ضُبط، ستُحّول هذه الصّفحة إلى هذا العنوان"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -1243,11 +1234,11 @@ msgstr "النّصّ ناقص"
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:39
 msgid "Filter"
-msgstr "رشِّح"
+msgstr "المرشّح"
 
 #: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which stores this virtual folder comprises."
-msgstr ""
+msgstr "قواعد التّرشيح المحدِّدة للمخازن التي يضغطها المجلّد الوهميّ هذا."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1256,7 +1247,7 @@ msgstr "الأولويّة"
 #: apps/virtualfolder/models.py:47
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
-msgstr ""
+msgstr "عدد يحدّد الأهميّة. كلّما زادت الأهميّة كانت التّرجمة أولى."
 
 #: apps/virtualfolder/models.py:51
 msgid "Is public?"
@@ -1274,7 +1265,7 @@ msgstr "الوصف"
 #, python-format
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
-msgstr "استخدم هذا لإعطاء معلومات أو تعليمات أخرى. الرقْم المسموح به: %s"
+msgstr "استخدم هذا لإعطاء معلومات أو تعليمات أخرى. الرَّقْم المسموح به: %s"
 
 #: checks.py:62
 msgid ""
@@ -1290,13 +1281,13 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
-"جرّب استخدام 'pootle find_duplicate_emails'، وثم حدّث عناوين البريد للمستخدمين "
-"ب‍'pootle update_user_email username email'. قد ترغب أيضا بأخذ استخدام أمريّ "
-"بوتل merge_user أو purge_user بعين الاعتبار"
+"جرّب استخدام ’pootle find_duplicate_emails‘، وثم حدّث عناوين البريد للمستخدمين "
+"ب‍’pootle update_user_email username email‘. قد ترغب أيضا بأخذ استخدام أمرا "
+"«بوتل» merge_user أو purge_user بعين الاعتبار"
 
 #: checks.py:88
 msgid "Your version of Django is too old."
-msgstr "إصدارتك من Django قديمة جدًّا."
+msgstr "إصدارة «جانغو» لديك قديمة جدًّا."
 
 #: checks.py:89
 #, python-format
@@ -1305,7 +1296,7 @@ msgstr "جرّب ‪pip install --upgrade 'Django==%s'"
 
 #: checks.py:96
 msgid "Your version of lxml is too old."
-msgstr "إصدارتك من lxml قديمة جدًّا."
+msgstr "إصدارة «lxml» لديك قديمة جدًّا."
 
 #: checks.py:97
 msgid "Try pip install --upgrade lxml"
@@ -1313,7 +1304,7 @@ msgstr "جرّب ‪pip install --upgrade lxml"
 
 #: checks.py:103
 msgid "Your version of Translate Toolkit is too old."
-msgstr "إصدارتك من عدّة أدوات التّرجمة قديمة جدًّا."
+msgstr "إصدار «عدّة أدوات التّرجمة» لديك قديمة جدًّا."
 
 #: checks.py:104
 msgid "Try pip install --upgrade translate-toolkit"
@@ -1322,34 +1313,33 @@ msgstr "جرّب ‪pip install --upgrade translate-toolkit"
 #: checks.py:124
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr "تعذّر الاتّصال بِـ Redis ‏(%s)"
+msgstr "تعذّر الاتّصال بِ‍«Redis»‏ ‏(%s)"
 
 #: checks.py:125
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr "تأكّد أنّ Redis يعمل على %(host)s:%(port)s"
+msgstr "تأكّد أنّ «Redis» يعمل على %(host)s:%(port)s"
 
 #: checks.py:135
 msgid "Your version of Redis is too old."
-msgstr "إصدارتك من Redis قديمة جدًّا."
+msgstr "إصدارة «Redis» لديك قديمة جدًّا."
 
 #: checks.py:136
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr "حدّث حزمة خادوم Redis لنظامك إلى الإصدارة %s على الأقل"
+msgstr "حدّث حزمة خادوم «Redis» لنظامك إلى الإصدارة %s على الأقلّ"
 
 #: checks.py:147
 msgid "No RQ Worker running."
 msgstr "لا عمّال RQ نشطين."
 
 #: checks.py:148
-#, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "شغّل عمّال جدد عبر manage.py rqworker"
+msgstr "شغّل عمّال جدد عبر ’manage.py rqworker‘"
 
 #: checks.py:163
 msgid "Cache backend is not set to Redis."
-msgstr "سند الخبيئة غير معيّن على Redis."
+msgstr "سند الخبيئة لم يُضبط ليكون Redis."
 
 #: checks.py:164
 #, python-format
@@ -1357,12 +1347,12 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
-"عيّن سند الخبيئة الافتراضيّ على django_redis.cache.RedisCache\n"
+"اضبط سند الخبيئة الافتراضيّ على django_redis.cache.RedisCache\n"
 "الإعدادات الحاليّة: %r"
 
 #: checks.py:174
 msgid "Could not initiate a Redis cache connection"
-msgstr "تعذّر تمهيد اتّصال خبيئة Redis"
+msgstr "تعذّر تمهيد اتّصال خبيئة «Redis»"
 
 #: checks.py:175 checks.py:189
 msgid "Double-check your CACHES settings"
@@ -1380,20 +1370,19 @@ msgstr "وضع التّنقيح مفعّل. لا تفعل هذا في الإنت
 
 #: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
-msgstr "عيّن DEBUG = False في إعدادات بوتل"
+msgstr "اضبط DEBUG = False في إعدادات «بوتل»"
 
 #: checks.py:202
 msgid "The sqlite database backend is unsupported"
-msgstr "سند قاعدة بيانات sqlite غير مدعوم"
+msgstr "سند قاعدة بيانات ”sqlite“ غير مدعوم"
 
 #: checks.py:203
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr "عيّن محرّك قاعدة البيانات الافتراضيّ إلى postgresql_psycopg2 أو mysql"
+msgstr "اضبط محرّك قاعدة البيانات الافتراضيّ على ”postgresql“ أو ”mysql“"
 
 #: checks.py:210
 msgid "Not using cached_db as session engine"
-msgstr "‏cached_db غير مستخدم كمحرّك الجلسات"
+msgstr "‏cached_db غير مستخدم كمحرّك جلسات"
 
 #: checks.py:211
 #, python-format
@@ -1401,20 +1390,20 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
-"عيّن SESSION_ENGINE إلى django.contrib.sessions.backend.cached_db\n"
+"اضبط SESSION_ENGINE على django.contrib.sessions.backend.cached_db\n"
 "الإعدادات الحاليّة: %r"
 
 #: checks.py:219
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr "POOTLE_CONTACT_EMAIL غير معيّن."
+msgstr "POOTLE_CONTACT_EMAIL لم يُضبط."
 
 #: checks.py:220
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
-"عيّن POOTLE_CONTACT_EMAIL للسّماح للمستخدمين بمراسلة المدراء عبر استمارة "
-"التّواصل في بوتل."
+"اضبط POOTLE_CONTACT_EMAIL للسّماح للمستخدمين بمراسلة المدراء عبر استمارة "
+"التّواصل في «بوتل»."
 
 #: checks.py:228
 #, python-format
@@ -1431,20 +1420,20 @@ msgstr ""
 
 #: checks.py:237
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr "settings.DEFAULT_FROM_EMAIL غير معيّن."
+msgstr "DEFAULT_FROM_EMAIL لم يُضبط."
 
 #: checks.py:238 checks.py:248
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
-"‏DEFAULT_FROM_EMAIL هو المستخدم في كلّ رسائل بوتل الصّادرة.\n"
+"‏DEFAULT_FROM_EMAIL هو المستخدم في كلّ رسائل «بوتل» الصّادرة.\n"
 "لا تنس مراجعة إعدادات خادوم بريدك."
 
 #: checks.py:246
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr "‏settings.DEFAULT_FROM_EMAIL يستخدم الإعداد الافتراضيّ الآتي %r."
+msgstr "‏DEFAULT_FROM_EMAIL يستخدم الإعداد الافتراضيّ الآتي %r."
 
 #: checks.py:257
 msgid "POOTLE_MARKUP_FILTER is missing."
@@ -1452,7 +1441,7 @@ msgstr "POOTLE_MARKUP_FILTER ناقص."
 
 #: checks.py:258
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr "أعدّ POOTLE_MARKUP_FILTER."
+msgstr "اضبط POOTLE_MARKUP_FILTER."
 
 #: checks.py:263
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
@@ -1460,41 +1449,42 @@ msgstr "قيمة POOTLE_MARKUP_FILTER غير صالحة."
 
 #: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr "ضع قيمة صالحة ل‍ POOTLE_MARKUP_FILTER."
+msgstr "اضبط POOTLE_MARKUP_FILTER على قيمة صالحة."
 
 #: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr "رقم غير صالح في POOTLE_MARKUP_FILTER."
+msgstr "رقْم غير صالح في POOTLE_MARKUP_FILTER."
 
 #: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr "ضع رقما صالحا ل‍ POOTLE_MARKUP_FILTER."
+msgstr "اضبط POOTLE_MARKUP_FILTER على رقْم صالح."
 
 #: checks.py:284
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
-msgstr "ضُبط POOTLE_MARKUP_FILTER برقم '%s'، ولكن تعذر إيجاد الحزمة التي توفره."
+msgstr ""
+"ضُبط POOTLE_MARKUP_FILTER على رقْم ’%s‘، ولكن تعذّر إيجاد الحزمة التي توفّره."
 
 #: checks.py:286
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr "ثبت الحزمة أو غير POOTLE_MARKUP_FILTER."
+msgstr "ثبّت الحزمة أو غيّر POOTLE_MARKUP_FILTER."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة INDEX_NAME."
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s']‎ قيمة INDEX_NAME."
 
 #: checks.py:298
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr "اضبط INDEX_NAME ل‍ POOTLE_TM_SERVER['%s']."
+msgstr "اضبط INDEX_NAME ل‍ POOTLE_TM_SERVER['%s']‎."
 
 #: checks.py:304
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "قيمة INDEX_NAME ‏”%s“ متكرّر في POOTLE_TM_SERVER."
 
 #: checks.py:306
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
@@ -1503,49 +1493,49 @@ msgstr "اضبط قيمة INDEX_NAME مختلفة لكل الخواديم في P
 #: checks.py:316
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة ENGINE."
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s']‎ قيمة ENGINE."
 
 #: checks.py:317
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr "اضبط ENGINE ل‍ POOTLE_TM_SERVER['%s']."
+msgstr "اضبط ENGINE ل‍ POOTLE_TM_SERVER['%s']‎."
 
 #: checks.py:324
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة HOST."
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s']‎ قيمة HOST."
 
 #: checks.py:325
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr "اضبط HOST ل‍ POOTLE_TM_SERVER['%s']."
+msgstr "اضبط HOST ل‍ POOTLE_TM_SERVER['%s']‎."
 
 #: checks.py:332
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة PORT."
+msgstr "ليس ل‍ POOTLE_TM_SERVER['%s']‎ قيمة PORT."
 
 #: checks.py:333
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr "اضبط PORT ل‍ POOTLE_TM_SERVER['%s']."
+msgstr "اضبط PORT ل‍ POOTLE_TM_SERVER['%s']‎."
 
 #: checks.py:342
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr "ل‍ POOTLE_TM_SERVER['%s'] قيمة WEIGHT أقل من 0.0 أو أكبر من 1.0"
+msgstr "ل‍ POOTLE_TM_SERVER['%s']‎ قيمة WEIGHT أقل من 0.0 أو أكبر من 1.0"
 
 #: checks.py:344
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
-"اضبط WEIGHT بين 0.0 و 1.0 (بما في ذلك العددين) لِ‍ POOTLE_TM_SERVER['%s']."
+"اضبط WEIGHT بين 0.0 و 1.0 (بما في ذلك العددين) لِ‍ POOTLE_TM_SERVER['%s']‎."
 
 #: checks.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr "ليس ل‍ POOTLE_TM_SERVER['%s'] قيمة %s."
+msgstr "ليس ل‍ POOTLE_SCORE_COEFFICIENTS قيمة %s."
 
 #: checks.py:353
 #, python-format
@@ -1564,25 +1554,22 @@ msgstr "اضبط قيمة صالحة ل‍ %s في POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr "ما زالت كلمة مرور المستخدم الافتراضيّ 'admin' هي 'admin'."
+msgstr "ما زالت كلمة سرّ المستخدم الافتراضيّ ’admin‘ هي ’admin‘."
 
 #: checks.py:386
 msgid "Remove the 'admin' user or change its password."
-msgstr "أزل المستخدم 'admin' أو غيّر كلمة مروره."
+msgstr "أزل المستخدم ’admin‘ أو غيّر كلمة سرّه."
 
 #: checks.py:400
-#, fuzzy
 msgid "Database connection uses transaction_hooks."
-msgstr "الاتصال بقاعدة البيانات لا ينفّذ on_commit."
+msgstr "يستخدم اتّصال قاعدة البيانات transaction_hooks."
 
 #: checks.py:401
-#, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"اضبط قيمة DATABASES['default']['ENGINE'] لاستخدام سند من transaction_hooks."
-"backends."
+"اضبط DATABASES['default']['ENGINE']‎ ليستخدم سند جانغو من django.db.backends."
 
 #: checks.py:421
 msgid "Email server is not available."
@@ -1598,7 +1585,7 @@ msgstr "المراجعة ناقصة أو أن قيمتها خاطئة."
 
 #: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr "شغل `revision --restore` لتصفير عدّاد المراجعات."
+msgstr "شغل ’revision --restore‘ لتصفير عدّاد المراجعات."
 
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
@@ -1609,6 +1596,8 @@ msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"اضبط ’POOTLE_CANONICAL_URL‘ في الإعدادات أو حدّث الموقع الافتراضيّ إن كنت "
+"تستخدم django.contrib.sites."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
@@ -1619,38 +1608,41 @@ msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"اضبط ’POOTLE_CANONICAL_URL‘ على قيمة مناسبة لموقعك أو اتركه فارغًا إن كنت "
+"تستخدم ’django.contrib.sites‘."
 
 #: checks.py:502
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "POOTLE_CONTACT_EMAIL غير معيّن."
+msgstr "لم يُضبط إعداد POOTLE_FS_WORKING_PATH."
 
 #: checks.py:506
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "المسار (’%s‘) الذي يشير إليه POOTLE_FS_WORKING_PATH غير موجود."
 
 #: checks.py:508
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
-msgstr ""
+msgstr "أنشئ الدّليل الذي يشير إليه ’POOTLE_FS_WORKING_PATH‘، أو غيّر الإعداد."
 
 #: checks.py:513
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"لا يمكن ل‍«بوتل» الكتابة في المسار (’%s‘) الذي يشير إليه "
+"POOTLE_FS_WORKING_PATH."
 
 #: checks.py:516
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
-msgstr ""
+msgstr "أضف صلاحيّة الكتابة إلى ’POOTLE_FS_WORKING_PATH‘ أو غيّر الإعداد"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "تطلب MySQL إعدادات المنطقة الزّمنيّة."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1672,14 +1664,14 @@ msgstr "المقترحات"
 #: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr "غير المكتملة"
+msgstr "غير المكتمل"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
 #: templates/admin/detailed_reports.html:319
 msgid "Total"
-msgstr "المجموع الكلي"
+msgstr "المجموع"
 
 #: core/browser.py:70
 msgid "Last updated"
@@ -1695,11 +1687,11 @@ msgstr "ارجع إلى المجلّد الأبّ"
 
 #: core/decorators.py:140 core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
-msgstr "صلاحيّاتك غير كافية للنّفاذ إلى هذه الصّفحة."
+msgstr "صلاحيّاتك غير كافية للوصول إلى هذه الصّفحة."
 
 #: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
-msgstr "لا صلاحيّات لديك لإدارة بوتل."
+msgstr "لا صلاحيّات لديك لإدارة «بوتل»."
 
 #: core/forms.py:117
 msgid "Time to answer has expired"
@@ -1715,24 +1707,23 @@ msgstr "خطأ"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "مع التّحديد"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "أضف تعليقًا"
 
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
-msgstr ""
+msgstr "حدّد كلّ العناصر المطابقة لمعيار التّرشيح، حتّى تلك غير الظّاهرة"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "عليك تحديد إجراء للعمل به"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "يجب تحديد حقل بحث صالح"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1756,76 +1747,76 @@ msgstr "يمكنه مراجعة الاقتراحات"
 
 #: core/initdb.py:156
 msgid "Can perform administrative tasks"
-msgstr "يمكنه أداء مهام الإدارة"
+msgstr "يمكنه أداء مهامّ الإدارة"
 
 #: core/views/display.py:100 core/views/display.py:121
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "أزال %(user)s ترجمة ل‍ %(source)s"
+msgstr "%(user)s أزال ترجمة ل‍ %(source)s"
 
 #: core/views/display.py:102
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "قبل %(user)s اقتراحا ل‍ %(source)s"
+msgstr "%(user)s قبل اقتراحًا ل‍ %(source)s"
 
 #: core/views/display.py:104
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr "رفع %(user)s ملفًا"
+msgstr "%(user)s رفع ملفًّا"
 
 #: core/views/display.py:106
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr "كتم %(user)s فحص %(check)s ل‍ %(source)s"
+msgstr "%(user)s كتم فحص %(check)s ل‍ %(source)s"
 
 #: core/views/display.py:108
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr "أزال %(user)s كتم فحص %(check)s ل‍ %(source)s "
+msgstr "%(user)s أطلق فحص %(check)s ل‍ %(source)s"
 
 #: core/views/display.py:110
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "أضاف %(user)s اقتراحا ل‍ %(source)s"
+msgstr "%(user)s أضاف اقتراحًا ل‍ %(source)s"
 
 #: core/views/display.py:112
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "رفض %(user)s اقتراحا ل‍ %(source)s"
+msgstr "%(user)s رفض اقتراحًا ل‍ %(source)s"
 
 #: core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "ترجم %(source_string)s"
+msgstr "%(user)s ترجم %(source)s"
 
 #: core/views/display.py:117
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s edited %(source)s"
-msgstr "حرّر %(source_string)s"
+msgstr "%(user)s حرّر %(source)s"
 
 #: core/views/display.py:119
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr "ترجم %(source_string)s مسبقًا"
+msgstr "%(user)s ترجم مسبقًا %(source)s"
 
 #: core/views/display.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr "راجع %(source_string)s"
+msgstr "%(user)s راجع %(source)s"
 
 #: core/views/display.py:125
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s أشّر ب‍”تحتاج عملًا“ على %(source)s"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
-msgstr "لا يمكنك النّفاذ إلى هذه الصّفحة."
+msgstr "لا يمكنك الوصول إلى هذه الصّفحة."
 
 #: middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
-msgstr "خطأ في النّفاذ إلى %(filename)s، أرسل نظام الملفّات الخطأ: %(errormsg)s"
+msgstr "خطأ في الوصول إلى %(filename)s، أرسل نظام الملفّات الخطأ: %(errormsg)s"
 
 #: middleware/errorpages.py:119
 #, python-format
@@ -1833,7 +1824,7 @@ msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"عليك <a class=\"js-login\" href=\"%(login_link)s\">الولوج</a> للنّفاذ إلى هذه "
+"عليك <a class=\"js-login\" href=\"%(login_link)s\">الولوج</a> للوصول إلى هذه "
 "الصّفحة."
 
 #. Translators: Label that refers to the site's privacy policy
@@ -1872,10 +1863,9 @@ msgstr "تعريف"
 
 #: templates/about.html:13
 msgid "About This Pootle Server"
-msgstr "عن خادوم بوتل هذا"
+msgstr "عن خادوم «بوتل» هذا"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle &mdash; powerful web software to empower teams "
 "to do translation and translation management. This community tool is Free "
@@ -1883,11 +1873,10 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"هذا الموقع يعمل ببوتل &mdash; برمجية وب متقدمة تهدف لتسهيل ادارة فريق ترجمة "
-"و تمكين العمل التشاركي و التعاون بين المترجمين. هذه برنامج حر مفتوح المصدر، "
-"يمكن لأي أحد أن يتسخدمه و أن يساهم في اثراء مجتمع مستخدمي و مطوري بوتل. "
-"لمزيد من المعلومات طالع <a href=\"http://translate.sourceforge.net/\">صفحة "
-"المشروع</a>."
+"يعمل هذا الموقع ب‍«بوتل» &mdash; برمجيّة وبّ متقدّمة هدفها التّسهيل على فرق "
+"التّرجمة وتمكين العمل التّشاركيّ والتّعاون بين المترجمين. هذه الأداة هي برمجيّة "
+"حرّة من المجتمع، ويمكن لأيّ أحد استخدامها والمساهمة إلى مجتمع «بوتل». اطّلع على "
+"المزيد في <a href=\"http://translate.sourceforge.net/\">صفحة المشروع</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1895,16 +1884,16 @@ msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
-"بوتل الإصدارة %(pootle_version)s تعمل بعدّة الترجمة الإصدارة "
+"«بوتل» الإصدارة %(pootle_version)s تعمل ب‍«عدّة أدوات الترجمة» الإصدارة "
 "%(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr "أُنشئ حساب بوتل لك باستخدام عنوان البريد الإلكترونيّ هذا."
+msgstr "أُنشئ حساب «بوتل» لك باستخدام عنوان البريد الإلكترونيّ هذا."
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "لتنشيط حسابك، اتّبع هذه الوصة:"
+msgstr "لتنشيط حسابك، اتّبع هذا الرّابط:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
@@ -1912,7 +1901,7 @@ msgid ""
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
 "أُرسلت هذه الرّسالة للتّأكد من أنّ عنوان البريد الإلكترونيّ هذا صحيح. إذا لم تكن "
-"ترغب في تسجيل حساب، بإمكانك تجاهل هذه الرسالة."
+"ترغب في تسجيل حساب، بإمكانك تجاهل هذه الرّسالة."
 
 #: templates/account/email/email_confirmation_subject.txt:2
 msgid "Pootle e-mail confirmation"
@@ -1920,20 +1909,20 @@ msgstr "تأكيد البريد الإلكترونيّ لبوتل"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr "استقبلنا طلبا لتصفير كلمة السر."
+msgstr "استقبلنا طلبا لتصفير كلمة السّرّ."
 
 #: templates/account/email/password_reset_key_message.txt:3
 msgid "To reset your password, follow this link:"
-msgstr "لتصفير كلمة السر، اتبع هذا الرابط:"
+msgstr "لتصفير كلمة السّرّ، اتّبع هذا الرّابط:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr "إن لم ترد تصفير كلمة السر، تجاهل هذه الرسالة."
+msgstr "إن لم ترد تصفير كلمة السّرّ، بإمكانك تجاهل هذه الرّسالة."
 
 #: templates/account/email/password_reset_key_subject.txt:2
 msgid "Pootle password reset e-mail"
-msgstr "بريد إلكتروني لتصفير كلمة سر بوتل"
+msgstr "بريد إلكترونيّ لتصفير كلمة سرّ بوتل"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
@@ -2076,20 +2065,19 @@ msgstr "المجموع الفرعيّ"
 #: templates/admin/detailed_reports.html:185
 #: templates/admin/detailed_reports.html:223
 msgid "MT"
-msgstr "ترجمة آلية"
+msgstr "ترجمة آليّة"
 
 #: templates/admin/detailed_reports.html:219
 msgid "Subactions"
 msgstr "الإجراءات الفرعيّة"
 
 #: templates/admin/detailed_reports.html:220
-#, fuzzy
 msgid "Raw Translation"
-msgstr "الترجمة"
+msgstr "التّرجمة الخام"
 
 #: templates/admin/detailed_reports.html:233
 msgid "Review"
-msgstr "مراجعة"
+msgstr "المراجعة"
 
 #: templates/admin/detailed_reports.html:250
 #: templates/admin/detailed_reports.html:309
@@ -2114,13 +2102,13 @@ msgstr "المراجعة (المجموع الفرعيّ)"
 
 #: templates/admin/detailed_reports.html:327
 msgid "Please select a valid user."
-msgstr "فضلًا اختر مستخدمًا صالحًا."
+msgstr "رجاء اختر مستخدمًا صالحًا."
 
 #: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
-msgstr "يمكنك هنا إضافة الصّلاحيّات وتحريرها وحذفها في خادوم بوتل هذا."
+msgstr "يمكنك هنا إضافة الصّلاحيّات وتحريرها وحذفها في خادوم «بوتل» هذا."
 
 #: templates/admin/permissions.html:14
 #: templates/projects/admin/permissions.html:13
@@ -2131,8 +2119,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"يقصد بالمستخدم \"nobody\" أي زائر لم يلج أو يسجّل بالموقع (أي مستخدم مجهول "
-"الهويّة). أمّا المستخدم \"default\" فيشير إلى الصّلاحيّات الافتراضيّة التي تنطبق "
+"يُقصد بالمستخدم ”nobody“ أي زائر لم يلج أو يسجّل بالموقع (أي مستخدم مجهول "
+"الهويّة). أمّا المستخدم ”default“ فيشير إلى الصّلاحيّات الافتراضيّة التي تنطبق "
 "على أيّ عضو بالموقع بعد الولوج، ما لم تُسنَد صلاحيّات محدّدة إليه."
 
 #: templates/admin/project_fs.html:26
@@ -2146,6 +2134,8 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"«نظام ملفّات بوتل» ما زال اختباريًّا، نودّ منك أن تستخدمه ولكنّه يحتاج منك خبرة "
+"في التّرجمة، و«بايثون» و«بوتل» في حال حدث أمر ما خطأ."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2153,48 +2143,47 @@ msgstr "ضبط السّند"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "حدّث ضبط نظام الملفّات"
 
 #: templates/admin/project_fs.html:51
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "إعدادات الترجمة"
+msgstr "يجب أن يكون مسار ربط التّرجمة بالتّنسق الآتي:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
-msgstr ""
+msgstr "فقط ’&lt;language_code&gt;‎‘ مطلوب، وعليه أن ينتهي ب‍’‎.&lt;ext&gt;‎‘."
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"إن كنت تستخدم سند «localfs» لمسار ربط التّرجمة، فسيُجمع مع المسار المحدّد في "
+"عنوان السّند"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
-msgstr ""
+msgstr "للأسناد الأخرى سيكون مسار ربط التّرجمة نسبيّ إلى جذر المستودع."
 
 #: templates/admin/project_fs.html:81
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "معلومات اللغة %(language)s"
+msgstr "ضبط ربط اللغة"
 
 #: templates/admin/project_fs.html:91
 msgid "Remove"
-msgstr "احذف"
+msgstr "أزل"
 
 #: templates/admin/project_fs.html:92
-#, fuzzy
 msgid "Pootle code"
-msgstr "عرض تجريبي لبوتل"
+msgstr "رمز «بوتل»"
 
 #: templates/admin/project_fs.html:93
 msgid "Filesystem code"
-msgstr ""
+msgstr "رمز نظام الملفّات"
 
 #: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
@@ -2202,9 +2191,8 @@ msgid "Add"
 msgstr "أضف"
 
 #: templates/admin/project_fs.html:104
-#, fuzzy
 msgid "Update"
-msgstr "التحديثات"
+msgstr "حدّث"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2236,7 +2224,7 @@ msgstr "أضف سجلًّا"
 
 #: templates/admin/reports/user_rates_form.html:4
 msgid "Set Rates"
-msgstr "عيّن المعدّلات"
+msgstr "اضبط المعدّلات"
 
 #: templates/admin/reports/user_rates_form.html:31
 #: templates/admin/staticpages/_form.html:34
@@ -2259,8 +2247,8 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
-"استخدم شِفرة <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;نصّ "
-"الوصلة&lt;/a&gt;</code> لتوفير وصلات بين الصّفحات الثّابتة. هذه الوصلات سيُعاد "
+"استخدم كود <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;نصّ "
+"الرّابط&lt;/a&gt;</code> لتوفير روابط بين الصّفحات الثّابتة. هذه الروابط سيُعاد "
 "كتابتها بالمسارات الكاملة إلى الصّفحات الثّابتة."
 
 #: templates/admin/staticpages/_form.html:44
@@ -2269,7 +2257,7 @@ msgid ""
 "a dynamic language code."
 msgstr ""
 "استخدم <code><strong>/xx/</strong></code> في صفحات الإعلانات وذلك داخل "
-"العناوين ليتغير رمز اللغة حركيًّا."
+"العناوين ليتغيّر رمز اللغة حركيًّا."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -2381,15 +2369,15 @@ msgstr "فحوص بها مشاكل"
 
 #: templates/browser/index.html:68
 msgid "More..."
-msgstr "المزيد..."
+msgstr "أكثر..."
 
 #: templates/browser/index.html:69
 msgid "Less..."
-msgstr "أقل..."
+msgstr "أقلّ..."
 
 #: templates/browser/index.html:82
 msgid "Updates"
-msgstr "التحديثات"
+msgstr "التّحديثات"
 
 #: templates/browser/index.html:86
 msgid "Last updated:"
@@ -2397,7 +2385,7 @@ msgstr "آخر تحديث:"
 
 #: templates/browser/index.html:100
 msgid "Translations"
-msgstr "الترجمة"
+msgstr "التّرجمات"
 
 #: templates/browser/index.html:104
 msgid "Last action:"
@@ -2409,7 +2397,7 @@ msgstr "هذا المشروع معطّل وظاهر للمدراء فقط."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr "فضلًا املأ كلّ الحقول."
+msgstr "رجاء املأ كلّ الحقول."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -2422,7 +2410,7 @@ msgstr "شكرًا!"
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
 "We have received your message and will try to respond as soon as possible."
-msgstr "لقد استقبلنا رسالتك وستحاول الرّد عليها قريبًا."
+msgstr "لقد استقبلنا رسالتك وسنحاول الرّد عليها قريبًا."
 
 #: templates/core/_top_scorers.html:9
 msgid "score"
@@ -2456,7 +2444,7 @@ msgstr ""
 
 #: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
-msgstr "فضلًا أجب على هذا السّؤال:"
+msgstr "رجاء أجب على هذا السّؤال:"
 
 #: templates/core/xhr_captcha.html:19
 msgid "Confirm"
@@ -2472,14 +2460,14 @@ msgstr "اقتراحاتي"
 
 #: templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr "مساهماتي"
+msgstr "إيداعاتي"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr "مساهماتي التي استُبدلت"
+msgstr "إيداعاتي المُستبدلة"
 
 #: templates/editor/_filters.html:18
 msgid "Checks"
@@ -2507,7 +2495,7 @@ msgstr "القديمة أوّلًا"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr "اذهب إلى المقطع السّابق (Ctrl+Up)"
+msgstr "انتقل إلى المقطع السّابق (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
@@ -2515,7 +2503,7 @@ msgid ""
 "Enter<br/>to go to any position"
 msgstr ""
 "رقم المقطع الحاليّ (Ctrl+Shift+U)<br/><br/> اكتب رقمًا ثمّ اضغط زرّ الإدخال<br/"
-">للذّهاب إلى أي موضع"
+">للانتقال إلى أيّ مكان"
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
@@ -2523,24 +2511,24 @@ msgstr "مجموع المقاطع"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr "اذهب إلى المقطع التّالي (Ctrl+Down)"
+msgstr "انتقل إلى المقطع التّالي (Ctrl+Down)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
+msgstr "الاقتراحات الآتية التي قدّمتها قد قُبلت وتُرك هذا التّعليق:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
-msgstr ""
+msgstr "نأمل أن يكون هذا الرّد مساعدًا في تحسين مساهماتك مستقبلًا."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
+msgstr "الاقتراحات الآتية التي قدّمتها قد رُفضت وتُرك هذا التّعليق:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2587,7 +2575,7 @@ msgstr "لقطات الشّاشة..."
 
 #: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
 msgid "Copy into translation"
-msgstr "انسخ والصق كترجمة"
+msgstr "انسخ وألصق كترجمة"
 
 #: templates/editor/units/edit.html:136
 msgid "Report a problem with this string"
@@ -2620,7 +2608,7 @@ msgstr "انتقل إلى وضع الاقتراح (Ctrl+Shift+Space)"
 
 #: templates/editor/units/edit.html:171
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr "علّم هذا المقطع لاحتياجه إلى المزيد من العمل (Ctrl+Space)"
+msgstr "أشّر على هذا المقطع لاحتياجه مزيدًا من العمل (Ctrl+Space)"
 
 #: templates/editor/units/edit.html:209
 msgid "Show Timeline"
@@ -2640,11 +2628,11 @@ msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "راجعها <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:233
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
-"أدرج %(character_name)s (وقيمته اليونيكودية %(character_code)s) إلى المحرّر"
+"أدرج %(character_name)s (ذو قيمة يونيكود %(character_code)s) إلى المحرّر"
 
 #: templates/editor/units/edit.html:271
 msgid "User suggestions"
@@ -2656,7 +2644,7 @@ msgstr "خيارات أخرى"
 
 #: templates/editor/units/edit.html:293
 msgid "Less options"
-msgstr "خيارات أقل"
+msgstr "خيارات أقلّ"
 
 #: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
@@ -2695,7 +2683,7 @@ msgstr "اكتمل فحص الجودة"
 #: templates/editor/units/xhr_checks.html:13
 #: templates/editor/units/xhr_checks.html:33
 msgid "Unmute quality check"
-msgstr "أزل كتم فحص الجودة"
+msgstr "أطلق فحص الجودة"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Possible issues with the translation"
@@ -2719,7 +2707,7 @@ msgstr "التّأريخ"
 
 #: templates/editor/units/xhr_timeline.html:38
 msgid "Last comment removed"
-msgstr "أزيل آخر تعليق"
+msgstr "أُزيل آخر تعليق"
 
 #: templates/editor/units/xhr_timeline.html:44
 #, python-format
@@ -2749,15 +2737,15 @@ msgstr "غير مسموح بالعمليّة."
 
 #: templates/errors/403.html:4 templates/errors/403.html:8
 msgid "Permission Denied"
-msgstr "رُفض النّفاذ"
+msgstr "رُفض الوصول"
 
 #: templates/errors/403.html:13
 msgid "You don't seem to have permissions to access this page."
-msgstr "لا يبدو أنّ لديك صلاحيّات للنّفاذ إلى هذه الصّفحة."
+msgstr "لا يبدو أنّ لديك صلاحيّات للوصول إلى هذه الصّفحة."
 
 #: templates/errors/404.html:4 templates/errors/404.html:8
 msgid "Page Not Found"
-msgstr "لم يُعثر على الصّفحة"
+msgstr "لم توجد الصّفحة"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
@@ -2769,7 +2757,7 @@ msgstr "خطأ في الخادوم"
 
 #: templates/errors/500.html:10
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "عفوا حدث خطأ في الخادوم. شكرًا لتفهّمكم."
+msgstr "عفوًا فقد حدث خطأ في الخادوم. شكرًا لتفهّمكم."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
@@ -2793,7 +2781,7 @@ msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"تعذّر على بوتل الاتّصال بقاعدة البيانات، أو أنّ قاعدة البيانات لم تهيّأ بعد\n"
+"تعذّر على «بوتل» الاتّصال بقاعدة البيانات، أو أنّ قاعدة البيانات لم تُهيّأ بعد\n"
 "أو تحتاج إلى تحديث المخطّطات قبل المتابعة."
 
 #: templates/errors/db.html:18
@@ -2803,23 +2791,20 @@ msgid ""
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
-"فضلًا اقرأ <a href=\"%(url)s\">وثائق بوتل</a> للاطّلاع على\n"
-"تعليمات التّثبيت والتّرقية. اتّصل بمسؤول الخادوم إن كنت تظنّ\n"
-"أنّ هناك خطب ما."
+"رجاء اقرأ <a href=\"%(url)s\">وثائق «بوتل»</a> للاطّلاع على تعليمات التّثبيت "
+"والتّرقية. راسل مسؤول الخادوم إن كنت تظنّ أنّ هناك خطب ما."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
 msgstr "الخطأ كان:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "أظهر المرشِّح"
+msgstr "تُعرض"
 
 #: templates/includes/formtable.html:81
-#, fuzzy
 msgid "Select all"
-msgstr "اختر العديد"
+msgstr "حدّد الكلّ"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2860,7 +2845,7 @@ msgstr "إدارة الوحدات والاقتراحات"
 
 #: templates/languages/admin/language_team.html:117
 msgid "Pending suggestions:"
-msgstr "الاقتراحات المُرجأة:"
+msgstr "الاقتراحات المنتظرة:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"
@@ -2876,16 +2861,16 @@ msgstr "يحتاج عملا:"
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
-msgstr "بوتل يتطلّب جافاسكرِبت"
+msgstr "«بوتل» يتطلّب «جافاسكرِبت»"
 
 #: templates/layout.html:89
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
-msgstr "فضلًا فعّل جافاسكرِبت في إعدادات المتصفّح ثمّ أعد تحميل هذه الصّفحة."
+msgstr "رجاء فعّل «جافاسكرِبت» في إعدادات المتصفّح ثمّ أعد تحميل هذه الصّفحة."
 
 #: templates/layout.html:98
 msgid "skip to navigation"
-msgstr "تخطي لروابط التصفح"
+msgstr "تخطّ إلى صفحة التّصفّح"
 
 #: templates/layout.html:131
 msgid "Public Profile"
@@ -2920,7 +2905,7 @@ msgstr "أُنشئ مشروع الترجمة (%(tp)s) في %(url)s، وقد حُ
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
-msgstr "حدث خطب أثناء إنشاء مشروع الترجمة (%(tp)s). فضلا تواصل مع مدير النظام."
+msgstr "حدث خطب أثناء إنشاء مشروع التّرجمة (%(tp)s). رجاء تواصل مع مدير النظام."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2994,11 +2979,11 @@ msgstr "المصطلح"
 #: templates/translation_projects/terminology/manage.html:40
 #: templates/user/settings.html:28
 msgid "Translation"
-msgstr "ترجمة"
+msgstr "التّرجمة"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
-msgstr "لا ملفات مصطلحات"
+msgstr "لا ملفّات مصطلحات"
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
@@ -3010,10 +2995,10 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
-"لاستخدام ميزة المصطلحات، تأكد من إضافة ملفّ مصطلحات إلى مشروع التّرجمة. يجب أن "
-"يكون الملفّ باسم 'pootle-terminology' كما ويستخدم نفس امتداد (نسق) الملّف في "
-"بقية ملفّات المشروع.   المصطلحات هذه ستُستخدم إضافة إلى أية اقتراحات مصطلحات "
-"يوفّرها مشروع 'المصطلحات'."
+"لاستخدام ميزة المصطلحات، تأكّد من إضافة ملفّ مصطلحات إلى مشروع التّرجمة. يجب أن "
+"يكون الملفّ باسم ’pootle-terminology‘ كما ويستخدم نفس امتداد (نسق) الملّف في "
+"بقية ملفّات المشروع.   المصطلحات هذه ستُستخدم إضافةً إلى أيّة اقتراحات مصطلحات "
+"يوفّرها مشروع ’المصطلحات‘."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
@@ -3136,12 +3121,12 @@ msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
-"أتريد تغيير كلمة مرورك؟ انقر زرّ \"صفّر كلمة المرور\" حيث ستبدأ عمليّة تعيين "
-"كلمة مرور جديدة."
+"أتريد تغيير كلمة سرّك؟ انقر زرّ \"صفّر كلمة السّرّ\" حيث ستبدأ عمليّة ضبط كلمة سرّ "
+"جديدة."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
-msgstr "صفّر كلمة المرور"
+msgstr "صفّر كلمة السّرّ"
 
 #: templates/user/stats.html:13 templates/user/stats.html:17
 msgid "Statistics"
@@ -3157,7 +3142,7 @@ msgstr "مرحبًا"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr "مرحبًا بك في بوتل"
+msgstr "مرحبًا بك في «بوتل»"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
@@ -3169,7 +3154,7 @@ msgstr "لِج"
 
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
-msgstr "أعلى المساهمين خلال الثلاثين يوما الماضية"
+msgstr "أعلى المساهمين خلال الثلاثين يومًا الماضية"
 
 #, fuzzy
 #~ msgid "Plurr format"

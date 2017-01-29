@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2016-12-26 13:07+0000\n"
+"PO-Revision-Date: 2017-01-26 18:29+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1482757624.000000\n"
+"X-POOTLE-MTIME: 1485455352.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -216,14 +216,12 @@ msgid "Upload as %(user)s"
 msgstr "Uploaden als %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Downloaden voor offline-vertaling"
+msgstr "Offline-TM voor het vertaalproject downloaden"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Downloaden voor offline-vertaling"
+msgstr "Offline-TM downloaden"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -512,37 +510,36 @@ msgid "Suggested at"
 msgstr "Voorgesteld op"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-"Heeft %s suggesties afgewezen met opmerking. Gebruikers ontvangen een melding"
+"Heeft %s suggestie afgewezen met opmerking. Gebruiker ontvangt een melding"
 msgstr[1] ""
 "Heeft %s suggesties afgewezen met opmerking. Gebruikers ontvangen een melding"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-"Heeft %s suggesties geaccepteerd met opmerking. Gebruikers ontvangen een "
-"melding"
+"Heeft %s suggestie geaccepteerd met opmerking. Gebruiker ontvangt een melding"
 msgstr[1] ""
 "Heeft %s suggesties geaccepteerd met opmerking. Gebruikers ontvangen een "
 "melding"
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Heeft %s suggesties afgewezen"
+msgstr[0] "Heeft %s suggestie afgewezen"
 msgstr[1] "Heeft %s suggesties afgewezen"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Heeft %s suggesties geaccepteerd"
+msgstr[0] "Heeft %s suggestie geaccepteerd"
 msgstr[1] "Heeft %s suggesties geaccepteerd"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
@@ -868,11 +865,11 @@ msgstr "ftl-indeling"
 
 #: apps/pootle_misc/checks.py:124
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "Roemeens: diakritische tekens met cedille vermijden"
 
 #: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Roemeens: 'niciun'/'nicio' gebruiken"
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -966,9 +963,8 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Niet-GNU: elke taal in een eigen map"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Pootle FS toestaan om bestandssystemen te beheren"
+msgstr "Pootle FS toestaan om bestandssystemen te beheren (Experimenteel)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1640,38 +1636,37 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH is niet ingesteld."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "Pad waarnaar POOTLE_FS_WORKING_PATH verwijst bestaat niet."
+msgstr "Pad ('%s') waarnaar POOTLE_FS_WORKING_PATH verwijst bestaat niet."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Maak de map waarnaar wordt verwezen met de instelling "
-"'POOTLE_FS_WORKING_PATH'."
+"Maak de map aan waarnaar 'POOTLE_FS_WORKING_PATH' verwijst, of wijzig de "
+"instelling."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"Pad waarnaar POOTLE_FS_WORKING_PATH verwijst, is niet schrijfbaar door "
-"Pootle."
+"Pad ('%s') waarnaar POOTLE_FS_WORKING_PATH verwijst, is niet schrijfbaar "
+"door Pootle."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"Voeg de schrijfrechten toe aan de map 'POOTLE_FS_WORKING_PATH' via 'chmod +w'"
+"Voeg schrijfrechten toe aan de map 'POOTLE_FS_WORKING_PATH', of wijzig de "
+"instelling."
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL vereist tijdzone-instellingen."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1743,7 +1738,6 @@ msgid "Add comment"
 msgstr "Opmerking toevoegen"
 
 #: core/forms.py:193
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 "Alle items selecteren die met filtercriteria overeenkomen, inclusief de niet "
@@ -2176,6 +2170,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS is nog experimenteel; we zouden het graag gebruiken, maar het "
+"vereist een bepaalde expertise qua lokalisatie, Python en Pootle in het "
+"geval er iets misgaat."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2660,7 +2657,6 @@ msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Omschakelen naar suggestiemodus (Ctrl+Shift+Spatie)"
 
 #: templates/editor/units/edit.html:171
-#, fuzzy
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Deze tekenreeks markeren als meer werk vereist (Ctrl+Spatie)"
 
@@ -2884,7 +2880,6 @@ msgid "Language team"
 msgstr "Taalteam"
 
 #: templates/languages/admin/language_team.html:15
-#, fuzzy
 msgid "Member admin"
 msgstr "Ledenbeheer"
 
@@ -2900,14 +2895,12 @@ msgid "Remove selected"
 msgstr "Geselecteerde verwijderen"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Suggestiebeheer"
+msgstr "Suggestie- en eenhedenbeheer"
 
 #: templates/languages/admin/language_team.html:117
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Openstaande suggesties"
+msgstr "Openstaande suggesties:"
 
 #: templates/languages/admin/language_team.html:127
 msgid "Total words:"

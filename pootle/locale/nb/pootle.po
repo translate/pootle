@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-19 02:42+0000\n"
+"PO-Revision-Date: 2017-01-27 00:13+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484793744.000000\n"
+"X-POOTLE-MTIME: 1485476031.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1685,7 +1685,7 @@ msgstr ""
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL krever tidssoneinnstillinger."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

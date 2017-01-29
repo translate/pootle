@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-24 10:19+0000\n"
-"PO-Revision-Date: 2017-01-26 08:03+0000\n"
+"PO-Revision-Date: 2017-01-29 08:05+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1485417788.000000\n"
+"X-POOTLE-MTIME: 1485677138.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -749,11 +749,11 @@ msgstr "ממלאי מקום בסוגריים מסולסלים"
 
 #: apps/pootle_misc/checks.py:95
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "ממלאי מקום זוגות סוגריים מסולסלים"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "ממלאי מקום זוגות דמויי סוגריים מסולסלים"
 
 #: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
@@ -769,15 +769,15 @@ msgstr ""
 
 #: apps/pootle_misc/checks.py:100
 msgid "Changed attributes"
-msgstr ""
+msgstr "מאפיינים שהשתנו"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "תווי אמפרסנד ללא תווי סליקה"
 
 #: apps/pootle_misc/checks.py:102
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "תווי אמפרסנד עם תווי סליקה שגויים"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Whitespaces"
@@ -1092,9 +1092,8 @@ msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "דחיית ההצעה"
 
 #: apps/pootle_store/unit/timeline.py:67
-#, fuzzy
 msgid "Added suggestion"
-msgstr "קבלת ההצעה"
+msgstr "נוספה הצעה"
 
 #: apps/pootle_store/utils.py:33
 #, fuzzy
@@ -1237,9 +1236,8 @@ msgid "Is public?"
 msgstr "ציבורי?"
 
 #: apps/virtualfolder/models.py:53
-#, fuzzy
 msgid "Whether this virtual folder is public or not."
-msgstr "האם עמוד זה פעיל או שלא."
+msgstr "האם התיקייה הווירטואלית הזו ציבורית או לא."
 
 #: apps/virtualfolder/models.py:56
 msgid "Description"
@@ -1257,6 +1255,8 @@ msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"קיימים חשבונות משתמשים עם כתובות דוא״ל כפולות. מצב כזה אינו אפשרי ב־Pootle "
+"2.8."
 
 #: checks.py:64
 msgid ""
@@ -1307,7 +1307,7 @@ msgstr "גרסת ה־Redis שלך ישנה מדי."
 #: checks.py:136
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr ""
+msgstr "נא לעדכן את חבילת ה־Redis בשרת שלך לגרסה %s לפחות"
 
 #: checks.py:147
 msgid "No RQ Worker running."
@@ -1348,7 +1348,7 @@ msgstr ""
 
 #: checks.py:196
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "הגדרת DEBUG = False בהגדרות של Pootle"
 
 #: checks.py:202
 msgid "The sqlite database backend is unsupported"
@@ -1356,11 +1356,11 @@ msgstr "מנגנון מסד הנתונים של sqlite אינו נתמך"
 
 #: checks.py:203
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
+msgstr "הגדרת מסד הנתונים שלך כבררת מחדל ל־postgresql או mysql"
 
 #: checks.py:210
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "לא נעשה שימוש ב־cached_db כמנגנון הפעלות"
 
 #: checks.py:211
 #, python-format
@@ -1523,15 +1523,15 @@ msgstr "הערך „%s“ שגוי תחת MARKUP_FILTER. המערכת תוחזר
 
 #: checks.py:384
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "למשתמש 'admin' שמוגדר כבררת מחדל עדיין מוגדרת הססמה 'admin'."
 
 #: checks.py:386
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "כדאי להסיר את המשתמש 'admin' או לשנות את הססמה שלו."
 
 #: checks.py:400
 msgid "Database connection uses transaction_hooks."
-msgstr ""
+msgstr "החיבור למסד הנתונים משתמש ב־transaction_hooks."
 
 #: checks.py:401
 msgid ""
@@ -1722,39 +1722,39 @@ msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "קבלת ההצעה"
 
 #: core/views/display.py:104
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
-msgstr "הועלה קובץ"
+msgstr "הועלה קובץ ע״י %(user)s "
 
 #: core/views/display.py:106
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(check)s הושתקה ע״י %(user)s עבור %(source)s"
 
 #: core/views/display.py:108
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "ההשתקה על %(check)s בוטלה ע״י %(user)s עבור %(source)s "
 
 #: core/views/display.py:110
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "יובאה הצעה אחת מ־%(store)s"
+msgstr "נוספה הצעה ע״י %(user)s עבור %(source)s"
 
 #: core/views/display.py:112
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "דחיית ההצעה"
+msgstr "הצעה נדחתה ע״י %(user)s עבור %(source)s"
 
 #: core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "מילים שחובה לתרגם"
+msgstr "%(source)s תורגם ע״י %(user)s"
 
 #: core/views/display.py:117
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(source)s נערך ע״י %(user)s"
 
 #: core/views/display.py:119
 #, python-format
@@ -2116,6 +2116,7 @@ msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"רק `&lt;language_code&gt;` נדרשת, למרות שעליו להסתיים עם `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:65
 msgid ""
@@ -2731,15 +2732,12 @@ msgid "Database Error"
 msgstr "שגיאת מסד נתונים"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"\n"
-"  ל־Pootle אין אפשרות להתחבר למסד הנתונים, מס הנתונים אינו מאותחל\n"
-"  עדיין או שנדרש עדכון סכמה בטרם המשך הפעולה.\n"
-"  "
+"ל־Pootle אין אפשרות להתחבר למסד הנתונים, מסד הנתונים אינו מאותחל עדיין או "
+"שנדרש עדכון סכמה כדי להמשיך."
 
 #: templates/errors/db.html:18
 #, fuzzy, python-format
@@ -2759,9 +2757,8 @@ msgid "The reported error was:"
 msgstr "השגיאה שדווחה הייתה:"
 
 #: templates/includes/formtable.html:25
-#, fuzzy
 msgid "Showing"
-msgstr "הצגת סינון"
+msgstr "מוצגים"
 
 #: templates/includes/formtable.html:81
 msgid "Select all"
@@ -3044,7 +3041,7 @@ msgstr ""
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
-msgstr ""
+msgstr "חלק מהתרגומים מיובאים מקבצים חיצוניים. אלו רשומים תחת חשבון על מיוחד."
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"
