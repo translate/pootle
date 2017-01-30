@@ -95,13 +95,18 @@ def test_fs_state_fs_removed(fs_path_qs, dummyfs_plugin_no_files):
 
 
 @pytest.mark.django_db
-def test_fs_state_pootle_ahead(fs_path_qs, dummyfs):
+def test_fs_state_pootle_ahead(fs_path_qs, dummyfs_plugin_fs_unchanged):
     (qfilter, pootle_path, fs_path) = fs_path_qs
-    plugin = dummyfs
-    for store_fs in plugin.resources.tracked:
-        store_fs.last_sync_revision = store_fs.last_sync_revision - 1
-        store_fs.save()
-    _test_state(plugin, pootle_path, fs_path, "pootle_ahead")
+    plugin = dummyfs_plugin_fs_unchanged
+    for sfs in plugin.resources.tracked:
+        sfs.last_sync_hash = sfs.file.latest_hash
+        sfs.last_sync_revision = sfs.store.data.max_unit_revision - 1
+        sfs.save()
+    _test_state(
+        plugin,
+        pootle_path,
+        fs_path,
+        "pootle_ahead")
 
 
 @pytest.mark.django_db
