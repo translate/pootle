@@ -72,12 +72,9 @@ class FSFile(object):
 
     @property
     def fs_changed(self):
-        latest_hash = self.latest_hash
         return (
-            latest_hash is not None
-            and (
-                latest_hash
-                != self.store_fs.last_sync_hash))
+            self.latest_hash
+            != self.store_fs.last_sync_hash)
 
     @property
     def latest_hash(self):
