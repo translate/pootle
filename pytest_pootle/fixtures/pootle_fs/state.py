@@ -170,6 +170,46 @@ def dummyfs_plugin_fs_changed(settings, no_fs_plugins, no_fs_files):
 
 
 @pytest.fixture
+def dummyfs_plugin_fs_unchanged(settings, no_fs_plugins, no_fs_files):
+    from pootle.core.plugin import getter, provider
+    from pootle_fs.delegate import fs_file, fs_plugins
+    from pootle_fs.files import FSFile
+    from pootle_fs.utils import FSPlugin
+    from pootle_project.models import Project
+
+    class FSUnchangedFile(FSFile):
+
+        @property
+        def fs_changed(self):
+            return False
+
+        @property
+        def pootle_changed(self):
+            return True
+
+        @property
+        def latest_hash(self):
+            return 23
+
+    class PootleFSUnchangedDummyPlugin(DummyPlugin):
+        pass
+
+    @provider(fs_plugins, weak=False, sender=Project)
+    def plugin_provider_(**kwargs_):
+        return dict(dummyfs=PootleFSUnchangedDummyPlugin)
+
+    @getter(fs_file, weak=False, sender=PootleFSUnchangedDummyPlugin)
+    def fs_files_getter_(**kwargs_):
+        return FSUnchangedFile
+
+    project = Project.objects.get(code="project0")
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
+    project.config["pootle_fs.fs_type"] = "dummyfs"
+    plugin = FSPlugin(project)
+    return plugin
+
+
+@pytest.fixture
 def dummyfs_plugin_no_stores(settings, no_complex_po_,
                              no_fs_plugins, no_fs_files):
     from pootle.core.plugin import provider
