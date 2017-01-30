@@ -169,7 +169,7 @@ class RevisionUpdater(object):
     def update(self, keys=None):
         parents = list(self.parents.values_list("id", flat=True))
         revisions = self.get_revisions(parents, keys=keys)
-        revisions._raw_delete(revisions.db)
+        revisions.delete()
         Revision.objects.bulk_create(
             self.create_revisions(parents, keys=keys))
 
