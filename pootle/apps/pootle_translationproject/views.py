@@ -291,6 +291,15 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
     view_name = "tp"
     panel_names = ('vfolders', 'children')
 
+    @property
+    def path(self):
+        kwargs = self.kwargs
+        kwargs["dir_path"] = kwargs.get("dir_path", "")
+        kwargs["filename"] = kwargs.get("filename", "")
+        return (
+            "/%(language_code)s/%(project_code)s/%(dir_path)s%(filename)s"
+            % kwargs)
+
     @cached_property
     def object_children(self):
         dirs_with_vfolders = []
