@@ -266,7 +266,10 @@ class ProjectFSState(State):
                           .exclude(resolve_conflict=POOTLE_WINS)
                           .exclude(store_id__isnull=True)
                           .exclude(store__obsolete=True))
-        removed = removed.values_list("pk", "pootle_path", "path")
+        all_pootle_changed = list(
+            self.resources.pootle_changed.values_list("pk", flat=True))
+        removed = removed.exclude(
+            pk__in=all_pootle_changed).values_list("pk", "pootle_path", "path")
         for pk, pootle_path, path in removed.iterator():
             yield dict(
                 store_fs=pk,
