@@ -202,7 +202,7 @@ class TranslationMappingValidator(object):
 
     def validate_path(self):
         if os.path.sep == "\\":
-            bad_chars = re.search("[^\w\\\:\-\.]+", self.stripped_path)
+            bad_chars = re.search("[^\w\/\\\:\-\.]+", self.stripped_path)
         else:
             bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
         if bad_chars:
