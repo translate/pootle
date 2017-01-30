@@ -520,8 +520,10 @@ class Plugin(object):
                     last_sync_revision = None
                     if store_fs.store_id in pootle_revisions:
                         last_sync_revision = pootle_revisions[store_fs.store_id]
+                    file_hash = file_hashes.get(
+                        store_fs.pootle_path, store_fs.file.latest_hash)
                     store_fs.file.on_sync(
-                        file_hashes[store_fs.pootle_path],
+                        file_hash,
                         last_sync_revision,
                         save=False)
                     fs_to_update[store_fs.id] = store_fs
