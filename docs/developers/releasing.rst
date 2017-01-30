@@ -144,6 +144,7 @@ quality checks.
 .. code-block:: console
 
     $ mkvirtualenv build-checks-templates
+    (build-checks-templates)$ pip install --upgrade setuptools pip
     (build-checks-templates)$ pip install -r requirements/build.txt
     (build-checks-templates)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
     (build-checks-templates)$ DJANGO_SETTINGS_MODULE=pootle.settings ./setup.py build_checks_templates
@@ -277,7 +278,7 @@ checkout run:
 
     $ mkvirtualenv build-pootle-release
     (build-pootle-release)$ nvm install stable
-    (build-pootle-release)$ pip install --upgrade pip setuptools
+    (build-pootle-release)$ pip install --upgrade setuptools pip
     (build-pootle-release)$ pip install -r requirements/build.txt
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
@@ -305,7 +306,7 @@ the new release using:
 .. code-block:: console
 
     $ mkvirtualenv test-pootle-release
-    (test-pootle-release)$ pip install --upgrade pip setuptools
+    (test-pootle-release)$ pip install --upgrade setuptools pip
     (test-pootle-release)$ pip install dist/Pootle-$version.tar.bz2
     (test-pootle-release)$ pip install mysqlclient
     (test-pootle-release)$ pootle init
