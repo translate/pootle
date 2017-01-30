@@ -167,7 +167,7 @@ class TPTMXExporter(object):
         tmxfile.serialize(bs)
         with open(self.abs_filepath, "wb") as f:
             with ZipFile(f, "w") as zf:
-                zf.writestr(self.filename, bs.getvalue())
+                zf.writestr(self.filename.rstrip('.zip'), bs.getvalue())
 
         last_exported_filepath = self.last_exported_file_path
         self.update_exported_revision()
