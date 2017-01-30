@@ -169,7 +169,10 @@ class RevisionUpdater(object):
     def update(self, keys=None):
         parents = list(self.parents.values_list("id", flat=True))
         revisions = self.get_revisions(parents, keys=keys)
-        revisions.delete()
+        # manually get the list of ids and delete those to prevent
+        # django race condition
+        revision_ids = list(revisions.values_list("id", flat=True))
+        revisions.filter(id__in=revision_ids).delete()
         Revision.objects.bulk_create(
             self.create_revisions(parents, keys=keys))
 
