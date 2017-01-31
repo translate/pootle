@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.contrib import auth
+from django.utils.translation import get_language
 from django.views.generic import DetailView, UpdateView
 
 from pootle.core.delegate import scores
@@ -31,12 +32,18 @@ class UserAPIView(TestUserFieldMixin, APIView):
 class UserDetailView(NoDefaultUserMixin, UserObjectMixin, DetailView):
     template_name = 'user/profile.html'
 
+    @property
+    def request_lang(self):
+        return get_language()
+
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
         context['user_is_manager'] = self.request.user.has_manager_permissions()
         user_scores = scores.get(User)(self.object)
         context['user_score'] = user_scores.public_score
         context["user_top_language"] = user_scores.top_language
+        context["user_last_event"] = self.request.user.last_event(
+            locale=self.request_lang)
         return context
 
 

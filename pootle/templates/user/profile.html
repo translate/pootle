@@ -54,17 +54,15 @@
     {% endwith %}
     </h3>
 
-    {% with last_event=object.last_event %}
-    {% if last_event %}
+    {% if user_last_event %}
     <div class="user-last-activity">
       <div class="label">{% trans 'Latest activity:' %}</div>
       <div class="last-action">
 	{% avatar object.username object.email_hash 20 %}
-	<span class="user-info">{{ last_event.message }} {{ last_event.since }}</span>
+	<span class="user-info">{{ last_event.message }} {{ user_last_event.since }}</span>
       </div>
     </div>
     {% endif %}
-    {% endwith %}
   </div>
 
   {% if object.bio or object.has_contact_details or user == object %}
