@@ -23,12 +23,15 @@ STAT_KEYS = [
 
 class ActionDisplay(object):
 
-    def __init__(self, action):
+    def __init__(self, action, locale=None):
         self.action = action
+        self.locale = locale
 
     @property
     def since(self):
-        return timesince(self.action["mtime"])
+        return timesince(
+            self.action["mtime"],
+            locale=self.locale)
 
     @property
     def check_name(self):
