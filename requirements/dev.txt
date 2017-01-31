@@ -7,4 +7,4 @@
 
 django-extensions==1.7.6
 glue==0.11.1
-ipython==5.2.0
+ipython==5.2.1
