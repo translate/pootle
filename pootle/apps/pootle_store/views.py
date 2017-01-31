@@ -356,7 +356,8 @@ class UnitTimelineJSON(PootleUnitJSON):
                 display_dt = dateformat.format(display_dt)
                 iso_dt = entry_group['datetime'].isoformat()
                 relative_time = timesince(
-                    calendar.timegm(entry_group['datetime'].timetuple()))
+                    calendar.timegm(entry_group['datetime'].timetuple()),
+                    self.request_lang)
             else:
                 iso_dt = None
                 relative_time = None
