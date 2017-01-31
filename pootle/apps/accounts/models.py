@@ -281,10 +281,12 @@ class User(AbstractBaseUser):
         return Unit.objects.filter(pk__in=created_unit_pks)
 
     @lru_cache()
-    def last_event(self):
+    def last_event(self, locale=None):
         """Returns the latest submission linked with this user. If there's
         no activity, `None` is returned instead.
         """
         last_event = Submission.objects.filter(submitter=self).last()
         if last_event:
-            return ActionDisplay(last_event.get_submission_info())
+            return ActionDisplay(
+                last_event.get_submission_info(),
+                locale=locale)
