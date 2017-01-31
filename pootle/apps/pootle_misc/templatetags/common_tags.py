@@ -9,6 +9,7 @@
 import datetime
 
 from django import template
+from django.utils.translation import get_language
 
 from pootle.i18n import formatter
 from pootle.i18n.dates import timesince
@@ -19,9 +20,11 @@ register = template.Library()
 
 @register.filter
 def time_since(timestamp):
-    if timestamp:
-        return timesince(timestamp)
-    return ""
+    return (
+        timesince(
+            timestamp, locale=get_language())
+        if timestamp
+        else "")
 
 
 @register.inclusion_tag('includes/avatar.html')

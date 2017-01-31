@@ -10,7 +10,7 @@ import calendar
 
 from django import template
 from django.utils.formats import get_format
-from django.utils.translation import trans_real
+from django.utils.translation import get_language, trans_real
 
 from pootle.core.utils import dateformat
 from pootle.i18n.dates import timesince
@@ -45,7 +45,9 @@ def do_dateformat(value, use_format='c'):
 
 @register.filter(name='relative_datetime_format')
 def do_relative_datetime_format(value):
-    return timesince(calendar.timegm(value.timetuple()))
+    return timesince(
+        calendar.timegm(value.timetuple()),
+        locale=get_language())
 
 
 @register.simple_tag
