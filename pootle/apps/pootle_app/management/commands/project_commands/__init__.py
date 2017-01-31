@@ -108,17 +108,8 @@ class CloneCommand(TPToolProjectSubCommand):
 class RemoveCommand(TPToolProjectSubCommand):
     help = """Remove project."""
 
-    def add_arguments(self, parser):
-        parser.add_argument(
-            '--project',
-            type=str,
-            help='Pootle project',
-            required=True,
-        )
-        super(RemoveCommand, self).add_arguments(parser)
-
     def handle(self, *args, **options):
-        project = get_project(options['project'])
+        project = get_project(options['source_project'])
         project.delete()
         self.stdout.write('Project "%s" has been deleted.' % project)
 
