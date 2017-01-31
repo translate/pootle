@@ -36,7 +36,6 @@ class TPToolProjectSubCommand(BaseCommand):
             '--target-project',
             type=str,
             help='Target Pootle project',
-            required=True,
         )
         parser.add_argument(
             '--language',
