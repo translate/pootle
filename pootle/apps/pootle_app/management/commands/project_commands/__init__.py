@@ -11,9 +11,10 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.lru_cache import lru_cache
 
-from pootle_project.models import Project
-from pootle_translationproject.models import TranslationProject
 from pootle.core.delegate import tp_tool as tp_tool_getter
+from pootle_project.models import Project
+from pootle_store.constants import SOURCE_WINS, POOTLE_WINS
+from pootle_translationproject.models import TranslationProject
 
 
 def get_project(project_code):
@@ -126,6 +127,13 @@ class UpdateCommand(TPToolProjectSubCommand):
             dest="translations",
             help="Flag if allow to add new and make obsolete stores and units."
         )
+        parser.add_argument(
+            "--overwrite",
+            action="store_true",
+            default=False,
+            dest="overwrite",
+            help="Flag if overwrite existing translations."
+        )
 
     def handle(self, *args, **options):
         tp_tool = self.get_tp_tool(options['source_project'])
@@ -137,12 +145,14 @@ class UpdateCommand(TPToolProjectSubCommand):
 
         for source_tp in tp_query:
             target_tps = tp_tool.get_tps(target_project)
+            resolve_conflict = SOURCE_WINS if options['overwrite'] else POOTLE_WINS
             try:
                 target_tp = target_tps.get(language__code=source_tp.language.code)
                 tp_tool.update_from_tp(
                     source_tp,
                     target_tp,
                     allow_add_and_obsolete=not options['translations'],
+                    resolve_conflict=resolve_conflict,
                 )
             except TranslationProject.DoesNotExist:
                 logging.warning(
