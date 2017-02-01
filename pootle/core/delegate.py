@@ -68,3 +68,4 @@ wordcount = Getter()
 context_data = Provider(providing_args=["view", "context"])
 
 upstream = Provider()
+versioned = Getter()
