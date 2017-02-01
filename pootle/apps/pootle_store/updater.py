@@ -13,7 +13,7 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 
 from pootle.core.contextmanagers import update_data_after
-from pootle.core.delegate import review
+from pootle.core.delegate import frozen, review
 from pootle.core.log import log
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
@@ -76,23 +76,13 @@ class StoreUpdate(object):
         return self.kwargs.get("suggest_on_conflict", True)
 
 
-class FrozenUnit(object):
-    """Freeze unit vars for comparison"""
-
-    def __init__(self, unit):
-        self.target = unit.target_f
-        self.state = unit.state
-        self.submitter = unit.submitted_by
-        self.translator_comment = unit.getnotes(origin="translator")
-
-
 class UnitUpdater(object):
     """Updates a unit from a source with configuration"""
 
     def __init__(self, unit, update):
         self.unit = unit
         self.update = update
-        self.original = FrozenUnit(unit)
+        self.original = frozen.get(unit.__class__)(unit)
 
     @property
     def translator_comment(self):

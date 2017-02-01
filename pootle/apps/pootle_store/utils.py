@@ -28,6 +28,38 @@ from .models import Suggestion, SuggestionStates
 User = get_user_model()
 
 
+class FrozenUnit(object):
+    """Freeze unit vars for comparison"""
+
+    def __init__(self, unit):
+        self.unit = dict(
+            source_f=unit.source_f,
+            target_f=unit.target_f,
+            submitter=unit.submitted_by,
+            state=unit.state,
+            translator_comment=unit.getnotes(origin="translator"))
+
+    @property
+    def source(self):
+        return self.unit["source_f"]
+
+    @property
+    def state(self):
+        return self.unit["state"]
+
+    @property
+    def submitter(self):
+        return self.unit["submitter"]
+
+    @property
+    def target(self):
+        return self.unit["target_f"]
+
+    @property
+    def translator_comment(self):
+        return self.unit["translator_comment"]
+
+
 class SuggestionsReview(object):
     accept_email_template = 'editor/email/suggestions_accepted_with_comment.txt'
     accept_email_subject = _(u"Suggestion accepted with comment")
