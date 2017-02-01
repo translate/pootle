@@ -179,7 +179,8 @@ class TPTool(object):
                 subdir, subdir, project, update_cache=update_cache)
 
     def update_children(self, source_dir, target_dir, update_cache=True,
-                        allow_add_and_obsolete=True):
+                        allow_add_and_obsolete=True,
+                        resolve_conflict=SOURCE_WINS):
         """Update a target Directory and its children from a given
         source Directory
         """
@@ -197,7 +198,8 @@ class TPTool(object):
                     target_dir.child_stores.select_related(
                         "filetype__extension",
                         "filetype__template_extension").get(name=store.name),
-                    allow_add_and_obsolete=allow_add_and_obsolete)
+                    allow_add_and_obsolete=allow_add_and_obsolete,
+                    resolve_conflict=resolve_conflict)
             except target_dir.child_stores.model.DoesNotExist:
                 if allow_add_and_obsolete:
                     self.clone_store(store, target_dir, update_cache=update_cache)
@@ -220,14 +222,18 @@ class TPTool(object):
                 store.makeobsolete()
 
     def update_from_tp(self, source, target, update_cache=True,
-                       allow_add_and_obsolete=True):
+                       allow_add_and_obsolete=True,
+                       resolve_conflict=SOURCE_WINS):
         """Update one TP from another"""
         self.check_tp(source)
         self.update_children(
             source.directory, target.directory, update_cache=update_cache,
-            allow_add_and_obsolete=allow_add_and_obsolete)
+            allow_add_and_obsolete=allow_add_and_obsolete,
+            resolve_conflict=resolve_conflict
+        )
 
-    def update_store(self, source, target, allow_add_and_obsolete=True):
+    def update_store(self, source, target, allow_add_and_obsolete=True,
+                     resolve_conflict=SOURCE_WINS):
         """Update a target Store from a given source Store"""
         source_revision = target.data.max_unit_revision + 1
         differ = StoreDiff(target, source, source_revision)
@@ -244,5 +250,5 @@ class TPTool(object):
                 update_revision,
                 system,
                 SubmissionTypes.SYSTEM,
-                SOURCE_WINS,
+                resolve_conflict,
                 allow_add_and_obsolete)
