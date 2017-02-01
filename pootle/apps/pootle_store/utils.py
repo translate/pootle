@@ -16,6 +16,7 @@ from django.utils import timezone
 from pootle.core.delegate import site
 from pootle.core.mail import send_mail
 from pootle.core.signals import update_data
+from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_statistics.models import (
@@ -266,3 +267,119 @@ class SuggestionsReview(object):
         return (
             comment
             and settings.POOTLE_EMAIL_FEEDBACK_ENABLED)
+
+
+class UnitLifecycle(object):
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    @property
+    def original(self):
+        return self.unit._frozen
+
+    @property
+    def submission_model(self):
+        return self.unit.submission_set.model
+
+    def create_submission(self, **kwargs):
+        _kwargs = dict(
+            translation_project=self.unit.store.translation_project,
+            unit=self.unit,
+            store=self.unit.store,
+            revision=self.unit.revision)
+        _kwargs.update(kwargs)
+        return self.submission_model(**_kwargs)
+
+    def sub_mute_qc(self, **kwargs):
+        quality_check = kwargs["quality_check"]
+        submitter = kwargs["submitter"]
+        _kwargs = dict(
+            creation_time=make_aware(timezone.now()),
+            submitter=submitter,
+            field=SubmissionFields.NONE,
+            type=SubmissionTypes.MUTE_CHECK,
+            quality_check=quality_check)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def sub_unmute_qc(self, **kwargs):
+        quality_check = kwargs["quality_check"]
+        submitter = kwargs["submitter"]
+        _kwargs = dict(
+            creation_time=make_aware(timezone.now()),
+            submitter=submitter,
+            field=SubmissionFields.NONE,
+            type=SubmissionTypes.UNMUTE_CHECK,
+            quality_check=quality_check)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def sub_create(self, **kwargs):
+        _kwargs = dict(
+            creation_time=self.unit.creation_time,
+            submitter=self.unit.submitted_by,
+            type=SubmissionTypes.UNIT_CREATE,
+            field=SubmissionFields.TARGET,
+            new_value=self.unit.target)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def save_subs(self, subs):
+        if subs:
+            self.unit.submission_set.bulk_create(subs)
+
+    def sub_comment_update(self, **kwargs):
+        _kwargs = dict(
+            creation_time=self.unit.mtime,
+            unit=self.unit,
+            submitter=self.unit.commented_by,
+            field=SubmissionFields.COMMENT,
+            type=SubmissionTypes.SYSTEM,
+            old_value=self.original.translator_comment,
+            new_value=self.unit.translator_comment)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def sub_source_update(self, **kwargs):
+        _kwargs = dict(
+            creation_time=self.unit.mtime,
+            unit=self.unit,
+            submitter=self.unit.submitted_by,
+            field=SubmissionFields.SOURCE,
+            type=SubmissionTypes.SYSTEM,
+            old_value=self.original.source,
+            new_value=self.unit.source_f)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def sub_target_update(self, **kwargs):
+        _kwargs = dict(
+            creation_time=self.unit.mtime,
+            unit=self.unit,
+            submitter=self.unit.submitted_by,
+            field=SubmissionFields.TARGET,
+            type=SubmissionTypes.SYSTEM,
+            old_value=self.original.target,
+            new_value=self.unit.target_f)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def sub_state_update(self, **kwargs):
+        _kwargs = dict(
+            creation_time=self.unit.mtime,
+            unit=self.unit,
+            submitter=self.unit.reviewed_by,
+            field=SubmissionFields.STATE,
+            type=SubmissionTypes.SYSTEM,
+            old_value=self.original.state,
+            new_value=self.unit.state)
+        _kwargs.update(kwargs)
+        return self.create_submission(**_kwargs)
+
+    def update(self, **kwargs):
+        self.save_subs(self.create_subs(**kwargs))
+
+    def create_subs(self, **updates):
+        for name, update in updates.items():
+            yield getattr(self, "sub_%s" % name)(**update)
