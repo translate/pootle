@@ -31,7 +31,7 @@ from django.utils.http import urlquote
 
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import (
-    data_tool, format_syncers, format_updaters, terminology_matcher)
+    data_tool, format_syncers, format_updaters, frozen, terminology_matcher)
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -306,6 +306,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._comment_updated = False
         self._auto_translated = False
         self._encoding = 'UTF-8'
+        self._at_last_save = frozen.get(Unit)(self)
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
