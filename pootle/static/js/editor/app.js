@@ -912,13 +912,6 @@ PTL.editor = {
    * Translation's similarity
    */
 
-  getSimilarityData() {
-    const currentUnit = this.units.getCurrent();
-    return {
-      similarity: currentUnit.get('similarityHuman'),
-      mt_similarity: currentUnit.get('similarityMT'),
-    };
-  },
 
   calculateSimilarity(newTranslation, $elements, dataSelector) {
     let maxSimilarity = 0;
@@ -960,7 +953,6 @@ PTL.editor = {
       return false;
     }
 
-    const currentUnit = this.units.getCurrent();
     const newTranslation = ReactEditor.stateValues[0];
     let simHuman = { max: 0, boxId: null };
     let simMT = { max: 0, boxId: null };
@@ -973,12 +965,6 @@ PTL.editor = {
       simMT = this.calculateSimilarity(newTranslation, $aidElementsMT,
                                        dataSelectorMT);
     }
-
-    currentUnit.set({
-      similarityHuman: simHuman.max,
-      similarityMT: simMT.max,
-    });
-
     const similarity = (simHuman.max > simMT.max) ? simHuman : simMT;
     this.highlightBox(similarity.boxId, similarity.max === 1);
     return true;
@@ -1628,7 +1614,7 @@ PTL.editor = {
     }
 
     const body = assign({}, this.getCheckedStateData(), valueStateData,
-                        this.getReqData(), this.getSimilarityData(),
+                        this.getReqData(),
                         captchaCallbacks);
 
     el.disabled = true;
@@ -1679,7 +1665,7 @@ PTL.editor = {
     this.updateUnitDefaultProperties();
 
     const body = assign({}, this.getValueStateData(ReactEditor.stateValues),
-                        this.getReqData(), this.getSimilarityData(), captchaCallbacks);
+                        this.getReqData(), captchaCallbacks);
 
     UnitAPI.addSuggestion(this.units.getCurrent().id, body)
       .then(
