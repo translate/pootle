@@ -10,6 +10,9 @@
 from django.dispatch import Signal
 
 
+changed = Signal(
+    providing_args=["instance", "updates"],
+    use_caching=True)
 update_data = Signal(providing_args=["instance"], use_caching=True)
 filetypes_changed = Signal(
     providing_args=["instance", "filetype"],
