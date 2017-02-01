@@ -12,7 +12,6 @@ from django.db import models
 from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
-from django.utils.functional import cached_property
 
 from pootle.core.log import SCORE_CHANGED, log
 from pootle.core.utils import dateformat
@@ -193,11 +192,6 @@ class Submission(models.Model):
     old_value = models.TextField(blank=True, default=u"")
     new_value = models.TextField(blank=True, default=u"")
 
-    # similarity ratio to the best existing suggestion
-    similarity = models.FloatField(blank=True, null=True)
-    # similarity ratio to the result of machine translation
-    mt_similarity = models.FloatField(blank=True, null=True)
-
     # Unit revision when submission was created if applicable
     revision = models.IntegerField(
         null=True,
@@ -207,15 +201,6 @@ class Submission(models.Model):
     def __unicode__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
-
-    @cached_property
-    def max_similarity(self):
-        """Returns current submission's maximum similarity."""
-        if (self.similarity is not None or
-            self.mt_similarity is not None):
-            return max(self.similarity, self.mt_similarity)
-
-        return 0
 
     def needs_scorelog(self):
         """Returns ``True`` if the submission needs to log its score."""
@@ -398,8 +383,6 @@ class ScoreLog(models.Model):
     review_rate = models.FloatField(null=False, default=0)
     # number of words in the original source string
     wordcount = models.PositiveIntegerField(null=False)
-    # the reported similarity ratio
-    similarity = models.FloatField(null=False)
     # the final calculated score delta for the action
     score_delta = models.FloatField(null=False)
     action_code = models.IntegerField(null=False)
@@ -418,7 +401,6 @@ class ScoreLog(models.Model):
         score_dict = {
             'creation_time': submission.creation_time,
             'wordcount': submission.unit.source_wordcount,
-            'similarity': submission.max_similarity,
             'submission': submission,
         }
 
@@ -528,7 +510,6 @@ class ScoreLog(models.Model):
             'code': TranslationActionCodes.NAMES_MAP[self.action_code],
             'unit': self.submission.unit.id,
             'wordcount': self.wordcount,
-            'similarity': self.similarity,
             'total': self.user.score,
         }
 
@@ -539,18 +520,9 @@ class ScoreLog(models.Model):
             TranslationActionCodes.MARKED_FUZZY,
             TranslationActionCodes.DELETED,
         ]
-        no_similarity_types = [
-            TranslationActionCodes.SUGG_REVIEWED_REJECTED,
-            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED,
-            TranslationActionCodes.REVIEW_PENALTY,
-            TranslationActionCodes.REVIEWED,
-        ]
 
         if self.action_code not in zero_types:
             params.append('NS=%(wordcount)s')
-
-            if self.action_code not in no_similarity_types:
-                params.append('S=%(similarity)s')
 
         params.append('(total: %(total)s)')
 
@@ -564,63 +536,18 @@ class ScoreLog(models.Model):
         ANALYZE_COEF = settings.POOTLE_SCORE_COEFFICIENTS['ANALYZE']
 
         ns = self.wordcount
-        s = self.similarity
-        rawTranslationCost = ns * EDIT_COEF * (1 - s)
+        rawTranslationCost = ns * EDIT_COEF
         reviewCost = ns * REVIEW_COEF
         analyzeCost = ns * ANALYZE_COEF
 
         def get_sugg_rejected():
             result = 0
-            try:
-                # Get similarity from initial submission where
-                # the suggestion was added.
-                s = self.submission.suggestion.submission_set \
-                        .get(type=SubmissionTypes.SUGG_ADD) \
-                        .similarity
-                if s is None:
-                    s = 0
-                self.similarity = s
-                rawTranslationCost = ns * EDIT_COEF * (1 - s)
-                result = (-1) * (rawTranslationCost * SUGG_COEF + analyzeCost)
-            except Submission.DoesNotExist:
-                pass
-
+            rawTranslationCost = ns * EDIT_COEF
+            result = (-1) * (rawTranslationCost * SUGG_COEF + analyzeCost)
             return result
 
-        def get_edit_penalty():
-            try:
-                # Get similarity from initial submission where overwritten
-                # translation was added.
-                s = Submission.objects.get(
-                    unit__id=self.submission.unit_id,
-                    submitter_id=self.submission.unit.submitted_by_id,
-                    creation_time=self.submission.unit.submitted_on,
-                    field=SubmissionFields.TARGET,
-                    type=SubmissionTypes.NORMAL
-                ).similarity
-                if s is None:
-                    s = 0
-                self.similarity = s
-                rawTranslationCost = ns * EDIT_COEF * (1 - s)
-            except Submission.DoesNotExist:
-                rawTranslationCost = 0
-
-            return (-1) * rawTranslationCost
-
         def get_sugg_accepted():
-            try:
-                # Get similarity from initial submission where overwritten
-                # translation was added.
-                s = self.submission.suggestion.submission_set \
-                        .get(type=SubmissionTypes.SUGG_ADD) \
-                        .similarity
-                if s is None:
-                    s = 0
-                self.similarity = s
-                rawTranslationCost = ns * EDIT_COEF * (1 - s)
-            except Submission.DoesNotExist:
-                rawTranslationCost = 0
-
+            rawTranslationCost = ns * EDIT_COEF
             return rawTranslationCost * (1 - SUGG_COEF)
 
         return {
@@ -630,7 +557,6 @@ class ScoreLog(models.Model):
                 lambda: rawTranslationCost + reviewCost,
             TranslationActionCodes.EDITED_OWN: lambda: rawTranslationCost,
             TranslationActionCodes.REVIEWED: lambda: reviewCost,
-            TranslationActionCodes.EDIT_PENALTY: get_edit_penalty,
             TranslationActionCodes.MARKED_FUZZY: lambda: 0,
             TranslationActionCodes.DELETED: lambda: 0,
             TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
@@ -641,14 +567,6 @@ class ScoreLog(models.Model):
             TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
             TranslationActionCodes.SUGG_REVIEWED_REJECTED: lambda: analyzeCost,
         }.get(self.action_code, lambda: 0)()
-
-    def get_similarity(self):
-        return self.similarity \
-            if self.similarity >= SIMILARITY_THRESHOLD \
-            else 0
-
-    def is_similarity_taken_from_mt(self):
-        return self.submission.similarity < self.submission.mt_similarity
 
     def get_suggested_wordcount(self):
         """Returns the suggested wordcount in the current action."""
@@ -666,7 +584,6 @@ class ScoreLog(models.Model):
         REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
 
         ns = self.wordcount
-        s = self.get_similarity()
 
         rate = EDIT_COEF + REVIEW_COEF
         review_rate = REVIEW_COEF
@@ -678,7 +595,7 @@ class ScoreLog(models.Model):
         # if similarity is zero then translated_words would be
         # ns * (1 - s), that equals sum of raw_translation and
         # review costs divided by translation_rate
-        translated_words = (ns * (1 - s) * raw_rate + ns * review_rate) / rate
+        translated_words = (ns * raw_rate + ns * review_rate) / rate
         translated_words = round(translated_words, 4)
         reviewed_words = ns
 
@@ -702,9 +619,6 @@ class ScoreLog(models.Model):
             return None, None
 
         def get_edited():
-            # if similarity is below threshold treat this event as translation
-            if s == 0:
-                return translated_words, None
             return None, reviewed_words
 
         return {
