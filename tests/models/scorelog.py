@@ -8,10 +8,10 @@
 
 import pytest
 
-from pytest_pootle.factories import ScoreLogFactory, SubmissionFactory
+from pytest_pootle.factories import SubmissionFactory
 
-from pootle_statistics.models import (ScoreLog, SubmissionTypes, SubmissionFields,
-                                      SIMILARITY_THRESHOLD)
+from pootle_statistics.models import (
+    ScoreLog, SubmissionTypes, SubmissionFields)
 
 
 TEST_EDIT_TYPES = (SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM,
@@ -31,31 +31,9 @@ def test_record_submission(member, submission_type, store0):
         'type': submission_type,
         'old_value': unit.target,
         'new_value': 'New target',
-        'similarity': 0,
-        'mt_similarity': 0,
         'submitter': member,
         'translation_project': store.translation_project,
     }
 
     sub = SubmissionFactory(**submission_params)
     assert ScoreLog.objects.filter(submission=sub).count() == 1
-
-
-@pytest.mark.parametrize('similarity', (0, 0.1, 0.49, 0.5, 0.51, 0.6, 1))
-def test_get_similarity(similarity):
-    score_log = ScoreLogFactory.build(similarity=similarity)
-    if similarity >= SIMILARITY_THRESHOLD:
-        assert score_log.get_similarity() == similarity
-    else:
-        assert score_log.get_similarity() == 0
-
-
-@pytest.mark.parametrize('similarity, mt_similarity', [(0, 1), (0.5, 0.5), (1, 0)])
-def test_is_similarity_taken_from_mt(similarity, mt_similarity):
-    submission = SubmissionFactory.build(similarity=similarity,
-                                         mt_similarity=mt_similarity)
-    score_log = ScoreLogFactory.build(submission=submission)
-    if submission.similarity < submission.mt_similarity:
-        assert score_log.is_similarity_taken_from_mt()
-    else:
-        assert not score_log.is_similarity_taken_from_mt()
