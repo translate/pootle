@@ -11,18 +11,20 @@ from django.core.exceptions import ValidationError
 
 from pootle.core.delegate import (
     comparable_event, deserializers, frozen, grouped_events, lifecycle, review,
-    search_backend, serializers, states, uniqueid, wordcount)
+    search_backend, serializers, states, uniqueid, versioned, wordcount)
 from pootle.core.plugin import getter
 from pootle_config.delegate import (
     config_should_not_be_appended, config_should_not_be_set)
 from pootle_misc.util import import_func
 
-from .models import Suggestion, SuggestionState, Unit
+from .models import Store, Suggestion, SuggestionState, Unit
 from .unit.search import DBSearchBackend
 from .unit.timeline import (
     ComparableUnitTimelineLogEvent, UnitTimelineGroupedEvents, UnitTimelineLog)
 from .utils import (
-    FrozenUnit, SuggestionsReview, UnitLifecycle, UnitUniqueId, UnitWordcount)
+    FrozenUnit, SuggestionsReview, UnitLifecycle, UnitUniqueId,
+    UnitWordcount)
+from .versioned import VersionedStore
 
 
 wordcounter = None
@@ -104,3 +106,8 @@ def serializer_should_not_be_saved(**kwargs):
             if k not in available_deserializers:
                 return ValidationError(
                     "Unrecognised pootle.core.deserializers: '%s'" % k)
+
+
+@getter(versioned, sender=Store)
+def get_versioned_store(**kwargs_):
+    return VersionedStore
