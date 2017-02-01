@@ -215,8 +215,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                 check_test=lambda x: x == FUZZY,
             ),
         )
-        similarity = forms.FloatField(required=False)
-        mt_similarity = forms.FloatField(required=False)
         suggestion = forms.ModelChoiceField(
             queryset=Suggestion.objects.all(),
             required=False)
@@ -247,26 +245,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                                             to_db(value)))
 
             return value
-
-        def clean_similarity(self):
-            value = self.cleaned_data['similarity']
-
-            if 0 <= value <= 1 or value is None:
-                return value
-
-            raise forms.ValidationError(
-                _('Value of `similarity` should be in in the [0..1] range')
-            )
-
-        def clean_mt_similarity(self):
-            value = self.cleaned_data['mt_similarity']
-
-            if 0 <= value <= 1 or value is None:
-                return value
-
-            raise forms.ValidationError(
-                _('Value of `mt_similarity` should be in in the [0..1] range')
-            )
 
         def clean(self):
             old_state = self.instance.state  # Integer
