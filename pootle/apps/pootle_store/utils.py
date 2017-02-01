@@ -53,8 +53,7 @@ class SuggestionsReview(object):
                 dict(comment=comment,
                      user=self.reviewer)).save()
 
-    def add(self, unit, translation, user=None, touch=True,
-            similarity=None, mt_similarity=None):
+    def add(self, unit, translation, user=None, touch=True):
         """Adds a new suggestion to the unit.
 
         :param translation: suggested translation text
@@ -62,8 +61,6 @@ class SuggestionsReview(object):
             the ``system`` user will be used.
         :param touch: whether to update the unit's timestamp after adding
             the suggestion or not.
-        :param similarity: human similarity for the new suggestion.
-        :param mt_similarity: MT similarity for the new suggestion.
 
         :return: a tuple ``(suggestion, created)`` where ``created`` is a
             boolean indicating if the suggestion was successfully added.
@@ -91,9 +88,7 @@ class SuggestionsReview(object):
             self.create_submission(
                 suggestion,
                 SubmissionTypes.SUGG_ADD,
-                user,
-                similarity=similarity,
-                mt_similarity=mt_similarity).save()
+                user).save()
             if touch:
                 unit.save()
         return (suggestion, True)
@@ -106,9 +101,7 @@ class SuggestionsReview(object):
             unit=suggestion.unit,
             store=suggestion.unit.store,
             type=suggestion_type,
-            suggestion=suggestion,
-            similarity=kwargs.get("similarity"),
-            mt_similarity=kwargs.get("mt_similarity"))
+            suggestion=suggestion)
 
     def accept_suggestion(self, suggestion):
         unit = suggestion.unit

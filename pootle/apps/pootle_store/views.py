@@ -590,10 +590,7 @@ def submit(request, unit, **kwargs_):
                     field=field,
                     type=SubmissionTypes.NORMAL,
                     old_value=old_value,
-                    new_value=new_value,
-                    similarity=form.cleaned_data['similarity'],
-                    mt_similarity=form.cleaned_data['mt_similarity'],
-                )
+                    new_value=new_value)
                 sub.save()
 
             json['checks'] = _get_critical_checks_snippet(request, unit)
@@ -636,9 +633,7 @@ def suggest(request, unit, **kwargs_):
             review.get(Suggestion)().add(
                 unit,
                 form.cleaned_data['target_f'],
-                user=request.user,
-                similarity=form.cleaned_data['similarity'],
-                mt_similarity=form.cleaned_data['mt_similarity'])
+                user=request.user)
 
             if not request.user.is_anonymous:
                 json['user_score'] = request.user.public_score
