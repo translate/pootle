@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+import os
 
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.lru_cache import lru_cache
@@ -14,14 +15,8 @@ from django.utils.lru_cache import lru_cache
 from pootle.core.delegate import tp_tool as tp_tool_getter
 from pootle_project.models import Project
 from pootle_store.constants import SOURCE_WINS, POOTLE_WINS
+from pootle_store.util import absolute_real_path
 from pootle_translationproject.models import TranslationProject
-
-
-def get_project(project_code):
-    try:
-        return Project.objects.get(code=project_code)
-    except Project.DoesNotExist as e:
-        raise CommandError(e)
 
 
 class TPToolProjectSubCommand(BaseCommand):
@@ -51,13 +46,31 @@ class TPToolProjectSubCommand(BaseCommand):
         project = self.get_project(project_code)
         return tp_tool_getter.get(Project)(project)
 
-    @lru_cache()
     def get_project(self, project_code):
-        return get_project(project_code)
+        try:
+            return Project.objects.get(code=project_code)
+        except Project.DoesNotExist as e:
+            raise CommandError(e)
 
-    def copy_project(self, target_project_code):
-        """ Creates an empty copy of project with a new project code."""
+    def get_target_project(self, project_code, languages=None):
+        return self.get_project(project_code)
+
+    def get_or_create_project(self, target_project_code):
+        """Get existing or create an empty copy of project."""
         project = self.tp_tool.project
+        try:
+            return Project.objects.get(code=target_project_code)
+        except Project.DoesNotExist:
+            pass
+
+        target_project_abs_path = absolute_real_path(target_project_code)
+        if os.path.exists(target_project_abs_path):
+            raise CommandError('Project <%s> code cannot be created from '
+                               'project <%s> because "%s" directory already '
+                               'exists.' % (target_project_code,
+                                            project.code,
+                                            target_project_abs_path))
+
         params = dict(
             code=target_project_code,
             fullname="%s (%s)" % (project.fullname, target_project_code),
@@ -72,11 +85,8 @@ class TPToolProjectSubCommand(BaseCommand):
 
     def handle(self, *args, **options):
         self.tp_tool = self.get_tp_tool(options['source_project'])
-        try:
-            target_project = self.copy_project(options['target_project'])
-        except Exception as e:
-            raise CommandError(e)
-
+        target_project = self.get_target_project(options['target_project'],
+                                                 options['languages'])
         tp_query = self.tp_tool.tp_qs.all()
         if options['languages']:
             tp_query = tp_query.filter(language__code__in=options['languages'])
@@ -91,6 +101,19 @@ class TPToolProjectSubCommand(BaseCommand):
 
 class MoveCommand(TPToolProjectSubCommand):
 
+    def get_target_project(self, project_code, languages=None):
+        project = self.tp_tool.project
+        if project_code is None:
+            return project
+
+        if not languages:
+            project.code = project_code
+            project.save()
+            #TODO move project directory
+            return project
+        else:
+            return self.get_or_create_project(project_code)
+
     def handle_tp(self, tp, target_project):
         self.tp_tool.move(tp, language=tp.language, project=target_project)
         self.stdout.write('Translation project '
@@ -98,6 +121,9 @@ class MoveCommand(TPToolProjectSubCommand):
 
 
 class CloneCommand(TPToolProjectSubCommand):
+
+    def get_target_project(self, project_code, languages=None):
+        return self.get_or_create_project(project_code)
 
     def handle_tp(self, tp, target_project):
         cloned = self.tp_tool.clone(tp, language=tp.language,
@@ -110,7 +136,7 @@ class RemoveCommand(TPToolProjectSubCommand):
     help = """Remove project."""
 
     def handle(self, *args, **options):
-        project = get_project(options['source_project'])
+        project = self.get_project(options['source_project'])
         project.delete()
         self.stdout.write('Project "%s" has been deleted.' % project)
 
