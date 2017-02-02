@@ -9,9 +9,11 @@
 from django.contrib.auth import get_user_model
 
 from pootle.core.models import Revision
+from pootle.core.signals import update_data
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import SOURCE_WINS
 from pootle_store.diff import StoreDiff
+from pootle_store.models import QualityCheck
 
 
 User = get_user_model()
@@ -101,7 +103,35 @@ class TPTool(object):
         cloned.state = store.state
         cloned.filetype = store.filetype
         cloned.save()
+        self.update_muted_checks(store, cloned)
         return cloned
+
+    def update_muted_checks(self, source_store, target_store,
+                            check_target_translation=False):
+        """Mute false positive checks in target store."""
+        fields = ('unit__unitid_hash', 'category', 'name')
+        if check_target_translation:
+            fields += ('unit__target_f',)
+        false_positive_checks = QualityCheck.objects.filter(
+            unit__store=source_store,
+            false_positive=True
+        ).values(*fields)
+
+        qs = QualityCheck.objects.none()
+        for check in false_positive_checks:
+            params = dict(
+                unit__store=target_store,
+                unit__unitid_hash=check['unit__unitid_hash'],
+                category=check['category'],
+                name=check['name'],
+            )
+            if check_target_translation:
+                params['unit__target_f'] = check['unit__target_f']
+            qs = qs | QualityCheck.objects.filter(**params)
+
+        qs.update(false_positive=True)
+        update_data.send(
+            target_store.__class__, instance=target_store)
 
     def create_tp(self, language, project=None):
         """Create a TP for a given language"""
@@ -235,16 +265,16 @@ class TPTool(object):
         source_revision = target.data.max_unit_revision + 1
         differ = StoreDiff(target, source, source_revision)
         diff = differ.diff()
-        if diff is None:
-            return
-        system = User.objects.get_system_user()
-        update_revision = Revision.incr()
-        return target.updater.update_from_diff(
-            source,
-            source_revision,
-            diff,
-            update_revision,
-            system,
-            SubmissionTypes.SYSTEM,
-            resolve_conflict,
-            allow_add_and_obsolete)
+        if diff is not None:
+            system = User.objects.get_system_user()
+            update_revision = Revision.incr()
+            target.updater.update_from_diff(
+                source,
+                source_revision,
+                diff,
+                update_revision,
+                system,
+                SubmissionTypes.SYSTEM,
+                resolve_conflict,
+                allow_add_and_obsolete)
+        self.update_muted_checks(source, target, check_target_translation=True)
