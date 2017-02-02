@@ -8,6 +8,7 @@
 
 import logging
 import os
+import shutil
 
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.lru_cache import lru_cache
@@ -135,9 +136,22 @@ class CloneCommand(TPToolProjectSubCommand):
 class RemoveCommand(TPToolProjectSubCommand):
     help = """Remove project."""
 
+    def add_arguments(self, parser):
+        super(RemoveCommand, self).add_arguments(parser)
+        parser.add_argument(
+            "--force",
+            action="store_true",
+            default=False,
+            dest="force",
+            help="Flag if remove project directory from disk."
+        )
+
     def handle(self, *args, **options):
         project = self.get_project(options['source_project'])
+        project_path = project.get_real_path()
         project.delete()
+        if options['force']:
+            shutil.rmtree(project_path)
         self.stdout.write('Project "%s" has been deleted.' % project)
 
 
