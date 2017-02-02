@@ -45,7 +45,7 @@ from pootle.core.signals import update_data
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
-from pootle.core.user import get_system_user
+from pootle.core.user import get_system_user, get_system_user_id
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
@@ -235,6 +235,14 @@ class Unit(models.Model, base.TranslationUnit):
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
     mtime = models.DateTimeField(auto_now=True, db_index=True, editable=False)
+
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        db_index=True,
+        related_name='units_created',
+        default=get_system_user_id,
+        on_delete=models.SET(get_system_user))
 
     # unit translator
     submitted_by = models.ForeignKey(
@@ -1383,7 +1391,10 @@ class Store(models.Model, CachedTreeItem, base.TranslationStore):
         if index is None:
             index = self.max_index() + 1
 
-        newunit = self.UnitClass(store=self, index=index)
+        newunit = self.UnitClass(
+            store=self,
+            index=index,
+            created_by=user or get_system_user())
         newunit.update(unit, user=user)
 
         if self.id:
