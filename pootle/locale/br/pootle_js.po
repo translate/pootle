@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-01-13 11:47+0000\n"
-"PO-Revision-Date: 2016-05-18 09:40+0000\n"
+"PO-Revision-Date: 2017-01-30 13:01+0000\n"
 "Last-Translator: Tornoz <tornoz@laposte.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: br\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1463564431.000000\n"
+"X-POOTLE-MTIME: 1485781278.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr "Enrollet gant berzh"
+msgstr "Enrollet gant berzh."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr "Dilamet gant berzh"
+msgstr "Dilamet gant berzh."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
@@ -116,7 +116,7 @@ msgstr "Sell hollek"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Skipailh"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -145,24 +145,26 @@ msgstr "Klask raktresoù"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Kavout ur raktres dre anv, boneg"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr ""
+msgstr "Embann ar raktres"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
+"Arverit ar furmskrid klask evit kavout ar raktres ha klikit war ar raktres "
+"d'e embann."
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
-msgstr ""
+msgstr "Gwiriekadurioù perzhded"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
 msgid "File types"
-msgstr ""
+msgstr "Rizh restr"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
