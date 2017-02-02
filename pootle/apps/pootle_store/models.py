@@ -45,6 +45,7 @@ from pootle.core.signals import update_data
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
+from pootle.core.user import get_system_user
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
@@ -74,10 +75,6 @@ def get_tm_broker():
     if TM_BROKER is None:
         TM_BROKER = SearchBroker()
     return TM_BROKER
-
-
-def get_system_user():
-    return get_user_model().objects.get_system_user()
 
 
 # # # # # # # # Quality Check # # # # # # #
@@ -117,12 +114,18 @@ class Suggestion(models.Model, base.TranslationUnit):
     target_f = MultiStringField()
     target_hash = models.CharField(max_length=32, db_index=True)
     unit = models.ForeignKey('pootle_store.Unit', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
-                             related_name='suggestions', db_index=True,
-                             on_delete=models.CASCADE)
-    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                 related_name='reviews', db_index=True,
-                                 on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=False,
+        related_name='suggestions',
+        db_index=True,
+        on_delete=models.SET(get_system_user))
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name='reviews',
+        db_index=True,
+        on_delete=models.SET(get_system_user))
 
     translator_comment_f = models.TextField(null=True, blank=True)
 
