@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-26 12:49+0000\n"
 "Last-Translator: vasilvestre <vasilvestre@laposte.net>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -305,11 +305,11 @@ msgstr "Sélectionnez une ou plusieurs permissions"
 msgid "Revoke Permissions"
 msgstr "Révoquer des permissions"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Pas de fichier dans ce projet."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 "Des erreurs ont été trouvées dans le formulaire. Veuillez examiner les "
@@ -427,19 +427,33 @@ msgstr "Nouveau membre"
 msgid "Add a user to this team"
 msgstr "Ajouter un utilisateur à cette équipe"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "Le role est requis lors de l'ajout d'un nouvel utilisateur"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Rejeter"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Accepter"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Suggestions d'utilisateurs"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Filtre"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projet"
@@ -496,11 +510,11 @@ msgstr "Équation des pluriels"
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "État"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Source"
 
@@ -886,23 +900,23 @@ msgstr ""
 "Rechercher (Ctrl+Maj+S)<br/>Saisissez du texte, puis appuyez sur Entrée pour "
 "rechercher"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Correspondance exacte"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Texte source"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Texte cible"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Commentaires"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Emplacements"
 
@@ -927,7 +941,7 @@ msgstr "Dernier (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Sélectionnez une ou plusieurs langues"
 
@@ -1013,11 +1027,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Les fichiers du projet de traduction ont été réexaminés."
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Cible"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Commentaire"
 
@@ -1048,7 +1062,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Permissions insuffisantes pour ce projet de traduction."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Droits d'accès inssufisants pour acceder à cette page."
@@ -1061,35 +1075,15 @@ msgstr "Droits d'accès inssufisants pour acceder à cette page."
 msgid "Plural Form %d"
 msgstr "Forme plurielle %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Commentaires du traducteur"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "En attente"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Accepté"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Rejeté"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Chemin"
 
@@ -1128,12 +1122,12 @@ msgstr "Rejeter la suggestion"
 msgid "Added suggestion"
 msgstr "%d suggestion"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Suggestion acceptée."
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1154,11 +1148,11 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr "Échec d'envoi du commentaire."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Impossible d'enregistrer la traduction."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Impossible d'enregistrer la suggestion."
 
@@ -1752,64 +1746,64 @@ msgstr "Examiner les suggestions"
 msgid "Can perform administrative tasks"
 msgstr "Administration de Django"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 "%(user)s a supprimé la traduction de la chaîne <i><a href=\"%(url)s\">"
 "%(source)s</a></i>"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Accepter la suggestion"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s a téléversé un fichier"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "Importation de %(count)d suggestion depuis %(store)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Rejeter la suggestion"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "À traduire absolument"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2405,22 +2399,22 @@ msgstr ""
 msgid "Updates"
 msgstr "Mise à jour"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "Dernière activité"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 #, fuzzy
 msgid "Translations"
 msgstr "Traduction"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 #, fuzzy
 msgid "Last action:"
 msgstr "Dernière activité"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2840,12 +2834,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "L'erreur renvoyée était: "
 
-#: templates/includes/formtable.html:25
-#, fuzzy
-msgid "Showing"
-msgstr "Afficher le filtre"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "Sélection multiple"
@@ -3117,32 +3124,32 @@ msgid ""
 "days"
 msgstr ""
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Dernière activité"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3212,6 +3219,19 @@ msgstr "Attribuer l'action"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Contributeurs principaux"
+
+#~ msgid "Pending"
+#~ msgstr "En attente"
+
+#~ msgid "Accepted"
+#~ msgstr "Accepté"
+
+#~ msgid "Rejected"
+#~ msgstr "Rejeté"
+
+#, fuzzy
+#~ msgid "Showing"
+#~ msgstr "Afficher le filtre"
 
 #, fuzzy
 #~ msgid "Plurr format"

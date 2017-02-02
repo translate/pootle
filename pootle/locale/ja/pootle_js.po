@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-27 12:21+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -530,11 +530,11 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:46
 msgid "Show disabled"
 msgstr "無効なものを表示"
 
-#: static/js/browser/components/VisibilityToggle.js:54
+#: static/js/browser/components/VisibilityToggle.js:47
 msgid "Hide disabled"
 msgstr "無効なものを隠す"
 
@@ -607,43 +607,43 @@ msgstr "%s の提出"
 msgid "%s's overwritten submissions"
 msgstr "%s の上書きする提出"
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "サーバーに接続する際にエラーが発生しました"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "見つかりませんでした"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "サーバー エラー"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "サーバーが停止しているようです。後でもう一度試してください。"
 
-#: static/js/editor/app.js:1101
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "この文字列は存在しません。"
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "ブラウジングへ戻る"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "ページを再読み込み"
 
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "匿名ユーザー"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "誰か"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
 msgid "Similar translations"
 msgstr "類似翻訳"
 

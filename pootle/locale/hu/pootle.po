@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-19 09:01+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,11 +299,11 @@ msgstr "Válasszon ki legalább egy jogosultságot"
 msgid "Revoke Permissions"
 msgstr "Jogosultságok visszavonása"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Nincs fájl ebben a projektben."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Hiba van az űrlapon. Nézze meg az alábbiakban felsorolt problémákat."
 
@@ -415,19 +415,33 @@ msgstr "Új tag"
 msgid "Add a user to this team"
 msgstr "Felhasználó hozzáadása a csapathoz"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "A szerep kötelező új tag hozzáadásánál"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Elutasítás"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Javaslatok szűrése"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Szűrő"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
@@ -484,11 +498,11 @@ msgstr "Többesszám-képlet"
 msgid "Unit"
 msgstr "Egység"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Állapot"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Forrás"
 
@@ -870,23 +884,23 @@ msgstr "Keresés"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Keresés (Ctrl+Shift+S)<br/>Gépeljen, majd nyomjon Entert a kereséshez"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Pontos egyezés"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Forrásszöveg"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Célszöveg"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Megjegyzések"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Helyek"
 
@@ -911,7 +925,7 @@ msgstr "Utolsó (%d)"
 msgid "Search unavailable"
 msgstr "A keresés nem érhető el"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Válasszon ki legalább egy nyelvet"
 
@@ -996,11 +1010,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "A fordítási projekt (%s) törölve"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Cél"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Hozzászólás"
 
@@ -1030,7 +1044,7 @@ msgstr "Elégtelen jogosultságok a javaslat mód eléréséhez."
 msgid "Insufficient rights to access translation mode."
 msgstr "Elégtelen jogosultságok a fordítási mód eléréséhez."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "Elégtelen jogosultságok a lektorálási mód eléréséhez."
 
@@ -1042,35 +1056,15 @@ msgstr "Elégtelen jogosultságok a lektorálási mód eléréséhez."
 msgid "Plural Form %d"
 msgstr "%d. többes alak"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "A „similarity” értékének a [0..1] tartományban kell lennie"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "Az „mt_similarity” értékének a [0..1] tartományban kell lennie"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "A munka szükséges jelzőt törölni kell"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Fordítói megjegyzés"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Függőben"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Elfogadott"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Elutasított"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Elérési útvonal"
 
@@ -1108,11 +1102,11 @@ msgstr "Javaslat elutasítva tőle: %(author)s, megjegyzés: %(comment)s"
 msgid "Added suggestion"
 msgstr "Javaslat hozzáadva"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 msgid "Suggestion accepted with comment"
 msgstr "Javaslat elfogadva, megjegyzéssel"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr "Javaslat visszautasítva, megjegyzéssel"
 
@@ -1133,11 +1127,11 @@ msgstr "Nem sikerült eltávolítani a megjegyzést."
 msgid "Comment submission failed."
 msgstr "A megjegyzés beküldése sikertelen."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "A beküldés feldolgozása nem sikerült."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "A javaslat feldolgozása nem sikerült."
 
@@ -1771,62 +1765,62 @@ msgstr "Lektorálhat javaslatokat"
 msgid "Can perform administrative tasks"
 msgstr "Végezhet adminisztrációs feladatokat"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Javaslat elfogadva tőle: %(author)s"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr ""
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(count)d javaslat került importálásra, összes: %(store)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Javaslat elutasítva tőle: %(author)s"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Kötelezően fordítandó szavak"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2415,20 +2409,20 @@ msgstr "Kevesebb…"
 msgid "Updates"
 msgstr "Frissítés"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "Utoljára frissítve"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "Fordítások"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "Utolsó művelet:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "Ez a projekt ki van kapcsolva, és csak adminisztrátorok láthatják."
 
@@ -2838,11 +2832,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "A jelentett hiba:"
 
-#: templates/includes/formtable.html:25
-msgid "Showing"
-msgstr "Megjelenítés"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Összes kijelölése"
 
@@ -3118,19 +3126,19 @@ msgstr ""
 "%(pos)s. hozzájáruló az elmúlt 30 napban <a href=\"%(url)s\">%(lang_name)s</"
 "a> nyelven"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Utolsó tevékenység:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "Weboldal"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn profil"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3138,7 +3146,7 @@ msgstr ""
 "Mutassa meg, kicsoda, mutatkozzon be<br/>és tegye érdekessé nyilvános "
 "profilját!"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3146,7 +3154,7 @@ msgstr ""
 "Néhány fordítást névtelen önkéntesek készítettek. Ezeket képviseli ez a "
 "speciális metafiók."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3217,6 +3225,24 @@ msgstr "Bejelentkezés"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "A „similarity” értékének a [0..1] tartományban kell lennie"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "Az „mt_similarity” értékének a [0..1] tartományban kell lennie"
+
+#~ msgid "Pending"
+#~ msgstr "Függőben"
+
+#~ msgid "Accepted"
+#~ msgstr "Elfogadott"
+
+#~ msgid "Rejected"
+#~ msgstr "Elutasított"
+
+#~ msgid "Showing"
+#~ msgstr "Megjelenítés"
 
 #~ msgid "Plurr format"
 #~ msgstr "Plurr formátum"

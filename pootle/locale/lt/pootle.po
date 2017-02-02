@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2015-07-12 15:59+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -306,11 +306,11 @@ msgstr "Parinkite vieną ar daugiau leidimų"
 msgid "Revoke Permissions"
 msgstr "Atimti teises"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Šiame projekte nėra failų."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Formos duomenyse aptikta klaidų. Išspręskite nurodytas problemas."
 
@@ -433,19 +433,33 @@ msgstr "Skaičiai"
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Atmesti"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Patvirtinti"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Naudotojų pasiūlymai"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Filtruoti"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projektas"
@@ -502,11 +516,11 @@ msgstr "Daugiskaitos lygtis"
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Būsena"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Originalas"
 
@@ -893,23 +907,23 @@ msgstr "Ieškoti"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Paieška (Vald+Lyg2+S)<br/>Įveskite ieškomą tekstą ir spauskite Įvesti"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Tikslus atitikmuo"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Pirminis tekstas"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Galutinis tekstas"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Pastabos"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Vietos"
 
@@ -934,7 +948,7 @@ msgstr "Paskutinis (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Pasirinkite vieną ar daugiau kalbų"
 
@@ -1020,11 +1034,11 @@ msgstr "Vertimo projektas atnaujintas pagal šviežiausius šablonus."
 msgid "Translation project (%s) has been deleted"
 msgstr "Vertimo projekto failai perskenuoti."
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Vertimas"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Pastabos"
 
@@ -1055,7 +1069,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Darbui su šiuo vertimo projektu nepakanka teisių."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Nepakanka teisių šiam tinklalapiui pasiekti."
@@ -1068,35 +1082,15 @@ msgstr "Nepakanka teisių šiam tinklalapiui pasiekti."
 msgid "Plural Form %d"
 msgstr "Daugiskaitos forma %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Vertėjo pastaba"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Nepatvirtintas"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Patvirtintas"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Atmestas"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Kelias"
 
@@ -1135,12 +1129,12 @@ msgstr "Atmesti pasiūlymą"
 msgid "Added suggestion"
 msgstr "%d pasiūlymas"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Pasiūlymas priimtas."
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1161,11 +1155,11 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr "Nepavyko pateikti pastabos."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Nepavyko apdoroti pateikto vertimo."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Nepavyko apdoroti pasiūlymo."
 
@@ -1762,63 +1756,63 @@ msgstr "Siūlymų peržiūra"
 msgid "Can perform administrative tasks"
 msgstr "„Django“ administravimas"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 "%(user)s pašalino eilutės <i><a href=\"%(url)s\">%(source)s</a></i> vertimą"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Priimti pasiūlymą"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s įkėlė failą"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "Importuotas %(count)d pasiūlymas iš %(store)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Atmesti pasiūlymą"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Būtinai verstini žodžiai"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2409,22 +2403,22 @@ msgstr ""
 msgid "Updates"
 msgstr "Naujinti"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "Paskiausiai redaguota"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 #, fuzzy
 msgid "Translations"
 msgstr "Vertimas"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 #, fuzzy
 msgid "Last action:"
 msgstr "Paskiausias pakeitimas"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2845,12 +2839,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Gautoji klaida buvo:"
 
-#: templates/includes/formtable.html:25
-#, fuzzy
-msgid "Showing"
-msgstr "Rodyti filtrą"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "Pažymėti keletą"
@@ -3116,32 +3123,32 @@ msgid ""
 "days"
 msgstr ""
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Paskiausias pakeitimas"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3211,6 +3218,19 @@ msgstr "Priskirti veiksmą"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Aktyviausi talkininkai"
+
+#~ msgid "Pending"
+#~ msgstr "Nepatvirtintas"
+
+#~ msgid "Accepted"
+#~ msgstr "Patvirtintas"
+
+#~ msgid "Rejected"
+#~ msgstr "Atmestas"
+
+#, fuzzy
+#~ msgid "Showing"
+#~ msgstr "Rodyti filtrą"
 
 #, fuzzy
 #~ msgid "Plurr format"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -533,12 +533,12 @@ msgstr ""
 msgid "#%(position)s"
 msgstr ""
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:46
 #, fuzzy
 msgid "Show disabled"
 msgstr "사용 안 함"
 
-#: static/js/browser/components/VisibilityToggle.js:54
+#: static/js/browser/components/VisibilityToggle.js:47
 #, fuzzy
 msgid "Hide disabled"
 msgstr "사용 안 함"
@@ -614,44 +614,44 @@ msgstr "%s의 제안"
 msgid "%s's overwritten submissions"
 msgstr "%s 덮여쓰여진 제출"
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "서버연결 중 오류 발생"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "찾지 못함"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "서버 오류"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "서버가 다운됐습니다. 나중에 다시 시도하세요."
 
 # unit : 단위, 단일체, 장치, 학점, 부대, 교외전차, 편성 단위
-#: static/js/editor/app.js:1101
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "이 문자열은 더 이상 존재하지 않습니다."
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "검색하기로 돌아가기"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "페이지 다시 불러오기"
 
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "몇명의 익명 사용자"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "누군가"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
 msgid "Similar translations"
 msgstr "유사한 번역"
 

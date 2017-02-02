@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-19 10:23+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -543,11 +543,11 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:46
 msgid "Show disabled"
 msgstr "Dangos yr analluogwyd"
 
-#: static/js/browser/components/VisibilityToggle.js:54
+#: static/js/browser/components/VisibilityToggle.js:47
 msgid "Hide disabled"
 msgstr "Cuddio'r analluogwyd"
 
@@ -622,43 +622,43 @@ msgstr "Awgrymiadau %s"
 msgid "%s's overwritten submissions"
 msgstr "Awgrymiadau %s wedi eu trosysgrifennu"
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Gwall wrth gysylltu â'r gweinydd"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Heb ei ganfod"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Gwall gweinydd"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Mae'r gweinydd i weld wedi torri. Ceisiwch rhywbryd eto."
 
-#: static/js/editor/app.js:1101
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Nid yw'r llinyn hwn yn bodoli."
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Mynd nôl i bori"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 

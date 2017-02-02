@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-29 08:05+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -295,11 +295,11 @@ msgstr "בחירה בהרשאה אחת או יותר"
 msgid "Revoke Permissions"
 msgstr "שלילת הרשאות"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "אין קבצים במיזם זה."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "יש טעויות בטופס. נא לסקור את הבעיות להלן."
 
@@ -410,19 +410,33 @@ msgstr "חבר חדש"
 msgid "Add a user to this team"
 msgstr "הוספת משתמש לצוות זה"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "נדרש תפקיד בעת הוספת חבר חדש"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "דחיה"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "קבלה"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "סינון הצעות"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "מסנן"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "מיזם"
@@ -477,11 +491,11 @@ msgstr "משוואת הרבים"
 msgid "Unit"
 msgstr "יחידה"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "מצב"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "מקור"
 
@@ -860,23 +874,23 @@ msgstr "חיפוש"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "חיפוש (Ctrl+Shift+S)<br/>יש להקליד, ואז ללחוץ על Enter כדי לחפש"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "התאמה מדויקת"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "טקסט המקור"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "טקסט היעד"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "הערות"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "מיקומים"
 
@@ -901,7 +915,7 @@ msgstr "האחרון (%d)"
 msgid "Search unavailable"
 msgstr "החיפוש אינו זמין"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "בחירה בשפה אחת או יותר"
 
@@ -983,11 +997,11 @@ msgstr "מיזם התרגום עודכן כנגד התבניות העדכניו�
 msgid "Translation project (%s) has been deleted"
 msgstr "קובצי מיזם התרגום נסרקו מחדש."
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "יעד"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "הערה"
 
@@ -1017,7 +1031,7 @@ msgstr "אין די הרשאות לגשת למצב הצעה."
 msgid "Insufficient rights to access translation mode."
 msgstr "אין די הרשאות לגשת למצב תרגום."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "אין די הרשאות לגשת למצב סקירה."
 
@@ -1029,35 +1043,15 @@ msgstr "אין די הרשאות לגשת למצב סקירה."
 msgid "Plural Form %d"
 msgstr "צורת רבים %1"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "הערות המתרגם"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "בהמתנה"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "התקבל"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "נדחה"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "נתיב"
 
@@ -1095,12 +1089,12 @@ msgstr "דחיית ההצעה"
 msgid "Added suggestion"
 msgstr "נוספה הצעה"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "הצעות שהתקבלו"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1121,11 +1115,11 @@ msgstr "הסרת ההערה נכשלה."
 msgid "Comment submission failed."
 msgstr "הגשת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "ההגשה נכשלה."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "עיבוד ההצעה נכשל."
 
@@ -1711,62 +1705,62 @@ msgstr "יכולת להציע הצעות"
 msgid "Can perform administrative tasks"
 msgstr "יכולת לבצע פעולות ניהוליות"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "תרגום המחרוזת <i><a href=\"%(url)s\">%(source)s</a></i> הוסר"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "קבלת ההצעה"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "הועלה קובץ ע״י %(user)s "
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "%(check)s הושתקה ע״י %(user)s עבור %(source)s"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "ההשתקה על %(check)s בוטלה ע״י %(user)s עבור %(source)s "
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "נוספה הצעה ע״י %(user)s עבור %(source)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "הצעה נדחתה ע״י %(user)s עבור %(source)s"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "%(source)s תורגם ע״י %(user)s"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "%(source)s נערך ע״י %(user)s"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2336,19 +2330,19 @@ msgstr "פחות…"
 msgid "Updates"
 msgstr "עדכונים"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 msgid "Last updated:"
 msgstr "מועד עדכון אחרון:"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "תרגומים"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "פעילות אחרונה:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "מיזם זה מנוטרל וגלוי למנהלים בלבד."
 
@@ -2756,11 +2750,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "השגיאה שדווחה הייתה:"
 
-#: templates/includes/formtable.html:25
-msgid "Showing"
-msgstr "מוצגים"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "בחירת הכול"
 
@@ -3012,32 +3020,32 @@ msgid ""
 "days"
 msgstr ""
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "פעילות אחרונה:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "האתר שלי"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "פרופיל ה־LinkedIn שלי"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 "חלק מהתרגומים סופקו על ידי מתנדבים אלמוניים. אלו רשומים תחת חשבון על מיוחד."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3106,6 +3114,18 @@ msgstr "כניסה"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "התורמים המובילים ב־30 הימים האחרונים"
+
+#~ msgid "Pending"
+#~ msgstr "בהמתנה"
+
+#~ msgid "Accepted"
+#~ msgstr "התקבל"
+
+#~ msgid "Rejected"
+#~ msgstr "נדחה"
+
+#~ msgid "Showing"
+#~ msgstr "מוצגים"
 
 #~ msgid "Plurr format"
 #~ msgstr "תצורת Plurr"

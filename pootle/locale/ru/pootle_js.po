@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2016-12-05 16:55+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -549,11 +549,11 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:46
 msgid "Show disabled"
 msgstr "Показывать отключенные"
 
-#: static/js/browser/components/VisibilityToggle.js:54
+#: static/js/browser/components/VisibilityToggle.js:47
 msgid "Hide disabled"
 msgstr "Спрятать отключенные"
 
@@ -628,43 +628,43 @@ msgstr "Предложения %s"
 msgid "%s's overwritten submissions"
 msgstr "Измененные предложения %s"
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Ошибка при соединении с сервером"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Не найдено"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Ошибка сервера"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "Кажется, сервер не работает. Попробуйте повторить позже."
 
-#: static/js/editor/app.js:1101
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Эта строка больше не существует."
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Вернуться к просмотру"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "анонимный пользователь"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "кто-то"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
 msgid "Similar translations"
 msgstr "Похожие переводы"
 

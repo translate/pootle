@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-28 19:20+0000\n"
 "Last-Translator: Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,11 +301,11 @@ msgstr "Изаберите једно или више овлашћења"
 msgid "Revoke Permissions"
 msgstr "Опозови овлашћења"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Нема датотека у овом пројекту."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Има грешака у обрасцу. Прегледајте проблеме испод."
 
@@ -417,19 +417,33 @@ msgstr "Нови члан"
 msgid "Add a user to this team"
 msgstr "Додај корисника овом тиму"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "Улога је потребна приликом додавања новог члана"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Одбиј"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Прихвати"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Издвој предлоге"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Филтрер"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Пројекат"
@@ -484,11 +498,11 @@ msgstr "Једначина за множину"
 msgid "Unit"
 msgstr "Јединица"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Стање"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Извор"
 
@@ -871,23 +885,23 @@ msgstr "Потражи"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Претрага (Ктрл+Помак+S)<br/>Укуцајте и притисните „Унеси“ да потражите"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Тачно поклапање"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Изворни текст"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Циљни текст"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Напомене"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Места"
 
@@ -912,7 +926,7 @@ msgstr "Последње (%d)"
 msgid "Search unavailable"
 msgstr "Претрага није доступна"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Изаберите један или више језика"
 
@@ -996,11 +1010,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Пројекат превода (%s) је обрисан"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Одредиште"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Напомена"
 
@@ -1030,7 +1044,7 @@ msgstr "Недовољна права за приступ режиму пред�
 msgid "Insufficient rights to access translation mode."
 msgstr "Недовољна права за приступ режиму превода."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "Недовољна права за приступ режиму прегледа."
 
@@ -1042,35 +1056,15 @@ msgstr "Недовољна права за приступ режиму прег�
 msgid "Plural Form %d"
 msgstr "Облик множине %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "Вредност за „similarity“ треба бити у опсегу [0..1]"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "Вредност за „mt_similarity“ треба бити у опсегу [0..1]"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Заставица потребног рада мора бити очишћена"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Напомена преводиоца"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "На чекању"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Прихваћено"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Одбијено"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Путања"
 
@@ -1108,11 +1102,11 @@ msgstr "Одбијен је предлог преводиоца %(author)s са 
 msgid "Added suggestion"
 msgstr "Предлог је додат"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 msgid "Suggestion accepted with comment"
 msgstr "Предлог је прихваћен са напоменом"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr "Предлог је одбијен са напоменом"
 
@@ -1133,11 +1127,11 @@ msgstr "Нисам успео да уклоним напомену."
 msgid "Comment submission failed."
 msgstr "Предаја напомене није успела."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Нисам успео да обрадим поднесак."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Нисам успео да обрадим предлог."
 
@@ -1760,62 +1754,62 @@ msgstr "Може да прегледа предлоге"
 msgid "Can perform administrative tasks"
 msgstr "Може да обавља административне задатке"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s је уклонио превод за „%(source)s“"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(user)s је прихватио предлог за „%(source)s“"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s је освежио датотеку"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "%(user)s је искључио „%(check)s“ за „%(source)s“"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "%(user)s је укључио „%(check)s“ за „%(source)s“"
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(user)s је додао предлог за „%(source)s“"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(user)s је одбио предлог за „%(source)s“"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "%(user)s је превео „%(source)s“"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s је уредио „%(source)s“"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s је унапред превео „%(source)s“"
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s је прегледао „%(source)s“"
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s је означио за додатни рад „%(source)s“"
@@ -2400,19 +2394,19 @@ msgstr "Мање..."
 msgid "Updates"
 msgstr "Освежавања"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 msgid "Last updated:"
 msgstr "Последње освежавање:"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "Преводи"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "Последња радња:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "Овај пројекат је искључен и видљив је само администраторима."
 
@@ -2822,11 +2816,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Извештена грешка беше:"
 
-#: templates/includes/formtable.html:25
-msgid "Showing"
-msgstr "Приказујем"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Изабери све"
 
@@ -3099,19 +3107,19 @@ msgstr ""
 "%(pos)s. доприносилац за „<a href=\"%(url)s\">%(lang_name)s</a>“ у последњих "
 "30 дана"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Последња активност:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "Мој веб сајт"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "Мој ЛинкедИн профил"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3119,7 +3127,7 @@ msgstr ""
 "Покажите другима ко сте, реците нешто о себи<br/>и учините да ваш јавни "
 "профил изгледа одлично!"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3127,7 +3135,7 @@ msgstr ""
 "Неке преводе су доставили анонимни добровољци. Они су регистровани под овим "
 "посебним мета-налогом."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3198,6 +3206,24 @@ msgstr "Пријави се"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Најбољи доприносиоци у последњих 30 дана"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "Вредност за „similarity“ треба бити у опсегу [0..1]"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "Вредност за „mt_similarity“ треба бити у опсегу [0..1]"
+
+#~ msgid "Pending"
+#~ msgstr "На чекању"
+
+#~ msgid "Accepted"
+#~ msgstr "Прихваћено"
+
+#~ msgid "Rejected"
+#~ msgstr "Одбијено"
+
+#~ msgid "Showing"
+#~ msgstr "Приказујем"
 
 #, fuzzy
 #~ msgid "Plurr format"

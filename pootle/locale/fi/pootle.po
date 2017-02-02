@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2015-06-08 15:43+0000\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,11 +301,11 @@ msgstr "Valitse yksi tai useampi käyttöoikeus"
 msgid "Revoke Permissions"
 msgstr ""
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Tämä projekti ei sisällä tiedostoja."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Lomake sisältää virheitä. Tarkista alla mainitut ongelmat."
 
@@ -429,19 +429,33 @@ msgstr "Luvut"
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Hylkää"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Hyväksy"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Käyttäjien ehdotukset"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Suodata"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekti"
@@ -493,11 +507,11 @@ msgstr "Monikon kaava"
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Tila"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Lähde"
 
@@ -882,23 +896,23 @@ msgstr "Haku"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Haku (Ctrl+Shift+S)<br/>Kirjoita hakusana ja paina Enter etsiäksesi"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Tarkalleen sama"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Lähdeteksti"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Kohdeteksti"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Kommentit"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Sijainnit"
 
@@ -923,7 +937,7 @@ msgstr "Viimeinen (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Valitse yksi tai useampi kieli"
 
@@ -1007,11 +1021,11 @@ msgstr "Käännösprojekti päivitettiin viimeisimmistä mallineista."
 msgid "Translation project (%s) has been deleted"
 msgstr "Käännösprojektin tiedostot on tutkittu uudelleen."
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Kohde"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Kommentti"
 
@@ -1042,7 +1056,7 @@ msgstr ""
 msgid "Insufficient rights to access translation mode."
 msgstr "Ei käyttöoikeuksia tähän käännösprojektiin."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 #, fuzzy
 msgid "Insufficient rights to access review mode."
 msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tälle sivulle."
@@ -1055,35 +1069,15 @@ msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tälle sivulle."
 msgid "Plural Form %d"
 msgstr "Monikon muoto %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr ""
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr ""
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Kääntäjän kommentit"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Odottaa hyväksymistä"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Hyväksytty"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Hylätty"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Polku"
 
@@ -1122,12 +1116,12 @@ msgstr "Hylkää ehdotus"
 msgid "Added suggestion"
 msgstr "%d ehdotus"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Ehdotus hyväksytty."
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1148,11 +1142,11 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr "Kommentin lähetys epäonnistui."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Kommentin käsittely epäonnistui."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Ehdotuksen käsittely epäonnistui."
 
@@ -1748,64 +1742,64 @@ msgstr "Tarkasta ehdotuksia"
 msgid "Can perform administrative tasks"
 msgstr "Djangon ylläpito"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 "%(user)s poisti käännöksen merkkijonolle <i><a href=\"%(url)s\">%(source)s</"
 "a></i>"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Hyväksy ehdotus"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s lähetti tiedoston"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "Tuotiin %(count)d ehdotus kohteesta %(store)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Hylkää ehdotus"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Sana joka on käännettävä"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2397,22 +2391,22 @@ msgstr ""
 msgid "Updates"
 msgstr "Päivitä"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "Viimeksi päivitetty"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 #, fuzzy
 msgid "Translations"
 msgstr "Käännös"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 #, fuzzy
 msgid "Last action:"
 msgstr "Viimeisimmät tapahtumat:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2831,12 +2825,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Havaittu virhe oli:"
 
-#: templates/includes/formtable.html:25
-#, fuzzy
-msgid "Showing"
-msgstr "Näytä tehtäväosoitukset"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "Valitse useita"
@@ -3099,31 +3106,31 @@ msgid ""
 "days"
 msgstr ""
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Viimeisimmät tapahtumat:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3193,6 +3200,19 @@ msgstr "Osoitettava tehtävä"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Ahkerimmat avustajat"
+
+#~ msgid "Pending"
+#~ msgstr "Odottaa hyväksymistä"
+
+#~ msgid "Accepted"
+#~ msgstr "Hyväksytty"
+
+#~ msgid "Rejected"
+#~ msgstr "Hylätty"
+
+#, fuzzy
+#~ msgid "Showing"
+#~ msgstr "Näytä tehtäväosoitukset"
 
 #, fuzzy
 #~ msgid "Plurr format"

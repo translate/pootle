@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-24 12:35+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -305,11 +305,11 @@ msgstr "Bitta yoki bir nechta huquqlarni tanlang"
 msgid "Revoke Permissions"
 msgstr "Ruxsatlarni bekor qilish"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Ushbu loyihada fayllar yo‘q."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Shaklda xatolar mavjud. Quyidagi muammolarni ko‘rib chiqing."
 
@@ -430,21 +430,35 @@ msgstr "Raqamlar"
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 #, fuzzy
 msgid "Reject"
 msgstr "Rad qilindi"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 #, fuzzy
 msgid "Accept"
 msgstr "Qabul qilindi"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Foydalanuvchi tavsiyalari"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Filtr"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Loyiha"
@@ -500,11 +514,11 @@ msgstr "Ko‘plik darajasi"
 msgid "Unit"
 msgstr "Qism"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Holati"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Manba"
 
@@ -886,23 +900,23 @@ msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 "Qidiring (Ctrl+Shift+S)<br/>Qidirish uchun yozing va Enter tugmasini bosing"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Aniq mos"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Manba matn"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Mo‘ljaldagi matn"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Izohlar"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Manzillar"
 
@@ -927,7 +941,7 @@ msgstr "So‘nggi (%d)"
 msgid "Search unavailable"
 msgstr "Izlab bo‘lmaydi"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Bir yoki bir nechta tillarni tanlang"
 
@@ -1014,11 +1028,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Tarjima loyihasi (%s) o‘chirildi"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Mo‘ljal"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Izoh qoldirish"
 
@@ -1048,7 +1062,7 @@ msgstr "Tavsiya rejimidan foydalanish uchun yetarlicha huquq yo‘q."
 msgid "Insufficient rights to access translation mode."
 msgstr "Tarjima rejimidan foydalanish uchun yetarlicha huquq yo‘q."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr ""
 "Qayta ko‘rib chiqish rejimidan foydalanish uchun yetarlicha huquq yo‘q."
@@ -1061,35 +1075,15 @@ msgstr ""
 msgid "Plural Form %d"
 msgstr "%d ko‘plik shakli"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "`similarity` qiymati [0..1] oralig‘ida bo‘lishi kerak"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "`mt_similarity` qiymati [0..1] oralig‘ida bo‘lishi kerak"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Ishlash kerak bayroqchasi tozalanishi kerak"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Tarjimon izohi"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Kutilmoqda"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Qabul qilindi"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Rad qilindi"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Yo‘l"
 
@@ -1127,11 +1121,11 @@ msgstr "%s tavsiyasi qabul rad qilindi"
 msgid "Added suggestion"
 msgstr "Tavsiya qo‘shildi"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 msgid "Suggestion accepted with comment"
 msgstr ""
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1152,11 +1146,11 @@ msgstr "Izoh olib tashlanmadi."
 msgid "Comment submission failed."
 msgstr "Fikr bildirish amalga oshmadi."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Jo‘natish amalga oshmadi."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Tavsiya berish amalga oshmadi."
 
@@ -1788,62 +1782,62 @@ msgstr "Tarjimalarni ko‘rib chiqish mumkin"
 msgid "Can perform administrative tasks"
 msgstr "Administrator vazifasini bajara oladi"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(author)s tavsiyasi qabul qilindi"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr ""
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr ""
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(author)s tavsiyasi qabul qilindi"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(author)s tavsiyasi rad qilindi"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Tarjima qilinishi kerak bo‘lgan so‘zlar"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2431,22 +2425,22 @@ msgstr "kamroq…"
 msgid "Updates"
 msgstr "Narxlar"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "So‘nggi yangilangan"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 #, fuzzy
 msgid "Translations"
 msgstr "Tarjima"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 #, fuzzy
 msgid "Last action:"
 msgstr "So‘nggi faoliyat"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "Ushbu loyiha o‘chirib qo‘yilgan va faqat administratorlarga ko‘rinadi."
 
@@ -2864,12 +2858,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Xabar berilgan xato:"
 
-#: templates/includes/formtable.html:25
-#, fuzzy
-msgid "Showing"
-msgstr "Vaqt qatorini ko‘rsatish"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "Turini tanlash"
@@ -3160,19 +3167,19 @@ msgstr ""
 "<a href=\"%(url)s\">%(lang_name)s</a> tili uchun shu oydagi %(pos)s-"
 "o‘rindagi hissa qo‘shuvchi"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "So‘nggi faoliyat:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "Men veb saytim"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "Mening LinkedIn profilim"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3180,7 +3187,7 @@ msgstr ""
 "Kimligingizni boshqalarga ko‘rsating, o‘zingiz haqingizda ayting<br/>va "
 "ommaviy profilingizni ajoyib ko‘rinishga aylantiring!"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3188,7 +3195,7 @@ msgstr ""
 "Ba’zi tarjimalar anonim ko‘ngillilar tomonidan amalga oshirilgan. Ular ushbu "
 "maxsus meta-account ostida ro‘yxatdan o‘tishgan."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3260,6 +3267,25 @@ msgstr "Kirish"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Eng ko‘p hissa qo‘shuvchilar"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "`similarity` qiymati [0..1] oralig‘ida bo‘lishi kerak"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "`mt_similarity` qiymati [0..1] oralig‘ida bo‘lishi kerak"
+
+#~ msgid "Pending"
+#~ msgstr "Kutilmoqda"
+
+#~ msgid "Accepted"
+#~ msgstr "Qabul qilindi"
+
+#~ msgid "Rejected"
+#~ msgstr "Rad qilindi"
+
+#, fuzzy
+#~ msgid "Showing"
+#~ msgstr "Vaqt qatorini ko‘rsatish"
 
 #~ msgid "Plurr format"
 #~ msgstr "Plurr formati"

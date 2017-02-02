@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-27 13:11+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,11 +299,11 @@ msgstr "権限を選択してください"
 msgid "Revoke Permissions"
 msgstr "権限を取り消し"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "このプロジェクトにはファイルがありません。"
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "フォームにエラーがあります。以下の問題を見直してください。"
 
@@ -415,19 +415,33 @@ msgstr "新メンバー"
 msgid "Add a user to this team"
 msgstr "ユーザーをこのチームに追加"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "新しいメンバーを追加するときは役割りが必要です"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "却下"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "採用"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "提案の絞り込み"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "フィルター"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "プロジェクト"
@@ -482,11 +496,11 @@ msgstr "複数形の同一視"
 msgid "Unit"
 msgstr "ユニット"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "状態"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "ソース"
 
@@ -862,23 +876,23 @@ msgstr "検索"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "検索 (Ctrl+Shift+S)<br/>検索語を入力して Enter キーを押してください"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "完全一致"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "ソーステキスト"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "ターゲットテキスト"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "コメント"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "位置"
 
@@ -903,7 +917,7 @@ msgstr "末尾 (%d)"
 msgid "Search unavailable"
 msgstr "検索は利用できません"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "言語を選択してください"
 
@@ -987,11 +1001,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "翻訳プロジェクト (%s) が削除されました"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "ターゲット"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "コメント"
 
@@ -1021,7 +1035,7 @@ msgstr "提案モードにアクセスするための権限がありません。
 msgid "Insufficient rights to access translation mode."
 msgstr "翻訳モードへのアクセスに必要な権限がありません。"
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "査読モードへのアクセスに必要な権限がありません。"
 
@@ -1033,35 +1047,15 @@ msgstr "査読モードへのアクセスに必要な権限がありません。
 msgid "Plural Form %d"
 msgstr "複数形 %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "`similarity` の値は [0..1] の範囲内でなければなりません"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "`mt_similarity` の値は [0..1] の範囲内でなければなりません"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "要修正フラグを消去してください"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "翻訳者によるコメント"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "留保"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "採用"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "却下"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "パス"
 
@@ -1099,11 +1093,11 @@ msgstr "%(author)s による提案をコメント付きで却下しました: %(
 msgid "Added suggestion"
 msgstr "提案を追加しました"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 msgid "Suggestion accepted with comment"
 msgstr "提案がコメント付きで承認されました。"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr "提案がコメント付きで却下されました"
 
@@ -1124,11 +1118,11 @@ msgstr "コメントの削除に失敗しました。"
 msgid "Comment submission failed."
 msgstr "コメントの送信に失敗しました。"
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "送信の処理に失敗しました。"
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "提案の処理に失敗しました。"
 
@@ -1763,62 +1757,62 @@ msgstr "提案を査読できます"
 msgid "Can perform administrative tasks"
 msgstr "管理タスクを実行できます"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s が文字列 %(source)s の翻訳を削除しました"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(user)s が %(source)s の提案を承認しました"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s がファイルをアップロードしました"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "%(user)s が %(source)s の %(source)s を解除しました。"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "%(user)s が %(source)s の %(source)s の解除を取り消しました。"
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(user)s が %(source)s に提案を追加しました"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(user)s が %(source)s の提案を却下しました"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "%(user)s が %(source)s を翻訳しました"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s が %(source)s を編集しました"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s が %(source)s を仮翻訳しました"
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s が %(source)s を査読しました"
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s が %(source)s に要修正マークを付けました"
@@ -2404,19 +2398,19 @@ msgstr "減らす..."
 msgid "Updates"
 msgstr "更新"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 msgid "Last updated:"
 msgstr "最終更新日時:"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "訳文"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "最終操作:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "このプロジェクトは無効化されており、管理者しか閲覧できません。"
 
@@ -2823,11 +2817,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "返されたエラー:"
 
-#: templates/includes/formtable.html:25
-msgid "Showing"
-msgstr "表示中"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "すべて選択"
 
@@ -3090,25 +3098,25 @@ msgstr ""
 "最近 30 日間の貢献で第 %(pos)s 位の <a href=\"%(url)s\">%(lang_name)s</a> 貢"
 "献者"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "最終活動日時:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "ウェブサイト"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn プロフィール"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr "あなたの自己紹介をして、<br/>公開プロフィールを派手に見せましょう。"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3116,7 +3124,7 @@ msgstr ""
 "翻訳は匿名のボランティアにより提供されているものもあります。これらは、この特"
 "別なメタアカウントの下に登録されています。"
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3187,6 +3195,24 @@ msgstr "サインイン"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "最近 30 日間の上位の貢献者たち"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "`similarity` の値は [0..1] の範囲内でなければなりません"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "`mt_similarity` の値は [0..1] の範囲内でなければなりません"
+
+#~ msgid "Pending"
+#~ msgstr "留保"
+
+#~ msgid "Accepted"
+#~ msgstr "採用"
+
+#~ msgid "Rejected"
+#~ msgstr "却下"
+
+#~ msgid "Showing"
+#~ msgstr "表示中"
 
 #~ msgid "Plurr format"
 #~ msgstr "複数形"

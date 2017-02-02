@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-13 11:47+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2016-12-26 12:06+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -547,11 +547,11 @@ msgstr "+%(score)s"
 msgid "#%(position)s"
 msgstr "#%(position)s"
 
-#: static/js/browser/components/VisibilityToggle.js:53
+#: static/js/browser/components/VisibilityToggle.js:46
 msgid "Show disabled"
 msgstr "Tonen uitgeschakeld"
 
-#: static/js/browser/components/VisibilityToggle.js:54
+#: static/js/browser/components/VisibilityToggle.js:47
 msgid "Hide disabled"
 msgstr "Verbergen uitgeschakeld"
 
@@ -626,43 +626,43 @@ msgstr "Bijdragen van %s"
 msgid "%s's overwritten submissions"
 msgstr "Overschreven bijdragen van %s"
 
-#: static/js/editor/app.js:1083
+#: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
 msgstr "Fout tijdens verbinden met de server"
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1074
 msgid "Not found"
 msgstr "Niet gevonden"
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1076
 msgid "Server error"
 msgstr "Serverfout"
 
-#: static/js/editor/app.js:1092
+#: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
 msgstr "De server lijkt niet beschikbaar. Probeer het later nog eens."
 
-#: static/js/editor/app.js:1101
+#: static/js/editor/app.js:1087
 msgid "This string no longer exists."
 msgstr "Deze tekenreeks bestaat niet meer."
 
-#: static/js/editor/app.js:1102
+#: static/js/editor/app.js:1088
 msgid "Go back to browsing"
 msgstr "Terug naar bladeren"
 
-#: static/js/editor/app.js:1104
+#: static/js/editor/app.js:1090
 msgid "Reload page"
 msgstr "Pagina herladen"
 
-#: static/js/editor/app.js:2191
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "een anonieme server"
 
-#: static/js/editor/app.js:2193
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "iemand"
 
-#: static/js/editor/app.js:2211 static/js/editor/app.js:2260
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
 msgid "Similar translations"
 msgstr "Soortgelijke vertalingen"
 

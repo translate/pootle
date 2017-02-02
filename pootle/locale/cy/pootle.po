@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-26 17:04+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -299,11 +299,11 @@ msgstr "Dewis un neu fwy o ganiatâd"
 msgid "Revoke Permissions"
 msgstr "Ddirymu Caniatâd"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Dim ffeiliau yn y project hwn."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Mae gwallau yn y ffurflen. Adolygwch y broblem isod."
 
@@ -415,19 +415,33 @@ msgstr "Aelod newydd"
 msgid "Add a user to this team"
 msgstr "Ychwanegu defnyddiwr i'r tîm hwn"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "Rôl sydd ei angen wrth ychwanegu aelod newydd"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Gwrthod"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Derbyniwyd"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Awgrymiadau hidlo"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Hidl"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Project"
@@ -483,11 +497,11 @@ msgstr "Hafaliad Lluosogion"
 msgid "Unit"
 msgstr "Uned"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Cyflwr"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Ffynhonnell"
 
@@ -869,23 +883,23 @@ msgstr "Chwilio"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Chwilio (Ctrl+Shift+S)<br/>Math, yna pwyso Enter i chwilio"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Cydweddu'n Llawn"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Testun Ffynhonnell"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Testun Targed"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Sylwadau"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Lleoliadau"
 
@@ -910,7 +924,7 @@ msgstr "(%d) olaf"
 msgid "Search unavailable"
 msgstr "Nid yw chwilio ar gael"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Dewiswch un neu fwy o ieithoedd"
 
@@ -996,11 +1010,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Mae project cyfieithu (%s) wedi ei ddileu"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Targed"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Sylw"
 
@@ -1030,7 +1044,7 @@ msgstr "Dim hawliau digonol i gael mynediad at y modd awgrymu."
 msgid "Insufficient rights to access translation mode."
 msgstr "Dim hawliau digonol i gael mynediad i'r modd cyfieithu."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "Dim hawliau digonol i gael mynediad i'r modd adolygu."
 
@@ -1042,35 +1056,15 @@ msgstr "Dim hawliau digonol i gael mynediad i'r modd adolygu."
 msgid "Plural Form %d"
 msgstr "Ffurfiau Lluosog %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "Dylai gwerth `tebygrwydd` fod rhwng [0..1]"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "Dylai gwerth `mt_similarity` fod yn yr ystod [0..1]"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Rhaid i'r faner angen gwaith gael ei chlirio"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Sylw'r cyfieithydd"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Dan Ystyriaeth"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Wedi ei Dderbyn"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Wedi ei Wrthod"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Llwybr"
 
@@ -1108,11 +1102,11 @@ msgstr "Gwrthod awgrym gan %(author)s a sylw: %(comment)s"
 msgid "Added suggestion"
 msgstr "Awgrym wedi ei ychwanegu"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 msgid "Suggestion accepted with comment"
 msgstr "Derbyniwyd yr awgrym gyda sylw"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr "Gwrthodwyd yr awgrym gyda sylw"
 
@@ -1133,11 +1127,11 @@ msgstr "Methu tynnu'r sylw."
 msgid "Comment submission failed."
 msgstr "Methodd cyflwyno sylwadau."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Methu prosesu'r cyflwyniad."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Methu prosesu'r awgrym."
 
@@ -1771,62 +1765,62 @@ msgstr "Gallu adolygu cyfieithiadau"
 msgid "Can perform administrative tasks"
 msgstr "Gallu gyflawni tasgau gweinyddol"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "Mae %(user)s wedi tynnu cyfieithiad %(source)s"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Derbyniodd %(user)s awgrymiadau gan %(source)s"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "Llwythodd %(user)s ffeil"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "Tawelodd %(user)s %(check)s ar gyfer %(source)s"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "Dad-dawelodd %(user)s %(check)s ar gyfer %(source)s"
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "Ychwanegodd %(user)s awgrymiadau ar gyfer %(source)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Gwrthododd %(user)s awgrym gan %(source)s"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "Cyfieithodd %(user)s %(source)s"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "Golygodd %(user)s %(source)s"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "Rhag-gyfieithodd %(user)s %(source)s"
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "Adolygodd %(user)s %(source)s"
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "Nododd %(user)s ei fod angen gwaith %(source)s"
@@ -2417,19 +2411,19 @@ msgstr "Llai..."
 msgid "Updates"
 msgstr "Diweddariadau"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 msgid "Last updated:"
 msgstr "Diweddarwyd diwethaf:"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "Cyfieithiadau"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "Gweithred ddiwethaf:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 "Mae'r project hwn wedi ei analluogi ac yn weladwy i'r gweinyddwr yn unig."
@@ -2844,11 +2838,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Y gwall cofnodwyd oedd:"
 
-#: templates/includes/formtable.html:25
-msgid "Showing"
-msgstr "Dangos"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Dewis popeth"
 
@@ -3124,19 +3132,19 @@ msgstr ""
 "Cyfrannwr #%(pos)s <a href=\"%(url)s\">%(lang_name)s</a> y 30 diwrnod "
 "diwethaf"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Gweithred ddiweddaraf:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "Gwefan"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "Proffil LinkedIn"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3144,7 +3152,7 @@ msgstr ""
 "Dangoswch i eraill pwy ydych chi, soniwch amdanoch chi eich hun<br/> a "
 "gwnewch i'ch proffil cyhoeddus edrych yn dda!"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3152,7 +3160,7 @@ msgstr ""
 "Mae rhai cyfieithiadau wedi eu darparu gan wirfoddolwyr dienw. Mae'r rhain "
 "wedi'u cofrestru o dan y meta-gyfrif arbennig hwn."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3223,6 +3231,24 @@ msgstr "Mewngofnodi"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Prif Gyfranwyr y 30 Diwrnod Diwethaf"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "Dylai gwerth `tebygrwydd` fod rhwng [0..1]"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "Dylai gwerth `mt_similarity` fod yn yr ystod [0..1]"
+
+#~ msgid "Pending"
+#~ msgstr "Dan Ystyriaeth"
+
+#~ msgid "Accepted"
+#~ msgstr "Wedi ei Dderbyn"
+
+#~ msgid "Rejected"
+#~ msgstr "Wedi ei Wrthod"
+
+#~ msgid "Showing"
+#~ msgstr "Dangos"
 
 #~ msgid "Plurr format"
 #~ msgstr "Fformat Plurr"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2014-06-18 14:37+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -306,11 +306,11 @@ msgstr "Roghnaigh cead amháin nó níos mó"
 msgid "Revoke Permissions"
 msgstr "Cúlghair Ceadanna"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Níl comhaid sa thionscadal seo."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Bhí earráidí san fhoirm. Feicfidh tú na fadhbanna thíos."
 
@@ -435,19 +435,33 @@ msgstr "Uimhreacha"
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Diúltaigh"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Glac"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Moltaí ó úsáideoirí"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Scagaire"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Tionscadal"
@@ -502,11 +516,11 @@ msgstr "Cothromóid Iolrach"
 msgid "Unit"
 msgstr "Aonad"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Staid"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Foinse"
 
@@ -899,23 +913,23 @@ msgstr "Cuardaigh"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Cuardach (Ctrl+Shift+S)<br/>Clóscríobh agus brúigh Enter le cuardach"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Toradh Beacht"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Téacs Foinseach"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Téacs Sprice"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Nótaí Tráchta"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Suíomhanna"
 
@@ -940,7 +954,7 @@ msgstr "Deireadh (%d)"
 msgid "Search unavailable"
 msgstr "Níl cuardach ar fáil"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Roghnaigh teanga nó níos mó ná teanga amháin"
 
@@ -1026,11 +1040,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Scriosadh an tionscadal aistriúcháin (%s)"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Sprioc"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Nóta Tráchta"
 
@@ -1060,7 +1074,7 @@ msgstr "Níl cead agat mód molta a chur ar siúl."
 msgid "Insufficient rights to access translation mode."
 msgstr "Níl cead agat mód aistrithe a chur ar siúl."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "Níl cead agat mód athbhreithnithe a chur ar siúl."
 
@@ -1072,35 +1086,15 @@ msgstr "Níl cead agat mód athbhreithnithe a chur ar siúl."
 msgid "Plural Form %d"
 msgstr "Leagan Iolrach %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "Ba chóir don luach `similarity` a bheith sa raon [0..1]"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "Ba chóir don luach `mt_similarity` a bheith sa raon [0..1]"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Is gá an bhratach Le Deimhniú a ghlanadh"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Trácht de chuid an aistritheora"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Ar Feitheamh"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Glactha"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Diúltaithe"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Cosán"
 
@@ -1138,12 +1132,12 @@ msgstr "Diúltaíodh moladh ó %(author)s le nóta: %(comment)s"
 msgid "Added suggestion"
 msgstr "Cuir moladh leis"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Moltaí Glactha"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1164,11 +1158,11 @@ msgstr "Níorbh fhéidir an nóta a bhaint."
 msgid "Comment submission failed."
 msgstr "Theip ar sheoladh an nóta."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Níorbh fhéidir an t-aistriúchán a phróiseáil."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Níorbh fhéidir an moladh a phróiseáil."
 
@@ -1792,62 +1786,62 @@ msgstr "Is féidir moltaí a athbhreithniú"
 msgid "Can perform administrative tasks"
 msgstr "Is féidir tascanna bainistíochta a dhéanamh"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "baineadh an t-aistriúchán ar %(source_string)s"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "Glacadh le moladh ó %(author)s"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr ""
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, fuzzy, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "balbhaíodh deimhniú %(check_name)s do %(source_string)s"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, fuzzy, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "díbhalbhaíodh an deimhniú %(check_name)s do %(source_string)s"
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "cuireadh moladh le %(source_string)s"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "Diúltaíodh moladh ó %(author)s"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "aistríodh %(source_string)s"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, fuzzy, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "rinneadh leasú ar %(source_string)s"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, fuzzy, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "réamhaistríodh %(source_string)s"
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, fuzzy, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "rinneadh athbhreithniú ar %(source_string)s"
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2431,20 +2425,20 @@ msgstr "níos lú..."
 msgid "Updates"
 msgstr "Nuashonruithe"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "Athraithe"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "Aistriúcháin"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "An gníomh is déanaí:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 "Tá an tionscadal seo díchumasaithe agus is é riarthóirí amháin atá in ann é "
@@ -2859,12 +2853,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "An earráid a ndearnadh tuairisc uirthi:"
 
-#: templates/includes/formtable.html:25
-#, fuzzy
-msgid "Showing"
-msgstr "Taispeáin Sannaithe"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "Roghnaigh Iolrach"
@@ -3146,25 +3153,25 @@ msgid ""
 msgstr ""
 "Rannpháirtí #%(pos)s i <a href=\"%(url)s\">%(lang_name)s</a> an mhí seo"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "An ghníomhaíocht is déanaí:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "Mo Shuíomh Gréasáin"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "Mo Phróifíl LinkedIn"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr "Inis dúinn fút féin,<br/>agus cuir snas ar do phróifíl phoiblí!"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3172,7 +3179,7 @@ msgstr ""
 "Oibrithe deonacha a rinne roinnt de na haistriúcháin. Cuirtear i leith "
 "meiteachuntas speisialta iad seo."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3243,6 +3250,25 @@ msgstr "Logáil isteach"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "Ba chóir don luach `similarity` a bheith sa raon [0..1]"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "Ba chóir don luach `mt_similarity` a bheith sa raon [0..1]"
+
+#~ msgid "Pending"
+#~ msgstr "Ar Feitheamh"
+
+#~ msgid "Accepted"
+#~ msgstr "Glactha"
+
+#~ msgid "Rejected"
+#~ msgstr "Diúltaithe"
+
+#, fuzzy
+#~ msgid "Showing"
+#~ msgstr "Taispeáin Sannaithe"
 
 #~ msgid "Plurr format"
 #~ msgstr "Formáid Plurr"

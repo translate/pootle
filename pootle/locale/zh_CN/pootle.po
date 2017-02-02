@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2016-12-01 13:16+0000\n"
 "Last-Translator: Wei <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -291,11 +291,11 @@ msgstr "选择一项或多项权限"
 msgid "Revoke Permissions"
 msgstr "废除权限"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "这个项目里没有文件。"
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "这个表单中存在问题。请审阅下列错误。"
 
@@ -420,20 +420,34 @@ msgstr "数字"
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 #, fuzzy
 msgid "Role is required when adding a new member"
 msgstr "Redis 作为缓存后端是必须的。"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "拒绝"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "接受"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "用户建议"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "过滤"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "项目"
@@ -486,11 +500,11 @@ msgstr "同义复数型"
 msgid "Unit"
 msgstr "单位"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "状态"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "源"
 
@@ -869,23 +883,23 @@ msgstr "搜索"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "搜索 (Ctrl+Shift+S)<br/>键入并按回车键进行搜索"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "精确匹配"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "源文本"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "目标文本"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "注释"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "位置"
 
@@ -910,7 +924,7 @@ msgstr "最后一项 (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "选择一种或多种语言"
 
@@ -991,11 +1005,11 @@ msgstr "项目翻译文件已基于最新模板更新。"
 msgid "Translation project (%s) has been deleted"
 msgstr "翻译项目的文件已重新扫描。"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "目标"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "注释"
 
@@ -1025,7 +1039,7 @@ msgstr "访问建议模式的权限不足。"
 msgid "Insufficient rights to access translation mode."
 msgstr "访问翻译模式的权限不足。"
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "访问审核模式的权限不足。"
 
@@ -1037,35 +1051,15 @@ msgstr "访问审核模式的权限不足。"
 msgid "Plural Form %d"
 msgstr "复数形式 %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "similarity 的值应该在 [0..1] 的范围内"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "`mt_similarity` 的值应该在 [0..1] 的范围内"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "必须清除“尚需完善”标志"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "译者注释"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "待审"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "已接受"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "已拒绝"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "路径"
 
@@ -1103,12 +1097,12 @@ msgstr "拒绝了对 %(source_string)s 的建议"
 msgid "Added suggestion"
 msgstr "添加了建议"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "建议已接受。"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr ""
 
@@ -1129,11 +1123,11 @@ msgstr "移除注释失败。"
 msgid "Comment submission failed."
 msgstr "提交注释失败。"
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "处理提交失败。"
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "处理建议失败。"
 
@@ -1735,62 +1729,62 @@ msgstr "审阅建议"
 msgid "Can perform administrative tasks"
 msgstr "Django 管理"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "移除了 %(source_string)s 的翻译"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, fuzzy, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "接受了来自于%s的建议"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, fuzzy, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s 上传了一个文件"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, fuzzy, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "消除了 %(source_string)s 的 %(check_name)s 检查"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, fuzzy, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "取消了 %(source_string)s 的 %(check_name)s 检查消除"
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, fuzzy, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "添加了对 %(source_string)s 的建议"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, fuzzy, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "拒绝%s的建议"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, fuzzy, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "翻译了 %(source_string)s"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, fuzzy, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "编辑了  %(source_string)s"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, fuzzy, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "预翻译了 %(source_string)s"
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, fuzzy, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "审核了 %(source_string)s"
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -2363,22 +2357,22 @@ msgstr ""
 msgid "Updates"
 msgstr "更新"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 #, fuzzy
 msgid "Last updated:"
 msgstr "上次更新"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 #, fuzzy
 msgid "Translations"
 msgstr "译文"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 #, fuzzy
 msgid "Last action:"
 msgstr "最后操作"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "此项目已被禁用并且只有管理员可见。"
 
@@ -2786,12 +2780,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "报告的错误是："
 
-#: templates/includes/formtable.html:25
-#, fuzzy
-msgid "Showing"
-msgstr "显示过滤器"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "选择多个"
@@ -3054,32 +3061,32 @@ msgid ""
 "days"
 msgstr ""
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 #, fuzzy
 msgid "Latest activity:"
 msgstr "最后操作"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr ""
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "我的 LinkedIn 个人资料"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3149,6 +3156,25 @@ msgstr "登录"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "顶尖贡献者"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "similarity 的值应该在 [0..1] 的范围内"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "`mt_similarity` 的值应该在 [0..1] 的范围内"
+
+#~ msgid "Pending"
+#~ msgstr "待审"
+
+#~ msgid "Accepted"
+#~ msgstr "已接受"
+
+#~ msgid "Rejected"
+#~ msgstr "已拒绝"
+
+#, fuzzy
+#~ msgid "Showing"
+#~ msgstr "显示过滤器"
 
 #, fuzzy
 #~ msgid "Plurr format"

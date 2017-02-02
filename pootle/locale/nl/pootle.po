@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-01-24 10:19+0000\n"
+"POT-Creation-Date: 2017-02-02 15:25+0000\n"
 "PO-Revision-Date: 2017-01-26 18:29+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
@@ -304,11 +304,11 @@ msgstr "Selecteer een of meer rechten"
 msgid "Revoke Permissions"
 msgstr "Rechten intrekken"
 
-#: apps/pootle_app/views/admin/util.py:125
+#: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
 msgstr "Geen bestanden in dit project."
 
-#: apps/pootle_app/views/admin/util.py:159 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Het formulier bevat fouten. Controleer de onderstaande problemen."
 
@@ -420,19 +420,33 @@ msgstr "Nieuw lid"
 msgid "Add a user to this team"
 msgstr "Een gebruiker aan dit team toevoegen"
 
-#: apps/pootle_language/forms.py:127
+#: apps/pootle_language/forms.py:97
+msgid "Role"
+msgstr ""
+
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "Rol is vereist bij toevoegen van een nieuw lid"
 
-#: apps/pootle_language/forms.py:153 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Afwijzen"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Accepteren"
 
-#: apps/pootle_language/forms.py:170 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:157
+#, fuzzy
+msgid "Filter suggester"
+msgstr "Suggesties filteren"
+
+#: apps/pootle_language/forms.py:163
+#, fuzzy
+msgid "Filter state"
+msgstr "Filter"
+
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Project"
@@ -489,11 +503,11 @@ msgstr "Meervoudsvergelijking"
 msgid "Unit"
 msgstr "Eenheid"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Status"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Bron"
 
@@ -879,23 +893,23 @@ msgstr "Zoeken"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Zoeken (Ctrl+Shift+S)<br/>Typ en druk op Enter om te zoeken"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:436
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
 msgstr "Exacte overeenkomst"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:442
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
 msgid "Source Text"
 msgstr "Brontekst"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:443
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
 msgid "Target Text"
 msgstr "Doeltekst"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:444
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
 msgid "Comments"
 msgstr "Opmerkingen"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:445
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
 msgid "Locations"
 msgstr "Locaties"
 
@@ -920,7 +934,7 @@ msgstr "Laatste (%d)"
 msgid "Search unavailable"
 msgstr "Zoeken niet beschikbaar"
 
-#: apps/pootle_profile/views.py:59
+#: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Selecteer een of meer talen"
 
@@ -1004,11 +1018,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Vertaalproject (%s) is verwijderd"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Doel"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Opmerking"
 
@@ -1038,7 +1052,7 @@ msgstr "Onvoldoende rechten voor toegang tot suggestiemodus."
 msgid "Insufficient rights to access translation mode."
 msgstr "Onvoldoende rechten voor toegang tot vertaalmodus."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:677
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
 msgid "Insufficient rights to access review mode."
 msgstr "Onvoldoende rechten voor toegang tot controlemodus."
 
@@ -1050,35 +1064,15 @@ msgstr "Onvoldoende rechten voor toegang tot controlemodus."
 msgid "Plural Form %d"
 msgstr "Meervoudsvorm %d"
 
-#: apps/pootle_store/forms.py:258
-msgid "Value of `similarity` should be in in the [0..1] range"
-msgstr "Waarde van 'similarity' moet binnen het bereik [0..1] vallen"
-
 #: apps/pootle_store/forms.py:268
-msgid "Value of `mt_similarity` should be in in the [0..1] range"
-msgstr "Waarde van 'mt_similarity' moet binnen het bereik [0..1] vallen"
-
-#: apps/pootle_store/forms.py:290
 msgid "Needs work flag must be cleared"
 msgstr "Vlag Werk vereist moet worden gewist"
 
-#: apps/pootle_store/forms.py:350
+#: apps/pootle_store/forms.py:328
 msgid "Translator comment"
 msgstr "Opmerking van vertaler"
 
-#: apps/pootle_store/models.py:126
-msgid "Pending"
-msgstr "Openstaand"
-
-#: apps/pootle_store/models.py:127
-msgid "Accepted"
-msgstr "Geaccepteerd"
-
-#: apps/pootle_store/models.py:128
-msgid "Rejected"
-msgstr "Afgewezen"
-
-#: apps/pootle_store/models.py:979 apps/pootle_store/models.py:986
+#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
 msgid "Path"
 msgstr "Pad"
 
@@ -1116,11 +1110,11 @@ msgstr "Heeft suggestie van %(author)s afgewezen met opmerking: %(comment)s"
 msgid "Added suggestion"
 msgstr "Heeft suggestie toegevoegd"
 
-#: apps/pootle_store/utils.py:33
+#: apps/pootle_store/utils.py:65
 msgid "Suggestion accepted with comment"
 msgstr "Suggestie geaccepteerd met opmerking"
 
-#: apps/pootle_store/utils.py:35
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion rejected with comment"
 msgstr "Suggestie afgewezen met opmerking"
 
@@ -1141,11 +1135,11 @@ msgstr "Verwijderen van opmerking mislukt."
 msgid "Comment submission failed."
 msgstr "Indienen van opmerking mislukt."
 
-#: apps/pootle_store/views.py:606
+#: apps/pootle_store/views.py:603
 msgid "Failed to process submission."
 msgstr "Verwerken van indiening mislukt."
 
-#: apps/pootle_store/views.py:648
+#: apps/pootle_store/views.py:643
 msgid "Failed to process suggestion."
 msgstr "Verwerken van suggestie mislukt."
 
@@ -1775,62 +1769,62 @@ msgstr "Kan suggesties nakijken"
 msgid "Can perform administrative tasks"
 msgstr "Kan beheerderstaken uitvoeren"
 
-#: core/views/display.py:100 core/views/display.py:121
+#: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s heeft vertaling voor %(source)s verwijderd"
 
-#: core/views/display.py:102
+#: core/views/display.py:105
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
 msgstr "%(user)s heeft suggestie voor %(source)s geaccepteerd"
 
-#: core/views/display.py:104
+#: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
 msgstr "%(user)s heeft bestand geüpload"
 
-#: core/views/display.py:106
+#: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
 msgstr "%(user)s heeft %(check)s voor %(source)s verborgen"
 
-#: core/views/display.py:108
+#: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
 msgstr "%(user)s heeft %(check)s voor %(source)s zichtbaar gemaakt"
 
-#: core/views/display.py:110
+#: core/views/display.py:113
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
 msgstr "%(user)s heeft suggestie voor %(source)s toegevoegd"
 
-#: core/views/display.py:112
+#: core/views/display.py:115
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
 msgstr "%(user)s heeft suggestie voor %(source)s afgewezen"
 
-#: core/views/display.py:115
+#: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
 msgstr "%(user)s heeft %(source)s vertaald"
 
-#: core/views/display.py:117
+#: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s heeft %(source)s bewerkt"
 
-#: core/views/display.py:119
+#: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s heeft %(source)s vooraf vertaald"
 
-#: core/views/display.py:123
+#: core/views/display.py:126
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s heeft %(source)s gecontroleerd"
 
-#: core/views/display.py:125
+#: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s heeft %(source)s gemarkeerd als Werk vereist"
@@ -2422,19 +2416,19 @@ msgstr "Minder..."
 msgid "Updates"
 msgstr "Updates"
 
-#: templates/browser/index.html:86
+#: templates/browser/index.html:87
 msgid "Last updated:"
 msgstr "Laatst bijgewerkt:"
 
-#: templates/browser/index.html:100
+#: templates/browser/index.html:102
 msgid "Translations"
 msgstr "Vertalingen"
 
-#: templates/browser/index.html:104
+#: templates/browser/index.html:106
 msgid "Last action:"
 msgstr "Laatste actie:"
 
-#: templates/browser/index.html:156
+#: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
 msgstr "Dit project is uitgeschakeld en alleen zichtbaar voor beheerders."
 
@@ -2853,11 +2847,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "De gemelde fout was:"
 
-#: templates/includes/formtable.html:25
-msgid "Showing"
-msgstr "Getoond:"
+#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
+msgid "&lt;&lt;&lt;"
+msgstr ""
 
-#: templates/includes/formtable.html:81
+#: templates/includes/formtable.html:22
+#, python-format
+msgid "Page %(page_number)s of %(page_count)s."
+msgstr ""
+
+#: templates/includes/formtable.html:27
+#, python-format
+msgid "Showing %(count)s results per page"
+msgstr ""
+
+#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
+msgid "&gt;&gt;&gt;"
+msgstr ""
+
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Alles selecteren"
 
@@ -3134,19 +3142,19 @@ msgstr ""
 "Medewerker #%(pos)s in het <a href=\"%(url)s\">%(lang_name)s</a> in de "
 "afgelopen 30 dagen"
 
-#: templates/user/profile.html:60
+#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Laatste activiteit:"
 
-#: templates/user/profile.html:75
+#: templates/user/profile.html:73
 msgid "My Website"
 msgstr "Mijn website"
 
-#: templates/user/profile.html:81
+#: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
 msgstr "Mijn LinkedIn-profiel"
 
-#: templates/user/profile.html:90
+#: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -3154,7 +3162,7 @@ msgstr ""
 "Toon anderen wie u bent, vertel iets over uzelf<br/>en laat uw openbare "
 "profiel er prachtig uitzien!"
 
-#: templates/user/profile.html:100
+#: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -3162,7 +3170,7 @@ msgstr ""
 "Sommige vertalingen worden door anonieme vrijwilligers aangeleverd. Die "
 "vertalingen worden onder deze speciale meta-account geregistreerd."
 
-#: templates/user/profile.html:102
+#: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -3234,6 +3242,24 @@ msgstr "Aanmelden"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Meest actieve medewerkers in de afgelopen 30 dagen"
+
+#~ msgid "Value of `similarity` should be in in the [0..1] range"
+#~ msgstr "Waarde van 'similarity' moet binnen het bereik [0..1] vallen"
+
+#~ msgid "Value of `mt_similarity` should be in in the [0..1] range"
+#~ msgstr "Waarde van 'mt_similarity' moet binnen het bereik [0..1] vallen"
+
+#~ msgid "Pending"
+#~ msgstr "Openstaand"
+
+#~ msgid "Accepted"
+#~ msgstr "Geaccepteerd"
+
+#~ msgid "Rejected"
+#~ msgstr "Afgewezen"
+
+#~ msgid "Showing"
+#~ msgstr "Getoond:"
 
 #~ msgid "Plurr format"
 #~ msgstr "Plurr-indeling"
