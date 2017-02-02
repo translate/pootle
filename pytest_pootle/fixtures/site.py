@@ -142,11 +142,18 @@ def no_submissions():
 
 
 @pytest.fixture
-def no_users():
+def no_users(no_units):
     from django.contrib.auth import get_user_model
 
     User = get_user_model()
     User.objects.all().delete()
+
+
+@pytest.fixture
+def no_units():
+    from pootle_store.models import Unit
+
+    Unit.objects.all().delete()
 
 
 @pytest.fixture
