@@ -110,15 +110,6 @@ class InitDB(object):
         }
         self._create_pootle_user(**criteria)
 
-        # The system user represents a system, and is used to
-        # associate updates done by bulk commands as update_stores.
-        criteria = {
-            'username': u"system",
-            'full_name': u"Pootle",
-            'is_active': True,
-        }
-        self._create_pootle_user(**criteria)
-
     def create_pootle_permissions(self):
         """Create Pootle's directory level permissions."""
 
