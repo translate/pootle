@@ -19,7 +19,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.models import Store
+from pootle_store.models import Store, Unit
 from pootle_translationproject.utils import TPTool
 
 
@@ -110,6 +110,10 @@ def _test_tp_match(source_tp, target_tp, project=None, update=False):
             assert unit.getcontext() == updated_unit.getcontext()
             assert unit.getlocations() == updated_unit.getlocations()
             assert unit.hasplural() == updated_unit.hasplural()
+            # # these tests dont work yet
+            # assert unit.created_by == updated_unit.created_by
+            # assert unit.submitted_by == updated_unit.submitted_by
+            # assert unit.reviewed_by == updated_unit.reviewed_by
     for store in target_tp.stores.live():
         store_path = "".join(split_pootle_path(store.pootle_path)[2:])
         source_path = (
@@ -222,9 +226,11 @@ def test_tp_tool_move_project(language0, project0, project1,
 
 
 @pytest.mark.django_db
-def test_tp_tool_clone_project(tp0, project1):
+def test_tp_tool_clone_project(tp0, project1, member):
     new_lang = LanguageDBFactory()
     tp_tool = TPTool(tp0.project)
+    Unit.objects.filter(
+        store__translation_project=tp0).update(created_by=member)
     _test_tp_match(
         tp0,
         tp_tool.clone(tp0, new_lang, project1),
