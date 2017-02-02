@@ -15,6 +15,7 @@ from django.urls import reverse
 
 from pootle.core.log import SCORE_CHANGED, log
 from pootle.core.utils import dateformat
+from pootle.core.user import get_system_user
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_misc.checks import check_names
 from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
@@ -168,8 +169,11 @@ class Submission(models.Model):
     translation_project = models.ForeignKey(
         'pootle_translationproject.TranslationProject',
         db_index=True, on_delete=models.CASCADE)
-    submitter = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
-                                  db_index=True, on_delete=models.CASCADE)
+    submitter = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        db_index=True,
+        on_delete=models.SET(get_system_user))
     suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
                                    null=True, db_index=True,
                                    on_delete=models.CASCADE)
