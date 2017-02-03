@@ -9,14 +9,14 @@
 from django.core.exceptions import ValidationError
 
 from pootle.core.delegate import (
-    deserializers, frozen, review, search_backend, serializers)
+    deserializers, frozen, lifecycle, review, search_backend, serializers)
 from pootle.core.plugin import getter
 from pootle_config.delegate import (
     config_should_not_be_set, config_should_not_be_appended)
 
 from .models import Suggestion, Unit
 from .unit.search import DBSearchBackend
-from .utils import FrozenUnit, SuggestionsReview
+from .utils import FrozenUnit, SuggestionsReview, UnitLifecycle
 
 
 @getter(frozen, sender=Unit)
@@ -32,6 +32,11 @@ def get_search_backend(**kwargs_):
 @getter(review, sender=Suggestion)
 def get_suggestions_review(**kwargs_):
     return SuggestionsReview
+
+
+@getter(lifecycle, sender=Unit)
+def get_unit_lifecylcle(**kwargs_):
+    return UnitLifecycle
 
 
 @getter([config_should_not_be_set, config_should_not_be_appended])
