@@ -9,7 +9,6 @@
 import locale
 from collections import OrderedDict
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_delete, post_save
@@ -60,20 +59,12 @@ class LiveLanguageManager(models.Manager):
             projects.
         :return: an `OrderedDict`
         """
-        key_prefix = 'all_cached_dict' if show_all else 'cached_dict'
-        key = make_method_key(self, key_prefix, locale_code)
-        languages = cache.get(key, None)
-        if languages is None:
-            qs = self.get_all_queryset() if show_all else self.get_queryset()
-            languages = OrderedDict(
-                sorted([(lang[0], tr_lang(lang[1]))
-                        for lang in qs.values_list('code', 'fullname')],
-                       cmp=locale.strcoll,
-                       key=lambda x: x[1])
-            )
-            cache.set(key, languages, settings.POOTLE_CACHE_TIMEOUT)
-
-        return languages
+        qs = self.get_all_queryset() if show_all else self.get_queryset()
+        return OrderedDict(
+            sorted([(lang[0], tr_lang(lang[1]))
+                    for lang in qs.values_list('code', 'fullname')],
+                   cmp=locale.strcoll,
+                   key=lambda x: x[1]))
 
 
 class Language(models.Model, TreeItem):
