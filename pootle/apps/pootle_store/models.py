@@ -330,7 +330,7 @@ class Unit(models.Model, base.TranslationUnit):
         self._comment_updated = False
         self._auto_translated = False
         self._encoding = 'UTF-8'
-        self._at_last_save = frozen.get(Unit)(self)
+        self._frozen = frozen.get(Unit)(self)
 
     def delete(self, *args, **kwargs):
         action_log(user='system', action=UNIT_DELETED,
