@@ -13,7 +13,8 @@ import shutil
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.lru_cache import lru_cache
 
-from pootle.core.delegate import tp_tool as tp_tool_getter
+from pootle.core.delegate import revision_updater, tp_tool as tp_tool_getter
+from pootle_app.models import Directory
 from pootle_project.models import Project
 from pootle_store.constants import SOURCE_WINS, POOTLE_WINS
 from pootle_store.util import absolute_real_path
@@ -84,20 +85,25 @@ class TPToolProjectSubCommand(BaseCommand):
         )
         return Project.objects.create(**params)
 
+    def post_handle(self):
+        pass
+
     def handle(self, *args, **options):
         self.tp_tool = self.get_tp_tool(options['source_project'])
-        target_project = self.get_target_project(options['target_project'],
-                                                 options['languages'])
+        self.target_project = self.get_target_project(options['target_project'],
+                                                      options['languages'])
         tp_query = self.tp_tool.tp_qs.all()
         if options['languages']:
             tp_query = tp_query.filter(language__code__in=options['languages'])
 
         for source_tp in tp_query:
             try:
-                self.handle_tp(source_tp, target_project)
+                self.handle_tp(source_tp, self.target_project)
 
             except ValueError as e:
                 raise CommandError(e)
+
+        self.post_handle()
 
 
 class MoveCommand(TPToolProjectSubCommand):
@@ -107,18 +113,20 @@ class MoveCommand(TPToolProjectSubCommand):
         if project_code is None:
             return project
 
-        if not languages:
-            project.code = project_code
-            project.save()
-            #TODO move project directory
-            return project
-        else:
-            return self.get_or_create_project(project_code)
+        return self.get_or_create_project(project_code)
 
     def handle_tp(self, tp, target_project):
         self.tp_tool.move(tp, language=tp.language, project=target_project)
         self.stdout.write('Translation project '
                           '"%s" has been moved.' % tp)
+
+    def post_handle(self):
+        revision_updater.get(Directory)(
+            context=self.tp_tool.project.directory).update(keys=["stats",
+                                                                 "checks"])
+        if self.target_project.code != self.tp_tool.project.code:
+            if not self.tp_tool.project.translationproject_set.exists():
+                self.tp_tool.project.delete()
 
 
 class CloneCommand(TPToolProjectSubCommand):
