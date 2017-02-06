@@ -6,6 +6,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
+import shutil
+
 from django.contrib.auth import get_user_model
 
 from pootle.core.models import Revision
@@ -66,7 +69,18 @@ class TPTool(object):
         self.clone_children(
             tp.directory,
             new_tp.directory)
+        if self.project.treestyle != 'pootle_fs':
+            self.clone_disk_directory_content(tp, new_tp)
         return new_tp
+
+    def clone_disk_directory_content(self, source, target):
+        for item in os.listdir(source.abs_real_path):
+            source_path = os.path.join(source.abs_real_path, item)
+            target_path = os.path.join(target.abs_real_path, item)
+            if os.path.isdir(source_path):
+                shutil.copytree(source_path, target_path)
+            else:
+                shutil.copy(source_path, target_path)
 
     def clone_children(self, source_dir, target_parent):
         """Clone a source Directory's children to a given target Directory.
