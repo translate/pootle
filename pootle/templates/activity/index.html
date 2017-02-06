@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+  <div class="centered">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Show activity" />
+  </div>
+  <div>Timeline for: {{ target }}</div>
+</form>
+
+
+{% for event in timeline.events %}
+<table>
+  <tr>
+    <td>
+      {{ event.dt }}
+    </td>
+    <td>
+      {{ event.user }}
+    </td>
+    <td>
+      {{ event.action }}
+    </td>
+  </tr>
+</table>
+{% endfor %}
+
+{% endblock %}
