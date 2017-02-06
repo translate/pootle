@@ -33,8 +33,8 @@ const SuggestionValue = React.createClass({
     values: React.PropTypes.array.isRequired,
     getPluralFormName: React.PropTypes.func,
     hasPlurals: React.PropTypes.bool.isRequired,
-    sourceLocaleCode: React.PropTypes.string,
-    sourceLocaleDir: React.PropTypes.string,
+    currentLocaleCode: React.PropTypes.string,
+    currentLocaleDir: React.PropTypes.string,
     innerComponent: React.PropTypes.func,
     initialValues: React.PropTypes.array.isRequired,
   },
@@ -71,8 +71,8 @@ const SuggestionValue = React.createClass({
           <div
             className="js-suggestion-text suggestion-translation"
             data-string={value}
-            lang={this.props.sourceLocaleCode}
-            dir={this.props.sourceLocaleDir}
+            lang={this.props.currentLocaleCode}
+            dir={this.props.currentLocaleDir}
           >
             <this.props.innerComponent
               value={value}

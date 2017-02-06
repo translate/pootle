@@ -104,8 +104,8 @@ const ReactEditor = {
           id={suggestion.id}
           values={suggestion.target}
           hasPlurals={this.props.hasPlurals}
-          sourceLocaleCode={this.props.sourceLocaleCode}
-          sourceLocaleDir={this.props.sourceLocaleDir}
+          currentLocaleCode={this.props.currentLocaleCode}
+          currentLocaleDir={this.props.currentLocaleDir}
           initialValues={initialValues}
         />,
         mountNode
