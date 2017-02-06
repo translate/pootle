@@ -78,7 +78,7 @@ class TPToolProjectSubCommand(BaseCommand):
             fullname="%s (%s)" % (project.fullname, target_project_code),
             checkstyle=project.checkstyle,
             source_language=project.source_language,
-            filetypes=project.filetypes.all(),
+            filetypes=project.filetypes.values_list('name'),
             treestyle=project.treestyle,
             ignoredfiles=project.ignoredfiles,
             disabled=project.disabled,
