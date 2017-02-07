@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 21:52+0100\n"
-"PO-Revision-Date: 2017-02-06 10:00+0000\n"
+"PO-Revision-Date: 2017-02-07 21:35+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486375202.000000\n"
+"X-POOTLE-MTIME: 1486503307.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -240,7 +240,7 @@ msgid "Source Language"
 msgstr "Idioma orixe"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
@@ -347,7 +347,6 @@ msgid "Translation path mapping"
 msgstr "Asociación de ruta de tradución"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
@@ -420,12 +419,10 @@ msgid "Accept"
 msgstr "Aceptar"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
 msgstr "Filtrar por suxeridor"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
 msgstr "Filtrar por estado"
 
@@ -993,7 +990,7 @@ msgid "Disabled"
 msgstr "Desactivado"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
@@ -1221,7 +1218,6 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "As regras de filtrado indican que ficheiros se inclúen neste cartafol "
@@ -1325,9 +1321,8 @@ msgstr ""
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Non hai traballadores de RQ executándose."
+msgstr "Non hai traballadores executándose."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1627,7 +1622,6 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "A ruta («%s») indicada en POOTLE_FS_WORKING_PATH non existe."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1643,13 +1637,12 @@ msgstr ""
 "Pootle non pode escribir na ruta («%s») indicada en POOTLE_FS_WORKING_PATH."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 "Engada o permiso de escritura á ruta de «POOTLE_FS_WORKING_PATH» ou cambie a "
-"configuración"
+"configuración."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -2744,9 +2737,8 @@ msgid "The reported error was:"
 msgstr "O erro sobre o que se informou é:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Anterior"
+msgstr "Páxina anterior"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2759,9 +2751,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Mostrando %(count)s resultados por páxina"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Páxina de inicio"
+msgstr "Seguinte páxina"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

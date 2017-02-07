@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 21:52+0100\n"
-"PO-Revision-Date: 2017-02-02 18:17+0000\n"
+"PO-Revision-Date: 2017-02-07 21:29+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486059431.000000\n"
+"X-POOTLE-MTIME: 1486502951.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -241,13 +241,13 @@ msgid "Source Language"
 msgstr "Zdrojový jazyk"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"Z projektu nelze odebrat typ souboru pokud již existují úložiště s tímto "
-"typem souboru (‚%s‘)"
+"Z projektu nelze odebrat typ souboru pokud již existují soubory tohoto typu "
+"(‚%s‘)"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -349,13 +349,12 @@ msgid "Translation path mapping"
 msgstr "Přiřazení cesty překladu"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
 "Přiřazení cesty překladu určující přiřazení překladových souborů v systému "
-"souborů k úložištím Pootle serveru."
+"souborů k souborům v Pootlu."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -422,14 +421,12 @@ msgid "Accept"
 msgstr "Přijmout"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Filtrovat navrhovatele"
+msgstr "Filtrovat podle navrhovatele"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Filtrovat stav"
+msgstr "Filtrovat podle stavu"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -990,12 +987,12 @@ msgid "Disabled"
 msgstr "Zakázáno"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"Byl vytvořen překladový projekt (%s). Nyní probíhá aktualizace jeho úložiště "
+"Byl vytvořen překladový projekt (%s). Nyní probíhá aktualizace jeho souborů "
 "ze souborů šablon."
 
 #: apps/pootle_project/views.py:270
@@ -1220,10 +1217,9 @@ msgid "Filter"
 msgstr "Filtr"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Filtrovací pravidla která určují ze kterých úložišť se skládá tento "
+"Filtrovací pravidla která určují ze kterých souborů se skládá tento "
 "virtuální adresář."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
@@ -1319,9 +1315,8 @@ msgstr "Aktualizujte balíček systémového Redis serveru alespoň na verzi %s"
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Nejsou spuštěny žádné pracovní RQ procesy."
+msgstr "Nejsou spuštěny žádné pracovní procesy."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1621,12 +1616,12 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Cesta (‚%s‘) nastavená v POOTLE_FS_WORKING_PATH neexistuje."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Vytvořte adresář nastavený v `POOTLE_FS_WORKING_PATH`, nebo nastavení změňte."
+"Vytvořte adresář na který odkazuje `POOTLE_FS_WORKING_PATH`, nebo nastavení "
+"změňte."
 
 #: checks.py:515
 #, python-format
@@ -1636,13 +1631,11 @@ msgstr ""
 "Pootle nemůže zapisovat do cesty (‚%s‘) nastavené v POOTLE_FS_WORKING_PATH."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
-"Nastavte pro adresář nastavený v `POOTLE_FS_WORKING_PATH` právo zápisu, nebo "
-"nastavení změňte"
+"Nastavte pro `POOTLE_FS_WORKING_PATH` právo zápisu, nebo nastavení změňte."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -2726,9 +2719,8 @@ msgid "The reported error was:"
 msgstr "Nahlášena byla chyba:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Předchozí"
+msgstr "Předchozí stránka"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2741,9 +2733,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Zobrazeno %(count)s výsledků na stránku"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Domovská stránka"
+msgstr "Další stránka"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
