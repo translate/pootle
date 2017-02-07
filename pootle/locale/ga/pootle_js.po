@@ -121,7 +121,7 @@ msgstr "Foramharc"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Foireann"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -173,9 +173,8 @@ msgid "Quality Checks"
 msgstr "Seiceálacha Cáilíochta"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
-#, fuzzy
 msgid "File types"
-msgstr "Cineál Comhaid"
+msgstr "Cineálacha comhaid"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
@@ -210,9 +209,8 @@ msgid "Permissions"
 msgstr "Ceadanna"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-#, fuzzy
 msgid "Filesystems"
-msgstr "Cineál Comhaid"
+msgstr "Córais chomhad"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -354,23 +352,22 @@ msgid "Preview will be displayed here."
 msgstr "Taispeánfar réamhamharc anseo."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
 msgstr ""
 "Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</"
-"span>"
+"span>. Mura bhfeiceann tú an teachtaireacht, breathnaigh ar d'fhillteán turscair."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
 "Sheolamar ríomhphost leis an nasc speisialta chuig an seoladh ríomhphoist "
-"atá ceangailte leis an gcuntas seo."
+"atá ceangailte leis an gcuntas seo. Mura bhfeiceann tú an teachtaireacht, breathnaigh ar d'fhillteán turscair."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -545,23 +542,22 @@ msgid "Social Verification"
 msgstr "Deimhniú Sóisialta"
 
 #: static/js/browser/components/Stats.js:54
-#, fuzzy
 msgid "More..."
-msgstr "Tuilleadh"
+msgstr "Tuilleadh..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "Rannpháirtithe, 30 Lá"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
 msgid "+%(score)s"
-msgstr ""
+msgstr "+%(score)s"
 
 #: static/js/browser/components/TopContributorsTable.js:31
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:46
 msgid "Show disabled"
@@ -585,7 +581,7 @@ msgstr "An Tionscadal Ar Fad"
 
 #: static/js/common.js:139
 msgid "Updating data"
-msgstr ""
+msgstr "Sonraí á nuashonrú"
 
 #: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
@@ -687,7 +683,7 @@ msgstr "Aistriúcháin cosúil leis seo"
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "Foirm iolra %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
@@ -706,9 +702,9 @@ msgid "Reject"
 msgstr "Diúltaigh"
 
 #: static/js/editor/components/UploadTimeSince.js:35
-#, fuzzy, python-format
+#, python-format
 msgid "%(timeSince)s via file upload"
-msgstr "Uaslódáilte %(timeSince) ó shin"
+msgstr "Uaslódáilte %(timeSince)s ó shin"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -839,17 +835,17 @@ msgid "Creating new user accounts is prohibited."
 msgstr "Níl cead agat cuntais nua a chruthú."
 
 #: static/js/auth/components/SocialVerification.js:81
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "We found a user with <span>%(email)s</span> email in our system. Please "
 "provide the password to finish the sign in procedure. This is a one-off "
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%s</span> inár gcóras. "
+"D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%(email)s</span> inár gcóras. "
 "Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní bheidh sé "
 "ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle "
-"agus do chuntas %s."
+"agus do chuntas %(provider)s."
 
 #: static/js/editor/app.js:650
 msgid "No results."
@@ -1004,132 +1000,6 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
-
-#, fuzzy
-#~ msgid "%(user)s removed translation for %(sourceString)s"
-#~ msgstr "baineadh aistriúchán ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s accepted suggestion for %(sourceString)s"
-#~ msgstr "glacadh moladh ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s uploaded file"
-#~ msgstr "uaslódáladh comhad"
-
-#, fuzzy
-#~ msgid "%(user)s muted %(check)s for %(sourceString)s"
-#~ msgstr "díbhalbhaíodh %(check)s ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-#~ msgstr "díbhalbhaíodh %(check)s ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s added suggestion for %(sourceString)s"
-#~ msgstr "cuireadh moladh nua le %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s rejected suggestion for %(sourceString)s"
-#~ msgstr "diúltaíodh moladh ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s translated %(sourceString)s"
-#~ msgstr "rinneadh aistriúchán ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s edited %(sourceString)s"
-#~ msgstr "cuireadh %(sourceString)s in eagar"
-
-#, fuzzy
-#~ msgid "%(user)s pre-translated %(sourceString)s"
-#~ msgstr "rinneadh réamhaistriúchán ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s reviewed %(sourceString)s"
-#~ msgstr "rinneadh athbhreithniú ar %(sourceString)s"
-
-#, fuzzy
-#~ msgid "%(user)s marked as needs work %(sourceString)s"
-#~ msgstr "marcáladh gur gá %(sourceString)s a dheimhniú"
-
-#, fuzzy
-#~ msgid "A year ago"
-#~ msgstr "Bliain amháin ó shin"
-
-#, fuzzy
-#~ msgid "%(count)s year ago"
-#~ msgid_plural "%(count)s years ago"
-#~ msgstr[0] "Bliain amháin ó shin"
-#~ msgstr[1] "%s bhliain ó shin"
-#~ msgstr[2] "%s bliana ó shin"
-#~ msgstr[3] "%s mbliana ó shin"
-#~ msgstr[4] "%s bliain ó shin"
-
-#, fuzzy
-#~ msgid "A month ago"
-#~ msgstr "Nóiméad amháin ó shin"
-
-#, fuzzy
-#~ msgid "%(count)s month ago"
-#~ msgid_plural "%(count)s months ago"
-#~ msgstr[0] "Nóiméad amháin ó shin"
-#~ msgstr[1] "Nóiméad amháin ó shin"
-#~ msgstr[2] "Nóiméad amháin ó shin"
-#~ msgstr[3] "Nóiméad amháin ó shin"
-#~ msgstr[4] "Nóiméad amháin ó shin"
-
-#, fuzzy
-#~ msgid "A week ago"
-#~ msgstr "Seachtain amháin ó shin"
-
-#, fuzzy
-#~ msgid "%(count)s week ago"
-#~ msgid_plural "%(count)s weeks ago"
-#~ msgstr[0] "Seachtain amháin ó shin"
-#~ msgstr[1] "%s sheachtain ó shin"
-#~ msgstr[2] "%s seachtaine ó shin"
-#~ msgstr[3] "%s seachtaine ó shin"
-#~ msgstr[4] "%s seachtain ó shin"
-
-#, fuzzy
-#~ msgid "Yesterday"
-#~ msgstr "Inné"
-
-#, fuzzy
-#~ msgid "%(count)s day ago"
-#~ msgid_plural "%(count)s days ago"
-#~ msgstr[0] "Bliain amháin ó shin"
-#~ msgstr[1] "%s bhliain ó shin"
-#~ msgstr[2] "%s bliana ó shin"
-#~ msgstr[3] "%s mbliana ó shin"
-#~ msgstr[4] "%s bliain ó shin"
-
-#, fuzzy
-#~ msgid "An hour ago"
-#~ msgstr "Uair an chloig ó shin"
-
-#, fuzzy
-#~ msgid "%(count)s hour ago"
-#~ msgid_plural "%(count)s hours ago"
-#~ msgstr[0] "Uair an chloig ó shin"
-#~ msgstr[1] "%s uair an chloig ó shin"
-#~ msgstr[2] "%s huaire an chloig ó shin"
-#~ msgstr[3] "%s n-uaire an chloig ó shin"
-#~ msgstr[4] "%s uair an chloig ó shin"
-
-#, fuzzy
-#~ msgid "A minute ago"
-#~ msgstr "Nóiméad amháin ó shin"
-
-#, fuzzy
-#~ msgid "%(count)s minute ago"
-#~ msgid_plural "%(count)s minutes ago"
-#~ msgstr[0] "Nóiméad amháin ó shin"
-#~ msgstr[1] "%s nóiméad ó shin"
-#~ msgstr[2] "%s nóiméad ó shin"
-#~ msgstr[3] "%s nóiméad ó shin"
-#~ msgstr[4] "%s nóiméad ó shin"
 
 #~ msgid "A few seconds ago"
 #~ msgstr "Cúpla soicind ó shin"
