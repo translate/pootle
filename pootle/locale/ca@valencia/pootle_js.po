@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-27 10:09+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -864,9 +864,6 @@ msgstr "Canvi de puntuació"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -880,71 +877,6 @@ msgstr "No s'ha gravat cap activitat en el període determinat"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Seleccioneu un usuari vàlid."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Tasques registrades"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Data i hora"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Comentari"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Acció"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Quantitat"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Tarifa"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Subtotal"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s hora"
-msgstr[1] "%s hores"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Suprimeix la tasca"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Afig un comentari"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Resum"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Període"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(tasques registrades)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Total (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -979,6 +911,50 @@ msgid ""
 msgstr ""
 "Traduït per %(fullname)s al projecte «<span title=\"%(path)s\">%(project)s</"
 "span>»"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Tasques registrades"
+
+#~ msgid "Datetime"
+#~ msgstr "Data i hora"
+
+#~ msgid "Comment"
+#~ msgstr "Comentari"
+
+#~ msgid "Action"
+#~ msgstr "Acció"
+
+#~ msgid "Amount"
+#~ msgstr "Quantitat"
+
+#~ msgid "Rate"
+#~ msgstr "Tarifa"
+
+#~ msgid "Subtotal"
+#~ msgstr "Subtotal"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s hora"
+#~ msgstr[1] "%s hores"
+
+#~ msgid "Remove task"
+#~ msgstr "Suprimeix la tasca"
+
+#~ msgid "Comment on it"
+#~ msgstr "Afig un comentari"
+
+#~ msgid "Summary"
+#~ msgstr "Resum"
+
+#~ msgid "Period"
+#~ msgstr "Període"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(tasques registrades)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Total (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

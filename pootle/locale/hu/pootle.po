@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-02-07 12:41+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,7 +56,7 @@ msgid "Email Address"
 msgstr "E-mail cím"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "Teljes név"
 
@@ -97,47 +97,31 @@ msgstr "Sorok száma"
 msgid "Alternative Source Languages"
 msgstr "Alternatív forrásnyelvek"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "Díj"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "Lektorálási díj"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "Óránkénti díj"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Pontszám"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "Pénznem"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "Alkalmazott?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "Weboldal"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "Rövid bemutatkozás"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "Ez az e-mail cím már létezik."
 
@@ -246,14 +230,14 @@ msgstr "Hiba történt a fájl feltöltése közben"
 msgid "Language code does not follow the ISO convention"
 msgstr "A nyelvi kód nem követi az ISO-szabványokat"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "Forrásnyelv"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "Nem távolíthat el fájltípust egy projektből, ha vannak az adott fájltípusú "
@@ -358,9 +342,10 @@ msgid "Translation path mapping"
 msgstr "Fordítási útvonal leképezése"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 "Fordítási útvonal leképezése, amely a fájlrendszeren lévő fordítási fájlokat "
 "leképezi a Pootle tárolóira."
@@ -430,11 +415,13 @@ msgid "Accept"
 msgstr "Elfogadás"
 
 #: apps/pootle_language/forms.py:157
-msgid "Filter suggester"
+#, fuzzy
+msgid "Filter by suggester"
 msgstr "Javaslattevő szűrése"
 
 #: apps/pootle_language/forms.py:163
-msgid "Filter state"
+#, fuzzy
+msgid "Filter by state"
 msgstr "Állapot szűrése"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -442,7 +429,7 @@ msgstr "Állapot szűrése"
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "Kód"
 
@@ -490,15 +477,15 @@ msgstr "Többes alakok száma"
 msgid "Plural Equation"
 msgstr "Többesszám-képlet"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "Egység"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Állapot"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Forrás"
 
@@ -932,12 +919,13 @@ msgstr "Nyelv"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "„%(code)s” nem használható projektkódként"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "„%(code)s” nem használható projektellenőrzőként"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -945,55 +933,56 @@ msgstr ""
 "A projekt rövid kódja, amely csak ASCII karaktereket, számokat és aláhúzást "
 "(_) tartalmazhat."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "Minőség-ellenőrzés"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "A gnu/nem gnu fájlelrendezések automatikus felismerése (lassabb)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "GNU-típus: a fájlok elnevezése nyelvi kód szerint"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Nem-GNU: minden nyelv külön könyvtárban van"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "A Pootle FS kezelheti a fájlrendszereket (kísérleti)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "Projektfa típusa"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "Kihagyott fájlok"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "Hibajelentési e-mail"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Egy e-mail cím, ahova a szövegekkel kapcsolatos hibákat be lehet jelenteni."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "Képernyőkép keresési előtag"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "Kikapcsolva"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "A fordítási projekt (%s) létrejött. A tárolói frissítése a fájlsablonokból "
@@ -1004,11 +993,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "A fordítási projekt (%s) törölve"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Cél"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Hozzászólás"
 
@@ -1058,7 +1047,7 @@ msgstr "A munka szükséges jelzőt törölni kell"
 msgid "Translator comment"
 msgstr "Fordítói megjegyzés"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "Elérési útvonal"
 
@@ -1221,7 +1210,8 @@ msgid "Filter"
 msgstr "Szűrő"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "Ezen szűrőszabályok adják meg, hogy ez a virtuális mappa mely tárolókból áll."
 
@@ -1315,19 +1305,22 @@ msgstr "A Redis verziója túl régi."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Frissítse a rendszer Redis kiszolgálócsomagját legalább %s verzióra"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "Nem fut RQ worker."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Új háttérfolyamatok indíthatók ezzel: „pootle rqworker”"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "A gyorsítótár háttérprogramja nem Redis-re van állítva."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1337,15 +1330,15 @@ msgstr ""
 "RedisCache értékre\n"
 "Jelenlegi beállítások: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Nem sikerült Redis gyorsítótár-kapcsolatot kezdeményezni"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "Ellenőrizze újra a CACHES beállításokat"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1353,28 +1346,28 @@ msgstr ""
 "Eltérő django_redis.cache.RedisCache beállítások szükségesek a „default”, "
 "„redis” és „lru” esetén."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "A DEBUG (hibakeresési) mód bekapcsolva. Éles rendszeren ezt ne tegye!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "A Pootle beállításaiban állítsa be a DEBUG = False értéket"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "Az sqlite adatbázis-háttérprogram nem támogatott"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "Állítsa az alapértelmezett adatbázismotort a postgresql vagy mysql egyikére"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "A cached_db nem kerül felhasználásra munkamenetmotorként"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1384,11 +1377,11 @@ msgstr ""
 "cached_db értékre\n"
 "Jelenlegi beállítások: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "A POOTLE_CONTACT_EMAIL nincs beállítva."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1396,13 +1389,13 @@ msgstr ""
 "Állítsa be a POOTLE_CONTACT_EMAIL értéket, hogy a felhasználók felvehessék a "
 "kapcsolatot az adminisztrátorokkal a Pootle kapcsolatfelvételi űrlapon."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 "A POOTLE_CONTACT_EMAIL a következő alapértelmezett beállítást használja: %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1410,11 +1403,11 @@ msgstr ""
 "A POOTLE_CONTACT_EMAIL címre érkeznek a kapcsolatfelvételi űrlapon küldött "
 "üzenetek."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "A DEFAULT_FROM_EMAIL nincs beállítva."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1422,37 +1415,37 @@ msgstr ""
 "A DEFAULT_FROM_EMAIL az összes kimenő Pootle e-mailben megjelenik.\n"
 "Ne felejtse el ellenőrizni a levelezőkiszolgáló beállításait."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 "A DEFAULT_FROM_EMAIL a következő alapértelmezett beállítást használja: %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "A POOTLE_MARKUP_FILTER hiányzik."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Állítsa be a POOTLE_MARKUP_FILTER értékét."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Érvénytelen érték a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Állítson be érvényes értéket a POOTLE_MARKUP_FILTER-hez."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Érvénytelen jelölés a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Állítson be érvényes jelölést a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1461,67 +1454,67 @@ msgstr ""
 "A POOTLE_MARKUP_FILTER beállítva „%s” jelölésre, de az ezt biztosító csomag "
 "nem található."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Telepítse a csomagot, vagy módosítsa a POOTLE_MARKUP_FILTER értékét."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s']: nincs INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Állítson be egy INDEX_NAME értéket ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Többször szereplő „%s” INDEX_NAME a POOTLE_TM_SERVER-ben."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 "Állítson be másik INDEX_NAME értéket minden kiszolgálóhoz a POOTLE_TM_SERVER-"
 "ben."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s']: nincs ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Állítsa be az ENGINE értékét ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s']: nincs HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Állítsa be a HOST értékét ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s']: nincs PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Állítsa be a PORT értékét ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s']: a WEIGHT kisebb mint 0.0 vagy nagyobb mint 1.0"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1529,40 +1522,40 @@ msgstr ""
 "Állítson be egy 0.0 és 1.0 közti (ezeket is beleértve) WEIGHT értéket ehhez: "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS: nincs %s."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Állítsa be ezt: %s a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Érvénytelen %s érték a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr ""
 "Állítson be érvényes értéket ehhez: %s a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Az alapértelmezett „admin” felhasználó jelszava még mindig „admin”."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "Törölje az „admin” felhasználót, vagy változtassa meg a jelszavát."
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "Az adatbázis-kapcsolat transaction_hooks modult használ."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1570,32 +1563,32 @@ msgstr ""
 "Állítsa be a DATABASES['default']['ENGINE'] értékét a django.db.backends "
 "egyik Django háttérprogramjára."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "Az e-mail kiszolgáló nem érhető el."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Ellenőrizze az e-mail beállításokat, és győződjön meg róla, hogy az e-mail "
 "kiszolgáló működik."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "A revision hiányzik, vagy értéke helytelen."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Futtassa a „revision --restore” parancsot a revíziószámláló alaphelyzetbe "
 "állításához."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Nincs megadva kanonikus URL és az alapértelmezett oldal az example.com."
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1603,11 +1596,11 @@ msgstr ""
 "Állítsa be a „POOTLE_CANONICAL_URL”-t a beállításokban, vagy frissítse az "
 "alapértelmezett oldalt, ha a django.contrib.sites-t használja."
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr "A kanonikus URL a http://localhost értékre van beállítva."
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1615,24 +1608,25 @@ msgstr ""
 "Állítsa be a „POOTLE_CANONICAL_URL”-t az oldalhoz megfelelő értékre, vagy "
 "hagyja üresen, ha a „django.contrib.sites”-t használja."
 
-#: checks.py:502
+#: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "A POOTLE_FS_WORKING_PATH nincs beállítva."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "A POOTLE_FS_WORKING_PATH által mutatott útvonal (%s) nem létezik."
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 "Hozza létre a „POOTLE_FS_WORKING_PATH” beállítás által mutatott könyvtárat, "
 "vagy módosítsa a beállítást."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1640,15 +1634,16 @@ msgstr ""
 "A POOTLE_FS_WORKING_PATH által mutatott útvonalat (%s) nem tudja írni a "
 "Pootle."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 "Adjon írási jogosultságokat a „POOTLE_FS_WORKING_PATH” könyvtárhoz vagy "
 "módosítsa a beállítást"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "A MySQL időzóna-beállításokat igényel."
 
@@ -1677,7 +1672,6 @@ msgstr "Befejezetlen"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Összes"
 
@@ -1735,31 +1729,31 @@ msgstr "Meg kell adnia egy végrehajtandó műveletet"
 msgid "A valid search field must be specified"
 msgstr "Meg kell adni egy érvényes keresési mezőt"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "Elérhet egy projektet"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "Nem érhet el egy projektet"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "Javaslatot tehet fordításra"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "Fordítást küldhet be"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "Lektorálhat javaslatokat"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 msgid "Can perform administrative tasks"
 msgstr "Végezhet adminisztrációs feladatokat"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s eltávolította a következő fordítását: %(source)s"
@@ -1804,17 +1798,18 @@ msgstr "%(user)s lefordította ezt: %(source)s"
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s szerkesztette ezt: %(source)s"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s előfordította ezt: %(source)s"
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -1974,7 +1969,7 @@ msgstr "Nyelvek"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projektek"
@@ -2032,92 +2027,6 @@ msgstr "Rendszer-ellenőrzések"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "Nem észlelhető probléma, minden rendben!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "Jelentés: %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "Jelentés: %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "Előző hónap"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "Következő hónap"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "Helyi kiszolgáló ideje"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "Művelet"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "Forrás szavak"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "Hasonlóság"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "Szavak"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "Részösszeg"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "GF"
-
-#: templates/admin/detailed_reports.html:219
-msgid "Subactions"
-msgstr "Részműveletek"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "Nyers fordítás"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Lektorálás"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "regisztrált feladatok"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "Nincs tevékenység rögzítve a megadott időszakban"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "Javaslatok (részösszeg)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "Fordítás (részösszeg)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "Lektorálás (részösszeg)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "Válasszon egy érvényes felhasználót."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2223,6 +2132,14 @@ msgstr "Frissítés"
 msgid "User"
 msgstr "Felhasználó"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "Előző hónap"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "Következő hónap"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Részletes jelentés"
@@ -2230,32 +2147,6 @@ msgstr "Részletes jelentés"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Részletes statisztika"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "Feladat hozzáadása"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "szavak"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "óra"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "Rekord hozzáadása"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "Díjak beállítása"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "Mentés"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2265,6 +2156,11 @@ msgstr "Törlés"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "vagy"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "Mentés"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2698,7 +2594,7 @@ msgid "Critical issues with the translation"
 msgstr "Kritikus problémák a fordításban"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Kritikus hibák:"
 
@@ -2827,8 +2723,9 @@ msgid "The reported error was:"
 msgstr "A jelentett hiba:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr ""
+#, fuzzy
+msgid "Previous page"
+msgstr "Előző"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2841,8 +2738,9 @@ msgid "Showing %(count)s results per page"
 msgstr ""
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr ""
+#, fuzzy
+msgid "Next page"
+msgstr "Honlap"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2866,40 +2764,41 @@ msgstr "Javaslatok szűrése"
 msgid "Language team"
 msgstr "Nyelvi csapat"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr "Tag adminisztrátor"
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "Csapattag hozzáadása"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "Kijelölt eltávolítása"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 #, fuzzy
 msgid "Unit and suggestions admin"
 msgstr "Javaslat adminisztrátor"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 #, fuzzy
 msgid "Pending suggestions:"
 msgstr "Függőben lévő javaslatok"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "Összes szó:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "Lefordítva:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "Munka szükséges:"
 
@@ -3156,26 +3055,6 @@ msgstr ""
 "Néhány fordítás külső fájlokból lett importálva. Ezeket képviseli ez a "
 "speciális metafiók."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "Díjak"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "Pénznem:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "Fordítás díja:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "Lektorálási díj:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "Óránkénti díj:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "Felhasználói fiók"
@@ -3219,6 +3098,102 @@ msgstr "Bejelentkezés"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
+
+#~ msgid "Rate"
+#~ msgstr "Díj"
+
+#~ msgid "Review Rate"
+#~ msgstr "Lektorálási díj"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "Óránkénti díj"
+
+#~ msgid "Currency"
+#~ msgstr "Pénznem"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "Jelentés: %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "Jelentés: %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "Helyi kiszolgáló ideje"
+
+#~ msgid "Action"
+#~ msgstr "Művelet"
+
+#~ msgid "Source words"
+#~ msgstr "Forrás szavak"
+
+#~ msgid "Similarity"
+#~ msgstr "Hasonlóság"
+
+#~ msgid "Words"
+#~ msgstr "Szavak"
+
+#~ msgid "Subtotal"
+#~ msgstr "Részösszeg"
+
+#~ msgid "MT"
+#~ msgstr "GF"
+
+#~ msgid "Subactions"
+#~ msgstr "Részműveletek"
+
+#~ msgid "Raw Translation"
+#~ msgstr "Nyers fordítás"
+
+#~ msgid "Review"
+#~ msgstr "Lektorálás"
+
+#~ msgid "registered tasks"
+#~ msgstr "regisztrált feladatok"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "Nincs tevékenység rögzítve a megadott időszakban"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "Javaslatok (részösszeg)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "Fordítás (részösszeg)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "Lektorálás (részösszeg)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "Válasszon egy érvényes felhasználót."
+
+#~ msgid "Add Task"
+#~ msgstr "Feladat hozzáadása"
+
+#~ msgid "words"
+#~ msgstr "szavak"
+
+#~ msgid "hours"
+#~ msgstr "óra"
+
+#~ msgid "Add record"
+#~ msgstr "Rekord hozzáadása"
+
+#~ msgid "Set Rates"
+#~ msgstr "Díjak beállítása"
+
+#~ msgid "Rates"
+#~ msgstr "Díjak"
+
+#~ msgid "Currency:"
+#~ msgstr "Pénznem:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "Fordítás díja:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "Lektorálási díj:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "Óránkénti díj:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "A „similarity” értékének a [0..1] tartományban kell lennie"
@@ -5678,9 +5653,6 @@ msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
 
 #~ msgid "User Interface language"
 #~ msgstr "Felhasználói felület nyelve"
-
-#~ msgid "Home page"
-#~ msgstr "Honlap"
 
 #~ msgid "None"
 #~ msgstr "Nincs"

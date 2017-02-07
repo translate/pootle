@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-16 02:29+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -854,9 +854,6 @@ msgstr "نەتىجە ئۆزگىرىشى"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -869,70 +866,6 @@ msgstr "بېرىلگەن مەزگىلدە ئاكتىپ خاتىرە يوق"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "ئىناۋەتلىك ئىشلەتكۈچىدىن بىرنى تاللاڭ."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "خەتلەتكەن ۋەزىپەلەر"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "چېسلا ۋە ۋاقىت"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "ئىزاھات"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "مەشغۇلات"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "مىقدارى"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "نىسبىتى"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "تۈرگە ئايرىپ خۇلاسىلا"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s سائەت"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "ۋەزىپىنى چىقىرىۋەت"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "ئۇنىڭغا ئىزاھات ياز"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "ئۇزۇندە"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "قەرەلى"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(خەتلەتكەن ۋەزىپەلەر)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "جەمئىي (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -967,6 +900,49 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; قۇرۇلۇشىدا "
 "%(fullname)s تەرجىمە قىلدى"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "خەتلەتكەن ۋەزىپەلەر"
+
+#~ msgid "Datetime"
+#~ msgstr "چېسلا ۋە ۋاقىت"
+
+#~ msgid "Comment"
+#~ msgstr "ئىزاھات"
+
+#~ msgid "Action"
+#~ msgstr "مەشغۇلات"
+
+#~ msgid "Amount"
+#~ msgstr "مىقدارى"
+
+#~ msgid "Rate"
+#~ msgstr "نىسبىتى"
+
+#~ msgid "Subtotal"
+#~ msgstr "تۈرگە ئايرىپ خۇلاسىلا"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s سائەت"
+
+#~ msgid "Remove task"
+#~ msgstr "ۋەزىپىنى چىقىرىۋەت"
+
+#~ msgid "Comment on it"
+#~ msgstr "ئۇنىڭغا ئىزاھات ياز"
+
+#~ msgid "Summary"
+#~ msgstr "ئۇزۇندە"
+
+#~ msgid "Period"
+#~ msgstr "قەرەلى"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(خەتلەتكەن ۋەزىپەلەر)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "جەمئىي (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

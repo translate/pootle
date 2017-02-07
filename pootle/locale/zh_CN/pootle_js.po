@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-24 12:38+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -835,9 +835,6 @@ msgstr "得分变化"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, fuzzy, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -850,70 +847,6 @@ msgstr "指定周期内没有活动记录"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "请选择一个有效的用户。"
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "已注册的任务"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "日期时间"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "备注"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "动作"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "数量"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "比率"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "分类汇总"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "小时"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "移除任务"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "为它备注"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "摘要"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "周期"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "（已注册的任务）"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "总计 (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -948,6 +881,50 @@ msgid ""
 msgstr ""
 "已被 %(fullname)s 在 &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; 项目中翻译"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "已注册的任务"
+
+#~ msgid "Datetime"
+#~ msgstr "日期时间"
+
+#~ msgid "Comment"
+#~ msgstr "备注"
+
+#~ msgid "Action"
+#~ msgstr "动作"
+
+#~ msgid "Amount"
+#~ msgstr "数量"
+
+#~ msgid "Rate"
+#~ msgstr "比率"
+
+#~ msgid "Subtotal"
+#~ msgstr "分类汇总"
+
+#, fuzzy
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "小时"
+
+#~ msgid "Remove task"
+#~ msgstr "移除任务"
+
+#~ msgid "Comment on it"
+#~ msgstr "为它备注"
+
+#~ msgid "Summary"
+#~ msgstr "摘要"
+
+#~ msgid "Period"
+#~ msgstr "周期"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "（已注册的任务）"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "总计 (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-11-22 16:32+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -865,9 +865,6 @@ msgstr "Změna hodnoty"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -882,72 +879,6 @@ msgstr "Ve vybraném období nebyla zaznamenána žádná aktivita"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Vyberte existujícího uživatele."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Zaregistrované úlohy"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Datum a čas"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Komentář"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Akce"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Množství"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Sazba"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Mezisoučet"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s hodina"
-msgstr[1] "%s hodiny"
-msgstr[2] "%s hodin"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Odstranit úlohu"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Přidat komentář"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Souhrn"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Období"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(registrované úlohy)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Celkem (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -982,6 +913,51 @@ msgid ""
 msgstr ""
 "Přeložil %(fullname)s v projektu &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Zaregistrované úlohy"
+
+#~ msgid "Datetime"
+#~ msgstr "Datum a čas"
+
+#~ msgid "Comment"
+#~ msgstr "Komentář"
+
+#~ msgid "Action"
+#~ msgstr "Akce"
+
+#~ msgid "Amount"
+#~ msgstr "Množství"
+
+#~ msgid "Rate"
+#~ msgstr "Sazba"
+
+#~ msgid "Subtotal"
+#~ msgstr "Mezisoučet"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s hodina"
+#~ msgstr[1] "%s hodiny"
+#~ msgstr[2] "%s hodin"
+
+#~ msgid "Remove task"
+#~ msgstr "Odstranit úlohu"
+
+#~ msgid "Comment on it"
+#~ msgstr "Přidat komentář"
+
+#~ msgid "Summary"
+#~ msgstr "Souhrn"
+
+#~ msgid "Period"
+#~ msgstr "Období"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(registrované úlohy)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Celkem (%(currency)s)"
 
 #~ msgid "%(user)s removed translation for %(sourceString)s"
 #~ msgstr "%(user)s odstranil překlad pro %(sourceString)s"

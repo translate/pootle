@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-02-06 15:54+0000\n"
 "Last-Translator: daniele_translator <daniel.translator@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgid "Email Address"
 msgstr "Indirizzo e-mail"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "Nome completo"
 
@@ -104,47 +104,31 @@ msgstr "Numero di righe"
 msgid "Alternative Source Languages"
 msgstr "Lingue di origine alternative"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "Tariffa"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "Tariffa di revisione"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "Tariffa Oraria"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Punteggio"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "Valuta"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "Ha un lavoro?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "Sito web"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "Biografia"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "Questo indirizzo esiste già."
 
@@ -256,14 +240,14 @@ msgstr "Si è verificato un errore nel caricamento del file"
 msgid "Language code does not follow the ISO convention"
 msgstr "Il codice della lingua non rispetta la convenzione ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "Lingua di partenza"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "Non puoi rimuovere un tipo di file da un progetto, se ci sono archivi di "
@@ -371,7 +355,7 @@ msgstr "Impostazioni traduzione"
 #: apps/pootle_fs/forms.py:55
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 
 #: apps/pootle_fs/forms.py:181
@@ -441,12 +425,12 @@ msgstr "Accetta"
 
 #: apps/pootle_language/forms.py:157
 #, fuzzy
-msgid "Filter suggester"
+msgid "Filter by suggester"
 msgstr "Filtra suggerimenti"
 
 #: apps/pootle_language/forms.py:163
 #, fuzzy
-msgid "Filter state"
+msgid "Filter by state"
 msgstr "Filtro"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -454,7 +438,7 @@ msgstr "Filtro"
 msgid "Project"
 msgstr "Progetto"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "Codice"
 
@@ -502,15 +486,15 @@ msgstr "Numero di forme plurali"
 msgid "Plural Equation"
 msgstr "Equazione delle forme plurali"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "Unità"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Stato"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Sorgente"
 
@@ -947,12 +931,13 @@ msgstr "Lingua"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" non può essere usato come codice di progetto."
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%s\" non può essere usato come codice di progetto"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -960,57 +945,58 @@ msgstr ""
 "Un codice breve per il progetto. Può contenere solo caratteri ASCII, numeri "
 "e il carattere underscore (_)."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "Controlli qualità"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Rilevazione automatica (più lento)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "Stile GNU: file nominati secondo il codice della lingua"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Non-GNU: ogni lingua utilizza la sua cartella"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Permetti a Pootle di gestire i filesystem (sperimentale)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "Stile di progetto ad albero"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "Ignora i file"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "Email di notifica errori"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Un indirizzo email al quale possono essere riportati problemi relativi al "
 "testo sorgente."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "Disabilitato"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "Il progetto di traduzione (%s) è stato creato. Stiamo aggiornando gli "
@@ -1021,11 +1007,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Pagina principale del progetto di traduzione"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Destinazione"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Commento"
 
@@ -1075,7 +1061,7 @@ msgstr "Il flag 'Necessita revisione' deve essere tolto"
 msgid "Translator comment"
 msgstr "Commento del traduttore"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "Percorso"
 
@@ -1239,7 +1225,8 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "Regole di filtraggio che indicano quali archivi comprende questa cartella "
 "virtuale."
@@ -1339,20 +1326,23 @@ msgstr ""
 "Aggiorna il pacchetto del server Redis del tuo sistema almeno alla versione "
 "%s"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "Nessun Worker RQ in esecuzione."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 #, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Lancia nuovi worker con manage.py rqworker"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "Il backend di cache non è impostato su Redis."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1361,43 +1351,43 @@ msgstr ""
 "Imposta il backend di cache di default a django_redis.cache.RedisCache\n"
 "Impostazioni correnti: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Errore nella connessione alla cache di Redis"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "Controlla le tue impostazioni di CACHES"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "La modalità DEBUG è attiva. Non farlo in produzione!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Imposta DEBUG = False nelle impostazioni di Pootle"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "Il backend per il database sqlite non è supportato"
 
-#: checks.py:203
+#: checks.py:205
 #, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "Imposta il tuo motore database di default a postgresql_psycopg2 o mysql"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "cached_db non utilizzato come motore di sessione"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1406,11 +1396,11 @@ msgstr ""
 "Imposta SESSION_ENGINE a django.contrib.sessions.backend.cached_db\n"
 "Impostazioni correnti: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL non è impostato."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1418,12 +1408,12 @@ msgstr ""
 "Imposta POOTLE_CONTACT_EMAIL per permettere agli utenti di contattare gli "
 "amministratori attraverso il modulo di contatto di Pootle."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL utilizza le impostazioni di default %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1431,11 +1421,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL è l'indirizzo che riceverà i messaggi inviati "
 "attraverso il modulo di contatto."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL non è impostato."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1444,36 +1434,36 @@ msgstr ""
 "Non dimenticare di controllare le impostazioni del server di posta "
 "elettronica."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL utilizza le seguenti impostazioni di default %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "Manca il POOTLE_MARKUP_FILTER."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Imposta il POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Valore non valido in POOTLE_MARKUP_FILTER."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Imposta un valore valido per POOTLE_MARKUP_FILTER."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Markup non valido in POOTLE_MARKUP_FILTER."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Imposta un markup valido per POOTLE_MARKUP_FILTER."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1482,65 +1472,65 @@ msgstr ""
 "POOTLE_MARKUP_FILTER è impostato al markup '%s', ma non è possibile trovare "
 "il pacchetto che lo fornisce."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Installa il pacchetto o modifica POOTLE_MARKUP_FILTER."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] non ha un INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un INDEX_NAME per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "INDEX_NAME duplicato '%s' in POOTLE_TM_SERVER."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Imposta un INDEX_NAME diverso per ogni server in POOTLE_TM_SERVER."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] non ha nessun ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un ENGINE per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] non ha nessun HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un HOST per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] non ha nessun PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un PORT per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s'] ha un WEIGHT minore di 0,0 o maggiore di 1,0"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1548,40 +1538,40 @@ msgstr ""
 "Imposta un WEIGHT compreso tra 0,0 e 1,0 (estremi inclusi) per "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr ""
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Imposta %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:360
+#: checks.py:362
 #, fuzzy, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Valore non valido in POOTLE_MARKUP_FILTER."
 
-#: checks.py:362
+#: checks.py:364
 #, fuzzy, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Imposta un valore valido per POOTLE_MARKUP_FILTER."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "L'utente di default 'admin' ha ancora la password impostata a 'admin'."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "Elimina l'utente 'admin' o modifica la sua password."
 
-#: checks.py:400
+#: checks.py:402
 #, fuzzy
 msgid "Database connection uses transaction_hooks."
 msgstr "La connessione al database non implementa on_commit."
 
-#: checks.py:401
+#: checks.py:403
 #, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
@@ -1590,63 +1580,64 @@ msgstr ""
 "Imposta il DATABASES['default']['ENGINE'] in modo da utilizzare un backend "
 "tra quelli in transaction_hooks.backends."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "Il server delle email non è disponibile."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Controllare le impostazioni di posta elettronica ed assicurarsi che il "
 "server di posta elettronica stia funzionando."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "La revisione è mancante o ha un valore non valido."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Esegui `revision --restore` per inizializzare il contatore delle revisioni."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:502
+#: checks.py:504
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_CONTACT_EMAIL non è impostato."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Il percorso ('%s') indicato in POOTLE_FS_WORKING_PATH non esiste."
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 "Crea la directory indicata in `POOTLE_FS_WORKING_PATH` o cambia il percorso."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1654,15 +1645,16 @@ msgstr ""
 "Pootle non ha i permessi di scrittura per il percorso ('%s') indicato in "
 "POOTLE_FS_WORKING_PATH."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 "Aggiungi il permesso di scrittura `POOTLE_FS_WORKING_PATH` o cambia le "
 "impostazioni"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "MySQL richiede le impostazioni di fuso orario."
 
@@ -1691,7 +1683,6 @@ msgstr "Incompleto"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Totale"
 
@@ -1751,32 +1742,32 @@ msgstr "È necessario specificare un'azione da eseguire"
 msgid "A valid search field must be specified"
 msgstr "Deve essere specificato un campo di ricerca valido"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "Può accedere ad un progetto"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "Non può accedere ad un progetto"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "Può inserire suggerimenti per una traduzione"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "Può inserire una traduzione"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "Può revisionare le proposte"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 #, fuzzy
 msgid "Can perform administrative tasks"
 msgstr "Amministrazione Django"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
@@ -1823,17 +1814,18 @@ msgstr "%(user)s ha tradotto %(source)s"
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -1996,7 +1988,7 @@ msgstr "Lingue"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Progetti"
@@ -2054,94 +2046,6 @@ msgstr "Controllo di sistema"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "Nessun problema rilevato. Tutto apposto!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "Rapporto per %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "Rapporto per %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "Mese precedente"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "Prossimo mese"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "Orario locale del server"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "Azione"
-
-#: templates/admin/detailed_reports.html:153
-#, fuzzy
-msgid "Source words"
-msgstr "Termini sorgenti"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "Somiglianza"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "Parole"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "Subtotale"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "MT"
-
-#: templates/admin/detailed_reports.html:219
-#, fuzzy
-msgid "Subactions"
-msgstr "Funzioni"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "Traduzione grezza"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Rivedi"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "attività registrate"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "Nessuna attività registrata nel periodo indicato"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "Suggerimenti (subtotale)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "Traduzioni (subtotale)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "Revisioni (subtotale)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "Seleziona un utente valido."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2241,6 +2145,14 @@ msgstr "Aggiorna"
 msgid "User"
 msgstr "Utente"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "Mese precedente"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "Prossimo mese"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Rapporto dettagliato"
@@ -2248,32 +2160,6 @@ msgstr "Rapporto dettagliato"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Statistiche dettagliate"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "Aggiungi un'attività"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "parole"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "ore"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "Aggiungi record"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "Imposta Tariffe"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "Salva"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2283,6 +2169,11 @@ msgstr "Cancella"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "o"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "Salva"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2724,7 +2615,7 @@ msgid "Critical issues with the translation"
 msgstr "Criticità della traduzione"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Errori critici:"
 
@@ -2854,8 +2745,9 @@ msgid "The reported error was:"
 msgstr "L'errore riscontrato era:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr "&lt;&lt;&lt;"
+#, fuzzy
+msgid "Previous page"
+msgstr "Precedente"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2868,8 +2760,9 @@ msgid "Showing %(count)s results per page"
 msgstr ""
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr "&gt;&gt;&gt;"
+#, fuzzy
+msgid "Next page"
+msgstr "Pagina principale"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2893,39 +2786,40 @@ msgstr "Filtra suggerimenti"
 msgid "Language team"
 msgstr "Gruppo linguistico"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr "Membro amministratore"
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "Aggiungi membro al gruppo"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "Rimuovi selezionata"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 #, fuzzy
 msgid "Unit and suggestions admin"
 msgstr "Suggerimento %d:"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
 msgstr "Suggerimenti in sospeso:"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "Parole complessive:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "Tradotte:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "Necessita revisione:"
 
@@ -3176,26 +3070,6 @@ msgstr ""
 "Alcune traduzioni sono importate da file esterni. Queste sono registrate "
 "sotto questo speciale meta-account."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "Tassi"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "Valuta:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "Tariffa di traduzione:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "Tariffa di revisione:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "Tariffa oraria:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "Account utente"
@@ -3239,6 +3113,110 @@ msgstr "Accedi"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Migliori collaboratori negli ultimi 30 giorni"
+
+#~ msgid "Rate"
+#~ msgstr "Tariffa"
+
+#~ msgid "Review Rate"
+#~ msgstr "Tariffa di revisione"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "Tariffa Oraria"
+
+#~ msgid "Currency"
+#~ msgstr "Valuta"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "Rapporto per %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "Rapporto per %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "Orario locale del server"
+
+#~ msgid "Action"
+#~ msgstr "Azione"
+
+#, fuzzy
+#~ msgid "Source words"
+#~ msgstr "Termini sorgenti"
+
+#~ msgid "Similarity"
+#~ msgstr "Somiglianza"
+
+#~ msgid "Words"
+#~ msgstr "Parole"
+
+#~ msgid "Subtotal"
+#~ msgstr "Subtotale"
+
+#~ msgid "MT"
+#~ msgstr "MT"
+
+#, fuzzy
+#~ msgid "Subactions"
+#~ msgstr "Funzioni"
+
+#~ msgid "Raw Translation"
+#~ msgstr "Traduzione grezza"
+
+#~ msgid "Review"
+#~ msgstr "Rivedi"
+
+#~ msgid "registered tasks"
+#~ msgstr "attività registrate"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "Nessuna attività registrata nel periodo indicato"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "Suggerimenti (subtotale)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "Traduzioni (subtotale)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "Revisioni (subtotale)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "Seleziona un utente valido."
+
+#~ msgid "Add Task"
+#~ msgstr "Aggiungi un'attività"
+
+#~ msgid "words"
+#~ msgstr "parole"
+
+#~ msgid "hours"
+#~ msgstr "ore"
+
+#~ msgid "Add record"
+#~ msgstr "Aggiungi record"
+
+#~ msgid "Set Rates"
+#~ msgstr "Imposta Tariffe"
+
+#~ msgid "&lt;&lt;&lt;"
+#~ msgstr "&lt;&lt;&lt;"
+
+#~ msgid "&gt;&gt;&gt;"
+#~ msgstr "&gt;&gt;&gt;"
+
+#~ msgid "Rates"
+#~ msgstr "Tassi"
+
+#~ msgid "Currency:"
+#~ msgstr "Valuta:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "Tariffa di traduzione:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "Tariffa di revisione:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "Tariffa oraria:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "Il valore di `somiglianza` deve essere nell'intervallo [0..1]"
@@ -5477,9 +5455,6 @@ msgstr "Migliori collaboratori negli ultimi 30 giorni"
 
 #~ msgid "User Interface language"
 #~ msgstr "Lingua dell'interfaccia utente"
-
-#~ msgid "Home page"
-#~ msgstr "Pagina principale"
 
 #~ msgid "None"
 #~ msgstr "Nessuno"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-27 02:40+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgid "Email Address"
 msgstr "ئېلخەت مەنزىل"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "تولۇق ئاتى"
 
@@ -95,47 +95,31 @@ msgstr "قۇر سانى"
 msgid "Alternative Source Languages"
 msgstr "تاللاشچان مەنبە تىل"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "نىسبىتى"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "تەكشۈرۈش نىسبىتى"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "سائەتلىك نىسبىتى"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "ئېرىشكەن نومۇر"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "پۇل"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "ئىشچىمۇ؟"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "تورتۇرا"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "قىسقىچە تارىخى"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "بۇ تورخەت ئادرېسى مەۋجۇت."
 
@@ -245,14 +229,14 @@ msgstr "ھۆججىتىڭىزنى يۈكلەۋاتقاندا خاتالىق كۆ�
 msgid "Language code does not follow the ISO convention"
 msgstr "تىل كودى ISO ئۆلچىمىگە ئۇيغۇن ئەمەس"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "مەنبە تىل"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "ئەگەر بۇ بۇ ھۆججەت ('%s') تىپىدا ساقلانغان بولسا، قۇرۇلۇشتىن ھۆججەت تىپىنى "
@@ -358,9 +342,10 @@ msgid "Translation path mapping"
 msgstr "تەرجىمە يولى خەرىتىسى"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 "تەرجىمە يولى خەرىتىسى ھۆججەت سىستېمىسىنىڭ Pootle دا ساقلىنىدىغان "
 "يەرلىكلەشتۈرۈلگەن ھۆججەتلەر خەرىتىسىدۇر."
@@ -431,12 +416,12 @@ msgstr "قوبۇل قىل"
 
 #: apps/pootle_language/forms.py:157
 #, fuzzy
-msgid "Filter suggester"
+msgid "Filter by suggester"
 msgstr "ئىشلەتكۈچى تەكلىپلىرى"
 
 #: apps/pootle_language/forms.py:163
 #, fuzzy
-msgid "Filter state"
+msgid "Filter by state"
 msgstr "سۈزگۈچ"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -444,7 +429,7 @@ msgstr "سۈزگۈچ"
 msgid "Project"
 msgstr "قۇرۇلۇش"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "كودى"
 
@@ -490,15 +475,15 @@ msgstr "كۆپلۈك سانى"
 msgid "Plural Equation"
 msgstr "مەنىداش كۆپلۈك"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "بىرلىك"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "ھالەت"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "مەنبە"
 
@@ -926,12 +911,13 @@ msgstr "تىل"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" نى قۇرۇلۇش كودى سۈپىتىدە ئىشلەتكىلى بولمايدۇ"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -939,54 +925,55 @@ msgstr ""
 "قۇرۇلۇشنىڭ قىسقا كودى. پەقەت ASCII ھەرپلىرى، رەقەملەر، ئاستى سىزىق(_) "
 "ھەرپلىرىنىلا ئۆز ئىچىگە ئالىدۇ."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "سۈپەت تەكشۈرۈش"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "gnu/غەيرى-gnu ئۇسلۇبىنى ئۆزلۈكىدىن بايقاش (ئاستىراق)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "GNU ئۇسلۇب: ھۆججەت ئاتى تىل كودىدا ئاتالغان"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "غەيرى GNU: ھەر بىر تىلنىڭ ئۆزىنىڭ مۇندەرىجىسى بولىدۇ"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "ھۆججەت سىستېمىسىنى باشقۇرۇش ئۈچۈن Pootle FS كە يول قوي (تەجرىبە)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "قۇرۇلۇشنىڭ دەرەخسىمان ئۇسلۇبى"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "ۋاز كەچكەن ھۆججەتلەر"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "خاتالىق دوكلاتى تورخېتى"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr "مەنبە تېكىست مەسىلىسىنى دوكلات قىلىدىغان تور خەت ئادرېسى."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "ئېكران كەسمە ئىزدەش ئالدى قوشۇلغۇچىسى"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "چەكلەنگەن"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "تەرجىمە قۇرۇلۇشى (%s) قۇرۇلدى. ئۇنىڭ ساقلانمىلىرىنى ھۆججەت قېلىپىدىن "
@@ -997,11 +984,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "تەرجىمە قۇرۇلۇشى (%s) ئۆچۈرۈلدى."
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "نىشان"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "ئىزاھات"
 
@@ -1051,7 +1038,7 @@ msgstr "«ئىشلەش زۆرۈر» بەلگىسىنى چىقىرىۋېتىش ك
 msgid "Translator comment"
 msgstr "تەرجىمان ئىزاھاتى"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "يول"
 
@@ -1214,7 +1201,8 @@ msgid "Filter"
 msgstr "سۈزگۈچ"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "بۇ مەۋھۇم قىسقۇچ نەگە ساقلايدىغانلىقىنى ئۆز ئىچىگە ئالغان سۈزگۈچ قائىدىسى."
 
@@ -1311,19 +1299,22 @@ msgstr "سىزنىڭ Redis نەشرىڭىز بەك كونا."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "سىستېمىڭىزنىڭ Redis مۇلازىمېتىر بوغچىسىنى ئەڭ يېڭى نەشرى %s غا يېڭىلاڭ"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "ئىجرا قىلىنىۋاتقان RQ ئىشچى يوق"
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "يېڭى ئىشچى 'pootle rqworker' ئارقىلىق ئىجرا قىلىڭ"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "غەملەك ئارقا ئۇچى Redis ئۈچۈن تەڭشەلمىگەن."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1332,41 +1323,41 @@ msgstr ""
 "كۆڭۈلدىكى   غەملەك ئارقا ئۇچى django_redis.cache.RedisCache تەڭشەش\n"
 "نۆۋەتتىكى تەڭشەكلەر: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "بىر Redis غەملەك باغلىنىشىنى قوزغىتالمايدۇ"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "سىز CACHES تەڭشەكلىرىڭىزنى تەپسىلىي تەكشۈرۈڭ"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "تەڭشەش ھالىتى ئوچۇق. ئىشلەپچىقىرىش مۇھىتىدا بۇنداق قىلماڭ!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "بۇ Pootle تەڭشىكىدە DEBUG = False قىلىپ تەڭشەڭ"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "sqlite ساندان ئارقا ئۇچىنى قوللىمايدۇ"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "كۆڭۈلدىكى سانداق موتورىنى postgresql ياكى mysql غا تەڭشەڭ"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "cached_db نى سۆزلەشكۈ موتورى قىلىپ ئىشلەتمەڭ"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1376,11 +1367,11 @@ msgstr ""
 "تەڭشەڭ\n"
 "نۆۋەتتىكى تەڭشەكلەر: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL تەڭشەلمىگەن."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1388,23 +1379,23 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL تەڭشەلسە ئىشلەتكۈچى Pootle ئالاقىداش جەدۋىلى ئارقىلىق "
 "باشقۇرغۇچى بىلەن ئالاقىلىشالايدۇ."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 "POOTLE_CONTACT_EMAIL نىڭ ھازىر ئىشلىتىۋاتقىنى تۆۋەندىكى كۆڭۈلدىكى تەڭشەك %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr "POOTLE_CONTACT_EMAIL ئالاقەداش تىزىمىدىن قوبۇل قىلغان ئادرېسلار."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL تەڭشەلمىگەن."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1413,36 +1404,36 @@ msgstr ""
 "ئىشلىتىلىدۇ.\n"
 "تورخەت مۇلازىمېتىر تەڭشىكىنى تەكشۈرۈشنى ئۇنتۇپ قالماڭ."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL تۆۋەندىكى كۆڭۈلدىكى تەڭشەك %r نى ئىشلىتىۋاتىدۇ."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER كەم."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER تەڭشەك."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER دىكى قىممەت ئىناۋەتسىز."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER غا ئىناۋەتلىك قىممەتتىن بىرنى تەڭشەڭ."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER دىكى بەلگە ئىناۋەتسىز."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER غا ئىناۋەتلىك بەلگىدىن بىرنى تەڭشەڭ."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1451,67 +1442,67 @@ msgstr ""
 "POOTLE_MARKUP_FILTER غا «%s» بەلگە تەڭشەلدى، ئەمما تەمىنلەنگەن بوغچا "
 "تېپىلمىدى."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "بوغچىنى ئورنىتىدۇ ياكى POOTLE_MARKUP_FILTER نى ئۆزگەرتىدۇ."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] نىڭ INDEX_NAME يوق."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] غا INDEX_NAME دىن بىرنى تەڭشەڭ."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "POOTLE_TM_SERVER دىكى '%s' INDEX_NAME تەكرار."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 "POOTLE_TM_SERVER دىكى بارلىق مۇلازىمېتىرلارغا پەرقلىق INDEX_NAME تەڭشەڭ."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] نىڭ ENGINE نى يوق."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] غا ENGINE دىن بىرنى تەڭشەڭ."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] دا HOST يوق."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] غا HOST تىن بىرنى تەڭشەڭ."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] نىڭ PORT يوق."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] غا PORT تىن بىرنى تەڭشەڭ."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 "POOTLE_TM_SERVER['%s'] نىڭ 0.0 دىن كىچىك ياكى 1.0 دىن چوڭ WEIGHT كە ئىگە"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1519,39 +1510,39 @@ msgstr ""
 "POOTLE_TM_SERVER['%s'] ئۈچۈن 0.0 دىن 1.0 (ئىككىلىسىنى ئۆز ئىچىگە ئالىدۇ) "
 "غىچە بولغان WEIGHT قىممىتىنى تەڭشەڭ."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS دا %s يوق."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS ئىچىگە %s نىڭ قىممىتىنى تەڭشەڭ."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS دىكى %s قىممىتى ئىناۋەتسىز."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS غا %s ئىناۋەتلىك قىممەتتىن بىرنى تەڭشەڭ."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "كۆڭۈلدىكى 'admin' ئىشلەتكۈچى بىر'admin' ئىمغا ئىگە قىلىپ تەڭشەلگەن."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "ئىشلەتكۈچى 'admin' نى چىقىرىۋېتىڭ ياكى ئىمنى ئۆزگەرتىڭ. "
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "ساندان باغلىنىشى transaction_hooks قوللىنىدۇ."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1559,73 +1550,73 @@ msgstr ""
 "django.db.backends سۈپىتىدىكى بىر Django ئارقا ئۇچىنى ئىشلىتىش ئۈچۈن "
 "DATABASES['default']['ENGINE'] پارامېتىرىنى تەڭشەڭ."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "تورخەت مۇلازىمېتىرنى ئىشلەتكىلى بولمايدۇ."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "تورخەت تەڭشەكلىرىڭىزنى تەكشۈرۈڭ ھەمدە تورخەت مۇلازىمېتىرىنىڭ نورمال "
 "ئىشلەۋاتقانلىقىغا كاپالەتلىك قىلىڭ."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "يېڭىلانغان نەشرى كەم ياكى قىممىتى خاتا."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:502
+#: checks.py:504
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_CONTACT_EMAIL تەڭشەلمىگەن."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:508
+#: checks.py:510
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 
-#: checks.py:516
+#: checks.py:518
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "MySQL ۋاقىت رايونى تەڭشىكىگە ئېھتىياجلىق."
 
@@ -1654,7 +1645,6 @@ msgstr "چالا"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "جەمئىي"
 
@@ -1710,33 +1700,33 @@ msgstr ""
 msgid "A valid search field must be specified"
 msgstr ""
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "تەرجىمىگە تەۋسىيە قىلالايدۇ"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "تەرجىمىنى يوللىيالايدۇ"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 #, fuzzy
 msgid "Can review suggestions"
 msgstr "تەكلىپنى قايتا تەكشۈر"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 #, fuzzy
 msgid "Can perform administrative tasks"
 msgstr "Django باشقۇرۇش"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr ""
@@ -1783,17 +1773,18 @@ msgstr "تەرجىمە قىلىش زۆرۈر سۆزلەر"
 msgid "%(user)s edited %(source)s"
 msgstr ""
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr ""
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -1955,7 +1946,7 @@ msgstr "تىللار"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "قۇرۇلۇشلار"
@@ -2013,96 +2004,6 @@ msgstr "سىستېما تەكشۈرۈشلىرى"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "ھېچقانداق مەسىلە بايقالمىدى. ھەممە ئىش ياخشى!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "%(user)s نىڭ دوكلاتى، "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "%(user)s نىڭ دوكلاتى"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "ئالدىنقى ئاي"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "كېيىنكى ئاي"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "يەرلىك مۇلازىمېتىر ۋاقتى"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "مەشغۇلات"
-
-#: templates/admin/detailed_reports.html:153
-#, fuzzy
-msgid "Source words"
-msgstr "مەنبە ئاتالغۇلار"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:219
-#, fuzzy
-msgid "Subactions"
-msgstr "فونكىسىيەلەر"
-
-#: templates/admin/detailed_reports.html:220
-#, fuzzy
-msgid "Raw Translation"
-msgstr "تەرجىمىسى"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "تەكشۈر"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:270
-#, fuzzy
-msgid "Suggestion (subtotal)"
-msgstr "تەۋسىيە"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr ""
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2202,6 +2103,14 @@ msgstr "ھوقۇقىنى يېڭىلا"
 msgid "User"
 msgstr "ئىشلەتكۈچىلەر"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "ئالدىنقى ئاي"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "كېيىنكى ئاي"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr ""
@@ -2209,32 +2118,6 @@ msgstr ""
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr ""
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr ""
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr ""
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr ""
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "خاتىرە قوش"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr ""
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "ساقلا"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2244,6 +2127,11 @@ msgstr "ئۆچۈر"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "ياكى"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "ساقلا"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2684,7 +2572,7 @@ msgid "Critical issues with the translation"
 msgstr "تەرجىمىدە كۆرۈلۈشى مۇمكىن بولغان مەسىلە"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 #, fuzzy
 msgid "Critical errors:"
 msgstr "ئاچقۇچلۇق"
@@ -2813,8 +2701,9 @@ msgid "The reported error was:"
 msgstr ""
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr ""
+#, fuzzy
+msgid "Previous page"
+msgstr "ئالدىنقى"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2827,8 +2716,9 @@ msgid "Showing %(count)s results per page"
 msgstr ""
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr ""
+#, fuzzy
+msgid "Next page"
+msgstr "كېيىنكى %d"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2854,43 +2744,44 @@ msgstr "ئىشلەتكۈچى تەكلىپلىرى"
 msgid "Language team"
 msgstr "تىل خەۋەرلىرى"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 #, fuzzy
 msgid "Remove selected"
 msgstr "تەكلىپنى چىقىرىۋەت"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 #, fuzzy
 msgid "Unit and suggestions admin"
 msgstr "تەكلىپ %d:"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 #, fuzzy
 msgid "Pending suggestions:"
 msgstr "بېكىتىلمىگەن تەۋسىيەلەر"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 #, fuzzy
 msgid "Total words:"
 msgstr "جەمئى سۆز"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 #, fuzzy
 msgid "Translated:"
 msgstr "تەرجىمە قىلىنغان"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 #, fuzzy
 msgid "Needs work:"
 msgstr "ئىشلەش زۆرۈر"
@@ -3127,26 +3018,6 @@ msgid ""
 "under this special meta-account."
 msgstr ""
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr ""
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr ""
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr ""
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr ""
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr ""
-
 #: templates/user/settings.html:12
 #, fuzzy
 msgid "User Account"
@@ -3190,6 +3061,52 @@ msgstr ""
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "ئىلغار تۆھپىكارلار"
+
+#~ msgid "Rate"
+#~ msgstr "نىسبىتى"
+
+#~ msgid "Review Rate"
+#~ msgstr "تەكشۈرۈش نىسبىتى"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "سائەتلىك نىسبىتى"
+
+#~ msgid "Currency"
+#~ msgstr "پۇل"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "%(user)s نىڭ دوكلاتى، "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "%(user)s نىڭ دوكلاتى"
+
+#~ msgid "Local server time"
+#~ msgstr "يەرلىك مۇلازىمېتىر ۋاقتى"
+
+#~ msgid "Action"
+#~ msgstr "مەشغۇلات"
+
+#, fuzzy
+#~ msgid "Source words"
+#~ msgstr "مەنبە ئاتالغۇلار"
+
+#, fuzzy
+#~ msgid "Subactions"
+#~ msgstr "فونكىسىيەلەر"
+
+#, fuzzy
+#~ msgid "Raw Translation"
+#~ msgstr "تەرجىمىسى"
+
+#~ msgid "Review"
+#~ msgstr "تەكشۈر"
+
+#, fuzzy
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "تەۋسىيە"
+
+#~ msgid "Add record"
+#~ msgstr "خاتىرە قوش"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "similarity نىڭ قىممىتى [0..1] ئارىسىدا بولىدۇ"
@@ -5177,9 +5094,6 @@ msgstr "ئىلغار تۆھپىكارلار"
 
 #~ msgid "Items %(first)d to %(last)d of %(total)d"
 #~ msgstr "%(first)d دىن %(last)d جەمئى %(total)d تۈر"
-
-#~ msgid "Next %d"
-#~ msgstr "كېيىنكى %d"
 
 #~ msgid "End"
 #~ msgstr "ئاخىرى"

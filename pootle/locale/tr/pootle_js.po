@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-10-21 16:20+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -863,9 +863,6 @@ msgstr "Skor Değişikliği"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -879,71 +876,6 @@ msgstr "Verilen süre içerisinde kaydedilmiş etkinlik yok"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Lütfen geçerli bir kullanıcı seçin."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Kayıtlı Görevler"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Tarih Saat"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Yorum"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Eylem"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Miktar"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Oran"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Alt toplam"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s saat"
-msgstr[1] "%s saat"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Görevi kaldır"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Buna yorum yap"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Özet"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Dönem"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(kayıtlı görevler)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Toplam (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -978,6 +910,50 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\">%(project)s</span>&rdquo; projesinde "
 "%(fullname)s tarafından çevrilmiş"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Kayıtlı Görevler"
+
+#~ msgid "Datetime"
+#~ msgstr "Tarih Saat"
+
+#~ msgid "Comment"
+#~ msgstr "Yorum"
+
+#~ msgid "Action"
+#~ msgstr "Eylem"
+
+#~ msgid "Amount"
+#~ msgstr "Miktar"
+
+#~ msgid "Rate"
+#~ msgstr "Oran"
+
+#~ msgid "Subtotal"
+#~ msgstr "Alt toplam"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s saat"
+#~ msgstr[1] "%s saat"
+
+#~ msgid "Remove task"
+#~ msgstr "Görevi kaldır"
+
+#~ msgid "Comment on it"
+#~ msgstr "Buna yorum yap"
+
+#~ msgid "Summary"
+#~ msgstr "Özet"
+
+#~ msgid "Period"
+#~ msgstr "Dönem"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(kayıtlı görevler)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Toplam (%(currency)s)"
 
 #~ msgid "%(user)s removed translation for %(sourceString)s"
 #~ msgstr "%(user)s, %(sourceString)s için çeviriyi kaldırdı"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-19 02:13+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -871,9 +871,6 @@ msgstr "Poengendring"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -887,74 +884,6 @@ msgstr "Ingen aktivitet over en gitt tidsperiode"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Velg en gyldig bruker."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Registrerte oppgaver"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-#, fuzzy
-msgid "Datetime"
-msgstr "Dato og tidspunkt"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-#, fuzzy
-msgid "Comment"
-msgstr "Kommentar"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Handling"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Mengde"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Takst"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Delsum"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s time"
-msgstr[1] "%s timer"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Fjern oppgave"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Kommenter det"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Sammendrag"
-
-#: templates/admin/xhr_summary_report.html:6
-#, fuzzy
-msgid "Period"
-msgstr "Periode"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(registrerte oppgaver)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, fuzzy, python-format
-msgid "Total (%(currency)s)"
-msgstr "Totale (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -989,6 +918,54 @@ msgid ""
 msgstr ""
 "Oversatt av %(fullname)s i &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo;-prosjektet"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Registrerte oppgaver"
+
+#, fuzzy
+#~ msgid "Datetime"
+#~ msgstr "Dato og tidspunkt"
+
+#, fuzzy
+#~ msgid "Comment"
+#~ msgstr "Kommentar"
+
+#~ msgid "Action"
+#~ msgstr "Handling"
+
+#~ msgid "Amount"
+#~ msgstr "Mengde"
+
+#~ msgid "Rate"
+#~ msgstr "Takst"
+
+#~ msgid "Subtotal"
+#~ msgstr "Delsum"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s time"
+#~ msgstr[1] "%s timer"
+
+#~ msgid "Remove task"
+#~ msgstr "Fjern oppgave"
+
+#~ msgid "Comment on it"
+#~ msgstr "Kommenter det"
+
+#~ msgid "Summary"
+#~ msgstr "Sammendrag"
+
+#, fuzzy
+#~ msgid "Period"
+#~ msgstr "Periode"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(registrerte oppgaver)"
+
+#, fuzzy
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Totale (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

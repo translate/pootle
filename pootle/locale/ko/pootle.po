@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Email Address"
 msgstr "전자메일 주소"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "전체 이름"
 
@@ -97,47 +97,31 @@ msgstr "가로 줄"
 msgid "Alternative Source Languages"
 msgstr "근본 언어 대안"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "비율"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "평가율"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "시간당"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "점수"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "화폐 단위"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "피고용인 인가요?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "트위터"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "웹사이트"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "짧은 경력"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "이 email 주소는 이미 존재합니다."
 
@@ -251,14 +235,14 @@ msgstr "당신의 파일을 업로드 중 에러가 있었습니다"
 msgid "Language code does not follow the ISO convention"
 msgstr "언어코드가 ISO 방식을 따르지 않습니다"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "원시 언어"
 
 #: apps/pootle_app/forms.py:88
 #, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 
@@ -367,7 +351,7 @@ msgstr "번역 설정"
 #: apps/pootle_fs/forms.py:55
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 
 #: apps/pootle_fs/forms.py:181
@@ -447,12 +431,12 @@ msgstr "수락"
 
 #: apps/pootle_language/forms.py:157
 #, fuzzy
-msgid "Filter suggester"
+msgid "Filter by suggester"
 msgstr "사용자 제안"
 
 #: apps/pootle_language/forms.py:163
 #, fuzzy
-msgid "Filter state"
+msgid "Filter by state"
 msgstr "필터"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -460,7 +444,7 @@ msgstr "필터"
 msgid "Project"
 msgstr "프로젝트"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "코드"
 
@@ -506,15 +490,15 @@ msgstr "복수형의 수"
 msgid "Plural Equation"
 msgstr "복수형 계산식"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "단위"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "상태"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "소스"
 
@@ -948,66 +932,68 @@ msgstr "언어"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%s\" 프로젝트 코드로 사용 될 수 없습니다"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%s\" 프로젝트 코드로 사용 될 수 없습니다"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr "프로젝트를 위한 짧은 코드. ASCII 문자, 숫자, 밑줄(_)만 포함합니다."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "품질 검사"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 #, fuzzy
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "자동 감지(느리게)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "GNU 스타일: 언어코드에 의해 이름 지어진 파일"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "비 GNU: 고유 디렉터리의 각 언어"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "프로젝트 트리 스타일"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "파일 무시"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "에러 리포트 이메일"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr "어디서나 이슈가 될수 있는 소식은 이메일 주소에 언급 될 수 있습니다."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "스크린샷 찾기 접두사"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "사용 안 함"
 
 #: apps/pootle_project/views.py:263
 #, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 
@@ -1016,11 +1002,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "번역 프로젝트 메인 페이지"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "대상"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "코멘트"
 
@@ -1070,7 +1056,7 @@ msgstr "작업표시를 없애야 합니다"
 msgid "Translator comment"
 msgstr "번역자 주석"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "경로"
 
@@ -1235,7 +1221,8 @@ msgid "Filter"
 msgstr "필터"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr "이 가상 폴더를 포함하고 저장하는 필터링 규칙들에 대한 설명."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
@@ -1327,20 +1314,23 @@ msgstr "당신의 Redis 버젼이 오래 되었습니다."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "최신버젼 %s 로 당신의 Redis 서버 패키지를 업데이트 하세요"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "RQ 작업자가 동작하고 있는게 없습니다."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 #, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "새 workers를 manage.py rqworker와 함께 실행하시오"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "백엔드 캐쉬가 Redis로 지정되지 않았습니다."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1349,43 +1339,43 @@ msgstr ""
 "기본 백엔드 캐쉬를 django_redis.cache.RedisCache 로 지정하세요\n"
 "현재 설정들: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Redis 캐쉬 연결을 초기화 할 수 없습니다"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "당신의 CACHES 설정들을 이중-체크 하세요"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "DEBUG 모드가 활성화 되었습니다. production에서는 활성화 하지마세요!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Pootle 설정에서 DEBUG = False 로 지정하세요"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "백엔드로 sqlite 데이터베이스를 지원하지 않습니다"
 
-#: checks.py:203
+#: checks.py:205
 #, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "당신의 기본 데이터베이스 엔진을 postgresql_psycopg2 또는 mysql로 지정하시오"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "세션엔진으로 cached_db를 사용하지 않음"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1394,11 +1384,11 @@ msgstr ""
 "django.contrib.sessions.backend.cached_db에 SESSION_ENGINE지정\n"
 "현재 설정: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL이 지정되지 않았습니다."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1406,12 +1396,12 @@ msgstr ""
 "Pootle contact form을 통해서 관리자에게 접촉하려는 유저들을 허용하려면 "
 "POOTLE_CONTACT_EMAIL 지정하시오."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL 은 %r 로 사용하도록 기본설정 되어있습니다."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1419,11 +1409,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL은 contact form을 통해 보내진 메세지를 받기 위한 주소입니"
 "다."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL이 설정되지 않았습니다."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1431,36 +1421,36 @@ msgstr ""
 "DEFAULT_FROM_EMAIL이 모든 외부로 가는 Pootle email에 사용됩니다.\n"
 "당신의 메일서버 설정을 살펴보는 것을 있지마세요."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL는 기본설정에 따라 사용됩니다 %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER가 없습니다."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER 지정."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "유효하지 않은 값이 POOTLE_MARKUP_FILTER에 있습니다."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER의 유효한 값을 지정."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER에 유효하지 않은 markup."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER위한 유효한 markup 지정."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1469,104 +1459,104 @@ msgstr ""
 "POOTLE_MARKUP_FILTER 가 '%s' markup으로 지정 됨, 하지만 제공하는 패키지를 찾"
 "을 수 없다."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "패키지를 설치하거나 POOTLE_MARKUP_FILTER를 변경."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr ""
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr ""
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr ""
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr ""
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr ""
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr ""
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr ""
 
-#: checks.py:360
+#: checks.py:362
 #, fuzzy, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "유효하지 않은 값이 POOTLE_MARKUP_FILTER에 있습니다."
 
-#: checks.py:362
+#: checks.py:364
 #, fuzzy, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_MARKUP_FILTER의 유효한 값을 지정."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "기본 'admin' 사용자는 여전히 'admin' 로 암호가 설정되어 있습니다."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "사용자 'admin' 를 제거하거나 암호를 변경하세요."
 
-#: checks.py:400
+#: checks.py:402
 #, fuzzy
 msgid "Database connection uses transaction_hooks."
 msgstr "데이터베이스 연결이 on_commit에 적용되지 않았습니다."
 
-#: checks.py:401
+#: checks.py:403
 #, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
@@ -1575,71 +1565,71 @@ msgstr ""
 "백엔드 사용을 위해 transaction_hooks.backends에서 DATABASES['default']"
 "['ENGINE']을 지정하세요."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "이메일 서버가 동작하지 않습니다."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr "당신의 email 설정을 살펴보고 email 서버가 동작하는지 확인하세요."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr ""
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:502
+#: checks.py:504
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_CONTACT_EMAIL이 지정되지 않았습니다."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:508
+#: checks.py:510
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 
-#: checks.py:516
+#: checks.py:518
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr ""
 
@@ -1668,7 +1658,6 @@ msgstr "완료되지 않은"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "전체"
 
@@ -1725,32 +1714,32 @@ msgstr ""
 msgid "A valid search field must be specified"
 msgstr ""
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "프로젝트에 접근 가능"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "프로젝트에 접근 불가"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "번역을 위한 제안단어를 만든다"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "번역을 제출 할 수 있음"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "제안 검토가능"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 #, fuzzy
 msgid "Can perform administrative tasks"
 msgstr "Django 관리"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, fuzzy, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(source_string)s 위해 번역을 제거하다"
@@ -1795,17 +1784,18 @@ msgstr "%(source_string)s이 번역됨"
 msgid "%(user)s edited %(source)s"
 msgstr "%(source_string)s 이 고쳐짐"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, fuzzy, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(source_string)s 번역전"
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, fuzzy, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(source_string)s을 다시보다"
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr ""
@@ -1964,7 +1954,7 @@ msgstr "언어"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "프로젝트"
@@ -2022,94 +2012,6 @@ msgstr "시스템 점검"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "어떤 문제도 발견되지 않았음니다. 모두 좋음!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "사용자 %(user)s에 대한 보고, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "%(user)s 레포트"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "이전 달"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "다음 달"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "지역 서버 시간"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "동작"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "원본 문서"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "유사도"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "문구"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "소계"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr ""
-
-#: templates/admin/detailed_reports.html:219
-#, fuzzy
-msgid "Subactions"
-msgstr "기능"
-
-#: templates/admin/detailed_reports.html:220
-#, fuzzy
-msgid "Raw Translation"
-msgstr "번역"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "검토"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "등록된 업무"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "주어진 기간동안 기록된 활동이 없습니다"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "제안 (소계)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "번역(소계)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "검토 (소계)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "유효한 사용자를 선택하세요."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2205,6 +2107,14 @@ msgstr "업데이트"
 msgid "User"
 msgstr "사용자"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "이전 달"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "다음 달"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "자세한 레포트"
@@ -2212,32 +2122,6 @@ msgstr "자세한 레포트"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "자세한 통계"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "작업 추가"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "문구"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "시간"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "레코드 추가"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "비율 설정"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "저장"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2247,6 +2131,11 @@ msgstr "삭제"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "또는"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "저장"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2680,7 +2569,7 @@ msgid "Critical issues with the translation"
 msgstr "번역의 Critical 이슈들"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Critical 오류들:"
 
@@ -2808,8 +2697,9 @@ msgid "The reported error was:"
 msgstr "보고 된 에러:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr ""
+#, fuzzy
+msgid "Previous page"
+msgstr "이전"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2822,8 +2712,9 @@ msgid "Showing %(count)s results per page"
 msgstr ""
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr ""
+#, fuzzy
+msgid "Next page"
+msgstr "홈페이지"
 
 #: templates/includes/formtable.html:85
 #, fuzzy
@@ -2850,43 +2741,44 @@ msgstr "사용자 제안"
 msgid "Language team"
 msgstr "언어 이름"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 #, fuzzy
 msgid "Remove selected"
 msgstr "사용자 지우기"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 #, fuzzy
 msgid "Unit and suggestions admin"
 msgstr "제안 %d:"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 #, fuzzy
 msgid "Pending suggestions:"
 msgstr "대기 중인 제안 내역"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 #, fuzzy
 msgid "Total words:"
 msgstr "전체 단어"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 #, fuzzy
 msgid "Translated:"
 msgstr "번역됨"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 #, fuzzy
 msgid "Needs work:"
 msgstr "작업이 필요하다"
@@ -3129,26 +3021,6 @@ msgid ""
 msgstr ""
 "몇 번역은 외부 파일에 의해 입력됐습니다. 특별 메타 계정으로 등록된 것입니다."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "비율"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "환율:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "번역율:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "평가율:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "한 시간당 속도:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "사용자 계정"
@@ -3193,6 +3065,101 @@ msgstr "로그인"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "기여자"
+
+#~ msgid "Rate"
+#~ msgstr "비율"
+
+#~ msgid "Review Rate"
+#~ msgstr "평가율"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "시간당"
+
+#~ msgid "Currency"
+#~ msgstr "화폐 단위"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "사용자 %(user)s에 대한 보고, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "%(user)s 레포트"
+
+#~ msgid "Local server time"
+#~ msgstr "지역 서버 시간"
+
+#~ msgid "Action"
+#~ msgstr "동작"
+
+#~ msgid "Source words"
+#~ msgstr "원본 문서"
+
+#~ msgid "Similarity"
+#~ msgstr "유사도"
+
+#~ msgid "Words"
+#~ msgstr "문구"
+
+#~ msgid "Subtotal"
+#~ msgstr "소계"
+
+#, fuzzy
+#~ msgid "Subactions"
+#~ msgstr "기능"
+
+#, fuzzy
+#~ msgid "Raw Translation"
+#~ msgstr "번역"
+
+#~ msgid "Review"
+#~ msgstr "검토"
+
+#~ msgid "registered tasks"
+#~ msgstr "등록된 업무"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "주어진 기간동안 기록된 활동이 없습니다"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "제안 (소계)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "번역(소계)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "검토 (소계)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "유효한 사용자를 선택하세요."
+
+#~ msgid "Add Task"
+#~ msgstr "작업 추가"
+
+#~ msgid "words"
+#~ msgstr "문구"
+
+#~ msgid "hours"
+#~ msgstr "시간"
+
+#~ msgid "Add record"
+#~ msgstr "레코드 추가"
+
+#~ msgid "Set Rates"
+#~ msgstr "비율 설정"
+
+#~ msgid "Rates"
+#~ msgstr "비율"
+
+#~ msgid "Currency:"
+#~ msgstr "환율:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "번역율:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "평가율:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "한 시간당 속도:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "값 `유사성` 은 [0..1] 범위안에 있어야 한다"
@@ -5277,9 +5244,6 @@ msgstr "기여자"
 
 #~ msgid "User Interface language"
 #~ msgstr "사용자 인터페이스 언어"
-
-#~ msgid "Home page"
-#~ msgstr "홈페이지"
 
 #~ msgid "None"
 #~ msgstr "없음"

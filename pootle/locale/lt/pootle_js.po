@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-24 12:28+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -868,9 +868,6 @@ msgstr "Taškų pokytis"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, fuzzy, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -885,73 +882,6 @@ msgstr "Pasirinktuoju periodu neužfiksuota jokia veikla"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Pasirinkite egzistuojantį naudotoją."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Registruotos užduotys"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Data ir laikas"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Komentaras"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Veiksmas"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Kiekis"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Įkainis"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Tarpinė suma"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "valanda"
-msgstr[1] "valandos"
-msgstr[2] "valandų"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Pašalinti užduotį"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Pakomentuoti"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Santrauka"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Periodas"
-
-#: templates/admin/xhr_summary_report.html:38
-#, fuzzy
-msgid "(registered tasks)"
-msgstr "(registruotos užduotys)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Iš viso (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -984,6 +914,53 @@ msgid ""
 "span>&rdquo; project"
 msgstr ""
 "Išvertė %(fullname)s projekte „<span title=\"%(path)s\">%(project)s</span>“"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Registruotos užduotys"
+
+#~ msgid "Datetime"
+#~ msgstr "Data ir laikas"
+
+#~ msgid "Comment"
+#~ msgstr "Komentaras"
+
+#~ msgid "Action"
+#~ msgstr "Veiksmas"
+
+#~ msgid "Amount"
+#~ msgstr "Kiekis"
+
+#~ msgid "Rate"
+#~ msgstr "Įkainis"
+
+#~ msgid "Subtotal"
+#~ msgstr "Tarpinė suma"
+
+#, fuzzy
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "valanda"
+#~ msgstr[1] "valandos"
+#~ msgstr[2] "valandų"
+
+#~ msgid "Remove task"
+#~ msgstr "Pašalinti užduotį"
+
+#~ msgid "Comment on it"
+#~ msgstr "Pakomentuoti"
+
+#~ msgid "Summary"
+#~ msgstr "Santrauka"
+
+#~ msgid "Period"
+#~ msgstr "Periodas"
+
+#, fuzzy
+#~ msgid "(registered tasks)"
+#~ msgstr "(registruotos užduotys)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Iš viso (%(currency)s)"
 
 #~ msgid "%(user)s removed translation for %(sourceString)s"
 #~ msgstr "%(user)s pašalino eilutės vertimą: %(sourceString)s"

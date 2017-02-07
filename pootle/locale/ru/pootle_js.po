@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-12-05 16:55+0000\n"
 "Last-Translator: Mixaill <mixail@by-reservation.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -865,9 +865,6 @@ msgstr "Изменение счета"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -882,72 +879,6 @@ msgstr "Нет зарегистрированной активности в да
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Пожалуйста, выберите пользователя."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Зарегистрированные задачи"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Дата и время"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Комментарий"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Действие"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Количество"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Тариф"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Промежуточный итог"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s час"
-msgstr[1] "%s часа"
-msgstr[2] "%s часов"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Удалить задачу"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Комментировать"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Сводка"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Период"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(зарегистрированные задачи)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Всего (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -982,6 +913,51 @@ msgid ""
 msgstr ""
 "Переведено %(fullname)s в проекте &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Зарегистрированные задачи"
+
+#~ msgid "Datetime"
+#~ msgstr "Дата и время"
+
+#~ msgid "Comment"
+#~ msgstr "Комментарий"
+
+#~ msgid "Action"
+#~ msgstr "Действие"
+
+#~ msgid "Amount"
+#~ msgstr "Количество"
+
+#~ msgid "Rate"
+#~ msgstr "Тариф"
+
+#~ msgid "Subtotal"
+#~ msgstr "Промежуточный итог"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s час"
+#~ msgstr[1] "%s часа"
+#~ msgstr[2] "%s часов"
+
+#~ msgid "Remove task"
+#~ msgstr "Удалить задачу"
+
+#~ msgid "Comment on it"
+#~ msgstr "Комментировать"
+
+#~ msgid "Summary"
+#~ msgstr "Сводка"
+
+#~ msgid "Period"
+#~ msgstr "Период"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(зарегистрированные задачи)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Всего (%(currency)s)"
 
 #~ msgid "%(user)s removed translation for %(sourceString)s"
 #~ msgstr "%(user)s удалил перевод для %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-12-26 12:06+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -866,9 +866,6 @@ msgstr "Scorewijziging"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -882,71 +879,6 @@ msgstr "Geen activiteit geregistreerd in een gegeven periode"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Selecteer een geldige gebruiker."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Geregistreerde taken"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Datum/tijd"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Opmerking"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Actie"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Bedrag"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Tarief"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Subtotaal"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s uur"
-msgstr[1] "%s uur"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Taak verwijderen"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Opmerking plaatsen"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Samenvatting"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Periode"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(geregistreerde taken)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Totaal (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -981,6 +913,50 @@ msgid ""
 msgstr ""
 "Vertaald door %(fullname)s in project &lsquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rsquo;"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Geregistreerde taken"
+
+#~ msgid "Datetime"
+#~ msgstr "Datum/tijd"
+
+#~ msgid "Comment"
+#~ msgstr "Opmerking"
+
+#~ msgid "Action"
+#~ msgstr "Actie"
+
+#~ msgid "Amount"
+#~ msgstr "Bedrag"
+
+#~ msgid "Rate"
+#~ msgstr "Tarief"
+
+#~ msgid "Subtotal"
+#~ msgstr "Subtotaal"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s uur"
+#~ msgstr[1] "%s uur"
+
+#~ msgid "Remove task"
+#~ msgstr "Taak verwijderen"
+
+#~ msgid "Comment on it"
+#~ msgstr "Opmerking plaatsen"
+
+#~ msgid "Summary"
+#~ msgstr "Samenvatting"
+
+#~ msgid "Period"
+#~ msgstr "Periode"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(geregistreerde taken)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Totaal (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -852,9 +852,6 @@ msgstr "점수 변경"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -867,70 +864,6 @@ msgstr "주어진 기간에 기록된 활동 없음"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "유효한 사용자를 선택하십시오."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "등록된 업무"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "날짜시간"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "댓글"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "행동"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "총계"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "비율"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "소계"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "시간시간"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "업무 삭제"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "항목에 설명 달기"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "요약"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "기간"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(등록된 일)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "전체 (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -965,6 +898,50 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\"> 의 %(fullname)s %(project)s</span>&rdquo; 프"
 "로젝트에 의해 번역됨"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "등록된 업무"
+
+#~ msgid "Datetime"
+#~ msgstr "날짜시간"
+
+#~ msgid "Comment"
+#~ msgstr "댓글"
+
+#~ msgid "Action"
+#~ msgstr "행동"
+
+#~ msgid "Amount"
+#~ msgstr "총계"
+
+#~ msgid "Rate"
+#~ msgstr "비율"
+
+#~ msgid "Subtotal"
+#~ msgstr "소계"
+
+#, fuzzy
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "시간시간"
+
+#~ msgid "Remove task"
+#~ msgstr "업무 삭제"
+
+#~ msgid "Comment on it"
+#~ msgstr "항목에 설명 달기"
+
+#~ msgid "Summary"
+#~ msgstr "요약"
+
+#~ msgid "Period"
+#~ msgstr "기간"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(등록된 일)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "전체 (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

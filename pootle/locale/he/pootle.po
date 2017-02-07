@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-02-07 13:10+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgid "Email Address"
 msgstr "כתובת דוא״ל"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "שם מלא"
 
@@ -95,47 +95,31 @@ msgstr "מספר השורות"
 msgid "Alternative Source Languages"
 msgstr "שפות מקור חלופית"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "עלות"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "עלות סקירה"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "עלות שעתית"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "ניקוד"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "מטבע"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "עובד?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "טוויטר"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "אתר"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "קורות חיים בקיצור"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "כתובת דוא״ל זו כבר קיימת."
 
@@ -244,14 +228,14 @@ msgstr "אירעה שגיאה בהעלאת הקובץ שלך"
 msgid "Language code does not follow the ISO convention"
 msgstr "קוד השפה אינו תואם למוסכמות תקן ה־ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "שפת המקור"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr "לא ניתן להסיר סוג קובץ ממיזם אם יש מקורות אחסון מסוג הקובץ הזה ('%s')"
 
@@ -354,9 +338,10 @@ msgid "Translation path mapping"
 msgstr "מיפוי נתיב תרגום"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 "מיפוי נתיב תרגום שממפה את קובצי הלוקליזציה במערכת למקורות האחסון ב־Pootle."
 
@@ -426,12 +411,12 @@ msgstr "קבלה"
 
 #: apps/pootle_language/forms.py:157
 #, fuzzy
-msgid "Filter suggester"
+msgid "Filter by suggester"
 msgstr "סינון הצעות"
 
 #: apps/pootle_language/forms.py:163
 #, fuzzy
-msgid "Filter state"
+msgid "Filter by state"
 msgstr "מסנן"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -439,7 +424,7 @@ msgstr "מסנן"
 msgid "Project"
 msgstr "מיזם"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "קוד"
 
@@ -485,15 +470,15 @@ msgstr "מספר צורות הרבים"
 msgid "Plural Equation"
 msgstr "משוואת הרבים"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "יחידה"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "מצב"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "מקור"
 
@@ -926,12 +911,13 @@ msgstr "שפה"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "לא ניתן להשתמש בצירוף „%(code)s“ בתור קוד מיזם"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "לא ניתן להשתמש בצירוף „%s“ בתור קוד מיזם"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -939,54 +925,55 @@ msgstr ""
 "קוד קצר עבור המיזם. קוד זה אמור להיות מורכב מתווי ASCII, ספרות וקו תחתון (_) "
 "בלבד."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "בדיקות איכות"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "זיהוי אוטומטי של תבניות קובצי gnu/לא-gnu (אטי יותר)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "סגנון GNU: שמות הקבצים תואמים לקוד השפה"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "לא־GNU: כל שפה בתיקייה משלה"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "לאפשר ל־Pootle FS לנהל מערכות קבצים (ניסיוני)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "סגנון עץ מיזם"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "התעלמות מקבצים"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "דוא״ל לדיווח על שגיאות"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr "כתובת דוא״ל שדרכה ניתן לדווח על תקלות בטקסט המקור."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "מנוטרל"
 
 #: apps/pootle_project/views.py:263
 #, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr "מיזם התרגום עודכן כנגד התבניות העדכניות ביותר."
 
@@ -995,11 +982,11 @@ msgstr "מיזם התרגום עודכן כנגד התבניות העדכניו�
 msgid "Translation project (%s) has been deleted"
 msgstr "מיזם התרגום (%s) נמחק"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "יעד"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "הערה"
 
@@ -1049,7 +1036,7 @@ msgstr "חובה להוריד את הסימון נדרשת עבודה"
 msgid "Translator comment"
 msgstr "הערות המתרגם"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "נתיב"
 
@@ -1209,7 +1196,7 @@ msgid "Filter"
 msgstr "מסנן"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
@@ -1298,19 +1285,21 @@ msgstr "גרסת ה־Redis שלך ישנה מדי."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "נא לעדכן את חבילת ה־Redis בשרת שלך לגרסה %s לפחות"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+msgid "No worker running."
 msgstr ""
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr ""
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "מנגנון המטמון לא מוגדר כ־Redis."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1319,15 +1308,15 @@ msgstr ""
 "יש להגדיר את מנגנון מטמון בררת המחדל ל־django_redis.cache.RedisCache\n"
 "הגדרה נוכחית: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "לא ניתן להפעיל את החיבור למטמון ה־Redis"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "נא לבדוק את הגדרות ה־CACHES שלך פעם נוספת"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1335,27 +1324,27 @@ msgstr ""
 "נדרשות הגדרות django_redis.cache.RedisCache נפרדות עבור `default`,‏ `redis` ו־"
 "`lru`."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "מצב DEBUG מופעל. לא מומלץ לעשות זאת בסביבת עבודה!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "הגדרת DEBUG = False בהגדרות של Pootle"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "מנגנון מסד הנתונים של sqlite אינו נתמך"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "הגדרת מסד הנתונים שלך כבררת מחדל ל־postgresql או mysql"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "לא נעשה שימוש ב־cached_db כמנגנון הפעלות"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1364,11 +1353,11 @@ msgstr ""
 "הגדרת SESSION_ENGINE ל־django.contrib.sessions.backend.cached_db\n"
 "הגדרה נוכחית: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL לא מוגדר."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1376,23 +1365,23 @@ msgstr ""
 "ניתן להגדיר את POOTLE_CONTACT_EMAIL כדי לאפשר למשתמשים ליצור קשר עם המנהלים "
 "באמצעות טופס יצירת הקשר של Pootle."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "ב־POOTLE_CONTACT_EMAIL נעשה שימוש בהגדרות בררת המחדל האלו %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
 "POOTLE_CONTACT_EMAIL היא הכתובת שתקבל הודעות שנשלחות באמצעות טופס יצירת הקשר."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL לא מוגדר."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1400,36 +1389,36 @@ msgstr ""
 "ב־DEFAULT_FROM_EMAIL נעשה שימוש בכל תכתובות הדוא״ל היוצאות של Pootle.\n"
 "מומלץ לא לשכוח לסקור את הגדרות שרת הדוא״ל שלך."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL מוגדר לפי בררת המחדל הבאה %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER חסר."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "הגדרת POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "ערך שגוי ב־POOTLE_MARKUP_FILTER."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "הגדרת ערך תקין עבור POOTLE_MARKUP_FILTER."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "סימון שגוי ב־POOTLE_MARKUP_FILTER."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "הגדרת סימון תקין עבור POOTLE_MARKUP_FILTER."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1437,103 +1426,103 @@ msgid ""
 msgstr ""
 "POOTLE_MARKUP_FILTER מוגדר לסימון '%s', אך החבילה המספקת את הסימון לא נמצאת."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "נא להתקין את החבילה או לשנות את POOTLE_MARKUP_FILTER."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "ל־POOTLE_TM_SERVER['%s'] אין INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "יש להגדיר INDEX_NAME עבור POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr ""
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "הגדרת INDEX_NAME שונה לכל השרתים ב־POOTLE_TM_SERVER."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "ל־POOTLE_TM_SERVER['%s'] אין ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "הגדרת ENGINE עבור POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "ל־POOTLE_TM_SERVER['%s'] אין HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "יש להגדיר HOST עבור POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "ל־POOTLE_TM_SERVER['%s'] אין PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "הגדרת PORT עבור POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "ל־POOTLE_TM_SERVER['%s'] מוגדר WEIGHT קטן מ־0.0 or או גדול מ־1.0"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr "יש להגדיר  WEIGHT בין 0.0 ל־1.0 (כולל) עבור POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "ל־POOTLE_SCORE_COEFFICIENTS אין %s."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "הגדרת %s תחת POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "ערך שגוי עבור %s תחת POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "יש להגדיר ערך תקין עבור %s תחת POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "למשתמש 'admin' שמוגדר כבררת מחדל עדיין מוגדרת הססמה 'admin'."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "כדאי להסיר את המשתמש 'admin' או לשנות את הססמה שלו."
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "החיבור למסד הנתונים משתמש ב־transaction_hooks."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1541,27 +1530,27 @@ msgstr ""
 "יש להגדיר עבור DATABASES['default']['ENGINE'] להשתמש במנגנון של Django מ־"
 "django.db.backends."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "שרת הדוא״ל אינו זמין."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr "נא לסקור את הגדרות הדוא״ל שלך ולוודא ששרת הדוא״ל שלך פועל."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "המהדורה חסרה או שיש לה ערך שגוי."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "יש להריץ את הפקודה `revision --restore` כדי לאפס את מונה המהדורות."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1569,49 +1558,51 @@ msgstr ""
 "יש להגדיר את `POOTLE_CANONICAL_URL` בהגדרות או לעדכן את אתר בררת המחדל אם "
 "נעשה שימוש ב־django.contrib.sites."
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:502
+#: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "הפריט POOTLE_FS_WORKING_PATH אינו מוגדר."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 "יש ליצור את התיקייה שמצויינת תחת `POOTLE_FS_WORKING_PATH`, או לשנות את "
 "ההגדרה."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "הנתיב ('%s') שמצויין ע״י POOTLE_FS_WORKING_PATH נעול לכתיבה בפני Pootle."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 "נא להוסיף הרשאות כתיבה למיקום שצויין תחת `POOTLE_FS_WORKING_PATH` או לשנות "
 "את ההגדרה"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "ל־MySQL נדרשות הגדרות אזור זמן."
 
@@ -1640,7 +1631,6 @@ msgstr "במחסור"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "סך הכול"
 
@@ -1696,31 +1686,31 @@ msgstr "עליך לציין באיזו פעולה לנקוט"
 msgid "A valid search field must be specified"
 msgstr "יש לציין שדה חיפוש תקני"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "יכולת לגשת למיזם"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "אי יכולת לגשת למיזם"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "יש הרשאות להציע תרגום"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "יש הרשאות להגיש תרגום"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "יכולת להציע הצעות"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 msgid "Can perform administrative tasks"
 msgstr "יכולת לבצע פעולות ניהוליות"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "התרגום עבור %(source)s הוסר על ידי %(user)s"
@@ -1765,17 +1755,18 @@ msgstr "%(source)s תורגם ע״י %(user)s"
 msgid "%(user)s edited %(source)s"
 msgstr "%(source)s נערך ע״י %(user)s"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr ""
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(source)s נסקר ע״י %(user)s"
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(source)s סומנה להמשך עבודה ע״י %(user)s"
@@ -1929,7 +1920,7 @@ msgstr "שפות"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "מיזמים"
@@ -1987,93 +1978,6 @@ msgstr "בדיקות מערכת"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "לא זוהו בעיות. הכול בסדר!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "דיווח עבור %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "דיווח עבור %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "החודש הקודם"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "החודש הבא"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "זמן השרת המקומי"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "פעולה"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "מילים במקור"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "דמיון"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "מילים"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "סיכום ביניים"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "תרגום מכונה"
-
-#: templates/admin/detailed_reports.html:219
-#, fuzzy
-msgid "Subactions"
-msgstr "פונקציות"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "תרגום גולמי"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "סקור"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "משימות רשומות"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "לא נרשמה פעילות בתקופה הנתונה"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "הצעות (סיכום ביניים)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "מתורגמות (סיכום ביניים)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "נסקרו (סיכום ביניים)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "נא לבחור במשתמש תקני."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2166,6 +2070,14 @@ msgstr "עדכון"
 msgid "User"
 msgstr "משתמש"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "החודש הקודם"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "החודש הבא"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "דוח מפורט"
@@ -2173,32 +2085,6 @@ msgstr "דוח מפורט"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "סטטיסטיקה מפורטת"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "הוספת משימה"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "מילים"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "שעות"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "הוספת רשומה"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "הגדרת עלויות"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "שמירה"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2208,6 +2094,11 @@ msgstr "מחיקה"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "או"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "שמירה"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2636,7 +2527,7 @@ msgid "Critical issues with the translation"
 msgstr "תקלות חמורות עם התרגום"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "תקלות משמעותיות:"
 
@@ -2763,8 +2654,9 @@ msgid "The reported error was:"
 msgstr "השגיאה שדווחה הייתה:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr ""
+#, fuzzy
+msgid "Previous page"
+msgstr "הקודם"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2777,8 +2669,9 @@ msgid "Showing %(count)s results per page"
 msgstr "מוצגות %(count)s תוצאות בעמוד"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr ""
+#, fuzzy
+msgid "Next page"
+msgstr "דף הבית"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2802,38 +2695,39 @@ msgstr "סינון הצעות"
 msgid "Language team"
 msgstr "צוות שפה"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "הוספת חבר צוות"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "הסרת הנבחרים"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
 msgstr "מנהל יחידה והצעות"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
 msgstr "הצעות ממתינות:"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "סך כל המילים:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "מתורגם:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "נדרש טיפול:"
 
@@ -3068,26 +2962,6 @@ msgid ""
 "under this special meta-account."
 msgstr "חלק מהתרגומים מיובאים מקבצים חיצוניים. אלו רשומים תחת חשבון על מיוחד."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "עלויות"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "מטבע:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "עלות תרגום:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "עלות סקירה:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "עלות שעתית:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "חשבון משתמש"
@@ -3131,6 +3005,103 @@ msgstr "כניסה"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "התורמים המובילים ב־30 הימים האחרונים"
+
+#~ msgid "Rate"
+#~ msgstr "עלות"
+
+#~ msgid "Review Rate"
+#~ msgstr "עלות סקירה"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "עלות שעתית"
+
+#~ msgid "Currency"
+#~ msgstr "מטבע"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "דיווח עבור %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "דיווח עבור %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "זמן השרת המקומי"
+
+#~ msgid "Action"
+#~ msgstr "פעולה"
+
+#~ msgid "Source words"
+#~ msgstr "מילים במקור"
+
+#~ msgid "Similarity"
+#~ msgstr "דמיון"
+
+#~ msgid "Words"
+#~ msgstr "מילים"
+
+#~ msgid "Subtotal"
+#~ msgstr "סיכום ביניים"
+
+#~ msgid "MT"
+#~ msgstr "תרגום מכונה"
+
+#, fuzzy
+#~ msgid "Subactions"
+#~ msgstr "פונקציות"
+
+#~ msgid "Raw Translation"
+#~ msgstr "תרגום גולמי"
+
+#~ msgid "Review"
+#~ msgstr "סקור"
+
+#~ msgid "registered tasks"
+#~ msgstr "משימות רשומות"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "לא נרשמה פעילות בתקופה הנתונה"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "הצעות (סיכום ביניים)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "מתורגמות (סיכום ביניים)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "נסקרו (סיכום ביניים)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "נא לבחור במשתמש תקני."
+
+#~ msgid "Add Task"
+#~ msgstr "הוספת משימה"
+
+#~ msgid "words"
+#~ msgstr "מילים"
+
+#~ msgid "hours"
+#~ msgstr "שעות"
+
+#~ msgid "Add record"
+#~ msgstr "הוספת רשומה"
+
+#~ msgid "Set Rates"
+#~ msgstr "הגדרת עלויות"
+
+#~ msgid "Rates"
+#~ msgstr "עלויות"
+
+#~ msgid "Currency:"
+#~ msgstr "מטבע:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "עלות תרגום:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "עלות סקירה:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "עלות שעתית:"
 
 #~ msgid "Pending"
 #~ msgstr "בהמתנה"
@@ -5621,9 +5592,6 @@ msgstr "התורמים המובילים ב־30 הימים האחרונים"
 
 #~ msgid "User Interface language"
 #~ msgstr "שפת מנשק המשתמש"
-
-#~ msgid "Home page"
-#~ msgstr "דף הבית"
 
 #~ msgid "None"
 #~ msgstr "ללא"

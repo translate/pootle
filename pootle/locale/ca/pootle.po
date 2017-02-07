@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-02-06 11:41+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
@@ -62,7 +62,7 @@ msgid "Email Address"
 msgstr "Adreça electrònica"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "Nom sencer"
 
@@ -103,47 +103,31 @@ msgstr "Nombre de files"
 msgid "Alternative Source Languages"
 msgstr "Llengües d'origen alternatives"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "Tarifa"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "Tarifa de revisió"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "Tarifa per hora"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Puntuació"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "Divisa"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "És empleat?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "Lloc web"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "Biografia resumida"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "Aquesta adreça electrònica ja existeix."
 
@@ -255,14 +239,14 @@ msgstr "S'ha produït un error en pujar el fitxer"
 msgid "Language code does not follow the ISO convention"
 msgstr "El codi de llengua no segueix la convenció ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "Llengua d'origen"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "No podeu suprimir el tipus de fitxer d'un projecte si hi ha fitxers d'aquest "
@@ -367,9 +351,10 @@ msgid "Translation path mapping"
 msgstr "Assignació de camins de traducció"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 "L'assignació de camins de traducció que associa els fitxers de traducció en "
 "el sistema de fitxers amb l'emmagatzematge al Pootle."
@@ -439,11 +424,13 @@ msgid "Accept"
 msgstr "Accepta"
 
 #: apps/pootle_language/forms.py:157
-msgid "Filter suggester"
+#, fuzzy
+msgid "Filter by suggester"
 msgstr "Filtra per qui suggereix"
 
 #: apps/pootle_language/forms.py:163
-msgid "Filter state"
+#, fuzzy
+msgid "Filter by state"
 msgstr "Filtre per estat"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -451,7 +438,7 @@ msgstr "Filtre per estat"
 msgid "Project"
 msgstr "Projecte"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "Codi"
 
@@ -499,15 +486,15 @@ msgstr "Nombre de plurals"
 msgid "Plural Equation"
 msgstr "Fórmula pels plurals"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "Unitat"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Estat"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Origen"
 
@@ -941,12 +928,13 @@ msgstr "Llengua"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "No es pot utilitzar «%(code)s» com a codi de projecte"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "No es pot utilitzar «%(code)s» com a comprovador de projecte"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -954,58 +942,59 @@ msgstr ""
 "Un codi curt per al projecte. Hauria de contenir només caràcters ASCII, "
 "nombres i el caràcter de guió baix (_)."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "Comprovacions de qualitat"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Detecció automàtica de disposicions de fitxers gnu/non-gnu (més lent)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "Estil GNU: els fitxers s'anomenen pel codi de llengua"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "No GNU: cada llengua en el seu propi directori"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 "Permet que el sistema de fitxers del Pootle gestioni els sistema de fitxers "
 "(experimental)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "Estil d'arbre del projecte"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "Ignora els fitxers"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "Adreça electrònica per a informar d'errors"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Una adreça electrònica des d'on es pot informar dels problemes amb el text "
 "d'origen."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "Prefix de cerca de captura de pantalles"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "Inhabilitat"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "S'ha creat el projecte de traducció (%s). Se n'estan actualitzant els "
@@ -1016,11 +1005,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "S'ha suprimit el projecte de traducció (%s)"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Destinació"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Comentari"
 
@@ -1070,7 +1059,7 @@ msgstr "S'ha de suprimir la marca «cal revisar»"
 msgid "Translator comment"
 msgstr "Comentari del traductor"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "Camí"
 
@@ -1231,7 +1220,8 @@ msgid "Filter"
 msgstr "Filtre"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "Les regles de filtratge indiquen què s'inclou en aquesta carpeta virtual."
 
@@ -1329,19 +1319,22 @@ msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
 "Actualitzeu el paquet Redis del vostre sistema com a mínim a la versió %s"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "No s'està executant cap tasca RQ."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Executeu processos nous amb «pootle rqworker»"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "El motor de la memòria cau no està definit com a Redis."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1351,15 +1344,15 @@ msgstr ""
 "RedisCache\n"
 "Configuració actual: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "No s'ha pogut iniciar la connexió a la memòria cau Redis"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "Comproveu les opcions de configuració CACHES"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1367,27 +1360,27 @@ msgstr ""
 "Es requereixen configuracions diferents de django_redis.cache.RedisCache per "
 "a «default», «redis» i «lru»."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "El mode DEBUG és actiu. No feu això a producció!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Definiu DEBUG = False en la configuració del Pootle"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "No s'admet el motor de base de dades sqlite"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "Definiu el motor de bases de dades predeterminat a PostgreSQL o MySQL"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "No s'usa cached_db com a motor de sessions"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1396,11 +1389,11 @@ msgstr ""
 "Definiu SESSION_ENGINE a django.contrib.sessions.backend.cached_db\n"
 "Configuració actual: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "No s'ha definit POOTLE_CONTACT_EMAIL."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1408,12 +1401,12 @@ msgstr ""
 "Definiu POOTLE_CONTACT_EMAIL per a pemetre als usuaris contactar amb els "
 "administradors mitjançant el formulari de contacte del Pootle."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL està usant l'opció predeterminada %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1421,11 +1414,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL és l'adreça on es rebran els missatges enviats pel "
 "formulari de contacte."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "L'opció DEFAULT_FROM_EMAIL no està definida."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1434,36 +1427,36 @@ msgstr ""
 "No oblideu de revisar la configuració del vostre servidor de correu "
 "electrònic."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL està usant l'opció  predeterminada %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "Manca el POOTLE_MARKUP_FILTER."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Definiu l'opció POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "El valor de POOTLE_MARKUP_FILTER no és vàlid."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Definiu un valor vàlid per a l'opció POOTLE_MARKUP_FILTER."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Marcatge no vàlid a POOTLE_MARKUP_FILTER."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Definiu un marcatge per a POOTLE_MARKUP_FILTER."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1472,66 +1465,66 @@ msgstr ""
 "POOTLE_MARKUP_FILTER està definit com a marcatge «%s», però el paquet que ho "
 "proporciona no es pot trobar."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Intal·leu el paquet o canvieu POOTLE_MARKUP_FILTER."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] no té INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Definiu un INDEX_NAME per a POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "INDEX_NAME «%s» duplicat en el POOTLE_TM_SERVER."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 "Definiu un INDEX_NAME diferent per a tots els servidors en POOTLE_TM_SERVER."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] no té ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Definiu un ENGINE per a POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] no té HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Definiu un HOST per a POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] no té PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Definiu un PORT per a POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s'] té un WEIGHT menor que 0.0 o major que 1.0"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1539,39 +1532,39 @@ msgstr ""
 "Definiu un WEIGHT entre 0.0 i 1.0 (ambdós inclosos) per a "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS no té %s."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Definiu %s a POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "El valor «%s» al POOTLE_SCORE_COEFFICIENTS no és vàlid."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Definiu un valor vàlid per «%s» a POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "L'usuari predeterminat «admin» encara té la contrasenya «admin»."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "Suprimiu l'usuari «admin» o canvieu-ne la contrasenya."
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "La connexió de base de dades usa transaction_hooks."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1579,32 +1572,32 @@ msgstr ""
 "Definiu el DATABASES['default']['ENGINE'] a usar en el motor de Django de "
 "django.db.backends."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "El servidor de correu electrònic no està disponible."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Reviseu la configuració de correu electrònic i assegureu-vos que el vostre "
 "servidor de correu funciona correctament."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "Manca la revisió o té un valor incorrecte."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Executeu «revision --restore» per a reinicialitzar el comptador de revisions."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "No s'ha proporcionat un URL canònic i el lloc predeterminat s'ha establert a "
 "example.com"
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1612,11 +1605,11 @@ msgstr ""
 "Definiu el «POOTLE_CANONICAL_URL» a la configuració o actualitzeu el lloc "
 "predeterminat si esteu usant django.contrib.sites."
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr "L'URL canònic està definit com a http://localhost."
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1624,39 +1617,41 @@ msgstr ""
 "Definiu el «POOTLE_CANONICAL_URL» a un valor adient per al vostre lloc web o "
 "deixeu-ho buit si esteu usant «django.contrib.sites»."
 
-#: checks.py:502
+#: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "No s'ha definit POOTLE_FS_WORKING_PATH."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "El camí («%s») indicat a POOTLE_FS_WORKING_PATH no existeix."
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 "Creeu el directori indicat pel paràmetre «POOTLE_FS_WORKING_PATH», canvieu "
 "la configuració."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Pootle no pot escriure en el camí («%s») indicat a POOTLE_FS_WORKING_PATH ."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 "Afegiu el permís d'escriptura al directori «POOTLE_FS_WORKING_PATH» , o "
 "canvieu la configuració"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "MySQL requereix la configuració de fus horari."
 
@@ -1685,7 +1680,6 @@ msgstr "Incomplets"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Total"
 
@@ -1743,31 +1737,31 @@ msgstr "Heu d'indicar una acció a prendre"
 msgid "A valid search field must be specified"
 msgstr "Heu d'indicar un camp de cerca vàlid"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "Pot accedir a un projecte"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "No pot accedir a un projecte"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "Pot fer un suggeriment a una traducció"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "Pot enviar una traducció"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "Pot repassar els suggeriments"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 msgid "Can perform administrative tasks"
 msgstr "Pot fer tasques administratives"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s ha eliminat la traducció de la cadena %(source)s"
@@ -1812,17 +1806,18 @@ msgstr "%(user)s ha traduït %(source)s"
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s ha editat %(source)s"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s ha pre-traduït %(source)s"
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s ha revisat %(source)s"
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s ha marcat %(source)s com a cal revisar"
@@ -1982,7 +1977,7 @@ msgstr "Llengües"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projectes"
@@ -2040,92 +2035,6 @@ msgstr "Comprovacions del sistema"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "No s'ha detectat cap problema. Tot és correcte!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "Informe per a %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "Informe per a %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "Mes anterior"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "Mes següent"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "Hora local del servidor"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "Acció"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "Paraules d'origen"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "Semblança"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "Paraules"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "Subtotal"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "Traducció automàtica"
-
-#: templates/admin/detailed_reports.html:219
-msgid "Subactions"
-msgstr "Subaccions"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "Traducció en brut"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Revisa"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "tasques registrades"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "No s'ha registrat cap activitat en el període indicat"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "Suggeriments (subtotal)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "Traducció (subtotal)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "Revisió (subtotal)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "Seleccioneu un usuari vàlid."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2229,6 +2138,14 @@ msgstr "Actualitza"
 msgid "User"
 msgstr "Usuari"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "Mes anterior"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "Mes següent"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Informe detallat"
@@ -2236,32 +2153,6 @@ msgstr "Informe detallat"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Estadístiques detallades"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "Afegeix una tasca"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "paraules"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "hores"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "Afegeix un registre"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "Estableix les tarifes"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "Desa"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2271,6 +2162,11 @@ msgstr "Suprimeix"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "o"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "Desa"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2708,7 +2604,7 @@ msgid "Critical issues with the translation"
 msgstr "Problemes crítics amb la traducció"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Errors crítics:"
 
@@ -2839,8 +2735,9 @@ msgid "The reported error was:"
 msgstr "S'ha informat de l'error:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr "&lt;&lt;&lt;"
+#, fuzzy
+msgid "Previous page"
+msgstr "Anterior"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2853,8 +2750,9 @@ msgid "Showing %(count)s results per page"
 msgstr "Es mostren %(count)s resultats per pàgina"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr "&gt;&gt;&gt;"
+#, fuzzy
+msgid "Next page"
+msgstr "Pàgina d'inici"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2878,38 +2776,39 @@ msgstr "Filtra els suggeriments"
 msgid "Language team"
 msgstr "Equip de la llengua"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr "Administració de membres"
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "Afegeix un membre a l'equip"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "Suprimeix la selecció"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
 msgstr "Administració d'unitats i suggeriments"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
 msgstr "Suggeriments pendents:"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "Nombre total de paraules:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "Traduït:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "Cal revisar:"
 
@@ -3163,26 +3062,6 @@ msgstr ""
 "Algunes traduccions s'han importat des de fitxers externs. Aquestes "
 "traduccions queden enregistrades en aquest metacompte especial."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "Tarifes"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "Divisa:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "Tarifa de traducció:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "Tarifa de revisió:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "Tarifa per hora:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "Compte d'usuari"
@@ -3226,6 +3105,108 @@ msgstr "Inicia la sessió"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Col·laboradors més actius dels últims 30 dies"
+
+#~ msgid "Rate"
+#~ msgstr "Tarifa"
+
+#~ msgid "Review Rate"
+#~ msgstr "Tarifa de revisió"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "Tarifa per hora"
+
+#~ msgid "Currency"
+#~ msgstr "Divisa"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "Informe per a %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "Informe per a %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "Hora local del servidor"
+
+#~ msgid "Action"
+#~ msgstr "Acció"
+
+#~ msgid "Source words"
+#~ msgstr "Paraules d'origen"
+
+#~ msgid "Similarity"
+#~ msgstr "Semblança"
+
+#~ msgid "Words"
+#~ msgstr "Paraules"
+
+#~ msgid "Subtotal"
+#~ msgstr "Subtotal"
+
+#~ msgid "MT"
+#~ msgstr "Traducció automàtica"
+
+#~ msgid "Subactions"
+#~ msgstr "Subaccions"
+
+#~ msgid "Raw Translation"
+#~ msgstr "Traducció en brut"
+
+#~ msgid "Review"
+#~ msgstr "Revisa"
+
+#~ msgid "registered tasks"
+#~ msgstr "tasques registrades"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "No s'ha registrat cap activitat en el període indicat"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "Suggeriments (subtotal)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "Traducció (subtotal)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "Revisió (subtotal)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "Seleccioneu un usuari vàlid."
+
+#~ msgid "Add Task"
+#~ msgstr "Afegeix una tasca"
+
+#~ msgid "words"
+#~ msgstr "paraules"
+
+#~ msgid "hours"
+#~ msgstr "hores"
+
+#~ msgid "Add record"
+#~ msgstr "Afegeix un registre"
+
+#~ msgid "Set Rates"
+#~ msgstr "Estableix les tarifes"
+
+#~ msgid "&lt;&lt;&lt;"
+#~ msgstr "&lt;&lt;&lt;"
+
+#~ msgid "&gt;&gt;&gt;"
+#~ msgstr "&gt;&gt;&gt;"
+
+#~ msgid "Rates"
+#~ msgstr "Tarifes"
+
+#~ msgid "Currency:"
+#~ msgstr "Divisa:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "Tarifa de traducció:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "Tarifa de revisió:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "Tarifa per hora:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "El valor de «similarity» hauria de ser entre l'interval [0..1]"
@@ -6073,9 +6054,6 @@ msgstr "Col·laboradors més actius dels últims 30 dies"
 
 #~ msgid "User Interface language"
 #~ msgstr "Llengua de la interfície d'usuari"
-
-#~ msgid "Home page"
-#~ msgstr "Pàgina d'inici"
 
 #~ msgid "None"
 #~ msgstr "Cap"

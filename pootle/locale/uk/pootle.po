@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-31 10:50+0000\n"
 "Last-Translator: Андрій <andriykopanytsia@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgid "Email Address"
 msgstr "Адреса електронної пошти"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "Повне ім’я"
 
@@ -104,47 +104,31 @@ msgstr "Кількість рядків"
 msgid "Alternative Source Languages"
 msgstr "Додаткові мови для джерела"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "Ціна"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "Ціна на рецензію"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "Ціна за годину"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Рахунок"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "Валюта"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "Робітник?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Твітер"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "Веб-сайт"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "Коротка біографія"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "Цей адреса електронної пошти вже існує."
 
@@ -253,14 +237,14 @@ msgstr "Сталася помилка при звантаженні вашого
 msgid "Language code does not follow the ISO convention"
 msgstr "Код мови не відповідає конвенції ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "Мова джерела"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "Ви не можете видалити тип файлу із проекту, якщо для нього є сховище ('%s')"
@@ -365,9 +349,10 @@ msgid "Translation path mapping"
 msgstr "Відображення шляхів перекладу"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 "Відображення шляхів перекладу вказує, де зберігаються файли перекладів у "
 "файловій системі на Pootle."
@@ -438,12 +423,12 @@ msgstr "Прийняти"
 
 #: apps/pootle_language/forms.py:157
 #, fuzzy
-msgid "Filter suggester"
+msgid "Filter by suggester"
 msgstr "Фільтр пропозицій"
 
 #: apps/pootle_language/forms.py:163
 #, fuzzy
-msgid "Filter state"
+msgid "Filter by state"
 msgstr "Фільтр"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -451,7 +436,7 @@ msgstr "Фільтр"
 msgid "Project"
 msgstr "Проект"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "Код"
 
@@ -497,15 +482,15 @@ msgstr "Кількість форм множини"
 msgid "Plural Equation"
 msgstr "Рівняння форм множини"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "Сегмент"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Стан"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Джерело"
 
@@ -945,12 +930,13 @@ msgstr "Мова"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" не може бути використано як код проекту"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" не може бути використано для перевірки проекту"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -958,57 +944,58 @@ msgstr ""
 "Коротка кодова назва для проекту. Вона може містити лише символи ASCII, "
 "цифри та знак підкреслення „_“."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "Перевірки якості"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Автоматичне виявлення gnu і не gnu розміток проекту (повільніше)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "Стиль GNU : файли, названі за кодом мови"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Не GNU-стиль: кожна мова у її власній теці"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Дозволити Pootle FS управляти файловою системою (експериментально)"
 
 # +- ієрархічний
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "Дерево проекту"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "Ігнорувати файли"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "Електронна пошта для звітів"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Адресу електронної пошти, куди слід повідомляти про проблеми з джерельним "
 "текстом."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "Префікс для пошуку знімків екрану"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "Вимкнено"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "Проект (%s) був створений. Зараз відбувається оновлення сховища проекту з "
@@ -1019,11 +1006,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Проект (%s) був видалений"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Ціль"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Коментар"
 
@@ -1073,7 +1060,7 @@ msgstr "Прапор неточного перекладу повинен бут
 msgid "Translator comment"
 msgstr "Коментар перекладача"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "Шлях"
 
@@ -1238,7 +1225,8 @@ msgid "Filter"
 msgstr "Фільтр"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr "Правила фільтрації, які кажуть, що зберігає цей віртуальний каталог."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
@@ -1332,19 +1320,22 @@ msgstr "Встановлена версія Redis надто стара."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Оновіть пакет Redis у вашій системі як мінімум до версії %s"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "Відсутні запущені RQ обробники."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Запустіть нові обробники з допомогою 'pootle rqworker'"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "Сервер кешу не встановлений як Redis"
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1353,15 +1344,15 @@ msgstr ""
 "Встановіть усталене значення сервера кешу django_redis.cache.RedisCache\n"
 "Поточне значення: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Не вдалося започаткувати з'єднання з кешем Redis"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "Знову перевірти параметри змінної CACHES"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1369,28 +1360,28 @@ msgstr ""
 "Окремі конфігурації django_redis.cache.RedisCache необхідні для `default`, "
 "`redis` та `lru`."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr ""
 "Режим DEBUG увімкнений. Використовуйте цей режим тільки для тестування!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Встановіть DEBUG = Falst у налаштуваннях Pootle"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "База даних sqlite не підтримується"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "Задайте значення усталеного рушія бази даних як postgresql або mysql"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "Не використовую cached_db як рушій сесії"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1400,11 +1391,11 @@ msgstr ""
 "cached_db\n"
 "Поточне значення: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "Змінна POOTLE_CONTACT_EMAIL не задана."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1412,12 +1403,12 @@ msgstr ""
 "Змінна POOTLE_CONTACT_EMAIL дозволяє користувачам зв'язуватися з "
 "адміністрацією через форму зворотного зв'язку."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL використовує наступне усталене налаштування: %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1425,11 +1416,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL буде використовуватися як адреса, на яку будуть "
 "приходити повідомлення від форми зворотнього зв'язку."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "Змінна DEFAULT_FROM_EMAIL не задана."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1437,36 +1428,36 @@ msgstr ""
 "DEFAULT_FROM_EMAIL використовується для всіх вихідних листів.\n"
 "Не забудьте перевірити налаштування поштового сервера."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL використовує наступне усталене значення: %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER відсутній."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Задайте POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Невірне значення  для POOTLE_MARKUP_FILTER."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Задайте коректне значення для POOTLE_MARKUP_FILTER."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Некоректна розмітка в POOTLE_MARKUP_FILTER."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Задайте правильну розмітку для POOTLE_MARKUP_FILTER."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1475,65 +1466,65 @@ msgstr ""
 "POOTLE_MARKUP_FILTER задано як '%s' , однак пакет, який надає цю "
 "функціональність не знайдено."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Встановіть пакет або змініть значення POOTLE_MARKUP_FILTER."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "У POOTLE_TM_SERVER['%s'] відсутня INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Задайте INDEX_NAME для POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Повторюється '%s' INDEX_NAME у POOTLE_TM_SERVER."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Задайте різні INDEX_NAME для всіх серверів в POOTLE_TM_SERVER."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "У POOTLE_TM_SERVER['%s'] відсутній ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Задайте ENGINE для POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "У POOTLE_TM_SERVER['%s'] відсутній HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Задайте HOST для POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "У POOTLE_TM_SERVER['%s'] відсутній PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Задайте PORT для POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s'] має WEIGHT, який менший 0.0 або більший 1.0"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1541,39 +1532,39 @@ msgstr ""
 "Задайте WEIGHT в діапазоні від 0.0 до 1.0 (включно) для "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "У POOTLE_SCORE_COEFFICIENTS відсутній %s."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Задайте %s в POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Нечинне значення „%s“ в POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Задайте коректне значення для %s у POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "У користувача 'admin' пароль досі 'admin'."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "Видаліть користувача 'admin' або змініть йому пароль."
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "З'єднання з БД використовує transaction_hooks."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1581,29 +1572,29 @@ msgstr ""
 "Встановіть DATABASES['default']['ENGINE'] для використання сервера з django."
 "db.backends."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "Сервер електронної пошти недоступний."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Перевірте налаштування електронної пошти і переконайтеся, що сервер "
 "електронної пошти працює."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "Ревізію не знайдено, або має некоректне значення."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "Запустіть `revision --restore` щоб відновити лічильник ревізій."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr "Канонічна URL не вказана, тому усталений сайт заданий як example.com."
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1611,11 +1602,11 @@ msgstr ""
 "Задайте у налаштуваннях змінну `POOTLE_CANONICAL_URL` або оновіть усталений "
 "сайт, якщо ви використовуєте django.contrib.sites."
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr "Канонічна URL задана як http://localhost."
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1623,39 +1614,41 @@ msgstr ""
 "Задайте змінну `POOTLE_CANONICAL_URL` у належне значення для вашого сайту чи "
 "залиште порожнім, якщо ви використовуєте`django.contrib.sites`."
 
-#: checks.py:502
+#: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "Параметр POOTLE_FS_WORKING_PATH не заданий."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Шлях ('%s'), заданий у параметрі POOTLE_FS_WORKING_PATH , не існує."
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 "Створіть каталог, вказаний у `POOTLE_FS_WORKING_PATH`, або змініть цей "
 "параметр."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Pootle не може записувати у теку ('%s'), вказану у POOTLE_FS_WORKING_PATH."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 "Додайте дозвіл на запис у теку `POOTLE_FS_WORKING_PATH` або змініть значення "
 "параметру"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "MySQL вимагає налаштування часового поясу."
 
@@ -1684,7 +1677,6 @@ msgstr "Незавершено"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Загалом"
 
@@ -1742,31 +1734,31 @@ msgstr "Ви повинні вказати дію"
 msgid "A valid search field must be specified"
 msgstr "Потрібно вказати коректне поле пошуку"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "Має доступ до проекту"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "Не має доступу до проекту"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "Може робити пропозиції щодо перекладу"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "Може затверджувати переклад"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "Може розглядати пропозиції"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 msgid "Can perform administrative tasks"
 msgstr "Може виконувати адміністративні завдання"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s вилучив переклад для %(source)s"
@@ -1811,17 +1803,18 @@ msgstr "%(user)s переклав %(source)s"
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s змінив %(source)s"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s попередньо переклав %(source)s"
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s перевірив %(source)s"
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s позначив, що %(source)s потребує доопрацювання"
@@ -1984,7 +1977,7 @@ msgstr "Мови"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Проекти"
@@ -2042,92 +2035,6 @@ msgstr "Перевірки системи"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "Помилки не знайдено. Все добре!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "Звіт про %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "Звіт про %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "Попередній місяць"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "Наступний місяць"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "Локальний сервер часу"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "Дія"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "Джерельний код"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "Подібність"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "Слів"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "Проміжний підсумок"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "MT"
-
-#: templates/admin/detailed_reports.html:219
-msgid "Subactions"
-msgstr "Піддія"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "Сирий переклад"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Розгляд"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "зареєстровані завдання"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "Немає зареєстрованої активності в даний період"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "Пропозиція (проміжний підсумок)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "Переклад (проміжний підсумок)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "Рецензування (проміжний підсумок)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "Будь ласка, виберіть чинного користувача."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2231,6 +2138,14 @@ msgstr "Оновити"
 msgid "User"
 msgstr "Користувач"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "Попередній місяць"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "Наступний місяць"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Докладний звіт"
@@ -2238,32 +2153,6 @@ msgstr "Докладний звіт"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Докладна статистика"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "Додати завдання"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "слів"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "годин"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "Додати запис"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "Задати ціни"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "Зберегти"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2273,6 +2162,11 @@ msgstr "Вилучити"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr " або "
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "Зберегти"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2712,7 +2606,7 @@ msgid "Critical issues with the translation"
 msgstr "Критичні проблеми з перекладом"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Критичні помилки:"
 
@@ -2841,8 +2735,9 @@ msgid "The reported error was:"
 msgstr "Була отримана помилка:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr ""
+#, fuzzy
+msgid "Previous page"
+msgstr "Попередній"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2855,8 +2750,9 @@ msgid "Showing %(count)s results per page"
 msgstr ""
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr ""
+#, fuzzy
+msgid "Next page"
+msgstr "Домашня сторінка"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2880,39 +2776,40 @@ msgstr "Фільтр пропозицій"
 msgid "Language team"
 msgstr "Мовна команда"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr "Адміністратор учасників"
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "Додати учасника команди"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "Вилучити вибране"
 
 # було Запропонувати
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
 msgstr "Адміністратор учасників і пропозицій"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
 msgstr "Нерозглянуті пропозиції:"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "Всього слів:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "Перекладено:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "Потрібно доопрацювати:"
 
@@ -3167,26 +3064,6 @@ msgstr ""
 "Деякі переклади були імпортовані із зовнішніх файлів. Вони будуть враховані "
 "під спеціальним обліковим записом."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "Ціни"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "Валюта:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "Ціна перекладу:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "Ціна перевірки:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "Ціна за годину:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "Обліковий запис користувача"
@@ -3230,6 +3107,102 @@ msgstr "Увійти"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Найактивніші перекладачі за останні 30 днів"
+
+#~ msgid "Rate"
+#~ msgstr "Ціна"
+
+#~ msgid "Review Rate"
+#~ msgstr "Ціна на рецензію"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "Ціна за годину"
+
+#~ msgid "Currency"
+#~ msgstr "Валюта"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "Звіт про %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "Звіт про %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "Локальний сервер часу"
+
+#~ msgid "Action"
+#~ msgstr "Дія"
+
+#~ msgid "Source words"
+#~ msgstr "Джерельний код"
+
+#~ msgid "Similarity"
+#~ msgstr "Подібність"
+
+#~ msgid "Words"
+#~ msgstr "Слів"
+
+#~ msgid "Subtotal"
+#~ msgstr "Проміжний підсумок"
+
+#~ msgid "MT"
+#~ msgstr "MT"
+
+#~ msgid "Subactions"
+#~ msgstr "Піддія"
+
+#~ msgid "Raw Translation"
+#~ msgstr "Сирий переклад"
+
+#~ msgid "Review"
+#~ msgstr "Розгляд"
+
+#~ msgid "registered tasks"
+#~ msgstr "зареєстровані завдання"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "Немає зареєстрованої активності в даний період"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "Пропозиція (проміжний підсумок)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "Переклад (проміжний підсумок)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "Рецензування (проміжний підсумок)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "Будь ласка, виберіть чинного користувача."
+
+#~ msgid "Add Task"
+#~ msgstr "Додати завдання"
+
+#~ msgid "words"
+#~ msgstr "слів"
+
+#~ msgid "hours"
+#~ msgstr "годин"
+
+#~ msgid "Add record"
+#~ msgstr "Додати запис"
+
+#~ msgid "Set Rates"
+#~ msgstr "Задати ціни"
+
+#~ msgid "Rates"
+#~ msgstr "Ціни"
+
+#~ msgid "Currency:"
+#~ msgstr "Валюта:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "Ціна перекладу:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "Ціна перевірки:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "Ціна за годину:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "Значення `similarity` має бути в діапазоні [0..1]"
@@ -5914,9 +5887,6 @@ msgstr "Найактивніші перекладачі за останні 30 �
 
 #~ msgid "User Interface language"
 #~ msgstr "Мова інтерфейсу користувача"
-
-#~ msgid "Home page"
-#~ msgstr "Домашня сторінка"
 
 #~ msgid "None"
 #~ msgstr "Немає"

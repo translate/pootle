@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-07-02 02:36+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -847,9 +847,6 @@ msgstr ""
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, fuzzy, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -863,71 +860,6 @@ msgstr "В този период няма дейност"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Моля, изберете потребител."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr ""
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Дата и час"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Коментар"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Действие"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Количество"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr ""
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Междинна сума"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, fuzzy, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "час"
-msgstr[1] "часа"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr ""
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr ""
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Резюме"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Период"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr ""
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Всичко (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -962,6 +894,36 @@ msgid ""
 msgstr ""
 "Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Datetime"
+#~ msgstr "Дата и час"
+
+#~ msgid "Comment"
+#~ msgstr "Коментар"
+
+#~ msgid "Action"
+#~ msgstr "Действие"
+
+#~ msgid "Amount"
+#~ msgstr "Количество"
+
+#~ msgid "Subtotal"
+#~ msgstr "Междинна сума"
+
+#, fuzzy
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "час"
+#~ msgstr[1] "часа"
+
+#~ msgid "Summary"
+#~ msgstr "Резюме"
+
+#~ msgid "Period"
+#~ msgstr "Период"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Всичко (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

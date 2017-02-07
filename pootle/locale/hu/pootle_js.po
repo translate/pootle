@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2016-10-20 14:15+0000\n"
 "Last-Translator: meskobalazs <meskobalazs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -858,9 +858,6 @@ msgstr "Pontszámmódosítás"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -874,71 +871,6 @@ msgstr "Nincs feljegyezve tevékenység a megadott időszakban"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Válasszon egy érvényes felhasználót."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Regisztrált feladatok"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Dátum/idő"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Megjegyzés"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Művelet"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Mennyiség"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Sebesség"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Részösszeg"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s óra"
-msgstr[1] "%s óra"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Feladat eltávolítása"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Megjegyzés írása"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Összegzés"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Időtartam"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(regisztrált feladatok)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Összesen (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -973,6 +905,50 @@ msgid ""
 msgstr ""
 "Fordította: %(fullname)s, itt: &bdquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; projekt"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Regisztrált feladatok"
+
+#~ msgid "Datetime"
+#~ msgstr "Dátum/idő"
+
+#~ msgid "Comment"
+#~ msgstr "Megjegyzés"
+
+#~ msgid "Action"
+#~ msgstr "Művelet"
+
+#~ msgid "Amount"
+#~ msgstr "Mennyiség"
+
+#~ msgid "Rate"
+#~ msgstr "Sebesség"
+
+#~ msgid "Subtotal"
+#~ msgstr "Részösszeg"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s óra"
+#~ msgstr[1] "%s óra"
+
+#~ msgid "Remove task"
+#~ msgstr "Feladat eltávolítása"
+
+#~ msgid "Comment on it"
+#~ msgstr "Megjegyzés írása"
+
+#~ msgid "Summary"
+#~ msgstr "Összegzés"
+
+#~ msgid "Period"
+#~ msgstr "Időtartam"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(regisztrált feladatok)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Összesen (%(currency)s)"
 
 #~ msgid "%(user)s removed translation for %(sourceString)s"
 #~ msgstr "%(user)s eltávolította a fordítást ehhez: %(sourceString)s"

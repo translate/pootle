@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-24 12:31+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -858,9 +858,6 @@ msgstr "Ndryshim Rezulati"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -874,71 +871,6 @@ msgstr "Asnjë aktivitet i rregjistruar ne një periudhë të dhënë"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Ju lutem zgjidhni një përdorues të vlefshëm"
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Detyra për tu rregjistruar"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "DatëKoha"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Koment"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Veprim"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Shumë"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Shkallë"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Nëntotalet"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Hiq Masken"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Komento në të"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Përmbledhje"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Periudhë"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(detyra të rregjistruara)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, fuzzy, python-format
-msgid "Total (%(currency)s)"
-msgstr "Totali"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -969,6 +901,46 @@ msgid ""
 "Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
 msgstr ""
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Detyra për tu rregjistruar"
+
+#~ msgid "Datetime"
+#~ msgstr "DatëKoha"
+
+#~ msgid "Comment"
+#~ msgstr "Koment"
+
+#~ msgid "Action"
+#~ msgstr "Veprim"
+
+#~ msgid "Amount"
+#~ msgstr "Shumë"
+
+#~ msgid "Rate"
+#~ msgstr "Shkallë"
+
+#~ msgid "Subtotal"
+#~ msgstr "Nëntotalet"
+
+#~ msgid "Remove task"
+#~ msgstr "Hiq Masken"
+
+#~ msgid "Comment on it"
+#~ msgstr "Komento në të"
+
+#~ msgid "Summary"
+#~ msgstr "Përmbledhje"
+
+#~ msgid "Period"
+#~ msgstr "Periudhë"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(detyra të rregjistruara)"
+
+#, fuzzy
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Totali"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

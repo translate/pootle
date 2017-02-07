@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-31 09:31+0000\n"
 "Last-Translator: Андрій <andriykopanytsia@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -868,9 +868,6 @@ msgstr "Зміна рахунку"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -885,72 +882,6 @@ msgstr "Немає зареєстрованої активності в дани
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Будь ласка, виберіть дійсного користувача."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Зареєстровані завдання"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Дата і час"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Коментар"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Дія"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Кількість"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Ціна"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Проміжний підсумок"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s година"
-msgstr[1] "%s години"
-msgstr[2] "%s годин"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Видалити завдання"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Прокоментувати"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Підсумок"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Період"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(зареєстровані завдання)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Всього (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -985,6 +916,51 @@ msgid ""
 msgstr ""
 "Перекладено %(fullname)s у проекті &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Зареєстровані завдання"
+
+#~ msgid "Datetime"
+#~ msgstr "Дата і час"
+
+#~ msgid "Comment"
+#~ msgstr "Коментар"
+
+#~ msgid "Action"
+#~ msgstr "Дія"
+
+#~ msgid "Amount"
+#~ msgstr "Кількість"
+
+#~ msgid "Rate"
+#~ msgstr "Ціна"
+
+#~ msgid "Subtotal"
+#~ msgstr "Проміжний підсумок"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s година"
+#~ msgstr[1] "%s години"
+#~ msgstr[2] "%s годин"
+
+#~ msgid "Remove task"
+#~ msgstr "Видалити завдання"
+
+#~ msgid "Comment on it"
+#~ msgstr "Прокоментувати"
+
+#~ msgid "Summary"
+#~ msgstr "Підсумок"
+
+#~ msgid "Period"
+#~ msgstr "Період"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(зареєстровані завдання)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Всього (%(currency)s)"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-02-02 18:17+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Email Address"
 msgstr "E-mailová adresa"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "Celý název"
 
@@ -99,47 +99,31 @@ msgstr "Počet řádků"
 msgid "Alternative Source Languages"
 msgstr "Alternativní zdrojové jazyky"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "Sazba"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "Sazba za kontrolu"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "Hodinová sazba"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Hodnocení"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "Měna"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "Je zaměstnanec?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "Webová stránka"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "Stručný životopis"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "Tato e-mailová adresa již existuje."
 
@@ -252,14 +236,14 @@ msgstr "Při nahrávání souboru došlo k chybě"
 msgid "Language code does not follow the ISO convention"
 msgstr "Kód jazyka neodpovídá ISO normě"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "Zdrojový jazyk"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "Z projektu nelze odebrat typ souboru pokud již existují úložiště s tímto "
@@ -365,9 +349,10 @@ msgid "Translation path mapping"
 msgstr "Přiřazení cesty překladu"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
+"to files on Pootle."
 msgstr ""
 "Přiřazení cesty překladu určující přiřazení překladových souborů v systému "
 "souborů k úložištím Pootle serveru."
@@ -437,11 +422,13 @@ msgid "Accept"
 msgstr "Přijmout"
 
 #: apps/pootle_language/forms.py:157
-msgid "Filter suggester"
+#, fuzzy
+msgid "Filter by suggester"
 msgstr "Filtrovat navrhovatele"
 
 #: apps/pootle_language/forms.py:163
-msgid "Filter state"
+#, fuzzy
+msgid "Filter by state"
 msgstr "Filtrovat stav"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -449,7 +436,7 @@ msgstr "Filtrovat stav"
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "Kód"
 
@@ -496,15 +483,15 @@ msgstr "Počet forem plurálu"
 msgid "Plural Equation"
 msgstr "Podmínky použití forem plurálu"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "Jednotka"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Stav"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Zdroj"
 
@@ -942,12 +929,13 @@ msgstr "Jazyk"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "„%(code)s“ nelze použít jako kód projektu"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "„%(code)s“ nelze použít jako kontrolor projektu"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -955,55 +943,56 @@ msgstr ""
 "Krátký kód označující projekt. Může obsahovat jen ASCII znaky, čísla a "
 "podtržítko (_)."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "Kontroly kvality"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Automatická detekce gnu/ne-gnu schémat souboru (pomalejší)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "GNU styl: soubory pojmenované podle kódu jazyka"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Jiný než GNU: Každý jazyk má vlastní adresář"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 "Povolit správu systémů souborů prostřednictvím Pootle FS (experimentální)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "Adresářová struktura projektu"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "Ignorovat soubory"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "E-mail pro oznamování chyb"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr "E-mailová adresa na které je možné nahlásit chyby ve zdrojovém textu."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "Předpona pro hledání snímků obrazovky"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "Zakázáno"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "Byl vytvořen překladový projekt (%s). Nyní probíhá aktualizace jeho úložiště "
@@ -1014,11 +1003,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Překladový projekt (%s) byl smazán"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Cíl"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Komentář"
 
@@ -1069,7 +1058,7 @@ msgstr "Musí být zrušeno označení Vyžaduje úpravy"
 msgid "Translator comment"
 msgstr "Poznámky překladatele"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "Cesta"
 
@@ -1231,7 +1220,8 @@ msgid "Filter"
 msgstr "Filtr"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "Filtrovací pravidla která určují ze kterých úložišť se skládá tento "
 "virtuální adresář."
@@ -1327,19 +1317,22 @@ msgstr "Vaše verze Redis je příliš stará."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Aktualizujte balíček systémového Redis serveru alespoň na verzi %s"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "Nejsou spuštěny žádné pracovní RQ procesy."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Spouštět nové pracovní procesy prostřednictvím ‚pootle rqworker‘"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "Back-end mezipaměti není nastaven na Redis."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1348,15 +1341,15 @@ msgstr ""
 "Nastavte výchozí back-end mezipaměti na django_redis.cache.RedisCache\n"
 "Aktuální nastavení: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Nepodařilo se navázat spojení s Redis mezipamětí"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "Zkontrolujte nastavení CACHES"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1364,27 +1357,27 @@ msgstr ""
 "Je vyžadováno samostatné nastavení django_redis.cache.RedisCache pro "
 "`default`, `redis` a `Iru`."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "Je aktivní DEBUG režim. Nepoužívejte v ostrém provozu!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "V nastavení Pootle serveru nastavte DEBUG = False"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "Databázový back-end sqlite není podporován"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "Nastavte výchozí databázový modul na postgresql nebo mysql"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "Jako modul pro relace není použit chached_db"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1393,11 +1386,11 @@ msgstr ""
 "Nastavte SESSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
 "Aktuální nastavení: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "Není nastaveno POOTLE_CONTACT_EMAIL."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1405,12 +1398,12 @@ msgstr ""
 "Nastavte POOTLE_CONTACT_EMAIL aby mohli uživatelé kontaktovat administrátory "
 "prostřednictvím kontaktního formuláře Pootle serveru."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL používá následující výchozí nastavení %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1418,11 +1411,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL určuje adresu na kterou budou doručovány zprávy zaslané "
 "prostřednictvím kontaktního formuláře."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "Není nastaveno DEFAULT_FROM_EMAIL."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1431,36 +1424,36 @@ msgstr ""
 "serveru.\n"
 "Nezapomeňte zkontrolovat nastavení vašeho e-mail serveru."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL používá následující výchozí nastavení %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER nebyl nalezen."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Nastavte POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER obsahuje neplatnou hodnotu."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Nastavte platnou hodnotu POOTLE_MARKUP_FILTER."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER obsahuje neplatné značky."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Nastavte platné značky pro POOTLE_MARKUP_FILTER."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1469,104 +1462,104 @@ msgstr ""
 "POOTLE_MARKUP_FILTER má nastavenu značku ‚%s‘, ale balíček který ji "
 "poskytuje nebyl nalezen."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Nainstalujte tento balíček, nebo upravte POOTLE_MARKUP_FILTER."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] nemá nastaveno INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Nastavte INDEX_NAME pro POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Duplicitní '%s' INDEX_NAME v POOTLE_TM_SERVER."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Pro každý server v POOTLE_TM_SERVER nastavte rozdílné INDEX_NAME."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] nemá nastaveno ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Nastavte ENGINE pro POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] nemá nastaveno HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Nastavte HOST pro POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] nemá nastaveno PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Nastavte PORT pro POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 "POOTLE_TM_SERVER['%s'] má nastaveno WEIGHT nižší než 0.0 nebo vyšší než 1.0"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr "Nastavte WEIGHT mezi 0.0 a 1.0 (včetně) pro POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS nemá nastaveno %s."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Nastavte %s pro POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "POOTLE_SCORE_COEFFICIENTS obsahuje neplatnou hodnotu %s."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Nastavte platnou hodnotu %s pro POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Výchozí ‚admin‘ uživatel má stále nastaveno výchozí heslo ‚admin‘."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "Odstraňte uživatele ‚admin‘, nebo změňte jeho heslo."
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "Databázové spojení používá transaction_hooks."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1574,31 +1567,31 @@ msgstr ""
 "Nastavte DATABASES['default']['ENGINE'] pro použití Django back-endu z "
 "django.db.backends."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "E-mail server není dostupný."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Zkontrolujte nastavení e-mailu a ujistěte se, že je váš e-mailový server "
 "spuštěn a funkční."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "Revize chybí nebo je u ní nastavena chybná hodnota."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "Pro obnovení čítače revizí spusťte `revision --restore`."
 
-#: checks.py:464
+#: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Nebyla zadána žádná kanonická adresa a jako výchozí stránka je nastavena "
 "example.com."
 
-#: checks.py:466
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1606,11 +1599,11 @@ msgstr ""
 "Nastavte v nastavení `POOTLE_CANONICAL_URL`, nebo pokud používáte django."
 "contrib.sites aktualizujte výchozí stránku."
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr "Kanonická adresa je nastavena na http://localhost."
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1618,38 +1611,40 @@ msgstr ""
 "Nastavte proměnnou `POOTLE_CANONICAL_URL` na odpovídající hodnotu, nebo ji "
 "ponechte prázdnou pokud používáte `django.contrib.sites`."
 
-#: checks.py:502
+#: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "Není nastaveno POOTLE_FS_WORKING_PATH."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Cesta (‚%s‘) nastavená v POOTLE_FS_WORKING_PATH neexistuje."
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 "Vytvořte adresář nastavený v `POOTLE_FS_WORKING_PATH`, nebo nastavení změňte."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Pootle nemůže zapisovat do cesty (‚%s‘) nastavené v POOTLE_FS_WORKING_PATH."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
+"setting."
 msgstr ""
 "Nastavte pro adresář nastavený v `POOTLE_FS_WORKING_PATH` právo zápisu, nebo "
 "nastavení změňte"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "MySQL vyžaduje nastavení časové zóny."
 
@@ -1678,7 +1673,6 @@ msgstr "Nedokončené"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Celkem"
 
@@ -1736,31 +1730,31 @@ msgstr "Musíte určit akci kterou chcete provést"
 msgid "A valid search field must be specified"
 msgstr "Musí být zadána platná podmínka hledání"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "Má přístup k projektu"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "Nemá přístup k projektu"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "Může navrhnout překlad"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "Může odeslat překlad"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "Může kontrolovat návrhy"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 msgid "Can perform administrative tasks"
 msgstr "Může provádět administrativní úlohy"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "%(user)s smazal překlad pro %(source)s"
@@ -1805,17 +1799,18 @@ msgstr "%(user)s přeložil %(source)s"
 msgid "%(user)s edited %(source)s"
 msgstr "%(user)s upravil %(source)s"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "%(user)s předběžně přeložil %(source)s"
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "%(user)s zkontroloval %(source)s"
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "%(user)s označil %(source)s jako vyžadující úpravy"
@@ -1975,7 +1970,7 @@ msgstr "Jazyky"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projekty"
@@ -2033,92 +2028,6 @@ msgstr "Systémové kontroly"
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
 msgstr "Nebyly zjištěny žádné problémy. Vše je v pořádku!"
-
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "Sestava pro %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "Sestava pro %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "Předchozí měsíc"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "Příští měsíc"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "Lokální čas serveru"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "Akce"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "Zdrojová slova"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "Podobnost"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "Slova"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "Mezisoučet"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "MT"
-
-#: templates/admin/detailed_reports.html:219
-msgid "Subactions"
-msgstr "Dílčí akce"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "Neupravený překlad"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Zkontrolovat"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "zaregistrované úlohy"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "Ve vybraném období nebyla zaznamenána žádná aktivita"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "Návrh (mezisoučet)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "Překlad (mezisoučet)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "Kontrola (mezisoučet)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "Vyberte existujícího uživatele."
 
 #: templates/admin/permissions.html:10
 msgid ""
@@ -2222,6 +2131,14 @@ msgstr "Aktualizovat"
 msgid "User"
 msgstr "Uživatel"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "Předchozí měsíc"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "Příští měsíc"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Podrobná sestava"
@@ -2229,32 +2146,6 @@ msgstr "Podrobná sestava"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Podrobná statistika"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "Přidat úlohu"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "slova"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "hodiny"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "Přidat záznam"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "Nastavit sazby"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "Uložit"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2264,6 +2155,11 @@ msgstr "Odstranit"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "nebo"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "Uložit"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2701,7 +2597,7 @@ msgid "Critical issues with the translation"
 msgstr "Kritické problémy s překladem"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Kritické chyby:"
 
@@ -2830,8 +2726,9 @@ msgid "The reported error was:"
 msgstr "Nahlášena byla chyba:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr "&lt;&lt;&lt;"
+#, fuzzy
+msgid "Previous page"
+msgstr "Předchozí"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2844,8 +2741,9 @@ msgid "Showing %(count)s results per page"
 msgstr "Zobrazeno %(count)s výsledků na stránku"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr "&gt;&gt;&gt;"
+#, fuzzy
+msgid "Next page"
+msgstr "Domovská stránka"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2869,38 +2767,39 @@ msgstr "Filtrovat návrhy"
 msgid "Language team"
 msgstr "Tým jazyka"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr "Správa členů"
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "Přidat člena týmu"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "Odebrat vybrané"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
 msgstr "Správa jednotek a návrhů"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
 msgstr "Nevyřízené návrhy:"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "Celkem slov:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "Přeloženo:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "Vyžaduje úpravy:"
 
@@ -3155,26 +3054,6 @@ msgstr ""
 "Některé překlady byly naimportovány z externích souborů. Tyto příspěvky jsou "
 "zaregistrovány pod tímto speciálním účtem."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "Sazby"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "Měna:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "Sazba za překlad:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "Sazba za kontrolu:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "Sazba za hodinu:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "Uživatelský účet"
@@ -3218,6 +3097,108 @@ msgstr "Přihlásit se"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Hlavní přispěvatelé za posledních 30 dní"
+
+#~ msgid "Rate"
+#~ msgstr "Sazba"
+
+#~ msgid "Review Rate"
+#~ msgstr "Sazba za kontrolu"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "Hodinová sazba"
+
+#~ msgid "Currency"
+#~ msgstr "Měna"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "Sestava pro %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "Sestava pro %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "Lokální čas serveru"
+
+#~ msgid "Action"
+#~ msgstr "Akce"
+
+#~ msgid "Source words"
+#~ msgstr "Zdrojová slova"
+
+#~ msgid "Similarity"
+#~ msgstr "Podobnost"
+
+#~ msgid "Words"
+#~ msgstr "Slova"
+
+#~ msgid "Subtotal"
+#~ msgstr "Mezisoučet"
+
+#~ msgid "MT"
+#~ msgstr "MT"
+
+#~ msgid "Subactions"
+#~ msgstr "Dílčí akce"
+
+#~ msgid "Raw Translation"
+#~ msgstr "Neupravený překlad"
+
+#~ msgid "Review"
+#~ msgstr "Zkontrolovat"
+
+#~ msgid "registered tasks"
+#~ msgstr "zaregistrované úlohy"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "Ve vybraném období nebyla zaznamenána žádná aktivita"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "Návrh (mezisoučet)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "Překlad (mezisoučet)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "Kontrola (mezisoučet)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "Vyberte existujícího uživatele."
+
+#~ msgid "Add Task"
+#~ msgstr "Přidat úlohu"
+
+#~ msgid "words"
+#~ msgstr "slova"
+
+#~ msgid "hours"
+#~ msgstr "hodiny"
+
+#~ msgid "Add record"
+#~ msgstr "Přidat záznam"
+
+#~ msgid "Set Rates"
+#~ msgstr "Nastavit sazby"
+
+#~ msgid "&lt;&lt;&lt;"
+#~ msgstr "&lt;&lt;&lt;"
+
+#~ msgid "&gt;&gt;&gt;"
+#~ msgstr "&gt;&gt;&gt;"
+
+#~ msgid "Rates"
+#~ msgstr "Sazby"
+
+#~ msgid "Currency:"
+#~ msgstr "Měna:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "Sazba za překlad:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "Sazba za kontrolu:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "Sazba za hodinu:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "Hodnota ‚similarity‘ by měla být v rozsahu [0..1]"
@@ -6259,9 +6240,6 @@ msgstr "Hlavní přispěvatelé za posledních 30 dní"
 
 #~ msgid "User Interface language"
 #~ msgstr "Jazyk rozhraní"
-
-#~ msgid "Home page"
-#~ msgstr "Domovská stránka"
 
 #~ msgid "None"
 #~ msgstr "Žádný"

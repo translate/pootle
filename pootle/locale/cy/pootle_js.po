@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 21:52+0100\n"
 "PO-Revision-Date: 2017-01-19 10:23+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -860,9 +860,6 @@ msgstr "Newid Sgôr"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -876,71 +873,6 @@ msgstr "Dim gweithgaredd o fewn amser penodol"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Dewiswch ddefnyddiwr dilys."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Tasgau wedi eu Cofrestru"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Dyddiad ac Amser"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Sylw"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Gweithred"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Swm"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Cyfradd"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Is gyfanswm"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s awr"
-msgstr[1] "%s awr"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Tynnu tasg"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Rhowch sylwadau arno"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Crynodeb"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Cyfnod"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(tasgau cofrestredig)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Cyfanswm (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -975,6 +907,50 @@ msgid ""
 msgstr ""
 "Cyfieithwyd gan %(fullname)s yn &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Tasgau wedi eu Cofrestru"
+
+#~ msgid "Datetime"
+#~ msgstr "Dyddiad ac Amser"
+
+#~ msgid "Comment"
+#~ msgstr "Sylw"
+
+#~ msgid "Action"
+#~ msgstr "Gweithred"
+
+#~ msgid "Amount"
+#~ msgstr "Swm"
+
+#~ msgid "Rate"
+#~ msgstr "Cyfradd"
+
+#~ msgid "Subtotal"
+#~ msgstr "Is gyfanswm"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s awr"
+#~ msgstr[1] "%s awr"
+
+#~ msgid "Remove task"
+#~ msgstr "Tynnu tasg"
+
+#~ msgid "Comment on it"
+#~ msgstr "Rhowch sylwadau arno"
+
+#~ msgid "Summary"
+#~ msgstr "Crynodeb"
+
+#~ msgid "Period"
+#~ msgstr "Cyfnod"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(tasgau cofrestredig)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Cyfanswm (%(currency)s)"
 
 #~ msgid "%(user)s removed translation for %(sourceString)s"
 #~ msgstr "Tynnodd %(user)s gyfieithiadau %(sourceString)s"
