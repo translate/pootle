@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 22:43+0100\n"
 "PO-Revision-Date: 2014-06-18 14:37+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -62,7 +62,7 @@ msgid "Email Address"
 msgstr "Seoladh Ríomhphoist"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:207
+#: apps/pootle_project/models.py:208
 msgid "Full Name"
 msgstr "Ainm Iomlán"
 
@@ -103,47 +103,31 @@ msgstr "Líon na Sraitheanna"
 msgid "Alternative Source Languages"
 msgstr "Teangacha Foinseacha Mar Mhalairt"
 
-#: apps/accounts/models.py:91 templates/admin/detailed_reports.html:157
-msgid "Rate"
-msgstr "Ráta"
-
-#: apps/accounts/models.py:92
-msgid "Review Rate"
-msgstr "Ráta Athbhreithnithe"
-
 #: apps/accounts/models.py:93
-msgid "Hourly Rate"
-msgstr "Ráta in aghaidh na huaire"
-
-#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Scór"
 
-#: apps/accounts/models.py:95
-msgid "Currency"
-msgstr "Airgeadra"
-
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:94
 msgid "Is employee?"
 msgstr "Fostaí?"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:95
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:97
 msgid "Website"
 msgstr "Suíomh Gréasáin"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:98
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:102
+#: apps/accounts/models.py:99
 msgid "Short Bio"
 msgstr "Beathaisnéisín"
 
-#: apps/accounts/models.py:242
+#: apps/accounts/models.py:239
 msgid "This email address already exists."
 msgstr "Tá an seoladh ríomhphoist seo ann cheana."
 
@@ -252,16 +236,18 @@ msgstr "Tharla earráid agus do chomhad á uaslódáil"
 msgid "Language code does not follow the ISO convention"
 msgstr "Ní ghéilleann an cód teanga don chaighdeán ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
 msgid "Source Language"
 msgstr "Bunteanga"
 
 #: apps/pootle_app/forms.py:88
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You cannot remove a file type from a Project, if there are Stores of that "
+"You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
-msgstr "Ní féidir leat cineál comhaid a bhaint ó thionscadal, má tá stóir den chineál sin ann ('%s')"
+msgstr ""
+"Ní féidir leat cineál comhaid a bhaint ó thionscadal, má tá stóir den "
+"chineál sin ann ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -365,10 +351,12 @@ msgid "Translation path mapping"
 msgstr "Mapáil chosán na n-aistriúchán"
 
 #: apps/pootle_fs/forms.py:55
+#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
-"to stores on Pootle."
-msgstr "Mapáil ó na comhaid aistriúcháin ar an gcóras comhad go dtí stór ar Pootle."
+"to files on Pootle."
+msgstr ""
+"Mapáil ó na comhaid aistriúcháin ar an gcóras comhad go dtí stór ar Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -435,11 +423,13 @@ msgid "Accept"
 msgstr "Glac"
 
 #: apps/pootle_language/forms.py:157
-msgid "Filter suggester"
+#, fuzzy
+msgid "Filter by suggester"
 msgstr "Moltóir scagairí"
 
 #: apps/pootle_language/forms.py:163
-msgid "Filter state"
+#, fuzzy
+msgid "Filter by state"
 msgstr "Staid scagairí"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
@@ -447,7 +437,7 @@ msgstr "Staid scagairí"
 msgid "Project"
 msgstr "Tionscadal"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:202
+#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
 msgid "Code"
 msgstr "Cód"
 
@@ -493,15 +483,15 @@ msgstr "Líon na hIolraí"
 msgid "Plural Equation"
 msgstr "Cothromóid Iolrach"
 
-#: apps/pootle_language/views.py:209 templates/admin/detailed_reports.html:151
+#: apps/pootle_language/views.py:209
 msgid "Unit"
 msgstr "Aonad"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
 msgid "State"
 msgstr "Staid"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
 msgid "Source"
 msgstr "Foinse"
 
@@ -945,12 +935,13 @@ msgstr "Teanga"
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Ní féidir \"%(code)s\" a úsáid mar chód tionscadail"
 
-#: apps/pootle_project/models.py:189
+#. Translators: this refers to the project quality checker
+#: apps/pootle_project/models.py:190
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "Ní féidir \"%(code)s\" a úsáid mar sheiceálaí tionscadail"
 
-#: apps/pootle_project/models.py:196
+#: apps/pootle_project/models.py:197
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -958,55 +949,56 @@ msgstr ""
 "Gearrchód don tionscadal seo. Ba chóir carachtair ASCII, uimhreacha, agus "
 "fostríoc (_) amháin a úsáid."
 
-#: apps/pootle_project/models.py:214
+#: apps/pootle_project/models.py:215
 msgid "Quality Checks"
 msgstr "Deimhnithe Cáilíochta"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:221
 msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
 msgstr "Brath uathoibríoch ar fhormáidí GNU/neamh-GNU (níos moille)"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
 msgstr "Nós GNU: úsáíd cód teanga mar ainm comhaid"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Neamh-GNU: Cuir gach teanga ina chomhadlann féin"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:224
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Lig do Pootle FS córais comhad a bhainistiú (Turgnamhach)"
 
-#: apps/pootle_project/models.py:227
+#: apps/pootle_project/models.py:228
 msgid "Project Tree Style"
 msgstr "Stíl Chrainn an Tionscadail"
 
-#: apps/pootle_project/models.py:235
+#: apps/pootle_project/models.py:236
 msgid "Ignore Files"
 msgstr "Déan Neamhaird de Chomhaid"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
 msgstr "Ríomhphost do Thuairiscí Earráide"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Seoladh ríomhphoist a seolfar tuariscí faoi fhadhbanna sa mbunteanga chuige."
 
-#: apps/pootle_project/models.py:246
+#. Translators: This is the URL prefix to search for context screenshots
+#: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
 msgstr "Réimír Chuardaigh do Phictiúir"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "Díchumasaithe"
 
 #: apps/pootle_project/views.py:263
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translation project (%s) has been created. We are now updating its stores "
+"Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 "Cruthaíodh tionscadal aistriúcháin (%s). Táimid ag nuashonrú a bhunachair "
@@ -1017,11 +1009,11 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Scriosadh an tionscadal aistriúcháin (%s)"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:64
 msgid "Target"
 msgstr "Sprioc"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:66
 msgid "Comment"
 msgstr "Nóta Tráchta"
 
@@ -1071,7 +1063,7 @@ msgstr "Is gá an bhratach Le Deimhniú a ghlanadh"
 msgid "Translator comment"
 msgstr "Trácht de chuid an aistritheora"
 
-#: apps/pootle_store/models.py:994 apps/pootle_store/models.py:1001
+#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
 msgid "Path"
 msgstr "Cosán"
 
@@ -1235,7 +1227,8 @@ msgid "Filter"
 msgstr "Scagaire"
 
 #: apps/virtualfolder/models.py:41
-msgid "Filtering rules that tell which stores this virtual folder comprises."
+#, fuzzy
+msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
 "Rialacha scagtha a sonraíonn na stórálacha a bhfuil an fillteán fíorúil "
 "déanta astu."
@@ -1331,19 +1324,22 @@ msgstr "Tá leagan róshean de Redis agat."
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Ní mór duit an pacáiste Redis a nuashonrú, leagan %s ar a laghad"
 
-#: checks.py:147
-msgid "No RQ Worker running."
+#. Translators: a worker processes background tasks
+#: checks.py:148
+#, fuzzy
+msgid "No worker running."
 msgstr "Níl aon Oibrí RQ ar siúl."
 
-#: checks.py:148
+#. Translators: a worker processes background tasks
+#: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Tosaigh oibrithe nua le 'pootle rqworker'"
 
-#: checks.py:163
+#: checks.py:165
 msgid "Cache backend is not set to Redis."
 msgstr "Ní hé Redis an t-inneall taisce."
 
-#: checks.py:164
+#: checks.py:166
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1353,15 +1349,15 @@ msgstr ""
 "réamhshocraithe\n"
 "Socrú faoi láthair: %r"
 
-#: checks.py:174
+#: checks.py:176
 msgid "Could not initiate a Redis cache connection"
 msgstr "Níorbh fhéidir ceangal a bhunú le taisce Redis"
 
-#: checks.py:175 checks.py:189
+#: checks.py:177 checks.py:191
 msgid "Double-check your CACHES settings"
 msgstr "Deimhnigh do shocrú CACHES"
 
-#: checks.py:187
+#: checks.py:189
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1369,28 +1365,27 @@ msgstr ""
 "Caithfidh tú cumraíochtaí difriúla django_redis.cache.RedisCache a úsáid le "
 "haghaidh `default`, `redis` and `lru`."
 
-#: checks.py:195
+#: checks.py:197
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "Mód DEBUG ar siúl. Ná húsáid an mód seo sna leaganacha scaipthe!"
 
-#: checks.py:196
+#: checks.py:198
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Roghnaigh DEBUG = False sna socruithe Pootle"
 
-#: checks.py:202
+#: checks.py:204
 msgid "The sqlite database backend is unsupported"
 msgstr "Ní thacaítear le sqlite mar inneall"
 
-#: checks.py:203
+#: checks.py:205
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
-"Úsáid postgresql nó mysql mar bhunachar sonraí réamhshocraithe"
+msgstr "Úsáid postgresql nó mysql mar bhunachar sonraí réamhshocraithe"
 
-#: checks.py:210
+#: checks.py:212
 msgid "Not using cached_db as session engine"
 msgstr "Níl cached_db in úsáid mar inneall don seisiún"
 
-#: checks.py:211
+#: checks.py:213
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1400,11 +1395,11 @@ msgstr ""
 "SESSION_ENGINE\n"
 "Socrú faoi láthair: %r"
 
-#: checks.py:219
+#: checks.py:221
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL gan socrú."
 
-#: checks.py:220
+#: checks.py:222
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1412,12 +1407,12 @@ msgstr ""
 "Sonraigh POOTLE_CONTACT_EMAIL sa chaoi go mbeidh úsáideoirí in ann dul i "
 "dteagmháil leis na riarthóirí tríd an fhoirm theagmhála."
 
-#: checks.py:228
+#: checks.py:230
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "Baineann POOTLE_CONTACT_EMAIL úsáid as an luach réamhshocraithe %r."
 
-#: checks.py:230
+#: checks.py:232
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1425,11 +1420,11 @@ msgstr ""
 "Seolfar teachtaireachtaí ón fhoirm theagmhála chuig an seoladh "
 "POOTLE_CONTACT_EMAIL."
 
-#: checks.py:237
+#: checks.py:239
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL gan sonrú."
 
-#: checks.py:238 checks.py:248
+#: checks.py:240 checks.py:250
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1437,36 +1432,36 @@ msgstr ""
 "Seolann Pootle gach ríomhphost ón seoladh DEFAULT_FROM_EMAIL.\n"
 "Ná déan dearmad socruithe do fhreastalaí ríomhphoist a athbhreithniú."
 
-#: checks.py:246
+#: checks.py:248
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "Baineann DEFAULT_FROM_EMAIL úsáid as an luach réamhshocraithe %r."
 
-#: checks.py:257
+#: checks.py:259
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER ar iarraidh."
 
-#: checks.py:258
+#: checks.py:260
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Socraigh POOTLE_MARKUP_FILTER."
 
-#: checks.py:263
+#: checks.py:265
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER neamhbhailí."
 
-#: checks.py:264
+#: checks.py:266
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Socraigh POOTLE_MARKUP_FILTER."
 
-#: checks.py:278
+#: checks.py:280
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Marcáil neamhbhailí in POOTLE_MARKUP_FILTER."
 
-#: checks.py:279
+#: checks.py:281
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Socraigh marcáil bhailí do POOTLE_MARKUP_FILTER."
 
-#: checks.py:284
+#: checks.py:286
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1475,65 +1470,65 @@ msgstr ""
 "Is é '%s' an POOTLE_MARKUP_FILTER, ach níor aimsíodh an pacáiste a "
 "sholáthraíonn sin."
 
-#: checks.py:286
+#: checks.py:288
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Suiteáil an pacáiste nó athraigh POOTLE_MARKUP_FILTER."
 
-#: checks.py:297
+#: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] gan INDEX_NAME."
 
-#: checks.py:298
+#: checks.py:300
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Socraigh INDEX_NAME ar POOTLE_TM_SERVER['%s']."
 
-#: checks.py:304
+#: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Cóipeáil INDEX_NAME '%s' ar POOTLE_TM_SERVER."
 
-#: checks.py:306
+#: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Socraigh INDEX_NAME difriúil ar gach freastalaí in POOTLE_TM_SERVER."
 
-#: checks.py:316
+#: checks.py:318
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] gan ENGINE."
 
-#: checks.py:317
+#: checks.py:319
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Socraigh ENGINE ar POOTLE_TM_SERVER['%s']."
 
-#: checks.py:324
+#: checks.py:326
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] gan HOST."
 
-#: checks.py:325
+#: checks.py:327
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Socraigh HOST ar POOTLE_TM_SERVER['%s']."
 
-#: checks.py:332
+#: checks.py:334
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] gan PORT."
 
-#: checks.py:333
+#: checks.py:335
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Socraigh PORT ar POOTLE_TM_SERVER['%s']."
 
-#: checks.py:342
+#: checks.py:344
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "WEIGHT níos lú ná 0.0 nó níos mó ná 1.0 ar POOTLE_TM_SERVER['%s']"
 
-#: checks.py:344
+#: checks.py:346
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1541,111 +1536,123 @@ msgstr ""
 "Socraigh WEIGHT idir 0.0 agus 1.0 (iad san áireamh) ar "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:352
+#: checks.py:354
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS gan %s."
 
-#: checks.py:353
+#: checks.py:355
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Socraigh %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:360
+#: checks.py:362
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Luach neamhbhailí ar %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:362
+#: checks.py:364
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Socraigh luach bailí ar %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:384
+#: checks.py:386
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Is é 'admin' an focal faire don chuntas réamhshocraithe 'admin' fós."
 
-#: checks.py:386
+#: checks.py:388
 msgid "Remove the 'admin' user or change its password."
 msgstr "Scrios úsáideoir 'admin' nó athraigh an focal faire."
 
-#: checks.py:400
+#: checks.py:402
 msgid "Database connection uses transaction_hooks."
 msgstr "Baineann ceangal bunachair sonraí úsáid as transaction_hooks."
 
-#: checks.py:401
+#: checks.py:403
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
-"Socraigh DATABASES['default']['ENGINE'] chun inneall Django a úsáid ó django.db.backends."
+"Socraigh DATABASES['default']['ENGINE'] chun inneall Django a úsáid ó django."
+"db.backends."
 
-#: checks.py:421
+#: checks.py:423
 msgid "Email server is not available."
 msgstr "Níl an freastalaí ríomhphoist ar fáil."
 
-#: checks.py:422
+#: checks.py:424
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Féach ar do shocrú ríomhphoist agus deimhnigh go bhfuil an freastalaí "
 "ríomhphoist ag obair mar is ceart."
 
-#: checks.py:449
+#: checks.py:451
 msgid "Revision is missing or has an incorrect value."
 msgstr "Leasú ar iarraidh nó luach mícheart."
 
-#: checks.py:450
+#: checks.py:452
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "Úsáid `revision --restore` chun áiritheoir na leasuithe a athshocrú."
 
-#: checks.py:464
-msgid "No canonical URL provided and default site set to example.com."
-msgstr "Níor soláthraíodh URL canónta agus is é example.com an suíomh réamhshocraithe."
-
 #: checks.py:466
+msgid "No canonical URL provided and default site set to example.com."
+msgstr ""
+"Níor soláthraíodh URL canónta agus is é example.com an suíomh "
+"réamhshocraithe."
+
+#: checks.py:468
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
-msgstr "Roghnaigh `POOTLE_CANONICAL_URL` sna socruithe nó athraigh an suíomh réamhshocraithe má tá tú ag úsáid django.contrib.sites."
+msgstr ""
+"Roghnaigh `POOTLE_CANONICAL_URL` sna socruithe nó athraigh an suíomh "
+"réamhshocraithe má tá tú ag úsáid django.contrib.sites."
 
-#: checks.py:470
+#: checks.py:472
 msgid "Canonical URL is set to http://localhost."
 msgstr "Is é http://localhost an URL canónta."
 
-#: checks.py:472
+#: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
-msgstr "Roghnaigh `POOTLE_CANONICAL_URL` atá oiriúnach do do shuíomh, nó fág bán é má tá tú ag úsáid `django.contrib.sites`."
+msgstr ""
+"Roghnaigh `POOTLE_CANONICAL_URL` atá oiriúnach do do shuíomh, nó fág bán é "
+"má tá tú ag úsáid `django.contrib.sites`."
 
-#: checks.py:502
+#: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH gan socrú."
 
-#: checks.py:506
+#: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Níl an cosán ó POOTLE_FS_WORKING_PATH ('%s') ann."
 
-#: checks.py:508
+#: checks.py:510
+#, fuzzy
 msgid ""
-"Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
+"Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr "Cruthaigh an chomhadlann in `POOTLE_FS_WORKING_PATH`, nó athraigh é."
 
-#: checks.py:513
+#: checks.py:515
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
-msgstr "Ní féidir le Pootle scríobh sa chomhadlann in POOTLE_FS_WORKING_PATH ('%s')."
+msgstr ""
+"Ní féidir le Pootle scríobh sa chomhadlann in POOTLE_FS_WORKING_PATH ('%s')."
 
-#: checks.py:516
+#: checks.py:518
+#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
-"setting"
-msgstr "Athraigh na ceadanna a bhaineann leis an gcomhadlann in `POOTLE_FS_WORKING_PATH`, nó athraigh é"
+"setting."
+msgstr ""
+"Athraigh na ceadanna a bhaineann leis an gcomhadlann in "
+"`POOTLE_FS_WORKING_PATH`, nó athraigh é"
 
-#: checks.py:535
+#: checks.py:537
 msgid "MySQL requires time zone settings."
 msgstr "Caithfidh tú an crios ama a shocrú le haghaidh MySQL."
 
@@ -1674,7 +1681,6 @@ msgstr "Neamhchríochnaithe"
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
-#: templates/admin/detailed_reports.html:319
 msgid "Total"
 msgstr "Iomlán"
 
@@ -1720,7 +1726,9 @@ msgstr "Cuir nóta tráchta leis"
 
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
-msgstr "Roghnaigh gach uile rud a mheaitseálann na scagairí, na cinn nach bhfuil ar taispeáint freisin"
+msgstr ""
+"Roghnaigh gach uile rud a mheaitseálann na scagairí, na cinn nach bhfuil ar "
+"taispeáint freisin"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
@@ -1730,31 +1738,31 @@ msgstr "Caithfidh tú gníomh a roghnú"
 msgid "A valid search field must be specified"
 msgstr "Ní mór duit réimse bailí cuardaigh a shonrú"
 
-#: core/initdb.py:136
+#: core/initdb.py:127
 msgid "Can access a project"
 msgstr "Is féidir teacht ar thionscadal"
 
-#: core/initdb.py:140
+#: core/initdb.py:131
 msgid "Cannot access a project"
 msgstr "Ní féidir teacht ar thionscadal"
 
-#: core/initdb.py:144
+#: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
 msgstr "Is féidir aistriúchán a mholadh"
 
-#: core/initdb.py:148
+#: core/initdb.py:139
 msgid "Can submit a translation"
 msgstr "Is féidir aistriúchán a sheoladh isteach"
 
-#: core/initdb.py:152
+#: core/initdb.py:143
 msgid "Can review suggestions"
 msgstr "Is féidir moltaí a athbhreithniú"
 
-#: core/initdb.py:156
+#: core/initdb.py:147
 msgid "Can perform administrative tasks"
 msgstr "Is féidir tascanna bainistíochta a dhéanamh"
 
-#: core/views/display.py:103 core/views/display.py:124
+#: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
 msgstr "Scrios %(user)s aistriúchán ar %(source)s"
@@ -1799,17 +1807,18 @@ msgstr "D'aistrigh %(user)s %(source)s"
 msgid "%(user)s edited %(source)s"
 msgstr "Chuir %(user)s %(source)s in eagar"
 
-#: core/views/display.py:122
+#. Translators: pre-translate is translating with first 100% TM match
+#: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
 msgstr "Réamhaistrigh %(user)s %(source)s"
 
-#: core/views/display.py:126
+#: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
 msgstr "Rinne %(user)s athbhreithniú ar %(source)s"
 
-#: core/views/display.py:128
+#: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
 msgstr "Mharcáil %(user)s go bhfuil %(source)s le deimhniú"
@@ -1873,9 +1882,10 @@ msgid "About This Pootle Server"
 msgstr "Maidir leis an bhfreastalaí Pootle seo"
 
 #: templates/about.html:16
+#, fuzzy
 msgid ""
-"This site is running Pootle &mdash; powerful web software to empower teams "
-"to do translation and translation management. This community tool is Free "
+"This site is running Pootle — powerful web software to empower teams to do "
+"translation and translation management. This community tool is Free "
 "Software, and any team can use it and contribute to the Pootle community. "
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
@@ -1927,7 +1937,9 @@ msgstr "Chun d'fhocal faire a athrú, lean an nasc seo:"
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr "Mura bhfuil tú ag iarraidh d'fhocal faire a athshocrú, ná bac leis an teachtaireacht seo."
+msgstr ""
+"Mura bhfuil tú ag iarraidh d'fhocal faire a athshocrú, ná bac leis an "
+"teachtaireacht seo."
 
 #: templates/account/email/password_reset_key_subject.txt:2
 msgid "Pootle password reset e-mail"
@@ -1968,7 +1980,7 @@ msgstr "Teangacha"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:88
+#: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Tionscadail"
@@ -2027,92 +2039,6 @@ msgstr "Deimhniú an Chórais"
 msgid "No issues have been detected. All is good!"
 msgstr "Fadhb ar bith!"
 
-#: templates/admin/detailed_reports.html:7
-#, python-format
-msgid "Report for %(user)s, "
-msgstr "Tuairisc do %(user)s, "
-
-#: templates/admin/detailed_reports.html:137
-#, python-format
-msgid "Report for %(user)s"
-msgstr "Tuairisc do %(user)s"
-
-#: templates/admin/detailed_reports.html:141
-#: templates/admin/reports/header.html:12 templates/user/detailed_stats.html:7
-msgid "Previous month"
-msgstr "An mhí roimhe seo"
-
-#: templates/admin/detailed_reports.html:143
-#: templates/admin/reports/header.html:16 templates/user/detailed_stats.html:9
-msgid "Next month"
-msgstr "An chéad mhí eile"
-
-#: templates/admin/detailed_reports.html:150
-msgid "Local server time"
-msgstr "Am áitiúil an fhreastalaí"
-
-#: templates/admin/detailed_reports.html:152
-msgid "Action"
-msgstr "Gníomh"
-
-#: templates/admin/detailed_reports.html:153
-msgid "Source words"
-msgstr "Focail fhoinse"
-
-#: templates/admin/detailed_reports.html:154
-msgid "Similarity"
-msgstr "Comhchosúlacht"
-
-#: templates/admin/detailed_reports.html:155
-msgid "Words"
-msgstr "Focail"
-
-#: templates/admin/detailed_reports.html:158
-msgid "Subtotal"
-msgstr "Fo-iomlán"
-
-#: templates/admin/detailed_reports.html:185
-#: templates/admin/detailed_reports.html:223
-msgid "MT"
-msgstr "Ríomhaistriúchán"
-
-#: templates/admin/detailed_reports.html:219
-msgid "Subactions"
-msgstr "Foghníomhartha"
-
-#: templates/admin/detailed_reports.html:220
-msgid "Raw Translation"
-msgstr "Aistriúchán Amh"
-
-#: templates/admin/detailed_reports.html:233
-msgid "Review"
-msgstr "Athbhreithnigh"
-
-#: templates/admin/detailed_reports.html:250
-#: templates/admin/detailed_reports.html:309
-msgid "registered tasks"
-msgstr "tascanna cláraithe"
-
-#: templates/admin/detailed_reports.html:261
-msgid "No activity recorded in a given period"
-msgstr "Níl aon ghníomhaíocht sa tréimhse roghnaithe"
-
-#: templates/admin/detailed_reports.html:270
-msgid "Suggestion (subtotal)"
-msgstr "Moladh (fo-iomlán)"
-
-#: templates/admin/detailed_reports.html:280
-msgid "Translation (subtotal)"
-msgstr "Aistriúchán (fo-iomlán)"
-
-#: templates/admin/detailed_reports.html:295
-msgid "Review (subtotal)"
-msgstr "Athbhreithniú (fo-iomlán)"
-
-#: templates/admin/detailed_reports.html:327
-msgid "Please select a valid user."
-msgstr "Roghnaigh úsáideoir bailí."
-
 #: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
@@ -2145,7 +2071,10 @@ msgid ""
 "Pootle FS is still experimental, we’d love you to use it, but it does "
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
-msgstr "Is togra turgnamhach é Pootle FS. Bheadh an-áthas orainn dá mbainfeá triail as, ach éilíonn sé leibhéal áirithe saineolais ar an logánú, Python, agus Pootle i gcás fadhbanna."
+msgstr ""
+"Is togra turgnamhach é Pootle FS. Bheadh an-áthas orainn dá mbainfeá triail "
+"as, ach éilíonn sé leibhéal áirithe saineolais ar an logánú, Python, agus "
+"Pootle i gcás fadhbanna."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2163,19 +2092,25 @@ msgstr "Seo é an fhormáid cheart ar an mhapáil chosáin:"
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
-msgstr "Is é `&lt;cód_teanga&gt;` amháin atá dhíth, cé gur gá `.&lt;ext&gt;` a chur ag an deireadh"
+msgstr ""
+"Is é `&lt;cód_teanga&gt;` amháin atá dhíth, cé gur gá `.&lt;ext&gt;` a chur "
+"ag an deireadh"
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
-msgstr "Má tá tú ag baint úsáid as localfs, cuirfear an mhapáil chosáin le chéile leis an gcosán a sonraíodh mar URL an bhunachair"
+msgstr ""
+"Má tá tú ag baint úsáid as localfs, cuirfear an mhapáil chosáin le chéile "
+"leis an gcosán a sonraíodh mar URL an bhunachair"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
-msgstr "I gcás córas comhad eile, beidh an mhapáil chosáin i gcoibhneas le fréamh na stórlainne."
+msgstr ""
+"I gcás córas comhad eile, beidh an mhapáil chosáin i gcoibhneas le fréamh na "
+"stórlainne."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2206,6 +2141,14 @@ msgstr "Nuashonrú"
 msgid "User"
 msgstr "Úsáideoir"
 
+#: templates/admin/reports/header.html:12
+msgid "Previous month"
+msgstr "An mhí roimhe seo"
+
+#: templates/admin/reports/header.html:16
+msgid "Next month"
+msgstr "An chéad mhí eile"
+
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
 msgstr "Tuairisc Mhionsonraithe"
@@ -2213,32 +2156,6 @@ msgstr "Tuairisc Mhionsonraithe"
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
 msgstr "Staitisticí Mionsonraithe"
-
-#: templates/admin/reports/paid_task_form.html:5
-msgid "Add Task"
-msgstr "Cuir Tasc leis"
-
-#: templates/admin/reports/paid_task_form.html:23
-msgid "words"
-msgstr "focail"
-
-#: templates/admin/reports/paid_task_form.html:24
-msgid "hours"
-msgstr "uaireanta"
-
-#: templates/admin/reports/paid_task_form.html:35
-msgid "Add record"
-msgstr "Cuir taifead leis"
-
-#: templates/admin/reports/user_rates_form.html:4
-msgid "Set Rates"
-msgstr "Socraigh Rátaí"
-
-#: templates/admin/reports/user_rates_form.html:31
-#: templates/admin/staticpages/_form.html:34
-#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
-msgid "Save"
-msgstr "Sábháil"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
@@ -2248,6 +2165,11 @@ msgstr "Scrios"
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
 msgstr "nó"
+
+#: templates/admin/staticpages/_form.html:34
+#: templates/languages/admin/characters.html:20 templates/user/settings.html:39
+msgid "Save"
+msgstr "Sábháil"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2361,8 +2283,8 @@ msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"gan aistriú"
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> gan "
+"aistriú"
 
 #: templates/browser/index.html:20
 msgid "Expand details"
@@ -2647,7 +2569,8 @@ msgstr "athbhreithnithe ag <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
-"Cuir %(character_name)s (carachtar Unicode %(character_code)s) isteach san eagarthóir"
+"Cuir %(character_name)s (carachtar Unicode %(character_code)s) isteach san "
+"eagarthóir"
 
 #: templates/editor/units/edit.html:271
 msgid "User suggestions"
@@ -2686,7 +2609,7 @@ msgid "Critical issues with the translation"
 msgstr "Fadhbanna criticiúla leis an aistriúchán"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:107
+#: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
 msgstr "Earráidí criticiúla:"
 
@@ -2817,8 +2740,9 @@ msgid "The reported error was:"
 msgstr "An earráid a ndearnadh tuairisc uirthi:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "&lt;&lt;&lt;"
-msgstr "&lt;&lt;&lt;"
+#, fuzzy
+msgid "Previous page"
+msgstr "Roimhe"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2831,8 +2755,9 @@ msgid "Showing %(count)s results per page"
 msgstr "%(count)s toradh sa leathanach á dtaispeáint"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "&gt;&gt;&gt;"
-msgstr "&gt;&gt;&gt;"
+#, fuzzy
+msgid "Next page"
+msgstr "Clár Cinn"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2856,38 +2781,39 @@ msgstr "Moltaí scagairí"
 msgid "Language team"
 msgstr "Foireann teanga"
 
-#: templates/languages/admin/language_team.html:15
+#. Translators: This refers to the management of language team members
+#: templates/languages/admin/language_team.html:16
 msgid "Member admin"
 msgstr "Bainistiú ball"
 
-#: templates/languages/admin/language_team.html:29
+#: templates/languages/admin/language_team.html:30
 msgid "Add team member"
 msgstr "Cuir ball nua leis an bhfoireann"
 
-#: templates/languages/admin/language_team.html:42
-#: templates/languages/admin/language_team.html:55
-#: templates/languages/admin/language_team.html:68
-#: templates/languages/admin/language_team.html:81
+#: templates/languages/admin/language_team.html:43
+#: templates/languages/admin/language_team.html:56
+#: templates/languages/admin/language_team.html:69
+#: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
 msgstr "Bain na cinn roghnaithe"
 
-#: templates/languages/admin/language_team.html:102
+#: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
 msgstr "Bainistiú aonad/moltaí"
 
-#: templates/languages/admin/language_team.html:117
+#: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
 msgstr "Moltaí ar feitheamh:"
 
-#: templates/languages/admin/language_team.html:127
+#: templates/languages/admin/language_team.html:128
 msgid "Total words:"
 msgstr "Líon iomlán focal:"
 
-#: templates/languages/admin/language_team.html:131
+#: templates/languages/admin/language_team.html:132
 msgid "Translated:"
 msgstr "Aistrithe:"
 
-#: templates/languages/admin/language_team.html:139
+#: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
 msgstr "Le deimhniú:"
 
@@ -3141,26 +3067,6 @@ msgstr ""
 "Is ó chomhad seachtrach roinnt de na haistriúcháin. Cuirtear i leith "
 "meiteachuntas speisialta iad seo."
 
-#: templates/user/reports/user_rates_widget.html:4
-msgid "Rates"
-msgstr "Rátaí"
-
-#: templates/user/reports/user_rates_widget.html:8
-msgid "Currency:"
-msgstr "Airgeadra:"
-
-#: templates/user/reports/user_rates_widget.html:18
-msgid "Translation Rate:"
-msgstr "Ráta Aistriúcháin:"
-
-#: templates/user/reports/user_rates_widget.html:29
-msgid "Review Rate:"
-msgstr "Ráta Athbhreithnithe:"
-
-#: templates/user/reports/user_rates_widget.html:41
-msgid "Hourly Rate:"
-msgstr "Ráta in aghaidh na huaire:"
-
 #: templates/user/settings.html:12
 msgid "User Account"
 msgstr "Cuntas Úsáideora"
@@ -3204,6 +3110,108 @@ msgstr "Logáil isteach"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
+
+#~ msgid "Rate"
+#~ msgstr "Ráta"
+
+#~ msgid "Review Rate"
+#~ msgstr "Ráta Athbhreithnithe"
+
+#~ msgid "Hourly Rate"
+#~ msgstr "Ráta in aghaidh na huaire"
+
+#~ msgid "Currency"
+#~ msgstr "Airgeadra"
+
+#~ msgid "Report for %(user)s, "
+#~ msgstr "Tuairisc do %(user)s, "
+
+#~ msgid "Report for %(user)s"
+#~ msgstr "Tuairisc do %(user)s"
+
+#~ msgid "Local server time"
+#~ msgstr "Am áitiúil an fhreastalaí"
+
+#~ msgid "Action"
+#~ msgstr "Gníomh"
+
+#~ msgid "Source words"
+#~ msgstr "Focail fhoinse"
+
+#~ msgid "Similarity"
+#~ msgstr "Comhchosúlacht"
+
+#~ msgid "Words"
+#~ msgstr "Focail"
+
+#~ msgid "Subtotal"
+#~ msgstr "Fo-iomlán"
+
+#~ msgid "MT"
+#~ msgstr "Ríomhaistriúchán"
+
+#~ msgid "Subactions"
+#~ msgstr "Foghníomhartha"
+
+#~ msgid "Raw Translation"
+#~ msgstr "Aistriúchán Amh"
+
+#~ msgid "Review"
+#~ msgstr "Athbhreithnigh"
+
+#~ msgid "registered tasks"
+#~ msgstr "tascanna cláraithe"
+
+#~ msgid "No activity recorded in a given period"
+#~ msgstr "Níl aon ghníomhaíocht sa tréimhse roghnaithe"
+
+#~ msgid "Suggestion (subtotal)"
+#~ msgstr "Moladh (fo-iomlán)"
+
+#~ msgid "Translation (subtotal)"
+#~ msgstr "Aistriúchán (fo-iomlán)"
+
+#~ msgid "Review (subtotal)"
+#~ msgstr "Athbhreithniú (fo-iomlán)"
+
+#~ msgid "Please select a valid user."
+#~ msgstr "Roghnaigh úsáideoir bailí."
+
+#~ msgid "Add Task"
+#~ msgstr "Cuir Tasc leis"
+
+#~ msgid "words"
+#~ msgstr "focail"
+
+#~ msgid "hours"
+#~ msgstr "uaireanta"
+
+#~ msgid "Add record"
+#~ msgstr "Cuir taifead leis"
+
+#~ msgid "Set Rates"
+#~ msgstr "Socraigh Rátaí"
+
+#~ msgid "&lt;&lt;&lt;"
+#~ msgstr "&lt;&lt;&lt;"
+
+#~ msgid "&gt;&gt;&gt;"
+#~ msgstr "&gt;&gt;&gt;"
+
+#~ msgid "Rates"
+#~ msgstr "Rátaí"
+
+#~ msgid "Currency:"
+#~ msgstr "Airgeadra:"
+
+#~ msgid "Translation Rate:"
+#~ msgstr "Ráta Aistriúcháin:"
+
+#~ msgid "Review Rate:"
+#~ msgstr "Ráta Athbhreithnithe:"
+
+#~ msgid "Hourly Rate:"
+#~ msgstr "Ráta in aghaidh na huaire:"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "Ba chóir don luach `similarity` a bheith sa raon [0..1]"
@@ -4931,9 +4939,6 @@ msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
 
 #~ msgid "User Interface language"
 #~ msgstr "Béarla Comhéadan an Úsáideora"
-
-#~ msgid "Home page"
-#~ msgstr "Clár Cinn"
 
 #~ msgid "Input Height (in lines)"
 #~ msgstr "Airde an Ionchuir (i línte)"

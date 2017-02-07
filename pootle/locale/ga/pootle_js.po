@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-02 15:25+0000\n"
+"POT-Creation-Date: 2017-02-07 22:44+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -358,7 +358,8 @@ msgid ""
 "check your spam folder if you do not see the email."
 msgstr ""
 "Táimid tar éis ríomhphost leis an nasc speisialta a sheoladh chuig <span>%s</"
-"span>. Mura bhfeiceann tú an teachtaireacht, breathnaigh ar d'fhillteán turscair."
+"span>. Mura bhfeiceann tú an teachtaireacht, breathnaigh ar d'fhillteán "
+"turscair."
 
 #: static/js/auth/components/AccountActivation.js:41
 msgid ""
@@ -367,7 +368,8 @@ msgid ""
 "email."
 msgstr ""
 "Sheolamar ríomhphost leis an nasc speisialta chuig an seoladh ríomhphoist "
-"atá ceangailte leis an gcuntas seo. Mura bhfeiceann tú an teachtaireacht, breathnaigh ar d'fhillteán turscair."
+"atá ceangailte leis an gcuntas seo. Mura bhfeiceann tú an teachtaireacht, "
+"breathnaigh ar d'fhillteán turscair."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -842,10 +844,10 @@ msgid ""
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%(email)s</span> inár gcóras. "
-"Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní bheidh sé "
-"ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas Pootle "
-"agus do chuntas %(provider)s."
+"D'aimsíomar úsáideoir le seoladh ríomhphoist <span>%(email)s</span> inár "
+"gcóras. Tabhair an focal faire chun an logáil isteach a chur i gcrích. Ní "
+"bheidh sé ort é seo a dhéanamh arís, agus déanfaidh sé nasc idir do chuntas "
+"Pootle agus do chuntas %(provider)s."
 
 #: static/js/editor/app.js:650
 msgid "No results."
@@ -879,9 +881,6 @@ msgstr "Athrú Scóir"
 #: templates/admin/xhr_language_user_activity.html:51
 #: templates/admin/xhr_language_user_activity.html:55
 #: templates/admin/xhr_language_user_activity.html:59
-#: templates/admin/xhr_paid_tasks_report.html:24
-#: templates/admin/xhr_summary_report.html:18
-#: templates/admin/xhr_summary_report.html:31
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
@@ -898,74 +897,6 @@ msgstr "Níl aon ghníomhaíocht sa tréimhse roghnaithe"
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
 msgstr "Roghnaigh úsáideoir bailí."
-
-#: templates/admin/xhr_paid_tasks_report.html:3
-msgid "Registered Tasks"
-msgstr "Tascanna Cláraithe"
-
-#: templates/admin/xhr_paid_tasks_report.html:7
-msgid "Datetime"
-msgstr "Dáta agus Am"
-
-#: templates/admin/xhr_paid_tasks_report.html:8
-msgid "Comment"
-msgstr "Nóta Tráchta"
-
-#: templates/admin/xhr_paid_tasks_report.html:9
-#: templates/admin/xhr_summary_report.html:7
-msgid "Action"
-msgstr "Gníomh"
-
-#: templates/admin/xhr_paid_tasks_report.html:10
-#: templates/admin/xhr_summary_report.html:8
-msgid "Amount"
-msgstr "Méid"
-
-#: templates/admin/xhr_paid_tasks_report.html:11
-#: templates/admin/xhr_summary_report.html:9
-msgid "Rate"
-msgstr "Ráta"
-
-#: templates/admin/xhr_paid_tasks_report.html:12
-#: templates/admin/xhr_summary_report.html:10
-msgid "Subtotal"
-msgstr "Fo-iomlán"
-
-#: templates/admin/xhr_paid_tasks_report.html:21
-#: templates/admin/xhr_summary_report.html:28
-#, python-format
-msgid "%s hour"
-msgid_plural "%s hours"
-msgstr[0] "%s uair an chloig"
-msgstr[1] "%s uair an chloig"
-msgstr[2] "%s huaire an chloig"
-msgstr[3] "%s n-uaire an chloig"
-msgstr[4] "%s uair an chloig"
-
-#: templates/admin/xhr_paid_tasks_report.html:38
-msgid "Remove task"
-msgstr "Bain an tasc"
-
-#: templates/admin/xhr_paid_tasks_report.html:43
-msgid "Comment on it"
-msgstr "Déan trácht air"
-
-#: templates/admin/xhr_summary_report.html:2
-msgid "Summary"
-msgstr "Achoimre"
-
-#: templates/admin/xhr_summary_report.html:6
-msgid "Period"
-msgstr "Tréimhse"
-
-#: templates/admin/xhr_summary_report.html:38
-msgid "(registered tasks)"
-msgstr "(tascanna cláraithe)"
-
-#: templates/admin/xhr_summary_report.html:46
-#, python-format
-msgid "Total (%(currency)s)"
-msgstr "Iomlán (%(currency)s)"
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
@@ -984,22 +915,69 @@ msgid "Show"
 msgstr "Taispeáin"
 
 #: templates/editor/units/xhr_tm.html:17
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project %(time_ago)s"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project %(time_ago)s"
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project"
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Registered Tasks"
+#~ msgstr "Tascanna Cláraithe"
+
+#~ msgid "Datetime"
+#~ msgstr "Dáta agus Am"
+
+#~ msgid "Comment"
+#~ msgstr "Nóta Tráchta"
+
+#~ msgid "Action"
+#~ msgstr "Gníomh"
+
+#~ msgid "Amount"
+#~ msgstr "Méid"
+
+#~ msgid "Rate"
+#~ msgstr "Ráta"
+
+#~ msgid "Subtotal"
+#~ msgstr "Fo-iomlán"
+
+#~ msgid "%s hour"
+#~ msgid_plural "%s hours"
+#~ msgstr[0] "%s uair an chloig"
+#~ msgstr[1] "%s uair an chloig"
+#~ msgstr[2] "%s huaire an chloig"
+#~ msgstr[3] "%s n-uaire an chloig"
+#~ msgstr[4] "%s uair an chloig"
+
+#~ msgid "Remove task"
+#~ msgstr "Bain an tasc"
+
+#~ msgid "Comment on it"
+#~ msgstr "Déan trácht air"
+
+#~ msgid "Summary"
+#~ msgstr "Achoimre"
+
+#~ msgid "Period"
+#~ msgstr "Tréimhse"
+
+#~ msgid "(registered tasks)"
+#~ msgstr "(tascanna cláraithe)"
+
+#~ msgid "Total (%(currency)s)"
+#~ msgstr "Iomlán (%(currency)s)"
 
 #~ msgid "A few seconds ago"
 #~ msgstr "Cúpla soicind ó shin"
