@@ -186,6 +186,7 @@ def validate_not_reserved(value):
 def validate_project_checker(value):
     if value not in PROJECT_CHECKERS.keys():
         raise ValidationError(
+            # Translators: this refers to the project quality checker
             _('"%(code)s" cannot be used as a project checker'),
             params={'code': value},
         )
@@ -243,6 +244,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
                     'can be reported.'))
 
     screenshot_search_prefix = models.URLField(
+        # Translators: This is the URL prefix to search for context screenshots
         blank=True, null=True, verbose_name=_('Screenshot Search Prefix'))
 
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,

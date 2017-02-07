@@ -119,6 +119,7 @@ class ActionDisplay(object):
             if self.translation_action_type == 1:
                 msg = _('%(user)s edited %(source)s', params)
             if self.translation_action_type == 2:
+                # Translators: pre-translate is translating with first 100% TM match
                 msg = _('%(user)s pre-translated %(source)s', params)
             if self.translation_action_type == 3:
                 msg = _('%(user)s removed translation for %(source)s', params)
