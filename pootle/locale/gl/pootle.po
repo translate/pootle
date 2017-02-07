@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-07 21:35+0000\n"
+"PO-Revision-Date: 2017-02-07 22:00+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486503307.000000\n"
+"X-POOTLE-MTIME: 1486504835.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1874,7 +1874,6 @@ msgid "About This Pootle Server"
 msgstr "Sobre este servidor de Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-07 12:41+0000\n"
+"PO-Revision-Date: 2017-02-07 22:15+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486471291.000000\n"
+"X-POOTLE-MTIME: 1486505723.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1807,12 +1807,12 @@ msgstr "%(user)s előfordította ezt: %(source)s"
 #: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s átolvasta ezt: %(source)s"
 
 #: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s megjelölte munkát igénylőként ezt: %(source)s"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -2063,6 +2063,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"A Pootle FS még kísérleti. Szeretnénk, hogy kipróbálja és használja, de ha "
+"valami baj történik, a lokalizáció, Python és a Pootle ismerete szükséges a "
+"hibaelhárításhoz."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2073,9 +2076,8 @@ msgid "Update filesystem configuration"
 msgstr "Rendszerbeállítások frissítése"
 
 #: templates/admin/project_fs.html:51
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "A fordítási leképezésnek ilyen formátumúnak kell lennie:"
+msgstr "A fordítási útvonal leképezésének ilyen formátumúnak kell lennie:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
@@ -2086,14 +2088,12 @@ msgstr ""
 "legyen"
 
 #: templates/admin/project_fs.html:65
-#, fuzzy
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
-"Ha a localfs háttérprogramot használja, akkor a fordítási leképezés "
-"kombinálva lesz a háttérprogram\n"
-"URL-ben megadott útvonallal"
+"Ha a localfs háttérprogramot használja, akkor a fordítási útvonal leképezése "
+"kombinálva lesz a háttérprogram URL-ben megadott útvonallal"
 
 #: templates/admin/project_fs.html:71
 #, fuzzy
@@ -2264,17 +2264,19 @@ msgid ""
 msgstr "<span class='value translated'>%(translated)s</span>%% lefordítva"
 
 #: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
+#, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>%(fuzzy)s</span>%% igényel munkát"
+msgstr ""
+"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> igényel munkát"
 
 #: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
-"<span class='value untranslated'>%(untranslated)s</span>%% lefordítatlan"
+"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+"lefordítatlan"
 
 #: templates/browser/index.html:20
 msgid "Expand details"
@@ -2301,9 +2303,8 @@ msgid "Updates"
 msgstr "Frissítés"
 
 #: templates/browser/index.html:87
-#, fuzzy
 msgid "Last updated:"
-msgstr "Utoljára frissítve"
+msgstr "Utolsó frissítés:"
 
 #: templates/browser/index.html:102
 msgid "Translations"
@@ -2557,6 +2558,8 @@ msgstr "lektorálta: <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"%(character_name)s (Unicode érték: %(character_code)s) beszúrása a "
+"szerkesztőbe"
 
 #: templates/editor/units/edit.html:271
 msgid "User suggestions"
@@ -2731,12 +2734,12 @@ msgstr "Előző"
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "%(page_number)s / %(page_count)s oldal."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Oldalanként %(count)s találat megjelenítése"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 #, fuzzy
@@ -2782,14 +2785,12 @@ msgid "Remove selected"
 msgstr "Kijelölt eltávolítása"
 
 #: templates/languages/admin/language_team.html:103
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Javaslat adminisztrátor"
+msgstr "Egység és javaslat adminisztrátor"
 
 #: templates/languages/admin/language_team.html:118
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Függőben lévő javaslatok"
+msgstr "Függőben lévő javaslatok:"
 
 #: templates/languages/admin/language_team.html:128
 msgid "Total words:"
