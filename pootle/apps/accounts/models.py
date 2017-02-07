@@ -90,10 +90,7 @@ class User(AbstractBaseUser):
     # Score-related fields
     rate = models.FloatField(_('Rate'), null=False, default=0)
     review_rate = models.FloatField(_('Review Rate'), null=False, default=0)
-    hourly_rate = models.FloatField(_('Hourly Rate'), null=False, default=0)
     score = models.FloatField(_('Score'), null=False, default=0)
-    currency = models.CharField(_('Currency'), max_length=3, null=True,
-                                blank=True, choices=CURRENCIES)
     is_employee = models.BooleanField(_('Is employee?'), default=False)
     twitter = models.CharField(_('Twitter'), max_length=15, null=True,
                                blank=True)
