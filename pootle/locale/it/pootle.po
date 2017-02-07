@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-17 11:56+0000\n"
-"Last-Translator: frasten <frasten@gmail.com>\n"
+"PO-Revision-Date: 2017-02-06 15:54+0000\n"
+"Last-Translator: daniele_translator <daniel.translator@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484654218.000000\n"
+"X-POOTLE-MTIME: 1486396447.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -266,6 +266,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are Stores of that "
 "file type ('%s')"
 msgstr ""
+"Non puoi rimuovere un tipo di file da un progetto, se ci sono archivi di "
+"questo tipo ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -319,7 +321,7 @@ msgstr "Nome del formato"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
-msgstr ""
+msgstr "Titolo del formato"
 
 #: apps/pootle_format/abstracts.py:44
 msgid "Enabled"
@@ -347,7 +349,7 @@ msgstr "Personalizzato"
 
 #: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Filesystem di destinazione"
 
 #: apps/pootle_fs/forms.py:38
 msgid "Select a filesystem backend"
@@ -355,7 +357,7 @@ msgstr "Seleziona un filesystem di destinazione"
 
 #: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
-msgstr ""
+msgstr "URL o percorso di destinazione"
 
 #: apps/pootle_fs/forms.py:45
 msgid "The URL or path to your translation files"
@@ -423,11 +425,11 @@ msgstr "Aggiungi un utente a questo team"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Ruolo"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Il ruolo è richiesto quando si aggiunge un nuovo membro"
 
 #: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
@@ -977,7 +979,7 @@ msgstr "Non-GNU: ogni lingua utilizza la sua cartella"
 
 #: apps/pootle_project/models.py:223
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr ""
+msgstr "Permetti a Pootle di gestire i filesystem (sperimentale)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1011,6 +1013,8 @@ msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
+"Il progetto di traduzione (%s) è stato creato. Stiamo aggiornando gli "
+"archivi a partire dai template."
 
 #: apps/pootle_project/views.py:270
 #, fuzzy, python-format
@@ -1552,7 +1556,7 @@ msgstr ""
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Imposta %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:360
 #, fuzzy, python-format
@@ -1598,11 +1602,12 @@ msgstr ""
 
 #: checks.py:449
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "La revisione è mancante o ha un valore non valido."
 
 #: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
+"Esegui `revision --restore` per inizializzare il contatore delle revisioni."
 
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
@@ -1632,29 +1637,34 @@ msgstr "POOTLE_CONTACT_EMAIL non è impostato."
 #: checks.py:506
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "Il percorso ('%s') indicato in POOTLE_FS_WORKING_PATH non esiste."
 
 #: checks.py:508
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
+"Crea la directory indicata in `POOTLE_FS_WORKING_PATH` o cambia il percorso."
 
 #: checks.py:513
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Pootle non ha i permessi di scrittura per il percorso ('%s') indicato in "
+"POOTLE_FS_WORKING_PATH."
 
 #: checks.py:516
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
+"Aggiungi il permesso di scrittura `POOTLE_FS_WORKING_PATH` o cambia le "
+"impostazioni"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL richiede le impostazioni di fuso orario."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1717,6 +1727,7 @@ msgstr "Inserire un numero"
 msgid "Incorrect"
 msgstr "Non corretto"
 
+# Forse si voleva indicare "width selected" ovvero larghezza selezionata.
 #: core/forms.py:180
 msgid "With selected"
 msgstr ""
@@ -1729,6 +1740,8 @@ msgstr "Aggiungi commento"
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Seleziona tutte le voci corrispondenti ai filtri di ricerca, includendo "
+"quelle non visualizzate"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
@@ -1736,7 +1749,7 @@ msgstr "È necessario specificare un'azione da eseguire"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Deve essere specificato un campo di ricerca valido"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1930,7 +1943,7 @@ msgstr "Conferma indirizzo email di Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Noi abbiamo ricevuto una richiesta di reimpostare la tua password."
 
 #: templates/account/email/password_reset_key_message.txt:3
 msgid "To reset your password, follow this link:"
@@ -1940,6 +1953,8 @@ msgstr "Per resettare la password, aprite questo collegamento:"
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Se non vuoi reimpostare la tua password, puoi semplicemente ignorare il "
+"messaggio."
 
 #: templates/account/email/password_reset_key_subject.txt:2
 #, fuzzy
@@ -2161,6 +2176,9 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS è ancora sperimentale, ci fa piacere che lo usi, ma richiede un "
+"certo livello di competenza in localizzazioni, Python e Pootle in caso di "
+"problemi."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2168,7 +2186,7 @@ msgstr ""
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Aggiorna le configurazioni del filesystem"
 
 #: templates/admin/project_fs.html:51
 #, fuzzy
@@ -2424,7 +2442,7 @@ msgstr "Ultima azione"
 
 #: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Questo progetto è disabilitato e visibile solo agli amministratori."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
@@ -2499,7 +2517,7 @@ msgstr "I miei invii"
 #. in time but have been overwritten by other users.
 #: templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "I miei invii sovrascritti"
 
 #: templates/editor/_filters.html:18
 msgid "Checks"
@@ -2550,17 +2568,20 @@ msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
 msgstr ""
+"I seguenti suggerimenti da te inviati sono stati accettati con il commento:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Speriamo che questo riscontro ti aiuti a migliorare i tuoi contributi futuri."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
 msgstr ""
+"I seguenti suggerimenti da te inviati sono stati respinti con il commento:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2834,7 +2855,7 @@ msgstr "L'errore riscontrato era:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "&lt;&lt;&lt;"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2848,7 +2869,7 @@ msgstr ""
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "&gt;&gt;&gt;"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2970,6 +2991,8 @@ msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Non ci sono templates per questo progetto, quindi l'aggiunta di nuovi "
+"linguaggi per questa schermata è disabilitata."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
@@ -2990,7 +3013,7 @@ msgstr "Azione necessaria"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Prima di continuare, devi leggere ed accettare i seguenti documenti."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
@@ -3134,22 +3157,28 @@ msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
+"Mostra agli altri chi sei, raccontagli di te<br/> e fa che il tuo profilo "
+"pubblico sia magnifico."
 
 #: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Alcune traduzioni sono fornite da volontari anonimi. Queste sono registrate "
+"sotto questo speciale meta-account."
 
 #: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Alcune traduzioni sono importate da file esterni. Queste sono registrate "
+"sotto questo speciale meta-account."
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"
-msgstr ""
+msgstr "Tassi"
 
 #: templates/user/reports/user_rates_widget.html:8
 msgid "Currency:"

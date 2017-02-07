@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-27 19:25+0000\n"
+"PO-Revision-Date: 2017-02-02 17:24+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485545100.000000\n"
+"X-POOTLE-MTIME: 1486056255.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -190,11 +190,11 @@ msgstr "نزّل للتّرجمة محليًّا"
 
 #: apps/import_export/templates/browser/index.html:16
 msgid "Download translation files for backup"
-msgstr "نزّل ملفّات التّرجمة لإبقائها احتياطيا"
+msgstr "نزّل ملفّات التّرجمة لإبقائها احتياطيًّا"
 
 #: apps/import_export/templates/browser/index.html:17
 msgid "Download for backup"
-msgstr "نزّل الملفّ لإبقائه احتياطيا"
+msgstr "نزّل الملفّ لإبقائه احتياطيًّا"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -417,7 +417,7 @@ msgstr "أضف مستخدمًا إلى هذا الفريق"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "الدّور"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -425,21 +425,19 @@ msgstr "الدّور مطلوب لإضافة عضو جديد"
 
 #: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
-msgstr "ارفض"
+msgstr "ارفضه"
 
 #: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
-msgstr "اقبل"
+msgstr "اقبله"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
-msgstr "رشّح الاقتراحات"
+msgstr "رشّح المقترِح"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "المرشّح"
+msgstr "رشّح الحالة"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -506,7 +504,7 @@ msgstr "الأصل"
 
 #: apps/pootle_language/views.py:212
 msgid "Suggestion"
-msgstr "اقتراح"
+msgstr "الاقتراح"
 
 #: apps/pootle_language/views.py:213
 msgid "Suggested by"
@@ -1027,17 +1025,17 @@ msgstr "تعليق"
 
 #: apps/pootle_store/constants.py:65
 msgid "Obsolete"
-msgstr "ملغى"
+msgstr "بائدة"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:212
 #: templates/editor/_filters.html:10
 msgid "Needs work"
-msgstr "تحتاج للعمل"
+msgstr "تحتاج عملًا"
 
 #: apps/pootle_store/constants.py:68 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
 msgid "Translated"
-msgstr "المُترجَمة"
+msgstr "مُترجمة"
 
 #: apps/pootle_store/decorators.py:25
 msgid "Insufficient rights to access this directory."
@@ -1065,7 +1063,7 @@ msgstr "صيغة الجمع %d"
 
 #: apps/pootle_store/forms.py:268
 msgid "Needs work flag must be cleared"
-msgstr "يجب محو راية ”تحتاج للعمل“"
+msgstr "يجب مسح راية ”تحتاج عملًا“"
 
 #: apps/pootle_store/forms.py:328
 msgid "Translator comment"
@@ -1658,7 +1656,7 @@ msgstr "المقترحات"
 #: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr "غير المكتمل"
+msgstr "غير مكتملة"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -1701,11 +1699,11 @@ msgstr "خطأ"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr "مع التّحديد"
+msgstr "ما قد حُدّد"
 
 #: core/forms.py:187
 msgid "Add comment"
-msgstr "أضف تعليقًا"
+msgstr "مضيفًا التّعليق"
 
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
@@ -2794,21 +2792,21 @@ msgstr "الخطأ كان:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "&gt;&gt;&gt;"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "صفحة %(page_number)s من %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "&lt;&lt;&lt;"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -3091,14 +3089,14 @@ msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
-"بعض التّرجمات وفّرها متطوّعين مجهولين. هذه التّرجمات مسجّلة بالحساب الخاصّ هذا."
+"بعض التّرجمات وفّرها متطوّعين مجهولين. هذه التّرجمات مسجّلة بهذا الحساب الخاصّ."
 
 #: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
-"بعض التّرجمات استوردت من ملفّات خارجيّة. هذه التّرجمات مسجّلة بالحساب الخاصّ هذا."
+"بعض التّرجمات استوردت من ملفّات خارجيّة. هذه التّرجمات مسجّلة بهذا الحساب الخاصّ."
 
 #: templates/user/reports/user_rates_widget.html:4
 msgid "Rates"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-26 18:29+0000\n"
+"PO-Revision-Date: 2017-02-07 11:09+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1485455352.000000\n"
+"X-POOTLE-MTIME: 1486465780.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -422,7 +422,7 @@ msgstr "Een gebruiker aan dit team toevoegen"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -437,14 +437,12 @@ msgid "Accept"
 msgstr "Accepteren"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
-msgstr "Suggesties filteren"
+msgstr "Filtersuggestie"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Filter"
+msgstr "Filterstatus"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -2849,21 +2847,21 @@ msgstr "De gemelde fout was:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "&lt;&lt;&lt;"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Pagina %(page_number)s van %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "%(count)s resultaten per pagina getoond"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "&gt;&gt;&gt;"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-12 18:28+0000\n"
-"Last-Translator: Manuela <manuela.silva@sky.com>\n"
+"PO-Revision-Date: 2017-02-03 22:25+0000\n"
+"Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1484245714.000000\n"
+"X-POOTLE-MTIME: 1486160748.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -60,7 +60,7 @@ msgstr "Digite um nome de utilizador válido"
 
 #: apps/accounts/models.py:64
 msgid "Email Address"
-msgstr "Endereço de E-mail"
+msgstr "Endereço de e-mail"
 
 #: apps/accounts/models.py:65 apps/pootle_language/models.py:92
 #: apps/pootle_project/models.py:207
@@ -228,20 +228,18 @@ msgid "Upload as %(user)s"
 msgstr "Enviar como %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Descarregar para edição off-line"
+msgstr "Descarregar MT para edição off-line do projeto de tradução"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Descarregar para edição off-line"
+msgstr "Descarregar MT para off-line"
 
 #: apps/import_export/utils.py:39
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
-"Tipo de ficheiro %s não suportado, atualmente são suportados apenas os "
+"Tipo de ficheiro %s não suportado, atualmente são suportados apenas "
 "ficheiros PO\n"
 
 #: apps/import_export/utils.py:45
@@ -269,7 +267,7 @@ msgstr "O código do idioma não corresponde à convenção ISO."
 
 #: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:231
 msgid "Source Language"
-msgstr "Idioma Original"
+msgstr "Idioma original"
 
 #: apps/pootle_app/forms.py:88
 #, python-format
@@ -437,12 +435,11 @@ msgstr "Adiciona um utilizador à equipa"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Função"
 
 #: apps/pootle_language/forms.py:128
-#, fuzzy
 msgid "Role is required when adding a new member"
-msgstr "Requer que o Redis seja a infraestrutura de cache."
+msgstr "É necessário uma função para adicionar um novo membro"
 
 #: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
@@ -458,9 +455,8 @@ msgid "Filter suggester"
 msgstr "Filtrar sugestões"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Filtro"
+msgstr "Filtrar estado"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -477,9 +473,9 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"O código de idiomas ISO 639 para o idioma, possivelmente seguido por um "
-"sublinhado (_) e um código de país ISO 3166. <a href=\"https://www.w3.org/"
-"International/articles/language-tags//\">Mais informação</a>"
+"O código ISO 639 para o idioma, possivelmente seguido por um sublinhado (_) "
+"e um código de país ISO 3166. <a href=\"https://www.w3.org/International/"
+"articles/language-tags//\">Mais informação</a>"
 
 #: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
@@ -540,32 +536,33 @@ msgid "Suggested at"
 msgstr "Sugerido em"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "Rejeitou a sugestão de %(author)s com o comentário: %(comment)s"
-msgstr[1] "Rejeitou a sugestão de %(author)s com o comentário: %(comment)s"
+msgstr[0] "Rejeitou %s sugestão e comentou. O utilizador será notificado."
+msgstr[1] ""
+"Rejeitou %s sugestões e comentou. Os utilizadores serão notificados."
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "Aceitou a sugestão de %(author)s com o comentário: %(comment)s"
-msgstr[1] "Aceitou a sugestão de %(author)s com o comentário: %(comment)s"
+msgstr[0] "Aceitou %s sugestão e comentou. O utilizador será notificado."
+msgstr[1] "Aceitou %s sugestões e comentou. Os utilizadores serão notificados."
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Rejeitar sugestão"
-msgstr[1] "Rejeitar sugestão"
+msgstr[0] "Rejeitou %s sugestão"
+msgstr[1] "Rejeitou %s sugestões"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Aceitar sugestão"
-msgstr[1] "Aceitar sugestão"
+msgstr[0] "Aceitou %s sugestão"
+msgstr[1] "Aceitou %s sugestões"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"
@@ -601,7 +598,7 @@ msgstr "Vazio"
 
 #: apps/pootle_misc/checks.py:46
 msgid "Brackets"
-msgstr "Parêntesis"
+msgstr "Parênteses"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Compendium conflict"
@@ -882,17 +879,16 @@ msgid "Percent brace placeholders"
 msgstr "Chavetas de percentagem"
 
 #: apps/pootle_misc/checks.py:121
-#, fuzzy
 msgid "ftl format"
-msgstr "Formato de data"
+msgstr "Formato ftl"
 
 #: apps/pootle_misc/checks.py:124
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "Romeno: evitar diacríticos com cedilha"
 
 #: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Romeno: utilizar \"niciun\"/\"nicio\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -900,8 +896,7 @@ msgstr "Procurar"
 
 #: apps/pootle_misc/forms.py:102
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr ""
-"Procurar (Ctrl+Shift+S)<br/>Digite o texto e pressione Enter para procurar"
+msgstr "Procurar (Ctrl+Shift+S)<br/>Digite o texto e prima Enter para procurar"
 
 #: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
 msgid "Exact Match"
@@ -958,9 +953,9 @@ msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" não pode ser utilizado como código de projeto."
 
 #: apps/pootle_project/models.py:189
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "\"%(code)s\" não pode ser utilizado como código de projeto."
+msgstr "\"%(code)s\" não pode ser utilizado como verificador de projeto"
 
 #: apps/pootle_project/models.py:196
 msgid ""
@@ -988,9 +983,9 @@ msgid "Non-GNU: Each language in its own directory"
 msgstr "Não GNU: cada idioma no seu diretório"
 
 #: apps/pootle_project/models.py:223
-#, fuzzy
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr "Permitir Pootle FS para controlar o sistema de ficheiros"
+msgstr ""
+"Permitir que Pootle FS faça a gestão do sistema de ficheiros (experimental)"
 
 #: apps/pootle_project/models.py:227
 msgid "Project Tree Style"
@@ -1007,7 +1002,7 @@ msgstr "E-mail para comunicar erros"
 #: apps/pootle_project/models.py:242
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
-"Um endereço de e-mail onde os problemas com o texto fonte podem ser "
+"Um endereço de e-mail para onde os problemas com o texto fonte podem ser "
 "comunicados."
 
 #: apps/pootle_project/models.py:246
@@ -1024,8 +1019,8 @@ msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
-"O projeto de tradução (%s) foi criado. Nós estamos a atualizar os ficheiros "
-"a partir dos modelos de tradução."
+"O projeto de tradução (%s) foi criado. Estamos a atualizar os ficheiros a "
+"partir dos modelos de tradução."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1056,7 +1051,7 @@ msgstr "Traduzido"
 
 #: apps/pootle_store/decorators.py:25
 msgid "Insufficient rights to access this directory."
-msgstr "Não tem permissões suficientes para aceder a esta diretoria."
+msgstr "Não tem permissões suficientes para aceder a este diretório."
 
 #: apps/pootle_store/decorators.py:28
 msgid "Insufficient rights to access suggestion mode."
@@ -1924,7 +1919,7 @@ msgstr ""
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "Para ativar a sua conta, siga esta hiperligação:"
+msgstr "Para ativar a sua conta, siga esta ligação:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
@@ -2950,7 +2945,7 @@ msgstr "Terminar sessão"
 
 #: templates/layout.html:141
 msgid "Sign In"
-msgstr "Iniciar Sessão"
+msgstr "Iniciar sessão"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
 #, python-format

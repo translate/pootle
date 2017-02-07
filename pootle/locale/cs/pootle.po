@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-24 19:31+0000\n"
+"PO-Revision-Date: 2017-02-02 18:17+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485286293.000000\n"
+"X-POOTLE-MTIME: 1486059431.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -422,7 +422,7 @@ msgstr "Přidat uživatele do tohoto týmu"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Role"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -437,14 +437,12 @@ msgid "Accept"
 msgstr "Přijmout"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
-msgstr "Filtrovat návrhy"
+msgstr "Filtrovat navrhovatele"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Filtr"
+msgstr "Filtrovat stav"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -2833,21 +2831,21 @@ msgstr "Nahlášena byla chyba:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "&lt;&lt;&lt;"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Stránka %(page_number)s z(e) %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Zobrazeno %(count)s výsledků na stránku"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "&gt;&gt;&gt;"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

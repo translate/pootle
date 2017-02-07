@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-27 13:56+0000\n"
+"PO-Revision-Date: 2017-02-06 12:39+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-POOTLE-MTIME: 1485525418.000000\n"
+"X-POOTLE-MTIME: 1486384789.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -421,7 +421,7 @@ msgstr "Bæta notanda við þetta teymi"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Hlutverk"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -436,14 +436,12 @@ msgid "Accept"
 msgstr "Samþykkja"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
 msgstr "Sía uppástungur"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Sía"
+msgstr "Staða síu"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -753,7 +751,7 @@ msgstr "Gilt XML"
 
 #: apps/pootle_misc/checks.py:89
 msgid "XML tags"
-msgstr "XML merki"
+msgstr "XML merkingar"
 
 #: apps/pootle_misc/checks.py:91
 msgid "Broken HTML Entities"
@@ -769,15 +767,15 @@ msgstr "Snið sniðmáts"
 
 #: apps/pootle_misc/checks.py:94
 msgid "Mustache placeholders"
-msgstr ""
+msgstr "Mustache ígildisbreytur"
 
 #: apps/pootle_misc/checks.py:95
 msgid "Mustache placeholder pairs"
-msgstr ""
+msgstr "Pör af Mustache ígildisbreytum"
 
 #: apps/pootle_misc/checks.py:96
 msgid "Mustache like placeholder pairs"
-msgstr ""
+msgstr "Pör af Mustache-líkum ígildisbreytum"
 
 #: apps/pootle_misc/checks.py:97
 msgid "C format placeholders"
@@ -789,7 +787,7 @@ msgstr "Óprentanlegt"
 
 #: apps/pootle_misc/checks.py:99
 msgid "Unbalanced tag braces"
-msgstr ""
+msgstr "Ójöfn svigapör í merkingum"
 
 #: apps/pootle_misc/checks.py:100
 msgid "Changed attributes"
@@ -797,11 +795,11 @@ msgstr "Breytt eigindi"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Unescaped ampersands"
-msgstr ""
+msgstr "Óafmörkuð OG-merki"
 
 #: apps/pootle_misc/checks.py:102
 msgid "Incorrectly escaped ampersands"
-msgstr ""
+msgstr "Rangt afmörkuð OG-merki"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Whitespaces"
@@ -817,11 +815,11 @@ msgstr "Ígildisbreytur í hástöfum"
 
 #: apps/pootle_misc/checks.py:106
 msgid "Percent sign placeholders"
-msgstr ""
+msgstr "Ígildisbreytur fyrir prósentur"
 
 #: apps/pootle_misc/checks.py:108
 msgid "Percent sign closure placeholders"
-msgstr ""
+msgstr "Ígildisbreytur lokunar fyrir prósentur"
 
 #: apps/pootle_misc/checks.py:109
 msgid "$ placeholders"
@@ -1000,6 +998,8 @@ msgid ""
 "Translation project (%s) has been created. We are now updating its stores "
 "from file templates."
 msgstr ""
+"Þýðingarverkefnið (%s) var búið til. Við erum núna að uppfæra skráageymslur "
+"þess út frá sniðmátum."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1226,6 +1226,7 @@ msgstr "Sía"
 #: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which stores this virtual folder comprises."
 msgstr ""
+"Síunarreglur sem lýsa hvaða skráageymslur tilheyra þessari sýndarmöppu."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1271,6 +1272,9 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Prófaðu að nota 'pootle find_duplicate_emails', og uppfærðu síðan tölvupósta "
+"notenda með 'pootle update_user_email username email'. Þú gætir líka viljað "
+"nota pootle merge_user eða purge_user skipanirnar"
 
 #: checks.py:88
 msgid "Your version of Django is too old."
@@ -1556,11 +1560,11 @@ msgstr ""
 
 #: checks.py:449
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Útgáfu vantar eða er með óleyfilegt gildi."
 
 #: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Keyrðu `revision --restore` til að frumstilla útgáfuteljarann."
 
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
@@ -2132,6 +2136,7 @@ msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Einungis þarf `&lt;language_code&gt;`, það þarf samt að enda á `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:65
 msgid ""
@@ -2746,6 +2751,8 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Ef þú þarft aðstoð geturðu vísað til þessarar villu sem <strong>%(ref)s</"
+"strong>."
 
 #: templates/errors/db.html:4 templates/errors/db.html:8
 msgid "Database Error"
@@ -2756,6 +2763,9 @@ msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle getur ekki tengst gagnagrunninum, gagnagrunnurinn er ekki ennþá að "
+"fullu virkur, eða að það þarf að uppfæra skema gagnagrunnsins áður en lengra "
+"er haldið."
 
 #: templates/errors/db.html:18
 #, python-format
@@ -2764,6 +2774,9 @@ msgid ""
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
+"Lestu <a href=\"%(url)s\">Pootle hjálparskjölin</a> varðandi leiðbeiningar "
+"vegna uppsetningar og uppfærslu. Hafðu samband við kerfisstjórnandann ef þú "
+"heldur að hér sé um mistök að ræða."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
@@ -2771,21 +2784,21 @@ msgstr "Tilkynnta villan var:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "&lt;&lt;&lt;"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Síða %(page_number)s af %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Birti %(count)s niðurstöður á hverri síðu"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "&gt;&gt;&gt;"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2884,6 +2897,7 @@ msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
+"Þýðingarverkefni (%(tp)s) var útbúið á %(url)s, og hefur verið uppfært."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
@@ -2891,6 +2905,8 @@ msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
+"Eitthvað vandamál kom upp við að útbúa þýðingarverkefni (%(tp)s). Hafðu "
+"sambandi við kerfisstjórann þinn."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -2915,6 +2931,8 @@ msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
+"Þessi fasta síða er óvirkt og einungis sýnilegt kerfisstjórum. Þú getur "
+"virkjað það með því að <a href=\"%(edit_url)s\">breyta eiginleikum þess</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-24 12:32+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-02-06 21:36+0000\n"
+"Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1485261154.000000\n"
+"X-POOTLE-MTIME: 1486416979.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -214,14 +214,12 @@ msgid "Upload as %(user)s"
 msgstr "Ladda upp som %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Hämta för översättning offline"
+msgstr "Ladda ner offline TM för översättningsprojekt"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Hämta för översättning offline"
+msgstr "Ladda ner offline TM"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -420,7 +418,7 @@ msgstr "Lägg till en användare till gruppen"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Roll"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -435,14 +433,12 @@ msgid "Accept"
 msgstr "Godkänn"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
-msgstr "Filtrera förslag"
+msgstr "Filterförslag"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Filter"
+msgstr "Filtertillstånd"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -521,28 +517,28 @@ msgid "Suggested at"
 msgstr "Föreslaget den"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "Avvisade %s förslag med kommentarer. Användare kommer att meddelas"
-msgstr[1] "Avvisade %s förslag med kommentarer. Användare kommer att meddelas"
+msgstr[0] "Avvisade %s förslag med kommentar. Användare kommer att meddelas"
+msgstr[1] "Avvisade %s förslag med kommentar. Användare kommer att meddelas"
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "Godkände %s förslag med kommentarer. Användare kommer att meddelas "
-msgstr[1] "Godkände %s förslag med kommentarer. Användare kommer att meddelas "
+msgstr[0] "Godkände %s förslag med kommentar. Användare kommer att meddelas "
+msgstr[1] "Godkände %s förslag med kommentar. Användare kommer att meddelas "
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
 msgstr[0] "Avvisade %s förslag"
 msgstr[1] "Avvisade %s förslag"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
 msgstr[0] "Godkände %s förslag"
@@ -867,7 +863,6 @@ msgid "ftl format"
 msgstr "ftl-format"
 
 #: apps/pootle_misc/checks.py:124
-#, fuzzy
 msgid "Romanian: Avoid cedilla diacritics"
 msgstr "Rumänska: Undvik diakritiska tecken"
 
@@ -1616,37 +1611,37 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH inställning är inte satt."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "Sökväg som pekas på av POOTLE_FS_WORKING PATH existerar inte."
+msgstr "Sökväg ('%s') som pekas ut av POOTLE_FS_WORKING_PATH existerar inte."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Skapa katalogen som indikeras av `POOTLE_FS_WORKING PATH` i inställningar."
+"Skapa katalogen som pekas ut av `POOTLE_FS_WORKING_PATH` eller ändra i "
+"inställningar."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"Sökväg som pekas ut av POOTLE_FS_WORKING_PATH är inte skrivbar av Pootle."
+"Sökväg ('%s') som pekas ut av POOTLE_FS_WORKING_PATH är inte skrivbar av "
+"Pootle."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"Lägg till skrivrättigheter till `POOTLE_FS_WORKING PATH` katalog med 'chmod "
-"+w'"
+"Lägg till skrivrättigheter till `POOTLE_FS_WORKING_PATH` eller ändra i "
+"inställningar"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL kräver tidszonsinställningar."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -2824,21 +2819,21 @@ msgstr "Den rapporterade felet var:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "&lt;&lt;&lt;"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Sida %(page_number)s av %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Visar %(count)s resultat per sida"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "&gt;&gt;&gt;"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-26 18:15+0000\n"
+"PO-Revision-Date: 2017-02-07 00:45+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1485454544.000000\n"
+"X-POOTLE-MTIME: 1486428356.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -347,15 +347,15 @@ msgstr "Personalizado"
 
 #: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
-msgstr "Infraestructura de sistema de archivos"
+msgstr "Motor de sistema de archivos"
 
 #: apps/pootle_fs/forms.py:38
 msgid "Select a filesystem backend"
-msgstr "Seleccione una infraestructura de sistema de archivos"
+msgstr "Seleccione un motor de sistema de archivos"
 
 #: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
-msgstr "URL o ruta de la infraestructura"
+msgstr "URL o ruta de motor"
 
 #: apps/pootle_fs/forms.py:45
 msgid "The URL or path to your translation files"
@@ -423,7 +423,7 @@ msgstr "Añadir un usuario a este equipo"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Papel"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -438,14 +438,12 @@ msgid "Accept"
 msgstr "Aceptar"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
-msgstr "Filtrar sugerencias"
+msgstr "Filtrar por quién sugiere"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Filtro"
+msgstr "Filtrar por estado"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -462,10 +460,9 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"El código de idioma ISO 639 para el idioma, posiblemente seguido de un guión "
+"El código de idioma ISO 639 para el idioma, posiblemente seguido de un guion "
 "bajo (_) y un código de país ISO 3166. <a href=\"http://www.w3.org/"
-"International/articles/language-tags/Overview.es.php?changelang=es\">Más "
-"información</a>"
+"International/articles/language-tags/\">Más información</a>"
 
 #: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
@@ -801,12 +798,11 @@ msgstr "Atributos cambiados"
 
 #: apps/pootle_misc/checks.py:101
 msgid "Unescaped ampersands"
-msgstr "Signos '&' sin escape"
+msgstr "Signos «&» sin escape"
 
 #: apps/pootle_misc/checks.py:102
-#, fuzzy
 msgid "Incorrectly escaped ampersands"
-msgstr "Signos '&' escapados en forma incorrecta"
+msgstr "Signos «&» escapados incorrectamente"
 
 #: apps/pootle_misc/checks.py:103
 msgid "Whitespaces"
@@ -1407,32 +1403,38 @@ msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
+"Defina POOTLE_CONTACT_EMAIL para permitir a los usuarios ponerse en contacto "
+"con los administradores a través del formulario de Pootle."
 
 #: checks.py:228
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL está utilizando la opción predeterminada %r."
 
 #: checks.py:230
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL es la dirección donde se recibirán los mensajes "
+"enviados a través del formulario de contacto."
 
 #: checks.py:237
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "No se ha definido DEFAULT_FROM_EMAIL."
 
 #: checks.py:238 checks.py:248
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL se utiliza en todos los mensajes salientes de Pootle.\n"
+"No olvide revisar la configuración de su servidor de correo electrónico."
 
 #: checks.py:246
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "DEFAULT_FROM_EMAIL está utilizando la opción predeterminada %r."
 
 #: checks.py:257
 msgid "POOTLE_MARKUP_FILTER is missing."
@@ -1440,7 +1442,7 @@ msgstr "Falta POOTLE_MARKUP_FILTER."
 
 #: checks.py:258
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Defina POOTLE_MARKUP_FILTER."
 
 #: checks.py:263
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
@@ -1448,15 +1450,15 @@ msgstr "El valor de POOTLE_MARKUP_FILTER no es válido."
 
 #: checks.py:264
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Defina un valor válido para POOTLE_MARKUP_FILTER."
 
 #: checks.py:278
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Marcación no válida en POOTLE_MARKUP_FILTER."
 
 #: checks.py:279
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Defina una marcación válida para POOTLE_MARKUP_FILTER."
 
 #: checks.py:284
 #, python-format
@@ -1464,20 +1466,22 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER está definido como marcación «%s», pero el paquete que "
+"la proporciona no se encuentra."
 
 #: checks.py:286
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Instale el paquete o modifique POOTLE_MARKUP_FILTER."
 
 #: checks.py:297
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] no tiene INDEX_NAME."
 
 #: checks.py:298
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Defina un INDEX_NAME para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:304
 #, python-format
@@ -1522,23 +1526,25 @@ msgstr "Establezca un PORT para POOTLE_TM_SERVER['%s']."
 #: checks.py:342
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] tiene un WEIGHT menor que 0.0 o mayor que 1.0"
 
 #: checks.py:344
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr ""
+"Defina un WEIGHT entre 0.0 y 1.0 (ambos incluidos) para "
+"POOTLE_TM_SERVER['%s']."
 
 #: checks.py:352
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS no tiene %s."
 
 #: checks.py:353
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Defina %s en POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:360
 #, python-format
@@ -1561,13 +1567,15 @@ msgstr "Elimine la cuenta «admin» o cambie su contraseña."
 
 #: checks.py:400
 msgid "Database connection uses transaction_hooks."
-msgstr ""
+msgstr "La conexión de base de datos utiliza transaction_hooks."
 
 #: checks.py:401
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
+"Defina DATABASES['default']['ENGINE'] para que use un motor Django "
+"proveniente de django.db.backends."
 
 #: checks.py:421
 msgid "Email server is not available."
@@ -1581,11 +1589,12 @@ msgstr ""
 
 #: checks.py:449
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Falta la revisión o esta tiene un valor incorrecto."
 
 #: checks.py:450
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
+"Ejecute «revision --restore» para restablecer el contador de revisiones."
 
 #: checks.py:464
 msgid "No canonical URL provided and default site set to example.com."
@@ -1598,43 +1607,53 @@ msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Defina el «POOTLE_CANONICAL_URL» en la configuración o actualice el sitio "
+"predeterminado si emplea django.contrib.sites."
 
 #: checks.py:470
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "El URL canónico está definido como http://localhost."
 
 #: checks.py:472
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Defina el «POOTLE_CANONICAL_URL» a un valor apropiado para su sitio o déjelo "
+"en blanco si emplea django.contrib.sites."
 
 #: checks.py:502
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr ""
+msgstr "No se ha definido POOTLE_FS_WORKING_PATH."
 
 #: checks.py:506
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "La ruta a la que apunta POOTLE_FS_WORKING_PATH («%s») no existe."
 
 #: checks.py:508
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
+"Cree la carpeta indicada en «POOTLE_FS_WORKING_PATH» o modifique el valor de "
+"la opción."
 
 #: checks.py:513
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Pootle no puede escribir en la ruta («%s») señalada en "
+"POOTLE_FS_WORKING_PATH."
 
 #: checks.py:516
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
+"Otorgue el permiso de escritura a «POOTLE_FS_WORKING_PATH» o modifique el "
+"valor de la opción"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
@@ -1805,7 +1824,7 @@ msgstr "%(user)s revisó %(source)s"
 #: core/views/display.py:128
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s marcó %(source)s como que necesita trabajo"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
@@ -2147,7 +2166,7 @@ msgstr ""
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
-msgstr "Configuración de infraestructura"
+msgstr "Configuración de motor"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
@@ -2162,18 +2181,23 @@ msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Solo es necesario «&lt;language_code&gt;», pero debe acabar en «.&lt;ext&gt;»"
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Si utiliza el motor «localfs», la asignación de rutas de traducción se "
+"combinará con la ruta que se especifique en el URL del motor"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
+"Para otros motores, la asignación de rutas de traducción será relativa a la "
+"raíz del repositorio."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2253,12 +2277,18 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
+"Utilice el código <code>&lt;a href=\"<strong>#/nombre-página</strong>\"&gt;"
+"Texto de enlace&lt;/a&gt;</code> para proveer enlaces entre páginas "
+"estáticas. Estos enlaces utilizarán dinámicamente la ruta completa de las "
+"páginas estáticas."
 
 #: templates/admin/staticpages/_form.html:44
 msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"En las páginas de anuncios, utilice <code><strong>/xx/</strong></code> en "
+"los URL para obtener un código de idioma dinámico."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
@@ -2811,21 +2841,21 @@ msgstr "Se ha informado del error:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "&lt;&lt;&lt;"
-msgstr ""
+msgstr "◄"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Página %(page_number)s de %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Se muestran %(count)s resultados por página"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "&gt;&gt;&gt;"
-msgstr ""
+msgstr "►"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2851,11 +2881,11 @@ msgstr "Equipo de idioma"
 
 #: templates/languages/admin/language_team.html:15
 msgid "Member admin"
-msgstr ""
+msgstr "Administración de miembros"
 
 #: templates/languages/admin/language_team.html:29
 msgid "Add team member"
-msgstr ""
+msgstr "Añadir miembro al equipo"
 
 #: templates/languages/admin/language_team.html:42
 #: templates/languages/admin/language_team.html:55
@@ -2865,9 +2895,8 @@ msgid "Remove selected"
 msgstr "Eliminar seleccionados"
 
 #: templates/languages/admin/language_team.html:102
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Sugerencia %d:"
+msgstr "Administración de unidades y sugerencias"
 
 #: templates/languages/admin/language_team.html:117
 msgid "Pending suggestions:"
@@ -2922,22 +2951,22 @@ msgid "Sign In"
 msgstr "Acceder"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
-"El proyecto de traducción ha sido actualizado a partir de las últimas "
-"plantillas."
+"Se ha creado un proyecto de traducción (%(tp)s) en %(url)s y se ha "
+"actualizado correctamente."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
-"Se produjo un error al acceder a su cuenta. Contacte con el administrador de "
-"sistemas"
+"Se produjo un error al crear el proyecto de traducción (%(tp)s). Contacte "
+"con el administrador de sistemas."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
@@ -3077,9 +3106,8 @@ msgid "Tweet this!"
 msgstr "Tuitearlo"
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Colaboradores más activos"
+msgstr "Ninguna contribución en los últimos 30 días"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -3087,11 +3115,13 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
+"¡Soy el n.º %(pos)s en colaboraciones en %(lang_name)s de este mes en "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
-#, fuzzy, python-format
+#, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Colaboradores más activos"
+msgstr "N.º %(pos)s en colaboraciones en %(lang_name)s en los últimos 30 días"
 
 #: templates/user/profile.html:49
 #, python-format
@@ -3099,6 +3129,8 @@ msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
+"N.º %(pos)s en colaboraciones en <a href=\"%(url)s\">%(lang_name)s</a> en "
+"los últimos 30 días"
 
 #: templates/user/profile.html:59
 msgid "Latest activity:"
@@ -3116,7 +3148,7 @@ msgstr "Mi perfil de LinkedIn"
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
-msgstr ""
+msgstr "Háblenos de usted y haga que su perfil público destaque."
 
 #: templates/user/profile.html:98
 msgid ""
@@ -3195,9 +3227,8 @@ msgid "Sign in"
 msgstr "Acceder"
 
 #: templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Colaboradores más activos"
+msgstr "Colaboradores más activos de los últimos 30 días"
 
 #~ msgid "Value of `similarity` should be in in the [0..1] range"
 #~ msgstr "El valor de «similarity» debe ubicarse entre [0..1]"

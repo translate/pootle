@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-26 20:55+0000\n"
-"Last-Translator: umbz <sacchi.pietro@gmail.com>\n"
+"PO-Revision-Date: 2017-02-06 10:25+0000\n"
+"Last-Translator: daniele_translator <daniel.translator@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485464121.000000\n"
+"X-POOTLE-MTIME: 1486376704.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -183,9 +183,8 @@ msgid "String Errors Contact"
 msgstr "Contatti per Errori sulle Stringhe"
 
 #: static/js/admin/components/Project/ProjectForm.js:126
-#, fuzzy
 msgid "Screenshot Search Prefix"
-msgstr "Screenshot "
+msgstr "Prefisso di Ricerca della Schermata"
 
 #: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
@@ -683,7 +682,7 @@ msgstr ""
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "Fornisci un commento opzionale (sarà visibile pubblicamente)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"
@@ -859,7 +858,7 @@ msgstr "Revisionate"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr ""
+msgstr "Variazione di Punteggio"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-02 15:25+0000\n"
-"PO-Revision-Date: 2017-01-19 09:01+0000\n"
+"PO-Revision-Date: 2017-02-07 12:41+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484816473.000000\n"
+"X-POOTLE-MTIME: 1486471291.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -211,14 +211,12 @@ msgid "Upload as %(user)s"
 msgstr "Feltöltés mint %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Letöltés offline fordításhoz"
+msgstr "Offline fordítási memória letöltése a fordítási projekthez"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Letöltés offline fordításhoz"
+msgstr "Offline fordítási memória letöltése"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -417,7 +415,7 @@ msgstr "Felhasználó hozzáadása a csapathoz"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Szerep"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -432,14 +430,12 @@ msgid "Accept"
 msgstr "Elfogadás"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter suggester"
-msgstr "Javaslatok szűrése"
+msgstr "Javaslattevő szűrése"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter state"
-msgstr "Szűrő"
+msgstr "Állapot szűrése"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -519,32 +515,30 @@ msgid "Suggested at"
 msgstr "Javasolva"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] ""
-"%s javaslat elutasítva megjegyzéssel. A felhasználók értesítve lesznek"
+msgstr[0] "%s javaslat elutasítva megjegyzéssel. A felhasználó értesítve lesz."
 msgstr[1] ""
-"%s javaslat elutasítva megjegyzéssel. A felhasználók értesítve lesznek"
+"%s javaslat elutasítva megjegyzéssel. A felhasználók értesítve lesznek."
 
 #: apps/pootle_language/views.py:241
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] ""
-"%s javaslat elfogadva megjegyzéssel. A felhasználók értesítve lesznek"
+msgstr[0] "%s javaslat elfogadva megjegyzéssel. A felhasználó értesítve lesz."
 msgstr[1] ""
-"%s javaslat elfogadva megjegyzéssel. A felhasználók értesítve lesznek"
+"%s javaslat elfogadva megjegyzéssel. A felhasználók értesítve lesznek."
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
 msgstr[0] "%s javaslat elutasítva"
 msgstr[1] "%s javaslat elutasítva"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
 msgstr[0] "%s javaslat elfogadva"
@@ -1626,37 +1620,37 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "A POOTLE_FS_WORKING_PATH nincs beállítva."
 
 #: checks.py:506
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "A POOTLE_FS_WORKING_PATH által mutatott útvonal nem létezik."
+msgstr "A POOTLE_FS_WORKING_PATH által mutatott útvonal (%s) nem létezik."
 
 #: checks.py:508
-#, fuzzy
 msgid ""
 "Create the directory pointed by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"A „POOTLE_FS_WORKING_PATH” beállítás által mutatott könyvtár létrehozása."
+"Hozza létre a „POOTLE_FS_WORKING_PATH” beállítás által mutatott könyvtárat, "
+"vagy módosítsa a beállítást."
 
 #: checks.py:513
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"A POOTLE_FS_WORKING_PATH által mutatott útvonalat nem tudja írni a Pootle."
+"A POOTLE_FS_WORKING_PATH által mutatott útvonalat (%s) nem tudja írni a "
+"Pootle."
 
 #: checks.py:516
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting"
 msgstr ""
-"Adjon írási jogosultságokat a „POOTLE_FS_WORKING_PATH” könyvtárhoz a „chmod "
-"+w” paranccsal"
+"Adjon írási jogosultságokat a „POOTLE_FS_WORKING_PATH” könyvtárhoz vagy "
+"módosítsa a beállítást"
 
 #: checks.py:535
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "A MySQL időzóna-beállításokat igényel."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1739,7 +1733,7 @@ msgstr "Meg kell adnia egy végrehajtandó műveletet"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Meg kell adni egy érvényes keresési mezőt"
 
 #: core/initdb.py:136
 msgid "Can access a project"
@@ -1768,52 +1762,52 @@ msgstr "Végezhet adminisztrációs feladatokat"
 #: core/views/display.py:103 core/views/display.py:124
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
+msgstr "%(user)s eltávolította a következő fordítását: %(source)s"
 
 #: core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Javaslat elfogadva tőle: %(author)s"
+msgstr "%(user)s elfogadta a javaslatot ehhez: %(source)s"
 
 #: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s fájlt töltött fel"
 
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s elnémította ezt: %(check)s ehhez: %(source)s"
 
 #: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s újraaktiválta ezt: %(check)s ehhez: %(source)s"
 
 #: core/views/display.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "%(count)d javaslat került importálásra, összes: %(store)s"
+msgstr "%(user)s javaslatot tett erre: %(source)s"
 
 #: core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Javaslat elutasítva tőle: %(author)s"
+msgstr "%(user)s elutasította a javaslatot ehhez: %(source)s"
 
 #: core/views/display.py:118
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s translated %(source)s"
-msgstr "Kötelezően fordítandó szavak"
+msgstr "%(user)s lefordította ezt: %(source)s"
 
 #: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s szerkesztette ezt: %(source)s"
 
 #: core/views/display.py:122
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s előfordította ezt: %(source)s"
 
 #: core/views/display.py:126
 #, python-format
