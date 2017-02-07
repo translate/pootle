@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 21:52+0100\n"
+"POT-Creation-Date: 2017-02-07 22:44+0100\n"
 "PO-Revision-Date: 2016-12-26 12:06+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -897,19 +897,19 @@ msgid "Show"
 msgstr "Tonen"
 
 #: templates/editor/units/xhr_tm.html:17
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project %(time_ago)s"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project %(time_ago)s"
 msgstr ""
 "Vertaald door %(fullname)s in project &lsquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rsquo;, %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project"
 msgstr ""
 "Vertaald door %(fullname)s in project &lsquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rsquo;"

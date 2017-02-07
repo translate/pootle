@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 21:52+0100\n"
+"POT-Creation-Date: 2017-02-07 22:44+0100\n"
 "PO-Revision-Date: 2016-07-02 02:36+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -880,17 +880,17 @@ msgstr "Показване"
 #: templates/editor/units/xhr_tm.html:17
 #, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project %(time_ago)s"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project %(time_ago)s"
 msgstr ""
 "Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
 
 #: templates/editor/units/xhr_tm.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project"
 msgstr ""
 "Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"

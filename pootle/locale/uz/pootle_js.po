@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 21:52+0100\n"
+"POT-Creation-Date: 2017-02-07 22:44+0100\n"
 "PO-Revision-Date: 2017-01-24 12:34+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -888,19 +888,19 @@ msgid "Show"
 msgstr "Koʻrsatish"
 
 #: templates/editor/units/xhr_tm.html:17
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project %(time_ago)s"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project %(time_ago)s"
 msgstr ""
 "Tarjimon: %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; loyiha %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project"
 msgstr ""
 "Tarjimon: %(fullname)s – &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"

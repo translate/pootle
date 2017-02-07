@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 21:52+0100\n"
+"POT-Creation-Date: 2017-02-07 22:44+0100\n"
 "PO-Revision-Date: 2015-06-24 11:37+0100\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -917,19 +917,19 @@ msgid "Show"
 msgstr "Taispeáin"
 
 #: templates/editor/units/xhr_tm.html:17
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project %(time_ago)s"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project %(time_ago)s"
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo; %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Translated by %(fullname)s in &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; project"
+"Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
+"project"
 msgstr ""
 "Aistrithe ag %(fullname)s i dtionscadal &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
