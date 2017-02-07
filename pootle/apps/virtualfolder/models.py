@@ -38,7 +38,7 @@ class VirtualFolder(models.Model):
         # Translators: This is a noun.
         _('Filter'),
         blank=False,
-        help_text=_('Filtering rules that tell which stores this virtual '
+        help_text=_('Filtering rules that tell which files this virtual '
                     'folder comprises.'),
     )
     priority = models.FloatField(

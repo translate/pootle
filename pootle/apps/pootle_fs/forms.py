@@ -53,7 +53,7 @@ class ProjectFSAdminForm(forms.Form):
     translation_mapping = forms.CharField(
         label=_("Translation path mapping"),
         help_text=_("Translation path mapping that maps the localisation "
-                    "files on the filesystem to stores on Pootle."),
+                    "files on the filesystem to files on Pootle."),
         widget=forms.TextInput(
             attrs={'class': 'js-select-fs-mapping-target'}))
 
