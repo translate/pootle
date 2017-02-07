@@ -144,7 +144,9 @@ def check_redis(app_configs=None, **kwargs):
             import sys
             if len(sys.argv) > 1 and sys.argv[1] in RQWORKER_WHITELIST:
                 errors.append(checks.Warning(
-                    _("No RQ Worker running."),
+                    # Translators: a worker processes background tasks
+                    _("No worker running."),
+                    # Translators: a worker processes background tasks
                     hint=_("Run new workers with 'pootle rqworker'"),
                     id="pootle.W001",
                 ))
