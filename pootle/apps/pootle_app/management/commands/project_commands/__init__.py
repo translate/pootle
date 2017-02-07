@@ -116,9 +116,14 @@ class MoveCommand(TPToolProjectSubCommand):
         return self.get_or_create_project(project_code)
 
     def handle_tp(self, tp, target_project):
+        old_tp = '%s' % tp
+        old_tp_path = tp.abs_real_path
+        old_project = tp.project
         self.tp_tool.move(tp, language=tp.language, project=target_project)
+        if old_project.treestyle != 'pootle_fs':
+            shutil.rmtree(old_tp_path)
         self.stdout.write('Translation project '
-                          '"%s" has been moved.' % tp)
+                          '"%s" has been moved into "%s".' % (old_tp, tp))
 
     def post_handle(self):
         revision_updater.get(Directory)(
@@ -126,7 +131,10 @@ class MoveCommand(TPToolProjectSubCommand):
                                                                  "checks"])
         if self.target_project.code != self.tp_tool.project.code:
             if not self.tp_tool.project.translationproject_set.exists():
+                project_path = self.tp_tool.project.get_real_path()
                 self.tp_tool.project.delete()
+                if self.tp_tool.project.treestyle != 'pootle_fs':
+                    shutil.rmtree(project_path)
 
 
 class CloneCommand(TPToolProjectSubCommand):
@@ -138,7 +146,7 @@ class CloneCommand(TPToolProjectSubCommand):
         cloned = self.tp_tool.clone(tp, language=tp.language,
                                     project=target_project)
         self.stdout.write('Translation project '
-                          '"%s" has been cloned.' % cloned)
+                          '"%s" has been cloned into "%s".' % (tp, cloned))
 
 
 class RemoveCommand(TPToolProjectSubCommand):
