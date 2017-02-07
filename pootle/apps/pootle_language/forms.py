@@ -154,13 +154,13 @@ class LanguageSuggestionAdminForm(LanguageTeamFormtableForm):
         ("reject", _("Reject")),
         ("accept", _("Accept")))
     filter_suggester = forms.ChoiceField(
-        label=_("Filter suggester"),
+        label=_("Filter by suggester"),
         choices=(),
         required=False,
         widget=forms.Select(
             attrs={'class': 'js-select2 select2-language'}))
     filter_state = forms.ChoiceField(
-        label=_("Filter state"),
+        label=_("Filter by state"),
         required=False,
         choices=(
             [("", "-----")]

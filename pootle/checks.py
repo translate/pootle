@@ -505,7 +505,7 @@ def check_pootle_fs_working_dir(app_configs=None, **kwargs):
     missing_directory_error = checks.Critical(
         _("Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
           % settings.POOTLE_FS_WORKING_PATH),
-        hint=_("Create the directory pointed by `POOTLE_FS_WORKING_PATH`, "
+        hint=_("Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, "
                "or change the setting."),
         id="pootle.C020",
     )
@@ -514,7 +514,7 @@ def check_pootle_fs_working_dir(app_configs=None, **kwargs):
           "Pootle."
           % settings.POOTLE_FS_WORKING_PATH),
         hint=_("Add the write permission to the `POOTLE_FS_WORKING_PATH` "
-               "or change the setting"),
+               "or change the setting."),
         id="pootle.C021",
     )
     errors = []
