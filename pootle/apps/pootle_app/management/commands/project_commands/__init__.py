@@ -178,12 +178,24 @@ class RemoveCommand(TPToolProjectSubCommand):
         super(RemoveCommand, self).add_arguments(parser)
 
     def handle(self, *args, **options):
-        project = self.get_project(options['source_project'])
-        project_path = project.get_real_path()
-        project.delete()
-        if options['force']:
-            shutil.rmtree(project_path)
-        self.stdout.write('Project "%s" has been deleted.' % project)
+        if not options['languages']:
+            project = self.get_project(options['source_project'])
+            project_path = project.get_real_path()
+            project.delete()
+            if options['force']:
+                if os.path.exists(project_path):
+                    shutil.rmtree(project_path)
+            self.stdout.write('Project "%s" has been deleted.' % project)
+            return
+
+        tp_tool = self.get_tp_tool(options['source_project'])
+        tp_query = tp_tool.tp_qs.all()
+        if options['languages']:
+            tp_query = tp_query.filter(language__code__in=options['languages'])
+            for tp in tp_query:
+                tp.delete()
+                self.stdout.write('Translation project "%s" has been deleted.'
+                                  % tp)
 
 
 class UpdateCommand(TPToolProjectSubCommand):
