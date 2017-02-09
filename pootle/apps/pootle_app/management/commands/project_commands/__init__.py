@@ -31,11 +31,6 @@ class TPToolProjectSubCommand(BaseCommand):
             help='Source Pootle project',
         )
         parser.add_argument(
-            '--target-project',
-            type=str,
-            help='Target Pootle project',
-        )
-        parser.add_argument(
             '--language',
             action='append',
             dest='languages',
@@ -108,6 +103,14 @@ class TPToolProjectSubCommand(BaseCommand):
 
 
 class MoveCommand(TPToolProjectSubCommand):
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--target-project',
+            type=str,
+            help='Target Pootle project',
+        )
+
+        super(MoveCommand, self).add_arguments(parser)
 
     def get_target_project(self, project_code, languages=None):
         project = self.tp_tool.project
@@ -141,6 +144,13 @@ class MoveCommand(TPToolProjectSubCommand):
 
 
 class CloneCommand(TPToolProjectSubCommand):
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--target-project',
+            type=str,
+            help='Target Pootle project',
+        )
+        super(CloneCommand, self).add_arguments(parser)
 
     def get_target_project(self, project_code, languages=None):
         if languages is None:
@@ -158,7 +168,6 @@ class RemoveCommand(TPToolProjectSubCommand):
     help = """Remove project."""
 
     def add_arguments(self, parser):
-        super(RemoveCommand, self).add_arguments(parser)
         parser.add_argument(
             "--force",
             action="store_true",
@@ -166,6 +175,7 @@ class RemoveCommand(TPToolProjectSubCommand):
             dest="force",
             help="Flag if remove project directory from disk."
         )
+        super(RemoveCommand, self).add_arguments(parser)
 
     def handle(self, *args, **options):
         project = self.get_project(options['source_project'])
@@ -181,6 +191,11 @@ class UpdateCommand(TPToolProjectSubCommand):
 
     def add_arguments(self, parser):
         super(UpdateCommand, self).add_arguments(parser)
+        parser.add_argument(
+            '--target-project',
+            type=str,
+            help='Target Pootle project',
+        )
         parser.add_argument(
             "--translations",
             action="store_true",
