@@ -54,8 +54,9 @@ class TPToolProjectSubCommand(BaseCommand):
         except Project.DoesNotExist as e:
             raise CommandError(e)
 
-    def get_target_project(self, project_code, languages=None):
-        return self.get_project(project_code)
+    def check_no_project(self, project_code):
+        if Project.objects.filter(code=project_code).exists():
+            raise CommandError('Project <%s> already exists.' % project_code)
 
     def get_or_create_project(self, target_project_code):
         """Get existing or create an empty copy of project."""
@@ -113,6 +114,8 @@ class MoveCommand(TPToolProjectSubCommand):
         if project_code is None:
             return project
 
+        if languages is None:
+            self.check_no_project(project_code)
         return self.get_or_create_project(project_code)
 
     def handle_tp(self, tp, target_project):
@@ -140,6 +143,8 @@ class MoveCommand(TPToolProjectSubCommand):
 class CloneCommand(TPToolProjectSubCommand):
 
     def get_target_project(self, project_code, languages=None):
+        if languages is None:
+            self.check_no_project(project_code)
         return self.get_or_create_project(project_code)
 
     def handle_tp(self, tp, target_project):
