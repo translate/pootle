@@ -18,9 +18,8 @@ def test_update_stores_noargs(capfd, project0_nongnu, project1, language1):
     # speed up test by deleting objects
     project1.delete()
     language1.delete()
-    call_command('update_stores')
+    call_command('update_stores', '-v3')
     out, err = capfd.readouterr()
-
     # Store and Unit are deleted as there are no files on disk
     # SO - Store Obsolete
     assert 'system\tSO\t/language0/project0/store0.po' in err
@@ -28,7 +27,7 @@ def test_update_stores_noargs(capfd, project0_nongnu, project1, language1):
     assert 'system\tUO\tlanguage0' in err
 
     # Repeat and we should have zero output
-    call_command('update_stores')
+    call_command('update_stores', "-v3")
     out, err = capfd.readouterr()
     assert 'system\tSO' not in err
     assert 'system\tUO' not in err
