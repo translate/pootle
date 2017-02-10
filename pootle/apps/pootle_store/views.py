@@ -38,8 +38,6 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_language.models import Language
 from pootle_misc.util import ajax_required
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
 
 from .decorators import get_unit_context
 from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
@@ -546,9 +544,6 @@ def submit(request, unit, **kwargs_):
     else:
         snplurals = None
 
-    # Store current time so that it is the same for all submissions
-    current_time = timezone.now()
-
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit, request=request)
 
@@ -569,30 +564,7 @@ def submit(request, unit, **kwargs_):
             # Update current unit instance's attributes
             # important to set these attributes after saving Submission
             # because we need to access the unit's state before it was saved
-            if SubmissionFields.TARGET in (f[0] for f in form.updated_fields):
-                form.instance.submitted_by = request.user
-                form.instance.submitted_on = current_time
-                form.instance.reviewed_by = None
-                form.instance.reviewed_on = None
-
-            form.instance._log_user = request.user
             form.save()
-
-            for field, old_value, new_value in form.updated_fields:
-                if field == SubmissionFields.TARGET and suggestion:
-                    old_value = str(suggestion.target_f)
-                sub = Submission(
-                    creation_time=current_time,
-                    translation_project=translation_project,
-                    submitter=request.user,
-                    unit=unit,
-                    store=unit.store,
-                    field=field,
-                    type=SubmissionTypes.NORMAL,
-                    old_value=old_value,
-                    new_value=new_value)
-                sub.save()
-
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
         json['user_score'] = request.user.public_score

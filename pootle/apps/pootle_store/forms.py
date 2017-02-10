@@ -16,6 +16,7 @@ from django.urls import Resolver404, resolve
 from django.utils import timezone
 from django.utils.translation import get_language
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
                              TRANSLATION_DELETED)
 from pootle.core.url_helpers import split_pootle_path
@@ -222,6 +223,7 @@ def unit_form_factory(language, snplurals=None, request=None):
 
         def __init__(self, *args, **kwargs):
             self.request = kwargs.pop('request', None)
+            self.user = self.request.user
             super(UnitForm, self).__init__(*args, **kwargs)
             self._updated_fields = []
             self.fields['target_f'].widget.attrs['data-translation-aid'] = \
@@ -298,10 +300,34 @@ def unit_form_factory(language, snplurals=None, request=None):
         def save(self, *args, **kwargs):
             kwargs["commit"] = False
             unit = super(UnitForm, self).save(*args, **kwargs)
-            unit.save(
-                action=self.cleaned_data.get("save_action"),
-                state_updated=self.cleaned_data.get("state_updated"),
-                target_updated=self.cleaned_data.get("target_updated"))
+            with update_data_after(unit.store):
+                current_time = timezone.now()
+                if SubmissionFields.TARGET in (f[0] for f in self.updated_fields):
+                    unit.submitted_by = self.user
+                    unit.submitted_on = current_time
+                    unit.reviewed_by = None
+                    unit.reviewed_on = None
+                    unit._log_user = self.user
+                unit.save(
+                    action=self.cleaned_data.get("save_action"),
+                    state_updated=self.cleaned_data.get("state_updated"),
+                    target_updated=self.cleaned_data.get("target_updated"))
+                suggestion = self.cleaned_data["suggestion"]
+                translation_project = unit.store.translation_project
+                for field, old_value, new_value in self.updated_fields:
+                    if field == SubmissionFields.TARGET and suggestion:
+                        old_value = str(suggestion.target_f)
+                    sub = Submission(
+                        creation_time=current_time,
+                        translation_project=translation_project,
+                        submitter=self.user,
+                        unit=unit,
+                        store=unit.store,
+                        field=field,
+                        type=SubmissionTypes.NORMAL,
+                        old_value=old_value,
+                        new_value=new_value)
+                    sub.save()
             return unit
 
     return UnitForm
