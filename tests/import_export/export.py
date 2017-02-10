@@ -50,3 +50,10 @@ def test_exported_tmx_url(client, tp0):
     response = client.get(reverse('pootle-offline-tm-tp', args=args))
     assert response.status_code == 302
     assert response.url == exported_url
+
+
+@pytest.mark.django_db
+def test_wrong_language_exported_tmx_url(client):
+    args = ('language_foo', 'project0')
+    response = client.get(reverse('pootle-offline-tm-tp', args=args))
+    assert response.status_code == 404
