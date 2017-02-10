@@ -309,3 +309,31 @@ def test_add_suggestion(client, request_users, settings):
     changed = Unit.objects.get(id=unit.id)
     suggestion = changed.get_suggestions().order_by('id').last()
     assert suggestion.target == multistring(target)
+
+
+@pytest.mark.django_db
+def test_submit_unit(client, store0, request_users, settings):
+    """Tests translation can be applied after suggestion is accepted."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    user = request_users["user"]
+    unit = store0.units.filter(state=UNTRANSLATED).first()
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+    url = '/xhr/units/%d/' % unit.id
+    response = client.post(
+        url,
+        dict(target_f_0=("%s changed" % unit.target),
+             sfn="PTL.editor.processSubmission"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    if user.username == "nobody":
+        assert response.status_code == 403
+        return
+    assert response.status_code == 200
+
+    old_target = unit.target
+    unit.refresh_from_db()
+    assert unit.target == "%s changed" % old_target
+    assert unit.state == TRANSLATED
+    assert unit.store.data.last_submission.unit == unit
