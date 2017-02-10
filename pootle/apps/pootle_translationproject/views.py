@@ -73,7 +73,7 @@ def redirect_to_tp_on_404(f):
                     permanent=True,
                     **kwargs)
 
-            elif kwargs["dir_path"] or kwargs.get("filename", None):
+            elif kwargs.get("dir_path", None) or kwargs.get("filename", None):
                 try:
                     TranslationProject.objects.get(
                         project__code=kwargs["project_code"],
