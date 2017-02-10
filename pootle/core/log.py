@@ -33,7 +33,7 @@ PAID_TASK_DELETED = 'PTD'
 
 def log(message):
     logger = logging.getLogger('action')
-    logger.info(message)
+    logger.debug(message)
 
 
 def action_log(*args, **kwargs):
@@ -50,7 +50,7 @@ def action_log(*args, **kwargs):
     msg = (u"%(user)s\t%(action)s\t%(lang)s\t"
            "%(unit)s\t%(path)s\t%(translation)s" % d)
 
-    logger.info(msg)
+    logger.debug(msg)
 
 
 def cmd_log(*args, **kwargs):
@@ -87,4 +87,4 @@ def store_log(*args, **kwargs):
 
     message = "%(user)s\t%(action)s\t%(path)s\t%(store)s" % d
 
-    logger.info(message)
+    logger.debug(message)
