@@ -22,6 +22,7 @@ from pootle.i18n.gettext import ugettext_lazy as _
 from .constants import NEW, UNTRANSLATED
 from .fields import MultiStringField, TranslationStoreField
 from .managers import StoreManager
+from .util import SuggestionStates
 from .validators import validate_no_slashes
 
 
@@ -198,3 +199,43 @@ class AbstractStore(models.Model, CachedTreeItem, base.TranslationStore):
             ("obsolete", "translation_project", "tp_path"))
         base_manager_name = "objects"
         abstract = True
+
+
+class AbstractSuggestion(models.Model, base.TranslationUnit):
+    """Abstract suggestion"""
+
+    class Meta(object):
+        abstract = True
+
+    target_f = MultiStringField()
+    target_hash = models.CharField(max_length=32, db_index=True)
+    unit = models.ForeignKey('pootle_store.Unit', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=False,
+        related_name='suggestions',
+        db_index=True,
+        on_delete=models.SET(get_system_user))
+    reviewer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name='reviews',
+        db_index=True,
+        on_delete=models.SET(get_system_user))
+
+    translator_comment_f = models.TextField(null=True, blank=True)
+
+    state_choices = [
+        (SuggestionStates.PENDING, 'Pending'),
+        (SuggestionStates.ACCEPTED, 'Accepted'),
+        (SuggestionStates.REJECTED, 'Rejected')]
+
+    state = models.CharField(
+        max_length=16,
+        default=SuggestionStates.PENDING,
+        null=False,
+        choices=state_choices,
+        db_index=True)
+
+    creation_time = models.DateTimeField(db_index=True, null=True)
+    review_time = models.DateTimeField(null=True, db_index=True)

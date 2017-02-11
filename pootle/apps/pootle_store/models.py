@@ -15,7 +15,6 @@ from hashlib import md5
 from collections import OrderedDict
 
 from translate.filters.decorators import Category
-from translate.storage import base
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -51,15 +50,14 @@ from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .abstracts import AbstractUnit, AbstractStore
+from .abstracts import AbstractUnit, AbstractStore, AbstractSuggestion
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
-from .fields import MultiStringField
 from .managers import SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
-from .util import SuggestionStates, get_change_str, vfolders_installed
+from .util import get_change_str, vfolders_installed
 
 
 TM_BROKER = None
@@ -98,42 +96,17 @@ class QualityCheck(models.Model):
             .exclude(name__in=check_names.keys())
         unknown_checks.delete()
 
+
 # # # # # # # # # Suggestion # # # # # # # #
 
-
-class Suggestion(models.Model, base.TranslationUnit):
+class Suggestion(AbstractSuggestion):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
     by users or automatically generated after a merge.
     """
 
-    target_f = MultiStringField()
-    target_hash = models.CharField(max_length=32, db_index=True)
-    unit = models.ForeignKey('pootle_store.Unit', on_delete=models.CASCADE)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=False,
-        related_name='suggestions',
-        db_index=True,
-        on_delete=models.SET(get_system_user))
-    reviewer = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        related_name='reviews',
-        db_index=True,
-        on_delete=models.SET(get_system_user))
-
-    translator_comment_f = models.TextField(null=True, blank=True)
-
-    state_choices = [
-        (SuggestionStates.PENDING, 'Pending'),
-        (SuggestionStates.ACCEPTED, 'Accepted'),
-        (SuggestionStates.REJECTED, 'Rejected'),
-    ]
-    state = models.CharField(max_length=16, default=SuggestionStates.PENDING,
-                             null=False, choices=state_choices, db_index=True)
-
-    creation_time = models.DateTimeField(db_index=True, null=True)
-    review_time = models.DateTimeField(null=True, db_index=True)
+    class Meta(AbstractSuggestion.Meta):
+        abstract = False
+        db_table = "pootle_store_suggestion"
 
     objects = SuggestionManager()
 
