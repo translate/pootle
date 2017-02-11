@@ -50,7 +50,8 @@ from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .abstracts import AbstractUnit, AbstractStore, AbstractSuggestion
+from .abstracts import (
+    AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion)
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
@@ -73,15 +74,12 @@ def get_tm_broker():
 # # # # # # # # Quality Check # # # # # # #
 
 
-class QualityCheck(models.Model):
+class QualityCheck(AbstractQualityCheck):
     """Database cache of results of qualitychecks on unit."""
 
-    name = models.CharField(max_length=64, db_index=True)
-    unit = models.ForeignKey("pootle_store.Unit", db_index=True,
-                             on_delete=models.CASCADE)
-    category = models.IntegerField(null=False, default=Category.NO_CATEGORY)
-    message = models.TextField()
-    false_positive = models.BooleanField(default=False, db_index=True)
+    class Meta(AbstractQualityCheck.Meta):
+        abstract = False
+        db_table = "pootle_store_qualitycheck"
 
     def __unicode__(self):
         return self.name

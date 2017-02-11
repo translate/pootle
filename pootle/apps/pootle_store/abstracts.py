@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from translate.filters.decorators import Category
 from translate.storage import base
 
 from django.conf import settings
@@ -106,6 +107,22 @@ class AbstractUnit(models.Model, base.TranslationUnit):
 
     class Meta(object):
         abstract = True
+
+
+class AbstractQualityCheck(models.Model):
+    """Database cache of results of qualitychecks on unit."""
+
+    class Meta(object):
+        abstract = True
+
+    name = models.CharField(max_length=64, db_index=True)
+    unit = models.ForeignKey(
+        "pootle_store.Unit",
+        db_index=True,
+        on_delete=models.CASCADE)
+    category = models.IntegerField(null=False, default=Category.NO_CATEGORY)
+    message = models.TextField()
+    false_positive = models.BooleanField(default=False, db_index=True)
 
 
 class AbstractStore(models.Model, CachedTreeItem, base.TranslationStore):
