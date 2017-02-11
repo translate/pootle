@@ -48,7 +48,7 @@ def po_test_dir(request, tmpdir):
 @pytest.fixture
 def po_directory(request, po_test_dir, settings):
     """Sets up a tmp directory for PO files."""
-    from pootle_store.models import fs
+    from pootle_store.abstracts import fs
 
     translation_directory = settings.POOTLE_TRANSLATION_DIRECTORY
 

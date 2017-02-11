@@ -41,7 +41,7 @@ def ts_directory(po_directory, request, tmpdir, settings):
 
     import pytest_pootle
 
-    from pootle_store.models import fs
+    from pootle_store.abstracts import fs
 
     ts_dir = str(tmpdir.mkdir("ts"))
 
