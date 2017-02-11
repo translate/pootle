@@ -16,7 +16,7 @@ from pootle_language.forms import (
     LanguageTeamAdminForm, LanguageTeamNewMemberSearchForm)
 from pootle_language.teams import LanguageTeam
 from pootle_store.constants import FUZZY, OBSOLETE
-from pootle_store.models import SuggestionStates
+from pootle_store.util import SuggestionStates
 
 
 @pytest.mark.django_db

@@ -14,7 +14,8 @@ from pootle.core.delegate import language_team
 from pootle_language.models import Language
 from pootle_language.teams import LanguageTeam
 from pootle_store.constants import OBSOLETE
-from pootle_store.models import Suggestion, SuggestionStates
+from pootle_store.models import Suggestion
+from pootle_store.util import SuggestionStates
 
 
 @pytest.mark.django_db
