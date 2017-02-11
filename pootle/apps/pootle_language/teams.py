@@ -11,7 +11,8 @@ from django.contrib.auth.models import Permission
 from django.utils.functional import cached_property
 
 from pootle_store.constants import OBSOLETE
-from pootle_store.models import Suggestion, SuggestionStates
+from pootle_store.models import Suggestion
+from pootle_store.util import SuggestionStates
 
 
 User = get_user_model()

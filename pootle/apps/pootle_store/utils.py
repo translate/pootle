@@ -23,7 +23,8 @@ from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 
 from .constants import FUZZY, TRANSLATED
-from .models import Suggestion, SuggestionStates
+from .models import Suggestion
+from .util import SuggestionStates
 
 
 User = get_user_model()

@@ -15,7 +15,8 @@ from pootle.core.forms import FormtableForm
 from pootle.core.views.widgets import TableSelectMultiple
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_store.constants import OBSOLETE, STATES_MAP
-from pootle_store.models import Suggestion, SuggestionStates
+from pootle_store.models import Suggestion
+from pootle_store.util import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 from .models import Language
