@@ -19,8 +19,6 @@ from translate.storage import base
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models import F
 from django.template.defaultfilters import truncatechars
@@ -38,11 +36,9 @@ from pootle.core.log import (
     STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
     MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
     action_log, log, store_log)
-from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
-from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
 from pootle.core.user import get_system_user
@@ -50,19 +46,17 @@ from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
-from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_format.models import Format
 from pootle_misc.checks import check_names
 from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
-from .abstracts import AbstractUnit
+from .abstracts import AbstractUnit, AbstractStore
 from .constants import (
-    DEFAULT_PRIORITY, FUZZY, NEW, OBSOLETE, POOTLE_WINS,
+    DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
-from .fields import MultiStringField, TranslationStoreField
-from .managers import StoreManager, SuggestionManager, UnitManager
+from .fields import MultiStringField
+from .managers import SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
 from .util import SuggestionStates, get_change_str, vfolders_installed
@@ -898,83 +892,16 @@ class Unit(AbstractUnit):
 # # # # # # # # # # #  Store # # # # # # # # # # # # # #
 
 
-def validate_no_slashes(value):
-    if '/' in value:
-        raise ValidationError('Store name cannot contain "/" characters')
-
-    if '\\' in value:
-        raise ValidationError('Store name cannot contain "\\" characters')
-
-
-# Needed to alter storage location in tests
-fs = PootleFileSystemStorage()
-
-
-class Store(models.Model, CachedTreeItem, base.TranslationStore):
+class Store(AbstractStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
     UnitClass = Unit
     Name = "Model Store"
     is_dir = False
 
-    file = TranslationStoreField(max_length=255, storage=fs, db_index=True,
-                                 null=False, editable=False)
-
-    parent = models.ForeignKey(
-        'pootle_app.Directory', related_name='child_stores', db_index=True,
-        editable=False, on_delete=models.CASCADE)
-
-    translation_project_fk = 'pootle_translationproject.TranslationProject'
-    translation_project = models.ForeignKey(
-        translation_project_fk, related_name='stores', db_index=True,
-        editable=False, on_delete=models.CASCADE)
-
-    filetype = models.ForeignKey(
-        Format, related_name='stores', null=True, blank=True, db_index=True,
-        on_delete=models.CASCADE)
-    is_template = models.BooleanField(default=False)
-
-    # any changes to the `pootle_path` field may require updating the schema
-    # see migration 0007_case_sensitive_schema.py
-    pootle_path = models.CharField(max_length=255, null=False, unique=True,
-                                   db_index=True, verbose_name=_("Path"))
-
-    tp_path = models.CharField(
-        max_length=255,
-        null=True,
-        blank=True,
-        db_index=True,
-        verbose_name=_("Path"))
-    # any changes to the `name` field may require updating the schema
-    # see migration 0007_case_sensitive_schema.py
-    name = models.CharField(max_length=128, null=False, editable=False,
-                            validators=[validate_no_slashes])
-
-    file_mtime = models.DateTimeField(default=datetime_min)
-    state = models.IntegerField(null=False, default=NEW, editable=False,
-                                db_index=True)
-    creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
-                                         editable=False, null=True)
-    last_sync_revision = models.IntegerField(db_index=True, null=True,
-                                             blank=True)
-    obsolete = models.BooleanField(default=False)
-
-    # this is calculated from virtualfolders if installed and linked
-    priority = models.FloatField(
-        db_index=True, default=1,
-        validators=[MinValueValidator(0)])
-
-    objects = StoreManager()
-
-    class Meta(object):
-        ordering = ['pootle_path']
-        index_together = [
-            ["translation_project", "is_template"],
-            ["translation_project", "pootle_path", "is_template", "filetype"]]
-        unique_together = (
-            ('parent', 'name'),
-            ("obsolete", "translation_project", "tp_path"))
-        base_manager_name = "objects"
+    class Meta(AbstractStore.Meta):
+        abstract = False
+        db_table = "pootle_store_store"
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
