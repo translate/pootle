@@ -15,6 +15,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import revision_updater, tp_tool as tp_tool_getter
 from pootle_app.models import Directory
+from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.constants import SOURCE_WINS, POOTLE_WINS
 from pootle_store.util import absolute_real_path
@@ -34,8 +35,9 @@ class TPToolProjectSubCommand(BaseCommand):
             '--language',
             action='append',
             dest='languages',
-            help='Language to refresh',
+            help='Language to handle',
         )
+
         super(TPToolProjectSubCommand, self).add_arguments(parser)
 
     @lru_cache()
@@ -47,6 +49,12 @@ class TPToolProjectSubCommand(BaseCommand):
         try:
             return Project.objects.get(code=project_code)
         except Project.DoesNotExist as e:
+            raise CommandError(e)
+
+    def get_language(self, language_code):
+        try:
+            return Language.objects.get(code=language_code)
+        except Language.DoesNotExist as e:
             raise CommandError(e)
 
     def check_no_project(self, project_code):
@@ -85,6 +93,7 @@ class TPToolProjectSubCommand(BaseCommand):
         pass
 
     def handle(self, *args, **options):
+        self.check_options(**options)
         self.tp_tool = self.get_tp_tool(options['source_project'])
         self.target_project = self.get_target_project(options['target_project'],
                                                       options['languages'])
@@ -92,26 +101,42 @@ class TPToolProjectSubCommand(BaseCommand):
         if options['languages']:
             tp_query = tp_query.filter(language__code__in=options['languages'])
 
+        target_language = None
+        if options['target_language']:
+            target_language = self.get_language(options['target_language'])
         for source_tp in tp_query:
-            try:
-                self.handle_tp(source_tp, self.target_project)
-
-            except ValueError as e:
-                raise CommandError(e)
+            self.handle_tp(source_tp, self.target_project,
+                           target_language=target_language)
 
         self.post_handle()
 
 
-class MoveCommand(TPToolProjectSubCommand):
+class TPToolSubCommand(TPToolProjectSubCommand):
     def add_arguments(self, parser):
+        parser.add_argument(
+            '--target-language',
+            type=str,
+            dest='target_language',
+            help='Target language',
+        )
         parser.add_argument(
             '--target-project',
             type=str,
-            help='Target Pootle project',
+            help='Target project',
         )
 
-        super(MoveCommand, self).add_arguments(parser)
+        super(TPToolSubCommand, self).add_arguments(parser)
 
+    def check_options(self, **options):
+        one_language = options['languages'] and len(options['languages']) == 1
+        if options['target_language'] and not one_language:
+            raise CommandError('You can only set one source language '
+                               'via --language option.')
+        if not options['target_language'] and not options['target_project']:
+            raise CommandError('At least one of --target-language and '
+                               '--target-project is required.')
+
+class MoveCommand(TPToolSubCommand):
     def get_target_project(self, project_code, languages=None):
         project = self.tp_tool.project
         if project_code is None:
@@ -121,11 +146,13 @@ class MoveCommand(TPToolProjectSubCommand):
             self.check_no_project(project_code)
         return self.get_or_create_project(project_code)
 
-    def handle_tp(self, tp, target_project):
+    def handle_tp(self, tp, target_project, target_language=None):
         old_tp = '%s' % tp
         old_tp_path = tp.abs_real_path
         old_project = tp.project
-        self.tp_tool.move(tp, language=tp.language, project=target_project)
+        if target_language is None:
+            target_language = tp.language
+        self.tp_tool.move(tp, language=target_language, project=target_project)
         if old_project.treestyle != 'pootle_fs':
             shutil.rmtree(old_tp_path)
         self.stdout.write('Translation project '
@@ -143,22 +170,16 @@ class MoveCommand(TPToolProjectSubCommand):
                     shutil.rmtree(project_path)
 
 
-class CloneCommand(TPToolProjectSubCommand):
-    def add_arguments(self, parser):
-        parser.add_argument(
-            '--target-project',
-            type=str,
-            help='Target Pootle project',
-        )
-        super(CloneCommand, self).add_arguments(parser)
-
+class CloneCommand(TPToolSubCommand):
     def get_target_project(self, project_code, languages=None):
         if languages is None:
             self.check_no_project(project_code)
         return self.get_or_create_project(project_code)
 
-    def handle_tp(self, tp, target_project):
-        cloned = self.tp_tool.clone(tp, language=tp.language,
+    def handle_tp(self, tp, target_project, target_language=None):
+        if target_language is None:
+            target_language = tp.language
+        cloned = self.tp_tool.clone(tp, language=target_language,
                                     project=target_project)
         self.stdout.write('Translation project '
                           '"%s" has been cloned into "%s".' % (tp, cloned))
@@ -198,16 +219,11 @@ class RemoveCommand(TPToolProjectSubCommand):
                                   % tp)
 
 
-class UpdateCommand(TPToolProjectSubCommand):
+class UpdateCommand(TPToolSubCommand):
     help = """Update project."""
 
     def add_arguments(self, parser):
         super(UpdateCommand, self).add_arguments(parser)
-        parser.add_argument(
-            '--target-project',
-            type=str,
-            help='Target Pootle project',
-        )
         parser.add_argument(
             "--translations",
             action="store_true",
@@ -224,6 +240,7 @@ class UpdateCommand(TPToolProjectSubCommand):
         )
 
     def handle(self, *args, **options):
+        self.check_options(**options)
         tp_tool = self.get_tp_tool(options['source_project'])
         target_project = self.get_project(options['target_project'])
         tp_query = tp_tool.tp_qs.all()
@@ -234,8 +251,11 @@ class UpdateCommand(TPToolProjectSubCommand):
         for source_tp in tp_query:
             target_tps = tp_tool.get_tps(target_project)
             resolve_conflict = SOURCE_WINS if options['overwrite'] else POOTLE_WINS
+            target_language_code = source_tp.language.code
+            if options['target_language']:
+                target_language_code = options['target_language']
             try:
-                target_tp = target_tps.get(language__code=source_tp.language.code)
+                target_tp = target_tps.get(language__code=target_language_code)
                 tp_tool.update_from_tp(
                     source_tp,
                     target_tp,
