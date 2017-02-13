@@ -15,7 +15,7 @@ from django.conf import settings
 from django.utils.translation import get_language, to_locale
 
 
-def _get_locale_formats():
+def get_locale_formats():
     for language in [get_language(), settings.LANGUAGE_CODE, 'en-us']:
         try:
             locale = babel_core.Locale.parse(to_locale(language))
@@ -33,9 +33,9 @@ def _clean_zero(number):
 
 def number(number):
     number = _clean_zero(number)
-    return _get_locale_formats().number(number)
+    return get_locale_formats().number(number)
 
 
 def percent(number, format=None):
     number = _clean_zero(number)
-    return _get_locale_formats().percent(number, format)
+    return get_locale_formats().percent(number, format)

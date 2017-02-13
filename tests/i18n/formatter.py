@@ -11,7 +11,7 @@ from babel.support import Format
 
 from django.utils.translation import override
 
-from pootle.i18n.formatter import (_clean_zero, _get_locale_formats, number,
+from pootle.i18n.formatter import (_clean_zero, get_locale_formats, number,
                                    percent)
 
 
@@ -19,9 +19,9 @@ from pootle.i18n.formatter import (_clean_zero, _get_locale_formats, number,
     'af', 'en-za', 'en-us',  # Normal
     'son',  # Missing in babel
 ])
-def test__get_locale_formats(language):
+def test_get_locale_formats(language):
     with override(language):
-        assert isinstance(_get_locale_formats(), Format)
+        assert isinstance(get_locale_formats(), Format)
 
 
 def test__clean_zero():
