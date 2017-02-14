@@ -15,7 +15,7 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.contextmanagers import update_data_after
 from pootle_misc.checks import run_given_filters
-from pootle_store.constants import OBSOLETE
+from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import QualityCheck, Unit
 from pootle_store.unit import UnitProxy
 from pootle_translationproject.models import TranslationProject
@@ -325,7 +325,7 @@ class QualityCheckUpdater(object):
             checker = self.get_checker(self.translation_project.id)
 
         translated = (
-            self.units.filter(state__gte=OBSOLETE)
+            self.units.filter(state__gte=UNTRANSLATED)
                       .order_by("store", "index"))
         updated_count = 0
         for unit in translated.values(*unit_fields).iterator():
@@ -343,5 +343,5 @@ class QualityCheckUpdater(object):
     def update_untranslated(self):
         """Delete QualityChecks for untranslated Units
         """
-        checks_qs = self.checks_qs.exclude(unit__state__gte=OBSOLETE)
+        checks_qs = self.checks_qs.exclude(unit__state__gte=UNTRANSLATED)
         return checks_qs.delete()[0]
