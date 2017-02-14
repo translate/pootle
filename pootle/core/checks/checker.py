@@ -344,6 +344,4 @@ class QualityCheckUpdater(object):
         """Delete QualityChecks for untranslated Units
         """
         checks_qs = self.checks_qs.exclude(unit__state__gte=OBSOLETE)
-        deleted = checks_qs.count()
-        checks_qs.delete()
-        return deleted
+        return checks_qs.delete()[0]
