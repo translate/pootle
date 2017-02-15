@@ -15,7 +15,7 @@ from django.db import models
 
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.storage import PootleFileSystemStorage
-from pootle.core.user import get_system_user, get_system_user_id
+from pootle.core.user import get_system_user
 from pootle.core.utils.timezone import datetime_min
 from pootle_format.models import Format
 from pootle.i18n.gettext import ugettext_lazy as _
@@ -69,14 +69,6 @@ class AbstractUnit(models.Model, base.TranslationUnit):
     creation_time = models.DateTimeField(auto_now_add=True, db_index=True,
                                          editable=False, null=True)
     mtime = models.DateTimeField(auto_now=True, db_index=True, editable=False)
-
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        db_index=True,
-        related_name='units_created',
-        default=get_system_user_id,
-        on_delete=models.SET(get_system_user))
 
     # unit translator
     submitted_by = models.ForeignKey(

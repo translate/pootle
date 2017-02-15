@@ -4,21 +4,6 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
-from pootle_statistics.models import SubmissionTypes
-
-
-def set_unit_created_by(apps, schema_editor):
-    subs = apps.get_model("pootle_statistics.Submission").objects.all()
-    units = apps.get_model("pootle_store.Unit").objects.all()
-    creators = set(
-        subs.filter(type=SubmissionTypes.UNIT_CREATE)
-            .exclude(submitter__username="system")
-            .values_list("submitter", flat=True))
-    for creator in creators:
-        created = subs.filter(submitter=creator).exclude(
-            unit__isnull=True).values_list("unit", flat=True)
-        units.filter(pk__in=created).update(created_by=creator)
-
 
 class Migration(migrations.Migration):
 
@@ -27,5 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(set_unit_created_by),
     ]
