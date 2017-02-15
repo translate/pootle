@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='unit',
-            name='created_by',
-            field=models.ForeignKey(default=pootle.core.user.get_system_user_id, null=True, on_delete=models.SET(pootle.core.user.get_system_user), related_name='units_created', to=settings.AUTH_USER_MODEL),
-        ),
     ]

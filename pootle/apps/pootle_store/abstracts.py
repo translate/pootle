@@ -70,14 +70,6 @@ class AbstractUnit(models.Model, base.TranslationUnit):
                                          editable=False, null=True)
     mtime = models.DateTimeField(auto_now=True, db_index=True, editable=False)
 
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        db_index=True,
-        related_name='units_created',
-        default=get_system_user_id,
-        on_delete=models.SET(get_system_user))
-
     # unit translator
     submitted_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
