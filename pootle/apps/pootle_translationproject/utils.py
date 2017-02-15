@@ -74,6 +74,9 @@ class TPTool(object):
         return new_tp
 
     def clone_disk_directory_content(self, source, target):
+        if not os.path.exists(source.abs_real_path):
+            return
+
         for item in os.listdir(source.abs_real_path):
             source_path = os.path.join(source.abs_real_path, item)
             target_path = os.path.join(target.abs_real_path, item)
