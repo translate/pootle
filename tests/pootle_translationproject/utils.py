@@ -19,7 +19,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_store.models import Store, Unit
+from pootle_store.models import Store
 from pootle_translationproject.utils import TPTool
 
 
@@ -229,8 +229,6 @@ def test_tp_tool_move_project(language0, project0, project1,
 def test_tp_tool_clone_project(tp0, project1, member):
     new_lang = LanguageDBFactory()
     tp_tool = TPTool(tp0.project)
-    Unit.objects.filter(
-        store__translation_project=tp0).update(created_by=member)
     _test_tp_match(
         tp0,
         tp_tool.clone(tp0, new_lang, project1),
