@@ -136,7 +136,6 @@ class TPToolSubCommand(TPToolProjectSubCommand):
             raise CommandError('At least one of --target-language and '
                                '--target-project is required.')
 
-class MoveCommand(TPToolSubCommand):
     def get_target_project(self, project_code, languages=None):
         project = self.tp_tool.project
         if project_code is None:
@@ -146,6 +145,8 @@ class MoveCommand(TPToolSubCommand):
             self.check_no_project(project_code)
         return self.get_or_create_project(project_code)
 
+
+class MoveCommand(TPToolSubCommand):
     def handle_tp(self, tp, target_project, target_language=None):
         old_tp = '%s' % tp
         old_tp_path = tp.abs_real_path
@@ -171,11 +172,6 @@ class MoveCommand(TPToolSubCommand):
 
 
 class CloneCommand(TPToolSubCommand):
-    def get_target_project(self, project_code, languages=None):
-        if languages is None:
-            self.check_no_project(project_code)
-        return self.get_or_create_project(project_code)
-
     def handle_tp(self, tp, target_project, target_language=None):
         if target_language is None:
             target_language = tp.language
@@ -246,22 +242,23 @@ class UpdateCommand(TPToolSubCommand):
 
     def handle(self, *args, **options):
         self.check_options(**options)
-        tp_tool = self.get_tp_tool(options['source_project'])
-        target_project = self.get_project(options['target_project'])
-        tp_query = tp_tool.tp_qs.all()
+        self.tp_tool = self.get_tp_tool(options['source_project'])
+        target_project = self.get_target_project(options['target_project'],
+                                                 options['languages'])
+        tp_query = self.tp_tool.tp_qs.all()
 
         if options['languages']:
             tp_query = tp_query.filter(language__code__in=options['languages'])
 
         for source_tp in tp_query:
-            target_tps = tp_tool.get_tps(target_project)
+            target_tps = self.tp_tool.get_tps(target_project)
             resolve_conflict = SOURCE_WINS if options['overwrite'] else POOTLE_WINS
             target_language_code = source_tp.language.code
             if options['target_language']:
                 target_language_code = options['target_language']
             try:
                 target_tp = target_tps.get(language__code=target_language_code)
-                tp_tool.update_from_tp(
+                self.tp_tool.update_from_tp(
                     source_tp,
                     target_tp,
                     allow_add_and_obsolete=not options['translations'],
