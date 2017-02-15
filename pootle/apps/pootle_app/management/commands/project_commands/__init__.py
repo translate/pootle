@@ -217,6 +217,11 @@ class RemoveCommand(TPToolProjectSubCommand):
                 tp.delete()
                 self.stdout.write('Translation project "%s" has been deleted.'
                                   % tp)
+            revision_updater.get(Directory)(
+                context=tp_tool.project.directory
+            ).update(
+                keys=["stats", "checks"]
+            )
 
 
 class UpdateCommand(TPToolSubCommand):
