@@ -40,7 +40,6 @@ from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
 from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
-from pootle.core.user import get_system_user
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
@@ -51,7 +50,8 @@ from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
 from .abstracts import (
-    AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion)
+    AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
+    AbstractUnitSource)
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
@@ -165,6 +165,13 @@ def stringcount(string):
         return len(string.strings)
     except AttributeError:
         return 1
+
+
+class UnitSource(AbstractUnitSource):
+
+    class Meta(AbstractUnit.Meta):
+        abstract = False
+        db_table = "pootle_store_unit_source"
 
 
 class Unit(AbstractUnit):
@@ -321,6 +328,10 @@ class Unit(AbstractUnit):
             self.submitted_on = None
 
         super(Unit, self).save(*args, **kwargs)
+        if created:
+            unit_source = self.unit_source.model(unit=self)
+            unit_source.created_by = user
+            unit_source.save()
 
         if action and action == UNIT_ADDED:
             action_log(
@@ -1226,8 +1237,7 @@ class Store(AbstractStore):
 
         newunit = self.UnitClass(
             store=self,
-            index=index,
-            created_by=user or get_system_user())
+            index=index)
         newunit.update(unit, user=user)
 
         if self.id:

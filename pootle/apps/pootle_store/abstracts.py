@@ -19,6 +19,7 @@ from pootle.core.user import get_system_user, get_system_user_id
 from pootle.core.utils.timezone import datetime_min
 from pootle_format.models import Format
 from pootle.i18n.gettext import ugettext_lazy as _
+from pootle_statistics.models import SubmissionTypes
 
 from .constants import NEW, UNTRANSLATED
 from .fields import MultiStringField, TranslationStoreField
@@ -29,6 +30,36 @@ from .validators import validate_no_slashes
 
 # Needed to alter storage location in tests
 fs = PootleFileSystemStorage()
+
+
+class AbstractUnitSource(models.Model):
+
+    class Meta(object):
+        abstract = True
+
+    unit = models.ForeignKey(
+        "pootle_store.Unit",
+        db_index=True,
+        unique=True,
+        null=False,
+        blank=False,
+        related_name="unit_source",
+        on_delete=models.CASCADE)
+
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=False,
+        blank=False,
+        db_index=True,
+        related_name='created_units',
+        default=get_system_user_id,
+        on_delete=models.SET(get_system_user))
+
+    created_with = models.IntegerField(
+        null=False,
+        blank=False,
+        default=SubmissionTypes.SYSTEM,
+        db_index=True)
 
 
 class AbstractUnit(models.Model, base.TranslationUnit):
