@@ -34,7 +34,7 @@ class DBParser(object):
         self.INDEX_NAME = kwargs.pop('index', None)
         self.exclude_disabled_projects = not kwargs.pop('disabled_projects')
 
-    def get_units(self, filenames):
+    def get_units(self):
         """Gets the units to import and its total count."""
         units_qs = (
             Unit.objects.exclude(target_f__isnull=True)
@@ -108,13 +108,14 @@ class FileParser(object):
         self.INDEX_NAME = kwargs.pop('index', None)
         self.target_language = kwargs.pop('language', None)
         self.project = kwargs.pop('project', None)
+        self.filenames = kwargs.pop('filenames')
 
-    def get_units(self, filenames):
+    def get_units(self):
         """Gets the units to import and its total count."""
         units = []
         all_filenames = set()
 
-        for filename in filenames:
+        for filename in self.filenames:
             if not os.path.exists(filename):
                 self.stdout.write("File %s doesn't exist. Skipping it." %
                                   filename)
@@ -241,7 +242,7 @@ class Command(BaseCommand):
         )
 
     def _parse_translations(self, **options):
-        units, total = self.parser.get_units(options['files'])
+        units, total = self.parser.get_units()
 
         if total == 0:
             self.stdout.write("No translations to index")
@@ -298,6 +299,7 @@ class Command(BaseCommand):
                 raise CommandError('You must specify a project name with '
                                    '--display-name.')
             self.parser = FileParser(stdout=self.stdout, index=self.INDEX_NAME,
+                                     filenames=options['files'],
                                      language=options['target_language'],
                                      project=options['project'])
         elif not self.is_local_tm:
