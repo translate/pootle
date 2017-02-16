@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import sys
+
 from django.core import checks
 from django.db import OperationalError, ProgrammingError
 
@@ -141,7 +143,6 @@ def check_redis(app_configs=None, **kwargs):
         if len(queue.connection.smembers(Worker.redis_workers_keys)) == 0:
             # If we're not running 'pootle rqworker' report for whitelisted
             # commands
-            import sys
             if len(sys.argv) > 1 and sys.argv[1] in RQWORKER_WHITELIST:
                 errors.append(checks.Warning(
                     # Translators: a worker processes background tasks
@@ -546,4 +547,22 @@ def check_mysql_timezones(app_configs=None, **kwargs):
             converted_now = cursor.fetchone()[0]
             if converted_now is None:
                 errors.append(missing_mysql_timezone_tables)
+    return errors
+
+
+@checks.register()
+def check_unsupported_python(app_configs=None, **kwargs):
+    errors = []
+    if sys.version_info >= (3, 0):
+        errors.append(checks.Critical(
+            _("Pootle does not yet support Python 3."),
+            hint=_("Use a Python 2.7 virtualenv."),
+            id="pootle.C023",
+        ))
+    if sys.version_info < (2, 7):
+        errors.append(checks.Critical(
+            _("Pootle no longer supports Python versions older than 2.7"),
+            hint=_("Use a Python 2.7 virtualenv."),
+            id="pootle.C024",
+        ))
     return errors
