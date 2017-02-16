@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
-import sys
 from hashlib import md5
 
 # This must be run before importing Django.
@@ -22,6 +21,7 @@ from django.utils import dateparse
 
 from pootle.core.utils import dateformat
 from pootle_store.models import Unit
+from pootle_translationproject.models import TranslationProject
 
 
 BULK_CHUNK_SIZE = 5000
@@ -49,12 +49,14 @@ class DBParser(BaseParser):
         super(DBParser, self).__init__(*args, **kwargs)
 
         self.exclude_disabled_projects = not kwargs.pop('disabled_projects')
+        self.tp_pk = None
 
     def get_units(self):
         """Gets the units to import and its total count."""
         units_qs = (
             Unit.objects.exclude(target_f__isnull=True)
                         .exclude(target_f__exact='')
+                        .filter(store__translation_project__pk=self.tp_pk)
                         .filter(revision__gt=self.last_indexed_revision))
         units_qs = units_qs.select_related(
             'submitted_by',
@@ -262,12 +264,12 @@ class Command(BaseCommand):
 
         if total == 0:
             self.stdout.write("No translations to index")
-            sys.exit()
+            return
 
         self.stdout.write("%s translations to index" % total)
 
         if options['dry_run']:
-            sys.exit()
+            return
 
         self.stdout.write("")
 
@@ -370,4 +372,16 @@ class Command(BaseCommand):
         if self.is_local_tm:
             self._set_latest_indexed_revision(**options)
 
-        helpers.bulk(self.es, self._parse_translations(**options))
+        if isinstance(self.parser, FileParser):
+            helpers.bulk(self.es, self._parse_translations(**options))
+            return
+
+        # If we are parsing from DB.
+        tp_qs = TranslationProject.objects.all()
+
+        if options['disabled_projects']:
+            tp_qs = tp_qs.exclude(project__disabled=True)
+
+        for tp in tp_qs:
+            self.parser.tp_pk = tp.pk
+            helpers.bulk(self.es, self._parse_translations(**options))
