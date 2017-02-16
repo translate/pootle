@@ -27,11 +27,27 @@ from pootle_store.models import Unit
 BULK_CHUNK_SIZE = 5000
 
 
-class DBParser(object):
+class BaseParser(object):
 
     def __init__(self, *args, **kwargs):
+        """Initialize the parser."""
         self.stdout = kwargs.pop('stdout')
         self.INDEX_NAME = kwargs.pop('index', None)
+
+    def get_units(self):
+        """Gets the units to import and its total count."""
+        raise NotImplementedError
+
+    def get_unit_data(self, unit):
+        """Return dict with data to import for a single unit."""
+        raise NotImplementedError
+
+
+class DBParser(BaseParser):
+
+    def __init__(self, *args, **kwargs):
+        super(DBParser, self).__init__(*args, **kwargs)
+
         self.exclude_disabled_projects = not kwargs.pop('disabled_projects')
 
     def get_units(self):
@@ -101,11 +117,11 @@ class DBParser(object):
         }
 
 
-class FileParser(object):
+class FileParser(BaseParser):
 
     def __init__(self, *args, **kwargs):
-        self.stdout = kwargs.pop('stdout')
-        self.INDEX_NAME = kwargs.pop('index', None)
+        super(FileParser, self).__init__(*args, **kwargs)
+
         self.target_language = kwargs.pop('language', None)
         self.project = kwargs.pop('project', None)
         self.filenames = kwargs.pop('filenames')
