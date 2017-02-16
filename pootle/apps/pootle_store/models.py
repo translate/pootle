@@ -51,7 +51,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 
 from .abstracts import (
     AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
-    AbstractUnitSource)
+    AbstractUnitChange, AbstractUnitSource)
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
@@ -165,6 +165,13 @@ def stringcount(string):
         return len(string.strings)
     except AttributeError:
         return 1
+
+
+class UnitChange(AbstractUnitChange):
+
+    class Meta(AbstractUnit.Meta):
+        abstract = False
+        db_table = "pootle_store_unit_change"
 
 
 class UnitSource(AbstractUnitSource):

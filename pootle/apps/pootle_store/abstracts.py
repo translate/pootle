@@ -32,6 +32,52 @@ from .validators import validate_no_slashes
 fs = PootleFileSystemStorage()
 
 
+class AbstractUnitChange(models.Model):
+
+    class Meta(object):
+        abstract = True
+
+    unit = models.OneToOneField(
+        "pootle_store.Unit",
+        db_index=True,
+        null=False,
+        blank=False,
+        related_name="change",
+        on_delete=models.CASCADE)
+
+    changed_with = models.IntegerField(
+        null=False,
+        blank=False,
+        db_index=True)
+
+    # unit translator
+    submitted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='units_submitted',
+        null=True,
+        db_index=True,
+        on_delete=models.SET(get_system_user))
+    submitted_on = models.DateTimeField(db_index=True, null=True)
+
+    commented_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name='units_commented',
+        db_index=True,
+        on_delete=models.SET(get_system_user))
+    commented_on = models.DateTimeField(db_index=True, null=True)
+
+    # reviewer: who has accepted suggestion or removed FUZZY
+    # None if translation has been submitted by approved translator
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name='units_reviewed',
+        null=True,
+        db_index=True,
+        on_delete=models.SET(get_system_user))
+    reviewed_on = models.DateTimeField(db_index=True, null=True)
+
+
 class AbstractUnitSource(models.Model):
 
     class Meta(object):
