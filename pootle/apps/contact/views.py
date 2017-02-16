@@ -91,6 +91,8 @@ class ReportFormView(ContactFormView):
                                 'unit': unit,
                                 'language':
                                     unit.store.translation_project.language.code,
+                                'project':
+                                    unit.store.translation_project.project.code,
                             }),
                         'body': render_to_string(
                             'contact_form/report_form_body.txt',
