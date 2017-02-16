@@ -102,11 +102,10 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
         'email': user.email,
         'email_subject': subject,
         'body': body.strip(),
-        'report_email': recipient_email,
     }
 
     # Instantiate form and test.
-    form = ReportForm(request=request, data=data)
+    form = ReportForm(request=request, data=data, unit=unit)
     assert form.is_valid()
     form.save()
     assert len(mailoutbox) == 1
@@ -188,8 +187,13 @@ def test_report_error_form_required_fields(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
 
+    unit = Unit.objects.select_related(
+        'store__translation_project__project',
+        'store__translation_project__language',
+    ).last()
+
     # Instantiate form and test.
-    form = ReportForm(request=request, initial={}, data={})
+    form = ReportForm(request=request, initial={}, data={}, unit=unit)
     assert not form.is_valid()
     assert 'email' in form.errors
     assert form.errors['email'] == [u'This field is required.']

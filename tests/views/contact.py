@@ -28,9 +28,8 @@ def test_contact_report_form_view(client, request_users, rf):
     assert 'contact_form_title' in response.context
     url = reverse('pootle-contact-report-error')
     assert response.context['contact_form_url'] == url
-
-    assert not hasattr(response.context["form"], "unit")
-    assert not hasattr(response.context["view"], "unit")
+    assert response.context['form'].unit == unit
+    assert response.context['view'].unit == unit
 
 
 @pytest.mark.django_db
@@ -40,7 +39,7 @@ def test_contact_report_form_view_no_unit(client, admin, rf):
     response = client.get(url)
 
     assert response.status_code == 200
-    assert not hasattr(response.context["view"], "unit")
+    assert response.context['view'].unit is None
     assert 'context' not in response.context['view'].get_initial()
 
 
@@ -51,7 +50,7 @@ def test_contact_report_form_view_blank_unit(client, admin, rf):
     response = client.get(url)
 
     assert response.status_code == 200
-    assert not hasattr(response.context["view"], "unit")
+    assert response.context['view'].unit is None
 
 
 @pytest.mark.django_db
@@ -61,7 +60,7 @@ def test_contact_report_form_view_no_numeric_unit(client, admin, rf):
     response = client.get(url)
 
     assert response.status_code == 200
-    assert not hasattr(response.context["view"], "unit")
+    assert response.context['view'].unit is None
 
 
 @pytest.mark.django_db
@@ -73,4 +72,4 @@ def test_contact_report_form_view_unexisting_unit(client, admin, rf):
     response = client.get(url)
 
     assert response.status_code == 200
-    assert not hasattr(response.context["view"], "unit")
+    assert response.context['view'].unit is None

@@ -103,19 +103,19 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 class ReportForm(ContactForm):
     """Contact form used to report errors on strings."""
 
-    report_email = forms.EmailField(
-        max_length=254,
-        required=False,
-        widget=forms.HiddenInput(),
-    )
+    def __init__(self, *args, **kwargs):
+        self.unit = kwargs.pop('unit', None)
+        super(ReportForm, self).__init__(*args, **kwargs)
 
     def recipient_list(self):
-        # Try to report string error to the report email for the project
-        # (injected in the 'report_email' field with initial values). If the
-        # project doesn't have a report email then fall back to the global
+        # Try to report string error to the report email for the project. If
+        # the project doesn't have a report email then fall back to the global
         # string errors report email.
-        if self.cleaned_data['report_email']:
-            return [self.cleaned_data['report_email']]
+        if self.unit:
+            report_email = (
+                self.unit.store.translation_project.project.report_email)
+            if report_email:
+                return [report_email]
 
         report_email = getattr(settings, 'POOTLE_CONTACT_REPORT_EMAIL',
                                settings.POOTLE_CONTACT_EMAIL)
