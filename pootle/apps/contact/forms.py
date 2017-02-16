@@ -18,10 +18,10 @@ from pootle.i18n.gettext import ugettext_lazy as _
 
 class ContactForm(MathCaptchaForm, OriginalContactForm):
 
-    field_order = ['name', 'email', 'subject', 'body', 'captcha_answer',
+    field_order = ['name', 'email', 'email_subject', 'body', 'captcha_answer',
                    'captcha_token']
 
-    subject = forms.CharField(
+    email_subject = forms.CharField(
         max_length=100,
         label=_(u'Summary'),
         widget=forms.TextInput(

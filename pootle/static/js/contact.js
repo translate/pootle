@@ -22,7 +22,7 @@ const sel = {
   wrapper: '#js-contact',
   form: '#js-contact form',
   formSent: '#js-sent',
-  subject: '#js-contact #id_subject',
+  subject: '#js-contact #id_email_subject',
   body: '#js-contact #id_body',
 };
 
