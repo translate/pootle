@@ -341,7 +341,6 @@ class Unit(AbstractUnit):
                 unit=self.id,
                 translation=self.target_f,
                 path=self.store.pootle_path)
-            self.add_initial_submission(user=user)
 
         if source_updated or target_updated:
             if not (created and self.state == UNTRANSLATED):
@@ -392,19 +391,6 @@ class Unit(AbstractUnit):
         from pootle_project.models import Project
         user_projects = Project.accessible_by_user(user)
         return self.store.translation_project.project.code in user_projects
-
-    def add_initial_submission(self, user=None):
-        if self.istranslated() or self.isfuzzy():
-            Submission.objects.create(
-                creation_time=self.creation_time,
-                translation_project=self.store.translation_project,
-                submitter=user or self._log_user,
-                unit=self,
-                store=self.store,
-                type=SubmissionTypes.UNIT_CREATE,
-                field=SubmissionFields.TARGET,
-                new_value=self.target,
-            )
 
     @cached_property
     def unit_syncer(self):
