@@ -261,7 +261,7 @@ class Unit(AbstractUnit):
         if not hasattr(self, '_log_user'):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
-        user = kwargs.pop("user", self._log_user)
+        user = kwargs.pop("user", self._log_user) or self._log_user
 
         if created:
             action = UNIT_ADDED
