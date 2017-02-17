@@ -11,6 +11,7 @@ import pytest
 from translate.misc.multistring import multistring
 
 from pootle.core.delegate import frozen, lifecycle
+from pootle.core.user import get_system_user
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import TRANSLATED
@@ -49,17 +50,9 @@ def test_unit_lifecycle_create(store0):
     unit.source_f = multistring("Foo")
     unit.index = store0.max_index() + 1
     unit.save()
-    sub_create = lifecycle.get(Unit)(unit).sub_create()
-    assert isinstance(sub_create, Submission)
-    assert sub_create.unit == unit
-    assert sub_create.store == store0
-    assert sub_create.translation_project == store0.translation_project
-    assert sub_create.revision == unit.revision
-    assert sub_create.type == SubmissionTypes.UNIT_CREATE
-    assert sub_create.field == SubmissionFields.TARGET
-    assert sub_create.new_value == unit.target
-    assert sub_create.old_value == ""
-    assert not sub_create.pk
+    source = unit.unit_source.get()
+    assert source.created_by == get_system_user()
+    assert source.created_with == SubmissionTypes.SYSTEM
 
 
 @pytest.mark.django_db
