@@ -8,7 +8,6 @@ import time
 from django.db import migrations
 
 from pootle.core.user import get_system_user_id
-from pootle_statistics.models import SubmissionTypes
 
 
 logger = logging.getLogger(__name__)
@@ -23,8 +22,9 @@ def set_unit_created_by(apps, schema_editor):
     offset = 0
     step = 10000
     start = time.time()
+    # type 10 is the now deleted UNIT_CREATE
     creators = dict(
-        subs.filter(type=SubmissionTypes.UNIT_CREATE)
+        subs.filter(type=10)
             .exclude(submitter__username="system")
             .values_list("unit_id", "submitter"))
     sysuser = get_system_user_id()
