@@ -254,7 +254,6 @@ class Unit(AbstractUnit):
         if not hasattr(self, '_log_user'):
             User = get_user_model()
             self._log_user = User.objects.get_system_user()
-        user = kwargs.pop("user", self._log_user)
 
         if created:
             action = UNIT_ADDED
@@ -293,7 +292,7 @@ class Unit(AbstractUnit):
 
         if not created and action:
             action_log(
-                user=self._log_user,
+                user=self.submitted_by or self._log_user,
                 action=action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
@@ -324,13 +323,12 @@ class Unit(AbstractUnit):
 
         if action and action == UNIT_ADDED:
             action_log(
-                user=self._log_user,
+                user=self.submitted_by or self._log_user,
                 action=action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
                 translation=self.target_f,
                 path=self.store.pootle_path)
-            self.add_initial_submission(user=user)
 
         if source_updated or target_updated:
             if not (created and self.state == UNTRANSLATED):
@@ -381,19 +379,6 @@ class Unit(AbstractUnit):
         from pootle_project.models import Project
         user_projects = Project.accessible_by_user(user)
         return self.store.translation_project.project.code in user_projects
-
-    def add_initial_submission(self, user=None):
-        if self.istranslated() or self.isfuzzy():
-            Submission.objects.create(
-                creation_time=self.creation_time,
-                translation_project=self.store.translation_project,
-                submitter=user or self._log_user,
-                unit=self,
-                store=self.store,
-                type=SubmissionTypes.UNIT_CREATE,
-                field=SubmissionFields.TARGET,
-                new_value=self.target,
-            )
 
     @cached_property
     def unit_syncer(self):
@@ -1231,7 +1216,7 @@ class Store(AbstractStore):
         newunit.update(unit, user=user)
 
         if self.id:
-            newunit.save(revision=update_revision, user=user)
+            newunit.save(revision=update_revision)
         return newunit
 
     def findunits(self, source, obsolete=False):
