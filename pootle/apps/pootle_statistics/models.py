@@ -37,7 +37,6 @@ class SubmissionTypes(object):
     UNMUTE_CHECK = 7  # Unmute QualityCheck
     SUGG_ADD = 8  # Add new Suggestion
     SUGG_REJECT = 9  # Reject Suggestion
-    UNIT_CREATE = 10  # Create a Unit with translation
 
     # Combined types that rely on other types (useful for querying)
     # Please use the `_TYPES` suffix to make it clear they're not core
