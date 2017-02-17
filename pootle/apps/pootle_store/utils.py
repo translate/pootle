@@ -316,16 +316,6 @@ class UnitLifecycle(object):
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
-    def sub_create(self, **kwargs):
-        _kwargs = dict(
-            creation_time=self.unit.creation_time,
-            submitter=self.unit.submitted_by,
-            type=SubmissionTypes.UNIT_CREATE,
-            field=SubmissionFields.TARGET,
-            new_value=self.unit.target)
-        _kwargs.update(kwargs)
-        return self.create_submission(**_kwargs)
-
     def save_subs(self, subs):
         if subs:
             self.unit.submission_set.bulk_create(subs)
