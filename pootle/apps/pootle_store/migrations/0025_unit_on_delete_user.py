@@ -4,7 +4,8 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 from django.db import migrations, models
-import pootle_store.models
+
+import pootle.core.user
 
 
 class Migration(migrations.Migration):
@@ -17,16 +18,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='unit',
             name='commented_by',
-            field=models.ForeignKey(null=True, on_delete=models.SET(pootle_store.models.get_system_user), related_name='commented', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(null=True, on_delete=models.SET(pootle.core.user.get_system_user), related_name='commented', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='unit',
             name='reviewed_by',
-            field=models.ForeignKey(null=True, on_delete=models.SET(pootle_store.models.get_system_user), related_name='reviewed', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(null=True, on_delete=models.SET(pootle.core.user.get_system_user), related_name='reviewed', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='unit',
             name='submitted_by',
-            field=models.ForeignKey(null=True, on_delete=models.SET(pootle_store.models.get_system_user), related_name='submitted', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(null=True, on_delete=models.SET(pootle.core.user.get_system_user), related_name='submitted', to=settings.AUTH_USER_MODEL),
         ),
     ]
