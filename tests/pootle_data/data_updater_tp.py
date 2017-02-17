@@ -17,7 +17,7 @@ from pootle_data.tp_data import TPDataTool, TPDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
 from pootle_store.util import SuggestionStates
-from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_statistics.models import Submission
 from pootle_store.models import QualityCheck, Unit
 
 from .data_updater_store import _calc_word_counts, _calculate_checks
@@ -135,9 +135,9 @@ def test_data_tp_updater_last_created(tp0):
 
 @pytest.mark.django_db
 def test_data_tp_util_last_submission(tp0):
-    submissions = (
-        Submission.objects.filter(store__translation_project=tp0)
-                          .exclude(type=SubmissionTypes.UNIT_CREATE))
+    submissions = Submission.objects.filter(
+        store__translation_project=tp0)
+
     original_submission = submissions.latest()
     update_data = tp0.data_tool.updater.get_store_data()
     assert(
@@ -145,9 +145,9 @@ def test_data_tp_util_last_submission(tp0):
         == tp0.data.last_submission_id
         == tp0.data_tool.updater.get_last_submission()
         == original_submission.id)
-    original_submission.type = SubmissionTypes.UNIT_CREATE
-    original_submission.save()
-    original_submission.unit.store.data_tool.update()
+    store = original_submission.unit.store
+    original_submission.delete()
+    store.data_tool.update()
     update_data = tp0.data_tool.updater.get_store_data()
     tp0.data.refresh_from_db()
     assert(

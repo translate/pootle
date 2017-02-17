@@ -21,7 +21,6 @@ from pootle_data.store_data import StoreDataTool, StoreDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
 from pootle_store.util import SuggestionStates
-from pootle_statistics.models import SubmissionTypes
 from pootle_store.models import QualityCheck
 
 
@@ -160,23 +159,14 @@ def test_data_store_updater_last_created(store0):
 
 @pytest.mark.django_db
 def test_data_store_util_last_submission(store0):
-    original_submission = store0.submission_set.exclude(
-        type=SubmissionTypes.UNIT_CREATE).latest()
+    original_submission = store0.submission_set.latest()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
         update_data["last_submission"]
         == store0.data.last_submission_id
         == store0.data_tool.updater.get_last_submission()
         == original_submission.id)
-    original_submission.type = SubmissionTypes.UNIT_CREATE
-    original_submission.save()
-    store0.data_tool.updater.update()
-    update_data = store0.data_tool.updater.get_store_data()
-    assert(
-        update_data["last_submission"]
-        == store0.data.last_submission_id
-        == store0.data_tool.updater.get_last_submission()
-        != original_submission.id)
+    original_submission.delete()
     # you can directly set the last submission_id
     store0.data_tool.update(last_submission=original_submission.id)
     update_data = store0.data_tool.updater.get_store_data()
