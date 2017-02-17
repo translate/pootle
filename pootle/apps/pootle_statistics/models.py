@@ -114,13 +114,6 @@ class SubmissionManager(models.Manager):
         """
         return self.get_queryset().filter(field=SubmissionFields.COMMENT)
 
-    def get_unit_creates(self):
-        """`Submission`s that create a `Unit`.
-
-        :return: Queryset of `Submissions`s that create a `Unit`'s.
-        """
-        return self.get_queryset().filter(type=SubmissionTypes.UNIT_CREATE)
-
     def get_unit_edits(self):
         """`Submission`s that change a `Unit`'s `target`.
 
