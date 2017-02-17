@@ -257,6 +257,7 @@ class Unit(AbstractUnit):
         source_updated = kwargs.pop("source_updated", None) or self._source_updated
         target_updated = kwargs.pop("target_updated", None) or self._target_updated
         state_updated = kwargs.pop("state_updated", None) or self._state_updated
+        changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
         auto_translated = (
             kwargs.pop("auto_translated", None)
             or self._auto_translated)
@@ -338,6 +339,7 @@ class Unit(AbstractUnit):
         if created:
             unit_source = self.unit_source.model(unit=self)
             unit_source.created_by = user
+            unit_source.created_with = changed_with
             unit_source.save()
 
         if action and action == UNIT_ADDED:
@@ -1224,7 +1226,8 @@ class Store(AbstractStore):
         """Largest unit index"""
         return max_column(self.unit_set.all(), 'index', -1)
 
-    def addunit(self, unit, index=None, user=None, update_revision=None):
+    def addunit(self, unit, index=None, user=None, update_revision=None,
+                changed_with=None):
         if index is None:
             index = self.max_index() + 1
 
@@ -1234,7 +1237,10 @@ class Store(AbstractStore):
         newunit.update(unit, user=user)
 
         if self.id:
-            newunit.save(revision=update_revision, user=user)
+            newunit.save(
+                revision=update_revision,
+                user=user,
+                changed_with=changed_with)
         return newunit
 
     def findunits(self, source, obsolete=False):

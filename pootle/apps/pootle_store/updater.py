@@ -179,7 +179,9 @@ class UnitUpdater(object):
             comment_updated=self.translator_comment_updated)
 
     def save_unit(self):
-        self.unit.save(revision=self.update.update_revision)
+        self.unit.save(
+            revision=self.update.update_revision,
+            changed_with=self.update.submission_type)
 
     def set_commented(self):
         self.unit.commented_by = self.update.user
@@ -304,7 +306,10 @@ class StoreUpdater(object):
             with update_data_after(self.target_store):
                 for unit, new_unit_index in to_change["add"]:
                     self.target_store.addunit(
-                        unit, new_unit_index, user=user,
+                        unit,
+                        new_unit_index,
+                        user=user,
+                        changed_with=submission_type,
                         update_revision=update_revision)
             changes["added"] = len(to_change["add"])
 
