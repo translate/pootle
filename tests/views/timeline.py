@@ -187,19 +187,13 @@ def _calculate_timeline(request, unit):
 
         entries_group.append(entry_group)
 
-    has_creation_entry = (
-        len(entries_group) > 0
-        and entries_group[0]['datetime'] == unit.creation_time)
-    if (has_creation_entry):
-        entries_group[0]['created'] = True
-    else:
-        created = {
-            'created': True,
-            'submitter': User.objects.get_system_user()}
+    created = {
+        'created': True,
+        'submitter': User.objects.get_system_user()}
 
-        if unit.creation_time:
-            created['datetime'] = unit.creation_time
-        entries_group[:0] = [created]
+    if unit.creation_time:
+        created['datetime'] = unit.creation_time
+    entries_group[:0] = [created]
 
     # Let's reverse the chronological order
     entries_group.reverse()

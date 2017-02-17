@@ -188,17 +188,11 @@ class Timeline(object):
 
     def add_creation_entry(self, grouped_entries):
         User = get_user_model()
-        has_creation_entry = (
-            len(grouped_entries) > 0
-            and grouped_entries[0]['datetime'] == self.object.creation_time)
-        if has_creation_entry:
-            grouped_entries[0]['created'] = True
-        else:
-            created = {
-                'created': True,
-                'submitter': User.objects.get_system_user()}
-            created['datetime'] = self.object.creation_time
-            grouped_entries[:0] = [created]
+        created = {
+            'created': True,
+            'submitter': User.objects.get_system_user()}
+        created['datetime'] = self.object.creation_time
+        grouped_entries[:0] = [created]
         return grouped_entries
 
     def get_grouped_entries(self):
