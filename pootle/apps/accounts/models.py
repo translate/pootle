@@ -273,9 +273,7 @@ class User(AbstractBaseUser):
 
         :return: Queryset of `Unit`s that were created by this user.
         """
-        created_unit_pks = self.submission_set.get_unit_creates() \
-                                              .values_list("unit", flat=True)
-        return Unit.objects.filter(pk__in=created_unit_pks)
+        return Unit.objects.filter(unit_source__created_by=self)
 
     @lru_cache()
     def last_event(self, locale=None):
