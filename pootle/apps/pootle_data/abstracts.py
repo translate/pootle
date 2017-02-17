@@ -23,7 +23,7 @@ class AbstractPootleData(models.Model):
         null=True,
         blank=True,
         related_name="last_created_for_%(class)s",
-        on_delete=models.CASCADE)
+        on_delete=models.SET_NULL)
     # the mtime of the last unit to be changed - used to order Stores
     max_unit_mtime = models.DateTimeField(
         null=True,
@@ -43,7 +43,7 @@ class AbstractPootleData(models.Model):
         blank=True,
         db_index=True,
         related_name="%(class)s_stats_data",
-        on_delete=models.CASCADE)
+        on_delete=models.SET_NULL)
     # the total number of failing critical checks
     critical_checks = models.IntegerField(
         null=False,
