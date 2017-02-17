@@ -11,7 +11,6 @@ from translate.filters.decorators import Category
 from django.db import models
 from django.db.models import Case, Count, Max, Q, When
 
-from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import QualityCheck
 from pootle_store.util import SuggestionStates
@@ -115,12 +114,11 @@ class StoreDataUpdater(DataUpdater):
                         .annotate(count=Count("id")))
 
     def get_last_submission(self, **kwargs):
-        """Last non-UNIT_CREATE submission for this store"""
+        """Last submission for this store"""
         submissions = self.store.submission_set
         try:
             return (
-                submissions.exclude(type=SubmissionTypes.UNIT_CREATE)
-                           .values_list("pk", flat=True)
+                submissions.values_list("pk", flat=True)
                            .latest())
         except submissions.model.DoesNotExist:
             return None
