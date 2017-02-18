@@ -29,6 +29,12 @@ class SchemaTool(object):
                 self.schema_dumper = MySQLSchemaDumper()
                 self.schema_checker = MySQLDefaultsChecker()
 
+    def get_tables(self):
+        tables = []
+        for app_config in self.app_configs:
+             tables += self.get_app_tables(app_config)
+        return tables
+
     def get_app_tables(self, app_config):
         return [model._meta.db_table
                 for model in app_config.get_models(include_auto_created=True)]
