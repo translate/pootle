@@ -101,6 +101,9 @@ PASSWORD_HASHERS = (
 )
 
 
+SCRIPT_NAME = '/'
+
+
 SILENCED_SYSTEM_CHECKS = [
     'pootle.C005',  # Silence the RedisCache check as we use a dummy cache
     'pootle.C017',  # Distinct redis DB numbers for default, redis, stats
