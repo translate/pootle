@@ -11,6 +11,7 @@ from django.conf import settings
 from django.db import connection
 
 from .mysql import MySQLSchemaDumper
+from .checks import MySQLDefaultsChecker
 
 
 class SchemaTool(object):
@@ -26,6 +27,7 @@ class SchemaTool(object):
         with connection.cursor() as cursor:
             if hasattr(cursor.db, "mysql_version"):
                 self.schema_dumper = MySQLSchemaDumper()
+                self.schema_checker = MySQLDefaultsChecker()
 
     def get_app_tables(self, app_config):
         return [model._meta.db_table
@@ -46,3 +48,10 @@ class SchemaTool(object):
     def get_table_constraints(self, table_name):
         if self.schema_dumper is not None:
             return self.schema_dumper.get_table_constraints(table_name)
+
+    def check(self):
+        return self.schema_checker.check(self.get_defaults())
+
+    @property
+    def state(self):
+        return self.schema_checker.state(self.get_defaults())
