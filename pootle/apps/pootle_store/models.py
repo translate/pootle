@@ -340,6 +340,12 @@ class Unit(AbstractUnit):
             unit_source = self.unit_source.model(unit=self)
             unit_source.created_by = user
             unit_source.created_with = changed_with
+        elif source_updated:
+            unit_source = self.unit_source.get()
+        if created or source_updated:
+            unit_source.source_hash = self.source_hash
+            unit_source.source_length = self.source_length
+            unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
 
         if action and action == UNIT_ADDED:
