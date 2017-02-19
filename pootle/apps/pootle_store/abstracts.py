@@ -107,6 +107,19 @@ class AbstractUnitSource(models.Model):
         default=SubmissionTypes.SYSTEM,
         db_index=True)
 
+    source_hash = models.CharField(
+        null=True,
+        max_length=32,
+        editable=False)
+
+    source_wordcount = models.SmallIntegerField(
+        default=0,
+        editable=False)
+
+    source_length = models.SmallIntegerField(
+        default=0,
+        editable=False)
+
 
 class AbstractUnit(models.Model, base.TranslationUnit):
 
