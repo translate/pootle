@@ -292,6 +292,7 @@ def unit_form_factory(language, snplurals=None, request=None):
             self.instance.changed_with = kwargs.pop("changed_with", None)
             with update_data_after(self.instance.store):
                 current_time = timezone.now()
+                submitted_on = None
                 if SubmissionFields.TARGET in (f[0] for f in self.updated_fields):
                     self.instance.submitted_by = self.user
                     self.instance.submitted_on = current_time
