@@ -218,7 +218,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     treestyle_choices = (
         # TODO: check that the None is stored and handled correctly
-        ('auto', _('Automatic detection of gnu/non-gnu file layouts (slower)')),
+        ('auto', _('Automatic detection of GNU/non-GNU file layouts (slower)')),
         ('gnu', _('GNU style: files named by language code')),
         ('nongnu', _('Non-GNU: Each language in its own directory')),
         ('pootle_fs', _('Allow Pootle FS to manage filesystems (Experimental)')),
