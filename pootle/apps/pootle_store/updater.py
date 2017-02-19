@@ -197,18 +197,19 @@ class UnitUpdater(object):
         self.unit.revision = self.update.update_revision
         self.unit.save(
             submitted_by=self.unit.submitted_by,
+            revision=self.update.update_revision,
             submitted_on=self.at,
             changed_with=self.update.submission_type)
 
     def set_commented(self):
-        self.unit.commented_by = self.update.user
-        self.unit.commented_on = self.at
+        self.unit.change.commented_by = self.update.user
+        self.unit.change.commented_on = self.at
 
     def set_submitted(self):
-        self.unit.submitted_by = self.update.user
-        self.unit.submitted_on = self.at
-        self.unit.reviewed_on = None
-        self.unit.reviewed_by = None
+        self.unit.change.submitted_by = self.update.user
+        self.unit.change.submitted_on = self.at
+        self.unit.change.reviewed_on = None
+        self.unit.change.reviewed_by = None
 
     def set_unit(self):
         if self.translator_comment_updated:
@@ -275,7 +276,8 @@ class StoreUpdater(object):
         return count
 
     def units(self, uids):
-        unit_set = self.target_store.unit_set.select_related("submitted_by")
+        unit_set = self.target_store.unit_set.select_related(
+            "change__submitted_by")
         for unit in self.target_store.findid_bulk(uids, unit_set):
             unit.store = self.target_store
             yield unit
