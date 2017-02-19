@@ -125,9 +125,9 @@ def _test_units_contribution_filter(qs, user, unit_filter):
             state__name="accepted",
             user=user).values_list("unit_id", flat=True)
         expected = qs.filter(
-            id__in=(
-                set(user_edit_subs)
-                | set(user_suggestions))).exclude(submitted_by=user)
+            submission__submitter=user,
+            submission__type__in=SubmissionTypes.EDIT_TYPES)
+        expected = expected.exclude(change__submitted_by=user).distinct()
     assert (
         list(expected.order_by("pk"))
         == list(result.order_by("pk")))
