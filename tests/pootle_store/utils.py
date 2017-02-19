@@ -15,7 +15,7 @@ from pootle.core.user import get_system_user
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import TRANSLATED
-from pootle_store.models import QualityCheck, Unit
+from pootle_store.models import QualityCheck, Unit, UnitChange
 from pootle_store.utils import UnitLifecycle
 
 
@@ -63,7 +63,10 @@ def test_unit_lifecycle_update_state(store0, member):
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
     unit.index = store0.max_index() + 1
-    unit.reviewed_by = member
+    unit.change = UnitChange(
+        unit=unit,
+        reviewed_by=member,
+        changed_with=SubmissionTypes.SYSTEM)
     unit.save()
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
     assert isinstance(sub_state_update, Submission)
@@ -71,7 +74,7 @@ def test_unit_lifecycle_update_state(store0, member):
     assert sub_state_update.store == store0
     assert sub_state_update.translation_project == store0.translation_project
     assert sub_state_update.revision == unit.revision
-    assert sub_state_update.submitter == unit.reviewed_by
+    assert sub_state_update.submitter == unit.change.reviewed_by
     assert sub_state_update.type == SubmissionTypes.SYSTEM
     assert sub_state_update.field == SubmissionFields.STATE
     assert sub_state_update.new_value == unit.state
@@ -111,7 +114,10 @@ def test_unit_lifecycle_update_source(store0, member):
     unit.source_f = multistring("Bar")
     unit.state = TRANSLATED
     unit.index = store0.max_index() + 1
-    unit.submitted_by = member
+    unit.change = UnitChange(
+        unit=unit,
+        submitted_by=member,
+        changed_with=SubmissionTypes.SYSTEM)
     unit.save()
     sub_source_update = lifecycle.get(Unit)(unit).sub_source_update()
     assert isinstance(sub_source_update, Submission)
@@ -119,7 +125,7 @@ def test_unit_lifecycle_update_source(store0, member):
     assert sub_source_update.store == store0
     assert sub_source_update.translation_project == store0.translation_project
     assert sub_source_update.revision == unit.revision
-    assert sub_source_update.submitter == unit.submitted_by
+    assert sub_source_update.submitter == unit.change.submitted_by
     assert sub_source_update.type == SubmissionTypes.SYSTEM
     assert sub_source_update.field == SubmissionFields.SOURCE
     assert sub_source_update.new_value == unit.source_f
@@ -135,7 +141,10 @@ def test_unit_lifecycle_update_target(store0, member):
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
     unit.index = store0.max_index() + 1
-    unit.submitted_by = member
+    unit.change = UnitChange(
+        unit=unit,
+        submitted_by=member,
+        changed_with=SubmissionTypes.SYSTEM)
     unit.save()
     sub_target_update = lifecycle.get(Unit)(unit).sub_target_update()
     assert isinstance(sub_target_update, Submission)
@@ -143,7 +152,7 @@ def test_unit_lifecycle_update_target(store0, member):
     assert sub_target_update.store == store0
     assert sub_target_update.translation_project == store0.translation_project
     assert sub_target_update.revision == unit.revision
-    assert sub_target_update.submitter == unit.submitted_by
+    assert sub_target_update.submitter == unit.change.submitted_by
     assert sub_target_update.type == SubmissionTypes.SYSTEM
     assert sub_target_update.field == SubmissionFields.TARGET
     assert sub_target_update.new_value == unit.target_f
