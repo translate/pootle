@@ -259,10 +259,10 @@ def _create_comment_on_unit(unit, user, comment):
                                           SubmissionTypes)
 
     unit.translator_comment = comment
-    unit.commented_on = timezone.now()
-    unit.commented_by = user
+    unit.change.commented_on = timezone.now()
+    unit.change.commented_by = user
     sub = Submission(
-        creation_time=unit.commented_on,
+        creation_time=unit.change.commented_on,
         translation_project=unit.store.translation_project,
         submitter=user,
         unit=unit,
@@ -279,7 +279,7 @@ def _mark_unit_fuzzy(unit, user):
     from pootle_statistics.models import (Submission, SubmissionFields,
                                           SubmissionTypes)
     sub = Submission(
-        creation_time=unit.commented_on,
+        creation_time=unit.change.commented_on,
         translation_project=unit.store.translation_project,
         submitter=user,
         unit=unit,
