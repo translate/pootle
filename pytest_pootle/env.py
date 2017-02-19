@@ -492,8 +492,7 @@ class PootleTestEnv(object):
             suggestion_review([suggestion], reviewer=admin).reject()
         else:
             suggestion_review([suggestion], reviewer=admin).accept()
-            Unit.objects.filter(pk=unit.pk).update(
-                submitted_on=next_time, mtime=next_time)
+            Unit.objects.filter(pk=unit.pk).update(mtime=next_time)
             UnitChange.objects.filter(
                 unit_id=unit.pk).update(
                     reviewed_on=next_time,
