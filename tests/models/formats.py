@@ -149,6 +149,6 @@ def test_format_registry_object(no_formats):
     assert isinstance(format_registry, FormatRegistry)
     assert format_registry.keys() == []
     format_registry.initialize()
-    assert format_registry.keys() == [x[0] for x in POOTLE_FORMATS]
+    assert set(format_registry.keys()) == set([x[0] for x in POOTLE_FORMATS])
     for filetype in POOTLE_FORMATS:
         format_registry[filetype[0]] == filetype[1]
