@@ -252,6 +252,14 @@ class Unit(AbstractUnit):
                    unit=self.id, translation='', path=self.store.pootle_path)
         super(Unit, self).delete(*args, **kwargs)
 
+    @property
+    def changed(self):
+        try:
+            self.change
+            return True
+        except UnitChange.DoesNotExist:
+            return False
+
     def save(self, *args, **kwargs):
         created = self.id is None
         source_updated = kwargs.pop("source_updated", None) or self._source_updated
@@ -347,6 +355,20 @@ class Unit(AbstractUnit):
             unit_source.source_length = self.source_length
             unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
+        changed = (
+            (source_updated and not created)
+            or target_updated
+            or comment_updated)
+        if changed and not self.changed:
+            self.change = UnitChange(
+                unit=self,
+                changed_with=changed_with)
+        if changed:
+            self.change.submitted_by = self.submitted_by
+            self.change.reviewed_by = self.reviewed_by
+            self.change.submitted_on = self.submitted_on
+            self.change.reviewed_on = self.reviewed_on
+            self.change.save()
 
         if action and action == UNIT_ADDED:
             action_log(
