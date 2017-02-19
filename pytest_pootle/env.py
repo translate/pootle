@@ -491,6 +491,7 @@ class PootleTestEnv(object):
         if original_state == UNTRANSLATED:
             suggestion_review([suggestion], reviewer=admin).reject()
         else:
+            suggestion_review([suggestion], reviewer=admin).accept()
             Unit.objects.filter(pk=unit.pk).update(
                 submitted_on=next_time, mtime=next_time)
             UnitChange.objects.filter(
