@@ -22,7 +22,7 @@ from pootle_statistics.models import (
     MUTED, UNMUTED, SubmissionFields, SubmissionTypes)
 
 from .constants import TRANSLATED
-from .models import Suggestion, SuggestionState
+from .models import Suggestion, SuggestionState, UnitChange
 
 
 User = get_user_model()
@@ -89,12 +89,16 @@ class FrozenUnit(object):
     """Freeze unit vars for comparison"""
 
     def __init__(self, unit):
+        submitter = (
+            unit.change.submitted_by
+            if unit.changed
+            else None)
         self.unit = dict(
             source_f=unit.source_f,
             target_f=unit.target_f,
             context=unit.context,
             revision=unit.revision,
-            submitter=unit.submitted_by,
+            submitter=submitter,
             state=unit.state,
             pk=unit.pk,
             translator_comment=unit.translator_comment)
