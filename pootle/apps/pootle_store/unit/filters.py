@@ -106,7 +106,9 @@ class UnitContributionFilter(BaseUnitFilter):
     def filter_user_submissions(self):
         if not self.user:
             return self.qs.none()
-        return self.qs.filter(submitted_by=self.user)
+        return self.qs.filter(
+            submission__submitter=self.user,
+            submission__type__in=SubmissionTypes.EDIT_TYPES).distinct()
 
     def filter_my_submissions(self):
         return self.filter_user_submissions()

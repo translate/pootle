@@ -127,12 +127,12 @@ class DBSearchBackend(object):
 
             if modified_since is not None:
                 qs = qs.filter(
-                    submitted_on__gt=modified_since).distinct()
+                    change__submitted_on__gt=modified_since).distinct()
 
             if month is not None:
                 qs = qs.filter(
-                    submitted_on__gte=month[0],
-                    submitted_on__lte=month[1]).distinct()
+                    change__submitted_on__gte=month[0],
+                    change__submitted_on__lte=month[1]).distinct()
 
         if sfields and search:
             qs = UnitTextSearch(qs).search(
