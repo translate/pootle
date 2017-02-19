@@ -51,7 +51,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 
 from .abstracts import (
     AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
-    AbstractUnitSource)
+    AbstractUnitChange, AbstractUnitSource)
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
@@ -167,6 +167,13 @@ def stringcount(string):
         return 1
 
 
+class UnitChange(AbstractUnitChange):
+
+    class Meta(AbstractUnit.Meta):
+        abstract = False
+        db_table = "pootle_store_unit_change"
+
+
 class UnitSource(AbstractUnitSource):
 
     class Meta(AbstractUnit.Meta):
@@ -192,6 +199,14 @@ class Unit(AbstractUnit):
             ["store", "state"]]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
+
+    @property
+    def changed(self):
+        try:
+            self.change
+            return True
+        except UnitChange.DoesNotExist:
+            return False
 
     @property
     def _source(self):
@@ -250,6 +265,7 @@ class Unit(AbstractUnit):
         source_updated = kwargs.pop("source_updated", None) or self._source_updated
         target_updated = kwargs.pop("target_updated", None) or self._target_updated
         state_updated = kwargs.pop("state_updated", None) or self._state_updated
+        changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
         auto_translated = (
             kwargs.pop("auto_translated", None)
             or self._auto_translated)
@@ -306,32 +322,40 @@ class Unit(AbstractUnit):
                 unit=self.id,
                 translation=self.target_f,
                 path=self.store.pootle_path)
-        was_fuzzy = (
-            state_updated and self.state == TRANSLATED
-            and action == TRANSLATION_CHANGED
-            and not target_updated)
-        if was_fuzzy:
-            # set reviewer data if FUZZY has been removed only and
-            # translation hasn't been updated
-            self.reviewed_on = timezone.now()
-            self.reviewed_by = self._log_user
-        elif self.state == FUZZY:
-            # clear reviewer data if unit has been marked as FUZZY
-            self.reviewed_on = None
-            self.reviewed_by = None
-        elif self.state == UNTRANSLATED:
-            # clear reviewer and translator data if translation
-            # has been deleted
-            self.reviewed_on = None
-            self.reviewed_by = None
-            self.submitted_by = None
-            self.submitted_on = None
 
         super(Unit, self).save(*args, **kwargs)
         if created:
             unit_source = self.unit_source.model(unit=self)
             unit_source.created_by = user
+            unit_source.created_with = changed_with
             unit_source.save()
+        if not created or source_updated or target_updated:
+            if not self.changed:
+                self.change = UnitChange(
+                    unit_id=self.id,
+                    changed_with=changed_with)
+            self.change.changed_with = changed_with
+            was_fuzzy = (
+                state_updated and self.state == TRANSLATED
+                and action == TRANSLATION_CHANGED
+                and not target_updated)
+            if was_fuzzy:
+                # set reviewer data if FUZZY has been removed only and
+                # translation hasn't been updated
+                self.change.reviewed_on = timezone.now()
+                self.change.reviewed_by = self._log_user
+            elif self.state == FUZZY:
+                # clear reviewer data if unit has been marked as FUZZY
+                self.change.reviewed_on = None
+                self.change.reviewed_by = None
+            elif self.state == UNTRANSLATED:
+                # clear reviewer and translator data if translation
+                # has been deleted
+                self.change.reviewed_on = None
+                self.change.reviewed_by = None
+                self.change.submitted_by = None
+                self.change.submitted_on = None
+            self.change.save()
 
         if action and action == UNIT_ADDED:
             action_log(
@@ -484,8 +508,6 @@ class Unit(AbstractUnit):
         if update_target:
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
-            self.submitted_by = user
-            self.submitted_on = timezone.now()
 
             if filter(None, self.target_f.strings) or notempty:
                 # FIXME: we need to do this cause we discard nplurals for empty
@@ -667,17 +689,17 @@ class Unit(AbstractUnit):
             'email_md5': '',
         }
 
-        if self.submitted_on:
+        if self.change.submitted_on:
             obj.update({
-                'iso_submitted_on': self.submitted_on.isoformat(),
-                'display_submitted_on': dateformat.format(self.submitted_on),
+                'iso_submitted_on': self.change.submitted_on.isoformat(),
+                'display_submitted_on': dateformat.format(self.change.submitted_on),
             })
 
-        if self.submitted_by:
+        if self.change.submitted_by:
             obj.update({
-                'username': self.submitted_by.username,
-                'fullname': self.submitted_by.full_name,
-                'email_md5': md5(self.submitted_by.email).hexdigest(),
+                'username': self.change.submitted_by.username,
+                'fullname': self.change.submitted_by.full_name,
+                'email_md5': md5(self.change.submitted_by.email).hexdigest(),
             })
 
         get_tm_broker().update(self.store.translation_project.language.code,
@@ -1217,7 +1239,8 @@ class Store(AbstractStore):
         """Largest unit index"""
         return max_column(self.unit_set.all(), 'index', -1)
 
-    def addunit(self, unit, index=None, user=None, update_revision=None):
+    def addunit(self, unit, index=None, user=None, update_revision=None,
+                changed_with=None):
         if index is None:
             index = self.max_index() + 1
 
@@ -1227,7 +1250,10 @@ class Store(AbstractStore):
         newunit.update(unit, user=user)
 
         if self.id:
-            newunit.save(revision=update_revision, user=user)
+            newunit.save(
+                revision=update_revision,
+                user=user,
+                changed_with=changed_with)
         return newunit
 
     def findunits(self, source, obsolete=False):

@@ -23,7 +23,7 @@ from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 
 from .constants import FUZZY, TRANSLATED
-from .models import Suggestion
+from .models import Suggestion, UnitChange
 from .util import SuggestionStates
 
 
@@ -34,10 +34,14 @@ class FrozenUnit(object):
     """Freeze unit vars for comparison"""
 
     def __init__(self, unit):
+        submitter = (
+            unit.change.submitted_by
+            if unit.changed
+            else None)
         self.unit = dict(
             source_f=unit.source_f,
             target_f=unit.target_f,
-            submitter=unit.submitted_by,
+            submitter=submitter,
             state=unit.state,
             translator_comment=unit.getnotes(origin="translator"))
 
@@ -161,6 +165,7 @@ class SuggestionsReview(object):
             create_subs[SubmissionFields.STATE] = [old_state, unit.state]
         create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
         subs_created = []
+        unit.change, _ = UnitChange.objects.get_or_create(unit_id=unit.id)
         for field in create_subs:
             kwargs = {
                 'creation_time': current_time,
@@ -187,10 +192,10 @@ class SuggestionsReview(object):
         # because in the `ScoreLog` we need to access the unit's certain
         # attributes before it was saved
         # THIS NEEDS TO GO ^^
-        unit.submitted_by = suggestion.user
-        unit.submitted_on = current_time
-        unit.reviewed_by = self.reviewer
-        unit.reviewed_on = unit.submitted_on
+        unit.change.submitted_by = suggestion.user
+        unit.change.submitted_on = current_time
+        unit.change.reviewed_by = self.reviewer
+        unit.change.reviewed_on = unit.change.submitted_on
         unit._log_user = self.reviewer
         unit.save()
 
@@ -336,7 +341,7 @@ class UnitLifecycle(object):
         _kwargs = dict(
             creation_time=self.unit.mtime,
             unit=self.unit,
-            submitter=self.unit.submitted_by,
+            submitter=self.unit.change.submitted_by,
             field=SubmissionFields.SOURCE,
             type=SubmissionTypes.SYSTEM,
             old_value=self.original.source,
@@ -348,7 +353,7 @@ class UnitLifecycle(object):
         _kwargs = dict(
             creation_time=self.unit.mtime,
             unit=self.unit,
-            submitter=self.unit.submitted_by,
+            submitter=self.unit.change.submitted_by,
             field=SubmissionFields.TARGET,
             type=SubmissionTypes.SYSTEM,
             old_value=self.original.target,
@@ -360,7 +365,7 @@ class UnitLifecycle(object):
         _kwargs = dict(
             creation_time=self.unit.mtime,
             unit=self.unit,
-            submitter=self.unit.reviewed_by,
+            submitter=self.unit.change.reviewed_by,
             field=SubmissionFields.STATE,
             type=SubmissionTypes.SYSTEM,
             old_value=self.original.state,
