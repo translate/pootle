@@ -303,10 +303,10 @@ def unit_form_factory(language, snplurals=None, request=None):
             with update_data_after(unit.store):
                 current_time = timezone.now()
                 if SubmissionFields.TARGET in (f[0] for f in self.updated_fields):
-                    unit.submitted_by = self.user
-                    unit.submitted_on = current_time
-                    unit.reviewed_by = None
-                    unit.reviewed_on = None
+                    unit.change.submitted_by = self.user
+                    unit.change.submitted_on = current_time
+                    unit.change.reviewed_by = None
+                    unit.change.reviewed_on = None
                     unit._log_user = self.user
                 unit.save(
                     action=self.cleaned_data.get("save_action"),
