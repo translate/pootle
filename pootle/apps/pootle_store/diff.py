@@ -224,14 +224,13 @@ class StoreDiff(object):
 
             elif tag == 'replace':
                 insert_at = self.target_units[
-                    self.active_target_units[i1 - 1]]['index']
+                    self.active_target_units[max(i1 - 1, 0)]]['index']
                 next_index = self.target_units[
                     self.active_target_units[i2 - 1]]['index']
                 inserts.append((insert_at,
                                 new_unitid_list[j1:j2],
                                 next_index,
                                 j2 - j1 - insert_at + next_index))
-
         return inserts
 
     @cached_property
