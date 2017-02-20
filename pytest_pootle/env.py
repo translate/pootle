@@ -357,7 +357,8 @@ class PootleTestEnv(object):
 
     def setup_submissions(self):
         from pootle.core.contextmanagers import update_data_after
-        from pootle_store.models import Store, Unit
+        from pootle_statistics.models import SubmissionTypes
+        from pootle_store.models import Store, Unit, UnitChange
         from django.utils import timezone
 
         year_ago = timezone.now() - relativedelta(years=1)
@@ -366,6 +367,13 @@ class PootleTestEnv(object):
         stores = Store.objects.select_related(
             "translation_project__project",
             "translation_project__language")
+
+        units = Unit.objects.filter(store__in=stores)
+
+        UnitChange.objects.bulk_create(
+            UnitChange(unit_id=unit_id, changed_with=SubmissionTypes.SYSTEM)
+            for unit_id
+            in units.values_list("id", flat=True))
 
         for store in stores.all():
             with update_data_after(store):
@@ -449,7 +457,7 @@ class PootleTestEnv(object):
         from pootle.core.delegate import review
         from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED, FUZZY, OBSOLETE
-        from pootle_store.models import Suggestion, Unit
+        from pootle_store.models import Suggestion, Unit, UnitChange
 
         from django.contrib.auth import get_user_model
         from django.utils import timezone
@@ -481,6 +489,8 @@ class PootleTestEnv(object):
             suggestion_review([suggestion], reviewer=admin).accept()
             Unit.objects.filter(pk=unit.pk).update(
                 submitted_on=next_time, mtime=next_time)
+            UnitChange.objects.filter(
+                unit_id=unit.pk).update(submitted_on=next_time)
         self._update_submission_times(
             unit, next_time, first_modified)
 
