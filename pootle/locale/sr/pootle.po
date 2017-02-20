@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-07 07:07+0000\n"
+"PO-Revision-Date: 2017-02-08 19:48+0000\n"
 "Last-Translator: Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486451238.000000\n"
+"X-POOTLE-MTIME: 1486583315.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -238,13 +238,12 @@ msgid "Source Language"
 msgstr "Изворни језик"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"Не можете уклонити врсту датотеке из Пројекта, ако има Смештаја те врсте "
-"датотеке (%s)"
+"Не можете уклонити врсту датотеке из Пројекта, ако има датотека те врсте (%s)"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -346,13 +345,12 @@ msgid "Translation path mapping"
 msgstr "Мапирање путање превода"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
-"Мапирање путање превода које мапира датотеке превода на систему датотека за "
-"смештај на Поотлу."
+"Мапирање путање превода које мапира датотеке превода на систему датотека у "
+"датотеке на Поотлу."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -419,14 +417,12 @@ msgid "Accept"
 msgstr "Прихвати"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Предлагач филтера"
+msgstr "Издвој према предлагачу"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Стање филтрера"
+msgstr "Издвој према стању"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -984,12 +980,12 @@ msgid "Disabled"
 msgstr "Искључено"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"Пројекат превода (%s) је направљен. Сада освежавамо његове спремнике из "
+"Пројекат превода (%s) је направљен. Сада освежавамо његове датотеке из "
 "шаблона датотека."
 
 #: apps/pootle_project/views.py:270
@@ -1214,10 +1210,9 @@ msgid "Filter"
 msgstr "Филтрер"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Правила издвајања која говоре које смештаје ова виртуелна фасцикла садржи."
+"Правила издвајања која говоре које датотеке ова виртуелна фасцикла садржи."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1313,9 +1308,8 @@ msgstr "Освежите пакет сервера Редиса вашег си�
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Није покренут РКу радник."
+msgstr "Није покренут радник."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1613,7 +1607,6 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Путања („%s“) на коју указује „POOTLE_FS_WORKING_PATH“ не постоји."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1629,12 +1622,11 @@ msgstr ""
 "Путања („%s“) на коју указује „POOTLE_FS_WORKING_PATH“ није уписива Поотлом."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
-"Додајте дозволу за писање у „POOTLE_FS_WORKING_PATH“ или измените подешавање"
+"Додајте дозволу за писање у „POOTLE_FS_WORKING_PATH“ или измените подешавање."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1866,7 +1858,6 @@ msgid "About This Pootle Server"
 msgstr "О овом Поотловом серверу"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1874,7 +1865,7 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"На овом сајту ради Поотле &mdash; моћан веб софтвер како би оснажио тимове у "
+"На овом сајту ради Поотле — моћан веб софтвер како би оснажио тимове у "
 "превођењу и управљању преводима. Овај алат заједнице је слободан софтвер, и "
 "сваки тим га може користити и допринети Поотловој заједници. Прочитајте више "
 "на <a href=\"http://pootle.translatehouse.org/\">веб сајту пројекта</a>."
@@ -2712,9 +2703,8 @@ msgid "The reported error was:"
 msgstr "Извештена грешка беше:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Претходно"
+msgstr "Претходна страница"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2727,9 +2717,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Прикажи %(count)s резултата по страници"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Домаћа страна"
+msgstr "Следећа страница"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-06 12:32+0000\n"
+"PO-Revision-Date: 2017-02-08 11:05+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
 "Language: ca@valencia\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486384330.000000\n"
+"X-POOTLE-MTIME: 1486551952.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -244,7 +244,7 @@ msgid "Source Language"
 msgstr "Llengua d'origen"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
@@ -351,13 +351,12 @@ msgid "Translation path mapping"
 msgstr "Assignació de camins de traducció"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
 "L'assignació de camins de traducció que associa els fitxers de traducció en "
-"el sistema de fitxers amb l'emmagatzematge al Pootle."
+"el sistema de fitxers amb l'emmagatzematge en el Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -424,14 +423,12 @@ msgid "Accept"
 msgstr "Accepta"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Filtra per qui suggeriex"
+msgstr "Filtra per qui suggereix"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Filtre per estat"
+msgstr "Filtra per estat"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -992,7 +989,7 @@ msgid "Disabled"
 msgstr "Inhabilitat"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
@@ -1220,7 +1217,6 @@ msgid "Filter"
 msgstr "Filtre"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr "Les regles de filtratge indiquen què s'inclou en esta carpeta virtual."
 
@@ -1320,9 +1316,8 @@ msgstr ""
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "No s'està executant cap tasca RQ."
+msgstr "No s'està executant cap tasca."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1626,13 +1621,12 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "El camí («%s») indicat a POOTLE_FS_WORKING_PATH no existeix."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Creeu el directori indicat pel paràmetre «POOTLE_FS_WORKING_PATH», canvieu "
-"la configuració."
+"Creeu el directori indicat pel paràmetre «POOTLE_FS_WORKING_PATH», canvieu-"
+"ne la configuració."
 
 #: checks.py:515
 #, python-format
@@ -1642,13 +1636,12 @@ msgstr ""
 "Pootle no pot escriure en el camí («%s») indicat a POOTLE_FS_WORKING_PATH ."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 "Afegiu el permís d'escriptura al directori «POOTLE_FS_WORKING_PATH» , o "
-"canvieu la configuració"
+"canvieu-ne la configuració"
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1880,7 +1873,6 @@ msgid "About This Pootle Server"
 msgstr "Quant a este servidor Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1888,11 +1880,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Este lloc web funciona amb el Pootle &mdash; un potent programari web per "
-"facilitar als equips traduir i gestionar les traduccions. Esta eina "
-"comunitària és programari lliure, i qualsevol equip pot emprar-lo i "
-"contribuir en la comunitat del Pootle. Podeu llegir-ne més al <a href="
-"\"http://pootle.translatehouse.org/\">lloc web del projecte</a>."
+"Este lloc web funciona amb el Pootle, un potent programari web per facilitar "
+"als equips traduir i gestionar les traduccions. Esta eina comunitària és "
+"programari lliure, i qualsevol equip pot emprar-lo i contribuir en la "
+"comunitat del Pootle. Podeu llegir-ne més al <a href=\"http://pootle."
+"translatehouse.org/\">lloc web del projecte</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -2732,9 +2724,8 @@ msgid "The reported error was:"
 msgstr "S'ha informat de l'error:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Anterior"
+msgstr "Pàgina anterior"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2747,9 +2738,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Es mostren %(count)s resultats per pàgina"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Pàgina d'inici"
+msgstr "Pàgina següent"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

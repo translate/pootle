@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:44+0100\n"
-"PO-Revision-Date: 2016-11-22 16:32+0000\n"
+"PO-Revision-Date: 2017-02-09 17:01+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1479832342.000000\n"
+"X-POOTLE-MTIME: 1486659667.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -897,22 +897,22 @@ msgid "Show"
 msgstr "Zobrazit"
 
 #: templates/editor/units/xhr_tm.html:17
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project %(time_ago)s"
 msgstr ""
-"Přeložil %(fullname)s v projektu &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo; %(time_ago)s"
+"Přeložil %(fullname)s v projektu „<span title=\"%(path)s\">%(project)s</"
+"span>“ %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project"
 msgstr ""
-"Přeložil %(fullname)s v projektu &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo;"
+"Přeložil %(fullname)s v projektu „<span title=\"%(path)s\">%(project)s</"
+"span>“"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Zaregistrované úlohy"

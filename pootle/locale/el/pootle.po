@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-06 21:38+0000\n"
+"PO-Revision-Date: 2017-02-08 07:50+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486417102.000000\n"
+"X-POOTLE-MTIME: 1486540252.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -245,13 +245,13 @@ msgid "Source Language"
 msgstr "Αρχική γλώσσα"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "Δεν μπορείτε να αφαιρέσετε έναν τύπο αρχείου από ένα έργο, εάν υπάρχουν "
-"αποθηκεύσεις αυτού του τύπου αρχείου ('%s')"
+"αρχεία αυτού του τύπου αρχείου ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -354,13 +354,12 @@ msgid "Translation path mapping"
 msgstr "Αντιστοίχηση διαδρομής μετάφρασης"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
 "Η απεικόνιση διαδρομής μετάφρασης που χαρτογραφεί τα αρχεία τοπικοποίησης "
-"στο σύστημα αρχείων στους χώρους αποθήκευσης στο Pootle."
+"στο σύστημα αρχείων στα αρχεία στο Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -427,14 +426,12 @@ msgid "Accept"
 msgstr "Αποδοχή"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Προτάσεις φίλτρου"
+msgstr "Φίλτρο στις προτάσεις"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Κατάσταση φίλτρου"
+msgstr "Φίλτρο κατά κατάσταση"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -995,13 +992,13 @@ msgid "Disabled"
 msgstr "Ανενεργό"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"Το έργο της μετάφρασης (%s) έχει δημιουργηθεί. Ενημερώνουμε τώρα τα "
-"αποθετήρια από τα πρότυπα αρχεία."
+"Το έργο της μετάφρασης (%s) έχει δημιουργηθεί. Ενημερώνουμε τώρα τα αρχεία "
+"του από τα πρότυπα αρχεία."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1223,11 +1220,10 @@ msgid "Filter"
 msgstr "Φίλτρο"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Φιλτράρισμα των κανόνων που λένε ποιες αποθήκες  περιλαμβάνει αυτός ο "
-"εικονικός φάκελος."
+"Φιλτράρισμα των κανόνων που λένε ποια αρχεία  περιλαμβάνει αυτός ο εικονικός "
+"φάκελος."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1327,9 +1323,8 @@ msgstr ""
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Δεν εκτελείται κανένα RQ Worker."
+msgstr "Δεν εκτελείται καμία εργασία."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1642,7 +1637,6 @@ msgstr ""
 "Η διαδρομή ('%s') που δείχνεται από το POOTLE_FS_WORKING_PATH δεν υπάρχει."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1659,7 +1653,6 @@ msgstr ""
 "εγγράψιμη από το Pootle."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
@@ -1897,7 +1890,6 @@ msgid "About This Pootle Server"
 msgstr "Σχετικά με αυτόν τον διακομιστή Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1905,7 +1897,7 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Αυτός ο ιστότοπος τρέχει Pootle &mdash; ένα ισχυρό λογισμικό ιστού για να "
+"Αυτός ο ιστότοπος τρέχει Pootle — ένα ισχυρό λογισμικό ιστού για να "
 "ενισχύσει τις ομάδες που μεταφράζουν και διαχειρίζονται μεταφράσεις. Αυτό το "
 "εργαλείο της κοινότητας είναι ελεύθερο λογισμικό και οποιαδήποτε ομάδα "
 "μπορεί να το χρησιμοποιήσει και να συμβάλει στην κοινότητα Pootle. Διαβάστε "
@@ -2763,9 +2755,8 @@ msgid "The reported error was:"
 msgstr "Το αναφερθέν σφάλμα ήταν:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Προηγούμενο"
+msgstr "Προηγούμενη σελίδα"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2778,9 +2769,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Εμφανίζει %(count)s αποτελέσματα ανά σελίδα"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Αρχική σελίδα"
+msgstr "Επόμενη σελίδα"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

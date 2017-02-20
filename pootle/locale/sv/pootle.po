@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-06 21:36+0000\n"
+"PO-Revision-Date: 2017-02-08 16:52+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486416979.000000\n"
+"X-POOTLE-MTIME: 1486572720.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -238,12 +238,12 @@ msgid "Source Language"
 msgstr "Källspråk"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"Du kan inte ta bort en filtyp från ett projekt, om det finns lagringar i den "
+"Du kan inte ta bort en filtyp från ett projekt, om det finns filer av den "
 "filtypen ('%s')"
 
 #: apps/pootle_app/forms.py:108
@@ -345,13 +345,12 @@ msgid "Translation path mapping"
 msgstr "Mappning översättningssökväg"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
-"Mappning av översättningssökvägar mappar lokaliseringsfiler på filsystemet "
-"till lagring på Pootle."
+"Mappning av översättningssökvägar som mappar översättningsfiler på "
+"filsystemet till filer på Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -418,14 +417,12 @@ msgid "Accept"
 msgstr "Godkänn"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Filterförslag"
+msgstr "Filtrera efter förslagsställare"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Filtertillstånd"
+msgstr "Filtrera efter tillstånd"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -979,12 +976,12 @@ msgid "Disabled"
 msgstr "Inaktiverad"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"Översättningsprojekt (%s) har skapats. Vi uppdaterar nu filer från mallar."
+"Översättningsprojekt (%s) har skapats. Vi uppdaterar nu filer från filmallar."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1208,11 +1205,9 @@ msgid "Filter"
 msgstr "Filter"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Filtreringsregler som talar om vilken lagring denna virtuella mapp "
-"innefattar."
+"Filtreringsregler som talar om vilken filer denna virtuella mapp omfattar."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1308,9 +1303,8 @@ msgstr "Uppdatera systemets serverpaket för Redis till åtminstone version %s"
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Ingen RQ-Worker körs."
+msgstr "Ingen worker körs."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1609,7 +1603,6 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Sökväg ('%s') som pekas ut av POOTLE_FS_WORKING_PATH existerar inte."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1626,13 +1619,12 @@ msgstr ""
 "Pootle."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 "Lägg till skrivrättigheter till `POOTLE_FS_WORKING_PATH` eller ändra i "
-"inställningar"
+"inställningar."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1862,7 +1854,6 @@ msgid "About This Pootle Server"
 msgstr "Om denna Pootle-server"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1870,11 +1861,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Denna webbplats kör Pootle &mdash; en kraftfull webbprogramvara för att "
-"samla grupper att översätta och hantera översättningar. Detta "
-"gemenskapsdrivna verktyg är fri programvara och alla grupper kan använda det "
-"för att bidra till Pootle-gemenskapen. Läs mer på <a href=\"http://pootle."
-"translatehouse.org/\">projektets webbplats</a>."
+"Denna webbplats kör Pootle — en kraftfull webbprogramvara för att samla "
+"grupper att översätta och hantera översättningar. Detta gemenskapsdrivna "
+"verktyg är fri programvara och alla grupper kan använda det för att bidra "
+"till Pootle-gemenskapen. Läs mer på <a href=\"http://pootle.translatehouse."
+"org/\">projektets webbplats</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -2715,9 +2706,8 @@ msgid "The reported error was:"
 msgstr "Den rapporterade felet var:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Föregående"
+msgstr "Föregående sida"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2730,9 +2720,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Visar %(count)s resultat per sida"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Hemsida"
+msgstr "Nästa sida"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:44+0100\n"
-"PO-Revision-Date: 2017-01-16 21:55+0000\n"
+"PO-Revision-Date: 2017-02-08 07:42+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: el\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1484603737.000000\n"
+"X-POOTLE-MTIME: 1486539735.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -907,22 +907,22 @@ msgid "Show"
 msgstr "Εμφάνιση"
 
 #: templates/editor/units/xhr_tm.html:17
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project %(time_ago)s"
 msgstr ""
-"Μεταφράστηκε από τον %(fullname)s στα &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo; έργο %(time_ago)s"
+"Μεταφράστηκε από τον %(fullname)s στο “<span title=\"%(path)s\">%(project)s</"
+"span>” έργο %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project"
 msgstr ""
-"Μεταφράστηκε από τον %(fullname)s στα &ldquo;<span title=\"%(path)s\">"
-"%(project)s</span>&rdquo; έργο"
+"Μεταφράστηκε από τον %(fullname)s στο έργο “<span title=\"%(path)s\">"
+"%(project)s</span>”"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Καταχωρισμένες εργασίες"

@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:44+0100\n"
-"PO-Revision-Date: 2016-10-25 11:07+0000\n"
-"Last-Translator: mirosnik <miroslavnikolic@rocketmail.com>\n"
+"PO-Revision-Date: 2017-02-08 19:43+0000\n"
+"Last-Translator: Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1477393651.000000\n"
+"X-POOTLE-MTIME: 1486582996.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -894,22 +894,22 @@ msgid "Show"
 msgstr "Прикажи"
 
 #: templates/editor/units/xhr_tm.html:17
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project %(time_ago)s"
 msgstr ""
-"Превео је %(fullname)s у &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; пројекат %(time_ago)s"
+"Превео је %(fullname)s у „<span title=\"%(path)s\">%(project)s</span>“ "
+"пројекту пре %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project"
 msgstr ""
-"Превео је %(fullname)s у &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; пројекат"
+"Превео је %(fullname)s у „<span title=\"%(path)s\">%(project)s</span>“ "
+"пројекту"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Забележених задатака"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-07 13:10+0000\n"
+"PO-Revision-Date: 2017-02-08 16:11+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486473048.000000\n"
+"X-POOTLE-MTIME: 1486570312.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -233,11 +233,11 @@ msgid "Source Language"
 msgstr "שפת המקור"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
-msgstr "לא ניתן להסיר סוג קובץ ממיזם אם יש מקורות אחסון מסוג הקובץ הזה ('%s')"
+msgstr "לא ניתן להסיר סוג קובץ ממיזם אם יש קבצים מהסוג הזה ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -338,12 +338,11 @@ msgid "Translation path mapping"
 msgstr "מיפוי נתיב תרגום"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
-"מיפוי נתיב תרגום שממפה את קובצי הלוקליזציה במערכת למקורות האחסון ב־Pootle."
+"מיפוי נתיב תרגום שממפה את קובצי הלוקליזציה במערכת הקבצים לקבצים ב־Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -410,14 +409,12 @@ msgid "Accept"
 msgstr "קבלה"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "סינון הצעות"
+msgstr "סינון לפי מציע"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "מסנן"
+msgstr "סינון לפי מצב"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -495,10 +492,10 @@ msgid "Suggested at"
 msgstr "הוצע ב־"
 
 #: apps/pootle_language/views.py:236
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "נדחו %s הצעות עם הערה. תישלח הודעה למשתמשים"
+msgstr[0] "נדחתה הצעה עם הערה. תישלח הודעה למשתמש"
 msgstr[1] "נדחו %s הצעות עם הערה. תישלח הודעה למשתמשים"
 
 #: apps/pootle_language/views.py:241
@@ -509,17 +506,17 @@ msgstr[0] "התקבלה הצעה עם הערה. תישלח הודעה למשתמ
 msgstr[1] "התקבלו %s הצעות עם הערה. תישלח הודעה למשתמשים"
 
 #: apps/pootle_language/views.py:246
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "נדחו %s הצעות"
+msgstr[0] "נדחתה הצעה"
 msgstr[1] "נדחו %s הצעות"
 
 #: apps/pootle_language/views.py:251
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "התקבלו %s הצעות"
+msgstr[0] "התקבלה הצעה"
 msgstr[1] "התקבלו %s הצעות"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
@@ -833,9 +830,8 @@ msgid "Double quotes in tags"
 msgstr "מירכאות כפולות בתגים"
 
 #: apps/pootle_misc/checks.py:118
-#, fuzzy
 msgid "Percent brace placeholders"
-msgstr "ממלאי מקום"
+msgstr "ממלאי מקום עם אחוז וסוגריים מסולסלים"
 
 #: apps/pootle_misc/checks.py:121
 msgid "ftl format"
@@ -913,9 +909,9 @@ msgstr "לא ניתן להשתמש בצירוף „%(code)s“ בתור קוד �
 
 #. Translators: this refers to the project quality checker
 #: apps/pootle_project/models.py:190
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "לא ניתן להשתמש בצירוף „%s“ בתור קוד מיזם"
+msgstr "לא ניתן להשתמש ב־„%(code)s“ בתור בדיקה למיזם"
 
 #: apps/pootle_project/models.py:197
 msgid ""
@@ -964,18 +960,18 @@ msgstr "כתובת דוא״ל שדרכה ניתן לדווח על תקלות ב�
 #. Translators: This is the URL prefix to search for context screenshots
 #: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "קידומת חיפוש צילומי מסך"
 
 #: apps/pootle_project/models.py:253
 msgid "Disabled"
 msgstr "מנוטרל"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
-msgstr "מיזם התרגום עודכן כנגד התבניות העדכניות ביותר."
+msgstr "מיזם התרגום (%s) נוצר. קובצי המיזם מעודכנים מתבניות הקבצים."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1197,7 +1193,7 @@ msgstr "מסנן"
 
 #: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which files this virtual folder comprises."
-msgstr ""
+msgstr "כללי סינון שאומרים אילו קבצים נמצאים בתיקייה הווירטואלית הזו."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1240,6 +1236,9 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"כדאי לנסות להשתמש ב־'pootle find_duplicate_emails', ואז לעדכן את כתובות "
+"הדוא״ל של המשתמשים עם 'pootle update_user_email username email'. אולי מוטב "
+"גם להשתמש ב־pootle merge_user או ב־purge_user commands"
 
 #: checks.py:88
 msgid "Your version of Django is too old."
@@ -1288,12 +1287,12 @@ msgstr "נא לעדכן את חבילת ה־Redis בשרת שלך לגרסה %s 
 #. Translators: a worker processes background tasks
 #: checks.py:148
 msgid "No worker running."
-msgstr ""
+msgstr "אין משימת רקע פעילה."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
 msgid "Run new workers with 'pootle rqworker'"
-msgstr ""
+msgstr "ניתן להפעיל משימות רקע חדשות עם 'pootle rqworker'"
 
 #: checks.py:165
 msgid "Cache backend is not set to Redis."
@@ -1443,7 +1442,7 @@ msgstr "יש להגדיר INDEX_NAME עבור POOTLE_TM_SERVER['%s']."
 #: checks.py:306
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr " '%s' INDEX_NAME כפול ב־POOTLE_TM_SERVER."
 
 #: checks.py:308
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
@@ -1548,7 +1547,7 @@ msgstr "יש להריץ את הפקודה `revision --restore` כדי לאפס �
 
 #: checks.py:466
 msgid "No canonical URL provided and default site set to example.com."
-msgstr ""
+msgstr "לא הוגדרה כתובת מקובלת ואתר בררת המחדל הוגדר ל־example.com."
 
 #: checks.py:468
 msgid ""
@@ -1560,13 +1559,15 @@ msgstr ""
 
 #: checks.py:472
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "הכתובת המקובלת היא http://localhost."
 
 #: checks.py:474
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"יש להגדיר את `POOTLE_CANONICAL_URL` לערך הולם לאתר שלך או להשאיר ריק אם נעשה "
+"שימוש ב־`django.contrib.sites`."
 
 #: checks.py:504
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
@@ -1575,10 +1576,9 @@ msgstr "הפריט POOTLE_FS_WORKING_PATH אינו מוגדר."
 #: checks.py:508
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "הנתיב ('%s') שמוגדר תחת POOTLE_FS_WORKING_PATH לא קיים."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1594,13 +1594,12 @@ msgstr ""
 "הנתיב ('%s') שמצויין ע״י POOTLE_FS_WORKING_PATH נעול לכתיבה בפני Pootle."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 "נא להוסיף הרשאות כתיבה למיקום שצויין תחת `POOTLE_FS_WORKING_PATH` או לשנות "
-"את ההגדרה"
+"את ההגדרה."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1759,7 +1758,7 @@ msgstr "%(source)s נערך ע״י %(user)s"
 #: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(source)תורגמה אוטומטית ע״י %(user)s"
 
 #: core/views/display.py:127
 #, python-format
@@ -1828,7 +1827,6 @@ msgid "About This Pootle Server"
 msgstr "על אודות שרת Pootle זה"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1836,8 +1834,8 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"אתר זה מופעל על גבי Pootle &mdash; תכנית מבוססת תפעול דפדפן להפעלת צוותים "
-"לביצוע ולניהול של תרגומים. כלי קהילתי זה הנו חופשי וכל קבוצה רשאית להשתמש בו "
+"אתר זה מופעל על גבי Pootle — תכנית מבוססת תפעול דפדפן לחיזוק יכולות של "
+"צוותים לבצע ולנהל תרגומים. כלי קהילתי זה הנו חופשי וכל קבוצה רשאית להשתמש בו "
 "ולתרום לקהילה של Pootle. ניתן לקבל פרטים נוספים ב<a href=\"http://pootle."
 "translatehouse.org/\">אתר המיזם</a>."
 
@@ -2010,6 +2008,8 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"מערכת הקבצים של Pootle היא ניסונית, נשמח אם ייעשה בה שימוש, אך היא דורשת רמה "
+"מסוימת של מומחיות בתרגום, Python וב־Pootle למקרה שמשהו משתבש."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2035,12 +2035,14 @@ msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"אם בחרת במנגנון מערכת הקבצים המקומית אז מיפוי נתיב התרגום ישולב בנתיב שצוין "
+"בכתובת המנגנון"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
-msgstr ""
+msgstr "למנגנונים אחרים, מיפוי נתיב התרגום, יהיה יחסי לראשית המאגר."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2107,6 +2109,9 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
+"יש להשתמש בקוד<code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;טקסט "
+"הקישור&lt;/a&gt;</code> כדי לספק קישורים בין עמודים סטטיים. קישורים כאלה "
+"ישוכתבו עם הנתיבים המלאים לעמודים סטטטיים."
 
 #: templates/admin/staticpages/_form.html:44
 msgid ""
@@ -2655,9 +2660,8 @@ msgid "The reported error was:"
 msgstr "השגיאה שדווחה הייתה:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "הקודם"
+msgstr "העמוד הקודם"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2670,9 +2674,8 @@ msgid "Showing %(count)s results per page"
 msgstr "מוצגות %(count)s תוצאות בעמוד"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "דף הבית"
+msgstr "העמוד הבא"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2699,7 +2702,7 @@ msgstr "צוות שפה"
 #. Translators: This refers to the management of language team members
 #: templates/languages/admin/language_team.html:16
 msgid "Member admin"
-msgstr ""
+msgstr "ניהול משתמשים"
 
 #: templates/languages/admin/language_team.html:30
 msgid "Add team member"
@@ -2869,6 +2872,10 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"כדי להשתמש בתכונת המינוח, יש לוודא הוספת קובץ מינוח למיזם התרגום. על קובץ "
+"המינוח לשאת את השם 'pootle-terminology' ועליו להשתמש באותה הסיומת (תבנית) "
+"כמו שאר קובצי המיזם.  מינוח בהתאמה אישית זה ישמש בנוסף להצעות מינוח שסופקו "
+"על ידי המיזם 'Terminology'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."

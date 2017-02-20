@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-06 20:00+0000\n"
+"PO-Revision-Date: 2017-02-08 14:15+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "Language: pt_BR\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486411227.000000\n"
+"X-POOTLE-MTIME: 1486563331.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -243,13 +243,13 @@ msgid "Source Language"
 msgstr "Idioma fonte"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 "Você não pode remover um tipo de arquivo de um projeto, se já houver "
-"armazenamentos deste tipo de arquivo ('%s')"
+"arquivos deste tipo de arquivo ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -350,13 +350,12 @@ msgid "Translation path mapping"
 msgstr "Mapeamento do caminho das traduções"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
-"Mapeamento do caminho das traduções, que mapeia a localização dos arquivos "
-"no sistema de arquivos para armazenar no Pootle."
+"Mapeamento do caminho das traduções que mapeia os arquivos de localização no "
+"sistema de arquivos para arquivos no Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -423,14 +422,12 @@ msgid "Accept"
 msgstr "Aceitar"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
 msgstr "Filtrar por quem sugeriu"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Filtrar estado"
+msgstr "Filtrar por estado"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -988,12 +985,12 @@ msgid "Disabled"
 msgstr "Desabilitado"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"O projeto de tradução (%s) foi criado. Estamos atualizando o armazenamento a "
+"O projeto de tradução (%s) foi criado. Estamos atualizando os arquivos a "
 "partir dos arquivos de modelo."
 
 #: apps/pootle_project/views.py:270
@@ -1216,11 +1213,9 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Regras de filtragem que mostram quais armazenamentos esta pasta virtual "
-"contém."
+"Regras de filtragem que mostram quais arquivos esta pasta virtual contém."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1319,9 +1314,8 @@ msgstr ""
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Nenhum RQ Worker em execução."
+msgstr "Nenhum worker em execução."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1621,12 +1615,11 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "O caminho ('%s') apontado por POOTLE_FS_WORKING_PATH não existe."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Crie o diretório apontado em  `POOTLE_FS_WORKING_PATH` ou altere a "
+"Crie o diretório apontado em `POOTLE_FS_WORKING_PATH` ou altere a "
 "configuração."
 
 #: checks.py:515
@@ -1638,13 +1631,12 @@ msgstr ""
 "escrita pelo Pootle."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 "Adicione as permissões de escrita ao diretório `POOTLE_FS_WORKING_PATH` ou "
-"altere a configuração"
+"altere a configuração."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1876,7 +1868,6 @@ msgid "About This Pootle Server"
 msgstr "Sobre este servidor Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1884,11 +1875,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Este site está executando o Pootle &mdash; software web poderoso que "
-"capacita equipes para fazer tradução e gerenciamento de tradução. Esta "
-"ferramenta comunitária é um Software Livre, e qualquer equipe pode utilizá-"
-"lo e contribuir com a comunidade Pootle. Leia mais no <a href=\"http://"
-"pootle.translatehouse.org/\">site do projeto</a>."
+"Este site está executando o Pootle — software web poderoso que capacita "
+"equipes para fazer tradução e gerenciamento de tradução. Esta ferramenta "
+"comunitária é um Software Livre, e qualquer equipe pode utilizá-lo e "
+"contribuir com a comunidade Pootle. Leia mais no <a href=\"http://pootle."
+"translatehouse.org/\">site do projeto</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -2434,7 +2425,7 @@ msgstr ""
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
-msgstr "Número total de cadeias"
+msgstr "Total de textos"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
@@ -2730,9 +2721,8 @@ msgid "The reported error was:"
 msgstr "O erro reportado foi:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Anterior"
+msgstr "Página anterior"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2745,9 +2735,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Mostrando %(count)s resultados por página"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Página inicial"
+msgstr "Próxima página"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-07 22:15+0000\n"
+"PO-Revision-Date: 2017-02-19 13:24+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486505723.000000\n"
+"X-POOTLE-MTIME: 1487510644.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -235,13 +235,13 @@ msgid "Source Language"
 msgstr "Forrásnyelv"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"Nem távolíthat el fájltípust egy projektből, ha vannak az adott fájltípusú "
-"(„%s”) tárolók"
+"Nem távolíthat el fájltípust egy projektből, ha még vannak az adott "
+"fájltípusú („%s”) fájlok"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -342,13 +342,12 @@ msgid "Translation path mapping"
 msgstr "Fordítási útvonal leképezése"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
 "Fordítási útvonal leképezése, amely a fájlrendszeren lévő fordítási fájlokat "
-"leképezi a Pootle tárolóira."
+"leképezi a Pootle-ben lévő fájljokra."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -415,14 +414,12 @@ msgid "Accept"
 msgstr "Elfogadás"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Javaslattevő szűrése"
+msgstr "Szűrés javaslattevőre"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "Állapot szűrése"
+msgstr "Szűrés állapotra"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -980,12 +977,12 @@ msgid "Disabled"
 msgstr "Kikapcsolva"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"A fordítási projekt (%s) létrejött. A tárolói frissítése a fájlsablonokból "
+"A fordítási projekt (%s) létrejött. A fájlok frissítése a fájlsablonokból "
 "folyamatban."
 
 #: apps/pootle_project/views.py:270
@@ -1210,10 +1207,9 @@ msgid "Filter"
 msgstr "Szűrő"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Ezen szűrőszabályok adják meg, hogy ez a virtuális mappa mely tárolókból áll."
+"Ezen szűrőszabályok adják meg, hogy ez a virtuális mappa mely fájlokból áll."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1307,9 +1303,8 @@ msgstr "Frissítse a rendszer Redis kiszolgálócsomagját legalább %s verziór
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Nem fut RQ worker."
+msgstr "Nem fut worker."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1618,13 +1613,12 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "A POOTLE_FS_WORKING_PATH által mutatott útvonal (%s) nem létezik."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Hozza létre a „POOTLE_FS_WORKING_PATH” beállítás által mutatott könyvtárat, "
-"vagy módosítsa a beállítást."
+"Hozza létre a „POOTLE_FS_WORKING_PATH” által mutatott könyvtárat, vagy "
+"módosítsa a beállítást."
 
 #: checks.py:515
 #, python-format
@@ -1635,13 +1629,12 @@ msgstr ""
 "Pootle."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
-"Adjon írási jogosultságokat a „POOTLE_FS_WORKING_PATH” könyvtárhoz vagy "
-"módosítsa a beállítást"
+"Adjon írási jogosultságot a „POOTLE_FS_WORKING_PATH” könyvtárhoz, vagy "
+"módosítsa a beállítást."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1873,7 +1866,6 @@ msgid "About This Pootle Server"
 msgstr "Pootle kiszolgáló névjegye"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1883,9 +1875,9 @@ msgid ""
 msgstr ""
 "Ezen az oldalon egy Pootle-rendszer fut, amely lehetővé teszi, hogy "
 "különböző csapatok fordításokat készítsenek, és kezeljék a fordításokat. Ez "
-"a közösségi eszköz ingyenes és bárki szabadon használhatja és közreműködhet "
-"a fejlesztésében. Ezzel kapcsolatos további információ a <a href=\"http://"
-"pootle.translatehouse.org/\">projekt weboldalán</a> olvasható."
+"a közösségi eszköz szabad szoftver, és bárki szabadon használhatja és "
+"közreműködhet a fejlesztésében. Ezzel kapcsolatos további információ a <a "
+"href=\"http://pootle.translatehouse.org/\">projekt weboldalán</a> olvasható."
 
 #: templates/about.html:25
 #, python-format
@@ -2096,13 +2088,12 @@ msgstr ""
 "kombinálva lesz a háttérprogram URL-ben megadott útvonallal"
 
 #: templates/admin/project_fs.html:71
-#, fuzzy
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
-"Más háttérprogramok esetén a fordítási leképezés a tároló gyökeréhez képest "
-"lesz értelmezve."
+"Más háttérprogramok esetén a fordítási útvonal leképezés a tároló gyökeréhez "
+"képest lesz értelmezve."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
@@ -2257,11 +2248,13 @@ msgid "All"
 msgstr "Minden"
 
 #: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "<span class='value translated'>%(translated)s</span>%% lefordítva"
+msgstr ""
+"<span class='value translated'>%(translated_percent_display)s</span> "
+"lefordítva"
 
 #: templates/browser/_progressbar.html:4
 #, python-format
@@ -2696,7 +2689,7 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
-"Ha  segítségre van szüksége, akkor a következőképpen hivatkozhat erre a "
+"Ha segítségre van szüksége, akkor a következőképpen hivatkozhat erre a "
 "hibára: <strong>%(ref)s</strong>."
 
 #: templates/errors/db.html:4 templates/errors/db.html:8
@@ -2727,9 +2720,8 @@ msgid "The reported error was:"
 msgstr "A jelentett hiba:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Előző"
+msgstr "Előző oldal"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2742,9 +2734,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Oldalanként %(count)s találat megjelenítése"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Honlap"
+msgstr "Következő oldal"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

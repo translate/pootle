@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-02 17:24+0000\n"
+"PO-Revision-Date: 2017-02-08 12:47+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
 "n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486056255.000000\n"
+"X-POOTLE-MTIME: 1486558024.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -82,7 +82,7 @@ msgstr "حالة مدير الموقع"
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
-msgstr "يعيّن فيما إذا كان المستخدم يملك كلّ الصّلاحيّات بلا إسنادها صراحةً إليه."
+msgstr "يعيّن فيما إذا كان المستخدم يملك كلّ التّصاريح بلا إسنادها صراحةً إليه."
 
 #: apps/accounts/models.py:80
 msgid "date joined"
@@ -234,12 +234,12 @@ msgid "Source Language"
 msgstr "اللغة المصدر"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"إن كانت هناك مخازن بأحد أنواع الملفّات (’%s‘)، فلا يمكنك إزالة ذلك النوع من "
+"إن كانت هناك ملفّات بأحد أنواع الملفّات (’%s‘)، فلا يمكنك إزالة ذلك النّوع من "
 "أيّ مشروع"
 
 #: apps/pootle_app/forms.py:108
@@ -273,16 +273,16 @@ msgstr "كلّ المستخدمين"
 
 #: apps/pootle_app/views/admin/permissions.py:92
 msgid "Add Permissions"
-msgstr "أضف صلاحيّات"
+msgstr "أضف تصاريح"
 
 #: apps/pootle_app/views/admin/permissions.py:97
 #: apps/pootle_app/views/admin/permissions.py:106
 msgid "Select one or more permissions"
-msgstr "حدّد صلاحيّة أو أكثر"
+msgstr "حدّد تصريحًا واحدًا أو أكثر"
 
 #: apps/pootle_app/views/admin/permissions.py:101
 msgid "Revoke Permissions"
-msgstr "اسحب صلاحيّات"
+msgstr "اسحب تصاريح"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -345,12 +345,11 @@ msgid "Translation path mapping"
 msgstr "مسار ربط التّرجمة"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
-"مسار ربط التّرجمة الذي يربط ملفّات التّوطين في نظام الملفّات بالمخازن في «بوتل»."
+"مسار ربط التّرجمة الذي يربط ملفّات التّوطين في نظام الملفّات بالملفّات في «بوتل»."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -417,14 +416,12 @@ msgid "Accept"
 msgstr "اقبله"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "رشّح المقترِح"
+msgstr "رشّح بالمقترِح"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "رشّح الحالة"
+msgstr "رشّح بالحالة"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -993,11 +990,11 @@ msgid "Disabled"
 msgstr "معطّل"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
-msgstr "أُنشئ مشروع الترجمة (%s). نعمل على تحديث مخازنه من قوالب الملفات."
+msgstr "أُنشئ مشروع الترجمة (%s). نعمل على تحديث ملفّاته من قوالب الملفّات."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1218,9 +1215,8 @@ msgid "Filter"
 msgstr "المرشّح"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
-msgstr "قواعد التّرشيح المحدِّدة للمخازن التي يضغطها المجلّد الوهميّ هذا."
+msgstr "قواعد التّرشيح المحدِّدة للملفّات التي يضغطها المجلّد الوهميّ هذا."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1313,9 +1309,8 @@ msgstr "حدّث حزمة خادوم «Redis» لنظامك إلى الإصدا�
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "لا عمّال RQ نشطين."
+msgstr "لا عمّال نشطين."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1606,7 +1601,6 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "المسار (’%s‘) الذي يشير إليه POOTLE_FS_WORKING_PATH غير موجود."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1621,11 +1615,10 @@ msgstr ""
 "POOTLE_FS_WORKING_PATH."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
-msgstr "أضف صلاحيّة الكتابة إلى ’POOTLE_FS_WORKING_PATH‘ أو غيّر الإعداد"
+msgstr "أضف تصريح الكتابة إلى ’POOTLE_FS_WORKING_PATH‘ أو غيّر الإعداد."
 
 #: checks.py:537
 msgid "MySQL requires time zone settings."
@@ -1853,7 +1846,6 @@ msgid "About This Pootle Server"
 msgstr "عن خادوم «بوتل» هذا"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1861,10 +1853,10 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"يعمل هذا الموقع ب‍«بوتل» &mdash; برمجيّة وبّ متقدّمة هدفها التّسهيل على فرق "
-"التّرجمة وتمكين العمل التّشاركيّ والتّعاون بين المترجمين. هذه الأداة هي برمجيّة "
-"حرّة من المجتمع، ويمكن لأيّ أحد استخدامها والمساهمة إلى مجتمع «بوتل». اطّلع على "
-"المزيد في <a href=\"http://translate.sourceforge.net/\">صفحة المشروع</a>."
+"يعمل هذا الموقع ب‍«بوتل» — برمجيّة وبّ متقدّمة هدفها التّسهيل على فرق التّرجمة "
+"وتمكين العمل التّشاركيّ والتّعاون بين المترجمين. هذه الأداة هي برمجيّة حرّة من "
+"المجتمع، ويمكن لأيّ أحد استخدامها والمساهمة إلى مجتمع «بوتل». اطّلع على المزيد "
+"في <a href=\"http://translate.sourceforge.net/\">صفحة المشروع</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1959,7 +1951,7 @@ msgstr "المشاريع"
 #: templates/translation_projects/_nav.html:29
 #: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
-msgstr "الصّلاحيّات"
+msgstr "التّصاريح"
 
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
@@ -2010,7 +2002,7 @@ msgstr "لم تُكتشف أيّة مشاكل. كلّ شيء على ما يرا�
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
-msgstr "يمكنك هنا إضافة الصّلاحيّات وتحريرها وحذفها في خادوم «بوتل» هذا."
+msgstr "يمكنك هنا إضافة التّصاريح وتحريرها وحذفها في خادوم «بوتل» هذا."
 
 #: templates/admin/permissions.html:14
 #: templates/projects/admin/permissions.html:13
@@ -2626,11 +2618,11 @@ msgstr "غير مسموح بالعمليّة."
 
 #: templates/errors/403.html:4 templates/errors/403.html:8
 msgid "Permission Denied"
-msgstr "رُفض الوصول"
+msgstr "رُفض التّصريح"
 
 #: templates/errors/403.html:13
 msgid "You don't seem to have permissions to access this page."
-msgstr "لا يبدو أنّ لديك صلاحيّات للوصول إلى هذه الصّفحة."
+msgstr "لا يبدو أنّ لديك تصاريح للوصول إلى هذه الصّفحة."
 
 #: templates/errors/404.html:4 templates/errors/404.html:8
 msgid "Page Not Found"
@@ -2688,9 +2680,8 @@ msgid "The reported error was:"
 msgstr "الخطأ كان:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "السّابقة"
+msgstr "الصّفحة السّابقة"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2703,9 +2694,8 @@ msgid "Showing %(count)s results per page"
 msgstr "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "الصفحة الرئيسية"
+msgstr "الصّفحة التّالية"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2825,7 +2815,7 @@ msgstr "لا قوالب لهذا المشروع، لذا إضافة لغات أ�
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "يمكنك أدناه إضافة الصّلاحيّات وتحريرها وحذفها من هذا المشروع."
+msgstr "يمكنك أدناه إضافة التّصاريح وتحريرها وحذفها من هذا المشروع."
 
 #: templates/staticpages/_body.html:6
 #, python-format
@@ -2860,7 +2850,7 @@ msgstr "المصطلحات"
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
-msgstr "يمكنك أدناه إضافة الصّلاحيّات وتحريرها وحذفها من مشروع التّرجمة هذا."
+msgstr "يمكنك أدناه إضافة التّصاريح وتحريرها وحذفها من مشروع التّرجمة هذا."
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."

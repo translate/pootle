@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-02-03 15:07+0000\n"
-"Last-Translator: Mixaill <mixail@by-reservation.com>\n"
+"PO-Revision-Date: 2017-02-12 17:57+0000\n"
+"Last-Translator: Mikhail <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486134440.000000\n"
+"X-POOTLE-MTIME: 1486922262.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -240,13 +240,12 @@ msgid "Source Language"
 msgstr "Язык источника"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"Вы не можете удалить тип файла из проекта, если для него есть хранилище "
-"('%s')"
+"Вы не можете удалить тип файла, если в проекте есть файлы данного типа ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -348,13 +347,12 @@ msgid "Translation path mapping"
 msgstr "Маппинг путей перевода"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
-"Маппинг путей перевода указывает, где хранятся файлы переводов в файловой "
-"системе Pootle."
+"Маппинг путей перевода указывает соответствие между путями в файловой "
+"системе и путями в Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -421,12 +419,10 @@ msgid "Accept"
 msgstr "Принять"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
 msgstr "Фильтр по предлагающему"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
 msgstr "Фильтр по состоянию"
 
@@ -991,13 +987,12 @@ msgid "Disabled"
 msgstr "Отключено"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"Проект (%s) был создан. Сейчас происходит обновление хранилища проекта из "
-"шаблона."
+"Проект (%s) был создан. Сейчас происходит обновление его файлов из шаблона."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1222,10 +1217,10 @@ msgid "Filter"
 msgstr "Фильтр"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
-"Правила фильтрации, которые говорят, что хранит этот виртуальный каталог."
+"Правила фильтрации задают какие файлы будут храниться в этом виртуальном "
+"каталоге."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1321,9 +1316,8 @@ msgstr "Обновите пакет Redis в вашей системе как м
 
 #. Translators: a worker processes background tasks
 #: checks.py:148
-#, fuzzy
 msgid "No worker running."
-msgstr "Отсутствуют запущенные RQ обработчики."
+msgstr "Отсутствуют запущенные обработчики."
 
 #. Translators: a worker processes background tasks
 #: checks.py:150
@@ -1625,7 +1619,6 @@ msgstr ""
 "Путь ('%s'), заданный в параметре POOTLE_FS_WORKING_PATH , не существует."
 
 #: checks.py:510
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1642,7 +1635,6 @@ msgstr ""
 "параметре POOTLE_FS_WORKING_PATH."
 
 #: checks.py:518
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
@@ -1878,7 +1870,6 @@ msgid "About This Pootle Server"
 msgstr "Об этом сервере Pootle"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1886,9 +1877,9 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Этот сайт создан с помощью Pootle &mdash; мощным программным обеспечением "
-"для управления проектами переводов, осуществляемыми командами переводчиков. "
-"Это программное обеспечение является свободным , любая команда может "
+"Этот сайт создан с помощью Pootle — мощного программного обеспечения для "
+"управления проектами переводов, осуществляемыми командами переводчиков. Это "
+"программное обеспечение является свободным , любая команда может "
 "использовать его и вносить вклад в его развитие. Для получения "
 "дополнительной информации, посетите <a href=\"http://pootle.translatehouse."
 "org/\">вебсайт проекта</a>."
@@ -2736,9 +2727,8 @@ msgid "The reported error was:"
 msgstr "Была получена ошибка:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Предыдущая"
+msgstr "Предыдущая страница"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2751,9 +2741,8 @@ msgid "Showing %(count)s results per page"
 msgstr "Показывать %(count)s результатов на страницу"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Домашняя страница"
+msgstr "Следующая страница"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:43+0100\n"
-"PO-Revision-Date: 2017-01-27 02:40+0000\n"
+"PO-Revision-Date: 2017-02-08 14:35+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ug\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485484807.000000\n"
+"X-POOTLE-MTIME: 1486564514.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -234,13 +234,13 @@ msgid "Source Language"
 msgstr "مەنبە تىل"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"ئەگەر بۇ بۇ ھۆججەت ('%s') تىپىدا ساقلانغان بولسا، قۇرۇلۇشتىن ھۆججەت تىپىنى "
-"چىقىرىۋېتەلمەيسىز، "
+"ئەگەر بۇ ھۆججەت ('%s') تىپىدا ساقلانغان بولسا، قۇرۇلۇشتىن ھۆججەت تىپىنى "
+"چىقىرىۋېتەلمەيسىز،"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -342,7 +342,6 @@ msgid "Translation path mapping"
 msgstr "تەرجىمە يولى خەرىتىسى"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
@@ -400,7 +399,7 @@ msgstr "بۇ قوشۇنغا بىر ئەزا قوش"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "رول"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -415,14 +414,12 @@ msgid "Accept"
 msgstr "قوبۇل قىل"
 
 #: apps/pootle_language/forms.py:157
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "ئىشلەتكۈچى تەكلىپلىرى"
+msgstr "تەكلىپ بەرگۈچى بويىچە سۈزۈش"
 
 #: apps/pootle_language/forms.py:163
-#, fuzzy
 msgid "Filter by state"
-msgstr "سۈزگۈچ"
+msgstr "ھالىتى بويىچە سۈزۈش"
 
 #: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
