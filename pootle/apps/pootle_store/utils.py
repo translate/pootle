@@ -87,14 +87,12 @@ class SuggestionsReview(object):
                 dict(comment=comment,
                      user=self.reviewer)).save()
 
-    def add(self, unit, translation, user=None, touch=True):
+    def add(self, unit, translation, user=None):
         """Adds a new suggestion to the unit.
 
         :param translation: suggested translation text
         :param user: user who is making the suggestion. If it's ``None``,
             the ``system`` user will be used.
-        :param touch: whether to update the unit's timestamp after adding
-            the suggestion or not.
 
         :return: a tuple ``(suggestion, created)`` where ``created`` is a
             boolean indicating if the suggestion was successfully added.
@@ -123,8 +121,6 @@ class SuggestionsReview(object):
                 suggestion,
                 SubmissionTypes.SUGG_ADD,
                 user).save()
-            if touch:
-                unit.save()
         return (suggestion, True)
 
     def create_submission(self, suggestion, suggestion_type, user, **kwargs):
